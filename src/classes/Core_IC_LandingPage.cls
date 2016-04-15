@@ -270,7 +270,7 @@ global with sharing class Core_IC_LandingPage{
            
            if(appWrapperObj.ideaLandingPageRequest.IdeasOfTheWeekLimit=='All'){
                 if(!lstActiveIdea.isEmpty()) ObjIdeaLandingPageResponse.ActiveStatus=True;
-                lstIdea=[SELECT Body,CreatedDate,CreatorName,CreatorSmallPhotoUrl,Id,IdeaThemeId,Title,VoteTotal,Description__c,NumComments,Categories__c FROM Idea Where IdeaTheme.Status=:'Active' OR IdeaTheme.Status=:'Closed' ORDER BY IdeaTheme.Status ASC,CreatedDate DESC];
+                lstIdea=[SELECT Body,CreatedDate,CreatorName,CreatorSmallPhotoUrl,Id,IdeaThemeId,Title,VoteTotal,Description__c,NumComments,Categories__c FROM Idea Where IdeaThemeId IN (Select Id FROM IdeaTheme WHERE Status IN ('Closed','Active')) ORDER BY CreatedDate DESC];
                 if(!lstIdea.isEmpty()) ObjIdeaLandingPageResponse.SeeAllLinkForIdeasOfTheWeek=True;
            }
            
@@ -416,7 +416,7 @@ global with sharing class Core_IC_LandingPage{
                    ObjIdeaLandingPageResponse.MyUpdates=lstFinalCombinedMyUpdates;
                }
                else if(appWrapperObj.ideaLandingPageRequest.MyUpdatesLimit=='All'){
-                    List<Idea> lstIdeaForCurrentUser=[SELECT Body,CreatedDate,CreatorName,CreatorSmallPhotoUrl,Id,IdeaThemeId,Title,VoteTotal,Description__c,NumComments,Categories__c FROM Idea Where CreatedById = :Userinfo.getuserId() AND (IdeaTheme.Status=:'Active' OR IdeaTheme.Status=:'Closed') ORDER BY IdeaTheme.Status ASC,CreatedDate DESC];
+                    List<Idea> lstIdeaForCurrentUser=[SELECT Body,CreatedDate,CreatorName,CreatorSmallPhotoUrl,Id,IdeaThemeId,Title,VoteTotal,Description__c,NumComments,Categories__c FROM Idea Where CreatedById = :Userinfo.getuserId() AND  IdeaThemeId IN (Select Id FROM IdeaTheme WHERE Status IN ('Closed','Active')) ORDER BY CreatedDate DESC];
                     //system.debug('~~~~'+lstIdea);
                     if(!lstActiveIdea.isEmpty()) ObjIdeaLandingPageResponse.ActiveStatus=True;
                     ObjIdeaLandingPageResponse.IdeasOfTheWeek=getIdeasList(lstIdeaForCurrentUser);

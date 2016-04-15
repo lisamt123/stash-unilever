@@ -32,7 +32,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Trigger_Email__c</field>
+                <field>Trigger_Batch__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -86,14 +86,7 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Case.NAME</fields>
-        <fields>Case.Product_Code__c</fields>
-        <fields>Case.CEC_Reason_Code__c</fields>
-        <fields>Case.CASE_CREATED_DATEONLY</fields>
-        <fields>Case.Store__c</fields>
-        <fields>Case.Store_Location__c</fields>
-        <fields>Case.Date_of_Manufacture_str__c</fields>
-        <fields>Case.Purchase_Date__c</fields>
+        <fields>Case_Id__c</fields>
         <relatedList>cec_Alert_Tracker_Item__c.Alert_Tracker_Id__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
@@ -102,7 +95,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hL0000000HxS7</masterLabel>
+        <masterLabel>00hE000000DyXMR</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

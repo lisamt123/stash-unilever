@@ -3,6 +3,16 @@ public without sharing class BET_ManageMembersService {
 
 	private BET_ManageMembersService() {}
 
+	/************************************************************
+        Purpose: Method deletes team members
+        Parameters: List<uw_BET_Team_Member__c> members
+        Returns: -
+        Throws: -
+    *************************************************************/
+	public static void deleteTeamMembers(List<uw_BET_Team_Member__c> members){
+		delete members;
+	}
+	
 	public static PageReference doMassApproveDeny(String status,List<BET_ManageMembersController.MemberRequestWrapper> memberRequests,Id betId){
         System.debug('Entering doMassApproveDeny ' + status + ', ' + memberRequests + ', ' + betId);
         List<BET_Member_Request__c> requests = new List<BET_Member_Request__c>();

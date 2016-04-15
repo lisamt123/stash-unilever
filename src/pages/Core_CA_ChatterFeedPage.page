@@ -1,13 +1,5 @@
 <apex:page showHeader="false" sidebar="false">
 
-<script>
-if(navigator.userAgent.indexOf('Salesforce1') >= 0) {
-  try {
-    window.localStorage["sfdc.h_and_t.cookieset"] = true;
-  } catch(err) {}
-}
-</script>
-
 <!--
 <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
 <script>
@@ -57,7 +49,20 @@ if(navigator.userAgent.indexOf('Salesforce1') >= 0) {
           pointer-events: none;
           cursor: default;
     }
-    @media (max-width: 480px) { 
+    @media (max-width: 480px)
+        .feedPagePadding {
+            width: 95%;
+            margin-bottom: 60px;
+            margin-left:10px; 
+        }
+    }
+    input#richTextPlaceholderInput {
+        display: none;
+    }
+    #richTextPlaceholderInput {
+        display: none;
+    }
+   <!-- @media (max-width: 480px) { 
         .feedPagePadding{
             width: 448px;
             margin-bottom: 60px;
@@ -84,7 +89,9 @@ if(navigator.userAgent.indexOf('Salesforce1') >= 0) {
             margin-bottom: 60px;
             margin-left:10px; 
         }
-    }    
+    } -->  
+    
+    
 </style>
 <div class="feedPagePadding" >
     <chatter:feed entityId="{!$CurrentPage.parameters.id}" showPublisher="true" />

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Pillar tile image for Business Awareness &amp; End to End</description>
+    <internalUseOnly>true</internalUseOnly>
+    <keywords>Business Awarness</keywords>
+    <name>Business Awareness &amp; End to End Pillar Tile</name>
+    <public>false</public>
+</Document>

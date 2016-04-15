@@ -189,8 +189,10 @@ public with sharing class IPM_GateDocumentRiskManagement{
                 question=new IPM_Questionnaire__c();
                 question.Id=qId;
                 if(projDocType==IPM_ConstantUtils.CHARTER_GATE){
-                	question.IPM_Charter_Score__c=score;
-                	question.IPM_Contract_Score__c=score;
+                    question.IPM_Charter_Score__c=score;
+                    question.IPM_Contract_Score__c=score;
+                    question.IPM_Market_Ready_Score__c=score;//it is being added because if user has not updated risk question at contract then also it get copied to MR gate
+                	question.IPM_Market_Deployment_Score__c=score;
                 }
                 else if(projDocType==IPM_ConstantUtils.CONTRACT_GATE){
                 	question.IPM_Contract_Score__c=score;

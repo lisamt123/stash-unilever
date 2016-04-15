@@ -30,6 +30,10 @@
             <layoutItems>
                 <emptySpace>true</emptySpace>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>X30_Days_Limit__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -155,7 +159,6 @@
         <fields>Email_Template_Name__c</fields>
         <fields>To__c</fields>
         <fields>Popup_Message__c</fields>
-        <fields>Questionnaire_URL__c</fields>
         <relatedList>cec_Alert_Action__c.Alert_Rule_Id__c</relatedList>
     </relatedLists>
     <relatedLists>

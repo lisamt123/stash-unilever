@@ -35,7 +35,7 @@ public with sharing class IPM_CustomerChannelController {
     public String channelName{get; set;}//string to store the channel name
     public String content{get; set;}//string to store the content
     public String channelType{get; set;}//string to get the channel type.
-    public transient List<String> Names{get; set;}// list of customer channel names
+    public List<String> Names{get; set;}// list of customer channel names
     public Boolean isEditable{get;set;}// boolean to check if editable
     public Integer channelCount{get; set;}//boolean for count for number Customer channel selected
     public string channelInfo{get;set;}//string for channel Info

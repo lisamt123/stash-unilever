@@ -86,6 +86,7 @@ private class IPM_CountryHandler_Test {
             }
             insertCountry.IPM_Local_Project__c = projectDetailList[2].Id;
             insertCountry.MDO_Geography__c=geographyDetailList[0].id;
+            insertCountry.isActive__c = true;
             countryTest.add(insertCountry);
         }
         insert countryTest;

@@ -9,6 +9,7 @@
 <apex:component > 
     <apex:attribute name="project" description="Project Object for displaying " type="IPM_Project__c" required="false" />
     <apex:attribute name="activeItem" description="Pass the Active Tab Name" type="String"/>
+    <apex:attribute name="phasechangeInProgress" description="Pass boolean to check if phase change is in progress or not" type="Boolean"/>
     <div class="row">
     <div class="ipmProjectDetails">
         <div class="panel">
@@ -16,18 +17,25 @@
                 <div class="col-sm-5 noPadleft noPadright">   
                     <div class="col-sm-2 headerlogo noPadleft noPadright">                                
                         <apex:outputField value="{!project.IPM_Project_Logo__c}" />
+<!-- Below rendered is call if project logo is null -->
                         <apex:image value="{!URLFOR($Resource.IPM_Resource, '/images/upload_img2b.png')}" rendered="{!project.IPM_Project_Logo__c=null}" />
                     </div>
                     <div class="col-sm-9 noPadleft noPadright">
                         <div class="pull-left">
                             <span class="ipmpanel-heading"><apex:outputText value="{!project.IPM_Project_Name__c}" /></span>
                         </div>             
-                        <div class="secNameHeader SecButtonSet">
+                        <div class="secNameHeader projDetails SecButtonSet">
+<!-- Below rendered is used for showing original project icon-->
                              <apex:outputPanel rendered="{!project.IPM_Project_Type__c='Original'}">
-                                 <span class="headerglb"></span>
+                                 <span class="orgIcon"></span>
                              </apex:outputPanel>
+<!--Below rendered is used for showing operational project icon-->
+                             <apex:outputPanel rendered="{!project.IPM_Project_Type__c='Operational'}">
+                                 <span class="oprtnIcon"></span>
+                             </apex:outputPanel>
+<!--Below rendered is used for showing rollout project icon-->
                              <apex:outputPanel rendered="{!project.IPM_Project_Type__c='Rollout'}">
-                                 <span class="headerlocal"></span>
+                                 <span class="rollIcon"></span>
                              </apex:outputPanel>
                              <span class="grentxt">{!project.IPMProject_Span__c} {!project.IPM_Project_Type__c}</span> 
                         </div>
@@ -38,6 +46,7 @@
                             <div class="pull-left">
                                 <span class="headBrand">{!project.IPM_Category_Text__c}</span>
                             </div>
+<!-- Below rendered is used to link of parent project -->
                              <apex:outputpanel layout="block" styleClass="pull-left list-style" rendered="{! if(AND(project.IPM_Project_Type__c=='Rollout',OR(project.IPMProject_Span__c=='Local',project.IPMProject_Span__c=='Regional')),'true','false')}">
                                 <span>{!project.IPMProject_Span__c} {!$Label.IPM_CHILD_PROJECT_OF} </span>
                                 <apex:outputLink target="_new" value="{!$Page.IPM_ProjectOverview}?id={!project.IPM_Parent_Project__c}">{!project.IPM_Parent_Project__r.IPM_Project_Name__c}</apex:outputLink>
@@ -57,18 +66,24 @@
         </div>
     </div>
     </div>
-    <apex:OutputPanel layout="block" styleClass="row" rendered="{!AND(project.IPMProject_Span__c='Local' && project.IPM_Project_Type__c = 'Rollout' && project.IPM_Phase__c!='Market Ready' && project.IPM_Phase__c!='Market Deployment' && project.IPM_Phase__c!='PLE')}"> 
-                    <c:IPM_NavMenuBCC activeItem="{!activeItem}" projSpan="{!project.IPMProject_Span__c}" projID="{!project.id}"></c:IPM_NavMenuBCC>                        
-                </apex:OutputPanel>
-                <apex:OutputPanel layout="block" styleClass="row" rendered="{!AND(project.IPMProject_Span__c!='Local' && OR(project.IPM_Phase__c!='Feasibility',project.IPM_Phase__c!='Capability',project.IPM_Phase__c!='Ideas',project.IPM_Phase__c!='Market Ready'))}" > 
-                     <c:IPM_NavMenu activeItem="{!activeItem}" projSpan="{!project.IPMProject_Span__c}" projType="{!project.IPM_Project_Type__c}"
-                        projPhase="{!project.IPM_Phase__c}" projID="{!project.Id}" bosscardStatus="{!project.IPM_Bosscard_Status__c}" 
-                        bosscardId="{!project.IPM_Bosscard__c}" gkm="{!project.IPM_GateKeeping_Model__c}"/>
-                </apex:OutputPanel>
-                <apex:OutputPanel layout="block" styleClass="row" rendered="{!AND(project.IPMProject_Span__c='Local' && OR(project.IPM_Phase__c='PLE',project.IPM_Phase__c='Market Ready',project.IPM_Phase__c='Market Deployment', project.IPM_Project_Type__c = 'Operational'))}" > 
-                    <c:IPM_NavMenu activeItem="{!activeItem}" projSpan="{!project.IPMProject_Span__c}" projType="{!project.IPM_Project_Type__c}"
-                        projPhase="{!project.IPM_Phase__c}" projID="{!project.Id}" bosscardStatus="{!project.IPM_Bosscard_Status__c}" 
-                        bosscardId="{!project.IPM_Bosscard__c}" gkm="{!project.IPM_GateKeeping_Model__c}"/>
-
-    </apex:OutputPanel>
+<!-- Below rendered is enable the below code this variable is false-->
+    <apex:outputPanel rendered="{!!phasechangeInProgress}">
+<!-- Below rendered is used to call below component -->
+        <apex:OutputPanel layout="block" styleClass="row" rendered="{!AND(project.IPMProject_Span__c='Local' && project.IPM_Project_Type__c = 'Rollout' && project.IPM_Phase__c!='Market Ready' && project.IPM_Phase__c!='Market Deployment' && project.IPM_Phase__c!='PLE')}"> 
+            <c:IPM_NavMenuBCC activeItem="{!activeItem}" projSpan="{!project.IPMProject_Span__c}" projID="{!project.id}"></c:IPM_NavMenuBCC>                        
+        </apex:OutputPanel>
+<!-- Below rendered is used to call below component -->
+        <apex:OutputPanel layout="block" styleClass="row" rendered="{!AND(project.IPMProject_Span__c!='Local' && OR(project.IPM_Phase__c!='Feasibility',project.IPM_Phase__c!='Capability',project.IPM_Phase__c!='Ideas',project.IPM_Phase__c!='Market Ready'))}" > 
+            <c:IPM_NavMenu activeItem="{!activeItem}" projSpan="{!project.IPMProject_Span__c}" projType="{!project.IPM_Project_Type__c}"
+                            projPhase="{!project.IPM_Phase__c}" projID="{!project.Id}" bosscardStatus="{!project.IPM_Bosscard_Status__c}" 
+                            bosscardId="{!project.IPM_Bosscard__c}" gkm="{!project.IPM_GateKeeping_Model__c}"/>
+        </apex:OutputPanel>
+<!-- Below rendered is used to call below component -->
+        <apex:OutputPanel layout="block" styleClass="row" rendered="{!AND(project.IPMProject_Span__c='Local' && OR(project.IPM_Phase__c='PLE',project.IPM_Phase__c='Market Ready',project.IPM_Phase__c='Market Deployment', project.IPM_Project_Type__c = 'Operational'))}" > 
+                        <c:IPM_NavMenu activeItem="{!activeItem}" projSpan="{!project.IPMProject_Span__c}" projType="{!project.IPM_Project_Type__c}"
+                            projPhase="{!project.IPM_Phase__c}" projID="{!project.Id}" bosscardStatus="{!project.IPM_Bosscard_Status__c}" 
+                            bosscardId="{!project.IPM_Bosscard__c}" gkm="{!project.IPM_GateKeeping_Model__c}"/>
+    
+        </apex:OutputPanel>
+    </apex:outputPanel>
 </apex:component>

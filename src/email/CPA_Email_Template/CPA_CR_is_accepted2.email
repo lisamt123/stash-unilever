@@ -1,0 +1,25 @@
+<messaging:emailTemplate subject="{!RelatedTo.Name} : Accepted" recipientType="User" relatedToType="CPA_CR__c">
+<messaging:htmlEmailBody >
+    Hi, <br/><br/>
+    CR with ID {!RelatedTo.Name} is Accepted by {!RelatedTo.LastModifiedBy.Name} on {!Today()}. <br/><br/>
+
+    You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id} ">{!RelatedTo.Name} </a> <br/><br/>
+
+Regards, <br/><br/>
+
+Automation Contract System
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>
+
+
+<!--
+
+
+A <Contract> with ID <Contract ID> is Accepted by <SMT Name> on <Date & Time>.
+You can access it from here: <URL to PWORF/System>
+
+Regards,
+Automation Contract System"
+
+
+-->

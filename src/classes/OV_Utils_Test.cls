@@ -16,8 +16,8 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 
 @isTest
 private class OV_Utils_Test {
-	
-	@isTest static void test_method_one() {
+    
+    @isTest static void test_method_one() {
                 OV_Brand__c brand1 = OV_TestingHelper.initBrand('Brand 1', true);
                 OV_Brand__c brand2 = OV_TestingHelper.initBrand('Brand 2', true);
                 OV_Brand__c brand3 = OV_TestingHelper.initBrand('Brand 3', true);
@@ -104,7 +104,7 @@ private class OV_Utils_Test {
                 System.assertEquals(customer2.Id, customerCast2.customerId);
 
                 List<Object> headingList = OV_Utils.getReportHeadings();
-	}
+    }
 
         @isTest static void testSavedFilters() {
                 OV_Category__c category1 = OV_TestingHelper.initCategory('Category 1', true);
@@ -137,9 +137,44 @@ private class OV_Utils_Test {
                     savedFilters = OV_Utils.getSavedFilters();
                     System.assertEquals(geography5.Id, savedFilters.get('geography1Id'));
                     System.assertEquals(geography6.Id, savedFilters.get('geography2Id'));
-
-
-
                 }
         }
+        
+    @isTest static void wrapperTests() {
+        User u = OV_TestingHelper.createAdminUser('test', 'test@test.com', 'test2');
+        
+        OV_Wrapper.ReportWrapper report1 = new OV_Wrapper.ReportWrapper(u.Id, 'Report Title 1');
+        report1.reportCreatedDate = DateTime.now();
+        OV_Wrapper.ReportWrapper report2 = new OV_Wrapper.ReportWrapper(u.Id, 'Report Title 2');
+        report2.reportCreatedDate = DateTime.now().addDays(-1);
+        system.assertEquals(-1, report2.compareTo(report1));
+        
+        OV_Shelf__c s1 = new OV_Shelf__c(Sort_Order__c = 1);
+        insert s1;
+        OV_Shelf__c s2 = new OV_Shelf__c(Sort_Order__c = 1);
+        insert s2;
+        
+        OV_Wrapper.ShelfWrapper shelf1 = new OV_Wrapper.ShelfWrapper(s1);
+        shelf1.shelfCreatedDate = DateTime.now();
+        OV_Wrapper.ShelfWrapper shelf2 = new OV_Wrapper.ShelfWrapper(s2);
+        shelf2.shelfCreatedDate = DateTime.now().addDays(-1);
+        system.assertEquals(-1, shelf2.compareTo(shelf1));
+        
+        OV_Shelf_Tile__c st1 = new OV_Shelf_Tile__c(Shelf__c = s1.Id, Sort_Order__c = 1);
+        insert st1;
+        OV_Shelf_Tile__c st2 = new OV_Shelf_Tile__c(Shelf__c = s2.Id, Sort_Order__c = 1);
+        insert st2;
+        
+        OV_Wrapper.ShelfTileWrapper shelfTile1 = new OV_Wrapper.ShelfTileWrapper(st1);
+        shelfTile1.shelfTileCreatedDate = DateTime.now();
+        OV_Wrapper.ShelfTileWrapper shelfTile2 = new OV_Wrapper.ShelfTileWrapper(st2);
+        shelfTile2.shelfTileCreatedDate = DateTime.now().addDays(-1);
+        system.assertEquals(-1, shelfTile2.compareTo(shelfTile1));
+        
+        List<OV_Wrapper.ShelfTileWrapper> cShelfTiles = new List<OV_Wrapper.ShelfTileWrapper>();
+        cShelfTiles.add(shelfTile1);
+        cShelfTiles.add(shelfTile2);
+        shelf1.addTiles(cShelfTiles);
+        system.assertEquals(2, shelf1.getTiles().size());
+    }
 }

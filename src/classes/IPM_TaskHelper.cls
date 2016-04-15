@@ -8,7 +8,7 @@
 
 public with sharing class IPM_TaskHelper { 
     
-   
+    public static Boolean SKIP_TRIGGER_EXECUTION = false;
     
     
      /**************************************************************
@@ -19,9 +19,9 @@ public with sharing class IPM_TaskHelper {
     
     public static void prepareCustomTaskName(IPM_Task__c newtaskObj,Map<Id,IPM_Project__c> projectDetailMap) 
     {
-    	Id recordTypeIdValue = Schema.SObjectType.IPM_Task__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectTasks).getRecordTypeId();
-    	
-    	if(newTaskObj.IPM_Project__c !=null && projectDetailMap.containsKey(newTaskObj.IPM_Project__c) )
+      Id recordTypeIdValue = Schema.SObjectType.IPM_Task__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectTasks).getRecordTypeId();
+      
+      if(newTaskObj.IPM_Project__c !=null && projectDetailMap.containsKey(newTaskObj.IPM_Project__c) )
         {
           IPM_Project__c associatedProject = projectDetailMap.get(newTaskObj.IPM_Project__c);   
           String projectName = IPM_ConstantUtils.BLANK;
@@ -37,16 +37,16 @@ public with sharing class IPM_TaskHelper {
           String taskName = IPM_ConstantUtils.BLANK;
           if(newTaskObj.RecordTypeId == recordTypeIdValue)
           {
-          	  taskName = projectName + '-' + newTaskObj.IPM_Task_Name__c;
-	          
-	          if(!String.isBlank(taskName) && taskName.length() >= 80)
-	          {
-	                newTaskObj.Name = taskName.substring(0,79);
-	          }
-	          else
-	          {
-	                newTaskObj.Name = taskName;
-	          }
+              taskName = projectName + '-' + newTaskObj.IPM_Task_Name__c;
+            
+            if(!String.isBlank(taskName) && taskName.length() >= 80)
+            {
+                  newTaskObj.Name = taskName.substring(0,79);
+            }
+            else
+            {
+                  newTaskObj.Name = taskName;
+            }
           }
         }   
     }
@@ -56,7 +56,7 @@ public with sharing class IPM_TaskHelper {
     */
     public static void updateTaskDueDateBasedOnMS(List<IPM_Task__c> taskList)
     {
-    	
+        
         if(taskList!= null && !taskList.isEmpty())
         {   
            Set<Id> projectIdSet = new Set<Id>();
@@ -66,7 +66,7 @@ public with sharing class IPM_TaskHelper {
            }
                
            List<IPM_Milestone__c> milestoneList = [SELECT Id,IPM_Due_Date__c,IPM_Phase__c,IPM_Project__c FROM IPM_Milestone__c WHERE IPM_Project__c IN : projectIdSet AND IPM_Due_Date__c != null AND IPM_Type_of_Milestone__c=: IPM_Utils.Standard];
-		   
+           
            if(milestoneList != null && !milestoneList.isEmpty()){  
                for(IPM_Task__c task : taskList){
                    //updating the due date only for task which are not completed
@@ -118,149 +118,7 @@ public with sharing class IPM_TaskHelper {
                 update tasksToUpdate; //finally perform the update
             }
     }
-    
-    /**************************************************************
-    * @description: future handler which gets called from the restrictive standard object User whenever he gets deactivated or deleted
-    * @param1 usersId : The set of users ids which are deactiveated or deleted
-    */
-    @future
-    public static void reAssign(Set<Id> usersId) {
-        
-            IPM_Project_Resource__c[] newProResourcesList = new list<IPM_Project_Resource__c>();//new resources list to be processed
-            map<Id, IPM_Project_Resource__c> newProResourcesMap = new map<Id, IPM_Project_Resource__c>();//new lsit map of resources
-            Map<Id, IPM_Project_Resource__c> oldProResourcesMap;//old resources maps to store the records
-            
-            for(IPM_Project_Resource__c eachNewPR : [SELECT IPM_User__c, IPM_Project__c, IPM_Project__r.IPM_Project_Leader__c, 
-                                                                        IPM_Project_Role_Owner__c 
-                                                                    FROM IPM_Project_Resource__c 
-                                                                    WHERE IPM_Project_Role_Owner__c = true AND
-                                                                            IPM_User__c IN :usersId]) {
-                IPM_Project_Resource__c prSobj = eachNewPR;
-                prSobj.IPM_User__c = null;
-                newProResourcesList.add(prSobj);
-                newProResourcesMap.put(eachNewPR.Id, prSobj);
-            }
-            oldProResourcesMap = new Map<Id, IPM_Project_Resource__c>
-                                                                    ([SELECT IPM_User__c, IPM_Project__c, IPM_Project__r.IPM_Project_Leader__c, 
-                                                                        IPM_Project_Role_Owner__c 
-                                                                    FROM IPM_Project_Resource__c 
-                                                                    WHERE IPM_Project_Role_Owner__c = true AND
-                                                                            IPM_User__c IN :usersId]);//old resources maps list after being updated
 
-            reAssignTasks(newProResourcesList, newProResourcesMap, oldProResourcesMap); 
-         
-    }
-    
-    /**************************************************************
-    * @description: this calls from the User trigger handler which means to perform some action for the removed users from the project team
-    * @param1 inActiveUsrsList : The list of users ids which are deactiveated or deleted
-    */
-   // @InvocableMethod 
-    public static void reAssignTasksForInActiveUsrs(list<User> inActiveUsrsList) {
-       Set<Id> usersId = new Set<Id>();
-       for(User eachUser : inActiveUsrsList) {
-            usersId.add(eachUser.id);
-       }
-      reAssign(usersId);//reuse the future handler now
-       //reAssignTaskToActiveUsers(usersId);
-    }
-    
-    /**************************************************************
-    * @description: This method performs the actual processings for the task reassignments. There are usually following scenarios to be considered
-    *               1: Reassign those tasks for which the users are deleted/inactivated and assign back to their manager
-    *               2: Reassign those tasks for which their managers are also disabled or doesnt exist to the PL of that project
-    *               3: Finally notify it
-    * @param1 newProjectsResources : The new list of IPM_Project_Resource__c object
-    * @param2 newProjectResourcesMap : The new map of IPM_Project_Resource__c object
-    * @param3 oldProjectResourcesMap : The old map of IPM_Project_Resource__c object
-    */
-    public static void reAssignTasks(IPM_Project_Resource__c[] newProjectsResources, 
-                                        map<Id, IPM_Project_Resource__c> newProjectResourcesMap,
-                                        map<Id, IPM_Project_Resource__c> oldProjectResourcesMap) {
-            list<IPM_Task__c> tasksToUpdate = new list<IPM_Task__c>();//tasks to update
-            list<IPM_Project_Resource__c> projectResourcesToUpdate = new list<IPM_Project_Resource__c>();//pr records to update
-            IPM_Project_Resource__c oldProjectResource = new IPM_Project_Resource__c();
-            Set<Id> projectIds = new Set<Id>();//project id
-            Set<String> functionalRolesSet = new Set<String>();//functional wise maps
-            map<Id, Id> usersToReplaceMap = new map<Id, Id>(); // old user => new user
-            map<Id, IPM_Project_Resource__c> removedUsersMap = new map<Id, IPM_Project_Resource__c>();//removed users
-            map<Id, IPM_Project_Resource__c> replacedUsersMap = new map<Id, IPM_Project_Resource__c>();//replaced users
-            map<Id, Id> projectLeaderMap = new map<Id, Id>();//list of PLs for the available context of the projects
-            for(IPM_Project_Resource__c eachProject : newProjectsResources) {
-                functionalRolesSet.add(eachProject.IPM_Role_Type__c);
-                oldProjectResource = oldProjectResourcesMap.get(eachProject.Id);
-                //check for those users who are removed frm the owner's role, find out their ManagerIds and replace their tasks with them.
-                if(oldProjectResource.IPM_User__c != eachProject.IPM_User__c && eachProject.IPM_User__c == null &&
-                    eachProject.IPM_Project_Role_Owner__c) {
-                    removedUsersMap.put(oldProjectResource.IPM_User__c, oldProjectResource);
-                    projectIds.add(eachProject.IPM_Project__c);
-                }
-                //check for those users who are replaced by the system itself.
-                if(oldProjectResource.IPM_User__c != eachProject.IPM_User__c && eachProject.IPM_User__c != null &&
-                    eachProject.IPM_Project_Role_Owner__c) {
-                    replacedUsersMap.put(eachProject.IPM_User__c, eachProject);
-                    usersToReplaceMap.put(oldProjectResource.IPM_User__c, eachProject.IPM_User__c);
-                    projectIds.add(eachProject.IPM_Project__c);
-                }
-            }
-
-
-        
-            for(IPM_Project_Resource__c eachPR :  [SELECT IPM_Project__r.IPM_Project_Leader__c, IPM_User__c 
-                                                                                    FROM IPM_Project_Resource__c
-                                                                                    WHERE Id IN: oldProjectResourcesMap.keySet()]) {
-                IPM_Project_Resource__c oldPR = oldProjectResourcesMap.get(eachPR.Id);
-                projectLeaderMap.put(oldPR.IPM_User__c, eachPR.IPM_Project__r.IPM_Project_Leader__c);
-            }
-
-            
-            for(User eachUser :  [SELECT ManagerId, Manager.IsActive FROM User WHERE Id IN :removedUsersMap.keySet()]) {
-                if(eachUser.ManagerId != null && eachUser.Manager.IsActive) {
-                    usersToReplaceMap.put(eachUser.Id, eachUser.ManagerId);
-                }else {
-                    usersToReplaceMap.put(eachUser.Id, projectLeaderMap.get(removedUsersMap.get(eachUser.Id).IPM_User__c));
-                }
-            }
-
-             
-            Set<Id> pResourceIdsToUpdate = new Set<Id>();
-            Set<Id> usersId = new Set<Id>();
-            Set<Id> presourceIds = new Set<Id>();//various PR ids
-            for(IPM_Project_Resource__c eachPR : removedUsersMap.values()) {
-                pResourceIdsToUpdate.add(removedUsersMap.get(eachPR.IPM_User__c).Id);
-            }
-            
-        
-            for(IPM_Project_Resource__c eachPR : [SELECT IPM_User__c, IPM_Project__c FROM IPM_Project_Resource__c WHERE Id IN :pResourceIdsToUpdate]) {
-                IPM_Project_Resource__c prObj = eachPR;
-                IPM_Project_Resource__c oldPR = oldProjectResourcesMap.get(eachPR.Id);
-                prObj.IPM_User__c = usersToReplaceMap.get(oldPR.IPM_User__c);
-                projectResourcesToUpdate.add(prObj);
-                usersId.add(prObj.IPM_User__c);
-                usersId.add(oldPR.IPM_User__c);
-            }
-
-            for(IPM_Task__c eachTask :  [SELECT IPM_Assignee__c,ExternalField__c FROM IPM_Task__c 
-                                                                WHERE IPM_Assignee__c IN :usersToReplaceMap.keySet()
-                                                                AND IPM_Project__c IN :projectIds]) {
-                IPM_Task__c tskObj = eachTask;
-                tskObj.IPM_Assignee__c = usersToReplaceMap.get(eachTask.IPM_Assignee__c);
-                tasksToUpdate.add(tskObj);
-            }
-            if(tasksToUpdate != null && !tasksToUpdate.isEmpty()){
-                update tasksToUpdate;
-            }
-            if(projectResourcesToUpdate != null && !projectResourcesToUpdate.isEmpty()){
-                update projectResourcesToUpdate;
-            }
-            
-            for(IPM_Project_Resource__c eachPResource : projectResourcesToUpdate) {
-                presourceIds.add(eachPResource.Id);
-            }
-        
-    }
-   
-    
      /**************************************************************
     * @description: used to create Tasks when project is created.
     * @param1 projectDocToSectionMap : newly Created project Document To Section Map
@@ -273,7 +131,7 @@ public with sharing class IPM_TaskHelper {
         
         List<IPM_Task__c> upsertTaskList = new List<IPM_Task__c>();
         Map<Id,IPM_Task__c> deleteTaskMap = new Map<Id,IPM_Task__c>();
-                 
+        
         for(IPM_Project__c project : incomingProjects.values()) 
         {
             if(IPM_ProjectHelper.projectMasterMap.containsKey(project.Id) && IPM_ProjectHelper.projectMasterMap.get(project.Id)!=null)
@@ -284,7 +142,7 @@ public with sharing class IPM_TaskHelper {
                 IPM_Project_Type__c associatedProjectType = IPM_Utils.retrieveProjectType(projectDetail);
                 
                 // Validate whehter Approach is internal.If it is internal then only Manage Tasks for that project.    
-                if(associatedProjectType!=null && IPM_Utils.Internal.equalsIgnoreCase(projectDetail.IPM_PM_Approach__c) )
+                if(associatedProjectType!=null )
                 {
                     // Project Current Phase and Gate
                     String projectCurrentPhase = associatedProjectType.IPM_Phase__c;
@@ -402,7 +260,7 @@ public with sharing class IPM_TaskHelper {
                                     
                                     for(IPM_Project_Document_Section__c projectDocumentSection : targetProjectDocSectionList)
                                     {
-                                    	 if(masterTask.IPM_Section__c!= null &&
+                                         if(masterTask.IPM_Section__c!= null &&
                                             masterTask.IPM_Master_Section_Name__c.equalsIgnoreCase(projectDocumentSection.IPM_Section_Name__c) && 
                                             masterTask.IPM_Master_Section_Sequence__c.equalsIgnoreCase(projectDocumentSection.IPM_Section_Sequence_Number__c))      
                                         {
@@ -430,10 +288,17 @@ public with sharing class IPM_TaskHelper {
                                     {
                                         newTask.IPM_Assignee__c = projectDetail.IPM_Project_Leader__c;
                                     }
-                                    if((newTask.IPM_Section__c != null && newTask.IPM_Project_Document_Section__c != null) ||
-                                    	(newTask.IPM_Section__c == null && newTask.IPM_Project_Document_Section__c == null))
+                                    if(((newTask.IPM_Section__c != null && newTask.IPM_Project_Document_Section__c != null) ||
+                                        (newTask.IPM_Section__c == null && newTask.IPM_Project_Document_Section__c == null)) &&
+                                        (
+                                          masterTask.IPM_Master_Section_Sequence__c != IPM_ConstantUtils.ENVIRONMENTAL_IMPACT_SEQUENCE || 
+                                          (
+                                            masterTask.IPM_Master_Section_Sequence__c.equalsIgnoreCase(IPM_ConstantUtils.ENVIRONMENTAL_IMPACT_SEQUENCE) &&
+                                            project.IPM_ProjectSubType__c !=IPM_ConstantUtils.IPM_BLG
+                                          )
+                                        ))
                                     {
-                                    	newTaskList.add(newTask);
+                                        newTaskList.add(newTask);
                                     }
                                 }
                             }
@@ -595,67 +460,84 @@ public with sharing class IPM_TaskHelper {
        }
        return externalId;
     }
-    /**************************************************************
+   /**************************************************************
     * @description: used to create mapping of funtional role and respective functional owner, default functional owner is project leader
     * @param1 newTaskObj : project record
     */
-    public static map<string,Id> createFunctionalRoleUserMapping(Id projectId){
+    public static map<Id,map<String,Id>> createFunctionalRoleUserMapping(list<IPM_Project__c> projectWithResourceList){
         
-        // map as funtional role as key and respectiver user as key
-        map<String,Id> funcAssigneeId = new map<String,Id> ();
+        //map of project id as Key and value as other map(key-functional role and value-assignee)
+        map<Id,map<String,Id>> projIdAssigneeMap = new map<Id,map<String,Id>> ();   
         
         //get task functional role values
         Schema.DescribeFieldResult fieldResult = IPM_Task__c.IPM_Function__c.getDescribe();
         List<Schema.PicklistEntry> functionalRole = fieldResult.getPickListValues();
         
-        list<IPM_Project__c> projectList = [SELECT Id, IPM_Project_Leader__c, 
-                                            (SELECT Id,IPM_User__c,IPM_Role_Type__c,IPM_Project_Role_Owner__c FROM IPM_Project_Resources__r)
-                                            FROM IPM_Project__c 
-                                            WHERE id =:projectId];
+        //project and its resources
+        if(projectWithResourceList != null && !projectWithResourceList.isEmpty() )
+        {   
+            for(IPM_Project__c project : projectWithResourceList)
+            { 
+                // map as funtional role as key and respectiver user as key
+                map<String,Id> funcAssigneeId = new map<String,Id> ();   
                                             
-        if(projectList != null && !projectList.isEmpty() && projectList[0].IPM_Project_Leader__c != null)
-        {                                   
-            //assignee default user as project leader for each functional role
-            for(Schema.PicklistEntry role :functionalRole)
-            {
-                funcAssigneeId.put(role.getValue(),projectList[0].IPM_Project_Leader__c);
+                //assignee default user as project leader for each functional role
+                for(Schema.PicklistEntry role :functionalRole)
+                {
+                    if(project.IPM_Project_Leader__c != null)
+                    {
+                        funcAssigneeId.put(role.getValue(),project.IPM_Project_Leader__c);
+                    }
+                }
+                
+                if(project.IPM_Project_Resources__r != null && !funcAssigneeId.isEmpty())
+                {
+                    //if functional owner present then assigne owner
+                    for(IPM_Project_Resource__c projRes :project.IPM_Project_Resources__r)
+                    {
+                        if(funcAssigneeId.containsKey(projRes.IPM_Role_Type__c) && projRes.IPM_Project_Role_Owner__c)
+                        {
+                            funcAssigneeId.put(projRes.IPM_Role_Type__c,projRes.IPM_User__c);
+                        }
+                    }
+                }
+                //put project id and all functional role with there respective owners if present
+                projIdAssigneeMap.put(project.id,funcAssigneeId);
             }
+            
         }
         
         //get project resource
-        if(projectList[0].IPM_Project_Resources__r != null && !funcAssigneeId.isEmpty())
-        {
-            //if functional owner present then assigne owner
-            for(IPM_Project_Resource__c projRes :projectList[0].IPM_Project_Resources__r)
-            {
-                if(funcAssigneeId.containsKey(projRes.IPM_Role_Type__c) && projRes.IPM_Project_Role_Owner__c)
-                {
-                    funcAssigneeId.put(projRes.IPM_Role_Type__c,projRes.IPM_User__c);
-                }
-            }
-        }
-        return funcAssigneeId;
+        
+        return projIdAssigneeMap;
     }
     /**************************************************************
     * @description: used to assign updated assignee to task
     * @param1 newTaskObj : project record
     */
-    public static void assigneUserToTask(Id projectId){
+    public static void assignUserToTask(set<Id> projectIdSet){
         
-        map<String,Id> funcAssigneeIdMap  = new map<String,Id> ();
-        funcAssigneeIdMap = createFunctionalRoleUserMapping(projectId);
+        // query all the task belonging to thhe project 
+        list<IPM_Project__c>projectDetailList = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,IPM_Project_Leader__c,
+                                                    (SELECT Id,IPM_User__c,IPM_Role_Type__c,IPM_Project_Role_Owner__c FROM IPM_Project_Resources__r),
+                                                    (Select Id,Name,IPM_Task_Complexity__c,IPM_Project__c,IPM_Function__c,IPM_Type_of_Gate__c,IPM_Assignee__c,IPM_Active__c,IPM_Completed__c
+                                                    from Tasks__r where IPM_Completed__c != true)
+                                                from IPM_Project__c where Id IN:projectIdSet];
+        
+        //create functional role and assignee map for each project
+        map<Id,map<String,Id>> projIdWithAssigneeMap = createFunctionalRoleUserMapping(projectDetailList);   
+        
+        //list of task needs to be updated
         list<IPM_Task__c> tasksToUpdate = new list<IPM_Task__c>();
-        if(!funcAssigneeIdMap.isEmpty())
+        
+        //if functional role and user map is not 
+        if(projIdWithAssigneeMap != null && !projIdWithAssigneeMap.isEmpty() && projectDetailList != null && !projectDetailList.isEmpty())
         {
-            // query all the task belonging to thhe project 
-            list<IPM_Task__c> taskList =  [SELECT IPM_Assignee__c, IPM_Function__c, IPM_Project__c 
-                                           FROM IPM_Task__c 
-                                           WHERE IPM_Project__c =: projectId
-                                           AND IPM_Function__c IN :funcAssigneeIdMap.keySet()
-                                           AND IPM_Completed__c != true];
-            if(taskList != null && !taskList.isEmpty())
-            {                               
-                for(IPM_Task__c eachTask :  taskList) 
+            for(IPM_Project__c project : projectDetailList)
+            { 
+                map<String,Id> funcAssigneeIdMap = projIdWithAssigneeMap.get(project.id);     
+                                            
+                for(IPM_Task__c eachTask :  project.Tasks__r) 
                 {
                     // check if the functional owner or project leader has changed then assigne updated user
                     IPM_Task__c tskObj = eachTask;
@@ -665,11 +547,11 @@ public with sharing class IPM_TaskHelper {
                         tasksToUpdate.add(tskObj);
                     }
                 }
-                if(tasksToUpdate != null && !tasksToUpdate.isEmpty())
-                {
-                    //finally perform the update
-                    update tasksToUpdate; 
-                }
+            }
+            if(tasksToUpdate != null && !tasksToUpdate.isEmpty())
+            {
+                //finally perform the update
+                update tasksToUpdate; 
             }
         }
     }

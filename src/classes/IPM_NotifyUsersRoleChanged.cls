@@ -22,7 +22,6 @@ public with sharing class IPM_NotifyUsersRoleChanged {
     */
     @InvocableMethod
     public static void notifyIfUserRoleChanged(List<Id> userIdLst) {
-        
         Set<Id> changedUserIdSet = new Set<Id>();
         changedUserIdSet.addAll(userIdLst);
         
@@ -49,13 +48,30 @@ public with sharing class IPM_NotifyUsersRoleChanged {
             for(IPM_Project__c project : projectMap.values()){
                 String userName = '';
                 if(userId == project.IPM_Project_Leader__c)
+                {
                     prepareProjectIdNotificationData(project.Id, project.IPM_Project_Leader__r.Name, project.IPM_Project_Leader__c, project.Deputy_Project_Leader__c);
+                }    
                 
-               		if(userId == project.IPM_Project_Leader__c)  userName = project.IPM_Project_Leader__r.Name;
-                	else if(userId == project.Deputy_Project_Leader__c) userName = project.Deputy_Project_Leader__r.Name;
-                	else if(userId == project.IPM_Technical_Project_Leader__c) userName = project.IPM_Technical_Project_Leader__r.Name;
-                	else if(userId == project.IPM_Project_Gatekeeper__c) userName = project.IPM_Project_Gatekeeper__r.Name;
-                	else if(userId == project.IPM_Finance_Member__c) userName = project.IPM_Finance_Member__r.Name; 
+               		if(userId == project.IPM_Project_Leader__c)  
+               		{
+               			userName = project.IPM_Project_Leader__r.Name;
+               		}	
+                	else if(userId == project.Deputy_Project_Leader__c) 
+                	{
+                		userName = project.Deputy_Project_Leader__r.Name;
+                	}
+                	else if(userId == project.IPM_Technical_Project_Leader__c) 
+                	{
+                		userName = project.IPM_Technical_Project_Leader__r.Name;
+                	}	
+                	else if(userId == project.IPM_Project_Gatekeeper__c) 
+                	{
+                		userName = project.IPM_Project_Gatekeeper__r.Name;
+                	}
+                	else if(userId == project.IPM_Finance_Member__c) 
+                	{
+                		userName = project.IPM_Finance_Member__r.Name;
+                	} 
                 
                 if(string.isNotBlank(userName))
                 {

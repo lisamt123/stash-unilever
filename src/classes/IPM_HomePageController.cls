@@ -44,6 +44,7 @@ public with sharing class IPM_HomePageController
     private static final Integer DAY_VALUE_Fourteen = 14;
     private static final String PLANNED_STR='The planned ';
     private static final String DATEFORMAT ='dd MMMM yyyy';
+    private static final String GATE_STR= 'gate';
     
     /***************************************************************
 *@Description :Constructor to fetch the details of the Project
@@ -73,7 +74,8 @@ public with sharing class IPM_HomePageController
             
 
         // To check the history of the Project field
-        lstprojecthistory=[SELECT ParentId,Parent.IPM_Project_Name__c,Parent.Name,Parent.IPM_Fast_Track_Project__c FROM IPM_Project__History WHERE Field =: IPM_Utils.IPM_Fast_Track_Project AND CreatedDate >=: System.today()-DAY_VALUE_SEVEN LIMIT 50000];
+        lstprojecthistory=[SELECT ParentId,Parent.IPM_Project_Name__c,Parent.Name,Parent.IPM_Fast_Track_Project__c FROM IPM_Project__History WHERE Field =: IPM_Utils.IPM_Fast_Track_Project AND CreatedDate >=: System.today()-DAY_VALUE_SEVEN and Parent.IPM_Project_Leader__c = : UserInfo.getUserId()
+        LIMIT 50000];
         mapphistory=new Map<Id,IPM_Project__History>();
         for(IPM_Project__History ph:lstprojecthistory){
             if(!mapphistory.containsKey(ph.ParentId)){
@@ -86,10 +88,10 @@ public with sharing class IPM_HomePageController
 *@Description : This is to order the projectsNames
 ****************************************************************/
         
-        List<IPM_Project__c> lstProjects =[Select Name,IPM_Project_Type__c,IPMProject_Span__c,IPM_Bosscard_Status__c,IPM_Bosscard__r.IPM_Brand__c,IPMRegion__c,IPM_Bosscard__r.Name,
+        List<IPM_Project__c> lstProjects =[Select Name,IPM_Project_Type__c,Rollout_Plan_Target_Launch_Date__c,IPMProject_Span__c,IPM_Bosscard_Status__c,IPM_Bosscard__r.IPM_Brand__c,IPMRegion__c,IPM_Bosscard__r.Name,
                                            IPM_Bosscard__r.IPM_Bosscard_Logo__c,IPM_Project_Logo__c,IPM_Brand__c,IPM_Category_Text__c,Deputy_Project_Leader__r.Name,IPM_Target_Launch_Dates__c,
                                            BET_TLD_First_Release_Date__c,BET_MS_First_Release_Date__c,IPM_Project_Leader__r.Name,BET_TLD_Final_Release_Date__c,BET_MS_Final_Release_Date__c,
-                                            (SELECT IPM_Project_Name__c,IPM_Target_Launch_Dates__c from IPM_Projects__r),
+                                            (SELECT IPM_Project_Name__c,IPM_Target_Launch_Dates__c,Rollout_Plan_Target_Launch_Date__c from IPM_Projects__r),
                                            (Select id,name,IPM_Project__c,Geography__r.Market_Type__c from IPM_Countries__r),IPM_Parent_Project__r.IPM_Target_Launch_Dates__c,IPM_Parent_Project__r.IPM_Project_Name__c,
                                            IPM_FilledIn_Percentage__c,IPM_Phase__c,IPM_Project_Name__c FROM IPM_Project__c 
                                            WHERE  IPM_Project_Leader__c = : UserInfo.getUserId() and Is_Archieved__c = false Order By IPM_Project_Name__c LIMIT 50000];
@@ -137,14 +139,14 @@ public with sharing class IPM_HomePageController
                                ProjectIdMap.put(ipmmiles.IPM_Project__r.Name+ipmmiles.IPM_Name__c,ipmmiles.IPM_Project__r.Id);
                                }
                           if(DateValue== 0){
-                               alertMessageDueDateToday.put(ipmmiles.IPM_Project__r.Name+ipmmiles.IPM_Name__c,PLANNED_STR+ipmmiles.IPM_Type_of_gate__c+IPM_ConstantUtils.IPM_SPACE+IPM_ConstantUtils.GATE);
+                               alertMessageDueDateToday.put(ipmmiles.IPM_Project__r.Name+ipmmiles.IPM_Name__c,PLANNED_STR+ipmmiles.IPM_Type_of_gate__c+IPM_ConstantUtils.IPM_SPACE+GATE_STR);
                                ProjectIdMap.put(ipmmiles.IPM_Project__r.Name+ipmmiles.IPM_Name__c,ipmmiles.IPM_Project__r.Id);
                                }
                       }
                              
                 }
         }
-        //Adding alert for Regional-Local financial and TLD misalignments
+        //Adding alert for Regional-Local financial 
         LstFinMisalignedMessage = new List<String>();
         LstFinTLDMisalignedMessageMap = new Map<String,String>();
         LstLocalFinTLDMisalignedMessageMap = new Map<String,String>();
@@ -199,26 +201,26 @@ public with sharing class IPM_HomePageController
                                     
         
         //Adding alert for TLD misalignment
-      List<IPM_Project_Rollout__c>projectRolloutList = [SELECT IPM_Project__c,Id,Target_Launch_Date__c,RecordTypeId,Regional_Project__c,Regional_Project__r.IPM_Target_Launch_Dates__c,
-                        Regional_Project__r.IPM_Project_Name__c,Local_Project__c,Local_Project__r.IPM_Target_Launch_Dates__c,Local_Project__r.IPM_Project_Name__c
-                        FROM IPM_Project_Rollout__c
-                        WHERE (IPM_Project__c IN: ProjIds) OR (Regional_Project__c IN: ProjIds) OR (Local_Project__c IN: ProjIds)
-                        LIMIT:IPM_ConstantUtils.MaxLimit];
-     Id localRollout = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId();
-     
-     for(IPM_Project_Rollout__c projRollout : projectRolloutList)
-     {
-     if(projRollout.RecordTypeId == localRollout && projRollout.Local_Project__c != null && projRollout.Target_Launch_Date__c != null && projRollout.Local_Project__r.IPM_Target_Launch_Dates__c != null &&
-            projRollout.Target_Launch_Date__c != projRollout.Local_Project__r.IPM_Target_Launch_Dates__c && projRollout.Regional_Project__c != null)
-            {
-                LstLocalFinTLDMisalignedMessageMap.put(projRollout.Local_Project__c+projRollout.Local_Project__r.IPM_Project_Name__c,IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT1 + projRollout.Local_Project__r.IPM_Project_Name__c + IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT2 + projRollout.Regional_Project__r.IPM_Project_Name__c);
-                ProjectIdMap.put(projRollout.Local_Project__c+projRollout.Local_Project__r.IPM_Project_Name__c,projRollout.Local_Project__c);
+      for(IPM_Project__c project : lstProjects)
+      {
+      if(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c))
+        {
+        	for(IPM_Project__c localProj: project.IPM_Projects__r)
+        	{ 
+        		if(localProj.Rollout_Plan_Target_Launch_Date__c != null && localProj.IPM_Target_Launch_Dates__c != localProj.Rollout_Plan_Target_Launch_Date__c)
+        		{
+        			LstFinTLDMisalignedMessageMap.put(project.id+project.IPM_Project_Name__c,IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT1 + project.IPM_Project_Name__c + IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT2 + localProj.IPM_Project_Name__c);
+                	ProjectIdMap.put(project.id+project.IPM_Project_Name__c,project.id);
+        		}
+        	}	
+        }
+        if(IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equalsIgnoreCase(project.IPMProject_Span__c) && project.Rollout_Plan_Target_Launch_Date__c != null && project.IPM_Target_Launch_Dates__c != project.Rollout_Plan_Target_Launch_Date__c)
+		{
+        		LstLocalFinTLDMisalignedMessageMap.put(project.id+project.IPM_Project_Name__c,IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT1 + project.IPM_Parent_Project__r.IPM_Project_Name__c + IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT2 + project.IPM_Project_Name__c);
+                ProjectIdMap.put(project.id+project.IPM_Project_Name__c,project.id);
                 
-                LstFinTLDMisalignedMessageMap.put(projRollout.Regional_Project__c+projRollout.Regional_Project__r.IPM_Project_Name__c,IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT1 + projRollout.Local_Project__r.IPM_Project_Name__c + IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT2 + projRollout.Regional_Project__r.IPM_Project_Name__c);
-                ProjectIdMap.put(projRollout.Regional_Project__c+projRollout.Regional_Project__r.IPM_Project_Name__c,projRollout.Regional_Project__c);
-            }
-     }
-
+        }
+     }	
         
         // Adding Alert for Local Project leader is blank for rollout Projects
       RolloutProjectAlertMessageMap = new map<Id, String>();
@@ -284,19 +286,8 @@ public with sharing class IPM_HomePageController
         String taskcountValue =String.valueOf(taskcount);
         return taskcountValue;
     }
-    // On click on project name , Navigate to its Project Page
-    public PageReference project()
-    {
-        return new PageReference(IPM_Utils.apexipmproject_1);
-    }
     
-    // On click on Boasscard name , Navigate to its boasscard page
     
-    public PageReference bosscard()
-    {
-        isBosscard=true;
-        return new PageReference(IPM_Utils.apexipmbosscard);
-    } 
     
     // Getting  usertype 
     public void getusertype(){

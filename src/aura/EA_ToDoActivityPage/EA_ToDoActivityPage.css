@@ -1,0 +1,110 @@
+.THIS .activity-sec_f {
+  background: #2E91CF;
+  height: 80px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding-top: 10px;
+  margin-top: 20px;
+  width: 90%;
+  margin-left: 5%;
+}
+.THIS .section_f {
+  background: white;
+  height: 100%;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  width: 90%;
+  margin-left: 5%;
+  margin-top: -30px;
+}
+.THIS .t-title_f {
+  margin-left: 10px;
+  color: white;
+  font-weight: 500;
+  font-size: 1.8rem;
+  line-height: 1.25;
+  margin-top: 10px;
+}
+.THIS .a-title_f {
+  margin-left: 10px;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 300;
+  text-transform: uppercase;   
+}
+.THIS .starfill_f{
+    width:20px;
+    height:20px;
+    display: inline-block;
+    margin-left:10px;
+    margin-top:5px;
+}
+.THIS .rateTitle{
+  margin-left: 10px;
+  color: black;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 1.25;
+    margin-top:30px;
+    padding-top:6px;
+}
+.THIS .cTitle{
+    margin-left: 10px;
+  color: black;
+  font-size: 14px;
+  line-height: 1.25; 
+    margin-top:12px;
+}
+.THIS .submitButton {
+  width: 100%;
+  background-color: #2E91CF;
+  margin-top: 50px;
+  color: white;
+  border: none;
+  height: 40px;
+  border-radius: 5px;
+}
+.THIS .box-text
+    {
+  padding: 16px;
+  border-radius: 4px;
+  background-clip: padding-box;
+  border: 1px solid #d8dde6;
+  height: 150px;
+    width:90%;
+    margin-left:10px;
+}
+ .THIS .textbox-t{
+  font-size: 12px;
+  line-height: 1.25;
+  letter-spacing: .0625em;
+  color: #CFD7E6;
+ margin-left: 5px;
+}
+.THIS .submitButton {
+  width: 90%;
+    margin-left:5%;
+  background-color: #2E91CF;
+  margin-top: 20px;
+  color: white;
+  border: none;
+  height: 40px;
+  border-radius: 5px;
+    font-size:1.5rem;
+}
+.THIS .cancel_btn{
+   width: 90%;
+  margin-left:5%;
+  background:transparent;
+  margin-top: 30px;
+  color: black;
+  border: none;
+  height: 40px;
+  border-radius: 5px;
+  font-size:1.5rem;
+
+    
+}
+.THIS .para_inv{
+    margin-top:10px;
+}

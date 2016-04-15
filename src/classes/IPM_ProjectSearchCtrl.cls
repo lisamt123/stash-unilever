@@ -61,7 +61,8 @@ public with sharing class IPM_ProjectSearchCtrl{
     public Set<string> shareProjIdSet;
     public Map<Id,Decimal> projIdYear3iTO{get; set;}
     public string projIdString;
-    public IPM_Project__c projectForTLD{get;set;}
+    public IPM_Project__c projectForTLDFrom{get;set;}
+    public IPM_Project__c projectForTLDTo{get;set;}
     //public boolean checkFilter{get;set;}
     public Integer unAssignedCount{get;set;}
     Set<String> clusterSet = new Set<String>();
@@ -142,13 +143,15 @@ public with sharing class IPM_ProjectSearchCtrl{
         }
         
         for(IPM_Project__c project : [Select Id from IPM_Project__c where
-        												IPM_Project_Leader__c  =:userinfo.getuserid() OR
+                                                        IPM_Project_Leader__c  =:userinfo.getuserid() OR
                                                         Deputy_Project_Leader__c=:userinfo.getuserid() OR
                                                         IPM_Technical_Project_Leader__c =:userinfo.getuserid() OR
                                                         IPM_Project_Gatekeeper__c =:userinfo.getuserid() OR
                                                         IPM_Finance_Member__c = : UserInfo.getUserId() LIMIT 9999 ]){
-        	 shareProjIdSet.add(project.Id);                                                	
+             shareProjIdSet.add(project.Id);                                                    
         }
+        shareProjIdSet.remove(null);
+        shareProjIdSet.remove('');
         //Initialise everything to the projectList variable from the query
         for(IPM_Project__c eachProject : Database.query(query())) {
             
@@ -179,29 +182,31 @@ public with sharing class IPM_ProjectSearchCtrl{
                 if(countryCountMap != NULL && !mapCountryAdded.containsKey(countryKey) && countryCountMap.containsKey(countryKey)){
                     countryCountMap.put(countryKey, countryCountMap.get(countryKey)+1);
                     mapCountryAdded.put(countryKey , true);
-                    }
+                }
                    
                 String mcoKey = eachCountry.Market_Cluster_Name__c + str_hyphen + eachCountry.MCO_Name__c ;
                 if(mcoCountMap!= NULL && !mapMCOAdded.containsKey(mcoKey) && mcoCountMap.containsKey(mcoKey)){
                     mcoCountMap.put(mcoKey, mcoCountMap.get(mcoKey)+1);
                     mapMCOAdded.put(mcoKey, true);
-                   }
+                }
                     
                 String clusterKey = eachCountry.Market_Cluster_Name__c;
                 if(clusterCountMap != NULL && !mapClusterAdded.containsKey(clusterKey) && clusterCountMap.containsKey(clusterKey)){
                     clusterCountMap.put(clusterKey, clusterCountMap.get(clusterKey)+1);
                     mapClusterAdded.put(clusterKey, true);
-                    }
+                }
             }
             
-            if( lstCountires.isEmpty())
+            if( lstCountires.isEmpty()){
                 unAssignedCount++;
+            }
             allCountries.addAll(eachProject.IPM_Countries__r);//we need collection of all countries with all projects for future use and to display
         }
         
         clusterCountMap.put('Unassigned',unAssignedCount);
         getusertype();//security
-        projectForTLD = new IPM_Project__c();
+        projectForTLDFrom = new IPM_Project__c();
+        projectForTLDTo = new IPM_Project__c();
     }
     
     /*******************************************************************************************************
@@ -250,6 +255,7 @@ public with sharing class IPM_ProjectSearchCtrl{
     * @return: query string
     */
     private string query() {
+        noRecords = false;
         //map conataining project id and  iTO value
         projIdString = iTOWiseSearch();
         
@@ -258,29 +264,18 @@ public with sharing class IPM_ProjectSearchCtrl{
                 string strToReturn = IPM_Utils.convertSetToString(shareProjIdSet); 
                 shareProj = IPM_Utils.convertStrToSoqlList(strToReturn);
         }
-        if(tldFrom != IPM_ConstantUtils.BLANK && tldTo != IPM_ConstantUtils.BLANK) {
-            try{
-                String[] tldFrm = tldFrom.split('-');   
-                String[] tldT = tldTo.split('-');
-                tFrm = Date.newInstance(Integer.valueOf(tldFrm[2]), IPM_Utils.monthMap.get(tldFrm[1]), Integer.valueOf(tldFrm[0]));    
-                tTo = Date.newInstance(Integer.valueOf(tldT[2]), IPM_Utils.monthMap.get(tldT[1]), Integer.valueOf(tldT[0]));   
-            }catch(exception e){
-                tFrm = Date.newInstance(2010, 12, 12);  
-                tTo = Date.newInstance(2030, 12, 12);   
-            }
-        }
         
     String soql  =  'SELECT IPM_Project_Name__c,IPM_Phase__c,IPM_IsSaved__c, IPM_Project_Leader__r.Name, IPM_Project_Gatekeeper__r.Name,ownerId,IPM_Bosscard__r.IPM_Bosscard_Logo__c,IPM_Project_Type__c,';
            soql +=  'IPM_Sub_Category__c,IPM_Category_Text__c,IPM_Project_Logo__c,IPM_Bosscard__c,IPM_Bosscard_Status__c, IPM_Bosscard__r.Name,IPMProject_Span__c,Is_Archieved__c,IPM_Brand_Positioning__c,';
            soql +=  '(SELECT Year3_ITO__c,Year_3_iTO_Charter__c,Year_3_iTO_Global__c FROM IPM_Financials_Consolidated__r WHERE RecordTypeId = \'' + IPM_Utils.getFinancialRecordType('Consolidated') + '\' LIMIT 1),';
            soql += 'IPM_Target_Launch_Dates__c,IPM_Project_Description__c, (Select Country_Name__c, MCO_Name__c, Market_Cluster_Name__c  From IPM_Countries__r),(Select Country_Name__c, MCO_Name__c, Market_Cluster_Name__c  From IPM_Countries1__r),(Select Country_Name__c, MCO_Name__c, Market_Cluster_Name__c  From IPM_Countries2__r) FROM IPM_Project__c ';
-           soql += 'WHERE Id != NULL AND IPMProject_Span__c != NULL ';
+           soql += 'WHERE Id != NULL ';
        
        /*******************************************************
        Prepare the search query for input from search box
        *******************************************************/   
        if(String.IsNotBlank(searchTxt)) {
-           noRecords = false;
+           noRecords = !noRecords ? false : noRecords;
            soql += ' AND (IPM_Project_Name__c LIKE \'%' + String.escapeSingleQuotes(searchTxt) + '%\' OR IPM_Project_Leader__r.Name LIKE \'%' + String.escapeSingleQuotes(searchTxt) + '%\'';
            soql += ' OR IPM_Bosscard__r.Name LIKE \'%' + String.escapeSingleQuotes(searchTxt) + '%\'';
            soql += ' OR IPM_Project_Description__c LIKE \'%' + String.escapeSingleQuotes(searchTxt) + '%\' OR IPM_Phase__c LIKE \'%' + String.escapeSingleQuotes(searchTxt) + '%\')';
@@ -292,12 +287,13 @@ public with sharing class IPM_ProjectSearchCtrl{
        //when All Projects = False & My Projects = True, then give my projects
        if( aProjects != TRUE_STR && mProjects == TRUE_STR) {
            soql += ' AND ( OwnerId = \'' + UserInfo.getUserId() + '\'';
-           if (String.IsBlank(shareProj))
+           if (String.IsBlank(shareProj)){
                 soql += ')';
+           }
            else{
                 soql += ' OR Id IN ' + shareProj + ')';
            }
-           noRecords = false;
+           noRecords = !noRecords ? false : noRecords;
        } 
        
        //Prepare the search query when All Projects = False & My Projects = False, then give no projects
@@ -319,7 +315,7 @@ public with sharing class IPM_ProjectSearchCtrl{
             if(!projTypeSet.contains('All')){
                 soql += ' AND IPM_Project_Type__c IN ' + IPM_Utils.convertStrToSoqlList(String.escapeSingleQuotes(selectedProjType));
             }
-            noRecords = false;
+            noRecords = !noRecords ? false : noRecords;
        }else{
             noRecords = true;
             soql += ' AND IPM_Project_Type__c = NULL ';
@@ -330,19 +326,19 @@ public with sharing class IPM_ProjectSearchCtrl{
       *******************************************************/ 
        //Active = True , Stopped=True means All=true so ingore filter in SOQL
        //Active = False , Stopped=False
-       if(selectedActiveProject != TRUE_STR && selectedStoppedProject == false){
+       if(selectedActiveProject == FALSE_STR && !selectedStoppedProject){   
             noRecords = true;
        }
         //Active = True , Stopped=False
-       if(selectedActiveProject == TRUE_STR && selectedStoppedProject == false){
-            noRecords = false;
+       if(selectedActiveProject == TRUE_STR && !selectedStoppedProject){
+            noRecords = !noRecords ? false : noRecords;
             soql += ' AND  Is_Archieved__c = false AND IPM_Phase__c != \''+ IPM_ConstantUtils.PHASE_PLE + '\'';
-        }
-        //Active = False , Stopped=True
-        if(selectedActiveProject == FALSE_STR && selectedStoppedProject == true){
-            noRecords = false;
-            soql += ' AND Is_Archieved__c = true';
-        }
+       }
+       //Active = False , Stopped=True
+       if(selectedActiveProject == FALSE_STR && selectedStoppedProject){
+           noRecords = !noRecords ? false : noRecords;
+           soql += ' AND Is_Archieved__c = true';
+       }
        
        /*******************************************************
        =>Prepare the search query for Phase Filter
@@ -356,7 +352,7 @@ public with sharing class IPM_ProjectSearchCtrl{
             set <string> projPhaseSet = new set <string> ();
             projPhaseSet.addAll(projPhaseList);
             if(!projPhaseSet.contains('all')){
-                noRecords = false;
+                noRecords = !noRecords ? false : noRecords;
                 soql += ' AND IPM_Phase__c IN ' + IPM_Utils.convertStrToSoqlList(String.escapeSingleQuotes(selectedPhase));
             }
        }else {
@@ -375,24 +371,27 @@ public with sharing class IPM_ProjectSearchCtrl{
        *******************************************************/ 
        clusterSet.addAll(IPM_Utils.convertJSArrayToLsArray(clusters));
        
-       if(geoAll == TRUE_STR)
-            noRecords = false;
+       if(geoAll == TRUE_STR){
+           noRecords = !noRecords ? false : noRecords;
+       }
             
        if(geoAll != TRUE_STR && String.IsNotBlank(countries) ) {
-            noRecords = false;
+            noRecords = !noRecords ? false : noRecords;
             soql += ' AND ( Id IN ' + countryWiseProjects() ;
-            if(unassigned == FALSE_STR)
+            if(unassigned == FALSE_STR){
                 soql += ') ';
+            }
        }
                 
       if(geoAll != TRUE_STR && unassigned == TRUE_STR) {
-            if(countries == IPM_ConstantUtils.BLANK)
-                    soql += ' AND Id NOT IN ' + countryWiseProjects();
+            if(countries == IPM_ConstantUtils.BLANK){
+               soql += ' AND Id NOT IN ' + countryWiseProjects();
+            }
             else{
                     clusters = mcos = countries = IPM_ConstantUtils.BLANK;
                     soql  += ' OR  Id NOT IN ' + countryWiseProjects() + ') ';
             }
-            noRecords = false;
+            noRecords = !noRecords ? false : noRecords;
        }
        
        if(geoAll != TRUE_STR && String.IsBlanK(countries) && unassigned == FALSE_STR){
@@ -402,10 +401,10 @@ public with sharing class IPM_ProjectSearchCtrl{
        /*******************************************************
        =>Prepare the search query when Target Launch Dates are specified to filter out
        *******************************************************/ 
-       if(String.IsNotBlank(tldFrom) && String.IsNotBlank(tldTo)) {
-           noRecords = false;
-           String fDt = DateTime.newInstance(tFrm, Time.newInstance(0, 0, 0, 0)).format(IPM_ConstantUtils.DATE_FORMAT);//yyyy-MM-dd
-           String tDt = DateTime.newInstance(tTo, Time.newInstance(0, 0, 0, 0)).format(IPM_ConstantUtils.DATE_FORMAT);
+       if(projectForTLDFrom != null && projectForTLDTo != null && projectForTLDFrom.IPM_Target_Launch_Dates__c != null && projectForTLDTo.IPM_Target_Launch_Dates__c != null){
+           noRecords = !noRecords ? false : noRecords;
+           String fDt = DateTime.newInstance(projectForTLDFrom.IPM_Target_Launch_Dates__c, Time.newInstance(0, 0, 0, 0)).format(IPM_ConstantUtils.DATE_FORMAT);//yyyy-MM-dd
+           String tDt = DateTime.newInstance(projectForTLDTo.IPM_Target_Launch_Dates__c, Time.newInstance(0, 0, 0, 0)).format(IPM_ConstantUtils.DATE_FORMAT);
            soql += 'AND IPM_Target_Launch_Dates__c >=' + fDt;
            soql +=  ' AND IPM_Target_Launch_Dates__c <=' +  tDt;
        }
@@ -414,7 +413,7 @@ public with sharing class IPM_ProjectSearchCtrl{
        =>Prepare the search query when Brands are specified to filter out
        *******************************************************/ 
        if(bPositionings != IPM_ConstantUtils.BLANK) {
-            noRecords = false;
+            noRecords = !noRecords ? false : noRecords;
             soql += ' AND IPM_Brand_Positioning__c IN ' + IPM_Utils.convertStrToSoqlList(String.escapeSingleQuotes(bPositionings));
        }
        
@@ -422,7 +421,7 @@ public with sharing class IPM_ProjectSearchCtrl{
        =>Prepare the search query when iTO Ranges are specified to filter out
        *******************************************************/ 
        if(iTO1 >= 0 && iTO2 >= 0 && projIdString != IPM_ConstantUtils.BLANK  && projIdString != null) {
-            noRecords = false;
+            noRecords = !noRecords ? false : noRecords;
             soql += ' AND Id IN ' + projIdString;
        }
        
@@ -437,7 +436,7 @@ public with sharing class IPM_ProjectSearchCtrl{
         }
        soql += ' LIMIT 9999';
        system.debug(bPositionings + ' ** soql : ' + soql);
-       
+       noRecords = false;
        return soql;
     }
     
@@ -455,25 +454,27 @@ public with sharing class IPM_ProjectSearchCtrl{
         Set<String> projectIds = new Set<String>();
                 clusterSet.addAll(clusterList);
                 
-                if( clusterList.size() > 0 || mcoList.size() > 0 || countryList.size() > 0  ) {
+        if( clusterList.size() > 0 || mcoList.size() > 0 || countryList.size() > 0  ) {
             countryLst = [SELECT IPM_Project__c, IPM_Regional_Project__c, IPM_Local_Project__c
                                   FROM IPM_Country__c 
                                   WHERE Country_Name__c IN :countryList
                                         LIMIT 50000];
         } 
-                else if( unassigned == TRUE_STR || ( clusterList.size() == 0 && mcoList.size() == 0 && countryList.size() == 0 )) {
+        else if( unassigned == TRUE_STR || ( clusterList.size() == 0 && mcoList.size() == 0 && countryList.size() == 0 )) {
             countryLst = [SELECT IPM_Project__c,IPM_Regional_Project__c, IPM_Local_Project__c FROM IPM_Country__c LIMIT 50000];
         }
         
         
-                for(IPM_Country__c eachCountry : countryLst) {
-            if(eachCountry.IPM_Project__c != null) 
+        for(IPM_Country__c eachCountry : countryLst) {
+            if(eachCountry.IPM_Project__c != null){
                 projectIds.add(eachCountry.IPM_Project__c);
-            if(eachCountry.IPM_Regional_Project__c != null) 
+            } 
+            if(eachCountry.IPM_Regional_Project__c != null){
                 projectIds.add(eachCountry.IPM_Regional_Project__c);
-            if(eachCountry.IPM_Local_Project__c != null) 
+            } 
+            if(eachCountry.IPM_Local_Project__c != null){
                 projectIds.add(eachCountry.IPM_Local_Project__c);
-            
+            } 
         }
         strToReturn = IPM_Utils.convertSetToString(projectIds); 
         return IPM_Utils.convertStrToSoqlList(strToReturn);
@@ -494,20 +495,20 @@ public with sharing class IPM_ProjectSearchCtrl{
         projIdYear3iTO = IPM_Utils.createProjectITOValueMap();
         
         if(projIdYear3iTO != null && !projIdYear3iTO.isEmpty()){
-                for(Id projId : projIdYear3iTO.keySet()){
-                        iTOValue = projIdYear3iTO.get(projId);  
-                        //add project ids to set, whose iTO range is between the user specified range
-                        if(iTO1 >= 0 && iTO2 >= 0 && iTOValue >= Decimal.valueOf(iTO1) &&  iTOValue <= Decimal.valueOf(iTO2)){
-                                projectIds.add(projId);
-                        }
+            for(Id projId : projIdYear3iTO.keySet()){
+                iTOValue = projIdYear3iTO.get(projId);  
+                //add project ids to set, whose iTO range is between the user specified range
+                if(iTO1 >= 0 && iTO2 >= 0 && iTOValue >= Decimal.valueOf(iTO1) &&  iTOValue <= Decimal.valueOf(iTO2)){
+                        projectIds.add(projId);
                 }
+            }
         }
         // convert the roject id set to query string
         if(projectIds != null && !projectIds.isEmpty()){    
-                string idTostring = IPM_Utils.convertSetToString(projectIds);
-                strToReturn = IPM_Utils.convertStrToSoqlList(idTostring);
+            string idTostring = IPM_Utils.convertSetToString(projectIds);
+            strToReturn = IPM_Utils.convertStrToSoqlList(idTostring);
         }else{
-                strToReturn =IPM_ConstantUtils.BLANK;
+            strToReturn =IPM_ConstantUtils.BLANK;
         }
         return strToReturn;
     }
@@ -676,7 +677,7 @@ public with sharing class IPM_ProjectSearchCtrl{
          if(lstuserprofile != null && !lstuserprofile.isEmpty()){
             for(IPM_User_Profile__c up:lstuserprofile){
                 if(up.IPM_User_Role__c == IPM_ConstantUtils.FUNCTIONAL_ROLE_BD || up.IPM_User_Role__c == IPM_ConstantUtils.FUNCTIONAL_ROLE_CMI|| 
-                	up.IPM_User_Role__c == IPM_ConstantUtils.FUNCTIONAL_ROLE_CD || up.IPM_User_Role__c == IPM_ConstantUtils.FUNCTIONAL_ROLE_FINANCE|| 
+                    up.IPM_User_Role__c == IPM_ConstantUtils.FUNCTIONAL_ROLE_CD || up.IPM_User_Role__c == IPM_ConstantUtils.FUNCTIONAL_ROLE_FINANCE|| 
                     up.IPM_User_Role__c == IPM_ConstantUtils.IPM_ROLE_SUPPLY_CHAIN || up.IPM_User_Role__c == IPM_ConstantUtils.FUNCTIONAL_ROLE_RD || 
                     up.IPM_User_Function__c == IPM_ConstantUtils.GATEKEEPER_CONSTANT || up.IPM_User_Role__c == IPM_ConstantUtils.FUNCTIONAL_ROLE_BB){
                     IsProjectEditable=false;

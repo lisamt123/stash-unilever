@@ -59,7 +59,7 @@ public with sharing class Core_CA_Line_ApproveController {
         List<Core_Approver_Details__c> lstApprover=[SELECT Interested_Party__c,Id,Status__c,Source_System__c,Role__c,Is_Active__c,CreatedDate,Action__c FROM Core_Approver_Details__c WHERE Approval_Header__c =:HeaderId ORDER BY CreatedDate ASC];
         if(!lstApprover.isempty()){
             for(Core_Approver_Details__c Approver : lstApprover){
-                    if(Approver.Interested_Party__c==Userinfo.getuserId() && Approver.Role__c=='APP'&&Approver.Source_System__c=='Ariba' && Approver.Is_Active__c==true) count++;
+                    if(Approver.Interested_Party__c==Userinfo.getuserId() && Approver.Role__c=='APP'&&Approver.Source_System__c=='Ariba' && Approver.Is_Active__c) count++;
                     if(Approver.Role__c=='EMP'&& Approver.Action__c =='CANC'&& Approver.Source_System__c=='GTES') bolGTES_CANC=true;
                 }
                 for(Core_Approver_Details__c Approver : lstApprover){
@@ -69,7 +69,7 @@ public with sharing class Core_CA_Line_ApproveController {
                             bolAribaChkBox=true;
                         }
                         //For single approver having same Interested Party user with same role for both Ariba/GTES system
-                        if((Approver.Source_System__c=='GTES' && Approver.Action__c!='COPY') || (Approver.Source_System__c=='Ariba' && Approver.Is_Active__c==true && count==1)){
+                        if((Approver.Source_System__c=='GTES' && Approver.Action__c!='COPY') || (Approver.Source_System__c=='Ariba' && Approver.Is_Active__c && count==1)){
                             if(Approver.Status__c=='Approved'||Approver.Status__c=='Rejected') bolAppRej=true; 
                             if(Approver.Status__c=='Rejected'&&Approver.Source_System__c=='Ariba') bolAppRej=false;
                             //if(Approver.Source_System__c=='Ariba') bolAribaChkBox=true;
@@ -79,11 +79,11 @@ public with sharing class Core_CA_Line_ApproveController {
                                 approverRecId =Approver.id;
                                 strStatus=Approver.Status__c;
                                 strSourceSystem=Approver.Source_System__c;
-                                if(bolGTES_CANC==true) bolCANCConfirm=true;
+                                if(bolGTES_CANC) bolCANCConfirm=true;
                                 break;
                         }
                         //For multiple approver having same Interested Party user with same role for Ariba
-                        else if(Approver.Source_System__c=='Ariba' && Approver.Is_Active__c==true && count>1){
+                        else if(Approver.Source_System__c=='Ariba' && Approver.Is_Active__c && count>1){
                                 if(Approver.Status__c=='Approved'||Approver.Status__c=='Rejected'){
                                     bolAppRej=true;
                                     continue;
@@ -104,9 +104,9 @@ public with sharing class Core_CA_Line_ApproveController {
                 }
             }
         }
-        if(bolAppRej==true||bolCANCConfirm==true){
-            if(bolAppRej==true) strMsg=CORE_Chatter_Approval__c.getinstance('AppRejAlreadyStatus').Text_Value__c;
-            if(bolCANCConfirm==true) strMsg=CORE_Chatter_Approval__c.getinstance('AppRejGTESCANCMessage').Text_Value__c;
+        if(bolAppRej||bolCANCConfirm){
+            if(bolAppRej) strMsg=CORE_Chatter_Approval__c.getinstance('AppRejAlreadyStatus').Text_Value__c;
+            if(bolCANCConfirm) strMsg=CORE_Chatter_Approval__c.getinstance('AppRejGTESCANCMessage').Text_Value__c;
             //strMsg= strMsg.replace('XXXXXX',strStatus);
             bolApprover =false;
         }

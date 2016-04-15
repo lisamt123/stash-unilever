@@ -13,6 +13,26 @@
         <name>Account_Owner_Active_Flag__c</name>
     </fields>
     <fields>
+        <label><!-- CSAT Delay --></label>
+        <name>CSAT_Delay__c</name>
+    </fields>
+    <fields>
+        <label><!-- CSAT Email Percentage --></label>
+        <name>CSAT_Email_Percentage__c</name>
+    </fields>
+    <fields>
+        <label><!-- CSAT Phone Percentage --></label>
+        <name>CSAT_Phone_Percentage__c</name>
+    </fields>
+    <fields>
+        <label><!-- CSAT Social Percentage --></label>
+        <name>CSAT_Social_Percentage__c</name>
+    </fields>
+    <fields>
+        <label><!-- CSAT Web Percentage --></label>
+        <name>CSAT_Web_Percentage__c</name>
+    </fields>
+    <fields>
         <label><!-- CaseOrigin --></label>
         <name>CaseOrigin__c</name>
     </fields>
@@ -29,6 +49,10 @@
     <fields>
         <label><!-- DefaultCaseOwnerId --></label>
         <name>DefaultCaseOwnerId__c</name>
+    </fields>
+    <fields>
+        <label><!-- Default From Address --></label>
+        <name>Default_From_Address__c</name>
     </fields>
     <fields>
         <label><!-- Language --></label>

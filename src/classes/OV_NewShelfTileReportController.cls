@@ -28,16 +28,16 @@ public with sharing class OV_NewShelfTileReportController {
 		if(record.Report__c != null && record.Shelf_Tile__c != null){
 			List<OV_Report__c> reports = [SELECT Id, Report_Heading__c, Report_Folder__c, Unit__c, Unit__r.Id, Unit__r.Name FROM OV_Report__c WHERE Id =:record.Report__c LIMIT 1];
 
-			if(reports.size() > 0){	
-				report = reports[0];	
-				List<OV_ShelfTileReport__c> shelfTileReports = [SELECT Id, Sort_Order__c, Report__r.Unit__c, Report__r.Unit__r.Name FROM OV_ShelfTileReport__c 
+			if( !reports.isEmpty() ){
+				report = reports[0];
+				List<OV_ShelfTileReport__c> shelfTileReports = [SELECT Id, Sort_Order__c, Report__r.Unit__c, Report__r.Unit__r.Name FROM OV_ShelfTileReport__c
 																WHERE Report__r.Report_Heading__c = :report.Report_Heading__c
-																AND Report__r.Report_Folder__c = :report.Report_Folder__c 
-																AND Report__r.Unit__c = :report.Unit__c 
+																AND Report__r.Report_Folder__c = :report.Report_Folder__c
+																AND Report__r.Unit__c = :report.Unit__c
 																AND Shelf_Tile__c =:record.Shelf_Tile__c
 																ORDER BY Sort_Order__c DESC NULLS LAST, Report__r.Name DESC, Report__r.CreatedDate DESC LIMIT 1];
 
-				if(shelfTileReports.size() > 0){
+				if( !shelfTileReports.isEmpty() ){
 					record.Sort_Order__c = shelfTileReports[0].Sort_Order__c +1;
 				}else{
 					record.Sort_Order__c = 1;

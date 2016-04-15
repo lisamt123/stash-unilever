@@ -50,13 +50,339 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Oblix Project - SOW Projects for a Financial Year. Also copies of the projects at certain points in time through the FY are stored in this object (and Related objects) to form a comparison</description>
     <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fieldSets>
+        <fullName>Oblix_Campaign_Summary</fullName>
+        <description>Campaign summary page</description>
+        <displayedFields>
+            <field>Total_Value_Driver__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Value_To_BePaid_Manual_Override__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Campaign_Countries__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>OblixRegion__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Timescale_Notes__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Financial_Year__r.Name</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Financial_Year__r.Financial_Year__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Project_Scale_2__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Campaign_Total_Fees__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Name</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Innovation_Projects__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Brand_Led_Growth__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Final_release__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Start_of_TV_production__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>BET_first_release__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Production_Completion_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Preview_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Live_date_Asset_delivery__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Live_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>LastViewedDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>LastReferencedDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Date_for_Assets_to_be_in_BET__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>CreatedDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Project_Finish_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Budget_Burnt_to_date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Total_Locations__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Campaign_Idea__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Campaign_Fees_Total__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Value_to_be_paid_in_Current_FY__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Projected_Stage__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Completed_Stage__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Agency_Percentage_of_Fees_to_this_FY__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Percentage_of_Fee_for_this_FY__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>LastModifiedDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Financial_Year__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Platform__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Description__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Jobs_to_be_Done__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Project_Start_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Project_Completion_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>First_Air_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Project_Priority__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Project_Scale_1__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Campaign_Hub_Summary__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>LastModifiedBy.LastName</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>LastModifiedBy.FirstName</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>LastModifiedBy.Name</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Selected_Countries__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Campaign_Status__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>First_3_selected_countries__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Stage_Completed_CFY__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Stage_Projected_CFY__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Oblix_Campaign_Summary</label>
+    </fieldSets>
+    <fieldSets>
+        <fullName>Oblix_Fields_Editable_By_Agencies</fullName>
+        <description>The list of fields which agencies are able to edit</description>
+        <displayedFields>
+            <field>Budget_Burnt_to_date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Project_Completion_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Project_Finish_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Project_Start_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Date_for_Assets_to_be_in_BET__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>First_Air_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Live_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Live_date_Asset_delivery__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Preview_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Production_Completion_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Oblix_Fields_Editable_By_Agencies</label>
+    </fieldSets>
     <fields>
         <fullName>Agency_Percentage_of_Fees_to_this_FY__c</fullName>
         <defaultValue>(0)</defaultValue>
@@ -69,6 +395,17 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Asset_Deliverables__c</fullName>
+        <description>This field gets populated as part of update trigger</description>
+        <externalId>false</externalId>
+        <label>Asset Deliverables</label>
+        <length>131072</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>BET_first_release__c</fullName>
@@ -115,27 +452,27 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Incremental Turn Over &lt;10M</fullName>
+                <fullName>Incremental turnover &lt;10M</fullName>
                 <controllingFieldValues>Innovation</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Incremental Turn Over 10M - 20M</fullName>
+                <fullName>Incremental turnover 10M - 20M</fullName>
                 <controllingFieldValues>Innovation</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Incremental Turn Over 20M - 30M</fullName>
+                <fullName>Incremental turnover 20M - 30M</fullName>
                 <controllingFieldValues>Innovation</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Incremental Turn Over 30M - 40M</fullName>
+                <fullName>Incremental turnover 30M - 40M</fullName>
                 <controllingFieldValues>Innovation</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Incremental Turn Over &gt;40M</fullName>
+                <fullName>Incremental turnover &gt;40M</fullName>
                 <controllingFieldValues>Innovation</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -158,6 +495,17 @@
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>Campaign_Countries__c</fullName>
+        <description>List of countries selected for this campaign</description>
+        <externalId>false</externalId>
+        <label>Campaign Countries</label>
+        <length>131072</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
         <fullName>Campaign_Fees_Total__c</fullName>
         <externalId>false</externalId>
         <formula>Total_Fees_for_Project__c  +  Campaign_Total_Adjustment__c</formula>
@@ -168,7 +516,18 @@
         <scale>0</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Number</type>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Campaign_Hub_Summary__c</fullName>
+        <description>For use in reports only, not on UI. Shows all Agency Hub/Project Splits data for a Campaign concatenated into one field for use in summary reports. Data added to field via a trigger</description>
+        <externalId>false</externalId>
+        <label>Campaign Hub Summary</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -195,6 +554,49 @@
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Campaign_Points__c</fullName>
+        <description>The number of Points used during the Box Calculator calculations. For use in reports only, not shown in UI</description>
+        <externalId>false</externalId>
+        <label>Campaign Points</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Campaign_Score__c</fullName>
+        <description>The Score used during the Box Calculator calculations. For use in reports only, not shown in UI</description>
+        <externalId>false</externalId>
+        <label>Campaign Score</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Campaign_Splits_Total__c</fullName>
+        <description>Sum of Agency Hub split %</description>
+        <externalId>false</externalId>
+        <label>Campaign Splits Total</label>
+        <summarizedField>Oblix_Marketing_SOW_Project_Splits__c.Percentage__c</summarizedField>
+        <summaryFilterItems>
+            <field>Oblix_Marketing_SOW_Project_Splits__c.Percentage__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Oblix_Marketing_SOW_Project_Splits__c.Project_Splits__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
     </fields>
     <fields>
         <fullName>Campaign_Status__c</fullName>
@@ -310,6 +712,62 @@
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
+        <fullName>Enforce_Trigger_Update__c</fullName>
+        <description>This dummy rollup summary ensures the before update trigger is fired on SWOP Campaign if the campaign swop splits country changes for the same percentage value.</description>
+        <externalId>false</externalId>
+        <label>Enforce Trigger Update</label>
+        <summarizedField>Oblix_Marketing_SOW_Project_Splits__c.Enforce_Trigger_Update__c</summarizedField>
+        <summaryForeignKey>Oblix_Marketing_SOW_Project_Splits__c.Project_Splits__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Fees_To_Be_Paid_In_Current_FY_Agency__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(
+OR(
+ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Awaiting Unilever Approval&quot;),
+ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Draft - with Unilever&quot;),
+ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Returned by Agency&quot;)
+), &quot;---&quot;, &quot;€&quot;&amp;
+
+IF(
+  Value_to_be_paid_in_Current_FY__c  &gt;= 1000000,
+TEXT(ROUND(Value_to_be_paid_in_Current_FY__c/ 1000000, 0)) &amp; &quot;,&quot;,
+&quot;&quot;
+) &amp;
+IF(
+Value_to_be_paid_in_Current_FY__c&gt;= 1000,
+RIGHT(TEXT(ROUND(Value_to_be_paid_in_Current_FY__c / 1000, 0)), 3) &amp; &quot;,&quot;,
+&quot;&quot;
+) &amp;
+RIGHT(TEXT(ROUND(Value_to_be_paid_in_Current_FY__c, 0)), 3)
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Fees To Be Paid In Current FY</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Fees_To_Be_Paid_Next_Financial_Year__c</fullName>
+        <description>For use only in reports, not displayed on UI</description>
+        <externalId>false</externalId>
+        <formula>Campaign_Total_Fees__c -  Value_to_be_paid_in_Current_FY__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Fees To Be Paid Next Financial Year</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
         <fullName>Final_release__c</fullName>
         <description>Final release date</description>
         <externalId>false</externalId>
@@ -332,6 +790,17 @@
         <trackTrending>false</trackTrending>
         <type>MasterDetail</type>
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>First_3_selected_countries__c</fullName>
+        <description>Utility field to store up to first 3 selected countries to be displayed on the campaign detail and summary pages.</description>
+        <externalId>false</externalId>
+        <label>First 3 selected countries</label>
+        <length>1300</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>First_Air_Date__c</fullName>
@@ -455,6 +924,17 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>Number_of_Agency_Hub_Splits__c</fullName>
+        <description>Total number related child agency hub split records</description>
+        <externalId>false</externalId>
+        <label>Number of Agency Hub Splits</label>
+        <summaryForeignKey>Oblix_Marketing_SOW_Project_Splits__c.Project_Splits__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
         <fullName>Number_of_Markets_for_Preview__c</fullName>
         <defaultValue>0</defaultValue>
         <description>Number of preview markets</description>
@@ -496,15 +976,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>OblixCountries__c</fullName>
-        <externalId>false</externalId>
-        <label>Countries</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>TextArea</type>
-    </fields>
-    <fields>
         <fullName>OblixProjectSplitPercentage_Comment__c</fullName>
         <externalId>false</externalId>
         <label>Oblix Project Split Percentage Comment</label>
@@ -532,18 +1003,6 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Oblix_tec_Unique_Name_c__c</fullName>
-        <caseSensitive>false</caseSensitive>
-        <externalId>false</externalId>
-        <label>Unique Name</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>true</unique>
     </fields>
     <fields>
         <fullName>Other_Kinds_of_Research__c</fullName>
@@ -718,7 +1177,7 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Global campaign/s suitable for  &gt;15 number of markets</fullName>
+                <fullName>Global campaign (all market clusters)</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -885,6 +1344,29 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>SOW_FY__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Financial_Year__r.Financial_Year__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>SOW FY</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Selected_Countries__c</fullName>
+        <description>Updated by Apex, to remove starting &apos;/&apos;, NOT to be used otherwise - ONLY APEX</description>
+        <externalId>false</externalId>
+        <label>Selected Countries</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
         <fullName>Should_legal_review_this_project__c</fullName>
         <defaultValue>false</defaultValue>
         <description>should legal check true/false</description>
@@ -894,6 +1376,70 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Stage_Completed_CFY__c</fullName>
+        <externalId>false</externalId>
+        <label>Stage Completed CFY</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Briefing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Strategy &amp; Planning</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Creative Ideation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Creative Execution</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Production</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Stage_Projected_CFY__c</fullName>
+        <externalId>false</externalId>
+        <label>Stage Projected CFY</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Briefing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Strategy &amp; Planning</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Creative Ideation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Creative Execution</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Production</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>5</visibleLines>
     </fields>
     <fields>
         <fullName>Start_of_TV_production__c</fullName>
@@ -952,6 +1498,28 @@
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>Total_Asset_Deliverables__c</fullName>
+        <description>This roll up summary ensures that updates on children (project asset) records will fire trigger on parent and updates asset deliverables field</description>
+        <externalId>false</externalId>
+        <label>Total Asset Deliverables</label>
+        <summaryForeignKey>Oblix_Project_Assets__c.Agency_Projects__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Total_Asset_Score__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Asset Score</label>
+        <summarizedField>Oblix_Project_Assets__c.Asset_Line_Item_Score__c</summarizedField>
+        <summaryForeignKey>Oblix_Project_Assets__c.Agency_Projects__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
         <fullName>Total_Digital_Fee__c</fullName>
         <externalId>false</externalId>
         <label>Total Digital Fee</label>
@@ -973,6 +1541,18 @@
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Locations__c</fullName>
+        <externalId>false</externalId>
+        <formula>&quot;Up to &quot; + TEXT(Number_of_Agency_Hub_Splits__c) + &quot; locations&quot;</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Locations</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Total_Project_Score__c</fullName>
@@ -998,6 +1578,15 @@
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Value_To_BePaid_Manual_Override__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Value To BePaid Manual Override</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Value_to_be_paid_in_Current_FY__c</fullName>
@@ -1032,4 +1621,11 @@
     <pluralLabel>SWOP Campaigns</pluralLabel>
     <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Oblix_Campaign_Splits_Should_Add_To_100</fullName>
+        <active>false</active>
+        <description>Total number of agency hub splits should add up to 100%</description>
+        <errorConditionFormula>ISCHANGED(Campaign_Splits_Total__c) &amp;&amp; (Campaign_Splits_Total__c &gt; 1 || (Campaign_Splits_Total__c &gt;0 &amp;&amp; Campaign_Splits_Total__c &lt; 1))</errorConditionFormula>
+        <errorMessage>Total % for Agency Hub splits should add up to 100</errorMessage>
+    </validationRules>
 </CustomObject>

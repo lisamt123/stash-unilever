@@ -56,7 +56,7 @@ public string Msg {get;set;}
 public string strMsg {get;set;}
 public NewsArticleFeedController(){
     
-    if( CORE_NEWS_ARTICLE__c.getInstance('MAINTENANCE_ALERT').Checkbox_Value__c == true){
+    if( CORE_NEWS_ARTICLE__c.getInstance('MAINTENANCE_ALERT').Checkbox_Value__c ){
         maintenanceMsg=true;
         strMsg = CORE_NEWS_ARTICLE__c.getInstance('MAINTENANCE_ALERT').Text_Value__c;
     }
@@ -72,8 +72,9 @@ private void init(){
          newsArtRec= [Select Id, Like_Count_RSF__c,Title__c, Sharepoint_URL__c, Comment_Count__c, Socialise_Activity__c,
                  (select id from NewsArticleLikes__r where News_Article__c=:articleId and User__c=:UserInfo.getUserId())
                      from News_Article__c where Id = :articleId];
-         if(!newsArtRec.NewsArticleLikes__r.isEmpty())
+         if(!newsArtRec.NewsArticleLikes__r.isEmpty()){
              NewsArticleLikeRec= newsArtRec.NewsArticleLikes__r[0];
+             }
     }catch(Exception ex){
         ApexPages.AddMessage(new ApexPages.Message(ApexPages.Severity.ERROR, ex.getMessage()));
     }

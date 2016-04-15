@@ -11,6 +11,7 @@
     <apex:attribute name="getSecid" description="Pass the document type parameter" type="ID" required="true" assignTo="{!SecId}" />
     <apex:attribute name="getDocType" description="Pass the document type parameter" type="String" required="true" assignTo="{!gateType}" />
     <apex:outputPanel layout="block" id="ren">
+       <!--Below rendered condition is used to show the checklist question-->
         <apex:outputPanel layout="block" styleClass="altBGcolor" rendered="{!AND(gkChecklist!=null,gkChecklist.size>0)}"> 
             <table class="ipmTable table table-bordered gkTable otifTable"> 
                 <tbody>
@@ -23,6 +24,7 @@
                                 <th>{!$Label.IPM_GATEKEEPER_CHECKLIST}</th>
                             </tr>
                             <apex:repeat value="{!gkChecklist}" var="gk">
+                          <!--Below rendered condition is used to show checklist question for particular master section external id-->
                             <apex:outputPanel layout="block" rendered="{!if(projDocSec.IPM_Master_Section_External_Id__c==gk.IPM_Section_External_Id__c,true,false)}">
                             <tr>   
                                 <td>
@@ -31,6 +33,7 @@
                             </tr>
                             <tr>    
                                 <td>
+                                <!--Below rendered condition is used to show slider for checklist question-->
                                     <apex:outputPanel rendered="{!isEditable}">                                        
                                         <apex:outputPanel id="gkSecSlide" styleClass="sliderGk">
                                         <input type="hidden" name="secGkans" value="{!gk.IPM_GK_Answers__c}"/>
@@ -48,12 +51,15 @@
                                             </div> 
                                         </apex:outputPanel>
                                     </apex:outputPanel>
-                                    <apex:outputText value="{!gk.IPM_GK_Answers__c}" rendered="{!!isEditable}"/>
+                                    <!--Below rendered condition is used to show the below text-->
+                                    <apex:outputText rendered="{!!isEditable}"><div class="gkcStatus {!IF(gk.IPM_GK_Answers__c=='{!$Label.IPM_NO_APPLICABLE}','{!$Label.IPM_NO_APPLICABLE}',gk.IPM_GK_Answers__c)}">{!gk.IPM_GK_Answers__c}</div></apex:outputText>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
+                                <!--Below rendered condition is used to show the below text-->
                                     <apex:outputText value="{!gk.IPM_Comments__c}" rendered="{!!isEditable}"/> 
+                                    <!--Below rendered condition is used to show the below input text area-->
                                     <apex:inputTextarea styleClass="gkComments" value="{!gk.IPM_Comments__c}"  onchange="updateSecGateKeeperList('{!gk.Id}','{!gk.IPM_GK_Answers__c}',this.value,true);" rendered="{!isEditable}" />
                                 </td>
                             </tr>
@@ -62,7 +68,7 @@
                 </tbody>
             </table>  
         </apex:outputPanel>
-
+        <!--Below rendered condition is used to call action function which in turn will call updateGKchecklist method-->
         <apex:actionFunction name="callupdateSecGateKeeperList" action="{!updateGKchecklist}" reRender="" rendered="{!isEditable}" >
         <apex:param name="firstParam" assignTo="{!quesId}" value=""/>
         <apex:param name="secondParam" assignTo="{!ans}" value=""/>

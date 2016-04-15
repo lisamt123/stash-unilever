@@ -112,32 +112,32 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
             <div style="float:right">
 
                 <apex:commandButton value="{!$Label.BET_Delete_BET}" styleClass="btn-pink" 
-                    action="{!softDeleteBET}" rendered="{!AND(currentUserIsOwner,bet.Is_Deleted__c == false,bet.IPM_Project__c == null)}" 
+                    action="{!softDeleteBET}" rendered="{!AND(OR(currentUserIsOwner,currentUserIsBetAdmin),bet.Is_Deleted__c == false,bet.IPM_Project__c == null)}" 
                     onclick="return areYouSureToDelete(this,'{!$Label.BET_DeleteConfirmation}','{!$Label.BET_Deleting}');"/>
 
                 <apex:commandButton value="{!$Label.BET_Delete_BET}" styleClass="btn-gray" 
                     onclick="alert('{!$Label.BET_Delete_BET_Linked}'); return false;"
-                    rendered="{!AND(currentUserIsOwner,bet.Is_Deleted__c == false,bet.IPM_Project__c != null)}"/>
+                    rendered="{!AND(OR(currentUserIsOwner,currentUserIsBetAdmin),bet.Is_Deleted__c == false,bet.IPM_Project__c != null)}"/>
 
                 <apex:outputPanel layout="inline" styleClass="question-icon-left question-icon-large" style="margin-right:5px;"
                     html-data-tooltip="{!$Label.BET_Delete_BET_Linked}" 
-                    rendered="{!AND(currentUserIsOwner,bet.Is_Deleted__c == false,bet.IPM_Project__c != null)}"/>
+                    rendered="{!AND(OR(currentUserIsOwner,currentUserIsBetAdmin),bet.Is_Deleted__c == false,bet.IPM_Project__c != null)}"/>
 
                 <apex:commandButton value="{!$Label.BET_ArchiveBET}" styleClass="btn-pink" 
-                    action="{!archiveBET}" rendered="{!AND(currentUserIsOwner,bet.Is_Archived__c == false)}" 
+                    action="{!archiveBET}" rendered="{!AND(OR(currentUserIsOwner,currentUserIsBetAdmin),bet.Is_Archived__c == false)}" 
                     onclick="return areYouSure(this,'{!$Label.BET_ArchiveConfirmation}','{!$Label.BET_Archiving}');"/>
 
                 <apex:outputPanel layout="inline" styleClass="question-icon-left question-icon-large"
                     html-data-tooltip="Archived BETs are moved to the Archive area on the Home Page and Search" 
-                    rendered="{!AND(currentUserIsOwner,bet.Is_Archived__c == false)}"/>
+                    rendered="{!AND(OR(currentUserIsOwner,currentUserIsBetAdmin),bet.Is_Archived__c == false)}"/>
 
                 <apex:commandButton value="{!$Label.BET_UnArchiveBET}" styleClass="btn-pink" 
-                    action="{!unArchiveBET}" rendered="{!AND(currentUserIsOwner,bet.Is_Archived__c == true)}" 
+                    action="{!unArchiveBET}" rendered="{!AND(OR(currentUserIsOwner,currentUserIsBetAdmin),bet.Is_Archived__c == true)}" 
                     onclick="return areYouSure(this,'{!$Label.BET_UnArchiveConfirmation}','{!$Label.BET_UnArchiving}');"/>
 
                 <apex:outputPanel layout="inline" styleClass="question-icon-left question-icon-large"
                     html-data-tooltip="Unarchived BETs are moved from the Archive area on the Home Page and Search" 
-                    rendered="{!AND(currentUserIsOwner,bet.Is_Archived__c == true)}"/>
+                    rendered="{!AND(OR(currentUserIsOwner,currentUserIsBetAdmin),bet.Is_Archived__c == true)}"/>
                 </div>
 
             <div style="float:left;">

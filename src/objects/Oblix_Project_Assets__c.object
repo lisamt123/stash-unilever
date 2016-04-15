@@ -20,9 +20,7 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Edit</actionName>
-        <content>Oblix_VF02OverrideAsetNewLookup</content>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Visualforce</type>
+        <type>Default</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Follow</actionName>
@@ -50,15 +48,61 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Oblix Project - Agency Project Assets -- Related object to the Oblix Project - Agency Projects object in a Parent Child relationship with the a one to many join. The Project object is the parent (1) and the Asset is the Child (many)
 
 Changed to Campaign on 26/10/2015</description>
     <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fieldSets>
+        <fullName>Oblix_Campaign_Summary</fullName>
+        <description>Campaign summary page table</description>
+        <displayedFields>
+            <field>Id</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Asset_summary_page_name__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Asset_Type__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Sub_Category__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Description__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Additional_Description__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Quantity__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Oblix_Campaign_Summary</label>
+    </fieldSets>
     <fields>
         <fullName>Actual_Delivery_Date__c</fullName>
         <externalId>false</externalId>
@@ -73,7 +117,7 @@ Changed to Campaign on 26/10/2015</description>
         <fullName>Additional_Description__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Add further details of the required asset to be produced</inlineHelpText>
-        <label>Additional Description</label>
+        <label>Other Info</label>
         <length>32768</length>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
@@ -107,21 +151,30 @@ Changed to Campaign on 26/10/2015</description>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Asset_Line_Item_Score__c</fullName>
+        <externalId>false</externalId>
+        <formula>Quantity__c *  Asset_Score__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Asset Line Item Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Asset_Picklist__c</fullName>
         <description>Types of Typical Assets</description>
         <externalId>false</externalId>
         <inlineHelpText>Please select the Asset that most meets the type of Asset required?</inlineHelpText>
-        <label>Asset Names</label>
+        <label>Asset Name</label>
         <picklist>
             <controllingField>Sub_Category__c</controllingField>
             <picklistValues>
                 <fullName>Animatics</fullName>
                 <controllingFieldValues>Stimulus Requirements</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Banner Adaptations</fullName>
-                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -155,11 +208,6 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Campaign Wesbite Update</fullName>
-                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Cinema Film</fullName>
                 <controllingFieldValues>Origination Full</controllingFieldValues>
                 <default>false</default>
@@ -169,7 +217,7 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Complex Microsite</fullName>
+                <fullName>Microsite</fullName>
                 <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -189,27 +237,14 @@ Changed to Campaign on 26/10/2015</description>
             </picklistValues>
             <picklistValues>
                 <fullName>Digital Strategy Adaptation</fullName>
-                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>EDM</fullName>
-                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>EDM Adaptation</fullName>
-                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>eNewsletter Adaptation</fullName>
-                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>eNewsletters</fullName>
-                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -252,11 +287,6 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Homepage</fullName>
-                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Interactive Game</fullName>
                 <controllingFieldValues>Specialist Digital</controllingFieldValues>
                 <default>false</default>
@@ -271,13 +301,7 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>KV Adaptation</fullName>
-                <controllingFieldValues>Adaptation</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Landing Pages Adaptations</fullName>
-                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -318,8 +342,8 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>OOH Adaptation</fullName>
-                <controllingFieldValues>Adaptation</controllingFieldValues>
+                <fullName>OOH</fullName>
+                <controllingFieldValues>Origination</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -353,12 +377,6 @@ Changed to Campaign on 26/10/2015</description>
             </picklistValues>
             <picklistValues>
                 <fullName>POS Adaptation</fullName>
-                <controllingFieldValues>Experiential - Promotional ideas ADAPTATION</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Print Adaptation</fullName>
-                <controllingFieldValues>Adaptation</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -382,21 +400,11 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Re-Shoot</fullName>
-                <controllingFieldValues>Origination Full</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Simple Adaptation</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Simple Edit</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Simple Microsite</fullName>
-                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -489,15 +497,162 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Youtube Uploads</fullName>
+                <fullName>KV Adaptation</fullName>
+                <controllingFieldValues>Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>OOH Adaptation</fullName>
+                <controllingFieldValues>Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Print Adaptation</fullName>
+                <controllingFieldValues>Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Experiential - Adaptation</fullName>
+                <controllingFieldValues>Experiential - Promotional ideas ADAPTATION</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Promotional - Adaptation</fullName>
+                <controllingFieldValues>Experiential - Promotional ideas ADAPTATION</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Re Shoot</fullName>
+                <controllingFieldValues>Adaptations and Reedits</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EDM/eNewsletter (Simple)</fullName>
                 <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
-            <sorted>true</sorted>
+            <picklistValues>
+                <fullName>High Digital Bundle</fullName>
+                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Medium Digital Bundle</fullName>
+                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Low Digital Bundle</fullName>
+                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Social Media App</fullName>
+                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Social Content</fullName>
+                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EDM/eNewsletter (Complex)</fullName>
+                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Animation</fullName>
+                <controllingFieldValues>Origination Full</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Static Banner Adaptation</fullName>
+                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Static Landing Page Adaptation</fullName>
+                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Static Page Take Over Adaptation</fullName>
+                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Flash Banners Adaptation</fullName>
+                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Flash Landing Pages Adaptation</fullName>
+                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Flash Take Over Adaptation</fullName>
+                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Microsite Adaptation</fullName>
+                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EDM/eNewsletter (Simple Adaptation)</fullName>
+                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>High Digital Bundle - Adaptation</fullName>
+                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Medium Digital Bundle - Adaptation</fullName>
+                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Low Digital Bundle - Adaptation</fullName>
+                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Social Media App - Adaptation</fullName>
+                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Social Content - Adaptation</fullName>
+                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EDM/eNewsletter (Complex Adaptation)</fullName>
+                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
         </picklist>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Asset_Score__c</fullName>
+        <externalId>false</externalId>
+        <label>Asset Score</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Asset_Scoring_Number__c</fullName>
@@ -540,9 +695,9 @@ Changed to Campaign on 26/10/2015</description>
     </fields>
     <fields>
         <fullName>Asset_Type__c</fullName>
-        <description>Project Oblix - Asset Type</description>
+        <description>Project Oblix - Asset Type (same as asset category)</description>
         <externalId>false</externalId>
-        <label>Asset Type</label>
+        <label>Category</label>
         <picklist>
             <picklistValues>
                 <fullName>Audio Visual</fullName>
@@ -564,7 +719,7 @@ Changed to Campaign on 26/10/2015</description>
                 <fullName>Stimulus Materials - Research requirements</fullName>
                 <default>false</default>
             </picklistValues>
-            <sorted>true</sorted>
+            <sorted>false</sorted>
         </picklist>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
@@ -574,7 +729,56 @@ Changed to Campaign on 26/10/2015</description>
         <fullName>Asset_name__c</fullName>
         <externalId>false</externalId>
         <label>Asset name</label>
-        <length>30</length>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Asset_summary_page_name__c</fullName>
+        <description>Aggregated asset name used on Assets Table on Campaign summary. Displays &quot;Other&quot; asset other name description or default asset name for the rest of the assets.</description>
+        <externalId>false</externalId>
+        <formula>IF( Asset_name__c == &apos;Other&apos;,  Location__c , Asset_name__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Aggregated asset name used on Assets Table on Campaign summary.</inlineHelpText>
+        <label>Asset name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Calculator_Question__c</fullName>
+        <description>For use in Campaign Asset scoring reports only, not shown on UI</description>
+        <externalId>false</externalId>
+        <formula>RecordType.Name&amp;&quot; &quot;&amp; TEXT(Sub_Category__c)</formula>
+        <label>Asset Type/Subcategory</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Campaign_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>Campaign ID</label>
+        <length>18</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Category__c</fullName>
+        <externalId>false</externalId>
+        <formula>RecordType.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Category</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -637,6 +841,16 @@ Changed to Campaign on 26/10/2015</description>
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Description__c</fullName>
+        <description>Description of the item</description>
+        <externalId>false</externalId>
+        <label>Asset Description</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
         <fullName>FULL_Description__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -653,8 +867,8 @@ Changed to Campaign on 26/10/2015</description>
     <fields>
         <fullName>Location__c</fullName>
         <externalId>false</externalId>
-        <label>Location</label>
-        <length>18</length>
+        <label>Other Description</label>
+        <length>255</length>
         <required>false</required>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
@@ -666,6 +880,17 @@ Changed to Campaign on 26/10/2015</description>
         <externalId>false</externalId>
         <label>Oblix Cloned From Parent Asset</label>
         <length>18</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Option_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Option Name</label>
+        <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -768,6 +993,17 @@ Changed to Campaign on 26/10/2015</description>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
+    <fields>
+        <fullName>mdm_id__c</fullName>
+        <externalId>true</externalId>
+        <label>MDM ID</label>
+        <length>11</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <label>SWOP Campaign Assets</label>
     <listViews>
         <fullName>All</fullName>
@@ -796,7 +1032,7 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Banner Adaptations</fullName>
+                <fullName>Animation</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -824,19 +1060,11 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Campaign Wesbite Update</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Cinema Film</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Complex Adaptation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Complex Microsite</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -856,15 +1084,31 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>EDM</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>EDM Adaptation</fullName>
                 <default>false</default>
             </values>
             <values>
+                <fullName>EDM%2FeNewsletter %28Complex Adaptation%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EDM%2FeNewsletter %28Complex%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EDM%2FeNewsletter %28Simple Adaptation%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EDM%2FeNewsletter %28Simple%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Experiential</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Experiential - Adaptation</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -888,7 +1132,19 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Flash Banners Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Flash Landing Pages</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Flash Landing Pages Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Flash Take Over Adaptation</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -896,7 +1152,11 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Homepage</fullName>
+                <fullName>High Digital Bundle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Digital Bundle - Adaptation</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -921,6 +1181,30 @@ Changed to Campaign on 26/10/2015</description>
             </values>
             <values>
                 <fullName>Logo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low Digital Bundle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low Digital Bundle - Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium Digital Bundle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium Digital Bundle - Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Microsite</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Microsite Adaptation</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -949,6 +1233,10 @@ Changed to Campaign on 26/10/2015</description>
             </values>
             <values>
                 <fullName>Narration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OOH</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -984,6 +1272,10 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Promotional - Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Radio</fullName>
                 <default>false</default>
             </values>
@@ -992,7 +1284,7 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Re-Shoot</fullName>
+                <fullName>Re Shoot</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1004,7 +1296,23 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Simple Microsite</fullName>
+                <fullName>Social Content</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Social Content - Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Social Media App</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Social Media App - Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Static Banner Adaptation</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1012,7 +1320,15 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Static Landing Page Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Static Landing Pages</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Static Page Take Over Adaptation</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1080,14 +1396,6 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Youtube Uploads</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>eNewsletter Adaptation</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>eNewsletters</fullName>
                 <default>false</default>
             </values>
@@ -1108,6 +1416,10 @@ Changed to Campaign on 26/10/2015</description>
             </values>
             <values>
                 <fullName>Static Imagery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stimulus Materials - Research requirements</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1234,7 +1546,7 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Banner Adaptations</fullName>
+                <fullName>Animation</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1270,10 +1582,6 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Complex Microsite</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Complex Re-Edit</fullName>
                 <default>false</default>
             </values>
@@ -1287,10 +1595,6 @@ Changed to Campaign on 26/10/2015</description>
             </values>
             <values>
                 <fullName>Digital Strategy Adaptation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>EDM</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1350,6 +1654,10 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Microsite</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Mobile APP Conceptualisation</fullName>
                 <default>false</default>
             </values>
@@ -1406,7 +1714,7 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Re-Shoot</fullName>
+                <fullName>Re Shoot</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1415,10 +1723,6 @@ Changed to Campaign on 26/10/2015</description>
             </values>
             <values>
                 <fullName>Simple Edit</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Simple Microsite</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1494,14 +1798,6 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Youtube Uploads</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>eNewsletter Adaptation</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>eNewsletters</fullName>
                 <default>false</default>
             </values>
@@ -1568,10 +1864,6 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Banner Adaptations</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Behind the Scenes Footage</fullName>
                 <default>false</default>
             </values>
@@ -1596,19 +1888,11 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Campaign Wesbite Update</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Cinema Film</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Complex Adaptation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Complex Microsite</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1628,11 +1912,23 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>EDM</fullName>
+                <fullName>EDM Adaptation</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>EDM Adaptation</fullName>
+                <fullName>EDM%2FeNewsletter %28Complex Adaptation%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EDM%2FeNewsletter %28Complex%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EDM%2FeNewsletter %28Simple Adaptation%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EDM%2FeNewsletter %28Simple%29</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1648,7 +1944,19 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Flash Banners Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Flash Landing Pages</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Flash Landing Pages Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Flash Take Over Adaptation</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1656,7 +1964,11 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Homepage</fullName>
+                <fullName>High Digital Bundle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Digital Bundle - Adaptation</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1677,6 +1989,30 @@ Changed to Campaign on 26/10/2015</description>
             </values>
             <values>
                 <fullName>Logo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low Digital Bundle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low Digital Bundle - Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium Digital Bundle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium Digital Bundle - Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Microsite</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Microsite Adaptation</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1728,10 +2064,6 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Re-Shoot</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Simple Adaptation</fullName>
                 <default>false</default>
             </values>
@@ -1740,7 +2072,23 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Simple Microsite</fullName>
+                <fullName>Social Content</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Social Content - Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Social Media App</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Social Media App - Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Static Banner Adaptation</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1748,7 +2096,15 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Static Landing Page Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Static Landing Pages</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Static Page Take Over Adaptation</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1805,14 +2161,6 @@ Changed to Campaign on 26/10/2015</description>
             </values>
             <values>
                 <fullName>Website Optimisation for Mobile</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Youtube Uploads</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>eNewsletter Adaptation</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1910,6 +2258,10 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Experiential - Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Moderate Adaptation</fullName>
                 <default>false</default>
             </values>
@@ -1919,6 +2271,10 @@ Changed to Campaign on 26/10/2015</description>
             </values>
             <values>
                 <fullName>POS Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Promotional - Adaptation</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1968,10 +2324,6 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Banner Adaptations</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Behind the Scenes Footage</fullName>
                 <default>false</default>
             </values>
@@ -2004,10 +2356,6 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Complex Microsite</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Complex Re-Edit</fullName>
                 <default>false</default>
             </values>
@@ -2021,10 +2369,6 @@ Changed to Campaign on 26/10/2015</description>
             </values>
             <values>
                 <fullName>Digital Strategy Adaptation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>EDM</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2076,6 +2420,10 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Microsite</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Mobile APP Conceptualisation</fullName>
                 <default>false</default>
             </values>
@@ -2101,6 +2449,10 @@ Changed to Campaign on 26/10/2015</description>
             </values>
             <values>
                 <fullName>Narration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OOH</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2132,19 +2484,11 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Re-Shoot</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Simple Adaptation</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Simple Edit</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Simple Microsite</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2209,14 +2553,6 @@ Changed to Campaign on 26/10/2015</description>
             </values>
             <values>
                 <fullName>Website Optimisation for Mobile</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Youtube Uploads</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>eNewsletter Adaptation</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2278,10 +2614,6 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Banner Adaptations</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Behind the Scenes Footage</fullName>
                 <default>false</default>
             </values>
@@ -2314,10 +2646,6 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Complex Microsite</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Complex Re-Edit</fullName>
                 <default>false</default>
             </values>
@@ -2331,10 +2659,6 @@ Changed to Campaign on 26/10/2015</description>
             </values>
             <values>
                 <fullName>Digital Strategy Adaptation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>EDM</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2379,6 +2703,10 @@ Changed to Campaign on 26/10/2015</description>
             </values>
             <values>
                 <fullName>Logo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Microsite</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2430,19 +2758,11 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Re-Shoot</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Simple Adaptation</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Simple Edit</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Simple Microsite</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2507,14 +2827,6 @@ Changed to Campaign on 26/10/2015</description>
             </values>
             <values>
                 <fullName>Website Optimisation for Mobile</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Youtube Uploads</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>eNewsletter Adaptation</fullName>
                 <default>false</default>
             </values>
             <values>

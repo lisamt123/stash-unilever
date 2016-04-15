@@ -206,15 +206,17 @@
         <!-- FabricConditioner begin -->
         <apex:outputPanel rendered="{!AND(categoryMigrated,bet.id != null,fabricConditioner == 'No')}">
         <!-- FabricConditioner end -->
+        <!-- should be replaced with -->
+        <!-- <apex:outputPanel rendered="{!AND(categoryMigrated,bet.id != null)}"> -->
             <div class="form-item" style="padding-top:20px;">
                 <div class="item-label">
                     <apex:outputLabel >{!$Label.BET_ProjectName}</apex:outputLabel>
                 </div>
                 <div class="item-input" style="{!IF(NOT(userHasAccessToProject),'','display:none')}">
-                    <apex:inputText value="{!bet.IPM_Project__r.name}" disabled="true"/>
+                    <apex:inputText value="{!bet.Inoplan_Project_Keyword_Search__c}" disabled="true"/>
                 </div>
                 <div class="item-input item-output-link" style="{!IF(userHasAccessToProject,'','display:none')}">
-                    <a href="/apex/IPM_ProjectOverview?id={!bet.IPM_Project__c}" target="_blank">{!bet.IPM_Project__r.name}</a>
+                    <a href="/apex/IPM_ProjectOverview?id={!bet.IPM_Project__c}" target="_blank">{!bet.Inoplan_Project_Keyword_Search__c}</a>
                 </div>
             </div>
             <div class="form-item-brandtip" style="{!IF(bet.IPM_Project__c != null,'display:none','')}">
@@ -222,10 +224,14 @@
                     <apex:outputLabel >{!$Label.BET_LinkBetToIPMProject}</apex:outputLabel>
                 </div>
             </div>
+        <!-- FabricConditioner begin -->
         </apex:outputPanel>
+        <!-- FabricConditioner end -->
         <!-- FabricConditioner begin -->
         <apex:outputPanel rendered="{!AND(categoryNotMigrated,fabricConditioner == 'No')}">
         <!-- FabricConditioner end -->
+        <!-- should be replaced with -->
+        <!-- <apex:outputPanel rendered="{!categoryNotMigrated}">-->
             <div class="form-item" style="padding-top:20px;">
                 <div class="item-label">
                     <apex:outputLabel >{!$Label.BET_MandatoryStar}{!$Label.BET_InoplanProjectName}</apex:outputLabel>
@@ -238,7 +244,9 @@
                     </apex:actionRegion>
                 </div>
             </div>
+        <!-- FabricConditioner begin -->
         </apex:outputPanel>
+        <!-- FabricConditioner end -->
     </apex:outputPanel>
 
 </apex:component>

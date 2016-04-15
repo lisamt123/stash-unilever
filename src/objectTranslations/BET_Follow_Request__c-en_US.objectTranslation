@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>BET Follow Request</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>BET Follow Requests</value>
+    </caseValues>
+    <fields>
+        <label><!-- Bet Link --></label>
+        <name>Bet_Link__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bet owner --></label>
+        <name>Bet_owner__c</name>
+        <relationshipLabel><!-- BET Follow Requests (Bet owner) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Brand  Experience   Toolkit --></label>
+        <name>Brand_Experience_Toolkit__c</name>
+        <relationshipLabel><!-- BET Follow Requests --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Is Lead  Request --></label>
+        <name>Is_Lead_Request__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Id --></label>
+        <name>Project_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Lead --></label>
+        <name>Project_Lead__c</name>
+        <relationshipLabel><!-- BET Follow Requests (Project Lead) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Project Name --></label>
+        <name>Project_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New</masterLabel>
+            <translation><!-- New --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
+        </picklistValues>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

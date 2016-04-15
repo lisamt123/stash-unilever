@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>EA_BadgeDetails</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>EA_BadgeDetails</value>
+    </caseValues>
+    <fields>
+        <label><!-- BadgeColor --></label>
+        <name>BadgeColor__c</name>
+    </fields>
+    <fields>
+        <label><!-- BadgeSerial --></label>
+        <name>BadgeSerial__c</name>
+    </fields>
+    <fields>
+        <label><!-- BadgeValue --></label>
+        <name>BadgeValue__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

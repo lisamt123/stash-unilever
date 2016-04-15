@@ -1,5 +1,6 @@
 /* ipmModal Styles revamp*/
 .htmlDetailElementTable img {width:100%; max-width:100%;}
+.bcsinglecontainer .htmlDetailElementTable img{width:inherit;}
 .modal-header{background:url(../images/pop_header.png) repeat-x !important;padding:17.5px 15px; border-bottom:1px #d7d7d7 solid;border-top-left-radius: 5px;border-top-right-radius:5px;}
 .modal-title{color:#333333 !important;font-weight:bold;font-size:1.3em;}
 .modal-header button.close{background:#fff;border: 1px #007dbb solid;border-radius: 50%;padding: 3px 5px;color: #007dbb; margin-top:-5px;opacity: 1 !important;width:30px;}

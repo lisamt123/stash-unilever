@@ -36,6 +36,9 @@ src/aura/EA_FeedBack_comp/EA_FeedBack_compHelper.js
 src/aura/EA_FeedBack_comp/EA_FeedBack_compRenderer.js
 src/aura/EA_Feedback_Event/EA_Feedback_Event.evt
 src/aura/EA_Feedback_Event/EA_Feedback_Event.evt-meta.xml
+src/aura/EA_InvitedActivities_Comp/EA_InvitedActivities_Comp.cmp
+src/aura/EA_InvitedActivities_Comp/EA_InvitedActivities_Comp.cmp-meta.xml
+src/aura/EA_InvitedActivities_Comp/EA_InvitedActivities_CompController.js
 src/aura/EA_LookupSObject/EA_LookupSObject.auradoc
 src/aura/EA_LookupSObject/EA_LookupSObject.cmp
 src/aura/EA_LookupSObject/EA_LookupSObject.cmp-meta.xml
@@ -88,13 +91,6 @@ src/aura/EverydayAction_Active_Filter_component/EverydayAction_Active_Filter_com
 src/aura/EverydayAction_Active_Filter_component/EverydayAction_Active_Filter_component.css
 src/aura/EverydayAction_Active_Filter_component/EverydayAction_Active_Filter_componentController.js
 src/aura/EverydayAction_Active_Filter_component/EverydayAction_Active_Filter_componentHelper.js
-src/aura/EverydayAction_App/EverydayAction_App.app
-src/aura/EverydayAction_App/EverydayAction_App.app-meta.xml
-src/aura/EverydayAction_App/EverydayAction_App.auradoc
-src/aura/EverydayAction_App/EverydayAction_App.css
-src/aura/EverydayAction_App/EverydayAction_AppController.js
-src/aura/EverydayAction_App/EverydayAction_AppHelper.js
-src/aura/EverydayAction_App/EverydayAction_AppRenderer.js
 src/aura/EverydayAction_Faturedcontent_component/EverydayAction_Faturedcontent_component.cmp
 src/aura/EverydayAction_Faturedcontent_component/EverydayAction_Faturedcontent_component.cmp-meta.xml
 src/aura/EverydayAction_Faturedcontent_component/EverydayAction_Faturedcontent_component.css
@@ -173,8 +169,6 @@ src/objects/EA_ReportingGA__c.object
 src/objects/EA_Team_Member__c.object
 src/objects/EA_ThemesDetails__c.object
 src/objects/Everyday_Activity__c.object
-src/permissionsets/Everyday_Action_Admin.permissionset
-src/permissionsets/Everyday_Action_User.permissionset
 src/reportTypes/Everyday_Activities_with_Feed.reportType
 src/reportTypes/Everyday_Activities_with_User.reportType
 src/reports/Everyday_Action_Reports-meta.xml
@@ -189,5 +183,4 @@ src/staticresources/EA_Badges.resource
 src/staticresources/EA_Badges.resource-meta.xml
 src/staticresources/EA_StaticResource.resource
 src/staticresources/EA_StaticResource.resource-meta.xml
-src/tabs/EA_Demo.tab
 src/tabs/Everyday_Activity__c.tab

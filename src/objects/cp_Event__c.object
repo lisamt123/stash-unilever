@@ -61,6 +61,7 @@
     <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
@@ -2140,6 +2141,15 @@ Workflow rule will kick in and change the record type - hiding this field for us
         <columns>EndDate__c</columns>
         <filterScope>Everything</filterScope>
         <label>All Events</label>
+    </listViews>
+    <listViews>
+        <fullName>CP_Event_Approvers_Queue_cp_Event</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CP Event Approvers</label>
+        <queue>CP_Event_Approvers_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>My_Confirmed_Events</fullName>

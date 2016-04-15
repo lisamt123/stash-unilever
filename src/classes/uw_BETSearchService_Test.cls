@@ -26,16 +26,16 @@ private class uw_BETSearchService_Test{
             User u = uw_UnitTestDataFactory.initInternalUser('TestBzz', 'testbzz@force.com', 'testbzz', 'testbzz@force.com');
 
             uw_BET__c bet1 = BET_TestUtils.getTestBet();
-            bet1.name = 'Bet1';
+            bet1.name = 'Bet1'+Math.random();
 
             uw_BET__c bet2 = BET_TestUtils.getTestBet();
-            bet2.name = 'Bet2';
+            bet2.name = 'Bet2'+Math.random();
 
             uw_BET__c bet3 = BET_TestUtils.getTestBet();
-            bet3.name = 'Bet3';
+            bet3.name = 'Bet3'+Math.random();
 
             uw_BET__c bet4 = BET_TestUtils.getTestBet();
-            bet4.name = 'Bet4';
+            bet4.name = 'Bet4'+Math.random();
             bet4.OwnerId = u.Id;
 
             insert new List<uw_BET__c>{bet1,bet2,bet3,bet4};
@@ -100,7 +100,7 @@ private class uw_BETSearchService_Test{
 
     static testMethod void testMethodTwo(){
         uw_BET__c bet1 = BET_TestUtils.getTestBet();
-        bet1.name = 'Bet1';
+        bet1.name = 'Bet1'+Math.random();
         insert bet1;
 
         User u = uw_UnitTestDataFactory.initInternalUser('Test277', 'test277@force.com', 'test277', 'test277@force.com');
@@ -171,7 +171,7 @@ private class uw_BETSearchService_Test{
 
     static testMethod void testMethodSeven(){
         uw_BET__c bet1 = BET_TestUtils.getTestBet();
-        bet1.name = 'Bet1';
+        bet1.name = 'Bet1'+Math.random();
         insert bet1;
 
         User u = uw_UnitTestDataFactory.initInternalUser('Test277', 'test277@force.com', 'test277', 'test277@force.com');
@@ -184,7 +184,7 @@ private class uw_BETSearchService_Test{
         }    
         Test.stopTest();
 
-        System.AssertEquals('Bet1', response.betSearchResult[0].betName); 
+        System.AssertEquals(bet1.name, response.betSearchResult[0].betName); 
     }
 
     static testMethod void testMethodEight(){
@@ -201,7 +201,7 @@ private class uw_BETSearchService_Test{
         }    
         Test.stopTest();
 
-        System.AssertEquals('Bet4', response.betSearchResult[0].betName); 
+        System.assert(response.betSearchResult[0].betName.contains('Bet4')); 
     }
 
     static testMethod void testMethodNine(){
@@ -218,7 +218,7 @@ private class uw_BETSearchService_Test{
         }    
         Test.stopTest();
 
-        System.AssertEquals('Bet1', response.betSearchResult[0].betName); 
+        System.Assert(response.betSearchResult[0].betName.contains('Bet1')); 
     }
 
     static testMethod void testMethodTen(){

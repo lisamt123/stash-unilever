@@ -11,15 +11,17 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
     //@description:Constructor
     public IPM_ProjectRolloutHandler (){
         //making boolean to true to identify while insertion of exception logs
-        system.debug(logginglevel.error, 'entry in project rollout trigger handler');
         ExceptionLoggingHelper.initializeExceptionLog(); 
     }
     
     public static String REGIONAL_ROLLOUT_RECORDTYPE = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.REGIONAL_ROLLOUT_RT).getRecordTypeId(); 
     public static String LOCAL_ROLLOUT_RECORDTYPE = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId(); 
     public Set<Id> phaseChangeProjects = new Set<Id>();
+    public Set<Id> phaseChangeRolloutSet = new Set<Id>();
     
     private Map<Id,IPM_Project_Rollout__c> rolloutProjectTLDChanged = new Map<Id,IPM_Project_Rollout__c> {};
+    private Map<Id,IPM_Project_Rollout__c> globalProjIdRollout = new Map<Id,IPM_Project_Rollout__c> {};     
+    private Map<Id,IPM_Project_Rollout__c> misAlignedConfirmedRollout = new Map<Id,IPM_Project_Rollout__c> {};      
     
     /**
     * @description:bulkBefore
@@ -50,7 +52,6 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
     {    
         IPM_RolloutTriggerHandler handler = new IPM_RolloutTriggerHandler();
         
-       
         if(Trigger.isInsert)
         {
             handler.processInsert((List<IPM_Project_Rollout__c>) Trigger.new);    
@@ -59,7 +60,6 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
         if(Trigger.isUpdate)
         {
             handler.processUpdate((Map<Id,IPM_Project_Rollout__c>) Trigger.newMap, (Map<Id,IPM_Project_Rollout__c>) Trigger.oldMap);
-            
             
              //Chatter to post when finance member added to a rollout
             List<IPM_Project_Rollout__c> financeMemberAddedToRolloutProj = new List<IPM_Project_Rollout__c>();
@@ -74,7 +74,6 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
             }
             IPM_ChatterFeedHelper.notifyFinanceMemberAddedToRollout(financeMemberAddedToRolloutProj);
         }
-
     }
     
     /**
@@ -83,8 +82,10 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
     * trigger.
     * @para:sobject record
     */
-    public void beforeInsert(SObject so){
+    public void beforeInsert(SObject so)
+    {
         //This method has been included as the class implements the ITrigger interface
+           
     }
     /**
     * @description:beforeUpdate
@@ -93,8 +94,24 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
     * @para:old sobject record
     * @para:new sobject record
     */
-    public void beforeUpdate(SObject oldSo, SObject so){   
-        //This method has been included as the class implements the ITrigger interface         
+    public void beforeUpdate(SObject oldSo, SObject so)
+    {   
+        //This method has been included as the class implements the ITrigger interface   
+
+        IPM_Project_Rollout__c oldRollout = (IPM_Project_Rollout__c)oldSo; 
+        IPM_Project_Rollout__c newRollout = (IPM_Project_Rollout__c)so;   
+              
+        if( oldRollout.Target_Launch_Date__c != newRollout.Target_Launch_Date__c )
+        {
+            newRollout.MisAligned_Confirmed_By_Finance_Leader__c = false;     
+            newRollout.Previous_Target_Launch_Date__c = oldRollout.Target_Launch_Date__c;                   
+        }
+        
+        if(!newRollout.isActive__c && oldRollout.isActive__c != newRollout.isActive__c)
+        {
+           	newRollout.IPM_Status__c = IPM_ConstantUtils.ROLLOUT_FOLLOWER;
+			newRollout.IPM_Regional_Rollout_Status__c = IPM_ConstantUtils.ROLLOUT_FOLLOWER;                       
+        }               
     }
     
     /**
@@ -102,7 +119,8 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
     * This method is called iteratively for each record to be deleted during a BEFORE
     * trigger.
     */
-    public void beforeDelete(SObject so){      
+    public void beforeDelete(SObject so)
+    {    
         //This method has been included as the class implements the ITrigger interface
     }
     /**
@@ -121,11 +139,13 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
             if(REGIONAL_ROLLOUT_RECORDTYPE == newRollout.RecordTypeId && newRollout.IPM_Project__c !=null)
             {   
                 phaseChangeProjects.add(newRollout.IPM_Project__c);
+                phaseChangeRolloutSet.add(newRollout.Id);
             }
             
             if(LOCAL_ROLLOUT_RECORDTYPE == newRollout.RecordTypeId && newRollout.Regional_Project__c !=null)
             {   
                 phaseChangeProjects.add(newRollout.Regional_Project__c);
+                phaseChangeRolloutSet.add(newRollout.Id);
             }
         } 
     }
@@ -136,12 +156,12 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
     * @para:old sobject record
     * @para:new sobject record
     */
-    public void afterUpdate(SObject oldSo, SObject so){    
+    public void afterUpdate(SObject oldSo, SObject so)
+    {    
         
         IPM_Project_Rollout__c oldRollout = (IPM_Project_Rollout__c)oldSo; 
         IPM_Project_Rollout__c newRollout = (IPM_Project_Rollout__c)so; 
         
-
         if( oldRollout.IPM_Project_Job_Status__c != newRollout.IPM_Project_Job_Status__c && !IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED &&  
                 newRollout.IPM_Project_Job_Status__c == IPM_ConstantUtils.JOB_STATUS_ELIGIBLE && 
                 newRollout.IPM_RolloutJobType__c == IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_ADHOC)
@@ -149,25 +169,42 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
             if( REGIONAL_ROLLOUT_RECORDTYPE == newRollout.RecordTypeId && newRollout.IPM_Project__c !=null )
             {   
                 phaseChangeProjects.add(newRollout.IPM_Project__c);
+                phaseChangeRolloutSet.add(newRollout.Id);
             }
         
             if( LOCAL_ROLLOUT_RECORDTYPE == newRollout.RecordTypeId && newRollout.Regional_Project__c !=null )
             {   
                 phaseChangeProjects.add(newRollout.Regional_Project__c);
+                phaseChangeRolloutSet.add(newRollout.Id);
             }
         }
         if( oldRollout.Target_Launch_Date__c != newRollout.Target_Launch_Date__c ){
             rolloutProjectTLDChanged.put(oldRollout.Id,newRollout);
-        }        
+            if(!globalProjIdRollout.containskey(newRollout.IPM_Project__c) && !globalProjIdRollout.containskey(newRollout.Regional_Project__c)){
+                if(newRollout.Regional_Project__c != null){
+                    globalProjIdRollout.put(newRollout.Regional_Project__c,newRollout);  
+                } else if(newRollout.IPM_Project__c != null){
+                    globalProjIdRollout.put(newRollout.IPM_Project__c,newRollout); 
+                }
+            }            
+        }  
+        if( oldRollout.MisAligned_Confirmed_By_Finance_Leader__c != newRollout.MisAligned_Confirmed_By_Finance_Leader__c &&  newRollout.MisAligned_Confirmed_By_Finance_Leader__c ){
+            if(newRollout.Regional_Project__c != null){
+                misAlignedConfirmedRollout.put(newRollout.Regional_Project__c,newRollout);
+            } else {
+                misAlignedConfirmedRollout.put(newRollout.IPM_Project__c,newRollout);           
+            }
+        }
 
     }
     /**
     * @description:afterDelete
-    * This method is called iteratively for each record to be delete during a AFTER
+    * This method is use for skip trigger execution
     * trigger.
     * @para:sobject record
     */
-    public void afterDelete(SObject so){
+    public void afterDelete(SObject so)
+    {
         //This method has been included as the class implements the ITrigger interface
     }
     
@@ -176,22 +213,30 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
     * This method is called once all records have been processed by the trigger. Use this 
     * method to accomplish any final operations such as creation or updates of other records.
     */
-    public void andFinally(){
+    public void andFinally()
+    {
         //call method to insert all exception logs got while excecution of trigger
+       	
         if( (Trigger.isInsert || Trigger.isUpdate) && Trigger.isAfter)
         {
             if(!phaseChangeProjects.isEmpty())
             {
                 IPM_ProjectJob_Queue phaseChangeAsyncHandler = new IPM_ProjectJob_Queue(); 
-                phaseChangeAsyncHandler.initializeProjectData(phaseChangeProjects); 
-                System.enqueueJob(phaseChangeAsyncHandler);      
+                phaseChangeAsyncHandler.initializeRolloutProjectData(phaseChangeProjects,phaseChangeRolloutSet); 
+                Id asyncJobId = System.enqueueJob(phaseChangeAsyncHandler);
+                IPM_RolloutTriggerHandler.udpateAsyncJobId(phaseChangeRolloutSet,asyncJobId);
             }
         }
         
-        /*if(!rolloutProjectTLDChanged.isEmpty()){
+        if(!rolloutProjectTLDChanged.isEmpty()){
             IPM_RolloutPlanTLDSync rolloutPlanTLDSync = new IPM_RolloutPlanTLDSync();
-            rolloutPlanTLDSync.syncTLDDates(null,rolloutProjectTLDChanged);         
-        }*/
+            rolloutPlanTLDSync.syncTLDDates(null,rolloutProjectTLDChanged);
+            rolloutPlanTLDSync.notifyGlobalProjectFinanceLeader(globalProjIdRollout);                      
+        }
+        if(!misAlignedConfirmedRollout.isEmpty()){
+            IPM_RolloutPlanTLDSync rolloutPlanTLDSync = new IPM_RolloutPlanTLDSync();
+            rolloutPlanTLDSync.notifyProjectFinanceAboutFinanceLeaderConfirmation(misAlignedConfirmedRollout);      
+        }
         ExceptionLoggingHelper.insertLogRecordList();
     }
 }

@@ -63,7 +63,6 @@
         var inCallback = function(data) {
             if (data.status === '0') {
                 component.set('v.subjectData', data.data.shelfs);
-                console.log(data.data.shelfs);
             } else {
                 $A.error('Failed to load SUBJECTS data');
             }
