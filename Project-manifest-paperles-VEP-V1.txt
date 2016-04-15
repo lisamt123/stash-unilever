@@ -89,6 +89,10 @@ src/staticresources/jqPlugin.resource
 src/staticresources/jqPlugin.resource-meta.xml
 src/staticresources/jQuery.resource
 src/staticresources/jQuery.resource-meta.xml
+src/staticresources/select2.resource
+src/staticresources/select2.resource-meta.xml
+src/staticresources/VEP_googleMapFactory.resource
+src/staticresources/VEP_googleMapFactory.resource-meta.xml
 src/approvalProcesses/Vep_Visitor__c.VEP_Factory_Manager_Approval_Process.approvalProcess
 src/email/VEP_Templates-meta.xml
 src/email/VEP_Templates/VEP_Email_to_Factory_Manger_Template.email
