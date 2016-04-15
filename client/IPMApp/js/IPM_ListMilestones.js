@@ -5,83 +5,16 @@
 ********************************************************************************/ 
 var jq = jQuery.noConflict();
 		function jsLoadM() {
-		    /* Below script works on click event for the phase filter. If the condition is true the options for the drop down list will be appended. */
-		    jq(document).on('show.bs.dropdown', '.phaseMFilter', function() {
-		        var icoButton = jq('.phaseMFilter .dropdown-toggle .icoButton');
-		        if (jq('.phaseMFilter ul.phaseM').length === 0) {
-		            var dropDownList = jq('#phaseMFilterDiv').html();
-		            jq(this).append(dropDownList);
-		        }
-		        var selectedValues = IPMAppLM.phaseM;
-		        var selectedValuesArr = selectedValues.split(',');
-		        icoButton.removeClass('filter');
-		        icoButton.addClass('filter-selected');
-				/* Below script checks a condition for the phase filter. If the condition is true the checkbox will be checked. */
-		        if (selectedValuesArr.length !== 0) {
-		            jq('.phaseMFilter .dropdown-menu input[type="checkbox"]').each(function() {
-		                $this = jq(this);
-		                var val = $this.attr('value');
-		                if (jq.inArray(val, selectedValuesArr) !== -1) {
-		                    $this.prop('checked', true);
-		                    $this.next('label').addClass('selected');
-		                } else {
-		                    $this.prop('checked', false);
-		                    $this.next('label').removeClass('selected');
-		                }
-		            });
-		        }
-		    });
+		    phaseFilterdrpdown();
+			hidePhasefilter();
+			completedFilter();
+			hidecompletedFilter();
 		    /* Below script works on click. It is to hide the modal. Also it removes selected class from the checkbox */
 		    jq(document).on('hide.bs.modal', '#ipmModal', function() {
 		        jq('.ipmCheckbox input[type="checkbox"]:not(:checked)').closest("tr").removeClass("selected");
 		    });
 		    jq(document).on('click', '.dropdown-menu input[type="checkbox"], .dropdown-menu li', function(e) {
 		        e.stopPropagation();
-		    });
-		    
-		   /* Below script works on click event for phase filter. This is to hide the dropdown. If the condition is true css class is removed and another css class is added. */
-		    jq(document).on('hide.bs.dropdown', '.phaseMFilter', function() {
-	        	var icoButton = jq('.phaseMFilter .dropdown-toggle .icoButton');
-         		var selectedValues = IPMAppLM.phaseM.trim();
-        		var selectedValuesArr = selectedValues.split(',');
-	        	if (selectedValues.length === 0  || selectedValuesArr.length === 0) 
-	        	{
-	        		icoButton.removeClass('filter-selected');
-	        		icoButton.addClass('filter');
-	        	}
-		    });
-		    
-		    /* Below script works on click event for completed filter. This is to hide the dropdown. If the condition is true css class is removed and another css class is added. */
-		    jq(document).on('hide.bs.dropdown', '.completedFilterM', function() {
-	        	var icoButton = jq('.completedFilterM .dropdown-toggle .icoButton');
-         		var selectedValues = IPMAppLM.isCompleteMilestones.trim();
-        		var selectedValuesArr = selectedValues.split(',');
-	        	if (selectedValues.length === 0 ||  selectedValuesArr.length === 0) {
-	        		icoButton.removeClass('filter-selected');
-	        		icoButton.addClass('filter');
-	        	}
-		    });
-		    
-		    /* Below script works on click event for completed filter. If the condition is true the checkboxes will be checked based on the back end values. */
-		    jq(document).on('show.bs.dropdown', '.completedFilterM', function() {
-		        var icoButton = jq('.completedFilterM .dropdown-toggle .icoButton');
-		        var selectedValues = IPMAppLM.isCompleteMilestones;
-		        var selectedValuesArr = selectedValues.split(',');
-		        icoButton.removeClass('filter');
-		        icoButton.addClass('filter-selected');
-		        if (selectedValuesArr.length !== 0) {
-		            jq('.completedFilterM .dropdown-menu input[type="checkbox"]').each(function() {
-		                $this = jq(this);
-		                var val = $this.attr('value');
-		                if (jq.inArray(val, selectedValuesArr) !== -1) {
-		                    $this.prop('checked', true);
-		                    $this.next('label').addClass('selected');
-		                } else {
-		                    $this.prop('checked', false);
-		                    $this.next('label').removeClass('selected');
-		                }
-		            });
-		        }
 		    });
 		    
 			/* Below script replace a text with a specific time format. */
@@ -192,6 +125,86 @@ var jq = jQuery.noConflict();
 		    return false;
 		});
 		timelineSetup();
+		
+		function phaseFilterdrpdown(){
+			/* Below script works on click event for the phase filter. If the condition is true the options for the drop down list will be appended. */
+			jq(document).on('show.bs.dropdown', '.phaseMFilter', function() {
+				var icoButton = jq('.phaseMFilter .dropdown-toggle .icoButton');
+				if (jq('.phaseMFilter ul.phaseM').length === 0) {
+					var dropDownList = jq('#phaseMFilterDiv').html();
+					jq(this).append(dropDownList);
+				}
+				var selectedValues = IPMAppLM.phaseM;
+				var selectedValuesArr = selectedValues.split(',');
+				icoButton.removeClass('filter');
+				icoButton.addClass('filter-selected');
+				/* Below script checks a condition for the phase filter. If the condition is true the checkbox will be checked. */
+				if (selectedValuesArr.length !== 0) {
+					jq('.phaseMFilter .dropdown-menu input[type="checkbox"]').each(function() {
+						$this = jq(this);
+						var val = $this.attr('value');
+						if (jq.inArray(val, selectedValuesArr) !== -1) {
+							$this.prop('checked', true);
+							$this.next('label').addClass('selected');
+						} else {
+							$this.prop('checked', false);
+							$this.next('label').removeClass('selected');
+						}
+					});
+				}
+			});
+		}
+		
+		function hidePhasefilter(){
+		   /* Below script works on click event for phase filter. This is to hide the dropdown. If the condition is true css class is removed and another css class is added. */
+			jq(document).on('hide.bs.dropdown', '.phaseMFilter', function() {
+				var icoButton = jq('.phaseMFilter .dropdown-toggle .icoButton');
+				var selectedValues = IPMAppLM.phaseM.trim();
+				var selectedValuesArr = selectedValues.split(',');
+				if (selectedValues.length === 0  || selectedValuesArr.length === 0) 
+				{
+					icoButton.removeClass('filter-selected');
+					icoButton.addClass('filter');
+				}
+			});
+		}
+		
+		function hidecompletedFilter(){
+			/* Below script works on click event for completed filter. This is to hide the dropdown. If the condition is true css class is removed and another css class is added. */
+			jq(document).on('hide.bs.dropdown', '.completedFilterM', function() {
+				var icoButton = jq('.completedFilterM .dropdown-toggle .icoButton');
+				var selectedValues = IPMAppLM.isCompleteMilestones.trim();
+				var selectedValuesArr = selectedValues.split(',');
+				if (selectedValues.length === 0 ||  selectedValuesArr.length === 0) {
+					icoButton.removeClass('filter-selected');
+					icoButton.addClass('filter');
+				}
+			});
+		}
+		
+		function completedFilter(){
+			/* Below script works on click event for completed filter. If the condition is true the checkboxes will be checked based on the back end values. */
+			jq(document).on('show.bs.dropdown', '.completedFilterM', function() {
+				var icoButton = jq('.completedFilterM .dropdown-toggle .icoButton');
+				var selectedValues = IPMAppLM.isCompleteMilestones;
+				var selectedValuesArr = selectedValues.split(',');
+				icoButton.removeClass('filter');
+				icoButton.addClass('filter-selected');
+				if (selectedValuesArr.length !== 0) {
+					jq('.completedFilterM .dropdown-menu input[type="checkbox"]').each(function() {
+						$this = jq(this);
+						var val = $this.attr('value');
+						if (jq.inArray(val, selectedValuesArr) !== -1) {
+							$this.prop('checked', true);
+							$this.next('label').addClass('selected');
+						} else {
+							$this.prop('checked', false);
+							$this.next('label').removeClass('selected');
+						}
+					});
+				}
+			});
+		}
 		
 		/* Below function performs a condition check. If the condition is true it appends a ul tag to an element. */
 		function timelineSetup() {
