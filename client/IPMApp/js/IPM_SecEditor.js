@@ -317,10 +317,16 @@ jq('input:radio, :input').change(
 function(){
 	unsaved = true;
 });
-for (var i in CKEDITOR.instances) {
-	CKEDITOR.instances[i].on('change', function() {
-	unsaved = true; });
-}
+
+CKEDITOR.on('instanceReady', function(){
+   jq.each( CKEDITOR.instances, function(instance) {
+    CKEDITOR.instances[instance].on("change", function(e) {
+        for ( instance in CKEDITOR.instances )
+        CKEDITOR.instances[instance].updateElement();
+		unsaved = true;
+    });
+   });
+});
 
 });
 	

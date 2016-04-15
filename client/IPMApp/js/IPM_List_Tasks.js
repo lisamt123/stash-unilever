@@ -4,132 +4,19 @@
 				 *@Created Date: 28/05/2015 
 				*****************************************************************************/
 				var jq = jQuery.noConflict();
-				/* Below function performs delete operation. When clicked on remove button, it checks for a condition. If the condition is true
-					it calls a function 'deleteTask' and hides the delete modal. */
+				
 				function callbackLoadAction() {
-				    jq(document).on('click', '#ipmDeleteModal .removeTask', function() {
-				        var taskId = '';
-				        if (taskId !== jq(this).attr('value')) {
-				            taskId = jq(this).attr('value');
-				            deleteTask(taskId);
-				            jq("#ipmDeleteModal").modal('hide');
-				        }
-				    });
-				    /* Below script works on click event for the phase filter. If the condition is true the options for the drop down list will be appended. */
-				    jq(document).on('show.bs.dropdown', '.phaseFilter', function() {
-				        if (jq('.phaseFilter ul.phase').length === 0) {
-				            var dropDownList = jq('#phaseFilterDiv').html();
-				            jq(this).append(dropDownList);
-				        }
-				        var selectedValues = IPMAppComp.selectedValues;
-				        var selectedValuesArr = selectedValues.split(',');
-				        jq('.phaseFilter .dropdown-toggle .icoButton').removeClass('filter');
-				        jq('.phaseFilter .dropdown-toggle .icoButton').addClass('filter-selected');
-						
-					/* Below script checks a condition for the phase filter. If the condition is true the checkbox will be checked. */
-				        if (selectedValuesArr.length !== 0) {
-				            jq('.phaseFilter .dropdown-menu input[type="checkbox"]').each(function() {
-				                var val = jq(this).attr('value');
-				                if (jq.inArray(val, selectedValuesArr) !== -1) {
-				                    jq(this).prop('checked', true);
-				                    jq(this).next('label').addClass('selected');
-				                } else {
-				                    jq(this).prop('checked', false);
-				                    jq(this).next('label').removeClass('selected');
-				                }
-				            });
-				        }
-				    });
-				    /* Below script works on click event for user filter. If the condition is true the options for the drop down list will be appended. */
-				    jq(document).on('show.bs.dropdown', '.userFilter', function() {
-				        if (jq('.userFilter ul.user').length === 0) {
-				            var dropDownList = jq('#userFilterDiv').html();
-				            jq(this).append(dropDownList);
-				        }
-				        jq('.userFilter .dropdown-toggle .icoButton').removeClass('filter');
-				        jq('.userFilter .dropdown-toggle .icoButton').addClass('filter-selected');
-				        var selectedValues = IPMAppComp.assignee;
-				        var selectedValuesArr = selectedValues.split(',');
-						
-					/* Below script checks a condition for the user filter. If the condition is true the checkbox will be checked. */
-				        if (selectedValuesArr.length !== 0) {
-				            jq('.userFilter .dropdown-menu input[type="checkbox"]').each(function() {
-				                var val = jq(this).attr('value');
-				                if (jq.inArray(val, selectedValuesArr) !== -1) {
-				                    jq(this).prop('checked', true);
-				                    jq(this).next('label').addClass('selected');
-				                } else {
-				                    jq(this).prop('checked', false);
-				                    jq(this).next('label').removeClass('selected');
-				                }
-				            });
-				        }
-				    });
+					removeTaskmodal();
+					phaseFilterdrpdown();
+					userFilterdrpdown();
+				    hideCompletedfilter();
+					hideUserfilter();
+					hidePhasefilter();
+					completedFilterdrpdown();
 				    jq(document).on('click', '.dropdown-menu input[type="checkbox"], .dropdown-menu label', function(e) {
 				        e.stopPropagation();
 				    });
-					
-				    /* Below script works on click event for completed filter. This is to hide the dropdown. If the condition is true css class is removed and another css class is added. */
-				    jq(document).on('hide.bs.dropdown', '.completedFilterT', function() {
-				        var icoButton = jq('.completedFilterT .dropdown-toggle .icoButton');
-		         		var selectedValues = IPMAppComp.isCompleteTasks.trim();
-		        		var selectedValuesArr = selectedValues.split(',');
-			        	if (selectedValues.length === 0  || selectedValuesArr.length === 0) 
-			        	{
-			        		icoButton.removeClass('filter-selected');
-			        		icoButton.addClass('filter');
-			        	}
-				        
-				        //jq('.completedFilterT .dropdown-toggle .icoButton').removeClass('filter-selected');
-				        //jq('.completedFilterT .dropdown-toggle .icoButton').addClass('filter');
-				    });
-					
-					/* Below script works on click event for user filter. This is to hide the dropdown. If the condition is true css class is removed and another css class is added. */
-				    jq(document).on('hide.bs.dropdown', '.userFilter', function() {
-				        var icoButton = jq('.userFilter .dropdown-toggle .icoButton');
-		         		var selectedValues = IPMAppComp.assignee.trim();
-		        		var selectedValuesArr = selectedValues.split(',');
-			        	if (selectedValues.length === 0  || selectedValuesArr.length === 0) 
-			        	{
-			        		icoButton.removeClass('filter-selected');
-			        		icoButton.addClass('filter');
-			        	}
-				        
-				        
-				        //jq('.userFilter .dropdown-toggle .icoButton').removeClass('filter-selected');
-				        //jq('.userFilter .dropdown-toggle .icoButton').addClass('filter');
-				    });
-					
-					/* Below script works on click event for phase filter. This is to hide the dropdown. If the condition is true css class is removed and another css class is added. */
-				    jq(document).on('hide.bs.dropdown', '.phaseFilter', function() {
-				    	var icoButton = jq('.phaseFilter .dropdown-toggle .icoButton');
-		         		var selectedValues = IPMAppComp.selectedValues.trim();
-		        		var selectedValuesArr = selectedValues.split(',');
-			        	if (selectedValues.length === 0  || selectedValuesArr.length === 0) 
-			        	{
-			        		icoButton.removeClass('filter-selected');
-			        		icoButton.addClass('filter');
-			        	}
-				    });
-				    /* Below script works on click event for completed filter. If the condition is true the checkboxes will be checked based on the back end values. */
-				    jq(document).on('show.bs.dropdown', '.completedFilterT', function() {
-				        var selectedValues = IPMAppComp.isCompleteTasks;
-				        var selectedValuesArr = selectedValues.split(',');
-				        jq('.completedFilterT .dropdown-toggle .icoButton').removeClass('filter');
-				        jq('.completedFilterT .dropdown-toggle .icoButton').addClass('filter-selected');
-				        if (selectedValuesArr.length !== 0) {
-				            jq('.completedFilterT .dropdown-menu input[type="checkbox"]').each(function() {
-				                var val = jq(this).attr('value');
-				                if (jq.inArray(val, selectedValuesArr) !== -1) {
-				                    jq(this).prop('checked', true);
-				                    jq(this).next('label').addClass('selected');
-				                } else {
-				                    jq(this).prop('checked', false);
-				                    jq(this).next('label').removeClass('selected');
-				                }
-				            });
-				        }
-				    });
+									    
 				    /* Below script works on click event. It sorts the due date. */
 				    jq('#sortDueDate').on('click', function() {
 				        toggleDueDate();
@@ -159,6 +46,134 @@
 				    jq('#sortAssignees').on('click', function() {
 				        toggleSortAssignees();
 				    });
+				}
+				
+				function removeTaskmodal(){
+					/* Below function performs delete operation. When clicked on remove button, it checks for a condition. If the condition is true
+					it calls a function 'deleteTask' and hides the delete modal. */
+					jq(document).on('click', '#ipmDeleteModal .removeTask', function() {
+						var taskId = '';
+						if (taskId !== jq(this).attr('value')) {
+							taskId = jq(this).attr('value');
+							deleteTask(taskId);
+							jq("#ipmDeleteModal").modal('hide');
+						}
+					});
+				}
+				function phaseFilterdrpdown(){
+					/* Below script works on click event for the phase filter. If the condition is true the options for the drop down list will be appended. */
+					jq(document).on('show.bs.dropdown', '.phaseFilter', function() {
+						if (jq('.phaseFilter ul.phase').length === 0) {
+							var dropDownList = jq('#phaseFilterDiv').html();
+							jq(this).append(dropDownList);
+						}
+						var selectedValues = IPMAppComp.selectedValues;
+						var selectedValuesArr = selectedValues.split(',');
+						jq('.phaseFilter .dropdown-toggle .icoButton').removeClass('filter');
+						jq('.phaseFilter .dropdown-toggle .icoButton').addClass('filter-selected');
+						
+					/* Below script checks a condition for the phase filter. If the condition is true the checkbox will be checked. */
+						if (selectedValuesArr.length !== 0) {
+							jq('.phaseFilter .dropdown-menu input[type="checkbox"]').each(function() {
+								var val = jq(this).attr('value');
+								if (jq.inArray(val, selectedValuesArr) !== -1) {
+									jq(this).prop('checked', true);
+									jq(this).next('label').addClass('selected');
+								} else {
+									jq(this).prop('checked', false);
+									jq(this).next('label').removeClass('selected');
+								}
+							});
+						}
+					});
+				}
+				function userFilterdrpdown(){
+					/* Below script works on click event for user filter. If the condition is true the options for the drop down list will be appended. */
+					jq(document).on('show.bs.dropdown', '.userFilter', function() {
+						if (jq('.userFilter ul.user').length === 0) {
+							var dropDownList = jq('#userFilterDiv').html();
+							jq(this).append(dropDownList);
+						}
+						jq('.userFilter .dropdown-toggle .icoButton').removeClass('filter');
+						jq('.userFilter .dropdown-toggle .icoButton').addClass('filter-selected');
+						var selectedValues = IPMAppComp.assignee;
+						var selectedValuesArr = selectedValues.split(',');
+						
+					/* Below script checks a condition for the user filter. If the condition is true the checkbox will be checked. */
+						if (selectedValuesArr.length !== 0) {
+							jq('.userFilter .dropdown-menu input[type="checkbox"]').each(function() {
+								var val = jq(this).attr('value');
+								if (jq.inArray(val, selectedValuesArr) !== -1) {
+									jq(this).prop('checked', true);
+									jq(this).next('label').addClass('selected');
+								} else {
+									jq(this).prop('checked', false);
+									jq(this).next('label').removeClass('selected');
+								}
+							});
+						}
+					});
+				}
+				function hideCompletedfilter(){
+					/* Below script works on click event for completed filter. This is to hide the dropdown. If the condition is true css class is removed and another css class is added. */
+					jq(document).on('hide.bs.dropdown', '.completedFilterT', function() {
+						var icoButton = jq('.completedFilterT .dropdown-toggle .icoButton');
+						var selectedValues = IPMAppComp.isCompleteTasks.trim();
+						var selectedValuesArr = selectedValues.split(',');
+						if (selectedValues.length === 0  || selectedValuesArr.length === 0) 
+						{
+							icoButton.removeClass('filter-selected');
+							icoButton.addClass('filter');
+						}
+						
+					});
+				}
+				function hideUserfilter(){
+					/* Below script works on click event for user filter. This is to hide the dropdown. If the condition is true css class is removed and another css class is added. */
+					jq(document).on('hide.bs.dropdown', '.userFilter', function() {
+						var icoButton = jq('.userFilter .dropdown-toggle .icoButton');
+						var selectedValues = IPMAppComp.assignee.trim();
+						var selectedValuesArr = selectedValues.split(',');
+						if (selectedValues.length === 0  || selectedValuesArr.length === 0) 
+						{
+							icoButton.removeClass('filter-selected');
+							icoButton.addClass('filter');
+						}
+					});
+				}
+				function hidePhasefilter(){
+					/* Below script works on click event for phase filter. This is to hide the dropdown. If the condition is true css class is removed and another css class is added. */
+					jq(document).on('hide.bs.dropdown', '.phaseFilter', function() {
+						var icoButton = jq('.phaseFilter .dropdown-toggle .icoButton');
+						var selectedValues = IPMAppComp.selectedValues.trim();
+						var selectedValuesArr = selectedValues.split(',');
+						if (selectedValues.length === 0  || selectedValuesArr.length === 0) 
+						{
+							icoButton.removeClass('filter-selected');
+							icoButton.addClass('filter');
+						}
+					});
+				}
+				function completedFilterdrpdown(){
+					/* Below script works on click event for completed filter. If the condition is true the checkboxes will be checked based on the back end values. */
+					jq(document).on('show.bs.dropdown', '.completedFilterT', function() {
+						var selectedValues = IPMAppComp.isCompleteTasks;
+						var selectedValuesArr = selectedValues.split(',');
+						jq('.completedFilterT .dropdown-toggle .icoButton').removeClass('filter');
+						jq('.completedFilterT .dropdown-toggle .icoButton').addClass('filter-selected');
+						if (selectedValuesArr.length !== 0) {
+							jq('.completedFilterT .dropdown-menu input[type="checkbox"]').each(function() {
+								var val = jq(this).attr('value');
+								if (jq.inArray(val, selectedValuesArr) !== -1) {
+									jq(this).prop('checked', true);
+									jq(this).next('label').addClass('selected');
+								} else {
+									jq(this).prop('checked', false);
+									jq(this).next('label').removeClass('selected');
+								}
+							});
+						}
+					});
 				}
 				callbackLoadAction();
 				/* Below function checks the checked checkboxes and pushes the value to a function. It is for phase filtering. */

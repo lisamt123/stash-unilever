@@ -203,3 +203,115 @@ function hilightTaskScript(){
 	jq(".aTabs").find("input[type=checkbox]:checked").closest(".aTabs").addClass("active");
 }
 set();
+
+var mainPageUnsaved = false;
+var fileUploadUnsaved = false;
+var modalCloseClicked = false;
+var imgUploadedStatus = false;
+var OldBosscardNameVal = "";
+var NewBosscardNameVal = "";
+var uploadImgFilePath = "";
+
+jq(function(){
+   OldBosscardNameVal = jq(".BosscardNameInputBox ").val();
+   jq(":input").change(function() {
+		mainPageUnsaved = true;
+	});
+	CKEDITOR.on('instanceReady', function(){
+	   jq.each( CKEDITOR.instances, function(instance) {
+		CKEDITOR.instances[instance].on("change", function(e) {
+			for ( instance in CKEDITOR.instances )
+			CKEDITOR.instances[instance].updateElement();
+			mainPageUnsaved = true;
+		});
+	   });
+	});
+});
+
+ function changeAlert(){
+	mainPageUnsaved = true;
+ }
+ 
+ function changeAlertBosscardName(){
+	 CurrentBosscardNameVal = jq(".BosscardNameInputBox ").val();
+	 
+	 if( OldBosscardNameVal !== CurrentBosscardNameVal){
+		mainPageUnsaved= true;
+	  
+	}else{
+		mainPageUnsaved = false;
+		OldBosscardNameVal = CurrentBosscardNameVal;
+	}
+ }
+
+function uploadPageUnload()
+{ 
+	if(fileUploadUnsaved){
+		return IPMApp.wmessage;
+	}           
+} 
+
+function mainPageUnload()
+{ 
+	if(mainPageUnsaved){
+		return IPMApp.wmessage;
+	}           
+} 
+
+function unloadPage()
+{ 
+	if(modalCloseClicked === false){
+		if(fileUploadUnsaved || mainPageUnsaved || getCookie("uploadImgFilePath") !== ""){
+			return IPMApp.wmessage;
+		}
+	}else{
+		imgUploadedStatus = getCookie("imgUploaded");
+		if(fileUploadUnsaved && imgUploadedStatus !== "true"){
+			return IPMApp.wmessage;
+		}
+	}
+} 
+
+window.onbeforeunload = unloadPage;
+
+function skipValidation() {
+	mainPageUnsaved = false;
+}
+
+function getCookie(cname) {
+	var name = cname + "=";
+	var ca = document.cookie.split(';');
+	for(var i=0; i<ca.length; i++) {
+		var c = ca[i];
+		while (c.charAt(0)==' ') c = c.substring(1);
+		if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+	}
+	return "";
+}
+
+function deleteCookie(name) {
+	document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+};
+
+jq(".close").click(function(){
+  modalCloseClicked = true;
+  FilePath = getCookie("uploadImgFilePath");
+	if(FilePath !== "") { 
+		fileUploadUnsaved = true;
+	}else{
+		fileUploadUnsaved = false;
+	}
+	
+	if(fileUploadUnsaved){
+		jq(this).removeAttr("data-dismiss");
+		unloadIframe();
+	}
+	else{
+		jq(this).attr("data-dismiss","modal");
+	}
+});
+
+function unloadIframe(){
+   deleteCookie("uploadImgFilePath");
+  unloadPage();
+}

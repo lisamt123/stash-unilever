@@ -7,9 +7,11 @@ var jq = jQuery.noConflict();
 var unsaved = false;
 jq.browser = {};
 jq(document).ready(function() {
-	//jq(".proInitLoader").show().delay(1500).fadeOut();
     changeCurrentStatus(IPMApp.gateStatus);
     gkmComplete();
+	postponed();
+	apprwithedits();
+	tabClick();
 	
 /* Below script is related to the date picker Functionality. If the condition is true the css class 'date' calls the datepicker. */
     var dateFormat = "dd/mm/yyyy";
@@ -33,56 +35,7 @@ jq(document).ready(function() {
 			jq(this).addClass("active").find('label').addClass("selected");	
 		}
 	});
-		
-/* Below script works on click event. This opens the Approver with Edits Modal */
-    jq(document).on('click', '.apprWithEdits', function(e) {
-        e.preventDefault ? e.preventDefault() : e.returnValue = false;
-        var url = jq(this).attr('value');
-        jq('#ipmModalApproveEdits .modal-dialog').width('60%');
-        jq('#ipmModalApproveEdits .modal-dialog').height('220px');
-        jq('#ipmModalApproveEdits .modal-dialog').css({
-            'margin-top': '10%',
-            'z-index': '999'
-        });
-    });
 
-/* Below script works on click event. This opens the Postponed Modal */	
-	jq(document).on('click', '.postponedModal', function(e) {
-        e.preventDefault ? e.preventDefault() : e.returnValue = false;
-        var url = jq(this).attr('value');
-        jq('#ipmModalPostponed .modal-dialog').width('60%');
-        jq('#ipmModalPostponed .modal-dialog').height('220px');
-        jq('#ipmModalPostponed .modal-dialog').css({
-            'margin-top': '10%',
-            'z-index': '999'
-        });
-    });
-
-/* Below script is for the Tab functionality on click event. Based on the clicked li the tab is highlighted and the content related the clicked tab is displayed. Also it hides the previous opened content */
-    jq(".ipmStatusTabs").on("click", 'li', function() {
-		jq(".proInitLoader").show().delay(1000).fadeOut();
-        unsaved = true;
-        checkChange(unsaved);
-        var $this = jq(this);
-        var statTabList = jq('.ipmStatusTabs').find('li');
-        statTabList.removeClass('active');
-        statTabList.removeClass('stop_active');
-        $this.parents('.sliderDiv').next().find('.changeStatusPage').removeClass('stopBG');
-        jq("#legend label").removeClass('selected');
-        var lpos = jq(".ipmRadioButton label").offset().left;
-        $this.find(".ipmRadioButton label").addClass('selected');
-        $this.addClass('active');
-        if ($this.find(".ipmRadioButton label").next("input").val() === IPMApp.Stopped) {
-            $this.addClass('stop_active');
-            $this.parents('.sliderDiv').next().find('.changeStatusPage').addClass('stopBG');
-        }
-        if (status === IPMApp.Postponed) {
-            slider4.find("label:first").off("click").css("cursor", "default");
-            slider4.find('input[value=' + IPMApp.Postponed + ']').prop("checked", true);
-        }
-    });
-    
-	
 /* Below script works on page load. Based on the status of the gate document text color will be changed */
     if (jq("label[for=statusRadioBtn_2]").text().indexOf(IPMApp.Stopped) !== -1) {
         jq("label[for=statusRadioBtn_2]").css({
@@ -114,6 +67,60 @@ jq(document).ready(function() {
         });
     }
 });
+
+function tabClick(){
+	/* Below script is for the Tab functionality on click event. Based on the clicked li the tab is highlighted and the content related the clicked tab is displayed. Also it hides the previous opened content */
+	jq(".ipmStatusTabs").on("click", 'li', function() {
+		jq(".proInitLoader").show().delay(1000).fadeOut();
+		unsaved = true;
+		checkChange(unsaved);
+		var $this = jq(this);
+		var statTabList = jq('.ipmStatusTabs').find('li');
+		statTabList.removeClass('active');
+		statTabList.removeClass('stop_active');
+		$this.parents('.sliderDiv').next().find('.changeStatusPage').removeClass('stopBG');
+		jq("#legend label").removeClass('selected');
+		var lpos = jq(".ipmRadioButton label").offset().left;
+		$this.find(".ipmRadioButton label").addClass('selected');
+		$this.addClass('active');
+		if ($this.find(".ipmRadioButton label").next("input").val() === IPMApp.Stopped) {
+			$this.addClass('stop_active');
+			$this.parents('.sliderDiv').next().find('.changeStatusPage').addClass('stopBG');
+		}
+		if (status === IPMApp.Postponed) {
+			slider4.find("label:first").off("click").css("cursor", "default");
+			slider4.find('input[value=' + IPMApp.Postponed + ']').prop("checked", true);
+		}
+	});
+}
+    	
+function apprwithedits(){
+	/* Below script works on click event. This opens the Approver with Edits Modal */
+	jq(document).on('click', '.apprWithEdits', function(e) {
+		e.preventDefault ? e.preventDefault() : e.returnValue = false;
+		var url = jq(this).attr('value');
+		jq('#ipmModalApproveEdits .modal-dialog').width('60%');
+		jq('#ipmModalApproveEdits .modal-dialog').height('220px');
+		jq('#ipmModalApproveEdits .modal-dialog').css({
+			'margin-top': '10%',
+			'z-index': '999'
+		});
+	});
+}
+
+function postponed(){
+	/* Below script works on click event. This opens the Postponed Modal */	
+	jq(document).on('click', '.postponedModal', function(e) {
+		e.preventDefault ? e.preventDefault() : e.returnValue = false;
+		var url = jq(this).attr('value');
+		jq('#ipmModalPostponed .modal-dialog').width('60%');
+		jq('#ipmModalPostponed .modal-dialog').height('220px');
+		jq('#ipmModalPostponed .modal-dialog').css({
+			'margin-top': '10%',
+			'z-index': '999'
+		});
+	});
+}
 /* Below function validates the status of the current gate document and performs the redirection to respective pages based on the status */
 function goToParentPage() {
     if (window.location.search.indexOf('ipmProjectOverview') > -1) {
