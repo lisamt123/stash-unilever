@@ -11,6 +11,9 @@ public class IPM_FinancialValueWrapper {
     public Decimal localValue {get; set;} //Local Value (For Misalignment)
     public Integer scale {get; set;} //decimal digits
     public Boolean isValueInvalid {get; set;} //if the value invalid
+    public Boolean isGrossTOValueInvalid {get; set;} //if the value invalid
+    public Boolean isGrossTOGRTIto {get; set;} //if the value invalid
+    public Boolean isMinorValueInvalid {get; set;}// this is differentiate below red and yellow highlights.
     
     /*******************************************************************************************************
     * @description          Constructor
@@ -25,6 +28,9 @@ public class IPM_FinancialValueWrapper {
         this.value = value.setScale(scale);
         this.difference = difference.setScale(scale);
         this.isValueInvalid = false;
+        this.isGrossTOValueInvalid = false;
+        this.isMinorValueInvalid = false;
+        this.isGrossTOGRTIto =false;
     }
     
     /*******************************************************************************************************
@@ -41,6 +47,9 @@ public class IPM_FinancialValueWrapper {
         this.value = value.setScale(scale);
         this.difference = difference.setScale(scale);
         this.isValueInvalid = false;
+        this.isGrossTOValueInvalid = false;
+        this.isMinorValueInvalid = false;
+        this.isGrossTOGRTIto =false;
     }
     
     /*******************************************************************************************************
@@ -59,6 +68,9 @@ public class IPM_FinancialValueWrapper {
         this.localValue = LocalValue.setScale(scale);
         this.difference = difference.setScale(scale);
         this.isValueInvalid = false;
+        this.isGrossTOValueInvalid = false;
+        this.isMinorValueInvalid = false;
+        this.isGrossTOGRTIto =false;
     }
     
     /*******************************************************************************************************
@@ -77,5 +89,8 @@ public class IPM_FinancialValueWrapper {
         this.localValue = LocalValue.setScale(scale);
         this.difference = difference.setScale(scale);
         this.isValueInvalid = false;
+        this.isGrossTOValueInvalid = false;
+        this.isMinorValueInvalid = false;
+        this.isGrossTOGRTIto =false;
     }
 }

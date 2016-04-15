@@ -60,13 +60,13 @@ public with sharing class IPM_GlobalFinancialActionStandards {
     public void getFinancialActionStandards(){
         finActionStandardsList=new List<IPM_Financial_Action_Standards__c>();
         finActionStandardsList=[SELECT IPM_Financial_Action_Standard_Name__c,IPM_Financial_Year_Y1_Gross__c,IPM_Financial_Year_Y1_Incremental__c,IPM_GM_Action_Standards_Charter__c,IPM_Project_Span__c,
-                                       IPM_gTO_Action_Standard_Charter__c,IPM_Inc_Value_Share_Action_Charter__c,IPM_Innov_Value_Share_Action_Charter__c,IPM_IRR_Action_Standard_Charter__c,
+                                       IPM_gTO_Action_Standard_Charter__c,IPM_Inc_Value_Share_Action_Charter__c,IPM_Innov_Value_Share_Action_Charter__c,IPM_IRR_Action_Standard_Charter__c,Name,
                                        IPM_iTo_Action_Standard_Charter__c,IPM_NPV_Action_Standard_Charter__c,IPM_Payback_Action_Standard_Charter__c,IPM_Project__c,IPM_Project_Document_Section__c,
                                        IPM_Financial_Year_Y1_Gross__r.Value_Market_Share_Global__c,IPM_Financial_Year_Y1_Gross__r.Turnover_Global__c,IPM_Financial_Year_Y1_Gross__r.GM_of_TO_Global__c,
                                        IPM_Financial_Year_Y1_Incremental__r.Value_Market_Share_Global__c,IPM_Financial_Year_Y1_Incremental__r.Turnover_Global__c,IPM_Financial_Year_Y1_Gross__r.IPM_Financial__c,
                                        IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.Payback_Global__c,IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.NPV_Global__c,IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.IRR_Global__c
                                 FROM IPM_Financial_Action_Standards__c
-                                WHERE IPM_Project__c=:project.Id AND IPM_Project_Document_Section__c=:projDocSecId];
+                                WHERE IPM_Project__c=:project.Id AND IPM_Project_Document_Section__c=:projDocSecId order by Name Asc];
     }
     
     /*******************************************************************************************************
@@ -76,12 +76,12 @@ public with sharing class IPM_GlobalFinancialActionStandards {
     */  
     public void updateActionStandards(){
         try{
-        	Decimal oldValue=0;
+            Decimal oldValue=0;
             if(String.isNotBlank(finActionId)){
                 finAction=[SELECT Id,IPM_Innov_Value_Share_Action_Charter__c,IPM_Inc_Value_Share_Action_Charter__c,IPM_gTO_Action_Standard_Charter__c,IPM_iTo_Action_Standard_Charter__c,
-                				  IPM_GM_Action_Standards_Charter__c,IPM_NPV_Action_Standard_Charter__c,IPM_IRR_Action_Standard_Charter__c,IPM_Payback_Action_Standard_Charter__c
-                		   FROM IPM_Financial_Action_Standards__c
-                		   WHERE Id=:finActionId];
+                                  IPM_GM_Action_Standards_Charter__c,IPM_NPV_Action_Standard_Charter__c,IPM_IRR_Action_Standard_Charter__c,IPM_Payback_Action_Standard_Charter__c
+                           FROM IPM_Financial_Action_Standards__c
+                           WHERE Id=:finActionId];
                 if(field == COMMENT_INNOVATION){
                     finAction.IPM_Innov_Value_Share_Action_Charter__c=numvalue;  
                 }
@@ -89,11 +89,11 @@ public with sharing class IPM_GlobalFinancialActionStandards {
                     finAction.IPM_Inc_Value_Share_Action_Charter__c=numvalue;
                 }
                 else if(field == COMMENT_GTO){
-                	oldValue=finAction.IPM_gTO_Action_Standard_Charter__c;
+                    oldValue=finAction.IPM_gTO_Action_Standard_Charter__c;
                     finAction.IPM_gTO_Action_Standard_Charter__c=numvalue;
                 }
                 else if(field == COMMENT_ITO){
-                	oldValue=finAction.IPM_iTo_Action_Standard_Charter__c;
+                    oldValue=finAction.IPM_iTo_Action_Standard_Charter__c;
                     finAction.IPM_iTo_Action_Standard_Charter__c=numvalue;
                 }
                 else if(field == COMMENT_GM){
@@ -110,15 +110,15 @@ public with sharing class IPM_GlobalFinancialActionStandards {
                 }
                 update finAction;
                 if(gateType==IPM_ConstantUtils.CHARTER_GATE && finActionSpan==IPM_ConstantUtils.IPMREGIONAL){
-                	IPM_Financial_Action_Standards__c globalFinaAction=[SELECT Id,IPM_gTO_Action_Standard_Charter__c,IPM_iTo_Action_Standard_Charter__c FROM IPM_Financial_Action_Standards__c
-                														WHERE IPM_Project_Span__c=:IPM_ConstantUtils.IPMGLOBAL AND IPM_Project__c=:project.Id AND IPM_Project_Document_Section__c=:projDocSecId];
-                	if(field == COMMENT_GTO){
-                		globalFinaAction.IPM_gTO_Action_Standard_Charter__c=globalFinaAction.IPM_gTO_Action_Standard_Charter__c-oldValue+numvalue;
-                	}
-                	else if(field == COMMENT_ITO){
-                		globalFinaAction.IPM_iTo_Action_Standard_Charter__c=globalFinaAction.IPM_iTo_Action_Standard_Charter__c-oldValue+numvalue;
-                	}
-                	update globalFinaAction;													
+                    IPM_Financial_Action_Standards__c globalFinaAction=[SELECT Id,IPM_gTO_Action_Standard_Charter__c,IPM_iTo_Action_Standard_Charter__c FROM IPM_Financial_Action_Standards__c
+                                                                        WHERE IPM_Project_Span__c=:IPM_ConstantUtils.IPMGLOBAL AND IPM_Project__c=:project.Id AND IPM_Project_Document_Section__c=:projDocSecId];
+                    if(field == COMMENT_GTO){
+                        globalFinaAction.IPM_gTO_Action_Standard_Charter__c=globalFinaAction.IPM_gTO_Action_Standard_Charter__c-oldValue+numvalue;
+                    }
+                    else if(field == COMMENT_ITO){
+                        globalFinaAction.IPM_iTo_Action_Standard_Charter__c=globalFinaAction.IPM_iTo_Action_Standard_Charter__c-oldValue+numvalue;
+                    }
+                    update globalFinaAction;                                                    
                 }
             }
             getFinancialActionStandards();

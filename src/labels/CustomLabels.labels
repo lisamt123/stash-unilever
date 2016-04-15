@@ -7590,7 +7590,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_Fin_Business</shortDescription>
-        <value>BUSINESS CASE:</value>
+        <value>BUSINESS CASE</value>
     </labels>
     <labels>
         <fullName>IPM_Fin_Calendar</fullName>
@@ -7828,7 +7828,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_FirstFullYear</shortDescription>
-        <value>FIRST FULL YEAR:</value>
+        <value>FIRST FULL YEAR</value>
     </labels>
     <labels>
         <fullName>IPM_From</fullName>

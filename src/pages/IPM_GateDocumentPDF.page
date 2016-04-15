@@ -832,7 +832,7 @@
             <apex:outputPanel rendered="{!IF(pds.IPM_Section__r.IPM_Section_Type__c='Header',true,false)}"> 
                 <apex:outputText value="{!pds.IPM_Section_Sequence__c} {!pds.IPM_Section_Name__c}" styleClass="heading2 bold"/>
             
-                <apex:outputText value="(guidance not due until contract)" rendered="{!IF(pds.IPM_Section_Name__c='Deployment',True,False)}"  styleClass="bdText"> </apex:outputText>
+                <apex:outputText value="(guidance not due until contract)" rendered="{!AND(projectDoc.IPM_GateDocuments__c='Charter',pds.IPM_Section_Name__c='Deployment')}"  styleClass="bdText"> </apex:outputText>
                 
             </apex:outputPanel>
             <!-- below panel is rendered when document section sectioType is "sub-header" and default section is true -->
