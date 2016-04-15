@@ -15,8 +15,7 @@
         
 	    scroller.getEvent("scrollTo").setParams(payload).fire();
 	},
-    
-    //THIS IS AN ABSOLUTE HACK AND MOST LIKELY WILL BREAK IN SUMMER16!
+        
     getScroller : function(component) {
         var elem = component.getElement(),
             scroller;
@@ -27,9 +26,8 @@
         
         scroller = $A.componentService.getRenderingComponentForElement(elem);        
         scroller = scroller && scroller.getComponentValueProvider();
-
-        $A.assert(scroller && scroller.isInstanceOf("ui:scroller"), 
-                  "SCROLLER NOT FOUND. If this is broken, it's because this was a temporary workaround for something that will be fixed in 202.");
+		var displayErrorMessage="SCROLLER NOT FOUND. If this is broken, it's because this was a temporary workaround for something that will be fixed in 202.";
+        $A.assert(scroller && scroller.isInstanceOf("ui:scroller"), displayErrorMessage);
         
         return scroller;
     }
