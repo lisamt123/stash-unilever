@@ -1,0 +1,10 @@
+src/permissionsets/Analytics_Cloud_User.permissionset
+wave
+wave/metadata
+wave/metadata/DMS_Effective_Coverage_Mapping.json
+wave/metadata/DMS_Hexagon_Mapping.json
+wave/metadata/DMS_Impacted_Stores_Mapping.json
+wave/extended-metadata
+wave/extended-metadata/DMS_Effective_Coverage.xmd.json
+wave/extended-metadata/DMS_Hexagon.xmd.json
+wave/extended-metadata/DMS_Impacted_Stores.xmd.json
