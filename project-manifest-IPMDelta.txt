@@ -10,6 +10,8 @@ src/classes/IPM_FinancialValueWrapper.cls
 src/classes/IPM_FinancialValueWrapper.cls-meta.xml
 src/classes/IPM_GlobalFinancialActionStandards.cls
 src/classes/IPM_GlobalFinancialActionStandards.cls-meta.xml
+src/classes/IPM_ConstantUtils.cls
+src/classes/IPM_ConstantUtils.cls-meta.xml
 src/components
 src/components/IPM_FinancialTable.component
 src/components/IPM_FinancialTable.component-meta.xml
