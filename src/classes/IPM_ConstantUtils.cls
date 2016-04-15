@@ -454,7 +454,7 @@ public class IPM_ConstantUtils {
      public static final String FIELD_LITERAL_BIC = 'BIC_';
      public static final String FIELD_LITERAL_CAPEX = 'CAPEX_';
      public static final String FIELD_LITERAL_PAYBACK = 'Payback_';
-
+     public static final String FIELD_LITERAL_STATUS = 'Status_';
      public static final String FIELD_LITERAL_GM_BPS = 'GM_Y1_bps_vs_DNDS_';
      public static final String FIELD_LITERAL_PBO_BPS = 'PBO_Y1_bps_vs_DNDS_';
 
