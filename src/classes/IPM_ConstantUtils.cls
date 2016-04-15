@@ -2,7 +2,7 @@
 * @author Cognizant
 * @date 23/09/2015
 * @description This class is used for holding the string constants being referenced across
-*              all the classes  
+*              all the classes 
 */
 public class IPM_ConstantUtils {
      
@@ -179,6 +179,7 @@ public class IPM_ConstantUtils {
     public static final String CORPORATE_RISK_QUESTIONNAIRE_RECORDTYPE='Corporate Risk';
     public static final integer RISK_QUESTIONNAIRE_SCORE=3;
     public static final integer POS_QUESTIONNAIRE_SCORE=3;
+    
     
     // financial constant
     
@@ -454,6 +455,7 @@ public class IPM_ConstantUtils {
      public static final String FIELD_LITERAL_BIC = 'BIC_';
      public static final String FIELD_LITERAL_CAPEX = 'CAPEX_';
      public static final String FIELD_LITERAL_PAYBACK = 'Payback_';
+     public static final String FIELD_LITERAL_STATUS = 'Status_';
 
      public static final String FIELD_LITERAL_GM_BPS = 'GM_Y1_bps_vs_DNDS_';
      public static final String FIELD_LITERAL_PBO_BPS = 'PBO_Y1_bps_vs_DNDS_';
@@ -942,8 +944,8 @@ public class IPM_ConstantUtils {
    public static final String ClassCopyPaste = IPM_FinancialCopyPasteGrid.Class.getName();
    public static final String NullString = null;
    public static final Integer fileSize = 25000000;
-   public static final String FINANCIAL_CONTROLLER_STR = '/apex/IPM_FinancialCopyPasteGrid?id=';
    public static final String BI = 'Bi';
+   
    // Phase Change Job Status 
     public static final String JOB_STATUS_NA = 'Not Applicable';
     public static final String JOB_STATUS_PROCESSING = 'Processing';
@@ -1134,7 +1136,6 @@ public class IPM_ConstantUtils {
    //bosscard
    public static final string IPM_Q='Q';
    public static final string IPM_BOSSCARD_PATTERN='[a-zA-Z0-9 ]+$';
-   public static final string IPM_HOMEPAGE_URL='/apex/IPM_HomePage';
    public static final string IPM_BOSS_CANCEL='cancel';
    public static final string IPM_BOSS_QUARTER='getListOfQuarter';
    public static final string IPM_BOSS_BRANDPOS='getBrandPos';
@@ -1216,4 +1217,6 @@ public class IPM_ConstantUtils {
    public static final string MISALIGNED_CSS='misalignedField'; 
    
    public static final string SIX_THREE='6.3'; 
+  
+    
 }
