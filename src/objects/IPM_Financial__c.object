@@ -1586,6 +1586,17 @@ IF(AND(
         <type>Summary</type>
     </fields>
     <fields>
+        <fullName>IsFinancialInvalid__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>use this field for the hard validation from the gate document.</description>
+        <externalId>false</externalId>
+        <label>IsFinancialInvalid</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Is_BC_Confirmed_Capability__c</fullName>
         <defaultValue>false</defaultValue>
         <description>To capture the Business Case Confirmation at Capability Phase</description>
@@ -1679,7 +1690,7 @@ IF(AND(
     </fields>
     <fields>
         <fullName>Local_Project__c</fullName>
-        <deleteConstraint>Restrict</deleteConstraint>
+        <deleteConstraint>SetNull</deleteConstraint>
         <description>Local Project associated with the financial.</description>
         <externalId>false</externalId>
         <label>Local Project</label>

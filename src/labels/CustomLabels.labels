@@ -3830,7 +3830,7 @@ Which Communications team do you represent? You must be associated to one Planne
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_ABOUT_IN_PROGRESS_STATE</shortDescription>
-        <value>“In Progress” means that a gate document is being written in anticipation of a gate proposal. Select “Proposed” to check the completeness of the document; when all requirements have been met, click “Change” to activate the status change. To archive a project, select “Stopped”, then “Change”.</value>
+        <value>“In Progress” means that a gate document is being written in anticipation of a gate proposal.  Select “Proposed” to check the completeness of the document; when all requirements have been met, click “Change” to activate the status change.  To archive a project, select “Stopped”, then “Change”.</value>
     </labels>
     <labels>
         <fullName>IPM_ABOUT_PROJECT</fullName>
@@ -3844,14 +3844,14 @@ Which Communications team do you represent? You must be associated to one Planne
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_ABOUT_PROPOSED_STATE</shortDescription>
-        <value>“Proposed” means that the gate document is ready to be presented for a gate decision. If your proposal has met all requirements, click the “Change” button to activate the status change. The document will be sealed from further edits, unless the status changes to “Approved with Edits” or “Postpone Gate&quot;.</value>
+        <value>“Proposed” means that the gate document is ready to be presented for a gate decision. If your proposal has met all requirements, click the “Change” button to activate the status change.  The document will be sealed from further edits, unless the status changes to “Approved with Edits” or “Postpone Gate”.</value>
     </labels>
     <labels>
         <fullName>IPM_ABOUT_STOPPED_STATE</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_ABOUT_STOPPED_STATE</shortDescription>
-        <value>Stopped means that the project will be stopped and it will not be available in your active projects</value>
+        <value>Stopped means that the project will be terminated and no longer available in your active project list.</value>
     </labels>
     <labels>
         <fullName>IPM_ABOUT_TO_MARK_AS_APPROVE_WITH_EDITS</fullName>
@@ -4019,7 +4019,7 @@ Which Communications team do you represent? You must be associated to one Planne
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_ALLOW_TO_EDIT_EDSSENTIALS</shortDescription>
-        <value>Allowed to edit Essentials, Core Parameters, Add/Remove Team members, Write Gate Document Summary, Change Gate Document Status</value>
+        <value>Allowed to edit Essentials and Project Parameters, add/remove team members, write gate document summary, and change gate document status.</value>
     </labels>
     <labels>
         <fullName>IPM_ALL_PROJECT</fullName>
@@ -4068,7 +4068,7 @@ Which Communications team do you represent? You must be associated to one Planne
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_APPROVED_AND_ALLOW_CHANGES</shortDescription>
-        <value>This state indicates that the Gate Document is being Approved. Yet you are allowed to do changes/updates</value>
+        <value>&quot;Approved with Edits&quot; indicates that the project is approved to progress, but that some actions and document changes are needed before the project may move to the next funnel phase.  After these are completed, the Project Leader should click the &quot;Move to (Next Funnel) Phase&quot; button in the gate document.</value>
     </labels>
     <labels>
         <fullName>IPM_APPROVED_WITH_EDITS</fullName>
@@ -4096,7 +4096,7 @@ Which Communications team do you represent? You must be associated to one Planne
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_APPROVE_AND_NO_ACTION</shortDescription>
-        <value>This state indicates that the Gate Document is Approved and there is no more action to be taken by Project Leader.</value>
+        <value>&quot;Approved&quot; means that the Gatekeeper has approved the submitted gate document.  Click &quot;Change&quot; to seal the document from further edits and move the project into the next funnel phase.  Some information will automatically transfer from the approved document to draft for the next gate.</value>
     </labels>
     <labels>
         <fullName>IPM_APPROVE_WITH_EDITS</fullName>
@@ -4117,7 +4117,7 @@ Which Communications team do you represent? You must be associated to one Planne
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_ARE_YOU_SURE_TO_SKIP_BOSSCARD</shortDescription>
-        <value>When you skip the BOSSCARD, you will go directly to project setup and you will not be able to create or edit it again. Are you sure you want to continue?</value>
+        <value>If you Skip BOSSCARD, you will go directly to the project setup wizard and will not be able to create or edit this BOSSCARD again. Are you sure you want to continue?</value>
     </labels>
     <labels>
         <fullName>IPM_ASK_IPM</fullName>
@@ -4939,7 +4939,7 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_BET_DifferentReleaseDate_HelpText</shortDescription>
-        <value>Please be aware that the release dates expected by your project may be different to those within the selected toolkit.</value>
+        <value>Please be aware that the release dates within the selected toolkit may be different from those required for your project.</value>
     </labels>
     <labels>
         <fullName>IPM_BET_Full_Message</fullName>
@@ -5312,7 +5312,7 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Bosscard Discarded Message</shortDescription>
-        <value>Choose this option to permanently stop work on the Bosscard and immediately remove it from all views.  E.g. a Bosscard created in error or stopped prior to the approval process.</value>
+        <value>Choose this option to permanently stop work on the BOSSCARD and immediately remove it from all views. E.g. a BOSSCARD created in error or stopped prior to the approval process.</value>
     </labels>
     <labels>
         <fullName>IPM_Bosscard_Feedback</fullName>
@@ -6380,6 +6380,14 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <value>Please select data to create Assortment strategy</value>
     </labels>
     <labels>
+        <fullName>IPM_Create_New_BET_Message</fullName>
+        <categories>IPM BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Create New BET Message</shortDescription>
+        <value>Options to create a new BET will be available after Charter Gate is approved.</value>
+    </labels>
+    <labels>
         <fullName>IPM_Create_Regional_Rollouts</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -6510,7 +6518,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_DECISION_MAKER</shortDescription>
-        <value>Decision Maker</value>
+        <value>Makes the final assessment whether to progress a project through a funnel gate en route to launch.</value>
     </labels>
     <labels>
         <fullName>IPM_DELIVERABLE</fullName>
@@ -6972,7 +6980,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>ET Description</shortDescription>
-        <value>How will consumers perceive this project in their local market relative to exiting offerings (by Unilever and Competitors)? Use the help text to guide your selection.</value>
+        <value>How does the technology used in this product compare to what is currently being used in the industry anywhere in the world?</value>
     </labels>
     <labels>
         <fullName>IPM_EXIT_PROJECT_SETUP</fullName>
@@ -7464,7 +7472,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_FOCUS_ON_STRATEGIC_FIT</shortDescription>
-        <value>The focus of this section is on strategic fit. Define the Category Value Drivers (e.g. Restaurant experience at home) and the Brand Jobs to be Done (e.g. get Axe guys to increase use of body spray from underarms to cross-chest) that this initiative supports. Other strategic fit considerations: Brand Architecture, business strategies (e.g. operational, margin, VIP, etc.).  A limit of 300 characters maximum.</value>
+        <value>The focus of this section is on strategic fit. Define the Category Value Drivers (e.g. Restaurant experience at home) and the Brand Jobs to be Done (e.g. get Axe guys to increase use of body spray from underarms to cross-chest) that this initiative supports. Other strategic fit considerations: Brand Architecture, business strategies (e.g. premiumization, margin improvement). Text limit is 300 characters.</value>
     </labels>
     <labels>
         <fullName>IPM_FOR</fullName>
@@ -7856,7 +7864,14 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Function Leader is responsible</shortDescription>
-        <value>Function Leader is responsible for functional input in Gate Documents &amp; Function Member may contribute functional input to Gate Documents</value>
+        <value>Function members may contribute functional input to gate documents; Function Leaders are responsible for specfic functional inputs (e.g. gatekeeper questions) and own the overall functional content.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_FunctionalRoleErrorMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_FunctionalRoleErrorMsg</shortDescription>
+        <value>Enter Functional Role.</value>
     </labels>
     <labels>
         <fullName>IPM_FunctionalTeamMsgIdeas</fullName>
@@ -8318,7 +8333,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_INITIAL_HUNCHES_AND_HYPOTHESES</shortDescription>
-        <value>The focus of this section is on initial hunches or hypotheses. Examples: No CAPEX will be required; concept and fragrance will work in all regions etc. What must be researched to confirm assumption(s)?</value>
+        <value>The focus of this section is on initial hunches or hypotheses. Examples: No CAPEX will be required; same concept and fragrance will work in all regions. Indicate what must be researched to confirm assumption(s).</value>
     </labels>
     <labels>
         <fullName>IPM_INITIATION</fullName>
@@ -10684,7 +10699,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_REFERENCE_MARKET_RESEARCH</shortDescription>
-        <value>Reference Market Research to define the consumer need this idea is addressing. How prevalent and important is the need to consumers? How are consumers currently addressing the need today and how will this idea be better than what consumers have available today?</value>
+        <value>Reference market research to define the consumer need this idea is addressing. How prevalent and important is the need to consumers? How are consumers currently addressing the need today and how will this idea be better than what consumers have available today?</value>
     </labels>
     <labels>
         <fullName>IPM_REGIONAL_ROLLOUT_ADD_HELP</fullName>
@@ -10894,7 +10909,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Read Gate Documents</shortDescription>
-        <value>May only read Gate Documents</value>
+        <value>Has read-only access to gate documents.</value>
     </labels>
     <labels>
         <fullName>IPM_Read_Permission</fullName>
@@ -11489,7 +11504,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_SOME_CONSIDERATIONS</shortDescription>
-        <value>Some considerations: What is the size of the segment? Is it a new segment for Unilever? Is it growing? What is the estimated share of the segment? What size of business can we create and how incremental would it be? What kind of margins might we expect? How competitive is the segment and what type of investment would be required? Would we have any competitive advantages in the segment? Does this segment have strategic importance to key customers?</value>
+        <value>Some considerations:  What is the size of the segment? Is it a new segment for Unilever? Is it growing? What is the estimated share of the segment? What size of business can we create and how incremental would it be? What kind of margins might we expect? How competitive is the segment and what type of investment would be required? Would we have any competitive advantages in the segment? Does this segment have strategic importance to key customers?</value>
     </labels>
     <labels>
         <fullName>IPM_STARTED</fullName>
@@ -12673,7 +12688,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_WHAT_WE_CANT_CHANGE</shortDescription>
-        <value>Focus of this section is defining what we definitely can’t change (i.e. “the givens”). Are there any supply chain, technology, legal, regulatory, complexity, customer, cost, time, etc. limitations? Examples: This project must leverage the existing bottle, the product/pack must reduce the environmental impact of the brand, must not be margin dilutive to either Unilever or our customers etc.</value>
+        <value>This section defines what we definitely can’t change (i.e. “the givens”).  Are there any supply chain, technology, legal, regulatory, complexity, customer, cost, time, or other limitations?  Examples:  This project must leverage the existing bottle; the product/pack must reduce the environmental impact of the brand; must not be margin dilutive to either Unilever or our customers.</value>
     </labels>
     <labels>
         <fullName>IPM_WHO_WILL_APPROVE_CHARTER_GATE</fullName>
