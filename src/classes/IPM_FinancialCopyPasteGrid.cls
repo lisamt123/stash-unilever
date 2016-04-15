@@ -41,6 +41,7 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
         Apexpages.currentPage().getHeaders().put(IPM_ConstantUtils.UA_COMPATIBLE, IPM_ConstantUtils.IE_EDGE);// keep it compatible with IE.
         submittedList = new list<String>();// initialing the list.
         projectId = ApexPages.currentPage().getParameters().get('Id');// stores the project ID from the URL
+        BI = ApexPages.currentPage().getParameters().get('BI');//stores the BI passed as URL parameter
         flag = false;//initializing the boolean value
         showdata = false;// initializing the boolean value
         if(String.isNotBlank(projectId) && projectId.length() > IPM_ConstantUtils.fifteen){// handling the 18 digits ID for the Picklist.
@@ -70,7 +71,7 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
                 sustainability = IpmProject.Sustainability_Period__c;
                 span = IpmProject.IPMProject_Span__c;
                 projectType = ipmProject.IPM_Project_Type__c;
-                BI = ipmProject.BI__c;
+                
                 if(BI == null || BI == '')
                 {
                     BI = IPM_ConstantUtils.smallBI;

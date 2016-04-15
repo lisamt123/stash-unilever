@@ -211,7 +211,6 @@
     </fields>
     <fields>
         <fullName>IPM_Unique_Resource__c</fullName>
-        <caseSensitive>false</caseSensitive>
         <description>To have a Unique project resource id</description>
         <externalId>false</externalId>
         <label>IPM Unique Resource</label>
@@ -219,7 +218,7 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>true</unique>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_User__c</fullName>

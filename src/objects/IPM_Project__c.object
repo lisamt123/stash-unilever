@@ -352,7 +352,17 @@
         <summaryFilterItems>
             <field>IPM_Milestone__c.Name</field>
             <operation>contains</operation>
-            <value>BETFinalRelease</value>
+            <value>BET</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Milestone__c.Name</field>
+            <operation>contains</operation>
+            <value>Final</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Milestone__c.Name</field>
+            <operation>contains</operation>
+            <value>Release</value>
         </summaryFilterItems>
         <summaryFilterItems>
             <field>IPM_Milestone__c.IPM_Type_of_Milestone__c</field>
@@ -374,7 +384,17 @@
         <summaryFilterItems>
             <field>IPM_Milestone__c.IPM_Name__c</field>
             <operation>contains</operation>
-            <value>BETFirstRelease</value>
+            <value>BET</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Milestone__c.IPM_Name__c</field>
+            <operation>contains</operation>
+            <value>First</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Milestone__c.IPM_Name__c</field>
+            <operation>contains</operation>
+            <value>Release</value>
         </summaryFilterItems>
         <summaryFilterItems>
             <field>IPM_Milestone__c.IPM_Type_of_Milestone__c</field>
