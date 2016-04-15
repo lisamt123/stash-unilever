@@ -7,10 +7,6 @@ var hot;
 var cleanCalled = false;
 var globalchanges = [];
 var errorflag = "false";
-var Validationflag = "false";
-var Validationflag1 = "false";
-var Validationflag2 = "false";
-var Validationflag3 = "false";
 var Validationflag7 = "false";
 var volSwitch = false;
 
@@ -154,8 +150,6 @@ jq(document).ready(function() {
             } else if (row === 7 && col === 1) {
                 cellProperties.readOnly = false;
                 cellProperties.type = 'autocomplete';
-				//cellProperties.source = ['Total Tons','Total 000 Units'];
-				//cellProperties.visibleRowsNumber= 1;
 				
             } else if (row === 31 && col === 1) {
                 cellProperties.readOnly = true;
@@ -265,30 +259,7 @@ jq(document).ready(function() {
             colspan: 15
         }],
         afterChange: function(changes, source, isValid) {
-            var Y1GTO = 0,
-                Y2GTO = 0,
-                Y3GTO = 0,
-                Y4GTO = 0,
-                Y5GTO = 0;
-            var Y1CGTO = 0,
-                Y2CGTO = 0,
-                Y3CGTO = 0,
-                Y4CGTO = 0,
-                Y5CGTO = 0;
-            var Y1ITO = 0,
-                Y2ITO = 0,
-                Y3ITO = 0,
-                Y4ITO = 0,
-                Y5ITO = 0;
-            var Y1CITO = 0,
-                Y2CITO = 0,
-                Y3CITO = 0,
-                Y4CITO = 0,
-                Y5CITO = 0;
-            Validationflag = 'false';
-			Validationflag1 = 'false';
-			Validationflag2 = 'false';
-			Validationflag3 = 'false';			
+           		
 			Validationflag7 = 'false';
             if (cleanCalled) {
                 cleanCalled = false;
@@ -305,23 +276,9 @@ jq(document).ready(function() {
                         globalchanges.push([changes[i][0], changes[i][1], changes[i][2], changes[i][3]]);
                     }
                     for (var j = 0; j < globalchanges.length; j++) {
-					    if(BI !== 'Small'){
-							if ((globalchanges[j][0].toString() === '11' || (globalchanges[j][0].toString() === '35' && globalchanges[j][1].toString() > '4'))  && (globalchanges[j][3] === '' || globalchanges[j][3].toString() === '0') && Validationflag1 === 'false') {
-								alert(IPMAppFin.IPM_GrossProfitCP);
-								Validationflag1 = 'true';
-							}
-							if ((globalchanges[j][0].toString() === '12' || (globalchanges[j][0].toString() === '36' && globalchanges[j][1].toString() > '4')) && (globalchanges[j][3] === '' || globalchanges[j][3].toString() === '0') && Validationflag2 === 'false') {
-								alert(IPMAppFin.IPM_AdvertisingCP);
-								Validationflag2 = 'true';
-							}
-							if ((globalchanges[j][0].toString() === '13' || (globalchanges[j][0].toString() === '37' && globalchanges[j][1].toString() > '4')) && (globalchanges[j][3] === '' || globalchanges[j][3].toString() === '0') && Validationflag3 === 'false') {
-								alert(IPMAppFin.IPM_PBOCP);
-								Validationflag3 = 'true';
-							}
 							
 							
 							
-					    }
 						
 						if (globalchanges[j][0].toString() === '7'  && globalchanges[j][1] === 1 && Validationflag7 === 'false') {
 							if(globalchanges[j][3].toString().replace(/'/g, "\'").toLowerCase().trim() !== 'total tons' ){
@@ -338,89 +295,13 @@ jq(document).ready(function() {
 							}
 						}
 						
-						if ((globalchanges[j][0].toString() === '7'  && globalchanges[j][1] === 1) && (globalchanges[j][3] === '' || globalchanges[j][3].toString() === '0' ) && Validationflag7 === 'false') {
-						   	    alert(IPMAppFin.IPM_CopyPastevolumevalid);
-								Validationflag7 = 'true';
-						}
-						if ((globalchanges[j][0].toString() === '9' || (globalchanges[j][0].toString() === '33' && globalchanges[j][1].toString() > '4')) && (globalchanges[j][3] === '' || globalchanges[j][3].toString() === '0') && Validationflag === 'false') {
-								alert(IPMAppFin.IPM_TurnOverCP);
-								Validationflag = 'true';
-						}
 							
-                        if (globalchanges[j][0].toString() === '9' && globalchanges[j][1] === 5) {
-                            Y1GTO = globalchanges[j][3];
-                        }
-                        if (globalchanges[j][0].toString() === '9' && globalchanges[j][1] === 6) {
-                            Y2GTO = globalchanges[j][3];
-                        }
-                        if (globalchanges[j][0].toString() === '9' && globalchanges[j][1] === 7) {
-                            Y3GTO = globalchanges[j][3];
-                        }
-                        if (globalchanges[j][0].toString() === '9' && globalchanges[j][1] === 8) {
-                            Y4GTO = globalchanges[j][3];
-                        }
-                        if (globalchanges[j][0].toString() === '9' && globalchanges[j][1] === 9) {
-                            Y5GTO = globalchanges[j][3];
-                        }
-                        if (globalchanges[j][0].toString() === '9' && globalchanges[j][1] === 10) {
-                            Y1ITO = globalchanges[j][3];
-                        }
-                        if (globalchanges[j][0].toString() === '9' && globalchanges[j][1] === 11) {
-                            Y2ITO = globalchanges[j][3];
-                        }
-                        if (globalchanges[j][0].toString() === '9' && globalchanges[j][1] === 12) {
-                            Y3ITO = globalchanges[j][3];
-                        }
-                        if (globalchanges[j][0].toString() === '9' && globalchanges[j][1] === 13) {
-                            Y4ITO = globalchanges[j][3];
-                        }
-                        if (globalchanges[j][0].toString() === '9' && globalchanges[j][1] === 14) {
-                            Y5ITO = globalchanges[j][3];
-                        }
-                        if (globalchanges[j][0].toString() === '33' && globalchanges[j][1] === 5) {
-                            Y1CGTO = globalchanges[j][3];
-                        }
-                        if (globalchanges[j][0].toString() === '33' && globalchanges[j][1] === 6) {
-                            Y2CGTO = globalchanges[j][3];
-                        }
-                        if (globalchanges[j][0].toString() === '33' && globalchanges[j][1] === 7) {
-                            Y3CGTO = globalchanges[j][3];
-                        }
-                        if (globalchanges[j][0].toString() === '33' && globalchanges[j][1] === 8) {
-                            Y4CGTO = globalchanges[j][3];
-                        }
-                        if (globalchanges[j][0].toString() === '33' && globalchanges[j][1] === 9) {
-                            Y5CGTO = globalchanges[j][3];
-                        }
-                        if (globalchanges[j][0].toString() === '33' && globalchanges[j][1] === 10) {
-                            Y1CITO = globalchanges[j][3];
-                        }
-                        if (globalchanges[j][0].toString() === '33' && globalchanges[j][1] === 11) {
-                            Y2CITO = globalchanges[j][3];
-                        }
-                        if (globalchanges[j][0].toString() === '33' && globalchanges[j][1] === 12) {
-                            Y3CITO = globalchanges[j][3];
-                        }
-                        if (globalchanges[j][0].toString() === '33' && globalchanges[j][1] === 13) {
-                            Y4CITO = globalchanges[j][3];
-                        }
-                        if (globalchanges[j][0].toString() === '33' && globalchanges[j][1] === 14) {
-                            Y5CITO = globalchanges[j][3];
-                        }
                     }
 					
-						if (Y1GTO < Y1ITO || Y2GTO < Y2ITO || Y3GTO < Y3ITO || Y4GTO < Y4ITO || Y5GTO < Y5ITO) {
-							alert(IPMAppFin.IPM_ITOValidation);
-							Validationflag = 'true';
-						}
-						if (Y1CGTO < Y1CITO || Y2CGTO < Y2CITO || Y3CGTO < Y3CITO || Y4CGTO < Y4CITO || Y5CGTO < Y5CITO) {
-							alert(IPMAppFin.IPM_ITOCalValidation);
-							Validationflag = 'true';
-						}
+						
 					
 					/* If we reduce the number of conditional operators it will contradict with the other sonar issue 'Merge this if statement with the nested one' */
-                    if (Validationflag === 'false' && Validationflag1 === 'false' && Validationflag2 === 'false' 
-					&& Validationflag3 === 'false' && Validationflag7 === 'false') {
+                    if ( Validationflag7 === 'false') {
                         document.getElementById('DivButton').style.display = 'inline';
                     } else {
                         document.getElementById('DivButton').style.display = 'none';

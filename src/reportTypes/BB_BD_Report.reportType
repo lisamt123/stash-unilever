@@ -39,7 +39,13 @@
             <displayNameOverride>Auto Aligned Fin &amp; TLD</displayNameOverride>
             <field>IPM_Auto_Aligned_Fin_TLD__c</field>
             <table>IPM_Analytics__c</table>
-        </columns>
+        </columns>		
+		<columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Auto Aligned Fin &amp; TLD for financial</displayNameOverride>
+            <field>IPM_Auto_Aligned_Fin_TLD_for_financial__c</field>
+            <table>IPM_Analytics__c</table>
+        </columns>		
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <displayNameOverride>Brand Positioning</displayNameOverride>
