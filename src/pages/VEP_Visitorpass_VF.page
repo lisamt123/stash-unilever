@@ -125,7 +125,7 @@ position: relative;
                   <div class="form-group">
                       <label class="col-lg-3 control-label">Approved By: </label>
                       
-                      <div class="col-lg-4">{!Vep_Visitor_Pass__c.visitor__r.Factory_manager_name__c}</div>
+                      <div class="col-lg-4">{!Vep_Visitor_Pass__c.visitor__r.Person_to_meet__c}</div>
                       
                   </div>
                   <div class="clearfix" style="height: 10px;clear: both;"></div>

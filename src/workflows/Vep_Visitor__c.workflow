@@ -12,17 +12,6 @@
         <template>VEP_Templates/VEP_Send_Approved_Email_to_Visitor</template>
     </alerts>
     <alerts>
-        <fullName>VEP_Send_Email_to_Factory_manager_Alert</fullName>
-        <description>VEP_Send Email to Factory Manager Alert</description>
-        <protected>false</protected>
-        <recipients>
-            <field>Factory_Manager_Email__c</field>
-            <type>email</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>VEP_Templates/VEP_Send_Email_to_Factory_Manager_Template</template>
-    </alerts>
-    <alerts>
         <fullName>VEP_Send_Email_to_Lodging_Desk_Alert</fullName>
         <description>VEP_Send Email to Lodging Desk Alert</description>
         <protected>false</protected>
@@ -238,25 +227,6 @@
             <value>Request</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>VEP_Send Email to Factory Manager WF</fullName>
-        <actions>
-            <name>VEP_Send_Email_to_Factory_manager_Alert</name>
-            <type>Alert</type>
-        </actions>
-        <active>false</active>
-        <booleanFilter>1 AND 2</booleanFilter>
-        <criteriaItems>
-            <field>Vep_Visitor__c.Factory_Manager_Email__c</field>
-            <operation>notEqual</operation>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Vep_Visitor__c.Request_on_Behalf__c</field>
-            <operation>equals</operation>
-            <value>False</value>
-        </criteriaItems>
-        <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
         <fullName>VEP_Send Email to Lodging Desk WF</fullName>

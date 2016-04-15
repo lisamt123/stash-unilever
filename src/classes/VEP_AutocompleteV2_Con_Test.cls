@@ -42,7 +42,7 @@ private class VEP_AutocompleteV2_Con_Test{
             VEP_AutoCompleteV2_Con controller = new VEP_AutoCompleteV2_Con ();
             controller.setTargetFieldVar(accountList[0].Id);
             System.assertEquals(accountList[0].Id,controller.getTargetFieldVar());
-            controller.setCacheField(null);
+            //controller.setCacheField(null);
         Test.stopTest();
         
     }
