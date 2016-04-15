@@ -313,20 +313,27 @@ var unsaved = false;
 jq(function(){
 
 unsaved = false;
-jq('input:radio, :input').change(
-function(){
+jq('input:radio, :input').change(function(){
 	unsaved = true;
 });
 
 CKEDITOR.on('instanceReady', function(){
    jq.each( CKEDITOR.instances, function(instance) {
     CKEDITOR.instances[instance].on("change", function(e) {
-        for ( instance in CKEDITOR.instances )
+        for ( instance in CKEDITOR.instances ){
         CKEDITOR.instances[instance].updateElement();
+		}
 		unsaved = true;
     });
    });
 });
+
+	CKEDITOR.instances[i].on('change', function() {
+		for (var i in CKEDITOR.instances) 
+		{
+			unsaved = true; 
+		}
+	});
 
 });
 	
