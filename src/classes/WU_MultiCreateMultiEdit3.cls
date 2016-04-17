@@ -68,7 +68,7 @@ public class WU_MultiCreateMultiEdit3{
             try{
                 updateMasterResult = Database.update(toUpdateList,false);
                 String finalSuccessMessage = 'Success for records : ';
-                String finalErrorMessage = 'Failed records are : ';
+                String finalErrorMessage = ' ' ;
                 Boolean isMasterSuccess = false;
                 Boolean isMasterFailure = false;
                 
@@ -90,8 +90,12 @@ public class WU_MultiCreateMultiEdit3{
                             Database.Error MasterError = updateMasterResult.get(i).getErrors().get(0);
                             system.debug('::::::::Final Master error'+MasterError);
                             //finalErrorMessage = finalErrorMessage + selectedMasterRecordsMap.get(toUpdateList.get(i).Id).masterName +' ' + 'Failed due to error'+' '+MasterError.getMessage();
+                            //finalErrorMessage = finalErrorMessage + selectedMasterRecordsMap.get(toUpdateList.get(i).Id).objWUMasterWarehouse.Name;
+                            /*
                             finalErrorMessage = finalErrorMessage +' '+selectedMasterRecordsMap.get(toUpdateList.get(i).Id).objWUMasterWarehouse.Name 
                                                 +' ' + 'Failed due to error'+' '+MasterError.getMessage()+'<br></br>';
+                            */
+                            finalErrorMessage = finalErrorMessage + selectedMasterRecordsMap.get(toUpdateList.get(i).Id).objWUMasterWarehouse.Name + ' ';
                             system.debug('::::::::Error string error'+finalErrorMessage);
                         }
                     }                 
@@ -102,7 +106,8 @@ public class WU_MultiCreateMultiEdit3{
                         ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Info,finalSuccessMessage));
                 }
                 if(isMasterFailure){
-                        ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Error,finalErrorMessage));
+                    finalErrorMessage = finalErrorMessage + ' Records Failed due to Error';
+                    ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Error,finalErrorMessage));
                 }    
             }
             catch(exception ex){
@@ -145,7 +150,7 @@ public class WU_MultiCreateMultiEdit3{
                 try{
                     updateDetailsResult = Database.update(capacityDetailToUpdateList,false);
                     String finalSuccessRecords = 'Success for records :';
-                    String finalErrorRecords = 'Failed records are : ';
+                    String finalErrorRecords = ' ';
                     Boolean isSuccess=false;
                     Boolean isFailure=false;
 
@@ -167,7 +172,8 @@ public class WU_MultiCreateMultiEdit3{
                                     Database.Error error = updateDetailsResult.get(i).getErrors().get(0);
                                     system.debug('::::::::Final error'+error);
                                     //finalErrorRecords = finalErrorRecords + selectedRecordsMap.get(capacityDetailToUpdateList.get(i).Id).masterName +' ' + 'Failed due to error'+' '+error.getMessage();
-                                    finalErrorRecords = finalErrorRecords + ' '+selectedRecordsMap.get(capacityDetailToUpdateList.get(i).Id).objWUMasterWarehouse.Name +' ' + 'Failed due to error'+' '+error.getMessage()+'<br></br>';
+                                    //finalErrorRecords = finalErrorRecords + ' '+selectedRecordsMap.get(capacityDetailToUpdateList.get(i).Id).objWUMasterWarehouse.Name +' ' + 'Failed due to error'+' '+error.getMessage()+'<br></br>';
+                                    finalErrorRecords = finalErrorRecords + ' '+selectedRecordsMap.get(capacityDetailToUpdateList.get(i).Id).objWUMasterWarehouse.Name+ ' ';
                                     system.debug('::::::::Error string error'+finalErrorRecords); 
                                 }
                             }
@@ -176,6 +182,7 @@ public class WU_MultiCreateMultiEdit3{
                             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Info,finalSuccessRecords));
                         }
                         if(isFailure){
+                            finalErrorRecords = finalErrorRecords + ' Records Failed due to Error';
                             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Error,finalErrorRecords));
                         }
                     }
