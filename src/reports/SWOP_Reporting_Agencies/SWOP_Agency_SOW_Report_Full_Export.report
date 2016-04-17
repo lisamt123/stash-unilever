@@ -52,6 +52,12 @@
         <field>Marketing_SOW__c.Marketing_Projects__r$Preview_Date__c</field>
     </columns>
     <columns>
+        <field>Marketing_SOW__c.Marketing_Projects__r$Project_Completion_Date__c</field>
+    </columns>
+    <columns>
+        <field>Marketing_SOW__c.Marketing_Projects__r$Final_release__c</field>
+    </columns>
+    <columns>
         <field>Marketing_SOW__c.Marketing_Projects__r$OblixRegion__c</field>
     </columns>
     <columns>
@@ -116,7 +122,7 @@
     <reportType>Oblix_SWOP_SOW__c</reportType>
     <scope>organization</scope>
     <showDetails>true</showDetails>
-    <sortColumn>Marketing_SOW__c.Marketing_Projects__r$Preview_Date__c</sortColumn>
+    <sortColumn>Marketing_SOW__c$Oblix_AgencyEstimate__c</sortColumn>
     <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>Marketing_SOW__c$CreatedDate</dateColumn>
