@@ -274,7 +274,7 @@
                                 <td class="table_date_formatting">
                                     <apex:inputField value="{!campaignHelper.selectedProject.First_Air_Date__c}" styleclass="dateFAD" />
                                 </td>
-                                <td class="campaign_create_agency_hub_split_table_subtitle">BET Final Release</td>
+                                <td class="campaign_create_agency_hub_split_table_subtitle">Preview date</td>
                                 <td class="table_date_formatting">
                                     <apex:inputField value="{!campaignHelper.selectedProject.Preview_Date__c}" styleclass="dateProjPREV" />
                                 </td>
