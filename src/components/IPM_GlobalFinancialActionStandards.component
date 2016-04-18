@@ -74,7 +74,7 @@
                         <div class="glbValM glbVal2">
                         <!-- Rendering Condition for Displaying Read only and Editable Fileds -->
                             <apex:inputField value="{!finAction.IPM_Inc_Value_Share_Action_Charter__c}" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}" onchange="updateFinAction('{!finAction.Id}','{!finAction.IPM_Project_Span__c}','Incremental',this.value);"/>
-                            <apex:outputField value="{!finAction.IPM_Innov_Value_Share_Action_Charter__c}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}"/>
+                            <apex:outputField value="{!finAction.IPM_Inc_Value_Share_Action_Charter__c}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}"/>
                         </div>
                         <div class="glbValM glbVal3">
                         <!-- Rendering Condition for Displaying Read only and Editable Fileds -->
@@ -89,24 +89,24 @@
                         <div class="glbValM glbVal5">
                         <!-- Rendering Condition for Displaying Read only and Editable Fileds -->
                             <apex:inputField value="{!finAction.IPM_GM_Action_Standards_Charter__c}" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}" onchange="updateFinAction('{!finAction.Id}','{!finAction.IPM_Project_Span__c}','GM',this.value);"/>
-                            <apex:outputField value="{!finAction.IPM_Innov_Value_Share_Action_Charter__c}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}"/>
+                            <apex:outputField value="{!finAction.IPM_GM_Action_Standards_Charter__c}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}"/>
                         </div>
                     </div>
                     <div class="glbValSubRight">
                         <div class="glbValM2 glbVal6">
                         <!-- Rendering Condition for Displaying Read only and Editable Fileds -->
                             <apex:inputField value="{!finAction.IPM_NPV_Action_Standard_Charter__c}" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}" onchange="updateFinAction('{!finAction.Id}','{!finAction.IPM_Project_Span__c}','NPV',this.value);"/>
-                            <apex:outputField value="{!finAction.IPM_Innov_Value_Share_Action_Charter__c}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}"/>
+                            <apex:outputField value="{!finAction.IPM_NPV_Action_Standard_Charter__c}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}"/>
                         </div>
                         <div class="glbValM2 glbVal7">
                         <!-- Rendering Condition for Displaying Read only and Editable Fileds -->
                             <apex:inputField value="{!finAction.IPM_IRR_Action_Standard_Charter__c}" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}" onchange="updateFinAction('{!finAction.Id}','{!finAction.IPM_Project_Span__c}','IRR',this.value);"/>
-                            <apex:outputField value="{!finAction.IPM_Innov_Value_Share_Action_Charter__c}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}"/>
+                            <apex:outputField value="{!finAction.IPM_IRR_Action_Standard_Charter__c}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}"/>
                         </div>
                         <div class="glbValM2 glbVal8">
                         <!-- Rendering Condition for Displaying Read only and Editable Fileds -->
                             <apex:inputField value="{!finAction.IPM_Payback_Action_Standard_Charter__c}" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}" onchange="updateFinAction('{!finAction.Id}','{!finAction.IPM_Project_Span__c}','PayBack',this.value);"/>
-                            <apex:outputField value="{!finAction.IPM_Innov_Value_Share_Action_Charter__c}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}"/>
+                            <apex:outputField value="{!finAction.IPM_Payback_Action_Standard_Charter__c}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}"/>
                         </div>
                     </div>
                 </apex:outputPanel>
@@ -159,4 +159,3 @@ function updateFinAction(Id,Span,Field,Value){
 }
 </script>
 </apex:component>
-                                     
