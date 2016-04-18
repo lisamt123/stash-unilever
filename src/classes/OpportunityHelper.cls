@@ -1,6 +1,11 @@
 public with sharing class OpportunityHelper {
 
+<<<<<<< HEAD
+	//Test
+=======
+//test comment by ramesh
 
+>>>>>>> 82763882dc00d5cea85f3f9e728e785702cf2e3f
     /******************* For after update trigger **************************/
     public static void OppUpdate(List<Opportunity> listNewTrigger, Map<Id,Opportunity> mapOld){ 
     
