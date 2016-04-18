@@ -227,11 +227,11 @@ public with sharing class IPM_ProjectOverviewCtrl {
        lstRolloutProjectAlertMessage = new List<String>();
        if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)
        {
-            lstprojectRollout = [SELECT ID,IPM_Regional_PL__c FROM IPM_Project_Rollout__c where Regional_Project__c = : project.id limit 50000];
+            lstprojectRollout = [SELECT ID,Name,IPM_Regional_PL__c FROM IPM_Project_Rollout__c where Regional_Project__c = : project.id limit 50000];
             for(IPM_Project_Rollout__c rollOutProject : lstprojectRollout){
                 if(String.isBlank(rollOutProject.IPM_Regional_PL__c) || rollOutProject.IPM_Regional_PL__c == null)
                 {
-                    lstRolloutProjectAlertMessage.add(Label.IPM_Local_Project_Leader_BlankMsg);
+                    lstRolloutProjectAlertMessage.add(String.format(Label.IPM_Local_Project_Leader_BlankMsg,new List<String>{rollOutProject.Name}));
                     noOfNotifications++;
                 }
             }
