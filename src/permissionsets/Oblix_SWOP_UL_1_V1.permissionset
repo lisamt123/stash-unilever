@@ -61,106 +61,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>Oblix_Constants</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Oblix_Constants_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Oblix_Ctrl001DeepCloneSOW_CC</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Oblix_Ctrl001DeepCloneSOW_CC_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Oblix_Ctrl02OverrideAssetNew</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Oblix_Ctrl02OverrideAssetNew_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Oblix_Ctrl03AssetLookupNew</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Oblix_Ctrl03AssetLookupNew_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Oblix_Ctrl04Bis_OverOtherItemsNews_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Oblix_Ctrl04Bis_OverrideOtherItemsNews</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Oblix_Ctrl04OverrideProjectNew</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Oblix_Ctrl04OverrideProjectNew_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Oblix_Ctrl05SOWDetails_CC</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Oblix_Ctrl05SOWDetails_CC_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Oblix_Ctrl06SOWView_CC</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Oblix_Ctrl06SOWView_CC_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Oblix_Ctrl07ProjectEdit_CC</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Oblix_Ctrl07ProjectEdit_CC_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Oblix_Ctrl07ProjectView_CC</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Oblix_Ctrl07ProjectView_CC_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Oblix_Ctrl09_nonCampaignEdit</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Oblix_Ctrl09_nonCampaignEdit_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Oblix_Ctrl10_nonCampaignView</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Oblix_Ctrl10_nonCampaignView_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Oblix_Ctrl11AuditTracking_Cmp</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>Oblix_NonCampaignWrapper</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -261,54 +161,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>Oblix_TR01SOWMarkingSharing</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Oblix_TR01SOWMarkingSharing_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Oblix_TR02SubmitSOWForApproval</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Oblix_TR02SubmitSOWForApproval_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Oblix_TR03AssetPrScoreCalculator_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Oblix_TR03AssetProjectScoreCalculator</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Oblix_TR04ProjectBusDriverScore_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Oblix_TR04ProjectBusinessDriverScore</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Oblix_TR05SOWSplitProjectAvoid</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Oblix_TR05SOWSplitProjectAvoid_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Oblix_TR06SowMarketBrandPopulate</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Oblix_TR06SowMarketBrandPopulate_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>Oblix_TestUtils</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -339,10 +191,6 @@
     <classAccesses>
         <apexClass>Oblix_wrapper_NonCamp</apexClass>
         <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>TriggerFactory</apexClass>
-        <enabled>false</enabled>
     </classAccesses>
     <description>Allow CRUD on shared SOW records and childs/ GVP Approver</description>
     <fieldPermissions>
@@ -408,7 +256,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_Basics__c.Activity_Fee_Agency__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -443,7 +291,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_Basics__c.Hourly_Rate_Agency__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -451,9 +299,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Marketing_Basics__c.Non_Campaign_Key__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -488,7 +336,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_Basics__c.Resource_Fee_Agency__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -556,9 +404,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Marketing_SOW__c.Approved_version__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -698,7 +546,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_SOW__c.SOW_Overall_Total_Agency__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -713,7 +561,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_SOW__c.Total_Campaign_Fee_Agency__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -728,7 +576,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_SOW__c.Total_Non_Campaign_Fees_Agency__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -958,7 +806,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Oblix_Project_Assets__c.Asset_Line_Item_Score__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -1163,7 +1011,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Oblix_SOW_Projects__c.Fees_To_Be_Paid_In_Current_FY_Agency__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -1338,6 +1186,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Oblix_SOW_Projects__c.Region__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.SOW_Campaign_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1574,46 +1427,6 @@
         <apexPage>Oblix_SWOPredirect</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
-    <pageAccesses>
-        <apexPage>Oblix_VF01DeepCloneSOW</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>Oblix_VF02OverrideAsetNewLookup</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>Oblix_VF03CustomAssetLookup</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>Oblix_VF04OverrideProjectNew</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>Oblix_VF05_SOWDetails</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>Oblix_VF06_SOWView</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>Oblix_VF07_ProjectView</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>Oblix_VF07_SOWNew</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>Oblix_VF08_ProjectEdit</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>Oblix_VF09_nonCampaignEdit</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
     <recordTypeVisibilities>
         <recordType>Asset_Scoring__c.Asset</recordType>
         <visible>true</visible>
@@ -1702,4 +1515,12 @@
         <tab>SWOP</tab>
         <visibility>Visible</visibility>
     </tabSettings>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ExportReport</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>RunReports</name>
+    </userPermissions>
 </PermissionSet>

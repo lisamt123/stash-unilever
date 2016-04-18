@@ -74,7 +74,8 @@
                                             <!-- ************************************************************ -->
                                             <div class="campaign_chevron_title campaign_summary_information_titles">Stages planned to be delivered:</div>
                                             <!-- <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier_pop_up}" AutoSave="false" Id="cancel_campaign_campaign_stage_component_projected" rerenderIds="calculatedFeePanel, cancel_campaign_campaign_stage_component_completed" displayMode="3" projectedStageLabel="Stages planned to be delivered:" showTotalPercentage="true"/> --> 
-                                            <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier_pop_up}" AutoSave="false" Id="cancel_campaign_campaign_stage_component_projected" rerenderIds="calculatedFeePanel, cancel_campaign_campaign_stage_component_completed" displayMode="3"/> 
+                                            <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier_pop_up}" AutoSave="false" Id="cancel_campaign_campaign_stage_component_projected" rerenderIds="calculatedFeePanel, cancel_campaign_campaign_stage_component_completed, cancel_campaign_FY_adjust" displayMode="3"/> 
+                                                <apex:outputPanel id="cancel_campaign_FY_adjust">
                                                     <apex:outputText >
                                                         <div class="add_assets_chevron_percentage_values">
                                                             <p class="campaign_create_agency_hub_split_table_subtitle">Total campaign fee to be paid this FY</p>
@@ -84,6 +85,7 @@
                                                             </apex:outputText>
                                                         </div>
                                                     </apex:outputText>
+                                                </apex:outputPanel>
                                         </div> 
                                     </div>
                                 </div>   
@@ -384,7 +386,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td><apex:outputText value="Preview Date" rendered="{!NULL<>selected_project.Preview_Date__c}"></apex:outputText></td>
+                                            <td><apex:outputText value="Preview date" rendered="{!NULL<>selected_project.Preview_Date__c}"></apex:outputText></td>
                                             <td>
                                                 <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Preview_Date__c}">
                                                     <apex:param value="{!selected_project.Preview_Date__c}" /> 
@@ -400,7 +402,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td><apex:outputText value="Final release" rendered="{!NULL<>selected_project.Final_release__c}"></apex:outputText></td>
+                                            <td><apex:outputText value="BET final release" rendered="{!NULL<>selected_project.Final_release__c}"></apex:outputText></td>
                                             <td>
                                                 <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Final_release__c}">
                                                     <apex:param value="{!selected_project.Final_release__c}" /> 
