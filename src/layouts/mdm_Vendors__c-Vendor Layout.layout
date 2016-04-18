@@ -12,47 +12,75 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>VPM_VendorName__c</field>
+                <field>mdm_Name1__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>VPM_Street__c</field>
+                <field>mdm_Street__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>VPM_City__c</field>
+                <field>mdm_City__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>VPM_Postcode__c</field>
+                <field>mdm_Postcode__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>VPM_ECCEntries__c</field>
+                <field>mdm_ECC__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>VPM_VendorCode__c</field>
+                <field>mdm_Code__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>VP_VendorFullDetails__c</field>
+                <field>VPM_FullDetails__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>VPM_Client_Id__c</field>
+                <field>mdm_ID__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>VPM_Client_Secret__c</field>
+                <field>mdm_RemoteKey__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>VPM_Country__c</field>
+                <field>mdm_Country__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>VPM_TaxNumber__c</field>
+                <field>mdm_TaxNumber1__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>mdm_TaxNumber2__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>mdm_TaxNumber3__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>mdm_TaxNumber4__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>mdm_Name2__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>mdm_Name3__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>mdm_Name4__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>mdm_VATRegNum__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

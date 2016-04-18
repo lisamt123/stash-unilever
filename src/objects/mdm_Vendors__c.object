@@ -58,7 +58,19 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
-        <fullName>VPM_City__c</fullName>
+        <fullName>VPM_FullDetails__c</fullName>
+        <description>Provides a text summary of the important SAP matching fields for display within the Advanced form. Not interfaced with SAP</description>
+        <externalId>false</externalId>
+        <formula>mdm_Name1__c &amp; &quot;, &quot; &amp;  mdm_Street__c &amp; &quot;, &quot; &amp; mdm_City__c &amp; &quot;, &quot; &amp; mdm_Postcode__c &amp;&quot; | ECC: &quot;&amp; mdm_ECC__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Full Details</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>mdm_City__c</fullName>
         <description>The city the vendor is based in</description>
         <externalId>false</externalId>
         <label>City</label>
@@ -69,27 +81,18 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>VPM_Client_Id__c</fullName>
-        <externalId>false</externalId>
-        <label>Client ID</label>
-        <length>255</length>
-        <required>true</required>
+        <fullName>mdm_Code__c</fullName>
+        <description>&quot;Vendor Code&quot;: The SAP code reference for the Vendor</description>
+        <externalId>true</externalId>
+        <label>Code</label>
+        <length>18</length>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>VPM_Client_Secret__c</fullName>
-        <externalId>false</externalId>
-        <label>Client Secret</label>
-        <length>255</length>
-        <required>true</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>VPM_Country__c</fullName>
+        <fullName>mdm_Country__c</fullName>
         <description>The country the vendor is based in.</description>
         <externalId>false</externalId>
         <label>Country</label>
@@ -100,10 +103,10 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>VPM_ECCEntries__c</fullName>
+        <fullName>mdm_ECC__c</fullName>
         <description>For storing which SAP ECC/s the vendor is a part of</description>
         <externalId>false</externalId>
-        <label>ECC Entries</label>
+        <label>ECC</label>
         <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -111,7 +114,60 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>VPM_Postcode__c</fullName>
+        <fullName>mdm_ID__c</fullName>
+        <caseSensitive>true</caseSensitive>
+        <externalId>true</externalId>
+        <label>ID</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>mdm_Name1__c</fullName>
+        <description>The name of the Vendor</description>
+        <externalId>false</externalId>
+        <inlineHelpText>VPM - The company name of the vendor</inlineHelpText>
+        <label>Name 1</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>mdm_Name2__c</fullName>
+        <externalId>false</externalId>
+        <label>Name 2</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>mdm_Name3__c</fullName>
+        <externalId>false</externalId>
+        <label>Name 3</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>mdm_Name4__c</fullName>
+        <externalId>false</externalId>
+        <label>Name 4</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>mdm_Postcode__c</fullName>
         <description>VPM - The postcode of the vendor</description>
         <externalId>false</externalId>
         <label>Postcode</label>
@@ -122,7 +178,17 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>VPM_Street__c</fullName>
+        <fullName>mdm_RemoteKey__c</fullName>
+        <externalId>false</externalId>
+        <label>Remote Key</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>mdm_Street__c</fullName>
         <description>The first line of the vendors street address</description>
         <externalId>false</externalId>
         <label>Street</label>
@@ -133,9 +199,9 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>VPM_TaxNumber__c</fullName>
+        <fullName>mdm_TaxNumber1__c</fullName>
         <externalId>false</externalId>
-        <label>Tax Number</label>
+        <label>Tax Number 1</label>
         <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -143,35 +209,40 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>VPM_VendorCode__c</fullName>
-        <description>The SAP code reference for the Vendor</description>
+        <fullName>mdm_TaxNumber2__c</fullName>
         <externalId>false</externalId>
-        <label>Vendor Code</label>
-        <length>18</length>
+        <label>Tax Number 2</label>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>VPM_VendorName__c</fullName>
-        <description>The name of the Vendor</description>
+        <fullName>mdm_TaxNumber3__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>VPM - The company name of the vendor</inlineHelpText>
-        <label>Vendor Name</label>
+        <label>Tax Number 3</label>
         <length>255</length>
-        <required>true</required>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>VP_VendorFullDetails__c</fullName>
-        <description>Provides a text summary of the important SAP matching fields for display within the Advanced form. Not interfaced with SAP</description>
+        <fullName>mdm_TaxNumber4__c</fullName>
         <externalId>false</externalId>
-        <formula>VPM_VendorName__c &amp; &quot;, &quot; &amp;  VPM_Street__c &amp; &quot;, &quot; &amp; VPM_City__c &amp; &quot;, &quot; &amp; VPM_Postcode__c &amp;&quot; | ECC: &quot;&amp; VPM_ECCEntries__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Vendor Full Details</label>
+        <label>Tax Number 4</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>mdm_VATRegNum__c</fullName>
+        <externalId>false</externalId>
+        <label>VAT Registration Number</label>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -180,12 +251,12 @@
     <label>Vendor</label>
     <listViews>
         <fullName>All</fullName>
-        <columns>VPM_VendorName__c</columns>
-        <columns>VPM_City__c</columns>
-        <columns>VPM_Street__c</columns>
-        <columns>VPM_Postcode__c</columns>
-        <columns>VPM_VendorCode__c</columns>
-        <columns>VPM_ECCEntries__c</columns>
+        <columns>mdm_Name1__c</columns>
+        <columns>mdm_City__c</columns>
+        <columns>mdm_Street__c</columns>
+        <columns>mdm_Postcode__c</columns>
+        <columns>mdm_Code__c</columns>
+        <columns>mdm_ECC__c</columns>
         <columns>NAME</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>

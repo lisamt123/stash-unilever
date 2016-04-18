@@ -29,6 +29,10 @@
                 <behavior>Edit</behavior>
                 <field>VPM_VendorPhone__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>VPM_IsLock__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

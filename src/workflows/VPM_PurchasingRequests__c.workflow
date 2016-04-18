@@ -51,6 +51,16 @@
         <template>VPM_ApprovalEmails/VPM_RequestRejectNotification</template>
     </alerts>
     <alerts>
+        <fullName>VPM_RequestSubmittedForFLSRework</fullName>
+        <description>VPM - Used to send Notification to the Business Requestor  when the request is send for Rework</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>VPM_ApprovalEmails/VPM_RequestReworkNotification</template>
+    </alerts>
+    <alerts>
         <fullName>VPM_RequestSubmittedForFLS_MDMOpsReviewNotification</fullName>
         <description>VPM - Used to send Notification to the Business Requestor  when the request is send for FLS /MDM Ops Review</description>
         <protected>false</protected>
@@ -256,4 +266,19 @@
         <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
+    <rules>
+        <fullName>Send Email Notification when status is FLS Requested Re-Work</fullName>
+        <actions>
+            <name>VPM_RequestSubmittedForFLSRework</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_Status__c</field>
+            <operation>equals</operation>
+            <value>FLS Requested Re-Work</value>
+        </criteriaItems>
+        <description>VPM  - Used to send notification to the Business Requester when Status Changes to FLS Requested Re-Work</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
 </Workflow>

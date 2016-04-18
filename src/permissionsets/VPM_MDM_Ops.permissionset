@@ -2,8 +2,20 @@
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <applicationVisibilities>
         <application>VPM_Purchasing_Requests</application>
-        <visible>false</visible>
+        <visible>true</visible>
     </applicationVisibilities>
+    <classAccesses>
+        <apexClass>VPM_FetchVendorsDetails</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>VPM_VendorDetailsServicesHelper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>VPM_VendorDetailsType</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
     <description>Vendor Process Management: Master Data Management team member</description>
     <fieldPermissions>
         <editable>false</editable>
@@ -398,6 +410,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_DateOfBirth__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>VPM_PurchasingRequests__c.VPM_DaysWithBusinessRequestor__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1692,48 +1709,101 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>mdm_Vendors__c.VPM_City__c</field>
+        <field>mdm_Vendors__c.VPM_FullDetails__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>mdm_Vendors__c.VPM_Country__c</field>
+        <field>mdm_Vendors__c.mdm_City__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>mdm_Vendors__c.VPM_ECCEntries__c</field>
+        <field>mdm_Vendors__c.mdm_Code__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>mdm_Vendors__c.VPM_Postcode__c</field>
+        <field>mdm_Vendors__c.mdm_Country__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>mdm_Vendors__c.VPM_Street__c</field>
+        <field>mdm_Vendors__c.mdm_ECC__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>mdm_Vendors__c.VPM_TaxNumber__c</field>
+        <field>mdm_Vendors__c.mdm_Name2__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>mdm_Vendors__c.VPM_VendorCode__c</field>
+        <field>mdm_Vendors__c.mdm_Name3__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>mdm_Vendors__c.VP_VendorFullDetails__c</field>
+        <field>mdm_Vendors__c.mdm_Name4__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>mdm_Vendors__c.mdm_Postcode__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>mdm_Vendors__c.mdm_Street__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>mdm_Vendors__c.mdm_TaxNumber1__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>mdm_Vendors__c.mdm_TaxNumber2__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>mdm_Vendors__c.mdm_TaxNumber3__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>mdm_Vendors__c.mdm_TaxNumber4__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>mdm_Vendors__c.mdm_VATRegNum__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <label>VPM - MDM Ops</label>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>VPM_PurchasingRequests__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>mdm_Vendors__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
     <pageAccesses>
         <apexPage>VPM_AdvancedForm</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>VPM_AdvancedForm_V1</apexPage>
@@ -1741,39 +1811,39 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>VPM_AttachmentSectionPopUp</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <recordTypeVisibilities>
         <recordType>VPM_PurchasingRequests__c.VPM_PurReq</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>VPM_PurchasingRequests__c.VPM_PurReqVendorCreate</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>VPM_PurchasingRequests__c.VPM_PurReqVendorExtend</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>VPM_PurchasingRequests__c.VPM_PurReqVendorMaintain</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>VPM_PurchasingRequests__c.VPM_PurRequis</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>VPM_PurchasingRequests__c.VPM_PurRequisVendorCreate</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>VPM_PurchasingRequests__c.VPM_PurRequisVendorExtend</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>VPM_PurchasingRequests__c.VPM_PurRequisVendorMaintain</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <tabSettings>
         <tab>VPM_PurchasingRequests__c</tab>

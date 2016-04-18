@@ -1,12 +1,13 @@
 <apex:page standardController="VPM_PurchasingRequests__c">  
     <apex:includeScript value="/soap/ajax/15.0/connection.js"/>
+    <apex:stylesheet value="{!URLFOR($Resource.vpmadvancedformcss)}" />
     <apex:includeScript value="{!$Resource.vpmjqueryresources}"/>
     <apex:includeScript value="{!URLFOR($Resource.vpmjqueryresources, 'vpmjqueryresources/jquery-1.12.2.min.js')}"/>
     <!--apex:stylesheet value="{!URLFOR($Resource.VPMstyle)}"/-->
     <apex:stylesheet value="{!URLFOR($Resource.vpmjqueryresources, 'vpmjqueryresources/jquery-ui.css')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.vpmstyles, 'vpmstyles.css')}" />
     <apex:stylesheet value="{!URLFOR($Resource.vpmbootstrapresources, 'vpmbootstrapresources/bootstrap.css')}" />
-    <style>
+    <!--style>
         body .bPageBlock label {
             line-height: 1em !important;
             font-size: 12px !important;
@@ -45,11 +46,14 @@
          	display: inline;
     		padding-left: 5px;
         }
+         .bPageBlock .detailList .dataCol {
+               width: 34%
+        }
         body .bPageBlock input[type="text"]{
         	border-radius: 5px;
     		border-style: ridge;
     		height: 1.9em;
-    		width: 55%;
+    		width: 63%;
         }
         .bPageBlock button{
         	font-family: sans-serif;
@@ -61,12 +65,35 @@
         .Custom17Tab .secondaryPalette, .individualPalette .Custom17Block .secondaryPalette{
         	 border-color: #0275D8;
         }
-    </style>
+        .emphasizeHeader{
+        	 text-transform: uppercase;
+            font-size: 16px;
+            text-decoration: underline;
+        }
+        .statusAlignment{
+            float: left;
+            position: relative;
+            left:-2.5em;
+        }
+        .typeAlignment{
+        	position: relative;
+    		left: -1em;
+        }
+    </style-->
     <script type = "text/javascript">
     window.onload=function() {            
         var criteria1 = "{!VPM_PurchasingRequests__c.VPM_Status__c}"; 
-        // alert({!$ObjectType.VPM_PurchasingRequests__c.accessible})
-        
+        var links = $("head").find("link");
+        // alert({!$ObjectType.VPM_PurchasingRequests__c.accessible})<link class="user" href="/resource/1460627090000/vpmadvancedformcss" rel="stylesheet" type="text/css">
+        $('link[href="/resource/1460627090000/vpmadvancedformcss"]').remove();
+        /*for(var i=0;links.length-2;i++){
+            var linkMarkup = links[i];
+            if($(linkMarkup).prop("href")){
+        		if($(linkMarkup).prop("href").indexOf("vpmadvancedformcss") > -1){
+            		$(linkMarkup).remove();
+            	}
+             }
+        }*/
         if(criteria1=="FLS Review") {
             alert("Please Approve / Reject the Request before completing the Advanced Form");
             //return false;
@@ -76,7 +103,7 @@
         var pur = new sforce.SObject("VPM_PurchasingRequests__c");
         
         //alert("Function Called!");
-        console.log(JSON.stringify(pur));
+        //console.log(JSON.stringify(pur));
         var vendorName = document.getElementById('j_id0:j_id4:i:f:pb:d:VPM_SearchVendorName.input').value;
         var street = document.getElementById('j_id0:j_id4:i:f:pb:d:VPM_SearchStreet1.input').value;
         var zipCode = document.getElementById('j_id0:j_id4:i:f:pb:d:VPM_SearchZIPPostcode.input').value;
@@ -91,9 +118,15 @@
         var el = $('tr>td.pbTitle');
         var savedRow = '';
         var spanToAlign = document.getElementById("j_id0:j_id8:i:f:pb:d:VPM_MaintainTypeInfo");
-        var numberOfTextFields = $(".pbSubsection>.detailList").find('input[type="text"]').length;
+        var numberOfTextFields = $('.detailList input[type="text"]').length;
+        var vendorDetailHeader = document.getElementById("j_id0:j_id8:i:f:pb:d:VPM_CreateVendorDetailInfo");
+        var maintainVendorHeader= document.getElementById("j_id0:j_id8:i:f:pb:d:VPM_Maintain1VendorDetailsScreenInfo");
+        var maintainRadioBtns = document.getElementById("j_id0:j_id8:i:f:pb:d:VPM_MaintainTypeInfo");
+        
         $("#01r190000000Jj6_Tab").css("background-color","#0275D8");
         $('input[type="button"],input[type="submit"],button').addClass("btn-primary");
+        $(vendorDetailHeader).find("b").addClass('emphasizeHeader');
+        $(maintainVendorHeader).find("b").addClass('emphasizeHeader');
        	$(spanToAlign).css("float","left");
         var allDivs =$(spanToAlign).find('div');
         if($(allDivs[2]).find('font').text().indexOf('Status')!=-1)
@@ -112,16 +145,30 @@
                                                       "position": "relative",
                                                       "right": "22.5em"});
              }
-        
-        if(numberOfTextFields > 9){
-        	var remainingRows = '';
-            var toRemove;
-            for(var i=11;i<numberOfTextFields;i++){
-                toRemove = $('input[type="text"]')[i]; 
-            	remainingRows+=toRemove;    
-                $(toRemove).remove();
+        if($(maintainRadioBtns).find("span").text().indexOf("Maintain") > -1){
+        	savedRow = $(maintainRadioBtns).find("span");
+            if($(maintainRadioBtns).find("div").text().indexOf("Status") > -1){
+            	$(savedRow).insertBefore($(maintainRadioBtns).find("div:last-child"));
             }
-            console.log(remainingRows);
+            $(maintainRadioBtns).find("div:nth-child(3)").addClass("statusAlignment");
+            $(maintainRadioBtns).find("span").addClass("typeAlignment");
+        }
+        if(numberOfTextFields > 10){
+        	var remainingRows = [];
+            var toRemove ='';
+            for(var i=(Math.round(numberOfTextFields/2));i<numberOfTextFields;i++){
+                toRemove = $('.detailList input[type="text"]')[i]; 
+            	remainingRows.push($(toRemove).parent().parent());
+            }
+
+            for(var j=0,i=2;j<remainingRows.length,i<$('.detailList tr').length;j++,i++){
+            	 var row = ($('.detailList tr')[i]);
+                 $(row).find(".labelCol.last.empty").remove();
+                 $(row).find(".dataCol.last.empty").remove();
+                 if(remainingRows[j] && remainingRows[j].children()){
+                 	$(row).append(remainingRows[j].children());
+                 }
+            }
         }
     });
     </script>
