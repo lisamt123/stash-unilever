@@ -11,6 +11,7 @@
 global without sharing class IPM_OTIF_Report_BatchSchedule implements Schedulable { 
  
     global String query;
+    public static final String OTIF_Report = 'OTIF Report';     
     
    /****************************************************************************************
    @Description : Constructor
@@ -26,8 +27,10 @@ global without sharing class IPM_OTIF_Report_BatchSchedule implements Schedulabl
    @Param:SchedulableContext
    *****************************************************************************************/
    global void execute(SchedulableContext sc) {  
+        IPM_Reporting__c reportCs = IPM_Reporting__c.getValues(OTIF_Report);
+        Decimal batchSize = reportCs.Batch_Size__c;
          
         IPM_OTIF_Report_Batch  b = new IPM_OTIF_Report_Batch(query); 
-        database.executebatch(b,25);    
+        database.executebatch(b,batchSize.intValue());    
    }  
 }

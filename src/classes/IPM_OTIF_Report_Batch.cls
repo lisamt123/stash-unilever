@@ -15,11 +15,11 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
     global list<IPM_Project__c> scopeProjectList = new list<IPM_Project__c>();   
     global set<id> projectIdSet = new set<id>();
     global set<id> rolloutprojectIdSet = new set<id>();
-    global map<Id,list<IPM_Project_Rollout__c>> projRolloutMap;
+    //global map<Id,list<IPM_Project_Rollout__c>> projRolloutMap;
     global map<Id,list<IPM_Project_Document__c>> projGateDocumentMap;
-    global map<Id,list<IPM_Project_Document_Section_Content__c>> projDocSecContentMap;
+    //global map<Id,list<IPM_Project_Document_Section_Content__c>> projDocSecContentMap;
     global map<string,list<IPM_Financial_Year__c>> rolloutFinancialYearmap;  
-    global map<id,list<IPM_Financial__c>> rolloutFinancialmap;
+    //global map<id,list<IPM_Financial__c>> rolloutFinancialmap;
     global list<IPM_Analytics_OTIF__c> analyticRecOTIFList;
     global set<id> localRolloutIDSet = new set<id>();
     global set<id> regionalRolloutset = new set<id> ();
@@ -99,13 +99,13 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
         map<Id,list<IPM_Milestone__c>> projMilestoneMap = fetchMilestoneRecords(projectIdMap);
         
         //Fetching rollout records for project and creating map
-        projRolloutMap = fetchRolloutRecords(projectIdMap);
+        map<Id,list<IPM_Project_Rollout__c>> projRolloutMap = fetchRolloutRecords(projectIdMap);
 
         //Fetching IPM Project Document Section Content records for project and creating map
-        projDocSecContentMap = fetchProjectDocumentSectionContent(projectIdMap);
+        map<Id,list<IPM_Project_Document_Section_Content__c>> projDocSecContentMap = fetchProjectDocumentSectionContent(projectIdMap);
         
         //To fetch the financials for the rollout project when it is in Ideas phase
-        rolloutFinancialmap = fetchRolloutFinancial(regionalRolloutset);
+        map<id,list<IPM_Financial__c>> rolloutFinancialmap = fetchRolloutFinancial(regionalRolloutset);
         //To fetch the financial year for the rollout project when it is in Ideas phase
         rolloutFinancialYearmap = fetchRolloutFinancialYear(rolloutFinIdSet);
 
@@ -134,7 +134,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
             analyticRecOTIFList.add(otifAnalytic);  
             
             if(projRolloutMap.containskey(otifAnalytic.IPM_Project_Id__c)){
-              List<IPM_Analytics_OTIF__c> rollAnalyticlist = new List<IPM_Analytics_OTIF__c> (addrolloutproject(otifAnalytic));
+              List<IPM_Analytics_OTIF__c> rollAnalyticlist = new List<IPM_Analytics_OTIF__c> (addrolloutproject(otifAnalytic,projRolloutMap,rolloutFinancialmap));
                 if(!rollAnalyticlist.isEmpty()){
                   analyticRecOTIFList.addall(rollAnalyticlist);                
                 }               
@@ -165,7 +165,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
      * @param1: IPM_Analytics_OTIF__c (Parent prject Analytic record to be inserted)
      * @return: List<IPM_Analytics_OTIF__c> records for each rollout project to be inserted in Analytic object for reporting  
      *********************************************************************************************************************/
-    public List<IPM_Analytics_OTIF__c> addrolloutproject (IPM_Analytics_OTIF__c parentanalyticrec){         
+    public List<IPM_Analytics_OTIF__c> addrolloutproject (IPM_Analytics_OTIF__c parentanalyticrec,map<Id,list<IPM_Project_Rollout__c>> projRolloutMap,map<id,list<IPM_Financial__c>> rolloutFinancialmap){
        
         IPM_Analytics_OTIF__c parent = parentanalyticrec;
         list<IPM_Analytics_OTIF__c> returnList = new list<IPM_Analytics_OTIF__c>();
