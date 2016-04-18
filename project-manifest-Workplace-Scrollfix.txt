@@ -1,5 +1,7 @@
 src/aura/CORE_WP_ChangeLocation/CORE_WP_ChangeLocation.cmp
+
 src/aura/CORE_WP_ChangeLocation/CORE_WP_ChangeLocation.cmp-meta.xml
+
 src/aura/CORE_WP_ChangeLocation/CORE_WP_ChangeLocation.css
 src/aura/CORE_WP_ChangeLocation/CORE_WP_ChangeLocationController.js
 
@@ -10,5 +12,7 @@ src/aura/CORE_WP_HomePage/CORE_WP_HomePage.cmp-meta.xml
 src/aura/CORE_WP_HomePage/CORE_WP_HomePage.css
 
 src/aura/CORE_WP_HomePage/CORE_WP_HomePage.svg
+
+src/aura/CORE_WP_HomePage/CORE_WP_HomePageHelper.js
 
 src/aura/CORE_WP_HomePage/CORE_WP_HomePageController.js
