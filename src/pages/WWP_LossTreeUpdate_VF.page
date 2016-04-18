@@ -308,9 +308,7 @@ var losstype = j$('[id$="lossT"]').val();
         "bSearchable":false,
         "bLengthChange": false,
         "order": [[ 4, "desc"]],
-        "columnDefs": [
-    { "orderable": false, "targets": [0,7,8,9]}            
-      ]           
+        "columnDefs": [ { "orderable": false, "targets": [0,7,8,9]}]          
      });     
      }    
      if(losstype == 'Output Reliability' || losstype == 'Dispatch Compliance'){
@@ -322,9 +320,7 @@ var losstype = j$('[id$="lossT"]').val();
         "bSearchable":false,
         "bLengthChange": false,
         "order": [[ 4, "desc"]],
-        "columnDefs": [
-    { "orderable": false, "targets": [0,7,8,9]}           
-      ]           
+        "columnDefs": [ { "orderable": false, "targets": [0,7,8,9]} ]           
      });     
      }
 }

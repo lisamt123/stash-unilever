@@ -1,6 +1,9 @@
 @isTest
 public class WWP_LossTree_Test {
+    
     Static testMethod void testlosstree1(){
+    String ORName1 = 'ORName1';
+    String ORSubfamily1 = 'ORSubfamily1';
         List<WWP_LossTree__c> ltreesetting = new List<WWP_LossTree__c>();
         WWP_LossTree__c setting1 = new WWP_LossTree__c();
         WWP_LossTree__c setting2 = new WWP_LossTree__c();
@@ -8,22 +11,22 @@ public class WWP_LossTree_Test {
         WWP_LossTree__c setting4 = new WWP_LossTree__c();
         setting1.name='OR1';
         setting1.Loss_Type__c='OR';
-        setting1.Loss_Name__c='ORName1';
-        setting1.Loss_Sub_Family__c='ORSubfamily1';
+        setting1.Loss_Name__c=ORName1;
+        setting1.Loss_Sub_Family__c=ORSubfamily1;
         setting1.Loss_Description__c='ORdesc11';
         ltreesetting.add(setting1);
         
         setting2.name='OR2';
         setting2.Loss_Type__c='OR';
-        setting2.Loss_Name__c='ORName1';
-        setting2.Loss_Sub_Family__c='ORSubfamily1';
+        setting2.Loss_Name__c=ORName1;
+        setting2.Loss_Sub_Family__c=ORSubfamily1;
         setting2.Loss_Description__c='ORdesc12';
         ltreesetting.add(setting2);
         
         setting3.name='OR3';
         setting3.Loss_Type__c='OR';
-        setting3.Loss_Name__c='ORName1';
-        setting3.Loss_Sub_Family__c='ORSubfamily2';
+        setting3.Loss_Name__c=ORName1;
+        setting3.Loss_Sub_Family__c=ORSubfamily1;
         setting3.Loss_Description__c='ORdesc21';
         ltreesetting.add(setting3);
         
@@ -40,8 +43,8 @@ public class WWP_LossTree_Test {
         ltree.Loss_Updated_in_SCDG__c = false;
         ltree.Loss_Type__c= 'OR';
         ltree.Plant_Code__c= 'B100';
-        ltree.Loss_Name__c='ORName1';
-        ltree.Loss_Sub_Family__c='ORSubfamily1';
+        ltree.Loss_Name__c=ORName1;
+        ltree.Loss_Sub_Family__c=ORSubfamily1;
         ltree.Loss_Description__c='ORdesc11';
         insert ltree;
         
@@ -56,21 +59,21 @@ public class WWP_LossTree_Test {
         system.assertEquals(wwp.listLossTree.size(),1);
         
         Apexpages.currentPage().getParameters().put('firstParam','0');
-        Apexpages.currentPage().getParameters().put('secondParam','ORName1');
+        Apexpages.currentPage().getParameters().put('secondParam',ORName1);
         wwp.control1213();
-        system.assertEquals(wwp.listLossTreeW[0].listbox1[0].getvalue(),'ORName1');
+        system.assertEquals(wwp.listLossTreeW[0].listbox1[0].getvalue(),ORName1);
         
         Apexpages.currentPage().getParameters().put('firstParam2','0');
-        Apexpages.currentPage().getParameters().put('secondParam2','ORSubfamily1');
+        Apexpages.currentPage().getParameters().put('secondParam2',ORSubfamily1);
         wwp.control2123();
-        system.assertEquals(wwp.listLossTreeW[0].listbox2[0].getvalue(),'ORSubfamily1');
+        system.assertEquals(wwp.listLossTreeW[0].listbox2[0].getvalue(),ORSubfamily1);
         
         Apexpages.currentPage().getParameters().put('firstParam3','0');
         Apexpages.currentPage().getParameters().put('secondParam3','ORdesc11');
         wwp.control3132();
         system.assertEquals(wwp.listLossTreeW[0].listbox3[0].getvalue(),'ORdesc11');
         
-        wwp.listLossTreeW[0].selectbox2='ORSubfamily1';
+        wwp.listLossTreeW[0].selectbox2=ORSubfamily1;
         wwp.control1213(); 
                 
         wwp.listLossTreeW[0].selectbox2='None';
