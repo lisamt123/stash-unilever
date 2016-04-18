@@ -161,6 +161,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
             selectedNonCampaignWrapper.selectedAgencyDepartment = eachMarketingBasicRecord.Agency_Department__c;
             selectedNonCampaignWrapper.selectedRole = eachMarketingBasicRecord.Role_Title__c;
             selectedNonCampaignWrapper.hourlyRate = String.valueOf(eachMarketingBasicRecord.Oblix_Hourly_Rate__c);
+            selectedNonCampaignWrapper.roundedRate = String.valueOf(Math.round(Decimal.valueOf(selectedNonCampaignWrapper.hourlyRate)));
             selectedNonCampaignWrapper.hoursSelected = Integer.valueOf(eachMarketingBasicRecord.No_of_Hours_Required__c);
             selectedNonCampaignWrapper.totalAmount = eachMarketingBasicRecord.OblixOtherItemFee__c;
             selectedNonCampaignWrapper.key = marketing_SOW.Id + selectedNonCampaignWrapper.selectedActivity + selectedNonCampaignWrapper.selectedCountryname + selectedNonCampaignWrapper.selectedAgencyDepartment + selectedNonCampaignWrapper.selectedRole;
@@ -240,6 +241,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
         selectedNonCampaignWrapper.selectedAgencyDepartment = activityJSONWrapper.selectedAgencyDepartment;
         selectedNonCampaignWrapper.selectedRole = activityJSONWrapper.selectedRole;
         selectedNonCampaignWrapper.hourlyRate = activityJSONWrapper.hourlyRate;
+        selectedNonCampaignWrapper.roundedRate = activityJSONWrapper.hourlyRate != null ? String.valueOf(Math.round(Decimal.valueOf(activityJSONWrapper.hourlyRate))) : '0';//
         selectedNonCampaignWrapper.hoursSelected = activityJSONWrapper.hoursSelected != null ? Integer.valueOf(activityJSONWrapper.hoursSelected) : 0;
         selectedNonCampaignWrapper.totalAmount = activityJSONWrapper.totalAmount != null ? Math.round(Decimal.valueof(activityJSONWrapper.totalAmount)) : 0;
         selectedNonCampaignWrapper.key = activityJSONWrapper.key;
@@ -529,10 +531,10 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
         if (Rates.size() >= 1) {
             if(selectedTab.equalsIgnoreCase(campaignType)){
                 activity.hourlyRate = String.valueOf((Rates[0].Role_Daily_Rate_EUR__c));//Math.round
-                activity.roundedRate = String.valueOf(Math.round(Rates[0].Role_Daily_Rate_EUR__c));//
+                activity.roundedRate = activity.hourlyRate != null ? String.valueOf(Math.round(Decimal.valueOf(activity.hourlyRate))) : '0';//
             }else{
                 resource.hourlyRate = String.valueOf((Rates[0].FTE__c));
-                resource.roundedRate = String.valueOf(Math.round(Rates[0].FTE__c));//
+                resource.roundedRate = resource.hourlyRate != null ? String.valueOf(Math.round(Decimal.valueOf(resource.hourlyRate))) : '0';//
                 //this.setResourceUpdateButton = false;
             }
         }
