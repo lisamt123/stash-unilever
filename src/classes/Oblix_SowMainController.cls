@@ -63,14 +63,14 @@ public with sharing class Oblix_SowMainController extends Oblix_SWOPparentContro
         List<List<SOWWrapper>> sowLists = new List<List<SOWWrapper>>();
 
         //List<String> fields = Oblix_Utils.getAllFieldsInFieldsSet('Marketing_SOW__c', 'Oblix_SOW_Main');
-        List<String> fields = new List<String>{'Id', 'Name', 'Brand_Name__c', 'SmallProductCategory__r.Name', 'Agency_Name__c', 'LastModifiedDate', 'SOW_Status__c', 'Oblix_Current_FY_Total__c'};
+        List<String> fields = new List<String>{'Id', 'Name', 'Brand_Name__c', 'SmallProductCategory__r.Name', 'Agency_Name__c', 'LastModifiedDate', 'SOW_Status__c', 'Oblix_Current_FY_Total__c', 'Approved_version__c'};
         String soqlString = buildSOQLquery(fields, 'Marketing_SOW__c', null, null, null, null);
         
         for(List<Marketing_SOW__c> sowList: Database.query(soqlString)){
             //sowLists.add(sowList);
             List<SOWWrapper> sowWrapperList = new List<SOWWrapper>();
             for(Marketing_SOW__c sow : sowList){
-                SOWWrapper w = new SOWWrapper(sow, Oblix_PermissionHandler.canSeeFinancialField(sow.SOW_Status__c));
+                SOWWrapper w = new SOWWrapper(sow, Oblix_PermissionHandler.canSeeFinancialField(sow.SOW_Status__c, sow.Approved_version__c));
                 sowWrapperList.add(w);
             }
             sowLists.add(sowWrapperList);

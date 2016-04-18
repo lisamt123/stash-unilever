@@ -275,10 +275,15 @@ public with sharing class Oblix_ProjectHandlerLogic {
 
         String asset_separator = ' / ';
         String s_asset_deliverables = '';
+        String assetCategoryRemovedExamples = '';
 
         for (Oblix_Project_Assets__c project_asset : campaign_in_scope.Agency_Project_Assets__r){
+            
+            assetCategoryRemovedExamples = '';
 
-            String assetCategoryRemovedExamples = project_asset.Asset_Type__c.split(' - ')[0];
+            if (NULL != project_asset.Asset_Type__c && project_asset.Asset_Type__c.contains(' - ')){
+                assetCategoryRemovedExamples = project_asset.Asset_Type__c.split(' - ')[0];
+            }
 
             s_asset_deliverables +=  String.isNotBlank(project_asset.Location__c) 
                 ? ', ' + project_asset.Quantity__c + asset_separator + project_asset.Asset_name__c + asset_separator + project_asset.Location__c + asset_separator + assetCategoryRemovedExamples + asset_separator + project_asset.Sub_Category__c
