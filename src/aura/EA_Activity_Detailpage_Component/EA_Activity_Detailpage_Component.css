@@ -90,11 +90,9 @@
     height:100%;
 }
 .THIS .desc {
-  font-size: 1.5rem;
   padding: 4px;
   margin-left: 5px;
   line-height: 1.25;
-  font-weight: normal;
   margin-left: 2.5%;
   width: 95%;
   color: black;
@@ -103,11 +101,9 @@
 }
 
 .THIS .desc {
-  font-size: 1.5rem;
   padding: 4px;
   margin-left: 5px;
   line-height: 1.25;
-  font-weight: normal;
   margin-left: 2.5%;
   width: 95%;
   color: black;

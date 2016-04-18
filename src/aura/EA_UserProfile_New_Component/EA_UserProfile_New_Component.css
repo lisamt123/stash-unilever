@@ -9,7 +9,7 @@
     margin-top:6rem;
 }
 .THIS .actionTitle {
-  font-size: 1.5rem;
+  /*font-size: 1.5rem;*/
   line-height: 1.25;
   margin-left: 20px;
   font-weight: bold;
@@ -17,12 +17,12 @@
   padding-top: 10px;
 }
 .THIS .dashTitle {
-  font-size: 1.5rem;
-  line-height: 1.25;
   margin-left: 20px;
   font-weight: bold;
   margin-top: 80px;
   padding-top: 50px;
+  text-transform: capitalize;
+ /*   font-size:1.5rem;*/
 }
 
 .THIS .dashboard{
@@ -71,12 +71,20 @@
  padding-left:20%;
 }
 
-.THIS  .main_badge {
-    
+.THIS  .main_badge_image_newbee_img_pos {
+    margin-left:0;    
+}
+.THIS  .main_badge_image_bronze_img_pos {
+    margin-left:23%; 
+}
+.THIS  .main_badge_image_silver_img_pos {
+    margin-left:48%; 
+}
+.THIS  .main_badge_image_gold_img_pos {
+    margin-left:72%; 
 }
 .THIS  .main_badge_image{
     width: 85px;
-    margin: 0 auto;
     text-align: center;
         
  }
@@ -93,5 +101,7 @@
 .THIS .main_image_content{
     width: 100%;
   margin-right: 5%;
+    margin-top: 15px;
+    
 }       
 .THIS ul li{list-style:none;}

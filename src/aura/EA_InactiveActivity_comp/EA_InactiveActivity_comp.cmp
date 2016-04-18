@@ -1,6 +1,6 @@
 <aura:component >
 	<aura:attribute name="activity" type="EA_Wrapper_Class.EA_UserProfile_Wrapper"/>
-    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+ <aura:handler name="init" value="{!this}" action="{!c.myAction}" /> 
     <aura:attribute name="showdashboard" type="boolean" default="true"/>
     <aura:attribute name="showfeedback" type="boolean" default="false"/>
     <aura:attribute name="showInvitation" type="boolean" default="false"/>
@@ -8,6 +8,7 @@
       <aura:attribute name="showDetailCard" type="boolean" default="false"></aura:attribute>
     <ltng:require styles="/resource/EA_StaticResource/assets/styles/salesforce-lightning-design-system-vf.css" />
 <style>
+ 
 .spacer-pull-to-load-more{
           height:100% !important;
 }
@@ -128,39 +129,30 @@ img.user_badge {
 img.user_badge.active {
     display: block;
 }
- 
+ .inactive_act{
+    margin-top: -9px;
+}
   
     
 </style>
   
     
  
-  <div class="Container" style="background-color: white;">  
+  <div class="Container inactive_act" style="background-color: white;">  
       
       <ul >
           <li class="slds-list__item">
-              <aura:if isTrue="{!v.showbody}">
+             
             
-           <div class="regular_font slds-text-heading--label" onclick="{!c.gotoDetail}"><ui:outputText value="{!v.activity.theme_name}"/></div>
+              <div class="regular_font"><ui:outputText value="{!v.activity.theme_name}"/></div>
               
-             <div class="list_name" onclick="{!c.gotoDetail}"><ui:outputText value="{!v.activity.activity_name}"/></div>
-              <aura:if isTrue="{!v.showfeedback}">
-                  <div class="feedback" onclick="{!c.gotofeedback}"><img class="feed_img" src="/resource/EA_StaticResource/assets/images/feedback.svg" alt="person name"/>
-				Provide Feedback</div>              </aura:if>
-              <aura:if isTrue="{!v.showInvitation}">
-                   <div class="invitation" onclick="{!c.gotoInvitation}"><img class="inv_img" src="/resource/EA_StaticResource/assets/images/preview.svg" alt="person name" onclick="{!c.gotoDetail}"/>
-					View Invitatation</div>
-              </aura:if>
-            <span class="right_arrow_img">
-              <img class="right_arrow" src="/resource/EA_StaticResource/assets/images/chevronright_60.png" alt="person name" onclick="{!c.gotoDetail}"/>
-            </span>
-                  </aura:if> 
-		</li>
-          </ul>
-      <div class="divider"></div>
-    
-        </div>
-   
-      
+              <div class="list_name" ><ui:outputText value="{!v.activity.activity_name}"/></div>
+              
+              <div class="list_name_msg">This Activity has been Deactivated</div>
+                
 
+          </li>
+      </ul>
+       <div class="divider"></div>
+    </div>
 </aura:component>

@@ -17,12 +17,13 @@
        // var tomorrow=duedate.getDate()+1;
         var  today= new Date();
         var date=today.toISOString();
+        //component.set("v.showfeedback",false);
         if((actvity.invitation_status ==='Self' || actvity.invitation_status ==='Accepted') && (actvity.Activity_Due_Date === date || actvity.Activity_Due_Date < date) && (actvity.participant_rating < 0 || actvity.participant_rating ===undefined)){
             component.set("v.showfeedback",true);
         }
-       if(actvity.invitation_status ==='Invited'){
-            component.set("v.showInvitation",true);
-        } 
+      // if(actvity.invitation_status ==='Invited'){
+            //component.set("v.showInvitation",true);
+       // } 
     },
     
     gotoInvitation :function(cmp, event, helper) {

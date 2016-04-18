@@ -1,8 +1,7 @@
 <aura:component controller="EA_ControllerClass">
-   
     <aura:attribute name="activityDetail" type="Everyday_Activity__c"/>
-    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
-     <aura:attribute name="activityId" type="String"/>
+ <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="activityId" type="String"/>
     <aura:attribute name="MailToBody1" type="String" />
     <aura:attribute name="MailToBody2" type="String" />
     <aura:attribute name="MailToBody3" type="String" />
@@ -11,8 +10,7 @@
     <aura:attribute name="MailSubject" type="String"/>
     <aura:attribute name="pagename" type="String" />
     <aura:attribute name="index" type="integer"/>
-    <ltng:require styles="/resource/EA_StaticResource/css/bootstrap.3.3.css" />
-    
+    <aura:attribute name="pageIndex" type="Integer" />
     <ltng:require styles="/resource/EA_StaticResource/css/bootstrap.3.3.css" />
     
     <ltng:require styles="/resource/EA_StaticResource/assets/styles/salesforce-lightning-design-system-vf.css" />

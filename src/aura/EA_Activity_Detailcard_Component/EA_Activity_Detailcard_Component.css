@@ -39,7 +39,6 @@
     color: #54698d;
 }
 .THIS .tilteTheme{
-  font-size: 14px;
   font-weight: bold;
   font-family: inherit;
 }
@@ -54,8 +53,7 @@
    	color: #337ab7;
     text-decoration: none;
     height: 5rem;
- 	font-size: 1.5rem;
-  	font-weight: bold;
+	font-weight: 600;
     border:1px #2E91CF solid;
     
 }
@@ -71,12 +69,16 @@
     text-decoration: none;
    	background:#337ab7;
     height: 5rem;
- 	font-size: 1.5rem;
-  	font-weight: bold;
     
 }
 .THIS .back_image{
     width:2rem;
     height:2rem;
     margin-top: 60px;
+}
+.THIS .outer_sec{
+    /*padding-top:2px;*/
+    height:100%;
+    display:none;
+    
 }

@@ -50,4 +50,21 @@ getactivities1 : function(component, event, helper) {
         }
     },
     
+    getBoolean :function(cmp,event){
+        
+    var action=cmp.get("c.getbooleanvalue");
+   
+    action.setCallback(this, function(response) {
+        var state = response.getState();
+        if (state === "SUCCESS" && response.getReturnValue()!=='') {
+            var items=response.getReturnValue();
+                        //component.set("v.activityid",items[0].Id);
+            cmp.set("v.booleanValue", response.getReturnValue());
+        }
+    });
+    $A.enqueueAction(action);
+} 
+        
+    }
+    
 })

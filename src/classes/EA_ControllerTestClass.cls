@@ -107,10 +107,11 @@ public class EA_ControllerTestClass{
             EA_ControllerClass Eacontroller=new EA_ControllerClass();
             EA_ControllerClass.getActivities();
             EA_ControllerClass.getThemes();
-            List<Everyday_Activity__c> temp1=EA_ControllerClass.getActivitiesonfilter('Working Effectively');
+          
+            List<EA_Wrapper_Class.EA_RecentlyCompletedUsers> temp1=EA_ControllerClass.getActivitiesonfilter('Building Inclusion');
             List<Everyday_Activity__c> temp2=EA_ControllerClass.getactivitydetail('2223333');
             List<EA_Wrapper_Class.EA_UserProfile_Wrapper>temp4=EA_ControllerClass.getActivityPoints('122');
-            EA_ControllerClass.getbooleanvalue('3446677');
+            EA_ControllerClass.getbooleanvalue();
             List<EA_Wrapper_Class.EA_RecentlyCompletedUsers> temp6=EA_ControllerClass.getuserList('event.id');           
             try{
                 EA_ControllerClass.getUserDetail(); 
@@ -123,7 +124,7 @@ public class EA_ControllerTestClass{
             EA_ControllerClass.getActivityParticipantCount(event.id);
             
             EA_ControllerClass.insertfeeditem(event.id,'comment');             
-            EA_ControllerClass.getbooleanvalue(event.id);                                          
+            EA_ControllerClass.getbooleanvalue();                                          
             EA_ControllerClass.getToDoTimeline();
             List<EA_Team_Member__c > temp211=EA_ControllerClass.getinvitelist(event.id);
             EA_ControllerClass.chatterfeeditem('postbody');
@@ -227,10 +228,10 @@ public class EA_ControllerTestClass{
             EA_ControllerClass Eacontroller=new EA_ControllerClass();
             EA_ControllerClass.getActivities();
             EA_ControllerClass.getThemes();
-            List<Everyday_Activity__c> temp1=EA_ControllerClass.getActivitiesonfilter('Working Effectively');
+            List<EA_Wrapper_Class.EA_RecentlyCompletedUsers> temp1=EA_ControllerClass.getActivitiesonfilter('Building Inclusion');
             List<Everyday_Activity__c> temp2=EA_ControllerClass.getactivitydetail('2223333');
             List<EA_Wrapper_Class.EA_UserProfile_Wrapper>temp4=EA_ControllerClass.getActivityPoints('122');
-            EA_ControllerClass.getbooleanvalue('3446677');
+            EA_ControllerClass.getbooleanvalue();
             List<EA_Wrapper_Class.EA_RecentlyCompletedUsers> temp6=EA_ControllerClass.getuserList('event.id');
             try{
                 EA_ControllerClass.getUserDetail();
@@ -241,7 +242,7 @@ public class EA_ControllerTestClass{
                 System.debug('Exception caught: ' + e.getMessage());}
               
             EA_ControllerClass.insertfeeditem(event.id,'comment');
-            EA_ControllerClass.getbooleanvalue(event.id);                                 
+            EA_ControllerClass.getbooleanvalue();                                 
             List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper>temp12=EA_ControllerClass.getcommentDetail(event.id);          
             EA_ControllerClass.getToDoTimeline();
             List<EA_Wrapper_Class.EA_UserProfile_Wrapper> temp7=EA_ControllerClass.getUserActivities();    

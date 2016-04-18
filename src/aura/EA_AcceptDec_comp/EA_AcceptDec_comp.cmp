@@ -1,4 +1,15 @@
 <aura:component controller="EA_Notification_Controller">
+    
+    
+     <aura:attribute name="NewBee_badge" type="boolean" default="false"></aura:attribute>
+    <aura:attribute name="Bronze_badge" type="boolean" default="false"></aura:attribute>
+    <aura:attribute name="Silver_badge" type="boolean" default="false"></aura:attribute>
+    <aura:attribute name="Gold_badge" type="boolean" default="false"></aura:attribute>
+    
+    
+    
+    
+    
     <aura:attribute name="teamid" type="String"/>
     <aura:attribute name="activityId" type="String"/>
     <aura:attribute name="check_image" type="Boolean" default="false"/>
@@ -68,12 +79,21 @@
                 </div>					
                 <br></br>
                 
-                <div class="section_acc">
+                <div class="section_acc"> 
                     <br></br>
                     <div class="rateTitle_acc">You have a new Activity request from</div>
                     <div class="prof_pic">
+                        <div>
                         <img class="img_profile"  src="{!act.userPhotoUrl}" />
+                    
+                    
+                    <aura:if isTrue="{!v.NewBee_badge}"><img style="width: 100px;" src="/resource/EA_Badges/NewBee.svg" /></aura:if>
+<aura:if isTrue="{!v.Bronze_badge}"><img style="width: 100px;" src="/resource/EA_Badges/Bronze.svg" /></aura:if>
+<aura:if isTrue="{!v.Silver_badge}"><img style="width: 100px;" src="/resource/EA_Badges/Silver.svg" /></aura:if>
+<aura:if isTrue="{!v.Gold_badge}"><img 	style="width: 100px;" src="/resource/EA_Badges/Gold.svg" /></aura:if>
                     </div>
+                        </div>
+                    
                     <div class="act_Req_user"><p><ui:outputText value="{!act.userName}"/></p></div>
                 </div>
             </aura:iteration>  
@@ -82,7 +102,7 @@
         
         <div><button  onclick="{!c.declinemethod1}" class="decline"> Decline</button></div>
         <!--<button class="decline">Decline</button-->
-        <div><button onclick="{!c.Acceptmethod1}"  class="accept">Accept</button></div>
+        <div><button  onclick="{!c.Acceptmethod1}"  class="accept">Accept</button></div>
         
     </div>
     
