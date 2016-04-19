@@ -2821,6 +2821,33 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000L2Ds_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE0000000L2Ds</label>
+        <queue>IPM_a7IE0000000L2Ds</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000L2Dx_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_PALTA CHI_LA</label>
+        <queue>IPM_a7IE0000000L2Dx</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000L2E2_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE0000000L2E2</label>
+        <queue>IPM_a7IE0000000L2E2</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <label>IPM Bosscard Name</label>
         <trackFeedHistory>false</trackFeedHistory>
