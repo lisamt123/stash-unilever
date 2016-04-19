@@ -1,0 +1,701 @@
+<!--=========================================================-->
+<!--Name:  VEP_VisitorMap_VF                                  -->
+<!--Copyright notice: @ Unilever                             -->
+<!--=========================================================-->
+<!--=========================================================-->
+<!-- Purpose: This page diaplays set of Factory images, details
+     and their location on google map. Page is used to select 
+     the factory to visit-->
+<!--=========================================================-->
+<!--=========================================================-->
+<!-- History                                                 -->
+<!-- ---------------------------------------------------------->
+<!-- VERSION     AUTHOR                DATE            DETAIL          -->
+<!-- 1.0 -       Leena/Sridhar         Jan-2016      INITIAL DEVELOPMENT -->
+<apex:page sidebar="false" showHeader="false"  standardStylesheets="false"  docType="html-5.0" controller="VEP_MapFactory_CC">
+  <apex:form >    
+    <head>      
+      <title>
+        Visitor Management Portal
+      </title>
+      <script src="https://maps.google.com/maps/api/js?sensor=false">
+      </script>
+      
+      <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"/>
+      
+      <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/bootstrap.min.css')}" />
+      <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/font-awesome.min.css')}" />
+      <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/animate.min.css')}" />
+      <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/bootstrap-switch.min.css')}" />
+      <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/select2.min.css')}" />
+      <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/style.css')}" />
+      <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/flat-blue.css')}" />
+      <script type="text/javascript" src="{!$Resource.VEP_JqueryValidate}">
+      </script>
+      
+      <script type="text/javascript" src="{!$Resource.VEP_JqueryValidate}">
+      </script>
+      
+      <script type="text/javascript" src="{!URLFOR($Resource.VEP_Bootstrap, '/bootstrap-3.3.5/dist/js/bootstrap.min.js')}">
+      </script>
+      
+      <script type="text/javascript" src="{!URLFOR($Resource.VEP_MAP1, '/MapPage/bootstrap-switch.min.js')}">
+      </script>
+      
+      <script type="text/javascript" src="{!URLFOR($Resource.VEP_MAP1, '/MapPage/app.js')}">
+      </script>
+            
+      <apex:stylesheet value="{!URLFOR($Resource.VEP_Gallery, 'css/demo.css')}"/>
+      <apex:stylesheet value="{!URLFOR($Resource.VEP_Gallery, 'css/slicebox.css')}"/>
+      <apex:stylesheet value="{!URLFOR($Resource.VEP_Gallery, 'css/custom.css')}"/>
+      
+      <apex:stylesheet value="{!URLFOR($Resource.VEP_SWIPE, 'swiper.min.css')}"/>
+      <apex:includeScript value="{!URLFOR($Resource.VEP_SWIPE, 'swiper.min.js')}"/>
+                  
+      <apex:includeScript value="{!URLFOR($Resource.jQuery, 'js/jquery-ui-1.8.16.custom.min.js')}"/>
+      <apex:includeScript value="{!URLFOR($Resource.jqPlugin, '/jquery.blockUI.js')}"/>
+      <apex:stylesheet value="{!URLFOR($Resource.jQuery, 'css/ui-lightness/jquery-ui-1.8.16.custom.css')}"/>
+      <apex:includeScript value="{!$Resource.VEP_googleMapFactory}"/>
+      
+      <meta charset="utf-8"/>
+      
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      
+      
+      
+      
+      
+      <script>
+        $j = jQuery.noConflict();      
+      //function to block the whole page
+      function blockPage(){        
+        $j.blockUI({
+          message: '<img src="/img/loading32.gif" /><h1> Loading...</h1>', 
+          css: {
+            
+            border: 'none', 
+            padding: '10px',  
+            '-webkit-border-radius': '10px', 
+            '-moz-border-radius': '10px', 
+            opacity: .9
+          }          
+        }
+                  );        
+        return false;
+      }      
+      //function to unblock the page
+      function unblockPage(){
+        $j.unblockUI();
+      }
+      </script>
+      
+      
+      
+      <script>
+        function reloadImages()
+          {            
+            reloadImages1();           
+            init($("true","#latVal").val(),$("#longVal").val());            
+          }
+          function reloadImages1()
+          {            
+            var swiper = new Swiper('.swiper-container', {
+              nextButton: '.swiper-button-next',
+              effect: 'flip',
+              prevButton: '.swiper-button-prev',
+              pagination: '.swiper-pagination',
+              paginationType: 'progress'
+            }
+                                   );
+          }          
+      </script>
+   
+      
+          
+      <script>
+        jQuery(document).ready(function ($) {
+          reloadImages();          
+        }
+        );
+      </script>
+      
+      <script>
+        function MoreFactDetails(){
+          $("#facPanel").hide("fast");
+          $("#indiamap").hide("fast");
+          $("#padding1").show("slow");
+        }
+        function BackFactDetails(){          
+          FactDetail();
+          // $("#SelectedFdetails").hide("fast");          
+        }        
+        function steps(){          
+          $("#padding1").hide("fast");
+          $("#facPanel").show("slow");
+          $("#indiamap").show("slow");
+          // $("#steps").show("slow");
+        }      
+      </script>
+      <script>
+      $ = jQuery.noConflict();
+      function openFactory(Fname,lat,long){
+        FactDetail(Fname);
+      }
+      </script>
+      
+      
+      <script>
+        $(document).ready(function(){
+          /* off-canvas sidebar toggle */          
+          $('[data-toggle=offcanvas]').click(function() {
+            $(this).toggleClass('visible-xs text-center');
+            $(this).find('i').toggleClass('glyphicon-chevron-right glyphicon-chevron-left');
+            $('.row-offcanvas').toggleClass('active');
+            $('#lg-menu').toggleClass('hidden-xs').toggleClass('visible-xs');
+            $('#xs-menu').toggleClass('visible-xs').toggleClass('hidden-xs');
+            $('#btnShow').toggle();
+          }
+        );                    
+        }
+     );
+      </script>
+      
+      <style>
+        
+        .swiper-container {
+          width: 80%;
+          height: 400px;
+          margin: 20px auto;
+        }
+        .swiper-slide {
+          text-align: center;
+          font-size: 18px;
+          background: #fff;
+          line-height: 300px;
+          cursor: pointer; 
+          cursor: hand; 
+        }
+        
+        #map{
+          height: 550px;
+          overflow: hidden;
+          zoomlevel:10,
+            padding-bottom: 10px;
+          padding-top: 10px;
+          position: relative;
+        }
+        
+        
+        
+        .btnonimage {
+          position:absolute;
+          bottom:10px;
+          right:20px;
+          width:120px;
+          height:30px;
+        }
+        
+        .inputrounded
+        {
+          -webkit-border-radius: 15px;
+          //For Safari, etc.
+            -moz-border-radius: 15px;
+          //For Mozilla, etc.
+            border-radius: 15px;
+          //CSS3 Feature
+            outline: 0;
+          border: 2px solid #ccc;
+          padding-left:10px;
+          
+          
+        }
+      </style>
+      
+      <script type="text/javascript">
+        $(document).ready(function() {
+          $(".flip").click(function() {
+            $(".searchFact").slideToggle("slow");
+        }
+                        );
+    }
+                     );
+  function SearchFactDetails(lat,long){
+    SearchFactories();
+    
+  }
+      </script>
+      
+      <style>
+       
+        #img_container {
+          position:relative;
+          
+        }
+        
+        
+        .inputrounded
+        {
+          -webkit-border-radius: 15px;
+          //For Safari, etc.
+            -moz-border-radius: 15px;
+          //For Mozilla, etc.
+            border-radius: 15px;
+          //CSS3 Feature
+            outline: 0;
+          border: 2px solid #ccc;
+          padding-left:10px;
+          
+          
+        }
+      </style>
+      
+      
+    </head>
+    
+    
+    <body class="flat-blue">
+      
+      <apex:actionStatus onstart="blockPage()" onstop="unblockPage()" id="blockUI"/>
+      
+      
+      <apex:actionFunction name="FactDetail" action="{!StateFactoryList}" reRender="op1,mPanel" oncomplete="reloadImages();"  status="blockUI">
+        <apex:param name="firstParam" value="" assignTo="{!factname}"/>
+  </apex:actionFunction>
+  
+  <apex:actionFunction name="SearchFactories" action="{!SearchFactoryList}" reRender="op1,mPanel" oncomplete="reloadImages();" status="blockUI" >
+  </apex:actionFunction>
+  
+  <div class="app-container">
+    <div class="row content-container">
+      <nav class="navbar navbar-default navbar-fixed-top navbar-top">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-expand-toggle">
+              <i class="fa fa-bars icon">
+              </i>
+            </button>
+            <ol class="breadcrumb navbar-breadcrumb">
+              
+              <li class="active">
+                
+                <img height="50px" widht="100px" style="background-color: #f9f9f9;border-radius: 50px" src="{!URLFOR($Resource.VEP_UnileverLogo)}" alt="Unilever Logo"/>
+                Visitor Entry Portal
+              </li>
+            </ol>
+            <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+              <i class="fa fa-th icon">
+              </i>
+            </button>
+          </div>
+          <ul class="nav navbar-nav navbar-right">
+            <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+              <i class="fa fa-times icon">
+              </i>
+            </button>
+            <li class="dropdown danger">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                <i class="fa fa-star-half-o">
+                </i>
+                My Visits
+              </a>
+              <ul class="dropdown-menu danger  animated fadeInDown">
+                <li class="title">
+                  Visits Summary 
+                  <span class="badge pull-right">
+                  </span>
+                </li>
+                <li>
+                  <ul class="list-group notifications">
+                    <a href="#">
+                      <li class="list-group-item">
+                        <span class="badge">
+                          {!ApprovedCount}
+                        </span>
+                        
+                        <i class="fa fa-check ">
+                        </i>
+                        Approved Visits
+                      </li>
+                    </a>
+                    <a href="#">
+                      <li class="list-group-item">
+                        <span class="badge success">
+                          {!pendingApprovalCount}
+                        </span>
+                        
+                        <i class="fa fa-exclamation-circle icon">
+                        </i>
+                        Pending For Approval
+                      </li>
+                    </a>
+                    <a href="#">
+                      <li class="list-group-item">
+                        <span class="badge danger">
+                          {!RejectedCount}
+                        </span>
+                        
+                        <i class="fa fa-remove icon">
+                        </i>
+                        Reject Visits
+                      </li>
+                    </a>
+                    <a href="/{!ListViewId}" target="_blank">
+                      <li class="list-group-item message">
+                        view all
+                      </li>
+                    </a>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown profile">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                 {!$User.FirstName} {!$User.LastName}
+                <span class="caret">
+                </span>
+              </a>
+              <ul class="dropdown-menu animated fadeInDown">
+                
+                <li>
+                  <div class="profile-info">
+                    <h4 class="username">
+                       {!$User.FirstName} {!$User.LastName}
+                    </h4>
+                    <p>
+                      {!$User.Email}
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      
+      <div class="side-menu sidebar-inverse">
+        <nav class="navbar navbar-default" role="navigation">
+          <div class="side-menu-container">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#">
+                <div class="icon fa fa-hand-o-right">
+                </div>
+                <div class="title">
+                  Visitor Entry Portal
+                </div>
+              </a>
+              <button type="button" class="navbar-expand-toggle pull-right visible-xs">
+                <i class="fa fa-times icon">
+                </i>
+              </button>
+            </div>
+            <ul class="nav navbar-nav">
+              <li >
+                <a href="{!$Page.VEP_VisitorMap_VF}">
+                  <span class="icon fa fa-home">
+                  </span>
+                  <span class="title">
+                    Factories
+                  </span>
+                </a>
+              </li>
+              
+              
+            </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+        </nav>
+      </div>
+      
+      <div class="side-menu sidebar-inverse">
+        <nav class="navbar navbar-default" role="navigation">
+          <div class="side-menu-container">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#">
+                <div class="icon fa fa-hand-o-right">
+                </div>
+                <div class="title">
+                  Visitor Entry Portal
+                </div>
+              </a>
+              <button type="button" class="navbar-expand-toggle pull-right visible-xs">
+                <i class="fa fa-times icon">
+                </i>
+              </button>
+            </div>
+            <ul class="nav navbar-nav">
+              
+              <li>
+                <a href="/{!ListViewId}" target="_blank">
+                  <span class="icon fa fa-tachometer">
+                  </span>
+                  <span class="title">
+                    Dashboard
+                  </span>
+                </a>
+              </li>
+              
+              <li>
+                <a href="/04i" target="_blank">
+                  <span class="icon fa fa-hand-o-up">
+                  </span>
+                  <span class="title">
+                    Items to Approve
+                  </span>
+                </a>
+              </li>
+           
+              
+            </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+        </nav>
+        
+        
+      </div>
+      
+      <div class="container-fluid">
+        <div class="side-body padding-top">
+          <div class="row  no-margin-bottom padding-right padding-bottom">
+            
+              <c:VEP_AutoComplete allowClear="true" syncManualEntry="false" importJquery="true" labelField="Name" SObject="Vep_Factory__c" valueField="Id" targetField="{!targetField}" style="width:70%"/>
+              <apex:outputPanel id="mPanel">
+              <input class="btn btn-primary" type="button" id="SF"  value="Search"  onclick="SearchFactDetails()"/>
+              <input type="hidden"  id="latVal" value="{!Factorydetails.Latitude__c}"/>
+              <input type="hidden"  id="longVal" value="{!Factorydetails.Longitude__c}"/>
+            </apex:outputPanel>
+            
+            <br/>
+            <br/>
+            <br/>
+          </div>
+          
+          <div class="row  no-margin-bottom" style="width: 100%; height: 100%;" >
+            <div class="visible-md visible-lg">
+              <div class="col-sm-6"  id="indiamap">
+                <div class="panel-primary  " style="width: 100%; height: 900px;">
+                  <div class="panel-heading" type="primary">
+                    Factories Map
+                  </div>
+                  <div id="map" style=" height: 500px"/>
+                </div>
+                
+              </div>
+            </div>
+            <apex:outputPanel id="op1">
+              
+              <!-- main col right -->
+              <div class="col-sm-5 panel-primary" id="facPanel">
+                <apex:outputPanel rendered="{!showFactoryList}" id="imgL">
+                  <div class="panel panel-primary" id="Factlist">
+                    
+                    <div class="panel-heading" type="primary">
+                      Factories Gallery
+                      <a href='{!$Page.VEP_VisitorMap_VF}' style="color:#FFF">
+                        <span class="pull-right">
+                          All
+                        </span>
+                      </a>
+                    </div>
+                    
+                    <div class="swiper-container">
+                      <div class="swiper-wrapper">
+                        <apex:repeat value="{!FactoryList}" var="FL" rendered="{!showFactoryList}" >
+                          
+                          <apex:variable var="imageVar1" value="{!"VEP_FactoryImages/"+FL.Factory_Image_Code__c+'.png'}"/>
+
+                              <div class="swiper-slide" style="background-image:url({!URLFOR($Resource.VEP_FactoryImages,imageVar1)});" onclick="openFactory('{!FL.name}');"  title="{!FL.name}">
+                                <p>
+                                  <h3>
+                                    {!FL.name}
+                                </h3>
+                              </p>
+                           </div> 
+                           
+                      </apex:repeat>
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination">
+                    </div>
+                    <!-- Add Arrows -->
+                    <div class="swiper-button-next">
+                    </div>
+                    <div class="swiper-button-prev">
+                    </div>
+                  </div>
+                </div>
+              </apex:outputPanel>
+              
+              <apex:outputPanel rendered="{!ShowDetailPage}" id="SelectedFdetails">
+                <div class="panel panel-primary">
+                  <div class="panel-heading" type="primary">
+                    {!Factorydetails.name}
+                  </div>
+                  <div class="panel-body" style="min-height: 500px;max-height:700px;overflow-y: scroll;">
+                    
+                    <div class="form-group">
+                      
+                      <div class="col-sm-10 col-sm-offset-1">
+                        <div id="img_container">
+                          <apex:variable var="imageVar" value="{!"VEP_FactoryImages/"+Factorydetails.Factory_Image_Code__c+'.png'}"/>
+                          
+                          <apex:image url="{!URLFOR($Resource.VEP_FactoryImages, imageVar)}" height="200px" width="100%"/>
+                           <apex:commandButton styleclass="btn btn-success .navbar-right" value="Request Visit" action="{!gotoVFORM}"/>&nbsp;&nbsp;
+                           <apex:commandButton styleclass="btn btn-success .navbar-right" value="Request on Behalf" action="{!gotoVFORMROB}" rendered="{!showROB}"/>
+                         </div>
+                           
+                       
+                      </div>
+                    </div>
+                    <div class="clearfix" style="height: 20px;clear: both;">
+                    </div>
+                    <div class="form-group">
+                      <div class="col-sm-12">
+                        <ul class="nav nav-tabs">
+                          <li>
+                            <a href="#">
+                              Connectivity
+                            </a>
+                            
+                          </li>
+                          
+                        </ul>
+                        <div id="Connectivity" class="tab-pane fade in active">
+                          <table class="table table-bordered">
+                            
+                            <tbody>
+                              <tr>
+                                <td>
+                                  Air
+                                </td>
+                                <td>
+                                  <apex:outputField value="{!Factorydetails.Air_Connectivity__c}" />
+                                </td>
+                                
+                              </tr>
+                              <tr>
+                                <td>
+                                  Rail
+                                </td>
+                                <td>
+                                  <apex:outputField value="{!Factorydetails.Rail_Connectivity__c}" />
+                                </td>
+                                
+                              </tr>
+                              <tr>
+                                <td>
+                                  Road
+                                </td>
+                                <td>
+                                  <apex:outputField value="{!Factorydetails.Road_Connectivity__c}" />
+                                </td>
+                                
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                    <input class="btn btn-primary" type="button" id="show-map"  value="Know More" onclick="MoreFactDetails();"/>
+                    <input class="btn btn-warning" type="button" id="km1"  value="Back" onclick="BackFactDetails();"/>
+                  </div>
+                </div>
+                
+              </apex:outputPanel>
+            </div>
+            
+            
+            <div class="row no-margin-bottom padding-left" id="padding1"  style="display: none;padding-left:15px">
+              
+              <apex:outputPanel rendered="{!(!ShowFactoryList)}">
+                
+                <div class="col-sm-7" >
+                  
+                  <div class="panel panel-primary">
+                    <div class="panel panel-heading"  type="primary">
+                      {!Factorydetails.name}
+                    </div>
+                    <div  class="panel-body" >
+                      
+                      <apex:map width="100%" height="450px" mapType="roadmap" zoomLevel="10"   >
+                        <apex:mapMarker title="{!Factorydetails.name}" icon="https://maps.google.com/mapfiles/ms/icons/red-dot.png" position="{latitude:{!Factorydetails.Latitude__c},longitude:{!Factorydetails.Longitude__c}}" />
+                      </apex:map>
+                    </div>
+                  </div>
+                  <div class="clearfix" style="height: 5px;clear: both;">
+                  </div>
+                  <apex:commandButton styleclass="btn btn-success "  value="Request Visit" action="{!gotoVFORM}"/>&nbsp;&nbsp;
+                  <apex:commandButton styleclass="btn btn-success " value="Request on Behalf" action="{!gotoVFORMROB}" rendered="{!showROB}"/>
+                </div>
+                
+                
+                <div class="col-sm-5">
+                  <div class="form-group">
+                    <ul class="nav nav-tabs">
+                      <li class="active">
+                        <a data-toggle="tab" href="#address">
+                          Full Address
+                        </a>
+                      </li>
+                      <li>
+                        <a data-toggle="pill" href="#Fcontacts">
+                          Factory Contacts
+                        </a>
+                      </li>
+                      <li>
+                        <a data-toggle="pill" href="#Fdetails">
+                          Factory Details
+                        </a>
+                      </li>
+                      
+                    </ul>
+                    <div class="tab-content">
+                      <div id="address" class="tab-pane fade in active">
+                        <br/>
+                        <apex:outputField value="{!Factorydetails.Factory_Address__c}" />
+                        
+                      </div>
+                      <div id="Fcontacts" class="tab-pane fade">
+                        <br/>
+                        <apex:outputField value="{!Factorydetails.Factory_Contact__c}" />
+                        
+                      </div>
+                      <div id="Fdetails" class="tab-pane fade">
+                        <br/>
+                        <apex:outputField value="{!Factorydetails.Factory_Details__c}" />
+                        
+                      </div>
+                      <div class="clearfix" style="height: 30px;clear: both;">
+                      </div>
+                      <input  class="btn btn-warning" type="button" id="km1"  value="Back" onclick="steps();"/>
+                      
+                    </div>
+                  </div>
+                  
+                </div>
+              </apex:outputPanel>
+            </div>
+            
+          </apex:outputPanel>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="app-footer">
+    <div class="wrapper">
+      <span class="pull-right">
+        <a href="#">
+          <i>
+          </i>
+        </a>
+      </span>
+      © Unilever 2015 Copyright.
+    </div>
+  </footer>
+    </div>
+    
+       
+  </body>
+</apex:form>
+</apex:page>
