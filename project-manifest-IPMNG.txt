@@ -4,6 +4,7 @@ src/classes/IPM_AddManageSection.cls
 src/classes/IPM_AddManageSection.cls-meta.xml
 src/classes/IPM_AddManageSection_Test.cls
 src/classes/IPM_AddManageSection_Test.cls-meta.xml
+src/classes/IPM_ApproverList.cls
 src/classes/IPM_ApproverList.cls-meta.xml
 src/classes/IPM_Approverlist_Test.cls
 src/classes/IPM_Approverlist_Test.cls-meta.xml
@@ -33,6 +34,7 @@ src/classes/IPM_BCCController.cls
 src/classes/IPM_BCCController.cls-meta.xml
 src/classes/IPM_BCCController_Test.cls
 src/classes/IPM_BCCController_Test.cls-meta.xml
+src/classes/IPM_BCC_Consolidate_Controller.cls
 src/classes/IPM_BCC_Consolidate_Controller.cls-meta.xml
 src/classes/IPM_BCC_Consolidate_Controller_Test.cls
 src/classes/IPM_BCC_Consolidate_Controller_Test.cls-meta.xml
@@ -60,6 +62,7 @@ src/classes/IPM_BETSuggestedMembersController.cls
 src/classes/IPM_BETSuggestedMembersController.cls-meta.xml
 src/classes/IPM_BETSuggestedMembersController_Test.cls
 src/classes/IPM_BETSuggestedMembersController_Test.cls-meta.xml
+src/classes/IPM_BETUpdateService.cls
 src/classes/IPM_BETUpdateService.cls-meta.xml
 src/classes/IPM_BETUpdateService_Test.cls
 src/classes/IPM_BETUpdateService_Test.cls-meta.xml
@@ -115,6 +118,7 @@ src/classes/IPM_CommentsListController.cls
 src/classes/IPM_CommentsListController.cls-meta.xml
 src/classes/IPM_CommentsListController_Test.cls
 src/classes/IPM_CommentsListController_Test.cls-meta.xml
+src/classes/IPM_CompanyCard.cls
 src/classes/IPM_CompanyCard.cls-meta.xml
 src/classes/IPM_CompanyCardHandler.cls
 src/classes/IPM_CompanyCardHandler.cls-meta.xml
@@ -258,6 +262,7 @@ src/classes/IPM_HomePageController.cls
 src/classes/IPM_HomePageController.cls-meta.xml
 src/classes/IPM_HomePageController_Test.cls
 src/classes/IPM_HomePageController_Test.cls-meta.xml
+src/classes/IPM_IECompatible.cls
 src/classes/IPM_IECompatible.cls-meta.xml
 src/classes/IPM_IECompatible_Test.cls
 src/classes/IPM_IECompatible_Test.cls-meta.xml
@@ -265,6 +270,7 @@ src/classes/IPM_ImageUploadController.cls
 src/classes/IPM_ImageUploadController.cls-meta.xml
 src/classes/IPM_ImageUploadController_Test.cls
 src/classes/IPM_ImageUploadController_Test.cls-meta.xml
+src/classes/IPM_List_Milestones.cls
 src/classes/IPM_List_Milestones.cls-meta.xml
 src/classes/IPM_List_Milestones_Test.cls
 src/classes/IPM_List_Milestones_Test.cls-meta.xml
@@ -292,9 +298,11 @@ src/classes/IPM_NewTask.cls
 src/classes/IPM_NewTask.cls-meta.xml
 src/classes/IPM_NewTask_Test.cls
 src/classes/IPM_NewTask_Test.cls-meta.xml
+src/classes/IPM_NotifyUsersRoleChanged.cls
 src/classes/IPM_NotifyUsersRoleChanged.cls-meta.xml
 src/classes/IPM_NotifyUsersRoleChanged_Test.cls
 src/classes/IPM_NotifyUsersRoleChanged_Test.cls-meta.xml
+src/classes/IPM_OTIFStatusController.cls
 src/classes/IPM_OTIFStatusController.cls-meta.xml
 src/classes/IPM_OTIF_Report_Batch.cls
 src/classes/IPM_OTIF_Report_Batch.cls-meta.xml
@@ -312,6 +320,7 @@ src/classes/IPM_ObjectAllHistoryComponentController.cls
 src/classes/IPM_ObjectAllHistoryComponentController.cls-meta.xml
 src/classes/IPM_ObjectHistoryComponentController.cls
 src/classes/IPM_ObjectHistoryComponentController.cls-meta.xml
+src/classes/IPM_PDocAttachmentListCtrl.cls
 src/classes/IPM_PDocAttachmentListCtrl.cls-meta.xml
 src/classes/IPM_PerformanceBreakdownController.cls
 src/classes/IPM_PerformanceBreakdownController.cls-meta.xml
@@ -445,9 +454,11 @@ src/classes/IPM_TaskHelper.cls
 src/classes/IPM_TaskHelper.cls-meta.xml
 src/classes/IPM_TaskHelper_Test.cls
 src/classes/IPM_TaskHelper_Test.cls-meta.xml
+src/classes/IPM_Taskview.cls
 src/classes/IPM_Taskview.cls-meta.xml
 src/classes/IPM_Taskview_Test.cls
 src/classes/IPM_Taskview_Test.cls-meta.xml
+src/classes/IPM_Team_Assignment_Controller.cls
 src/classes/IPM_Team_Assignment_Controller.cls-meta.xml
 src/classes/IPM_Team_Assignment_Controller_Test.cls
 src/classes/IPM_Team_Assignment_Controller_Test.cls-meta.xml
@@ -461,6 +472,7 @@ src/classes/IPM_UpdateGlobalProjectName.cls
 src/classes/IPM_UpdateGlobalProjectName.cls-meta.xml
 src/classes/IPM_UpdateGlobalProjectName_Test.cls
 src/classes/IPM_UpdateGlobalProjectName_Test.cls-meta.xml
+src/classes/IPM_UploadBusinessCase.cls
 src/classes/IPM_UploadBusinessCase.cls-meta.xml
 src/classes/IPM_UploadBusinessCase_Test.cls
 src/classes/IPM_UploadBusinessCase_Test.cls-meta.xml
@@ -650,6 +662,7 @@ src/components/IPM_TradeMark_Questions.component
 src/components/IPM_TradeMark_Questions.component-meta.xml
 src/components/IPM_TradeMark_QuestionsView.component
 src/components/IPM_TradeMark_QuestionsView.component-meta.xml
+src/components/IPM_UI_Resources.component
 src/components/IPM_UI_Resources.component-meta.xml
 src/components/IPM_ViewAssortmentStrategy.component
 src/components/IPM_ViewAssortmentStrategy.component-meta.xml
@@ -821,6 +834,7 @@ src/pages/IPM_TaskList.page
 src/pages/IPM_TaskList.page-meta.xml
 src/pages/IPM_Team.page
 src/pages/IPM_Team.page-meta.xml
+src/pages/IPM_TemplateRevamp.page
 src/pages/IPM_TemplateRevamp.page-meta.xml
 src/pages/IPM_UploadBusinessCase.page
 src/pages/IPM_UploadBusinessCase.page-meta.xml
