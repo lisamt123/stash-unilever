@@ -134,6 +134,40 @@ public with sharing class WWP_LossTree_CC{
                 
             }
         }
+        fetchLossTreeExt(setbox1all, setbox2all, setbox3all);
+       /* listbox1all.add(new SelectOption(valueNone,valueNone));
+        listbox2all.add(new SelectOption(valueNone,valueNone));
+        listbox3all.add(new SelectOption(valueNone,valueNone));
+        for(string s1:setbox1all){
+                listbox1all.add(new SelectOption(s1,s1));
+                }
+                for(string s2:setbox2all){
+                listbox2all.add(new SelectOption(s2,s2));
+                }
+                if(lossTree.Loss_Type__c!='MRP Compliance'){
+                for(string s3:setbox3all){
+                listbox3all.add(new SelectOption(s3,s3));
+                }
+                } 
+                integer y=-1;
+         if(listLossTree!=null && !listLossTree.isEmpty()){
+             for(WWP_Loss_Tree__c lt: listLossTree){
+             
+                LossTreeWrapper ltW = new LossTreeWrapper(lt,listbox1all,listbox2all,listbox3all,y);  
+                listLossTreeW.add(ltW); 
+                y=ltw.i;
+            } 
+         } */
+         
+         }
+         }
+         else{
+             message = label.WWP_RequiredFeilds_Err;
+         }
+         
+    }
+    
+    public void fetchLossTreeExt(set<string> setbox1all, set<string> setbox2all, set<string> setbox3all){
         listbox1all.add(new SelectOption(valueNone,valueNone));
         listbox2all.add(new SelectOption(valueNone,valueNone));
         listbox3all.add(new SelectOption(valueNone,valueNone));
@@ -149,21 +183,14 @@ public with sharing class WWP_LossTree_CC{
                 }
                 } 
                 integer y=-1;
-         if(listLossTree!=null && listLossTree.size()>0){
+         if(listLossTree!=null && !listLossTree.isEmpty()){
              for(WWP_Loss_Tree__c lt: listLossTree){
              
                 LossTreeWrapper ltW = new LossTreeWrapper(lt,listbox1all,listbox2all,listbox3all,y);  
                 listLossTreeW.add(ltW); 
                 y=ltw.i;
             } 
-         }
-         
-         }
-         }
-         else{
-             message = label.WWP_RequiredFeilds_Err;
-         }
-         
+         } 
     }
     
     public class LossTreeWrapper {
@@ -384,7 +411,7 @@ public with sharing class WWP_LossTree_CC{
         integer count=0;
         List<WWP_Loss_Tree__c> updateLTW = new List<WWP_Loss_Tree__c>();
         try{
-        if(listLossTreeW!=null && listLossTreeW.size()>0){
+        if(listLossTreeW!=null && !listLossTreeW.isEmpty()){
             for(LossTreeWrapper lw: listLossTreeW){
                 if(lw.checkbox1){
                     WWP_Loss_Tree__c wt = new WWP_Loss_Tree__c();
@@ -410,7 +437,7 @@ public with sharing class WWP_LossTree_CC{
                     message =valueNull;                    
                 } 
             }
-            if(updateLTW!=null && updateLTW.size()>0){
+            if(updateLTW!=null && !updateLTW.isEmpty()){
                 update updateLTW;
                 successmessage=label.WWP_RecordsUpdated_Msg;
                 message =valueNull;
