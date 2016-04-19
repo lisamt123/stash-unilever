@@ -1,3 +1,4 @@
+// wrapper used to hold data for VF page
 public with sharing class Oblix_NonCampaignWrapper {
 
 	public Marketing_Basics__c nonCampaignItem {get;set;}
