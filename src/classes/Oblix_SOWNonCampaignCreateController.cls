@@ -271,7 +271,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
         selectedNonCampaignWrapper.selectedAgencyDepartment = activityJSONWrapper.selectedAgencyDepartment;
         selectedNonCampaignWrapper.selectedRole = activityJSONWrapper.selectedRole;
         selectedNonCampaignWrapper.hourlyRate = activityJSONWrapper.hourlyRate;
-        selectedNonCampaignWrapper.roundedRate = activityJSONWrapper.hourlyRate != null ? String.valueOf(Math.round(Decimal.valueOf(activityJSONWrapper.hourlyRate))) : '0';//
+        selectedNonCampaignWrapper.roundedRate = activityJSONWrapper.hourlyRate;//
         selectedNonCampaignWrapper.hoursSelected = activityJSONWrapper.hoursSelected != null ? Integer.valueOf(activityJSONWrapper.hoursSelected) : 0;
         selectedNonCampaignWrapper.totalAmount = activityJSONWrapper.totalAmount != null ? Math.round(Decimal.valueof(activityJSONWrapper.totalAmount)) : 0;
         selectedNonCampaignWrapper.key = activityJSONWrapper.key;
