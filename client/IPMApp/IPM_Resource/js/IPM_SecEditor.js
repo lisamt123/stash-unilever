@@ -18,13 +18,11 @@ jq(document).ready(function() {
             var $this = jq(this);
             $this.val() === '' ? $this.val(placeholderText) : false;
         });
-		
 		/* Below script works on focus event. The risk comments box place holder will be hidden when the user focuses on the box */
         jq('#riskCommentBox').focus(function() {
             $this.val() === placeholderText ? $this.val('') : false;
         });
     }
-	
 /* Below script works on click event. It redirects to a Gate document section editor page after closing the modal */
 	jq("#ipmModal .close").on("click", function() {
 		if (jq("#ipmModal .modal-title").text().indexOf("Comment") !== -1 && window.top.location.href.indexOf(IPMAppSE.SectionEditorPageRef) > -1) {
@@ -45,7 +43,6 @@ jq(document).ready(function() {
     }
 	
 /* Below script is related to accordion functionality */
-
 	jq(".contenWrapper .ipmAcrdnExpand").hide();
 	if(window.location.href.indexOf("IPM_GateDocument") > -1){
 		jq(".contenWrapper").find(".contenWrapper").find(".ecoDesignTable").find(".ipmAcrdnExpand").show();
@@ -94,7 +91,19 @@ jq(document).ready(function() {
         jq('#' + getId).fadeIn("fast");
     });
 	
-	/* Below script works on click event. If the check all checkbox is checked it checks the other child checkboxes */
+	/* Below script works on click event. It calls the accordion function. */
+    jq(document).on("click", ".ipmAccordion .evidenceHead span.expico", function() {
+        accordion(this);
+    });
+	chkAllfun();
+	modalWin();
+    custCheckSub();
+	proRadio();	
+	hilightTaskScript();
+});
+
+function chkAllfun(){
+		/* Below script works on click event. If the check all checkbox is checked it checks the other child checkboxes */
     jq(".ipmSectionEditor .checkAll").each(function() {
         var $this = jq(this);
         $this.on("click", function() {
@@ -119,16 +128,13 @@ jq(document).ready(function() {
                 Notify1();
             }
         });
-    });
+    }); 
+}
 
-    ipmModal('#addTask', 'Add To-do', '320px', '600px', '2%');
+function modalWin(){
+	ipmModal('#addTask', 'Add To-do', '38%', '560px', '2%');
     ipmModal('#uploadImage', 'Click to Upload Image', '400px', '200px', '15%');
 	ipmModal('#consumerImage', 'Click to Upload Image', '400px', '200px', '15%');
-
-	/* Below script works on click event. It calls the accordion function. */
-    jq(document).on("click", ".ipmAccordion .evidenceHead span.expico", function() {
-        accordion(this);
-    });
 	
 /* Below script is to open comments and history modal */
     jq(".comments,.history").each(function() {
@@ -149,35 +155,10 @@ jq(document).ready(function() {
         ipmModal("#" + id, title, '35%', '30%', '10%');
 
     });
-    /**** Customer Channel ****/
-	
-	/* Below script works on click event. It checks if the condition is true. If it is true it adds a class else removes the class. */
-    jq('.infoCheck .checkSub').click(function() {
-        var $this = jq(this);
-        if (jq(this).is(":checked")) {
-            $this.parent().prev().addClass("fontBold");
-        } else {
-            $this.parent().prev().removeClass("fontBold");
-        }
-    });
+}
 
-	/* Below script check if the condition is true. If it is true it adds a class else removes the class. */
-    jq('.checkSub').each(function() {
-        var $this = jq(this);
-        if ($this.is(":checked")) {
-            $this.closest(".infoCheck").prev().addClass("fontBold");
-        } else {
-            $this.closest(".infoCheck").prev().removeClass("fontBold");
-        }
-    });
-
-	/* Below script works on click. When clicked on remove button it calls a function which deletes the task */
-    jq(document).on('click', '#ipmDeleteModal .removeTask', function() {
-        deleteTaskJs(this);
-    });
-
-    /* ***CRRT Section*** */
-	
+function proRadio(){
+	/* ***CRRT Section*** */
 	/* Below script check if the condition is true. If it is true it checks the radio button. */
     jq(".projectRadioButton input[type=radio]").each(function() {
         var $this = jq(this);
@@ -199,10 +180,35 @@ jq(document).ready(function() {
             $this.removeAttr("disabled");
         }
     });
-	
-	hilightTaskScript();
+	/* Below script works on click. When clicked on remove button it calls a function which deletes the task */
+    jq(document).on('click', '#ipmDeleteModal .removeTask', function() {
+        deleteTaskJs(this);
+    });
+}
 
-});
+function custCheckSub(){
+	/**** Customer Channel ****/
+	
+	/* Below script works on click event. It checks if the condition is true. If it is true it adds a class else removes the class. */
+    jq('.infoCheck .checkSub').click(function() {
+        var $this = jq(this);
+        if (jq(this).is(":checked")) {
+            $this.parent().prev().addClass("fontBold");
+        } else {
+            $this.parent().prev().removeClass("fontBold");
+        }
+    });
+
+	/* Below script check if the condition is true. If it is true it adds a class else removes the class. */
+    jq('.checkSub').each(function() {
+        var $this = jq(this);
+        if ($this.is(":checked")) {
+            $this.closest(".infoCheck").prev().addClass("fontBold");
+        } else {
+            $this.closest(".infoCheck").prev().removeClass("fontBold");
+        }
+    });
+}
 
 /* Below function performs a validation. If the condition is true it shows the accordion content. Also it removes '-' and replaces it with '+'. Also vice versa. */
 function accordion(elem) {

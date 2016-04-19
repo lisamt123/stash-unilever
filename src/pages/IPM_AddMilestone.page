@@ -49,7 +49,7 @@
                         <apex:outputfield value="{!p.mile.IPM_Phase__c}" />
                     </apex:column>
                     <apex:column headerValue="{!$Label.IPM_DUE_DATE}" styleClass="col-xs-3">
-                        <apex:inputField value="{!p.mile.IPM_Due_Date__c}" styleClass="dateInputBox calendar" onchange="selectMiniMs('{!p.mile.Id}');">
+                        <apex:inputField value="{!p.mile.IPM_Due_Date__c}" styleClass="dateInputBox listDate calendar" onchange="selectMiniMs('{!p.mile.Id}');">
                         <apex:pageMessage summary="{!$Label.IPM_Milestone_Due_Date_Error}" severity="error" id="messages" strength="0" rendered="{!p.errorRecord}"/>
                         </apex:inputField>
                     </apex:column>                         

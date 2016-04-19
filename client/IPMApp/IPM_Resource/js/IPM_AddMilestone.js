@@ -85,6 +85,12 @@ jq(document).ready(function() {
         }
     });
 	
+	jq(document).on("click", ".dateInputBoxAdd", function() {
+		jq(this).parents().find('.datePicker').addClass('customDatepicker');
+	});
+	jq(document).on("click", ".listDate", function() {
+		jq(this).parents().find('.datePicker').removeClass('customDatepicker');
+	});
 /* Below script checks each checkbox whether it has the value 'true'. If the checkbox has the value 'true' it checks the checkbox */
     jq('input[type=checkbox]').each(function() {
         var $this = jq(this);

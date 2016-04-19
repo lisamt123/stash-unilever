@@ -242,7 +242,7 @@
         
 /* ipmModal Styles revamp*/
     .htmlDetailElementTable img {width:100%; max-width:100%;}
-    .modal-content .modal-header{min-height: 45px;background:#eaeaea ;padding:17.5px 15px; border-bottom:1px #d7d7d7 solid;border-top-left-radius: 5px;border-top-right-radius:5px;}
+    .modal-content .modal-header{min-height: 45px;padding:17.5px 15px; border-bottom:1px #d7d7d7 solid;border-top-left-radius: 5px;border-top-right-radius:5px;}
     .modal-title{color:#253b78 ;font-weight:bold;font-size:1.3em;}
     .modal-header button.close{border: 1px #007dbb solid;border-radius: 50%;padding: 3px 5px;color: #007dbb; margin-top:-5px;opacity: 1;width:30px;}
     .modal-content{border-radius:4px;height:100%;width:100%;float:left;}
@@ -813,3 +813,16 @@ input.misalignedField{border:2px solid red;}
 .bPageBlock .list.ipmTable.monitor thead th {background-color: #dceefa;} 
 tr.odd {background-color: #f8f8f8;} 
 .errorConsole .x-grid3-row-over, body .pbBody table.list.monitor tr.dataRow.highlight td, body .pbBody table.list.monitor tr.dataRow.highlight th {background-color: transparent;}
+
+
+table.ipmTable.table.table-bordered.ecoDesignCountry tr th{
+    font-size: 11.5px;
+}
+div.metric table.ecoDesignCountry tr th.fifthCol div.Brand span label{
+    white-space: normal;
+	width:110px;
+}
+div.metric table.ecoDesignCountry tr th.fourthCol div.colProject span{
+    white-space: normal;
+	width:123px;
+}

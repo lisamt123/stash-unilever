@@ -120,12 +120,10 @@ function changeArrow(cuName,arrow,priorityNumber){
 /* Below is the main function which runs onComplete of all the action functions in Assortment Strategy  */
 function assortmentscript() {
 
-/* Below script works on click event. On click a value is saved and it is passed to function 'createAssort' */
-    jq(document).on('click', '.createAssortmetRec', function(e) {       
-        e.preventDefault();
-        cusVals = jq(".chCusValue").val();
-        createAssort(custChanlStr, cusVals);
-    });  
+	createAssortment();
+	assortAccordion();
+	showAssortdrpdown();
+	assortReset();
 	
 /* Below script works on page load. If the total number of checkboxes checked are more than 5 user will not be able to check the other checkboxes */
      jq('.ccCheck').change(function(e) {
@@ -138,19 +136,7 @@ function assortmentscript() {
 /* Below script works on page load. First it hides all the tabs. Then it opens only the first tab. */    
     jq(".ipmAcrdnExpand").hide();
     jq(".ipmAcrdnExpand:first").not(':empty').show();
-	
-/* Below script is called upon click event where it expands the tab and replaces '+' with '-' or collapses a opened tab and replaces '-' with '+' */
-    jq(".assortmentAccordion").on("click", ".expico", function() {
-        if (jq(this).closest(".pHead").next(".ipmAcrdnExpand").is(":visible")) {
-            jq(this).removeClass("fa-minus");
-            jq(this).addClass("fa-plus");
-            jq(this).closest(".pHead").next(".ipmAcrdnExpand").slideUp("fast");
-        } else {
-            jq(this).closest(".pHead").next(".ipmAcrdnExpand").slideDown("fast");
-            jq(this).removeClass("fa-plus");
-            jq(this).addClass("fa-minus");
-        }
-    });
+
 /* Below script works on page load. It adds the + mark for the collapsed one's and adds - for the expanded one */
     jq(".projectContainer").find(".pHead .assortmentAccordion span.expico").removeClass("fa-minus");
     jq(".projectContainer").find(".pHead .assortmentAccordion span.expico").addClass("fa-plus");
@@ -159,40 +145,7 @@ function assortmentscript() {
     
     resetCheckboxes("#assortList1", IPMAPPAssortment.channelName);
     resetCheckboxes("#assortList2", IPMAPPAssortment.selectedValues);
-    
-/* Below script works on click. It displays the dropdown list based on the Assortment list */
-    jq(document).on('show.bs.dropdown', '.assortChannelList1, .assortChannelList2', function() {
-        var selectedValues, selectedValuesArr = [];
-        if (jq(this).hasClass('assortChannelList1')) {
-            jq('.assortList1').show();
-            jq('.assortList2').hide();
-            selectedValues = IPMAPPAssortment.channelName;
-        } else if (jq(this).hasClass('assortChannelList2')) {
-            jq('.assortList2').show();
-            jq('.assortList1').hide();
-            selectedValues = IPMAPPAssortment.selectedValues;
-        }
-        if (selectedValues !== '' && selectedValues !== undefined) {
-            selectedValuesArr = selectedValues.split(',');
-        }
-		
-/* Below script is used to check the checkboxes based on the checkbox value. If value matches and condition is true the checkbox will be checked and also it will be disabled */
-        jq(this).find('.dropdown-menu input[type="checkbox"]').each(function() {
-            var val = jq(this).attr('value');
-            if (jq.inArray(val, selectedValuesArr) !== -1) {
-                jq(this).prop('checked', true);
-				jq(this).prop('disabled', true);
-                jq(this).next('label').addClass('selected');
-				jq(this).next('label').addClass('disabled');
-            } else {
-                jq(this).prop('checked', false);
-                jq(this).next('label').removeClass('selected');
-				jq(this).next('label').removeClass('disabled');
-				jq(this).prop('disabled', false);
-            }
-        });
-    });
-    
+
     var custChanlStr = '';
     var cusStr = '';
 	
@@ -208,35 +161,6 @@ function assortmentscript() {
         custChanlStr = custChanlList.toString();
         CustomChannels(custChanlStr);
     });
-    
-/* Below script works on click. When clicked on 'Reset' button the list of values will be assigned to the respective variables.  */
-    jq(document).on('click', '#ipmAssortCusReset, #ipmAssortCustChanlReset', function() {
-        var selectedValues, selectedValuesArr = [];
-        if (jq(this).hasClass('ipmAssortCustChanlReset')) {
-            selectedValues = IPMAPPAssortment.channelName;
-        } else if (jq(this).hasClass('ipmAssortCusReset')) {
-            selectedValues = IPMAPPAssortment.selectedValues;
-        }
-        if (selectedValues !== '' && selectedValues !== undefined) {
-            selectedValuesArr = selectedValues.split(',');
-        }
-		
-/* Below script is used to check the checkboxes based on the checkbox value. If value matches and condition is true the checkbox will be checked and also it will be disabled */
-        jq(this).closest('ul.dropdown-menu').find('input:checkbox').each(function() {
-            var val = jq(this).attr('value');
-            if (jq.inArray(val, selectedValuesArr) !== -1) {
-                jq(this).prop('checked', true);
-				jq(this).prop('disabled', true);
-                jq(this).next('label').addClass('selected');
-				jq(this).next('label').addClass('disabled');
-            } else {
-                jq(this).prop('checked', false);
-                jq(this).next('label').removeClass('selected');
-				jq(this).next('label').removeClass('disabled');
-				jq(this).prop('disabled', false);
-            }
-        });
-    });
 	
 /* Below script works on page load. If the total number of checkboxes checked are more than 5 user will not be able to check the other checkboxes */
 	jq('.ccCheck').change(function(e) {
@@ -245,6 +169,96 @@ function assortmentscript() {
         }
     });
 }
+
+	function createAssortment(){
+		/* Below script works on click event. On click a value is saved and it is passed to function 'createAssort' */
+		jq(document).on('click', '.createAssortmetRec', function(e) {       
+			e.preventDefault();
+			cusVals = jq(".chCusValue").val();
+			createAssort(custChanlStr, cusVals);
+		});  
+	}
+	
+	function assortAccordion(){
+		/* Below script is called upon click event where it expands the tab and replaces '+' with '-' or collapses a opened tab and replaces '-' with '+' */
+		jq(".assortmentAccordion").on("click", ".expico", function() {
+			if (jq(this).closest(".pHead").next(".ipmAcrdnExpand").is(":visible")) {
+				jq(this).removeClass("fa-minus");
+				jq(this).addClass("fa-plus");
+				jq(this).closest(".pHead").next(".ipmAcrdnExpand").slideUp("fast");
+			} else {
+				jq(this).closest(".pHead").next(".ipmAcrdnExpand").slideDown("fast");
+				jq(this).removeClass("fa-plus");
+				jq(this).addClass("fa-minus");
+			}
+		});	
+	}
+	
+	function showAssortdrpdown(){
+		/* Below script works on click. It displays the dropdown list based on the Assortment list */
+		jq(document).on('show.bs.dropdown', '.assortChannelList1, .assortChannelList2', function() {
+				var selectedValues, selectedValuesArr = [];
+				if (jq(this).hasClass('assortChannelList1')) {
+					jq('.assortList1').show();
+					jq('.assortList2').hide();
+					selectedValues = IPMAPPAssortment.channelName;
+				} else if (jq(this).hasClass('assortChannelList2')) {
+					jq('.assortList2').show();
+					jq('.assortList1').hide();
+					selectedValues = IPMAPPAssortment.selectedValues;
+				}
+				if (selectedValues !== '' && selectedValues !== undefined) {
+					selectedValuesArr = selectedValues.split(',');
+				}
+				
+			/* Below script is used to check the checkboxes based on the checkbox value. If value matches and condition is true the checkbox will be checked and also it will be disabled */
+			jq(this).find('.dropdown-menu input[type="checkbox"]').each(function() {
+				var val = jq(this).attr('value');
+				if (jq.inArray(val, selectedValuesArr) !== -1) {
+					jq(this).prop('checked', true);
+					jq(this).prop('disabled', true);
+					jq(this).next('label').addClass('selected');
+					jq(this).next('label').addClass('disabled');
+				} else {
+					jq(this).prop('checked', false);
+					jq(this).next('label').removeClass('selected');
+					jq(this).next('label').removeClass('disabled');
+					jq(this).prop('disabled', false);
+				}
+			});
+		});	
+	}
+	
+	function assortReset(){
+		/* Below script works on click. When clicked on 'Reset' button the list of values will be assigned to the respective variables.  */
+		jq(document).on('click', '#ipmAssortCusReset, #ipmAssortCustChanlReset', function() {
+			var selectedValues, selectedValuesArr = [];
+			if (jq(this).hasClass('ipmAssortCustChanlReset')) {
+				selectedValues = IPMAPPAssortment.channelName;
+			} else if (jq(this).hasClass('ipmAssortCusReset')) {
+				selectedValues = IPMAPPAssortment.selectedValues;
+			}
+			if (selectedValues !== '' && selectedValues !== undefined) {
+				selectedValuesArr = selectedValues.split(',');
+			}
+			
+		/* Below script is used to check the checkboxes based on the checkbox value. If value matches and condition is true the checkbox will be checked and also it will be disabled */
+			jq(this).closest('ul.dropdown-menu').find('input:checkbox').each(function() {
+				var val = jq(this).attr('value');
+				if (jq.inArray(val, selectedValuesArr) !== -1) {
+					jq(this).prop('checked', true);
+					jq(this).prop('disabled', true);
+					jq(this).next('label').addClass('selected');
+					jq(this).next('label').addClass('disabled');
+				} else {
+					jq(this).prop('checked', false);
+					jq(this).next('label').removeClass('selected');
+					jq(this).next('label').removeClass('disabled');
+					jq(this).prop('disabled', false);
+				}
+			});
+		});		
+	}
 
 /* Below function contains the script which has the tooltip functionality. This function is called when the rerendering happens and the script will run again */
 function hilightTaskScript(){
