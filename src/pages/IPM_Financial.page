@@ -389,11 +389,8 @@
                                                                     isEditMode="{!isEditMode}"
                                                                     showMisalignment="{!showMisalignment}"
                                                                     fieldSuffix="{!fieldSuffix}"                                                                    
-                                                                    isy0TurnoverInvalid="{!isy0TurnoverInvalid}"
                                                                     isValidationError="{!isValidationError}"
                                                                     validationErrorMessage="{!validationErrorMessage}"
-                                                                    isy0GrossProfitInvalid="{!isy0GrossProfitInvalid}"
-                                                                    isy0ProfitInvalid="{!isy0ProfitInvalid}"
                                                                     
                                                                     isEditable="{!isEditable}"
                                                                     showMisalignedConfirmbtn="{!showMisalignedConfirmbtn}"
@@ -401,6 +398,8 @@
                                                                     isTLDYearMisaligned="{!isTLDYearMisaligned}"
                                                                     isITOgrtGTO="{!isITOgrtGTO}"
                                                                     isITOgrtGTOCal="{!isITOgrtGTOCal}" 
+                                                                    isValidationErrorCal="{!isValidationErrorCal}" 
+                                                                    validationErrorMessageCal="{!validationErrorMessageCal}" 
                                                                 />
                                                         
                                                                 <c:IPM_FinancialSummaryTable ipmFinancial="{!currentFinancial}"
@@ -431,17 +430,16 @@
                                                                     isEditMode="{!isEditMode}"
                                                                     showMisalignment="{!showMisalignment}"
                                                                     fieldSuffix="{!fieldSuffix}"                                                                    
-                                                                    isy0TurnoverInvalid="{!isy0TurnoverInvalid}"
                                                                     isValidationError="{!isValidationError}"
                                                                     validationErrorMessage="{!validationErrorMessage}"
-                                                                    isy0GrossProfitInvalid="{!isy0GrossProfitInvalid}"
-                                                                    isy0ProfitInvalid="{!isy0ProfitInvalid}"
                                                                         isEditable="{!isEditable}"
                                                                         showMisalignedConfirmbtn="{!showMisalignedConfirmbtn}"
                                                                     project="{!project}"
                                                                     isTLDYearMisaligned="{!isTLDYearMisaligned}"
                                                                         isITOgrtGTO="{!isITOgrtGTO}"
                                                                         isITOgrtGTOCal="{!isITOgrtGTOCal}"
+                                                                    isValidationErrorCal="{!isValidationErrorCal}"
+                                                                    validationErrorMessageCal="{!validationErrorMessageCal}"
                                                                 />
                                                                 </apex:outputPanel>
                                                         </div>
