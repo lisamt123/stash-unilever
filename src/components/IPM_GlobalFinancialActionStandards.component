@@ -117,16 +117,24 @@
                 <div class="glbValRight">
                     <div class="glbValSubLeft">
                         <div class="glbValM glbVal1">
-                            {!finAction.IPM_Financial_Year_Y1_Gross__r.Value_Market_Share_Global__c}
+                            <apex:outputText value="{0, number, ###,###,###.#}">
+                                <apex:param value="{!finAction.IPM_Financial_Year_Y1_Gross__r.Value_Market_Share_Global__c}" />
+                            </apex:outputText>
                         </div>
                         <div class="glbValM glbVal2">
-                            {!finAction.IPM_Financial_Year_Y1_Incremental__r.Value_Market_Share_Global__c}
+                            <apex:outputText value="{0, number, ###,###,###.#}">
+                                <apex:param value="{!finAction.IPM_Financial_Year_Y1_Incremental__r.Value_Market_Share_Global__c}" />
+                            </apex:outputText>
                         </div>
                         <div class="glbValM glbVal3">
-                            {!finAction.IPM_Financial_Year_Y1_Gross__r.Turnover_Global__c}
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!finAction.IPM_Financial_Year_Y1_Gross__r.Turnover_Global__c}" />
+                            </apex:outputText>
                         </div>
                         <div class="glbValM glbVal4">
-                            {!finAction.IPM_Financial_Year_Y1_Incremental__r.Turnover_Global__c}
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!finAction.IPM_Financial_Year_Y1_Incremental__r.Turnover_Global__c}" />
+                            </apex:outputText>
                         </div>
                         <div class="glbValM glbVal5">
                             {!finAction.IPM_Financial_Year_Y1_Gross__r.GM_of_TO_Global__c}
@@ -134,13 +142,19 @@
                     </div>
                     <div class="glbValSubRight">
                         <div class="glbValM2 glbVal6">
-                            {!finAction.IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.NPV_Global__c}
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!finAction.IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.NPV_Global__c}" />
+                            </apex:outputText>
                         </div>
                         <div class="glbValM2 glbVal7">
-                            {!finAction.IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.IRR_Global__c}
+                            <apex:outputText value="{0, number, ###,###,###.###}">
+                                <apex:param value="{!finAction.IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.IRR_Global__c}" />
+                            </apex:outputText>
                         </div>
                         <div class="glbValM2 glbVal8">
-                            {!finAction.IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.Payback_Global__c}
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!finAction.IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.Payback_Global__c}" />
+                            </apex:outputText>
                         </div>
                     </div>
                 </div>
