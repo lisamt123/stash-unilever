@@ -181,7 +181,7 @@ public with sharing class IPM_FinancialActionStandards {
             iTOWrapper.actionStandardValue = ((Decimal) firstFullYearIncremental.get(IPM_ConstantUtils.FIELD_LITERAL_TURNOVER + actionsStandardsFieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).setScale(2);
             GMWrapper.actionStandardValue = ((Decimal) firstFullYearGross.get(IPM_ConstantUtils.FIELD_LITERAL_GM_OF_TO + actionsStandardsFieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).setScale(1);
             NPVWrapper.actionStandardValue = ((Decimal) financial.get(IPM_ConstantUtils.FIELD_LITERAL_NPV + actionsStandardsFieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).setScale(2);
-            IRRWrapper.actionStandardValue = ((Decimal) financial.get(IPM_ConstantUtils.FIELD_LITERAL_IRR + actionsStandardsFieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).setScale(1);
+            IRRWrapper.actionStandardValue = ((Decimal) financial.get(IPM_ConstantUtils.FIELD_LITERAL_IRR + actionsStandardsFieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).setScale(3);
             PaybackWrapper.actionStandardValue = ((Decimal) financial.get(IPM_ConstantUtils.FIELD_LITERAL_PAYBACK + actionsStandardsFieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).setScale(2);
     
             //Charter - Always Process Charter Results
@@ -240,7 +240,7 @@ public with sharing class IPM_FinancialActionStandards {
         iTOWrapper.lstGateValues.add(((Decimal) firstFullYearIncremental.get(IPM_ConstantUtils.FIELD_LITERAL_TURNOVER + passedFieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).setScale(2));
         GMWrapper.lstGateValues.add(((Decimal) firstFullYearGross.get(IPM_ConstantUtils.FIELD_LITERAL_GM_OF_TO + passedFieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).setScale(1));
         NPVWrapper.lstGateValues.add(((Decimal) financial.get(IPM_ConstantUtils.FIELD_LITERAL_NPV + passedFieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).setScale(2));
-        IRRWrapper.lstGateValues.add(((Decimal) financial.get(IPM_ConstantUtils.FIELD_LITERAL_IRR + passedFieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).setScale(1));
+        IRRWrapper.lstGateValues.add(((Decimal) financial.get(IPM_ConstantUtils.FIELD_LITERAL_IRR + passedFieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).setScale(3));
         PaybackWrapper.lstGateValues.add(((Decimal) financial.get(IPM_ConstantUtils.FIELD_LITERAL_PAYBACK + passedFieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).setScale(2));
     }
     

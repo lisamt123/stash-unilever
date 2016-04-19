@@ -34,7 +34,7 @@
                             <apex:outputLabel value="To-do" styleClass="fieldLabel fieldFont" id="todoLabel"/>
                         </div>
                         <div class="inputField">
-                            <apex:inputField value="{!tasks.IPM_Task_Name__c}" styleClass="fieldFont" id="taskName"/>
+                            <apex:inputTextarea rows="3" value="{!tasks.IPM_Task_Name__c}" styleClass="fieldFont todoName" id="taskName"/>
                         </div>
                     </div>
                     <div class="col-xs-12 middlePanel">

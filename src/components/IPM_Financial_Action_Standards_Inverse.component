@@ -107,14 +107,14 @@
                 </td>
                 <td class="fintlewhitebg">
                     <!-- Condition for checking phase other than ideas or read only -->
-                    <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
+                    <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
                         <apex:param value="{!projDocSecCon.IPM_NPV_Action_Standard_Charter__c}" />
                     </apex:outputText>
                     <!-- Condition for checking phase ideas and editable -->
                     <apex:inputField value="{!projDocSecCon.IPM_NPV_Action_Standard_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','NPV',this.value,'{!projDocSecCon.IPM_NPV_Action_Standard_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}"/>
                 </td>
                 <td class="fintlewhitebg">
-                    <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
+                    <apex:outputText value="{0, number, ###,###,###.###}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
                         <apex:param value="{!projDocSecCon.IPM_IRR_Action_Standard_Charter__c}" />
                     </apex:outputText>
                     <!-- Condition for checking gate document phase Ideas and editable -->
@@ -122,7 +122,7 @@
                 </td>
                 <td class="fintlewhitebg">
                     <!-- Condition for checking gate document phase ideas or read only -->
-                    <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
+                    <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
                         <apex:param value="{!projDocSecCon.IPM_Payback_Action_Standard_Charter__c}" />
                     </apex:outputText> 
                     <!-- Condition for checking gate document phase Ideas and editable -->
@@ -161,17 +161,17 @@
                         </apex:outputText>
                     </td>
                     <td class="fintlewhitebg">
-                        <apex:outputText value="{0, number, ###,###,###.##}">
+                        <apex:outputText value="{0, number, ###,###,###.###}">
                             <apex:param value="{!NPVWrapper.lstGateValues[i]}" />
                         </apex:outputText>
                     </td>
                     <td class="fintlewhitebg">
-                        <apex:outputText value="{0, number, ###,###,###.#}">
+                        <apex:outputText value="{0, number, ###,###,###.###}">
                             <apex:param value="{!IRRWrapper.lstGateValues[i]}" />
                         </apex:outputText>
                     </td>
                     <td class="fintlewhitebg">
-                        <apex:outputText value="{0, number, ###,###,###.##}">
+                        <apex:outputText value="{0, number, ###,###,###.###}">
                             <apex:param value="{!PaybackWrapper.lstGateValues[i]}" />
                         </apex:outputText>
                     </td>

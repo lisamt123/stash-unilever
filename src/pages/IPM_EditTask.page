@@ -27,7 +27,7 @@
 						<div><span><apex:pagemessages id="pagemessages"></apex:pagemessages></span></div>
 					</apex:outputPanel> 
 					<div class=""><apex:outputLabel value="To-do" styleClass="fieldLabel fieldFont" /></div>
-					<div class="inputField"><apex:inputField value="{!tasks.IPM_Task_Name__c}" styleClass="fieldFont" /></div> 
+					<div class="inputField"><apex:inputTextarea rows="3" value="{!tasks.IPM_Task_Name__c}" styleClass="fieldFont todoName" /></div> 
 				</div>
 				<div class="col-xs-12 middlePanel">
 					<div class=""><apex:outputLabel value="{!$Label.IPM_Phase_Gate}" styleClass="fieldLabel fieldFont"/></div>
@@ -59,6 +59,12 @@
 	                       </div>
 	                    </apex:outputPanel>
                         </apex:outputPanel>
+			<apex:outputPanel layout="block" styleClass="col-xs-12" >
+				<div class=""><apex:outputLabel value="Functional Role" styleClass="fieldLabel fieldFont" /></div>
+				<div class="inputField">                            
+					<apex:outputText value="{!tasks.IPM_Function__c}" />
+				</div>
+			</apex:outputPanel>
 			<apex:actionRegion >    
                   	<apex:outputPanel layout="block" styleClass="col-xs-12" id="sectionBlock" rendered="{!!redirectToGateDocument}">    
                         <div class=""><apex:outputLabel value="Section" styleClass="fieldLabel fieldFont"/></div>
@@ -67,14 +73,8 @@
                                 <apex:selectOptions value="{!Sectionlist}" id="sectionVal"/> 
                             </apex:selectList>
                         </div>
-                        </apex:outputPanel>
-                        </apex:actionRegion>
-			<apex:outputPanel layout="block" styleClass="col-xs-12" >
-				<div class=""><apex:outputLabel value="Functional Role" styleClass="fieldLabel fieldFont" /></div>
-				<div class="inputField">                            
-					<apex:outputText value="{!tasks.IPM_Function__c}" />
-				</div>
-			</apex:outputPanel>
+					</apex:outputPanel>
+			</apex:actionRegion>
 			<!-- To place the help symbol in the top right hand corner of page -->
 			<apex:outputPanel layout="block" styleClass="col-xs-12" >
 				<div class=""><apex:outputLabel value="Assignee" styleClass="fieldLabel fieldFont"/></div>

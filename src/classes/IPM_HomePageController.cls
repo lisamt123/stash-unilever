@@ -16,7 +16,7 @@ public with sharing class IPM_HomePageController
     public Map<String, String> documentAlertMessageMap{get; set;} //Alert for approved with edits status
     public Map<Id,String> alertsOTIF {get;set;}//To display OTIF alerts
     public List<String> LstFinMisalignedMessage { get; set; }  // To get the Financial misaligned Alert Message
-    public Map<Id,String> RolloutProjectAlertMessageMap {get;set;}
+    public Map<String,String> rolloutProjectAlertMessageMap {get;set;}
     public Map<String,String> LstFinTLDMisalignedMessageMap { get; set; }  // To get the Financial TLD misaligned Alert Message
     public Map<String, String> finDataMissingAlertMessageMap{get; set;} 
     public Map<String,String> LstLocalFinTLDMisalignedMessageMap { get; set; }  // To get the Financial TLD misaligned Alert Message
@@ -225,7 +225,7 @@ public with sharing class IPM_HomePageController
      }	
         
         // Adding Alert for Local Project leader is blank for rollout Projects
-      RolloutProjectAlertMessageMap = new map<Id, String>();
+      rolloutProjectAlertMessageMap = new map<String, String>();
       Set<Id> newProjIds = new Map<Id,IPM_Project__c>(lstProjects).keySet();
       lstprojectRollout = [SELECT ID,Name,IPM_Regional_PL__c,Regional_Project__c,Regional_Project__r.Name FROM IPM_Project_Rollout__c where Regional_Project__c in : newProjIds];
       for(IPM_Project__c proj : lstProjects){
@@ -235,7 +235,8 @@ public with sharing class IPM_HomePageController
             for(IPM_Project_Rollout__c rollOutProject : lstprojectRollout){
               if(String.isBlank(rollOutProject.IPM_Regional_PL__c))
                  {
-                    RolloutProjectAlertMessageMap.put(rollOutProject.Regional_Project__c,rollOutProject.Regional_Project__r.Name+IPM_ConstantUtils.Colon+Label.IPM_Local_Project_Leader_BlankMsg);
+                    rolloutProjectAlertMessageMap.put(rollOutProject.Regional_Project__c+rollOutProject.Name,rollOutProject.Regional_Project__r.Name+IPM_ConstantUtils.Colon+String.format(Label.IPM_Local_Project_Leader_BlankMsg,new List<String>{rollOutProject.Name}));
+                    ProjectIdMap.put(rollOutProject.Regional_Project__c+rollOutProject.Name,rollOutProject.Regional_Project__c);
                  }
              }
            }

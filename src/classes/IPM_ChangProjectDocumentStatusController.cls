@@ -69,6 +69,9 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     public boolean isBDBBAlignment{get;set;}
     public string bd_BBAlignmentSequence{get;set;}
     public id documentSectionId{get;set;}
+    //REQ03006
+    public Integer invalidFinancialsCount;
+    private static String DEFAULT_FINANCIAL_RECORDTYPE; //Recordtype Id for Default on IPM_Financial__c object
     /*****************************************************************
     @Description :Constructor Fetch the Page parameters and retrieve lists
     *****************************************************************/
@@ -176,6 +179,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
             showValidation=true;
             rolloutFilledCount=0;
             rolloutCount=0;
+            invalidFinancialsCount=0; //req03006
             finExternalID=IPM_ConstantUtils.BLANK;
             riskQuesList=new List<IPM_Questionnaire__c >();//instantiate questionnaire List
                               
@@ -319,7 +323,8 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     public void validateRolloutAndFin()
     {
         fin=new IPM_Financial__c();//instantiate financial object
-        if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
+        DEFAULT_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT).getRecordTypeId();
+        if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS)
                 {
                     finExternalID=project.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
                     //Check for Global level
@@ -328,7 +333,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                     
                     if(rolloutCount>0)
                     {
-                        fin=[SELECT Year_3_iTO_Global__c,Year_3_iTO_Regional__c,Year_3_iTO_Local__c FROM IPM_Financial__c WHERE Financial_External_ID__c=:finExternalID AND  isActive__c=true];
+            	invalidFinancialsCount=[Select count() FROM IPM_Financial__c where IsFinancialInvalid__c=true AND Global_External_Id__c=:project.IPM_Project_Name__c AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND  isActive__c=true];
                     }
                 }
                 else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL &&    (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL || project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT))
@@ -339,15 +344,15 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                     rolloutFilledCount=[SELECT count() FROM IPM_Project_Rollout__c WHERE Regional_Project__c=:projectId AND RecordTypeId=:Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId() AND (IPM_Regional_PL__c=null OR Target_Launch_Date__c=null) AND  isActive__c=true];
                     if(rolloutCount>0)
                     {
-                        fin=[SELECT Year_3_iTO_Regional__c,Year_3_iTO_Global__c,Year_3_iTO_Local__c  FROM IPM_Financial__c WHERE Financial_External_ID__c=:finExternalID AND  isActive__c=true];
+            	invalidFinancialsCount=[Select count() FROM IPM_Financial__c where IsFinancialInvalid__c=true AND Regional_Project__c=:projectId AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND  isActive__c=true];
                     }
                     
                 }
-                else if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
+        else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL || project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
                 {
                   
                     finExternalID=project.IPM_Project_Name__c;
-                    fin=[SELECT Year_3_iTO_Global__c,Year_3_iTO_Regional__c,Year_3_iTO_Local__c  FROM IPM_Financial__c WHERE Financial_External_ID__c=:finExternalID AND  isActive__c=true];
+            invalidFinancialsCount=[Select count() FROM IPM_Financial__c where IsFinancialInvalid__c=true AND Financial_External_ID__c=:finExternalID AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND  isActive__c=true];
                   
                 }
     }
@@ -468,12 +473,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                     rolloutNotExistsError=true;
                 }
                 
-                if(fin.Year_3_iTO_Global__c==0.00)
-                {
-                    showValidation=false;
-                    financialError=true;
                 }   
-            }
             
             if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
             {
@@ -488,15 +488,11 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                     showValidation=false;
                     rolloutCountryPLFilledError=true;
                 }
-                if(fin.Year_3_iTO_Regional__c==0.00)
-                {
-                    showValidation=false;
-                    financialError=true;
-                }
+           
                 
             }
             
-            if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL && fin.Year_3_iTO_Local__c==0.00)
+        if(invalidFinancialsCount>0) // check for hard Validation REQ3006
             {
                 showValidation=false;
                 financialError=true;

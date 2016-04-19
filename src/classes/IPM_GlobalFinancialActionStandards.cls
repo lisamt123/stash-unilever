@@ -67,6 +67,16 @@ public with sharing class IPM_GlobalFinancialActionStandards {
                                        IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.Payback_Global__c,IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.NPV_Global__c,IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.IRR_Global__c
                                 FROM IPM_Financial_Action_Standards__c
                                 WHERE IPM_Project__c=:project.Id AND IPM_Project_Document_Section__c=:projDocSecId order by Name Asc];
+        for(IPM_Financial_Action_Standards__c finActStd:finActionStandardsList){
+            finActStd.IPM_Inc_Value_Share_Action_Charter__c=finActStd.IPM_Inc_Value_Share_Action_Charter__c.setScale(1);
+            finActStd.IPM_Innov_Value_Share_Action_Charter__c=finActStd.IPM_Innov_Value_Share_Action_Charter__c.setScale(1);
+            finActStd.IPM_gTO_Action_Standard_Charter__c=finActStd.IPM_gTO_Action_Standard_Charter__c.setScale(2);
+            finActStd.IPM_iTo_Action_Standard_Charter__c=finActStd.IPM_iTo_Action_Standard_Charter__c.setScale(2);
+            finActStd.IPM_GM_Action_Standards_Charter__c=finActStd.IPM_GM_Action_Standards_Charter__c.setScale(1);
+            finActStd.IPM_NPV_Action_Standard_Charter__c=finActStd.IPM_NPV_Action_Standard_Charter__c.setScale(2);
+            finActStd.IPM_IRR_Action_Standard_Charter__c=finActStd.IPM_IRR_Action_Standard_Charter__c.setScale(3);
+            finActStd.IPM_Payback_Action_Standard_Charter__c=finActStd.IPM_Payback_Action_Standard_Charter__c.setScale(2);
+        }
     }
     
     /*******************************************************************************************************

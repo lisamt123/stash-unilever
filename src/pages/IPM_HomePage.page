@@ -77,7 +77,7 @@
                     </apex:repeat>
                     <apex:repeat var="messageRollout" value="{!RolloutProjectAlertMessageMap}">
                         <li>
-                            <apex:commandLink value="{!RolloutProjectAlertMessageMap[messageRollout]}" action="{!$Page.IPM_RolloutPlans}?id={!messageRollout}"/>
+                            <apex:commandLink value="{!RolloutProjectAlertMessageMap[messageRollout]}" action="{!$Page.IPM_RolloutPlans}?id={!ProjectIdMap[messageRollout]}"/>
                         </li>
                    </apex:repeat>
                       
@@ -140,8 +140,8 @@
                                         <div class="col-sm-12 noPadding sliderContent">
                                             <span class="contentTitle">{!$Label.IPM_TECHNICAL_ISSUE}</span>
                                             <p>{!$Label.IPM_INTERIN_SUPPORT_SOLUTION} </p><br/>
-                                            <div class="listItem">{!$Label.IPM_INOPLAN_USER_QUERY}</div>
-                                            <div class="listItem">{!$Label.IPM_TRAINING_OR_TECHNICAL}</div>                           
+                                            <div class="homeDivide">{!$Label.IPM_INOPLAN_USER_QUERY}</div>
+                                            <div >{!$Label.IPM_TRAINING_OR_TECHNICAL}</div>                           
                                         </div>
                                         <div class="col-sm-12 noPadding"><a tabindex="0" class="moreLink">More>></a><a tabindex="0" class="lessLink">Less</a></div>
                                     </div>
@@ -149,8 +149,8 @@
                                 
                                 <div class="item">
                                     <div class="col-sm-7 sliderImage">                        
-                                        <div class="imgHolder">                       
-                                            <img alt="Cloud" src="{!URLFOR($Resource.IPM_Resource, 'images/cloud-btn.jpg')}" />
+                                        <div class="imgHolder">
+                                        	<apex:image url="{!$Resource.IPM_FabCon_Carousel}" alt="FabCon Products" width="380" height="251"/>                       
                                         </div>
                                     </div>
                                     <div class="col-sm-5">
