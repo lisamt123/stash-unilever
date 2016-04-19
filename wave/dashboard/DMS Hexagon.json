@@ -1,8 +1,6 @@
 {
     "label": "DMS Hexagon",
     "state": {
-        "gridLayouts": [],
-        "layouts": [],
         "steps": {
             "Distributor_AccountName_2": {
                 "isFacet": true,
@@ -21,9 +19,10 @@
                 "selectMode": "single",
                 "type": "aggregate",
                 "useGlobal": true,
+                "start": null,
                 "datasets": [
                     {
-                        "name": "DMS_Hexagon1"
+                        "name": "DMS_Hexagon"
                     }
                 ],
                 "visualizationParameters": {
@@ -53,9 +52,10 @@
                 "selectMode": "single",
                 "type": "aggregate",
                 "useGlobal": true,
+                "start": null,
                 "datasets": [
                     {
-                        "name": "DMS_Hexagon1"
+                        "name": "DMS_Hexagon"
                     }
                 ],
                 "visualizationParameters": {
@@ -82,7 +82,7 @@
                 "useGlobal": true,
                 "datasets": [
                     {
-                        "name": "DMS_Hexagon1"
+                        "name": "DMS_Hexagon"
                     }
                 ],
                 "visualizationParameters": {
@@ -112,9 +112,10 @@
                 "selectMode": "single",
                 "type": "aggregate",
                 "useGlobal": true,
+                "start": null,
                 "datasets": [
                     {
-                        "name": "DMS_Hexagon1"
+                        "name": "DMS_Hexagon"
                     }
                 ],
                 "visualizationParameters": {
@@ -144,9 +145,10 @@
                 "selectMode": "single",
                 "type": "aggregate",
                 "useGlobal": true,
+                "start": null,
                 "datasets": [
                     {
-                        "name": "DMS_Hexagon1"
+                        "name": "DMS_Hexagon"
                     }
                 ],
                 "visualizationParameters": {
@@ -176,9 +178,10 @@
                 "selectMode": "single",
                 "type": "aggregate",
                 "useGlobal": true,
+                "start": null,
                 "datasets": [
                     {
-                        "name": "DMS_Hexagon1"
+                        "name": "DMS_Hexagon"
                     }
                 ],
                 "visualizationParameters": {
@@ -208,9 +211,10 @@
                 "selectMode": "single",
                 "type": "aggregate",
                 "useGlobal": true,
+                "start": null,
                 "datasets": [
                     {
-                        "name": "DMS_Hexagon1"
+                        "name": "DMS_Hexagon"
                     }
                 ],
                 "visualizationParameters": {
@@ -243,9 +247,10 @@
                 "selectMode": "single",
                 "type": "aggregate",
                 "useGlobal": true,
+                "start": null,
                 "datasets": [
                     {
-                        "name": "DMS_Hexagon1"
+                        "name": "DMS_Hexagon"
                     }
                 ],
                 "visualizationParameters": {
@@ -278,9 +283,10 @@
                 "selectMode": "single",
                 "type": "aggregate",
                 "useGlobal": true,
+                "start": null,
                 "datasets": [
                     {
-                        "name": "DMS_Hexagon1"
+                        "name": "DMS_Hexagon"
                     }
                 ],
                 "visualizationParameters": {
@@ -307,7 +313,7 @@
                 "useGlobal": true,
                 "datasets": [
                     {
-                        "name": "DMS_Hexagon1"
+                        "name": "DMS_Hexagon"
                     }
                 ],
                 "visualizationParameters": {
@@ -335,9 +341,10 @@
                 "selectMode": "single",
                 "type": "aggregate",
                 "useGlobal": true,
+                "start": null,
                 "datasets": [
                     {
-                        "name": "DMS_Hexagon1"
+                        "name": "DMS_Hexagon"
                     }
                 ],
                 "visualizationParameters": {
@@ -350,9 +357,10 @@
                 "selectMode": "single",
                 "type": "multi",
                 "useGlobal": true,
+                "start": null,
                 "datasets": [
                     {
-                        "name": "DMS_Hexagon1"
+                        "name": "DMS_Hexagon"
                     }
                 ],
                 "visualizationParameters": {
@@ -439,9 +447,10 @@
                 "selectMode": "single",
                 "type": "aggregate",
                 "useGlobal": true,
+                "start": null,
                 "datasets": [
                     {
-                        "name": "DMS_Hexagon1"
+                        "name": "DMS_Hexagon"
                     }
                 ],
                 "visualizationParameters": {
@@ -482,9 +491,10 @@
                 "selectMode": "single",
                 "type": "aggregate",
                 "useGlobal": true,
+                "start": null,
                 "datasets": [
                     {
-                        "name": "DMS_Hexagon1"
+                        "name": "DMS_Hexagon"
                     }
                 ],
                 "visualizationParameters": {
@@ -496,11 +506,11 @@
             "comparetable_1": {
                 "type": "comparetable",
                 "position": {
-                    "h": 590,
-                    "w": 670,
+                    "zIndex": 3,
                     "x": 690,
                     "y": 760,
-                    "zIndex": 3
+                    "w": 670,
+                    "h": 590
                 },
                 "parameters": {
                     "step": "compare_1",
@@ -510,11 +520,11 @@
             "box_1": {
                 "type": "box",
                 "position": {
-                    "h": 580,
-                    "w": 230,
+                    "zIndex": 6,
                     "x": 20,
                     "y": 90,
-                    "zIndex": 6
+                    "w": 230,
+                    "h": 580
                 },
                 "parameters": {
                     "backgroundColor": "rgba(0, 140, 201, 0)"
@@ -523,180 +533,180 @@
             "text_1": {
                 "type": "text",
                 "position": {
+                    "zIndex": 5,
                     "x": 300,
-                    "y": 720,
-                    "zIndex": 5
+                    "y": 720
                 },
                 "parameters": {
-                    "fontSize": 24,
                     "text": "Actual X Meta",
-                    "textColor": "rgb(0, 0, 0)"
+                    "textColor": "rgb(0, 0, 0)",
+                    "fontSize": 24
                 }
             },
             "box_2": {
                 "type": "box",
                 "position": {
-                    "h": 40,
-                    "w": 180,
+                    "zIndex": 2,
                     "x": 30,
                     "y": 30,
-                    "zIndex": 2
+                    "w": 180,
+                    "h": 40
                 },
                 "parameters": {
                     "backgroundColor": "rgba(0, 140, 201, 0)",
                     "borderColor": "rgba(0, 0, 0, 0)",
-                    "imageUrl": "01556000000DGl0"
+                    "imageUrl": "0158A000000DGMt"
                 }
             },
             "dimfilter_4": {
                 "type": "listselector",
                 "position": {
-                    "h": 50,
-                    "w": 190,
+                    "zIndex": 100004,
                     "x": 40,
                     "y": 490,
-                    "zIndex": 100004
+                    "w": 190,
+                    "h": 50
                 },
                 "parameters": {
+                    "step": "Periodo_Year_Periodo_Month_4",
                     "expanded": false,
-                    "measureField": "count",
-                    "step": "Periodo_Year_Periodo_Month_4"
+                    "measureField": "count"
                 }
             },
             "dimfilter_5": {
                 "type": "listselector",
                 "position": {
-                    "h": 50,
-                    "w": 190,
+                    "zIndex": 100005,
                     "x": 40,
                     "y": 380,
-                    "zIndex": 100005
+                    "w": 190,
+                    "h": 50
                 },
                 "parameters": {
+                    "step": "SalesRep_5",
                     "expanded": false,
-                    "measureField": "count",
-                    "step": "SalesRep_5"
+                    "measureField": "count"
                 }
             },
             "number_8": {
                 "type": "number",
                 "position": {
-                    "w": 180,
+                    "zIndex": 14,
                     "x": 300,
                     "y": 140,
-                    "zIndex": 14
+                    "w": 180
                 },
                 "parameters": {
-                    "exploreLink": false,
-                    "fontSize": 42,
-                    "measureField": "sum_Actual",
                     "step": "Actual_12",
+                    "measureField": "sum_Actual",
+                    "title": "Impactadas",
+                    "fontSize": 42,
                     "textAlignment": "center",
-                    "title": "Impactadas"
+                    "exploreLink": false
                 }
             },
             "dimfilter_1": {
                 "type": "listselector",
                 "position": {
-                    "h": 50,
-                    "w": 190,
+                    "zIndex": 100000,
                     "x": 40,
                     "y": 160,
-                    "zIndex": 100000
+                    "w": 190,
+                    "h": 50
                 },
                 "parameters": {
+                    "step": "Distributor_AccountName_2",
                     "expanded": false,
-                    "measureField": "count",
-                    "step": "Distributor_AccountName_2"
+                    "measureField": "count"
                 }
             },
             "dimfilter_2": {
                 "type": "listselector",
                 "position": {
-                    "h": 50,
-                    "w": 190,
+                    "zIndex": 100001,
                     "x": 40,
                     "y": 270,
-                    "zIndex": 100001
+                    "w": 190,
+                    "h": 50
                 },
                 "parameters": {
+                    "step": "Sales_Channel_3",
                     "expanded": false,
-                    "measureField": "count",
-                    "step": "Sales_Channel_3"
+                    "measureField": "count"
                 }
             },
             "number_4": {
                 "type": "number",
                 "position": {
-                    "w": 180,
-                    "x": 960,
+                    "zIndex": 10,
+                    "x": 930,
                     "y": 140,
-                    "zIndex": 10
+                    "w": 240
                 },
                 "parameters": {
-                    "fontSize": 42,
-                    "measureField": "sum_Actual",
                     "step": "Actual_11",
-                    "textAlignment": "center",
-                    "title": "Drop Size"
+                    "measureField": "sum_Actual",
+                    "title": "Drop Size",
+                    "fontSize": 42,
+                    "textAlignment": "center"
                 }
             },
             "number_3": {
                 "type": "number",
                 "position": {
-                    "w": 180,
+                    "zIndex": 3,
                     "x": 1180,
                     "y": 140,
-                    "zIndex": 3
+                    "w": 180
                 },
                 "parameters": {
-                    "fontSize": 42,
-                    "measureField": "sum_Actual",
                     "step": "Actual_13",
-                    "textAlignment": "center",
-                    "title": "Frecuencia"
+                    "measureField": "sum_Actual",
+                    "title": "Frecuencia",
+                    "fontSize": 42,
+                    "textAlignment": "center"
                 }
             },
             "number_2": {
                 "type": "number",
                 "position": {
-                    "w": 180,
+                    "zIndex": 9,
                     "x": 740,
                     "y": 140,
-                    "zIndex": 9
+                    "w": 180
                 },
                 "parameters": {
-                    "fontSize": 42,
-                    "measureField": "sum_Actual",
                     "step": "Actual_10",
-                    "textAlignment": "center",
-                    "title": "Pedidos"
+                    "measureField": "sum_Actual",
+                    "title": "Pedidos",
+                    "fontSize": 42,
+                    "textAlignment": "center"
                 }
             },
             "number_1": {
                 "type": "number",
                 "position": {
-                    "w": 180,
-                    "x": 520,
+                    "zIndex": 8,
+                    "x": 490,
                     "y": 140,
-                    "zIndex": 8
+                    "w": 240
                 },
                 "parameters": {
-                    "fontSize": 42,
-                    "measureField": "sum_Actual",
                     "step": "Actual_9",
-                    "textAlignment": "center",
-                    "title": "Total Sellout"
+                    "measureField": "sum_Actual",
+                    "title": "Total Sellout",
+                    "fontSize": 42,
+                    "textAlignment": "center"
                 }
             },
             "box_5": {
                 "type": "box",
                 "position": {
-                    "h": 1300,
-                    "w": 1100,
+                    "zIndex": 1,
                     "x": 280,
                     "y": 90,
-                    "zIndex": 1
+                    "w": 1100,
+                    "h": 1300
                 },
                 "parameters": {
                     "backgroundColor": "rgba(0, 140, 201, 0)"
@@ -705,11 +715,11 @@
             "chart_6": {
                 "type": "chart",
                 "position": {
-                    "h": 360,
-                    "w": 510,
+                    "zIndex": 18,
                     "x": 850,
                     "y": 320,
-                    "zIndex": 18
+                    "w": 510,
+                    "h": 360
                 },
                 "parameters": {
                     "step": "Distributor_AccountName_17",
@@ -719,24 +729,24 @@
             "text_2": {
                 "type": "text",
                 "position": {
+                    "zIndex": 7,
                     "x": 20,
-                    "y": 100,
-                    "zIndex": 7
+                    "y": 100
                 },
                 "parameters": {
-                    "fontSize": 24,
                     "text": "Filtros",
-                    "textAlignment": "left"
+                    "textAlignment": "left",
+                    "fontSize": 24
                 }
             },
             "box_4": {
                 "type": "box",
                 "position": {
-                    "h": 160,
-                    "w": 1100,
+                    "zIndex": 0,
                     "x": 280,
                     "y": 90,
-                    "zIndex": 0
+                    "w": 1100,
+                    "h": 160
                 },
                 "parameters": {
                     "backgroundColor": "rgba(0, 140, 201, 0)"
@@ -745,36 +755,36 @@
             "text_4": {
                 "type": "text",
                 "position": {
+                    "zIndex": 16,
                     "x": 300,
-                    "y": 280,
-                    "zIndex": 16
+                    "y": 280
                 },
                 "parameters": {
-                    "fontSize": 24,
-                    "text": "Total Sell Out por Vendedor"
+                    "text": "Total Sell Out por Vendedor",
+                    "fontSize": 24
                 }
             },
             "chart_2": {
                 "type": "chart",
                 "position": {
-                    "h": 590,
-                    "w": 350,
+                    "zIndex": 6,
                     "x": 300,
                     "y": 760,
-                    "zIndex": 6
+                    "w": 350,
+                    "h": 590
                 },
                 "parameters": {
-                    "dualAxis": false,
                     "step": "Indicator_Type_8",
+                    "dualAxis": false,
                     "visualizationType": "combo"
                 }
             },
             "text_7": {
                 "type": "text",
                 "position": {
+                    "zIndex": 18,
                     "x": 690,
-                    "y": 720,
-                    "zIndex": 18
+                    "y": 720
                 },
                 "parameters": {
                     "text": "Indicadores"
@@ -783,35 +793,36 @@
             "text_6": {
                 "type": "text",
                 "position": {
+                    "zIndex": 15,
                     "x": 850,
-                    "y": 280,
-                    "zIndex": 15
+                    "y": 280
                 },
                 "parameters": {
-                    "fontSize": 24,
-                    "text": "Total Sell Out por Distributor"
+                    "text": "Total Sell Out por Distributor",
+                    "fontSize": 24
                 }
             },
             "chart_4": {
                 "type": "chart",
                 "position": {
-                    "h": 360,
-                    "w": 510,
+                    "zIndex": 15,
                     "x": 300,
                     "y": 320,
-                    "zIndex": 15
+                    "w": 510,
+                    "h": 360
                 },
                 "parameters": {
                     "step": "SalesRep_15",
                     "visualizationType": "hbar"
                 }
             }
-        }
+        },
+        "layouts": []
     },
     "datasets": [
         {
-            "id": "0Fb5600000017HGCAY",
-            "name": "DMS_Hexagon1"
+            "id": "0Fb8A0000000SPnSAM",
+            "name": "DMS_Hexagon"
         }
     ]
 }
