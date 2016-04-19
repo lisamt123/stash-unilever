@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>VEP Send Email to Visitor about Lodging Status</name>
+    <style>none</style>
+    <subject>Lodging Request {!Vep_Visitor__c.Lodging_Approval_Status__c}</subject>
+    <textOnly>Hi {!Vep_Visitor__c.Name},
+
+Your lodging request to {!Vep_Visitor__c.Factory_to_Visit__c} from {!Vep_Visitor__c.Date_From__c} to {!Vep_Visitor__c.Date_To__c} has been {!Vep_Visitor__c.Lodging_Approval_Status__c} by the Lodging desk team  
+
+Thanks &amp; Regards, 
+Lodging Desk.</textOnly>
+    <type>custom</type>
+</EmailTemplate>
