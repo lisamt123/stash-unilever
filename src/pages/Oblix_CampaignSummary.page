@@ -386,7 +386,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td><apex:outputText value="Preview Date" rendered="{!NULL<>selected_project.Preview_Date__c}"></apex:outputText></td>
+                                            <td><apex:outputText value="Preview date" rendered="{!NULL<>selected_project.Preview_Date__c}"></apex:outputText></td>
                                             <td>
                                                 <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Preview_Date__c}">
                                                     <apex:param value="{!selected_project.Preview_Date__c}" /> 
@@ -402,7 +402,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td><apex:outputText value="Final release" rendered="{!NULL<>selected_project.Final_release__c}"></apex:outputText></td>
+                                            <td><apex:outputText value="BET final release" rendered="{!NULL<>selected_project.Final_release__c}"></apex:outputText></td>
                                             <td>
                                                 <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Final_release__c}">
                                                     <apex:param value="{!selected_project.Final_release__c}" /> 

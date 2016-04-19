@@ -117,13 +117,15 @@ public with sharing class Oblix_PermissionHandler {
     * @description  Depending on the assigned permission sets and status of SOW
     				determine if the financial fields are visible to user or not
     ********************************************************************************/
-    public static Boolean canSeeFinancialField(String sow_status){
+    public static Boolean canSeeFinancialField(String sow_status, Id sow_approved_version){
     	// only UL1, UL2, SuperUser and Sysadmin can see financial fields
     	// or if the sow is approved by Unilever/awaiting agency approval
     	if (hasUL1permissionSet() || hasUL2permissionSet() || hasUL3permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin()
     		|| Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY == sow_status
             || Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL == sow_status
-            || Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL_TBC == sow_status){
+            || Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL_TBC == sow_status
+            || Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES == sow_status
+            || null != sow_approved_version){
     		
     		return true;
     	}

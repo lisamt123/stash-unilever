@@ -539,6 +539,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>SOW_Campaign_Name__c</field>
+            <table>Marketing_SOW__c.Marketing_Projects__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Stimulus_Requirements__c</field>
             <table>Marketing_SOW__c.Marketing_Projects__r</table>
         </columns>
@@ -678,6 +683,16 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Agency_Projects__c</field>
+            <table>Marketing_SOW__c.Marketing_Projects__r.Agency_Project_Assets__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Asset_name__c</field>
+            <table>Marketing_SOW__c.Marketing_Projects__r.Agency_Project_Assets__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Asset_summary_page_name__c</field>
             <table>Marketing_SOW__c.Marketing_Projects__r.Agency_Project_Assets__r</table>
         </columns>
         <masterLabel>SWOP Project Assets</masterLabel>
