@@ -308,7 +308,7 @@
       deployRoot="${basedir}/test"
       pollWaitMillis="${sfdc.pollWaitMillis}"
       maxPoll="${sfdc.maxPoll}">
-  <runTest>IPM_AddManageSection_Test</runTest>
+	<runTest>IPM_AddManageSection_Test</runTest>
 	<runTest>IPM_Approverlist_Test</runTest>
 	<runTest>IPM_AssesmentHandler_Helper_Test</runTest>
 	<runTest>IPM_AssortmentStrategy_Test</runTest>
@@ -349,10 +349,8 @@
 	<runTest>IPM_FinancialActionStandards_Test</runTest>
 	<runTest>IPM_FinancialController_Test</runTest>
 	<runTest>IPM_FinancialCopyPasteGrid_Test</runTest>
-	<runTest>IPM_FinancialTriggerHandler_Test</runTest>
 	<runTest>IPM_FinancialValueWrapper_Test</runTest>
 	<runTest>IPM_FinancialWrapper_Test</runTest>
-	<runTest>IPM_FinancialYearTriggerHandler_Test</runTest>
 	<runTest>IPM_FinGateController_Test</runTest>
 	<runTest>IPM_FunnelController_Test</runTest>
 	<runTest>IPM_GateCMI_Consolidated_Test</runTest>
@@ -406,6 +404,12 @@
 	<runTest>IPM_Test_ProjectUtility</runTest>
 	<runTest>IPM_UpdateGlobalProjectName_Test</runTest>
 	<runTest>IPM_UploadBusinessCase_Test</runTest>
+	<runTest>IPM_GlobalFinancialActionStandards_Test.cls</runTest>
+	<runTest>IPM_OTIF_Report_BatchSchedule_Test.cls</runTest>
+	<runTest>IPM_OTIF_Report_Batch_Test.cls</runTest>
+	<runTest>IPM_PerformanceBreakdownController_Test.cls</runTest>
+	<runTest>IPM_ProjectDocumentSectionHandler_Test.cls</runTest>
+	<runTest>IPM_ValidationHelper_Test.cls</runTest>
     </sf:deploy>
   </target>  
   <!-- ***************************************************************************** -->
