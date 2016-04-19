@@ -1,8 +1,6 @@
 {
     "label": "DMS Impacted Stores",
     "state": {
-        "gridLayouts": [],
-        "layouts": [],
         "steps": {
             "all_7": {
                 "isFacet": true,
@@ -59,6 +57,7 @@
                 "selectMode": "single",
                 "type": "aggregate",
                 "useGlobal": true,
+                "start": null,
                 "datasets": [
                     {
                         "name": "DMS_Impacted_Stores"
@@ -93,6 +92,7 @@
                 "selectMode": "single",
                 "type": "aggregate",
                 "useGlobal": true,
+                "start": null,
                 "datasets": [
                     {
                         "name": "DMS_Impacted_Stores"
@@ -155,6 +155,7 @@
                 "selectMode": "single",
                 "type": "aggregate",
                 "useGlobal": true,
+                "start": null,
                 "datasets": [
                     {
                         "name": "DMS_Impacted_Stores"
@@ -190,6 +191,7 @@
                 "selectMode": "single",
                 "type": "aggregate",
                 "useGlobal": true,
+                "start": null,
                 "datasets": [
                     {
                         "name": "DMS_Impacted_Stores"
@@ -217,6 +219,7 @@
                 "selectMode": "single",
                 "type": "aggregate",
                 "useGlobal": true,
+                "start": null,
                 "datasets": [
                     {
                         "name": "DMS_Impacted_Stores"
@@ -252,6 +255,7 @@
                 "selectMode": "single",
                 "type": "aggregate",
                 "useGlobal": true,
+                "start": null,
                 "datasets": [
                     {
                         "name": "DMS_Impacted_Stores"
@@ -267,6 +271,7 @@
                 "selectMode": "single",
                 "type": "multi",
                 "useGlobal": true,
+                "start": null,
                 "datasets": [
                     {
                         "name": "DMS_Impacted_Stores"
@@ -351,6 +356,7 @@
                 "selectMode": "single",
                 "type": "aggregate",
                 "useGlobal": true,
+                "start": null,
                 "datasets": [
                     {
                         "name": "DMS_Impacted_Stores"
@@ -364,7 +370,7 @@
                 "isFacet": true,
                 "isGlobal": false,
                 "query": {
-                    "pigql": "q = load \"DMS_Impacted_Stores\";q = filter q by 'Status' in {{ selection(all_7) }};q = filter q by 'Account_Owner' in {{ selection(Account_Owner_6) }};q = filter q by 'Parent_Account' in {{ selection(Parent_Account_2) }};q = filter q by 'Sales_Channel' in {{ selection(Sales_Channel_3) }};q = group q by all;q = foreach q generate count() as 'count';",
+                    "pigql": "q = load \"DMS_Impacted_Stores\";q = filter q by 'Parent_Account' in {{ selection(Parent_Account_11) }};q = filter q by 'Account_Owner' in {{ selection(Account_Owner_16) }};q = filter q by 'Status' in {{ selection(all_7) }};q = filter q by 'Account_Owner' in {{ selection(Account_Owner_6) }};q = filter q by 'Parent_Account' in {{ selection(Parent_Account_2) }};q = filter q by 'Sales_Channel' in {{ selection(Sales_Channel_3) }};q = group q by all;q = foreach q generate count() as 'count';",
                     "measures": [
                         [
                             "count",
@@ -375,6 +381,7 @@
                 "selectMode": "single",
                 "type": "aggregate",
                 "useGlobal": true,
+                "start": null,
                 "datasets": [
                     {
                         "name": "DMS_Impacted_Stores"
@@ -389,11 +396,11 @@
             "comparetable_1": {
                 "type": "comparetable",
                 "position": {
-                    "h": 500,
-                    "w": 1060,
+                    "zIndex": 3,
                     "x": 300,
                     "y": 750,
-                    "zIndex": 3
+                    "w": 1060,
+                    "h": 500
                 },
                 "parameters": {
                     "step": "compare_1",
@@ -403,11 +410,11 @@
             "box_1": {
                 "type": "box",
                 "position": {
-                    "h": 430,
-                    "w": 230,
+                    "zIndex": 4,
                     "x": 20,
                     "y": 90,
-                    "zIndex": 4
+                    "w": 230,
+                    "h": 430
                 },
                 "parameters": {
                     "backgroundColor": "rgba(0, 140, 201, 0)"
@@ -416,24 +423,24 @@
             "text_1": {
                 "type": "text",
                 "position": {
+                    "zIndex": 4,
                     "x": 20,
-                    "y": 100,
-                    "zIndex": 4
+                    "y": 100
                 },
                 "parameters": {
-                    "fontSize": 24,
                     "text": "Filtros",
-                    "textAlignment": "left"
+                    "textAlignment": "left",
+                    "fontSize": 24
                 }
             },
             "box_3": {
                 "type": "box",
                 "position": {
-                    "h": 1220,
-                    "w": 1100,
+                    "zIndex": 0,
                     "x": 280,
                     "y": 90,
-                    "zIndex": 0
+                    "w": 1100,
+                    "h": 1220
                 },
                 "parameters": {
                     "backgroundColor": "rgba(0, 0, 0, 0)",
@@ -443,157 +450,154 @@
             "box_2": {
                 "type": "box",
                 "position": {
-                    "h": 40,
-                    "w": 180,
+                    "zIndex": 5,
                     "x": 30,
                     "y": 30,
-                    "zIndex": 5
+                    "w": 180,
+                    "h": 40
                 },
                 "parameters": {
                     "backgroundColor": "rgba(0, 140, 201, 0)",
                     "borderColor": "rgba(0, 0, 0, 0)",
-                    "imageUrl": "01556000000DGl0"
+                    "imageUrl": "01518000000F5pB"
                 }
             },
             "dimfilter_3": {
                 "type": "listselector",
                 "position": {
-                    "h": 50,
-                    "w": 190,
+                    "zIndex": 100002,
                     "x": 40,
                     "y": 380,
-                    "zIndex": 100002
+                    "w": 190,
+                    "h": 50
                 },
                 "parameters": {
-                    "expanded": false,
-                    "measureField": "count",
                     "step": "Account_Owner_6",
-                    "exploreLink": false
+                    "expanded": false,
+                    "measureField": "count"
                 }
             },
             "dimfilter_1": {
                 "type": "listselector",
                 "position": {
-                    "h": 50,
-                    "w": 190,
+                    "zIndex": 100000,
                     "x": 40,
                     "y": 160,
-                    "zIndex": 100000
+                    "w": 190,
+                    "h": 50
                 },
                 "parameters": {
-                    "expanded": false,
-                    "measureField": "count",
                     "step": "Parent_Account_2",
-                    "exploreLink": false
+                    "expanded": false,
+                    "measureField": "count"
                 }
             },
             "number_7": {
                 "type": "number",
                 "position": {
-                    "w": 200,
+                    "zIndex": 14,
                     "x": 520,
                     "y": 140,
-                    "zIndex": 14
+                    "w": 200
                 },
                 "parameters": {
-                    "fontSize": 42,
-                    "measureField": "count",
                     "step": "all_12",
-                    "textAlignment": "center",
-                    "title": "30-60 Días "
+                    "measureField": "count",
+                    "title": "30-60 Días ",
+                    "fontSize": 42,
+                    "textAlignment": "center"
                 }
             },
             "dimfilter_2": {
                 "type": "listselector",
                 "position": {
-                    "h": 50,
-                    "w": 190,
+                    "zIndex": 100001,
                     "x": 40,
                     "y": 270,
-                    "zIndex": 100001
+                    "w": 190,
+                    "h": 50
                 },
                 "parameters": {
-                    "expanded": false,
-                    "measureField": "count",
                     "step": "Sales_Channel_3",
-                    "exploreLink": false
+                    "expanded": false,
+                    "measureField": "count"
                 }
             },
             "number_5": {
                 "type": "number",
                 "position": {
-                    "w": 200,
+                    "zIndex": 3,
                     "x": 1150,
                     "y": 140,
-                    "zIndex": 3
+                    "w": 200
                 },
                 "parameters": {
-                    "fontSize": 42,
-                    "measureField": "count",
                     "step": "all_15",
-                    "textAlignment": "center",
+                    "measureField": "count",
+                    "title": ">120 Días ",
                     "textColor": "rgb(0, 0, 0)",
-                    "title": ">120 Días "
+                    "fontSize": 42,
+                    "textAlignment": "center"
                 }
             },
             "number_3": {
                 "type": "number",
                 "position": {
-                    "w": 200,
+                    "zIndex": 10,
                     "x": 730,
                     "y": 140,
-                    "zIndex": 10
+                    "w": 200
                 },
                 "parameters": {
-                    "fontSize": 42,
-                    "measureField": "count",
                     "step": "all_13",
-                    "textAlignment": "center",
-                    "title": "60-90 Días"
+                    "measureField": "count",
+                    "title": "60-90 Días",
+                    "fontSize": 42,
+                    "textAlignment": "center"
                 }
             },
             "number_2": {
                 "type": "number",
                 "position": {
-                    "w": 200,
+                    "zIndex": 2,
                     "x": 940,
                     "y": 140,
-                    "zIndex": 2
+                    "w": 200
                 },
                 "parameters": {
-                    "fontSize": 42,
-                    "measureField": "count",
                     "step": "all_14",
-                    "textAlignment": "center",
+                    "measureField": "count",
+                    "title": "90-120 Días ",
                     "textColor": "rgb(0, 0, 0)",
-                    "title": "90-120 Días "
+                    "fontSize": 42,
+                    "textAlignment": "center"
                 }
             },
             "number_1": {
                 "type": "number",
                 "position": {
-                    "w": 230,
+                    "zIndex": 4,
                     "x": 290,
                     "y": 140,
-                    "zIndex": 4
+                    "w": 230
                 },
                 "parameters": {
-                    "exploreLink": false,
-                    "fontSize": 42,
-                    "measureField": "count",
                     "step": "all_5",
+                    "measureField": "count",
+                    "title": "Tiendas Impactadas",
+                    "fontSize": 42,
                     "textAlignment": "center",
-                    "title": "Tiendas Impactadas"
+                    "exploreLink": false
                 }
             },
             "box_4": {
                 "type": "box",
                 "position": {
-                    "h": 160,
-                    "w": 1100,
+                    "zIndex": 1,
                     "x": 280,
                     "y": 90,
-                    "zIndex": 1
+                    "w": 1100,
+                    "h": 160
                 },
                 "parameters": {
                     "backgroundColor": "rgba(0, 0, 0, 0)"
@@ -602,35 +606,35 @@
             "text_2": {
                 "type": "text",
                 "position": {
+                    "zIndex": 4,
                     "x": 300,
-                    "y": 280,
-                    "zIndex": 4
+                    "y": 280
                 },
                 "parameters": {
-                    "fontSize": 24,
-                    "text": "Tiendas Impactadas por Vendedor"
+                    "text": "Tiendas Impactadas por Vendedor",
+                    "fontSize": 24
                 }
             },
             "text_7": {
                 "type": "text",
                 "position": {
+                    "zIndex": 13,
                     "x": 300,
-                    "y": 710,
-                    "zIndex": 13
+                    "y": 710
                 },
                 "parameters": {
-                    "fontSize": 24,
-                    "text": "Tiendas Impactadas"
+                    "text": "Tiendas Impactadas",
+                    "fontSize": 24
                 }
             },
             "chart_2": {
                 "type": "chart",
                 "position": {
-                    "h": 360,
-                    "w": 510,
+                    "zIndex": 2,
                     "x": 300,
                     "y": 320,
-                    "zIndex": 2
+                    "w": 510,
+                    "h": 360
                 },
                 "parameters": {
                     "step": "Account_Owner_16",
@@ -640,11 +644,11 @@
             "chart_1": {
                 "type": "chart",
                 "position": {
-                    "h": 360,
-                    "w": 510,
+                    "zIndex": 2,
                     "x": 850,
                     "y": 320,
-                    "zIndex": 2
+                    "w": 510,
+                    "h": 360
                 },
                 "parameters": {
                     "step": "Parent_Account_11",
@@ -654,20 +658,21 @@
             "text_6": {
                 "type": "text",
                 "position": {
+                    "zIndex": 12,
                     "x": 850,
-                    "y": 280,
-                    "zIndex": 12
+                    "y": 280
                 },
                 "parameters": {
-                    "fontSize": 24,
-                    "text": "Tiendas Impactadas por Distribuidor"
+                    "text": "Tiendas Impactadas por Distribuidor",
+                    "fontSize": 24
                 }
             }
-        }
+        },
+        "layouts": []
     },
     "datasets": [
         {
-            "id": "0Fb5600000017AjCAI",
+            "id": "0Fb180000005QWNCA2",
             "name": "DMS_Impacted_Stores"
         }
     ]

@@ -294,7 +294,7 @@
                 "isFacet": true,
                 "isGlobal": false,
                 "query": {
-                    "pigql": "q = load \"DMS_Effective_Coverage\";q = filter q by 'Distributor_AccountName' in {{ selection(Distributor_AccountName_4) }};q = filter q by 'Sales_Channel' in {{ selection(Sales_Channel_5) }};q = filter q by 'Target_Date' in {{ selection(Target_Date_6) }};q = group q by all;q = foreach q generate (sum('Invoiced_Stores') * 100)/sum('Total_Active_Stores') as 'avg_Invoiced_Stores';",
+                    "pigql": "q = load \"DMS_Effective_Coverage\";q = filter q by 'Target_Date' in {{ selection(Target_Date_11) }};q = filter q by 'Distributor_AccountName' in {{ selection(Distributor_AccountName_4) }};q = filter q by 'Distributor_AccountName' in {{ selection(Distributor_AccountName_13) }};q = filter q by 'Sales_Channel' in {{ selection(Sales_Channel_9) }};q = filter q by 'Sales_Channel' in {{ selection(Sales_Channel_5) }};q = filter q by 'Target_Date' in {{ selection(Target_Date_6) }};q = group q by all;q = foreach q generate (sum('Invoiced_Stores') * 100)/sum('Total_Active_Stores') as 'avg_Invoiced_Stores';",
                     "measures": [
                         [
                             "avg",
@@ -368,7 +368,7 @@
                 "parameters": {
                     "backgroundColor": "rgba(255, 255, 255, 0)",
                     "borderColor": "rgba(255, 255, 255, 0)",
-                    "imageUrl": "01556000000DGl0"
+                    "imageUrl": "01518000000F5pB"
                 }
             },
             "text_1": {
