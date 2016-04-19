@@ -11,7 +11,6 @@
     <apex:attribute name="isValidationError" type="Boolean" description="Flag to check if there is validation error for financial values"/>
     <apex:attribute name="validationErrorMessage" type="string" description="Error message to be shown when there is validation error for financial values"/>
     
-    <apex:attribute name="isy0ProfitInvalid" type="Boolean" description="Flag to check if there is validation error for Y0Profit value"/>
     <apex:attribute name="isConsolidatedOrNonkey" type="Boolean" description="Flag to check the type of financials"/>
     <apex:attribute name="isTargetLaunchDateMisaligned" type="Boolean" description="Flag to check the target launch date misalignment"/>
     <apex:attribute name="targetLaunchDateToDisplay" type="String" description="Target launch date either from local project or local rollout"/>
@@ -627,7 +626,7 @@
                             1. Consolidated and Edit mode
                             2. Turnover aligned and non-edit mode
                         -->
-                        <apex:outputText value="{0, number, ###,###,###.##}" rendered="{! OR(AND(isConsolidated,isEditMode),AND( NOT(isy0TurnoverInvalid), Y0TurnoverAligned,NOT(isEditMode) ) )}">
+                        <apex:outputText value="{0, number, ###,###,###.##}" rendered="{! OR(AND(isConsolidated,isEditMode),AND( Y0TurnoverAligned,NOT(isEditMode) ) )}"> 
                             <apex:param value="{!finWrapper.y0Turnover}" />
                         </apex:outputText>
                         <!--
@@ -656,8 +655,8 @@
                                 </apex:outputText>
                             </a>
                         </apex:outputText>
-                        <apex:outputText rendered="{!AND(Or(valueWrapper.isValueInvalid,valueWrapper.isGrossTOGRTIto), NOT(isEditMode),NOT(GrossTurnoverMisAligned))}">
-                            <a href="#" class="info" title="{!$Label.IPM_TurnOverCP}">
+                        <apex:outputText rendered="{!AND(valueWrapper.isValueInvalid, NOT(isEditMode),NOT(GrossTurnoverMisAligned))}">
+                            <a href="#" class="info" title="{!$Label.IPM_Gross_Turnover_Can_Not_Be_Zero_Or_Negative}">
                                 <apex:outputText value="{0, number, ###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>
@@ -666,7 +665,7 @@
                         <apex:outputText rendered="{!AND(GrossTurnoverMisAligned,NOT(isEditMode), OR(valueWrapper.isMinorValueInvalid,valueWrapper.isGrossTOGRTIto))}">
                         	<a href="#" class="info" title="{!$Label.IPM_TURNOVER} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
                                                                      {!$Label.IPM_TURNOVER} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}
-                                                                     {!$Label.IPM_TurnOverCP}">
+                                                                     {!$Label.IPM_Gross_Turnover_Can_Not_Be_Zero_Or_Negative}">
                                 <apex:outputText value="{0, number, ###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>
@@ -677,7 +676,7 @@
                             1. Consolidated and Edit mode
                             2. Gross Turnover aligned and non-edit mode
                         -->
-                        <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(NOT(OR(valueWrapper.isValueInvalid, valueWrapper.isGrossTOGRTIto)),NOT(GrossTurnoverMisAligned), OR( AND(isConsolidated,isEditMode), AND(GrossTurnoverAligned,NOT(isEditMode) ) )) }"> 
+                        <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(NOT(valueWrapper.isValueInvalid),NOT(GrossTurnoverMisAligned), OR( AND(isConsolidated,isEditMode), AND(GrossTurnoverAligned,NOT(isEditMode) ) )) }"> 
                             <apex:param value="{!valueWrapper.value}" />
                         </apex:outputText>
                         <!--
@@ -707,7 +706,7 @@
                             </a>
                         </apex:outputText> 
                          <apex:outputText rendered="{!AND(OR(valueWrapper.isMinorValueInvalid,valueWrapper.isGrossTOGRTIto), NOT(isEditMode),NOT(IncrementalTurnoverMisAligned))}">
-                            <a href="#" class="info" title="{!$Label.IPM_TurnOverCP}">
+                            <a href="#" class="info" title="{!$Label.IPM_Possible_Error_Will_Not_Block_Progress}">
                                 <apex:outputText value="{0, number, ###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>
@@ -716,7 +715,7 @@
                         <apex:outputText rendered="{!AND(IncrementalTurnoverMisAligned,NOT(isEditMode), OR(valueWrapper.isMinorValueInvalid,valueWrapper.isGrossTOGRTIto))}">
                         	<a href="#" class="info" title="{!$Label.IPM_TURNOVER} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
                                                                      {!$Label.IPM_TURNOVER} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}
-                                                                     {!$Label.IPM_TurnOverCP}">
+                                                                     {!$Label.IPM_Possible_Error_Will_Not_Block_Progress}">
                                 <apex:outputText value="{0, number, ###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>
@@ -770,7 +769,7 @@
                             1. Consolidated and Edit mode
                             2. Profit aligned and non-edit mode
                         -->
-                        <apex:outputText value="{0, number, ###,###,###.##}" rendered="{! OR(AND(isConsolidated,isEditMode), AND( Y0ProfitAligned, NOT(isEditMode) ) ) }"> <!-- NOT(isy0GrossProfitInvalid) -->
+                        <apex:outputText value="{0, number, ###,###,###.##}" rendered="{! OR(AND(isConsolidated,isEditMode), AND( Y0ProfitAligned, NOT(isEditMode) ) ) }"> 
                             <apex:param value="{!finWrapper.y0GrossProfit}" />
                         </apex:outputText>
                         <!--
@@ -800,7 +799,7 @@
                             </a>
                         </apex:outputText>
                         <apex:outputText rendered="{!AND(OR(valueWrapper.isValueInvalid,valueWrapper.isMinorValueInvalid), NOT(isEditMode),NOT(GrossProfitMisAligned))}">
-                            <a href="#" class="info" title="{!$Label.IPM_GrossProfitCP}">
+                            <a href="#" class="info" title="{!$Label.IPM_Possible_Error_Will_Not_Block_Progress}">
                                 <apex:outputText value="{0, number, ###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>
@@ -809,7 +808,7 @@
                         <apex:outputText rendered="{!AND(AND(GrossProfitMisAligned,NOT(isEditMode)), OR(valueWrapper.isValueInvalid,valueWrapper.isMinorValueInvalid))}">
                         	<a href="#" class="info" title="{!$Label.IPM_GROSS_PROFIT} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
                                                                      {!$Label.IPM_GROSS_PROFIT} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}
-                                                                     {!$Label.IPM_GrossProfitCP}">
+                                                                     {!$Label.IPM_Possible_Error_Will_Not_Block_Progress}">
                                 <apex:outputText value="{0, number, ###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>
@@ -850,7 +849,7 @@
                             </a>
                         </apex:outputText>
                         <apex:outputText rendered="{!AND(OR(valueWrapper.isValueInvalid,valueWrapper.isMinorValueInvalid), NOT(isEditMode),NOT(IncrementalProfitMisAligned))}">
-                            <a href="#" class="info" title="{!$Label.IPM_GrossProfitCP}">
+                            <a href="#" class="info" title="{!$Label.IPM_Possible_Error_Will_Not_Block_Progress}">
                                 <apex:outputText value="{0, number, ###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>
@@ -859,7 +858,7 @@
                         <apex:outputText rendered="{!AND(AND(IncrementalProfitMisAligned,NOT(isEditMode)), OR(valueWrapper.isValueInvalid,valueWrapper.isMinorValueInvalid))}">
                         	<a href="#" class="info" title="{!$Label.IPM_GROSS_PROFIT} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
                                                                      {!$Label.IPM_GROSS_PROFIT} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}
-                                                                     {!$Label.IPM_GrossProfitCP}">
+                                                                     {!$Label.IPM_Possible_Error_Will_Not_Block_Progress}">
                                 <apex:outputText value="{0, number, ###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>
@@ -870,7 +869,7 @@
                             1. Consolidated and Edit mode
                             2. Incremental Profit aligned and non-edit mode
                         -->
-                        <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(NOT(valueWrapper.isMinorValueInvalid), OR( AND(isConsolidated,isEditMode),AND(IncrementalProfitAligned,NOT(isEditMode) ) ))}"> <!-- NOT(valueWrapper.isValueInvalid) -->
+                        <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(NOT(valueWrapper.isMinorValueInvalid), OR( AND(isConsolidated,isEditMode),AND(IncrementalProfitAligned,NOT(isEditMode) ) ))}"> 
                             <apex:param value="{!valueWrapper.value}" />
                         </apex:outputText>
                         <!--
@@ -944,7 +943,7 @@
                             </a>
                         </apex:outputText>
                         <apex:outputText rendered="{!AND(valueWrapper.isMinorValueInvalid, NOT(isEditMode),NOT(GrossAdvertisingMisAligned))}">
-                            <a href="#" class="info" title="{!$Label.IPM_AdvertisingCP}">
+                            <a href="#" class="info" title="{!$Label.IPM_Possible_Error_Will_Not_Block_Progress}">
                                 <apex:outputText value="{0, number, ###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>
@@ -953,7 +952,7 @@
                         <apex:outputText rendered="{!AND(AND(GrossAdvertisingMisAligned,NOT(isEditMode)), OR(valueWrapper.isValueInvalid,valueWrapper.isMinorValueInvalid))}">
                         	<a href="#" class="info" title="{!$Label.IPM_BMI} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
                                                                      {!$Label.IPM_BMI} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}
-                                                                     {!$Label.IPM_AdvertisingCP}">
+                                                                     {!$Label.IPM_Possible_Error_Will_Not_Block_Progress}">
                                 <apex:outputText value="{0, number, ###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>
@@ -995,7 +994,7 @@
                             </a>
                         </apex:outputText>
                         <apex:outputText rendered="{!AND(valueWrapper.isMinorValueInvalid, NOT(isEditMode),NOT(IncrementalAdvertisingMisAligned))}">
-                            <a href="#" class="info" title="{!$Label.IPM_AdvertisingCP}">
+                            <a href="#" class="info" title="{!$Label.IPM_Possible_Error_Will_Not_Block_Progress}">
                                 <apex:outputText value="{0, number, ###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>
@@ -1004,7 +1003,7 @@
                         <apex:outputText rendered="{!AND(IncrementalAdvertisingMisAligned,NOT(isEditMode), valueWrapper.isMinorValueInvalid)}">
                         	<a href="#" class="info" title="{!$Label.IPM_BMI} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
                                                                      {!$Label.IPM_BMI} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}
-                                                                     {!$Label.IPM_AdvertisingCP}">
+                                                                     {!$Label.IPM_Possible_Error_Will_Not_Block_Progress}">
                                 <apex:outputText value="{0, number, ###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>
@@ -1059,7 +1058,7 @@
                             1. Consolidated and Edit mode
                             2. POB aligned and non-edit mode
                         -->
-                        <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!OR( AND(isConsolidated,isEditMode),AND(NOT(isy0ProfitInvalid),Y0POBAligned,NOT(isEditMode) ) )}">
+                        <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!OR( AND(isConsolidated,isEditMode),AND(Y0POBAligned,NOT(isEditMode) ) )}"> 
                             <apex:param value="{!finWrapper.y0Profit}" />
                         </apex:outputText>
                         <!--
@@ -1089,7 +1088,7 @@
                             </a>
                         </apex:outputText>
                         <apex:outputText rendered="{!AND(valueWrapper.isMinorValueInvalid, NOT(isEditMode),NOT(GrossPOBMisAligned))}">
-                            <a href="#" class="info" title="{!$Label.IPM_PBOCP}">
+                            <a href="#" class="info" title="{!$Label.IPM_Possible_Error_Will_Not_Block_Progress}">
                                 <apex:outputText value="{0, number, ###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>
@@ -1098,7 +1097,7 @@
                         <apex:outputText rendered="{!AND(GrossPOBMisAligned,NOT(isEditMode), valueWrapper.isMinorValueInvalid)}">
                         	<a href="#" class="info" title="{!$Label.IPM_PROFIT_BEFORE_OVERHEADS} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
                                                                      {!$Label.IPM_PROFIT_BEFORE_OVERHEADS} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}
-                                                                     {!$Label.IPM_PBOCP}">
+                                                                     {!$Label.IPM_Possible_Error_Will_Not_Block_Progress}">
                                 <apex:outputText value="{0, number, ###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>
@@ -1109,7 +1108,7 @@
                             1. Consolidated and Edit mode
                             2. Gross POB aligned and non-edit mode
                         -->
-                        <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(NOT(valueWrapper.isMinorValueInvalid), OR(AND(isConsolidated,isEditMode),AND(GrossPOBAligned,NOT(isEditMode) )) )}"> <!-- NOT(valueWrapper.isValueInvalid), -->
+                        <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(NOT(valueWrapper.isMinorValueInvalid), OR(AND(isConsolidated,isEditMode),AND(GrossPOBAligned,NOT(isEditMode) )) )}"> 
                             <apex:param value="{!valueWrapper.value}" />
                         </apex:outputText>
                         <!--
@@ -1139,7 +1138,7 @@
                             </a>
                         </apex:outputText>
                         <apex:outputText rendered="{!AND(valueWrapper.isMinorValueInvalid, NOT(isEditMode),NOT(IncrementalPOBMisAligned))}">
-                            <a href="#" class="info" title="{!$Label.IPM_PBOCP}">
+                            <a href="#" class="info" title="{!$Label.IPM_Possible_Error_Will_Not_Block_Progress}">
                                 <apex:outputText value="{0, number, ###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>
@@ -1148,7 +1147,7 @@
                         <apex:outputText rendered="{!AND(IncrementalPOBMisAligned,NOT(isEditMode), valueWrapper.isMinorValueInvalid)}">
                         	<a href="#" class="info" title="{!$Label.IPM_PROFIT_BEFORE_OVERHEADS} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
                                                                      {!$Label.IPM_PROFIT_BEFORE_OVERHEADS} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}
-                                                                     {!$Label.IPM_PBOCP}">
+                                                                     {!$Label.IPM_Possible_Error_Will_Not_Block_Progress}">
                                 <apex:outputText value="{0, number, ###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>
@@ -1159,7 +1158,7 @@
                             1. Consolidated and Edit mode
                             2. Incremental POB aligned and non-edit mode
                         -->
-                        <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(NOT(valueWrapper.isMinorValueInvalid), OR( AND(isConsolidated,isEditMode),AND(IncrementalPOBAligned,NOT(isEditMode) ) ))}"> <!-- NOT(valueWrapper.isValueInvalid), -->
+                        <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(NOT(valueWrapper.isMinorValueInvalid), OR( AND(isConsolidated,isEditMode),AND(IncrementalPOBAligned,NOT(isEditMode) ) ))}"> 
                             <apex:param value="{!valueWrapper.value}" />
                         </apex:outputText>
                         <!--

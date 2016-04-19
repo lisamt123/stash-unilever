@@ -8226,6 +8226,13 @@ White Space is a strategic classifier – it means launching an existing Unileve
         <value>Gross Profit Cannot Be Zero or Null, Please Paste(ctrl + V) correct Data!!</value>
     </labels>
     <labels>
+        <fullName>IPM_Gross_Turnover_Can_Not_Be_Zero_Or_Negative</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Gross Turnover Can Not Be Zero Or Negative</shortDescription>
+        <value>Gross Turnover cannot be zero or negative.</value>
+    </labels>
+    <labels>
         <fullName>IPM_Guest</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -10352,6 +10359,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>IPM_PojectSetupUrl</shortDescription>
         <value>/apex/IPM_ProjectSetUpView</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Possible_Error_Will_Not_Block_Progress</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Possible Error Will Not Block Progress</shortDescription>
+        <value>Possible error-current value will not block progress</value>
     </labels>
     <labels>
         <fullName>IPM_PostponeDate_Required</fullName>
