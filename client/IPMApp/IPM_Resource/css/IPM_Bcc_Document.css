@@ -19,8 +19,8 @@
      
 /* content styles */
     .pageHeadToolbar .SecButtonSet{margin: 17px 10px 10px 10px;}
-    .orangebg{border:1px solid #ae6b27 ;color:#fff ;}
-    .orangebg,.orangebg:hover{background:#f79c3f ;}
+    .ipmButton.orangebg{border:1px solid #ae6b27 ;color:#fff;background:#f79c3f;}
+	.ipmButton.orangebg:hover{background:#e38a2d;color:#fff;}
     .bcctitleContainer{padding-left:15px;}
     .bccStatusContainer{width:52%;}
     .bosscardMtop{margin-top:10px;}
@@ -62,7 +62,7 @@
 	.updateBox a{color:#fff ;}
 	.updateBox a:hover{background:#e38a2d ;}
 	
-	.smalllinfo
+	.SecButtonSet .icoButton.smalllinfo
 	{
 	   height:16px ;
 	   width:16px ;
@@ -73,7 +73,7 @@
 	.tooltip > .tooltip-inner {-webkit-box-shadow: 1px 4px 5px 2px rgba(0,0,0,0.15);-moz-box-shadow: 1px 4px 5px 2px rgba(0,0,0,0.15);box-shadow: 1px 4px 5px 2px rgba(0,0,0,0.15);margin-left:100px;font-weight:normal;background-color: #00b1a5;border-radius:2px;text-align:left;width:500px;}
     .tooltip > .tooltip-arrow {border-top-color:#00b1a5;}
     .tooltip.bottom .tooltip-arrow {border-bottom-color:#00b1a5;}
-      .ui-tooltip {
+    .ui-tooltip.ui-widget.ui-corner-all.ui-widget-content {
     -webkit-box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15);
     -moz-box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15);
     box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15);

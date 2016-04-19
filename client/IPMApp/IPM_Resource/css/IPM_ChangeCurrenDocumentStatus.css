@@ -15,7 +15,7 @@
         .changeStatusPage textarea{width:100%;}
          .bluText{display:block;color:#007EBB;}
         /*ipmButton Styles */
-        .ipmButton{padding: 0.625em;font-size: 1em;border-radius: 2px;height: 100%;text-transform: capitalize;text-decoration: none;width:100%}
+        .ipmButton{padding: 0.625em;font-size: 16px;border-radius: 2px;height: 100%;text-transform: capitalize;text-decoration: none;width:100%}
         .ipmButton.green{background:#81bf42 ;}
         .ipmButton.green:hover{background:#56843b ;}
         .changeStatus .ipmButtonGroup {padding-bottom: 4%;padding-right: 6px; position:relative;}         

@@ -13,7 +13,7 @@
     .ipmUpdateStatusTab .panel {background:transparent;}
     .ipmUpdateStatusTab .ipmStatusTabs {padding:0 0 0 40px; margin:0; border-bottom:2px solid #6C9A40}
     .ipmUpdateStatusTab .ipmStatusTabs li {margin-left:10px ;display:inline-block;color:#666666;padding:20px 40px; font-weight:bold;cursor:pointer;}
-    .ipmUpdateStatusTab .ipmStatusTabs li.active{background:#F3FCEB;border:2px solid #96B87B; color:#496E0F; position:relative; top:2px; border-bottom:2px solid #F3FCEB; cursor:pointer; border-top-left-radius:3px; border-top-right-radius:3px;-moz-border-top-left-radius:3px; -moz-border-top-right-radius:3px;-webkit-border-top-left-radius:3px; -webkit-border-top-right-radius:3px;}
+    .ipmUpdateStatusTab .ipmStatusTabs li.active{background:#F3FCEB;border:2px solid #96B87B; color:#496E0F; position:relative; top:4px; border-bottom:2px solid #F3FCEB; cursor:pointer; border-top-left-radius:3px; border-top-right-radius:3px;-moz-border-top-left-radius:3px; -moz-border-top-right-radius:3px;-webkit-border-top-left-radius:3px; -webkit-border-top-right-radius:3px;}
     .sContainer{background:#F3FCEB;padding:10px;}
     .StatusContent{margin-top:20px;}
     .StatusLabel{display:block;text-align:center;margin-bottom: 20px;}

@@ -42,13 +42,6 @@ function closeimagepopup(){
 function pagerefresh() {
 	window.location.reload(true);    
 }
-
-/* Below function performs page reload when the condition is true. It redirects to core parameters page. */
-IPMAppEP.Closepopup = new function() {
-if (IPMAppEP.isSave === true) {
-	window.top.location.href = IPMAppEP.corePage + '?id=' + IPMAppEP.projectId;
-}
-};
     	
 jq(document).ready(function(){
     var remaining = jq("#charCountRemaining");
@@ -121,10 +114,11 @@ function invalidChar(key)
 	
 	  function closepopup() 
         {
-        	if (IPMAppEP.prosuccess) { 
+			var holder = IPMAppEP.prosuccess;
+        	if (holder === 'true') { 
             	window.top.location.href = IPMAppEP.corePage + '?id=' + IPMAppEP.projectId; 
             }
-        };
+        }
 	
 	jq('.ccCheck').change(function(e) {
         if (jq('.brandposList input[type=checkbox]:checked').length > 20) {
@@ -223,4 +217,74 @@ jq('.gcltquestions  input[type=radio]').each(function(e){
         jq('#tldWarningDialog').modal('hide'); 
     }
     const tldOrignalValue = jq('.dateInputBox').prop("defaultValue");
+	
+(function ($) {
+function _processValue (param) {
+  var el = $(this);
+  if(el.is(":text") || el.is("textarea") || el.is(":file")){
+	el.data(param, el.val());
+  }
+  else if(el.is(":checkbox") || el.is(":radio")){
+	el.data(param, el[0].checked);
+  }
+  else if(el.is("select")){
+	el.data(param, el.val());
+  }
+}
+
+$.fn.extend({
+  dumpInitialValues : function(){
+	this.each(function() {
+	  _processValue.call(this, "initialValue");
+	});
+  },
+  checkForModifications: function() {
+	var flag = false;
+	this.each(function() {
+	  var el = $(this);
+	  if(el.is(":text") || el.is("textarea") || el.is(":file")){
+		flag = (el.data("initialValue") != el.val());
+	  }
+	  else if(el.is(":checkbox") || el.is(":radio")){
+		flag = (el.data("initialValue") != el[0].checked);
+	  }
+	  else if(el.is("select")){
+		flag = (el.data("initialValue") != el.val());
+	  }
+	  if(flag) return false;
+	})
+	return flag;
+  }
+});
+
+$(function(){
+$("body").data("isSkipNavigationConfirm", false);
+$(":input").dumpInitialValues();
+function enableNavigationConfirmation(){
+	 if($(":input").checkForModifications(1)){
+		 $(this).removeAttr( "data-dismiss" );
+		 parent.parent.location.reload();
+	 }
+	 else{
+		 $(this).attr("data-dismiss","modal");
+	 }
+ };
+$(".modal-content .close:visible", parent.parent.document).not(".no-navigate-away").click(enableNavigationConfirmation);   
+});
+function unloadIframe(){
+  top.location.href=IPMAppEP.corePage+"?Id="+IPMAppEP.projectId;
+}
+function unloadPage()
+{ 
+  if($(":input").checkForModifications() && !$("body").data("isSkipNavigationConfirm")){
+	  return IPMAppEP.wmessage;
+  }
+} 
+
+window.onbeforeunload = unloadPage;
+
+})(jq);
+function skipValidation() {
+  jq("body").data("isSkipNavigationConfirm", true);
+}
    

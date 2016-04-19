@@ -141,26 +141,7 @@ function deleteCountry(str1, str2) {
     jq(".confirmCountry").addClass("removeCountry");
 }
 function skipTestrender() {
-
-/* Below function checks the checkboxes value with the backend values. If the values match the checkboxes will be checked and disables the checkbox. */
-    function conceptcheck() {
-        var selectedValues = IPMAPPCMI.concepts;
-        var selectedValuesArr = selectedValues.split(';');
-        if (selectedValuesArr.length !== 0) {
-            jq('.cmiTestList .dropdown-menu input[type="checkbox"]').each(function() {
-                var val = jq(this).attr('value');
-                if (jq.inArray(val, selectedValuesArr) !== -1) {
-                    jq(this).prop('checked', true);
-                    jq(this).prop('disabled', true);
-                    jq(this).next('label').addClass('selected');
-                } else {
-                    jq(this).prop('checked', false);
-                    jq(this).next('label').removeClass('selected');
-                    jq(this).prop('disabled', false);
-                }
-            });
-        }
-    }
+	conceptcheck();
     /* Below script works on click event. When clicked on remove button it deletes the cmi by calling 'deletCMI' function and hides the modal. */
     jq(document).on('click', '#ipmCMIModalDelete .removeCMI', function() {
         var questionId = jq(this).attr('data-result');
@@ -258,3 +239,23 @@ function skipTestrender() {
         }
     });
 }
+
+/* Below function checks the checkboxes value with the backend values. If the values match the checkboxes will be checked and disables the checkbox. */
+    function conceptcheck() {
+        var selectedValues = IPMAPPCMI.concepts;
+        var selectedValuesArr = selectedValues.split(';');
+        if (selectedValuesArr.length !== 0) {
+            jq('.cmiTestList .dropdown-menu input[type="checkbox"]').each(function() {
+                var val = jq(this).attr('value');
+                if (jq.inArray(val, selectedValuesArr) !== -1) {
+                    jq(this).prop('checked', true);
+                    jq(this).prop('disabled', true);
+                    jq(this).next('label').addClass('selected');
+                } else {
+                    jq(this).prop('checked', false);
+                    jq(this).next('label').removeClass('selected');
+                    jq(this).prop('disabled', false);
+                }
+            });
+        }
+    }

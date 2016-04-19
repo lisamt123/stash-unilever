@@ -217,16 +217,10 @@ jq(function(){
    jq(":input").change(function() {
 		mainPageUnsaved = true;
 	});
-	CKEDITOR.on('instanceReady', function(){
-	   jq.each( CKEDITOR.instances, function(instance) {
-		CKEDITOR.instances[instance].on("change", function(e) {
-			for ( instance in CKEDITOR.instances){
-			CKEDITOR.instances[instance].updateElement();
-			}
-			mainPageUnsaved = true;
-		});
-	   });
-	});
+	for (var i in CKEDITOR.instances) {
+		CKEDITOR.instances[i].on('change', function() {
+		unsaved = true; });
+	}
 });
 
  function changeAlert(){

@@ -134,3 +134,4 @@ select:disabled {
 .buttonMarginRight{margin-right:15px;}
 .dateFormat {display:none;}
 .icoButton.question{margin-bottom:5px;}
+.dateInputBox.calendar{width:40%;}

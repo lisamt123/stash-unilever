@@ -42,6 +42,7 @@
 	.dateFormat {display:none;}
 	.buttonMarginRight{margin-right:15px;}
 	.marginL100P {margin-left:100%;} 
+	.dateInputBox.calendar{width:40%;}
        
 @media only screen and (min-device-width:768px) and (max-device-width:1024px) { 
    .marginL100P { 

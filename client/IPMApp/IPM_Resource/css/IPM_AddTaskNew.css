@@ -28,7 +28,7 @@
 	.errorMsg:before,.custErr:before{left: 10%;position: absolute;border-top: 1px #ffebec solid;border-right: 1px #ffebec solid;background: #ffebec;content: " ";height: 15px;width: 15px;-ms-transform: rotate(-45deg);transform: rotate(-45deg);}
 	.errorMsg:before{top: 73px;}
 	.custErr:before{top: 78px;}
-	.dateInput .dateInputBox{width:66%;}
+	.dateInput .dateInputBox{width:40%;}
 	.input-group-addon{padding: 0;margin-top: -3px;width: 1px;background:none; border:none;color: #007dbb;font-size: 1.3em; left:66%; top:283px; position:absolute;}
 	body{height:100%;}
 	.EditTask .ipmButtonGroup{height:10%;margin-bottom:10px;}

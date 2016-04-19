@@ -1268,10 +1268,10 @@
 	.charterApprover a{color:#007DBB ;}
 	
 	.proMytodoPagination{color:#333;display:block;margin:0 10px;}
-    .proMytodoArrows{margin:0 10px;font-weight: bold;text-decoration:none;border:0 ;background:none ;}
+    .btn.proMytodoArrows{font-weight: bold;text-decoration:none;border:0 ;background:none ;margin: 0 10px;}
     .proMytodoArrows:hover{text-decoration:none;}
-	.btn.proMytodoActive,.btn.proMytodoActive:hover{color:#333 ;background:none ;border:0;}
-	.btnDisabled.proMytodoNotActive,.btnDisabled.proMytodoNotActive:hover{color:#AEAEAE ;background:none ;border:0;}
+	.btn.proMytodoActive,.btn.proMytodoActive:hover{color:#333 ;background:none ;border:0;margin: 0 10px;}
+	.btnDisabled.proMytodoNotActive,.btnDisabled.proMytodoNotActive:hover{color:#AEAEAE ;background:none ;border:0;margin: 0 10px;}
 	.buttonmarRight{margin-right:15px;}
 	.globeContainer .headerglb{margin-top:0;}
 	.globeContainer .grentxt{margin-top:5px ;}
