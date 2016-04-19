@@ -4,11 +4,6 @@
 		max-width:100%;
 		max-height:162px;
 	}
-	/*.ipmImage{
-	display:block;
-	width:160px;
-	height:160px;
-	}*/
 	.ipmTaskWidget .panel-heading {
 	    margin: 0 15px;
 	    padding: 20px 0 10px;
@@ -71,14 +66,14 @@
 		font-size: 16px;
 	}
 	.sliderContent {
-	    font-size: 1em;
-	    color: #333333;
+	    font-size: 16px;
+	    color: #333;
 	    height: 120px;
 	    text-overflow: ellipsis;
 	    overflow: hidden;
 	}
 	.contentHeader {
-	    color: #666666;
+	    color: #666;
 	    margin: 10px 0;
 	    font-size: 24px;
 	    font-weight: bold;
@@ -510,5 +505,6 @@
 			max-height:240px;
 		}
 	}
+	.homeDivide{margin-bottom:10px;}
 	
 	

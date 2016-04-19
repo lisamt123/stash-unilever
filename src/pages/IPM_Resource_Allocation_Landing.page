@@ -64,7 +64,7 @@
                     <div class="greyContainer">
                         <div class="col-sm-12 greybg">
                             <div class="col-sm-12 noPadleft categorySearch teamSearch1">
-                                <apex:inputtext html-placeholder="Search name, email ID" value="{!SearchTeamMem}">
+                                <apex:inputtext styleClass="teamSearchInput" html-placeholder="Search name, email ID" value="{!SearchTeamMem}">
                                     <apex:actionSupport event="onkeyup" action="{!FilterTeamMember}" reRender="SameCat,memberNotFound"/>
                                 </apex:inputtext>
                                 <apex:image styleClass="srchImage" value="{!URLFOR($Resource.IPM_Resource, 'images/search.svg')}"  />
@@ -111,7 +111,7 @@
                     </div>
                     <div class="txtRight addButtonContainer pull-right">
                         <apex:commandLink styleClass="ipmButton convertLowercase cancelButton" onclick="dismissModal();" value="{!$Label.IPM_CANCEL}"/>
-                        <apex:commandLink styleClass="ipmButton convertLowercase primary" action="{!AddMemberToWrapper}" value="{!$Label.IPM_ADD_SELECTED_MEMBERS}" status="Loading" html-data-dismiss="modal" rerender="none" onComplete="closepopup()"/>
+                        <apex:commandLink styleClass="ipmButton convertLowercase primary" action="{!AddMemberToWrapper}" value="{!$Label.IPM_ADD_SELECTED_MEMBERS}" status="Loading" html-data-dismiss="modal" rerender="none" onclick="skipValidation();" onComplete="closepopup()"/>
                     </div>
                 </apex:outputPanel>
                 <!-- Below rendered condition will execute output panel if  CoreMembers is not empty-->
@@ -160,13 +160,13 @@
                     </apex:actionFunction>
                     <div class="addButtonContainer editbContainer pull-right">
                         <apex:commandLink styleClass="buttonmarRight convertLowercase ipmButton cancelButton" onclick="dismissModal();" value="{!$Label.IPM_CANCEL}"/>
-                        <apex:commandLink styleClass="buttonmarRight convertLowercase ipmButton primary" action="{!updateCoreMember}" value="{!$Label.IPM_Update} {!ButtonLabel}" html-data-dismiss="modal" status="Loading" rerender="none" onComplete="closepopup()"/>
+                        <apex:commandLink styleClass="buttonmarRight convertLowercase ipmButton primary" action="{!updateCoreMember}" value="{!$Label.IPM_Update} {!ButtonLabel}" html-data-dismiss="modal" status="Loading" rerender="none" onclick="skipValidation();" onComplete="closepopup()"/>
                     </div>
                 </apex:outputPanel>
             </div>  
             <apex:actionStatus startText="" id="Loading" startStyleClass="proInit"/> 
             <script>
-                var IPMApp = {teamurl:'{!URLFOR($Page.IPM_Team)}', projectID:'{!projectID}'};  
+                var IPMApp = {teamurl:'{!URLFOR($Page.IPM_Team)}', projectID:'{!projectID}',wmessage:'{!$Label.IPM_Unsaved_Alert}'};  
             </script>
             
         </apex:pageBlock>

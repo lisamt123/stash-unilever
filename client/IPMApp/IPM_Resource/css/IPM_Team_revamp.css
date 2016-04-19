@@ -225,10 +225,10 @@
     text-align: left;
     width: 500px;
 }
-.tooltip.left .tooltip-arrow {
+div.tooltip.left .tooltip-arrow {
     border-left-color: #00b1a5;
 }
-.tooltip.top .tooltip-arrow {
+div.tooltip.top .tooltip-arrow {
     border-top-color: #00b1a5;
 }
 .memContainer select {
@@ -243,7 +243,7 @@
 .infoMarTop {
     margin-top: 6px;
 }
-.tooltip.bottom .tooltip-arrow {
+div.tooltip.bottom  .tooltip-arrow{
     border-bottom-color: #00b1a5;
 }
 .custPosition {
