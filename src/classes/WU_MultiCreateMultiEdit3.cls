@@ -19,6 +19,7 @@ public class WU_MultiCreateMultiEdit3{
         populateMasterList();    
     }
     
+	
     public void fetchLatestRecords(){
         masterWarehouseList = [SELECT Id,Name,WU_Committed_Max_PalletStorage__c,WU_Current_Utilization__c,WU_SAPCode_s__c,
                                WU_ToDate__c,WU_FromDate__c,WU_Utilization_Type__c,OwnerId,WU_SAPName_s__c,WU_Average_Current_Utilization__c,
