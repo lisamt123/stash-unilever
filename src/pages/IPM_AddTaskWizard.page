@@ -105,8 +105,8 @@
                     </div>
                     
                     <div class="buttonmarRight ipmButtonGroup pull-right">                
-                        <apex:commandLink id="addLink" action="{!doSaveTasks}" value="Add" styleClass="ipmButton green" rendered="{!if(taskId == null,true,false)}" reRender="form, scriptToRerender" onComplete="{!if(validate,'pageclose()','')};skipValidation();"/>
-                         <apex:commandLink id="saveLink" action="{!doSaveTasks}" value="Save" styleClass="ipmButton green" rendered="{!if(taskId != null,true,false)}" onComplete="pageclose();skipValidation();"/></div>
+                        <apex:commandLink id="addLink" action="{!doSaveTasks}" value="Add" styleClass="ipmButton green" rendered="{!if(taskId == null,true,false)}" reRender="form, scriptToRerender" onclick="skipValidation();" onComplete="{!if(validate,'pageclose()','')};"/>
+                         <apex:commandLink id="saveLink" action="{!doSaveTasks}" value="Save" styleClass="ipmButton green" rendered="{!if(taskId != null,true,false)}" onclick="skipValidation();" onComplete="pageclose();"/></div>
             
                 <apex:outputPanel id="popup">
                     <apex:outputPanel styleClass="popupBg" layout="block"

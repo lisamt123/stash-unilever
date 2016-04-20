@@ -50,10 +50,10 @@
                                 <apex:selectOptions value="{!CountryValue}"  id="CValue"></apex:selectOptions>                  
                            </apex:selectList>
                            <div Id = "DivButton" Style="display: none;">
-                              <apex:commandButton value="{!$Label.IPM_FinancialGrid_Submit}" action="{!submit}" id="SubBtn" styleclass="ipmButton green" disabled="{!flag}" reRender="C,outdata,CValue,message" oncomplete="chdropdown('{!ListCountries}');skipValidation();"/> 
+                              <apex:commandButton value="{!$Label.IPM_FinancialGrid_Submit}" action="{!submit}" id="SubBtn" styleclass="ipmButton green" disabled="{!flag}" reRender="C,outdata,CValue,message" onclick="skipValidation();" oncomplete="chdropdown('{!ListCountries}');"/> 
                            </div>    
-                            <apex:commandButton value="{!$Label.IPM_FinancialGrid_goBack}" action="{!goBack}"  id="bckbtn"  styleclass="ipmButton green" oncomplete="skipValidation();"/> 
-                            <button onclick="clearAll();" oncomplete="skipValidation();" id="Clrbtn" class="ipmButton green" >{!$Label.IPM_FinancialGrid_Clear}</button> 
+                            <apex:commandButton value="{!$Label.IPM_FinancialGrid_goBack}" action="{!goBack}"  id="bckbtn"  styleclass="ipmButton green" /> 
+                            <button onclick="clearAll();skipValidation();" id="Clrbtn" class="ipmButton green" >{!$Label.IPM_FinancialGrid_Clear}</button> 
                             
                                 <!-- render only if the flag is true this is for the appropriate message to be displayed on the page. -->
                                 <apex:outputPanel layout="block" styleClass="gridInfo" rendered="{!flag}">

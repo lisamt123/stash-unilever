@@ -203,7 +203,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                     otifAnalyticRollOut.IPM_Project_Span__c = IPM_Utils.Local;
                     otifAnalyticRollOut.IPM_Geography__c=ipmCountryMap.containskey(pr.id)?ipmCountryMap.get(pr.id):'';
                     otifAnalyticRollOut.IPM_Market_Cluster__c = pr.Market_Cluster_Name__c;
-                    otifAnalyticRollOut.IPM_Phase__c = pr.Local_Rollout_Phase__c;
+                    otifAnalyticRollOut.IPM_Phase__c = pr.Regional_Project__r.IPM_Phase__c;
                    // otifAnalyticRollOut.IPM_Key_NonKey__c = pr.KeyMCO__c?IPM_ConstantUtils.OTIF_YES:IPM_ConstantUtils.OTIF_NO;
                     otifAnalyticRollOut.IPM_IC_NBU__c = IPM_Utils.IPM_IC_NBU;
                     regionalrolloutid=pr.Regional_Project__c != null?pr.Regional_Rollout__r.id:null;
@@ -626,6 +626,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                                                                                                     IPM_Regional_PL__r.Name,
                                                                                                     Regional_Project__r.IPM_SourceProjectType__c,
                                                                                                     Regional_Project__r.Id,
+                                                                                                    Regional_Project__r.IPM_Phase__c,
                                                                                                     IPM_Rollout_Span__c
                                                                                                     FROM IPM_Project_Rollout__c 
                                                                                                     //WHERE IPM_Project__r.id IN:rolloutprojectIdSet Limit 50000]);

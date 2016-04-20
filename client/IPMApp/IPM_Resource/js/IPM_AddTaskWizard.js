@@ -20,8 +20,6 @@ function pagecloseNewTask(){
 	} 
 }
 jq(document).ready(function($) {
-  addtaskwizard();
-  addtasklist();
 	var max = 225;
 	jq('textarea.todoName').keypress(function(e) {
 		if (e.which < 0x20) {
@@ -35,14 +33,16 @@ jq(document).ready(function($) {
 	});
 });
 
-function addtaskwizard(){
 var unsaved = false;
-var jq = jQuery.noConflict();
 jq(function(){       
       jq(":input").change(function() {
            unsaved = true;
        });
-     var frame = parent.document.getElementById("ipmMstoneTaskWizard");
+	   if(window.parent.location.href.indexOf("Tasklist") > -1) {
+			var frame = parent.document.getElementById("ipmModalDiv");
+	   }else{
+		    var frame = parent.document.getElementById("ipmMstoneTaskWizard");
+	   }
       jq(frame).find('.close').click(function(){
           if(unsaved){
               jq(this).removeAttr( "data-dismiss" );
@@ -51,12 +51,15 @@ jq(function(){
           else{
               jq(this).attr("data-dismiss","modal");
           }
-      });
-       
+      }); 
   });   
   
   function unloadIframe(){
-    window.parent.location.href=IPMAppComp.pageRefProSetupView + '?Pid=' + IPMAppComp.projectId + '&TodoId=todos';
+	  if(window.parent.location.href.indexOf("Tasklist") > -1) {
+		   window.parent.location.href=IPMAppComp.TasklistPageRef + '?id=' + IPMAppComp.projectId;
+	  }else{
+		   window.parent.location.href=IPMAppComp.pageRefProSetupView + '?Pid=' + IPMAppComp.projectId + '&TodoId=todos';
+	  }
   }
   
    function unloadPage()
@@ -72,44 +75,3 @@ jq(function(){
  function skipValidation() {
      unsaved = false;
  }
-}
-
-function addtasklist(){
-  var unsaved = false;
-  var jq = jQuery.noConflict();
-  jq(function(){       
-        jq(":input").change(function() {
-             unsaved = true;
-         });
-       var frame = parent.document.getElementById("ipmModalDiv");
-        jq(frame).find('.close').click(function(){
-            if(unsaved){
-                jq(this).removeAttr( "data-dismiss" );
-                unloadIframe();
-            }
-            else{
-                jq(this).attr("data-dismiss","modal");
-            }
-        });
-         
-    });   
-    
-    function unloadIframe(){
-      window.parent.location.href=IPMAppComp.TasklistPageRef + '?id=' + IPMAppComp.projectId;
-    }
-    
-     function unloadPage()
-   { 
-       if(unsaved){
-           return IPMAppComp.wmessage;
-       }
-   } 
-  
-   window.onbeforeunload = unloadPage;
-   
-   /* Below code is to skip the unsaved changes*/
-   function skipValidation() {
-       unsaved = false;
-   }
-  
-}

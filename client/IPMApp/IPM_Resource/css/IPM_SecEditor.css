@@ -826,3 +826,13 @@ div.metric table.ecoDesignCountry tr th.fourthCol div.colProject span{
     white-space: normal;
 	width:123px;
 }
+
+div.metric table.ecoDesignCountry tbody tr td div.cellWidth:first-child{
+    width:57%;
+    float: left;
+ }
+ div.metric table.ecoDesignCountry tbody tr td div.cellWidth:last-child{
+    width: 41%;
+    float: left;
+    padding-left: 10px;
+ }

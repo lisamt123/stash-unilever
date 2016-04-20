@@ -24,4 +24,4 @@ button.ipmButton.green{height:34px ;}
 .gridInfo {margin-bottom:20px;border: 1px solid #B0D2E6;padding: 10px;border-radius: 4px;text-indent: 30px;background: url(../images/info_icon.png) no-repeat 12px 10px #E5F8FF;}
 .gridInfo label{color: #007DBB ;}
 .navbar .navbar-nav>li a{font-size:14px;}
-.btn.ipmButton.green{height:32px;font-size:16px;}
+.btn.ipmButton.green,.btnDisabled.ipmButton.green{height:32px;font-size:16px;}

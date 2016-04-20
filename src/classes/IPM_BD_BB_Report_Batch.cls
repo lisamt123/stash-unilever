@@ -248,6 +248,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                                                                                                     IPM_Global_OR_Regional__c,
                                                                                                     IPM_Parent_Project_Name__c,
                                                                                                     IPM_Regional_PL__r.Name,
+                                                                                                    Regional_Project__r.IPM_Phase__c,
                                                                                                     Regional_Project__r.IPM_SourceProjectType__c,
                                                                                                     Regional_Project__r.Id                                                                    
                                                                                                     FROM IPM_Project_Rollout__c 
@@ -593,7 +594,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                         r.IPM_Project_Span__c = IPM_Utils.Local;
                         r.IPM_Geography__c=ipmCountryMap.containskey(pr.id)?ipmCountryMap.get(pr.id):'';
                         r.IPM_Market_Cluster__c = pr.Market_Cluster_Name__c;
-                        r.IPM_Phase__c = pr.Local_Rollout_Phase__c;
+                        r.IPM_Phase__c = pr.Regional_Project__r.IPM_Phase__c;
                         r.IPM_Key_NonKey__c = pr.KeyMCO__c?IPM_ConstantUtils.OTIF_YES:IPM_ConstantUtils.OTIF_NO;
                         r.IPM_IC_NBU__c = IPM_Utils.IPM_IC_NBU;
                         regionalrolloutid=pr.Regional_Project__c != null?pr.Regional_Rollout__r.id:null;
