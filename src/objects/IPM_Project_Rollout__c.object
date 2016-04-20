@@ -3195,6 +3195,24 @@ Case(Global_Project_Phase__c,
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000L2bc_IPM_Project_Rollout</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE0000000L2bc</label>
+        <queue>IPM_a7IE0000000L2bc</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000L2br_IPM_Project_Rollout</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_NEW DELHI RO</label>
+        <queue>IPM_a7IE0000000L2br</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <label>IPM Project Rollout Name</label>
         <trackHistory>false</trackHistory>

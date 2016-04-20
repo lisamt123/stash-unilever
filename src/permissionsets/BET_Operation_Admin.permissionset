@@ -34750,7 +34750,7 @@
     </tabSettings>
     <tabSettings>
         <tab>uw_BET__c</tab>
-        <visibility>None</visibility>
+        <visibility>Available</visibility>
     </tabSettings>
     <tabSettings>
         <tab>uw_Brand__c</tab>

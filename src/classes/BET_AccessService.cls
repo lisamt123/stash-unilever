@@ -7,6 +7,7 @@ History
 
 VERSION  AUTHOR                DATE        DETAIL   Description
 1.0      m.bluj@polsource.com  23-07-2015  Initial
+1.1        blessy.voola@accenture.com 24-Mar-2016    Do not send notification to inactive BET owner
 *************************************************************************************/
 public without sharing class BET_AccessService {
 	
@@ -131,6 +132,10 @@ public without sharing class BET_AccessService {
 				requestIds.add(mrequest.id);
 			}
 			if(!requestIds.isEmpty()){
+				//Do not send notification if BET owner is inactive
+           uw_Bet__c betowner = [select id,name,ownerId from uw_Bet__c where id=:betId];
+            User owner=[select id,isactive from User where id=:betowner.ownerid];
+            if(owner.isactive)
 				BET_EmailNotificationService.notifyBetOwnerOfMultipleMemberRequestsFromIPM(betId,projectId);
 			}
 		}catch(Exception e){
