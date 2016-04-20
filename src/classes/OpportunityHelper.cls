@@ -1,6 +1,6 @@
 /**********************************************************************
 Name: OpportunityHelper
-Purpose: This is a helper class of OpportunityTrigger. Create/Update/Delete Oppertunitylineitems based on Package value in Opportunity  
+Purpose: This is a helper class of OpportunityTrigger. Create/Update/Delete Oppertunitylineitems based on Package in Opportunity  
 History
 -------
 VERSION AUTHOR    DATE         DETAIL Description
@@ -8,16 +8,13 @@ VERSION AUTHOR    DATE         DETAIL Description
 ***********************************************************************/
 public class OpportunityHelper {
 	
-	List<String> listofPackageNames= new List<String>();
-	List<String> listofPriceBooks= new List<String>();
-	List<OpportunityLineItem> listofOpportunityLineItem = new List<OpportunityLineItem>();
-	List<Id> listofOpportunityId = new List<Id>();
-
-    // Calling this method for after update trigger 
-    public void opportunityUpdate(List<Opportunity> listNewTrigger, Map<Id,Opportunity> mapOld){ 
+	// Calling this method for after update trigger 
+    public static void opportunityUpdate(List<Opportunity> listNewTrigger, Map<Id,Opportunity> mapOld){ 
+    	List<String> listofPackageNames= new List<String>();
+		List<String> listofPriceBooks= new List<String>();
+		List<OpportunityLineItem> listofOpportunityLineItem = new List<OpportunityLineItem>();
+		List<Id> listofOpportunityId = new List<Id>();
         try{
-			
-			
 			for(Opportunity OpportunityRecords : listNewTrigger){
 				if(OpportunityRecords.package__c != mapOld.get(OpportunityRecords.id).package__c){
 					System.debug('Opportunity realted package value is :'+OpportunityRecords.package__c);
@@ -61,11 +58,11 @@ public class OpportunityHelper {
     
     
     // Calling this method for after update trigger 
-    public void OpportunityInsert(List<Opportunity> listNewTrigger){ 
+    public static void OpportunityInsert(List<Opportunity> listNewTrigger){ 
       try{     
-        //List<String> listofPackageNames= new List<String>();
-        //List<String> listofPriceBooks= new List<String>();
-        //List<OpportunityLineItem> listofOpportunityLineItem = new List<OpportunityLineItem>();
+        List<String> listofPackageNames= new List<String>();
+        List<String> listofPriceBooks= new List<String>();
+        List<OpportunityLineItem> listofOpportunityLineItem = new List<OpportunityLineItem>();
         List<priceBookEntry> listNewPriceBook = new List<priceBookEntry>();
         Map<Opportunity, List<priceBookEntry>> mapOpportunityRecordspricebooke = new Map<Opportunity,List<priceBookEntry>>(); 
         
