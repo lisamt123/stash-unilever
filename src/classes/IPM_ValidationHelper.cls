@@ -98,7 +98,7 @@ public with sharing class IPM_ValidationHelper {
     */
 	private static Map<ID,IPM_Project__c> processGlobalFinancials(Map<ID,IPM_Project__c> globalProjects, Map<ID,IPM_Project__c> invalidProjMap ) {
        // retrieve financials for the given projects. SOQL is used in 'for' loop so that only 200 records will be processed at a time.        
-        for(IPM_Financial__c ipmFin: [   Select Regional_Project__r.IPM_Parent_Project__c,Financial_External_ID__c, 
+        for(IPM_Financial__c ipmFin: [   Select Regional_Project__r.IPM_Parent_Project__c,Parent_Project__c ,Financial_External_ID__c, 
                                                 (   Select 
                                                         Year__c,
                                                         PL_Type__c,
@@ -118,16 +118,11 @@ public with sharing class IPM_ValidationHelper {
                                                 	RecordTypeId != :CONSOLIDATED_FINANCIAL_RECORDTYPE and
                                                 	isActive__c=true and 
                                                 	IPM_Key_Financial__c!=true and
-													Regional_Project__c  in 
-                                                    	( Select  id 
-                                                          From IPM_Project__c 
-                                                          where 
-                                                         	IPM_Parent_Project__c  in :globalProjects.keySet() and 
-                                                			IPM_Project_Type__c=:IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT ) limit 10000]) {
+													Parent_Project__c  in :globalProjects.keySet() limit 10000]) {
             // if the 'project id' is present in 'invalidProjMap' dont process financial record again
-            if(invalidProjMap.isEmpty() ||  !invalidProjMap.keySet().contains(ipmFin.Regional_Project__r.IPM_Parent_Project__c)) {
+            if(invalidProjMap.isEmpty() ||  !invalidProjMap.keySet().contains(ipmFin.Parent_Project__c)) {
             	for(IPM_Financial_Year__c finYear:ipmFin.IPM_Financial_Years__r) {
-	           		IPM_Project__c ipmProj = globalProjects.get(ipmFin.Regional_Project__r.IPM_Parent_Project__c);
+	           		IPM_Project__c ipmProj = globalProjects.get(ipmFin.Parent_Project__c);
             		if(validateFinancialData(finYear,ipmProj)) {
 	                	// if the financial year has got invalid data it to map
 	            		invalidProjMap.put(ipmProj.id, ipmProj);

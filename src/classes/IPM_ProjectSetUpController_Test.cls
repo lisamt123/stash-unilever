@@ -217,7 +217,7 @@ private class IPM_ProjectSetUpController_Test {
         
         Test.startTest();
         initiateProjectCreation();
-        sic.project.IPM_Target_Launch_Dates__c = system.today();
+        sic.project.IPM_Target_Launch_Dates__c = system.today()+1;
         sic.saveProceed();
         System.assertEquals(sic.isTLDLessThnSixMnth,true,'TLD date is less than six month');
         sic.project.IPM_Target_Launch_Dates__c = system.today().addMonths(12);

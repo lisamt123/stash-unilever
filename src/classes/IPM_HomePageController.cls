@@ -9,7 +9,6 @@ public with sharing class IPM_HomePageController
 {
     public List<IPM_Project__History> lstprojecthistory {get;set;}  // To get the Project History Fields
     public Map<Id,IPM_Project__History> mapphistory {get; set;}  // Map the projectid with History Fields 
-    public Map<String,String> alertMessage { get; set; }  // To get the Alert Message
     public Map<String, String> alertMessageDueDatePast {get;set;} // Due date is in the past alert
     public Map<String, String> alertMessageDueDateApproaching{get; set;} // Due date is approaching alert
     public Map<String, String> alertMessageDueDateToday{get; set;} // Due date is today alert
@@ -41,6 +40,7 @@ public with sharing class IPM_HomePageController
     public String ProjectId{get;set;}
     public Map<String,String> ProjectIdMap{get;set;}
     public String taskcountValue;
+    public Map<String,String> currGateProjectMap{get;set;}
     private static final Integer DAY_VALUE_SEVEN = 7;
     private static final Integer DAY_VALUE_Fourteen = 14;
     private static final String PLANNED_STR='The planned ';
@@ -68,6 +68,7 @@ public with sharing class IPM_HomePageController
         finDataMissingAlertMessageMap = new Map<String, String>();
         betMsgFirstReleaseDueDate = new List<String>();
         betMsgFinalReleaseDueDate = new List<String>();
+        currGateProjectMap = new Map<String, String>();
         getusertype();
         
         // To check the Count for Overdue Tasks
@@ -95,11 +96,24 @@ public with sharing class IPM_HomePageController
                                            BET_TLD_First_Release_Date__c,BET_MS_First_Release_Date__c,IPM_Project_Leader__r.Name,BET_TLD_Final_Release_Date__c,BET_MS_Final_Release_Date__c,
                                             (SELECT IPM_Project_Name__c,IPM_Target_Launch_Dates__c,Rollout_Plan_Target_Launch_Date__c from IPM_Projects__r),
                                            (Select id,name,IPM_Project__c,Geography__r.Market_Type__c from IPM_Countries__r),IPM_Parent_Project__r.IPM_Target_Launch_Dates__c,IPM_Parent_Project__r.IPM_Project_Name__c,
-                                           IPM_FilledIn_Percentage__c,IPM_Phase__c,IPM_Project_Name__c FROM IPM_Project__c 
+                                           IPM_GateKeeping_Model__c ,IPM_CompanyCardText__c,IPM_FilledIn_Percentage__c,IPM_Phase__c,IPM_Project_Name__c FROM IPM_Project__c 
                                            WHERE  IPM_Project_Leader__c = : UserInfo.getUserId() and Is_Archieved__c = false Order By IPM_Project_Name__c LIMIT 50000];
         Map<id,String> projCountry = new Map<id,String>();
         Map<Id,date> ProjDueDateMap = new Map<Id,date>();
         for(IPM_Project__c proj : lstProjects){
+        	
+        	currGateProjectMap.put(proj.id,'');
+        	IPM_Project_Type__c projectType = IPM_Utils.retrieveProjectType(proj);
+        	
+        	if(projectType !=  null)
+        	{
+        		currGateProjectMap.put(proj.id,projectType.IPM_Gate_Document__c);
+	        	if(projectType.IPM_Gate_Document__c == null)
+	        	{
+	        		currGateProjectMap.put(proj.id,'');
+	        	}
+        	}	
+            
             projCountry.put(proj.id,'false');
             if(proj.IPM_Countries__r != null && proj.IPM_Countries__r.isEmpty()){
                 projCountry.put(proj.id,'empty');   
@@ -125,25 +139,23 @@ public with sharing class IPM_HomePageController
                                                  WHERE IPM_Project__c IN : lstProjects and IPM_Type_of_Milestone__c =: IPM_Utils.Standard And RecordtypeId = : recordtypeid limit 50000];
       
                 // Checking the Due dates for the Gate Phases which is used for Alerts
-                alertMessage = new Map<String,String>();
                 alertsOTIF = new Map<Id,String>();
                 Integer DateValue;
                 for(IPM_Milestone__c ipmmiles:lstipmmilestones){
-                    ProjDueDateMap.put(ipmmiles.IPM_Project__c,ipmmiles.IPM_Due_Date__c);
+                	ProjDueDateMap.put(ipmmiles.IPM_Project__c,ipmmiles.IPM_Due_Date__c);
+                	ProjectIdMap.put(ipmmiles.IPM_Project__r.Name+ipmmiles.IPM_Name__c,ipmmiles.IPM_Project__r.Id);
+                    
                     if(ipmmiles.IPM_Project__r.IPM_Phase__c == ipmmiles.IPM_Phase__c && String.IsNotBlank(String.valueOf(ipmmiles.IPM_Due_Date__c)) && !ipmmiles.IPM_Completed__c){
                     DateValue=Date.valueOf(System.today()).daysBetween(Date.valueOf(ipmmiles.IPM_Due_Date__c));
                             if(DateValue<0){
                                   alertMessageDueDatePast.put(ipmmiles.IPM_Project__r.Name+ipmmiles.IPM_Name__c,System.Label.IPM_DUE_DATE_FOR +IPM_ConstantUtils.IPM_SPACE+ipmmiles.IPM_Type_of_gate__c +IPM_ConstantUtils.IPM_SPACE+IPM_Utils.off+IPM_ConstantUtils.IPM_SPACE+ipmmiles.IPM_Project__r.IPM_Project_Name__c);
-                                 ProjectIdMap.put(ipmmiles.IPM_Project__r.Name+ipmmiles.IPM_Name__c,ipmmiles.IPM_Project__r.Id);
                             }
                             if(DateValue<=21 && DateValue!=0 && DateValue >0){
                                alertMessageDueDateApproaching.put(ipmmiles.IPM_Project__r.Name+ipmmiles.IPM_Name__c,ipmmiles.IPM_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.IPM_SPACE+ipmmiles.IPM_Name__c+IPM_ConstantUtils.IPM_SPACE+IPM_Utils.dueIN +IPM_ConstantUtils.IPM_SPACE+ DateValue);
-                               ProjectIdMap.put(ipmmiles.IPM_Project__r.Name+ipmmiles.IPM_Name__c,ipmmiles.IPM_Project__r.Id);
-                               }
+                            }
                           if(DateValue== 0){
                                alertMessageDueDateToday.put(ipmmiles.IPM_Project__r.Name+ipmmiles.IPM_Name__c,PLANNED_STR+ipmmiles.IPM_Type_of_gate__c+IPM_ConstantUtils.IPM_SPACE+GATE_STR);
-                               ProjectIdMap.put(ipmmiles.IPM_Project__r.Name+ipmmiles.IPM_Name__c,ipmmiles.IPM_Project__r.Id);
-                               }
+                           }
                       }
                              
                 }
@@ -207,22 +219,22 @@ public with sharing class IPM_HomePageController
       {
       if(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c))
         {
-        	for(IPM_Project__c localProj: project.IPM_Projects__r)
-        	{ 
-        		if(localProj.Rollout_Plan_Target_Launch_Date__c != null && localProj.IPM_Target_Launch_Dates__c != localProj.Rollout_Plan_Target_Launch_Date__c)
-        		{
-        			LstFinTLDMisalignedMessageMap.put(project.id+project.IPM_Project_Name__c,IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT1 + project.IPM_Project_Name__c + IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT2 + localProj.IPM_Project_Name__c);
-                	ProjectIdMap.put(project.id+project.IPM_Project_Name__c,project.id);
-        		}
-        	}	
+            for(IPM_Project__c localProj: project.IPM_Projects__r)
+            { 
+                if(localProj.Rollout_Plan_Target_Launch_Date__c != null && localProj.IPM_Target_Launch_Dates__c != localProj.Rollout_Plan_Target_Launch_Date__c)
+                {
+                    LstFinTLDMisalignedMessageMap.put(project.id+project.IPM_Project_Name__c,IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT1 + project.IPM_Project_Name__c + IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT2 + localProj.IPM_Project_Name__c);
+                    ProjectIdMap.put(project.id+project.IPM_Project_Name__c,project.id);
+                }
+            }   
         }
         if(IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equalsIgnoreCase(project.IPMProject_Span__c) && project.Rollout_Plan_Target_Launch_Date__c != null && project.IPM_Target_Launch_Dates__c != project.Rollout_Plan_Target_Launch_Date__c)
-		{
-        		LstLocalFinTLDMisalignedMessageMap.put(project.id+project.IPM_Project_Name__c,IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT1 + project.IPM_Parent_Project__r.IPM_Project_Name__c + IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT2 + project.IPM_Project_Name__c);
+        {
+                LstLocalFinTLDMisalignedMessageMap.put(project.id+project.IPM_Project_Name__c,IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT1 + project.IPM_Parent_Project__r.IPM_Project_Name__c + IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT2 + project.IPM_Project_Name__c);
                 ProjectIdMap.put(project.id+project.IPM_Project_Name__c,project.id);
                 
         }
-     }	
+     }  
         
         // Adding Alert for Local Project leader is blank for rollout Projects
       rolloutProjectAlertMessageMap = new map<String, String>();
@@ -284,7 +296,7 @@ public with sharing class IPM_HomePageController
         finDataMissingAlertMessageMap.put(ipmProj.id, ipmProj.name + IPM_ConstantUtils.Colon + IPM_ConstantUtils.IPM_SPACE + Label.IPM_Finacial_Data_Missing); 
     }
       alertscount = fastTrackCount+alertMessageDueDatePast.size()+alertMessageDueDateApproaching.size()+alertMessageDueDateToday.size()+LstFinMisalignedMessage.size()+
-      BusinessCaseMessageMap.size()+LstFinTLDMisalignedMessageMap.size()+LstLocalFinTLDMisalignedMessageMap.size()+RolloutProjectAlertMessageMap.size()+documentAlertMessageMap.size()
+      BusinessCaseMessageMap.size()+LstFinTLDMisalignedMessageMap.size()+LstLocalFinTLDMisalignedMessageMap.size()+rolloutProjectAlertMessageMap.size()+documentAlertMessageMap.size()
       + betMsgFirstReleaseDueDate.size()+betMsgFinalReleaseDueDate.size()+ finDataMissingAlertMessageMap.size();
 
    }    
@@ -294,9 +306,7 @@ public with sharing class IPM_HomePageController
         String taskcountValue =String.valueOf(taskcount);
         return taskcountValue;
     }
-    
-    
-    
+   
     // Getting  usertype 
     public void getusertype(){
         
@@ -342,4 +352,3 @@ public with sharing class IPM_HomePageController
     } 
     
 }
-	

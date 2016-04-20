@@ -24,26 +24,38 @@
                             <apex:commandLink value="{!alertsOTIF[key]}" action="{!$Page.IPM_ProjectOverview}?id={!key}"/>
                         </li>
                     </apex:repeat>
-                    
-                    <apex:repeat var="key" value="{!alertMessage}">
-                        <li>
-                            <apex:commandLink value="{!key} {!$Label.IPM_APPROVER_IS_DUE_IN} {!alertMessage[key]}" action="{!$Page.IPM_GateDocument}?id={!ProjectId}"/>
-                        </li>
-                    </apex:repeat>
                     <apex:repeat var="key" value="{!alertMessageDueDatePast}">
                         <li>
                             <apex:commandLink value="{!alertMessageDueDatePast[key]} {!$Label.IPM_PASSED_WITHOUT_APPROVAL} {!$Label.IPM_UPDATE_YOUR_DUE_DATE}" action="{!$Page.IPM_Tasklist}?id={!ProjectIdMap[key]}"/>
                       </li>
                     </apex:repeat>
-                    <apex:repeat var="key" value="{!alertMessageDueDateToday}">
+                    <apex:repeat var="key" value="{!alertMessageDueDateToday}" >
+                        <apex:outputPanel rendered="{!TRIM(currGateProjectMap[ProjectIdMap[key]]) != ''}">
                         <li>
-                            <apex:commandLink value="{!alertMessageDueDateToday[key]} {!$Label.IPM_DUE_ON_TODAY}{!$Label.IPM_Remember_To_Update}" action="{!$Page.IPM_GateDocument}?id={!ProjectIdMap[key]}"/>
+                            <apex:commandLink value="{!alertMessageDueDateToday[key]} {!$Label.IPM_DUE_ON_TODAY}{!$Label.IPM_Remember_To_Update}" action="{!$Page.IPM_GateDocument}?id={!ProjectIdMap[key]}&printDoc={!currGateProjectMap[ProjectIdMap[key]]}"/>
                         </li>
+                        </apex:outputPanel>
+                    </apex:repeat>
+                    <apex:repeat var="key" value="{!alertMessageDueDateToday}">
+                        <apex:outputPanel rendered="{!TRIM(currGateProjectMap[ProjectIdMap[key]]) == ''}">
+                        <li>
+                            <apex:commandLink value="{!alertMessageDueDateToday[key]} {!$Label.IPM_DUE_ON_TODAY}{!$Label.IPM_Remember_To_Update}" action="{!$Page.IPM_Tasklist}?id={!ProjectIdMap[key]}"/>
+                        </li>
+                        </apex:outputPanel>
                     </apex:repeat>
                     <apex:repeat var="key" value="{!alertMessageDueDateApproaching}">
-                        <li>
-                            <apex:commandLink value="{!alertMessageDueDateApproaching[key]} {!$Label.IPM_DAYS}" action="{!$Page.IPM_GateDocument}?id={!ProjectIdMap[key]}"/>
+                       <apex:outputPanel rendered="{!TRIM(currGateProjectMap[ProjectIdMap[key]]) != ''}">
+                       <li>
+                            <apex:commandLink value="{!alertMessageDueDateApproaching[key]} {!$Label.IPM_DAYS}" action="{!$Page.IPM_GateDocument}?id={!ProjectIdMap[key]}&printDoc={!currGateProjectMap[ProjectIdMap[key]]}"/>
                         </li>
+                        </apex:outputPanel>
+                    </apex:repeat>
+                    <apex:repeat var="key" value="{!alertMessageDueDateApproaching}">
+                        <apex:outputPanel rendered="{!TRIM(currGateProjectMap[ProjectIdMap[key]]) == ''}">
+                        <li>
+                            <apex:commandLink value="{!alertMessageDueDateApproaching[key]} {!$Label.IPM_DAYS}" action="{!$Page.IPM_Tasklist}?id={!ProjectIdMap[key]}"/>
+                        </li>
+                        </apex:outputPanel>
                     </apex:repeat>
                     <apex:repeat var="hprojects" value="{!mapphistory}">
                         <li>
@@ -158,7 +170,7 @@
                                             <h5 class="contentHeader">{!$Label.IPM_PROJECT_UPDATE}</h5>
                                         </div>
                                         <div class="col-sm-12 noPadding sliderContent">
-                                            <span class="contentTitle">{!$Label.IPM_TECHNICAL_ISSUE}</span>
+                                        <span class="contentTitle">{!$Label.IPM_TECHNICAL_ISSUE}</span>
                                             <p>{!$Label.IPM_WATCH_FOR_UPDATES_TO}</p><br />
                                             <p class="listItem">{!$Label.IPM_PDL_FOR_PC}</p>
                                         </div>
@@ -173,7 +185,7 @@
                     <div class="setAuto">
                         <div class="row">
                             <div class="col-sm-12">
-                            	<!-- Below rendered is used to enabled pop up box on create new project button -->
+                                <!-- Below rendered is used to enabled pop up box on create new project button -->
                                 <apex:outputpanel rendered="{! if(OR(isProjectEditable=true,isBossCardEditable=true),'true','false')}">
                                     <div id="createProject" class="col-sm-6 centerAlign noPadleft noPadright box1 SecButtonSet" data-toggle="modal" data-keyboard="true" data-target="#ipmModal" title="Create Project" value="{!$Page.IPM_createproject}?IsBossCardEditable={!isBossCardEditable}&IsProjectEditable={!isProjectEditable}" data-backdrop="static" >
                                         <a class="icoButton newproject" tabindex="0"></a>                                  
