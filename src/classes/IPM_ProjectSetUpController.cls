@@ -744,7 +744,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                 }
                 isDupProjectname=IPM_WithoutShareController.duplicateProjectList(projectId,project.IPM_Project_Name__c,bossId);
             }
-            if(projectMetadata.IPM_TargetLaunchDateDuration__c !=null && project.IPM_Target_Launch_Dates__c < System.today()){
+            if(projectMetadata.IPM_TargetLaunchDateDuration__c !=null && project.IPM_Target_Launch_Dates__c <= System.today()){
                 isTLDLessThnToday= true;
             }     
             else if(projectMetadata.IPM_TargetLaunchDateDuration__c !=null && project.IPM_Target_Launch_Dates__c < System.today().addDays(Integer.valueOf(projectMetadata.IPM_TargetLaunchDateDuration__c)  ))

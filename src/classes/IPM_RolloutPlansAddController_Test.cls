@@ -35,6 +35,8 @@ private class IPM_RolloutPlansAddController_Test
     private static ApexPages.Message[] pageMessages;
     private static PageReference pageRef= Page.ipm_rolloutplansadd;
     private static PageReference pageRefRegional= Page.ipm_rolloutplansregional;
+    private static PageReference expectedPageRef ;
+	private static PageReference actualPageRef;   
     
     private static final string GLOBAL_PL = 'GLOBAL_PL';
     private static final string REGIONAL_PL = 'REGIONAL_PL';
@@ -81,6 +83,7 @@ private class IPM_RolloutPlansAddController_Test
     private static final string MILESTONES_NOT_CREATED='milestones not crerated';
     private static final string FINANCIAL_NOT_CREATED='financial not created';
     private static final string PHASE_NOT_FEASIBILITY='project phase is not feasibility'; 
+    private static final string FAILED_ASSERT_MSG = 'Url is not as expected and failed processsing .' ;
     
     /***************************************************************************
     * @description: Used for Creating IPM Project data for Rollout flow test          
@@ -545,6 +548,9 @@ private class IPM_RolloutPlansAddController_Test
 			  irp.cancel();
 			  
 			  System.assert(rolloutPlansActual.getURL().contains(rolloutPlansExpected.getURL()),'Url is not as expected');
+			  
+			  expectedPageRef = rolloutPlansExpected;
+			  actualPageRef= rolloutPlansActual ;
 	
 			  Test.setCurrentPageReference(pageRef);
 			  ApexPages.currentPage().getParameters().put(ID,null);
@@ -660,7 +666,10 @@ private class IPM_RolloutPlansAddController_Test
     ***************************************************************************************/
     private static testmethod void testGlobalProjRolloutAdd()
     {
+     
      GlobalProjRolloutAdd(true,false,false);
+     System.assert(actualPageRef.getURL().contains(expectedPageRef.getURL()),FAILED_ASSERT_MSG);
+    
     } 
  
 
@@ -811,7 +820,8 @@ private class IPM_RolloutPlansAddController_Test
      ***************************************************************************************/
      private static testmethod void testGlobalProjRolloutAdd2()
      {
-       GlobalProjRolloutAdd(false,false,false); 
+       GlobalProjRolloutAdd(false,false,false);
+       System.assert(actualPageRef.getURL().contains(expectedPageRef.getURL()),FAILED_ASSERT_MSG);
      }
    
     /*************************************************************************************
@@ -822,6 +832,7 @@ private class IPM_RolloutPlansAddController_Test
     private static testmethod void testRegionalProjRolloutAdd2()
     {
       GlobalProjRolloutAdd(true,true,false); 
+      System.assert(actualPageRef.getURL().contains(expectedPageRef.getURL()),FAILED_ASSERT_MSG);
     }
     
     
@@ -833,5 +844,6 @@ private class IPM_RolloutPlansAddController_Test
     private static testmethod void testRegionalProjRolloutAdd3()
     {
       GlobalProjRolloutAdd(true,true,true);
+      System.assert(actualPageRef.getURL().contains(expectedPageRef.getURL()),FAILED_ASSERT_MSG);
     }
 }

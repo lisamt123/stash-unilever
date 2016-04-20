@@ -797,7 +797,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                     Date dateToCompare = getLeastProjectMilestonesDate();
                     for(IPM_Project_Rollout__c rollout : updaterolloutsMap.values())
                     {
-                        if(rollout.Target_Launch_Date__c < System.today())
+                        if(rollout.Target_Launch_Date__c <= System.today())
                         {
                             validationError = Label.IPM_Target_Launch_Date_Error;
                             break;
@@ -941,10 +941,6 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             
             if(!deleteRolloutList.isEmpty())
             {
-                if(deleteRolloutList[0].IPM_CharterApproved__c||deleteRolloutList[0].Local_Project__c!=null)
-                {
-                    deleteRolloutList[0].isActive__c = false; 
-                    update deleteRolloutList[0];
                     
                     if(deleteRolloutList[0].Local_Project__c!=null)
                     {
@@ -955,6 +951,10 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                       update toBeArchievedProject;
                     
                     }
+                else if(deleteRolloutList[0].IPM_CharterApproved__c)
+        		{
+        			deleteRolloutList[0].isActive__c = false; 
+                	update deleteRolloutList[0];
                 }
                 else
                 {
