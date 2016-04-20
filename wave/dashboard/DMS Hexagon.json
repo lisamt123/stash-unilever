@@ -1,0 +1,828 @@
+{
+    "label": "DMS Hexagon",
+    "state": {
+        "steps": {
+            "Distributor_AccountName_2": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Distributor_AccountName"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "start": null,
+                "datasets": [
+                    {
+                        "name": "DMS_Hexagon"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Actual_13": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "Actual"
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "Indicator_Type",
+                            [
+                                "FRECUENCIA (UN / tienda)"
+                            ],
+                            "in"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "start": null,
+                "datasets": [
+                    {
+                        "name": "DMS_Hexagon"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "SalesRep_5": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "SalesRep"
+                    ]
+                },
+                "selectMode": "single",
+                "start": [],
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DMS_Hexagon"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Actual_12": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "Actual"
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "Indicator_Type",
+                            [
+                                "CLIENTES IMPACTADOS (UN)"
+                            ],
+                            "in"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "start": null,
+                "datasets": [
+                    {
+                        "name": "DMS_Hexagon"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Actual_11": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "Actual"
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "Indicator_Type",
+                            [
+                                "DROPSIZE ($/PEDIDO)"
+                            ],
+                            "in"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "start": null,
+                "datasets": [
+                    {
+                        "name": "DMS_Hexagon"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Actual_10": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "Actual"
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "Indicator_Type",
+                            [
+                                "PEDIDOS (UN)"
+                            ],
+                            "in"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "start": null,
+                "datasets": [
+                    {
+                        "name": "DMS_Hexagon"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Actual_9": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "Actual"
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "Indicator_Type",
+                            [
+                                "SELLOUT ($)"
+                            ],
+                            "in"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "start": null,
+                "datasets": [
+                    {
+                        "name": "DMS_Hexagon"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Distributor_AccountName_16": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Distributor_AccountName"
+                    ],
+                    "filters": [
+                        [
+                            "Indicator_Type",
+                            [
+                                "SELLOUT ($)"
+                            ],
+                            "in"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "start": null,
+                "datasets": [
+                    {
+                        "name": "DMS_Hexagon"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Distributor_AccountName_17": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "Actual"
+                        ]
+                    ],
+                    "groups": [
+                        "Distributor_AccountName"
+                    ],
+                    "filters": [
+                        [
+                            "Indicator_Type",
+                            [
+                                "SELLOUT ($)"
+                            ],
+                            "in"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "start": null,
+                "datasets": [
+                    {
+                        "name": "DMS_Hexagon"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Periodo_Year_Periodo_Month_4": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Periodo"
+                    ]
+                },
+                "selectMode": "single",
+                "start": [],
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DMS_Hexagon"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Indicator_Type_8": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "Target"
+                        ],
+                        [
+                            "sum",
+                            "Actual"
+                        ]
+                    ],
+                    "groups": [
+                        "Indicator_Type"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "start": null,
+                "datasets": [
+                    {
+                        "name": "DMS_Hexagon"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "compare_1": {
+                "isFacet": true,
+                "isGlobal": false,
+                "selectMode": "single",
+                "type": "multi",
+                "useGlobal": true,
+                "start": null,
+                "datasets": [
+                    {
+                        "name": "DMS_Hexagon"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "comparisontable"
+                },
+                "columns": [
+                    {
+                        "header": "Actual",
+                        "query": {
+                            "measures": [
+                                [
+                                    "sum",
+                                    "Actual"
+                                ]
+                            ],
+                            "groups": [
+                                "SalesRep",
+                                "Indicator_Type"
+                            ]
+                        }
+                    },
+                    {
+                        "header": "Promedio Anterior",
+                        "query": {
+                            "measures": [
+                                [
+                                    "sum",
+                                    "Previous_average"
+                                ]
+                            ],
+                            "groups": [
+                                "SalesRep",
+                                "Indicator_Type"
+                            ]
+                        }
+                    },
+                    {
+                        "header": "Meta",
+                        "query": {
+                            "measures": [
+                                [
+                                    "sum",
+                                    "Target"
+                                ]
+                            ],
+                            "groups": [
+                                "SalesRep",
+                                "Indicator_Type"
+                            ]
+                        }
+                    },
+                    {
+                        "header": "Variacion %",
+                        "query": {
+                            "measures": [
+                                [
+                                    "sum",
+                                    "Variation"
+                                ]
+                            ],
+                            "groups": [
+                                "SalesRep",
+                                "Indicator_Type"
+                            ]
+                        }
+                    }
+                ],
+                "globalQuery": {}
+            },
+            "Sales_Channel_3": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Sales_Channel"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "start": null,
+                "datasets": [
+                    {
+                        "name": "DMS_Hexagon"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "SalesRep_15": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "Actual"
+                        ]
+                    ],
+                    "groups": [
+                        "SalesRep"
+                    ],
+                    "filters": [
+                        [
+                            "Indicator_Type",
+                            [
+                                "SELLOUT ($)"
+                            ],
+                            "in"
+                        ]
+                    ],
+                    "order": [
+                        [
+                            -1,
+                            {
+                                "ascending": false
+                            }
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "start": null,
+                "datasets": [
+                    {
+                        "name": "DMS_Hexagon"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            }
+        },
+        "widgets": {
+            "comparetable_1": {
+                "type": "comparetable",
+                "position": {
+                    "zIndex": 3,
+                    "x": 690,
+                    "y": 760,
+                    "w": 670,
+                    "h": 590
+                },
+                "parameters": {
+                    "step": "compare_1",
+                    "selectModeOverride": "single"
+                }
+            },
+            "box_1": {
+                "type": "box",
+                "position": {
+                    "zIndex": 6,
+                    "x": 20,
+                    "y": 90,
+                    "w": 230,
+                    "h": 580
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)"
+                }
+            },
+            "text_1": {
+                "type": "text",
+                "position": {
+                    "zIndex": 5,
+                    "x": 300,
+                    "y": 720
+                },
+                "parameters": {
+                    "text": "Actual X Meta",
+                    "textColor": "rgb(0, 0, 0)",
+                    "fontSize": 24
+                }
+            },
+            "box_2": {
+                "type": "box",
+                "position": {
+                    "zIndex": 2,
+                    "x": 30,
+                    "y": 30,
+                    "w": 180,
+                    "h": 40
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgba(0, 0, 0, 0)",
+                    "imageUrl": "0158A000000DGMt"
+                }
+            },
+            "dimfilter_4": {
+                "type": "listselector",
+                "position": {
+                    "zIndex": 100004,
+                    "x": 40,
+                    "y": 490,
+                    "w": 190,
+                    "h": 50
+                },
+                "parameters": {
+                    "step": "Periodo_Year_Periodo_Month_4",
+                    "expanded": false,
+                    "measureField": "count"
+                }
+            },
+            "dimfilter_5": {
+                "type": "listselector",
+                "position": {
+                    "zIndex": 100005,
+                    "x": 40,
+                    "y": 380,
+                    "w": 190,
+                    "h": 50
+                },
+                "parameters": {
+                    "step": "SalesRep_5",
+                    "expanded": false,
+                    "measureField": "count"
+                }
+            },
+            "number_8": {
+                "type": "number",
+                "position": {
+                    "zIndex": 14,
+                    "x": 300,
+                    "y": 140,
+                    "w": 180
+                },
+                "parameters": {
+                    "step": "Actual_12",
+                    "measureField": "sum_Actual",
+                    "title": "Impactadas",
+                    "fontSize": 42,
+                    "textAlignment": "center",
+                    "exploreLink": false
+                }
+            },
+            "dimfilter_1": {
+                "type": "listselector",
+                "position": {
+                    "zIndex": 100000,
+                    "x": 40,
+                    "y": 160,
+                    "w": 190,
+                    "h": 50
+                },
+                "parameters": {
+                    "step": "Distributor_AccountName_2",
+                    "expanded": false,
+                    "measureField": "count"
+                }
+            },
+            "dimfilter_2": {
+                "type": "listselector",
+                "position": {
+                    "zIndex": 100001,
+                    "x": 40,
+                    "y": 270,
+                    "w": 190,
+                    "h": 50
+                },
+                "parameters": {
+                    "step": "Sales_Channel_3",
+                    "expanded": false,
+                    "measureField": "count"
+                }
+            },
+            "number_4": {
+                "type": "number",
+                "position": {
+                    "zIndex": 10,
+                    "x": 930,
+                    "y": 140,
+                    "w": 240
+                },
+                "parameters": {
+                    "step": "Actual_11",
+                    "measureField": "sum_Actual",
+                    "title": "Drop Size",
+                    "fontSize": 42,
+                    "textAlignment": "center"
+                }
+            },
+            "number_3": {
+                "type": "number",
+                "position": {
+                    "zIndex": 3,
+                    "x": 1180,
+                    "y": 140,
+                    "w": 180
+                },
+                "parameters": {
+                    "step": "Actual_13",
+                    "measureField": "sum_Actual",
+                    "title": "Frecuencia",
+                    "fontSize": 42,
+                    "textAlignment": "center"
+                }
+            },
+            "number_2": {
+                "type": "number",
+                "position": {
+                    "zIndex": 9,
+                    "x": 740,
+                    "y": 140,
+                    "w": 180
+                },
+                "parameters": {
+                    "step": "Actual_10",
+                    "measureField": "sum_Actual",
+                    "title": "Pedidos",
+                    "fontSize": 42,
+                    "textAlignment": "center"
+                }
+            },
+            "number_1": {
+                "type": "number",
+                "position": {
+                    "zIndex": 8,
+                    "x": 490,
+                    "y": 140,
+                    "w": 240
+                },
+                "parameters": {
+                    "step": "Actual_9",
+                    "measureField": "sum_Actual",
+                    "title": "Total Sellout",
+                    "fontSize": 42,
+                    "textAlignment": "center"
+                }
+            },
+            "box_5": {
+                "type": "box",
+                "position": {
+                    "zIndex": 1,
+                    "x": 280,
+                    "y": 90,
+                    "w": 1100,
+                    "h": 1300
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)"
+                }
+            },
+            "chart_6": {
+                "type": "chart",
+                "position": {
+                    "zIndex": 18,
+                    "x": 850,
+                    "y": 320,
+                    "w": 510,
+                    "h": 360
+                },
+                "parameters": {
+                    "step": "Distributor_AccountName_17",
+                    "visualizationType": "hbar"
+                }
+            },
+            "text_2": {
+                "type": "text",
+                "position": {
+                    "zIndex": 7,
+                    "x": 20,
+                    "y": 100
+                },
+                "parameters": {
+                    "text": "Filtros",
+                    "textAlignment": "left",
+                    "fontSize": 24
+                }
+            },
+            "box_4": {
+                "type": "box",
+                "position": {
+                    "zIndex": 0,
+                    "x": 280,
+                    "y": 90,
+                    "w": 1100,
+                    "h": 160
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)"
+                }
+            },
+            "text_4": {
+                "type": "text",
+                "position": {
+                    "zIndex": 16,
+                    "x": 300,
+                    "y": 280
+                },
+                "parameters": {
+                    "text": "Total Sell Out por Vendedor",
+                    "fontSize": 24
+                }
+            },
+            "chart_2": {
+                "type": "chart",
+                "position": {
+                    "zIndex": 6,
+                    "x": 300,
+                    "y": 760,
+                    "w": 350,
+                    "h": 590
+                },
+                "parameters": {
+                    "step": "Indicator_Type_8",
+                    "dualAxis": false,
+                    "visualizationType": "combo"
+                }
+            },
+            "text_7": {
+                "type": "text",
+                "position": {
+                    "zIndex": 18,
+                    "x": 690,
+                    "y": 720
+                },
+                "parameters": {
+                    "text": "Indicadores"
+                }
+            },
+            "text_6": {
+                "type": "text",
+                "position": {
+                    "zIndex": 15,
+                    "x": 850,
+                    "y": 280
+                },
+                "parameters": {
+                    "text": "Total Sell Out por Distributor",
+                    "fontSize": 24
+                }
+            },
+            "chart_4": {
+                "type": "chart",
+                "position": {
+                    "zIndex": 15,
+                    "x": 300,
+                    "y": 320,
+                    "w": 510,
+                    "h": 360
+                },
+                "parameters": {
+                    "step": "SalesRep_15",
+                    "visualizationType": "hbar"
+                }
+            }
+        },
+        "layouts": []
+    },
+    "datasets": [
+        {
+            "id": "0Fb8A0000000SPnSAM",
+            "name": "DMS_Hexagon"
+        }
+    ]
+}

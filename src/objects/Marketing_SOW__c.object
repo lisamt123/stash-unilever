@@ -96,6 +96,11 @@
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
+        <displayedFields>
+            <field>Approved_version__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
         <label>Oblix_SOW_Main</label>
     </fieldSets>
     <fieldSets>
@@ -258,6 +263,11 @@
         </displayedFields>
         <displayedFields>
             <field>Marked_for_cloning__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Approved_version__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -839,28 +849,21 @@
     </fields>
     <fields>
         <fullName>SOW_Overall_Total_Agency__c</fullName>
+        <description>Field to show/hide data in an Agency report, dependent on the value in the SOW Status field</description>
         <externalId>false</externalId>
-        <formula>IF( 
-OR( 
-ISPICKVAL(SOW_Status__c , &quot;Awaiting Unilever Approval&quot;), 
-ISPICKVAL(SOW_Status__c , &quot;Draft - with Unilever&quot;), 
-ISPICKVAL(SOW_Status__c , &quot;Returned by Agency&quot;)), &quot;---&quot;, &quot;€&quot;&amp; 
-IF( 
- OblixSOWOverallTotal__c  &gt;= 1000000, 
-TEXT(FLOOR(OblixSOWOverallTotal__c / 1000000)) &amp; &quot;,&quot;, 
-&quot;&quot;) &amp; 
-IF( 
-OblixSOWOverallTotal__c &gt;= 1000, 
-RIGHT(TEXT(FLOOR(OblixSOWOverallTotal__c / 1000)), 3) &amp; &quot;,&quot;, 
-&quot;&quot;) &amp; 
-RIGHT(TEXT(FLOOR(OblixSOWOverallTotal__c)), 3) )</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>SOW Overall Total</label>
+        <formula>IF(
+OR(
+ISPICKVAL( SOW_Status__c  , &quot;Awaiting Unilever Approval&quot;),
+ISPICKVAL(SOW_Status__c , &quot;Draft - with Unilever&quot;),
+ISPICKVAL(SOW_Status__c , &quot;Returned by Agency&quot;)
+), NULL, Oblix_Current_FY_Total__c)</formula>
+        <label>SOW Total (Inc Risk Adjustment)</label>
+        <precision>18</precision>
         <required>false</required>
+        <scale>0</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>SOW_Status__c</fullName>
@@ -936,33 +939,20 @@ RIGHT(TEXT(FLOOR(OblixSOWOverallTotal__c)), 3) )</formula>
     </fields>
     <fields>
         <fullName>Total_Campaign_Fee_Agency__c</fullName>
+        <description>Field to show/hide data in an Agency report, dependent on the value in the SOW Status field</description>
         <externalId>false</externalId>
         <formula>IF( 
 OR( 
 ISPICKVAL(SOW_Status__c , &quot;Awaiting Unilever Approval&quot;), 
 ISPICKVAL(SOW_Status__c , &quot;Draft - with Unilever&quot;), 
-ISPICKVAL(SOW_Status__c , &quot;Returned by Agency&quot;)), &quot;---&quot;, &quot;€&quot;&amp; 
-IF( 
-OblixTotalProjectsFees__c &gt;= 1000000, 
-TEXT(FLOOR(OblixTotalProjectsFees__c / 1000000)) &amp; &quot;,&quot;, 
-&quot;&quot;) &amp; 
-IF( 
-OblixTotalProjectsFees__c &gt;= 1000, 
-RIGHT(TEXT(FLOOR(OblixTotalProjectsFees__c / 1000)), 3) &amp; &quot;,&quot;, 
-&quot;&quot;) &amp; 
-RIGHT(TEXT(FLOOR(OblixTotalProjectsFees__c)), 3) &amp; &quot;.&quot; &amp; 
-IF( 
-MOD(OblixTotalProjectsFees__c , 1) * 100 &lt; 10, 
-&quot;0&quot; &amp; TEXT(ROUND(MOD(OblixTotalProjectsFees__c , 1), 2) * 100), 
-TEXT(MIN(ROUND(MOD(OblixTotalProjectsFees__c , 1), 2) * 100, 99)) 
-))</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+ISPICKVAL(SOW_Status__c , &quot;Returned by Agency&quot;)), NULL, Total_Campaigns_This_FY__c)</formula>
         <label>Total Campaign Fee</label>
+        <precision>18</precision>
         <required>false</required>
+        <scale>0</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>Total_Campaign_Fee__c</fullName>
@@ -990,28 +980,21 @@ TEXT(MIN(ROUND(MOD(OblixTotalProjectsFees__c , 1), 2) * 100, 99))
     </fields>
     <fields>
         <fullName>Total_Non_Campaign_Fees_Agency__c</fullName>
+        <description>Field to show/hide data in an Agency report, dependent on the value in the SOW Status field</description>
         <externalId>false</externalId>
         <formula>IF( 
 OR( 
 ISPICKVAL(SOW_Status__c , &quot;Awaiting Unilever Approval&quot;), 
 ISPICKVAL(SOW_Status__c , &quot;Draft - with Unilever&quot;), 
-ISPICKVAL(SOW_Status__c , &quot;Returned by Agency&quot;)), &quot;---&quot;, &quot;€&quot;&amp; 
-IF( 
- OblixTotalOtherItemsFees__c  &gt;= 1000000, 
-TEXT(FLOOR(OblixTotalOtherItemsFees__c / 1000000)) &amp; &quot;,&quot;, 
-&quot;&quot;) &amp; 
-IF( 
-OblixTotalOtherItemsFees__c &gt;= 1000, 
-RIGHT(TEXT(FLOOR(OblixTotalOtherItemsFees__c / 1000)), 3) &amp; &quot;,&quot;, 
-&quot;&quot;) &amp; 
-RIGHT(TEXT(FLOOR(OblixTotalOtherItemsFees__c)), 3) )</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+ISPICKVAL(SOW_Status__c , &quot;Returned by Agency&quot;)), NULL,
+OblixTotalOtherItemsFees__c)</formula>
         <label>Total Non Campaign Fees</label>
+        <precision>18</precision>
         <required>false</required>
+        <scale>0</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>Type_of_SOW__c</fullName>
