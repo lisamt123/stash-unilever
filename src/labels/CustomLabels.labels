@@ -195,5 +195,6 @@
         <protected>false</protected>
         <shortDescription>CPA query response URL id</shortDescription>
         <value>&amp;CF00N18000000TwA1</value>
-	</labels>
+	
     </labels>
+	</CustomLabels>

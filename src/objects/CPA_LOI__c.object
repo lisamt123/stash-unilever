@@ -1338,7 +1338,7 @@
     <sharingModel>ReadWrite</sharingModel>
     <validationRules>
         <fullName>CPA_New_LOI_cant_be_created</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>LOI cant be created before PWORF get approved by Vendor</description>
         <errorConditionFormula>OR( 
 ISPICKVAL(lkp_PWORF__r.pkl_Status__c , &quot;Submitted&quot;), 

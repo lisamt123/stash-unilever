@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <applicationVisibilities>
+        <application>Contracting</application>
+        <visible>true</visible>
+    </applicationVisibilities>
     <classAccesses>
         <apexClass>CPA_AttachmentUtil</apexClass>
         <enabled>true</enabled>
@@ -50,7 +54,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>CPA_ConstantsForPworfAging</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>CPA_ContractInformationController</apexClass>
@@ -114,7 +118,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>CPA_PWORFAgeing</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>CPA_PWORFInformationController</apexClass>
@@ -126,7 +130,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>CPA_PWORF_Aging_Schedular_Test</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>CPA_PWORF_CancelReasonController</apexClass>
@@ -206,7 +210,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>CPA_ScheduleBatchProrfAgeUpdate</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>CPA_SelectRecordTypeController</apexClass>
@@ -222,7 +226,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>CPA_TotalWorkingDyasBetweenTwoDates</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>CPA_TriggerFactory</apexClass>
