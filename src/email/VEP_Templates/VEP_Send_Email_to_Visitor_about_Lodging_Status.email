@@ -1,0 +1,6 @@
+Hi {!Vep_Visitor__c.Name},<br/><br/>
+
+Your lodging request to {!Vep_Visitor__c.Factory_to_Visit__c} from {!Vep_Visitor__c.Date_From__c} to {!Vep_Visitor__c.Date_To__c} has been {!Vep_Visitor__c.Lodging_Approval_Status__c} by the Lodging desk team
+<br/><br/>
+Thanks & Regards,<br/>
+Lodging Desk.
