@@ -2,7 +2,7 @@
 <messaging:htmlEmailBody >
 Hi,<br/><br/>
 
-{!RelatedTo.Capture_creator__c} posted a query for {!RelatedTo.Pworf_ID__c} with ID {!RelatedTo.Name} on {!RelatedTo.Createddate}.<br/><br/>
+{!RelatedTo.Capture_creator__c} posted a query for {!RelatedTo.Pworf_ID__c} with ID {!RelatedTo.Name} on {!Now()}.<br/><br/>
 
 You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.LookupPWORF_Name__c} ">{!RelatedTo.Pworf_ID__c} </a> <br/><br/>
 

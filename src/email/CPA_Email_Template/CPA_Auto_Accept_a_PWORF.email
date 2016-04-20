@@ -1,6 +1,6 @@
 Hi, <br/><br/>
 
-A PWORF with ID: {!CPA_PWORF__c.Id}  is Auto Accepted on {!CPA_PWORF__c.dat_SLA1_Accepted_Date__c} . <br/><br/>
+A PWORF with ID:{!CPA_PWORF__c.auto_PWORF_ID__c}  is Auto Accepted on {!Now()} . <br/><br/>
 
 
 You can access it from here:  {!CPA_PWORF__c.Link}  <br/><br/>

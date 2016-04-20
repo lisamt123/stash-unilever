@@ -85,11 +85,12 @@ select{
 </style>
 
 <apex:form >
+    <apex:pageMessages />
     <apex:pageBlock >
     <ul class="form-style-1">
   
     <li>
-        <label>Please Enter Reason for withhold<span class="required">*</span></label>
+        <label>Please Enter Reason for Withhold<span class="required">*</span></label>
         <apex:inputTextarea styleClass="field-long field-textarea" id="cancelReson"  value="{!strReason}" label=" " required="true"/>
     </li>
     <li>
