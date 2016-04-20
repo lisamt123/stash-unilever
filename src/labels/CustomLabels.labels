@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
         <fullName>AF_Adjust_Quarters</fullName>
@@ -6365,6 +6365,13 @@ If approved your project will be linked after your Charter gate has been approve
         <value>Create new BET</value>
     </labels>
     <labels>
+        <fullName>IPM_EcoDesign_Global_Category_Average</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_EcoDesign_Global_Category_Average</shortDescription>
+        <value>For reference: Global Category Average</value>
+    </labels>
+    <labels>
         <fullName>IPM_CreateNewBETTitle</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -7031,13 +7038,6 @@ If approved your project will be linked after your Charter gate has been approve
         <value>EcoDesign Section</value>
     </labels>
     <labels>
-        <fullName>IPM_EcoDesign_Average</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_EcoDesign_Average</shortDescription>
-        <value>Average</value>
-    </labels>
-    <labels>
         <fullName>IPM_EcoDesign_Change_vs</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -7089,13 +7089,6 @@ If approved your project will be linked after your Charter gate has been approve
         <protected>false</protected>
         <shortDescription>IPM EcoDesign Country Deleted</shortDescription>
         <value>The following country was deleted from the project:</value>
-    </labels>
-    <labels>
-        <fullName>IPM_EcoDesign_Directional_View</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_EcoDesign_Directional_View</shortDescription>
-        <value>Directional View:</value>
     </labels>
     <labels>
         <fullName>IPM_EcoDesign_EI_Countries</fullName>
@@ -7155,25 +7148,11 @@ If approved your project will be linked after your Charter gate has been approve
         <value>New SKU</value>
     </labels>
     <labels>
-        <fullName>IPM_EcoDesign_New_SKU_Impact</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_EcoDesign_New_SKU_Impact</shortDescription>
-        <value>New SKU Impact</value>
-    </labels>
-    <labels>
         <fullName>IPM_EcoDesign_Non_EI_Countries</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_EcoDesign_Non_EI Countries</shortDescription>
         <value>Non-EI Countries</value>
-    </labels>
-    <labels>
-        <fullName>IPM_EcoDesign_On_Category</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_EcoDesign_On_Category</shortDescription>
-        <value>on Category</value>
     </labels>
     <labels>
         <fullName>IPM_EcoDesign_Section_Text</fullName>
