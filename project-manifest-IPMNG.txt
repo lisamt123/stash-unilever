@@ -551,6 +551,7 @@ src/components/IPM_Financial_ActionStandards.component
 src/components/IPM_Financial_ActionStandards.component-meta.xml
 src/components/IPM_Financial_Action_Standards_Inverse.component
 src/components/IPM_Financial_Action_Standards_Inverse.component-meta.xml
+src/components/IPM_Footer.component
 src/components/IPM_Footer.component-meta.xml
 src/components/IPM_Funnel.component
 src/components/IPM_Funnel.component-meta.xml
@@ -673,9 +674,7 @@ src/email/IPM_Emails/IPM_Due_Date_in_the_past2.email-meta.xml
 src/email/IPM_Emails/IPM_Successful_Phase_Change_Template.email
 src/email/IPM_Emails/IPM_Successful_Phase_Change_Template.email-meta.xml
 src/flows
-src/flows/IPM_Copy_Financial_Action_Standards_To_Section_Content-1.flow
 src/flows/IPM_Copy_Financial_Action_Standards_To_Section_Content-2.flow
-src/flows/IPM_Financial_SnapShot-5.flow
 src/flows/IPM_Financial_SnapShot-6.flow
 src/flows/IPM_Global_Financial_Action_Standard-1.flow
 src/labels
