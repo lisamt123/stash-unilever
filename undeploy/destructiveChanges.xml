@@ -5,8 +5,6 @@
 		<members>IPM_PDStandardPage</members>
 		<members>IPM_PSStandardPage</members>
 		<members>IPM_ProjectStandardPage</members>
-		<members>IPM_FileUpload</members>
-		<members>IPM_UploadBusinessCase</members>
 		<name>ApexPage</name>
 	</types>
 	<types>
@@ -123,5 +121,12 @@
 		<members>IPM_CoreParameters__c</members>
 		<name>CustomObject</name>
 	</types>
+	<types>
+        <members>IPM_EcoDesign_Directional_View</members>
+		<members>IPM_EcoDesign_New_SKU_Impact</members>
+		<members>IPM_EcoDesign_On_Category</members>
+		<members>IPM_EcoDesign_Average</members>
+        <name>CustomLabels</name>
+    </types>
 	
 </Package>
