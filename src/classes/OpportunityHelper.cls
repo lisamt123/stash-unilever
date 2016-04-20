@@ -1,26 +1,22 @@
 /**********************************************************************
 Name: OpportunityHelper
-Copyright © 2016 
-======================================================
-======================================================
-Purpose: Create/Update/Delete Oppertunitylineitems based on Package value in Opportunity  
--------
-======================================================
-======================================================
+Purpose: This is a helper class of OpportunityTrigger. Create/Update/Delete Oppertunitylineitems based on Package value in Opportunity  
 History
 -------
 VERSION AUTHOR    DATE         DETAIL Description
-1.0 	       19/04/2016      
+1.0 	       19/04/2016      Created the class
 ***********************************************************************/
 public class OpportunityHelper {
+	
+	List<String> listofPackageNames= new List<String>();
+	List<String> listofPriceBooks= new List<String>();
+	List<OpportunityLineItem> listofOpportunityLineItem = new List<OpportunityLineItem>();
+	List<Id> listofOpportunityId = new List<Id>();
 
-    /******************* For after update trigger **************************/
-    public static void opportunityUpdate(List<Opportunity> listNewTrigger, Map<Id,Opportunity> mapOld){ 
+    // Calling this method for after update trigger 
+    public void opportunityUpdate(List<Opportunity> listNewTrigger, Map<Id,Opportunity> mapOld){ 
         try{
-			List<String> listofPackageNames= new List<String>();
-			List<String> listofPriceBooks= new List<String>();
-			List<OpportunityLineItem> listofOpportunityLineItem = new List<OpportunityLineItem>();
-			List<Id> listofOpportunityId = new List<Id>();
+			
 			
 			for(Opportunity OpportunityRecords : listNewTrigger){
 				if(OpportunityRecords.package__c != mapOld.get(OpportunityRecords.id).package__c){
@@ -37,13 +33,14 @@ public class OpportunityHelper {
 				List<OpportunityLineItem> oldOpportunityRecordsLineItem = [select Id from OpportunityLineItem where OpportunityId in :listofOpportunityId];
 				delete oldOpportunityRecordsLineItem;
 			}
-			//Opportunity should already have product added in related list     
+			//Retrieve product and pricebook if Opportunity already have product added in related list     
 			List<priceBookEntry> listofPriceBooksEntry = [select id, product2Id, pricebook2Id, unitPrice, product2.Package__c
 														 from pricebookEntry where 
 														 priceBook2Id in :listofPriceBooks and 
 														 product2.Package__c in : listofPackageNames];
-			 
-			//For every Opportunity check if there is any pricebookentry with produt same as Opportunity pakage name
+			//To Do : If opportunity does not have pricebook associated with it then we need to retrieve a product, pricebook then create a PriceBookEntry 
+			
+			//For every Opportunity check if there is any product same as Opportunity pakage and opportunity pricebook
 			for(Opportunity opportunityWithPriceBookEntry : listNewTrigger){
 				for(priceBookEntry pricebooke: listofPriceBooksEntry ){
 					if(opportunityWithPriceBookEntry.pricebook2id == pricebooke.pricebook2Id && opportunityWithPriceBookEntry.package__c == pricebooke.product2.Package__c){
@@ -52,20 +49,23 @@ public class OpportunityHelper {
 					}
 				}
 			}
-			
-			insert listofOpportunityLineItem;
+			if(!listofOpportunityLineItem.isEmpty()){
+				system.debug('listofOpportunityLineItem ->' + listofOpportunityLineItem);
+				insert listofOpportunityLineItem;
+			}
 		}//tryblock end
 		catch(Exception e){
 			system.debug('Error Message is: -> '+e.getMessage());
-		}//Catchblock end 
+		} 
     }// Method End
     
-    /******************* For after insert trigger ***************************/
-    public static void OpportunityInsert(List<Opportunity> listNewTrigger){ 
+    
+    // Calling this method for after update trigger 
+    public void OpportunityInsert(List<Opportunity> listNewTrigger){ 
       try{     
-        List<String> listofPackageNames= new List<String>();
-        List<String> listofPriceBooks= new List<String>();
-        List<OpportunityLineItem> listofOpportunityLineItem = new List<OpportunityLineItem>();
+        //List<String> listofPackageNames= new List<String>();
+        //List<String> listofPriceBooks= new List<String>();
+        //List<OpportunityLineItem> listofOpportunityLineItem = new List<OpportunityLineItem>();
         List<priceBookEntry> listNewPriceBook = new List<priceBookEntry>();
         Map<Opportunity, List<priceBookEntry>> mapOpportunityRecordspricebooke = new Map<Opportunity,List<priceBookEntry>>(); 
         
@@ -74,14 +74,12 @@ public class OpportunityHelper {
                 listofPackageNames.add(OpportunityRecordsForInsert.package__c);
             }
         }
+        //Need products and pricebook to retrieve priceBookEntry
         List<Product2> listOfProducts = [select id, name, package__c from Product2 where package__c =: listofPackageNames];
-        
-        //Need a pricebook,
         Pricebook2 pricebook = [select id, name from Pricebook2 where name LIKE 'Standard%' and isActive = true limit 1];
-                
         listNewPriceBook = [select id, product2.Package__c, unitPrice from priceBookEntry where product2.Package__c =: listofPackageNames and priceBook2Id =: pricebook.Id]; 
         
-        // If priceBookEntry is not available then insert priceBookEntry 
+        // To Do: If priceBookEntry is not available then insert it 
         if(listNewPriceBook.isEmpty()){
             for(Opportunity opportunitywithPriceBookEntry:listNewTrigger){
                 for(Product2 prod: listOfProducts){
@@ -94,6 +92,7 @@ public class OpportunityHelper {
             }
             Insert listNewPriceBook;
         }
+        
         //Insert OpportunityLineItem
         for(Opportunity OpportunityRecords2 : listNewTrigger){
             for(priceBookEntry pricebookook : listNewPriceBook){ 
@@ -104,11 +103,13 @@ public class OpportunityHelper {
                 }    
             }
         }
-        If(!listofOpportunityLineItem.isEmpty())
+        If(!listofOpportunityLineItem.isEmpty()){
+        	system.debug('listofOpportunityLineItem ->' + listofOpportunityLineItem);
             Insert listofOpportunityLineItem;
+        }    
       }//tryblock end
       Catch(Exception E){
 		system.debug('Error Message is:'+E.getMessage());  
-	  }//Catchblock end 	  
-    }
+	  }	  
+    }//Method end
 }
