@@ -39,6 +39,24 @@ public class WU_SetWarehousePOCHandler
         isInserted = true;
     }
     
+    public static void onAfterInsert(List<WU_Master_Warehouse__c> InsertedItems) {
+        list<WU_Warehouse_Capacity_Detail__c> warehouseCapacityDetailListToInsert = new list<WU_Warehouse_Capacity_Detail__c>();
+        for(WU_Master_Warehouse__c masterWH : InsertedItems ){
+            if(masterWH.WU_Committed_Max_PalletStorage__c != Null && masterWH.WU_Current_Utilization__c != Null && masterWH.WU_ToDate__c != Null &&
+                masterWH.WU_FromDate__c != Null && masterWH.WU_Utilization_Type__c != Null  ){
+                    WU_Warehouse_Capacity_Detail__c warehouseCapacityDetail = new WU_Warehouse_Capacity_Detail__c();
+                    warehouseCapacityDetail.Master_Warehouse__c = masterWH.id;
+                    warehouseCapacityDetail.WU_Committed_Max_PalletStorage__c = masterWH.WU_Committed_Max_PalletStorage__c;
+                    warehouseCapacityDetail.WU_Current_Pallet_Utilization__c = masterWH.WU_Current_Utilization__c;
+                    warehouseCapacityDetail.WU_Utilization_End_Date__c = masterWH.WU_ToDate__c;
+                    warehouseCapacityDetail.WU_Utilization_Start_Date__c = masterWH.WU_FromDate__c;
+                    warehouseCapacityDetail.WU_Utilization_Type__c = masterWH.WU_Utilization_Type__c;
+                    warehouseCapacityDetailListToInsert.add(warehouseCapacityDetail);
+            }
+        }
+        insert warehouseCapacityDetailListToInsert;
+    }
+    
     public static void onBeforeUpdate(Map<Id, WU_Master_Warehouse__c>  oldMapItems, List<WU_Master_Warehouse__c> updatedItems, Map<Id, WU_Master_Warehouse__c> newMapItems) {
         userMap=getUserMap(updatedItems);
         //mgrMap=GetManagerMap(updatedItems);
