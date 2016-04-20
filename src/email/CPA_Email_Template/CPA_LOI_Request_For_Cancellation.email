@@ -1,7 +1,7 @@
 <messaging:emailTemplate subject="{!RelatedTo.LOI_ID__c} : Request For Cancellation" recipientType="User" relatedToType="CPA_Queries__c">
 <messaging:htmlEmailBody >
     Hi, <br/><br/>
-    {!RelatedTo.LastModifiedBy.name} has requested cancellation of LOI with ID {!RelatedTo.LOI_ID__c} on {!Today()}. <br/><br/>
+    {!RelatedTo.LastModifiedBy.name} has requested cancellation of LOI with ID {!RelatedTo.LOI_ID__c} on {!Now()}. <br/><br/>
 
     You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.LookupLOI_Query__c} ">{!RelatedTo.LOI_ID__c} </a> <br/><br/>
 

@@ -18,6 +18,7 @@
         </feedFilters>
         <fullWidthFeed>true</fullWidthFeed>
         <hideSidebar>false</hideSidebar>
+        <highlightExternalFeedItems>true</highlightExternalFeedItems>
         <rightComponents>
             <componentType>Following</componentType>
         </rightComponents>
@@ -33,6 +34,7 @@
         <rightComponents>
             <componentType>CustomButtons</componentType>
         </rightComponents>
+        <useInlineFiltersInConsole>true</useInlineFiltersInConsole>
     </feedLayout>
     <layoutSections>
         <customLabel>true</customLabel>
@@ -105,8 +107,8 @@
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>OwnerId</field>
+                <behavior>Edit</behavior>
+                <field>lkp_Owner__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -295,6 +297,8 @@
         <relatedList>CPA_Key_Contacts__c.PWORF__c</relatedList>
     </relatedLists>
     <relatedLists>
+        <customButtons>btn_New_User_Defined_Attribute</customButtons>
+        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>pkl_Attribute_Type__c</fields>
         <fields>txt_Value__c</fields>
@@ -337,7 +341,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h18000000RSym</masterLabel>
+        <masterLabel>00h56000000IvQH</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
