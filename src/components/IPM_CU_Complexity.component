@@ -38,7 +38,7 @@
      
         </apex:outputText>
          </div>
-           <apex:outputText value="{!projDocSecCon.IPM_Project_Effect__c}"/>
+           <apex:outputText value="{!projDocSecCon.IPM_Project_Effect__c} "/>
            <!-- Checking CU complexity increased or not -->
          <apex:outputPanel rendered="{!IF(projDocSecCon.IPM_Project_Effect__c='Increase in complexity by',true,false)}">
             <apex:outputField value="{!projDocSecCon.IPM_Increased_By__c}"/>
