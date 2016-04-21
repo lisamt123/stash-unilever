@@ -374,8 +374,14 @@ public with sharing class IPM_NewTask {
                         projectType.IPM_Gate_Document__c = 'N/A';
                     }
                     phaseGateMapping.put(projectType.IPM_Phase__c,projectType.IPM_Gate_Document__c);
-                    
-                    options.add(new SelectOption(projectType.IPM_Phase__c,projectType.IPM_Phase__c));                   
+                    nextPhases.add(projectType.IPM_Phase__c);
+                }
+                for(String phase :applicablePhases)
+                {   
+                    if(nextPhases.contains(phase))
+                    {
+                        options.add(new SelectOption(phase,phase));
+                    } 
                 }
             }
             
@@ -487,22 +493,19 @@ public with sharing class IPM_NewTask {
     {
      try
         {
-            List<SelectOption> options = new List<SelectOption>();
-            options.add(new SelectOption(IPM_ConstantUtils.BLANK,IPM_ConstantUtils.BLANK));
-            
+        	List<SelectOption> options = new List<SelectOption>();
+            if(tasks.IPM_Project_Document_Section__c == null)
+            {
+            	options.add(new SelectOption(IPM_ConstantUtils.BLANK,IPM_ConstantUtils.BLANK));
+            }
+             
             if(string.isNotBlank(tasks.IPM_Function__c)  && string.isNotBlank(tasks.IPM_Type_of_Gate__c) )
             {        
                 String functionalRole = IPM_ConstantUtils.BLANK;
                 String projectType = IPM_ConstantUtils.BLANK;
-                    
-                if(tasks.IPM_Function__c == IPM_Utils.SupplyChain)
-                {
-                    functionalRole = IPM_Utils.IPM_NewTaskIPM_FunctionalRole;
-                }
-                else
-                {
-                    functionalRole = tasks.IPM_Function__c ;
-                }
+                
+                functionalRole = assignFunctionRole(tasks.IPM_Function__c);    
+                
                 String sSectionSequence = IPM_Utils.eightvalue + PERCENT_SIGN;
                 
                 projectType = projectObject.IPM_SourceProjectType__c;
@@ -555,6 +558,10 @@ public with sharing class IPM_NewTask {
                     tasks.IPM_Assignee__c = assigneeIdName.get(tasks.IPM_Function__c);
                 }
             }
+            if(tasks.IPM_Project_Document_Section__c != null)
+            {
+            	options.add(new SelectOption(IPM_ConstantUtils.BLANK,IPM_ConstantUtils.BLANK));
+            }	
             return options;
         }
         catch(Exception ex)
@@ -566,6 +573,23 @@ public with sharing class IPM_NewTask {
         }
     }
     
+     /********************************************************************************
+     *@Description : Assigns function role
+     *@Return : String
+    *********************************************************************************/
+    private static String assignFunctionRole(String taskFunctionRole)
+    {
+    	String functionalRole = IPM_ConstantUtils.BLANK;
+    	if(taskFunctionRole == IPM_Utils.SupplyChain)
+        {
+            functionalRole = IPM_Utils.IPM_NewTaskIPM_FunctionalRole;
+        }
+        else
+        {
+            functionalRole = taskFunctionRole ;
+        }
+        return functionalRole;
+    }
     /********************************************************************************
      *@Description : create custome picklist field for functional role.'BB' role will only be shown for local projects.
      *@Return : List of options
