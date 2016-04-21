@@ -94,7 +94,7 @@
         var teamid=cmp.get("v.team_memberId");
         var mytextvalue = document.getElementById("commentText").value;
     
-        if(rating !==0 && rating>1){
+        if(rating !==0 && rating>=1){
             
             var action=cmp.get("c.submitFeedback");
             action.setParams({"activityId":actid,
@@ -128,7 +128,7 @@
     },
     emptyImageClick : function(cmp,event,helper,val){
        // document.getElementById("btn").disabled = true;
-       
+          cmp.set("v.showError",false);
         var numbers = [];
         var indVal = event.target.attributes.getNamedItem("data-index").value;
         var index =parseInt(event.target.attributes.getNamedItem("data-index").value);
@@ -179,7 +179,7 @@
     
     imageClick:function(cmp,event,helper,val){
        // document.getElementById("btn").disabled = true;
-         
+         cmp.set("v.showError",false);
         var numbers = [];
         var indVal = event.target.attributes.getNamedItem("data-index").value;
         var index =parseInt(event.target.attributes.getNamedItem("data-index").value);

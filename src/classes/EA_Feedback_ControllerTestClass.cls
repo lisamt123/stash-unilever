@@ -64,7 +64,12 @@ public class EA_Feedback_ControllerTestClass{
                
             }catch(exception e){
               System.debug('Exception caught: ' + e.getMessage());}
-      
+              
+            Integer testActivityRating = EA_Feedback_Controller.getActivityRating(event.id);
+            
+            string testTeamId = null;
+            EA_Feedback_Controller.submitFeedback(event.id,'testFeedbackText',rating,testTeamId);
+                   
             Test.stopTest();
             }
             }

@@ -9,6 +9,9 @@
     
     <aura:attribute name="showpointsN"   type="boolean" default="false"></aura:attribute>
     
+    <aura:attribute name="ShowActualPointKey"   type="boolean" default="false"></aura:attribute>
+    <aura:attribute name="ShowNextPointKey"   type="boolean" default="true"></aura:attribute>
+     <aura:attribute name="pointsReached"   type="String" ></aura:attribute>
     
     <aura:attribute name="shownewbee1" type="boolean" default="false"></aura:attribute>
     <aura:attribute name="netpoints" type="String" default=""></aura:attribute>
@@ -110,7 +113,7 @@ border-color:green;
   height: 60px;
 }
 .newbee0>span,.newbee1>span,.bronze0>span,.bronze1>span,.silver0>span,.silver1>span,.gold>span{   
-    padding: 12px;
+    padding: 9px;
     margin-right: 4rem;
     border-radius: 3rem;
     background:#fff;
@@ -239,15 +242,15 @@ border-color:green;
         	margin-right: 0;
     }
    .text-div span:nth-child(1){
-        margin-right:3rem;
+        margin-right:2.5rem;
     	font-size: 11px;
         }
            .text-div span:nth-child(2){
-		margin-right:3.5rem;
+		margin-right:3.7rem;
     	font-size: 11px;
         }
    .text-div span:nth-child(3){
-		margin-right:5rem;
+		margin-right:4.5rem;
     	font-size: 11px;
         }
            .text-div span:nth-child(4){
@@ -255,7 +258,7 @@ border-color:green;
     	font-size: 11px;
         }
            .text-div{
-        margin-top: 10px;
+        margin-top: 20px;
         }
         </style>
     <!-- style -->
@@ -268,8 +271,11 @@ border-color:green;
   
     <div class="slds-box">
     <aura:if isTrue="{!v.showpointsN}">
-       <span style="font-size:12px;">
-       You are {!v.netpoints} points away from {!v.badgeTo}
+       <span style="font-size:12px;padding-left: 12px;">
+           
+       <aura:if isTrue="{!v.ShowNextPointKey}">
+        You are {!v.netpoints} points away from {!v.badgeTo}
+        </aura:if>
        </span>
     </aura:if>
             

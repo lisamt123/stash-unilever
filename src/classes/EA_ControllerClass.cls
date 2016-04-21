@@ -336,7 +336,7 @@ activities for current user.
     @AuraEnabled
     public static List<EA_Wrapper_Class.EA_UserProfile_Wrapper>  getUserActivities(){
         List<EA_Wrapper_Class.EA_UserProfile_Wrapper> userprofileList=new List<EA_Wrapper_Class.EA_UserProfile_Wrapper>();     
-        List<EA_Team_Member__c> memberList=[Select id,Activity_Due_Date__c, Everyday_Activity__r.RecordTypeId, Everyday_Activity__r.Name, Everyday_Activity__c, Everyday_Activity__r.Active__c,CreatedDate,Rating_By_Participant__c,invitation_Status__c  From EA_Team_Member__c  Where ( Invited_By__c=:userinfo.getuserId() OR Participant__c =:userinfo.getuserId()) AND (invitation_Status__c =:EA_Constants.INVITATION_STATUS_ACCEPTED OR invitation_Status__c =:EA_Constants.INVITATION_STATUS_SELF OR invitation_Status__c =:EA_Constants.INVITATION_STATUS_INVITED ) order by CreatedDate Desc ];      
+        List<EA_Team_Member__c> memberList=[Select id,Activity_Due_Date__c, Everyday_Activity__r.RecordTypeId, Everyday_Activity__r.Name, Everyday_Activity__c, Everyday_Activity__r.Active__c,CreatedDate,Rating_By_Participant__c,invitation_Status__c  From EA_Team_Member__c  Where ( Participant__c =:userinfo.getuserId()) AND (invitation_Status__c =:EA_Constants.INVITATION_STATUS_ACCEPTED OR invitation_Status__c =:EA_Constants.INVITATION_STATUS_SELF OR invitation_Status__c =:EA_Constants.INVITATION_STATUS_INVITED ) order by CreatedDate Desc ];      
         if(memberList != null){           
             //SOQL query inside for loop - Fix
             Map<id ,String> tmIdToEANameMap = new Map<id ,String>();                
@@ -500,7 +500,8 @@ activities for current user.
                 for (Object id : values) {
                     lstUser.add(string.valueof(id) );
                 }
-            }                                 
+            } 
+            system.debug('List of invited user-->'+lstUser[0]+''+lstUser.size());                                
             List<Everyday_Activity__c> acts = getactivitydetail(activityId);
             String actvityName = acts[0].Name;
             Decimal points = acts[0].Activity_Points__c;           
@@ -547,6 +548,7 @@ activities for current user.
             for (User uObj : users) {
                 EA_Team_Member__c m   = new EA_Team_Member__c();                
                 m.Participant__c   = uObj.id;
+                system.debug('First userid-->'+uObj.id);
                 m.Invited_By__c  = UserInfo.getUserId();
                 m.Invitation_Status__c = EA_Constants.INVITATION_STATUS_INVITED;
                 m.Everyday_Activity__c = activityId;

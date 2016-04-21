@@ -151,8 +151,8 @@
           component.set("v.bronze1",false);
           component.set("v.bronze2",false);
           component.set("v.bronze3",false);
-          component.set("v.silver0",false);
-          component.set("v.silver1",true);
+          component.set("v.silver0",true);
+          component.set("v.silver1",false);
           component.set("v.silver2",false);
           component.set("v.silver3",false);
           component.set("v.silver4",false);
@@ -172,8 +172,8 @@
           component.set("v.bronze2",false);
           component.set("v.bronze3",false);
           component.set("v.silver0",false);
-          component.set("v.silver1",false);
-          component.set("v.silver2",true);
+          component.set("v.silver1",true);
+          component.set("v.silver2",false);
           component.set("v.silver3",false);
           component.set("v.silver4",false);
           component.set("v.gold",false);
@@ -193,6 +193,25 @@
           component.set("v.bronze3",false);
           component.set("v.silver0",false);
           component.set("v.silver1",false);
+          component.set("v.silver2",true);
+          component.set("v.silver3",false);
+          component.set("v.silver4",false);
+          component.set("v.gold",false);
+           component.set("v.Silver_badge",true);
+          component.set("v.silver_img_pos",true);
+          component.set("v.Bronze_badge",false); 
+          component.set("v.gold_img_pos",false);
+          component.set("v.newbee_img_pos",false);} 
+        else if(a>=100 && a<110)
+      {   component.set("v.newbee0",false);
+          component.set("v.newbee1",false);
+          component.set("v.newbee2",false);
+          component.set("v.bronze0",false);
+          component.set("v.bronze1",false);
+          component.set("v.bronze2",false);
+          component.set("v.bronze3",false);
+          component.set("v.silver0",false);
+          component.set("v.silver1",false);
           component.set("v.silver2",false);
           component.set("v.silver3",true);
           component.set("v.silver4",false);
@@ -201,7 +220,7 @@
           component.set("v.silver_img_pos",true);
           component.set("v.Bronze_badge",false); 
           component.set("v.gold_img_pos",false);
-          component.set("v.newbee_img_pos",false);} 
+          component.set("v.newbee_img_pos",false);}            
        else if(a>=110 && a<120)
       {  component.set("v.newbee0",false);
           component.set("v.newbee1",false);
