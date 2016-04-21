@@ -250,7 +250,7 @@
 	.cancelAction{margin-right:10px;}
 	.finAlertBox{display: block;padding: 10px;border-radius: 4px;margin-top: 20px;margin-bottom: 20px;background: #FFFB42;float:left; width:100%}
 	.finAlertBox .col-sm-1{margin-top: 10px;width: 35px;padding-left: 0;padding-right: 0;}
-    .finalerttext {position: relative;left: -10px;font-weight: normal;color: #333; font-size: 14px;}
+    .finalerttext {position: relative;left: -10px;font-weight: normal;color: #555; font-size: 14px;}
 	.finalerttext  p {margin-bottom:0;font-size: 14px;}
     .alertimg { width: 30px; position: relative; bottom: 7px;height:auto;}
 	.misAlignedTLD {background-repeat: no-repeat;text-indent: 10px;background-size: 30px;background-position: 10px;background-image: url('../images/alert_1a.png');color: #555;font-weight: normal;background-color: #FFFB42 ;width: 100%;display: block;padding: 10px;float: left;margin-bottom: 10px;border-radius: 4px;padding-left: 43px;}
@@ -295,7 +295,7 @@
     border-top-color: #00b1a5;
 }
 .col-sm-6.finTabHeaderExt{float:right;}
-.ui-widget-content.ui-tooltip {
+.ui-widget-content.normal_tip {
 	-webkit-box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15);
     -moz-box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15);
     box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15);
@@ -309,12 +309,12 @@
 	opacity:0.9;
 	width:200px;
 }
-.ui-tooltip-content {
+.normal_tip .ui-tooltip-content {
     position: relative;
     padding: 0;    
 	font-size:12px;
 }
-.ui-tooltip-content::after {
+.normal_tip .ui-tooltip-content::after {
     content: '';
     position: absolute;
     border-style: solid;

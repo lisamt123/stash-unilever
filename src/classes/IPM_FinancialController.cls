@@ -2320,14 +2320,14 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                valueWrapperGross.isMinorValueInvalid = false;
                valueWrapperIncremental.isMinorValueInvalid = false;
                valueWrapperGross.isGrossTOValueInvalid = false;
-               valueWrapperGross.isGrossTOGRTIto = false;
                if(valueWrapperGross.index == valueWrapperIncremental.index){
+			valueWrapperGross.isGrossTOGRTIto = false;
                              if(valueWrapperGross.Value < valueWrapperIncremental.Value){ 
                                isITOgrtGTOCal = true; 
                                valueWrapperGross.isGrossTOGRTIto = true;
                                isFinancialInvalid = true;
                                isValidationErrorCal = true;
-	                			//validationErrorMessage = IPM_ConstantUtils.INVALID_DATA_TO_SAVE;
+	                			validationErrorMessageCal = IPM_ConstantUtils.INVALID_DATA_TO_SAVE;
                              } 
      
                }
@@ -2369,14 +2369,15 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                valueWrapperGross.isMinorValueInvalid = false;
                valueWrapperIncremental.isMinorValueInvalid = false;
                valueWrapperGross.isGrossTOValueInvalid = false;
-               valueWrapperGross.isGrossTOGRTIto = false;
+               
               if(valueWrapperGross.index == valueWrapperIncremental.index){
+			valueWrapperGross.isGrossTOGRTIto = false;
                	     if(valueWrapperGross.Value <  valueWrapperIncremental.Value){
                        isITOgrtGTO = true; 
                        valueWrapperGross.isGrossTOGRTIto = true;
                        isFinancialInvalid = true;
                        isValidationError = true;
-	                	//validationErrorMessage = IPM_ConstantUtils.INVALID_DATA_TO_SAVE;
+	                	validationErrorMessage = IPM_ConstantUtils.INVALID_DATA_TO_SAVE;
                      }
                 }
                if(valueWrapperIncremental.value <= IPM_ConstantUtils.INVALID_VALUE){

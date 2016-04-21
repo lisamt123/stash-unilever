@@ -72,6 +72,7 @@ ul.dropdown-menu li{margin-left:0 ;}
 .navbar .navbar-nav>li a{cursor:pointer; color:#fff ; font-size:1em;font-weight:bold;padding:10px 0;position:relative;top:3px;}
 .navbar-nav>li a > span  {display:block; padding:0 20px; border-right:1px solid #fff; }
 .navbar-nav li:last-child > a > span {border:transparent;}  
+.navbar.navbar-default .navbar-nav>.active.open>a,.navbar.navbar-default .navbar-nav>.active.open>a:hover{color:#555;}
 .essentialsddown,.gateddown{position:absolute;top:10px;right:14px;}
 .essentialsddown:after{font-family: FontAwesome;  content: "\f107";  font-size: 1.4em;  width: 20px; color: #fff;}
 .gateddown:after{display: block;  font-family: FontAwesome;  content: "\f107";  font-size: 1.4em; width: 20px; color: #fff;}

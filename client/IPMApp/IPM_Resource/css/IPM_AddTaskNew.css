@@ -33,7 +33,7 @@
 	body{height:100%;}
 	.EditTask .ipmButtonGroup{height:10%;margin-bottom:10px;}
 	.EditTask{float:left;height:100%;overflow:auto;}
-	.datePicker{    margin-top: -150px;}
+	.datePicker{margin-top: -170px;}
 	.buttonMarginRight{margin-right:15px;}
 	.functionError .errorMsg:before {  top: 39px;}
 	
@@ -96,7 +96,7 @@
   -ms-transform: rotate(-45deg);
   transform: rotate(-45deg);
 }
-.EditTask .message{margin:10px 0 ;width: 90%;}
+.EditTask .message{margin:10px 0 ;width: 83%;}
 .todoName{height: 110px;width: 100%;resize: none;border-radius: 4px;}
 .panelScroll{height: 438px;overflow: auto;}
 .messageTable ul li{color: #C73E36;}

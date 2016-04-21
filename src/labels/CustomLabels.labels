@@ -7796,7 +7796,7 @@ White Space is a strategic classifier – it means launching an existing Unileve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM Financial Data</shortDescription>
-        <value>Financial Data</value>
+        <value>financials data.</value>
     </labels>
     <labels>
         <fullName>IPM_Financial_KeyCountry</fullName>
@@ -8441,6 +8441,13 @@ White Space is a strategic classifier – it means launching an existing Unileve
         <protected>false</protected>
         <shortDescription>IPM ITO GTO Validation Common message</shortDescription>
         <value>Innovation/Calendar Year iTO cannot be greater than GTO.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_ITO_should_not_be_greater_than_GTO</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM ITO should not be greater than GTO</shortDescription>
+        <value>ITO should not be greater than GTO.</value>
     </labels>
     <labels>
         <fullName>IPM_Ideas</fullName>
@@ -10324,6 +10331,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>IPM Please Fill Comments In</shortDescription>
         <value>Please Fill Comments in</value>
+	</labels>
+    <labels>
+        <fullName>IPM_Please_fill_financial</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Please fill</shortDescription>
+        <value>Please fill</value>
     </labels>
     <labels>
         <fullName>IPM_Please_select_country</fullName>
