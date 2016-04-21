@@ -6506,6 +6506,13 @@ If approved your project will be linked after your Charter gate has been approve
         <value>Date Period:</value>
     </labels>
     <labels>
+        <fullName>IPM_WEIGHTED</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_WEIGHTED</shortDescription>
+        <value>Weighted</value>
+    </labels>
+    <labels>
         <fullName>IPM_DAY</fullName>
         <language>en_US</language>
         <protected>false</protected>
