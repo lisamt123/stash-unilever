@@ -416,7 +416,7 @@ public with sharing class IPM_TaskHelper {
     * @param1 projIdToMasterTaskListMap : project and associated task list
     * @param1 projIdProjDocSecListMap : project and project document section list
     * @param1 projIdProjResListMap : project and project resource list
-    */
+ */
  public  static void  createNewTasksFromTemplates(Map<Id,IPM_Project__c> incomingProjectMap ,Map<Id,list<IPM_Task__c>> projIdToMasterTaskListMap,Map<Id,IPM_Project_Document__c> projectTargetDocumentMap,Map<Id,List<IPM_Project_Document_Section__c>> projectDocumentToTargetSectionMap,Map<Id,list<IPM_Project_Resource__c>> projIdProjResListMap, String typeOfTask,Map<Id,List<IPM_Task__c>> projectToNewTaskList)
  { 
  	Map<Id,List<IPM_Task__c>> projectToClonedTaskList = new Map<Id,List<IPM_Task__c>>();
@@ -893,45 +893,6 @@ public with sharing class IPM_TaskHelper {
 			projectToMasterTaskList.put(project.Id,masterTaskList);
     	}
     	
-    }
-    /**************************************************************
-    * @description: Get the project document info based on gate
-    * @param1 incomingProjectMap : project
-    * @param2 currentProjectGateExistingTaskMap : current project tasks
-    * @param3 previousProjectGateExistingTaskMap : previous gate project tasks
-    */
-    public static List<IPM_Task__c> checkProjectArchival(Map<Id,IPM_Project__c>  incomingProjectMap,Map<Id,List<IPM_Task__c>>  currentProjectGateExistingTaskMap,Map<Id,List<IPM_Task__c>> previousProjectGateExistingTaskMap)
-    {
-    	List<IPM_Task__c> completedTaskList = new List<IPM_Task__c>();
-    	  
-    	for(IPM_Project__c project : incomingProjectMap.values())
-    	{
-    		if(project.Is_Archieved__c)
-    		{ 
-    			if(currentProjectGateExistingTaskMap.containsKey(project.Id))
-    			{
-    				for(IPM_Task__c existingTask : currentProjectGateExistingTaskMap.get(project.Id))
-    				{
-    					existingTask.IPM_Completed__c = true;
-			            existingTask.IPM_AutoCompletedBySystem__c = true;
-    					completedTaskList.add(existingTask);	
-    				}
-    				
-    			}
-    			
-    			if(previousProjectGateExistingTaskMap.containsKey(project.Id))
-    			{
-    				for(IPM_Task__c existingTask : previousProjectGateExistingTaskMap.get(project.Id))
-    				{
-    					existingTask.IPM_Completed__c = true;
-			            existingTask.IPM_AutoCompletedBySystem__c = true;
-    					completedTaskList.add(existingTask);	 
-    				}
-    				
-    			}
-    		}
-    	}
-    	return completedTaskList;
     }
     
    

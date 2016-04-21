@@ -91,7 +91,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
             for(Integer counter=0;counter < projectAssociatedWithProjectTypesList.size();counter++)
             {
                 IPM_ProjectMetadata__c projectMetadata = projectMetadataList.get(counter);
-                IPM_Project__c project = projectAssociatedWithProjectTypesList.get(counter);
+                IPM_Project__c project = projectAssociatedWithProjectTypesList.get(counter);   
                 if(project.IPM_IsSaved__c){
                     Set<String> projectmandatoryFieldErrorSet = new Set<String>();
                     if(projectMetadata!=null && projectMetadata.IPM_Project_Type__c !=null && !String.isBlank(projectMetadata.IPM_Project_Type__c))
@@ -203,7 +203,8 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                 
                 if(!IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED)
                 {
-                    if(incomingProject.IPM_Project_Job_Status__c == IPM_ConstantUtils.JOB_STATUS_ELIGIBLE && incomingProject.IPM_Temporary_Phase__c !=null)
+                    if(incomingProject.IPM_Project_Job_Status__c == IPM_ConstantUtils.JOB_STATUS_ELIGIBLE && incomingProject.IPM_Temporary_Phase__c !=null 
+                    && incomingProject.IPM_Project_Name__c != null && incomingProject.IPM_Project_Name__c != IPM_ConstantUtils.MASTER_PROJECT_NAME)
                     {   
                         phaseChangeProjects.add(incomingProject.Id);
                     }   
@@ -334,11 +335,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                         processTasksMap.put(incomingProject.Id,incomingProject);
                     }
                         
-                    if(String.isNotBlank(incomingProject.IPM_Phase__c) &&  incomingProject.Is_Archieved__c  && (incomingProject.Is_Archieved__c != oldProject.Is_Archieved__c ) )
-                    {
-                        masterProjectMap.put(incomingProject.Id,incomingProject);
-                        processTasksMap.put(incomingProject.Id,incomingProject);
-                    }
+                    
                          
                     if(String.isNotBlank(incomingProject.IPM_Phase__c) &&  incomingProject.IPM_Project_Leader__c != null  && (incomingProject.IPM_Project_Leader__c != oldProject.IPM_Project_Leader__c ) )
                     {   
@@ -602,7 +599,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
             
             Map<Id, IPM_Project__c> ipmFastTrackProjectMap = new Map<Id, IPM_Project__c>(); // Fast Track Marked project Map 
             Map<Id, String> stoppedProjectMap = new Map<Id, String>(); // Fast Track Marked project Map 
-            Set<Id> strtdPrjIdSet = new Set<Id>(); //  started project Id set 
+            
 			
             for(IPM_Project__c p:(List<IPM_Project__c>)Trigger.New)
             {
@@ -663,19 +660,18 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                     
                     if(String.isNotBlank(p.IPM_Phase__c) && (p.Is_Archieved__c != proj.Is_Archieved__c ) && stopProjExecute)
                     {   
-                    	if(p.Is_Archieved__c  )
-                    	{
-                    	  	stoppedProjectMap.put(p.id,p.IPM_Stopped_Comments__c);
-                    	}
-                    	else
-                    	{
-                    	    strtdPrjIdSet.add(p.id);
-                    	}
-                    	
+                        
+                        if(p.Is_Archieved__c  )
+                        {
+                            stoppedProjectMap.put(p.id,p.IPM_Stopped_Comments__c);
+                        }
+                        else
+                        {
+                            stoppedProjectMap.put(p.id,IPM_ConstantUtils.BLANK);
+                        }
+                   }  
                     
-					}  
-					
-					     
+                         
                 }
                
                  // Fast Track Global Original Project 
@@ -683,17 +679,13 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                 {
                     IPM_ProjectHelper.processFastTrackProjects(ipmFastTrackProjectMap);
                 }
-            	
-            	if(!stoppedProjectMap.isEmpty()) 
+                
+                if(!stoppedProjectMap.isEmpty()) 
                 {
                    IPM_ProjectHelper.updateStoppedProject(stoppedProjectMap);
                 }
                 
-                if(!strtdPrjIdSet.isEmpty())
-                {
-                    IPM_ProjectHelper.restartProject(strtdPrjIdSet);
-                } 
-           
+                      
            //call update project name in all objects records
             if(!updateNewProNameMap.IsEmpty()){
                 IPM_UpdateGlobalProjectName.updateProjectName(updateNewProNameMap,oldprojectnameMap);
