@@ -188,7 +188,7 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
                 phaseChangeRolloutSet.add(newRollout.Id);
             }
         }
-        if( oldRollout.Target_Launch_Date__c != newRollout.Target_Launch_Date__c ){
+        if( oldRollout.Target_Launch_Date__c != newRollout.Target_Launch_Date__c ||  oldRollout.isActive__c != newRollout.isActive__c){
             rolloutProjectTLDChanged.put(oldRollout.Id,newRollout);
             if(!globalProjIdRollout.containskey(newRollout.IPM_Project__c) && !globalProjIdRollout.containskey(newRollout.Regional_Project__c)){
                 if(newRollout.Regional_Project__c != null){
@@ -216,6 +216,16 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
     public void afterDelete(SObject so)
     {
         //This method has been included as the class implements the ITrigger interface
+        //recalculate TLD when rollout is deleted
+        IPM_Project_Rollout__c newRollout = (IPM_Project_Rollout__c)so; 
+        rolloutProjectTLDChanged.put(newRollout.Id,newRollout);
+        if(!globalProjIdRollout.containskey(newRollout.IPM_Project__c) && !globalProjIdRollout.containskey(newRollout.Regional_Project__c)){
+            if(newRollout.Regional_Project__c != null){
+                globalProjIdRollout.put(newRollout.Regional_Project__c,newRollout);  
+            } else if(newRollout.IPM_Project__c != null){
+                globalProjIdRollout.put(newRollout.IPM_Project__c,newRollout); 
+            }
+        }   
     }
     
     /**

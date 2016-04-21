@@ -937,7 +937,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     {
         try
         {
-            List<IPM_Project_Rollout__c> deleteRolloutList = [Select Id,Local_Project__c,IPM_CharterApproved__c from IPM_Project_Rollout__c where Id = :selectedMCORollout ];
+            List<IPM_Project_Rollout__c> deleteRolloutList = [Select Id,Local_Project__c,IPM_CharterApproved__c,Regional_Project__c,IPM_Project__c from IPM_Project_Rollout__c where Id = :selectedMCORollout ];
             
             if(!deleteRolloutList.isEmpty())
             {
@@ -950,6 +950,11 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                       toBeArchievedproject.Is_Archieved__c=true;
                       update toBeArchievedProject;
                     
+						//recalculate TLD when rollout is inactive
+					  Map<Id,IPM_Project_Rollout__c> rolloutProjectTLDChanged = new Map<Id,IPM_Project_Rollout__c> ();
+					  rolloutProjectTLDChanged.put(deleteRolloutList[0].id,deleteRolloutList[0]);
+					  IPM_RolloutPlanTLDSync rolloutPlanTLDSync = new IPM_RolloutPlanTLDSync();
+					  rolloutPlanTLDSync.syncTLDDates(null,rolloutProjectTLDChanged);
                     }
                 else if(deleteRolloutList[0].IPM_CharterApproved__c)
         		{
