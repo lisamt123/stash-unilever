@@ -5259,6 +5259,10 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <shortDescription>CPA HLE Request cant be deleted</shortDescription>
         <value>HLE Request cant be deleted.</value>
     </labels>
+<<<<<<< HEAD
+=======
+
+>>>>>>> develop
     <labels>
         <fullName>CPA_KeyContact_Object_Id</fullName>
         <language>en_US</language>
