@@ -74,7 +74,27 @@ It displays PWORF requests received from Project Services / Delivery Teams at Un
         <fullName>Breached_By_Days__c</fullName>
         <description>This field created for Work Order Status Report.</description>
         <externalId>false</externalId>
-        <formula>IF((IF(ISNULL(dat_Revised_Submission_Date__c), TODAY()- dat_Expected_SLA2_Date__c, TODAY()- dat_Revised_Submission_Date__c))&lt;=0, null, (IF(ISNULL(dat_Revised_Submission_Date__c), TODAY()- dat_Expected_SLA2_Date__c, TODAY()- dat_Revised_Submission_Date__c)))</formula>
+        <formula>IF((AND(ISNULL(dat_Revised_Submission_Date__c),dat_Expected_SLA2_Date__c &lt; TODAY())), ((CASE(MOD( dat_Expected_SLA2_Date__c - DATE(1985,6,24),7), 
+0 , CASE( MOD( TODAY() - dat_Expected_SLA2_Date__c ,7),1,2,2,3,3,4,4,5,5,5,6,5,1), 
+1 , CASE( MOD( TODAY() - dat_Expected_SLA2_Date__c ,7),1,2,2,3,3,4,4,4,5,4,6,5,1), 
+2 , CASE( MOD( TODAY() - dat_Expected_SLA2_Date__c ,7),1,2,2,3,3,3,4,3,5,4,6,5,1), 
+3 , CASE( MOD( TODAY() - dat_Expected_SLA2_Date__c ,7),1,2,2,2,3,2,4,3,5,4,6,5,1), 
+4 , CASE( MOD( TODAY() - dat_Expected_SLA2_Date__c ,7),1,1,2,1,3,2,4,3,5,4,6,5,1), 
+5 , CASE( MOD( TODAY() - dat_Expected_SLA2_Date__c ,7),1,0,2,1,3,2,4,3,5,4,6,5,0), 
+6 , CASE( MOD( TODAY() - dat_Expected_SLA2_Date__c ,7),1,1,2,2,3,3,4,4,5,5,6,5,0), 
+999) 
++ 
+(FLOOR(( TODAY() - dat_Expected_SLA2_Date__c )/7)*5)) - 1), (IF(AND(NOT(ISNULL(dat_Revised_Submission_Date__c)),dat_Revised_Submission_Date__c&lt;TODAY()),((CASE(MOD( dat_Revised_Submission_Date__c - DATE(1985,6,24),7), 
+0 , CASE( MOD( TODAY() - dat_Revised_Submission_Date__c ,7),1,2,2,3,3,4,4,5,5,5,6,5,1), 
+1 , CASE( MOD( TODAY() - dat_Revised_Submission_Date__c ,7),1,2,2,3,3,4,4,4,5,4,6,5,1), 
+2 , CASE( MOD( TODAY() - dat_Revised_Submission_Date__c ,7),1,2,2,3,3,3,4,3,5,4,6,5,1), 
+3 , CASE( MOD( TODAY() - dat_Revised_Submission_Date__c ,7),1,2,2,2,3,2,4,3,5,4,6,5,1), 
+4 , CASE( MOD( TODAY() - dat_Revised_Submission_Date__c ,7),1,1,2,1,3,2,4,3,5,4,6,5,1), 
+5 , CASE( MOD( TODAY() - dat_Revised_Submission_Date__c ,7),1,0,2,1,3,2,4,3,5,4,6,5,0), 
+6 , CASE( MOD( TODAY() - dat_Revised_Submission_Date__c ,7),1,1,2,2,3,3,4,4,5,5,6,5,0), 
+999) 
++ 
+(FLOOR(( TODAY() - dat_Revised_Submission_Date__c )/7)*5))-1),null)))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Breached By Days</label>
         <precision>18</precision>
@@ -4116,11 +4136,13 @@ Is required</description>
     </validationRules>
     <validationRules>
         <fullName>Revised_Submission_Date</fullName>
-        <active>false</active>
+        <active>true</active>
         <description>Revised Submission Date should not be less then current date</description>
-        <errorConditionFormula>AND((OR((ISPICKVAL(   pkl_Status__c , &apos;Submitted&apos;)),(ISPICKVAL(   pkl_Status__c , &apos;Resubmitted&apos;)))),dat_Revised_Submission_Date__c  &lt;=  TODAY())</errorConditionFormula>
+        <errorConditionFormula>IF(OR((CASE(MOD(dat_Revised_Submission_Date__c- DATE(1900, 1, 7), 7), 0, &quot;Sunday&quot;, 1, &quot;Monday&quot;, 2, &quot;Tuesday&quot;, 3,
+&quot;Wednesday&quot;, 4, &quot;Thursday&quot;, 5, &quot;Friday&quot;, 6, &quot;Saturday&quot;,&quot;Error&quot;)) == &quot;Sunday&quot;, (CASE(MOD(dat_Revised_Submission_Date__c- DATE(1900, 1, 7), 7), 0, &quot;Sunday&quot;, 1, &quot;Monday&quot;, 2, &quot;Tuesday&quot;, 3,
+&quot;Wednesday&quot;, 4, &quot;Thursday&quot;, 5, &quot;Friday&quot;, 6, &quot;Saturday&quot;,&quot;Error&quot;)) == &quot;Saturday&quot;),true,false)</errorConditionFormula>
         <errorDisplayField>dat_Revised_Submission_Date__c</errorDisplayField>
-        <errorMessage>Date should be greater than current date</errorMessage>
+        <errorMessage>Please select business week days.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Role_or_System_Authorisation</fullName>

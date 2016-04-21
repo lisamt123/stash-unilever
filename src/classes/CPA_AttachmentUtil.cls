@@ -584,8 +584,8 @@ public static void deleteCommericalData(List<Attachment> lstatt)    {
     
         map<ID,list<CPA_Commercial_Details__c>> mapCRComDetai = new map<ID,list<CPA_Commercial_Details__c>>();      
         List<CPA_CR__c> lstUpdateCR = new List < CPA_CR__c>();
-        List<CPA_CR__c> lstCR = [Select Id,Name,num_Estimated_Man_days_of_CR__c,num_Estimated_Value_of_CR__c,num_Target_Blend_Rate__c,num_Total_charge_of_CR__c,num_Expense_charges_of_CR__c,pec_Expense__c,num_Authorisation_charges__c,num_Authorisation_man_days__c,num_RMS_value__c,num_Effort_Cost__c,num_Total_Resource_Cost_CR__c ,num_Total_Resource_Efforts_CR__c,num_Contingency_Charges__c,num_Discounts__c  from CPA_CR__c where ID IN:  setCRID];
-        
+        List<CPA_CR__c> lstCR = [Select Id,Name,num_Estimated_Man_days_of_CR__c,num_Estimated_Value_of_CR__c,num_Target_Blend_Rate__c,num_Total_charge_of_CR__c,num_Expense_charges_of_CR__c,pec_Expense__c,num_Authorisation_charges__c,num_Authorisation_man_days__c,num_RMS_value__c,num_Effort_Cost__c,num_Total_Resource_Cost_CR__c ,num_Total_Resource_Efforts_CR__c,num_Contingency_Charges__c,num_Discounts__c,RecordTypeid,num_Total_Expenses_of_CR__c  from CPA_CR__c where ID IN:  setCRID];
+        ID StandCRRecordtype = Schema.SObjectType.CPA_CR__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.STANDALONECR).getRecordTypeId();
         if(lstCR !=null && setCRID !=null){
             for(CPA_CR__c objCR : lstCR){
                 List <CPA_Commercial_Details__c>lstTemp = new List<CPA_Commercial_Details__c>();
@@ -681,6 +681,14 @@ public static void deleteCommericalData(List<Attachment> lstatt)    {
                 if(intNoOfResources> 0){
                     objCR.pec_Estimated_Off_shore__c = (intoffshower/intNoOfResources)*100;
                     objCR.pec_Estimated_On_shore__c = (intOnshower/intNoOfResources)*100;
+                }
+                
+                if(objCR.RecordTypeid == StandCRRecordtype){
+                    if(objCR.num_Estimated_Value_of_CR__c != null){
+                            objCR.num_Total_charge_of_CR__c = objCR.num_Estimated_Value_of_CR__c;    //CHages for Standalone CR
+                    }else if(objCR.num_Expense_charges_of_CR__c!=null){
+                        objCR.num_Total_Expenses_of_CR__c = objCR.num_Expense_charges_of_CR__c;  //CHages for Standalone CR
+                    }
                 }
                 lstUpdateCR.add(objCR);
                

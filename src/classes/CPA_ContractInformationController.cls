@@ -307,7 +307,7 @@ global with sharing class CPA_ContractInformationController {
     ********************************************************************/
     static void cNFReqFields(CPA_project_work_order__c cnfRecord,Map<String,String> RequiredFieldMap) {
         if(cnfRecord.txt_CNF_Accenture_Project_Manager__c== null) {
-            RequiredFieldMap.put('CNF Accenture Project Manager',CPA_ConstantsForContractingAppClasses.MANDATORY);
+            RequiredFieldMap.put('CNF Vendor Project Manager',CPA_ConstantsForContractingAppClasses.MANDATORY);
         }
         if(cnfRecord.num_CNF_Actual_Day_rate__c== null) {
             RequiredFieldMap.put('CNF Actual Day rate',CPA_ConstantsForContractingAppClasses.MANDATORY);

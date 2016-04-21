@@ -273,6 +273,6 @@ public class CPA_ConstantsForContractingAppClasses{
     
     public static final String CONTRACTDELETE = 'Contract can be deleted in Save and Return Status only';
     public static final String COMMERICALDELETE = 'Commercial can be deleted in Save and Return Status only';
-
+    public static final String STANDALONECR = 'Standalone CR';
 
 }

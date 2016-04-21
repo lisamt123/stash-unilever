@@ -250,16 +250,6 @@ CASE(MOD(  dat_Delivered_Date__c  - DATE(1985,6,24),7),
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
-        <fullName>Standalone_PWO_clarity_ID__c</fullName>
-        <externalId>false</externalId>
-        <label>Clarity ID</label>
-        <length>255</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>TNF_Auto_ID__c</fullName>
         <displayFormat>TNF-{0000}</displayFormat>
         <externalId>true</externalId>
@@ -828,7 +818,7 @@ CASE(MOD(  dat_Delivered_Date__c  - DATE(1985,6,24),7),
         <fullName>fml_Clarity_ID__c</fullName>
         <description>PWORF Clarity ID is store in it</description>
         <externalId>false</externalId>
-        <formula>IF( ISBLANK(PWORF_ID__c),  Standalone_PWO_clarity_ID__c ,  PWORF_ID__r.txt_Clarity_ID__c )</formula>
+        <formula>IF( ISBLANK(PWORF_ID__c),  txt_Standalone_PWO_clarity_ID__c,  PWORF_ID__r.txt_Clarity_ID__c )</formula>
         <inlineHelpText>PWORF Clarity ID is store in it</inlineHelpText>
         <label>Clarity ID</label>
         <required>false</required>
