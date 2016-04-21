@@ -5749,6 +5749,24 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>Casos_cerrados_spam_2015</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Global_Reason_L3_desc__c</field>
+            <operation>equals</operation>
+            <value>Hang up</value>
+        </filters>
+        <label>Casos cerrados spam 2015</label>
+        <language>es</language>
+    </listViews>
+    <listViews>
         <fullName>Denmark_V2</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
@@ -6464,7 +6482,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.SUBJECT</field>
             <operation>contains</operation>
-            <value>PepsiCola</value>
+            <value>spam</value>
+        </filters>
+        <filters>
+            <field>OWNER_NAME</field>
+            <operation>equals</operation>
+            <value>CEC Spain queue</value>
         </filters>
         <label>spam pp Spain</label>
         <language>es</language>
