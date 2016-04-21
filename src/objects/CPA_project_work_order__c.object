@@ -2074,7 +2074,7 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
     <fields>
         <fullName>txt_CNF_Accenture_Project_Manager__c</fullName>
         <externalId>false</externalId>
-        <label>CNF Accenture Project Manager*</label>
+        <label>CNF Vendor Project Manager*</label>
         <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>

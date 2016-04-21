@@ -74,7 +74,7 @@ It displays PWORF requests received from Project Services / Delivery Teams at Un
         <fullName>Breached_By_Days__c</fullName>
         <description>This field created for Work Order Status Report.</description>
         <externalId>false</externalId>
-        <formula>IF((AND(ISNULL(dat_Revised_Submission_Date__c),dat_Expected_SLA2_Date__c &lt; TODAY())), ((CASE(MOD( dat_Expected_SLA2_Date__c - DATE(1985,6,24),7), 
+        <formula>IF(ISPICKVAL(pkl_Breach_Applicable__c, &apos;Yes&apos;) ,IF((AND(ISNULL(dat_Revised_Submission_Date__c),dat_Expected_SLA2_Date__c &lt; TODAY())), ((CASE(MOD( dat_Expected_SLA2_Date__c - DATE(1985,6,24),7), 
 0 , CASE( MOD( TODAY() - dat_Expected_SLA2_Date__c ,7),1,2,2,3,3,4,4,5,5,5,6,5,1), 
 1 , CASE( MOD( TODAY() - dat_Expected_SLA2_Date__c ,7),1,2,2,3,3,4,4,4,5,4,6,5,1), 
 2 , CASE( MOD( TODAY() - dat_Expected_SLA2_Date__c ,7),1,2,2,3,3,3,4,3,5,4,6,5,1), 
@@ -94,7 +94,7 @@ It displays PWORF requests received from Project Services / Delivery Teams at Un
 6 , CASE( MOD( TODAY() - dat_Revised_Submission_Date__c ,7),1,1,2,2,3,3,4,4,5,5,6,5,0), 
 999) 
 + 
-(FLOOR(( TODAY() - dat_Revised_Submission_Date__c )/7)*5))-1),null)))</formula>
+(FLOOR(( TODAY() - dat_Revised_Submission_Date__c )/7)*5))-1),null))),null)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Breached By Days</label>
         <precision>18</precision>
@@ -1207,7 +1207,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <fullName>eml_Project_requestor_Email__c</fullName>
         <description>Project requestor Email</description>
         <externalId>false</externalId>
-        <label>Project requestor Email</label>
+        <label>Project requestor Email*</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -2160,7 +2160,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <fullName>txt_Project_requestor_Name__c</fullName>
         <description>Project requestor Name</description>
         <externalId>false</externalId>
-        <label>Project requestor Name</label>
+        <label>Project requestor Name*</label>
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>

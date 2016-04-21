@@ -36,9 +36,6 @@
         <field>CPA_project_work_order__c.PWORF_Vendor__c</field>
     </columns>
     <columns>
-        <field>CPA_project_work_order__c.Standalone_PWO_clarity_ID__c</field>
-    </columns>
-    <columns>
         <field>CPA_project_work_order__c.dat_Submitted_Date__c</field>
     </columns>
     <columns>

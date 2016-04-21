@@ -56,6 +56,7 @@ public class CPA_ConstantsForContractingAppClasses{
     public static final String PWORFTRIGERNAME = 'CPA_PWORF_Trigger';
     public static final String LOITRIGGERNAME = 'CPA_LOI_Trigger';
     public static final String ATTACHMENTTRIGERNAME = 'CPA_AfterAttachment';
+    public static final String UDATRIGGER= 'CPA_User_Defined_Attribute';
     public static final String HLEREQUESTTRIGERNAME = 'CPA_HLERequest';
     public static final String QUERIESTRIGERNAME = 'CPA_Queries';
     public static final String QUERYCOMMENTTRIGERNAME = 'CPA_Query_comment';
@@ -168,6 +169,11 @@ public class CPA_ConstantsForContractingAppClasses{
     public static final String APPINFRASTRUCTURE='Application infrastructure';
     public static final String ANALYSESESSIONSEXPECTED='Analyse sessions expected';
     public static final String ACCEPTANCECRITERIA='Acceptance Criteria';
+    public static final String PROJECTREQUESTOREMAIL='Project requestor Email';
+    public static final String PROJECTREQUESTORNAME='Project requestor Name';
+    
+    
+    
     public static final String REVISEDSUBDATE='Revised Submission Date';
     public static final String PWOLINKEDTOCR1='PWO linked to CR';
     public static final String OTHERREQUESTTYPE='Other-Request Type';

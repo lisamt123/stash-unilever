@@ -1304,11 +1304,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Standalone_PWO_clarity_ID__c</field>
-            <table>CPA_PWORF__c.PWO11__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>pkl_Status__c</field>
             <table>CPA_PWORF__c.PWO11__r</table>
         </columns>

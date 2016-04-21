@@ -201,7 +201,7 @@ global with sharing class CPA_ContractInformationController {
         }
         if(pwoRecord.txt_Unilever_Finance_BP_Contact_Name__c == null){
             RequiredFieldMap.put('Unilever Finance BP/Contact Name',CPA_ConstantsForContractingAppClasses.MANDATORY);
-        }       
+        }      
         if(pwoRecord.dt_Project_Initiation_Date__c == null){
             RequiredFieldMap.put( 'Project Initiation Date' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
         }

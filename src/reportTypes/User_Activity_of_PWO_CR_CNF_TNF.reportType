@@ -1394,11 +1394,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Standalone_PWO_clarity_ID__c</field>
-            <table>User.CPA_PWORF__c$CreatedById.PWO11__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Currency__c</field>
             <table>User.CPA_PWORF__c$CreatedById.PWO11__r</table>
         </columns>

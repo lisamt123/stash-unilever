@@ -122,8 +122,7 @@
                 <field>dt_CR_End_date__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>ltxta_Comments__c</field>
+                <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -144,6 +143,10 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>txt_Other_Project_Phases__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>ltxta_Comments__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
