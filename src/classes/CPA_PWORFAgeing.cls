@@ -47,7 +47,7 @@ public static boolean runOnceFlag = true;
     public static boolean updatePworfAgeingRecord(List<CPA_PWORF__c> oldPWORFlst,List<CPA_PWORF__c> LstPWORF){
         
         if(!runOnceFlag){
-            system.debug('Stop Execution OF updatePworfAgeingRecord() as its 2nd call for same action');
+          
             return false; // code execution will return false and pervent futher execution as It is 2nd call for same action.
         }
         
@@ -78,7 +78,7 @@ public static boolean runOnceFlag = true;
         }
         
         if(setPWORFId.size()<=0){
-            system.debug('updatePworfAgeingRecord()- Return false as no change in status');
+            
             return false; // code execution will return false and pervent futher execution as there is no status change for the record.
         }
         
@@ -115,7 +115,7 @@ public static boolean runOnceFlag = true;
                             nowPworfAge = 0; // as this withheld will happen after Return, soo recalculation is not required.
                         }
                     }
-                    system.debug('WITHHOLD :nowPworfAge= '+nowPworfAge);
+                   
                 }
                 else if (pworfRec.pkl_Status__c== CPA_ConstantsForPworfAging.ANSWERED && pworfRec.dat_Submitted_Date__c != null){
                     if(pworfRec.dat_Resubmitted_Date__c != null){
@@ -123,7 +123,7 @@ public static boolean runOnceFlag = true;
                     }else{
                         nowPworfAge = CPA_TotalWorkingDyasBetweenTwoDates.totalWorkingDays(pworfRec.dat_Submitted_Date__c,System.today());
                     }
-                    system.debug('ANSWERED :nowPworfAge= '+nowPworfAge);
+                   
                 } 
                 else if (pworfRec.pkl_Status__c== CPA_ConstantsForPworfAging.RETURNED && pworfRec.dat_Submitted_Date__c != null){
                     if(pworfRec.dat_Resubmitted_Date__c != null){
@@ -131,7 +131,7 @@ public static boolean runOnceFlag = true;
                     }else{
                         nowPworfAge = CPA_TotalWorkingDyasBetweenTwoDates.totalWorkingDays(pworfRec.dat_Submitted_Date__c,System.today());
                     }
-                    system.debug('RETURNED :nowPworfAge= '+nowPworfAge);
+                 
                 }
             }
             tempPA.PWORF_ID__c =   pworfRec.id;
@@ -150,7 +150,7 @@ public static boolean runOnceFlag = true;
                 tempPA.num_PWORF_Age__c = nowPworfAge + objPA.num_PWORF_Age__c;
                 //update tempPA;
               }
-            system.debug('Tigger tempPA obj :' + tempPA);  
+        
             PaUpsertLst.add(tempPA);
         }// for end
 
@@ -166,13 +166,15 @@ public static boolean runOnceFlag = true;
     Returns: void
     Throws [Exceptions]: 
     ********************************************************************/
-    public static void PworfAgeUpdateScheduler(List<CPA_PWORF_Ageing__c> PAList){
-        system.debug('PworfAgeUpdateScheduler() >> Started');
+    public static void PworfAgeUpdateScheduler(List<CPA_PWORF_Ageing__c> currentPAList){
+      
         Decimal tempPworfAge = 0;
         Boolean refreshPAListFlag = false;
         
         List<CPA_PWORF_Ageing__c> newPAList = new List<CPA_PWORF_Ageing__c>();
         List<CPA_project_work_order__c> PwoList = new List<CPA_project_work_order__c>();
+        List<CPA_PWORF_Ageing__c> PAList = new List<CPA_PWORF_Ageing__c>();
+        PAList = currentPAList; // assigning the incomming PAList to a list
         
         Set<Id> setPworfId = new Set<Id> ();
         for(CPA_PWORF_Ageing__c Obj : PAList){
@@ -185,7 +187,7 @@ public static boolean runOnceFlag = true;
         
         if(refreshPAListFlag){
             PAList = [select id, PWORF_ID__c, fml_Status__c, fml_Submitted_Date__c, fml_Resubmitted_Date__c, num_PWORF_Age__c, num_Total_PWORF_Ageing_Days__c from CPA_PWORF_Ageing__c where PWORF_ID__c IN:setPworfId];
-            system.debug('PA list Refreshed');
+            
         }
         
         Map<CPA_project_work_order__c,Id> mapPwoPworfID = new Map<CPA_project_work_order__c,Id>();  //This Map contains PWO object & PWORF_ID
@@ -197,7 +199,7 @@ public static boolean runOnceFlag = true;
 
         for(CPA_PWORF_Ageing__c obj :PAList ){
 
-            system.debug('start --> calcualtion of PWORF Age : Status :-'+obj.fml_Status__c);
+           
 
             if(obj.num_PWORF_Age__c == null){obj.num_PWORF_Age__c =0;}
 
@@ -209,19 +211,19 @@ public static boolean runOnceFlag = true;
                     tempPworfAge = CPA_TotalWorkingDyasBetweenTwoDates.totalWorkingDays(obj.fml_Resubmitted_Date__c,System.today()) + obj.num_PWORF_Age__c;
                 }
                 
-                system.debug('ACCEPTED/AUTOACCEPT :days= '+tempPworfAge);
+                
             }
             else if(obj.fml_Status__c == CPA_ConstantsForPworfAging.RETURNED || obj.fml_Status__c == CPA_ConstantsForPworfAging.WITHHOLD || obj.fml_Status__c == CPA_ConstantsForPworfAging.ANSWERED){
                 tempPworfAge = obj.num_PWORF_Age__c; // no need to update
-                system.debug('RETURNED/WITHHOLD/ANSWERED :days= '+tempPworfAge);
+                
             }
             else if(obj.fml_Status__c == CPA_ConstantsForPworfAging.SUBMITTED){
                 tempPworfAge = CPA_TotalWorkingDyasBetweenTwoDates.totalWorkingDays(obj.fml_Submitted_Date__c,System.today());
-                system.debug('SUBMITTED :days= '+tempPworfAge);
+                
             }
             else if(obj.fml_Status__c == CPA_ConstantsForPworfAging.RESUBMITTED){
                 tempPworfAge = CPA_TotalWorkingDyasBetweenTwoDates.totalWorkingDays(obj.fml_Resubmitted_Date__c,System.today())+ obj.num_PWORF_Age__c;
-                system.debug('RESUBMITTED :days= '+tempPworfAge);
+                
             }
             else{
                 tempPworfAge = 0;
@@ -232,14 +234,12 @@ public static boolean runOnceFlag = true;
             newPAList.add(obj);
             mapPworfIDTatAge.put(obj.PWORF_ID__c,tempPworfAge.intValue());
             // End --> calcualtion of PWORF Age
-            system.debug('End --> calcualtion of PWORF Age');
-            system.debug('final obj data:' + obj);
             
         }
 
         update(newPAList);
         tatCalculation(mapPwoPworfID,mapPworfIDTatAge); // Upadate TAT object data
-        system.debug('PworfAgeUpdateScheduler() >> Ends');
+        
     }// PworfAgeUpdateScheduler() ends
     
     /*******************************************************************
@@ -275,7 +275,7 @@ public static boolean runOnceFlag = true;
                 mapTat.get(pwoObj.Id).TAT_Days__c = mapPworfIDTatAge.get(mapPwoPworfID.get(pwoObj));
                 mapTat.get(pwoObj.Id).txt_Status__c = pwoObj.pkl_Status__c;
                 newTATList.add(mapTat.get(pwoObj.Id));
-                system.debug('final TAT data1:' + mapTat.get(pwoObj.Id));
+               
             }
             else{
                 CPA_TAT__c tat = new CPA_TAT__c();
@@ -284,7 +284,7 @@ public static boolean runOnceFlag = true;
                 tat.dat_Latest_Update_Date__c = system.now();
                 tat.txt_Status__c = pwoObj.pkl_Status__c;
                 newTATList.add(tat);  
-                system.debug('final TAT data2:' + tat);
+              
             }
             
         }

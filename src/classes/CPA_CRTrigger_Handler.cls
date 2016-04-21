@@ -79,10 +79,7 @@ public with sharing class CPA_CRTrigger_Handler
     
     public void beforeUpdate(SObject oldSo, SObject so)
     {
-        if(triggerShouldExecute){ 
-            
-            
-        }
+        System.debug('Entering CPA_CRTrigger_Handler.beforeUpdate');
     }
     
 
@@ -93,16 +90,12 @@ public with sharing class CPA_CRTrigger_Handler
     
     public void afterInsert(SObject so) 
     {
-        if(triggerShouldExecute){
-           // CPA_CR_TriggerUtil.newCR(trigger.new);
-        }
+        System.debug('Entering CPA_CRTrigger_Handler.afterInsert');
     }
     
     public void afterUpdate(SObject oldSo, SObject so)
     {
-        if(triggerShouldExecute){
-           
-        }
+        System.debug('Entering CPA_CRTrigger_Handler.afterUpdate');
     }
     
     /*******************************************************************

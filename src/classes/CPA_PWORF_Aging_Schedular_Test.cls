@@ -14,16 +14,31 @@ VERSION     AUTHOR       DATE            DETAIL Description
 ***********************************************************************/
 @isTest
 private class CPA_PWORF_Aging_Schedular_Test {
+public static String CRON_EXP = '0 0 0 15 3 ? 2022';
     /*******************************************************************
     Purpose: This method is used to cover Schedular
     Parameters: 
     Returns: 
     Throws [Exceptions]: 
- ********************************************************************/
-	public static testMethod void testschedule() {
-		Test.StartTest();
-		CPA_ScheduleBatchProrfAgeUpdate sh1 = new CPA_ScheduleBatchProrfAgeUpdate();
-		String sch = '0 0 23 * * ?'; system.schedule('Test Territory Check', sch, sh1); 
-		Test.stopTest(); 
-	}
+ ********************************************************************/    
+
+   static testmethod void test() {
+      Test.startTest();
+
+      // Schedule the test job
+      String jobId = System.schedule('ScheduleApexClassTest',
+                        CRON_EXP, 
+                        new CPA_ScheduleBatchProrfAgeUpdate());
+         
+      // Get the information from the CronTrigger API object
+      CronTrigger ct = [SELECT Id, CronExpression, TimesTriggered, 
+         NextFireTime
+         FROM CronTrigger WHERE id = :jobId];
+      Test.stopTest();
+    System.assert(CRON_EXP == ct.CronExpression);
+      System.assert(0 == ct.TimesTriggered);
+      
+
+   }
+    
 }

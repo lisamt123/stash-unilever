@@ -80,7 +80,7 @@ public with sharing class CPA_AttachmentUtil {
             }
          List<CPA_LOI__c> listLOI = new List<CPA_LOI__c>();
          for(CPA_LOI__c obj : [Select Id,pkl_Status__c,chk_Contract_Attached__c from CPA_LOI__c where id IN:setLOI]){
-              if(obj.pkl_Status__c == 'Saved' || obj.pkl_Status__c == 'Returned' ||  obj.pkl_Status__c == '' || obj.pkl_Status__c == null){
+              if(obj.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || obj.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED  ||  obj.pkl_Status__c == '' || obj.pkl_Status__c == null){
                   obj.chk_Contract_Attached__c = false;
                   listLOI.add(obj);
               }else {
@@ -220,25 +220,8 @@ public static void deleteCommericalData(List<Attachment> lstatt)    {
     if(listComDetail!=null && listComDetail.size()>0){
         
         for(CPA_project_work_order__c obj :lstPWO ){
-            if(obj.pkl_Status__c == 'Saved' || obj.pkl_Status__c == 'Returned' ||  obj.pkl_Status__c == '' || obj.pkl_Status__c == null){
-                obj.num_Expense_charges_of_work_order__c = NULL;
-                obj.pec_Expense__c=NULL;
-                obj.pec_Estimated_Off_shore__c=NULL;
-                obj.pec_Estimated_On_shore__c=NULL;
-                obj.num_Estimated_Man_days_of_PWO__c=NULL;
-                obj.num_Estimated_Value_of_PWO__c=NULL;
-                obj.num_Target_Blend_Rate__c=NULL;
-                obj.num_Total_work_order_charge__c=NULL;
-                obj.num_Authorisation_charges__c =NULL;
-                obj.num_Authorisation_man_days__c =NULL;
-                obj.num_Effort_Cost__c =NULL;
-                obj.num_RMS_value__c = NULL;
-                obj.num_Varied_Target_Blend_Rate__c = NULL;
-                obj.chk_Excel_Attached__c = false;
-                obj.num_Discounts__c = NULL;
-                obj.num_Contingency_Charges__c = NULL;
-                obj.pec_Variance__c =NULL;
-                lstTemp.add(obj);
+            if(obj.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || obj.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED  ||  obj.pkl_Status__c == '' || obj.pkl_Status__c == null){
+                lstTemp.add(CPA_AttchemntCommerical_util.CommericalDataBlankPWO(obj));
             }else{
                 Attachment objPWO_temp = mapPWOAttch.get(obj.id);
                 if(objPWO_temp !=null){
@@ -248,29 +231,8 @@ public static void deleteCommericalData(List<Attachment> lstatt)    {
             
         }
         for(CPA_CR__c obj1 : lstCR){
-            if(obj1.pkl_Status__c == 'Saved' || obj1.pkl_Status__c == 'Returned' ||  obj1.pkl_Status__c == '' || obj1.pkl_Status__c == null){
-            obj1.num_Estimated_Man_days_of_CR__c = NULL;
-            obj1.num_Estimated_Man_days_of_CR__c = NULL;
-            obj1.num_Estimated_Value_of_CR__c = NULL;
-            obj1.num_Target_Blend_Rate__c = NULL;
-            obj1.num_Total_charge_of_CR__c = NULL;
-            obj1.num_Expense_charges_of_CR__c = NULL;
-            obj1.pec_Expense__c = NULL;
-            obj1.num_Authorisation_charges__c = NULL;
-            obj1.num_Authorisation_man_days__c = NULL;
-            obj1.num_RMS_value__c = NULL;
-            obj1.chk_Contract_Excel_Attached__c = false;
-            obj1.num_Total_Resource_Cost_CR__c =NULL;
-            obj1.num_Effort_Cost__c =NULL;
-            obj1.num_Delta_Efforts__c = NULL;
-            obj1.num_Total_Resource_Efforts_CR__c = NULL;
-            obj1.num_Total_Expenses_of_CR__c  = NULL;
-            obj1.num_Varied_Target_Blend_Rate__c = NULL;
-            obj1.pec_Estimated_Off_shore__c =NULL;
-            obj1.pec_Estimated_On_shore__c= NULL;
-            obj1.num_Discounts__c = NULL;
-            obj1.num_Contingency_Charges__c = NULL;
-            lstTempCR.add(obj1);
+            if(obj1.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || obj1.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED  ||  obj1.pkl_Status__c == '' || obj1.pkl_Status__c == null){            
+            lstTempCR.add(CPA_AttchemntCommerical_util.CommericalDataBlankCR(obj1));
             }else{
                 Attachment objCR_temp = mapCRAttch.get(obj1.Id);
                 if(objCR_temp!=null){
@@ -318,7 +280,7 @@ public static void deleteCommericalData(List<Attachment> lstatt)    {
         List<CPA_CR__c> lstCR = [Select pkl_Status__c,Id,Name,chk_Contract_Attached__c,chk_Contract_Excel_Attached__c from CPA_CR__c where ID IN:  setCRID];
         /*Changes done by Shreyas For Radar : 222 221 220 219 217 : 16th April 2016 */
         for(CPA_CR__c objCR : lstCR){
-            if(objCR.pkl_Status__c == 'Saved' || objCR.pkl_Status__c == 'Returned' ||  objCR.pkl_Status__c == '' || objCR.pkl_Status__c == null){
+            if(objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED  ||  objCR.pkl_Status__c == '' || objCR.pkl_Status__c == null){
                 objCR.chk_Contract_Attached__c = false;
                 system.debug('objCR-->'+objCR.id + '  '+'objCR-->'+objCR.pkl_Status__c);
                 lstTempCR.add(objCR);
@@ -332,7 +294,7 @@ public static void deleteCommericalData(List<Attachment> lstatt)    {
             }            
         }
         for(CPA_project_work_order__c objPWO :lstPWO ){
-            if(objPWO.pkl_Status__c == 'Saved' || objPWO.pkl_Status__c == 'Returned' ||  objPWO.pkl_Status__c == '' || objPWO.pkl_Status__c == null){
+            if(objPWO.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || objPWO.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED  ||  objPWO.pkl_Status__c == '' || objPWO.pkl_Status__c == null){
                objPWO.chk_PDF_Attached__c = false;
                lstTemp.add(objPWO);
             }else {
