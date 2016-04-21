@@ -2064,7 +2064,7 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
         <fullName>txt_Accenture_Project_Manager__c</fullName>
         <description>Name of Accenture Project Manager</description>
         <externalId>false</externalId>
-        <label>Accenture Project Manager*</label>
+        <label>Vendor Project Manager*</label>
         <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -2544,11 +2544,6 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
         <columns>UPDATEDBY_USER</columns>
         <columns>LAST_UPDATE</columns>
         <filterScope>Everything</filterScope>
-        <filters>
-            <field>RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>,CPA_project_work_order__c.CPA_PWO,CPA_project_work_order__c.CPA_PWO_CNF,CPA_project_work_order__c.CPA_PWO_TNF,CPA_project_work_order__c.CPA_PWO_Submitted,CPA_project_work_order__c.CPA_PWO_Signed,CPA_project_work_order__c.CPA_PWO_Cancel,CPA_project_work_order__c.CPA_PWO_TNF_Submitted</value>
-        </filters>
         <label>All PWO</label>
         <language>en_US</language>
         <sharedTo>

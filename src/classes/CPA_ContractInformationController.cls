@@ -176,7 +176,7 @@ global with sharing class CPA_ContractInformationController {
             RequiredFieldMap.put( 'Reason For Additional PWO' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
         }                
         if(pwoRecord.txt_Accenture_Project_Manager__c == null){
-            RequiredFieldMap.put( 'Accenture Project Manager' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
+            RequiredFieldMap.put( 'Vendor Project Manager' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
         }
         if(pwoRecord.num_Estimated_Man_days_of_PWO__c == null){
             RequiredFieldMap.put( 'Estimated Man-days of PWO' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
