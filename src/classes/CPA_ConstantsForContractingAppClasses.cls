@@ -119,15 +119,16 @@ public class CPA_ConstantsForContractingAppClasses{
     
     
     //Constants for PWORF form mandatory fields
+    public static final String ENDDATECANNOTBEBEFORESTARTDATE='End date canot be before start date';
     public static final String MANDATORYFIELDSMESSAGE='Below field(s) are mandatory to Submit the record';
-    public static final String MANDATORYIFPROJECTREQUIRELOI='Mandatory,If this Project require LOI';
+    public static final String MANDATORYIFPROJECTREQUIRELOI='Mandatory, if Work at Risk required is Yes';
     public static final String EXPECTEDGOLIVEDATEVALIDATION='Expected go-live date canot be before Expected start date';
     public static final String EXPECTEDGOLIVEDATE='Expected go-live date';
     public static final String CAPSMT='CPA_SMT';
     public static final String EXPECTEDSTARTDATEVALIDATION='Expected start date canot be past date';
     public static final String PHASESCOVEREDBYWAR='Phases covered by the WAR';
     public static final String DIRECTORAPPROVEDWAR='Director who approved W@R spend';
-    public static final String ITCRESOURCESUTIL='ITC Resources Utilisation';
+    public static final String ITCRESOURCESUTIL='ITC Resources Utilization';
     public static final String WHATSPECIFICROLES='What specific roles do you require?';
     public static final String WHYISWORKATRISKREQ='Why is Work at Risk required?';
     public static final String WORKATRISKSTARTDATE='Work at Risk Start Date';
@@ -213,6 +214,7 @@ public class CPA_ConstantsForContractingAppClasses{
     public static final String MANDATORYIFRTISPSC='Mandatory, If Request Type is Project Scope Change (CR).';
     public static final String MANDATORYIFOTHISSELECTEDINRT='Mandatory, If Other is selected in Request Type.';
     public static final String NOTREQUIREDWHENREQUESTTYPENOTOTHER='Required only when Request Type is Other.';
+    public static final String NOTREQUIREDWHENPROJECTPHASENOTOTHER='Required only when Project Phases is Other.';
     public static final String PROJECTSCOPECHANGE='Project Scope Change (CR)';
     public static final String MANDATORYIFCOSTCENTNOTPROVIDED='Mandatory only when the Cost Center is not provided.';
     public static final String MANDATORYIFICCNOISPROVIDED='Mandatory. But if ICC number is provided, CC can be avoided.';
@@ -267,7 +269,10 @@ public class CPA_ConstantsForContractingAppClasses{
     public static final String RESOURCEREQUIREMENTNOTDELETED= ' Resource requirement Cannot be deleted.';
     
     Public static final String PROJECTDECRIPTION = 'Project Description*';
+    Public static final String RETURNFROMDOCSIGN = ' is returned from DocuSign';
     
+    public static final String CONTRACTDELETE = 'Contract can be deleted in Save and Return Status only';
+    public static final String COMMERICALDELETE = 'Commercial can be deleted in Save and Return Status only';
 
 
 }

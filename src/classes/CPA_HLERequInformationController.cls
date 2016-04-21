@@ -54,7 +54,7 @@ global with sharing class CPA_HLERequInformationController {
         if(customSettingStatusMsg.HLE_Request_Status_Msg__c != null  && callFromVF){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, customSettingStatusMsg.HLE_Request_Status_Msg__c));
         }
-        if((hleRec.pkl_Status__c == 'Saved'  || !callFromVF)){
+        if((hleRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || hleRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED  || !callFromVF)){
             if(hleRec.txt_Assumptions__c  == null) 
                  RequiredFieldMap.put('Assumptions',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.pkl_HLE_type__c  == null) 
@@ -71,8 +71,8 @@ global with sharing class CPA_HLERequInformationController {
             if(hleRec.pkl_Business_area__c  == null) 
                 RequiredFieldMap.put('Business Area',CPA_ConstantsForContractingAppClasses.MANDATORY);
                                       
-            if(hleRec.dt_Date_raised__c == null || hleRec.dt_Date_raised__c < system.today()) 
-                 RequiredFieldMap.put('Date raised','It is Mandatory and should not be before today date');
+            ///if(hleRec.dt_Date_raised__c == null || hleRec.dt_Date_raised__c < system.today()) 
+                 //RequiredFieldMap.put('Date raised','It is Mandatory and should not be before today date');
             if(hleRec.txt_Dependencies__c  == null) 
                  RequiredFieldMap.put('Dependencies',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.eml_UBPR_Email__c  == null) 
@@ -87,10 +87,12 @@ global with sharing class CPA_HLERequInformationController {
                  RequiredFieldMap.put('Name ','MANDATORY in Unilever innovation owner/SME section');
             if(hleRec.txt_AAL_Name__c  == null) 
                  RequiredFieldMap.put('Name  ','MANDATORY in Accenture Area lead section');
-            if(hleRec.dt_Planned_end_date__c  == null || hleRec.dt_Planned_end_date__c < hleRec.dt_Planned_start_date__c) 
-                 RequiredFieldMap.put('Planned End Date','It is Mandatory and should not be before Planned Start Date');
-            if(hleRec.dt_Planned_start_date__c  == null || hleRec.dt_Planned_start_date__c < system.today()) 
-                 RequiredFieldMap.put('Planned Start Date','It is Mandatory and should not be before today date');
+            if(hleRec.dt_Planned_end_date__c  == null) 
+                 RequiredFieldMap.put('Planned End Date',CPA_ConstantsForContractingAppClasses.MANDATORY);
+            if(hleRec.dt_Planned_start_date__c  == null) 
+                 RequiredFieldMap.put('Planned Start Date',CPA_ConstantsForContractingAppClasses.MANDATORY);
+            if(hleRec.dt_Planned_start_date__c  != null  && hleRec.dt_Planned_end_date__c  != null && hleRec.dt_Planned_end_date__c < hleRec.dt_Planned_start_date__c) 
+                 RequiredFieldMap.put('Planned End Date',CPA_ConstantsForContractingAppClasses.ENDDATECANNOTBEBEFORESTARTDATE);
             if(hleRec.txt_Project_description_specification__c  == null) 
                  RequiredFieldMap.put('Project Description/Specification',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.txt_Project_type__c  == null) 
