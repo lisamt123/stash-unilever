@@ -4,7 +4,7 @@
     @Created Date: 15/03/2015
     @Author: Cognizant
     @Referenced: IPM_OTIF_Batch
-    This class has been declared as Gloabl as it implements Databse.Batchable interface.
+    This class has been declared as Global as it implements Database.Batchable interface.
     This class is declared as 'without sharing' - As report needs to run without sharing as it needs to look at all records regardless of what the running user has access to
  ************************************************************************************************************/
 
@@ -106,6 +106,10 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
         
         //To fetch the financials for the rollout project when it is in Ideas phase
         map<id,list<IPM_Financial__c>> rolloutFinancialmap = fetchRolloutFinancial(regionalRolloutset);
+        
+        //To Fetch Team Members        
+        map<Id,list<IPM_Project_Resource__c>> projResourceMap = fetchTeamMembers(projectIdMap);
+        
         //To fetch the financial year for the rollout project when it is in Ideas phase
         rolloutFinancialYearmap = fetchRolloutFinancialYear(rolloutFinIdSet);
 
@@ -130,6 +134,8 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
             otifAnalytic = processFinancialDetails(projFinYrmap,  otifAnalytic, p);
             //Copying ProjectDocumentSectionContentDetails
             otifAnalytic = processProjectDocumentSectionContentDetails(projDocSecContentMap,  otifAnalytic, p);
+            // Copying Finance memeber related detail 
+            otifAnalytic = processFinanceMemberDetails(projResourceMap, otifAnalytic, p);
             
             analyticRecOTIFList.add(otifAnalytic);  
             
@@ -178,7 +184,9 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                 otifAnalyticRollOut.IPM_Project_Name__c = pr.name;
                 otifAnalyticRollOut.IPM_Company__c = pr.IPM_Company_Card__r.Name; // as per the update it will be populated by Unilever report tool
                 otifAnalyticRollOut.IPM_Target_Launch_Month_BD__c = pr.Target_LaunchMonth__c;
-                otifAnalyticRollOut.IPM_Target_Launch_Year_BD__c = pr.Target_LaunchYear__c ;
+                if(pr.Target_LaunchYear__c != null){
+                    otifAnalyticRollOut.IPM_Target_Launch_Year_BD__c = integer.valueOf(pr.Target_LaunchYear__c) ;
+                }
                 otifAnalyticRollOut.IPM_Parent_Project_Name__c = pr.IPM_Parent_Project_Name__c; 
                 otifAnalyticRollOut.IPM_Project_Leader__c = pr.IPM_Regional_PL__r.Name;
                 //Copy values From Parent project
@@ -228,6 +236,28 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
             
         return returnList;    
     }  
+    
+    
+    /*********************************************************************************************************************
+     * @Description: To copy Milestone related details to that particular project
+     * @param1: Map<Id, List<IPM_Milestone__c>> (Project And Its related Milestone records), IPM_Analytics__c IPM Analytics , IPM Project
+     * @return: IPM_Analytics__c Analytic object record  
+     *********************************************************************************************************************/
+    
+     public IPM_Analytics_OTIF__c processFinanceMemberDetails(map<Id,list<IPM_Project_Resource__c>> projResourceMap, IPM_Analytics_OTIF__c otifAnalytic, IPM_Project__c p){
+        
+        //Copying IPM Project Resource fields 
+        if(projResourceMap.containskey(p.id)){ 
+            for(IPM_Project_Resource__c resource : projResourceMap.get(p.id)){ 
+                if(resource.IPM_Role_Type__c.equalsignorecase(IPM_Utils.Finance)){
+                	otifAnalytic.IPM_Finance_Member__c = resource.IPM_User__r.Name;
+                }
+           }
+        } //end of IPM Project Resource loop           
+        return otifAnalytic;
+     }  
+    
+    
     
      /*********************************************************************************************************************
      * @Description: To copy Project Document Section Content related details
@@ -297,7 +327,9 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
         if(projMilestoneMap.containskey(p.id)){ 
             for(IPM_Milestone__c mile : projMilestoneMap.get(p.id)){ 
                 if(mile.IPM_Name__c.equalsignorecase(IPM_Utils.TargetLaunchDateShiptoTrade)){
-                   otifAnalytic.IPM_Actual_Launch_Year__c = mile.IPM_Actual_Target_Launch_Year__c;
+                   if(mile.IPM_Actual_Target_Launch_Year__c != null){
+                       otifAnalytic.IPM_Actual_Launch_Year__c = integer.valueOf(mile.IPM_Actual_Target_Launch_Year__c);                   
+                   }
                     if(mile.IPM_Actual_Target_Launch_Month__c != 'None' && mile.IPM_Actual_Target_Launch_Month__c != '' ){
                        otifAnalytic.IPM_Actual_Launch_Month__c = mile.IPM_Actual_Target_Launch_Month__c;
                     }
@@ -389,6 +421,44 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
         }   
         return otifAnalytic;       
     }               
+    
+    
+    
+    /*********************************************************************************************************************
+     * @Description: To fetch team members
+     * @param1: map<id,IPM_Project__c> projectIdMap
+     * @return: Map<Id, IPM_Financial__c> 
+     *********************************************************************************************************************/ 
+      public map<Id,list<IPM_Project_Resource__c>> fetchTeamMembers(map<id,IPM_Project__c> projectIdMap){
+       
+        map<Id,list<IPM_Project_Resource__c>> projResourceMap = new map<id,list<IPM_Project_Resource__c>>();  // this map will hold project id and corresponding project resource
+        try{   
+        list<IPM_Project_Resource__c> projectResourceList = new list<IPM_Project_Resource__c>([SELECT Id,
+        																					   IPM_Project__c,
+        																					   IPM_Project__r.id,
+        																					   IPM_Role_Type__c,
+                                                                                  			   IPM_User__r.Name                                                                                 
+                                                                                 			   FROM IPM_Project_Resource__c WHERE IPM_Project__r.id IN:projectIdMap.keyset() Limit 50000]);
+        
+        for(IPM_Project_Resource__c projResource : projectResourceList){
+        	 if(!projResourceMap.containskey(projResource.IPM_Project__r.id)){
+                        projResourceMap.put(projResource.IPM_Project__r.id, new List<IPM_Project_Resource__c>{projResource});   
+                }else{
+                    List<IPM_Project_Resource__c> resourceList = projResourceMap.get(projResource.IPM_Project__r.id);
+                    resourceList.add(projResource);
+                    projResourceMap.put(projResource.IPM_Project__r.id, resourceList);           
+                }
+            }
+        } 
+        catch(Exception ex){
+                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,METHOD_NAME,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null,null,null,null);
+        } 
+        return projResourceMap;
+    }       
+    
+    
+    
+    
     /*********************************************************************************************************************
      * @Description: To fetch Consolidated Financial Records
      * @param1: map<id,IPM_Project__c> projectIdMap
@@ -1052,15 +1122,20 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
     public IPM_Analytics_OTIF__c setTargetLaunchYearandMonth(IPM_Project__c proj,IPM_Analytics_OTIF__c otifAnalyticProj){
         if(String.isNotBlank(proj.IPM_Project_Type__c) && (proj.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Original) || proj.IPM_Project_Type__c.equalsignorecase(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) ||(String.isNotBlank(proj.IPMProject_Span__c) && proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional) && proj.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Rollout)))){
            otifAnalyticProj.IPM_Target_Launch_Month_BD__c = proj.IPM_Target_Launch_Month__c;
-           otifAnalyticProj.IPM_Target_Launch_Year_BD__c = proj.IPM_Target_Launch_Year__c;   
+           if(proj.IPM_Target_Launch_Year__c != null){
+               otifAnalyticProj.IPM_Target_Launch_Year_BD__c = integer.valueOf(proj.IPM_Target_Launch_Year__c);
+           }
+              
         }
         if (String.isNotBlank(proj.IPMProject_Span__c) && String.isNotBlank(proj.IPM_Project_Type__c) && proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local) && proj.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Rollout)){
            otifAnalyticProj.IPM_Target_Launch_Month_BB__c = proj.IPM_Target_Launch_Month__c;
-           otifAnalyticProj.IPM_Target_Launch_Year_BB__c = proj.IPM_Target_Launch_Year__c;
+           if(proj.IPM_Target_Launch_Year__c != null){
+               otifAnalyticProj.IPM_Target_Launch_Year_BB__c = integer.valueOf(proj.IPM_Target_Launch_Year__c);
+           }
             //if(String.isNotBlank(string.valueof(proj.IPM_Parent_Project__r.IPM_Project_Rollout__r.Target_Launch_Date__c))){
             if(String.isNotBlank(string.valueof(proj.IPM_Project_Rollout__r.Target_Launch_Date__c))){
                otifAnalyticProj.IPM_Target_Launch_Month_BD__c = monthNameIntegerToString.get(proj.IPM_Project_Rollout__r.Target_Launch_Date__c.month());
-               otifAnalyticProj.IPM_Target_Launch_Year_BD__c = string.valueof(proj.IPM_Project_Rollout__r.Target_Launch_Date__c.Year());   
+               otifAnalyticProj.IPM_Target_Launch_Year_BD__c = proj.IPM_Project_Rollout__r.Target_Launch_Date__c.Year();   
             }                  
         }
         return otifAnalyticProj;
