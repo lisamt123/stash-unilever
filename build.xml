@@ -404,12 +404,12 @@
 	<runTest>IPM_Test_ProjectUtility</runTest>
 	<runTest>IPM_UpdateGlobalProjectName_Test</runTest>
 	<runTest>IPM_UploadBusinessCase_Test</runTest>
-	<runTest>IPM_GlobalFinancialActionStandards_Test.cls</runTest>
-	<runTest>IPM_OTIF_Report_BatchSchedule_Test.cls</runTest>
-	<runTest>IPM_OTIF_Report_Batch_Test.cls</runTest>
-	<runTest>IPM_PerformanceBreakdownController_Test.cls</runTest>
-	<runTest>IPM_ProjectDocumentSectionHandler_Test.cls</runTest>
-	<runTest>IPM_ValidationHelper_Test.cls</runTest>
+	<runTest>IPM_GlobalFinancialActionStandards_Test</runTest>
+	<runTest>IPM_OTIF_Report_BatchSchedule_Test</runTest>
+	<runTest>IPM_OTIF_Report_Batch_Test</runTest>
+	<runTest>IPM_PerformanceBreakdownController_Test</runTest>
+	<runTest>IPM_ProjectDocumentSectionHandler_Test</runTest>
+	<runTest>IPM_ValidationHelper_Test</runTest>
     </sf:deploy>
   </target>  
   <!-- ***************************************************************************** -->
