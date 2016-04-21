@@ -64,16 +64,38 @@ public class UL_CurrencyConversionUtility {
         List<UL_Currency_Field_Mapping__mdt> cfmMetaList = [SELECT UL_sObject__c, 
                                                     			UL_Source_Field__c, 
                                                     			UL_Date_Field__c, 
-                                                    			UL_Exchange_Rate__c
+                                                    			UL_Exchange_Rate__c,
+                                                            	UL_Category__c
 															FROM UL_Currency_Field_Mapping__mdt
 															WHERE UL_sObject__c = :sobjType];
+        
+        //Create Year Date Set && Category Set 
+        Set<String> yearSet = new Set<String>();
+        //Added
+        Set<String> categorySet = new Set<String>();
+        
+        for(UL_Currency_Field_Mapping__mdt cfmMeta : cfmMetaList) {
+        	for(sObject sObj : sObjectList) {
+            	Date dateField = Date.valueOf(sObj.get(String.valueOf(cfmMeta.UL_Date_Field__c)));
+                yearSet.add(String.valueOf(dateField.year()));
+                //Added
+                String categoryField = String.valueOf(sObj.get(String.valueOf(cfmMeta.UL_Category__c)));
+                categorySet.add(categoryField);
+        	}
+        }
+        
         //Query Exchange Rate
         List<UL_Exchange_Rate__c> exRateList = [SELECT Id,
                                                  			UL_Start_Date__c,
-                                                 			UL_End_Date__c,
-                                                 			UL_ObjId__c
-                                                 	FROM UL_Exchange_Rate__c];
-		
+                                                 			UL_End_Date__c                                                 			
+                                                 	FROM UL_Exchange_Rate__c
+                                               		WHERE UL_Year__c IN : yearSet
+                                               			AND UL_Category__c IN : categorySet];
+		System.debug('yearSet: ' + yearSet);
+        System.debug('categorySet: ' + categorySet);
+        System.debug('categorySet: ' + exRateList);
+        System.debug('sObjectList: ' + sObjectList);
+        
         for(UL_Currency_Field_Mapping__mdt cfmMeta : cfmMetaList) {
         
             for(sObject sObj : sObjectList) {
@@ -100,103 +122,7 @@ public class UL_CurrencyConversionUtility {
         }
         
         return sObjectList;
-    }
-    
-    /*
-     * 	CODE LOGIC
-     	relateExchangeRates(List<sObject> sObjectList)
- 
-		0 - Parameter Passed is sObjectList
-		1 - Determine the sObjectType of sObjectList
-		2 - Query Custom Metadata using SObjectiveType 
-		3.1 - Retrieve all Date fields in sObjectList
-			3.2 - Determine the Year of each sObject date field
-			3.3 - Add Year to a Set
-		4 - Query Exchange Rate using limits of the Year Set
-		5.1 - LOOP Custom Metadata
-        		5.2 - LOOP sObjectList
-					if ExchangeRateMap containsKey(yyyy-MM-dd)
-                    	add ExR ID to SObject
-                	else if  ExchangeRateMap containsKey(yyyy-MM)
-                        add ExR Id to SObject
-                	else if ExchangeRateMap contains (yyyy)
-                        add ExR Id to SObject
-                	else
-                        Edge Cases…
-     */
-    //Date must be converted first to the ff. Date format:
-    //	yyyy-MM-dd
-    //	yyyy-MM
-    //	yyyy
-    public static List<sObject> relateExchangeRates1(List<sObject> sObjectList) {
-
-        //Get sObjectType
-        String sObjType = String.valueOf(sObjectList.getSObjectType());
-        
-        //Query Custom Metadata
-        List<UL_Currency_Field_Mapping__mdt> cfmMetaList = [SELECT UL_sObject__c, 
-                                                    			UL_Source_Field__c, 
-                                                    			UL_Date_Field__c, 
-                                                    			UL_Exchange_Rate__c
-															FROM UL_Currency_Field_Mapping__mdt
-															WHERE UL_sObject__c = :sobjType];
-        
-        //Create Year Date Set
-        Set<String> yearSet = new Set<String>();        
-        for(UL_Currency_Field_Mapping__mdt cfmMeta : cfmMetaList) {
-        	for(sObject sObj : sObjectList) {
-            	Date dateField = Date.valueOf(sObj.get(String.valueOf(cfmMeta.UL_Date_Field__c)));
-                yearSet.add(String.valueOf(dateField.year()));
-        	}
-        }
-        
-        
-        //Query Exchange Rate
-        /*
-        List<UL_Exchange_Rate__c> exRateList = [SELECT Id,
-                                                			UL_Date_Key__c,
-                                                 			UL_Start_Date__c,
-                                                 			UL_End_Date__c,
-                                                 			UL_ObjId__c
-                                                 	FROM UL_Exchange_Rate__c
-                                               		WHERE UL_Year__c IN : yearSet];
-        */
-        Map<String, UL_Exchange_Rate__c> exRateMap = new Map<String, UL_Exchange_Rate__c>();
-        for(UL_Exchange_Rate__c exRate : [SELECT Id, UL_Date_Key__c,
-                                                 			UL_Start_Date__c,
-                                                 			UL_End_Date__c,
-                                                 			UL_ObjId__c
-                                          FROM UL_Exchange_Rate__c
-                                          WHERE UL_Year__c IN : yearSet]) {
-        	exRateMap.put(exRate.UL_Date_Key__c, exRate);
-        }
-        
-        for(UL_Currency_Field_Mapping__mdt cfmMeta : cfmMetaList) {
-            
-            for(sObject sObj : sObjectList) {
-                Date dateField = Date.valueOf(sObj.get(String.valueOf(cfmMeta.UL_Date_Field__c)));                
-                //String dateKey = String.valueOf(sObj.get(String.valueOf(cfmMeta.UL_Date_Field__c)));
-                //String.valueOf(dateField);
-                String dateKey = dateField.year() + '-' + dateField.month() + '-' + dateField.day();
-                String dateMonthKey = dateField.year() + '-' + datefield.month();
-                String dateYearKey = String.valueOf(dateField.year());
-                
-                if(exRateMap.containsKey(dateKey)) {
-                    //sObj.put
-                    sObj.put(String.valueOf(cfmMeta.UL_Exchange_Rate__c), exRateMap.get(dateKey).Id);
-                } else if(exRateMap.containsKey(dateMonthKey)) {
-                    sObj.put(String.valueOf(cfmMeta.UL_Exchange_Rate__c), exRateMap.get(dateMonthKey).Id);
-                } else if(exRateMap.containsKey(dateYearKey)) {
-                	sObj.put(String.valueOf(cfmMeta.UL_Exchange_Rate__c), exRateMap.get(dateYearKey).Id);
-                } else {
-                    //do edge cases
-                }
-               	
-            }
-        }        
-        
-        return sObjectList;
-    }
+    }    
     
     /*
      * Note: This method must be called only after records to be passed already 
@@ -238,91 +164,39 @@ public class UL_CurrencyConversionUtility {
         
         
         //Query Exchange Rate
-        String query = 'SELECT Id, UL_Date_Key__c, ' + 'UL_EUR__c, UL_USD__c, ' + 'UL_ObjId__c FROM UL_Exchange_Rate__c WHERE UL_Year__c IN :yearSet';
+        String query = 'SELECT Id, ' + queryCurrency + 'UL_Category__c FROM UL_Exchange_Rate__c WHERE UL_Year__c IN :yearSet';
         List<UL_Exchange_Rate__c> exchangeRateList = database.query(query);
         
         Map<Id, UL_Exchange_Rate__c> exchangeRateMap = new Map<Id, UL_Exchange_Rate__c>(exchangeRateList);
         
         for(UL_Currency_Field_Mapping__mdt cfmMeta : cfmMetaList) {
             for(sObject sObj : sObjectList) {
-                //Roll Up Field name is Source Field + Currency ISO
-            	String sourceField = String.valueOf(cfmMeta.UL_Source_Field__c);
-				Decimal sourceEUR = 0;
-                
-                String currIsoCode = String.valueOf(sObj.get(String.valueOf(CURRENCY_ISO_CODE)));
                 
                 Id exRateId = (Id) sObj.get(String.valueOf(cfmMeta.UL_Exchange_Rate__c));
-                sObject exchangeRate = (sObject) exchangeRateMap.get(exRateId);
+                if(exRateId != null) {
+                	//Roll Up Field name is Source Field + Currency ISO
+            		String sourceField = String.valueOf(cfmMeta.UL_Source_Field__c);
+					Decimal sourceEUR = 0;
                 
-                String exchangeRateFieldName = 'UL_' + currIsoCode + '__c';                
+                	String currIsoCode = String.valueOf(sObj.get(String.valueOf(CURRENCY_ISO_CODE)));
                 
-                sourceEUR = (Decimal) sObj.get(sourceField) / (Decimal) exchangeRate.get(exchangeRateFieldName);
                 
-                for(CurrencyType currType : currencyTypeList) {
-                    //Example values of rollUpField: UID_IOP_EUR__c, UID_IOP_USD__c
-                    String rollUpField = sourceField.replace('__c', '_' + currType.IsoCode + '__c');
+                	sObject exchangeRate = (sObject) exchangeRateMap.get(exRateId);
+                
+                    String exchangeRateFieldName = 'UL_' + currIsoCode + '__c';                
+                
+                	sourceEUR = (Decimal) sObj.get(sourceField) / (Decimal) exchangeRate.get(exchangeRateFieldName);
+                
+                	for(CurrencyType currType : currencyTypeList) {
+                    	//Example values of rollUpField: UID_IOP_EUR__c, UID_IOP_USD__c
+                    	String rollUpField = sourceField.replace('__c', '_' + currType.IsoCode + '__c');
                     
-                    exchangeRateFieldName = 'UL_' + currType.IsoCode + '__c';
-                    Decimal rateOfExchange = (Decimal) exchangeRate.get(exchangeRateFieldName);
+                    	exchangeRateFieldName = 'UL_' + currType.IsoCode + '__c';
+                    	Decimal rateOfExchange = (Decimal) exchangeRate.get(exchangeRateFieldName);
                     
-					sObj.put(rollUpField, sourceEUR * rateOfExchange);
-                }
-            }
-        }
-        
-        return sObjectList;
-    }
-    
-    /*
-     * Note: This method must be called only after records to be passed already 
-     * have been paired with thier corresponding ExchangeRate lookup
-     * Code Logic:
-     * 1 - Determine sObjectType
-     * 2 - Query Custom Metadata using sObjectType 
-     * 3.1 - LOOP Custom Metadata
-     * 		3.2 - LOOP sObjectList
-     * 				if cfm.ISO contains EUR
-     * 					if sObj CurrencyIsoCode = EUR
-     * 						sObj.Currency_EUR = sObj.sourceField
-     * 					else if(sObj CurrencyIsoCode = USD)
-     * 						sObj.Currency_EUR = sObj.sourceField / sObj.exchangeRateId.USD
-     * 				else if cfm.ISO contains USD
-     * 					if sObj CurrencyIsoCode = USD
-     * 						sObj.Currency_USD = sObj.sourceField
-     * 					else if(sObj CurrencyIsoCode = EUR)
-     * 						sObj.Currency_USD = sObj.sourceField * sObj.exchangeRateId.USD
-     */
-    public static List<sObject> convertCurrencyAmounts2(List<sObject> sObjectList) {
-        //Get sObjectType
-        String sObjType = String.valueOf(sObjectList.getSObjectType());
-        
-        //query exchange rate
-        //put it on a map                
-        
-        //Query Custom Metadata       
-        for(UL_Currency_Field_Mapping__mdt cfmMeta : [SELECT UL_sObject__c, 
-                                                      	UL_Source_Field__c, 
-                                                      	UL_Date_Field__c,                                                      	
-                                                     	UL_Exchange_Rate__c
-                                                     FROM UL_Currency_Field_Mapping__mdt
-                                                     WHERE UL_sObject__c = :sobjType]) {
-            for(sObject sObj : sObjectList) {
-				String currencyISO = String.valueOf(cfmMeta.UL_Currency_ISO_for_Roll_Up__c);
-                if(currencyISO.contains(CURRENCY_EUR)) {
-                    
-                    if(sObj.get(CURRENCY_ISO_CODE) == CURRENCY_EUR) {
-                        String value = String.valueOf(sObj.get(String.valueOf(cfmMeta.UL_Source_Field__c)));
-                        //String exchangeRate = String.valueOf(sObject.get(String.valueOf(cfmMeta.UL_Exchange_Rate__c)).UL_EUR__c);
-                                              
-                    	//sObj.put(String.valueOf(currencyISO), Long.valueOf(str) sObj.get(String.valueOf(cfmMeta.UL_Source_Field__c));    
-                    }
-                	
-                    
-                } else if(currencyISO.contains(CURRENCY_USD)) {
-                    
-                } else {
-                    //Reserved for future Currencies
-                }	
+						sObj.put(rollUpField, sourceEUR * rateOfExchange);
+                	}
+            	}
             }
         }
         
