@@ -4,10 +4,15 @@ src/classes/IPM_NewTask.cls
 src/classes/IPM_NewTask.cls-meta.xml
 src/classes/IPM_ConstantUtils.cls
 src/classes/IPM_ConstantUtils.cls-meta.xml
+src/classes/IPM_Utils.cls
+src/classes/IPM_Utils.cls-meta.xml
 src/labels
 src/labels/CustomLabels.labels
 src/objects
 src/objects/IPM_Task__c.object
+src/objects/IPM_ProjectMetadata__c.object
+src/objects/IPM_Project_Type__c.object
+src/objects/IPM_Project__c.object
 src/pages
 src/pages/IPM_AddTaskNew.page
 src/pages/IPM_AddTaskNew.page-meta.xml
