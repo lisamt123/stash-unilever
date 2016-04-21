@@ -66,7 +66,7 @@
                </apex:outputPanel>
             </div>
              
-            <div id="ipmModalDiv">
+            <div id="ipmModalDiv" class="edittaskModal">
                 <c:IPM_ModalHeaderDiv />
             </div>
              <div id="ipmModalEdit" class="modal fade">
