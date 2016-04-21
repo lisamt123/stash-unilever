@@ -876,6 +876,7 @@
     <listViews>
         <fullName>All</fullName>
         <columns>NAME</columns>
+        <columns>Loss_Updated_in_Salesforce__c</columns>
         <columns>Loss_Name__c</columns>
         <columns>Loss_Description__c</columns>
         <columns>Loss_Sub_Family__c</columns>
@@ -886,4 +887,82 @@
         <label>All</label>
         <language>en_US</language>
     </listViews>
+    <listViews>
+        <fullName>Dispatch_Compliance_Report</fullName>
+        <columns>NAME</columns>
+        <columns>STO_SO__c</columns>
+        <columns>SKU__c</columns>
+        <columns>Plant_Code__c</columns>
+        <columns>Week__c</columns>
+        <columns>Planned_Dispatch__c</columns>
+        <columns>Actual_Dispatch__c</columns>
+        <columns>Loss_Type__c</columns>
+        <columns>Loss_Name__c</columns>
+        <columns>Loss_Sub_Family__c</columns>
+        <columns>Loss_Description__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Loss_Type__c</field>
+            <operation>equals</operation>
+            <value>Dispatch Compliance</value>
+        </filters>
+        <label>Dispatch Compliance Report</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>MRP_Compliance_Report</fullName>
+        <columns>PR__c</columns>
+        <columns>SKU__c</columns>
+        <columns>Plant_Code__c</columns>
+        <columns>Week__c</columns>
+        <columns>Planned_Receipt__c</columns>
+        <columns>Actual_Receipt__c</columns>
+        <columns>Loss_Type__c</columns>
+        <columns>Loss_Name__c</columns>
+        <columns>Loss_Sub_Family__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Loss_Type__c</field>
+            <operation>equals</operation>
+            <value>MRP Compliance</value>
+        </filters>
+        <label>MRP Compliance Report</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Output_Reliability_Report</fullName>
+        <columns>NAME</columns>
+        <columns>PO__c</columns>
+        <columns>Loss_Updated_in_Salesforce__c</columns>
+        <columns>SKU__c</columns>
+        <columns>Plant_Code__c</columns>
+        <columns>Week__c</columns>
+        <columns>Planned_Production__c</columns>
+        <columns>Actual_Production__c</columns>
+        <columns>Loss_Type__c</columns>
+        <columns>Loss_Name__c</columns>
+        <columns>Loss_Sub_Family__c</columns>
+        <columns>Loss_Description__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Loss_Type__c</field>
+            <operation>equals</operation>
+            <value>Output Reliability</value>
+        </filters>
+        <filters>
+            <field>Plant_Code__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <label>Output Reliability Report</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>LN-{000000000}</displayFormat>
+        <label>Loss Number</label>
+        <trackHistory>true</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Loss Tree</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
 </CustomObject>
