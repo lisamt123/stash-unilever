@@ -116,10 +116,11 @@
         <description>Actual Launch Year - YYYY</description>
         <externalId>false</externalId>
         <label>IPM Actual Launch Year</label>
-        <length>4</length>
+        <precision>4</precision>
         <required>false</required>
+        <scale>0</scale>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -756,10 +757,11 @@
         <description>Target Launch Year (BB) - YYYY</description>
         <externalId>false</externalId>
         <label>IPM Target Launch Year (BB)</label>
-        <length>4</length>
+        <precision>4</precision>
         <required>false</required>
+        <scale>0</scale>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -767,10 +769,11 @@
         <description>Target Launch Year (BD) - YYYY</description>
         <externalId>false</externalId>
         <label>IPM Target Launch Year (BD)</label>
-        <length>4</length>
+        <precision>4</precision>
         <required>false</required>
+        <scale>0</scale>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
