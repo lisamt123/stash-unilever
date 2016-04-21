@@ -6,6 +6,8 @@ src/classes/IPM_ConstantUtils.cls
 src/classes/IPM_ConstantUtils.cls-meta.xml
 src/labels
 src/labels/CustomLabels.labels
+src/objects
+src/objects/IPM_Task__c.object
 src/pages
 src/pages/IPM_AddTaskNew.page
 src/pages/IPM_AddTaskNew.page-meta.xml
