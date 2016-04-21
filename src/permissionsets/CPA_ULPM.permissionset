@@ -10,7 +10,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>CPA_AttchemntCommerical_util</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>CPA_AttchemntUtilController_Test</apexClass>
