@@ -392,6 +392,9 @@ public with sharing class IPM_ProjectOverviewCtrl {
          // set of roles when PL is added as team member
         Set<String> plFunctionalRoleSet=new Set<String>();
          for(IPM_Project_Resource__c res : projResCompleteList){
+ 	      if(IPM_ConstantUtils.IPM_ROLE_SUPPLY_CHAIN.equals(res.IPM_Role_Type__c)){
+                res.IPM_Role_Type__c=IPM_ConstantUtils.FUNCTIONAL_ROLE_SC;  
+            }
             if(res.IPM_User__c == UserInfo.getUserId()){
                 projResList.add(res);
                 isAcessDuetoTeam=true;

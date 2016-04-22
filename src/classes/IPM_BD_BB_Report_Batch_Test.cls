@@ -22,7 +22,7 @@ private class IPM_BD_BB_Report_Batch_Test {
     public static final String INCREMENTAL = 'Incremental';
     public static final String CALENDAR = 'Calendar';
     private static final string IPMUSER_LASTNAME='IPMUSER_LASTNAME';
-    
+    private static final string BD_BB_REPORT = 'BD BB Report';
     
     
     /**********************************************************************
@@ -42,7 +42,7 @@ private class IPM_BD_BB_Report_Batch_Test {
             
             
             //Insert data for Custom setting
-            reportParameter = IPM_TestFactory_Helper.createIPMReportingCustomSetting();
+            reportParameter = IPM_TestFactory_Helper.createIPMReportingCustomSetting(BD_BB_REPORT, true);
             List<IPM_Reporting__c>reportParameterlist=[SELECT Id,Name FROM IPM_Reporting__c WHERE Id=:reportParameter.Id limit 1];
             system.assertEquals(reportParameterlist[0].Name,reportParameter.Name,'Error in IPMReporting Custom Setting Creation'); //positive test
             
@@ -167,7 +167,7 @@ private class IPM_BD_BB_Report_Batch_Test {
                 system.assertEquals(userList[0].LastName,IPMUSER_LASTNAME,'Error in User Creation');
             }
         //Insert data for Custom setting
-            reportParameter = IPM_TestFactory_Helper.createIPMReportingCustomSetting();
+            reportParameter = IPM_TestFactory_Helper.createIPMReportingCustomSetting(BD_BB_REPORT, true);
             List<IPM_Reporting__c>reportParameterlist=[SELECT Id,Name FROM IPM_Reporting__c WHERE Id=:reportParameter.Id limit 1];
             system.assertEquals(reportParameterlist[0].Name,reportParameter.Name,'Error in IPMReporting Custom setting Creation'); //positive test
             
