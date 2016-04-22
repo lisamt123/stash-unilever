@@ -53,7 +53,7 @@ boolean callFromVF = false;
         Id AllrecordType = Schema.SObjectType.CPA_PWORF__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_PWORF_ALL_RECORDTYPE).getRecordTypeId();
         Id RArecordType = Schema.SObjectType.CPA_PWORF__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_PWORF_RA_RECORDTYPE).getRecordTypeId();
         mandatoryStringFlag = null;
-        pworfRec = [select id,pkl_Status__c,Business_Case__c,pkl_Business_Area__c ,In_Scope__c,txta_Acceptance_Criteria__c,Analyse_sessions_expected__c,Will_this_project_require_an_LOI_for_Wor__c,RecordTypeid,RecordType.name,Out_of_Scope__c,Overall_purpose_or_function_of_the_proje__c,Stakeholder_Expectations__c,txta_Title__c,txta_Application_infrastructure__c,txta_Business_critical_milestones__c,Expected_Business_Go_live_date__c,dt_Expected_go_live_date__c,dt_Expected_start_date__c,Expected_Start_Date_for_DBTD_PWO__c,Expected_Start_Date_for_Plan_and_Analyse__c,Impact_if_expected_business_go_live_date__c,Planning_sessions_expected__c,Project_Dependencies__c,Summary_of_requirements_and_deliverables__c,Travel_Arrangements__c,Who_will_support_this_service_once_live__c,pkl_Cost_Centre_Details__c,txt_Cost_Centre__c,txt_ICC_Number__c,pkl_Landscape__c,pkl_Request_Type__c,txta_Other_Request_Type__c,pkl_Pricing_Model__c,pkl_Region__c,dat_Revised_Submission_Date__c,Does_this_project_change_Core_Business_M__c,Does_this_Project_involve_Unilever_conf__c,Governance_Risk_and_Compliance__c,Has_W_R_been_discussed_with_Supplier_Per__c,Interface_to_the_system__c,Interface_to_the_system_Detail__c,Is_Project__c,Is_Project_Require__c,Is_this_a_new_or_re_worked_Integration_R__c,pkl_Is_this_Project_Invasive_in_nature__c,pkl_Process_Office_Area_E2E__c,mpkl_Project_Phases__c,pkl_Project_Scale__c,Role_or_System_Authorisation__c,txta_Project_Invasive_in_nature__c,txta_Role_or_System_Authorisation_detail__c,txta_Project_Require_Performance_Testing__c,Project_Require_Data_Specific_Testing__c,txt_OtherProjectPhases__c,txt_otherProcessOfficeAreaE2E__c,isValidated__c,txt_Role_Level_1_13__c,txt_Resource_Location__c,per_Budget_Expenses_of_Resource_Cost__c,dat_Indicative_timeline_End_date__c,dat_Indicative_timeline_Start_date__c,How_many_man_days_do_you_think_you_requi__c,When_do_you_require_the_Work_at_Risk_to__c,txta_Why_is_Work_at_risk_required__c,txta_What_specific_roles_do_you_require__c,txta_ITC_Resources_Utilisation__c,Which_BP_Innovation_director_has_approve__c ,pkl_Phases_covered_by_the_WAR__c,txta_PWO_linked_to_CR__c, eml_Unilever_Content_Approver_Email__c, txt_Unilever_Content_Approver_Name__c, eml_Unilever_Budget_Approver_Email__c, txt_Unilever_Budget_Approver_Name__c, eml_Unilever_Finance_BP_Contact_Email__c, txt_Unilever_Finance_BP_Contact_Name__c, txt_Unilever_Project_Manager_Name__c, eml_Unilever_Project_Manager_Email__c,txta_Project_Description__c from CPA_PWORF__c where id =:pworfRecId];
+        pworfRec = [select id,pkl_Status__c,Business_Case__c,pkl_Business_Area__c ,In_Scope__c,txta_Acceptance_Criteria__c,Analyse_sessions_expected__c,Will_this_project_require_an_LOI_for_Wor__c,RecordTypeid,RecordType.name,Out_of_Scope__c,Overall_purpose_or_function_of_the_proje__c,Stakeholder_Expectations__c,txta_Title__c,txta_Application_infrastructure__c,txta_Business_critical_milestones__c,Expected_Business_Go_live_date__c,dt_Expected_go_live_date__c,dt_Expected_start_date__c,Expected_Start_Date_for_DBTD_PWO__c,Expected_Start_Date_for_Plan_and_Analyse__c,Impact_if_expected_business_go_live_date__c,Planning_sessions_expected__c,Project_Dependencies__c,Summary_of_requirements_and_deliverables__c,Travel_Arrangements__c,Who_will_support_this_service_once_live__c,pkl_Cost_Centre_Details__c,txt_Cost_Centre__c,txt_ICC_Number__c,pkl_Landscape__c,pkl_Request_Type__c,txta_Other_Request_Type__c,pkl_Pricing_Model__c,pkl_Region__c,dat_Revised_Submission_Date__c,Does_this_project_change_Core_Business_M__c,Does_this_Project_involve_Unilever_conf__c,Governance_Risk_and_Compliance__c,Has_W_R_been_discussed_with_Supplier_Per__c,Interface_to_the_system__c,Interface_to_the_system_Detail__c,Is_Project__c,Is_Project_Require__c,Is_this_a_new_or_re_worked_Integration_R__c,pkl_Is_this_Project_Invasive_in_nature__c,pkl_Process_Office_Area_E2E__c,mpkl_Project_Phases__c,pkl_Project_Scale__c,Role_or_System_Authorisation__c,txta_Project_Invasive_in_nature__c,txta_Role_or_System_Authorisation_detail__c,txta_Project_Require_Performance_Testing__c,Project_Require_Data_Specific_Testing__c,txt_OtherProjectPhases__c,txt_otherProcessOfficeAreaE2E__c,isValidated__c,txt_Role_Level_1_13__c,txt_Resource_Location__c,per_Budget_Expenses_of_Resource_Cost__c,dat_Indicative_timeline_End_date__c,dat_Indicative_timeline_Start_date__c,How_many_man_days_do_you_think_you_requi__c,When_do_you_require_the_Work_at_Risk_to__c,txta_Why_is_Work_at_risk_required__c,txta_What_specific_roles_do_you_require__c,txta_ITC_Resources_Utilisation__c,Which_BP_Innovation_director_has_approve__c ,pkl_Phases_covered_by_the_WAR__c,txta_PWO_linked_to_CR__c, eml_Unilever_Content_Approver_Email__c, txt_Unilever_Content_Approver_Name__c, eml_Unilever_Budget_Approver_Email__c, txt_Unilever_Budget_Approver_Name__c, eml_Unilever_Finance_BP_Contact_Email__c, txt_Unilever_Finance_BP_Contact_Name__c, txt_Unilever_Project_Manager_Name__c, eml_Unilever_Project_Manager_Email__c,txta_Project_Description__c, eml_Project_requestor_Email__c,txt_Project_requestor_Name__c from CPA_PWORF__c where id =:pworfRecId];
         
         if((pworfRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || pworfRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED || pworfRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.WITHHOLD)  || !callFromVF){
 
@@ -138,6 +138,13 @@ boolean callFromVF = false;
             if((pworfRec.txta_Acceptance_Criteria__c==null)){
                 objectMap.put(CPA_ConstantsForContractingAppClasses.ACCEPTANCECRITERIA ,CPA_ConstantsForContractingAppClasses.MANDATORY);
             }
+            if((pworfRec.txt_Project_requestor_Name__c==null)){
+                objectMap.put(CPA_ConstantsForContractingAppClasses.PROJECTREQUESTORNAME ,CPA_ConstantsForContractingAppClasses.MANDATORY);
+            }
+            if((pworfRec.eml_Project_requestor_Email__c==null)){
+                objectMap.put(CPA_ConstantsForContractingAppClasses.PROJECTREQUESTOREMAIL ,CPA_ConstantsForContractingAppClasses.MANDATORY);
+            }
+            
             if(pworfRec.RecordTypeid == AllrecordType){
                 if((pworfRec.Analyse_sessions_expected__c==null)){
                     objectMap.put(CPA_ConstantsForContractingAppClasses.ANALYSESESSIONSEXPECTED ,CPA_ConstantsForContractingAppClasses.MANDATORY);
@@ -158,14 +165,14 @@ boolean callFromVF = false;
                     objectMap.put(CPA_ConstantsForContractingAppClasses.EXPECTEDSTDT ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
                 //Dinesh added below code on 20/03/2016, to fix new UAT issue number 2 (P2)
-               if(pworfRec.mpkl_Project_Phases__c != null && (pworfRec.mpkl_Project_Phases__c).equalsIgnoreCase('Design;Build;Test;Deploy') && pworfRec.Expected_Start_Date_for_DBTD_PWO__c == null){
-                    objectMap.put(CPA_ConstantsForContractingAppClasses.EXPSTDTFORDBTDPWO ,'Mandatory, only when project phases are Design,Build,Test,Deploy');
+               if(pworfRec.mpkl_Project_Phases__c != null && (pworfRec.mpkl_Project_Phases__c.contains(CPA_ConstantsForContractingAppClasses.DESIGN) && pworfRec.mpkl_Project_Phases__c.contains(CPA_ConstantsForContractingAppClasses.BUILD) && pworfRec.mpkl_Project_Phases__c.contains(CPA_ConstantsForContractingAppClasses.DEPLOY) && pworfRec.mpkl_Project_Phases__c.contains(CPA_ConstantsForContractingAppClasses.TEST)) && pworfRec.Expected_Start_Date_for_DBTD_PWO__c == null){
+                    objectMap.put(CPA_ConstantsForContractingAppClasses.EXPSTDTFORDBTDPWO ,'Mandatory, when project phases contains Design,Build,Test,Deploy');
                 }
                /* if(pworfRec.mpkl_Project_Phases__c != null && pworfRec.mpkl_Project_Phases__c != 'Design;Build;Test;Deploy' && pworfRec.Expected_Start_Date_for_DBTD_PWO__c != null){
                     objectMap.put(CPA_ConstantsForContractingAppClasses.EXPSTDTFORDBTDPWO ,'Mandatory, only when project phases are Design,Build,Test,Deploy');
                 }*/
-                if(pworfRec.Expected_Start_Date_for_Plan_and_Analyse__c == null){
-                    objectMap.put(CPA_ConstantsForContractingAppClasses.EXPECTEDPASTARTDATE ,CPA_ConstantsForContractingAppClasses.MANDATORY);
+                if(pworfRec.mpkl_Project_Phases__c != null && (pworfRec.mpkl_Project_Phases__c.contains(CPA_ConstantsForContractingAppClasses.PLAN) && pworfRec.mpkl_Project_Phases__c.contains(CPA_ConstantsForContractingAppClasses.ANALYSE)) && pworfRec.Expected_Start_Date_for_Plan_and_Analyse__c == null ){
+                    objectMap.put(CPA_ConstantsForContractingAppClasses.EXPECTEDPASTARTDATE ,'Mandatory, when project phases contains Plan and Analyse');
                 }
                 if(pworfRec.Impact_if_expected_business_go_live_date__c == null){
                     objectMap.put(CPA_ConstantsForContractingAppClasses.IMPACTIFGOLIVEDATENOTMET ,CPA_ConstantsForContractingAppClasses.MANDATORY);
@@ -193,10 +200,7 @@ boolean callFromVF = false;
                 }
                 if(pworfRec.Governance_Risk_and_Compliance__c ==CPA_ConstantsForContractingAppClasses.STRSELECT || pworfRec.Governance_Risk_and_Compliance__c ==null){  
                     objectMap.put(CPA_ConstantsForContractingAppClasses.GOVRISKANDCOMPLIANCE ,CPA_ConstantsForContractingAppClasses.MANDATORY);
-                }                   
-                if(pworfRec.Has_W_R_been_discussed_with_Supplier_Per__c ==CPA_ConstantsForContractingAppClasses.STRSELECT || pworfRec.Has_W_R_been_discussed_with_Supplier_Per__c ==null){    
-                    objectMap.put(CPA_ConstantsForContractingAppClasses.HASWARBEENDISCUSSEDWITHSUPPER ,CPA_ConstantsForContractingAppClasses.MANDATORY);
-                }                   
+                }                                                     
                 if(pworfRec.Interface_to_the_system__c  ==CPA_ConstantsForContractingAppClasses.STRSELECT || pworfRec.Interface_to_the_system__c  ==null){    
                     objectMap.put(CPA_ConstantsForContractingAppClasses.INTERFACEINTROCHANGED ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
@@ -218,9 +222,12 @@ boolean callFromVF = false;
                 if(pworfRec.pkl_Process_Office_Area_E2E__c ==CPA_ConstantsForContractingAppClasses.OTHER && pworfRec.txt_otherProcessOfficeAreaE2E__c == null ){  
                     objectMap.put(CPA_ConstantsForContractingAppClasses.OTHERPROCESSOFFICEAREAE2E ,CPA_ConstantsForContractingAppClasses.MANDATORYIFOTHISSELECTEDINPO);
                 }
-                if(pworfRec.mpkl_Project_Phases__c ==CPA_ConstantsForContractingAppClasses.OTHER && pworfRec.txt_OtherProjectPhases__c == null ){ 
+                if(pworfRec.mpkl_Project_Phases__c !=null && pworfRec.mpkl_Project_Phases__c.contains(CPA_ConstantsForContractingAppClasses.OTHER) && pworfRec.txt_OtherProjectPhases__c == null ){ 
                     objectMap.put(CPA_ConstantsForContractingAppClasses.OTHERPROJECTPHASES ,CPA_ConstantsForContractingAppClasses.MANDATORYIFOTHERISSELECTEDINPP);
-                }                   
+                }
+                if(pworfRec.txt_OtherProjectPhases__c != null && !pworfRec.mpkl_Project_Phases__c.contains(CPA_ConstantsForContractingAppClasses.OTHER)){ 
+                    objectMap.put(CPA_ConstantsForContractingAppClasses.OTHERPROJECTPHASES ,CPA_ConstantsForContractingAppClasses.NOTREQUIREDWHENPROJECTPHASENOTOTHER);
+                }
                 if(pworfRec.pkl_Process_Office_Area_E2E__c ==CPA_ConstantsForContractingAppClasses.STRSELECT || pworfRec.pkl_Process_Office_Area_E2E__c ==null){    
                     objectMap.put(CPA_ConstantsForContractingAppClasses.PROCESSOFFICEAREAE2E ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
@@ -269,6 +276,9 @@ boolean callFromVF = false;
                     }
                     if(pworfRec.pkl_Phases_covered_by_the_WAR__c  == null || pworfRec.pkl_Phases_covered_by_the_WAR__c  == 'Select'){ 
                         objectMap.put(CPA_ConstantsForContractingAppClasses.PHASESCOVEREDBYWAR ,CPA_ConstantsForContractingAppClasses.MANDATORYIFPROJECTREQUIRELOI);
+                    }
+                    if(pworfRec.Has_W_R_been_discussed_with_Supplier_Per__c ==CPA_ConstantsForContractingAppClasses.STRSELECT || pworfRec.Has_W_R_been_discussed_with_Supplier_Per__c ==null){    
+                        objectMap.put(CPA_ConstantsForContractingAppClasses.HASWARBEENDISCUSSEDWITHSUPPER ,CPA_ConstantsForContractingAppClasses.MANDATORYIFPROJECTREQUIRELOI);
                     }
                 }
                 if(pworfRec.dt_Expected_go_live_date__c  != null && pworfRec.dt_Expected_go_live_date__c  < pworfRec.dt_Expected_start_date__c ){
@@ -336,9 +346,9 @@ boolean callFromVF = false;
         if(pworfRecord.PWORF_Key_Contact__r.size()==0){ 
             objectMap.put(CPA_ConstantsForContractingAppClasses.KEYCONTACTS ,CPA_ConstantsForContractingAppClasses.MANDATORY);
         }
-		if(pworfRecordTypeid == RArecordType && pworfRecord.Resource_Requirement__r.size()==0){
-			objectMap.put(CPA_ConstantsForContractingAppClasses.RESOURCEREQUIREMENT ,CPA_ConstantsForContractingAppClasses.MANDATORY);
-		}          
+        if(pworfRecordTypeid == RArecordType && pworfRecord.Resource_Requirement__r.size()==0){
+            objectMap.put(CPA_ConstantsForContractingAppClasses.RESOURCEREQUIREMENT ,CPA_ConstantsForContractingAppClasses.MANDATORY);
+        }          
     }
    
     /*******************************************************************

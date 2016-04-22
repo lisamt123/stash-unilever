@@ -1,0 +1,14 @@
+Hi,
+<br/><br/>
+Requesting to travel to factory {!Vep_Visitor__c.Factory_to_Visit__c} from {!Vep_Visitor__c.Date_From__c} to {!Vep_Visitor__c.Date_To__c} and approved by {!Vep_Visitor__c.Person_to_Meet__c}
+<br/><br/>
+Please Approve/reject the Request<br/><br/>
+
+<a  href="{!Vep_Visitor__c.BaseUrl__c}apex/VEP_VisitorStatus_VF?VEPnumber={!Vep_Visitor__c.VEP_Number__c}&LodgingStatus=Approved" style="color: #009900;">Approve</a>
+
+<a  href="{!Vep_Visitor__c.BaseUrl__c}apex/VEP_VisitorStatus_VF?VEPnumber={!Vep_Visitor__c.VEP_Number__c}&LodgingStatus=Rejected" style="color: Red">Reject</a>
+<br/><br/>
+Thanks&Regards,
+<br/>
+{!Vep_Visitor__c.Name}<br/>
+{!Vep_Visitor__c.Email__c}

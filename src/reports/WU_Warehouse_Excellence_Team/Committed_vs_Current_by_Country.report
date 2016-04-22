@@ -10,12 +10,12 @@
         <scale>2</scale>
     </aggregates>
     <aggregates>
-        <calculatedFormula>WU_Master_Warehouse__c.WU_Current_Utilization__c:SUM</calculatedFormula>
+        <calculatedFormula>WU_Master_Warehouse__c.WU_Current_Utilization__c:AVG</calculatedFormula>
         <datatype>number</datatype>
         <developerName>FORMULA2</developerName>
         <isActive>true</isActive>
         <isCrossBlock>false</isCrossBlock>
-        <masterLabel>Sum of Current Pallet Utilization Count</masterLabel>
+        <masterLabel>Avg of Current Pallet Utilization Count</masterLabel>
         <scale>2</scale>
     </aggregates>
     <columns>
@@ -50,7 +50,7 @@
     <scope>user</scope>
     <showDetails>true</showDetails>
     <timeFrameFilter>
-        <dateColumn>WU_Master_Warehouse__c.WU_ToDate__c</dateColumn>
-        <interval>INTERVAL_CUSTOM</interval>
+        <dateColumn>WU_Master_Warehouse__c.WU_FromDate__c</dateColumn>
+        <interval>INTERVAL_THISMONTH</interval>
     </timeFrameFilter>
 </Report>
