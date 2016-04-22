@@ -11,7 +11,7 @@ Purpose:
  VERSION   AUTHOR                        DATE              DETAIL                    Description    
  1.0       Mindtree                  16/12/2015      INITIAL DEVELOPMENT            CSR: 
  ***********************************************************************/
-public with sharing class Amr_JobSheetController_CC{
+public without sharing class Amr_JobSheetController_CC{
 
     public String docUploaded{get;set;}
     public String projNameFromPage{get;set;}
@@ -72,6 +72,8 @@ public with sharing class Amr_JobSheetController_CC{
     public boolean validateSuccess ;
     public boolean alertErrorCheck {get;set;}
     public boolean jobsheetErrorCheck {get;set;}
+    public boolean jobIsAccepted {get;set;}
+    public String createdByUserEmail {get;set;}
    
     public List<selectoption> selectUsername{get;set;} 
     public List<selectoption> selectJobPriority{get;set;}
@@ -109,6 +111,10 @@ public with sharing class Amr_JobSheetController_CC{
    
     public Amr_JobSheetController_CC(){
     try{
+    	 if(documentList == null){
+         documentList = new List<FeedItem>();
+         }
+        jobIsAccepted   = false;
         jobCancellCheck = false;
          Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
           jobSheetHelper = new Amr_JobSheetHelper_CC();
@@ -205,17 +211,17 @@ Returns:
             if(permissionSetName == Label.Amr_CAP){
 
                 jobAlloc = [Select id,User__r.Name, Job_Allocated__c,Reported__c,Started__c,Job_Status__c,Is_Primary__c  from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId limit 1];
-                        listOfUserToDisplay = [Select User__r.Name,Job_Status__c,Id from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId];
+                        listOfUserToDisplay = [Select User__r.Name, User__r.Email,Job_Status__c,Id from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId];
                            
                                         
             }
             else{
-                jobAlloc = [Select id,User__r.Name, Job_Allocated__c,Reported__c,Started__c,Job_Status__c,Is_Primary__c  from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId  AND user__c =: userInfo.getUserId() Limit 1 ];
+                jobAlloc = [Select id,User__r.Name, User__r.Email, Job_Allocated__c,Reported__c,Started__c,Job_Status__c,Is_Primary__c  from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId  AND user__c =: userInfo.getUserId() Limit 1 ];
                         listOfUserToDisplay.add(jobAlloc);
                       
             }
           
-            jobList=[select AdditionalSupplementaryNewMaterialDigiA__c,ReworkExistingMaterial__c,Buyouts_Music_Digital_ED__c,NewOriginalMaster__c,NewOriginalMasterTv__c,NewOriginalMasterCinema__c,NewOriginalMasterRadio__c,NewOriginalMasterPrint__c,NewOriginalMasterOutofHome__c,NewOriginalMasterInStore__c,NewOriginalMasterDigital__c,
+            jobList=[select createdById, AdditionalSupplementaryNewMaterialDigiA__c,ReworkExistingMaterial__c,Buyouts_Music_Digital_ED__c,NewOriginalMaster__c,NewOriginalMasterTv__c,NewOriginalMasterCinema__c,NewOriginalMasterRadio__c,NewOriginalMasterPrint__c,NewOriginalMasterOutofHome__c,NewOriginalMasterInStore__c,NewOriginalMasterDigital__c,
                     NewOriginalMasterInternalVideo__c,NewOriginalMasterTvMovingImage__c,NewOriginalMasterCinemaMovingImage__c,NewOriginalMasterRadioAudio__c,NewOriginalMasterPrintStillImage__c,NewOriginalMasterOutofHomeMovingImage__c,
                     NewOriginalMasterOutofHomeAudio__c,NewOriginalMasterOutofHomeStillImage__c,NewOriginalMasterInStoreMovingImage__c,NewOriginalMasterInStoreAudio__c,NewOriginalMasterInStoreStillImage__c,NewOriginalMasterDigitalMovingImage__c,
                     NewOriginalMasterDigitalAudio__c,NewOriginalMasterDigitalStillImage__c,NewOriginalMasterInternalVdoMovingImage__c,  New_Original_Master_Digital_ED__c,
@@ -636,9 +642,11 @@ Returns:
             } 
        
             insert jobAllocObj;   
-            if(String.isBlank(jobDet.Job_Status__c)){
+           
+           /* if(String.isBlank(jobDet.Job_Status__c)){
                 jobDet.Job_Status__c = 'Pending';
-            }            
+            }*/          
+            jobDet.Job_Status__c = 'Pending';
             jobDet.OwnerId = selectedRap;
             update jobDet;
                     }  
@@ -711,7 +719,21 @@ Returns:
            String userEmail = [Select email from User where id = :jobAlloc.User__c].email;
            joblist.Job_Accepted_Email__c = userEmail;
            joblist.Job_Status__c = 'Live';
+          
+          String createdByEmail = [Select email from User where id = :joblist.createdByid].email;
+          
+          List<String> createdByUserEmailAdd = new List<String>();
+          
+          createdByUserEmailAdd.add(createdByEmail);
+          createdByUserEmailAdd.add(joblist.Unilever_Project_Leader_Email__c);
+          createdByUserEmailAdd.add(joblist.Final_Approver_Of_Material_Email__c);
+         
+          createdByUserEmail = JSON.serialize(createdByUserEmailAdd);
+          System.debug('Created BY EMAIL ->  ' + createdByUserEmail);
+          
            update joblist;
+           
+           jobIsAccepted = true;
                      
            List <String> userEmailList = new List<String>();
            userEmailList.add(userEmail);

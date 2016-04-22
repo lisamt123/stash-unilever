@@ -671,6 +671,7 @@ Returns:
            update jobdList;
            update jobDetailsList;
            PageReference pageRef = new PageReference(ApexPages.currentPage().getUrl());
+           pageRef.getParameters().put('defaultSection','CancelList');
            pageRef.setRedirect(true);
            return pageRef;
            }

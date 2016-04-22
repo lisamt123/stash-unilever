@@ -17,10 +17,29 @@
         }        
         .tabsection .rich-tab-bottom-line {
             background:#FFFFFF;
+        }
+        .compulsory-field span {
+            position:relative;
+        }
+        .compulsory-field strong{
+            background: rgba(0, 0, 0, 0) url("/resource/1460632458000/Amr_static_resources/Amr-static-resource/images/star.png") no-repeat scroll center center;
+            display: block;
+            height: 1px;
+            overflow: hidden;
+            padding-top: 18px;
+            position: absolute;
+            right: -10px;
+            top: -7px;
+            width: 15px;
         }        
     </style>
-    <script>
-        
+    <apex:outputPanel rendered="{!if(fileUploadMessage==true,true,false)}">
+        <script type="text/javascript">         
+            alertDocumentSubmission();
+        </script>
+    </apex:outputPanel>
+    
+    <script type="text/javascript">        
         var stringArrayNewSaving            = JSON.parse('{!lstcov }');
         
         function PCEuroAmountAccepted() {                  
@@ -80,9 +99,13 @@
         });
     </script>
     <apex:form >
-      <div style="display:{!if(savingMessages != true, 'none','')}" > 
+      <apex:outputPanel style="display:{!if(savingMessages != true, 'none','')}" id="error-msg-pannel"> 
             <apex:pageMessages id="msg"/>
-     </div>    
+     </apex:outputPanel>
+     <!--<div style="display:{!if(savingMessages == true, 'none','')}" > 
+            <apex:pageMessages id="msg1"/>
+     </div>   --> 
+    
         <div class="padding12-0-0-0 bg-w8">
             <div class="inner_section margin-top8">
                 <h4>
@@ -100,7 +123,7 @@
                                 </div>
                             </div>
                             <div class="job-field-parent job-field-parent-smaller displayIB VATop compulsory-validation" style="margin-top:8px;">
-                                <div class="job-field-label">{!$Label.Amr_Production_Type}</div>
+                                <div class="job-field-label compulsory-field"><span>{!$Label.Amr_Production_Type}<strong></strong></span></div>
                                 <div class="job-field-input" style="font-weight:bold;">
                                     <apex:inputField value="{!savingObj.Production_Type__c}" />
                                 </div>
@@ -138,7 +161,7 @@
                                 </div>
                             </div>
                             <div class="job-field-parent job-field-parent-smaller displayIB VATop" style="margin-top:8px;">
-                                <div class="job-field-label">{!$Label.Amr_Stage_RAP_engaged}</div>
+                                <div class="job-field-label compulsory-field"><span>{!$Label.Amr_Stage_RAP_engaged}<strong></strong></span></div>
                                 <div class="job-field-input" style="font-weight:bold;">
                                     <apex:inputField value="{!savingObj.Stage_RAP_engaged__c}" />
                                 </div>
@@ -150,13 +173,13 @@
                                 </div>
                             </div>
                             <div class="job-field-parent job-field-parent-smaller displayIB VATop">
-                                <div class="job-field-label">{!$Label.Amr_scope_rebrief}</div>
+                                <div class="job-field-label compulsory-field"><span>{!$Label.Amr_scope_rebrief}<strong></strong></span></div>
                                 <div class="job-field-input" style="font-weight:bold;">
                                     <apex:inputField value="{!savingObj.Scope_re_brief__c}" />
                                 </div>
                             </div>
                             <div class="job-field-parent job-field-parent-smaller displayIB VATop">
-                                <div class="job-field-label">{!$Label.Amr_Shoot_Location}</div>
+                                <div class="job-field-label compulsory-field"><span>{!$Label.Amr_Shoot_Location}<strong></strong></span></div>
                                 <div class="job-field-input job-field-input-multiselect" style="font-weight:bold;">
                                     <apex:selectList value="{!selectedCountry}" multiselect="true" size="5" label="Shoot Location">
                                         <apex:selectOptions value="{!shootLocation}" />
@@ -206,7 +229,8 @@
                             </div>
                             <div class="margin-left12 text-camel-case" style="font-size:14px;margin-bottom:12px;">
                                 {!$Label.Amr_Your_saving_review}
-                            </div>
+                                <span style="color:red;font-size:10px;text-transform: none;">(These fields will be auto populated after submitting the saving)</span>
+                            </div>                            
                             <div class="bg-g1 padding12">
                                 <div class="displayIB VATop summary-values-quotes  margin-bottom10">
                                     <div class="left margin-top8 margin-right12">{!$Label.Amr_Saving_Average_of_Quotes}</div>
@@ -305,13 +329,13 @@
                             </div>
                         </div>
                         <div class="job-field-parent job-field-parent-smaller  displayIB VATop">
-                            <div class="left"> {!$Label.Amr_Local_Currency_Of_PC_Cost}  </div>
+                            <div class="left compulsory-field"><span> {!$Label.Amr_Local_Currency_Of_PC_Cost} <strong></strong> </span> </div>
                             <div class="left">
                                 <apex:inputField value="{!acceptedQuote.Local_Currency_of_PC_Costs__c}" styleclass="PCCurrency" onchange="PCEuroAmount()" />
                             </div>
                         </div>
                         <div class="job-field-parent job-field-parent-currency  displayIB VATop" style="width:180px !important;">
-                            <div class="left">{!$Label.Amr_Local_Amount_Of_PC} </div>
+                            <div class="left compulsory-field"><span>{!$Label.Amr_Local_Amount_Of_PC} <strong></strong> </span> </div>
                             <div class="left">
                                 <apex:inputField value="{!acceptedQuote.Local_Amount_of_PC__c}" html-placeholder="0.00" styleclass="PCLocalAmount" onkeypress="return isCurrency(event)" onkeyup="PCEuroAmount()" />
                             </div>
@@ -342,13 +366,13 @@
                             </div>
                         </div>
                         <div class="job-field-parent job-field-parent-smaller  displayIB VATop">
-                            <div class="left">{!$Label.Amr_Local_Currency_of_PPC_Costs}</div>
+                            <div class="left compulsory-field"><span>{!$Label.Amr_Local_Currency_of_PPC_Costs} <strong></strong></span> </div>
                             <div class="left">
                                 <apex:inputField value="{!acceptedQuote.Local_Currency_of_PPC_Costs__c}" styleclass="PPCCurrency" onchange="PPCEuroAmount()" />
                             </div>
                         </div>
                         <div class="job-field-parent job-field-parent-currency  displayIB VATop" style="width:180px !important;">
-                            <div class="left"> {!$Label.Amr_Local_Amount_of_PPC} </div>
+                            <div class="left compulsory-field"><span> {!$Label.Amr_Local_Amount_of_PPC} <strong></strong> </span> </div>
                             <div class="left">
                                 <apex:inputField value="{!acceptedQuote.Local_Amount_of_PPC__c}" html-placeholder="0.00" styleclass="PPCLocalAmount" onkeypress="return isCurrency(event)" onkeyup="PPCEuroAmount()" />
                             </div>
@@ -373,13 +397,13 @@
                             </div>
                         </div>
                         <div class="job-field-parent job-field-parent-smaller  displayIB VATop">
-                            <div class="left"> {!$Label.Amr_Local_Currency_of_CA_Costs}  </div>
+                            <div class="left compulsory-field"> <span>{!$Label.Amr_Local_Currency_of_CA_Costs} <strong></strong></span> </div>
                             <div class="left">
                                 <apex:inputField value="{!acceptedQuote.Local_Currency_of_CA_Costs__c}" styleclass="CACurrency" onchange="CAEuroAmount()" />
                             </div>
                         </div>
                         <div class="job-field-parent job-field-parent-currency  displayIB VATop" style="width:180px !important;">
-                            <div class="left">{!$Label.Amr_Local_Amount_of_CA}  </div>
+                            <div class="left compulsory-field"><span>{!$Label.Amr_Local_Amount_of_CA} <strong></strong> </span> </div>
                             <div class="left">
                                 <apex:inputField value="{!acceptedQuote.Local_Amount_of_CA__c}" html-placeholder="0.00" styleclass="CALocalAmount" onkeypress="return isCurrency(event)" onkeyup="CAEuroAmount()" />
                             </div>
@@ -403,13 +427,13 @@
                         <div class="subheader-quotes bold" style="margin-bottom:0px;">Accepted Final cost</div>
                         <div>
                             <div class="job-field-parent job-field-parent-smaller  displayIB VATop">
-                                <div class="left">{!$Label.Amr_PC_only_Currency}</div>
+                                <div class="left compulsory-field"><span>{!$Label.Amr_PC_only_Currency}<strong></strong></span></div>
                                 <div class="left">
                                     <apex:inputfield value="{!acceptedQuote.Accepted_Final_Cost_PC_only_Currency__c}" styleclass="PCCurrencyAccepted" onchange="PCEuroAmountAccepted()" />
                                 </div>
                             </div>
                             <div class="job-field-parent job-field-parent-currency  displayIB VATop">
-                                <div class="left">{!$Label.Amr_PC_only_Local_Amount}</div>
+                                <div class="left compulsory-field"><span>{!$Label.Amr_PC_only_Local_Amount}<strong></strong></span></div>
                                 <div class="left">
                                     <apex:inputfield value="{!acceptedQuote.Accepted_Final_Cost_PC_only_Local_Amo__c}" html-placeholder="0.00" styleclass="PCLocalAmountAccepted" onkeypress="return isCurrency(event)" onkeyup="PCEuroAmountAccepted()" />
                                 </div>
@@ -421,13 +445,13 @@
                                 </div>
                             </div>
                             <div class="job-field-parent job-field-parent-smaller  displayIB VATop">
-                                <div class="left">{!$Label.Amr_PPC_only_Currency}</div>
+                                <div class="left compulsory-field"><span>{!$Label.Amr_PPC_only_Currency}<strong></strong></span></div>
                                 <div class="left">
                                     <apex:inputfield value="{!acceptedQuote.Accepted_Final_Cost_PPC_only_Currency__c}" styleclass="PPCCurrencyAccepted" onchange="PPCEuroAmountAccepted()" />
                                 </div>
                             </div>
                             <div class="job-field-parent job-field-parent-currency  displayIB VATop">
-                                <div class="left">{!$Label.Amr_PPC_only_Local_Amount}</div>
+                                <div class="left compulsory-field"><span>{!$Label.Amr_PPC_only_Local_Amount}<strong></strong></span></div>
                                 <div class="left">
                                     <apex:inputfield value="{!acceptedQuote.Accepted_Final_Cost_PPC_only_Local_Am__c}" html-placeholder="0.00" styleclass="PPCLocalAmountAccepted" onkeypress="return isCurrency(event)" onkeyup="PPCEuroAmountAccepted()" />
                                 </div>
@@ -439,13 +463,13 @@
                                 </div>
                             </div>
                             <div class="job-field-parent job-field-parent-smaller  displayIB VATop">
-                                <div class="left"> {!$Label.Amr_CA_only_Currency}</div>
+                                <div class="left compulsory-field"><span> {!$Label.Amr_CA_only_Currency}<strong></strong></span></div>
                                 <div class="left">
                                     <apex:inputfield value="{!acceptedQuote.Accepted_Final_Cost_CA_only_Currency__c}" styleclass="CACurrencyAccepted" onchange="CAEuroAmountAccepted()" />
                                 </div>
                             </div>
                             <div class="job-field-parent job-field-parent-currency  displayIB VATop">
-                                <div class="left">{!$Label.Amr_CA_only_Local_Amount}</div>
+                                <div class="left compulsory-field"><span>{!$Label.Amr_CA_only_Local_Amount}<strong></strong></span></div>
                                 <div class="left">
                                     <apex:inputfield value="{!acceptedQuote.Accepted_Final_Cost_CA_Local_Amount__c}" html-placeholder="0.00" styleclass="CALocalAmountAccepted" onkeypress="return isCurrency(event)" onkeyup="CAEuroAmountAccepted()" />
                                 </div>
@@ -502,7 +526,7 @@
                                 </div>
                             </div>
                             <div class="job-field-parent job-field-parent-smaller  displayIB VATop">
-                                <div class="left">  {!$Label.Amr_What_type_of_Savings_is_this}</div>
+                                <div class="left compulsory-field"><span>{!$Label.Amr_What_type_of_Savings_is_this}<strong></strong></span></div>
                                 <div class="left">
                                     <apex:inputfield value="{!acceptedQuote.Saving_Type__c}" />
                                 </div>
@@ -673,11 +697,10 @@
                     <div class="accepted_quote_files inner_sub_section" style="display: block;">
                         <div class="inner_sub2_section">
                             <div class="left padding12 add-quotes" style="width:40%;border:3px solid #2C99CE">
-                            <div class="subheader-quotes bold">  {!$Label.Amr_Accepted_Quotes_And_Documents} </div>
+                            <div class="subheader-quotes bold compulsory-field"> <span>{!$Label.Amr_Accepted_Quotes_And_Documents} <strong></strong></span> </div>
                             <apex:pageBlockSection >
-                                <apex:inputFile value="{!document.body}" filename="{!document.name}" />
-                                <apex:commandButton action="{!UploadAcceptedquoteDoc}" value="Upload" styleClass="commonbtn-blue" />
-
+                                <apex:inputFile value="{!document.body}" filename="{!document.name}" styleClass="left" />
+                                <apex:commandButton action="{!UploadAcceptedquoteDoc}" value="Upload" styleClass="commonbtn-blue right" />                              
                                 <apex:pageBlockTable value="{!attachedList}" var="fileObj" rendered="{!if(attachedList.size>0,true,false)}" id="files">
                                     <apex:column >
                                         <apex:commandLink action="{!deleteDocument}" style="font-size:18px;color:red;text-decoration:none;font-weight:bold;">x
@@ -708,9 +731,8 @@
                             <div class="left margin-left20 padding12 add-quotes" style="width:50%;border:3px solid #2C99CE">
                                 <div class="subheader-quotes bold"> {!$Label.Amr_Additional_Quotes_And_Documents}</div>
                             <apex:pageBlockSection >
-                                <apex:inputFile value="{!document.body}" filename="{!document.name}" />
-                                <apex:commandButton action="{!UploadAdditionalDoc}" value="Upload" styleClass="commonbtn-blue"/>
-
+                                <apex:inputFile value="{!document.body}" filename="{!document.name}" styleClass="left" />
+                                <apex:commandButton action="{!UploadAdditionalDoc}" value="Upload" styleClass="commonbtn-blue right"/>                              
                                 <apex:pageBlockTable value="{!attachedListSaving}" var="fileObj" rendered="{!if(attachedListSaving.size>0,true,false)}" id="files">
                                     <apex:column >
                                         <apex:commandLink action="{!deleteDocumentSaving}" style="font-size:18px;color:red;text-decoration:none;font-weight:bold;">x
@@ -739,6 +761,7 @@
                                 </apex:pageBlockTable>
                             </apex:pageBlockSection>
                             </div>
+                            <div class="clear"></div>
                         </div>
                     </div>
                 </div>
@@ -766,7 +789,7 @@
                                             <div class="categoryStyleHeader">{!$Label.Amr_PC_Appraisal}</div>
                                             <div class="categoryStyle" style="margin-top:20px;border-radius: 6px 0 0;"><label>{!$Label.Amr_Time_Management}</label>
                                             </div>
-                                            <div class="sendPcTimeMangCategory sendPcTimeMangCategory">
+                                            <div class="holder-class-star sendPcTimeMangCategory sendPcTimeMangCategory">
                                                 <!-- {!savObj.Id} -->
                                                 <span class="common pc-time-cat" rel="1"></span>
                                                 <span class="common pc-time-cat" rel="2"><i></i></span>
@@ -778,7 +801,7 @@
                                         <div class="holder-class" data-id="sendPcCostMangCategory">
                                             <div class="categoryStyle"><label>{!$Label.Amr_Cost_Management} </label>
                                             </div>
-                                            <div class="sendCaOutputQualityCategory sendPcCostMangCategory">
+                                            <div class="holder-class-star sendCaOutputQualityCategory sendPcCostMangCategory">
                                                 <!-- {!savObj.Id} -->
                                                 <span class="common pc-cost-cat" rel="1"></span>
                                                 <span class="common pc-cost-cat" rel="2"><i></i></span>
@@ -790,7 +813,7 @@
                                         <div class="holder-class" data-id="sendPcProcessMangCategory">
                                             <div class="categoryStyle"><label>{!$Label.Amr_Process_Management}</label>
                                             </div>
-                                            <div class="sendCaOutputQualityCategory sendPcProcessMangCategory">
+                                            <div class="holder-class-star sendCaOutputQualityCategory sendPcProcessMangCategory">
                                                 <!-- {!savObj.Id} -->
                                                 <span class="common pc-process-cat" rel="1"></span>
                                                 <span class="common pc-process-cat" rel="2"><i></i></span>
@@ -802,7 +825,7 @@
                                         <div class="holder-class" data-id="sendPcOutputQualityCategory">
                                             <div class="categoryStyle" style="border-radius: 0 6px 0 0;"><label>{!$Label.Amr_Output_Quality}</label>
                                             </div>
-                                            <div class="sendCaOutputQualityCategory sendPcOutputQualityCategory">
+                                            <div class="holder-class-star sendCaOutputQualityCategory sendPcOutputQualityCategory">
                                                 <!-- {!savObj.Id} -->
                                                 <span class="common pc-output-cat" rel="1"></span>
                                                 <span class="common pc-output-cat" rel="2"><i></i></span>
@@ -818,7 +841,7 @@
                                             <div class="categoryStyleHeader">{!$Label.Amr_PPC_Appraisal}</div>
                                             <div class="categoryStyle" style="margin-top:20px;border-radius: 6px 0 0;"><label>{!$Label.Amr_Time_Management} </label>
                                             </div>
-                                            <div class=" sendCaOutputQualityCategory sendPpcTimeMangCategory">
+                                            <div class="holder-class-star sendCaOutputQualityCategory sendPpcTimeMangCategory">
                                                 <!-- {!savObj.Id} -->
                                                 <span class="common ppc-time-cat" rel="1"></span>
                                                 <span class="common ppc-time-cat" rel="2"><i></i></span>
@@ -830,7 +853,7 @@
                                         <div class="holder-class" data-id="sendPpcCostMangCategory">
                                             <div class="categoryStyle"><label>{!$Label.Amr_Cost_Management}  </label>
                                             </div>
-                                            <div class="sendCaOutputQualityCategory sendPpcCostMangCategory">
+                                            <div class="holder-class-star sendCaOutputQualityCategory sendPpcCostMangCategory">
                                                 <!-- {!savObj.Id} -->
                                                 <span class="common ppc-cost-cat" rel="1"></span>
                                                 <span class="common ppc-cost-cat" rel="2"><i></i></span>
@@ -842,7 +865,7 @@
                                         <div class="holder-class" data-id="sendPpcProcessMangCategory">
                                             <div class="categoryStyle"><label>{!$Label.Amr_Process_Management}</label>
                                             </div>
-                                            <div class="sendCaOutputQualityCategory sendPpcProcessMangCategory">
+                                            <div class="holder-class-star sendCaOutputQualityCategory sendPpcProcessMangCategory">
                                                 <!-- {!savObj.Id} -->
                                                 <span class="common ppc-process-cat" rel="1"></span>
                                                 <span class="common ppc-process-cat" rel="2"><i></i></span>
@@ -854,7 +877,7 @@
                                         <div class="holder-class" data-id="sendPpcOutputQualityCategory">
                                             <div class="categoryStyle" style="border-radius: 0 6px 0 0;"><label>{!$Label.Amr_Output_Quality}</label>
                                             </div>
-                                            <div class="sendCaOutputQualityCategory sendPpcOutputQualityCategory">
+                                            <div class="holder-class-star sendCaOutputQualityCategory sendPpcOutputQualityCategory">
                                                 <!-- {!savObj.Id} -->
                                                 <span class="common ppc-output-cat" rel="1"></span>
                                                 <span class="common ppc-output-cat" rel="2"><i></i></span>
@@ -871,7 +894,7 @@
                                             <div class="categoryStyleHeader">{!$Label.Amr_CA_Appraisal}</div>
                                             <div class="categoryStyle" style="margin-top:20px;border-radius: 6px 0 0;"><label>{!$Label.Amr_Time_Management} </label>
                                             </div>
-                                            <div class="sendCaOutputQualityCategory sendCaTimeMangCategory">
+                                            <div class="holder-class-star sendCaOutputQualityCategory sendCaTimeMangCategory">
                                                 <!-- {!savObj.Id} -->
                                                 <span class="common ca-time-cat" rel="1"></span>
                                                 <span class="common ca-time-cat" rel="2"><i></i></span>
@@ -883,7 +906,7 @@
                                         <div class="holder-class" data-id="sendCaCostMangCategory">
                                             <div class="categoryStyle"><label>{!$Label.Amr_Cost_Management}</label>
                                             </div>
-                                            <div class="sendCaOutputQualityCategory sendCaCostMangCategory">
+                                            <div class="holder-class-star sendCaOutputQualityCategory sendCaCostMangCategory">
                                                 <!-- {!savObj.Id} -->
                                                 <span class="common ca-cost-cat" rel="1"></span>
                                                 <span class="common ca-cost-cat" rel="2"><i></i></span>
@@ -895,7 +918,7 @@
                                         <div class="holder-class" data-id="sendCaProcessMangCategory">
                                             <div class="categoryStyle"><label>{!$Label.Amr_Process_Management}</label>
                                             </div>
-                                            <div class="sendCaOutputQualityCategory sendCaProcessMangCategory">
+                                            <div class="holder-class-star sendCaOutputQualityCategory sendCaProcessMangCategory">
                                                 <!-- {!savObj.Id} -->
                                                 <span class="common ca-process-cat" rel="1"></span>
                                                 <span class="common ca-process-cat" rel="2"><i></i></span>
@@ -908,7 +931,7 @@
 
                                             <div class="categoryStyle" style="border-radius: 0 6px 0 0;"><label>{!$Label.Amr_Output_Quality}</label>
                                             </div>
-                                            <div class="sendCaOutputQualityCategory sendCaOutputQualityCategory">
+                                            <div class="holder-class-star sendCaOutputQualityCategory sendCaOutputQualityCategory">
                                                 <!-- {!savObj.Id} -->
                                                 <span class="common ca-output-cat" rel="1"></span>
                                                 <span class="common ca-output-cat" rel="2"><i></i></span>
@@ -936,16 +959,16 @@
 
 
         <apex:actionRegion >
-        	
-        	<div class="displayIB right">
-	        	<apex:actionStatus id="actStatusIdQuote3">
-	                <apex:facet name="start">
-	                    <img src="/img/loading.gif" alt="loading-image" />
-	                </apex:facet>
-	            </apex:actionStatus>
-            </div>        	
+            
+            <div class="displayIB right">
+                <apex:actionStatus id="actStatusIdQuote3">
+                    <apex:facet name="start">
+                        <img src="/img/loading.gif" alt="loading-image" />
+                    </apex:facet>
+                </apex:actionStatus>
+            </div>          
             <div class="displayIB right  margin-right10">
-            	<apex:commandLink action="{!allValues}" value="Submit" status="actStatusIdQuote3" ReRender="mainclass,msg" styleclass="commonbtn-blue anchorsubmitbtn margin-top18" />
+                <apex:commandLink action="{!allValues}" value="Submit" status="actStatusIdQuote3" ReRender="mainclass,msg,error-msg-pannel" styleclass="commonbtn-blue anchorsubmitbtn margin-top18" />
             </div>            
             <div class="clear"></div>            
             

@@ -12,9 +12,17 @@
     </style>
     <![endif]-->
     <style type='text/css'>
-    	.scrollbar-table-parent table.list tbody td, .scrollbar-table-parent table.list thead th {
-    		 width: 10em !important;
-    	}
+        .scrollbar-table-parent table.list tbody td, .scrollbar-table-parent table.list thead th {
+             width: 10em !important;
+        }
+        .vf-tip-header, .vf-tip-header-body, .vf-box-inner, .vf-tip-header-text-container, .vf-tip-body  {
+            width:200px !important;                 
+        }                 
+        .vf-tip {
+            width:200px !important;
+            height:25px !important;
+            text-transform:capitalize;
+        }
     </style>
     <script type="text/javascript">
     

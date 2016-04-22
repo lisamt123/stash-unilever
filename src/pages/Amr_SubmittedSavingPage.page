@@ -143,15 +143,15 @@
         });
         
         $j(function(){
-        	
-        	if( $j('.noOfMastersMain').length ) {
-	        	loadMasterProcess();
-	        	NoOfmasterdurationkeypress();
-	       		remove_master_durationrows();
-	       		addMasterDurationrowsCall();
-	       		$j('.show-on-edit').show();
-       		}       		
-		});
+            
+            if( $j('.noOfMastersMain').length ) {
+                loadMasterProcess();
+                NoOfmasterdurationkeypress();
+                remove_master_durationrows();
+                addMasterDurationrowsCall();
+                $j('.show-on-edit').show();
+            }               
+        });
         
     </script>
     <div class="container">
@@ -207,11 +207,11 @@
                                                         if( $j('.noOfMastersMain').length ) {
                                                         showOnEdit();
                                                         loadMasterProcess();
-											        	NoOfmasterdurationkeypress();
-											       		remove_master_durationrows();
-											       		addMasterDurationrowsCall();
-											       		$j('.show-on-edit').show();
-											       		}
+                                                        NoOfmasterdurationkeypress();
+                                                        remove_master_durationrows();
+                                                        addMasterDurationrowsCall();
+                                                        $j('.show-on-edit').show();
+                                                        }
                                                     </script>
                                                 </apex:outputPanel>
                                                 <div class="job-field-parent displayIB VATop" style="width:200px;">
@@ -241,9 +241,9 @@
                                                     <div class="job-field-label">Duration of Masters x No. of Masters</div>
                                                     <div class="job-field-input">
                                                         <apex:outputPanel >
-                                                        	<div class="nombydom">                                                        		
-                                                        		{!SUBSTITUTE(savObj.Duration_of_Masters__c,',','_')}:::{!SUBSTITUTE(savObj.No_of_Masters2__c,',','_')}
-                                                       		</div>
+                                                            <div class="nombydom">                                                              
+                                                                {!SUBSTITUTE(savObj.Duration_of_Masters__c,',','_')}:::{!SUBSTITUTE(savObj.No_of_Masters2__c,',','_')}
+                                                            </div>
                                                         </apex:outputPanel>
                                                     </div>
                                                 </div>
@@ -296,9 +296,9 @@
                                                         <apex:inputField value="{!savObj.Stage_RAP_engaged__c}" rendered="{!if(saveRecordValue == savObj.id,true,false) && (editedSavingMode == true)}" />
                                                         
                                                         <apex:outputPanel rendered="{!if(saveRecordValue == savObj.id,false,true) && (viewSavingMode == true)}">
-                                                        	<div style="height:27px;" title="{!savObj.Stage_RAP_engaged__c}" class="stage-common-class {!SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(savObj.Stage_RAP_engaged__c, ' ', '_'),'(',''),')',''),',',''),'/','')}">
-                                                        		&nbsp;
-                                                        	</div>
+                                                            <div style="height:27px;" title="{!savObj.Stage_RAP_engaged__c}" class="stage-common-class {!SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(savObj.Stage_RAP_engaged__c, ' ', '_'),'(',''),')',''),',',''),'/','')}">
+                                                                &nbsp;
+                                                            </div>
                                                         </apex:outputPanel>
                                                         
                                                     </div>
@@ -430,44 +430,44 @@
                                                 
                                                 <apex:outputPanel rendered="{!if(editedSavingMode==true,true,false)}">
                                                 <div style="margin-bottom:5px;margin-top:20px;">
-					                            	Masters
-					                            </div>
-					                            <div style="margin-bottom:30px;border:3px solid #205EA5;padding:20px;width:30%;">
-						                            <div class="row1MainParent">
-						                            	<apex:inputField value="{!savObj.Duration_of_Masters__c}" styleClass="durationOfMastersMain hide"/>
-						                            	<apex:inputField value="{!savObj.No_of_Masters2__c}" styleClass="noOfMastersMain hide"/>
-						                            	<div class="row1" style="margin-bottom:5px;">
-							                            	<div class="displayIB" style="width:170px;">
-							                                	Duration	                                	
-							                            	</div>
-							                            	<div class="displayIB VATop">
-							                                	Number		                     
-							                            	</div>
-						                            	</div>
-						                            	<div class="row1Main">
-							                            	<div class="displayIB VATop" style="width:140px;">	                                	
-							                                	<div class="job-field-input" style="font-weight:bold;">
-							                                    	<input type="text" class="duration-of-masters-class" />
-							                                	</div>
-							                            	</div>
-							                            	<div class="displayIB VATop" style="margin:5px 18px 0 0;">	                                	
-								                                X
-							                            	</div>
-							                            	<div class="displayIB VATop" style="width:140px;">	                                	
-								                                <div class="job-field-input" style="font-weight:bold;">
-								                                    <input type="text" class="no-of-masters-class" />
-								                                </div>
-							                            	</div>
-							                            	<div class="displayIB remove_master_durationrows pointer" style="margin:10px 18px 0 0;font-size:18px;color:red;text-decoration:none;font-weight:bold;">	                                	
-								                                x
-							                            	</div>
-						                            	</div>
-						                            </div>
-						                            <div style="margin-top:20px;">
-						                            	<input type="button" value="Add More" class="commonbtn add_master_durationrows pointer" />
-						                            </div>
-						                            <div class="clear"></div>
-					                            </div>
+                                                    Masters
+                                                </div>
+                                                <div style="margin-bottom:30px;border:3px solid #205EA5;padding:20px;width:30%;">
+                                                    <div class="row1MainParent">
+                                                        <apex:inputField value="{!savObj.Duration_of_Masters__c}" styleClass="durationOfMastersMain hide"/>
+                                                        <apex:inputField value="{!savObj.No_of_Masters2__c}" styleClass="noOfMastersMain hide"/>
+                                                        <div class="row1" style="margin-bottom:5px;">
+                                                            <div class="displayIB" style="width:170px;">
+                                                                Duration                                        
+                                                            </div>
+                                                            <div class="displayIB VATop">
+                                                                Number                           
+                                                            </div>
+                                                        </div>
+                                                        <div class="row1Main">
+                                                            <div class="displayIB VATop" style="width:140px;">                                      
+                                                                <div class="job-field-input" style="font-weight:bold;">
+                                                                    <input type="text" class="duration-of-masters-class" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="displayIB VATop" style="margin:5px 18px 0 0;">                                      
+                                                                X
+                                                            </div>
+                                                            <div class="displayIB VATop" style="width:140px;">                                      
+                                                                <div class="job-field-input" style="font-weight:bold;">
+                                                                    <input type="text" class="no-of-masters-class" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="displayIB remove_master_durationrows pointer" style="margin:10px 18px 0 0;font-size:18px;color:red;text-decoration:none;font-weight:bold;">                                     
+                                                                x
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div style="margin-top:20px;">
+                                                        <input type="button" value="Add More" class="commonbtn add_master_durationrows pointer" />
+                                                    </div>
+                                                    <div class="clear"></div>
+                                                </div>
                                                 </apex:outputPanel>
                                                 
                                             </apex:outputPanel>
@@ -1229,7 +1229,7 @@
 
                                 <apex:outputPanel rendered="{!if(feedItemAcceptedList.size>0,true,false)}">
                                     <apex:repeat value="{!feedItemAcceptedList}" var="obj">
-                                        <div class="displayinlineblock margin-right20 margin-top20">
+                                        <div class="margin-right20 margin-top20">
                                             <div class="left margin-right12 margin-top25 show-on-edit">
                                                 <apex:commandLink value="x" action="{!deleteFile}" style="font-size:18px;color:red;text-decoration:none;font-weight:bold;">
                                                     <apex:param name="recordId" assignTo="{!chosenFileId}" value="{!obj.id}" />
@@ -1291,39 +1291,42 @@
                                 <div class="clear"></div>
 
                                 <apex:outputPanel rendered="{!if(feedItemAdditionalList.size>0,true,false)}">
-                                    <apex:repeat value="{!feedItemAdditionalList}" var="obj">
-                                        <div class="displayinlineblock margin-right20 margin-top20">
-                                            <div class="left margin-right12 margin-top25 show-on-edit">
-                                                <apex:commandLink value="x" action="{!deleteOtherFile}" style="font-size:18px;color:red;text-decoration:none;font-weight:bold;">
-                                                    <apex:param name="recordId" assignTo="{!chosenFileId}" value="{!obj.id}" />
-                                                </apex:commandLink>
-                                            </div>
-                                            <div class="left margin-right12">
-                                                <apex:outputLink value="/sfc/servlet.shepherd/version/renditionDownload?rendition=THUMB720BY480&versionId={!obj.RelatedRecordId}" target="_blank">
-                                                    <img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/file.png')}" class="pdficon" alt="Preview" height="90" />
-                                                </apex:outputLink>
-                                            </div>
-                                            <div class="left margin-right12 margin-top25 width120">
-                                                <a href="/sfc/servlet.shepherd/version/download/{!obj.relatedrecordid}"> {!obj.ContentFileName}</a>
-                                            </div>
-                                            <div class="left margin-right12 margin-top25">
-                                                {!obj.CreatedBy.name}
-                                            </div>
-                                            <div class="left margin-top25">
-                                                <apex:outputText value="{0,date,dd/MM/yy}">
-                                                    <apex:param value="{!obj.createdDate}" />
-                                                </apex:outputText>
-                                            </div>
-                                            <div class="clear"></div>
-                                        </div>
-                                    </apex:repeat>
+                                	<div>
+	                                    <apex:repeat value="{!feedItemAdditionalList}" var="obj">
+	                                        <div class="displayinlineblock margin-right20 margin-top20">
+	                                            <div class="left margin-right12 margin-top25 show-on-edit">
+	                                                <apex:commandLink value="x" action="{!deleteOtherFile}" style="font-size:18px;color:red;text-decoration:none;font-weight:bold;">
+	                                                    <apex:param name="recordId" assignTo="{!chosenFileId}" value="{!obj.id}" />
+	                                                </apex:commandLink>
+	                                            </div>
+	                                            <div class="left margin-right12">
+	                                                <apex:outputLink value="/sfc/servlet.shepherd/version/renditionDownload?rendition=THUMB720BY480&versionId={!obj.RelatedRecordId}" target="_blank">
+	                                                    <img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/file.png')}" class="pdficon" alt="Preview" height="90" />
+	                                                </apex:outputLink>
+	                                            </div>
+	                                            <div class="left margin-right12 margin-top25 width120">
+	                                                <a href="/sfc/servlet.shepherd/version/download/{!obj.relatedrecordid}"> {!obj.ContentFileName}</a>
+	                                            </div>
+	                                            <div class="left margin-right12 margin-top25">
+	                                                {!obj.CreatedBy.name}
+	                                            </div>
+	                                            <div class="left margin-top25">
+	                                                <apex:outputText value="{0,date,dd/MM/yy}">
+	                                                    <apex:param value="{!obj.createdDate}" />
+	                                                </apex:outputText>
+	                                            </div>
+	                                            <div class="clear"></div>
+	                                        </div>                                        
+	                                    </apex:repeat>
+                                    <div class="clear"></div>
+                                    </div>
                                 </apex:outputPanel>
 
 
                             </apex:outputPanel>
                         </div>
                     <div class="clear"></div>
-					</div>
+                    </div>
                 </div>
 
             </apex:pageBlock>
@@ -1342,9 +1345,9 @@
                         <div class="category-container">
                             <div class="holder-class" data-id="sendPcTimeMangCategory">
                                 <div class="categoryStyleHeader">{!$Label.Amr_PC_Appraisal}</div>
-                                <div class="categoryStyle" style="margin-top:18px;border-radius: 6px 0 0;"><label>{!$Label.Amr_Time_Management} </label>
+                                <div class="categoryStyle" style="margin-top:20px;border-radius: 6px 0 0;"><label>{!$Label.Amr_Time_Management} </label>
                                 </div>
-                                <div class="sendPcTimeMangCategory sendPcTimeMangCategory{!savObj.Id}">
+                                <div class="holder-class-star sendPcTimeMangCategory sendPcTimeMangCategory{!savObj.Id}">
                                     <span class="common pc-time-cat" rel="1"></span>
                                     <span class="common pc-time-cat" rel="2"><i></i></span>
                                     <span class="common pc-time-cat" rel="3"><i></i></span>
@@ -1355,7 +1358,7 @@
                             <div class="holder-class" data-id="sendPcCostMangCategory">
                                 <div class="categoryStyle"><label>{!$Label.Amr_Cost_Management}  </label>
                                 </div>
-                                <div class="sendCaOutputQualityCategory sendPcCostMangCategory{!savObj.Id}">
+                                <div class="holder-class-star sendCaOutputQualityCategory sendPcCostMangCategory{!savObj.Id}">
                                     <span class="common pc-cost-cat" rel="1"></span>
                                     <span class="common pc-cost-cat" rel="2"><i></i></span>
                                     <span class="common pc-cost-cat" rel="3"><i></i></span>
@@ -1366,7 +1369,7 @@
                             <div class="holder-class" data-id="sendPcProcessMangCategory">
                                 <div class="categoryStyle"><label>{!$Label.Amr_Process_Management}</label>
                                 </div>
-                                <div class="sendCaOutputQualityCategory sendPcProcessMangCategory{!savObj.Id}">
+                                <div class="holder-class-star sendCaOutputQualityCategory sendPcProcessMangCategory{!savObj.Id}">
                                     <span class="common pc-process-cat" rel="1"></span>
                                     <span class="common pc-process-cat" rel="2"><i></i></span>
                                     <span class="common pc-process-cat" rel="3"><i></i></span>
@@ -1377,7 +1380,7 @@
                             <div class="holder-class" data-id="sendPcOutputQualityCategory">
                                 <div class="categoryStyle" style="border-radius: 0 6px 0 0;"><label>{!$Label.Amr_Output_Quality} </label>
                                 </div>
-                                <div class="sendCaOutputQualityCategory sendPcOutputQualityCategory{!savObj.Id}">
+                                <div class="holder-class-star sendCaOutputQualityCategory sendPcOutputQualityCategory{!savObj.Id}">
                                     <span class="common pc-output-cat" rel="1"></span>
                                     <span class="common pc-output-cat" rel="2"><i></i></span>
                                     <span class="common pc-output-cat" rel="3"><i></i></span>
@@ -1390,9 +1393,9 @@
                             <label style="font-size:20px; font-weight:bold;display:none;"> {!$Label.Amr_PPC_Appraisal} </label>
                             <div class="holder-class" data-id="sendPpcTimeMangCategory">
                                 <div class="categoryStyleHeader">{!$Label.Amr_PPC_Appraisal} </div>
-                                <div class="categoryStyle" style="margin-top:18px;border-radius: 6px 0 0;"><label>{!$Label.Amr_Time_Management} </label>
+                                <div class="categoryStyle" style="margin-top:20px;border-radius: 6px 0 0;"><label>{!$Label.Amr_Time_Management} </label>
                                 </div>
-                                <div class=" sendCaOutputQualityCategory sendPpcTimeMangCategory{!savObj.Id}">
+                                <div class="holder-class-star sendCaOutputQualityCategory sendPpcTimeMangCategory{!savObj.Id}">
                                     <span class="common ppc-time-cat" rel="1"></span>
                                     <span class="common ppc-time-cat" rel="2"><i></i></span>
                                     <span class="common ppc-time-cat" rel="3"><i></i></span>
@@ -1403,7 +1406,7 @@
                             <div class="holder-class" data-id="sendPpcCostMangCategory">
                                 <div class="categoryStyle"><label>{!$Label.Amr_Cost_Management}  </label>
                                 </div>
-                                <div class="sendCaOutputQualityCategory sendPpcCostMangCategory{!savObj.Id}">
+                                <div class="holder-class-star sendCaOutputQualityCategory sendPpcCostMangCategory{!savObj.Id}">
                                     <span class="common ppc-cost-cat" rel="1"></span>
                                     <span class="common ppc-cost-cat" rel="2"><i></i></span>
                                     <span class="common ppc-cost-cat" rel="3"><i></i></span>
@@ -1414,7 +1417,7 @@
                             <div class="holder-class" data-id="sendPpcProcessMangCategory">
                                 <div class="categoryStyle"><label>{!$Label.Amr_Process_Management}</label>
                                 </div>
-                                <div class="sendCaOutputQualityCategory sendPpcProcessMangCategory{!savObj.Id}">
+                                <div class="holder-class-star sendCaOutputQualityCategory sendPpcProcessMangCategory{!savObj.Id}">
                                     <span class="common ppc-process-cat" rel="1"></span>
                                     <span class="common ppc-process-cat" rel="2"><i></i></span>
                                     <span class="common ppc-process-cat" rel="3"><i></i></span>
@@ -1425,7 +1428,7 @@
                             <div class="holder-class" data-id="sendPpcOutputQualityCategory">
                                 <div class="categoryStyle" style="border-radius: 0 6px 0 0;"><label>{!$Label.Amr_Output_Quality} </label>
                                 </div>
-                                <div class="sendCaOutputQualityCategory sendPpcOutputQualityCategory{!savObj.Id}">
+                                <div class="holder-class-star sendCaOutputQualityCategory sendPpcOutputQualityCategory{!savObj.Id}">
                                     <span class="common ppc-output-cat" rel="1"></span>
                                     <span class="common ppc-output-cat" rel="2"><i></i></span>
                                     <span class="common ppc-output-cat" rel="3"><i></i></span>
@@ -1439,9 +1442,9 @@
                             <label style="font-size:20px; font-weight:bold;display:none;"> {!$Label.Amr_CA_Appraisal} </label>
                             <div class="holder-class" data-id="sendCaTimeMangCategory">
                                 <div class="categoryStyleHeader">{!$Label.Amr_CA_Appraisal}</div>
-                                <div class="categoryStyle" style="margin-top:18px;border-radius: 6px 0 0;"><label>{!$Label.Amr_Time_Management} </label>
+                                <div class="categoryStyle" style="margin-top:20px;border-radius: 6px 0 0;"><label>{!$Label.Amr_Time_Management} </label>
                                 </div>
-                                <div class="sendCaOutputQualityCategory sendCaTimeMangCategory{!savObj.Id}">
+                                <div class="holder-class-star sendCaOutputQualityCategory sendCaTimeMangCategory{!savObj.Id}">
                                     <span class="common ca-time-cat" rel="1"></span>
                                     <span class="common ca-time-cat" rel="2"><i></i></span>
                                     <span class="common ca-time-cat" rel="3"><i></i></span>
@@ -1452,7 +1455,7 @@
                             <div class="holder-class" data-id="sendCaCostMangCategory">
                                 <div class="categoryStyle"><label>{!$Label.Amr_Cost_Management}</label>
                                 </div>
-                                <div class="sendCaOutputQualityCategory sendCaCostMangCategory{!savObj.Id}">
+                                <div class="holder-class-star sendCaOutputQualityCategory sendCaCostMangCategory{!savObj.Id}">
                                     <span class="common ca-cost-cat" rel="1"></span>
                                     <span class="common ca-cost-cat" rel="2"><i></i></span>
                                     <span class="common ca-cost-cat" rel="3"><i></i></span>
@@ -1463,7 +1466,7 @@
                             <div class="holder-class" data-id="sendCaProcessMangCategory">
                                 <div class="categoryStyle"><label>{!$Label.Amr_Process_Management}</label>
                                 </div>
-                                <div class="sendCaOutputQualityCategory sendCaProcessMangCategory{!savObj.Id}">
+                                <div class="holder-class-star sendCaOutputQualityCategory sendCaProcessMangCategory{!savObj.Id}">
                                     <span class="common ca-process-cat" rel="1"></span>
                                     <span class="common ca-process-cat" rel="2"><i></i></span>
                                     <span class="common ca-process-cat" rel="3"><i></i></span>
@@ -1475,7 +1478,7 @@
 
                                 <div class="categoryStyle" style="border-radius: 0 6px 0 0;"><label>{!$Label.Amr_Output_Quality}</label>
                                 </div>
-                                <div class="sendCaOutputQualityCategory sendCaOutputQualityCategory{!savObj.Id}">
+                                <div class="holder-class-star sendCaOutputQualityCategory sendCaOutputQualityCategory{!savObj.Id}">
                                     <span class="common ca-output-cat" rel="1"></span>
                                     <span class="common ca-output-cat" rel="2"><i></i></span>
                                     <span class="common ca-output-cat" rel="3"><i></i></span>

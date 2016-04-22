@@ -97,8 +97,16 @@
         #stblockRAP {
             width: 55% !important;
         }
-        #stblockRAP input{
+        #stblockRAP input{ 
             width:90% !important;
+        }
+        .vf-tip-header, .vf-tip-header-body, .vf-box-inner, .vf-tip-header-text-container, .vf-tip-body  {
+            width:200px !important;                 
+        }                 
+        .vf-tip {
+            width:200px !important;
+            height:25px !important;
+            text-transform:capitalize;
         }
     </style>
     <div class="job-portfolio-container saving_summary_container margin-top20">
@@ -192,8 +200,8 @@
                                         <div class="clear"></div>
                                     </div>
                                     <div class="displayinlineblock bud-res-block right" style="width:45%">
-                                        <div class="job-field-label left margin-top8imp margin-right10">{!$Label.Amr_Country}</div>
-                                        <div class="job-field-input left">
+                                        <div class="job-field-label left margin-top8imp margin-right10" style="width:20%;">{!$Label.Amr_Country}</div>
+                                        <div class="job-field-input left" style="width:70%;">
                                             <apex:inputField value="{!jobDetailObj.Project_Leader_Country__c}" />
                                         </div>
                                         <div class="clear"></div>
@@ -573,7 +581,7 @@
                                                 <apex:param value="{!job.CreatedDate}" />
                                             </apex:outputText>
                                         </apex:column>
-                                        <apex:column headerValue="Production Type" title="{!job.Production_Type__c}">
+                                        <apex:column headerValue="Prod. Type" title="{!job.Production_Type__c}">
                                             <apex:outputText >
                                                 <div class="td-overflow width80">
                                                     {!job.Production_Type__c}
@@ -591,6 +599,14 @@
                                         <apex:column value="{!job.Duration_of_Additional_Films__c}" headerValue="{!$Label.Amr_Duration_Of_Additional_Films}" />
                                         <apex:column value="{!job.Total_no_of_films__c}" headerValue="{!$Label.Amr_Total_No_of_Films}" />
                                         <apex:column value="{!job.No_of_shoot_days__c}" headerValue="{!$Label.Amr_No_of_Shoot_Days}" />
+                                        <apex:column headerValue="{!$Label.Amr_Shoot_Location}" title="{!job.Shoot_Location__c }">
+                                            <apex:outputText >
+                                                <div class="td-overflow width80">
+                                                    {!job.Shoot_Location__c }
+                                                </div>
+                                            </apex:outputText>
+                                        </apex:column>
+                                        
                                         <apex:column styleclass="stage-common-class {!SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(job.Stage_RAP_engaged__c, ' ', '_'),'(',''),')',''),',',''),'/','')}" headerValue="{!$Label.Amr_Stage_RAP_engaged}" />
                                         <apex:column headerValue="{!$Label.Amr_Script_Title}" title="{!job.Script_Title__c}">
                                             <apex:outputText >
@@ -607,13 +623,7 @@
                                                 </div>
                                             </apex:outputText>
                                         </apex:column>-->
-                                        <apex:column headerValue="{!$Label.Amr_Shoot_Location}" title="{!job.Shoot_Location__c }">
-                                            <apex:outputText >
-                                                <div class="td-overflow width80">
-                                                    {!job.Shoot_Location__c }
-                                                </div>
-                                            </apex:outputText>
-                                        </apex:column>
+                                        
                                         <apex:column headerValue="{!$Label.Amr_Saving_Average_of_Quotes}">
                                             <apex:outputText value="{!job.Saving_Average_of_Quotes__c}" />
                                         </apex:column>
@@ -635,86 +645,22 @@
 
                                         <apex:column headerValue="{!$Label.Total_Accepted_Final_Cost_PC_PPC_CA}">
                                             <apex:outputText value="{!job.Quotes__r[0].Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c}" rendered="{!job.Quotes__r.size != 0}" />
-                                        </apex:column>    <!--
-                                        <apex:column headerValue="{!$Label.Amr_Total_Cost}">
-                                            <apex:outputText value="{!job.Quotes__r[0].Total_Cost__c}" rendered="{!job.Quotes__r.size != 0}" />
-                                        </apex:column>    -->
+                                        </apex:column>    
                                         <apex:column headerValue="{!$Label.Amr_No_of_Quotes}">
                                             <apex:outputText value="{!job.Number_Of_Quotes__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Average_of_all_total_opening_quotes}">
                                             <apex:outputText value="{!job.Average_Total_Opening_Quotes__c}" />
                                         </apex:column>
-                                        <!--
-                                        <apex:column headerValue="Total no of films">
-                                            <apex:outputText value="{!job.Total_no_of_films__c}" />
-                                        </apex:column>
-                                        -->
-                                      
-                                        <!-- Adding 177 Fields -->
-
-                                        <!-- Quote 1 --->
-                                        <!--
-                                            <apex:column headerValue="Production Type">
-                                                <apex:outputText value="{!job.Production_Type__c}" />
-                                            </apex:column>
-                                            
-                                            <apex:column headerValue="Number Of Masters">
-                                                <apex:outputText value="{!job.No_of_Masters__c}" />
-                                            </apex:column>
-                                            
-                                            <apex:column headerValue="Duration Of Masters">
-                                                <apex:outputText value="{!job.Duration_of_Masters__c}" />
-                                            </apex:column>
-                                            
-                                            <apex:column headerValue="Number Of Additional Fields">
-                                                <apex:outputText value="{!job.No_of_Additional_Films__c}" />
-                                            </apex:column>
-                                            
-                                            <apex:column headerValue="Duration Of Addtional Film">
-                                                <apex:outputText value="{!job.Duration_of_Additional_Films__c}" />
-                                            </apex:column>
-
-                                            <apex:column headerValue="Number Of Shoot Days">
-                                                <apex:outputText value="{!job.No_of_shoot_days__c}" />
-                                            </apex:column>
-
-                                            <apex:column headerValue="Script Title">
-                                                <apex:outputText value="{!job.Script_Title__c}" />
-                                            </apex:column>
-
-                                            <apex:column headerValue="Saving Average Of Quotes">
-                                                <apex:outputText value="{!job.Saving_Average_of_Quotes__c}" />
-                                            </apex:column>
-                                            
-                                            <apex:column headerValue="% Saving Average Of Quotes">
-                                                <apex:outputText value="{!job.Percentage_Saving_Average_of_Quotes__c}" />
-                                            </apex:column>
-                                            
-                                            <apex:column headerValue="Saving Accepted Quote">
-                                                <apex:outputText value="{!job.Saving_Accepted_Quote_Euro__c}" />
-                                            </apex:column>
-                                           
-                                            <apex:column headerValue="Cost Per Master">
-                                                <apex:outputText value="{!job.Cost_Per_Master__c}" />
-                                            </apex:column>
-                                            
-                                            <apex:column headerValue="Cost Per Master Per Shoot Day">
-                                                <apex:outputText value="{!job.Cost_per_master_per_shoot_day__c}" />
-                                            </apex:column>
-                                             -->
+                                       
                                         <apex:column headerValue="{!$Label.Amr_Total_No_of_Films}">
                                             <apex:outputText value="{!job.Total_no_of_films__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Shoot_Location}">
                                             <apex:outputText value="{!job.Shoot_Location_Multiselect__c}" />
                                         </apex:column>
-                                        <!--  
-                                        <apex:column headerValue="Stage RAP Was Engagged">
-                                            <apex:outputText value="{!job.Stage_RAP_engaged__c}" />
-                                        </apex:column>
-                                        -->
-                                        <apex:column headerValue="{!$Label.Amr_ReBreif_Scope}">
+                                       
+                                        <apex:column headerValue="Has there been a scope re-brief">
                                             <apex:outputText value="{!job.Scope_re_brief__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q1_PC_Part_Of_Roster}">
@@ -821,18 +767,15 @@
                                         <apex:column headerValue="{!$Label.Amr_Acc_Final_Cost_Value_of_props_and_wardrobe_paid_for}">
                                             <apex:outputText value="{!job.Quotes__r[0].Accepted_Final_Cost_props_wardrobe__c}" />
                                         </apex:column>
-                                        <!--
-                                            <apex:column headerValue="Number Of Quotes">
-                                                <apex:outputText value="{!job.Number_Of_Quotes__c}" />
-                                            </apex:column>
-
-                                            <apex:column headerValue="Average Of Total Opening Cost">
-                                                <apex:outputText value="{!job.Average_Total_Opening_Quotes__c}" />
-                                            </apex:column>
-                                            <apex:column headerValue="Total Accepted Final Cost">
-                                                <apex:outputText value="{!job.Quotes__r[0].Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c}" />
-                                            </apex:column>
-                                            -->
+                                       <apex:column headerValue="No of Quotes">
+                                        <apex:outputText value="{!job.Number_Of_Quotes__c}"/>
+                                        </apex:column>
+                                        <apex:column headerValue="Average of all total opening quotes">
+                                        <apex:outputText value="{!job.Average_Total_Opening_Quotes__c}"/>
+                                        </apex:column>
+                                        <apex:column headerValue="Total Accepted Final Cost (CA/PC/PPC) Euro Amount" > 
+                                         <apex:outputText value="{!job.Quotes__r[0].Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c}"   rendered="{!job.Quotes__r.size != 0}"/>
+                                        </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Type_Of_Saving}">
                                             <apex:outputText value="{!job.Quotes__r[0].Saving_Type__c}" />
                                         </apex:column>

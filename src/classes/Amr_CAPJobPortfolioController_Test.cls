@@ -167,7 +167,7 @@ public class Amr_CAPJobPortfolioController_Test{
     jobPortFolio.previousForCancelJobs();
     jobPortFolio.paginationMethodForActiveJobs(jobList);
     jobPortFolio.paginationMethodForCancelJobs(wrapList);
-    PageReference pageRef = Page.Am_CAPJobportfolio;
+    PageReference pageRef = Page.Amr_CAPJobportfolio;
     Test.setCurrentPage(pageRef);
     jobPortFolio.changwrapperClasseStatus();
  

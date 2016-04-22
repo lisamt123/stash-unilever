@@ -10,7 +10,7 @@ History
 VERSION     AUTHOR             DATE           DETAIL           Description
 1.0         Varuna Nikam       4/03/2016     INITIAL DEV      CSR:
 *************************************************************************************************************************************/
-public with sharing class Amr_SubmittedSavingController_CC {
+public without sharing class Amr_SubmittedSavingController_CC {
     public String savingIdFromPage{get;set;}
     public Amr_Saving__c savObj {get;set;}
     public Amr_Saving__c savObjNum {get;set;}
@@ -354,7 +354,7 @@ Checking mandatory object field validation, which can not be break down into mul
                  savingMessages = true;
                  okayToSave=false;
             }
-            if(acceptedQuote.Accepted_Final_Cost_PPC_Euro_Amount__c == 0 || acceptedQuote.Accepted_Final_Cost_CA_Euro_Amount__c == '' || acceptedQuote.Accepted_Final_Cost_PC_Euro_Amou__c == ''){
+            if(acceptedQuote.Accepted_Final_Cost_PPC_Euro_Amount__c == 0 || acceptedQuote.Accepted_Final_Cost_CA_Euro_Amount__c == 0 || acceptedQuote.Accepted_Final_Cost_PC_Euro_Amou__c == 0){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please Enter PC,PPC,CA Euro amount in Accepted Final Costs'));
                 savingMessages = true;
                 okayToSave=false;

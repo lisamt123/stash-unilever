@@ -5,13 +5,22 @@
     <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/production-activity.js')}"/>
     <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/jobsheet.js')}"/>
     <script type="text/javascript">                     
-        $j(document).ready(function() {             
+        $j(document).ready(function() {           
            var strArrJobSheet = {!CategoryList};           
            var selectedCategoryJobSheet = '{!selectedCategory}';
            var stringArrayJobSheet = JSON.parse('{!MethodToPassProjectNames}');           
            var projFormPageJobSheet = '{!projectNameFromPage}';           
-           catProjectJobsheet(stringArrayJobSheet,strArrJobSheet,projFormPageJobSheet,selectedCategoryJobSheet);           
-        });                                                          
+           catProjectJobsheet(stringArrayJobSheet,strArrJobSheet,projFormPageJobSheet,selectedCategoryJobSheet);                      
+        });
+                
+        function openDefaultEmailClient() {               
+        	var subject = '{!jobList.AdManagerText__c}';
+            var emailAddress = '{!createdByUserEmail}';               
+            var emailTo = emailAddress.replace(/null/g, "").replace(/"/g, "").replace('[','').replace(']','').replace(',,',',');            
+            if(subject && emailTo ) {                
+               openDefaultEmailClientCall(subject, emailTo); 		      
+    		}  
+        }                                                                 
     </script>   
     <apex:stylesheet value="{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/css/jobsheet.css')}" />
     <style type="text/css">        
@@ -34,16 +43,10 @@
             width:100% !important;
         }       
     </style> 
-    <apex:outputPanel rendered="{!if(jobIsAccepted==true,true,false)}">
-    	<script type="text/javascript">
-    		$j(function(){
-    			var subject = $j('.arrow-after').text();
-    			var emailto = $j('.ul-pl-email').val();
-    			if(subject && emailto ) {
-    				location.href="mailto:"+emailto+"?subject="+subject;
-    			}    			
-    		});
-    	</script>
+    <apex:outputPanel rendered="{!if(jobIsAccepted==true,true,false)}" id="statusDefaultEmailClient">
+        <script type="text/javascript">        	
+            openDefaultEmailClient();
+        </script>
     </apex:outputPanel>                       
      <div class="mask" style="display:{!if(jobList.AdManagerText__c != null,'none','')}"></div>    
      <div class="mask" style="display:{!if(jobCancellCheck != true,'none','')}"></div>       
@@ -106,8 +109,7 @@
                     $j(function(){
                         $j('.hide-alert').click(function(){
                            var selectedInput = $j(this).parent().find('input');
-                           var id =  selectedInput.val();
-                            //alert(id);             
+                           var id =  selectedInput.val();                                   
                            hideAlert(id);
                            $j(this).parent().parent().remove();
                        });                    
@@ -208,19 +210,39 @@
         <div id="rapDivNew" style="position: absolute; right: 100px; top: 265px; width: 45%;display:{!IF(permissionSetName != 'RAP' , 'None', '')}">
             <div>
                 <div style="display:{!IF( jobStatus == 'Accepted', '', 'None')}">              <!--  -->                
-                    <apex:commandButton styleClass="show-change-status-popup commonbtn-modified right" value="Set Status"/>
+                    <apex:commandButton styleClass="show-change-status-popup commonbtn-modified right" value="Set Status" status="setstatus-status" />
+                    <apex:actionStatus id="setstatus-status" >
+                       <apex:facet name="start" >
+                           <img src="/img/loading.gif" alt="loading.."/>                    
+                       </apex:facet>
+                   </apex:actionStatus>
                 </div>
                 <div style="display:{!IF( jobStatus == 'Accepted', '', 'None')}" >                              
-                    <apex:commandButton styleClass="show-all-detail-button commonbtn-modified right margin-right12" value="Job Allocation"/>
+                    <apex:commandButton styleClass="show-all-detail-button commonbtn-modified right margin-right12" value="Job Allocation" status="job-allocation-status" />
+                    <apex:actionStatus id="job-allocation-status" >
+                       <apex:facet name="start" >
+                           <img src="/img/loading.gif" alt="loading.."/>                    
+                       </apex:facet>
+                   </apex:actionStatus>
                 </div>
                 <div>    <!-- style="display:{!IF(jobStatus == 'Accepted' || jobCancelled  , 'None', '')}" -->
                     <apex:commandButton styleClass="commonbtn-modified right margin-right12" value="Cancel Job" action="{!cancelRapJob}" onclick="return confirm('Are you sure you want to cancel this job?')"/>
                 </div>
                 <div style="display:{!IF(jobStatus == 'Accepted' || jobCancelled  , 'None', '')}">
-                    <apex:commandButton styleClass="show-allocate-popup commonbtn-modified right margin-right12"  value="Re-Allocate" />
+                    <apex:commandButton styleClass="show-allocate-popup commonbtn-modified right margin-right12"  value="Re-Allocate" status="reallocate-status-button" />
+                    <apex:actionStatus id="reallocate-status-button" >
+                       <apex:facet name="start" >
+                           <img src="/img/loading.gif" alt="loading.."/>                    
+                       </apex:facet>
+                   </apex:actionStatus>
                 </div>
                 <div style="display:{!IF(jobStatus == 'Accepted' || jobCancelled  , 'None', '')}">
-                    <apex:commandButton styleClass="commonbtn-modified right margin-right12" value="Accept" action="{!acceptJob}" />
+                    <apex:commandButton styleClass="commonbtn-modified right margin-right12" value="Accept" action="{!acceptJob}" status="accepted-status" />
+                    <apex:actionStatus id="accepted-status" > 
+                       <apex:facet name="start" >
+                           <img src="/img/loading.gif" alt="loading.."/>                    
+                       </apex:facet>
+                   </apex:actionStatus>
                 </div>                
                 <div class="clear">
                 </div>
@@ -251,7 +273,12 @@
                                 <apex:commandButton styleClass="cancel-allocation-popup commonbtn"  value="Cancel"/>
                             </div>-->
                             <div class="left margin-left20">
-                                <apex:commandButton styleClass="rellocate-apply commonbtn-blue" action="{!reAllocateRAP}" value="Apply"/>
+                                <apex:commandButton styleClass="rellocate-apply commonbtn-blue" action="{!reAllocateRAP}" value="Apply" status="reallocate-status" />
+                                <apex:actionStatus id="reallocate-status" >
+			                       <apex:facet name="start" >
+			                           <img src="/img/loading.gif" alt="loading.."/>                    
+			                       </apex:facet>
+			                   </apex:actionStatus>
                             </div>
                             <div class="clear">
                             </div>
@@ -285,7 +312,12 @@
                                 </apex:selectList>
                             </div>                                                      
                             <div class="right">
-                                <apex:commandButton action="{!recordShare}" value="Share" styleClass="rellocate-apply commonbtn" />
+                                <apex:commandButton action="{!recordShare}" value="Share" styleClass="rellocate-apply commonbtn" status="record-share-status" />
+                                <apex:actionStatus id="record-share-status" >
+			                       <apex:facet name="start" >
+			                           <img src="/img/loading.gif" alt="loading.."/>                    
+			                       </apex:facet>
+			                   </apex:actionStatus>
                             </div>
                             <div class="clear">
                             </div>                            
@@ -351,7 +383,12 @@
                     <apex:outputPanel >
                         <apex:outputLabel value="Cancel" style="font-weight:bold;" />
                         
-                        <apex:commandButton value="Submit" action="{!cancelRapJob}"  styleClass="allocationbtn commonbtn" reRender="msgs"/>
+                        <apex:commandButton value="Submit" action="{!cancelRapJob}"  styleClass="allocationbtn commonbtn" reRender="msgs" status="cancel-status" />
+                        <apex:actionStatus id="cancel-status" >
+	                       <apex:facet name="start" >
+	                           <img src="/img/loading.gif" alt="loading.."/>                    
+	                       </apex:facet>
+	                   </apex:actionStatus>
                     </apex:outputPanel>
                     <div>                                
                     </div>
@@ -389,7 +426,12 @@
         </div>
         <div>             
              <div class="right">
-                 <apex:commandButton styleClass="rellocate-apply commonbtn-blue" action="{!changePriority}" value="Apply" />
+                 <apex:commandButton styleClass="rellocate-apply commonbtn-blue" action="{!changePriority}" value="Apply" status="change-priority-status" />
+                 <apex:actionStatus id="change-priority-status" >
+                     <apex:facet name="start" >
+                         <img src="/img/loading.gif" alt="loading.."/>                    
+                     </apex:facet>
+                 </apex:actionStatus>
              </div>   <!--                          
              <div class="right margin-right20">
                 <apex:commandButton styleClass="cancel-change-status-popup commonbtn"  value="Cancel"/>
@@ -426,7 +468,9 @@
                            
                            <span style="font-weight:bold;">RAP Allocated And Accepted:</span>&nbsp;
                            <apex:repeat value="{!listOfUserToDisplay}" var="job">
-                           <apex:outputText value="{!job.User__r.Name}"></apex:outputText>&nbsp;&nbsp;
+                           <apex:outputText value="{!job.User__r.Name}"></apex:outputText>
+                           <apex:outputPanel rendered="{!if(job.User__r.Name !=null,true,false)}">,</apex:outputPanel>
+                           &nbsp;&nbsp;
                            <apex:outputText value="{!if(job.Job_Status__c=='Accepted','Yes','No')}"></apex:outputText><br/>
                            </apex:repeat>
                                 <div class="before inner_heading_sub_section margin-bottom20">
@@ -541,7 +585,7 @@
                                 <div class="form-field-parent">
                                 <div class="form-field-level1">
                                 <div class="form-field2 padding-qm">
-                                   <apex:outputlabel value="{!CheckWithCMI}" rendered="{!finalApproverMaterialEmailFlag}" styleclass="loadError" html-data-width="70"/> 
+                                   <apex:outputlabel value="{!CheckWithCMI}" rendered="{!finalApproverMaterialEmailFlag}" styleclass="loadError ul-final-approver-email" html-data-width="70"/> 
                                     <apex:outputLabel >
                                         {!$label.Amr_Final_approver_of_material_email}                  
                                     <strong></strong>
@@ -930,7 +974,8 @@
                                 </div>
                                 <div class="production-activity-section">    
                                     <!--  <h2 class="margintop25" style="margin-bottom:10px;">Production Activity Detail</h2> -->
-                    <div class="production-activity-sub-section" style="margin-left:20px;margin-bottom:15px;">
+                    <div class="production-activity-sub-section pos-rel" style="margin-left:20px;margin-bottom:15px;position:relative;">
+                    	<div class="setinactivemask">&nbsp;</div>
                         <div id="productionactivitytypegroup">
                             <div class="form-field" style="padding:5px 0; margin-bottom: 3px;">
                                 <label style="text-align:left;position:relative;">
@@ -1593,8 +1638,13 @@
                                 </div>
                                 </div>
                                 <div class="right">   
-                                        <apex:commandButton value="Update" action="{!UpdateJob}" onclick="return enableTextJobSheet()" styleClass="commonbtn-blue" />
+                                        <apex:commandButton value="Update" action="{!UpdateJob}" onclick="return enableTextJobSheet()" styleClass="commonbtn-blue" status="enable-text-status" />
                                         
+                                        <apex:actionStatus id="enable-text-status" >
+					                       <apex:facet name="start" >
+					                           <img src="/img/loading.gif" alt="loading.."/>                    
+					                       </apex:facet>
+					                   </apex:actionStatus>
                                                                   
                                   <!-- <apex:commandLink value="Update" action="{!UpdateJob}" onclick="enableText()" styleClass="anchorsubmitbtn commonbtn-blue" reRender="msgs"/>-->                               
                                 </div>

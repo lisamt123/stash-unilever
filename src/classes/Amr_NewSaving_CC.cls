@@ -13,7 +13,7 @@ Purpose:
  ***********************************************************************/
 
 
-public with sharing class Amr_NewSaving_CC {
+public without sharing class Amr_NewSaving_CC {
      
     public Amr_Saving__c savingObj{get;set;}
     //public String jobId{get;set;}
@@ -150,7 +150,7 @@ public with sharing class Amr_NewSaving_CC {
         alertValue = 'Please anjali!!!';
         try{
            boolean okayToSave = true;  
-           system.debug('savingObj.Production_Type__c!!'+savingObj.Production_Type__c);
+         
             if(savingObj.Production_Type__c == '--None--' || string.isBlank(savingObj.Production_Type__c)){
                  ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please Enter Prod Type'));
                  savingMessages = true;
@@ -171,7 +171,7 @@ public with sharing class Amr_NewSaving_CC {
                  savingMessages = true;
                  okayToSave=false;
             }
-            if(acceptedQuote.Accepted_Final_Cost_PPC_Euro_Amount__c == 0 || acceptedQuote.Accepted_Final_Cost_CA_Euro_Amount__c == '' || acceptedQuote.Accepted_Final_Cost_PC_Euro_Amou__c == ''){
+            if(acceptedQuote.Accepted_Final_Cost_PPC_Euro_Amount__c == 0 || acceptedQuote.Accepted_Final_Cost_CA_Euro_Amount__c == 0 || acceptedQuote.Accepted_Final_Cost_PC_Euro_Amou__c == 0){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please Enter PC,PPC,CA Euro amount in Accepted Final Costs'));
                 savingMessages = true;
                 okayToSave=false;
@@ -201,15 +201,15 @@ public with sharing class Amr_NewSaving_CC {
             if(savingObj.id !=null){
                 fileUploadMessage = true;
                 System.debug('IN SAVE');
-                List<Amr_Job_Allocation__c> jobAllocationList = [Select Reported__c from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId];
+                /*List<Amr_Job_Allocation__c> jobAllocationList = [Select Reported__c from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId];
                 System.debug('ID COUNT' + jobAllocationList.size());
                 
                 for(Amr_Job_Allocation__c jobAlloc : jobAllocationList ){
                     jobAlloc.Reported__c = 'Yes';
                 }
-                update jobAllocationList;
+                update jobAllocationList;*/
                 
-                System.debug('JOB LLOC' + jobAllocationList);
+                //System.debug('JOB LLOC' + jobAllocationList);
             
                 acceptedQuote.Saving__c = savingObj.id;
                 upsert acceptedQuote;   
@@ -283,6 +283,7 @@ public with sharing class Amr_NewSaving_CC {
    ********************************************************************/ 
    
     public void UploadAcceptedquoteDoc(){
+    	fileUploadMessage = false;
         if(validateAccepted(acceptedQuote)){
             String parentId = null;
             system.debug('accepted quote Id '+acceptedQuote.id);
@@ -342,6 +343,7 @@ public with sharing class Amr_NewSaving_CC {
 
    ********************************************************************/ 
     public void deleteDocument(){
+    	fileUploadMessage = false;
         system.debug('feed Item Id need to be deleted ========>'+IdDeleted);
         FeedItem feedObj = [select id,CreatedById,CreatedBy.name,Body,ContentFileName,LinkUrl,RelatedRecordId,ParentId,Title,CreatedDate 
                                 FROM FeedItem where id = :IdDeleted];
@@ -359,6 +361,7 @@ public with sharing class Amr_NewSaving_CC {
 
    ********************************************************************/ 
     public void UploadAdditionalDoc(){
+    	fileUploadMessage = false;
         if(validateAdditional(savingObj)){
             String parentId = null;
             system.debug('accepted quote Id '+acceptedQuote.id);
@@ -446,18 +449,22 @@ public with sharing class Amr_NewSaving_CC {
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please attach at least one document'));
             savingMessages = true;
             flag = false;
-            
+           
         }
+        system.debug('saving.id!'+savingObj.id);
         if(savingObj.id == null){
+           
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please Save Saving and Quote '));
             savingMessages = true;
             flag = false;
+           
         }
         
         if(!flag) {
+        system.debug('inside!!'+savingMessages);
             return null;
         }
-       
+        system.debug('outside!!');
         System.debug('Pc TIME MANAGEMENT  ->  '+ pcTimeMangCategoryValue + ' CLASSS -> 1' +  pcTimeMangCategoryClass );
         System.debug('PC COST MANAGE MENT -> '+ pcCostMangCategoryValue + ' CLASSS -> 2' + pcCostMangCategoryClass );
         System.debug(' PC PROCESS MANAGEMNT -> '+ pcProcessMangCategoryValue  + ' CLASSS ->3 ' + pcProcessMangCategoryClass );
@@ -472,6 +479,14 @@ public with sharing class Amr_NewSaving_CC {
         System.debug('CA OUTPUR -> '+ caOutputQualityCategoryValue  + ' CLASSS -> 12' + caOutputQualityCategoryClass );
         
         if(savingObj.id != null){
+        	  List<Amr_Job_Allocation__c> jobAllocationList = [Select Reported__c from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId];
+              System.debug('ID COUNT' + jobAllocationList.size());
+                
+              for(Amr_Job_Allocation__c jobAlloc : jobAllocationList ){
+                    jobAlloc.Reported__c = 'Yes';
+              }
+              
+              update jobAllocationList;
             //pc appraisal
               savingObj.PC_Appraisal_Time_Management__c = String.valueOf(pcTimeMangCategoryValue);
               savingObj.PC_Appraisal_Output_Quality__c = String.valueOf(pcOutputQualityCategoryValue);

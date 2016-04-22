@@ -490,10 +490,10 @@
                 </section>
                 <section class="production-activity-section">
                     <h2 class="margintop25 margin-bottom10">{!$Label.Amr_Production_Activity_Detail}</h2>
-                    <div class="production-activity-sub-section">
+                    <div class="production-activity-sub-section pos-rel">
 
                         <apex:pageMessages id="showmsg"></apex:pageMessages>
-
+						<div class="setinactivemask">&nbsp;</div>
                         <div id="productionactivitytypegroup">
                             <div class="form-field padding-5-0">                                
                                 <apex:outputLabel styleclass="logging-form-label text-align-l">

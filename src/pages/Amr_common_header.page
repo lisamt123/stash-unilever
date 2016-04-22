@@ -2,10 +2,26 @@
 	<apex:stylesheet value="{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/css/common-header.css')}" />
 	
 	<style type='text/css'>
+		/*
+		.inactivemask {
+			height: 100%;
+		    position: absolute;
+		    width: 100%;
+		    z-index:9999;
+		    background-color:#F8F8F8;
+		    opacity:0.5;
+		}
+		*/
 		@media all and (-ms-high-contrast: none),(-ms-high-contrast: active) {
 	        .done-for-today {
-        	line-height:20px;
+        		line-height:20px;
         	}
+        	/*.inactivemask {			
+		    	opacity:0.8 !important;
+		    	 background:#FFFFFF !important; 
+		    	 filter:alpha(opacity=0.8) !important;
+			}
+			*/
 	    }
     </style>
     
@@ -14,6 +30,9 @@
         .done-for-today {
         	line-height:20px;
         }
+      //  .inactivemask {			
+		//    opacity:1 !important;
+	//	}
     </style>
     <![endif]-->
     
@@ -62,8 +81,14 @@
         }        
         .bodyDiv {        
             background-image: url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/pattern-2.png')}");            
-        }                       
-        
+        }                  
+        .holder-class label {
+	    	float: left;
+	    	margin: 0;
+	    }     
+        .holder-class-star {
+        	line-height:40px;
+        }
     </style>
     <apex:form >
     <div class="header-container">

@@ -105,5 +105,8 @@
         .bell-text {
              background-image: url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/Ico_alert.png')}");                     
          }
+         .add-quotes td {
+         	vertical-align:middle !important;
+         }
     </style>
 </apex:page>

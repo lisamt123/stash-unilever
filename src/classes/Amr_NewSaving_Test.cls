@@ -8,9 +8,9 @@ public class Amr_NewSaving_Test{
         insert customSetting;
           
            Amr_Job_Details__c jobDetailsObj = new Amr_Job_Details__c(name = 'test1',Agency_Contact_Account_Director_Email__c = 'test@gmail.com',
-                                            Digital_Agency_Name__c = 'test',Target_Air_Date__c = Date.Today(),Your_Email_Address__c = 'abc@gmail.com',
+                                            Digital_Agency_Name__c = Amr_ConstantForAdManager.TEST,Target_Air_Date__c = Date.Today(),Your_Email_Address__c = 'abc@gmail.com',
                                             Any_other_agencies_involved__c = 'abc',Budget_Allocated_Input_Value__c = 5,Campaign_Name__c = 'xyz',
-                                            Final_Approver_Of_Material_Email__c = 'xas@gmail.com',Unilever_Finance_Member_Email__c = 'pqe@gmail.com'
+                                            Final_Approver_Of_Material_Email__c = 'xas@gmail.com',Unilever_Finance_Member_Email__c = 'pqe@gmail.com',Project_Description__c = Amr_ConstantForAdManager.EXECUTION
                                             );
         insert jobDetailsObj;
         
@@ -20,8 +20,8 @@ public class Amr_NewSaving_Test{
         insert savingObjTest;
         
         Amr_Quote__c  QuoteObj = new Amr_Quote__c(Saving__c = savingObjTest.id, Name =  'test1',PPC_Costs_Euro_Amount__c = 4,PC_Costs_Euro_Amount__c = 1,
-                                            CA_Costs_Euro_Amount__c = 3,Accepted_Final_Cost_PPC_Euro_Amount__c = 4,Accepted_Final_Cost_CA_Euro_Amount__c = '3',
-                                            Accepted_Final_Cost_PC_Euro_Amou__c = '3',Saving_Type__c = 'Cost Avoidance');
+                                            CA_Costs_Euro_Amount__c = 3,Accepted_Final_Cost_PPC_Euro_Amount__c = 4,Accepted_Final_Cost_CA_Euro_Amount__c = 3,
+                                            Accepted_Final_Cost_PC_Euro_Amou__c = 3,Saving_Type__c = 'Cost Avoidance');
         
        insert QuoteObj;
         
@@ -34,7 +34,7 @@ public class Amr_NewSaving_Test{
          insert QuoteObj1;
         
         List<String> selectedCountryList = new List<String>();
-        selectedCountryList.add('Test');
+        selectedCountryList.add(Amr_ConstantForAdManager.TEST);
         
         List<Amr_Quote__c> testQuoteList = new List<Amr_Quote__c>();
         testQuoteList.add(QuoteObj1);
@@ -51,7 +51,7 @@ public class Amr_NewSaving_Test{
         List<FeedItem> fIList = new List<FeedItem>();
         fIList.add(feedObj);
        
-        Document testDoc = new Document(name = 'Test', body = Blob.valueOf('Test Doc Bory'));
+        Document testDoc = new Document(name = Amr_ConstantForAdManager.TEST, body = Blob.valueOf('Test Doc Bory'));
         
         Amr_Saving__c savingObjTest1 = new Amr_Saving__c(Production_Type__c = 'TV: Master',Stage_RAP_engaged__c = 'Before briefing the agency',Scope_re_brief__c = 'yes',Duration_of_Additional_Films__c = '12.4',Duration_of_Masters__c = '5',Job_Details__c = jobDetailsObj.id,
                                     Monthly_Submitted__c = 'January' );
@@ -106,6 +106,8 @@ public class Amr_NewSaving_Test{
         savingObject.AllValues();
         savingObject.deleteDocument();
         savingObject.deleteDocumentSaving();
+        Amr_Job_Details__c jobDet = [select Project_Description__c from Amr_Job_Details__c where id = :jobDetailsObj.Id];
+        system.assertEquals(jobDet.Project_Description__c, Amr_ConstantForAdManager.EXECUTION);
     }
 
          static testMethod void saveQuoteAndSavingDataTest(){
@@ -115,9 +117,9 @@ public class Amr_NewSaving_Test{
         insert customSetting;
           
            Amr_Job_Details__c jobDetailsObj = new Amr_Job_Details__c(name = 'test1',Agency_Contact_Account_Director_Email__c = 'test@gmail.com',
-                                            Digital_Agency_Name__c = 'test',Target_Air_Date__c = Date.Today(),Your_Email_Address__c = 'abc@gmail.com',
+                                            Digital_Agency_Name__c = Amr_ConstantForAdManager.TEST,Target_Air_Date__c = Date.Today(),Your_Email_Address__c = 'abc@gmail.com',
                                             Any_other_agencies_involved__c = 'abc',Budget_Allocated_Input_Value__c = 5,Campaign_Name__c = 'xyz',
-                                            Final_Approver_Of_Material_Email__c = 'xas@gmail.com',Unilever_Finance_Member_Email__c = 'pqe@gmail.com'
+                                            Final_Approver_Of_Material_Email__c = 'xas@gmail.com',Unilever_Finance_Member_Email__c = 'pqe@gmail.com',Project_Description__c = Amr_ConstantForAdManager.EXECUTION
                                             );
         insert jobDetailsObj;
             
@@ -127,12 +129,12 @@ public class Amr_NewSaving_Test{
               insert savingObjTest1;
            
            Amr_Quote__c  QuoteObj = new Amr_Quote__c(Saving__c = savingObjTest1.id, Name =  'test1',PPC_Costs_Euro_Amount__c = 4,PC_Costs_Euro_Amount__c = 1,
-                                            CA_Costs_Euro_Amount__c = 3,Accepted_Final_Cost_PPC_Euro_Amount__c = 4,Accepted_Final_Cost_CA_Euro_Amount__c = '3',
-                                            Accepted_Final_Cost_PC_Euro_Amou__c = '3',Saving_Type__c = 'Cost Avoidance');
+                                            CA_Costs_Euro_Amount__c = 3,Accepted_Final_Cost_PPC_Euro_Amount__c = 4,Accepted_Final_Cost_CA_Euro_Amount__c = 3,
+                                            Accepted_Final_Cost_PC_Euro_Amou__c = 3,Saving_Type__c = 'Cost Avoidance');
         
            insert QuoteObj;   
           List<String> selectedCountryList = new List<String>();
-          selectedCountryList.add('Test'); 
+          selectedCountryList.add(Amr_ConstantForAdManager.TEST); 
           
            Amr_NewSaving_CC   savingObject = new Amr_NewSaving_CC ();  
                                 
@@ -140,6 +142,9 @@ public class Amr_NewSaving_Test{
           savingObject.savingObj = savingObjTest1;
           savingObject.acceptedQuote = QuoteObj;
           savingObject.SaveQuoteAndSavingData();
+        	
+          Amr_Job_Details__c jobDet = [select Project_Description__c from Amr_Job_Details__c where id = :jobDetailsObj.Id];
+          system.assertEquals(jobDet.Project_Description__c, Amr_ConstantForAdManager.EXECUTION);
         
          }
          
