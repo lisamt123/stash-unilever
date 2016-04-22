@@ -21,7 +21,7 @@
           	<!-- Checking condition for CU complexity increased or not -->
             <apex:outputPanel layout="block" styleClass="cuConsolidatedContent" rendered="{!IF(secCon.IPM_Increased_By__c!=null,true,false)}" >
                 <apex:outputPanel layout="block" styleClass="cuLeftBlock">
-                    <apex:outputField value="{!secCon.IPM_Project_Effect__c}"/>
+                    <apex:outputField value="{!secCon.IPM_Project_Effect__c} "/>
                 </apex:outputPanel>
                 <apex:outputPanel layout="block" styleClass="cuRightBlock">
                     <apex:outputField value=" {!secCon.IPM_Increased_By__c}" />

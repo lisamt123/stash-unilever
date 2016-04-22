@@ -11,7 +11,6 @@ jq(document).ready(function() {
     gkmComplete();
 	postponed();
 	apprwithedits();
-	tabClick();
 	
 /* Below script is related to the date picker Functionality. If the condition is true the css class 'date' calls the datepicker. */
     var dateFormat = "dd/mm/yyyy";
@@ -68,7 +67,6 @@ jq(document).ready(function() {
     }
 });
 
-function tabClick(){
 	/* Below script is for the Tab functionality on click event. Based on the clicked li the tab is highlighted and the content related the clicked tab is displayed. Also it hides the previous opened content */
 	jq(".ipmStatusTabs").on("click", 'li', function() {
 		jq(".proInitLoader").show().delay(1000).fadeOut();
@@ -92,7 +90,6 @@ function tabClick(){
 			slider4.find('input[value=' + IPMApp.Postponed + ']').prop("checked", true);
 		}
 	});
-}
     	
 function apprwithedits(){
 	/* Below script works on click event. This opens the Approver with Edits Modal */
@@ -353,6 +350,7 @@ jq(function(){
   window.onbeforeunload = unloadPage;
   
   /* Below code is to skip the unsaved changes*/
-  function skipValidation() {
+  function skipValidation() {  
     unsaved = false;
+	checkChange(unsaved);
   }

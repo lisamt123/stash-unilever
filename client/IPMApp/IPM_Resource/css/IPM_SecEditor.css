@@ -797,8 +797,10 @@ input.misalignedField{border:2px solid red;}
 .glbValM2{width:33%;float:left;border-right: 1px solid #ddd;padding: 5px;min-height: 40px;}
 .glbsubHeadM,.glbsubHeadM2{font-size: 14px;color: #364354;font-weight: bold;}
 .glbValLeft{font-size: 0.800em;color:#222;font-weight: bold;}
-.glbfinvalContainer{float: left;max-height: 337px;overflow: auto;}
+.glbfinvalContainer{float: left;max-height: 337px;overflow: auto;width:100%;}
 .glbSeclist{width:50%;float:left;}
+.glbsecContainer .glbValM{width:10%;}
+.glbsecContainer .glbValM2{width:16.5%;}
 
 /* Financial Action Standards Inverse styles */
 .ipmFinancetable.inverse{width:100%;max-width:100%;}

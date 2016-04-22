@@ -460,27 +460,31 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
             // populate target launch year & month
             if(String.isNotBlank(p.IPM_Project_Type__c) && (p.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Original) || p.IPM_Project_Type__c.equalsignorecase(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) ||(String.isNotBlank(p.IPMProject_Span__c) && p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional) && p.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Rollout)))){
                 a.IPM_Target_Launch_Month_BD__c = p.IPM_Target_Launch_Month__c;
-                a.IPM_Target_Launch_Year_BD__c = p.IPM_Target_Launch_Year__c;   
+                if(p.IPM_Target_Launch_Year__c != null){
+                    a.IPM_Target_Launch_Year_BD__c = integer.valueOf(p.IPM_Target_Launch_Year__c);
+                }
             }
             if (String.isNotBlank(p.IPMProject_Span__c) && String.isNotBlank(p.IPM_Project_Type__c) && p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local) && p.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Rollout)){
                 a.IPM_Target_Launch_Month_BB__c = p.IPM_Target_Launch_Month__c;
-                a.IPM_Target_Launch_Year_BB__c = p.IPM_Target_Launch_Year__c;
+                if(p.IPM_Target_Launch_Year__c != null){
+                    a.IPM_Target_Launch_Year_BB__c = integer.valueOf(p.IPM_Target_Launch_Year__c);
+                }
                 //if(String.isNotBlank(string.valueof(p.IPM_Parent_Project__r.IPM_Project_Rollout__r.Target_Launch_Date__c))){
-				if(String.isNotBlank(string.valueof(p.IPM_Project_Rollout__r.Target_Launch_Date__c))){
+                if(String.isNotBlank(string.valueof(p.IPM_Project_Rollout__r.Target_Launch_Date__c))){
                     a.IPM_Target_Launch_Month_BD__c = monthNameIntegerToString.get(p.IPM_Project_Rollout__r.Target_Launch_Date__c.month());
-                    a.IPM_Target_Launch_Year_BD__c = string.valueof(p.IPM_Project_Rollout__r.Target_Launch_Date__c.Year());   
+                    a.IPM_Target_Launch_Year_BD__c = p.IPM_Project_Rollout__r.Target_Launch_Date__c.Year();   
                 }                  
             }
 
             //Global Project Business Impact Global will be copy to Global,Regional & Local project
             if(projFinmap.containskey(p.Id)){ 
-            	a.IPM_Business_Impact_BD__c = projFinMap.get(p.id).Business_Impact_Global__c; 
-            	a.IPM_Auto_Aligned_Fin_TLD_for_financial__c = projFinMap.get(p.id).Misaligned__c;
-            	a.IPM_Company_Priority__c = projFinMap.get(p.id).IPM_CPP_Regional__c;
+                a.IPM_Business_Impact_BD__c = projFinMap.get(p.id).Business_Impact_Global__c; 
+                a.IPM_Auto_Aligned_Fin_TLD_for_financial__c = projFinMap.get(p.id).Misaligned__c;
+                a.IPM_Company_Priority__c = projFinMap.get(p.id).IPM_CPP_Regional__c;
             }  
             
             // Copying Milestone related fields 
-			a = processMilestoneDetails(projMilestoneMap, a, p);
+            a = processMilestoneDetails(projMilestoneMap, a, p);
             // //Copying IPM Financial Year fields
             a = processFinancialDetails(projFinYrmap,  a, p);
             
@@ -558,7 +562,9 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                     r.IPM_Project_Name__c = pr.name;
                     r.IPM_Company__c = pr.IPM_Company_Card__r.Name; // as per the update it will be populated by Unilever report tool
                     r.IPM_Target_Launch_Month_BD__c = pr.Target_LaunchMonth__c;
-                    r.IPM_Target_Launch_Year_BD__c = pr.Target_LaunchYear__c ;
+                    if(pr.Target_LaunchYear__c != null){
+                        r.IPM_Target_Launch_Year_BD__c = integer.valueOf(pr.Target_LaunchYear__c) ;
+                    }
                     r.IPM_Parent_Project_Name__c = pr.IPM_Parent_Project_Name__c; 
                     r.IPM_Project_Leader__c = pr.IPM_Regional_PL__r.Name;
                     //Copy values From Parent project
@@ -720,7 +726,9 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                 }                   
 
                 if(mile.IPM_Name__c.equalsignorecase(IPM_Utils.TargetLaunchDateShiptoTrade)){
-                    a.IPM_Actual_Launch_Year__c = mile.IPM_Actual_Target_Launch_Year__c;
+                    if(mile.IPM_Actual_Target_Launch_Year__c != null){
+                        a.IPM_Actual_Launch_Year__c = integer.valueOf(mile.IPM_Actual_Target_Launch_Year__c);
+                    }
                     a.IPM_Actual_Launch_Month__c = mile.IPM_Actual_Target_Launch_Month__c;
                     a.IPM_Actual_Launch_Date__c = mile.IPM_Completed_on__c; 
                 }

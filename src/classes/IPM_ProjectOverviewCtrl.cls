@@ -406,7 +406,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
               
         //projResList =  project.IPM_Project_Resources__r;      
         if(project.IPM_Projects__r != NULL && !project.IPM_Projects__r.isEmpty()){          
-            rolloutProjectRecentMilestone = [SELECT Id, IPM_Project__c, IPM_Project__r.Name, IPM_Type_of_gate__c, IPM_Due_Date__c ,IPM_Project__r.Is_Archieved__c
+            rolloutProjectRecentMilestone = [SELECT Id, IPM_Project__c, IPM_Project__r.Name,IPM_Name__c,IPM_Type_of_gate__c, IPM_Due_Date__c ,IPM_Project__r.Is_Archieved__c
                                                                   from IPM_Milestone__c
                                                                   where IPM_Project__r.IPM_Parent_Project__c =: projectId 
                                                                   AND IPM_Due_Date__c != NULL AND IPM_Due_Date__c >= TODAY
@@ -414,7 +414,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
                                                                   AND IPM_Phase__c != : IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT
                                                                   ORDER BY IPM_Due_Date__c asc, IPM_Project__r.IPM_Target_Launch_Dates__c asc limit 1]; 
              if(rolloutProjectRecentMilestone != null && !rolloutProjectRecentMilestone.isEmpty()){
-                gateDueDateMessage = string.format(System.Label.IPM_GateDueDateMesg, new string[] {String.valueof(rolloutProjectRecentMilestone[0].IPM_Type_of_gate__c)});
+                gateDueDateMessage = string.format(System.Label.IPM_GateDueDateMesg, new string[] {String.valueof(rolloutProjectRecentMilestone[0].IPM_Name__c)});
              }                                                  
          }                
          if(projResList != NULL && projResList.isEmpty() && project.IPM_Project_Leader__c != UserInfo.getUserId() && project.IPM_Technical_Project_Leader__c != UserInfo.getUserId()

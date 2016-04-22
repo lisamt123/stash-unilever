@@ -705,7 +705,7 @@
                     
                      <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Global','true','false')}">
                     <td>
-                        <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' && projectDoc.IPM_Document_Status__c=='Approved'),fin.Year_3_iTO_MD__c,fin.Year_3_iTO_Global__c))))}"/><apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
+                        <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' && projectDoc.IPM_Document_Status__c=='Approved'),fin.Year_3_iTO_MD__c,if(project.IPM_Phase__c=='Ideas',fin.Year_3_iTO_Global__c,fin.Year_3_iTO_Regional__c)))))}"/><apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
                     </td>
                     </apex:outputText>
                       

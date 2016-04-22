@@ -377,7 +377,7 @@
                                     </apex:outputPanel>
                                      <!-- Below rendered condition is used to provide button for changing status -->
                                     <apex:outputPanel id="normalSave" rendered="{!AND(Status!='Approved',Status!='Postponed')}" >
-                                        <apex:commandButton value="{!$Label.IPM_CHANGE_DOC_STATUS}" action="{!submit}" status="Loading" onComplete="goToParentPage();skipValidation();" reRender="srcp,postponeMsg,validationMsg" styleClass="ipmButton primary"/>
+                                        <apex:commandButton value="{!$Label.IPM_CHANGE_DOC_STATUS}" action="{!submit}" status="Loading" onclick="skipValidation();" onComplete="goToParentPage();" reRender="srcp,postponeMsg,validationMsg" styleClass="ipmButton primary"/>
                                     </apex:outputPanel>
                                 </div>
                                  <!-- Below rendered condition will execute for approved status -->
@@ -404,7 +404,7 @@
                                                                 </apex:outputPanel>
                                                                 <apex:actionStatus startText="" id="Loading1" startStyleClass="proInit"/>
                                                                     <div class="pull-left noPadright">
-                                                                        <apex:commandButton value="{!$Label.IPM_CHANGE_DOC_STATUS}" action="{!submit}" status="Loading" onComplete="goToParentPage();skipValidation();" reRender="srcp,postponeMsg,validationMsg" styleClass="ipmButton primary"/>                                  
+                                                                        <apex:commandButton value="{!$Label.IPM_CHANGE_DOC_STATUS}" action="{!submit}" status="Loading" onclick="skipValidation();" onComplete="goToParentPage();" reRender="srcp,postponeMsg,validationMsg" styleClass="ipmButton primary"/>                                  
                                                                     </div> 
                                                             </div>
                                                         </div>  
@@ -446,7 +446,7 @@
                                 </div> 
                             </apex:outputPanel>
                             <div class="fleft noPadright">
-                                <apex:commandButton value="{!$Label.IPM_Confirm}" html-data-dismiss="modal" action="{!submit}" status="Loading" onComplete="goToParentPage();skipValidation();" reRender="srcp,postponeMsg" styleClass="ipmButton primary" />
+                                <apex:commandButton value="{!$Label.IPM_Confirm}" html-data-dismiss="modal" action="{!submit}" status="Loading" onclick="skipValidation();" onComplete="goToParentPage();" reRender="srcp,postponeMsg" styleClass="ipmButton primary" />
                             </div> 
                         </div>               
                     </div>
@@ -474,7 +474,7 @@
                                 </div> 
                             </apex:outputPanel>
                             <div class="fleft noPadright">
-                                <apex:commandButton value="{!$Label.IPM_Confirm}" html-data-dismiss="modal" action="{!submit}" status="Loading" onComplete="goToParentPage();skipValidation();" reRender="srcp,postponeMsg" styleClass="ipmButton primary" />
+                                <apex:commandButton value="{!$Label.IPM_Confirm}" html-data-dismiss="modal" action="{!submit}" status="Loading" onclick="skipValidation();" onComplete="goToParentPage();" reRender="srcp,postponeMsg" styleClass="ipmButton primary" />
                             </div> 
                         </div>               
                     </div>

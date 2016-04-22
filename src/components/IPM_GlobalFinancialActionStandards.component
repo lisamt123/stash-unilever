@@ -61,105 +61,104 @@
         </div>
         <div class="glbfinvalContainer">
             <apex:repeat var="finAction" value="{!finActionStandardsList}">
-                <div class="glbValLeft">
-                    {!LEFT(finAction.IPM_Financial_Action_Standard_Name__c,(FIND(' ', finAction.IPM_Financial_Action_Standard_Name__c)))} Action Standards
+                <div class="glbfrstContainer">
+	                <div class="glbValLeft">
+	                    {!LEFT(finAction.IPM_Financial_Action_Standard_Name__c,(FIND(' ', finAction.IPM_Financial_Action_Standard_Name__c)))} Action Standards
+	                </div>
+	                <apex:outputPanel styleClass="glbValRight" id="getGlobal">
+	                    <div class="glbValSubLeft">
+	                        <div class="glbValM glbVal1">
+	                        <!-- Rendering Condition for Displaying Read only and Editable Fileds -->
+	                            <apex:inputField value="{!finAction.IPM_Innov_Value_Share_Action_Charter__c}"  rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}" onchange="updateFinAction('{!finAction.Id}','{!finAction.IPM_Project_Span__c}','Innovation',this.value);"/>
+	                            <apex:outputField value="{!finAction.IPM_Innov_Value_Share_Action_Charter__c}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}"/>
+	                        </div>
+	                        <div class="glbValM glbVal2">
+	                        <!-- Rendering Condition for Displaying Read only and Editable Fileds -->
+	                            <apex:inputField value="{!finAction.IPM_Inc_Value_Share_Action_Charter__c}" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}" onchange="updateFinAction('{!finAction.Id}','{!finAction.IPM_Project_Span__c}','Incremental',this.value);"/>
+	                            <apex:outputField value="{!finAction.IPM_Inc_Value_Share_Action_Charter__c}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}"/>
+	                        </div>
+	                        <div class="glbValM glbVal3">
+	                        <!-- Rendering Condition for Displaying Read only and Editable Fileds -->
+	                            <apex:inputField value="{!finAction.IPM_gTO_Action_Standard_Charter__c}" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable,finAction.IPM_Project_Span__c='Regional')}" onchange="updateFinAction('{!finAction.Id}','{!finAction.IPM_Project_Span__c}','gTO',this.value);" />
+	                            <apex:outputField value="{!finAction.IPM_gTO_Action_Standard_Charter__c}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable,finAction.IPM_Project_Span__c='Global')}"/>
+	                        </div>
+	                        <div class="glbValM glbVal4">
+	                        <!-- Rendering Condition for Displaying Read only and Editable Fileds -->
+	                            <apex:inputField value="{!finAction.IPM_iTo_Action_Standard_Charter__c}" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable,finAction.IPM_Project_Span__c='Regional')}" onchange="updateFinAction('{!finAction.Id}','{!finAction.IPM_Project_Span__c}','iTO',this.value);" />
+	                            <apex:outputField value="{!finAction.IPM_iTo_Action_Standard_Charter__c}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable,finAction.IPM_Project_Span__c='Global')}"/>
+	                        </div>
+	                        <div class="glbValM glbVal5">
+	                        <!-- Rendering Condition for Displaying Read only and Editable Fileds -->
+	                            <apex:inputField value="{!finAction.IPM_GM_Action_Standards_Charter__c}" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}" onchange="updateFinAction('{!finAction.Id}','{!finAction.IPM_Project_Span__c}','GM',this.value);"/>
+	                            <apex:outputField value="{!finAction.IPM_GM_Action_Standards_Charter__c}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}"/>
+	                        </div>
+	                    </div>
+	                    <div class="glbValSubRight">
+	                        <div class="glbValM2 glbVal6">
+	                        <!-- Rendering Condition for Displaying Read only and Editable Fileds -->
+	                            <apex:inputField value="{!finAction.IPM_NPV_Action_Standard_Charter__c}" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}" onchange="updateFinAction('{!finAction.Id}','{!finAction.IPM_Project_Span__c}','NPV',this.value);"/>
+	                            <apex:outputField value="{!finAction.IPM_NPV_Action_Standard_Charter__c}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}"/>
+	                        </div>
+	                        <div class="glbValM2 glbVal7">
+	                        <!-- Rendering Condition for Displaying Read only and Editable Fileds -->
+	                            <apex:inputField value="{!finAction.IPM_IRR_Action_Standard_Charter__c}" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}" onchange="updateFinAction('{!finAction.Id}','{!finAction.IPM_Project_Span__c}','IRR',this.value);"/>
+	                            <apex:outputField value="{!finAction.IPM_IRR_Action_Standard_Charter__c}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}"/>
+	                        </div>
+	                        <div class="glbValM2 glbVal8">
+	                        <!-- Rendering Condition for Displaying Read only and Editable Fileds -->
+	                            <apex:inputField value="{!finAction.IPM_Payback_Action_Standard_Charter__c}" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}" onchange="updateFinAction('{!finAction.Id}','{!finAction.IPM_Project_Span__c}','PayBack',this.value);"/>
+	                            <apex:outputField value="{!finAction.IPM_Payback_Action_Standard_Charter__c}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}"/>
+	                        </div>
+	                    </div>
+	                </apex:outputPanel>
                 </div>
-                <apex:outputPanel styleClass="glbValRight" id="getGlobal">
-                    <div class="glbValSubLeft">
-                        <div class="glbValM glbVal1">
-                        <!-- Rendering Condition for Displaying Read only and Editable Fileds -->
-                            <apex:inputField value="{!finAction.IPM_Innov_Value_Share_Action_Charter__c}"  rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}" onchange="updateFinAction('{!finAction.Id}','{!finAction.IPM_Project_Span__c}','Innovation',this.value);"/>
-                            <apex:outputField value="{!finAction.IPM_Innov_Value_Share_Action_Charter__c}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}"/>
-                        </div>
-                        <div class="glbValM glbVal2">
-                        <!-- Rendering Condition for Displaying Read only and Editable Fileds -->
-                            <apex:inputField value="{!finAction.IPM_Inc_Value_Share_Action_Charter__c}" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}" onchange="updateFinAction('{!finAction.Id}','{!finAction.IPM_Project_Span__c}','Incremental',this.value);"/>
-                            <apex:outputField value="{!finAction.IPM_Inc_Value_Share_Action_Charter__c}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}"/>
-                        </div>
-                        <div class="glbValM glbVal3">
-                        <!-- Rendering Condition for Displaying Read only and Editable Fileds -->
-                            <apex:inputField value="{!finAction.IPM_gTO_Action_Standard_Charter__c}" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable,finAction.IPM_Project_Span__c='Regional')}" onchange="updateFinAction('{!finAction.Id}','{!finAction.IPM_Project_Span__c}','gTO',this.value);" />
-                            <apex:outputField value="{!finAction.IPM_gTO_Action_Standard_Charter__c}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable,finAction.IPM_Project_Span__c='Global')}"/>
-                        </div>
-                        <div class="glbValM glbVal4">
-                        <!-- Rendering Condition for Displaying Read only and Editable Fileds -->
-                            <apex:inputField value="{!finAction.IPM_iTo_Action_Standard_Charter__c}" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable,finAction.IPM_Project_Span__c='Regional')}" onchange="updateFinAction('{!finAction.Id}','{!finAction.IPM_Project_Span__c}','iTO',this.value);" />
-                            <apex:outputField value="{!finAction.IPM_iTo_Action_Standard_Charter__c}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable,finAction.IPM_Project_Span__c='Global')}"/>
-                        </div>
-                        <div class="glbValM glbVal5">
-                        <!-- Rendering Condition for Displaying Read only and Editable Fileds -->
-                            <apex:inputField value="{!finAction.IPM_GM_Action_Standards_Charter__c}" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}" onchange="updateFinAction('{!finAction.Id}','{!finAction.IPM_Project_Span__c}','GM',this.value);"/>
-                            <apex:outputField value="{!finAction.IPM_GM_Action_Standards_Charter__c}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}"/>
-                        </div>
+                <div class="glbsecContainer">
+                  <div class="glbValLeft othValleft">
+                      {!LEFT(finAction.IPM_Financial_Action_Standard_Name__c,(FIND(' ', finAction.IPM_Financial_Action_Standard_Name__c)))} Results at Charter
+                  </div>
+                  <div class="glbValRight ">
+                    <div class="glbValM glbVal1">
+                        <apex:outputText value="{0, number, ###,###,###.#}">
+                            <apex:param value="{!finAction.IPM_Financial_Year_Y1_Gross__r.Value_Market_Share_Global__c}" />
+                        </apex:outputText>
                     </div>
-                    <div class="glbValSubRight">
-                        <div class="glbValM2 glbVal6">
-                        <!-- Rendering Condition for Displaying Read only and Editable Fileds -->
-                            <apex:inputField value="{!finAction.IPM_NPV_Action_Standard_Charter__c}" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}" onchange="updateFinAction('{!finAction.Id}','{!finAction.IPM_Project_Span__c}','NPV',this.value);"/>
-                            <apex:outputField value="{!finAction.IPM_NPV_Action_Standard_Charter__c}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}"/>
-                        </div>
-                        <div class="glbValM2 glbVal7">
-                        <!-- Rendering Condition for Displaying Read only and Editable Fileds -->
-                            <apex:inputField value="{!finAction.IPM_IRR_Action_Standard_Charter__c}" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}" onchange="updateFinAction('{!finAction.Id}','{!finAction.IPM_Project_Span__c}','IRR',this.value);"/>
-                            <apex:outputField value="{!finAction.IPM_IRR_Action_Standard_Charter__c}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}"/>
-                        </div>
-                        <div class="glbValM2 glbVal8">
-                        <!-- Rendering Condition for Displaying Read only and Editable Fileds -->
-                            <apex:inputField value="{!finAction.IPM_Payback_Action_Standard_Charter__c}" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}" onchange="updateFinAction('{!finAction.Id}','{!finAction.IPM_Project_Span__c}','PayBack',this.value);"/>
-                            <apex:outputField value="{!finAction.IPM_Payback_Action_Standard_Charter__c}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}"/>
-                        </div>
+                    <div class="glbValM glbVal2">
+                        <apex:outputText value="{0, number, ###,###,###.#}">
+                            <apex:param value="{!finAction.IPM_Financial_Year_Y1_Incremental__r.Value_Market_Share_Global__c}" />
+                        </apex:outputText>
                     </div>
-                </apex:outputPanel>
-                
-                <div class="glbValLeft">
-                    {!LEFT(finAction.IPM_Financial_Action_Standard_Name__c,(FIND(' ', finAction.IPM_Financial_Action_Standard_Name__c)))} Results at Charter
-                </div>
-                <div class="glbValRight">
-                    <div class="glbValSubLeft">
-                        <div class="glbValM glbVal1">
-                            <apex:outputText value="{0, number, ###,###,###.#}">
-                                <apex:param value="{!finAction.IPM_Financial_Year_Y1_Gross__r.Value_Market_Share_Global__c}" />
-                            </apex:outputText>
-                        </div>
-                        <div class="glbValM glbVal2">
-                            <apex:outputText value="{0, number, ###,###,###.#}">
-                                <apex:param value="{!finAction.IPM_Financial_Year_Y1_Incremental__r.Value_Market_Share_Global__c}" />
-                            </apex:outputText>
-                        </div>
-                        <div class="glbValM glbVal3">
-                            <apex:outputText value="{0, number, ###,###,###.##}">
-                                <apex:param value="{!finAction.IPM_Financial_Year_Y1_Gross__r.Turnover_Global__c}" />
-                            </apex:outputText>
-                        </div>
-                        <div class="glbValM glbVal4">
-                            <apex:outputText value="{0, number, ###,###,###.##}">
-                                <apex:param value="{!finAction.IPM_Financial_Year_Y1_Incremental__r.Turnover_Global__c}" />
-                            </apex:outputText>
-                        </div>
-                        <div class="glbValM glbVal5">
-                            {!finAction.IPM_Financial_Year_Y1_Gross__r.GM_of_TO_Global__c}
-                        </div>
+                    <div class="glbValM glbVal3">
+                        <apex:outputText value="{0, number, ###,###,###.##}">
+                            <apex:param value="{!finAction.IPM_Financial_Year_Y1_Gross__r.Turnover_Global__c}" />
+                        </apex:outputText>
                     </div>
-                    <div class="glbValSubRight">
-                        <div class="glbValM2 glbVal6">
-                            <apex:outputText value="{0, number, ###,###,###.##}">
-                                <apex:param value="{!finAction.IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.NPV_Global__c}" />
-                            </apex:outputText>
-                        </div>
-                        <div class="glbValM2 glbVal7">
-                            <apex:outputText value="{0, number, ###,###,###.###}">
-                                <apex:param value="{!finAction.IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.IRR_Global__c}" />
-                            </apex:outputText>
-                        </div>
-                        <div class="glbValM2 glbVal8">
-                            <apex:outputText value="{0, number, ###,###,###.##}">
-                                <apex:param value="{!finAction.IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.Payback_Global__c}" />
-                            </apex:outputText>
-                        </div>
+                    <div class="glbValM glbVal4">
+                        <apex:outputText value="{0, number, ###,###,###.##}">
+                            <apex:param value="{!finAction.IPM_Financial_Year_Y1_Incremental__r.Turnover_Global__c}" />
+                        </apex:outputText>
                     </div>
+                    <div class="glbValM glbVal5">
+                        {!finAction.IPM_Financial_Year_Y1_Gross__r.GM_of_TO_Global__c}
+                    </div>
+                    <div class="glbValM2 glbVal6">
+                        <apex:outputText value="{0, number, ###,###,###.##}">
+                            <apex:param value="{!finAction.IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.NPV_Global__c}" />
+                        </apex:outputText>
+                    </div>
+                    <div class="glbValM2 glbVal7">
+                        <apex:outputText value="{0, number, ###,###,###.###}">
+                            <apex:param value="{!finAction.IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.IRR_Global__c}" />
+                        </apex:outputText>
+                    </div>
+                    <div class="glbValM2 glbVal8">
+                        <apex:outputText value="{0, number, ###,###,###.##}">
+                            <apex:param value="{!finAction.IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.Payback_Global__c}" />
+                        </apex:outputText>
+                    </div>
+                  </div>
                 </div>
             </apex:repeat>  
-        </div>
+        </div>     
     </div>
 <apex:actionFunction name="updateFinAction" action="{!updateActionStandards}" status="Loading" reRender="getGlobal">
     <apex:param name="firstParam" assignTo="{!finActionId}" value=""/>
