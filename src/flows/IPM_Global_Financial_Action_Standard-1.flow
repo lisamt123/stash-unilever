@@ -4,14 +4,14 @@
         <processMetadataValues>
             <name>apexSelection</name>
             <value>
-                <stringValue>IPM_ProjectSectionContentHelper</stringValue>
+                <stringValue>IPM_Utils</stringValue>
             </value>
         </processMetadataValues>
         <name>myRule_1_A1</name>
-        <label>copyRegionalFinancialActionStandards</label>
+        <label>updateFinancialYear</label>
         <locationX>100</locationX>
         <locationY>200</locationY>
-        <actionName>IPM_ProjectSectionContentHelper</actionName>
+        <actionName>IPM_Utils</actionName>
         <actionType>apex</actionType>
         <inputParameters>
             <processMetadataValues>
@@ -29,7 +29,7 @@
             <processMetadataValues>
                 <name>leftHandSideLabel</name>
                 <value>
-                    <stringValue>proDocSecConList</stringValue>
+                    <stringValue>finActionStandards</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -41,7 +41,7 @@
             <processMetadataValues>
                 <name>objectType</name>
                 <value>
-                    <stringValue>IPM_Project_Document_Section_Content__c</stringValue>
+                    <stringValue>IPM_Financial_Action_Standards__c</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -50,7 +50,7 @@
                     <stringValue>SObject</stringValue>
                 </value>
             </processMetadataValues>
-            <name>proDocSecConList</name>
+            <name>finActionStandards</name>
             <value>
                 <elementReference>myVariable_current</elementReference>
             </value>
@@ -106,118 +106,25 @@
                         <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>myVariable_current.IPM_Content_Type__c</leftValueReference>
+                <leftValueReference>myVariable_current.IPM_Project_Span__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Financial Action Standards</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_GateDocuments__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Contract</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPMProject_Span__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Regional</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Project_Type__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Rollout</stringValue>
+                    <stringValue>Global</stringValue>
                 </rightValue>
             </conditions>
             <connector>
                 <targetReference>myRule_1_A1</targetReference>
             </connector>
-            <label>For Regional Rollout</label>
+            <label>Check Project Span</label>
         </rules>
     </decisions>
-    <description>To copy the acttion standards values from global to regional</description>
-    <interviewLabel>IPM_Copy_Financial_Action_Standards_To_Section_Content-1_IPM_Project_Document_Section_Content__c</interviewLabel>
-    <label>IPM Copy Financial Action Standards To Section Content</label>
+    <description>To Update Financial Year Lookup</description>
+    <interviewLabel>IPM_Global_Financial_Action_Standard-1_IPM_Financial_Action_Standards__c</interviewLabel>
+    <label>IPM Global Financial Action Standard</label>
     <processMetadataValues>
         <name>ObjectType</name>
         <value>
-            <stringValue>IPM_Project_Document_Section_Content__c</stringValue>
+            <stringValue>IPM_Financial_Action_Standards__c</stringValue>
         </value>
     </processMetadataValues>
     <processMetadataValues>
@@ -246,7 +153,7 @@
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>true</isOutput>
-        <objectType>IPM_Project_Document_Section_Content__c</objectType>
+        <objectType>IPM_Financial_Action_Standards__c</objectType>
     </variables>
     <variables>
         <name>myVariable_old</name>
@@ -254,7 +161,7 @@
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>false</isOutput>
-        <objectType>IPM_Project_Document_Section_Content__c</objectType>
+        <objectType>IPM_Financial_Action_Standards__c</objectType>
     </variables>
     <variables>
         <name>myVariable_waitStartTimeVariable</name>
