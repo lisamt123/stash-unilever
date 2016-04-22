@@ -148,18 +148,18 @@ public with sharing class Amr_ReportHelper {
           
           if(!categoryStageOneToTwoMap.containsKey(Category)){
               categoryStageOneToTwoMap.put(Category,new Map<String,Integer>());
-            categoryStageOneToTwoMap.get(Category).put('stageOneandTwoCount',0);
+            categoryStageOneToTwoMap.get(Category).put(Amr_ConstantForAdManager.STAGE_ONEANDTWOCOUNT,0);
                  
             if(jobObj.Stage_of_Production_Activity__c == 'Before briefing the agency' || jobObj.Stage_of_Production_Activity__c =='Before getting a response to the brief (eg storyboard)'){
-              integer counter = categoryStageOneToTwoMap.get(Category).get('stageOneandTwoCount');
-                categoryStageOneToTwoMap.get(Category).put('stageOneandTwoCount',counter+1);
+              integer counter = categoryStageOneToTwoMap.get(Category).get(Amr_ConstantForAdManager.STAGE_ONEANDTWOCOUNT);
+                categoryStageOneToTwoMap.get(Category).put(Amr_ConstantForAdManager.STAGE_ONEANDTWOCOUNT,counter+1);
             }
           
           
           }else{
             if(jobObj.Stage_of_Production_Activity__c == 'Before briefing the agency' || jobObj.Stage_of_Production_Activity__c =='Before getting a response to the brief (eg storyboard)'){
-                    integer counter = categoryStageOneToTwoMap.get(Category).get('stageOneandTwoCount');
-                   categoryStageOneToTwoMap.get(Category).put('stageOneandTwoCount',counter+1);
+                    integer counter = categoryStageOneToTwoMap.get(Category).get(Amr_ConstantForAdManager.STAGE_ONEANDTWOCOUNT);
+                   categoryStageOneToTwoMap.get(Category).put(Amr_ConstantForAdManager.STAGE_ONEANDTWOCOUNT,counter+1);
             }
           }
         }
@@ -179,17 +179,17 @@ public with sharing class Amr_ReportHelper {
           
           if(!categoryAllStage.containsKey(Category)){
               categoryAllStage.put(Category,new Map<String,Integer>());
-            categoryAllStage.get(Category).put('allCount',0);
+            categoryAllStage.get(Category).put(Amr_ConstantForAdManager.ALL_COUNT,0);
               
             if(jobObj.Stage_of_Production_Activity__c!=null){
-                integer counter = categoryAllStage.get(Category).get('allCount');
-                categoryAllStage.get(Category).put('allCount',counter+1);
+                integer counter = categoryAllStage.get(Category).get(Amr_ConstantForAdManager.ALL_COUNT);
+                categoryAllStage.get(Category).put(Amr_ConstantForAdManager.ALL_COUNT,counter+1);
             }
           
           }else{
             if(jobObj.Stage_of_Production_Activity__c!=null){
-                integer counter = categoryAllStage.get(Category).get('allCount');
-                categoryAllStage.get(Category).put('allCount',counter+1);
+                integer counter = categoryAllStage.get(Category).get(Amr_ConstantForAdManager.ALL_COUNT);
+                categoryAllStage.get(Category).put(Amr_ConstantForAdManager.ALL_COUNT,counter+1);
               }
           }
         }
@@ -317,8 +317,8 @@ public with sharing class Amr_ReportHelper {
        for(String categoryValue :categoryStageOneToTwoMap.keySet()){
         
         if(categoryValue == categoryVal){
-          integer counter1 = categoryStageOneToTwoMap.get(categoryValue).get('stageOneandTwoCount');
-          integer counter2 = categoryAllStage.get(categoryValue).get('allCount');
+          integer counter1 = categoryStageOneToTwoMap.get(categoryValue).get(Amr_ConstantForAdManager.STAGE_ONEANDTWOCOUNT);
+          integer counter2 = categoryAllStage.get(categoryValue).get(Amr_ConstantForAdManager.ALL_COUNT);
          system.debug('counter1BD==>'+counter1+'===COUNTER2'+counter2+'categoryVal=='+categoryVal);
           integer percentBD = counter1 * 100/counter2;
            system.debug('percentBD===>'+percentBD);
@@ -358,8 +358,8 @@ public with sharing class Amr_ReportHelper {
        for(String categoryValue :categoryStageOneToTwoMap.keySet()){
         
         if(categoryValue == categoryVal){
-          integer counter1 = categoryStageOneToTwoMap.get(categoryValue).get('stageOneandTwoCount');
-          integer counter2 = categoryAllStage.get(categoryValue).get('allCount');
+          integer counter1 = categoryStageOneToTwoMap.get(categoryValue).get(Amr_ConstantForAdManager.STAGE_ONEANDTWOCOUNT);
+          integer counter2 = categoryAllStage.get(categoryValue).get(Amr_ConstantForAdManager.ALL_COUNT);
           system.debug('==counter1BB==>'+counter1+'===COUNTERBB=='+counter2+'==CATEGORYBB=='+categoryVal);
           integer percentBD = counter1 * 100/counter2;
           system.debug('==percentBB===>'+percentBD);
@@ -421,13 +421,13 @@ public with sharing class Amr_ReportHelper {
         if(pList.ProductCategory__r.name != null ){
             System.debug('DATAAA ->  ' + pList.ProductCategory__r.name );
             if(categoryStageOneToTwoMapBD.containsKey(pList.ProductCategory__r.name ) && categoryStageOneToTwoMapBB.containsKey(pList.ProductCategory__r.name ) ){
-                total = categoryStageOneToTwoMapBD.get(pList.ProductCategory__r.name).get('stageOneandTwoCount') + categoryStageOneToTwoMapBB.get(pList.ProductCategory__r.name).get('stageOneandTwoCount');
+                total = categoryStageOneToTwoMapBD.get(pList.ProductCategory__r.name).get(Amr_ConstantForAdManager.STAGE_ONEANDTWOCOUNT) + categoryStageOneToTwoMapBB.get(pList.ProductCategory__r.name).get(Amr_ConstantForAdManager.STAGE_ONEANDTWOCOUNT);
             }else
             if(!categoryStageOneToTwoMapBD.containsKey(pList.ProductCategory__r.name )&& categoryStageOneToTwoMapBB.containsKey(pList.ProductCategory__r.name ) ){
-                total = categoryStageOneToTwoMapBB.get(pList.ProductCategory__r.name).get('stageOneandTwoCount');
+                total = categoryStageOneToTwoMapBB.get(pList.ProductCategory__r.name).get(Amr_ConstantForAdManager.STAGE_ONEANDTWOCOUNT);
             }else
             if(!categoryStageOneToTwoMapBB.containsKey(pList.ProductCategory__r.name ) && categoryStageOneToTwoMapBD.containsKey(pList.ProductCategory__r.name ) ){
-                total = categoryStageOneToTwoMapBD.get(pList.ProductCategory__r.name).get('stageOneandTwoCount');
+                total = categoryStageOneToTwoMapBD.get(pList.ProductCategory__r.name).get(Amr_ConstantForAdManager.STAGE_ONEANDTWOCOUNT);
             }
             if(pList.Actual_BB_And_BB__c != 0){
                 pList.In_Good_Time_BD_BB__c = (total / pList.Actual_BB_And_BB__c)*100;

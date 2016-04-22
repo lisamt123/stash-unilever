@@ -93,33 +93,6 @@
                 <axisBinding>y</axisBinding>
                 <column>FORMULA1</column>
             </chartSummary>
-            <chartSummary>
-                <axisBinding>y2</axisBinding>
-                <column>FORMULA2</column>
-            </chartSummary>
-            <componentType>ColumnLineGrouped</componentType>
-            <displayUnits>Auto</displayUnits>
-            <drillEnabled>false</drillEnabled>
-            <drillToDetailEnabled>false</drillToDetailEnabled>
-            <enableHover>true</enableHover>
-            <expandOthers>false</expandOthers>
-            <groupingColumn>WU_Master_Warehouse__c.WU_MCO__c</groupingColumn>
-            <groupingColumn>WU_Master_Warehouse__c.WU_Network__c</groupingColumn>
-            <legendPosition>Bottom</legendPosition>
-            <report>WU_Warehouse_Excellence_Team/Committed_vs_Current_by_MCO</report>
-            <showPercentage>false</showPercentage>
-            <showValues>false</showValues>
-            <sortBy>RowLabelAscending</sortBy>
-            <title>Committed Vs Current by MCO</title>
-            <useReportChart>false</useReportChart>
-        </components>
-        <components>
-            <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
-            <chartAxisRange>Auto</chartAxisRange>
-            <chartSummary>
-                <axisBinding>y</axisBinding>
-                <column>FORMULA1</column>
-            </chartSummary>
             <componentType>ColumnGrouped</componentType>
             <displayUnits>Auto</displayUnits>
             <drillEnabled>false</drillEnabled>
@@ -139,32 +112,6 @@
     </middleSection>
     <rightSection>
         <columnSize>Wide</columnSize>
-        <components>
-            <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
-            <chartAxisRange>Auto</chartAxisRange>
-            <chartSummary>
-                <axisBinding>y</axisBinding>
-                <column>FORMULA1</column>
-            </chartSummary>
-            <chartSummary>
-                <axisBinding>y2</axisBinding>
-                <column>FORMULA2</column>
-            </chartSummary>
-            <componentType>ColumnLine</componentType>
-            <displayUnits>Auto</displayUnits>
-            <drillEnabled>false</drillEnabled>
-            <drillToDetailEnabled>false</drillToDetailEnabled>
-            <enableHover>true</enableHover>
-            <expandOthers>false</expandOthers>
-            <groupingColumn>WU_Master_Warehouse__c.WU_Network__c</groupingColumn>
-            <legendPosition>Bottom</legendPosition>
-            <report>WU_Warehouse_Excellence_Team/Committed_vs_Current_by_Network</report>
-            <showPercentage>false</showPercentage>
-            <showValues>false</showValues>
-            <sortBy>RowLabelAscending</sortBy>
-            <title>Committed Vs Current by Network</title>
-            <useReportChart>false</useReportChart>
-        </components>
         <components>
             <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
             <chartAxisRange>Auto</chartAxisRange>

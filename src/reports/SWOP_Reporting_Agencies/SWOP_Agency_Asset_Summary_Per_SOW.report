@@ -30,17 +30,17 @@
     <format>Matrix</format>
     <groupingsAcross>
         <dateGranularity>Day</dateGranularity>
-        <field>Marketing_SOW__c.Marketing_Projects__r.Agency_Project_Assets__r$Asset_Picklist__c</field>
+        <field>Marketing_SOW__c.Marketing_Projects__r.Agency_Project_Assets__r$Asset_summary_page_name__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsAcross>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>Marketing_SOW__c$Oblix_AgencyEstimate__c</field>
+        <field>Marketing_SOW__c$Name</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>Marketing_SOW__c$Name</field>
+        <field>Marketing_SOW__c.Marketing_Projects__r$Name</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>SWOP Agency Asset Summary Per SOW</name>

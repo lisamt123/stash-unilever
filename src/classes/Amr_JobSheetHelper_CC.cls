@@ -21,49 +21,49 @@ public with sharing Class Amr_JobSheetHelper_CC{
    Returns: It’s return boolean
    ********************************************************************/
 
-    public Boolean productionActivityTypeValidation(Boolean okayToSave, Amr_Job_Details__c jobList){
+    public Boolean productionActivityTypeValidation(Boolean okayToSaveCheck, Amr_Job_Details__c jobList){
           
      if(!jobList.NewOriginalMaster__c && !jobList.LanguageAdaptionMaster__c && !jobList.Create_Additional_Material__c && !jobList.ReworkExistingMaterial__c && !jobList.BuyoutsTalent__c && !jobList.BuyoutsMusic__c ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_Production_activity_types_at_least_one_option_must_be_selected));
-            okayToSave =false;
+            okayToSaveCheck =false;
         }
       if(jobList.NewOriginalMaster__c && !jobList.NewOriginalMasterCinema__c && !jobList.NewOriginalMasterTv__c && 
             !jobList.NewOriginalMasterRadio__c && !jobList.NewOriginalMasterPrint__c && !jobList.NewOriginalMasterOutofHome__c &&
                 !jobList.NewOriginalMasterInStore__c && !jobList.NewOriginalMasterDigital__c && !jobList.NewOriginalMasterInternalVideo__c ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_For_New_Original_Masterat_least_one_option_of_Media_Channel_must_be_selected));
-            okayToSave =false;
+            okayToSaveCheck =false;
         }
       if(jobList.NewOriginalMaster__c && jobList.NewOriginalMasterOutofHome__c && !jobList.NewOriginalMasterOutofHomeMovingImage__c && 
             !jobList.NewOriginalMasterOutofHomeAudio__c && !jobList.NewOriginalMasterOutofHomeStillImage__c  ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_NewOriginMaster_at_leastoneoption_ofMedium_mustbe_selected_corres_to_outOfHo));
-            okayToSave =false; 
+            okayToSaveCheck =false; 
         }
       if(jobList.NewOriginalMaster__c && jobList.NewOriginalMasterInStore__c && !jobList.NewOriginalMasterInStoreMovingImage__c && 
             !jobList.NewOriginalMasterInStoreAudio__c && !jobList.NewOriginalMasterInStoreStillImage__c  ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_NewOrigiMastat_least_one_option_of_Medium_mustbe_selected_corresto_instore));
-            okayToSave =false;
+            okayToSaveCheck =false;
         }
       if(jobList.NewOriginalMaster__c && !jobList.NewOriginalMasterCinema__c && !jobList.NewOriginalMasterTv__c && 
             !jobList.NewOriginalMasterRadio__c && !jobList.NewOriginalMasterPrint__c && !jobList.NewOriginalMasterOutofHome__c &&
                 !jobList.NewOriginalMasterInStore__c && !jobList.NewOriginalMasterDigital__c && !jobList.NewOriginalMasterInternalVideo__c ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_For_New_Original_Masterat_least_one_option_of_Media_Channel_must_be_selected   ));
-            okayToSave =false;
+            okayToSaveCheck =false;
         }
        if(jobList.NewOriginalMaster__c && jobList.NewOriginalMasterOutofHome__c && !jobList.NewOriginalMasterOutofHomeMovingImage__c && 
             !jobList.NewOriginalMasterOutofHomeAudio__c && !jobList.NewOriginalMasterOutofHomeStillImage__c  ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_NewOriginMaster_at_leastoneoption_ofMedium_mustbe_selected_corres_to_outOfHo));
-            okayToSave =false;
+            okayToSaveCheck =false;
         }
        if(jobList.NewOriginalMaster__c && jobList.NewOriginalMasterInStore__c && !jobList.NewOriginalMasterInStoreMovingImage__c && 
             !jobList.NewOriginalMasterInStoreAudio__c && !jobList.NewOriginalMasterInStoreStillImage__c  ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_NewOrigiMastat_least_one_option_of_Medium_mustbe_selected_corresto_instore));
-            okayToSave =false;
+            okayToSaveCheck =false;
         }
     if(jobList.NewOriginalMaster__c && jobList.NewOriginalMasterDigital__c && !jobList.NewOriginalMasterDigitalMovingImage__c && 
             !jobList.NewOriginalMasterDigitalAudio__c && !jobList.NewOriginalMasterDigitalStillImage__c  
             && !jobList.New_Original_Master_Digital_ED__c){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_NewOriginMaster_at_least_one_option_of_Medium_mustbeselected_corre_todigital));
-            okayToSave =false;
+            okayToSaveCheck =false;
         }
       if(!jobList.NewOriginalMaster__c && jobList.LanguageAdaptionMaster__c && !jobList.LanguageAdaptionMasterTv__c && 
             !jobList.LanguageAdaptionMasterCinema__c && !jobList.LanguageAdaptionMasterRadio__c 
@@ -73,7 +73,7 @@ public with sharing Class Amr_JobSheetHelper_CC{
                 !jobList.LanguageAdaptionMasterDigital__c &&
                 !jobList.LanguageAdaptionMasterInternalVideo__c ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_Language_Adaption_Master_at_least_one_option_of_Medium_must_be_selected));
-            okayToSave =false;
+            okayToSaveCheck =false;
         }
        if(!jobList.NewOriginalMaster__c && jobList.LanguageAdaptionMaster__c && jobList.LanguageAdaptionMasterOutofHome__c && 
             !jobList.LanguageAdaptionMasterOutofHomeAudio__c && 
@@ -81,7 +81,7 @@ public with sharing Class Amr_JobSheetHelper_CC{
             !jobList.LanguageAdaptionMasterOutHomeMovingImage__c 
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_LangAdaptMaster_atleast_one_option_of_Medium_mustbe_selected_correTo_OutO));
-            okayToSave =false;
+            okayToSaveCheck =false;
         }
        if(!jobList.NewOriginalMaster__c && jobList.LanguageAdaptionMaster__c && jobList.LanguageAdaptionMasterInStore__c && 
             !jobList.LanguageAdaptionMasterInStoreAudio__c && 
@@ -90,7 +90,7 @@ public with sharing Class Amr_JobSheetHelper_CC{
             
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_LangAdaptMaster_atleast_oneoption_of_Medium_mustbe_selectedcorres_in_st));
-            okayToSave =false;
+            okayToSaveCheck =false;
         }
        if(!jobList.NewOriginalMaster__c && jobList.LanguageAdaptionMaster__c && jobList.LanguageAdaptionMasterDigital__c && 
             !jobList.LanguageAdaptionMasterDigitalAudio__c && 
@@ -98,7 +98,7 @@ public with sharing Class Amr_JobSheetHelper_CC{
             !jobList.LanguageAdaptionMasterDigitalStillImage__c && !jobList.Language_Adaptation_of_Master_Digital_ED__c
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_LanguageAdaptionMaster_least_one_optionofMedium_mustbe_selected_corr_to_Digi));
-            okayToSave =false;
+            okayToSaveCheck =false;
         }
        if(!jobList.NewOriginalMaster__c && jobList.Create_Additional_Material__c && jobList.AdditionalSupplementaryNewMaterialOOH__c && 
             !jobList.AdditionalSupplementaryNewMaterialOofHMI__c && 
@@ -106,7 +106,7 @@ public with sharing Class Amr_JobSheetHelper_CC{
             !jobList.AdditionalSupplementaryNewMaterialOofHA__c  
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_AdditiSuppNewMaterial_atleast_one_optionofMedium_mustbe_selected_corr_toou));
-            okayToSave =false;
+            okayToSaveCheck =false;
         }
         if(!jobList.NewOriginalMaster__c && jobList.Create_Additional_Material__c && jobList.AdditionalSupplementaryNewMaterialStore__c && 
             !jobList.AdditionalSupplementaryNewMaterialInSMI__c && 
@@ -114,7 +114,7 @@ public with sharing Class Amr_JobSheetHelper_CC{
             !jobList.AdditionalSupplementaryNewMaterialInSSI__c  
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_AdditSuppNewMaterial_at_least_one_optionofMedium_mustbeselect_cor_toinstore));
-            okayToSave =false;
+            okayToSaveCheck =false;
         }
           if(!jobList.NewOriginalMaster__c && jobList.Create_Additional_Material__c && jobList.AdditionalSupplementaryNewMaterialDigi__c && 
             !jobList.AdditionalSupplementaryNewMaterialDigiMI__c && 
@@ -123,7 +123,7 @@ public with sharing Class Amr_JobSheetHelper_CC{
             !jobList.Digital_Editorial__c 
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_AddiSuppNewMaterial_atleast_oneoptionofMedium_must_be_selected_corr_to_Dig));
-            okayToSave =false;
+            okayToSaveCheck =false;
         }
         if(!jobList.NewOriginalMaster__c && jobList.Create_Additional_Material__c &&  
             !jobList.AdditionalSupplementaryNewMaterialStore__c && 
@@ -135,7 +135,7 @@ public with sharing Class Amr_JobSheetHelper_CC{
             !jobList.AdditionalSupplementaryNewMaterialIVideo__c
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_AdditionalSupplNewMaterial_atleast_oneoptionof_MedChannel_mustbe_sel));
-            okayToSave =false;
+            okayToSaveCheck =false;
         }
           if(!jobList.NewOriginalMaster__c && jobList.ReworkExistingMaterial__c && jobList.ReworkExistingMaterialOutofHome__c && 
             !jobList.ReworkExistingMaterialOutHomeMovingImage__c && 
@@ -144,7 +144,7 @@ public with sharing Class Amr_JobSheetHelper_CC{
             
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_RewExistingMat_at_least_one_optionofMedium_mustbe_selected_corr_to_OOH));
-            okayToSave =false;
+            okayToSaveCheck =false;
         }
           if(!jobList.NewOriginalMaster__c && jobList.ReworkExistingMaterial__c && jobList.ReworkExistingMaterialInStore__c && 
             !jobList.ReworkExistingMaterialInStoreMovingImage__c && 
@@ -152,7 +152,7 @@ public with sharing Class Amr_JobSheetHelper_CC{
             !jobList.In_Store_Still_Image__c
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_ReworkExistMater_atleast_oneoption_of_Medium_mustbeselected_corr_to_inStor));
-            okayToSave =false;
+            okayToSaveCheck =false;
         }
           if(!jobList.NewOriginalMaster__c && jobList.ReworkExistingMaterial__c && jobList.ReworkExistingMaterialDigital__c && 
             !jobList.ReworkExistingMaterialDigitalMovingImage__c && 
@@ -161,14 +161,14 @@ public with sharing Class Amr_JobSheetHelper_CC{
             !jobList.Rework_Exisiting_Material_Digital_ED__c 
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_RewExistMaterial_atleastone_option_of_Medium_must_be_selected_corr_to_Digi));
-            okayToSave =false;
+            okayToSaveCheck =false;
         }
           if(!jobList.NewOriginalMaster__c && jobList.ReworkExistingMaterial__c && !jobList.ReworkExistingMaterialOutofHome__c && 
             !jobList.ReworkExistingMaterialInStore__c && 
             !jobList.ReworkExistingMaterialDigital__c 
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_ReworkExistMat_atleast_oneoption_of_Media_Channel_mustbe_selected));
-            okayToSave =false;
+            okayToSaveCheck =false;
         }
             if(!jobList.NewOriginalMaster__c && jobList.BuyoutsTalent__c && jobList.BuyoutsTalentOutofHome__c && 
             !jobList.BuyoutsTalentOutofHomeMovingImage__c && 
@@ -176,7 +176,7 @@ public with sharing Class Amr_JobSheetHelper_CC{
             !jobList.BuyoutsTalentOutofHomeStillImage__c
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_Buyouts_Talent_atleast_one_optionofMedium_mustbe_selected_corr_to_OOH));
-            okayToSave =false;
+            okayToSaveCheck =false;
         }
         if(!jobList.NewOriginalMaster__c && jobList.BuyoutsTalent__c && jobList.BuyoutsTalentInStore__c && 
             !jobList.BuyoutsTalentInStoreMovingImage__c && 
@@ -184,7 +184,7 @@ public with sharing Class Amr_JobSheetHelper_CC{
             !jobList.BuyoutsTalentInStoreStillImage__c
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_BuyoutsTalent_at_least_oneoptionofMedium_mustbe_selected_corre_to_Instore));
-            okayToSave =false;
+            okayToSaveCheck =false;
         }
          if(!jobList.NewOriginalMaster__c && jobList.BuyoutsTalent__c && jobList.BuyoutsTalentDigital__c && 
             !jobList.BuyoutsTalentDigitalMovingImage__c && 
@@ -193,14 +193,14 @@ public with sharing Class Amr_JobSheetHelper_CC{
             !jobList.Buyouts_Talent_Digital_ED__c
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_BuyTalent_atleastoneoption_of_Medium_mustbe_selected_corr_to_Digital));
-            okayToSave =false;
+            okayToSaveCheck =false;
         }
           if(!jobList.NewOriginalMaster__c && jobList.BuyoutsTalent__c && !jobList.BuyoutsTalentOutofHome__c && 
             !jobList.BuyoutsTalentInStore__c && 
             !jobList.BuyoutsTalentDigital__c 
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_Buyouts_Talent_at_least_one_option_of_Media_Channel_must_be_selected));
-            okayToSave =false;
+            okayToSaveCheck =false;
         }
         if(!jobList.NewOriginalMaster__c && jobList.BuyoutsMusic__c && jobList.BuyoutsMusicOutofHome__c && 
             !jobList.BuyoutsMusicOutofHomeMovingImage__c && 
@@ -208,7 +208,7 @@ public with sharing Class Amr_JobSheetHelper_CC{
             !jobList.BuyoutsMusicOutofHomeStillImage__c
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_BuyoutMusic_at_least_one_option_of_Medium_mustbe_selected_corre_to_OutOfHome));
-            okayToSave =false;
+            okayToSaveCheck =false;
         }
          if(!jobList.NewOriginalMaster__c && jobList.BuyoutsMusic__c && !jobList.BuyoutsMusicInStore__c && 
             !jobList.BuyoutsMusicDigital__c && 
@@ -219,7 +219,7 @@ public with sharing Class Amr_JobSheetHelper_CC{
             !jobList.BuyoutsMusicOutofHome__c
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_For_Buyouts_Music_at_least_one_option_of_Media_Channel_must_be_selected));
-            okayToSave =false;
+            okayToSaveCheck =false;
         }
         if(!jobList.NewOriginalMaster__c && jobList.BuyoutsMusic__c && jobList.BuyoutsMusicInStore__c && 
             !jobList.BuyoutsMusicInStoreMovingImage__c && 
@@ -227,7 +227,7 @@ public with sharing Class Amr_JobSheetHelper_CC{
             !jobList.BuyoutsMusicInStoreStillImage__c
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_Buyouts_Music_at_least_one_option_of_Medium_mustbe_selected_corr_to_Instore));
-            okayToSave =false;
+            okayToSaveCheck =false;
         }
             if(!jobList.NewOriginalMaster__c && jobList.BuyoutsMusic__c && jobList.BuyoutsMusicDigital__c && 
             !jobList.BuyoutsMusicDigitalMovingImage__c && 
@@ -236,9 +236,9 @@ public with sharing Class Amr_JobSheetHelper_CC{
             !jobList.Buyouts_Music_Digital_ED__c
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_Buyouts_Music_at_least_one_option_of_Medium_must_be_selected_corre_to_Digita));
-            okayToSave =false;
+            okayToSaveCheck =false;
         }
-         return okayToSave;
+         return okayToSaveCheck;
    }
    
     /***********************************************************************************************************************************

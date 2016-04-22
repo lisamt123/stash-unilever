@@ -41,11 +41,12 @@
         <fullName>Accepted_Final_Cost_CA_Euro_Amount__c</fullName>
         <externalId>false</externalId>
         <label>Accepted Final Cost - CA(Euro Amount)</label>
-        <length>255</length>
+        <precision>17</precision>
         <required>false</required>
+        <scale>2</scale>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
-        <type>Text</type>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -458,11 +459,12 @@
         <fullName>Accepted_Final_Cost_PC_Euro_Amou__c</fullName>
         <externalId>false</externalId>
         <label>Accepted Final Cost - PC(Euro Amount)</label>
-        <length>255</length>
+        <precision>17</precision>
         <required>false</required>
+        <scale>2</scale>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
-        <type>Text</type>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>

@@ -8,7 +8,7 @@ Purpose:This class has search and sort functionality of CAP User.Also this class
 History
 -------
 VERSION     AUTHOR             DATE           DETAIL           Description
-1.0         Mindtree	       23/12/2015     INITIAL DEV      CSR:
+1.0         Mindtree           23/12/2015     INITIAL DEV      CSR:
 *************************************************************************************************************************************/
 global with sharing class Amr_CAPJobPortfolioController_CC {
     public list<Amr_Job_Allocation__c>jobDetailList {get;set;}
@@ -331,20 +331,20 @@ Search functionality is implemented and SOQL is built dynamically so can not bre
      
      if (String.isNotBlank(jobDetails.Project_Leader_Cluster__c)){
      
-           soql += ' and AM_Job_Detail__r.Project_Leader_Cluster__c = \''+String.escapeSingleQuotes(jobDetails.Project_Leader_Cluster__c)+'\'';
-            soqlForCancel +=' and AM_Job_Detail__r.Project_Leader_Cluster__c = \''+String.escapeSingleQuotes(jobDetails.Project_Leader_Cluster__c)+'\'';
+           soql += ' and AM_Job_Detail__r.Project_Leader_Cluster__c = \''+String.escapeSingleQuotes(jobDetails.Project_Leader_Cluster__c)+Amr_ConstantForAdManager.SLASH;
+            soqlForCancel +=' and AM_Job_Detail__r.Project_Leader_Cluster__c = \''+String.escapeSingleQuotes(jobDetails.Project_Leader_Cluster__c)+Amr_ConstantForAdManager.SLASH;
           
     }
     
      if(String.isNotBlank(jobDetails.Project_Leader_Country__c)){
-    soql += ' and AM_Job_Detail__r.Project_Leader_Country__c = \''+String.escapeSingleQuotes(jobDetails.Project_Leader_Country__c)+'\'';
-     soqlForCancel +=' and AM_Job_Detail__r.Project_Leader_Country__c = \''+String.escapeSingleQuotes(jobDetails.Project_Leader_Country__c)+'\'';
+    soql += ' and AM_Job_Detail__r.Project_Leader_Country__c = \''+String.escapeSingleQuotes(jobDetails.Project_Leader_Country__c)+Amr_ConstantForAdManager.SLASH;
+     soqlForCancel +=' and AM_Job_Detail__r.Project_Leader_Country__c = \''+String.escapeSingleQuotes(jobDetails.Project_Leader_Country__c)+Amr_ConstantForAdManager.SLASH;
                       
     }
    
      if(String.isNotBlank(jobDetails.Lead_Creative_Agency_name__c)){
-    soql += ' and AM_Job_Detail__r.Lead_Creative_Agency_name__c = \''+String.escapeSingleQuotes(jobDetails.Lead_Creative_Agency_name__c)+'\'';
-    soqlForCancel +=' and AM_Job_Detail__r.Lead_Creative_Agency_name__c = \''+String.escapeSingleQuotes(jobDetails.Lead_Creative_Agency_name__c)+'\'';
+    soql += ' and AM_Job_Detail__r.Lead_Creative_Agency_name__c = \''+String.escapeSingleQuotes(jobDetails.Lead_Creative_Agency_name__c)+Amr_ConstantForAdManager.SLASH;
+    soqlForCancel +=' and AM_Job_Detail__r.Lead_Creative_Agency_name__c = \''+String.escapeSingleQuotes(jobDetails.Lead_Creative_Agency_name__c)+Amr_ConstantForAdManager.SLASH;
           
      
      }
@@ -355,8 +355,8 @@ Search functionality is implemented and SOQL is built dynamically so can not bre
     soqlForCancel += ' and AM_Job_Detail__r.BroadcastMarketText__c LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(broadcastData)+Amr_ConstantForAdManager.PERCENTAGESLASH;
 }
     if(String.isNotBlank(jobDetails.Stage_of_Production_Activity__c)){
-    soql += ' and AM_Job_Detail__r.Stage_of_Production_Activity__c = \''+String.escapeSingleQuotes(jobDetails.Stage_of_Production_Activity__c)+'\'';
-    soqlForCancel +=  ' and AM_Job_Detail__r.Stage_of_Production_Activity__c = \''+String.escapeSingleQuotes(jobDetails.Stage_of_Production_Activity__c)+'\'';
+    soql += ' and AM_Job_Detail__r.Stage_of_Production_Activity__c = \''+String.escapeSingleQuotes(jobDetails.Stage_of_Production_Activity__c)+Amr_ConstantForAdManager.SLASH;
+    soqlForCancel +=  ' and AM_Job_Detail__r.Stage_of_Production_Activity__c = \''+String.escapeSingleQuotes(jobDetails.Stage_of_Production_Activity__c)+Amr_ConstantForAdManager.SLASH;
           
      }
    
@@ -371,40 +371,40 @@ Search functionality is implemented and SOQL is built dynamically so can not bre
      }
      if(String.isNotBlank(jobDetails.Project_Details__c)){
         system.debug('***jobDetails.Project_Details__c****'+jobDetails.Project_Details__c);
-    soql += ' and AM_Job_Detail__r.Project_Details__c = \''+String.escapeSingleQuotes(jobDetails.Project_Details__c)+'\'';
-    soqlForCancel +=' and AM_Job_Detail__r.Project_Details__c = \''+String.escapeSingleQuotes(jobDetails.Project_Details__c)+'\'';
+    soql += ' and AM_Job_Detail__r.Project_Details__c = \''+String.escapeSingleQuotes(jobDetails.Project_Details__c)+Amr_ConstantForAdManager.SLASH;
+    soqlForCancel +=' and AM_Job_Detail__r.Project_Details__c = \''+String.escapeSingleQuotes(jobDetails.Project_Details__c)+Amr_ConstantForAdManager.SLASH;
            
      }
      
       if(String.isNotBlank(userName) && userName != NONE){
-     soql += ' and User__c = \''+String.escapeSingleQuotes(userName)+'\'';
-     soqlForCancel +=' and User__c = \''+String.escapeSingleQuotes(userName)+'\'';
+     soql += ' and User__c = \''+String.escapeSingleQuotes(userName)+Amr_ConstantForAdManager.SLASH;
+     soqlForCancel +=' and User__c = \''+String.escapeSingleQuotes(userName)+Amr_ConstantForAdManager.SLASH;
           
      }
      
       if(String.isNotBlank(jobAllocation.Job_Allocated__c)){
-     soql += ' and Job_Allocated__c = \''+String.escapeSingleQuotes(jobAllocation.Job_Allocated__c)+'\'';
-     soqlForCancel +=' and Job_Allocated__c = \''+String.escapeSingleQuotes(jobAllocation.Job_Allocated__c)+'\'';
+     soql += ' and Job_Allocated__c = \''+String.escapeSingleQuotes(jobAllocation.Job_Allocated__c)+Amr_ConstantForAdManager.SLASH;
+     soqlForCancel +=' and Job_Allocated__c = \''+String.escapeSingleQuotes(jobAllocation.Job_Allocated__c)+Amr_ConstantForAdManager.SLASH;
            
      }
        if(String.isNotBlank(jobAllocation.Job_Shared__c)){
-     soql += ' and Job_Shared__c = \''+String.escapeSingleQuotes(jobAllocation.Job_Shared__c)+'\'';
-     soqlForCancel +=' and Job_Shared__c = \''+String.escapeSingleQuotes(jobAllocation.Job_Shared__c)+'\'';
+     soql += ' and Job_Shared__c = \''+String.escapeSingleQuotes(jobAllocation.Job_Shared__c)+Amr_ConstantForAdManager.SLASH;
+     soqlForCancel +=' and Job_Shared__c = \''+String.escapeSingleQuotes(jobAllocation.Job_Shared__c)+Amr_ConstantForAdManager.SLASH;
            
      }
      if(String.isNotBlank(jobAllocation.Reported__c)){
-     soql += ' and Reported__c = \''+String.escapeSingleQuotes(jobAllocation.Reported__c)+'\'';
-     soqlForCancel +=' and Reported__c = \''+String.escapeSingleQuotes(jobAllocation.Reported__c)+'\'';
+     soql += ' and Reported__c = \''+String.escapeSingleQuotes(jobAllocation.Reported__c)+Amr_ConstantForAdManager.SLASH;
+     soqlForCancel +=' and Reported__c = \''+String.escapeSingleQuotes(jobAllocation.Reported__c)+Amr_ConstantForAdManager.SLASH;
           
      }
       if(String.isNotBlank(jobAllocation.Started__c)){
-     soql += ' and Started__c = \''+String.escapeSingleQuotes(jobAllocation.Started__c)+'\'';
-     soqlForCancel +=' and Started__c = \''+String.escapeSingleQuotes(jobAllocation.Started__c)+'\'';
+     soql += ' and Started__c = \''+String.escapeSingleQuotes(jobAllocation.Started__c)+Amr_ConstantForAdManager.SLASH;
+     soqlForCancel +=' and Started__c = \''+String.escapeSingleQuotes(jobAllocation.Started__c)+Amr_ConstantForAdManager.SLASH;
           
      }
        if(String.isNotBlank(jobDetails.Project_Name_Other__c)){
-     soql += ' and AM_Job_Detail__r.Project_Name_Other__c = \''+String.escapeSingleQuotes(jobDetails.Project_Name_Other__c)+'\'';
-     soqlForCancel +=' and AM_Job_Detail__r.Project_Name_Other__c = \''+String.escapeSingleQuotes(jobDetails.Project_Name_Other__c)+'\'';
+     soql += ' and AM_Job_Detail__r.Project_Name_Other__c = \''+String.escapeSingleQuotes(jobDetails.Project_Name_Other__c)+Amr_ConstantForAdManager.SLASH;
+     soqlForCancel +=' and AM_Job_Detail__r.Project_Name_Other__c = \''+String.escapeSingleQuotes(jobDetails.Project_Name_Other__c)+Amr_ConstantForAdManager.SLASH;
            
      }
      /*
@@ -468,8 +468,8 @@ Search functionality is implemented and SOQL is built dynamically so can not bre
          }
 
          if(String.isNotBlank(jobDetails.Project_Name_Other__c)){
-        soql += ' and AM_Job_Detail__r.Project_Name_Other__c = \''+String.escapeSingleQuotes(jobDetails.Project_Name_Other__c)+'\'';
-        soqlForCancel += ' and AM_Job_Detail__r.Project_Name_Other__c = \''+String.escapeSingleQuotes(jobDetails.Project_Name_Other__c)+'\'';
+        soql += ' and AM_Job_Detail__r.Project_Name_Other__c = \''+String.escapeSingleQuotes(jobDetails.Project_Name_Other__c)+Amr_ConstantForAdManager.SLASH;
+        soqlForCancel += ' and AM_Job_Detail__r.Project_Name_Other__c = \''+String.escapeSingleQuotes(jobDetails.Project_Name_Other__c)+Amr_ConstantForAdManager.SLASH;
               
          }
          

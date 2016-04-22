@@ -1,7 +1,7 @@
 <messaging:emailTemplate subject="{!RelatedTo.auto_PWORF_ID__c} : Request to withhold" recipientType="User" relatedToType="CPA_PWORF__c">
 <messaging:htmlEmailBody >
     Hi, <br/><br/>
-    {!RelatedTo.ftxt_Unilever_Project_Manager_Name__c} has requested to withhold the PWORF with ID: {!RelatedTo.auto_PWORF_ID__c}  on {!RelatedTo.dat_Withhold_Date__c} . <br/><br/>
+    {!RelatedTo.LastModifiedBy.Name} has requested to withhold the PWORF with ID: {!RelatedTo.auto_PWORF_ID__c}  on {!Now()} . <br/><br/>
 
     You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id} ">{!$Label.CPA_Default_URL}{!RelatedTo.Id} </a> <br/><br/>
 

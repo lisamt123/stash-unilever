@@ -91,6 +91,10 @@
             <type>FieldUpdate</type>
         </action>
         <action>
+            <name>CPA_CR_Sent_for_signature_date_null</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
             <name>CPA_CR_SMT_Send_for_Signature</name>
             <type>FieldUpdate</type>
         </action>

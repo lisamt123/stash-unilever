@@ -97,6 +97,9 @@
             <blockId>B2</blockId>
             <joinTable>x</joinTable>
         </blockInfo>
+        <columns>
+            <field>Amr_Summary_Plan__c.ProductCategory__c</field>
+        </columns>
         <format>Summary</format>
         <name>Amr Summary Plans</name>
         <params>

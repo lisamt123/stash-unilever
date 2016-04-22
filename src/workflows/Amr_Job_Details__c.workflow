@@ -31,7 +31,7 @@
             <type>user</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/Amr_CAPNotification</template>
+        <template>AdManager/Amr_CAPNotification</template>
     </alerts>
     <alerts>
         <fullName>Amr_Agency_NoneSelected</fullName>
@@ -42,7 +42,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/Amr_Agency_NoneSelected</template>
+        <template>AdManager/Amr_Agency_NoneSelected</template>
     </alerts>
     <alerts>
         <fullName>Amr_Agency_RequireAll</fullName>
@@ -53,7 +53,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/Amr_Agency_RequireAll</template>
+        <template>AdManager/Amr_Agency_RequireAll</template>
     </alerts>
     <alerts>
         <fullName>Amr_Agency_RequireMusic</fullName>
@@ -64,7 +64,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/Amr_Agency_RequireMusic</template>
+        <template>AdManager/Amr_Agency_RequireMusic</template>
     </alerts>
     <alerts>
         <fullName>Amr_Agency_RequireTalent</fullName>
@@ -75,7 +75,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/Amr_Agency_RequireTalent</template>
+        <template>AdManager/Amr_Agency_RequireTalent</template>
     </alerts>
     <alerts>
         <fullName>Amr_Agency_TalentAndMusic</fullName>
@@ -86,7 +86,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/Amr_Agency_TalentAndMusic</template>
+        <template>AdManager/Amr_Agency_TalentAndMusic</template>
     </alerts>
     <alerts>
         <fullName>Amr_Agency_TvAndMusic</fullName>
@@ -97,7 +97,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/Amr_Agency_TvAndMusic</template>
+        <template>AdManager/Amr_Agency_TvAndMusic</template>
     </alerts>
     <alerts>
         <fullName>Amr_Agency_TvAndTalent</fullName>
@@ -108,7 +108,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/Amr_Agency_TvAndTalent</template>
+        <template>AdManager/Amr_Agency_TvAndTalent</template>
     </alerts>
     <alerts>
         <fullName>Amr_Agency_TvOrCinema</fullName>
@@ -119,7 +119,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/Amr_Agency_TvOrCinema</template>
+        <template>AdManager/Amr_Agency_TvOrCinema</template>
     </alerts>
     <alerts>
         <fullName>Amr_JobAccepted</fullName>
@@ -150,7 +150,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/Amr_RAPAcceptedJob</template>
+        <template>AdManager/Amr_RAPAcceptedJob</template>
     </alerts>
     <alerts>
         <fullName>Amr_JobCancellation</fullName>
@@ -178,7 +178,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/Amr_JobCancellation</template>
+        <template>AdManager/Amr_JobCancellation</template>
     </alerts>
     <alerts>
         <fullName>Amr_JobReAllocation</fullName>
@@ -189,7 +189,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/Amr_RAPAllocatedJob</template>
+        <template>AdManager/Amr_RAPAllocatedJob</template>
     </alerts>
     <alerts>
         <fullName>Amr_Threshold</fullName>
@@ -204,7 +204,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/Amr_ThresholdNotification</template>
+        <template>AdManager/Amr_ThresholdNotification</template>
     </alerts>
     <alerts>
         <fullName>Amr_User_MusicAndTalent</fullName>
@@ -227,7 +227,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/Amr_User_MusicAndTalent</template>
+        <template>AdManager/Amr_User_MusicAndTalent</template>
     </alerts>
     <alerts>
         <fullName>Amr_User_NoSelection</fullName>
@@ -250,7 +250,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/Amr_User_NoSelectection</template>
+        <template>AdManager/Amr_User_NoSelectection</template>
     </alerts>
     <alerts>
         <fullName>Amr_User_RequireAll</fullName>
@@ -273,7 +273,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/Amr_User_RequireAll</template>
+        <template>AdManager/Amr_User_RequireAll</template>
     </alerts>
     <alerts>
         <fullName>Amr_User_RequireMusic</fullName>
@@ -296,7 +296,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/Amr_User_RequireMusic</template>
+        <template>AdManager/Amr_User_RequireMusic</template>
     </alerts>
     <alerts>
         <fullName>Amr_User_RequireTalent</fullName>
@@ -319,7 +319,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/Amr_User_RequireTalent</template>
+        <template>AdManager/Amr_User_RequireTalent</template>
     </alerts>
     <alerts>
         <fullName>Amr_User_TvAndMusic</fullName>
@@ -342,7 +342,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/Amr_User_TvAndMusic</template>
+        <template>AdManager/Amr_User_TvAndMusic</template>
     </alerts>
     <alerts>
         <fullName>Amr_User_TvAndTalent</fullName>
@@ -365,7 +365,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/Amr_User_TvAndTalent</template>
+        <template>AdManager/Amr_User_TvAndTalent</template>
     </alerts>
     <alerts>
         <fullName>Amr_User_TvOrCinema</fullName>
@@ -388,7 +388,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/Amr_User_TvOrCinema</template>
+        <template>AdManager/Amr_User_TvOrCinema</template>
     </alerts>
     <alerts>
         <fullName>test</fullName>
@@ -399,7 +399,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/Amr_CAPNotification</template>
+        <template>AdManager/Amr_CAPNotification</template>
     </alerts>
     <rules>
         <fullName>AMR_CAPNotification</fullName>

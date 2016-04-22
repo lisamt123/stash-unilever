@@ -12,4 +12,6 @@
     <tab>AMPlanSummary__c</tab>
     <tab>AmJobSaving__c</tab>
     <tab>PDF</tab>
+    <tab>CompareData__c</tab>
+    <tab>Device_POC__c</tab>
 </CustomApplication>

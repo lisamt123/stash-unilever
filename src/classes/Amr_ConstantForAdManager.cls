@@ -90,6 +90,8 @@ public class Amr_ConstantForAdManager{
      public static final String  READ = 'Read';
      public static final String  CLUSTERLA= 'latin america';
      public static final String AMR_REPORT = 'Amr_Report';
+     public static final String STAGE_ONEANDTWOCOUNT = 'stageOneandTwoCount';
+     public static final String ALL_COUNT = 'allCount';
      
    
 }
