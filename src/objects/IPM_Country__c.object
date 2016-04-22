@@ -2821,6 +2821,15 @@
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000L31u_IPM_Country</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE0000000L31u</label>
+        <queue>IPM_a7IE0000000L31u</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <displayFormat>C-{0000}</displayFormat>
         <label>IPM Country No</label>

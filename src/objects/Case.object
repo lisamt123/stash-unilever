@@ -4068,67 +4068,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>CEC_North_America_Ben_Jerrys_US2</fullName>
-        <booleanFilter>(1 or 4 or 5) AND 2 AND 3 and 6 and 7 and 8</booleanFilter>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>Country__c</columns>
-        <columns>ACCOUNT.NAME</columns>
-        <columns>Case_Brand__c</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <columns>NAME</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>Ben &amp; Jerry&apos;s</value>
-        </filters>
-        <filters>
-            <field>Country__c</field>
-            <operation>equals</operation>
-            <value>United States - English</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New,Escalated</value>
-        </filters>
-        <filters>
-            <field>Brand__c</field>
-            <operation>equals</operation>
-            <value>Ben &amp; Jerry&apos;s</value>
-        </filters>
-        <filters>
-            <field>CASES.SUBJECT</field>
-            <operation>equals</operation>
-            <value>Ben &amp; Jerry&apos;s Email</value>
-        </filters>
-        <filters>
-            <field>CASES.SUBJECT</field>
-            <operation>notEqual</operation>
-            <value>Ben &amp; Jerry&apos;s Donation Email,Scoop Shop Complaint Received</value>
-        </filters>
-        <filters>
-            <field>CASES.SUBJECT</field>
-            <operation>notEqual</operation>
-            <value>Ben &amp; Jerry&apos;s Donations Email</value>
-        </filters>
-        <filters>
-            <field>ACCOUNT.NAME</field>
-            <operation>notEqual</operation>
-        </filters>
-        <label>CEC North America Ben &amp; Jerrys US2</label>
-        <language>en_US</language>
-        <sharedTo>
-            <role>CEC_Global_Head</role>
-            <role>CEC_Manager_North_America</role>
-            <role>CEC_User_North_America</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>CEC_North_America_Ben_Jerrys_USA</fullName>
         <booleanFilter>(1 or 4 or 5) AND 2 AND 3 and 6 and 7</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
@@ -4943,6 +4882,33 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
         <sharedTo>
             <role>CEC_Global_Head</role>
+            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_North_America_Open_Cases</fullName>
+        <columns>Country__c</columns>
+        <columns>Case_Brand__c</columns>
+        <columns>CASES.ORIGIN</columns>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.LAST_UPDATE_DATE_ONLY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>New,Closed,Closed as Duplicate</value>
+        </filters>
+        <label>CEC North America Open Cases</label>
+        <language>en_US</language>
+        <queue>CEC_North_America_Queue</queue>
+        <sharedTo>
             <role>CEC_Manager_North_America</role>
             <role>CEC_User_North_America</role>
         </sharedTo>
