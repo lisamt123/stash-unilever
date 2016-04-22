@@ -18,19 +18,33 @@ public with sharing class WWP_LossTree_CC{
     String valueNone = 'None';
     String valueNull = '';
      public WWP_LossTree_CC(){
+         try{
          lossTree = new WWP_Loss_Tree__c(); 
          listPlantCodes = new List<SelectOption>(); 
-         List<PermissionSetAssignment> plantCodePS = new List<PermissionSetAssignment>();  
-         plantCodePS = [SELECT Assignee.Name, PermissionSet.Id, PermissionSet.isOwnedByProfile, PermissionSet.Profile.Name, PermissionSet.Label,PermissionSet.name FROM PermissionSetAssignment WHERE AssigneeId=:userinfo.getuserid() and PermissionSet.name Like 'WWP_PlantCode_%'];
+         List<WWP_PlantCode_User_Mapping__c> plantcodeusers= new List<WWP_PlantCode_User_Mapping__c>();
+         plantcodeusers = [Select name,user__c,Plant_code__c from WWP_PlantCode_User_Mapping__c where user__c =: userinfo.getuseremail()];
          listPlantCodes.add(new SelectOption(valueNull,'--None--'));
-         if(!plantCodePS.isEmpty()){
-             for(PermissionSetAssignment ps: plantCodePS){
-                 listPlantCodes.add(new SelectOption(ps.PermissionSet.name.substring(14),ps.PermissionSet.name.substring(14)));
+         Set<string> uniqueCodes = new Set<String>();
+         if(!plantcodeusers.isEmpty()){             
+             for(WWP_PlantCode_User_Mapping__c ps: plantcodeusers){
+                 uniqueCodes.add(ps.Plant_code__c);
+                 //listPlantCodes.add(new SelectOption(ps.name,ps.name));
              }
-         
+             if(!uniqueCodes.isEmpty()){
+                 for(string plantCode: uniqueCodes){                
+                 listPlantCodes.add(new SelectOption(plantCode,plantCode));
+                 }    
+             }
+             
          } 
+         
+         
          else{
              message = label.WWP_NocodeAssigned_Err;
+         }
+         }
+         catch(Exception e){
+             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Info,e.getmessage()));
          }
      }
      public void fetchLossTree(){
