@@ -9141,7 +9141,7 @@ For either option it is possible to add/remove sections and To-do&apos;s later. 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_Move_To_PLE_Details</shortDescription>
-        <value>Are you ready to Launch and move the project to PLE Phase? If not, please Cancel to be taken back to make edits to the Project.</value>
+        <value>Are you ready to Launch and move the project to PLE Phase? If not, then Cancel.</value>
     </labels>
     <labels>
         <fullName>IPM_MyTo_doList</fullName>
