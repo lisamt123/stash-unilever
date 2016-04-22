@@ -4,6 +4,13 @@ public class WWP_LossTree_Test {
     Static testMethod void testlosstree1(){
     String ORName1 = 'ORName1';
     String ORSubfamily1 = 'ORSubfamily1';
+        WWP_PlantCode_User_Mapping__c pcuser = new WWP_PlantCode_User_Mapping__c();
+        pcuser.name='pcuser1';
+        pcuser.plant_code__c = 'B100';
+        pcuser.user__c = userinfo.getuseremail();
+        insert pcuser;
+        
+        
         List<WWP_LossTree__c> ltreesetting = new List<WWP_LossTree__c>();
         WWP_LossTree__c setting1 = new WWP_LossTree__c();
         WWP_LossTree__c setting2 = new WWP_LossTree__c();
