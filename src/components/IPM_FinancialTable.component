@@ -643,7 +643,7 @@
                         <!--
                             Renders if the Gross Turnover value is misaligned in non-edit mode
                         -->
-                        <apex:outputText rendered="{!AND(GrossTurnoverMisAligned,NOT(isEditMode),NOT(OR(valueWrapper.isValueInvalid,valueWrapper.isGrossTOGRTIto)))}">
+                        <apex:outputText rendered="{!AND(GrossTurnoverMisAligned,NOT(isEditMode),NOT(valueWrapper.isValueInvalid), NOT(valueWrapper.isGrossTOGRTIto))}">
                             <span class="info" title="{!$Label.IPM_TURNOVER} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
                                                                      {!$Label.IPM_TURNOVER} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
                                 <apex:outputText value="{0, number, ###,###,###.##}">
@@ -665,6 +665,15 @@
                                 </apex:outputText>
                             </span>
                         </apex:outputText>
+                        <apex:outputText rendered="{!AND(GrossTurnoverMisAligned,NOT(isEditMode), valueWrapper.isValueInvalid,NOT(valueWrapper.isGrossTOGRTIto))}">
+                        	<span class="info" title="{!$Label.IPM_TURNOVER} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
+                                                                     {!$Label.IPM_TURNOVER} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}
+                                                                     {!$Label.IPM_Gross_Turnover_Can_Not_Be_Zero_Or_Negative}">
+                                <apex:outputText value="{0, number, ###,###,###.##}">
+                                    <apex:param value="{!valueWrapper.value}" />
+                                </apex:outputText>
+                            </span>
+                        </apex:outputText>
                         <apex:outputText rendered="{!AND(valueWrapper.isGrossTOGRTIto,valueWrapper.isValueInvalid, NOT(isEditMode),NOT(GrossTurnoverMisAligned))}">
                             <span class="info" title="{!$Label.IPM_Gross_Turnover_Can_Not_Be_Zero_Or_Negative} {!$Label.IPM_ITO_should_not_be_greater_than_GTO}">
                                 <apex:outputText value="{0, number, ###,###,###.##}">
@@ -672,10 +681,20 @@
                                 </apex:outputText>
                             </span>
                         </apex:outputText>
-                        <apex:outputText rendered="{!AND(GrossTurnoverMisAligned,NOT(isEditMode), OR(valueWrapper.isMinorValueInvalid,valueWrapper.isGrossTOGRTIto))}">
+                        <apex:outputText rendered="{!AND(GrossTurnoverMisAligned,NOT(isEditMode), NOT(valueWrapper.isValueInvalid),valueWrapper.isGrossTOGRTIto)}">
                         	<span class="info" title="{!$Label.IPM_TURNOVER} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
                                                                      {!$Label.IPM_TURNOVER} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}
-                                                                     {!$Label.IPM_Gross_Turnover_Can_Not_Be_Zero_Or_Negative}">
+                                                                     {!$Label.IPM_ITO_should_not_be_greater_than_GTO}">
+                                <apex:outputText value="{0, number, ###,###,###.##}">
+                                    <apex:param value="{!valueWrapper.value}" />
+                                </apex:outputText>
+                            </span>
+                        </apex:outputText>
+                        <apex:outputText rendered="{!AND(GrossTurnoverMisAligned,NOT(isEditMode), valueWrapper.isValueInvalid,valueWrapper.isGrossTOGRTIto)}">
+                        	<span class="info" title="{!$Label.IPM_TURNOVER} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
+                                                                     {!$Label.IPM_TURNOVER} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}
+                                                                     {!$Label.IPM_Gross_Turnover_Can_Not_Be_Zero_Or_Negative}
+                                                                     {!$Label.IPM_ITO_should_not_be_greater_than_GTO}">
                                 <apex:outputText value="{0, number, ###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>

@@ -691,6 +691,8 @@ public with sharing class IPM_ProjectHelper
             
             if(upsertSectionList !=null)
             {
+                IPM_ProjectDocumentSectionHandler.SKIP_SECTION_TASK_ASSOCIATION = true;
+                
                 upsert upsertSectionList Id;
                 
                 // Create a Map of project To Map of Document To Section

@@ -560,6 +560,40 @@
         .panel .ipmButtonSet{margin-bottom:10px;}		
         input.misalignedField{border:1px solid red;}		
         .breakdown_Container{width: 762px;font-size:10px;clear:both;}
+		
+	/* Global Financial Action Standards Styles */
+		.gatefinancialbg{background-color:#EBF8FC;padding: 10px;}
+		.glbfinstdsContainer{background-color: #dceefa;border:1px solid #ddd;float: left;width: 100%;}
+		.glbHeadLeft{min-width: 100px;float: left;height: 113px;border: 1px solid #ddd;}
+		.glbHeadRight{width:658px;float: left;min-height: 100px;border: 1px solid #ddd;}
+		.glbHeadtop1{width:325px;float:left;min-height: 98px;}
+		.glbHeadtop2{width:330px;float:left;min-height: 98px;}
+		.glbfrstyear,.glbinnovation{padding-bottom: 5px;text-align: center;color: #364354;font-weight: bold;margin-top: 5px;border-bottom: 1px solid #ddd;}
+		.glbsubHeadM{float:left;width:64px;padding-top: 10px;text-align: center;border-right: 1px solid #ddd;min-height: 72px;font-size: 11px;}
+		.glbsubHeadM2{float:left;width:33%;padding-top: 10px;text-align: center;border-right: 1px solid #ddd;min-height: 72px;font-size: 11px;}
+		.glbHeadtop1{border-right: 1px solid #ddd;}
+		.glbsubHead8,.glbValM2.glbVal8{border-right:0px;}
+		.glbValLeft{height: 43px;width: 100px;float: left;display: block;border: 1px solid #ddd;text-align:center;padding-top: 5px;}
+		.glbValRight{width:762px;height: 42px;}
+		.glbValSubLeft{width:327px;display:block;height: 40px;float:left;}
+		.glbValSubRight{width:332px;display:block;height: 50px;float:left;border-right: 1px solid #ddd;}
+		.glbValM{width:54px;float:left;border-right: 1px solid #ddd;border-bottom: 1px solid #ddd;padding: 5px;min-height: 40px;}
+		.glbValM2{width:99px;float:left;border-right: 1px solid #ddd;border-bottom: 1px solid #ddd;padding: 5px;min-height: 40px;}
+		.glbVal8{border-right: 1px solid #ddd;width:100px;}
+		.glbVal5{width:56px;}
+		.glbsecContainer .glbVal8{border-right:1px solid #ddd;width:102px;}
+		.glbValLeft.othValleft{height:44px !important;}
+		.glbsecContainer{float:left;width:100%;}
+		.glbfrstContainer{float:left;width:100%;display:table;}
+		.glbsubHeadM,.glbsubHeadM2{font-size: 11px;color: #364354;font-weight: bold;}
+		.glbValLeft{font-size: 0.800em;color:#222;font-weight: bold;}
+		.glbSeclist{width:50%;float:left;}
+		.glbfinvalContainer{float:left;display:table;width:100%;}
+	
+	/* Financial Action Standards Inverse styles */
+		.ipmFinancetable.inverse{width:100%;max-width:100%;}
+		.ipmFinancetable.inverse .finproject{font-size: 11px;color: #364354;font-weight: bold;float: none;}
+		.ipmFinancetable.inverse td div{font-size: 0.800em;color:#222;}
     </style>
 </head>
 <body class="docBody">
@@ -705,7 +739,7 @@
                     
                      <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Global','true','false')}">
                     <td>
-                        <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' && projectDoc.IPM_Document_Status__c=='Approved'),fin.Year_3_iTO_MD__c,if(project.IPM_Phase__c=='Ideas',fin.Year_3_iTO_Global__c,fin.Year_3_iTO_Regional__c)))))}"/><apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
+                        <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' && projectDoc.IPM_Document_Status__c=='Approved'),fin.Year_3_iTO_MD__c,fin.Year_3_iTO_Global__c))))}"/><apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
                     </td>
                     </apex:outputText>
                       

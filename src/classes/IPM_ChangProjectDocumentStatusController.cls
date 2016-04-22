@@ -334,6 +334,10 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                     if(rolloutCount>0)
                     {
             	invalidFinancialsCount=[Select count() FROM IPM_Financial__c where IsFinancialInvalid__c=true AND Global_External_Id__c=:project.IPM_Project_Name__c AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND  isActive__c=true];
+            	if(invalidFinancialsCount == 0)
+                {
+                	fin=[SELECT Gross_Y1_Turnover_Global__c FROM IPM_Financial__c WHERE Financial_External_ID__c=:finExternalID AND  isActive__c=true];
+                }
                     }
                 }
                 else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL &&    (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL || project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT))
@@ -345,7 +349,11 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                     if(rolloutCount>0)
                     {
             	invalidFinancialsCount=[Select count() FROM IPM_Financial__c where IsFinancialInvalid__c=true AND Regional_Project__c=:projectId AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND  isActive__c=true];
+            	if(invalidFinancialsCount == 0)
+                {
+                	fin=[SELECT Gross_Y1_Turnover_Regional__c FROM IPM_Financial__c WHERE Financial_External_ID__c=:finExternalID AND  isActive__c=true];
                     }
+            }
                     
                 }
         else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL || project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
@@ -353,7 +361,10 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                   
                     finExternalID=project.IPM_Project_Name__c;
             invalidFinancialsCount=[Select count() FROM IPM_Financial__c where IsFinancialInvalid__c=true AND Financial_External_ID__c=:finExternalID AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND  isActive__c=true];
-                  
+            if(invalidFinancialsCount == 0)
+            {
+            	fin=[SELECT Gross_Y1_Turnover_Local__c  FROM IPM_Financial__c WHERE Financial_External_ID__c=:finExternalID AND  isActive__c=true];
+            }
                 }
     }
     
@@ -472,8 +483,12 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                     showValidation=false;
                     rolloutNotExistsError=true;
                 }
-                
+            if(invalidFinancialsCount>0 || fin.Gross_Y1_Turnover_Global__c <= 0)
+            {
+                showValidation=false;
+                financialError=true;
                 }   
+        }
             
             if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
             {
@@ -489,10 +504,15 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                     rolloutCountryPLFilledError=true;
                 }
            
-                
+            if(invalidFinancialsCount>0 || fin.Gross_Y1_Turnover_Regional__c <= 0)
+            {
+                showValidation=false;
+                financialError=true;
             }
+        }
             
-        if(invalidFinancialsCount>0) // check for hard Validation REQ3006
+        
+        if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL && (fin.Gross_Y1_Turnover_Regional__c <=0.00 || invalidFinancialsCount>0))
             {
                 showValidation=false;
                 financialError=true;
