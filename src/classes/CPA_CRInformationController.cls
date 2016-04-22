@@ -53,7 +53,7 @@ global with sharing class CPA_CRInformationController {
         mandatoryStringFlag = null;
         RequiredFieldMap = new Map<String,String>();
 
-        crRec = [select id,chk_Contract_Attached__c,chk_Contract_Excel_Attached__c,txt_Accenture_Project_Manager__c , isValidated__c ,mpkl_Change_Record_history__c ,Region_impacted__c  , txt_Change_Record_number__c , dt_CR_End_date__c , dt_CR_Start_Date__c , pkl_Currency__c , dt_Date_raised__c , num_Estimated_Man_days_of_CR__c , pec_Estimated_Off_shore__c , pec_Estimated_On_shore__c , num_Estimated_Value_of_CR__c , pec_Expense__c , num_Expense_charges_of_CR__c , pkl_Phase_change_record_raised__c , pkl_Project_Phases__c , PWO_number__c , pkl_Status__c , num_Target_Blend_Rate__c , txt_Title_of_change__c , num_Total_charge_of_CR__c , eml_Unilever_Content_Approver_Email__c, txt_Unilever_Content_Approver_Name__c, eml_Unilever_Budget_Approver_Email__c, txt_Unilever_Budget_Approver_Name__c, txta_Unilever_Project_Name__c , txt_Unilever_Reference__c , num_Varied_Target_Blend_Rate__c , txt_Other_Currency__c , txt_Other_Phase_change_record_raised__c , txt_Other_Project_Phases__c,PWORFDelta_OtherProcess_Office_Area_E2E__c ,txt_Other_PWORFDelta_Request_Type__c ,txt_PWODelta_Other_Billing_Details__c ,txt_PWODelta_Other_Innovation_Area__c ,pkl_PWORFDelta_Process_Office_Area_E2E__c ,pkl_PWORFDelta_Request_Type__c ,mpkl_PWODelta_Billing_Details__c ,mpkl_PWODelta_Unilever_Innovation_Area__c ,chk_isStandalone_CR__c  from CPA_CR__c where id =:crRecId];
+        crRec = [select id,chk_Contract_Attached__c,per_Variance__c,chk_Contract_Excel_Attached__c,txt_Accenture_Project_Manager__c , isValidated__c ,mpkl_Change_Record_history__c ,Region_impacted__c  , txt_Change_Record_number__c , dt_CR_End_date__c , dt_CR_Start_Date__c , pkl_Currency__c , dt_Date_raised__c , num_Estimated_Man_days_of_CR__c , pec_Estimated_Off_shore__c , pec_Estimated_On_shore__c , num_Estimated_Value_of_CR__c , pec_Expense__c , num_Expense_charges_of_CR__c , pkl_Phase_change_record_raised__c , pkl_Project_Phases__c , PWO_number__c , pkl_Status__c , num_Target_Blend_Rate__c , txt_Title_of_change__c , num_Total_charge_of_CR__c , eml_Unilever_Content_Approver_Email__c, txt_Unilever_Content_Approver_Name__c, eml_Unilever_Budget_Approver_Email__c, txt_Unilever_Budget_Approver_Name__c, txta_Unilever_Project_Name__c , txt_Unilever_Reference__c , num_Varied_Target_Blend_Rate__c , txt_Other_Currency__c , txt_Other_Phase_change_record_raised__c , txt_Other_Project_Phases__c,PWORFDelta_OtherProcess_Office_Area_E2E__c ,txt_Other_PWORFDelta_Request_Type__c ,txt_PWODelta_Other_Billing_Details__c ,txt_PWODelta_Other_Innovation_Area__c ,pkl_PWORFDelta_Process_Office_Area_E2E__c ,pkl_PWORFDelta_Request_Type__c ,mpkl_PWODelta_Billing_Details__c ,mpkl_PWODelta_Unilever_Innovation_Area__c ,chk_isStandalone_CR__c,dat_Sent_for_Signature_Date__c, ltxta_Comments__c  from CPA_CR__c where id =:crRecId];
                 
        
         if((crRec.pkl_Status__c == 'Saved' || crRec.pkl_Status__c == 'Returned')|| !callFromVF){
@@ -79,6 +79,9 @@ global with sharing class CPA_CRInformationController {
             }
             if(crRec.dt_CR_Start_Date__c  == null){  
                  RequiredFieldMap.put( 'CR Start Date' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
+            }
+            if(crRec.dt_CR_Start_Date__c  != null && crRec.dt_CR_End_date__c  != null && crRec.dt_CR_End_date__c < crRec.dt_CR_Start_Date__c){  
+                 RequiredFieldMap.put( 'CR End date' ,CPA_ConstantsForContractingAppClasses.ENDDATECANNOTBEBEFORESTARTDATE);
             }
             if(crRec.pkl_Currency__c  == null){  
                  RequiredFieldMap.put( 'Currency' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
@@ -174,6 +177,9 @@ global with sharing class CPA_CRInformationController {
             if(crRec.pkl_Project_Phases__c != null && !crRec.pkl_Project_Phases__c.contains(CPA_ConstantsForContractingAppClasses.OTHER) && crRec.txt_Other_Project_Phases__c != null){
                 RequiredFieldMap.put( 'Other Project Phases' ,' It should be only entered when "Project Phases" is Other');
             }
+            if(crRec.per_Variance__c == null){
+				RequiredFieldMap.put( 'Variance %' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
+			}
             if(crRec.chk_isStandalone_CR__c){
                 if(crRec.txt_Unilever_Reference__c  == null){  
                      RequiredFieldMap.put( 'Unilever Reference' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
@@ -202,15 +208,21 @@ global with sharing class CPA_CRInformationController {
                 if((crRec.mpkl_PWODelta_Unilever_Innovation_Area__c == null || !crRec.mpkl_PWODelta_Unilever_Innovation_Area__c.contains(CPA_ConstantsForContractingAppClasses.OTHER)) && crRec.txt_PWODelta_Other_Innovation_Area__c != null){
                     RequiredFieldMap.put( 'Other Unilever Innovation Area' ,' It should be only entered when "Unilever Innovation Area" is Other');
                 }
+                if(crRec.ltxta_Comments__c  == null){  
+                     RequiredFieldMap.put( 'Comments' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
+                }            
             }
         }
 
         
         CPA_Status_Msg__c customSettingStatusMsg = CPA_Status_Msg__c.getInstance(crRec.pkl_Status__c);
         CPA_Status_Msg__c customSettingStatusMsg1 = CPA_Status_Msg__c.getInstance(CPA_ConstantsForContractingAppClasses.READYTOSUBMIT);
-
+        string returnFromDocSign = 'CR' + CPA_ConstantsForContractingAppClasses.RETURNFROMDOCSIGN;
         if(customSettingStatusMsg1!=null && customSettingStatusMsg1.CR_Status_Msg__c != null && callFromVF && RequiredFieldMap.isEmpty() && crRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED ){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, customSettingStatusMsg1.CR_Status_Msg__c));
+        }
+         else if(callFromVF && returnFromDocSign != null && crRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED && crRec.dat_Sent_for_Signature_Date__c !=null){
+            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, returnFromDocSign));
         }
         else if(customSettingStatusMsg.CR_Status_Msg__c != null && callFromVF){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, customSettingStatusMsg.CR_Status_Msg__c));
