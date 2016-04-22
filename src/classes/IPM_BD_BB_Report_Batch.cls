@@ -558,56 +558,26 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
              for(IPM_Project_Rollout__c pr:projRolloutMap.get(parent.IPM_Project_Id__c)){
                     
                     IPM_Analytics__c analyticObj = new IPM_Analytics__c();
-                    //copy Values from rollout record
-                    analyticObj.IPM_Project_Name__c = pr.name;
-                    analyticObj.IPM_Company__c = pr.IPM_Company_Card__r.Name; // as per the update it will be populated by Unilever report tool
-                    analyticObj.IPM_Target_Launch_Month_BD__c = pr.Target_LaunchMonth__c;
-                    if(pr.Target_LaunchYear__c != null){
-                        analyticObj.IPM_Target_Launch_Year_BD__c = integer.valueOf(pr.Target_LaunchYear__c) ;
-                    }
-                    analyticObj.IPM_Parent_Project_Name__c = pr.IPM_Parent_Project_Name__c; 
-                    analyticObj.IPM_Project_Leader__c = pr.IPM_Regional_PL__r.Name;
-                    //Copy values From Parent project
-                    analyticObj.IPM_Project_Id__c = parent.IPM_Project_Id__c;                    
-                    analyticObj.IPM_Project_Description__c = parent.IPM_Project_Description__c;
-                    analyticObj.IPM_Project_Type__c = IPM_Utils.Rollout;
-                    analyticObj.IPM_Category_Group__c = parent.IPM_Category_Group__c;
-                    analyticObj.IPM_Category__c = parent.IPM_Category__c;
-                    analyticObj.IPM_Brand_Positioning__c = parent.IPM_Brand_Positioning__c;
-                    analyticObj.IPM_Market_Place_Activity__c = parent.IPM_Market_Place_Activity__c;
-                    analyticObj.IPM_Consumer_Value_Perception__c = parent.IPM_Consumer_Value_Perception__c;
-                    analyticObj.IPM_Enabling_Technology__c = parent.IPM_Enabling_Technology__c;
-                    analyticObj.IPM_Strategic_Intent__c = parent.IPM_Strategic_Intent__c;
-                    analyticObj.IPM_Exempt_from_Threshold__c = parent.IPM_Exempt_from_Threshold__c;
-                    analyticObj.IPM_Expected_Charter_Approval_Date__c = parent.IPM_Expected_Charter_Approval_Date__c;
-                    analyticObj.IPM_Charter_Approved_Date__c = parent.IPM_Charter_Approved_Date__c;  
-                    analyticObj.IPM_Charter_Proposed_Date__c = parent.IPM_Charter_Proposed_Date__c;
-                    analyticObj.IPM_Expected_Contract_Approval_Date__c = parent.IPM_Expected_Contract_Approval_Date__c;
-                    analyticObj.IPM_Expected_Market_Ready_Approval_Date__c = parent.IPM_Expected_Market_Ready_Approval_Date__c;
-                    analyticObj.IPM_Expected_Market_Deployment_App_Date__c = parent.IPM_Expected_Market_Deployment_App_Date__c;
-                    analyticObj.IPM_BET_First_Release_Due_Date__c = parent.IPM_BET_First_Release_Due_Date__c;
-                    analyticObj.IPM_BET_First_Released_On_Date__c = parent.IPM_BET_First_Released_On_Date__c;
-                    analyticObj.IPM_BET_Final_Release_Due_date__c = parent.IPM_BET_Final_Release_Due_date__c;
-                    analyticObj.IPM_BET_Final_Released_On_date__c = parent.IPM_BET_Final_Released_On_date__c;
+                    
+                    // project Rollout related details to be copied  
+                    analyticObj = setRolloutProjectdetails(analyticObj, pr, parent);
                     
                     if(pr.RecordTypeId == REGIONAL_ROLLOUT_RECTYPE){
-                        analyticObj.IPM_Project_Span__c =IPM_Utils.Regional;
-                        analyticObj.IPM_Geography__c = pr.Market_Cluster_Name__c;
-                        analyticObj.IPM_Phase__c = pr.Regional_Rollout_Phase__c;
-                        analyticObj.IPM_IC_NBU__c = IPM_Utils.IPM_IC;
-                        regionalrolloutid = pr.Id;                                     
-                    }else if(pr.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE ){
-                        analyticObj.IPM_Project_Span__c = IPM_Utils.Local;
-                        analyticObj.IPM_Geography__c=ipmCountryMap.containskey(pr.id)?ipmCountryMap.get(pr.id):'';
-                        analyticObj.IPM_Market_Cluster__c = pr.Market_Cluster_Name__c;
-                        analyticObj.IPM_Phase__c = pr.Regional_Project__r.IPM_Phase__c;
-                        analyticObj.IPM_Key_NonKey__c = pr.KeyMCO__c?IPM_ConstantUtils.OTIF_YES:IPM_ConstantUtils.OTIF_NO;
-                        analyticObj.IPM_IC_NBU__c = IPM_Utils.IPM_IC_NBU;
-                        regionalrolloutid=pr.Regional_Project__c != null?pr.Regional_Rollout__r.id:null;
-                    }   
-                    
-                    Boolean globalORregionalValues=pr.IPM_Global_OR_Regional__c;
-                    
+			            analyticObj.IPM_Project_Span__c =IPM_Utils.Regional;
+			            analyticObj.IPM_Geography__c = pr.Market_Cluster_Name__c;
+			            analyticObj.IPM_Phase__c = pr.Regional_Rollout_Phase__c;
+			            analyticObj.IPM_IC_NBU__c = IPM_Utils.IPM_IC;
+			            regionalrolloutid = pr.Id;                                     
+			        }else if(pr.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE ){
+			            analyticObj.IPM_Project_Span__c = IPM_Utils.Local;
+			            analyticObj.IPM_Geography__c=ipmCountryMap.containskey(pr.id)?ipmCountryMap.get(pr.id):'';
+			            analyticObj.IPM_Market_Cluster__c = pr.Market_Cluster_Name__c;
+			            analyticObj.IPM_Phase__c = pr.Regional_Project__r.IPM_Phase__c;
+			            analyticObj.IPM_Key_NonKey__c = pr.KeyMCO__c?IPM_ConstantUtils.OTIF_YES:IPM_ConstantUtils.OTIF_NO;
+			            analyticObj.IPM_IC_NBU__c = IPM_Utils.IPM_IC_NBU;
+			            regionalrolloutid=pr.Regional_Project__c != null?pr.Regional_Rollout__r.id:null;
+			        } 
+			        
                     string finExtId = '';
                     if(regionalrolloutid != null && rolloutFinancialmap.containskey(regionalrolloutid)){ 
                         for(IPM_Financial__c fir:rolloutFinancialmap.get(regionalrolloutid)){
@@ -616,13 +586,54 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                             }                       
                         }
                     }                                           
-                    
+                    // Financial related details to be copied
                     analyticObj = setRolloutFinancialdetails(analyticObj, finExtId, pr); 
                     
                     returnList.add(analyticObj);              
                 }
             return returnList;    
         }
+    
+    /*********************************************************************************************************************
+     * @Description: To copy rollout related financial details
+     * @param1: IPM_Analytics__c, String, IPM_Project_Rollout__c
+     * @return: IPM_Analytics__c Analytic object record  
+     *********************************************************************************************************************/    
+    public IPM_Analytics__c setRolloutProjectdetails(IPM_Analytics__c analyticObj, IPM_Project_Rollout__c pr, IPM_Analytics__c parent){
+    	//copy Values from rollout record
+        analyticObj.IPM_Project_Name__c = pr.name;
+        analyticObj.IPM_Company__c = pr.IPM_Company_Card__r.Name; // as per the update it will be populated by Unilever report tool
+        analyticObj.IPM_Target_Launch_Month_BD__c = pr.Target_LaunchMonth__c;
+        if(pr.Target_LaunchYear__c != null){
+            analyticObj.IPM_Target_Launch_Year_BD__c = integer.valueOf(pr.Target_LaunchYear__c) ;
+        }
+        analyticObj.IPM_Parent_Project_Name__c = pr.IPM_Parent_Project_Name__c; 
+        analyticObj.IPM_Project_Leader__c = pr.IPM_Regional_PL__r.Name;
+        //Copy values From Parent project
+        analyticObj.IPM_Project_Id__c = parent.IPM_Project_Id__c;                    
+        analyticObj.IPM_Project_Description__c = parent.IPM_Project_Description__c;
+        analyticObj.IPM_Project_Type__c = IPM_Utils.Rollout;
+        analyticObj.IPM_Category_Group__c = parent.IPM_Category_Group__c;
+        analyticObj.IPM_Category__c = parent.IPM_Category__c;
+        analyticObj.IPM_Brand_Positioning__c = parent.IPM_Brand_Positioning__c;
+        analyticObj.IPM_Market_Place_Activity__c = parent.IPM_Market_Place_Activity__c;
+        analyticObj.IPM_Consumer_Value_Perception__c = parent.IPM_Consumer_Value_Perception__c;
+        analyticObj.IPM_Enabling_Technology__c = parent.IPM_Enabling_Technology__c;
+        analyticObj.IPM_Strategic_Intent__c = parent.IPM_Strategic_Intent__c;
+        analyticObj.IPM_Exempt_from_Threshold__c = parent.IPM_Exempt_from_Threshold__c;
+        analyticObj.IPM_Expected_Charter_Approval_Date__c = parent.IPM_Expected_Charter_Approval_Date__c;
+        analyticObj.IPM_Charter_Approved_Date__c = parent.IPM_Charter_Approved_Date__c;  
+        analyticObj.IPM_Charter_Proposed_Date__c = parent.IPM_Charter_Proposed_Date__c;
+        analyticObj.IPM_Expected_Contract_Approval_Date__c = parent.IPM_Expected_Contract_Approval_Date__c;
+        analyticObj.IPM_Expected_Market_Ready_Approval_Date__c = parent.IPM_Expected_Market_Ready_Approval_Date__c;
+        analyticObj.IPM_Expected_Market_Deployment_App_Date__c = parent.IPM_Expected_Market_Deployment_App_Date__c;
+        analyticObj.IPM_BET_First_Release_Due_Date__c = parent.IPM_BET_First_Release_Due_Date__c;
+        analyticObj.IPM_BET_First_Released_On_Date__c = parent.IPM_BET_First_Released_On_Date__c;
+        analyticObj.IPM_BET_Final_Release_Due_date__c = parent.IPM_BET_Final_Release_Due_date__c;
+        analyticObj.IPM_BET_Final_Released_On_date__c = parent.IPM_BET_Final_Released_On_date__c;
+        
+    	return analyticObj;
+    }
     
     /*********************************************************************************************************************
      * @Description: To copy rollout related financial details

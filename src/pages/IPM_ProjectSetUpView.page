@@ -227,7 +227,7 @@
                                                                                     </apex:selectList>
                                                                                 </apex:outputPanel>
                                                                                 <apex:actionfunction name="callCompanyCard" onComplete="callBrandPos();" action="{!populateCategory}" reRender="ProjectSubTypePanel,WhiteSpaceFastTrackPanel,fastTrackPanel,whiteSpacePanel,gateKeepingPanel,questionCharter,categoryPanel,BrandPositionPanel,pos,selectNextTabScript,multiBPositions" status="refreshCategory" />
-                                                                                <apex:actionfunction name="callBrandPos" action="{!none}" reRender="BrandPositionPanel,multiBPositions" status="refreshPos" />
+                                                                                <apex:actionfunction name="callBrandPos" action="{!none}" reRender="BrandPositionPanel,multiBPositions,selectNextTabScript" status="refreshPos" />
                                                                                 
                                                                             </apex:actionRegion>
                                                                         </label>
