@@ -3305,7 +3305,7 @@ OR(DAY(WU_FromDate__c) &lt;&gt; 1,
 DAY(WU_ToDate__c) &lt;&gt; (IF( MONTH( WU_FromDate__c) = 12,31,DAY(DATE( YEAR( WU_FromDate__c), MONTH ( WU_FromDate__c) + 1, 1 ) - 1))))
 )</errorConditionFormula>
         <errorDisplayField>WU_Utilization_Type__c</errorDisplayField>
-        <errorMessage>Utilization Start Date and Utilization End Date should be for same month for Utilization Type has been chosen as Monthly.</errorMessage>
+        <errorMessage>Utilization Start Date and Utilization End Date should be for same month (with start date  1st day  and end date as last day of the Month)  for Utilization Type has been chosen as Monthly.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>DateValidationForWeeklyUtilizationType</fullName>

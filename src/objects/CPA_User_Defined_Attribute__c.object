@@ -57,11 +57,46 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
+        <fullName>Unique_value__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>false</externalId>
+        <label>Attribute Type</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
         <fullName>lkp_CR__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>CR</label>
         <referenceTo>CPA_CR__c</referenceTo>
+        <relationshipLabel>User Defined Attributes</relationshipLabel>
+        <relationshipName>User_Defined_Attributes</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>lkp_HLE_Request__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>HLE Request</label>
+        <referenceTo>CPA_HLE_Request__c</referenceTo>
+        <relationshipLabel>User Defined Attributes</relationshipLabel>
+        <relationshipName>User_Defined_Attributes</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>lkp_LOI__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>LOI</label>
+        <referenceTo>CPA_LOI__c</referenceTo>
         <relationshipLabel>User Defined Attributes</relationshipLabel>
         <relationshipName>User_Defined_Attributes</relationshipName>
         <required>false</required>
@@ -76,7 +111,19 @@
         <referenceTo>CPA_PWORF__c</referenceTo>
         <relationshipLabel>User Defined Attributes</relationshipLabel>
         <relationshipName>User_Defined_Attributes</relationshipName>
-        <required>true</required>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>lkp_PWO__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>PWO</label>
+        <referenceTo>CPA_project_work_order__c</referenceTo>
+        <relationshipLabel>User Defined Attributes</relationshipLabel>
+        <relationshipName>User_Defined_Attributes</relationshipName>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -128,7 +175,7 @@
     <listViews>
         <fullName>CAP_ULPM_CAP_User_Defined_Attribute</fullName>
         <filterScope>Queue</filterScope>
-        <label>CPA ULPM</label>
+        <label>ULPM</label>
         <queue>CAP_ULPM</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -137,7 +184,7 @@
     <listViews>
         <fullName>CAP_VDM_Queue_CAP_User_Defined_Attribute</fullName>
         <filterScope>Queue</filterScope>
-        <label>CPA VDM Queue</label>
+        <label>VDM</label>
         <queue>CAP_VDM_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -146,7 +193,7 @@
     <listViews>
         <fullName>CPA_SMT_CAP_User_Defined_Attribute</fullName>
         <filterScope>Queue</filterScope>
-        <label>CPA SMT</label>
+        <label>SMT</label>
         <queue>CPA_SMT</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -158,6 +205,166 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>User Defined Attributes</pluralLabel>
+    <recordTypes>
+        <fullName>CPA_CR</fullName>
+        <active>true</active>
+        <label>CR</label>
+        <picklistValues>
+            <picklist>pkl_Attribute_Type__c</picklist>
+            <values>
+                <fullName>Competency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cost</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cost Avoidance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Man Hours</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Penalty Applicable Charges</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Penalty Credit</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>CPA_HLE_Request</fullName>
+        <active>true</active>
+        <label>HLE Request</label>
+        <picklistValues>
+            <picklist>pkl_Attribute_Type__c</picklist>
+            <values>
+                <fullName>Competency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cost</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cost Avoidance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Man Hours</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Penalty Applicable Charges</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Penalty Credit</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>CPA_LOI</fullName>
+        <active>true</active>
+        <label>LOI</label>
+        <picklistValues>
+            <picklist>pkl_Attribute_Type__c</picklist>
+            <values>
+                <fullName>Competency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cost</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cost Avoidance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Man Hours</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Penalty Applicable Charges</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Penalty Credit</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>CPA_PWO</fullName>
+        <active>true</active>
+        <label>PWO</label>
+        <picklistValues>
+            <picklist>pkl_Attribute_Type__c</picklist>
+            <values>
+                <fullName>Competency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cost</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cost Avoidance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Man Hours</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Penalty Applicable Charges</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Penalty Credit</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>CPA_PWORF</fullName>
+        <active>true</active>
+        <label>PWORF</label>
+        <picklistValues>
+            <picklist>pkl_Attribute_Type__c</picklist>
+            <values>
+                <fullName>Competency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cost</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cost Avoidance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Man Hours</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Penalty Applicable Charges</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Penalty Credit</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
     <validationRules>
@@ -167,4 +374,75 @@
         <errorConditionFormula>IF(TEXT(pkl_Attribute_Type__c) = &apos;Cost&apos; , true,false)</errorConditionFormula>
         <errorMessage>Error: You selected Cost</errorMessage>
     </validationRules>
+    <webLinks>
+        <fullName>btn_New_User_Defined_Attribute</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>New User Defined Attribute</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/32.0/connection.js&quot;)} 
+
+var soql=&quot;&quot;;
+var result=&quot;&quot;;
+var RecTypeRegular=&quot;&quot;;
+var retURL=&quot;&quot;;
+var lkpField=&quot;&quot;;
+
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+result = sforce.connection.query(soql); 
+var records1 = result.getArray(&apos;records&apos;); 
+var permissionSetName = records1[0].PermissionSet.Name; 
+//alert(&quot;permissionSetName -&gt;&quot; + permissionSetName); 
+
+if( permissionSetName == &quot;CPA_SMT&quot;){
+
+	if(&quot;{!CPA_PWORF__c.Id}&quot; != null &amp;&amp; &quot;{!CPA_PWORF__c.Id}&quot; != &quot;&quot; ){
+		//alert(&quot; You are in PWORF&quot;);
+		 soql = &quot;select id,Name from RecordType where sObjectType=&apos;CPA_User_Defined_Attribute__c&apos; AND Name=&apos;PWORF&apos; limit 1&quot; ;
+		 result = sforce.connection.query(soql); 
+		 RecTypeRegular = result.getArray(&apos;records&apos;); 
+		 retURL=&quot;%2F{!CPA_PWORF__c.Id}&quot;;
+		 lkpField = &quot;{!$Label.CPA_UDA_PWORF_Id}={!CPA_PWORF__c.Name}&amp;{!$Label.CPA_UDA_PWORF_Id}_lkid={!CPA_PWORF__c.Id}&quot;;
+	}
+	else if(&quot;{!CPA_project_work_order__c.Id}&quot; != null &amp;&amp; &quot;{!CPA_project_work_order__c.Id}&quot; != &quot;&quot; ){
+		//alert(&quot; You are in PWO&quot;);
+		 soql = &quot;select id,Name from RecordType where sObjectType=&apos;CPA_User_Defined_Attribute__c&apos; AND Name=&apos;PWO&apos; limit 1&quot; ;
+		 result = sforce.connection.query(soql); 
+		 RecTypeRegular = result.getArray(&apos;records&apos;);
+		 retURL=&quot;%2F{!CPA_project_work_order__c.Id}&quot;;
+		 lkpField = &quot;{!$Label.CPA_UDA_PWO_Id}={!CPA_project_work_order__c.Name}&amp;{!$Label.CPA_UDA_PWO_Id}_lkid={!CPA_project_work_order__c.Id}&quot;;
+	}
+	else if(&quot;{!CPA_LOI__c.Id}&quot; != null &amp;&amp; &quot;{!CPA_LOI__c.Id}&quot; != &quot;&quot; ){
+		//alert(&quot; You are in LOI&quot;);
+		 soql = &quot;select id,Name from RecordType where sObjectType=&apos;CPA_User_Defined_Attribute__c&apos; AND Name=&apos;LOI&apos; limit 1&quot; ;
+		 result = sforce.connection.query(soql); 
+		 RecTypeRegular = result.getArray(&apos;records&apos;);
+		 retURL=&quot;%2F{!CPA_LOI__c.Id}&quot;;
+		 lkpField = &quot;{!$Label.CPA_UDA_LOI_Id}={!CPA_LOI__c.Name}&amp;{!$Label.CPA_UDA_LOI_Id}_lkid={!CPA_LOI__c.Id}&quot;;
+	}
+	else if(&quot;{!CPA_HLE_Request__c.Id}&quot; != null &amp;&amp; &quot;{!CPA_HLE_Request__c.Id}&quot; != &quot;&quot; ){
+		//alert(&quot; You are in HLE Req&quot;);
+		 soql = &quot;select id,Name from RecordType where sObjectType=&apos;CPA_User_Defined_Attribute__c&apos; AND Name=&apos;HLE Request&apos; limit 1&quot; ;
+		 result = sforce.connection.query(soql); 
+		 RecTypeRegular = result.getArray(&apos;records&apos;);
+		 retURL=&quot;%2F{!CPA_HLE_Request__c.Id}&quot;;
+		 lkpField = &quot;{!$Label.CPA_UDA_HLE_Request_Id}={!CPA_HLE_Request__c.Name}&amp;{!$Label.CPA_UDA_HLE_Request_Id}_lkid={!CPA_HLE_Request__c.Id}&quot;;
+	}
+	else if(&quot;{!CPA_CR__c.Id}&quot; != null &amp;&amp; &quot;{!CPA_CR__c.Id}&quot; != &quot;&quot; ){
+		//alert(&quot; You are in CR&quot;);
+		 soql = &quot;select id,Name from RecordType where sObjectType=&apos;CPA_User_Defined_Attribute__c&apos; AND Name=&apos;CR&apos; limit 1&quot; ;
+		 result = sforce.connection.query(soql); 
+		 RecTypeRegular = result.getArray(&apos;records&apos;);
+		 retURL=&quot;%2F{!CPA_CR__c.Id}&quot;;
+		 lkpField = &quot;{!$Label.CPA_UDA_CR_Id}={!CPA_CR__c.Name}&amp;{!$Label.CPA_UDA_CR_Id}_lkid={!CPA_CR__c.Id}&quot;;
+	}
+	window.open(&quot;/&quot;+&quot;{!$Label.CPA_User_Defined_Attribute_Object_Id}/e?&amp;&quot;+lkpField+&quot;&amp;RecordType=&quot;+RecTypeRegular[0].Id+&quot;&amp;retURL=&quot;+retURL,&quot;_parent&quot;);
+}
+else{
+	alert(&quot;You are not authorized to perform this action.&quot;); 
+}</url>
+    </webLinks>
 </CustomObject>
