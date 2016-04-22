@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Amr_RAPSharedJob</name>
+    <style>none</style>
+    <subject>Job Shared – “{!Amr_Job_Details__c.AdManagerText__c}”</subject>
+    <textOnly>{!Amr_Job_Details__c.OwnerFullName}  has shared a new Production Project with you:
+AdManager Number :  {!Amr_Job_Details__c.AdManagerText__c}
+Have you checked the Milward Brown TV Ad Vitality Bank for an asset that could be utilised here: {!Amr_Job_Details__c.Check_With_CMI__c}
+Your Email Address: {!Amr_Job_Details__c.Your_Email_Address__c}
+Unilever Project Leader Email: {!Amr_Job_Details__c.Unilever_Project_Leader_Email__c}
+Location Of Unilever Project Leader: {!Amr_Job_Details__c.Project_Leader_Cluster__c}  --  {!Amr_Job_Details__c.Project_Leader_Country__c}
+Unilever Finance Member Email: {!Amr_Job_Details__c.Unilever_Finance_Member_Email__c}
+Final Approver Of Material Email: {!Amr_Job_Details__c.Final_Approver_Of_Material_Email__c}
+Which function are you part of (BD/BB/Other): {!Amr_Job_Details__c.Function_You_Are_Part__c}
+Budget Responsibility (BD, BB, Other): {!Amr_Job_Details__c.Budget_Responsibility__c}
+Budget Allocated For This Activity: {!Amr_Job_Details__c.Allocated_Budget_euro__c}
+Category &gt; Brand Positioning &gt; Brand: {!Amr_Job_Details__c.ProductCategory__c} --  {!Amr_Job_Details__c.Brand_Position__c} -- {!Amr_Job_Details__c.Brand_Final__c}
+Lead Agency Name: {!Amr_Job_Details__c.Lead_Creative_Agency_name__c} {!Amr_Job_Details__c.Lead_Agency_Name_Other__c}
+Lead Agency Location: {!Amr_Job_Details__c.Lead_Agency_Location_Cluster__c} --  {!Amr_Job_Details__c.Lead_Agency_Location_Country__c}
+Agency Contact Or Account Director Email: {!Amr_Job_Details__c.Agency_Contact_Account_Director_Email__c}
+Digital Agency Name (If Applicable): {!Amr_Job_Details__c.Digital_Agency_Name__c}
+Any other agencies involved?: {!Amr_Job_Details__c.Any_other_agencies_involved__c}
+Project Name:  {!Amr_Job_Details__c.Project_Details__c} {!Amr_Job_Details__c.Project_Name_Other__c}
+Broadcast Market: {!Amr_Job_Details__c.Brodcast_Market__c}
+What type of activity will this production support: {!Amr_Job_Details__c.Production_Activity_Type__c}
+Project Description: {!Amr_Job_Details__c.Project_Description__c}
+Campaign Name: {!Amr_Job_Details__c.Campaign_Name__c}
+Execution Name: {!Amr_Job_Details__c.Execution_Name__c}
+Target Air Date: {!Amr_Job_Details__c.Target_Air_Date__c}
+Production Activity Type:  {!Amr_Job_Details__c.ProductionActivityTextArea__c}
+Do you anticipate that your production will require Music?: {!Amr_Job_Details__c.Require_Music__c }
+Do you anticipate that your production will require Celebrity Talent?: {!Amr_Job_Details__c.Require_Celebrity_Talent__c }
+Current Stage Of Your Production Activity: {!Amr_Job_Details__c.Stage_of_Production_Activity__c}
+https://unilever--chazwa.cs23.my.salesforce.com/apex/Amr_JobSheet?id={!Amr_Job_Details__c.Id}</textOnly>
+    <type>custom</type>
+</EmailTemplate>
