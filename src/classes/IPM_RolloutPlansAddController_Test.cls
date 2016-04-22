@@ -72,8 +72,7 @@ private class IPM_RolloutPlansAddController_Test
     private static final string FR = 'FR';
     private static final string SA = 'SA';
     private static final string AF = 'AF';
-    private static final string LA = 'LA';
-    private static final string TestComments1 = 'TestComments1';
+    private static final string TestComments1 = 'TestComments1';   
     private static final string TestComments2 = 'TestComments2';
     private static final string TestComments3 = 'TestComments3';
     private static final string ID = 'id';
@@ -572,7 +571,8 @@ private class IPM_RolloutPlansAddController_Test
      * @name :  projectSetUp
      ***************************************************************************************/
      @testSetup static void projectSetUp() 
-     {
+     {   
+     	 Test.StartTest(); 
          // Create an instance of admin user.
          User adminUser = IPM_TestFactory_Helper.createUserAdmin(false);
 
@@ -654,7 +654,9 @@ private class IPM_RolloutPlansAddController_Test
             }
             List<IPM_Project__c> projectAssertList = [Select Id,Name from IPM_Project__c where id in : projId];
             system.assertEquals(3,projectAssertList.size(),'count of Project inserted is not 3'); 
-        }  
+        }
+        
+        Test.StopTest();  
     
 	}
   

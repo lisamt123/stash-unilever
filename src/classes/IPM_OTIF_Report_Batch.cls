@@ -282,8 +282,9 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                 
                 otifAnalytic = setContractGateDcoumentDetails(fr,otifAnalytic);
                 otifAnalytic = setMarketReadyGateDcoumentDetails(fr,otifAnalytic);                
-
-                if(fr.IPM_Project_Document_Section__r.IPM_Gate_Document__c == IPM_Utils.MarketDeployment && fr.IPM_Project_Document_Section__r.IPM_Section_Name__c == IPM_ConstantUtils.OTIF_STATUS)
+				
+				
+                if(fr.IPM_Project_Document_Section__r.IPM_Gate_Document__c == IPM_Utils.MarketDeployment && fr.IPM_Project_Document_Section__r.IPM_Section_Name__c == IPM_ConstantUtils.OTIF)
                 {
                    otifAnalytic.IPM_OTIF_Comment_MD__c = fr.IPM_Project_Document_Section__r.IPM_Gate_Document_Summary__c;
                     if(fr.IPM_OTIF_Measure__c == IPM_ConstantUtils.OTIF_FIRST_PROD_CONF_SPEC_FINALISED){

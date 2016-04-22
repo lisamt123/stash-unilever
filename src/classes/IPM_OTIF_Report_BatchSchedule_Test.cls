@@ -17,6 +17,12 @@ private class IPM_OTIF_Report_BatchSchedule_Test {
             test.starttest();
         
             //Insert data for Custom setting
+            IPM_Reporting__c reportParameter = IPM_TestFactory_Helper.createIPMReportingCustomSetting('OTIF Report', false);
+            reportParameter.Batch_Size__c = 5;
+            insert reportParameter; 
+            
+            List<IPM_Reporting__c> reportParameterlist = [SELECT Id,Name FROM IPM_Reporting__c WHERE Id=:reportParameter.Id limit 1];
+            system.assertEquals(reportParameterlist[0].Name,reportParameter.Name,'Error in IPMReporting Custom Setting Creation'); //positive test
                 
             IPM_OTIF_Report_BatchSchedule sch=new IPM_OTIF_Report_BatchSchedule();
         
