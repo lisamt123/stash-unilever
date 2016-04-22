@@ -937,7 +937,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     {
         try
         {
-            List<IPM_Project_Rollout__c> deleteRolloutList = [Select Id,Local_Project__c,IPM_CharterApproved__c,Regional_Project__c,IPM_Project__c from IPM_Project_Rollout__c where Id = :selectedMCORollout ];
+            List<IPM_Project_Rollout__c> deleteRolloutList = [Select Id,Local_Project__c,IPM_CharterApproved__c,Regional_Project__c,IPM_Project__c,Target_Launch_Date__c from IPM_Project_Rollout__c where Id = :selectedMCORollout ];
             
             if(!deleteRolloutList.isEmpty())
             {
