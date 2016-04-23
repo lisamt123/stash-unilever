@@ -3070,7 +3070,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
         <queue>CEC_Baltics_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Baltics</role>
+            <role>CEC_Manager_CEE</role>
+            <role>CEC_Manager_Europe</role>
+            <role>CEC_User_Baltics</role>
         </sharedTo>
     </listViews>
     <listViews>
@@ -3094,6 +3098,13 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <label>CEC Benelux queue</label>
         <language>en_US</language>
         <queue>CEC_Benelux_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Benelux</role>
+            <role>CEC_Manager_Europe</role>
+            <role>CEC_Manager_HGS_Europe</role>
+            <role>CEC_User_Benelux</role>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_Brazil_Planitox_Queue_Case</fullName>
@@ -3155,6 +3166,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_DACH</role>
             <role>CEC_Manager_Europe</role>
+            <role>CEC_Manager_HGS_Europe</role>
             <role>CEC_User_DACH</role>
         </sharedTo>
     </listViews>
@@ -3198,6 +3210,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_Europe</role>
             <role>CEC_Manager_France</role>
+            <role>CEC_Manager_HGS_Europe</role>
             <role>CEC_User_France</role>
         </sharedTo>
     </listViews>
@@ -3242,6 +3255,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_Europe</role>
             <role>CEC_Manager_Greece</role>
+            <role>CEC_Manager_HGS_Europe</role>
             <role>CEC_User_Greece</role>
         </sharedTo>
     </listViews>
@@ -3302,6 +3316,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <sharedTo>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_Europe</role>
+            <role>CEC_Manager_HGS_Europe</role>
             <role>CEC_Manager_Italy</role>
             <role>CEC_User_Italy</role>
         </sharedTo>
@@ -6057,6 +6072,9 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <label>Mulesoft Owned Cases</label>
         <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>MyCases</fullName>
@@ -6273,6 +6291,13 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <label>TO France Escalation Queue</label>
         <language>en_US</language>
         <queue>TO_France_Escalation_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>TO_Global_Head</role>
+            <role>TO_Manager_Europe</role>
+            <role>TO_Manager_France</role>
+            <role>TO_User_France</role>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>TO_France_Queue_Case</fullName>
@@ -6281,6 +6306,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
         <queue>TO_France_Queue</queue>
         <sharedTo>
+            <role>CEC_Global_Head</role>
             <role>TO_Global_Head</role>
             <role>TO_Manager_Europe</role>
             <role>TO_Manager_France</role>
@@ -6431,7 +6457,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>cs</language>
         <queue>CEC_Czech_Republic_Queue</queue>
         <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_CEE</role>
             <role>CEC_Manager_Czech_Republic</role>
+            <role>CEC_Manager_Europe</role>
             <role>CEC_User_Czech_Republic</role>
         </sharedTo>
     </listViews>
@@ -6457,6 +6486,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <label>spam pp Spain</label>
         <language>es</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Europe</role>
+            <role>CEC_Manager_Spain</role>
+            <role>CEC_User_Spain</role>
+        </sharedTo>
     </listViews>
     <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
