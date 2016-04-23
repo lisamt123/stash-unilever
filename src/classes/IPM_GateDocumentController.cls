@@ -126,6 +126,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     public Boolean bDocStatusNotStartedOrApproved{get;set;}//Flag to check if document is in Not Started or Approved Status
     public string regionalCPP {get;set;}
     public string localCPP {get;set;}
+    public string brandPosition {get; set;}
     /****************************************************************************************************************************************************
     @description Retrieving Project,Project Document,Project Document Section Records Using Page URL Parameters and Initializing the Values for Variables
     */
@@ -762,9 +763,18 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         //For Generating PDF Retrieving Project Rollouts,Finance and Project Document Sections
 	try{
 		
+			brandPosition=IPM_ConstantUtils.BLANK;
 			String nam=project.IPM_Project_Name__c; 
-            globalbusinessImpactStr = IPM_ConstantUtils.BLANK;
-            country=new IPM_Country__c();
+	        globalbusinessImpactStr = IPM_ConstantUtils.BLANK;
+	        country=new IPM_Country__c();
+            for(String bPostion:project.IPM_Brand_Positioning__c.split(IPM_ConstantUtils.COMMA)){
+                if(String.isBlank(brandPosition)){
+                    brandPosition=bPostion;
+                }
+                else{
+                    brandPosition=brandPosition+IPM_ConstantUtils.COMMA+IPM_ConstantUtils.IPM_SPACE+bPostion;
+                }
+            }	
 			// For BI and Year3Ito where Source is ORIGINAL project. Will work got GKM1,GKM2,GKM4, ORIGINALS AND ROLLOUT
 			if(project.IPM_SourceProjectType__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
 			{
