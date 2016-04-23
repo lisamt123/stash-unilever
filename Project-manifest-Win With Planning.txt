@@ -22,3 +22,4 @@ src/staticresources/WWP_ResetImage.resource
 src/staticresources/WWP_ResetImage.resource-meta.xml
 src/tabs/WWP_Loss_Tree__c.tab
 src/labels/CustomLabels.labels
+
