@@ -639,17 +639,22 @@
                 
                     <apex:variable value="{!OR( NOT(showMisalignment), valueWrapper.difference==0 )}" var="GrossTurnoverAligned" />
                 
-                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(OR(valueWrapper.isValueInvalid,GrossTurnoverMisAligned,valueWrapper.isGrossTOGRTIto), 'misaligned', '')}" >
+                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(OR(valueWrapper.isValueInvalid,AND(GrossTurnoverMisAligned, project.IPM_Project_Type__c != 'Operational'), valueWrapper.isGrossTOGRTIto), 'misaligned', '')}" >
                         <!--
                             Renders if the Gross Turnover value is misaligned in non-edit mode
                         -->
-                        <apex:outputText rendered="{!AND(GrossTurnoverMisAligned,NOT(isEditMode),NOT(valueWrapper.isValueInvalid), NOT(valueWrapper.isGrossTOGRTIto))}">
+                        <apex:outputText rendered="{!AND(GrossTurnoverMisAligned, project.IPM_Project_Type__c != 'Operational', NOT(isEditMode),NOT(valueWrapper.isValueInvalid), NOT(valueWrapper.isGrossTOGRTIto))}">
                             <span class="info" title="{!$Label.IPM_TURNOVER} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
                                                                      {!$Label.IPM_TURNOVER} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
                                 <apex:outputText value="{0, number, ###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>
                             </span>
+                        </apex:outputText>
+			<apex:outputText rendered="{!AND(GrossTurnoverMisAligned, project.IPM_Project_Type__c == 'Operational', NOT(isEditMode),NOT(valueWrapper.isValueInvalid), NOT(valueWrapper.isGrossTOGRTIto))}">
+                                <apex:outputText value="{0, number, ###,###,###.##}">
+                                    <apex:param value="{!valueWrapper.value}" />
+                                </apex:outputText>
                         </apex:outputText>
                         <apex:outputText rendered="{!AND(valueWrapper.isValueInvalid,NOT(valueWrapper.isGrossTOGRTIto), NOT(isEditMode),NOT(GrossTurnoverMisAligned))}">
                             <span class="info" title="{!$Label.IPM_Gross_Turnover_Can_Not_Be_Zero_Or_Negative}">
@@ -665,10 +670,17 @@
                                 </apex:outputText>
                             </span>
                         </apex:outputText>
-                        <apex:outputText rendered="{!AND(GrossTurnoverMisAligned,NOT(isEditMode), valueWrapper.isValueInvalid,NOT(valueWrapper.isGrossTOGRTIto))}">
+                        <apex:outputText rendered="{!AND(AND(GrossTurnoverMisAligned,project.IPM_Project_Type__c != 'Operational'),NOT(isEditMode), valueWrapper.isValueInvalid,NOT(valueWrapper.isGrossTOGRTIto))}">
                         	<span class="info" title="{!$Label.IPM_TURNOVER} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
                                                                      {!$Label.IPM_TURNOVER} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}
                                                                      {!$Label.IPM_Gross_Turnover_Can_Not_Be_Zero_Or_Negative}">
+                                <apex:outputText value="{0, number, ###,###,###.##}">
+                                    <apex:param value="{!valueWrapper.value}" />
+                                </apex:outputText>
+                            </span>
+                        </apex:outputText>
+			<apex:outputText rendered="{!AND(AND(GrossTurnoverMisAligned,project.IPM_Project_Type__c == 'Operational'),NOT(isEditMode), valueWrapper.isValueInvalid,NOT(valueWrapper.isGrossTOGRTIto))}">
+                        	<span class="info" title="{!$Label.IPM_Gross_Turnover_Can_Not_Be_Zero_Or_Negative}">
                                 <apex:outputText value="{0, number, ###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>
@@ -681,7 +693,7 @@
                                 </apex:outputText>
                             </span>
                         </apex:outputText>
-                        <apex:outputText rendered="{!AND(GrossTurnoverMisAligned,NOT(isEditMode), NOT(valueWrapper.isValueInvalid),valueWrapper.isGrossTOGRTIto)}">
+                        <apex:outputText rendered="{!AND(AND(GrossTurnoverMisAligned,project.IPM_Project_Type__c != 'Operational'),NOT(isEditMode), NOT(valueWrapper.isValueInvalid),valueWrapper.isGrossTOGRTIto)}">
                         	<span class="info" title="{!$Label.IPM_TURNOVER} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
                                                                      {!$Label.IPM_TURNOVER} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}
                                                                      {!$Label.IPM_ITO_should_not_be_greater_than_GTO}">
@@ -690,10 +702,25 @@
                                 </apex:outputText>
                             </span>
                         </apex:outputText>
-                        <apex:outputText rendered="{!AND(GrossTurnoverMisAligned,NOT(isEditMode), valueWrapper.isValueInvalid,valueWrapper.isGrossTOGRTIto)}">
+			<apex:outputText rendered="{!AND(AND(GrossTurnoverMisAligned,project.IPM_Project_Type__c == 'Operational'),NOT(isEditMode), NOT(valueWrapper.isValueInvalid),valueWrapper.isGrossTOGRTIto)}">
+                        	<span class="info" title="{!$Label.IPM_ITO_should_not_be_greater_than_GTO}">
+                                <apex:outputText value="{0, number, ###,###,###.##}">
+                                    <apex:param value="{!valueWrapper.value}" />
+                                </apex:outputText>
+                            </span>
+                        </apex:outputText>
+                        <apex:outputText rendered="{!AND(AND(GrossTurnoverMisAligned,project.IPM_Project_Type__c != 'Operational'),NOT(isEditMode), valueWrapper.isValueInvalid,valueWrapper.isGrossTOGRTIto)}">
                         	<span class="info" title="{!$Label.IPM_TURNOVER} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
                                                                      {!$Label.IPM_TURNOVER} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}
                                                                      {!$Label.IPM_Gross_Turnover_Can_Not_Be_Zero_Or_Negative}
+                                                                     {!$Label.IPM_ITO_should_not_be_greater_than_GTO}">
+                                <apex:outputText value="{0, number, ###,###,###.##}">
+                                    <apex:param value="{!valueWrapper.value}" />
+                                </apex:outputText>
+                            </span>
+                        </apex:outputText>
+			<apex:outputText rendered="{!AND(AND(GrossTurnoverMisAligned,project.IPM_Project_Type__c == 'Operational'),NOT(isEditMode), valueWrapper.isValueInvalid,valueWrapper.isGrossTOGRTIto)}">
+                        	<span class="info" title="{!$Label.IPM_Gross_Turnover_Can_Not_Be_Zero_Or_Negative}
                                                                      {!$Label.IPM_ITO_should_not_be_greater_than_GTO}">
                                 <apex:outputText value="{0, number, ###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
@@ -705,7 +732,10 @@
                             1. Consolidated and Edit mode
                             2. Gross Turnover aligned and non-edit mode
                         -->
-                        <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(NOT(OR(valueWrapper.isValueInvalid,valueWrapper.isGrossTOGRTIto)),NOT(GrossTurnoverMisAligned), OR( AND(isConsolidated,isEditMode), AND(GrossTurnoverAligned,NOT(isEditMode) ) )) }"> 
+                        <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(AND(isConsolidated,isEditMode), OR(valueWrapper.isValueInvalid, valueWrapper.isGrossTOGRTIto,GrossTurnoverMisAligned)) }">
+                            <apex:param value="{!valueWrapper.value}" />
+                        </apex:outputText>
+			<apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(NOT(isConsolidated),NOT(isEditMode), GrossTurnoverAligned, NOT(OR(valueWrapper.isValueInvalid, valueWrapper.isGrossTOGRTIto) ), NOT(GrossTurnoverMisAligned)) }"> <!-- OR(valueWrapper.isValueInvalid, valueWrapper.isGrossTOGRTIto),NOT(GrossTurnoverMisAligned) --> 
                             <apex:param value="{!valueWrapper.value}" />
                         </apex:outputText>
                         <!--
@@ -755,7 +785,13 @@
                             1. Consolidated and Edit mode
                             2. Incremental Turnover aligned and non-edit mode
                         -->
-                        <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(NOT(OR(valueWrapper.isMinorValueInvalid,valueWrapper.isGrossTOGRTIto)),NOT(IncrementalTurnoverMisAligned), OR( AND(isConsolidated,isEditMode), AND(IncrementalTurnoverAligned ,NOT(isEditMode) ) ))}"> 
+                        <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(isConsolidated, NOT(AND(valueWrapper.isMinorValueInvalid, valueWrapper.isMinorValueInvalid)))}"> 
+                            <apex:param value="{!valueWrapper.value}" />
+                        </apex:outputText>
+			<apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(isConsolidated, isEditMode, OR(valueWrapper.isMinorValueInvalid, valueWrapper.isMinorValueInvalid))}">
+                            <apex:param value="{!valueWrapper.value}" />
+                        </apex:outputText>
+            		<apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(NOT(isConsolidated),NOT(isEditMode), IncrementalTurnoverAligned, NOT(OR(valueWrapper.isValueInvalid, valueWrapper.isGrossTOGRTIto) ), NOT(IncrementalTurnoverMisAligned)) }">
                             <apex:param value="{!valueWrapper.value}" />
                         </apex:outputText>
                         <!--
