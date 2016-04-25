@@ -342,3 +342,7 @@ src/documents/SWOP_Files/SWOP_Letterhead_Logo.jpg
 src/documents/SWOP_Files/SWOP_Letterhead_Logo.jpg-meta.xml
 src/letterhead
 src/letterhead/SWOP_Letterhead.letter
+src/groups
+src/groups/Oblix_SWOP_Agency.group
+src/groups/Oblix_SWOP_All_UL1_UL2_UL3.group
+src/groups/Oblix_SWOP_Super_User.group

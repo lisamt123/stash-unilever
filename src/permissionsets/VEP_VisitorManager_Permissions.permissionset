@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+<<<<<<< HEAD
     <applicationVisibilities>
         <application>ScPaperles</application>
         <visible>false</visible>
     </applicationVisibilities>
+=======
+>>>>>>> develop
     <classAccesses>
         <apexClass>VEP_AutoCompleteV2_Con</apexClass>
         <enabled>false</enabled>
@@ -44,6 +47,17 @@
         <apexClass>VEP_VisitorStatus_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
+<<<<<<< HEAD
+=======
+    <classAccesses>
+        <apexClass>VEP_Visitor_TriggerHandler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>VEP_Visitor_Trigger_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+>>>>>>> develop
     <fieldPermissions>
         <editable>false</editable>
         <field>Vep_Answer__c.Answer__c</field>
@@ -56,6 +70,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Vep_Factory__c.Air_Connectivity__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -116,6 +131,8 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+=======
+>>>>>>> develop
         <field>Vep_Question__c.No_of_Correct_Answers__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -124,6 +141,7 @@
         <field>Vep_Question__c.Question__c</field>
         <readable>false</readable>
     </fieldPermissions>
+<<<<<<< HEAD
     <fieldPermissions>
         <editable>false</editable>
         <field>Vep_Visitor__c.Admin_Building__c</field>
@@ -354,6 +372,8 @@
         <field>Vep_Visitor__c.Which_Inhaler_do_you_use_if_applicable__c</field>
         <readable>false</readable>
     </fieldPermissions>
+=======
+>>>>>>> develop
     <label>VEP VisitorManager Permissions</label>
     <pageAccesses>
         <apexPage>VEP_SafetyQuiz_VF</apexPage>
@@ -389,10 +409,16 @@
     </tabSettings>
     <tabSettings>
         <tab>Vep_Visitor__c</tab>
+<<<<<<< HEAD
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
         <tab>Visitor_Entry_Portal</tab>
         <visibility>None</visibility>
     </tabSettings>
+=======
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <userLicense>Salesforce</userLicense>
+>>>>>>> develop
 </PermissionSet>
