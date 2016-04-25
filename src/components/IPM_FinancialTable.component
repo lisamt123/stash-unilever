@@ -738,6 +738,12 @@
 			<apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(NOT(isConsolidated),NOT(isEditMode), GrossTurnoverAligned, NOT(OR(valueWrapper.isValueInvalid, valueWrapper.isGrossTOGRTIto) ), NOT(GrossTurnoverMisAligned)) }"> <!-- OR(valueWrapper.isValueInvalid, valueWrapper.isGrossTOGRTIto),NOT(GrossTurnoverMisAligned) --> 
                             <apex:param value="{!valueWrapper.value}" />
                         </apex:outputText>
+						<apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(AND(isConsolidated,NOT(isEditMode)), NOT(OR(valueWrapper.isValueInvalid, valueWrapper.isGrossTOGRTIto,GrossTurnoverMisAligned))) }"> 
+                            <apex:param value="{!valueWrapper.value}" />
+                        </apex:outputText>
+                        <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(AND(isConsolidated,isEditMode), NOT(OR(valueWrapper.isValueInvalid, valueWrapper.isGrossTOGRTIto,GrossTurnoverMisAligned))) }"> 
+                            <apex:param value="{!valueWrapper.value}" />
+                        </apex:outputText>
                         <!--
                             This block will be rendered when the following condition is met
                             Non-Consolidated and Edit mode
