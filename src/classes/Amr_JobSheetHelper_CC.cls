@@ -21,8 +21,8 @@ public with sharing Class Amr_JobSheetHelper_CC{
    Returns: It’s return boolean
    ********************************************************************/
 
-    public Boolean productionActivityTypeValidation(Boolean okayToSaveCheck, Amr_Job_Details__c jobList){
-          
+    public Boolean productionActivityTypeValidation( Amr_Job_Details__c jobList){
+          Boolean okayToSaveCheck = true;
      if(!jobList.NewOriginalMaster__c && !jobList.LanguageAdaptionMaster__c && !jobList.Create_Additional_Material__c && !jobList.ReworkExistingMaterial__c && !jobList.BuyoutsTalent__c && !jobList.BuyoutsMusic__c ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_Production_activity_types_at_least_one_option_must_be_selected));
             okayToSaveCheck =false;

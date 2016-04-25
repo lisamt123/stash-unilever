@@ -1298,7 +1298,7 @@ N-Path:
         if(jobList.Stage_of_Production_Activity__c == null){
             StageProductionActivity = true;
          }
-         okayToSave = jobSheetHelper.productionActivityTypeValidation(okayToSave,jobList);
+      //   okayToSave = jobSheetHelper.productionActivityTypeValidation(okayToSave,jobList);
          
          if( okayToSave && !CheckWithCMIflag  && !yourEmailAddressFlag && !unileverFinanceMemberEmailFlag && !projectLeaderCountryClusterFlag  && !finalApproverMaterialEmailFlag  && !functionYouArePartFlag 
                  && !budgetResponsibilityFlag  && !budgetAllocatedCountryFlag  && !budgetAllocatedInputFlag  && !categoryNameFlag  && !brandPosNameFlag && !brandNameFromPageFlag && !agencyDirectorEmailFlag 

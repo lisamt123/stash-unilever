@@ -14,7 +14,7 @@ public with sharing class Amr_ReportTrigger_Util {
           Map<String,Map<String,Integer>> categoryStageOneToTwoMapBB = new Map<String,Map<String,Integer>>();
           Map<String,Map<String,Integer>> categoryAllStageBB = new Map<String,Map<String,Integer>>();
           
-          integer yearValue;
+          integer yearValue = 0;
           for(Amr_Job_Details__c jobObj:newAmr_Job_Details){
               yearValue = jobObj.CreatedDate.year();
               break;

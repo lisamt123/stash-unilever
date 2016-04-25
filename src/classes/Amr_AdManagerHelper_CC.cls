@@ -11,9 +11,10 @@ public with sharing Class Amr_AdManagerHelper_CC{
     public Amr_AdManagerHelper_CC(){
         admanagerObj = new Amr_AdManagerController_CC(); 
     }
-    public Boolean productionActivityTypeValidation(Boolean okayToSaveCheck, Amr_Job_Details__c jobDetailsObj){
     
-   
+    public Boolean productionActivityTypeValidation( Amr_Job_Details__c jobDetailsObj){
+    
+   			Boolean okayToSaveCheck = true;
             if(!jobDetailsObj.NewOriginalMaster__c && !jobDetailsObj.LanguageAdaptionMaster__c  && !jobDetailsObj.Create_Additional_Material__c && !jobDetailsObj.ReworkExistingMaterial__c && !jobDetailsObj.BuyoutsTalent__c && !jobDetailsObj.BuyoutsMusic__c ){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_Production_activity_types_at_least_one_option_must_be_selected));
                 okayToSaveCheck =false;                
@@ -266,17 +267,17 @@ public with sharing Class Amr_AdManagerHelper_CC{
                     String obj = JSON.serialize(innerClassObj);
                     
                     automaticJobAllocation(obj);
-                    jobDetailsObj = new Amr_Job_Details__c();
+                    /*jobDetailsObj = new Amr_Job_Details__c();
                     selectedCountryValue =Amr_ConstantForAdManager.NONE;
                     categoryNameValue =Amr_ConstantForAdManager.NONE;
                     brandPosNameValue =Amr_ConstantForAdManager.NONE;
                     brandNameFromPageValue =Amr_ConstantForAdManager.NONE;
-                    projectNameFromPageValue = Amr_ConstantForAdManager.NONE;
+                    projectNameFromPageValue = Amr_ConstantForAdManager.NONE;*/
                     
                    // PageReference pageRef = new PageReference('/apex/Amr_AdManager');
                     PageReference pageRef = Page.Amr_AdManager;
                   //  ApexPages.AddMessage(new ApexPages.Message(ApexPages.Severity.CONFIRM,Label.Amr_Success_AdManager));
-                    listOfBrandValue = new List<SelectOption>();
+                   // listOfBrandValue = new List<SelectOption>();
                     pageRef.setRedirect(false);
                     return pageRef;
                     

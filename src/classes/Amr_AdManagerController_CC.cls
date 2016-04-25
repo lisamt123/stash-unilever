@@ -380,7 +380,7 @@ public with sharing class Amr_AdManagerController_CC{
             if(jobDetails.Stage_of_Production_Activity__c == null){
                 StageProductionActivity = true;           
             }
-            okayToSave = admanagerHelper.productionActivityTypeValidation(okayToSave,jobDetails);
+            //okayToSave = admanagerHelper.productionActivityTypeValidation(jobDetails);
            
             if( !okayToSave || CheckWithCMIflag || yourEmailAddressFlag || unileverFinanceMemberEmailFlag || projectLeaderCountryClusterFlag || finalApproverMaterialEmailFlag || functionYouArePartFlag
                  || budgetResponsibilityFlag || budgetAllocatedCountryFlag || budgetAllocatedInputFlag || categoryNameFlag || brandPosNameFlag || brandNameFromPageFlag || agencyDirectorEmailFlag
