@@ -664,11 +664,11 @@ Search functionality is implemented and SOQL is built dynamically so can not bre
         
          
           if(String.isNotBlank(projectNameText)){
-        soql += ' and AM_Job_Detail__r.Project_Details__r.Name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(projectNameText)+Amr_ConstantForAdManager.PERCENTAGESLASH;  //Amr_ConstantForAdManager.SLASH;
+        soql += ' and AM_Job_Detail__r.Project_Details__r.Name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(projectNameText)+Amr_ConstantForAdManager.PERCENTAGESLASH;
                      
          }
          if(String.isNotBlank(projectLeaderEmail)){
-        soql += ' and AM_Job_Detail__r.Unilever_Project_Leader_Email__c LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(projectLeaderEmail)+Amr_ConstantForAdManager.PERCENTAGESLASH;  //Amr_ConstantForAdManager.SLASH;
+        soql += ' and AM_Job_Detail__r.Unilever_Project_Leader_Email__c LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(projectLeaderEmail)+Amr_ConstantForAdManager.PERCENTAGESLASH;
                      
          }
                  
@@ -783,7 +783,7 @@ Returns:
            Set<Id>pendingJobIds = new Set<Id>();
            for(Amr_Job_Allocation__c jobId : jobDetailList){
                System.debug('DATA ->  ' + jobId.AM_Job_Detail__r.Job_Status__c + 'IDDD ->  ' + jobId.AM_Job_Detail__r.id);
-               if((jobId.AM_Job_Detail__r.Job_Status__c == 'Pending')  && jobId.Job_Status__c != 'Cancelled') //&& jobId.Job_Status__c != 'Accepted'
+               if((jobId.AM_Job_Detail__r.Job_Status__c == 'Pending')  && jobId.Job_Status__c != 'Cancelled')
                {
                     System.debug('DATA ->   INNN '    );
                    pendingJobIds.add(jobId.AM_Job_Detail__r.Id);
@@ -900,7 +900,7 @@ Returns:
            list<Amr_Job_Allocation__c> liveJobList = new List<Amr_Job_Allocation__c>();
            Set<Id>liveJobIds = new Set<Id>();
            for(Amr_Job_Allocation__c jobId:jobDetailList){
-               if((jobId.AM_Job_Detail__r.Job_Status__c == Label.Amr_Status_Live) && jobId.Job_Status__c == 'Accepted' && jobId.Job_Status__c != 'Cancelled') // Removed this condition 
+               if((jobId.AM_Job_Detail__r.Job_Status__c == Label.Amr_Status_Live) && jobId.Job_Status__c == 'Accepted' && jobId.Job_Status__c != 'Cancelled')  
                {
                    liveJobIds.add(jobId.AM_Job_Detail__r.Id);
                }
