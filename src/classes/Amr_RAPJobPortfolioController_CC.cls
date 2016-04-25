@@ -148,7 +148,7 @@ public with sharing class Amr_RAPJobPortfolioController_CC{
             allocatedBudget = '';
             projNameList= [Select Name from Amr_Project_Details__c ORDER BY Name ASC limit 10000];
             listString= new list<string>();
-              //   listString.add(NONE);
+             
                 for(Amr_Project_Details__c i : projNameList){
                         listString.add(i.name);
                 }
@@ -172,7 +172,7 @@ public with sharing class Amr_RAPJobPortfolioController_CC{
             listOfBrandPosition = new List<SelectOption>();
             listOfBrandPosition.add(new selectOption(NONE,NONE));
             List<PermissionSetAssignment> userData = [select PermissionSet.Name from PermissionSetAssignment  where Assignee.id = :userinfo.getUserId()];
-        System.debug('userData ->' + userData );   
+        
         Set<String> userNameSet = new Set<String>();
         for(PermissionSetAssignment permission : userData){
             userNameSet.add(permission.PermissionSet.Name);
@@ -227,7 +227,6 @@ Returns:
                jobDetailsId.add(objJobAlloction.AM_Job_Detail__c);
         }        
         
-        system.debug('Value is !!'+TotalJobs); 
         pendingJob=[SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null and Job_Allocated__c = 'Yes'  and AM_Job_Detail__r.Job_Status__c = 'Pending' and AM_Job_Detail__r.Job_Cancelled__c = false limit 50000];
          liveJob=[SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null and Job_Allocated__c = 'Yes'  and Job_Status__c = 'Accepted' and AM_Job_Detail__r.Job_Status__c = 'Live' and AM_Job_Detail__r.Job_Cancelled__c = false limit 50000];
           priorityJob=[SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null and Job_Allocated__c = 'Yes'  and Job_Status__c = 'Accepted' and AM_Job_Detail__r.Job_Status__c = 'Priority' and AM_Job_Detail__r.Job_Cancelled__c = false limit 50000];
@@ -516,11 +515,7 @@ Returns: It will return list of options.
              listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Project_Leader_Country__c','Location Project Leader (Country)'));
              listOfSortOptions.add(new selectOption('AM_Job_Detail__r.ProductCategory__c','Category'));
              listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Brand_Final__c','Brand Name'));
-           //  listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Project_Details__c','Project Name'));
-           //  listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Lead_Creative_Agency_name__c','Lead Agency Name'));
              listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Allocated_Budget_euro__c','Allocated Budget (Euro)'));
-            // listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Brodcast_Market__c','Broadcast Market'));
-           //  listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Production_Activity_Type__c','Production activity type'));
              listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Campaign_Name__c','Campaign Name'));
              listOfSortOptions.add(new selectOption('Job_Shared__c','Job Shared'));
              listOfSortOptions.add(new selectOption('Job_Status__c','Accepted And Email Sent'));
@@ -596,11 +591,7 @@ Search functionality is implemented and SOQL is built dynamically so can not bre
          if(String.isNotBlank(projLeaderCountry)){
         soql += ' and AM_Job_Detail__r.Project_Leader_Country__c = \''+String.escapeSingleQuotes(projLeaderCountry)+Amr_ConstantForAdManager.SLASH;
                
-        }/*
-         if(String.isNotBlank(agencyName)){
-        soql += ' and AM_Job_Detail__r.Lead_Creative_Agency_name__c = \''+String.escapeSingleQuotes(agencyName)+Amr_ConstantForAdManager.SLASH;
-  
-         }    */
+        }
           if(String.isNotBlank(leadAgencyName )){
         soql += ' and AM_Job_Detail__r.Lead_Creative_Agency_name__c LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+ String.escapeSingleQuotes(leadAgencyName)+Amr_ConstantForAdManager.PERCENTAGESLASH;
                
@@ -655,17 +646,7 @@ Search functionality is implemented and SOQL is built dynamically so can not bre
               
          }
    
-         /*
-         if(String.isNotBlank(projEmail)){
-        soql += ' and AM_Job_Detail__r.Unilever_Project_Leader_Email__c LIKE \''+String.escapeSingleQuotes(projEmail)+PERCENT;
-              
-         } */
-         System.debug('ALLOCATED BUDGET  ->  ' + allocatedBudget); /*
-         if(String.isNotBlank(allocatedBudget) ){
-         String fialTotalVal = allocatedBudget.replace(Amr_ConstantForAdManager.COMMA,Amr_ConstantForAdManager.SINGLE_QUOTE);
-        soql += ' and AM_Job_Detail__r.Allocated_Budget_euro__c = '+ Double.valueOf(fialTotalVal);
-        }    */
-        
+         System.debug('ALLOCATED BUDGET  ->  ' + allocatedBudget);     
         if(String.isNotBlank(allocatedBudget) ){
              soql += ' and AM_Job_Detail__r.Allocated_Budget_Euro_Text__c LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+ String.escapeSingleQuotes(allocatedBudget)+Amr_ConstantForAdManager.PERCENTAGESLASH;
         }
@@ -681,19 +662,6 @@ Search functionality is implemented and SOQL is built dynamically so can not bre
             }
         }
         
-        
-        system.debug('SOQL HERE   Budget Here -->  ' + soql);
-         
-         
-            /* Project name dropdown
-         if(String.isNotBlank(projectName)){
-        soql += ' and AM_Job_Detail__r.Project_Details__c = \''+String.escapeSingleQuotes(projectName)+Amr_ConstantForAdManager.SLASH;
-              
-         } 
-         if(String.isNotBlank(projectName)){
-        soql += ' and AM_Job_Detail__r.Project_Name_Other__c = \''+String.escapeSingleQuotes(jobDetails.Project_Name_Other__c)+Amr_ConstantForAdManager.SLASH;projectNameText 
-              
-         } */
          
           if(String.isNotBlank(projectNameText)){
         soql += ' and AM_Job_Detail__r.Project_Details__r.Name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(projectNameText)+Amr_ConstantForAdManager.PERCENTAGESLASH;  //Amr_ConstantForAdManager.SLASH;
@@ -724,13 +692,8 @@ Search functionality is implemented and SOQL is built dynamically so can not bre
                
                system.debug('soql created date'+soql);
     }
-         system.debug('*****soql ******'+soql );
-         //soql+=' limit 120';
-         jobDetailList = Database.query(soql);
-
-         system.debug('*****soql ******'+soql );
-         system.debug('*** My List values ' + jobDetailList);
         
+         jobDetailList = Database.query(soql);
             getPriorityJobs();
             getPendingJobs();
             getDormantJobs();
@@ -826,8 +789,7 @@ Returns:
                    pendingJobIds.add(jobId.AM_Job_Detail__r.Id);
                }
            }
-         // String accepted = 'Accepted';
-         // String cancelled = 'Cancelled';
+     
           String pendingSoql ='select AM_Job_Detail__r.Lead_Agency_Name_Other__c,AM_Job_Detail__r.ProductionActivityTextArea__c,AM_Job_Detail__r.Campaign_Name__c,AM_Job_Detail__r.Project_Name_Other__c,Job_Status__c,User__c,Job_Shared__c,Reported__c,Started__c,Job_Allocated__c,Started_Image__c,Job_Allocated_Image__c,AM_Job_Detail__r.Project_Details__r.Name,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Job_Status__c,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.ProductCategory__r.Name,AM_Job_Detail__r.Brand_Position__r.Name,AM_Job_Detail__r.Brand_Final__r.Name,AM_Job_Detail__r.Stage_of_Production_Activity__c,AM_Job_Detail__r.Job_Accepted__c,AM_Job_Detail__r.Job_Started__c,Job_Status_Image__c,Reported_Image__c,AM_Job_Detail__r.Job_Reported__c,AM_Job_Detail__r.job_Shared__c  From Amr_Job_Allocation__c where AM_Job_Detail__r.Id IN:pendingJobIds  and ((AM_Job_Detail__r.ownerId =:loggedInUserId AND User__c = :loggedInUserId) OR User__c = :loggedInUserId) ';
          
           if(String.isNotBlank(selectedSortPendingOption) && selectedSortPendingOption !=NONE){
@@ -854,7 +816,6 @@ Returns:
                        pendingSoql += ' ORDER BY '+String.escapeSingleQuotes(selectedSortPendingOption )+' ASC';
                    }              
          }
-           system.debug('pendingSoql 01!!!'+pendingSoql );
           pendingJobList = Database.query(pendingSoql);
           paginationMethodForPendingJobs(pendingJobList);
           }catch(Exception ex){
@@ -911,8 +872,7 @@ Returns:
                        dormantSoql += ' ORDER BY '+String.escapeSingleQuotes(selectedSortDormantOption )+' ASC';
                    }               
          }
-           dormantJobList = Database.query(dormantSoql);
-          system.debug('dormantJobList !!!'+dormantJobList);
+          dormantJobList = Database.query(dormantSoql);
           paginationMethodForDormantJobs(dormantJobList);
          }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -970,7 +930,6 @@ Returns:
                        liveSoql += ' ORDER BY '+String.escapeSingleQuotes(selectedSortLiveOption)+' ASC';
                    }
          }
-           system.debug('liveSoql01!!!'+liveSoql);
           liveJobList = Database.query(liveSoql);
           paginationMethodForLiveJobs(liveJobList);  
        }catch(Exception ex){
@@ -1023,7 +982,7 @@ Returns:
                     pendingJobsToShow.add(lstPendingJobsNew.get(i));
                 }
             }
-                system.debug('pendingJobsToShow!!'+pendingJobsToShow.size()+'lstPendingJobsNew!!'+lstPendingJobsNew.size());
+           
          totalPendingJobPages = (totalSizeForPendingJobs/limitSizeForPendingJobs)+1;
         currentPendingPageNumber         = (counterForPendingJobs/limitSizeForPendingJobs)+1;
           }catch(Exception ex){
@@ -1059,7 +1018,7 @@ Returns:
       
               try{
               pendingJobsToShow = new List<Amr_Job_Allocation__c>();
-            //pendingJobsToShow.clear();
+           
             
              counterForPendingJobs = counterForPendingJobs+limitSizeForPendingJobs;
              
@@ -1153,7 +1112,7 @@ Returns:
               List<Amr_Job_Allocation__c> lstPriority = new List<Amr_Job_Allocation__c>();
               
               lstPriority = jobListToDisplay;
-              //priorityJobsToShow = new List<Amr_Job_Allocation__c>();
+             
               rapJobPortFolioHelper.removeDuplicatePriority(lstPriority,priorityJobsToShow);
               totalSizeForPriorityJobs = priorityJobsToShow.size();
               lstpriorityJobsNew = priorityJobsToShow;
@@ -1428,7 +1387,7 @@ Returns:
               List<Amr_Job_Allocation__c> lstLive = new List<Amr_Job_Allocation__c>();
                 
               lstLive = jobListToDisplay;
-              //liveJobsToShow = new List<Amr_Job_Allocation__c>();
+              
               rapJobPortFolioHelper.removeDuplicateLive(lstLive,liveJobsToShow);
               lstLiveJobsNew = liveJobsToShow;
               totalSizeForLiveJobs = lstLiveJobsNew.size();

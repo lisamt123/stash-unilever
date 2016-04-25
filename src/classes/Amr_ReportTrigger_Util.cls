@@ -33,8 +33,7 @@ public with sharing class Amr_ReportTrigger_Util {
           
           //categoryStageInvolvedMap = helperClass.categoryStageInvolvedMapData(jobDetailList,yearValue,BudgetResponBD);     
           categoryStageOneToTwoMap = helperClass.categoryStageOneToTwoMapData(jobDetailList,yearValue,BudgetResponBD);
-          Map<String,Map<String,Integer>> test = new Map<String,Map<String,Integer>>();
-          test = categoryStageOneToTwoMap;
+          
          
           categoryAllStage = helperClass.categoryAllStageData(jobDetailList,yearValue,BudgetResponBD);
             
