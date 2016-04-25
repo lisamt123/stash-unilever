@@ -11,7 +11,7 @@
    <apex:attribute name="ParentObjectTypeDesc" type="String" AssignTo="{!ParentObjectType}" Description="The Is View All FLAG"  />
    <apex:attribute name="ReturnPageURLValue" type="String" AssignTo="{!ReturnPageURL}" Description="The Is View All FLAG"  />
    <!-- Common_Style File Start -->
-   <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
+   <link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'common_style.css')}" type="text/css"/>
    <!-- Common_Style File End -->
    <script type="text/javascript">
       $('a.addfancy').fancybox({

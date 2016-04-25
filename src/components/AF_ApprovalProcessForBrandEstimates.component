@@ -32,6 +32,23 @@
       margin-right:40px;
       }
    </style>
+   <script>
+   function redirection(){
+      var brandid='{!brandvalue1}';
+      var catageoryname="{!catageory1}";
+      catageoryname = catageoryname.replace(/ /g,'');
+      catageoryname = catageoryname.replace(/'/g,'');
+      var fyear='{!year1}';
+       if({!isAgency}){
+           var url = '{!$Label.AF_AgencyUrlLink}/apex/AF_AgencyHomePage?brandvalue='+brandid+'&category='+catageoryname+'&Year='+fyear;
+           
+           parent.location.assign(url);   
+          }
+       else{
+           parent.location.assign('/apex/AF_AgencyHomePage?brandvalue='+brandid+'&category='+catageoryname+'&Year='+fyear);
+       }
+      }
+   </script>
    <!-- Common_Style File Start -->
    <link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'common_style.css')}" type="text/css"/>
    <!-- Common_Style File End -->   
@@ -61,7 +78,7 @@
       </tr>
       <tr>
          <td colspan='2' align='right'>
-            <apex:commandButton value="submit"  Rerender="pmg" action="{!Submit}"  rendered="{!and(LoggedinUser.AF_Agency_Fees_User_Type__c=='Category Finance',BrandEstRecord.AF_Status_Base_Fees__c=='With Category Finance',BrandEstRecord.AF_CMCO_Rejected__c==true,BrandEstRecord.AF_Category_Finance_Flag__c==0) }" styleClass="submit_btn2Appoval" oncomplete="alert('Record submitted successfully');"/>
+            <!--<apex:commandButton value="submit"  Rerender="pmg" action="{!Submit}"  rendered="{!and(LoggedinUser.AF_Agency_Fees_User_Type__c=='Category Finance',BrandEstRecord.AF_Status_Base_Fees__c=='With Category Finance',BrandEstRecord.AF_CMCO_Rejected__c==true,BrandEstRecord.AF_Category_Finance_Flag__c==0) }" styleClass="submit_btn2Appoval" oncomplete="alert('Record submitted successfully');"/>-->
             <apex:commandButton value="Reject" Rerender="popuprejcomm" action="{!RejectBrandestiamteFinance}"   styleClass="submit_btn2Appoval" rendered="{!AND(LoggedinUser.AF_Agency_Fees_User_Type__c=='Category Finance',BrandEstRecord.AF_Status_Base_Fees__c=='With Category Finance',BrandEstRecord.AF_CMCO_Rejected__c==true)}" status="status"/>
             <apex:outputpanel rendered="{!If( Targetprocess.size==0 ,true,false)}">
                <apex:commandButton value="Submit for Approval" rerender="pmg,Approvepopup" action="{!SubmitApprovalPopup}" rendered="{!AND(ApprovalButton,NOT(LoggedinUser.AF_Agency_Fees_User_Type__c=='Category Finance'),NOT(BrandEstRecord.AF_Status_Base_Fees__c=='With CMCO'))}" styleClass="submit_btnAppoval" status="status"/>
@@ -158,4 +175,5 @@
    <script>
    var jsDeclare = {brandid: '{!brandvalue1}', catageoryname:'{!catageory1}',agencyUrl:'{!$Label.AF_AgencyUrlLink}',fyear:'{!year1}',agencyUser:'{!isAgency}'};
    </script>
+   <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'AF_ApprovalProcessForBrandEstimates.js')}"></script>
 </apex:component>

@@ -10,7 +10,7 @@
    <apex:attribute name="ParentObjectName" type="String" AssignTo="{!ParentObjectType}" Description="The parent record object type which the component will query."  />
    <apex:attribute name="IsViewAllValue" type="String" AssignTo="{!IsViewAll}" Description="The Is View All FLAG"  />
    <!-- Common_Style File Start -->
-   <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
+   <link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'common_style.css')}" type="text/css"/>
    <!-- Common_Style File End -->
    <div class="AF_FieldHistoryComp">
       <apex:pageBlock title="Field History">
