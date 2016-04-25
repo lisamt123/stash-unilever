@@ -12,6 +12,7 @@ public with sharing Class Amr_AdManagerHelper_CC{
         admanagerObj = new Amr_AdManagerController_CC(); 
     }
     
+	
     public Boolean productionActivityTypeValidation( Amr_Job_Details__c jobDetailsObj){
     
    			Boolean okayToSaveCheck = true;
