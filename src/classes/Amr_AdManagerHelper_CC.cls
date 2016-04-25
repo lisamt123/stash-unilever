@@ -393,12 +393,13 @@ public with sharing Class Amr_AdManagerHelper_CC{
             List<PermissionSetAssignment> userList =  [SELECT Id,Assignee.Name,Assignee.id,Assignee.Email FROM PermissionSetAssignment where PermissionSet.Name = :Label.Amr_RAP AND Assignee.Email = :emailIds ];
            system.debug('userList!!'+userList);
             if(userList.size()>0){
-                Amr_Job_Details__Share jobShareObj  = new Amr_Job_Details__Share();
-                jobShareObj.ParentId = jobDetailsNew.JobId;
-                jobShareObj.UserOrGroupId = userList[0].Assignee.id;               
-                jobShareObj.AccessLevel = Amr_ConstantForAdManager.EDIT;
-                insert jobShareObj;
-              
+            	if(userinfo.getuserid() != userList[0].Assignee.id){
+	                Amr_Job_Details__Share jobShareObj  = new Amr_Job_Details__Share();
+	                jobShareObj.ParentId = jobDetailsNew.JobId;
+	                jobShareObj.UserOrGroupId = userList[0].Assignee.id;               
+	                jobShareObj.AccessLevel = Amr_ConstantForAdManager.EDIT;
+	                insert jobShareObj;
+            	}
                 Amr_AdManagerController_CC.insertJobAllocationData(jobDetailsNew.JobId,userList[0].Assignee.id, userList[0].Assignee.Email);
            }
         }

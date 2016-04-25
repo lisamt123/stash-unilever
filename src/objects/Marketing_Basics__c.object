@@ -138,17 +138,10 @@ Renamed to Other SOW items in reviews</description>
         <fullName>Activity_Fee_Agency__c</fullName>
         <description>Field to show/hide data in an Agency report, dependent on the value in the SOW Status field</description>
         <externalId>false</externalId>
-<<<<<<< HEAD
         <formula>IF( 
 OR( 
 ISPICKVAL( Oblix_SOWMarketing__r.SOW_Status__c , &quot;Awaiting Unilever Approval&quot;), 
 ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Draft - with Unilever&quot;), 
-=======
-        <formula>IF( 
-OR( 
-ISPICKVAL( Oblix_SOWMarketing__r.SOW_Status__c , &quot;Awaiting Unilever Approval&quot;), 
-ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Draft - with Unilever&quot;), 
->>>>>>> develop
 ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;)), NULL, OblixOtherItemFee__c)</formula>
         <label>Activity Fee</label>
         <precision>18</precision>
@@ -315,17 +308,10 @@ ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;))
         <fullName>Hourly_Rate_Agency__c</fullName>
         <description>Field to show/hide data in an Agency report, dependent on the value in the SOW Status field</description>
         <externalId>false</externalId>
-<<<<<<< HEAD
         <formula>IF( 
 OR( 
 ISPICKVAL( Oblix_SOWMarketing__r.SOW_Status__c  , &quot;Awaiting Unilever Approval&quot;), 
 ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Draft - with Unilever&quot;), 
-=======
-        <formula>IF( 
-OR( 
-ISPICKVAL( Oblix_SOWMarketing__r.SOW_Status__c  , &quot;Awaiting Unilever Approval&quot;), 
-ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Draft - with Unilever&quot;), 
->>>>>>> develop
 ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;)), NULL ,Oblix_Hourly_Rate__c)</formula>
         <label>Hourly Rate</label>
         <precision>18</precision>
@@ -452,19 +438,11 @@ ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;))
         <fullName>Resource_Fee_Agency__c</fullName>
         <description>Field to show/hide data in an Agency report, dependent on the value in the SOW Status field</description>
         <externalId>false</externalId>
-<<<<<<< HEAD
         <formula>IF( 
 OR( 
 ISPICKVAL( Oblix_SOWMarketing__r.SOW_Status__c , &quot;Awaiting Unilever Approval&quot;), 
 ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Draft - with Unilever&quot;), 
 ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;)), NULL, 
-=======
-        <formula>IF( 
-OR( 
-ISPICKVAL( Oblix_SOWMarketing__r.SOW_Status__c , &quot;Awaiting Unilever Approval&quot;), 
-ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Draft - with Unilever&quot;), 
-ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;)), NULL, 
->>>>>>> develop
 Oblix_FTE_Real_Price__c)</formula>
         <label>Resource Fee</label>
         <precision>18</precision>

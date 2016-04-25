@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
-<<<<<<< HEAD
     <applicationVisibilities>
         <application>ScPaperles</application>
         <visible>true</visible>
@@ -423,8 +422,4 @@
         <tab>Visitor_Entry_Portal</tab>
         <visibility>Visible</visibility>
     </tabSettings>
-=======
-    <label>VEP Visitor Permissions</label>
-    <userLicense>Salesforce</userLicense>
->>>>>>> develop
 </PermissionSet>

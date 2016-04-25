@@ -851,19 +851,11 @@
         <fullName>SOW_Overall_Total_Agency__c</fullName>
         <description>Field to show/hide data in an Agency report, dependent on the value in the SOW Status field</description>
         <externalId>false</externalId>
-<<<<<<< HEAD
         <formula>IF(
 OR(
 ISPICKVAL( SOW_Status__c  , &quot;Awaiting Unilever Approval&quot;),
 ISPICKVAL(SOW_Status__c , &quot;Draft - with Unilever&quot;),
 ISPICKVAL(SOW_Status__c , &quot;Returned by Agency&quot;)
-=======
-        <formula>IF(
-OR(
-ISPICKVAL( SOW_Status__c  , &quot;Awaiting Unilever Approval&quot;),
-ISPICKVAL(SOW_Status__c , &quot;Draft - with Unilever&quot;),
-ISPICKVAL(SOW_Status__c , &quot;Returned by Agency&quot;)
->>>>>>> develop
 ), NULL, Oblix_Current_FY_Total__c)</formula>
         <label>SOW Total (Inc Risk Adjustment)</label>
         <precision>18</precision>
@@ -949,17 +941,10 @@ ISPICKVAL(SOW_Status__c , &quot;Returned by Agency&quot;)
         <fullName>Total_Campaign_Fee_Agency__c</fullName>
         <description>Field to show/hide data in an Agency report, dependent on the value in the SOW Status field</description>
         <externalId>false</externalId>
-<<<<<<< HEAD
         <formula>IF( 
 OR( 
 ISPICKVAL(SOW_Status__c , &quot;Awaiting Unilever Approval&quot;), 
 ISPICKVAL(SOW_Status__c , &quot;Draft - with Unilever&quot;), 
-=======
-        <formula>IF( 
-OR( 
-ISPICKVAL(SOW_Status__c , &quot;Awaiting Unilever Approval&quot;), 
-ISPICKVAL(SOW_Status__c , &quot;Draft - with Unilever&quot;), 
->>>>>>> develop
 ISPICKVAL(SOW_Status__c , &quot;Returned by Agency&quot;)), NULL, Total_Campaigns_This_FY__c)</formula>
         <label>Total Campaign Fee</label>
         <precision>18</precision>
@@ -997,19 +982,11 @@ ISPICKVAL(SOW_Status__c , &quot;Returned by Agency&quot;)), NULL, Total_Campaign
         <fullName>Total_Non_Campaign_Fees_Agency__c</fullName>
         <description>Field to show/hide data in an Agency report, dependent on the value in the SOW Status field</description>
         <externalId>false</externalId>
-<<<<<<< HEAD
         <formula>IF( 
 OR( 
 ISPICKVAL(SOW_Status__c , &quot;Awaiting Unilever Approval&quot;), 
 ISPICKVAL(SOW_Status__c , &quot;Draft - with Unilever&quot;), 
 ISPICKVAL(SOW_Status__c , &quot;Returned by Agency&quot;)), NULL,
-=======
-        <formula>IF( 
-OR( 
-ISPICKVAL(SOW_Status__c , &quot;Awaiting Unilever Approval&quot;), 
-ISPICKVAL(SOW_Status__c , &quot;Draft - with Unilever&quot;), 
-ISPICKVAL(SOW_Status__c , &quot;Returned by Agency&quot;)), NULL,
->>>>>>> develop
 OblixTotalOtherItemsFees__c)</formula>
         <label>Total Non Campaign Fees</label>
         <precision>18</precision>
