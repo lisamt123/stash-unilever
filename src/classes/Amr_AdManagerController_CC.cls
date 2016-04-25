@@ -13,6 +13,7 @@ Purpose:
  ***********************************************************************/
 public with sharing class Amr_AdManagerController_CC{
 
+
     public Amr_Job_Details__c jobDetails{get;set;}
     public Amr_Logging_Form_Setting__c r  {get; set;}
       public String selectedCountry {get;set;}
