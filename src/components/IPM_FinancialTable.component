@@ -126,7 +126,7 @@
                         <!--
                             Renders Y0 Market Share value in edit mode
                         -->
-                        <apex:inputText value="{!finWrapper.y0ValueMarketShare}" size="3" rendered="{!isEditMode}" onkeypress="defKeyPrev()"/>
+                        <apex:inputText value="{!finWrapper.y0ValueMarketShare}" size="3" rendered="{!isEditMode}" onkeypress="return isNumber(event,this.value)"/>
                     </apex:outputText>
                 </td>
                 <!-- GROSS -->
@@ -157,7 +157,7 @@
                         <!--
                             Renders Gross Value Market Share value in edit mode
                         -->
-                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!isEditMode}" onkeypress="defKeyPrev()"/>
+                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!isEditMode}" onkeypress="return isNumber(event,this.value)"/>
                     </td>
                 </apex:repeat>
                 <!-- INCREMENTAL -->
@@ -185,7 +185,7 @@
                         <!--
                             Renders Incremental Value Market Share value in edit mode
                         -->
-                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!isEditMode}" onkeypress="defKeyPrev()"/>
+                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!isEditMode}" onkeypress="return isNumber(event,this.value)"/>
                     </td>
                 </apex:repeat>
                 <apex:variable value="{!rowCount + 1}" var="rowCount"/>
@@ -319,7 +319,7 @@
                                     This block will be rendered when the following condition is met
                                     Non-Consolidated and Edit mode
                                 -->
-                                <apex:inputText value="{!finWrapper.y0Volume}" size="3" rendered="{!AND(isEditMode,NOT(isConsolidated))}" onkeypress="defKeyPrev()"/>
+                                <apex:inputText value="{!finWrapper.y0Volume}" size="3" rendered="{!AND(isEditMode,NOT(isConsolidated))}" onkeypress="return isNumber(event,this.value)"/>
                             </apex:outputText>
                         </td>
                         
@@ -356,7 +356,7 @@
                                     This block will be rendered when the following condition is met
                                     Non-Consolidated and Non-Edit mode
                                 -->
-                                <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="defKeyPrev()"/>
+                                <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="return isNumber(event,this.value)"/>
                             </td>
                         </apex:repeat>
                         
@@ -393,7 +393,7 @@
                                     This block will be rendered when the following condition is met
                                     Non-Consolidated and Non-Edit mode
                                 -->
-                                <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="defKeyPrev()"/>
+                                <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="return isNumber(event,this.value)"/>
                             </td>
                         </apex:repeat>
                         
@@ -512,7 +512,7 @@
                                         This block will be rendered when the following condition is met
                                         Non-Consolidated and Edit mode
                                     -->
-                                    <apex:inputText value="{!finWrapper.y0VolumeTons}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="defKeyPrev()"/>
+                                    <apex:inputText value="{!finWrapper.y0VolumeTons}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="return isNumber(event,this.value)"/>
                                 </apex:outputText>
                             </td>
                             <!-- GROSS -->
@@ -547,7 +547,7 @@
                                         This block will be rendered when the following condition is met
                                         Non-Consolidated and Non-Edit mode
                                     -->
-                                    <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="defKeyPrev()"/>
+                                    <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="return isNumber(event,this.value)"/>
                                 </td>
                             </apex:repeat>
                             <!-- INCREMENTAL -->
@@ -582,7 +582,7 @@
                                         This block will be rendered when the following condition is met
                                         Non-Consolidated and Non-Edit mode
                                     -->
-                                    <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="defKeyPrev()"/>
+                                    <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="return isNumber(event,this.value)"/>
                                 </td>
                             </apex:repeat>
                             <apex:variable value="{!rowCount + 1}" var="rowCount"/>        
@@ -629,7 +629,7 @@
                             This block will be rendered when the following condition is met for Y0
                             Non-Consolidated and Edit mode
                         -->
-                        <apex:inputText value="{!finWrapper.y0Turnover}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="defKeyPrev()"/>
+                        <apex:inputText value="{!finWrapper.y0Turnover}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="return isNumber(event,this.value)"/>
                     </apex:outputText>
                 </td>
                 <!-- GROSS -->
@@ -742,7 +742,7 @@
                             This block will be rendered when the following condition is met
                             Non-Consolidated and Edit mode
                         -->
-                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="defKeyPrev()"/>
+                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="return isNumber(event,this.value)"/>
                     </td>
                 </apex:repeat>
                 <!-- INCREMENTAL -->
@@ -798,7 +798,7 @@
                             This block will be rendered when the following condition is met
                             Non-Consolidated and Edit mode
                         -->
-                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="defKeyPrev()"/>
+                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="return isNumber(event,this.value)"/>
                     </td>
                 </apex:repeat>
                 <apex:variable value="{!rowCount + 1}" var="rowCount"/>
@@ -841,7 +841,7 @@
                             This block will be rendered when the following condition is met for Y0
                             Non-Consolidated and Edit mode
                         -->
-                        <apex:inputText value="{!finWrapper.y0GrossProfit}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="defKeyPrev()"/>
+                        <apex:inputText value="{!finWrapper.y0GrossProfit}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="return isNumber(event,this.value)"/>
                     </apex:outputText>
                 </td>
                 <!-- GROSS -->
@@ -891,7 +891,7 @@
                             This block will be rendered when the following condition is met
                             Non-Consolidated and Edit mode
                         -->
-                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="defKeyPrev()"/>
+                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="return isNumber(event,this.value)"/>
                     </td>
                 </apex:repeat>
                 <!-- INCREMENTAL -->
@@ -941,7 +941,7 @@
                             This block will be rendered when the following condition is met
                             Non-Consolidated and Edit mode
                         -->
-                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="defKeyPrev()"/>
+                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="return isNumber(event,this.value)"/>
                     </td>
                 </apex:repeat>
                 <apex:variable value="{!rowCount + 1}" var="rowCount"/>
@@ -984,7 +984,7 @@
                             This block will be rendered when the following condition is met for Y0
                             Non-Consolidated and Edit mode
                         -->
-                        <apex:inputText value="{!finWrapper.y0Advertising}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="defKeyPrev()"/>
+                        <apex:inputText value="{!finWrapper.y0Advertising}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="return isNumber(event,this.value)"/>
                     </apex:outputText>
                 </td>
                 <!-- GROSS -->
@@ -1035,7 +1035,7 @@
                             This block will be rendered when the following condition is met
                             Non-Consolidated and Edit mode
                         -->
-                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="defKeyPrev()"/>
+                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="return isNumber(event,this.value)"/>
                     </td>
                 </apex:repeat>
                 <!-- INCREMENTAL -->
@@ -1086,7 +1086,7 @@
                             This block will be rendered when the following condition is met
                             Non-Consolidated and Edit mode
                         -->
-                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="defKeyPrev()"/>
+                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="return isNumber(event,this.value)"/>
                     </td>
                 </apex:repeat>
                 <apex:variable value="{!rowCount + 1}" var="rowCount"/>
@@ -1130,7 +1130,7 @@
                             This block will be rendered when the following condition is met for Y0
                             Non-Consolidated and Edit mode
                         -->
-                        <apex:inputText value="{!finWrapper.y0Profit}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="defKeyPrev()"/>
+                        <apex:inputText value="{!finWrapper.y0Profit}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="return isNumber(event,this.value)"/>
                     </apex:outputText>
                 </td>
                 <!-- GROSS -->
@@ -1180,7 +1180,7 @@
                             This block will be rendered when the following condition is met
                             Non-Consolidated and Edit mode
                         -->
-                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="defKeyPrev()"/>
+                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="return isNumber(event,this.value)"/>
                     </td>
                 </apex:repeat>
                 <!-- INCREMENTAL -->
@@ -1230,7 +1230,7 @@
                             This block will be rendered when the following condition is met
                             Non-Consolidated and Edit mode
                         -->
-                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="defKeyPrev()"/>
+                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="return isNumber(event,this.value)"/>
                     </td>
                 </apex:repeat>
                 <apex:variable value="{!rowCount + 1}" var="rowCount"/>
