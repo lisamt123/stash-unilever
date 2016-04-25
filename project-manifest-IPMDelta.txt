@@ -8,7 +8,7 @@ src/components/IPM_FinancialTable.component-meta.xml
 src/pages
 src/pages/IPM_EditProject.page
 src/pages/IPM_EditProject.page-meta.xml
-src/pages/IPM_ImageUploadCoreParam.Page
+src/pages/IPM_ImageUploadCoreParam.page
 src/pages/IPM_ImageUploadCoreParam.page-meta.xml
 src/staticresources
 src/staticresources/IPM_Resource.resource
