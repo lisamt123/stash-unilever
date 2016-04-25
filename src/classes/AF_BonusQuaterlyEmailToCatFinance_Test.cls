@@ -25,9 +25,13 @@ public class AF_BonusQuaterlyEmailToCatFinance_Test
         System.runAs(u)
         {
             // insert custom setting.
-            List<AF_BonusQuarterly_Quarterdates__c> BonusQuarterlyList = AF_TestFactory_Helper.insertBonusQuarterlyQuarterdate(1,true);
-            List<AF_BonusQuarterly_Quarterdates__c> BonusQuarterlyQuery = [SELECT Id From AF_BonusQuarterly_Quarterdates__c limit 1];
-            System.assert(BonusQuarterlyQuery[0].Id!=null,BONUS_QUARTERLY_DATES);
+            List<AF_BonusQuarterly_Quarterdates__c> BonusQuarterlyList = AF_TestFactory_Helper.insertBonusQuarterlyQuarterdate(1,false);
+            List<AF_BonusQuarterly_Quarterdates__c> QuarterlyList=new List<AF_BonusQuarterly_Quarterdates__c>(); 
+            for(AF_BonusQuarterly_Quarterdates__c bonus:BonusQuarterlyList ){
+            bonus.AF_Q1__c=system.today();
+            QuarterlyList.add(bonus);
+            }
+            insert QuarterlyList;
             AF_BonusQuaterEmailToCatfinance_Schedule  EmailtoCatFinance =new AF_BonusQuaterEmailToCatfinance_Schedule();
             String CRON_VALUE = '0 0 3 ? * *';
             system.schedule('AF_Bonusquarterly_Reminder-yearly (TEST)', CRON_VALUE, EmailtoCatFinance);

@@ -16,8 +16,9 @@ public class AF_ApproveActualsCtrl_Test
     private static String attachment_Data = 'Test Data for document attachment';
     private static String brandId='bId';
     private static String accountId = 'aId';
-    static String quarter='Q1';
+    static String quarter='Q1;Q2';
     static user ApproveActualsCtrl;
+    static user ApproveActualsCtrl1;
     /***********************************************************************************
 *  @Description: this method will the test data
 *  @name : AF_approveActualsCtrl
@@ -116,7 +117,7 @@ public class AF_ApproveActualsCtrl_Test
             List<AF_OOPS_Actual__c> OopsactualList1=new List<AF_OOPS_Actual__c>();
             for(AF_OOPS_Actual__c oopact1 : OopsactualList){
                 oopact1.Quarter__c='Q2;Q3';
-                oopact1.AF_Rejected_Quarter__c='Q2';
+                //oopact1.AF_Rejected_Quarter__c='Q2';
                 oopact1.AF_Fiscal_year__c=currYear1;
                 OopsactualList1.add(oopact1);
             }
@@ -330,7 +331,7 @@ public class AF_ApproveActualsCtrl_Test
             List<AF_OOPS_Actual__c> OopsactualList = AF_TestFactory_Helper.insertOOPSActual(1,false);
             List<AF_OOPS_Actual__c> OopsactualList1 =new List<AF_OOPS_Actual__c>();
             for(AF_OOPS_Actual__c oopact2 : OopsactualList){
-                oopact2.Quarter__c='Q3;Q4';
+                oopact2.Quarter__c=AF_Constants.QUARTER4;
                 OopsactualList1.add(oopact2);
             }
             insert OopsactualList1;
@@ -354,7 +355,8 @@ public class AF_ApproveActualsCtrl_Test
             //For Agency Id
             ApexPages.currentPage().getParameters().put(accountId,acc[0].Id);
             //For Fiscal year
-            ApexPages.currentPage().getParameters().put('fy',currYear);   
+            ApexPages.currentPage().getParameters().put('fy',currYear);
+            ApexPages.currentPage().getParameters().put('quarter','Q4'); 
             //Instantiate AF_ApproveActualsCtrl  Class
             AF_ApproveActualsCtrl  appActCtrl2=new AF_ApproveActualsCtrl ();
             appActCtrl2.selectedQuarter='Q4';

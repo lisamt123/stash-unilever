@@ -12,7 +12,8 @@ public class AF_AfterUpdateBonusResHandler_Test1
     Static Integer IcurrYear = System.Today().year();
     Static string currYear=string.valueof(IcurrYear);
     static user stdUserForResourceAllocation;
-    /***********************************************************************************
+    private static string className_STR=AF_AfterUpdateBonusResHandler.class.getName();
+     /***********************************************************************************
 *  @Description: this method will the test data
 *  @name : AF_AfterUpdateBonusResHandler
 *  @param : none.

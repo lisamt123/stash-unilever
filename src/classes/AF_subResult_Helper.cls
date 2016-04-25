@@ -38,8 +38,6 @@ public with sharing class AF_subResult_Helper{
         string subResultCalc='subResultCalc';
         if(BonusAnnualSubResult.size()>0){
             for(AF_Bonus_Results__c bonusResult : [select AF_Bonus_Thresholds__c,AF_Bonusable_Fees__c,AF_Status__c,AF_Locked__c,AF_Total_Bonus_Value__c,AF_Qual_Bonus_Value__c,AF_Quant_Bonus_Value__c from AF_Bonus_Results__c where AF_Bonus_Thresholds__c IN :BonusAnnualSubResult and RecordTypeId = : Schema.SObjectType.AF_Bonus_Results__c.getRecordTypeInfosByName().get('Bonus Annual').getRecordTypeId()]){
-                system.debug('inside loop...');
-                system.debug('bonusResult..'+bonusResult);
                 bonusResult.AF_Bonusable_Fees__c = bonusfeesAnnualMap.get(bonusResult.AF_Bonus_Thresholds__c);
                 bonusResult.AF_Total_Bonus_Value__c = totalBonusAnnualMap.get(bonusResult.AF_Bonus_Thresholds__c);
                 bonusResult.AF_Qual_Bonus_Value__c = QualBonusAnnualMap.get(bonusResult.AF_Bonus_Thresholds__c);
@@ -47,10 +45,8 @@ public with sharing class AF_subResult_Helper{
                 bonusResult.AF_Status__c = status.get(bonusResult.AF_Bonus_Thresholds__c);
                 bonusResult.AF_Locked__c = Lock.get(bonusResult.AF_Bonus_Thresholds__c);
                 bonusResultList.add(bonusResult);
-                system.debug('bonusResultList..1..'+bonusResultList);
             }
         }
-        system.debug('bonusResultList..3..'+bonusResultList);
         counter =0;
         subResultStatusCalc(BonusQuarterlySubResult,QuaterSet,status,Lock);
         
@@ -101,7 +97,6 @@ public with sharing class AF_subResult_Helper{
         } 
         if(bonusResultList.size()>0){
             try{
-            system.debug('bonusResultList..2.'+bonusResultList);
             upsert bonusResultList;
             }
             catch(Exception e)
