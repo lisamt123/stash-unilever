@@ -1,0 +1,168 @@
+td.rich-tabhdr-side-cell table {
+    background: #FFFFFF !important;
+}
+.rich-tab-bottom-line {
+    border-bottom: 6px solid #FFFFFF !important;
+    background: #FFFFFF !important;
+}
+.job-portfolio-container {
+    background: #FFFFFF none repeat scroll 0 0;
+    font-family: "dinOffPro", sans-serif;
+    margin: 0 auto;
+}
+.job-portfolio-container a {
+    color: #3399cc !important;
+}
+.leftbar {
+    float: left;
+    width: 25.6%;
+}
+.rightbar {
+    float: right;
+    width: 73%;
+}
+.leftbar-container {
+    min-height: 412px;
+    height: 100%;
+}
+.leftbar-container1 {
+    min-height: 455px;
+    height: 100%;
+}
+#navDormant {
+    background-color: #86CCF2;
+}
+#navLive {
+    background-color: #59B577;
+}
+#navPriority {
+    background-color: #F3922A;
+}
+#navPending {
+    background-color: #E76970;
+}
+.navcommon {
+    color: #fff;
+    float: left;
+    font-size: 14px;
+    font-weight: bold;
+    height: 100%;
+    line-height: 40px;
+    width: 50%;
+    box-sizing: border-box;    
+}
+.vf-reset .vf-surface {
+    background: #FFFFFF;
+}
+.vf-reset {
+    background: #FFFFFF;
+}
+.border-right-white {
+    border-right: 1px solid #FFFFFF;
+}
+#vfext4-ext-sprite-1034,
+#vfext4-ext-sprite-1073 {
+    display: none;
+}
+.total-jobs-class {
+    color: #333333;
+    font-family: "dinOffProBold", sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+.total-jobs-class span {
+    font-size: 16px;
+}
+.leftbar-container-content93 {
+    margin: 0 auto;
+    padding-top: 12px;
+    width: 93%;
+}
+.horizontal-list-priority {
+    width: 25%;
+}
+.popup-window {
+    background-color: white;
+    border: 1px solid #333333;
+    z-index: 10;
+    position: fixed;
+}
+.alert-popup {
+    left: 25%;
+    width: 800px;
+    top: 20%;
+    max-height: 450px;
+}
+.advance-search-popup {
+    left: 20%;
+    width: 900px;
+    height: 400px;
+    top: 20%;
+    background-color: white;
+    border: 1px solid #333333;
+    z-index: 10;
+    position: fixed;
+    overflow-y: auto;
+}
+.mask {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+.popup-window tr.headerRow th div {
+    max-width: 100px !important;
+}
+.rich-tabpanel-content-position {
+    table-layout: fixed !important;
+}
+#phHeader {
+    display: none;
+}
+.scrollbar-table-parent table.list tbody {
+    overflow-y: auto;
+    max-height: 679px;
+    display: -moz-grid;
+    display: run-in;
+    display: -webkit-box;
+    width: 100%;
+}
+.scrollbar-table-parent table.list thead {    
+    display: inline-flex;
+    width: 100%;
+    table-layout: fixed !important;
+}
+.scrollbar-table-parent table.list tbody td,
+.scrollbar-table-parent table.list thead th {
+    width: 6em;
+}
+.tabsection tr.headerRow th:nth-last-child(1) div,
+.tabsection tr.headerRow th:nth-last-child(2) div,
+.tabsection tr.headerRow th:nth-last-child(3) div {
+    max-width: 40px;
+}
+.tabsection tr.headerRow th:nth-child(3) div {
+    max-width: 30px;
+}
+@media all and (-ms-high-contrast: none),
+(-ms-high-contrast: active) {
+    .scrollbar-table-parent table.list {
+        table-layout: fixed !important;
+    }
+}
+.vf-reset .vf-surface tspan {
+    font-family: "dinOffPro", sans-serif !important;
+    font-size: 12px !important;
+}
+.scrollbar-table-parent {
+    overflow-x: auto;
+}
+.popup-window {
+    height: auto !important;
+}
+.alert-popup tr.headerRow th div {
+	width:120px !important;
+	max-width:120px !important;
+}
