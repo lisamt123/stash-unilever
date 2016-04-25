@@ -10,7 +10,7 @@ History
 VERSION     AUTHOR             DATE           DETAIL           Description
 1.0         Varuna Nikam       4/03/2016     INITIAL DEV      CSR:
 *************************************************************************************************************************************/
-public without sharing class Amr_SubmittedSavingController_CC {
+public with sharing class Amr_SubmittedSavingController_CC {
     public String savingIdFromPage{get;set;}
     public Amr_Saving__c savObj {get;set;}
     public Amr_Saving__c savObjNum {get;set;}

@@ -11,7 +11,7 @@ Purpose:
  VERSION   AUTHOR                        DATE              DETAIL                    Description    
  1.0       Mindtree                  16/12/2015      INITIAL DEVELOPMENT            CSR: 
  ***********************************************************************/
-public without sharing class Amr_JobSheetController_CC{
+public with sharing class Amr_JobSheetController_CC{
 
     public String docUploaded{get;set;}
     public String projNameFromPage{get;set;}

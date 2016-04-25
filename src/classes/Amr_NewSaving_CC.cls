@@ -13,7 +13,7 @@ Purpose:
  ***********************************************************************/
 
 
-public without sharing class Amr_NewSaving_CC {
+public with sharing class Amr_NewSaving_CC {
      
     public Amr_Saving__c savingObj{get;set;}
     //public String jobId{get;set;}
