@@ -1,3 +1,5 @@
+src
+src/classes
 src/classes/VEP_AutocompleteV2_Con_Test.cls
 src/classes/VEP_AutocompleteV2_Con_Test.cls-meta.xml
 src/classes/VEP_AutoCompleteV2_Con.cls
@@ -24,10 +26,12 @@ src/classes/VEP_VisitorStatus_Test.cls
 src/classes/VEP_VisitorStatus_Test.cls-meta.xml
 src/classes/TriggerFactory.cls
 src/classes/TriggerFactory.cls-meta.xml
+src/components
 src/components/VEP_AutoComplete.component
 src/components/VEP_AutoComplete.component-meta.xml
 src/components/VEP_VisitorPass_OnBehalf.component
 src/components/VEP_VisitorPass_OnBehalf.component-meta.xml
+src/pages
 src/pages/VEP_SafetyQuiz_VF.page
 src/pages/VEP_SafetyQuiz_VF.page-meta.xml
 src/pages/VEP_VisitorMap_VF.page
@@ -36,14 +40,17 @@ src/pages/VEP_Visitorpass_VF.page
 src/pages/VEP_Visitorpass_VF.page-meta.xml
 src/pages/VEP_VisitorStatus_VF.page
 src/pages/VEP_VisitorStatus_VF.page-meta.xml
+src/triggers
 src/triggers/VEP_Visitor_Trigger.trigger
 src/triggers/VEP_Visitor_Trigger.trigger-meta.xml
+src/objects
 src/objects/Vep_Answer__c.object
 src/objects/Vep_Factory__c.object
 src/objects/VEP_FactoryVisit__c.object
 src/objects/Vep_Question__c.object
 src/objects/Vep_Visitor__c.object
 src/objects/Vep_Visitor_Pass__c.object
+src/layouts
 src/layouts/Vep_Answer__c-Answer Layout.layout
 src/layouts/Vep_Factory__c-Factory Layout.layout
 src/layouts/Vep_Question__c-Question Layout.layout
@@ -51,18 +58,27 @@ src/layouts/Vep_Visitor__c-ROB Visitor layout.layout
 src/layouts/Vep_Visitor__c-Visitor Layout.layout
 src/layouts/Vep_Visitor__c-Visitor ReadOnly Layout.layout
 src/layouts/Vep_Visitor_Pass__c-Vep Visitor Pass Layout.layout
+src/tabs
 src/tabs/Vep_Answer__c.tab
 src/tabs/Vep_Factory__c.tab
 src/tabs/Vep_Question__c.tab
 src/tabs/Vep_Visitor__c.tab
 src/tabs/Vep_Visitor_Pass__c.tab
 src/tabs/Visitor_Entry_Portal.tab
+src/applications
 src/applications/ScPaperles.app
+src/permissionsets
 src/permissionsets/VEP_Security_Permissions.permissionset
 src/permissionsets/VEP_Visitor_Permissions.permissionset
 src/permissionsets/VEP_VisitorManager_Permissions.permissionset
+<<<<<<< HEAD:Project-manifest-paperles-VEP-V1.txt
+src/permissionsets/VEP_Admin.permissionset
+=======
+src/reports
+>>>>>>> develop:project-manifest-paperles-VEP-V1.txt
 src/reports/VEP_Reports-meta.xml
 src/reports/VEP_Reports/VEP_Visitors_in_Factory.report
+src/staticresources
 src/staticresources/VEP_Bootstrap.resource
 src/staticresources/VEP_Bootstrap.resource-meta.xml
 src/staticresources/VEP_csstemplate.resource
@@ -93,7 +109,9 @@ src/staticresources/select2.resource
 src/staticresources/select2.resource-meta.xml
 src/staticresources/VEP_googleMapFactory.resource
 src/staticresources/VEP_googleMapFactory.resource-meta.xml
+src/approvalProcesses
 src/approvalProcesses/Vep_Visitor__c.VEP_Factory_Manager_Approval_Process.approvalProcess
+src/email
 src/email/VEP_Templates-meta.xml
 src/email/VEP_Templates/VEP_Email_to_Factory_Manger_Template.email
 src/email/VEP_Templates/VEP_Email_to_Factory_Manger_Template.email-meta.xml
@@ -113,5 +131,7 @@ src/email/VEP_Templates/VEP_Send_Email_to_Travel_Desk.email
 src/email/VEP_Templates/VEP_Send_Email_to_Travel_Desk.email-meta.xml
 src/email/VEP_Templates/VEP_Send_Email_to_Visitor_about_Travel_Status.email
 src/email/VEP_Templates/VEP_Send_Email_to_Visitor_about_Travel_Status.email-meta.xml
+src/workflows
 src/workflows/Vep_Visitor__c.workflow
+src/labels
 src/labels/CustomLabels.labels
