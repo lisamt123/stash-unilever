@@ -15,7 +15,7 @@ jq(document).ready(function() {
 
 
  (function ($) {
-function _processValue (param) {
+function processValue (param) {
   var el = $(this);
   if(el.is(":text") || el.is("textarea") || el.is(":file")){
     el.data(param, el.val());
@@ -31,7 +31,7 @@ function _processValue (param) {
 $.fn.extend({
   dumpInitialValues : function(){
     this.each(function() {
-      _processValue.call(this, "initialValue");
+      processValue.call(this, "initialValue");
     });
   },
   checkForModifications: function() {
@@ -47,7 +47,7 @@ $.fn.extend({
       else if(el.is("select")){
         flag = (el.data("initialValue") != el.val());
       }
-      if(flag) return false;
+      if(flag) {return false;}
     })
     return flag;
   }
