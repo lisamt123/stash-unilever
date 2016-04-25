@@ -18,7 +18,7 @@ public with sharing class AF_subResult_Helper{
     static Map<Id,Decimal> quantBonusQ1 = new Map<Id,Decimal>();
     static Map<Id,Decimal> quantBonusQ2 = new Map<Id,Decimal>();
     static Map<Id,Decimal> quantBonusQ3 = new Map<Id,Decimal>();
-    static List<AF_Bonus_Results__c> bonusResultQuartList = new List<AF_Bonus_Results__c>();
+    static List<AF_Bonus_Results__c> bonusResultQuartList;
     static List<AF_Bonus_Results__c> bonusResultList;
     static Integer counter;
     static Set<Id> bonusResultCreated = new Set<Id>();
@@ -250,6 +250,7 @@ public with sharing class AF_subResult_Helper{
         }
     }
     public static void subResultStatusCalc(Set<Id> BonusQuarterlySubResult,Set<String> QuaterSet,Map<Id,String> status,Map<Id,Boolean> Lock){
+        bonusResultQuartList = new List<AF_Bonus_Results__c>();
         if(BonusQuarterlySubResult.size()>0){
             List<AF_Bonus_Results__c> tempBonusResult = new List<AF_Bonus_Results__c>();
             try{
