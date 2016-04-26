@@ -56,7 +56,7 @@
                 </apex:dataTable>
                 <!----- Add button to create mini milestones ------>
                 <div class="ipmButtonGroup pull-right">
-                    <apex:commandLink action="{!createMileStones}" value="{!$Label.IPM_ADD}" styleClass="ipmButton green" rerender="form1" onComplete="{!if(validateSuccess,'pagecloseProSetUp()','')};" />   
+                    <apex:commandLink action="{!createMileStones}" value="{!$Label.IPM_ADD}" styleClass="ipmButton green" rerender="form1" onclick="skipValidation();" onComplete="{!if(validateSuccess,'pagecloseProSetUp()','')};" />   
                 </div>
             </apex:form>
         </div>
@@ -102,8 +102,8 @@
                                 </apex:outputPanel>
                                 <!-- Button related code to created new Adhoc Milestones ------>
                                 <div class="marginTop buttonmarRight ipmButtonGroup pull-right">
-                                    <apex:commandLink action="{!saveMilestones}" value="{!$Label.IPM_ADD}" styleClass="ipmButton green" rendered="{!if(milestoneId == null,true,false)}" reRender="form" onComplete="{!if(validateSuccess,'pagecloseProSetUp()','')};skipValidation();"/>                      
-                                    <apex:commandLink action="{!saveMilestones}" value="{!$Label.IPM_Save_button}" styleClass="ipmButton green" rendered="{!if(milestoneId != null,true,false)}" onComplete="pagecloseProSetUp();skipValidation();"/>
+                                    <apex:commandLink action="{!saveMilestones}" value="{!$Label.IPM_ADD}" styleClass="ipmButton green" rendered="{!if(milestoneId == null,true,false)}" reRender="form" onclick="skipValidation();" onComplete="{!if(validateSuccess,'pagecloseProSetUp()','')};"/>                      
+                                    <apex:commandLink action="{!saveMilestones}" value="{!$Label.IPM_Save_button}" styleClass="ipmButton green" rendered="{!if(milestoneId != null,true,false)}" onclick="skipValidation();" onComplete="pagecloseProSetUp();"/>
                                 </div>
                             </apex:outputPanel>
                         </apex:facet>

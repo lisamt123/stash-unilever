@@ -14,40 +14,8 @@ jq(document).ready(function() {
     jq(".contenWrapper").find(".ipmAcrdnExpand").find(".aHead:last").css("border", "none");
     jq(".contenWrapper .ipmAcrdnExpand:first").not(':empty').show();
 	
-/* Below script is called upon click event where it expands the tab and replaces '+' with '-' or collapses a opened tab and replaces '-' with '+' */
-    jq(".contenWrapper").on("click", ".ipmAccordian .expico", function() {
-        if (jq(this).closest(".aHead").next(".ipmAcrdnExpand").is(":visible")) {
-            jq(this).closest(".aHead").next(".ipmAcrdnExpand").slideUp("fast");
-            jq(this).closest(".aHead").siblings(".aHead").find(".expico").removeClass("fa-minus");
-            jq(this).closest(".aHead").siblings(".aHead").find(".expico").addClass("fa-plus");
-            jq(this).removeClass("fa-minus");
-            jq(this).addClass("fa-plus");
-        } else {
-            jq(this).closest(".aHead").siblings(".ipmAcrdnExpand").slideUp("fast");
-            jq(this).closest(".aHead").siblings(".aHead").find(".expico").removeClass("fa-minus");
-            jq(this).closest(".aHead").siblings(".aHead").find(".expico").addClass("fa-plus");
-            jq(this).closest(".col-sm-12").siblings(".col-sm-12").find(".ipmAccordian>.ipmAcrdnExpand").slideUp("fast");
-            jq(this).closest(".col-sm-12").siblings(".col-sm-12").find(".ipmAccordian>.aHead").find(">.expico").removeClass("fa-minus");
-            jq(this).closest(".col-sm-12").siblings(".col-sm-12").find(".ipmAccordian>.aHead").find(">.expico").addClass("fa-plus");
-            jq(this).closest(".aHead").next(".ipmAcrdnExpand").slideDown("fast");
-            jq(this).removeClass("fa-plus");
-            jq(this).addClass("fa-minus");
-        }
-    });
-	
-/* Below script expands all the tabs in accordion when clicked on the Expand all button and replaces '+' with '-' sign */
-    jq(".content.expandTool").on("click", ".expandAll", function() {
-        jq(".ipmAccordian").find(".ipmAcrdnExpand").not(':empty').slideDown("fast");
-        jq(".ipmAccordian").find(".aHead .expico").removeClass("fa-plus");
-        jq(".ipmAccordian").find(".aHead .expico").addClass("fa-minus");
-    });
-	
-/* Below script collapses all the tabs in accordion when clicked on the Collapse all button and replaces '-' with '+' sign */
-    jq(".content.expandTool").on("click", ".collapseAll", function() {
-        jq(".ipmAccordian").find(".ipmAcrdnExpand ").slideUp("fast");
-        jq(".ipmAccordian").find(".aHead .expico").addClass("fa-plus");
-        jq(".ipmAccordian").find(".aHead .expico").removeClass("fa-minus");
-    });
+	gateAccrdn();
+	gateexpcollapse();	
 	
 /* Below script works on page load. First it hides all the tabs. Then it opens only the first tab. */
     jq(".gdFilterSection .ipmAcrdnExpand").hide();
@@ -134,6 +102,46 @@ jq(document).ready(function() {
 	openCommentModal();
     filterBlock();
 });
+
+function gateAccrdn(){
+	/* Below script is called upon click event where it expands the tab and replaces '+' with '-' or collapses a opened tab and replaces '-' with '+' */
+    jq(".contenWrapper").on("click", ".ipmAccordian .expico", function() {
+        if (jq(this).closest(".aHead").next(".ipmAcrdnExpand").is(":visible")) {
+            jq(this).closest(".aHead").next(".ipmAcrdnExpand").slideUp("fast");
+            jq(this).closest(".aHead").siblings(".aHead").find(".expico").removeClass("fa-minus");
+            jq(this).closest(".aHead").siblings(".aHead").find(".expico").addClass("fa-plus");
+            jq(this).removeClass("fa-minus");
+            jq(this).addClass("fa-plus");
+        } else {
+            jq(this).closest(".aHead").siblings(".ipmAcrdnExpand").slideUp("fast");
+            jq(this).closest(".aHead").siblings(".aHead").find(".expico").removeClass("fa-minus");
+            jq(this).closest(".aHead").siblings(".aHead").find(".expico").addClass("fa-plus");
+            jq(this).closest(".col-sm-12").siblings(".col-sm-12").find(".ipmAccordian>.ipmAcrdnExpand").slideUp("fast");
+            jq(this).closest(".col-sm-12").siblings(".col-sm-12").find(".ipmAccordian>.aHead").find(">.expico").removeClass("fa-minus");
+            jq(this).closest(".col-sm-12").siblings(".col-sm-12").find(".ipmAccordian>.aHead").find(">.expico").addClass("fa-plus");
+            jq(this).closest(".aHead").next(".ipmAcrdnExpand").slideDown("fast");
+            jq(this).removeClass("fa-plus");
+            jq(this).addClass("fa-minus");
+        }
+    });
+}
+
+function gateexpcollapse(){
+	/* Below script expands all the tabs in accordion when clicked on the Expand all button and replaces '+' with '-' sign */
+    jq(".content.expandTool").on("click", ".expandAll", function() {
+        jq(".ipmAccordian").find(".ipmAcrdnExpand").not(':empty').slideDown("fast");
+        jq(".ipmAccordian").find(".aHead .expico").removeClass("fa-plus");
+        jq(".ipmAccordian").find(".aHead .expico").addClass("fa-minus");
+    });
+	
+/* Below script collapses all the tabs in accordion when clicked on the Collapse all button and replaces '-' with '+' sign */
+    jq(".content.expandTool").on("click", ".collapseAll", function() {
+        jq(".ipmAccordian").find(".ipmAcrdnExpand ").slideUp("fast");
+        jq(".ipmAccordian").find(".aHead .expico").addClass("fa-plus");
+        jq(".ipmAccordian").find(".aHead .expico").removeClass("fa-minus");
+    });	
+}
+
 function openCommentModal(){
 	jq(".comments").each(function() {
 		var $this = jq(this);

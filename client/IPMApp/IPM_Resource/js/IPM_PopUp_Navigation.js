@@ -73,7 +73,6 @@ window.onbeforeunload = unloadPage;
 })(jq); 
 function skipValidation() {
 jq("body").data("isSkipNavigationConfirm", true);
-parent.parent.location.reload();
 }
 
 function validate(){
