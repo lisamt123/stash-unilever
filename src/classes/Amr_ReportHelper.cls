@@ -1,8 +1,5 @@
 public with sharing class Amr_ReportHelper {
-  
- 
-  
-  public Map<String,Map<String,Integer>>  mapCategoryClusterData(List<Amr_Job_Details__c> jobDetailList,integer yearValue){
+	public Map<String,Map<String,Integer>>  mapCategoryClusterData(List<Amr_Job_Details__c> jobDetailList,integer yearValue){
     Map<String,Map<String,Integer>> mapCategoryCluster = new Map<String,Map<String,Integer>>();
     if(jobDetailList.size()>0){
       
@@ -54,50 +51,46 @@ public with sharing class Amr_ReportHelper {
   
  
   
-  public Map<String,Map<String,Integer>>  totalCategoryMapData(List<Amr_Job_Details__c> jobDetailList,integer yearValue){
-    Map<String,Map<String,Integer>> totalCategoryMap = new Map<String,Map<String,Integer>>();
-    if(jobDetailList.size()>0){
+	public Map<String,Map<String,Integer>>  totalCategoryMapData(List<Amr_Job_Details__c> jobDetailList,integer yearValue){
+    	Map<String,Map<String,Integer>> totalCategoryMap = new Map<String,Map<String,Integer>>();
+    	if(jobDetailList.size()>0){
       
-      for(Amr_Job_Details__c jobObj:jobDetailList){
+      		for(Amr_Job_Details__c jobObj:jobDetailList){
         
-        if(jobObj.CreatedDate.year() == yearValue){
-          String Category = jobObj.ProductCategory__r.name;
-            //Only category vise map generator
-          if(!totalCategoryMap.containsKey(Category) ){        
-            //system.debug('inside category Filter=======>');
-            totalCategoryMap.put(Category,new Map<String,Integer>());
-            totalCategoryMap.get(Category).put('BD',0);
-            totalCategoryMap.get(Category).put('BB',0);
+        	if(jobObj.CreatedDate.year() == yearValue){
+         		 String Category = jobObj.ProductCategory__r.name;
+            	 //Only category vise map generator
+          		if(!totalCategoryMap.containsKey(Category) ){        
+            		totalCategoryMap.put(Category,new Map<String,Integer>());
+            		totalCategoryMap.get(Category).put('BD',0);
+            		totalCategoryMap.get(Category).put('BB',0);
             
-            if(jobObj.Function_You_Are_Part__c == 'BD'){
-                integer counter = totalCategoryMap.get(Category).get('BD');
-              totalCategoryMap.get(Category).put('BD',counter+1);
+        			if(jobObj.Function_You_Are_Part__c == 'BD'){
+                		integer counter = totalCategoryMap.get(Category).get('BD');
+              			totalCategoryMap.get(Category).put('BD',counter+1);     
+            		}
             
-            }
+            		if(jobObj.Function_You_Are_Part__c == 'BB'){
+              			integer counter = totalCategoryMap.get(Category).get('BB');
+              			totalCategoryMap.get(Category).put('BB',counter+1);
+            		}   
+          		}else{
             
-            if(jobObj.Function_You_Are_Part__c == 'BB'){
-              integer counter = totalCategoryMap.get(Category).get('BB');
-              totalCategoryMap.get(Category).put('BB',counter+1);
-    
-            }
-            
-          }else{
-            
-            if(jobObj.Function_You_Are_Part__c == 'BD'){
-               integer counter = totalCategoryMap.get(Category).get('BD');
-               totalCategoryMap.get(Category).put('BD',counter+1);
+            		if(jobObj.Function_You_Are_Part__c == 'BD'){
+               			integer counter = totalCategoryMap.get(Category).get('BD');
+               			totalCategoryMap.get(Category).put('BD',counter+1);
   
-            }
+            		}
             
-            if(jobObj.Function_You_Are_Part__c == 'BB'){
-              integer counter = totalCategoryMap.get(Category).get('BB');
-              totalCategoryMap.get(Category).put('BB',counter+1);
+            		if(jobObj.Function_You_Are_Part__c == 'BB'){
+              			integer counter = totalCategoryMap.get(Category).get('BB');
+              			totalCategoryMap.get(Category).put('BB',counter+1);
   
-            }      
-          }
-        }
-      }
-    }
+            		}      
+          		}
+        	}
+      	}
+	}
     return totalCategoryMap;
   }
   
@@ -206,7 +199,7 @@ public with sharing class Amr_ReportHelper {
 
           for(Amr_Summary_Plan__c planObj : planList){
           
-            //system.debug(planObj.ProductCategory__r.name+'===>category==>'+categoryKey);
+           
           
             if(planObj.ProductCategory__r.name == categoryKey && planObj.Year__c == string.valueOf(yearValue)){
             
@@ -215,27 +208,13 @@ public with sharing class Amr_ReportHelper {
               
               flag = true;
               break;
-            }
-          
-          }
-        
-       /* if(flag == false){
-            
-            Amr_Summary_Plan__c planObjNew = new Amr_Summary_Plan__c();
-            planObjNew.ProductCategory__c = categoryKey;
-            planObjNew.Year__c = string.valueOf(yearValue);
-            planObjNew.Actual_BD__c = totalCategoryMap.get(categoryKey).get('BD');
-            planObjNew.Actual_BB__c = totalCategoryMap.get(categoryKey).get('BB');
-            newPlansList.add(planObjNew);
-        }
-        
-        flag = false;   */
-        
+            } 
+          }       
        }
        
-       system.debug(planList.size()+'new plan lst====>'+newPlansList.size());
+       
        planList.addAll(newPlansList);
-       system.debug('new plan lst after====>'+planList.size());
+       
        return planList;
   }
    
@@ -244,8 +223,7 @@ public with sharing class Amr_ReportHelper {
     
     for(String categoryKey:mapCategoryCluster.keySet()){
          for(Amr_Summary_Plan__c planObj : planList){
-              //system.debug(planObj.ProductCategory__r.name+'===>category==>'+categoryKey.substringAfter(',')+'CLUSTER'+categoryKey.substringBefore(','));
-              
+         
               if(planObj.ProductCategory__r.name == categoryKey.substringAfter(',') && planObj.Year__c == string.valueOf(yearValue)){
                    
                    if(categoryKey.substringBefore(',') == 'Africa'){
@@ -307,11 +285,6 @@ public with sharing class Amr_ReportHelper {
   
   public List<Amr_Summary_Plan__c> updatePlanListGoodInTime(List<Amr_Summary_Plan__c> planList,Map<String,Map<String,Integer>> categoryStageOneToTwoMap,Map<String,Map<String,Integer>> categoryAllStage,integer yearValue){
    
-            //System.debug('PLAN LIST bd->  ' + planList +'CATEGORY ALL STAGE bd->  ' + categoryAllStage + 'YEAARRR -> ' + yearValue);
-            //System.debug('COUNT bd->  ' + categoryStageOneToTwoMap );
-   
-     //boolean flagNew = false;
-     //List<Amr_Summary_Plan__c> PlansListNew = new List<Amr_Summary_Plan__c>();
      for(String categoryVal:categoryAllStage.keySet()){
       
        for(String categoryValue :categoryStageOneToTwoMap.keySet()){
@@ -319,40 +292,28 @@ public with sharing class Amr_ReportHelper {
         if(categoryValue == categoryVal){
           integer counter1 = categoryStageOneToTwoMap.get(categoryValue).get(Amr_ConstantForAdManager.STAGE_ONEANDTWOCOUNT);
           integer counter2 = categoryAllStage.get(categoryValue).get(Amr_ConstantForAdManager.ALL_COUNT);
-         system.debug('counter1BD==>'+counter1+'===COUNTER2'+counter2+'categoryVal=='+categoryVal);
+        
           integer percentBD = counter1 * 100/counter2;
-           system.debug('percentBD===>'+percentBD);
+          
           for(Amr_Summary_Plan__c planObj : planList){     
             if(planObj.ProductCategory__r.name == categoryValue){
                planObj.In_Good_Time_BD__c =  percentBD;
-              // flagNew = true;
+             
                break;
             }
           }
-          
-          /*if(flagNew == false){
-            Amr_Summary_Plan__c planObjNew = new Amr_Summary_Plan__c();
-                  planObjNew.ProductCategory__c = categoryVal;
-                  planObjNew.In_Good_Time_BD__c = percentBD;
-                  PlansListNew.add(planObjNew);
-          }
-          flagNew = false; */
+        
         }
       
       }
     
     }
-  //planList.addAll(PlansListNew);
+ 
   return planList;
   }
   
    public List<Amr_Summary_Plan__c> updatePlanListGoodInTimeBB(List<Amr_Summary_Plan__c> planList,Map<String,Map<String,Integer>> categoryStageOneToTwoMap,Map<String,Map<String,Integer>> categoryAllStage,integer yearValue){
      
-     //System.debug('PLAN LIST ->  ' + planList + 'CATEGORY STAGE MAP -> ' + categoryStageOneToTwoMap + 'CATEGORY ALL STAGE ->  ' + categoryAllStage + 'YEAARRR -> ' + yearValue);
-     //System.debug('COUNT ->  ' + categoryAllStage );
-     
-    // boolean flagNew = false;
-     //List<Amr_Summary_Plan__c> PlansListNew = new List<Amr_Summary_Plan__c>();
      for(String categoryVal:categoryAllStage.keySet()){
       
        for(String categoryValue :categoryStageOneToTwoMap.keySet()){
@@ -360,38 +321,31 @@ public with sharing class Amr_ReportHelper {
         if(categoryValue == categoryVal){
           integer counter1 = categoryStageOneToTwoMap.get(categoryValue).get(Amr_ConstantForAdManager.STAGE_ONEANDTWOCOUNT);
           integer counter2 = categoryAllStage.get(categoryValue).get(Amr_ConstantForAdManager.ALL_COUNT);
-          system.debug('==counter1BB==>'+counter1+'===COUNTERBB=='+counter2+'==CATEGORYBB=='+categoryVal);
+        
           integer percentBD = counter1 * 100/counter2;
-          system.debug('==percentBB===>'+percentBD);
+          
           
           for(Amr_Summary_Plan__c planObj : planList){     
             if(planObj.ProductCategory__r.name == categoryValue){
                planObj.In_Good_Time_BB__c =  percentBD;
-              // flagNew = true;
+             
                break;
             }
           }
           
-          /*if(flagNew == false){
-            Amr_Summary_Plan__c planObjNew = new Amr_Summary_Plan__c();
-                  planObjNew.ProductCategory__c = categoryVal;
-                  planObjNew.In_Good_Time_BD__c = percentBD;
-                  PlansListNew.add(planObjNew);
-          }
-          flagNew = false; */
         }
       
       }
     
     }
-  //planList.addAll(PlansListNew);
+  
   return planList;
   }
   
   public List<Amr_Summary_Plan__c> totalBDAndBB(List<Amr_Summary_Plan__c> planList){
       Double total = 0;
       Map<String,Integer> BDBBMap = new Map<String, Integer>();
-      System.debug('New Plan List ->  ' + planList);
+     
       for(Amr_Summary_Plan__c pList : planList){
           
           if(pList.Actual_BB__c != null && pList.Actual_BD__c != null){
@@ -415,11 +369,10 @@ public with sharing class Amr_ReportHelper {
     
     Integer total = 0;
    
-    System.debug('Total Count MAp -> ' + totalCountOfStage);
     for(Amr_Summary_Plan__c pList : planList){
         total = 0;
         if(pList.ProductCategory__r.name != null ){
-            System.debug('DATAAA ->  ' + pList.ProductCategory__r.name );
+           
             if(categoryStageOneToTwoMapBD.containsKey(pList.ProductCategory__r.name ) && categoryStageOneToTwoMapBB.containsKey(pList.ProductCategory__r.name ) ){
                 total = categoryStageOneToTwoMapBD.get(pList.ProductCategory__r.name).get(Amr_ConstantForAdManager.STAGE_ONEANDTWOCOUNT) + categoryStageOneToTwoMapBB.get(pList.ProductCategory__r.name).get(Amr_ConstantForAdManager.STAGE_ONEANDTWOCOUNT);
             }else

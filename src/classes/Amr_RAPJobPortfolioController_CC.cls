@@ -355,7 +355,7 @@ Returns: It will return submitted saving data of current month.
                     savingSubmittedMonth = 0;
                     if(groupedResults[0].get(AVERAGE_QUOTE) != null){
                     savingSubmitted = Decimal.valueOf(String.valueOf(groupedResults[0].get(AVERAGE_QUOTE)));
-                    }
+                   }
             AggregateResult[] groupedResultsAll  = [SELECT Sum(Saving_Average_of_Quotes__c)averQuote ,Sum(Saving_Accepted_Quote_Euro__c) acceptQuote FROM Amr_Saving__c Where  Job_Details__c IN : jobDetailsId and Createddate >= :startOfMonth AND CreatedDate < :startOfNextMonth];
               system.debug(' global monthly!!'+groupedResultsAll );        
                    savingSubmittedAll = 0;

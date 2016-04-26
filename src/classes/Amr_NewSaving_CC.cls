@@ -150,7 +150,13 @@ public with sharing class Amr_NewSaving_CC {
         alertValue = 'Please anjali!!!';
         try{
            boolean okayToSave = true;  
-         
+           Amr_JobSheetController_CC JobSheetController = new Amr_JobSheetController_CC();
+           system.debug('before'+JobSheetController.jobIsAccepted);
+           JobSheetController.jobIsAccepted = false;
+         	
+         	system.debug('after'+JobSheetController.jobIsAccepted);
+         	
+         	
             if(savingObj.Production_Type__c == '--None--' || string.isBlank(savingObj.Production_Type__c)){
                  ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please Enter Prod Type'));
                  savingMessages = true;
@@ -444,6 +450,7 @@ public with sharing class Amr_NewSaving_CC {
    ********************************************************************/ 
     
      public Pagereference AllValues(){
+     	fileUploadMessage = false;
         Boolean flag = true;
         if(attachedListSaving.size()<1 && attachedList.size()<1){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please attach at least one document'));

@@ -13,12 +13,12 @@
            catProjectJobsheet(stringArrayJobSheet,strArrJobSheet,projFormPageJobSheet,selectedCategoryJobSheet);                      
         });
                 
-        function openDefaultEmailClient() {               
+        function openDefaultEmailClient() {                       	
         	var subject = '{!jobList.AdManagerText__c}';
             var emailAddress = '{!createdByUserEmail}';               
             var emailTo = emailAddress.replace(/null/g, "").replace(/"/g, "").replace('[','').replace(']','').replace(',,',',');            
-            if(subject && emailTo ) {                
-               openDefaultEmailClientCall(subject, emailTo); 		      
+            if(subject && emailTo ) {              
+               openDefaultEmailClientCall(subject, emailTo); 	               	     
     		}  
         }                                                                 
     </script>   
@@ -42,10 +42,14 @@
         .width70percent {
             width:100% !important;
         }       
-    </style> 
-    <apex:outputPanel rendered="{!if(jobIsAccepted==true,true,false)}" id="statusDefaultEmailClient">
+    </style>
+    <apex:outputPanel id="statusDefaultEmailClient1">   
+    	This is message {!jobIsAccepted}
+    </apex:outputPanel>
+    <apex:outputPanel rendered="{!if(jobIsAccepted==true,true,false)}" id="statusDefaultEmailClient">    
         <script type="text/javascript">        	
             openDefaultEmailClient();
+            makeAcceptanceEmailFalse();
         </script>
     </apex:outputPanel>                       
      <div class="mask" style="display:{!if(jobList.AdManagerText__c != null,'none','')}"></div>    
@@ -443,6 +447,8 @@
        <!--- End Of Change Status --->      
     <apex:actionFunction name="unshareRapJob" action="{!jobUnShare}" reRender="view">
         <apex:param id="aname" assignTo="{!selectedUnshareRapName }" name="selectedUnshareRapName " value="{!selectedUnshareRapName }" />
+    </apex:actionFunction>
+    <apex:actionFunction name="makeAcceptanceEmailFalse" action="{!makeAcceptanceEmailFalse}" reRender="statusDefaultEmailClient,statusDefaultEmailClient1">        
     </apex:actionFunction>
 </apex:form>
     <!-- End Popup functionality -->
