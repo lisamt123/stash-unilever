@@ -23,6 +23,12 @@
             height:25px !important;
             text-transform:capitalize;
         }
+        .scrollbar-table-parent table.list thead th:nth-child(4) div, .scrollbar-table-parent table.list thead th:nth-child(8) div, .scrollbar-table-parent table.list thead th:nth-child(9) div {
+        	padding-left:8px;
+        }
+        .scrollbar-table-parent table.list thead th:nth-child(5) div {
+        	padding-left:16px;
+        }
     </style>
     <script type="text/javascript">
     

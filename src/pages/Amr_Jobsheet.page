@@ -18,7 +18,8 @@
             var emailAddress = '{!createdByUserEmail}';               
             var emailTo = emailAddress.replace(/null/g, "").replace(/"/g, "").replace('[','').replace(']','').replace(',,',',');            
             if(subject && emailTo ) {              
-               openDefaultEmailClientCall(subject, emailTo); 	               	     
+               openDefaultEmailClientCall(subject, emailTo); 	
+               makeAcceptanceEmailFalse();               	     
     		}  
         }                                                                 
     </script>   
@@ -43,9 +44,12 @@
             width:100% !important;
         }       
     </style>
-    <apex:outputPanel id="statusDefaultEmailClient1">   
-    	This is message {!jobIsAccepted}
-    </apex:outputPanel>
+    
+    <apex:form >
+    	<apex:actionFunction name="makeAcceptanceEmailFalse" action="{!makeAcceptanceEmailFalse}" reRender="statusDefaultEmailClient">        
+    	</apex:actionFunction>
+    </apex:form>
+        
     <apex:outputPanel rendered="{!if(jobIsAccepted==true,true,false)}" id="statusDefaultEmailClient">    
         <script type="text/javascript">        	
             openDefaultEmailClient();
@@ -447,9 +451,7 @@
        <!--- End Of Change Status --->      
     <apex:actionFunction name="unshareRapJob" action="{!jobUnShare}" reRender="view">
         <apex:param id="aname" assignTo="{!selectedUnshareRapName }" name="selectedUnshareRapName " value="{!selectedUnshareRapName }" />
-    </apex:actionFunction>
-    <apex:actionFunction name="makeAcceptanceEmailFalse" action="{!makeAcceptanceEmailFalse}" reRender="statusDefaultEmailClient,statusDefaultEmailClient1">        
-    </apex:actionFunction>
+    </apex:actionFunction>    
 </apex:form>
     <!-- End Popup functionality -->
     <div class="main_inner_section margin-btwn-container12 bg-g1 clear">

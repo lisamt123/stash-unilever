@@ -149,14 +149,8 @@ public with sharing class Amr_NewSaving_CC {
         system.debug('quote List data'+quoteList);
         alertValue = 'Please anjali!!!';
         try{
-           boolean okayToSave = true;  
-           Amr_JobSheetController_CC JobSheetController = new Amr_JobSheetController_CC();
-           system.debug('before'+JobSheetController.jobIsAccepted);
-           JobSheetController.jobIsAccepted = false;
-         	
-         	system.debug('after'+JobSheetController.jobIsAccepted);
-         	
-         	
+           boolean okayToSave = true;
+         
             if(savingObj.Production_Type__c == '--None--' || string.isBlank(savingObj.Production_Type__c)){
                  ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please Enter Prod Type'));
                  savingMessages = true;

@@ -1440,9 +1440,7 @@ Returns:
            return pageRef;
        }
        
-    public void makeAcceptanceEmailFalse() {
-    	system.debug('I am in makeAcceptanceEmailFalse'+jobIsAccepted);
-    	jobIsAccepted = false;
-    	system.debug('Here too'+jobIsAccepted);
+    public void makeAcceptanceEmailFalse() {    	
+    	jobIsAccepted = false;    	
     }
 }

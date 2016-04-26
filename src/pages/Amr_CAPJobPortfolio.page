@@ -38,6 +38,13 @@
     		border:1px solid red !important;
     	}
     	
+    	.scrollbar-table-parent table.list thead th:nth-child(4) div, .scrollbar-table-parent table.list thead th:nth-child(8) div, .scrollbar-table-parent table.list thead th:nth-child(9) div {
+        	padding-left:8px;
+        }
+        .scrollbar-table-parent table.list thead th:nth-child(5) div {
+        	padding-left:30px;
+        }
+    	
     	/*
 		.scrollbar-table-parent-cap-joblist table.list tbody {
 		    display: -moz-grid;
