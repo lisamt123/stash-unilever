@@ -13,7 +13,8 @@
 		<members>IPM_Test_ProjectUtility</members>
 		<members>IPM_Utils_Test</members>		<members>IPM_GenericExtCtrl</members>		<members>IPM_QuestionnaireHandler</members>
 		<members>IPM_TestCovHelper</members>
-		<members>IPM_SampleTestProjShare</members>		<name>ApexClass</name>
+		<members>IPM_SampleTestProjShare</members>
+		<members>IPM_CMIGateSectionPDFController</members>		<name>ApexClass</name>
 	</types>
 	<types>
 		<members>IPM_QuestionnaireTrigger</members>
