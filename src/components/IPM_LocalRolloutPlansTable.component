@@ -360,10 +360,7 @@ This componet used for regional rollout project
                         <div class="row">    
                             <div class="col-sm-12"> 
                                 <span class="skipDesc">
-                                    <apex:outputText value="{!$Label.IPM_PhaseChangeBKProcessWarning_Local}" escape="false"/>
-                                    <apex:outputPanel layout="block" styleClass="localModalDesc">
-                                        {!$Label.IPM_PhaseChangeBKProcessSecondWarning_Local}
-                                    </apex:outputPanel>
+                                    <apex:outputText value="{!$Label.IPM_PhaseChangeBKProcessWarning_Local}" escape="false"/>                                    
                                 </span> 
                             </div>            
                             <div class="skipButtoncontainer txtAlignright pull-right">
