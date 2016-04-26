@@ -38,7 +38,10 @@ jq(document).ready(function() {
 });
 /* Below script works on page load. If both the conditions are true, it moves to third coreparameters question and also it displays the correct help text pointer below. */
 jq(window).load(function() {
-    if (IPMProAppCPP.tpluser === 'true' && IPMProAppCPP.addtnlParameter === 'false') {
+	 setTimeout(function() {
+        setSlider(1);
+    }, 500);
+   if (IPMProAppCP.tpluser === 'true' && IPMProAppCP.addtnlParameter === 'false') {
         jq('#myCarousel').carousel(2);
         var $this = jq("#slideBar3 label:not('.fstchild'):");
         var labelWidth = $this.innerWidth() / 2;
@@ -46,10 +49,7 @@ jq(window).load(function() {
         jq(".helpContent").append("<div class='hlPointer'></div>");
         var posPointer = $this.position().left;
         jq(".helpContent").find(".hlPointer").css("left", posPointer + labelWidth - 14 + "px");
-    }
-    setTimeout(function() {
-        setSlider(1);
-    }, 500);
+    }   
 });
 
 /* Below script works on page load. Based on the question the carousel moves to the exact question number which is retrieved from the backend. */

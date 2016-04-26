@@ -1,7 +1,15 @@
 src
+src/classes
+src/classes/IPM_TaskHelper.cls
+src/classes/IPM_TaskHelper.cls-meta.xml
 src/components
 src/components/IPM_FinancialTable.component
 src/components/IPM_FinancialTable.component-meta.xml
+src/pages
+src/pages/IPM_AddMilestone.page
+src/pages/IPM_AddMilestone.page-meta.xml
+src/pages/IPM_AddMilestoneWizard.page
+src/pages/IPM_AddMilestoneWizard.page-meta.xml
 src/staticresources
 src/staticresources/IPM_Resource.resource
 src/staticresources/IPM_Resource.resource-meta.xml
