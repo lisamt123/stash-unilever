@@ -243,8 +243,6 @@ public class AF_BonusMatrixOverrideController_Test
             ApexPages.currentPage().getParameters().put(ID,AFBonusMat[0].id);
             AF_BonusMatrixOverrideController bonMatCtrl=new AF_BonusMatrixOverrideController();
             bonMatCtrl.Save();  
-            bonMatCtrl.SavePo();
-            bonMatCtrl.CalculateLocalC();
             ApexPages.currentPage().getParameters().put(CHPARENTID,AgencyEsitmate[0].id);
             AF_ViewAllController viewCtrl1=new AF_ViewAllController();
             ApexPages.currentPage().getParameters().put(CHPARENTID,OOPSEstimateList[0].id);

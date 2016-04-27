@@ -18,7 +18,7 @@ public with sharing class AF_subResult_Helper{
     static Map<Id,Decimal> quantBonusQ1 = new Map<Id,Decimal>();
     static Map<Id,Decimal> quantBonusQ2 = new Map<Id,Decimal>();
     static Map<Id,Decimal> quantBonusQ3 = new Map<Id,Decimal>();
-    static List<AF_Bonus_Results__c> bonusResultQuartList;
+    static List<AF_Bonus_Results__c> bonusResultQuartList = new List<AF_Bonus_Results__c>();
     static List<AF_Bonus_Results__c> bonusResultList;
     static Integer counter;
     static Set<Id> bonusResultCreated = new Set<Id>();
@@ -38,6 +38,8 @@ public with sharing class AF_subResult_Helper{
         string subResultCalc='subResultCalc';
         if(BonusAnnualSubResult.size()>0){
             for(AF_Bonus_Results__c bonusResult : [select AF_Bonus_Thresholds__c,AF_Bonusable_Fees__c,AF_Status__c,AF_Locked__c,AF_Total_Bonus_Value__c,AF_Qual_Bonus_Value__c,AF_Quant_Bonus_Value__c from AF_Bonus_Results__c where AF_Bonus_Thresholds__c IN :BonusAnnualSubResult and RecordTypeId = : Schema.SObjectType.AF_Bonus_Results__c.getRecordTypeInfosByName().get('Bonus Annual').getRecordTypeId()]){
+                system.debug('inside loop...');
+                system.debug('bonusResult..'+bonusResult);
                 bonusResult.AF_Bonusable_Fees__c = bonusfeesAnnualMap.get(bonusResult.AF_Bonus_Thresholds__c);
                 bonusResult.AF_Total_Bonus_Value__c = totalBonusAnnualMap.get(bonusResult.AF_Bonus_Thresholds__c);
                 bonusResult.AF_Qual_Bonus_Value__c = QualBonusAnnualMap.get(bonusResult.AF_Bonus_Thresholds__c);
@@ -45,8 +47,10 @@ public with sharing class AF_subResult_Helper{
                 bonusResult.AF_Status__c = status.get(bonusResult.AF_Bonus_Thresholds__c);
                 bonusResult.AF_Locked__c = Lock.get(bonusResult.AF_Bonus_Thresholds__c);
                 bonusResultList.add(bonusResult);
+                system.debug('bonusResultList..1..'+bonusResultList);
             }
         }
+        system.debug('bonusResultList..3..'+bonusResultList);
         counter =0;
         subResultStatusCalc(BonusQuarterlySubResult,QuaterSet,status,Lock);
         
@@ -97,6 +101,7 @@ public with sharing class AF_subResult_Helper{
         } 
         if(bonusResultList.size()>0){
             try{
+            system.debug('bonusResultList..2.'+bonusResultList);
             upsert bonusResultList;
             }
             catch(Exception e)
@@ -250,7 +255,6 @@ public with sharing class AF_subResult_Helper{
         }
     }
     public static void subResultStatusCalc(Set<Id> BonusQuarterlySubResult,Set<String> QuaterSet,Map<Id,String> status,Map<Id,Boolean> Lock){
-        bonusResultQuartList = new List<AF_Bonus_Results__c>();
         if(BonusQuarterlySubResult.size()>0){
             List<AF_Bonus_Results__c> tempBonusResult = new List<AF_Bonus_Results__c>();
             try{

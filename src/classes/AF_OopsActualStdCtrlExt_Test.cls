@@ -70,8 +70,6 @@ public class AF_OopsActualStdCtrlExt_Test
             ApexPages.currentPage().getParameters().put('id',OopsactualList[0].id);
             ApexPages.StandardController sc = new ApexPages.StandardController(OopsactualList[0]);
             AF_OopsActualStdCtrlExt stdCtrl=new AF_OopsActualStdCtrlExt(sc);
-            stdCtrl.ParentId=OOPSEstimateList[0].id;
-            stdCtrl.ParentRecordType=OOPSEstimateList[0].id;
             stdCtrl.SaveRecord();
             Test.stopTest();         
         }

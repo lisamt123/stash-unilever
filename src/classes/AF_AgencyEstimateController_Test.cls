@@ -249,7 +249,6 @@ public class AF_AgencyEstimateController_Test
                 agency.AF_Digital_Local__c=0;
                 agency.AF_Agency_Exchange_Rate__c=0;
                 agency.AF_Traditional__c=0;
-                agency.AF_PO_Number__c=AF_Constants.TEST_CATEGORYNAME;
                 agency.AF_Traditional_Local__c=0;  
                 agency.AF_OverridePO_Traditional_LC__c=66;
                 agency.AF_Status__c=AF_Constants.BASE_FEES_READYFORPO;
@@ -262,10 +261,6 @@ public class AF_AgencyEstimateController_Test
             List<AF_Entity_Exception__c> EntityExcepList = AF_TestFactory_Helper.InsertEntityException(1,true);
             List<AF_Entity_Exception__c> EntityExcepQuery = [SELECT ID,AF_Agency_Estimate__c FROM AF_Entity_Exception__c WHERE ID IN : EntityExcepList and AF_Agency_Estimate__c=:AgencyQuery LIMIT 1];
             System.assertEquals(EntityExcepQuery[0].AF_Agency_Estimate__c,AgencyEsitmate[0].id,AF_TestFactory_Helper.ENTITYEXCEPTION_RECORD);
-            //insert cmcolist
-            List<AF_CMCO__c> cmc = AF_TestFactory_Helper.insertCMCO(1,true);
-            List<AF_CMCO__c> cmcoQuery = [SELECT id FROM AF_CMCO__c where id IN:cmc  LIMIT 1];
-            System.Assert(cmcoQuery[0].Id != null, AF_TestFactory_Helper.CATEGORY_RECORD);
             //Instantiate AF_AgencyEstimateController Class
             ApexPages.currentPage().getParameters().put('id',AgencyEsitmate[0].id);
             ApexPages.currentPage().getParameters().put('aid',AFEntity[0].id);
@@ -275,7 +270,6 @@ public class AF_AgencyEstimateController_Test
             agenEstCtrl2.ExceptionId=EntityExcepList[0].Id;
             agenEstCtrl2.DeleteEntityException();   
             agenEstCtrl2.closePopupReject();
-            agenEstCtrl2.UpdatPO();
             Test.stopTest();
         }
     }

@@ -18,7 +18,6 @@ public class AF_AnnualBonus_Test
     private static String Year = AF_Constants.YEAR;
     private static String ANNUAL_BONUS='The AnnualBonus records are inserted';
     private static String QUARTERLY_BONUS='The QuarterlyBonus records are inserted';
-    private static string className_STR=AF_AfterUpdateBonusResHandler.class.getName();
     /***********************************************************************************
 *  @Description: this method will the test data
 *  @name : AFannualBonus
@@ -658,19 +657,19 @@ public class AF_AnnualBonus_Test
             System.assertEquals(BonusThresholdQuery[0].Agency_Name__c,acc[0].id, AF_TestFactory_Helper.BONUSTHERSHOLD_RECORD);
             //insert sub Results.
             List<AF_Sub_Result__c> subResults = AF_TestFactory_Helper.insertSubResult(1,false);
-            for(AF_Sub_Result__c sr1 : subResults)
+            for(AF_Sub_Result__c sr : subResults)
             {
-                sr1.AF_Digital__c = true;
-                sr1.AF_Traditional__c = false;
-                sr1.AF_Quant__c = 12;
-                sr1.AF_Class_code__c=false;
-                sr1.AF_Minimum__c = 1;
-                sr1.AF_Outstanding__c = 3;
-                sr1.AF_Stretching__c = 2;
-                sr1.Bonus_Measure__c =bonusMeasure;
-                sr1.AF_Period__c=AF_Constants.QUARTER1;
-                sr1.AF_Status__c=AF_Constants.STATUS_DRAFT;
-                sr1.AF_Bonus_Threshold__c=BonusThresholdQuery[0].id;
+                sr.AF_Digital__c = true;
+                sr.AF_Traditional__c = false;
+                sr.AF_Quant__c = 12;
+                sr.AF_Class_code__c=false;
+                sr.AF_Minimum__c = 1;
+                sr.AF_Outstanding__c = 3;
+                sr.AF_Stretching__c = 2;
+                sr.Bonus_Measure__c =bonusMeasure;
+                sr.AF_Period__c=AF_Constants.QUARTER1;
+                sr.AF_Status__c=AF_Constants.STATUS_DRAFT;
+                sr.AF_Bonus_Threshold__c=BonusThresholdQuery[0].id;
                 //subResults.add(sr);
             }
             for(AF_Sub_Result__c sr : subResults)
@@ -688,31 +687,28 @@ public class AF_AnnualBonus_Test
                 sr.AF_Bonus_Threshold__c=BonusThresholdQuery[0].id;
                 //subResults.add(sr);
             }
-            list<AF_Sub_Result__c >sublist=new list<AF_Sub_Result__c >();
-            for(AF_Sub_Result__c sr2 : subResults)
+            for(AF_Sub_Result__c sr : subResults)
             {
-                sr2.AF_Digital__c = true;
-                sr2.AF_Traditional__c = false;
-                sr2.AF_Quant__c = 12;
-                sr2.AF_Class_code__c=false;
-                sr2.AF_Minimum__c = 0;
-                sr2.AF_Outstanding__c = 3;
-                sr2.AF_Stretching__c = 2;
-                sr2.Bonus_Measure__c =bonusMeasure;
-                sr2.AF_Period__c=AF_Constants.QUARTER3;
-                sr2.Sub_Result_AnnualID__c=subResults[0].id;
-                sr2.AF_Status__c=AF_Constants.STATUS_DRAFT;
-                sr2.AF_Bonus_Threshold__c=BonusThresholdQuery[0].id;
-                sublist.add(sr2);
+                sr.AF_Digital__c = true;
+                sr.AF_Traditional__c = false;
+                sr.AF_Quant__c = 12;
+                sr.AF_Class_code__c=false;
+                sr.AF_Minimum__c = 0;
+                sr.AF_Outstanding__c = 3;
+                sr.AF_Stretching__c = 2;
+                sr.Bonus_Measure__c =bonusMeasure;
+                sr.AF_Period__c=AF_Constants.QUARTER3;
+                //sr.AF_Result_type__c='Quarterly';
+                //sr.AF_Unique_Key__c='test1236';
+                //sr.Sub_Result_AnnualID__c=subResults[0].id;
+                //sr.AF_deletion_key__c=subResults[0].AF_deletion_key__c;
+                sr.AF_Status__c=AF_Constants.STATUS_DRAFT;
+                sr.AF_Bonus_Threshold__c=BonusThresholdQuery[0].id;
+                //subResults.add(sr);
             }  
-            try{
-            insert sublist;
-            update sublist;
-            delete sublist;
-            }
-            catch(Exception E){
-             AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'AF_AfterUpdHandler',e.getMessage(),e.getTypeName(),e.getStackTraceString());
-            }
+            insert subResults;
+            update subResults;
+            delete subResults;
             AF_SubResultHandler obj=new AF_SubResultHandler();
             obj.beforeDelete(subResults[0]);
             obj.afterDelete(subResults[0]);
