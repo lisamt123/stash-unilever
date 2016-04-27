@@ -675,16 +675,5 @@
          </apex:facet>
       </apex:ActionStatus>
    </apex:form>
-   <script>
-         function commentsToggleOpen(elementId) 
-         {
-             document.getElementById(elementId).style.display = 'block';
-         }
-         function commentsToggleClose(elementId) 
-         { 
-             document.getElementById(elementId).style.display = 'none';
-         }
-         commentsToggleClose('commentAddTable');
-         
-   </script>
+   
 </apex:page>
