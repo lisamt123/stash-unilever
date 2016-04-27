@@ -124,7 +124,10 @@ function unloadPage()
 	}
 } 
 
+if(window.parent.location.href.indexOf("Milestoneid") > -1) {
+ }else{
 window.onbeforeunload = unloadPage;
+ }
 
 /* Below code is to skip the unsaved changes*/
 function skipValidation() {

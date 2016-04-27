@@ -249,6 +249,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                                                                                                     IPM_Parent_Project_Name__c,
                                                                                                     IPM_Regional_PL__r.Name,
                                                                                                     Regional_Project__r.IPM_Phase__c,
+                                                                                                    IPM_Project__R.IPM_Phase__c,
                                                                                                     Regional_Project__r.IPM_SourceProjectType__c,
                                                                                                     Regional_Project__r.Id                                                                    
                                                                                                     FROM IPM_Project_Rollout__c 
@@ -293,11 +294,13 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                                                                                             name,
                                                                                             RecordTypeId,  
                                                                                             Financial_External_ID__c,
-                                                                                            IPM_Project_Rollout__r.Id
+                                                                                            IPM_Project_Rollout__r.Id,
+                                                                                            IPM_Project_Rollout__r.Name
                                                                                             FROM IPM_Financial__c 
                                                                                             WHERE IPM_Project_Rollout__c IN: regionalRolloutset Limit 50000]);
                                                 
             for(IPM_Financial__c fir:projRolloutFinList){
+            	
                 if(!rolloutFinancialmap.containskey(fir.IPM_Project_Rollout__r.Id)){
                     rolloutFinancialmap.put(fir.IPM_Project_Rollout__r.Id, new List<IPM_Financial__c>{fir});  
                 }else{
@@ -307,6 +310,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                 }
                 finIdSet.add(fir.id);
             }
+            
         }   
         catch(Exception ex){
                 ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,METHOD_NAME,ex.getMessage(),ex, IPM_ConstantUtils.ERROR,null,null,null,null); 
@@ -534,6 +538,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     public double getTurnOver(IPM_Financial_Year__c fr, boolean globalORregionalvalue, string returnType ){   
 
         double returnValue=0;
+        
         if(globalORregionalvalue){
             returnValue=returnType.equalsignorecase(TURNOVER)?fr.Turnover_Global__c:fr.Gross_Profit_Global__c;
         }else{
@@ -563,25 +568,16 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                     analyticObj = setRolloutProjectdetails(analyticObj, pr, parent);
                     
                     if(pr.RecordTypeId == REGIONAL_ROLLOUT_RECTYPE){
-			            analyticObj.IPM_Project_Span__c =IPM_Utils.Regional;
-			            analyticObj.IPM_Geography__c = pr.Market_Cluster_Name__c;
-			            analyticObj.IPM_Phase__c = pr.Regional_Rollout_Phase__c;
-			            analyticObj.IPM_IC_NBU__c = IPM_Utils.IPM_IC;
 			            regionalrolloutid = pr.Id;                                     
 			        }else if(pr.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE ){
-			            analyticObj.IPM_Project_Span__c = IPM_Utils.Local;
-			            analyticObj.IPM_Geography__c=ipmCountryMap.containskey(pr.id)?ipmCountryMap.get(pr.id):'';
-			            analyticObj.IPM_Market_Cluster__c = pr.Market_Cluster_Name__c;
-			            analyticObj.IPM_Phase__c = pr.Regional_Project__r.IPM_Phase__c;
-			            analyticObj.IPM_Key_NonKey__c = pr.KeyMCO__c?IPM_ConstantUtils.OTIF_YES:IPM_ConstantUtils.OTIF_NO;
-			            analyticObj.IPM_IC_NBU__c = IPM_Utils.IPM_IC_NBU;
-			            regionalrolloutid=pr.Regional_Project__c != null?pr.Regional_Rollout__r.id:null;
+			            regionalrolloutid=pr.Regional_Project__c == null?pr.Regional_Rollout__r.id:pr.Id;
 			        } 
 			        
                     string finExtId = '';
                     if(regionalrolloutid != null && rolloutFinancialmap.containskey(regionalrolloutid)){ 
                         for(IPM_Financial__c fir:rolloutFinancialmap.get(regionalrolloutid)){
                             if((pr.RecordTypeId == REGIONAL_ROLLOUT_RECTYPE && fir.Financial_External_ID__c == pr.name + IPM_Utils.CONSOLIDATED) || (pr.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE && fir.Financial_External_ID__c == pr.name)){
+                               
                                 finExtId = fir.Financial_External_ID__c;                                                           
                             }                       
                         }
@@ -631,6 +627,22 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
         analyticObj.IPM_BET_First_Released_On_Date__c = parent.IPM_BET_First_Released_On_Date__c;
         analyticObj.IPM_BET_Final_Release_Due_date__c = parent.IPM_BET_Final_Release_Due_date__c;
         analyticObj.IPM_BET_Final_Released_On_date__c = parent.IPM_BET_Final_Released_On_date__c;
+        
+        if(pr.RecordTypeId == REGIONAL_ROLLOUT_RECTYPE){
+            analyticObj.IPM_Project_Span__c =IPM_Utils.Regional;
+            analyticObj.IPM_Geography__c = pr.Market_Cluster_Name__c;
+            analyticObj.IPM_Phase__c = pr.Regional_Rollout_Phase__c;
+            analyticObj.IPM_IC_NBU__c = IPM_Utils.IPM_IC;
+                                                 
+        }else if(pr.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE ){
+            analyticObj.IPM_Project_Span__c = IPM_Utils.Local;
+            analyticObj.IPM_Geography__c = ipmCountryMap.containskey(pr.id)?ipmCountryMap.get(pr.id):'';
+            analyticObj.IPM_Market_Cluster__c = pr.Market_Cluster_Name__c;
+            analyticObj.IPM_Phase__c = pr.Regional_Project__c==null?pr.IPM_Project__r.IPM_Phase__c:pr.Regional_Project__r.IPM_Phase__c;
+            analyticObj.IPM_Key_NonKey__c = pr.KeyMCO__c?IPM_ConstantUtils.OTIF_YES:IPM_ConstantUtils.OTIF_NO;
+            analyticObj.IPM_IC_NBU__c = IPM_Utils.IPM_IC_NBU;
+            
+        } 
         
     	return analyticObj;
     }

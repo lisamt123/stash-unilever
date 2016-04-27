@@ -457,7 +457,7 @@ public with sharing class IPM_ProjectDocumentHelper
                         String targetField = targetFieldAPIList.get(counter);
                         //NO SONAR for Unnecessary Boolean Comparison, since targetField is coming from Map where two fields are of typr Text and 1 is of Checkbox, we need to explicitly check for this condition in order for Business Logic to Work
                         //While copying over sections data 3 fields pulled from the custom settings "IPM_Section_CopyMapping" needs to be copied Gate Summary, Functional Summary (which are text fields) and isDefault which is a boolean  
-                        if(String.isNotBlank(sourceField) && String.isNotBlank(targetField) && (incomingSection.get(targetField) == null || !(Boolean)incomingSection.get(targetField) ) )
+						if(String.isNotBlank(sourceField) && String.isNotBlank(targetField) && (incomingSection.get(targetField) == null || ((String.valueOf(getFieldDataType(targetField))=='Boolean')  && !(Boolean)incomingSection.get(targetField) )))
                         {
                             if(copyFromGate.equals(BOSSCARD) || currentSectionExternalId != IPM_ConstantUtils.FEEDBACK_FROM_LAST_GATE)
                             {
@@ -475,4 +475,16 @@ public with sharing class IPM_ProjectDocumentHelper
             }
         }
     }
+	/**************************************************************
+	* @description: to get the data type of the sObject field
+	* @param1 targetField : target field
+	*/
+	private static Schema.DisplayType getFieldDataType(String targetField)
+	{
+		Map<String, Schema.SObjectField> objectFields = Schema.getGlobalDescribe().get('IPM_Project_Document_Section__c').getDescribe().fields.getMap();
+		Schema.DescribeFieldResult lfieldLabel = objectFields.get(targetField).getDescribe();
+		Schema.DisplayType fieldDataType = lfieldLabel.getType();
+		
+		return fieldDataType;
+	}
 }
