@@ -4677,6 +4677,15 @@
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000L3IG_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_JACONET_SAS</label>
+        <queue>IPM_a7IE0000000L3IG</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <displayFormat>SecCon-{0000}</displayFormat>
         <label>Section Content Id</label>
