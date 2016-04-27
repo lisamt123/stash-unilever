@@ -119,20 +119,20 @@ public with sharing class TriggerFactory
         {
             return new FAU_ProgramHandler();
         }       
-
-		if (soType == Oblix_SOW_Projects__c.sObjectType){
-			return new Oblix_ProjectHandler();
-		}
+/*
+        if (soType == Oblix_SOW_Projects__c.sObjectType){
+            return new Oblix_ProjectHandler();
+        }
         if (soType == Oblix_Marketing_SOW_Project_Splits__c.sObjectType){
-			return new Oblix_SplitHandler(); 
-		}
+            return new Oblix_SplitHandler(); 
+        }
         if (soType == Marketing_SOW__c.sObjectType){
-			return new Oblix_SOWHandler(); 
-		}
+            return new Oblix_SOWHandler(); 
+        }
         if (soType == Oblix_Project_Assets__c.sObjectType){
-			return new Oblix_AssetHandler(); 
-		}
-		
+            return new Oblix_AssetHandler(); 
+        }*/
+        
         if (soType == FAU_Webinar_Participant__c.sObjectType)
         {
             return new FAU_Webinar_ParticipantHandler();
@@ -149,49 +149,61 @@ public with sharing class TriggerFactory
         if (soType == FAU_Webinar__c.sObjectType){
             return new FAU_WebinarHandler();
         } 
+        // Agencies Trigger Handlers start
         
-       if (soType == IPM_User_Profile__c.sObjectType){
-            return new IPM_UserProfileHandler();
-        }
-        if (soType == IPM_Company_Card__c.sObjectType){
-            return new IPM_CompanyCardHandler();
-        }
-        
-        if (soType == IPM_Country__c.sObjectType){
-            return new IPM_CountryHandler();
-        }
-        if (soType == IPM_Project_Resource__c.sObjectType){
-           return new IPM_ProjectResourceHandler();
-           
-        }
-        if (soType == IPM_Project_Document__c.sObjectType){
-            return new IPM_ProjectDocumentHandler();
+        if (soType == AF_Agency_Estimate__c.sObjectType)
+        {
+            return new AF_Agency_EstimateHandler();
         }
         
-        if (soType == IPM_Questionnaire__c.sObjectType){
-            return new IPM_QuestionnaireHandler();
+        if (soType == AF_Bonus_Results__c.sObjectType)
+        {
+            return new AF_Bonus_ResultsHandler();
         }
-        if (soType == IPM_Milestone__c.sObjectType){
-            return new IPM_MilestoneHandler();
+        
+        if (soType == AF_Bonus_Threshold__c.sObjectType)
+        {
+            return new AF_Bonus_ThresholdHandler();
         }
-        if (soType == IPM_Task__c.sObjectType){
-            return new IPM_TaskHandler();
+        
+        if (soType == AF_Brand_Estimate__c.sObjectType)
+        {
+            return new AF_Brand_EstimateHandler();
         }
-        if (soType == IPM_Project__c.sObjectType){
-            return new IPM_ProjectHandler();
+        
+        if (soType == AF_Currency__c.sObjectType)
+        {
+            return new AF_CurrencyHandler();
         }
-        if (soType == IPM_Financial__c.sObjectType){
-            return new IPM_FinancialHandler();
+        
+        if (soType == AF_OOPS_Actual__c.sObjectType)
+        {
+            return new AF_OOPSActualHandler();
         }
-        if (soType == IPM_Financial_Year__c.sObjectType){
-            return new IPM_FinancialYearHandler();
+        
+        if (soType == AF_OOPS_Estimate__c.sObjectType)
+        {
+           return new AF_OOPSEstimateHandler();
         }
-        if (soType == IPM_Project_Rollout__c.sObjectType){
-            return new IPM_ProjectRolloutHandler();
+        
+        if (soType == AF_Sub_Result__c.sObjectType)
+        {
+            return new AF_SubResultHandler();
         }
-        if (soType == IPM_Assessment__c.sObjectType){
-            return new IPM_AssesmentHandler();
+        
+        if (soType == AF_Bonus_Matrix__c.sObjectType)
+        {
+            return new AF_Bonus_MatrixHandler();
         }
+        
+        if (soType == AF_PO_Report__c.sObjectType)
+        {
+            return new AF_PO_ReportHandler();
+        }
+        
+        // Agencies Trigger Handlers ends
+        
+       
         return null;
     }
 
