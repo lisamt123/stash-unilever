@@ -698,33 +698,6 @@
         <label><!-- UserEmail --></label>
         <name>UserEmail__c</name>
     </fields>
-    <layouts>
-        <layout>Brand Estimate Layout</layout>
-        <sections>
-            <label><!-- Approval Information --></label>
-            <section>Approval Information</section>
-        </sections>
-        <sections>
-            <label><!-- Bonus fees --></label>
-            <section>Bonus fees</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Information --></label>
-            <section>Information</section>
-        </sections>
-        <sections>
-            <label><!-- OOPS --></label>
-            <section>OOPS</section>
-        </sections>
-        <sections>
-            <label><!-- Status Base Fees --></label>
-            <section>Status Base Fees</section>
-        </sections>
-    </layouts>
     <recordTypes>
         <label><!-- Brand Estimate --></label>
         <name>Brand_Estimate</name>

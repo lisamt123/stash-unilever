@@ -630,37 +630,6 @@
         <name>isSubmitted__c</name>
     </fields>
     <gender><!-- Masculine --></gender>
-    <layouts>
-        <layout>Fulfilment Layout</layout>
-        <sections>
-            <label><!-- ChequeBook Details --></label>
-            <section>ChequeBook Details</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Debit Card Details --></label>
-            <section>Debit Card Details</section>
-        </sections>
-        <sections>
-            <label>Pièces-jointes</label>
-            <section>Enclosures</section>
-        </sections>
-        <sections>
-            <label><!-- Letter and Consumer Details --></label>
-            <section>Letter and Consumer Details</section>
-        </sections>
-        <sections>
-            <label><!-- Message --></label>
-            <section>Message</section>
-        </sections>
-        <sections>
-            <label><!-- New Section --></label>
-            <section>New Section</section>
-        </sections>
-    </layouts>
     <nameFieldLabel><!-- Fulfilment Name --></nameFieldLabel>
     <startsWith><!-- Consonant --></startsWith>
     <validationRules>
@@ -699,8 +668,4 @@
         <label>Nouvelle résolution</label>
         <name>New_Fulfilment</name>
     </webLinks>
-    <workflowTasks>
-        <name>CEC_Rejected_correspondence</name>
-        <subject>Correspondance rejetée</subject>
-    </workflowTasks>
 </CustomObjectTranslation>

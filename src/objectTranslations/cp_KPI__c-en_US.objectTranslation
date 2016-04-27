@@ -202,17 +202,6 @@
         <label><!-- KPI Status --></label>
         <name>KPI_Status__c</name>
     </fields>
-    <layouts>
-        <layout>KPI Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Status --></label>
-            <section>Status</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
     <validationRules>
         <errorMessage><!-- Please enter a KPI description --></errorMessage>

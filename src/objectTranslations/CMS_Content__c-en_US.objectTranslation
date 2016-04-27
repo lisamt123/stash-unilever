@@ -85,12 +85,5 @@
             <translation><!-- Video --></translation>
         </picklistValues>
     </fields>
-    <layouts>
-        <layout>CMS Content Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

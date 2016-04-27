@@ -37,12 +37,5 @@
             <translation><!-- Upload/Download --></translation>
         </picklistValues>
     </fields>
-    <layouts>
-        <layout>FA_Pre-Work Task Assignment Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

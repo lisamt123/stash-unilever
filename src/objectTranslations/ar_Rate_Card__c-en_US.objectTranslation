@@ -1398,16 +1398,5 @@
         <label><!-- Unilever Daily Rate --></label>
         <name>Unilever_Daily_Rate__c</name>
     </fields>
-    <layouts>
-        <layout>Rate Card Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Details --></label>
-            <section>Details</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

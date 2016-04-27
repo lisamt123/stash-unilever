@@ -1404,19 +1404,4 @@ The Whole Enchilada: All notifications (Default) --></help>
         <label><!-- isll SME --></label>
         <name>isll_SME__c</name>
     </fields>
-    <layouts>
-        <layout>User Layout</layout>
-        <sections>
-            <label><!-- Brand Centre Management --></label>
-            <section>Brand Centre Management</section>
-        </sections>
-        <sections>
-            <label><!-- CEC Settings --></label>
-            <section>CEC Settings</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
 </CustomObjectTranslation>

@@ -13,23 +13,5 @@
         <name>Parent_Function__c</name>
         <relationshipLabel><!-- One View Functions --></relationshipLabel>
     </fields>
-    <layouts>
-        <layout>Function Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- New Fields --></label>
-            <section>New Fields</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>One View Function Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

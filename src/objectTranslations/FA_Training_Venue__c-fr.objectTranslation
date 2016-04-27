@@ -65,13 +65,6 @@
         <name>FA_Venue_Image__c</name>
     </fields>
     <gender><!-- Masculine --></gender>
-    <layouts>
-        <layout>FA_Training Venue Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <nameFieldLabel><!-- Name --></nameFieldLabel>
     <startsWith><!-- Consonant --></startsWith>
     <validationRules>

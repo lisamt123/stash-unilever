@@ -26,12 +26,5 @@
         <name>Case_Id__c</name>
         <relationshipLabel><!-- Alert Tracker Item --></relationshipLabel>
     </fields>
-    <layouts>
-        <layout>Alert Tracker Item Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

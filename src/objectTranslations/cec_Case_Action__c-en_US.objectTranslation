@@ -114,12 +114,5 @@
         <label><!-- Survey Name --></label>
         <name>Survey_Name__c</name>
     </fields>
-    <layouts>
-        <layout>Case Action Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

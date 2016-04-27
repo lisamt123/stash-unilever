@@ -315,25 +315,6 @@
         <name>X30_Days_Limit__c</name>
     </fields>
     <gender><!-- Neuter --></gender>
-    <layouts>
-        <layout>Alert Rule Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Product --></label>
-            <section>Product</section>
-        </sections>
-        <sections>
-            <label><!-- Product Category --></label>
-            <section>Product Category</section>
-        </sections>
-        <sections>
-            <label><!-- Reason --></label>
-            <section>Reason</section>
-        </sections>
-    </layouts>
     <nameFieldLabel><!-- Alert Rule Name --></nameFieldLabel>
     <validationRules>
         <errorMessage>Proszę zweryfikuj czy kategoria produktowa &apos;Nazwa Działu&apos; nie jest zerowa/pusta</errorMessage>

@@ -9,6 +9,14 @@
         <value>SWOP User Permission</value>
     </caseValues>
     <fields>
+        <label><!-- Agency ID --></label>
+        <name>Agency_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Agency Name --></label>
+        <name>Agency_Name__c</name>
+    </fields>
+    <fields>
         <label><!-- Brand Name --></label>
         <name>Brand_Name__c</name>
     </fields>

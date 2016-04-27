@@ -291,17 +291,6 @@
         <name>isVariantKnown__c</name>
     </fields>
     <gender><!-- Neuter --></gender>
-    <layouts>
-        <layout>Issue Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Fields --></label>
-            <section>Fields</section>
-        </sections>
-    </layouts>
     <nameFieldLabel><!-- Issue Number --></nameFieldLabel>
     <webLinks>
         <label>Cosmetovigilance</label>

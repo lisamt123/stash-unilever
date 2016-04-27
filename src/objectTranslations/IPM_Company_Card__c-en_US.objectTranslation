@@ -2934,44 +2934,6 @@
             <translation><!-- Regional --></translation>
         </picklistValues>
     </fields>
-    <layouts>
-        <layout>IPM Company Card Layout</layout>
-        <sections>
-            <label><!-- Contacts Data --></label>
-            <section>Contacts Data</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Financials Data --></label>
-            <section>Financials Data</section>
-        </sections>
-        <sections>
-            <label><!-- Geographical Data --></label>
-            <section>Geographical Data</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>IPM Regional Company Card Layout</layout>
-        <sections>
-            <label><!-- Contacts Data --></label>
-            <section>Contacts Data</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Financials Data --></label>
-            <section>Financials Data</section>
-        </sections>
-        <sections>
-            <label><!-- Geographical Data --></label>
-            <section>Geographical Data</section>
-        </sections>
-    </layouts>
     <recordTypes>
         <label><!-- Global Company Card --></label>
         <name>IPM_Global_Company_Card</name>

@@ -82,20 +82,5 @@
         <label><!-- Type --></label>
         <name>Type__c</name>
     </fields>
-    <layouts>
-        <layout>Shelf Tile Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- New Fields --></label>
-            <section>New Fields</section>
-        </sections>
-        <sections>
-            <label><!-- Tile Details --></label>
-            <section>Tile Details</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

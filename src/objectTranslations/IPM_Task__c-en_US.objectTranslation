@@ -210,13 +210,6 @@
         <label><!-- IsSystemGenerated --></label>
         <name>IsSystemGenerated__c</name>
     </fields>
-    <layouts>
-        <layout>Task Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <recordTypes>
         <label><!-- IPM Project Tasks --></label>
         <name>IPM_Project_Tasks</name>

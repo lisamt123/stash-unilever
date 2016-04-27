@@ -60,16 +60,5 @@
             <translation><!-- T&amp;C --></translation>
         </picklistValues>
     </fields>
-    <layouts>
-        <layout>Agency Portal CMS Layout</layout>
-        <sections>
-            <label><!-- Content --></label>
-            <section>Content</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Vowel</startsWith>
 </CustomObjectTranslation>

@@ -24,20 +24,6 @@
         <label><!-- Telephone --></label>
         <name>Telephone__c</name>
     </fields>
-    <layouts>
-        <layout>Key Contact Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>PWORF Key Contact Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
     <webLinks>
         <label><!-- New_Key_Contact --></label>

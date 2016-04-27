@@ -692,37 +692,6 @@
         <name>isSubmitted__c</name>
     </fields>
     <gender><!-- Neuter --></gender>
-    <layouts>
-        <layout>Fulfilment Layout</layout>
-        <sections>
-            <label><!-- ChequeBook Details --></label>
-            <section>ChequeBook Details</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Debit Card Details --></label>
-            <section>Debit Card Details</section>
-        </sections>
-        <sections>
-            <label>Załączniki</label>
-            <section>Enclosures</section>
-        </sections>
-        <sections>
-            <label><!-- Letter and Consumer Details --></label>
-            <section>Letter and Consumer Details</section>
-        </sections>
-        <sections>
-            <label>Wiadomość</label>
-            <section>Message</section>
-        </sections>
-        <sections>
-            <label><!-- New Section --></label>
-            <section>New Section</section>
-        </sections>
-    </layouts>
     <nameFieldLabel><!-- Fulfilment Name --></nameFieldLabel>
     <validationRules>
         <errorMessage>Realizacja nie może zostać stworzona dopóki nie zostanie dodany adres konsumenta</errorMessage>
@@ -760,9 +729,4 @@
         <label><!-- New_Fulfilment --></label>
         <name>New_Fulfilment</name>
     </webLinks>
-    <workflowTasks>
-        <description>Korespondencja do konsumenta został odrzucony przez Zespół Kontroli Jakości i wymaga dalszych zmian przed wysłaniem. \ r \ n \ r \ nProszę kliknąć w link do rejestru i zmienić wpis jak wskazano. \ r \ n \ r \ nDziękujemy.</description>
-        <name>CEC_Rejected_correspondence</name>
-        <subject>Korespondencja odrzucona</subject>
-    </workflowTasks>
 </CustomObjectTranslation>

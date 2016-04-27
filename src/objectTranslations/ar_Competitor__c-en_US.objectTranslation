@@ -35,16 +35,5 @@
         <label><!-- Service Description --></label>
         <name>Service_Description__c</name>
     </fields>
-    <layouts>
-        <layout>Competitor Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Details --></label>
-            <section>Details</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

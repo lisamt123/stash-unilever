@@ -78,16 +78,5 @@
         <label><!-- Total Revenue --></label>
         <name>Total_Revenue__c</name>
     </fields>
-    <layouts>
-        <layout>Financial Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Financial Details --></label>
-            <section>Financial Details</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

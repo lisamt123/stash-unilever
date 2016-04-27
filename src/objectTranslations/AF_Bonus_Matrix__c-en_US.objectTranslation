@@ -228,12 +228,5 @@
         <label><!-- Unilver Code --></label>
         <name>Unilver_Code__c</name>
     </fields>
-    <layouts>
-        <layout>Bonus Matrix Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

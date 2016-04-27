@@ -40,12 +40,5 @@
         <label><!-- Core Parameter example two --></label>
         <name>IPM_Core_Parameter_example_two__c</name>
     </fields>
-    <layouts>
-        <layout>IPM CoreParameter helps Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

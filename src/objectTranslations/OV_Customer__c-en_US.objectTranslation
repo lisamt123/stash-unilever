@@ -14,16 +14,5 @@
         <name>Parent_Customer__c</name>
         <relationshipLabel><!-- One View Child Customers --></relationshipLabel>
     </fields>
-    <layouts>
-        <layout>One View Customer Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- New Fields --></label>
-            <section>New Fields</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

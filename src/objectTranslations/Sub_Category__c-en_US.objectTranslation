@@ -8,12 +8,5 @@
         <plural>true</plural>
         <value>Sub Categories</value>
     </caseValues>
-    <layouts>
-        <layout>Sub Category Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

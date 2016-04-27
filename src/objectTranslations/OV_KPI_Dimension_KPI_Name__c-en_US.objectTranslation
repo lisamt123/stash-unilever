@@ -36,16 +36,5 @@
         <label><!-- Visible Columns --></label>
         <name>Visible_Columns__c</name>
     </fields>
-    <layouts>
-        <layout>One View KPI Dimension KPI Name Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Setup --></label>
-            <section>Setup</section>
-        </sections>
-    </layouts>
     <startsWith>Vowel</startsWith>
 </CustomObjectTranslation>

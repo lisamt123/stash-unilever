@@ -28,13 +28,6 @@
         <relationshipLabel><!-- User Default Settings --></relationshipLabel>
     </fields>
     <gender><!-- Masculine --></gender>
-    <layouts>
-        <layout>User default setting Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <nameFieldLabel><!-- User Default Setting Name --></nameFieldLabel>
     <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

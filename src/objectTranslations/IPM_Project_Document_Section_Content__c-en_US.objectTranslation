@@ -1213,44 +1213,5 @@
         <label><!-- Section Content Ext Id --></label>
         <name>Section_Content_Ext_Id__c</name>
     </fields>
-    <layouts>
-        <layout>IPM Section Content Layout</layout>
-        <sections>
-            <label><!-- Assortment Strategy --></label>
-            <section>Assortment Strategy</section>
-        </sections>
-        <sections>
-            <label><!-- Assumptions --></label>
-            <section>Assumptions</section>
-        </sections>
-        <sections>
-            <label><!-- CRRT --></label>
-            <section>CRRT</section>
-        </sections>
-        <sections>
-            <label><!-- Consumer Evidence --></label>
-            <section>Consumer Evidence</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Customer Channel --></label>
-            <section>Customer Channel</section>
-        </sections>
-        <sections>
-            <label><!-- IPM Financial Details --></label>
-            <section>IPM Financial Details</section>
-        </sections>
-        <sections>
-            <label><!-- Mix --></label>
-            <section>Mix</section>
-        </sections>
-        <sections>
-            <label><!-- OTIF Section Details --></label>
-            <section>OTIF Section Details</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

@@ -77,24 +77,5 @@
         <label><!-- ParentSummaryTask? --></label>
         <name>isParentSummaryTask__c</name>
     </fields>
-    <layouts>
-        <layout>Summary Task Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Summary Task Budget --></label>
-            <section>Summary Task Budget</section>
-        </sections>
-        <sections>
-            <label><!-- Summary Task Description --></label>
-            <section>Summary Task Description</section>
-        </sections>
-        <sections>
-            <label><!-- Summary Task Detail --></label>
-            <section>Summary Task Detail</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

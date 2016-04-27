@@ -16,12 +16,5 @@
         <name>BET_Parent_Category__c</name>
         <relationshipLabel><!-- BET Category --></relationshipLabel>
     </fields>
-    <layouts>
-        <layout>BET Category Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

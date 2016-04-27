@@ -55,20 +55,5 @@
         <label><!-- Value for Money --></label>
         <name>Value_for_Money__c</name>
     </fields>
-    <layouts>
-        <layout>Rating Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Ratings --></label>
-            <section>Ratings</section>
-        </sections>
-        <sections>
-            <label><!-- Topics --></label>
-            <section>Topics</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

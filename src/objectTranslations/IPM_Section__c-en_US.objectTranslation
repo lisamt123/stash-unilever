@@ -158,12 +158,5 @@
             <translation><!-- Regional --></translation>
         </picklistValues>
     </fields>
-    <layouts>
-        <layout>Section Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Vowel</startsWith>
 </CustomObjectTranslation>

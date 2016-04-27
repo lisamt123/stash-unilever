@@ -47,12 +47,5 @@
         <label><!-- Pinnovate Wall --></label>
         <name>Pinnovate_Wall__c</name>
     </fields>
-    <layouts>
-        <layout>Pinnovate Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

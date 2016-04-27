@@ -17,16 +17,5 @@
         <name>User__c</name>
         <relationshipLabel><!-- One View Profiles --></relationshipLabel>
     </fields>
-    <layouts>
-        <layout>One View Profile Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- New Fields --></label>
-            <section>New Fields</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

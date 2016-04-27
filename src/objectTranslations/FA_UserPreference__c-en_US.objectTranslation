@@ -123,16 +123,5 @@
         <name>FA_User__c</name>
         <relationshipLabel><!-- User Preferences --></relationshipLabel>
     </fields>
-    <layouts>
-        <layout>FA_UserPreference Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Personal --></label>
-            <section>Personal</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

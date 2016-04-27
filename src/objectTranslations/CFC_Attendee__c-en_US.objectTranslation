@@ -38,16 +38,5 @@
         <label><!-- TF SF Base Url --></label>
         <name>TF_SF_Base_Url__c</name>
     </fields>
-    <layouts>
-        <layout>Attendee Layout</layout>
-        <sections>
-            <label><!-- Attendee Details --></label>
-            <section>Attendee Details</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

@@ -195,20 +195,6 @@
         <label><!-- Status --></label>
         <name>StatusFormula__c</name>
     </fields>
-    <layouts>
-        <layout>Idea Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Spark Ideation Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <recordTypes>
         <label><!-- Internal Ideas: Idea Record Type --></label>
         <name>InternalIdeasIdeaRecordType</name>

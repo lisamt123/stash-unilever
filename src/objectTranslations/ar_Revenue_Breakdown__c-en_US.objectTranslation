@@ -251,12 +251,5 @@
         <label><!-- Revenue Contribution % --></label>
         <name>Revenue_Contribution__c</name>
     </fields>
-    <layouts>
-        <layout>Revenue Breakdown Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

@@ -34,16 +34,5 @@
         <label><!-- View Dashboard --></label>
         <name>ViewDashboard__c</name>
     </fields>
-    <layouts>
-        <layout>PSAR Location Layout</layout>
-        <sections>
-            <label><!-- Alert Summary --></label>
-            <section>Alert Summary</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

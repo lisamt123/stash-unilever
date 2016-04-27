@@ -369,6 +369,9 @@ public without sharing class CEC_InstantAlertActionHelper {
                 
                 if(alertWrapper.caseList != null && !alertWrapper.caseList.IsEmpty()) {
                     for(Case caseObj : alertWrapper.caseList) {
+                    
+                        uniqueId = null;
+                        
                         // Create Unique Id based on the daycode check on the alert rule.
                         if(!alertRule.Group_By_Day_Code__c && caseObj.DayCode__c == null){
                             uniqueId = alertRule.Id + caseObj.Consumer_Product_Descriptor_no_size__c;

@@ -111,12 +111,5 @@
         <label><!-- View Count --></label>
         <name>View_Count__c</name>
     </fields>
-    <layouts>
-        <layout>News Article Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

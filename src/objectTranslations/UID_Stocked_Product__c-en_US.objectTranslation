@@ -33,12 +33,5 @@
         <label><!-- Stocked Product External ID --></label>
         <name>UID_Stocked_Product_External_ID__c</name>
     </fields>
-    <layouts>
-        <layout>Stocked Product Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

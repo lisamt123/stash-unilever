@@ -155,17 +155,6 @@
             <translation><!-- Toolkit --></translation>
         </picklistValues>
     </fields>
-    <layouts>
-        <layout>WP File Layout</layout>
-        <sections>
-            <label><!-- Chatter --></label>
-            <section>Chatter</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
     <validationRules>
         <errorMessage><!-- A file can be linked to no more than one of the following at the same time: Asset, Asset Group, Category and Brand‏ --></errorMessage>

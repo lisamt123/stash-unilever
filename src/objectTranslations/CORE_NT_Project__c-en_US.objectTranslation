@@ -164,24 +164,5 @@
         <label><!-- Total Open Task Count --></label>
         <name>Total_Open_Task_Count__c</name>
     </fields>
-    <layouts>
-        <layout>Project Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Project Budgets --></label>
-            <section>Project Budgets</section>
-        </sections>
-        <sections>
-            <label><!-- Project Description --></label>
-            <section>Project Description</section>
-        </sections>
-        <sections>
-            <label><!-- Project Details --></label>
-            <section>Project Details</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

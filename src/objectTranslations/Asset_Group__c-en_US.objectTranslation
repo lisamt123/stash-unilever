@@ -104,12 +104,5 @@
         <label><!-- Type for Keyword Search --></label>
         <name>Type_for_Keyword_Search__c</name>
     </fields>
-    <layouts>
-        <layout>WP Asset Group Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Vowel</startsWith>
 </CustomObjectTranslation>

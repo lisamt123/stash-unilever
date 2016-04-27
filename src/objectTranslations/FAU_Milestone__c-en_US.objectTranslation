@@ -82,25 +82,6 @@
             <translation><!-- Regular --></translation>
         </picklistValues>
     </fields>
-    <layouts>
-        <layout>Milestone Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Description --></label>
-            <section>Description</section>
-        </sections>
-        <sections>
-            <label><!-- Reminders --></label>
-            <section>Reminders</section>
-        </sections>
-        <sections>
-            <label><!-- Statistics --></label>
-            <section>Statistics</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
     <validationRules>
         <errorMessage><!-- You can&apos;t change a milestone completion when a participant completes a milestone.

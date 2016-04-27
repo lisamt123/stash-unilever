@@ -28,6 +28,10 @@
         <name>Asset_Description__c</name>
     </fields>
     <fields>
+        <label><!-- Asset Line Item Score --></label>
+        <name>Asset_Line_Item_Score__c</name>
+    </fields>
+    <fields>
         <help><!-- Please select the Asset that most meets the type of Asset required? --></help>
         <label><!-- Asset Name --></label>
         <name>Asset_Picklist__c</name>
@@ -405,6 +409,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Asset Score --></label>
+        <name>Asset_Score__c</name>
+    </fields>
+    <fields>
         <label><!-- Asset Scoring Number --></label>
         <name>Asset_Scoring_Number__c</name>
     </fields>
@@ -417,7 +425,7 @@
         <name>Asset_Total_Score__c</name>
     </fields>
     <fields>
-        <label><!-- Asset Type --></label>
+        <label><!-- Category --></label>
         <name>Asset_Type__c</name>
         <picklistValues>
             <masterLabel>Audio Visual</masterLabel>
@@ -445,8 +453,17 @@
         <name>Asset_name__c</name>
     </fields>
     <fields>
+        <help><!-- Aggregated asset name used on Assets Table on Campaign summary. --></help>
+        <label><!-- Asset name --></label>
+        <name>Asset_summary_page_name__c</name>
+    </fields>
+    <fields>
         <label><!-- Asset Type/Subcategory --></label>
         <name>Calculator_Question__c</name>
+    </fields>
+    <fields>
+        <label><!-- Campaign ID --></label>
+        <name>Campaign_ID__c</name>
     </fields>
     <fields>
         <label><!-- Category --></label>
@@ -499,6 +516,10 @@
             <masterLabel>TV</masterLabel>
             <translation><!-- TV --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Asset Description --></label>
+        <name>Description__c</name>
     </fields>
     <fields>
         <help><!-- Filter on the word &quot;Score&quot; to capture full descriptions of the asset --></help>
@@ -591,68 +612,10 @@
         <label><!-- Target Delivery Date --></label>
         <name>Target_Delivery_Date__c</name>
     </fields>
-    <layouts>
-        <layout>Agency Project Assets Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Audio Visual</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Fields to be Hidden --></label>
-            <section>Fields to be Hidden</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Digital</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Fields to be Hidden --></label>
-            <section>Fields to be Hidden</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Experiential</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- General --></label>
-            <section>General</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Static Imagery</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Fields to be Hidden --></label>
-            <section>Fields to be Hidden</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Stimulus Materials / Research Requirements</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Fields to be Hidden --></label>
-            <section>Fields to be Hidden</section>
-        </sections>
-    </layouts>
+    <fields>
+        <label><!-- MDM ID --></label>
+        <name>mdm_id__c</name>
+    </fields>
     <recordTypes>
         <label><!-- Admin --></label>
         <name>Admin</name>

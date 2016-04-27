@@ -520,16 +520,5 @@
         <label><!-- testquarters --></label>
         <name>testquarters__c</name>
     </fields>
-    <layouts>
-        <layout>Agency Estimate Layout</layout>
-        <sections>
-            <label><!-- Agency Estimates --></label>
-            <section>Agency Estimates</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

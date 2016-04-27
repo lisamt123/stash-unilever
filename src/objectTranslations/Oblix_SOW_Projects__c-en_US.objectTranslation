@@ -27,24 +27,24 @@
         <label><!-- Business Value --></label>
         <name>Brand_Led_Growth__c</name>
         <picklistValues>
-            <masterLabel>Incremental Turn Over 10M - 20M</masterLabel>
-            <translation><!-- Incremental Turn Over 10M - 20M --></translation>
+            <masterLabel>Incremental turnover 10M - 20M</masterLabel>
+            <translation><!-- Incremental turnover 10M - 20M --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Incremental Turn Over 20M - 30M</masterLabel>
-            <translation><!-- Incremental Turn Over 20M - 30M --></translation>
+            <masterLabel>Incremental turnover 20M - 30M</masterLabel>
+            <translation><!-- Incremental turnover 20M - 30M --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Incremental Turn Over 30M - 40M</masterLabel>
-            <translation><!-- Incremental Turn Over 30M - 40M --></translation>
+            <masterLabel>Incremental turnover 30M - 40M</masterLabel>
+            <translation><!-- Incremental turnover 30M - 40M --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Incremental Turn Over &lt;10M</masterLabel>
-            <translation><!-- Incremental Turn Over &lt;10M --></translation>
+            <masterLabel>Incremental turnover &lt;10M</masterLabel>
+            <translation><!-- Incremental turnover &lt;10M --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Incremental Turn Over &gt;40M</masterLabel>
-            <translation><!-- Incremental Turn Over &gt;40M --></translation>
+            <masterLabel>Incremental turnover &gt;40M</masterLabel>
+            <translation><!-- Incremental turnover &gt;40M --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Total turnover &lt;€100m</masterLabel>
@@ -183,18 +183,26 @@
         <name>Enforce_Trigger_Update__c</name>
     </fields>
     <fields>
+        <label><!-- FY Campaign Fee --></label>
+        <name>Fees_To_Be_Paid_In_Current_FY_Agency__c</name>
+    </fields>
+    <fields>
         <label><!-- Fees To Be Paid Next Financial Year --></label>
         <name>Fees_To_Be_Paid_Next_Financial_Year__c</name>
     </fields>
     <fields>
         <help><!-- Enter the the date for final release --></help>
-        <label><!-- Final release --></label>
+        <label><!-- BET Final Release --></label>
         <name>Final_release__c</name>
     </fields>
     <fields>
         <label><!-- Marketing SOW --></label>
         <name>Financial_Year__c</name>
         <relationshipLabel><!-- SWOP Campaigns --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- First 3 selected countries --></label>
+        <name>First_3_selected_countries__c</name>
     </fields>
     <fields>
         <help><!-- When is the first airing? --></help>
@@ -517,6 +525,14 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- SOW/Campaign Name --></label>
+        <name>SOW_Campaign_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- SOW FY --></label>
+        <name>SOW_FY__c</name>
+    </fields>
+    <fields>
         <label><!-- Selected Countries --></label>
         <name>Selected_Countries__c</name>
     </fields>
@@ -524,6 +540,54 @@
         <help><!-- Should legal review this project? --></help>
         <label><!-- Should legal review this project? --></label>
         <name>Should_legal_review_this_project__c</name>
+    </fields>
+    <fields>
+        <label><!-- Stage Completed CFY --></label>
+        <name>Stage_Completed_CFY__c</name>
+        <picklistValues>
+            <masterLabel>Briefing</masterLabel>
+            <translation><!-- Briefing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Creative Execution</masterLabel>
+            <translation><!-- Creative Execution --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Creative Ideation</masterLabel>
+            <translation><!-- Creative Ideation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Production</masterLabel>
+            <translation><!-- Production --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Strategy &amp; Planning</masterLabel>
+            <translation><!-- Strategy &amp; Planning --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Stage Projected CFY --></label>
+        <name>Stage_Projected_CFY__c</name>
+        <picklistValues>
+            <masterLabel>Briefing</masterLabel>
+            <translation><!-- Briefing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Creative Execution</masterLabel>
+            <translation><!-- Creative Execution --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Creative Ideation</masterLabel>
+            <translation><!-- Creative Ideation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Production</masterLabel>
+            <translation><!-- Production --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Strategy &amp; Planning</masterLabel>
+            <translation><!-- Strategy &amp; Planning --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <help><!-- Enter the date your TV production will start --></help>
@@ -557,6 +621,10 @@
         <name>Total_Asset_Deliverables__c</name>
     </fields>
     <fields>
+        <label><!-- Total Asset Score --></label>
+        <name>Total_Asset_Score__c</name>
+    </fields>
+    <fields>
         <label><!-- Total Digital Fee --></label>
         <name>Total_Digital_Fee__c</name>
     </fields>
@@ -584,29 +652,6 @@
         <label><!-- Fees To Be Paid In Current FY --></label>
         <name>Value_to_be_paid_in_Current_FY__c</name>
     </fields>
-    <layouts>
-        <layout>Agency Projects Layout</layout>
-        <sections>
-            <label><!-- Business Value Drivers --></label>
-            <section>Business Value Drivers</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Financials --></label>
-            <section>Financials</section>
-        </sections>
-        <sections>
-            <label><!-- General --></label>
-            <section>General</section>
-        </sections>
-        <sections>
-            <label><!-- Time Scales --></label>
-            <section>Time Scales</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
     <validationRules>
         <errorMessage><!-- Total % for Agency Hub splits should add up to 100 --></errorMessage>

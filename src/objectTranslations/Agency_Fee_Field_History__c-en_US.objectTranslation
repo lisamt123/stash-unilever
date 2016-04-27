@@ -36,12 +36,5 @@
         <label><!-- Old Value --></label>
         <name>Old_Value__c</name>
     </fields>
-    <layouts>
-        <layout>Agency Fee - Field History Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

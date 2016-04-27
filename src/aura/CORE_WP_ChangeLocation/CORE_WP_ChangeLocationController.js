@@ -11,12 +11,10 @@
         });
         action.setCallback(this, function(response) {
             var state = response.getState();
-            if (state === "SUCCESS") {      
-                if(response.getReturnValue()!='')   {
-                    var workplaceLocationId=response.getReturnValue();
-                    var selectEvent = $A.get("e.c:CORE_WP_WorkplaceEvent");
-                    selectEvent.setParams({"selectedWrokplaceId": workplaceLocationId,"WorkplacePannelType":"CORE_WP_WorkplaceHome"}).fire();
-                }
+            if (state === "SUCCESS" && response.getReturnValue()!='')   {
+                var workplaceLocationId=response.getReturnValue();
+                var selectEvent = $A.get("e.c:CORE_WP_WorkplaceEvent");
+                selectEvent.setParams({"selectedWrokplaceId": workplaceLocationId,"WorkplacePannelType":"CORE_WP_WorkplaceHome"}).fire();               
             }
            
         });
@@ -35,9 +33,7 @@
                     var selectEvent = $A.get("e.c:CORE_WP_WorkplaceEvent");
                     selectEvent.setParams({"selectedWrokplaceId": workplaceLocationId,"WorkplacePannelType":"CORE_WP_WorkplaceHome"}).fire();
                 }
-            }
-            else 
-                alert("Please Try Again...");        
+            }    
         });
         $A.enqueueAction(action);        
     },

@@ -39,16 +39,5 @@
         <label><!-- provoke workflow --></label>
         <name>provoke_workflow__c</name>
     </fields>
-    <layouts>
-        <layout>Shelf Tile Report Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- New Fields --></label>
-            <section>New Fields</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

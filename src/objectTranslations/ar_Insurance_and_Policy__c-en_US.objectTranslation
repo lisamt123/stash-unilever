@@ -90,39 +90,6 @@
         <label><!-- Start Date of Policy --></label>
         <name>Start_Date_of_Policy__c</name>
     </fields>
-    <layouts>
-        <layout>Company Policies Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Details --></label>
-            <section>Details</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Insurance Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Details --></label>
-            <section>Details</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Trade and Regulatory Bodies Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Details --></label>
-            <section>Details</section>
-        </sections>
-    </layouts>
     <recordTypes>
         <label><!-- Company Policies --></label>
         <name>Company_Policies</name>

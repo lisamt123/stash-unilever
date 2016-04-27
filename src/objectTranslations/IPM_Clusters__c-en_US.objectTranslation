@@ -13,13 +13,6 @@
         <label><!-- Project Cluster Name --></label>
         <name>IPM_Cluster_Name__c</name>
     </fields>
-    <layouts>
-        <layout>IPM_Clusters_Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
     <validationRules>
         <errorMessage><!-- Project Cluster Name can not be more the 14 characters --></errorMessage>

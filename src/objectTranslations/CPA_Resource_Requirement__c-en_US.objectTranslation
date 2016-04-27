@@ -37,13 +37,6 @@
         <label><!-- Role (Level 1-13) --></label>
         <name>txt_Role_Level_1_13__c</name>
     </fields>
-    <layouts>
-        <layout>Resource Requirement Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
     <webLinks>
         <label><!-- New_Resource_Requirement --></label>

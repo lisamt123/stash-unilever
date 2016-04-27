@@ -27,16 +27,5 @@
         <label><!-- Wants_Notifications --></label>
         <name>Wants_Notifications__c</name>
     </fields>
-    <layouts>
-        <layout>One View KPI Element Interest Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- New Fields --></label>
-            <section>New Fields</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

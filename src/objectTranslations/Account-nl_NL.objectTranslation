@@ -1639,42 +1639,6 @@
         <label><!-- Year Established --></label>
         <name>Year_Established__c</name>
     </fields>
-    <layouts>
-        <layout>Person Account Layout</layout>
-        <layoutType>PersonAccount</layoutType>
-        <sections>
-            <label>Additionele adresinformatie</label>
-            <section>Additional Address Information</section>
-        </sections>
-        <sections>
-            <label><!-- Debit Card --></label>
-            <section>Debit Card</section>
-        </sections>
-        <sections>
-            <label><!-- Preferences --></label>
-            <section>Preferences</section>
-        </sections>
-        <sections>
-            <label><!-- Social Information --></label>
-            <section>Social Information</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>TO Person Account Layout</layout>
-        <layoutType>PersonAccount</layoutType>
-        <sections>
-            <label><!-- Additional Address Information --></label>
-            <section>Additional Address Information</section>
-        </sections>
-        <sections>
-            <label><!-- Additional Demandware Information --></label>
-            <section>Additional Demandware Information</section>
-        </sections>
-    </layouts>
-    <quickActions>
-        <label><!-- Add Expertise --></label>
-        <name>Pitch_Add_Expertise</name>
-    </quickActions>
     <recordTypes>
         <label><!-- Agency --></label>
         <name>Agency</name>

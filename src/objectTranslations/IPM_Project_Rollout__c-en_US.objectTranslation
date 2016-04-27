@@ -442,36 +442,6 @@
         <label><!-- isActive --></label>
         <name>isActive__c</name>
     </fields>
-    <layouts>
-        <layout>Local Rollout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Geography --></label>
-            <section>Geography</section>
-        </sections>
-        <sections>
-            <label><!-- Key People --></label>
-            <section>Key People</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Regional Rollout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Geography --></label>
-            <section>Geography</section>
-        </sections>
-        <sections>
-            <label><!-- Key People --></label>
-            <section>Key People</section>
-        </sections>
-    </layouts>
     <recordTypes>
         <label><!-- Local Rollouts --></label>
         <name>Local_Rollouts</name>

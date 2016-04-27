@@ -23,13 +23,6 @@
         <name>Legacy_ID__c</name>
     </fields>
     <gender><!-- Masculine --></gender>
-    <layouts>
-        <layout>WP Category Brands Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <nameFieldLabel><!-- Category Brands Name --></nameFieldLabel>
     <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

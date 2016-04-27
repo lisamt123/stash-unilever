@@ -601,13 +601,6 @@
         </picklistValues>
     </fields>
     <gender><!-- Masculine --></gender>
-    <layouts>
-        <layout>Inoplan Project Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <nameFieldLabel><!-- Project Name --></nameFieldLabel>
     <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

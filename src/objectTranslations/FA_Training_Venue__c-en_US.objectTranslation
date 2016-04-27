@@ -64,13 +64,6 @@
         <label><!-- Venue Image --></label>
         <name>FA_Venue_Image__c</name>
     </fields>
-    <layouts>
-        <layout>FA_Training Venue Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
     <validationRules>
         <errorMessage><!-- Already a record exists with this name.Please enter a different name --></errorMessage>

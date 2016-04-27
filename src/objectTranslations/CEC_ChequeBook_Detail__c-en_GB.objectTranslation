@@ -76,13 +76,6 @@
         <label><!-- Starting Number --></label>
         <name>Starting_Number__c</name>
     </fields>
-    <layouts>
-        <layout>ChequeBook Detail Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <nameFieldLabel><!-- ChequeBook Details Number --></nameFieldLabel>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

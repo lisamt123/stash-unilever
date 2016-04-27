@@ -103,28 +103,6 @@
         <label><!-- Task_Group_short --></label>
         <name>Task_Group_short__c</name>
     </fields>
-    <layouts>
-        <layout>Artwork Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Details --></label>
-            <section>Details</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Fixed Price Rate Card Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Details --></label>
-            <section>Details</section>
-        </sections>
-    </layouts>
     <recordTypes>
         <label><!-- Artwork --></label>
         <name>Artwork</name>

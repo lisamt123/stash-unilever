@@ -252,25 +252,6 @@
         <label><!-- 30 Days Limit --></label>
         <name>X30_Days_Limit__c</name>
     </fields>
-    <layouts>
-        <layout>Alert Rule Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Product --></label>
-            <section>Product</section>
-        </sections>
-        <sections>
-            <label><!-- Product Category --></label>
-            <section>Product Category</section>
-        </sections>
-        <sections>
-            <label><!-- Reason --></label>
-            <section>Reason</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
     <validationRules>
         <errorMessage><!-- Please make sure that  the Product Category&apos;s  &apos;Division Name&apos; is not null for &apos;Safety&apos; alerts. --></errorMessage>

@@ -45,12 +45,5 @@
         <label><!-- VC Facilities --></label>
         <name>FA_VC_Facilities__c</name>
     </fields>
-    <layouts>
-        <layout>FA_Training Room Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

@@ -142,17 +142,6 @@
         <label><!-- Send Invite Mail --></label>
         <name>FA_Send_Invite_Mail__c</name>
     </fields>
-    <layouts>
-        <layout>FA_Occurence_Member Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Member Logistics --></label>
-            <section>Member Logistics</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
     <validationRules>
         <errorMessage><!-- Status of Course Occurrence is not Active --></errorMessage>

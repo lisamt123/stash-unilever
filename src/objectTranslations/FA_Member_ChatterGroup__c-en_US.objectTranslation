@@ -26,12 +26,5 @@
         <name>FA_Occurence_Member__c</name>
         <relationshipLabel><!-- Member ChatterGroup --></relationshipLabel>
     </fields>
-    <layouts>
-        <layout>FA_Member ChatterGroup Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

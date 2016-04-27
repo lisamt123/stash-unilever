@@ -183,24 +183,5 @@
             <translation><!-- WL3 --></translation>
         </picklistValues>
     </fields>
-    <layouts>
-        <layout>User Profile Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- IPM Information --></label>
-            <section>IPM Information</section>
-        </sections>
-        <sections>
-            <label><!-- Reporting --></label>
-            <section>Reporting</section>
-        </sections>
-        <sections>
-            <label><!-- User Role --></label>
-            <section>User Role</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

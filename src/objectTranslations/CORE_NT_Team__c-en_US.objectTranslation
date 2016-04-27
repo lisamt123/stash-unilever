@@ -43,12 +43,5 @@
         <name>TeamMemberName__c</name>
         <relationshipLabel><!-- Project Teams --></relationshipLabel>
     </fields>
-    <layouts>
-        <layout>Project Team Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

@@ -38,13 +38,6 @@
         <label><!-- Week --></label>
         <name>Week__c</name>
     </fields>
-    <layouts>
-        <layout>PSAR Alert Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
     <validationRules>
         <errorMessage><!-- You are not authorized to modify PSA Id. --></errorMessage>

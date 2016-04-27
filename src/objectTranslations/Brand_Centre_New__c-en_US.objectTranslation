@@ -180,44 +180,6 @@ Draft or Published. --></help>
             <translation><!-- Spreads --></translation>
         </picklistValues>
     </fields>
-    <layouts>
-        <layout>Brand Centre Layout</layout>
-        <sections>
-            <label><!-- Brand Centre Content --></label>
-            <section>Brand Centre Content</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- New Section --></label>
-            <section>New Section</section>
-        </sections>
-        <sections>
-            <label><!-- Page Design --></label>
-            <section>Page Design</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Brand Centre Layout Readonly</layout>
-        <sections>
-            <label><!-- Brand Centre Content --></label>
-            <section>Brand Centre Content</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- New Section --></label>
-            <section>New Section</section>
-        </sections>
-        <sections>
-            <label><!-- Page Design --></label>
-            <section>Page Design</section>
-        </sections>
-    </layouts>
     <nameFieldLabel>Brand Centre Name</nameFieldLabel>
     <recordTypes>
         <label><!-- Brand Centre Management --></label>

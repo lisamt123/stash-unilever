@@ -76,20 +76,6 @@
         <name>Verbatim__c</name>
     </fields>
     <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>CEC Case QC Mapping Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Case QC Mapping Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <nameFieldLabel><!-- Case QC Mapping Name --></nameFieldLabel>
     <validationRules>
         <errorMessage>El producto y el asunto deberían coincidir con el Case QC Mapping Country.</errorMessage>

@@ -105,12 +105,5 @@
         <name>Type_for_Keyword_Search__c</name>
     </fields>
     <gender><!-- Neuter --></gender>
-    <layouts>
-        <layout>WP Asset Group Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <nameFieldLabel><!-- Asset Group Name --></nameFieldLabel>
 </CustomObjectTranslation>

@@ -662,37 +662,6 @@
         <name>isSubmitted__c</name>
     </fields>
     <gender><!-- Neuter --></gender>
-    <layouts>
-        <layout>Fulfilment Layout</layout>
-        <sections>
-            <label><!-- ChequeBook Details --></label>
-            <section>ChequeBook Details</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Debit Card Details --></label>
-            <section>Debit Card Details</section>
-        </sections>
-        <sections>
-            <label>Φράγματα</label>
-            <section>Enclosures</section>
-        </sections>
-        <sections>
-            <label><!-- Letter and Consumer Details --></label>
-            <section>Letter and Consumer Details</section>
-        </sections>
-        <sections>
-            <label>Μήνυμα</label>
-            <section>Message</section>
-        </sections>
-        <sections>
-            <label><!-- New Section --></label>
-            <section>New Section</section>
-        </sections>
-    </layouts>
     <nameFieldLabel><!-- Fulfilment Name --></nameFieldLabel>
     <startsWith><!-- Consonant --></startsWith>
     <validationRules>
@@ -731,9 +700,4 @@
         <label>Νέα Εκπλήρωση</label>
         <name>New_Fulfilment</name>
     </webLinks>
-    <workflowTasks>
-        <description>Kαλέσατε την Ελαϊς Unilever Hellas.Παρακαλούμε παραμείνατε στη γραμμή σας μέχρι να μεταφερθεί η κλήση σας σε έναν από τους εκπροσώπους μας.</description>
-        <name>CEC_Rejected_correspondence</name>
-        <subject>Απορρίφθηκε η αλληλογραφία</subject>
-    </workflowTasks>
 </CustomObjectTranslation>

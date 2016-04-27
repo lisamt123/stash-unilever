@@ -278,62 +278,6 @@
         <label><!-- Visible to Supplier --></label>
         <name>Visible_to_Supplier__c</name>
     </fields>
-    <layouts>
-        <layout>Approver_Ariba_FeedBased</layout>
-        <sections>
-            <label><!-- Approval Status --></label>
-            <section>Approval Status</section>
-        </sections>
-        <sections>
-            <label><!-- Comments --></label>
-            <section>Comments</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Approver_Clarity_FeedBased</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Fields --></label>
-            <section>Fields</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Approver_GTES_FeedBased</layout>
-        <sections>
-            <label><!-- Approval Status --></label>
-            <section>Approval Status</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Approver_Invoice_FeedBased</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Fields --></label>
-            <section>Fields</section>
-        </sections>
-    </layouts>
-    <quickActions>
-        <label><!-- Approve --></label>
-        <name>Approve</name>
-    </quickActions>
-    <quickActions>
-        <label><!-- Reject --></label>
-        <name>Reject</name>
-    </quickActions>
     <recordTypes>
         <label><!-- Ariba --></label>
         <name>Ariba</name>

@@ -79,13 +79,6 @@
         <name>FAU_Webinar__c</name>
         <relationshipLabel><!-- Webinar Participants --></relationshipLabel>
     </fields>
-    <layouts>
-        <layout>Webinar Participant Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
     <validationRules>
         <errorMessage><!-- Webinar and Participant must use the same Program.

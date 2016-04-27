@@ -13,13 +13,6 @@
         <name>Cluster_Id__c</name>
         <relationshipLabel><!-- Agent App Countries --></relationshipLabel>
     </fields>
-    <layouts>
-        <layout>Country Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
     <validationRules>
         <errorMessage><!-- Please Enter Cluster --></errorMessage>

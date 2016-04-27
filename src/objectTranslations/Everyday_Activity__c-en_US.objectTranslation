@@ -36,13 +36,6 @@
         <label><!-- Top Tip --></label>
         <name>Top_Tip__c</name>
     </fields>
-    <layouts>
-        <layout>Everyday Activity Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <recordTypes>
         <label><!-- Boosting Wellbeing --></label>
         <name>Boosting_Wellbeing</name>

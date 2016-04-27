@@ -60,21 +60,6 @@
             <translation><!-- Turquoise --></translation>
         </picklistValues>
     </fields>
-    <layouts>
-        <layout>Shelf Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- New Fields --></label>
-            <section>New Fields</section>
-        </sections>
-        <sections>
-            <label><!-- Shelf Theme --></label>
-            <section>Shelf Theme</section>
-        </sections>
-    </layouts>
     <recordTypes>
         <label><!-- Moment --></label>
         <name>Moment</name>
