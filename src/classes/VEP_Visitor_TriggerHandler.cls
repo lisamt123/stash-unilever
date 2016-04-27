@@ -77,6 +77,34 @@ public with sharing class VEP_Visitor_TriggerHandler implements ITrigger{
                 }
             }
         }
+        
+        if(trigger.isInsert || trigger.isupdate){
+        Id robRecordTypeId2 = Schema.SObjectType.VEP_Visitor__c.getRecordTypeInfosByName().get('Request').getRecordTypeId(); 
+            List<Vep_Visitor__Share> listvshare = new List<Vep_Visitor__Share>();
+            for(Vep_Visitor__c  v: (List<Vep_Visitor__c >)Trigger.New){
+                Map<id, Vep_Visitor__c> oldMap1 = (Map<Id,Vep_Visitor__c >) Trigger.oldMap;
+                if((trigger.isInsert && v.person_to_meet__c!=null && v.recordtypeid==robRecordTypeId2) || (trigger.isUpdate && v.person_to_meet__c!=null && v.person_to_meet__c != oldMap1.get(v.id).Person_to_meet__c && v.recordtypeid==robRecordTypeId2)){
+                    
+                    Vep_Visitor__Share vshare = new Vep_Visitor__Share();
+                    vshare.UserOrGroupId = v.Person_to_meet__c;
+                    vshare.AccessLevel = 'Read';
+                    vshare.ParentId = v.id;
+                    vshare.RowCause =Schema.Vep_Visitor__Share.RowCause.Manual;
+                    listvshare.add(vshare);
+                }
+            }
+            try{
+            if(!listvshare.isEmpty()){
+                insert listvshare;
+            }
+            }
+            catch(Exception e){
+                for(Vep_Visitor__c  v: (List<Vep_Visitor__c >)Trigger.New){
+                    v.addError('You cannot be the approver for your request');
+                }
+            }
+        }
+        
     }
     public void beforeInsert(SObject so){
         //This method has been included as the class implements the ITrigger interface

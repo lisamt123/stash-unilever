@@ -4,6 +4,19 @@ private class VEP_Visitor_Trigger_Test{
     static testMethod void test_VEP_Visitor_Trigger(){
     Test.startTest(); 
         
+        Profile p = [SELECT Id FROM Profile WHERE Name='System Administrator'];
+        User u = new User(LastName = 'Testing', 
+                             Username = 'Veptestuse12312r@test.com', 
+                             Email = 'Veptestuser@test.com', 
+                             Alias = 'vept', 
+                             TimeZoneSidKey = 'Europe/London', 
+                             LocaleSidKey = 'en_GB', 
+                             EmailEncodingKey = 'UTF-8', 
+                             ProfileId = p.Id, 
+                             LanguageLocaleKey = 'en_US'
+                             );  
+                             
+        insert u;
         
         VEP_Factory__c fact= new VEP_Factory__c();
         fact.name='Factory1';
@@ -30,7 +43,8 @@ private class VEP_Visitor_Trigger_Test{
         visitor.pickup__c=true;
         visitor.recordtypeid = rRecordTypeId;
         visitor.status__c= 'Pending Approval';
-        visitor.Factory_to_visit__c='Factory1';
+        visitor.Factory_to_visit__c='Factory1';  
+        visitor.person_to_meet__c = u.id;           
         listVisitor.add(visitor); 
         
         
@@ -42,6 +56,7 @@ private class VEP_Visitor_Trigger_Test{
         visitor1.lodging__c=true; 
         visitor1.pickup__c=true;
         visitor1.Factory_to_visit__c='Factory1';
+        //visitor1.person_to_meet__c = userinfo.getuserid(); 
         listVisitor.add(visitor1);    
         insert listVisitor;         
         system.assert(visitor1.id!=null);
