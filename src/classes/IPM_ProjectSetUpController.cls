@@ -101,7 +101,9 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     *****************************************************************************/
     public IPM_ProjectSetUpController(ApexPages.StandardController controller){
         Apexpages.currentPage().getHeaders().put('X-UA-Compatible', 'IE=9');
-        initialise();
+        if(project!=null){
+           initialise();
+        }
     }
     /****************************************************************************
     @Description : To initialize all variables
