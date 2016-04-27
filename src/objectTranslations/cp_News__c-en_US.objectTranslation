@@ -49,12 +49,5 @@
             <translation><!-- Inactive --></translation>
         </picklistValues>
     </fields>
-    <layouts>
-        <layout>News Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Vowel</startsWith>
 </CustomObjectTranslation>

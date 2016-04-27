@@ -263,63 +263,6 @@
         <name>uw_Brand__c</name>
         <relationshipLabel><!-- Articles --></relationshipLabel>
     </fields>
-    <layouts>
-        <layout>Brand Centre Layout</layout>
-        <sections>
-            <label><!-- Article Summary --></label>
-            <section>Article Summary</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Deployment --></label>
-            <section>Deployment</section>
-        </sections>
-        <sections>
-            <label><!-- Main Story --></label>
-            <section>Main Story</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Brilliant Examples Layout</layout>
-        <sections>
-            <label><!-- Article Summary --></label>
-            <section>Article Summary</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Deployment --></label>
-            <section>Deployment</section>
-        </sections>
-        <sections>
-            <label><!-- Main Story --></label>
-            <section>Main Story</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Home Page Article Layout</layout>
-        <sections>
-            <label><!-- Article Summary --></label>
-            <section>Article Summary</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Deployment --></label>
-            <section>Deployment</section>
-        </sections>
-        <sections>
-            <label><!-- Main Story --></label>
-            <section>Main Story</section>
-        </sections>
-    </layouts>
     <recordTypes>
         <label><!-- Brand Centre Article --></label>
         <name>Brand_Centre_Article</name>

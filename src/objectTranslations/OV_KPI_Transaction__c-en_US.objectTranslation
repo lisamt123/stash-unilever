@@ -218,28 +218,5 @@
         <name>WL_Group__c</name>
         <relationshipLabel><!-- One View KPI Transactions --></relationshipLabel>
     </fields>
-    <layouts>
-        <layout>One View KPI Transaction Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Dimensions --></label>
-            <section>Dimensions</section>
-        </sections>
-        <sections>
-            <label><!-- Notifications --></label>
-            <section>Notifications</section>
-        </sections>
-        <sections>
-            <label><!-- Source --></label>
-            <section>Source</section>
-        </sections>
-        <sections>
-            <label><!-- Values --></label>
-            <section>Values</section>
-        </sections>
-    </layouts>
     <startsWith>Vowel</startsWith>
 </CustomObjectTranslation>

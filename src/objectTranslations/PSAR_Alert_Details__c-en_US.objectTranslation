@@ -178,29 +178,6 @@
         <label><!-- Week Default --></label>
         <name>WeekDefault__c</name>
     </fields>
-    <layouts>
-        <layout>PSAR Alert Layout</layout>
-        <sections>
-            <label><!-- Action --></label>
-            <section>Action</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Planner --></label>
-            <section>Planner</section>
-        </sections>
-        <sections>
-            <label><!-- Reporting Details --></label>
-            <section>Reporting Details</section>
-        </sections>
-        <sections>
-            <label><!-- Stock --></label>
-            <section>Stock</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
     <validationRules>
         <errorMessage><!-- You are not authorized to modify Product Name. --></errorMessage>

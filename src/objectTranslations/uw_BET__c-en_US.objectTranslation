@@ -710,21 +710,6 @@ Note: If you cannot find your brand then you can select any brand and uncheck &a
         <name>uw_Brand__c</name>
         <relationshipLabel><!-- Brand Experience --></relationshipLabel>
     </fields>
-    <layouts>
-        <layout>BET Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Enter optional additonal brand experience information to help people find it --></label>
-            <section>Enter optional additonal brand experience information to help people find it</section>
-        </sections>
-        <sections>
-            <label><!-- Please complete Brand Experience details --></label>
-            <section>Please complete Brand Experience details</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
     <validationRules>
         <errorMessage><!-- Bet visibility cannot be set back to Private --></errorMessage>

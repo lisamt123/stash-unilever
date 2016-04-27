@@ -133,35 +133,4 @@
         <name>Variant__c</name>
     </fields>
     <gender><!-- Neuter --></gender>
-    <layouts>
-        <layout>Product Information Layout</layout>
-        <sections>
-            <label><!-- Extended Data --></label>
-            <section>Extended Data</section>
-        </sections>
-        <sections>
-            <label><!-- External Links --></label>
-            <section>External Links</section>
-        </sections>
-        <sections>
-            <label><!-- Nutrition Information --></label>
-            <section>Nutrition Information</section>
-        </sections>
-        <sections>
-            <label><!-- Product &amp; Packaging --></label>
-            <section>Product &amp; Packaging</section>
-        </sections>
-        <sections>
-            <label><!-- Recipe Information --></label>
-            <section>Recipe Information</section>
-        </sections>
-        <sections>
-            <label><!-- Storage &amp; Usage --></label>
-            <section>Storage &amp; Usage</section>
-        </sections>
-        <sections>
-            <label><!-- Telephone Numbers --></label>
-            <section>Telephone Numbers</section>
-        </sections>
-    </layouts>
 </CustomObjectTranslation>

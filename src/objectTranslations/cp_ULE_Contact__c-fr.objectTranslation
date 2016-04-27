@@ -67,17 +67,6 @@
         <name>Title__c</name>
     </fields>
     <gender><!-- Masculine --></gender>
-    <layouts>
-        <layout>Unilever Leadership Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Description Information --></label>
-            <section>Description Information</section>
-        </sections>
-    </layouts>
     <nameFieldLabel><!-- Last Name --></nameFieldLabel>
     <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

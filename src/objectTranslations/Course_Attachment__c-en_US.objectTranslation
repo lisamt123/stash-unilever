@@ -33,12 +33,5 @@
         <label><!-- Download Available From --></label>
         <name>FA_Download_Available_From__c</name>
     </fields>
-    <layouts>
-        <layout>FA_Course Attachment Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

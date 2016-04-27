@@ -289,13 +289,6 @@
         </picklistValues>
     </fields>
     <gender><!-- Masculine --></gender>
-    <layouts>
-        <layout>Enclosure Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <nameFieldLabel><!-- Enclosure Name --></nameFieldLabel>
     <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

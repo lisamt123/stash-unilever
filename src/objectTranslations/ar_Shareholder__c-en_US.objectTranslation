@@ -31,16 +31,5 @@
         <label><!-- Start Date of Holding --></label>
         <name>Start_Date_of_Holding__c</name>
     </fields>
-    <layouts>
-        <layout>Shareholder Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Details --></label>
-            <section>Details</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

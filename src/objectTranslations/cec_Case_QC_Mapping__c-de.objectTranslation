@@ -108,20 +108,6 @@
         <name>Verbatim__c</name>
     </fields>
     <gender><!-- Neuter --></gender>
-    <layouts>
-        <layout>CEC Case QC Mapping Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Case QC Mapping Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <nameFieldLabel><!-- Case QC Mapping Name --></nameFieldLabel>
     <validationRules>
         <errorMessage><!-- Product and Reason Code Country should match with the Case QC Mapping Country. --></errorMessage>

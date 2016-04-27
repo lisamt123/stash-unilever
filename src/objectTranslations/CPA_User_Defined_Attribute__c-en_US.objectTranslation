@@ -50,13 +50,6 @@
         <label><!-- Value --></label>
         <name>txt_Value__c</name>
     </fields>
-    <layouts>
-        <layout>User Defined Attribute Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
     <validationRules>
         <errorMessage><!-- Error: You selected Cost --></errorMessage>

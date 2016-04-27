@@ -180,55 +180,6 @@
         <label><!-- % of WL2+ vs Total Pop Support Multiplie --></label>
         <name>of_WL2_vs_Total_Pop_Support_Multiplie__c</name>
     </fields>
-    <layouts>
-        <layout>Brand Building Multipliers</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Brand Development Multipliers</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Customer Development Multipliers</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Finance Multipliers</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Human Resources Multipliers</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>JE Job Evaluation Multipliers Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Supply Chain Multipliers</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <recordTypes>
         <label><!-- Brand Building Multipliers --></label>
         <name>Brand_Building_Multipliers</name>

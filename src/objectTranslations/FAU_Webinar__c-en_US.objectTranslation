@@ -57,28 +57,6 @@ Completed - End Date/Time is past --></help>
         <label><!-- URL --></label>
         <name>FAU_URL__c</name>
     </fields>
-    <layouts>
-        <layout>Webinar Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Description --></label>
-            <section>Description</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Webinar Registration Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Description --></label>
-            <section>Description</section>
-        </sections>
-    </layouts>
     <recordTypes>
         <label><!-- Normal --></label>
         <name>FAU_Normal</name>

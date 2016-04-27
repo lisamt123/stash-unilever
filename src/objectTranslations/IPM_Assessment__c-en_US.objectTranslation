@@ -230,12 +230,5 @@
         <label><!-- Project Phase --></label>
         <name>Project_Phase__c</name>
     </fields>
-    <layouts>
-        <layout>Assessment Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

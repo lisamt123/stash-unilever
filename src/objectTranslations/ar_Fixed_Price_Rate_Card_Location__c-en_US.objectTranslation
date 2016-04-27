@@ -470,12 +470,5 @@
         <label><!-- Rate Card Comments --></label>
         <name>Rate_Card_Comments__c</name>
     </fields>
-    <layouts>
-        <layout>FRC Country Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

@@ -253,25 +253,6 @@
         <name>X30_Days_Limit__c</name>
     </fields>
     <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>Alert Rule Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Product --></label>
-            <section>Product</section>
-        </sections>
-        <sections>
-            <label><!-- Product Category --></label>
-            <section>Product Category</section>
-        </sections>
-        <sections>
-            <label><!-- Reason --></label>
-            <section>Reason</section>
-        </sections>
-    </layouts>
     <nameFieldLabel><!-- Alert Rule Name --></nameFieldLabel>
     <validationRules>
         <errorMessage>Por favor, verifique que el &quot;&quot;division name&quot;&quot; de la categoría de producto no es nulo</errorMessage>

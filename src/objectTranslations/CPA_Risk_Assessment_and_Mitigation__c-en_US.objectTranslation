@@ -30,12 +30,5 @@
         <label><!-- Risk description --></label>
         <name>ltxta_Risk_description__c</name>
     </fields>
-    <layouts>
-        <layout>Risk Assessment and Mitigation Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

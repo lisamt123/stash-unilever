@@ -93,13 +93,6 @@
         <label><!-- Timer --></label>
         <name>Timer__c</name>
     </fields>
-    <layouts>
-        <layout>IPM Exception Log Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
     <validationRules>
         <errorMessage><!-- Debug Level is required while creating exception log. --></errorMessage>

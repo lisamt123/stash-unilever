@@ -937,16 +937,5 @@
         <label><!-- Ready For PO Exchange Rate To USD --></label>
         <name>Ready_For_PO_Exchange_Rate_To_EUR__c</name>
     </fields>
-    <layouts>
-        <layout>Currency Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Exchange Rates --></label>
-            <section>Exchange Rates</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

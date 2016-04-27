@@ -34,12 +34,5 @@
         <relationshipLabel><!-- Brands --></relationshipLabel>
     </fields>
     <gender><!-- Neuter --></gender>
-    <layouts>
-        <layout>WP Brand Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <nameFieldLabel><!-- Brand Name --></nameFieldLabel>
 </CustomObjectTranslation>

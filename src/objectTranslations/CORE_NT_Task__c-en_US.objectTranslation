@@ -106,21 +106,6 @@
         <label><!-- Task_ExtId --></label>
         <name>Task_ExtId__c</name>
     </fields>
-    <layouts>
-        <layout>Task Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Task Description --></label>
-            <section>Task Description</section>
-        </sections>
-        <sections>
-            <label><!-- Task Details --></label>
-            <section>Task Details</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
     <webLinks>
         <label><!-- Mark_Task_as_Completed --></label>

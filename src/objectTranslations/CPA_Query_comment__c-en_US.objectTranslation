@@ -47,13 +47,6 @@
         <label><!-- Responded By --></label>
         <name>Responded_By__c</name>
     </fields>
-    <layouts>
-        <layout>CPA_Query comments Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
     <webLinks>
         <label><!-- Submit_New_Response --></label>

@@ -707,31 +707,6 @@
             <translation><!-- Traffic Supervisor --></translation>
         </picklistValues>
     </fields>
-    <layouts>
-        <layout>BoxRange</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Oblix Calculator Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Role Rate Card</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- General --></label>
-            <section>General</section>
-        </sections>
-    </layouts>
     <recordTypes>
         <label><!-- Box Range --></label>
         <name>Box_Range</name>

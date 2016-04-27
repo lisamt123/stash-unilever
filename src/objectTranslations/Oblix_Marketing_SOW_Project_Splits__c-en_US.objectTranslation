@@ -27,12 +27,5 @@
         <name>Project_Splits__c</name>
         <relationshipLabel><!-- SWOP Campaign Splits --></relationshipLabel>
     </fields>
-    <layouts>
-        <layout>Marketing SOW Project Splits Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

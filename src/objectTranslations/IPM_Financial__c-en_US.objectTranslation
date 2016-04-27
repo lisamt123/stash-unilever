@@ -744,45 +744,6 @@
         <label><!-- isGateSubmissionDue --></label>
         <name>isGateSubmissionDue__c</name>
     </fields>
-    <layouts>
-        <layout>IPM Financial Layout</layout>
-        <sections>
-            <label><!-- Approvals --></label>
-            <section>Approvals</section>
-        </sections>
-        <sections>
-            <label><!-- Business Case --></label>
-            <section>Business Case</section>
-        </sections>
-        <sections>
-            <label><!-- Charter --></label>
-            <section>Charter</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Global --></label>
-            <section>Global</section>
-        </sections>
-        <sections>
-            <label><!-- Local --></label>
-            <section>Local</section>
-        </sections>
-        <sections>
-            <label><!-- New Section --></label>
-            <section>New Section</section>
-        </sections>
-        <sections>
-            <label><!-- Other --></label>
-            <section>Other</section>
-        </sections>
-        <sections>
-            <label><!-- Regional --></label>
-            <section>Regional</section>
-        </sections>
-    </layouts>
     <recordTypes>
         <label><!-- Consolidated --></label>
         <name>Consolidated</name>

@@ -2760,16 +2760,5 @@
         <label><!-- Unique Key WF --></label>
         <name>Unique_Key_WF__c</name>
     </fields>
-    <layouts>
-        <layout>AF_Currency_Table Layout</layout>
-        <sections>
-            <label><!-- Currency Comparison --></label>
-            <section>Currency Comparison</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

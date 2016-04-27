@@ -98,12 +98,5 @@
         <name>Variant_Flavour__c</name>
     </fields>
     <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>Case Product Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <nameFieldLabel><!-- CEC_Product Name --></nameFieldLabel>
 </CustomObjectTranslation>

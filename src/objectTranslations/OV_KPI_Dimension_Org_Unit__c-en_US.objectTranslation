@@ -25,19 +25,5 @@
         <label><!-- Parent Level --></label>
         <name>Parent_Level__c</name>
     </fields>
-    <layouts>
-        <layout>One View Dimension Organisational Unit Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>One View KPI Dimension Org Unit Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Vowel</startsWith>
 </CustomObjectTranslation>

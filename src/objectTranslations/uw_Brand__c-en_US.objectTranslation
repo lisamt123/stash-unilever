@@ -199,21 +199,6 @@
         <label><!-- Youtube Feed --></label>
         <name>Youtube__c</name>
     </fields>
-    <layouts>
-        <layout>Brands Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Social Links &amp; Feeds (Left Menu) --></label>
-            <section>Social Links &amp; Feeds (Left Menu)</section>
-        </sections>
-        <sections>
-            <label><!-- Video Content (Central Column) --></label>
-            <section>Video Content (Central Column)</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
     <webLinks>
         <label><!-- Edit_Brand_Layout --></label>

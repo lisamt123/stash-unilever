@@ -690,20 +690,5 @@
         <name>Remove_Tracked_Issue__c</name>
     </fields>
     <gender><!-- Neuter --></gender>
-    <layouts>
-        <layout>Issue Tracker Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Location(s) Affected --></label>
-            <section>Location(s) Affected</section>
-        </sections>
-        <sections>
-            <label><!-- Tracked Issue Information --></label>
-            <section>Tracked Issue Information</section>
-        </sections>
-    </layouts>
     <nameFieldLabel><!-- Tracked Issue Name --></nameFieldLabel>
 </CustomObjectTranslation>

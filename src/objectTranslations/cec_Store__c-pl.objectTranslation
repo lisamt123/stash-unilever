@@ -76,12 +76,5 @@
         <relationshipLabel>Sklepy</relationshipLabel>
     </fields>
     <gender><!-- Neuter --></gender>
-    <layouts>
-        <layout>Store Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <nameFieldLabel><!-- Store Name --></nameFieldLabel>
 </CustomObjectTranslation>

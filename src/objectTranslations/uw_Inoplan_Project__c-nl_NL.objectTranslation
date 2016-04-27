@@ -601,12 +601,5 @@
         </picklistValues>
     </fields>
     <gender><!-- Neuter --></gender>
-    <layouts>
-        <layout>Inoplan Project Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <nameFieldLabel><!-- Project Name --></nameFieldLabel>
 </CustomObjectTranslation>

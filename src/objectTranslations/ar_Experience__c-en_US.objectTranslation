@@ -532,39 +532,6 @@
         <label><!-- Video --></label>
         <name>Video__c</name>
     </fields>
-    <layouts>
-        <layout>Experience Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Details --></label>
-            <section>Details</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Expertise Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Details --></label>
-            <section>Details</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Project Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Details --></label>
-            <section>Details</section>
-        </sections>
-    </layouts>
     <recordTypes>
         <label><!-- Experience --></label>
         <name>Experience</name>

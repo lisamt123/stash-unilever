@@ -569,33 +569,6 @@
         <label><!-- isActive --></label>
         <name>isActive__c</name>
     </fields>
-    <layouts>
-        <layout>IPM Financial Year Layout</layout>
-        <sections>
-            <label><!-- Approvals --></label>
-            <section>Approvals</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Global --></label>
-            <section>Global</section>
-        </sections>
-        <sections>
-            <label><!-- Local --></label>
-            <section>Local</section>
-        </sections>
-        <sections>
-            <label><!-- Other --></label>
-            <section>Other</section>
-        </sections>
-        <sections>
-            <label><!-- Regional --></label>
-            <section>Regional</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
     <validationRules>
         <errorMessage><!-- Charter snapshot Financials cannot be changed once Charter has been approved --></errorMessage>

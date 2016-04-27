@@ -167,24 +167,6 @@
         <name>uw_Brand__c</name>
         <relationshipLabel><!-- Whos Who Links --></relationshipLabel>
     </fields>
-    <layouts>
-        <layout>Brand Links Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Working Resources Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Working Resources Links --></label>
-            <section>Working Resources Links</section>
-        </sections>
-    </layouts>
     <recordTypes>
         <label><!-- Brand Centre Links --></label>
         <name>Brand_Centre_Links</name>

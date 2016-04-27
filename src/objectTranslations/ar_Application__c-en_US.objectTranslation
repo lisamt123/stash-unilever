@@ -1289,32 +1289,5 @@
         <label><!-- Your Title --></label>
         <name>Your_Title__c</name>
     </fields>
-    <layouts>
-        <layout>Application Layout</layout>
-        <sections>
-            <label><!-- Agency Details --></label>
-            <section>Agency Details</section>
-        </sections>
-        <sections>
-            <label><!-- Agency Profile --></label>
-            <section>Agency Profile</section>
-        </sections>
-        <sections>
-            <label><!-- Application Information --></label>
-            <section>Application Information</section>
-        </sections>
-        <sections>
-            <label><!-- Contact Information --></label>
-            <section>Contact Information</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Specific Information --></label>
-            <section>Specific Information</section>
-        </sections>
-    </layouts>
     <startsWith>Vowel</startsWith>
 </CustomObjectTranslation>

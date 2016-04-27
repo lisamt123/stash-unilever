@@ -662,16 +662,5 @@
         <label><!-- oopsEstimateStatus --></label>
         <name>oopsEstimateStatus__c</name>
     </fields>
-    <layouts>
-        <layout>OOPS Actual Layout</layout>
-        <sections>
-            <label><!-- Approval User --></label>
-            <section>Approval User</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

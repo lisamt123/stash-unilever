@@ -225,12 +225,5 @@
         </picklistValues>
     </fields>
     <gender><!-- Neuter --></gender>
-    <layouts>
-        <layout>Case Brand Mapping Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <nameFieldLabel><!-- Case Brand Mapping Name --></nameFieldLabel>
 </CustomObjectTranslation>

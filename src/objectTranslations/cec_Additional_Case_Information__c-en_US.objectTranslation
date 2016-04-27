@@ -1058,20 +1058,6 @@
         <label><!-- q9 --></label>
         <name>q9__c</name>
     </fields>
-    <layouts>
-        <layout>Additional Information Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Cosmetovigilance Page Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <recordTypes>
         <label><!-- Adviser Questionaire --></label>
         <name>Adviser_Questionaire</name>

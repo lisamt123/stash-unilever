@@ -313,16 +313,5 @@
         <label><!-- Unilever Entity Name --></label>
         <name>Unilever_Entity_Name__c</name>
     </fields>
-    <layouts>
-        <layout>OOPS Estimate Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- OOPS Estimates --></label>
-            <section>OOPS Estimates</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

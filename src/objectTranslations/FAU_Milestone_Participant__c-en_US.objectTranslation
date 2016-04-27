@@ -79,16 +79,5 @@
         <label><!-- Workflow Due Date --></label>
         <name>FAU_Workflow_Due_Date__c</name>
     </fields>
-    <layouts>
-        <layout>Milestone Participant Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- New Section --></label>
-            <section>New Section</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

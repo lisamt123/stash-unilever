@@ -234,20 +234,6 @@
         <label><!-- Is Master --></label>
         <name>Is_Master__c</name>
     </fields>
-    <layouts>
-        <layout>IPM Gate Keeping Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>IPM Questionnaire Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <recordTypes>
         <label><!-- Corporate Risk --></label>
         <name>Corporate_Risk</name>

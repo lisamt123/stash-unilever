@@ -56,12 +56,5 @@
         <label><!-- sendEmailToCatFinance --></label>
         <name>sendEmailToCatFinance__c</name>
     </fields>
-    <layouts>
-        <layout>Send_Email Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

@@ -18,13 +18,6 @@
         <name>User__c</name>
         <relationshipLabel><!-- Planner Preferences --></relationshipLabel>
     </fields>
-    <layouts>
-        <layout>Planner Preference Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
     <webLinks>
         <label><!-- Edit --></label>

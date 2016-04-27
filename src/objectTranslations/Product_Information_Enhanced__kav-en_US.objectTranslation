@@ -108,20 +108,5 @@
         <label><!-- Variant --></label>
         <name>Variant__c</name>
     </fields>
-    <layouts>
-        <layout>Product Information Enhanced Layout</layout>
-        <sections>
-            <label><!-- Extended Data --></label>
-            <section>Extended Data</section>
-        </sections>
-        <sections>
-            <label><!-- Packaging &amp; Ingredients --></label>
-            <section>Packaging &amp; Ingredients</section>
-        </sections>
-        <sections>
-            <label><!-- Storage &amp; Usage --></label>
-            <section>Storage &amp; Usage</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

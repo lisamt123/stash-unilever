@@ -14,13 +14,6 @@
         <relationshipLabel>Magasins</relationshipLabel>
     </fields>
     <gender><!-- Masculine --></gender>
-    <layouts>
-        <layout>Store Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <nameFieldLabel><!-- Store Name --></nameFieldLabel>
     <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

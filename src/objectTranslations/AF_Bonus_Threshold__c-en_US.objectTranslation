@@ -180,12 +180,5 @@
         <label><!-- real country --></label>
         <name>real_country__c</name>
     </fields>
-    <layouts>
-        <layout>Bonus Threshold Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

@@ -32,12 +32,5 @@
         <name>Country_Id__c</name>
         <relationshipLabel><!-- Agent App Brand Categories --></relationshipLabel>
     </fields>
-    <layouts>
-        <layout>Agent App Brand Category Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

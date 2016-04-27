@@ -134,6 +134,23 @@ Renamed to Other SOW items in reviews</description>
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Activity_Fee_Agency__c</fullName>
+        <description>Field to show/hide data in an Agency report, dependent on the value in the SOW Status field</description>
+        <externalId>false</externalId>
+        <formula>IF( 
+OR( 
+ISPICKVAL( Oblix_SOWMarketing__r.SOW_Status__c , &quot;Awaiting Unilever Approval&quot;), 
+ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Draft - with Unilever&quot;), 
+ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;)), NULL, OblixOtherItemFee__c)</formula>
+        <label>Activity Fee</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
         <fullName>Agency_Department__c</fullName>
         <description>New &apos;Digital&apos; picklist value added 17/12/15</description>
         <externalId>false</externalId>
@@ -287,6 +304,23 @@ Renamed to Other SOW items in reviews</description>
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Hourly_Rate_Agency__c</fullName>
+        <description>Field to show/hide data in an Agency report, dependent on the value in the SOW Status field</description>
+        <externalId>false</externalId>
+        <formula>IF( 
+OR( 
+ISPICKVAL( Oblix_SOWMarketing__r.SOW_Status__c  , &quot;Awaiting Unilever Approval&quot;), 
+ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Draft - with Unilever&quot;), 
+ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;)), NULL ,Oblix_Hourly_Rate__c)</formula>
+        <label>Hourly Rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
         <fullName>No_of_Hours_Required__c</fullName>
         <description>The No of hours to complete these</description>
         <externalId>false</externalId>
@@ -326,8 +360,9 @@ Renamed to Other SOW items in reviews</description>
     </fields>
     <fields>
         <fullName>OblixOtherItemFee__c</fullName>
+        <description>Relabelled from &apos;Other Item Fee&apos; to &apos;Activity Fee&apos; as per request from Liliya in order to show correct headings in Non-Campaign reports</description>
         <externalId>false</externalId>
-        <label>Other Item Fee</label>
+        <label>Activity Fee</label>
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
@@ -337,10 +372,11 @@ Renamed to Other SOW items in reviews</description>
     </fields>
     <fields>
         <fullName>Oblix_FTE_Real_Price__c</fullName>
+        <description>Field label changed from &apos;FTE Real Price&apos; to &apos;Resource Fee&apos; so that the correctly worded label show in SWOP reporting</description>
         <externalId>false</externalId>
         <formula>FTE__c *  OblixOtherItemFee__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>FTE Real Price</label>
+        <label>Resource Fee</label>
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
@@ -396,6 +432,24 @@ Renamed to Other SOW items in reviews</description>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Resource_Fee_Agency__c</fullName>
+        <description>Field to show/hide data in an Agency report, dependent on the value in the SOW Status field</description>
+        <externalId>false</externalId>
+        <formula>IF( 
+OR( 
+ISPICKVAL( Oblix_SOWMarketing__r.SOW_Status__c , &quot;Awaiting Unilever Approval&quot;), 
+ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Draft - with Unilever&quot;), 
+ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;)), NULL, 
+Oblix_FTE_Real_Price__c)</formula>
+        <label>Resource Fee</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>Role_Title__c</fullName>
@@ -918,7 +972,7 @@ Renamed to Other SOW items in reviews</description>
         <label>All</label>
     </listViews>
     <nameField>
-        <label>Resource Name</label>
+        <label>Name</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>
     </nameField>

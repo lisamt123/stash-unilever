@@ -662,37 +662,6 @@
         <name>isSubmitted__c</name>
     </fields>
     <gender><!-- Neuter --></gender>
-    <layouts>
-        <layout>Fulfilment Layout</layout>
-        <sections>
-            <label><!-- ChequeBook Details --></label>
-            <section>ChequeBook Details</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Debit Card Details --></label>
-            <section>Debit Card Details</section>
-        </sections>
-        <sections>
-            <label><!-- Enclosures --></label>
-            <section>Enclosures</section>
-        </sections>
-        <sections>
-            <label><!-- Letter and Consumer Details --></label>
-            <section>Letter and Consumer Details</section>
-        </sections>
-        <sections>
-            <label>Nachricht</label>
-            <section>Message</section>
-        </sections>
-        <sections>
-            <label><!-- New Section --></label>
-            <section>New Section</section>
-        </sections>
-    </layouts>
     <nameFieldLabel><!-- Fulfilment Name --></nameFieldLabel>
     <validationRules>
         <errorMessage>Fulfilment kann nicht ausgeführt werden, bevor nicht eine Adresse aufgenommen wurde</errorMessage>
@@ -730,9 +699,4 @@
         <label>Neues Fulfilment</label>
         <name>New_Fulfilment</name>
     </webLinks>
-    <workflowTasks>
-        <description>Ihre Konsumentenkorrespondenz ist vom Quality Team abgelehnt worden und benötigt Änderungen bevor sie verschickt werden kann. /R/N/R/ Bitte klicken sie den Link um Anmerkungen zu sehen und fügen diese um. R/N/R/N Danke.</description>
-        <name>CEC_Rejected_correspondence</name>
-        <subject>Zurückgewiesene Korrespondenz</subject>
-    </workflowTasks>
 </CustomObjectTranslation>

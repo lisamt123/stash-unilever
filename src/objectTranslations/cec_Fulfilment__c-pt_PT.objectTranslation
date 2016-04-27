@@ -630,37 +630,6 @@
         <name>isSubmitted__c</name>
     </fields>
     <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>Fulfilment Layout</layout>
-        <sections>
-            <label><!-- ChequeBook Details --></label>
-            <section>ChequeBook Details</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Debit Card Details --></label>
-            <section>Debit Card Details</section>
-        </sections>
-        <sections>
-            <label>Anexos</label>
-            <section>Enclosures</section>
-        </sections>
-        <sections>
-            <label><!-- Letter and Consumer Details --></label>
-            <section>Letter and Consumer Details</section>
-        </sections>
-        <sections>
-            <label>Mensagem</label>
-            <section>Message</section>
-        </sections>
-        <sections>
-            <label><!-- New Section --></label>
-            <section>New Section</section>
-        </sections>
-    </layouts>
     <nameFieldLabel><!-- Fulfilment Name --></nameFieldLabel>
     <validationRules>
         <errorMessage>Fulfilment não pode ser criado até que a morada do consumidor seja adicionada</errorMessage>
@@ -698,9 +667,4 @@
         <label>Novo Fulfilment</label>
         <name>New_Fulfilment</name>
     </webLinks>
-    <workflowTasks>
-        <description>A sua carta de consumidor foi rejeitada pelo Controlo de Qualidade e precisa de correção antes de ser enviada. Siga por favor o link para gravar e emendar como solicitado. Obrigado.</description>
-        <name>CEC_Rejected_correspondence</name>
-        <subject>Carta rejeitada</subject>
-    </workflowTasks>
 </CustomObjectTranslation>

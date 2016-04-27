@@ -39,13 +39,6 @@ Good Receipt postings must reflect Actual deliveries of Goods and Services --></
         <label><!-- Requirement Type --></label>
         <name>Requirement_Type_del__c</name>
     </fields>
-    <layouts>
-        <layout>Requirements and Deliverables Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
     <webLinks>
         <label><!-- New_Requirements_and_Deliverables --></label>

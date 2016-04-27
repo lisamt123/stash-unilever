@@ -26,12 +26,5 @@
         <label><!-- Parent Level --></label>
         <name>Parent_Level__c</name>
     </fields>
-    <layouts>
-        <layout>OneView KPI Dimension NAProductCategory Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Vowel</startsWith>
 </CustomObjectTranslation>

@@ -440,37 +440,6 @@ Declined - The Participant Declined a place on the program --></help>
         <label><!-- Webinar Date/Time --></label>
         <name>FAU_Webinar_Date_Time__c</name>
     </fields>
-    <layouts>
-        <layout>FAU Participant Layout</layout>
-        <sections>
-            <label><!-- Biography --></label>
-            <section>Biography</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Line Manager --></label>
-            <section>Line Manager</section>
-        </sections>
-        <sections>
-            <label><!-- Participants Workbook --></label>
-            <section>Participants Workbook</section>
-        </sections>
-        <sections>
-            <label><!-- Personal Assistant --></label>
-            <section>Personal Assistant</section>
-        </sections>
-        <sections>
-            <label><!-- Personal Details --></label>
-            <section>Personal Details</section>
-        </sections>
-        <sections>
-            <label><!-- Program Information --></label>
-            <section>Program Information</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
     <validationRules>
         <errorMessage><!-- If application has been assigned to Personal Assistant to fill the forms then the Personal Assistant needs to be identified. --></errorMessage>
@@ -501,11 +470,4 @@ Change the program status to &apos;Active&apos; to continue. --></errorMessage>
         <label><!-- FAU_Send_Email --></label>
         <name>FAU_Send_Email</name>
     </webLinks>
-    <workflowTasks>
-        <description><!-- Can you create/upgrade the Personal Assistant User for this Participant using the email &apos;Request PA User Email Address&apos;. &amp;  Unilever - Force Multi Profile 
-
-After you create the user, add the user to &apos;Personal Assistant&apos; field. --></description>
-        <name>FAU_Create_Personal_Assistant</name>
-        <subject><!-- Create Personal Assistant --></subject>
-    </workflowTasks>
 </CustomObjectTranslation>

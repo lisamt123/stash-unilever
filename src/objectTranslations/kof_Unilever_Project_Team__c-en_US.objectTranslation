@@ -22,12 +22,5 @@
         <name>User__c</name>
         <relationshipLabel><!-- Unilever Project Teams --></relationshipLabel>
     </fields>
-    <layouts>
-        <layout>Unilever Project User Relationship Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

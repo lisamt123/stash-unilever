@@ -1217,13 +1217,6 @@ ToDelete=Asset will be removed by the system automatically at the scheduled dele
         <label><!-- Video URL Link --></label>
         <name>Video_URL_Link__c</name>
     </fields>
-    <layouts>
-        <layout>WP Asset Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Vowel</startsWith>
     <validationRules>
         <errorMessage><!-- If a brand is specified, category must also be provided --></errorMessage>

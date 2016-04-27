@@ -23,6 +23,10 @@
         <relationshipLabel><!-- SWOP (Agency Contact) --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Agency --></label>
+        <name>Agency_Name__c</name>
+    </fields>
+    <fields>
         <label><!-- Agency SOW Approver Name 2 --></label>
         <name>Agency_SOW_Approver_Name_2__c</name>
         <relationshipLabel><!-- SWOP (Agency SOW Approver Name 2) --></relationshipLabel>
@@ -59,6 +63,11 @@
         <relationshipLabel><!-- SWOP (Approval Submitter) --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Approved version --></label>
+        <name>Approved_version__c</name>
+        <relationshipLabel><!-- SWOP (Approved version) --></relationshipLabel>
+    </fields>
+    <fields>
         <label><!-- BB or BD --></label>
         <name>BB_or_BD__c</name>
         <picklistValues>
@@ -74,6 +83,18 @@
         <label><!-- Big Category --></label>
         <name>BigOblixProductCategory__c</name>
         <relationshipLabel><!-- SWOP (BigProductCategory) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Brand --></label>
+        <name>Brand_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cloning failed --></label>
+        <name>Cloning_failed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cloning in Progress --></label>
+        <name>Cloning_in_Progress__c</name>
     </fields>
     <fields>
         <label><!-- Currency --></label>
@@ -124,12 +145,16 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Marked for cloning --></label>
+        <name>Marked_for_cloning__c</name>
+    </fields>
+    <fields>
         <label><!-- Marketing SOW Parent --></label>
         <lookupFilter>
             <errorMessage><!-- Value does not exist or does not match filter criteria. Please select Parent Marketing SOW --></errorMessage>
         </lookupFilter>
         <name>MarketingSOWParent__c</name>
-        <relationshipLabel><!-- SWOP --></relationshipLabel>
+        <relationshipLabel><!-- SWOP (Marketing SOW Parent) --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Marketing Agency --></label>
@@ -190,7 +215,7 @@
         <relationshipLabel><!-- SWOP --></relationshipLabel>
     </fields>
     <fields>
-        <label><!-- Current FY Total --></label>
+        <label><!-- Current SOW Total --></label>
         <name>Oblix_Current_FY_Total__c</name>
     </fields>
     <fields>
@@ -212,6 +237,10 @@
     <fields>
         <label><!-- SOW Creator is Approver --></label>
         <name>SOW_Creator_is_Approver__c</name>
+    </fields>
+    <fields>
+        <label><!-- SOW Total (Inc Risk Adjustment) --></label>
+        <name>SOW_Overall_Total_Agency__c</name>
     </fields>
     <fields>
         <label><!-- SOW Status --></label>
@@ -237,6 +266,10 @@
             <translation><!-- Draft - with Unilever --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Open for Updates</masterLabel>
+            <translation><!-- Open for Updates --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Pending Agency Approval</masterLabel>
             <translation><!-- Pending Agency Approval --></translation>
         </picklistValues>
@@ -256,11 +289,19 @@
     </fields>
     <fields>
         <label><!-- Total Campaign Fee --></label>
+        <name>Total_Campaign_Fee_Agency__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Campaign Fee --></label>
         <name>Total_Campaign_Fee__c</name>
     </fields>
     <fields>
         <label><!-- Total Campaigns This FY --></label>
         <name>Total_Campaigns_This_FY__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Non Campaign Fees --></label>
+        <name>Total_Non_Campaign_Fees_Agency__c</name>
     </fields>
     <fields>
         <help><!-- Enter a label for the SOW to be referred to --></help>
@@ -327,40 +368,6 @@
         <name>Unilever_SOW_Approver_Name__c</name>
         <relationshipLabel><!-- SWOP (Unilever SOW Approver Name) --></relationshipLabel>
     </fields>
-    <layouts>
-        <layout>Copy Marketing SOW Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- SOW Approval &amp; Contacts --></label>
-            <section>SOW Approval &amp; Contacts</section>
-        </sections>
-        <sections>
-            <label><!-- SOW Budget --></label>
-            <section>SOW Budget</section>
-        </sections>
-        <sections>
-            <label><!-- Version Control Attributes (to be hidden) --></label>
-            <section>Version Control Attributes (to be hidden)</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Marketing SOW Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Financials --></label>
-            <section>Financials</section>
-        </sections>
-        <sections>
-            <label><!-- Sow Approval &amp; Contact --></label>
-            <section>Sow Approval &amp; Contact</section>
-        </sections>
-    </layouts>
     <recordTypes>
         <label><!-- Child Sow Marketing --></label>
         <name>ChildSowMarketing</name>

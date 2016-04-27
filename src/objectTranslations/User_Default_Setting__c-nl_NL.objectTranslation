@@ -28,12 +28,5 @@
         <relationshipLabel><!-- User Default Settings --></relationshipLabel>
     </fields>
     <gender><!-- Neuter --></gender>
-    <layouts>
-        <layout>User default setting Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <nameFieldLabel><!-- User Default Setting Name --></nameFieldLabel>
 </CustomObjectTranslation>

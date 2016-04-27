@@ -630,37 +630,6 @@
         <name>isSubmitted__c</name>
     </fields>
     <gender><!-- Masculine --></gender>
-    <layouts>
-        <layout>Fulfilment Layout</layout>
-        <sections>
-            <label><!-- ChequeBook Details --></label>
-            <section>ChequeBook Details</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Debit Card Details --></label>
-            <section>Debit Card Details</section>
-        </sections>
-        <sections>
-            <label>Allegati</label>
-            <section>Enclosures</section>
-        </sections>
-        <sections>
-            <label><!-- Letter and Consumer Details --></label>
-            <section>Letter and Consumer Details</section>
-        </sections>
-        <sections>
-            <label>Messaggio</label>
-            <section>Message</section>
-        </sections>
-        <sections>
-            <label><!-- New Section --></label>
-            <section>New Section</section>
-        </sections>
-    </layouts>
     <nameFieldLabel><!-- Fulfilment Name --></nameFieldLabel>
     <startsWith><!-- Consonant --></startsWith>
     <validationRules>
@@ -699,9 +668,4 @@
         <label>Nuovo Adempimento</label>
         <name>New_Fulfilment</name>
     </webLinks>
-    <workflowTasks>
-        <description>La corrispondenza  consumatore è stata respinta dal Quality Check Team, ha bisogno di alcune correzioni prima di essere inviata.  Si prega di seguire il link per registrare e correggere come richiesto</description>
-        <name>CEC_Rejected_correspondence</name>
-        <subject>Corrispondenza respinta</subject>
-    </workflowTasks>
 </CustomObjectTranslation>

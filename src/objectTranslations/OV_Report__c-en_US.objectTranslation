@@ -511,45 +511,6 @@ Daily / Other = YYYYMMDD e.g.20151118 --></help>
         <label><!-- Views --></label>
         <name>Views__c</name>
     </fields>
-    <layouts>
-        <layout>Report Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Desktop Files --></label>
-            <section>Desktop Files</section>
-        </sections>
-        <sections>
-            <label><!-- Mobile Files --></label>
-            <section>Mobile Files</section>
-        </sections>
-        <sections>
-            <label><!-- New Fields --></label>
-            <section>New Fields</section>
-        </sections>
-        <sections>
-            <label><!-- Report Details --></label>
-            <section>Report Details</section>
-        </sections>
-        <sections>
-            <label><!-- Report Display --></label>
-            <section>Report Display</section>
-        </sections>
-        <sections>
-            <label><!-- Report Filter Groups --></label>
-            <section>Report Filter Groups</section>
-        </sections>
-        <sections>
-            <label><!-- Reporting Period --></label>
-            <section>Reporting Period</section>
-        </sections>
-        <sections>
-            <label><!-- Tablet Files --></label>
-            <section>Tablet Files</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
     <validationRules>
         <errorMessage><!-- Frequency is Dynamic. Please remove Value --></errorMessage>

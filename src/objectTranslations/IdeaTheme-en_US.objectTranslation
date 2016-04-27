@@ -113,20 +113,5 @@
         <label><!-- Zone Id --></label>
         <name>Zone_Id__c</name>
     </fields>
-    <layouts>
-        <layout>Idea Theme Layout</layout>
-        <sections>
-            <label><!-- Banner --></label>
-            <section>Banner</section>
-        </sections>
-        <sections>
-            <label><!-- Description --></label>
-            <section>Description</section>
-        </sections>
-        <sections>
-            <label><!-- Title --></label>
-            <section>Title</section>
-        </sections>
-    </layouts>
     <startsWith>Vowel</startsWith>
 </CustomObjectTranslation>

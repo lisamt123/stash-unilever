@@ -885,33 +885,6 @@
         </picklistValues>
     </fields>
     <gender><!-- Neuter --></gender>
-    <layouts>
-        <layout>Alert Action Layout</layout>
-        <sections>
-            <label><!-- Chatter Post Type --></label>
-            <section>Chatter Post Type</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Email Type --></label>
-            <section>Email Type</section>
-        </sections>
-        <sections>
-            <label><!-- Fulfilment Type --></label>
-            <section>Fulfilment Type</section>
-        </sections>
-        <sections>
-            <label><!-- Popup Type --></label>
-            <section>Popup Type</section>
-        </sections>
-        <sections>
-            <label><!-- Questionnaire Type --></label>
-            <section>Questionnaire Type</section>
-        </sections>
-    </layouts>
     <nameFieldLabel><!-- Alert Action Name --></nameFieldLabel>
     <startsWith><!-- Consonant --></startsWith>
     <validationRules>

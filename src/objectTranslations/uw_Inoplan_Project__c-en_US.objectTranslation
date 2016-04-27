@@ -600,12 +600,5 @@
             <translation><!-- Water --></translation>
         </picklistValues>
     </fields>
-    <layouts>
-        <layout>Inoplan Project Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

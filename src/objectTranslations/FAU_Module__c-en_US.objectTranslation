@@ -34,17 +34,6 @@
         <label><!-- Start Date --></label>
         <name>FAU_Start_Date__c</name>
     </fields>
-    <layouts>
-        <layout>Module Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Description --></label>
-            <section>Description</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
     <validationRules>
         <errorMessage><!-- Start Date must be before the End Date --></errorMessage>

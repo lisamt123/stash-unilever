@@ -33,12 +33,5 @@
         <name>Primary_Category__c</name>
         <relationshipLabel><!-- Brands --></relationshipLabel>
     </fields>
-    <layouts>
-        <layout>WP Brand Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

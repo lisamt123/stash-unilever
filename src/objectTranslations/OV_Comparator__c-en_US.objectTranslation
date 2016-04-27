@@ -8,12 +8,5 @@
         <plural>true</plural>
         <value>One View Brand Comparators</value>
     </caseValues>
-    <layouts>
-        <layout>One View Brand Comparator Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

@@ -67,16 +67,5 @@
         <name>Title__c</name>
     </fields>
     <gender><!-- Neuter --></gender>
-    <layouts>
-        <layout>Unilever Leadership Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Description Information --></label>
-            <section>Description Information</section>
-        </sections>
-    </layouts>
     <nameFieldLabel><!-- Last Name --></nameFieldLabel>
 </CustomObjectTranslation>

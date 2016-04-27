@@ -75,20 +75,6 @@
         <label><!-- Verbatim --></label>
         <name>Verbatim__c</name>
     </fields>
-    <layouts>
-        <layout>CEC Case QC Mapping Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Case QC Mapping Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
     <validationRules>
         <errorMessage><!-- Product and Reason Code Country should match with the Case QC Mapping Country. --></errorMessage>

@@ -22,20 +22,5 @@
         <name>Unilever_Project_Lead__c</name>
         <relationshipLabel><!-- Unilever Projects --></relationshipLabel>
     </fields>
-    <layouts>
-        <layout>Unilever Project Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Project Detail --></label>
-            <section>Project Detail</section>
-        </sections>
-        <sections>
-            <label><!-- Select Developers for the Project --></label>
-            <section>Select Developers for the Project</section>
-        </sections>
-    </layouts>
     <startsWith>Vowel</startsWith>
 </CustomObjectTranslation>

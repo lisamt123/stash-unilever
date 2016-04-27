@@ -180,24 +180,5 @@
             <translation><!-- Weekly --></translation>
         </picklistValues>
     </fields>
-    <layouts>
-        <layout>One View KPI Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- KPI Filter Values --></label>
-            <section>KPI Filter Values</section>
-        </sections>
-        <sections>
-            <label><!-- KPI Value --></label>
-            <section>KPI Value</section>
-        </sections>
-        <sections>
-            <label><!-- New Fields --></label>
-            <section>New Fields</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

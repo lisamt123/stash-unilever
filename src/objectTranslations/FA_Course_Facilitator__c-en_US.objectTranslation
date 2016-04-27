@@ -42,13 +42,6 @@
             <translation><!-- Facility Manager --></translation>
         </picklistValues>
     </fields>
-    <layouts>
-        <layout>FA_Course Facilitator Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <sharingReasons>
         <label><!-- Facilitator Access --></label>
         <name>FA_Facilitator_Access</name>

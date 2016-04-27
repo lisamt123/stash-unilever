@@ -53,12 +53,5 @@
             <translation><!-- Market --></translation>
         </picklistValues>
     </fields>
-    <layouts>
-        <layout>Planner Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

@@ -54,12 +54,5 @@
         <name>survey_URL__c</name>
     </fields>
     <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>ThirdParty Survey Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <nameFieldLabel><!-- Third Party Survey Name --></nameFieldLabel>
 </CustomObjectTranslation>

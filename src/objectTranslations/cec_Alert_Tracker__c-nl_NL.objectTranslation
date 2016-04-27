@@ -50,12 +50,5 @@
         <name>Unique_Id__c</name>
     </fields>
     <gender><!-- Neuter --></gender>
-    <layouts>
-        <layout>Alert Tracker Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <nameFieldLabel><!-- Alert Tracker Number --></nameFieldLabel>
 </CustomObjectTranslation>

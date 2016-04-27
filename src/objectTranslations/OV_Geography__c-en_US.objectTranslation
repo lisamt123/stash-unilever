@@ -13,23 +13,5 @@
         <name>Parent_Geography__c</name>
         <relationshipLabel><!-- One View Geographies --></relationshipLabel>
     </fields>
-    <layouts>
-        <layout>Geography Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- New Fields --></label>
-            <section>New Fields</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>One View Geography Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

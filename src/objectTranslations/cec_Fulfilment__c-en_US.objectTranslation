@@ -629,37 +629,6 @@
         <label><!-- isSubmitted --></label>
         <name>isSubmitted__c</name>
     </fields>
-    <layouts>
-        <layout>Fulfilment Layout</layout>
-        <sections>
-            <label>CheckBook Details</label>
-            <section>ChequeBook Details</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Debit Card Details --></label>
-            <section>Debit Card Details</section>
-        </sections>
-        <sections>
-            <label><!-- Enclosures --></label>
-            <section>Enclosures</section>
-        </sections>
-        <sections>
-            <label><!-- Letter and Consumer Details --></label>
-            <section>Letter and Consumer Details</section>
-        </sections>
-        <sections>
-            <label><!-- Message --></label>
-            <section>Message</section>
-        </sections>
-        <sections>
-            <label><!-- New Section --></label>
-            <section>New Section</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
     <validationRules>
         <errorMessage><!-- Fulfilment cannot be created until the consumer address has been added --></errorMessage>
@@ -697,13 +666,4 @@
         <label><!-- New_Fulfilment --></label>
         <name>New_Fulfilment</name>
     </webLinks>
-    <workflowTasks>
-        <description><!-- Your consumer correspondence has been rejected by the Quality Check team and needs further amendments before being sent.
-
-Please follow the link to the record and amend as requested. 
-
-Thank you. --></description>
-        <name>CEC_Rejected_correspondence</name>
-        <subject><!-- Rejected correspondence --></subject>
-    </workflowTasks>
 </CustomObjectTranslation>

@@ -41,16 +41,5 @@
         <label><!-- Unit Name --></label>
         <name>Unit_Name__c</name>
     </fields>
-    <layouts>
-        <layout>One View Unit Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- New Fields --></label>
-            <section>New Fields</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

@@ -217,24 +217,5 @@
         <label><!-- Used By Workflow 30 days --></label>
         <name>Used_By_Workflow_30_days__c</name>
     </fields>
-    <layouts>
-        <layout>Bosscard Layout</layout>
-        <sections>
-            <label><!-- BOSSCARD --></label>
-            <section>BOSSCARD</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Hidden Fields --></label>
-            <section>Hidden Fields</section>
-        </sections>
-        <sections>
-            <label><!-- Project Details --></label>
-            <section>Project Details</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

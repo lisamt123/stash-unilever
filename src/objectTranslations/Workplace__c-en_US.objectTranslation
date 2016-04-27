@@ -84,52 +84,5 @@
         <label><!-- Workplace Local Groups --></label>
         <name>Workplace_Local_Groups__c</name>
     </fields>
-    <layouts>
-        <layout>Workplace Layout</layout>
-        <sections>
-            <label><!-- Basic Details --></label>
-            <section>Basic Details</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Department by Floor --></label>
-            <section>Department by Floor</section>
-        </sections>
-        <sections>
-            <label><!-- Gym Details --></label>
-            <section>Gym Details</section>
-        </sections>
-        <sections>
-            <label><!-- Health &amp; Safety --></label>
-            <section>Health &amp; Safety</section>
-        </sections>
-        <sections>
-            <label><!-- Key Contact Details --></label>
-            <section>Key Contact Details</section>
-        </sections>
-        <sections>
-            <label><!-- Shop Details --></label>
-            <section>Shop Details</section>
-        </sections>
-        <sections>
-            <label><!-- Sustainability --></label>
-            <section>Sustainability</section>
-        </sections>
-        <sections>
-            <label><!-- Transport Details --></label>
-            <section>Transport Details</section>
-        </sections>
-        <sections>
-            <label><!-- Workplace Address --></label>
-            <section>Workplace Address</section>
-        </sections>
-        <sections>
-            <label><!-- Workplace Banner --></label>
-            <section>Workplace Banner</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

@@ -171,12 +171,5 @@
         </picklistValues>
     </fields>
     <gender><!-- Neuter --></gender>
-    <layouts>
-        <layout>Case Market Mapping Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <nameFieldLabel><!-- Case Market Mapping Name --></nameFieldLabel>
 </CustomObjectTranslation>

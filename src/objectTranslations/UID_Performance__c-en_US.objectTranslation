@@ -73,12 +73,5 @@
         <label><!-- Year --></label>
         <name>UID_Year__c</name>
     </fields>
-    <layouts>
-        <layout>IOP Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

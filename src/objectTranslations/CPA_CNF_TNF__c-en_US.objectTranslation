@@ -429,13 +429,6 @@
         <label><!-- TNF Reason for Return --></label>
         <name>txta_TNF_Reason_for_Return__c</name>
     </fields>
-    <layouts>
-        <layout>CNF/TNF Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <recordTypes>
         <label><!-- CNF --></label>
         <name>CNF</name>

@@ -753,13 +753,6 @@
         <name>uw_BET__c</name>
         <relationshipLabel><!-- BET Assets --></relationshipLabel>
     </fields>
-    <layouts>
-        <layout>Asset Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
     <webLinks>
         <label><!-- Upload_Asset --></label>

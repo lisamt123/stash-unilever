@@ -32,12 +32,16 @@
         }
         else{
             sourceResult=component.get("v.banner");
-            var result = /<img[^>]+src="([^">]+)/g;                    
-            sourceResult = result.exec(bannerImage);
-            bannerImage = sourceResult[1];
-            sourceResult = bannerImage.replace(/amp;/g, "");    
+            var result = /<img[^>]+src="([^">]+)/g;                 
+            sourceResult = result.exec(bannerImage); 
+            if(sourceResult==null || typeof sourceResult === "undefined") {
+                sourceResult = component.get("v.banner");
+            } else { 
+                bannerImage = sourceResult[1];
+                sourceResult = bannerImage.replace(/amp;/g, ""); 
+            }
             console.log('--------------'+imageBannerUrl.Banner__c);
-            console.log('--------------'+sourceResult);
+            console.log('--------------'+sourceResult);            
         }
         component.set("v.eventBannerImage",sourceResult);
 	},
