@@ -332,7 +332,6 @@
         <apexClass>IPM_FinancialHandler</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-
     <classAccesses>
         <apexClass>IPM_FinancialValueWrapper</apexClass>
         <enabled>true</enabled>
@@ -761,7 +760,6 @@
         <apexClass>IPM_UserProfileHandler</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-
     <classAccesses>
         <apexClass>IPM_Utils</apexClass>
         <enabled>true</enabled>
