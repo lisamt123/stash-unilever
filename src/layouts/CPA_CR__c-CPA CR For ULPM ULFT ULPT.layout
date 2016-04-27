@@ -55,7 +55,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>OwnerId</field>
+                <field>lkp_Owner__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -117,8 +117,7 @@
                 <field>dt_CR_End_date__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>ltxta_Comments__c</field>
+                <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -139,6 +138,10 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>txt_Other_Project_Phases__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>ltxta_Comments__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -186,6 +189,10 @@
                 <behavior>Readonly</behavior>
                 <field>num_Delta_Efforts__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>num_Contingency_Charges__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -206,7 +213,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>fur_per_Variance__c</field>
+                <field>per_Variance__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -215,6 +222,10 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>txt_Other_Currency__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>num_Discounts__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -289,7 +300,11 @@
         <relatedList>CPA_Queries__c.LookupCR_Query__c</relatedList>
     </relatedLists>
     <relatedLists>
+        <customButtons>btn_New_User_Defined_Attribute</customButtons>
+        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
+        <fields>pkl_Attribute_Type__c</fields>
+        <fields>txt_Value__c</fields>
         <relatedList>CPA_User_Defined_Attribute__c.lkp_CR__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
@@ -298,7 +313,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h56000000IxYx</masterLabel>
+        <masterLabel>00h18000000EkVI</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

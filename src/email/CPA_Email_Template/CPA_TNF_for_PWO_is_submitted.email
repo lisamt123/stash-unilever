@@ -1,7 +1,7 @@
 <messaging:emailTemplate subject="TNF-{!RelatedTo.Name} : Submitted"  recipientType="User" relatedToType="CPA_project_work_order__c">
 <messaging:htmlEmailBody >
     Hi,<br/><br/>
-    A TNF for PWO with ID {!RelatedTo.Name}  is Submitted by {!RelatedTo.LastModifiedBy.Name} on {!Today()} and the PWORF with ID {!RelatedTo.PWORF_ID__r.auto_PWORF_ID__c} is now Sent For Termination.
+    A TNF for PWO with ID {!RelatedTo.Name}  is Submitted by {!RelatedTo.LastModifiedBy.Name} on {!Now()} and the PWORF with ID {!RelatedTo.PWORF_ID__r.auto_PWORF_ID__c} is now Sent For Termination.
  <br/><br/>
     You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id} ">{!RelatedTo.Name} </a> <br/><br/>
    

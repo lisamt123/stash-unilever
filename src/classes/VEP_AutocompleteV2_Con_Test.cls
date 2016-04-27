@@ -29,16 +29,16 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 private class VEP_AutocompleteV2_Con_Test{
     static testMethod void test_AutocompleteV2_Con(){
         //create some test account
-        List<Account> accountList = new List<Account>();
+        List<Vep_Factory__c> accountList = new List<Vep_Factory__c>();
         for(Integer i =0 ; i < 200 ; i++){
-            accountList.add(new Account(Name='Test'+i));
+            accountList.add(new Vep_Factory__c(Name='Test'+i));
         }
         //insert test records
         insert accountList;
         Test.startTest();
-            System.assertEquals(accountList.size(),VEP_AutoCompleteV2_Con.getData('Account','Name','Id','','T').size());
-            System.assertEquals(1, VEP_AutoCompleteV2_Con.getData('Account','Name','Id','','Test111').size());
-            System.assertEquals(0, VEP_AutoCompleteV2_Con.getData('Account','Name','Id','','xxxxxxx').size());
+            System.assertEquals(accountList.size(),VEP_AutoCompleteV2_Con.getData('Vep_Factory__c','Name','Id','','T').size());
+            System.assertEquals(1, VEP_AutoCompleteV2_Con.getData('Vep_Factory__c','Name','Id','','Test111').size());
+            System.assertEquals(0, VEP_AutoCompleteV2_Con.getData('Vep_Factory__c','Name','Id','','xxxxxxx').size());
             VEP_AutoCompleteV2_Con controller = new VEP_AutoCompleteV2_Con ();
             controller.setTargetFieldVar(accountList[0].Id);
             System.assertEquals(accountList[0].Id,controller.getTargetFieldVar());

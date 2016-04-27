@@ -1,0 +1,11 @@
+Hi, <br/><br/>
+
+A PWORF with ID: {!CPA_PWORF__c.auto_PWORF_ID__c}  is returned by {!CPA_PWORF__c.LastModifiedBy} on  {!Now()}. <br/><br/>
+
+
+You can access it from here: {!CPA_PWORF__c.Link} <br/><br/>
+
+
+Regards, <br/><br/>
+
+Automation Contract System

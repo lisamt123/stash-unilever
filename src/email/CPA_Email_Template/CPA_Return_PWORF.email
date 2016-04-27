@@ -1,7 +1,7 @@
 <messaging:emailTemplate subject="{!RelatedTo.auto_PWORF_ID__c} : Returned" recipientType="User" relatedToType="CPA_PWORF__c">
 <messaging:htmlEmailBody >
     Hi, <br/><br/>
-    A PWORF with ID: {!RelatedTo.auto_PWORF_ID__c}  is returned by Vendor on {!RelatedTo.LastModifiedDate} . <br/><br/>
+    A PWORF with ID: {!RelatedTo.auto_PWORF_ID__c}  is returned by Vendor on {!Now()} . <br/><br/>
 
     You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id} ">{!RelatedTo.Name} </a> <br/><br/>
 
