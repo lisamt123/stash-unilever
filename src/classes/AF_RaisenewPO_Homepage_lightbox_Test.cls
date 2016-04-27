@@ -13,6 +13,7 @@ public class AF_RaisenewPO_Homepage_lightbox_Test
     Private Static string currYear=string.valueof(IcurrYear); 
     Private static user RaisenewPO_Homepage_lightbox; 
     private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
+    private static string QUARTER='Q1;Q2;Q3;Q4';
     /**********************************************************************
 *  @Description: This method will have Test data.
 *  @name : raisenewPO_Homepage_lightbox
@@ -121,7 +122,7 @@ public class AF_RaisenewPO_Homepage_lightbox_Test
             insert BonusThresholdLSt;
             List<AF_Bonus_Threshold__c> BonusThresholdQuery = [Select Agency_Name__c from AF_Bonus_Threshold__c WHERE ID IN :BonusThresholdLSt LIMIT 1];
             System.assertEquals(BonusThresholdQuery[0].Agency_Name__c,acc[0].id, AF_TestFactory_Helper.BONUSTHERSHOLD_RECORD);
-            ApexPages.currentPage().getParameters().put('category',cb[0].id);
+            ApexPages.currentPage().getParameters().put(AF_Constants.RT_CATEGORY,cb[0].id);
             ApexPages.currentPage().getParameters().put('Year',currYear);
             List<AF_RaisenewPO_Homepage_lightbox.wrapChechbox> brandEstimateRecords=new List<AF_RaisenewPO_Homepage_lightbox.wrapChechbox>();
             AF_RaisenewPO_Homepage_lightbox raiseHome=new AF_RaisenewPO_Homepage_lightbox ();
@@ -199,9 +200,9 @@ public class AF_RaisenewPO_Homepage_lightbox_Test
                 loopbrandEst.AF_Locked__c = false; 
                 loopbrandEst.AF_Controller_Flag__c=false;
                 loopbrandEst.AF_AgencyUsers1__c=u.Email;
-                loopbrandEst.archived_BrandEstimate_Quarter__c='Q1;Q2;Q3;Q4';
-                loopbrandEst.AF_RaiseNewPOQuarters__c='Q1;Q2;Q3;Q4';
-                loopBrandEst.AF_BackupQuarter__c ='Q1;Q2;Q3;Q4';
+                loopbrandEst.archived_BrandEstimate_Quarter__c=QUARTER;
+                loopbrandEst.AF_RaiseNewPOQuarters__c=QUARTER;
+                loopBrandEst.AF_BackupQuarter__c =QUARTER;
                 BrandEstlist.add(loopbrandEst);
             }
             insert BrandEstlist;
@@ -250,7 +251,7 @@ public class AF_RaisenewPO_Homepage_lightbox_Test
                 BonusThresholdLSt.add(bonThres);
             }
             insert BonusThresholdLSt;
-            ApexPages.currentPage().getParameters().put('category',cb[0].id);
+            ApexPages.currentPage().getParameters().put(AF_Constants.RT_CATEGORY,cb[0].id);
             ApexPages.currentPage().getParameters().put('Year',currYear);
             List<AF_RaisenewPO_Homepage_lightbox.wrapChechbox> brandEstimateRecords=new List<AF_RaisenewPO_Homepage_lightbox.wrapChechbox>();
             AF_RaisenewPO_Homepage_lightbox raiseHome1=new AF_RaisenewPO_Homepage_lightbox ();
@@ -335,9 +336,9 @@ public class AF_RaisenewPO_Homepage_lightbox_Test
                 loopbrandEst.AF_Locked__c = false; 
                 loopbrandEst.AF_Controller_Flag__c=false;
                 loopbrandEst.AF_AgencyUsers1__c=u.Email;
-                loopbrandEst.archived_BrandEstimate_Quarter__c='Q1;Q2;Q3;Q4';
-                loopbrandEst.AF_RaiseNewPOQuarters__c='Q1;Q2;Q3;Q4';
-                loopBrandEst.AF_BackupQuarter__c ='Q1;Q2;Q3;Q4';
+                loopbrandEst.archived_BrandEstimate_Quarter__c=QUARTER;
+                loopbrandEst.AF_RaiseNewPOQuarters__c=QUARTER;
+                loopBrandEst.AF_BackupQuarter__c =QUARTER;
                 BrandEstlist.add(loopbrandEst);
             }
             insert BrandEstlist;
@@ -386,7 +387,7 @@ public class AF_RaisenewPO_Homepage_lightbox_Test
                 BonusThresholdLSt.add(bonThres);
             }
             insert BonusThresholdLSt;
-            ApexPages.currentPage().getParameters().put('category',cb[0].id);
+            ApexPages.currentPage().getParameters().put(AF_Constants.RT_CATEGORY,cb[0].id);
             ApexPages.currentPage().getParameters().put('Year',currYear);
             List<AF_RaisenewPO_Homepage_lightbox.wrapChechbox> brandEstimateRecords=new List<AF_RaisenewPO_Homepage_lightbox.wrapChechbox>();
             AF_RaisenewPO_Homepage_lightbox raiseHome1=new AF_RaisenewPO_Homepage_lightbox ();

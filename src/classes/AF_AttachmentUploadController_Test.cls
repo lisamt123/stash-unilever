@@ -12,6 +12,8 @@ public class AF_AttachmentUploadController_Test
     Static Integer IcurrYear = System.Today().year();
     Static string currYear=string.valueof(IcurrYear);
     static user userForAttachmentuploadcontroller;
+    static string parentId='parentId';
+    static string quarter='quarter';
     /***********************************************************************************
 *  @Description: this method will the test data
 *  @name : addAttachmentController
@@ -89,8 +91,8 @@ public class AF_AttachmentUploadController_Test
             List<AF_Bonus_Matrix__c> AFBonusMat = AF_TestFactory_Helper.insertBonusMatrix(1,true);
             List<AF_Bonus_Matrix__c> AFBonusMatQuery = [Select AF_Bonus_Results__c from AF_Bonus_Matrix__c where Id IN:AFBonusMat LIMIT 1];
             System.assertEquals(AFBonusMatQuery[0].AF_Bonus_Results__c,AFBonusResQuery[0].id, AF_TestFactory_Helper.BONUSMATRIX_RECORD);
-            ApexPages.currentPage().getParameters().put('parentId',OopsactualList[0].id);
-            ApexPages.currentPage().getParameters().put('quarter','Q1');
+            ApexPages.currentPage().getParameters().put(parentId,OopsactualList[0].id);
+            ApexPages.currentPage().getParameters().put(quarter,'Q1');
             AF_AttachmentUploadController obj = new AF_AttachmentUploadController();
             obj.UploadFile();
             Test.stopTest();
@@ -179,8 +181,8 @@ public class AF_AttachmentUploadController_Test
             List<AF_Bonus_Matrix__c> AFBonusMat = AF_TestFactory_Helper.insertBonusMatrix(1,true);
             List<AF_Bonus_Matrix__c> AFBonusMatQuery = [Select AF_Bonus_Results__c from AF_Bonus_Matrix__c where Id IN:AFBonusMat LIMIT 1];
             System.assertEquals(AFBonusMatQuery[0].AF_Bonus_Results__c,AFBonusResQuery[0].id, AF_TestFactory_Helper.BONUSMATRIX_RECORD);
-            ApexPages.currentPage().getParameters().put('parentId',OopsactualList[0].id);
-            ApexPages.currentPage().getParameters().put('quarter','Q2');
+            ApexPages.currentPage().getParameters().put(parentId,OopsactualList[0].id);
+            ApexPages.currentPage().getParameters().put(quarter,'Q2');
             AF_AttachmentUploadController obj = new AF_AttachmentUploadController();
             obj.UploadFile();
             Test.stopTest();
@@ -269,8 +271,8 @@ public class AF_AttachmentUploadController_Test
             List<AF_Bonus_Matrix__c> AFBonusMat = AF_TestFactory_Helper.insertBonusMatrix(1,true);
             List<AF_Bonus_Matrix__c> AFBonusMatQuery = [Select AF_Bonus_Results__c from AF_Bonus_Matrix__c where Id IN:AFBonusMat LIMIT 1];
             System.assertEquals(AFBonusMatQuery[0].AF_Bonus_Results__c,AFBonusResQuery[0].id, AF_TestFactory_Helper.BONUSMATRIX_RECORD);
-            ApexPages.currentPage().getParameters().put('parentId',oopsActualList[0].id);
-            ApexPages.currentPage().getParameters().put('quarter','Q3');
+            ApexPages.currentPage().getParameters().put(parentId,oopsActualList[0].id);
+            ApexPages.currentPage().getParameters().put(quarter,'Q3');
             AF_AttachmentUploadController obj = new AF_AttachmentUploadController();
             obj.UploadFile();
             Test.stopTest();
@@ -357,7 +359,7 @@ public class AF_AttachmentUploadController_Test
             List<AF_Bonus_Matrix__c> AFBonusMat = AF_TestFactory_Helper.insertBonusMatrix(1,true);
             List<AF_Bonus_Matrix__c> AFBonusMatQuery = [Select AF_Bonus_Results__c from AF_Bonus_Matrix__c where Id IN:AFBonusMat LIMIT 1];
             System.assertEquals(AFBonusMatQuery[0].AF_Bonus_Results__c,AFBonusResQuery[0].id, AF_TestFactory_Helper.BONUSMATRIX_RECORD);
-            ApexPages.currentPage().getParameters().put('parentId',oopsActualList[0].id);
+            ApexPages.currentPage().getParameters().put(parentId,oopsActualList[0].id);
             AF_AttachmentUploadController obj = new AF_AttachmentUploadController();
             obj.UploadFile();
             Test.stopTest();
@@ -446,8 +448,8 @@ public class AF_AttachmentUploadController_Test
             List<AF_Bonus_Matrix__c> AFBonusMat = AF_TestFactory_Helper.insertBonusMatrix(1,true);
             List<AF_Bonus_Matrix__c> AFBonusMatQuery = [Select AF_Bonus_Results__c from AF_Bonus_Matrix__c where Id IN:AFBonusMat LIMIT 1];
             System.assertEquals(AFBonusMatQuery[0].AF_Bonus_Results__c,AFBonusResQuery[0].id, AF_TestFactory_Helper.BONUSMATRIX_RECORD);
-            ApexPages.currentPage().getParameters().put('parentId',oopsActualList[0].id);
-            ApexPages.currentPage().getParameters().put('quarter','Q4');
+            ApexPages.currentPage().getParameters().put(parentId,oopsActualList[0].id);
+            ApexPages.currentPage().getParameters().put(quarter,'Q4');
             AF_AttachmentUploadController obj = new AF_AttachmentUploadController();
             obj.UploadFile();
             Test.stopTest();

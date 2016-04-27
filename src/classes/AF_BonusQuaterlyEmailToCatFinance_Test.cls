@@ -22,6 +22,7 @@ public class AF_BonusQuaterlyEmailToCatFinance_Test
         Test.startTest();
         userforBonusQuaterlyEmailToCatFinance=AF_TestFactory_Helper.createUserAdmin(true);
         User u=[SELECT id FROM user WHERE id=:userforBonusQuaterlyEmailToCatFinance.id LIMIT 1];
+        System.Assert(u.Id != null, AF_TestFactory_Helper.USER_RECORD);
         System.runAs(u)
         {
             // insert custom setting.
