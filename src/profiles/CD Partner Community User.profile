@@ -2084,10 +2084,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>Core_NC_Test_NewsApp</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>Core_SendToChatterController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
