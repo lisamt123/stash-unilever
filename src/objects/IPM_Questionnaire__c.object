@@ -803,6 +803,25 @@
         <active>true</active>
         <description>To capture all the Gatekeeping Cheklist Questions</description>
         <label>GateKeeperChecklist</label>
+		<picklistValues>
+            <picklist>IPM_GK_Answers_Multiselect__c</picklist>
+            <values>
+                <fullName>NA%7ENot Applicable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No%7ENo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partly%7EPartly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%7EYes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>IPM_GK_Answers__c</picklist>
             <values>
