@@ -25523,7 +25523,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>IPM_Questionnaire__c.IPM_GK_Answers_Multiselect__c</field>
         <readable>true</readable>
     </fieldPermissions>
