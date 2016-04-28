@@ -109,7 +109,7 @@ Renamed to Other SOW items in reviews</description>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Regtional Status Meetings</fullName>
+                <fullName>Regional Status Meetings</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1058,7 +1058,7 @@ Oblix_FTE_Real_Price__c)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Regtional Status Meetings</fullName>
+                <fullName>Regional Status Meetings</fullName>
                 <default>false</default>
             </values>
             <values>
