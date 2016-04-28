@@ -15557,11 +15557,25 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
         <value>#setheader</value>
     </labels>
     <labels>
+        <fullName>VEP_Access_Err</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VEP_Access_Err</shortDescription>
+        <value>You do not have sufficient access to the record</value>
+    </labels>
+    <labels>
         <fullName>VEP_Approve_Reject_Status_Error</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>VEP Approve/Reject Status Error</shortDescription>
         <value>Please click on the Approve/Reject link that you have received in Email</value>
+    </labels>
+    <labels>
+        <fullName>VEP_ApproverAccess_Err</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VEP_ApproverAccess_Err</shortDescription>
+        <value>You cannot be the approver for your request</value>
     </labels>
     <labels>
         <fullName>VEP_Factory_Name_Id</fullName>
