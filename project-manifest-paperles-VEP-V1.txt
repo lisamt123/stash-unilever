@@ -71,6 +71,7 @@ src/permissionsets
 src/permissionsets/VEP_Security_Permissions.permissionset
 src/permissionsets/VEP_Visitor_Permissions.permissionset
 src/permissionsets/VEP_VisitorManager_Permissions.permissionset
+src/permissionsets/VEP_Admin.permissionset
 src/reports
 src/reports/VEP_Reports-meta.xml
 src/reports/VEP_Reports/VEP_Visitors_in_Factory.report
