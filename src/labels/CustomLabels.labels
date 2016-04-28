@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+<<<<<<< HEAD
     <labels>
         <fullName>AF_Adjust_Quarters</fullName>
         <language>en_US</language>
@@ -16325,6 +16326,9 @@ Which Communications team do you represent? You must be associated to one Planne
         <value>Please enter your Inoplan project name. If you do not have an Inoplan project please select No Inoplan Project</value>
     </labels>
     <labels>
+=======
+ <labels>
+>>>>>>> develop
         <fullName>WU_Category</fullName>
         <categories>Warehouse Utilization</categories>
         <language>en_US</language>
