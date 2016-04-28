@@ -26,8 +26,8 @@ private class VEP_Visitor_Trigger_Test{
         
         VEP_FactoryVisit__c Fsetting = new VEP_FactoryVisit__c();
         Fsetting.Name = 'Factory1';
-        Fsetting.Travel_Desk_Email__c='test@xyz.com';
-        Fsetting.Lodging_Desk_Email__c='test@xyz.com';
+        Fsetting.Travel_Desk_Email__c='Veptestuser@test.com';
+        Fsetting.Lodging_Desk_Email__c='Veptestuser@test.com';
         insert Fsetting;
         
         List<VEP_Visitor__c> listVisitor = new List<VEP_Visitor__c>();
