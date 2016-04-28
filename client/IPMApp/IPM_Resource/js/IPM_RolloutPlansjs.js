@@ -155,14 +155,27 @@ function scriptPanelLoad(){
 	
 	/* Below function performs the tld date check. If the condition is true it displays a tld warning modal */
     function checkTLDDate(param){
-        var newTLDValue = param.value;
-        tldOrignalValue = param.defaultValue;
-        selectedDateField = param;
-        if(newTLDValue !== tldOrignalValue){
+        selectedDateInputBox = param;
+        var newTLDValue = param.defaultValue;
+        tldOrignalValue = param.value;
+        if(newTLDValue != tldOrignalValue){
             jq('#tldWarningDialog').modal('show'); 
+            jq('[id$=hiddenDateVal]').val(true) ;
             return false;
         }
         return true;
+    }
+
+    function revertTLDValue(){
+       selectedDateInputBox.value = selectedDateInputBox.defaultValue;
+    }
+    function hideTldWarningDialog(){
+        jq('#tldWarningDialog').modal('hide'); 
+    }
+    var selectedDateInputBox = "";
+    function setChangedDate()
+    {
+    	saveChangedTLDjs();
     }
 	
 	/* Below function assigns a variable to the value. */

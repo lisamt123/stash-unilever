@@ -51,6 +51,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     public static final String BOOLEAN_TRUE = 'true';
     public static final String CHECK_ROLLOUTS = 'checkRollouts';
     public Boolean isArchiveFalse = false;
+	public Boolean changeDateVal {get;set;}
     @TestVisible private static final String ID_PARAMETER = 'Id';
     @TestVisible private static final String ADD_ROLLOUT= 'addRollout';
     @TestVisible private static final String SAVE_ROLLOUT = 'saveRollout';
@@ -113,6 +114,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     	isPLAllocated = false; 
         isEditMode = false;
         isFLAllocated=false;
+		changeDateVal = false;
         // initialisation
        	nonKeyMcoTLDMisalignedMap = new Map<String, Boolean>();
        	if(projectTolocalRolloutToCountryMap!=null)
@@ -850,8 +852,20 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                         update updateLocalProjTLDList;
                     }
                     ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Info,Label.IPM_PROCESSING_REQUEST));
-                    isEditMode=false;
-                    return refreshPage();
+					if(!changeDateVal)
+                    {
+                    	isEditMode=false ;
+
+                    }else if(changeDateVal){
+                        isEditMode=true;
+                    }
+                    
+					string editVal = string.valueOf(isEditMode);
+                    PageReference rolloutPlans = Page.IPM_RolloutPlans;
+		            rolloutPlans.getParameters().put(ID_PARAMETER, projectId);   
+		            rolloutPlans.getParameters().put(IPM_ConstantUtils.EDITMODE, editVal);               
+		            rolloutPlans.setRedirect(true);
+		            return rolloutPlans;
                 } 
                 else
                 {
@@ -912,7 +926,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         rolloutPlans = Page.IPM_RolloutPlans;
         rolloutPlans.getParameters().put(ID_PARAMETER, projectId);                
         rolloutPlans.setRedirect(true);
-        isEditMode=false;
+        
         return rolloutPlans;
     }
     
@@ -924,6 +938,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     public PageReference cancelRollout()
     {
         //Method invoked in IPM_LocalRolloutPlansTable component
+		isEditMode=false;
         return refreshPage();
     }
     
