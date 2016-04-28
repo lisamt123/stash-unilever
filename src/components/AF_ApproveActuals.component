@@ -1,204 +1,128 @@
+<!--  
+   *************************************************************************
+   *@Description:This components is used for OOPS Approval Process 
+   *@Author: Cognizant
+   *@Created Date: 26/07/2014 
+   *************************************************************************
+   -->
 <apex:component controller="AF_ApproveActualsCtrl" allowDML="true" >
-    <apex:attribute name="fy" type="String" AssignTo="{!fiscalYear}" description="this is fiscal year"/>
-    <apex:attribute name="agencyId" type="String" AssignTo="{!agency}" description="this is agency id" />
-    <apex:attribute name="brandId" type="String" AssignTo="{!brand}" description="this is brand id" />
-     
- <head>
-    <apex:includeScript value="{!URLFOR($Resource.FancyJquery17, 'jquery.min.js')}"/>
-    <apex:includeScript value="{!URLFOR($Resource.ulw_brief_2_static_resources, 'static_resources/js/jquery.colorbox-min.js')}"/>
-    <apex:includeScript value="{!$Resource.ChartNewJs}" loadOnReady="true"/>
+   <apex:attribute name="fy" type="String" AssignTo="{!fiscalYear}" description="this is fiscal year"/>
+   <apex:attribute name="agencyId" type="String" AssignTo="{!agency}" description="this is agency id" />
+   <apex:attribute name="brandId" type="String" AssignTo="{!brand}" description="this is brand id" />
+   <head>
+      <apex:includeScript value="{!URLFOR($Resource.FancyJquery17, 'jquery.min.js')}"/>
+      <apex:includeScript value="{!URLFOR($Resource.ulw_brief_2_static_resources, 'static_resources/js/jquery.colorbox-min.js')}"/>
+      <apex:includeScript value="{!$Resource.ChartNewJs}" loadOnReady="true"/>
       <!-- Add fancyBox -->
-    <link rel="stylesheet" href="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/jquery.fancybox.css?v=2.1.0')}" type="text/css" media="screen" />
-    <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/jquery.fancybox.pack.js?v=2.1.0')}"></script>
-    
-    
-    <link rel="stylesheet" href="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-thumbs.css?v=1.0.6')}" type="text/css" media="screen" />
-    <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-thumbs.js?v=1.0.6')}"></script>
-
-
-    <!-- Optionally add helpers - button, thumbnail and/or media -->
-    <link rel="stylesheet" href="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-buttons.css?v=1.0.3')}" type="text/css" media="screen" />
-    <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-buttons.js?v=1.0.3')}"></script>
-    <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-media.js?v=1.0.3')}"></script>
-   
-    
-    <style type="text/css">
-    .hidden {
-        display:none;
-    }
-    .displayed {
-        display:block;
-    }
-   body .pbBody table.list tr.headerRow td, body .pbBody table.list tr.headerRow th {
-   background: #61A631;
-   color: white;
-   font-size: 16px;
-}
-
-th{
-background: #61A631;
-color: white;
-font-size: 16px;
-text-align: center;
-height:30px;
-}
-    .odd { 
+      <link rel="stylesheet" href="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/jquery.fancybox.css?v=2.1.0')}" type="text/css" media="screen" />
+      <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/jquery.fancybox.pack.js?v=2.1.0')}"></script>
+      <link rel="stylesheet" href="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-thumbs.css?v=1.0.6')}" type="text/css" media="screen" />
+      <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-thumbs.js?v=1.0.6')}"></script>
+      <!-- Optionally add helpers - button, thumbnail and/or media -->
+      <link rel="stylesheet" href="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-buttons.css?v=1.0.3')}" type="text/css" media="screen" />
+      <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-buttons.js?v=1.0.3')}"></script>
+      <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-media.js?v=1.0.3')}"></script>
+      <style type="text/css">
+         .hidden {
+         display:none;
+         }
+         .displayed {
+         display:block;
+         }
+         body .pbBody table.list tr.headerRow td, body .pbBody table.list tr.headerRow th {
+         background: #61A631;
+         color: white;
+         font-size: 16px;
+         }
+         th{
+         background: #61A631;
+         color: white;
+         font-size: 16px;
+         text-align: center;
+         height:30px;
+         }
+         .odd { 
          background-color: #FCF7F7;
-}
-.even {
+         }
+         .even {
          background-color: #DFF0D8;
-}
-    
-    </style>
-</head> 
-<apex:outputPanel id="jspanel"> 
-  <script>  
-  function onControllerReturn() {
-    location.reload();
-  }
-  function openReject(qtr) {
-    $('.approve'+qtr).addClass('hidden');
-    $('.rjWCmnts'+qtr).removeClass('hidden');
-    $('.rjWCmnts'+qtr).addClass('displayed');
-    $('.rj'+qtr).addClass('hidden');
-    return false;
-  }
-  
-    /* Changed on 12th Sept, 2014   
-    ** To provide save button on entering actuals 
-    ** if user already provided actuals */
-        
-    $(document).ready(function(){
-       $('.Q1, .Q2, .Q3, .Q4').keyup(function(){      
-            var idx = $(this).attr('class');
-            if($(this).val().length >0){                
-                $('.inputStatus'+idx).addClass('hidden');
-                $('.save'+idx).addClass('displayed');
-            }
-            else{               
-                $('.inputStatus'+idx).addClass('displayed');
-                $('.save'+idx).addClass('displayed');
-            } 
-        });
-        $('.inputActualsQ1, .inputActualsQ2, .inputActualsQ3, .inputActualsQ4').keydown(function (e) {
-            if (e.shiftKey || e.ctrlKey || e.altKey) {
-                e.preventDefault();
-            } else {
-                var key = e.keyCode;
-                if (!((key == 8) || (key == 46) || (key >= 35 && key <= 40) || (key >= 48 && key <= 57) || (key >= 96 && key <= 105))) {
-                    e.preventDefault();
-                }
-            }          
-        });
-        $('.saveQ1,.saveQ2,.saveQ3,.saveQ4').click(function(){
-            var obj = $(this).parent().parent().parent();               
-            var rowIndx = $('table[id$="table"]').find("tr").index(obj);            
-            $('input[name$="inputAction"]').eq(rowIndx-1).val('Upload Backup');
-            //funcSave();
-        });
-        $('input[name="backup"]').click(function(){       
-            var obj = $(this).parent().parent().parent();               
-            var rowIndx = $('table[id$="table"]').find("tr").index(obj);                    
-            $('input[name$="inputAction"]').eq(rowIndx-1).val('Submit');
-            funcSave();
-        });
-         $('input[name="edit"]').click(function(){       
-            var obj = $(this).parent().parent().parent();               
-            var rowIndx = $('table[id$="table"]').find("tr").index(obj);                    
-            $('input[name$="inputAction"]').eq(rowIndx-1).val('ENTERACTUALS');
-            funcSave();
-        });
-        $('input[name="submitRec"]').click(function(){       
-            var obj = $(this).parent().parent().parent();               
-            var rowIndx = $('table[id$="table"]').find("tr").index(obj);            
-            $('input[name$="inputAction"]').eq(rowIndx-1).val('ApproveReject');
-            funcSave();
-        });
-    });
-  </script>
-  </apex:outputPanel>
-<apex:pagemessages id="pm1"></apex:pagemessages>
-
-<!-- </apex:form> -->
-<div style="float: left;font-size: 16px;font-weight: bold;margin-top: 10px;width: 103%;text-align: center;">Quarterly Actuals  </div>
-      
-    <apex:dataTable value="{!lstActualApprovals}" var="oops" id="table" border="1" rowClasses="even,odd" style="font-size: 16px;width:103%;margin-top:10px;text-align: center;" >
-        <apex:column Style="width:66px;height: 35px;" >
-        <apex:facet name="header">Quarter</apex:facet>
-        {!oops.quarter}
-        </apex:column>
-        <apex:column value="{!oops.quarterStatus}" Style="width:170px;height: 35px;">
-            <apex:facet name="header">Status</apex:facet>
-        </apex:column>
-        <apex:column Style="width:115px;height: 35px;" >
-            <apex:facet name="header">Actuals</apex:facet>          
-            <apex:outputPanel rendered="{!oops.userAction = 'EnterActuals'}">
-                €<apex:inputText value="{!oops.actualInput}" style="width:85px!important;border: 2px solid #74AE00;border-radius: 4px;" styleClass="{!oops.quarter}">
-                </apex:inputText>
-            </apex:outputPanel>
-            <apex:outputPanel rendered="{!(oops.userAction != 'EnterActuals' && oops.actualInput != 0)}">
-             <apex:outputText value="€ {0,number,###,###,###}" >
+         }
+      </style>
+   </head>
+   
+   <apex:pagemessages id="pm1"></apex:pagemessages>
+   <div style="float: left;font-size: 16px;font-weight: bold;margin-top: 10px;width: 106%;text-align: center;">Quarterly Actuals  </div>
+   <apex:dataTable value="{!lstActualApprovals}" var="oops" id="table" border="1" rowClasses="even,odd" style="font-size: 16px;width:106%;margin-top:10px;text-align: center;" >
+      <apex:column Style="width:66px;height: 35px;" >
+         <apex:facet name="header">Quarter</apex:facet>
+         {!oops.quarter}
+      </apex:column>
+      <apex:column value="{!oops.quarterStatus}" Style="width:170px;height: 35px;">
+         <apex:facet name="header">Status</apex:facet>
+      </apex:column>
+      <apex:column Style="width:115px;height: 35px;" >
+         <apex:facet name="header">Actuals</apex:facet>
+         <apex:outputPanel rendered="{!oops.userAction = 'EnterActuals'}">
+            €
+            <apex:inputText value="{!oops.actualInput}" style="width:85px!important;border: 2px solid #74AE00;border-radius: 4px;" styleClass="{!oops.quarter}">
+            </apex:inputText>
+         </apex:outputPanel>
+         <apex:outputPanel rendered="{!(oops.userAction != 'EnterActuals' && oops.actualInput != 0)}">
+            <apex:outputText value="€ {0,number,###,###,###}" >
                <apex:param value="{!oops.actualInput}"/>
             </apex:outputText>
+         </apex:outputPanel>
+      </apex:column>
+      <apex:column style="width: 210px!important;height: 35px;">
+         <apex:facet name="header" >Action</apex:facet>
+         <apex:outputPanel rendered="{!oops.userAction ='UploadBackup'}">
+            <!-- Changed on 12th Sept, 2014 --> 
+            <!-- To provide save button on entering actuals -->     
+            <!-- if user already provided actuals -->                   
+            <span style="font-weight: bold;background: #004976; padding: 6px 1px 7px 1px;width: 108px;margin-left: 2px;color: black;/* border: 2px solid black; */border-radius: 5px;/* padding-left: 15px; */display:inline;float: left;margin-top: 2px;font-size: 13px;"> 
+            <a href="apex/AF_UploadAnAttachment?parentId={!oops.oopsActual.Id}&quarter={!oops.quarter}" class="addfancy1"  style="color: white!important;text-decoration: none;">Upload Backup</a>
+            </span>
+            <!-- End:if user already provided actuals -->
+            <!-- End:Changed on 12th Sept, 2014 -->
+         </apex:outputPanel>
+         <!-- if user didnt provide actuals -->                  
+         <apex:outputPanel rendered="{!oops.userAction = 'EnterActuals'}">
+            <apex:outputText value="Enter Actuals" style="width:165px!important;color:black" styleClass="inputStatus{!oops.quarter}"/>
+            <apex:commandButton styleClass="save{!oops.quarter} hidden" action="{!save}" value="Save" rerender="table,pm1,jspanel" style="background: none repeat scroll 0 0 #004976;border-radius: 5px;color: #FFFFFF;font-size: 13px;height: 30px;padding: 6px 10px 10px;width: 75px;">
+               <apex:param name="OopsQuarter" value="{!oops.quarter}" assignTo="{!selectedQuarter}"/>
+            </apex:commandButton>
+         </apex:outputPanel>
+         <!-- End:if user didnt provide actuals --> 
+         <apex:outputPanel rendered="{!oops.userAction = 'submit'}">
+            <apex:commandButton value="Submit" action="{!submit}" oncomplete="onControllerReturn()" rerender="table,pm1,jspanel" style=" background: none repeat scroll 0 0 #E400A7;border-radius: 5px;color: #FFFFFF;font-size: 13px;height: 30px;padding: 6px 10px 10px;width: 75px;">
+               <apex:param name="submitActuals" value="{!oops.quarter}" assignTo="{!selectedQuarter}"/>
+            </apex:commandButton>
+            <apex:commandButton value="Redo"  action="{!redo}"  rerender="jspanel,pm1,table" style=" background: none repeat scroll 0 0 #004976;border-radius: 5px;color: #FFFFFF;font-size: 13px;height: 30px;padding: 6px 10px 10px;width: 75px;" oncomplete="inputKeyup();inputKeydown();saveButtonSwap();backupButtonSwap();editButtonSwap();submitButtonSwap();">
+               <apex:param name="OopsQuarter" value="{!oops.quarter}" assignTo="{!selectedQuarter}"/>
+            </apex:commandButton>
+         </apex:outputPanel>
+         <apex:inputHidden value="{!oops.userAction}" id="inputAction"/>
+         <apex:outputPanel rendered="{!oops.userAction = 'ApproveReject'}">
+            <apex:commandButton value="Approve" styleClass="approve{!oops.quarter}"  action="{!grApprove}" oncomplete="onControllerReturn()" rerender="table,pm1,jspanel" style=" background: none repeat scroll 0 0 #004976;border-radius: 5px;color: #FFFFFF;font-size: 13px;height: 30px;padding: 6px 10px 10px;width: 75px;" >
+               <apex:param name="OopsQuarter" value="{!oops.quarter}" assignTo="{!selectedQuarter}"/>
+            </apex:commandButton>
+            <apex:outputPanel styleClass="rjWCmnts{!oops.quarter} hidden">
+               <apex:inputTextArea value="{!oops.rejectComments}" style="width:165px!important;height:100px;border: 2px solid #74AE00;border-radius: 4px;" />
+               <apex:commandButton value="Reject" action="{!grReject}" oncomplete="onControllerReturn()" rerender="table,pm1" style=" background: none repeat scroll 0 0 #004976;border-radius: 5px;color: #FFFFFF;font-size: 13px;height: 30px;padding: 6px 10px 10px;width: 75px;" >
+                  <apex:param name="OopsReject" value="{!oops.quarter}" assignTo="{!selectedQuarter}"/>
+               </apex:commandButton>
             </apex:outputPanel>
-        </apex:column>
-        
-        <apex:column style="width: 210px!important;height: 35px;">
-            <apex:facet name="header" >Action</apex:facet>
-            <apex:outputPanel rendered="{!oops.userAction ='UploadBackup'}">
-                <!-- Changed on 12th Sept, 2014 --> 
-                <!-- To provide save button on entering actuals -->     
-                <!-- if user already provided actuals -->                   
-                
-                   <span style="font-weight: bold;background: #004976; padding: 6px 1px 7px 1px;width: 108px;margin-left: 2px;color: black;/* border: 2px solid black; */border-radius: 5px;/* padding-left: 15px; */display:inline;float: left;margin-top: 2px;font-size: 13px;"> 
-                    <a href="apex/AF_UploadAnAttachment?parentId={!oops.oopsActual.Id}&quarter={!oops.quarter}" class="addfancy1"  style="color: white!important;text-decoration: none;">Upload Backup</a>
-                    </span>
-                   <!-- <input type="button" name="backup" value="Upload Backup" style="background: none repeat scroll 0 0 #004976;border-radius: 5px;color: #FFFFFF;font-size: 13px;height: 30px;padding: 6px 10px 10px;width: 120px;" /> -->
-                    <!--<apex:commandButton value="Submit" action="{!submit}" oncomplete="onControllerReturn()" rerender="table,pm1,jspanel" style=" background: none repeat scroll 0 0 #E400A7;border-radius: 5px;color: #FFFFFF;font-size: 13px;height: 30px;padding: 6px 10px 10px;width: 75px;">
-                        <apex:param name="submitActuals" value="{!oops.quarter}" assignTo="{!selectedQuarter}"/>
-                    </apex:commandButton>-->
-                
-                <!-- End:if user already provided actuals -->
-                    
-                <!-- End:Changed on 12th Sept, 2014 -->
+            <apex:outputPanel styleClass="rj{!oops.quarter}">
+               <apex:commandButton value="Reject" onClick="return openReject('{!oops.quarter}');"  style=" background: none repeat scroll 0 0 #004976;border-radius: 5px;color: #FFFFFF;font-size: 13px;height: 30px;padding: 6px 10px 10px;width: 75px;" />
             </apex:outputPanel>
-            
-            <!-- if user didnt provide actuals -->                  
-            <apex:outputPanel rendered="{!oops.userAction = 'EnterActuals'}">
-                <apex:outputText value="Enter Actuals" style="width:165px!important;color:black" styleClass="inputStatus{!oops.quarter}"/>
-                <apex:commandButton styleClass="save{!oops.quarter} hidden" action="{!save}" value="Save" rerender="table,pm1,jspanel" style="background: none repeat scroll 0 0 #004976;border-radius: 5px;color: #FFFFFF;font-size: 13px;height: 30px;padding: 6px 10px 10px;width: 75px;">
-                    <apex:param name="OopsQuarter" value="{!oops.quarter}" assignTo="{!selectedQuarter}"/>
-                </apex:commandButton>                
-            </apex:outputPanel>
-            <!-- End:if user didnt provide actuals --> 
-            <apex:outputPanel rendered="{!oops.userAction = 'submit'}">
-                <apex:commandButton value="Submit" action="{!submit}" oncomplete="onControllerReturn()" rerender="table,pm1,jspanel" style=" background: none repeat scroll 0 0 #E400A7;border-radius: 5px;color: #FFFFFF;font-size: 13px;height: 30px;padding: 6px 10px 10px;width: 75px;">
-                    <apex:param name="submitActuals" value="{!oops.quarter}" assignTo="{!selectedQuarter}"/>
-                </apex:commandButton>
-                <apex:commandButton value="Redo"  action="{!redo}"  reRender="table,pm1,jspanel" style=" background: none repeat scroll 0 0 #004976;border-radius: 5px;color: #FFFFFF;font-size: 13px;height: 30px;padding: 6px 10px 10px;width: 75px;" >
-                    <apex:param name="OopsQuarter" value="{!oops.quarter}" assignTo="{!selectedQuarter}"/>
-                </apex:commandButton>
-            </apex:outputPanel>         
-            <apex:inputHidden value="{!oops.userAction}" id="inputAction"/>
-            <apex:outputPanel rendered="{!oops.userAction = 'ApproveReject'}">
-                <apex:commandButton value="Approve" styleClass="approve{!oops.quarter}"  action="{!grApprove}" oncomplete="onControllerReturn()" reRender="table,pm1,jspanel" style=" background: none repeat scroll 0 0 #004976;border-radius: 5px;color: #FFFFFF;font-size: 13px;height: 30px;padding: 6px 10px 10px;width: 75px;" >
-                    <apex:param name="OopsQuarter" value="{!oops.quarter}" assignTo="{!selectedQuarter}"/>
-                </apex:commandButton>
-              <apex:outputPanel styleClass="rjWCmnts{!oops.quarter} hidden">
-                    <apex:inputTextArea value="{!oops.rejectComments}" style="width:165px!important;height:100px;border: 2px solid #74AE00;border-radius: 4px;" />
-                    <apex:commandButton value="Reject" action="{!grReject}" oncomplete="onControllerReturn()" rerender="table,pm1" style=" background: none repeat scroll 0 0 #004976;border-radius: 5px;color: #FFFFFF;font-size: 13px;height: 30px;padding: 6px 10px 10px;width: 75px;" >
-                        <apex:param name="OopsReject" value="{!oops.quarter}" assignTo="{!selectedQuarter}"/>
-                  </apex:commandButton>
-              </apex:outputPanel>
-              <apex:outputPanel styleClass="rj{!oops.quarter}">
-              <apex:commandButton value="Reject" onClick="return openReject('{!oops.quarter}');"  style=" background: none repeat scroll 0 0 #004976;border-radius: 5px;color: #FFFFFF;font-size: 13px;height: 30px;padding: 6px 10px 10px;width: 75px;" />
-              </apex:outputPanel>
-            </apex:outputPanel>
-            <apex:outputPanel rendered="{!oops.userAction = 'NoAction'}">
-                <apex:outputText value="No Action"/>
-            </apex:outputPanel>         
-        </apex:column>
-        
-    </apex:dataTable>
-            
+         </apex:outputPanel>
+         <apex:outputPanel rendered="{!oops.userAction = 'NoAction'}">
+            <apex:outputText value="No Action"/>
+         </apex:outputPanel>
+      </apex:column>
+   </apex:dataTable>
+   <apex:outputPanel id="jspanel">
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'AF_ApproveActuals.js')}"></script>
+   </apex:outputPanel>
+   
 </apex:component>
