@@ -300,7 +300,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Vep_Visitor__c.Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
