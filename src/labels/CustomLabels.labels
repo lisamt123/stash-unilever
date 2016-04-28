@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> develop
     <labels>
         <fullName>AF_Adjust_Quarters</fullName>
         <language>en_US</language>
@@ -15558,6 +15561,7 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
         <value>#setheader</value>
     </labels>
     <labels>
+<<<<<<< HEAD
         <fullName>VEP_Access_Err</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -15565,6 +15569,8 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
         <value>You do not have sufficient access to the record</value>
     </labels>
     <labels>
+=======
+>>>>>>> develop
         <fullName>VEP_Approve_Reject_Status_Error</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -15572,6 +15578,7 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
         <value>Please click on the Approve/Reject link that you have received in Email</value>
     </labels>
     <labels>
+<<<<<<< HEAD
         <fullName>VEP_ApproverAccess_Err</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -15579,6 +15586,8 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
         <value>You cannot be the approver for your request</value>
     </labels>
     <labels>
+=======
+>>>>>>> develop
         <fullName>VEP_Factory_Name_Id</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -16326,8 +16335,11 @@ Which Communications team do you represent? You must be associated to one Planne
         <value>Please enter your Inoplan project name. If you do not have an Inoplan project please select No Inoplan Project</value>
     </labels>
     <labels>
+<<<<<<< HEAD
 =======
  <labels>
+>>>>>>> develop
+=======
 >>>>>>> develop
         <fullName>WU_Category</fullName>
         <categories>Warehouse Utilization</categories>
