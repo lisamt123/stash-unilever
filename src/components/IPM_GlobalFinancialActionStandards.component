@@ -80,12 +80,12 @@
 	                        <div class="glbValM glbVal3">
 	                        <!-- Rendering Condition for Displaying Read only and Editable Fileds -->
 	                            <apex:inputField value="{!finAction.IPM_gTO_Action_Standard_Charter__c}" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable,finAction.IPM_Project_Span__c='Regional')}" onchange="updateFinAction('{!finAction.Id}','{!finAction.IPM_Project_Span__c}','gTO',this.value);" />
-	                            <apex:outputField value="{!finAction.IPM_gTO_Action_Standard_Charter__c}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable,finAction.IPM_Project_Span__c='Global')}"/>
+	                            <apex:outputText value="{!finAction.IPM_gTO_Action_Standard_Charter__c}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable,finAction.IPM_Project_Span__c='Global')}"/>
 	                        </div>
 	                        <div class="glbValM glbVal4">
 	                        <!-- Rendering Condition for Displaying Read only and Editable Fileds -->
 	                            <apex:inputField value="{!finAction.IPM_iTo_Action_Standard_Charter__c}" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable,finAction.IPM_Project_Span__c='Regional')}" onchange="updateFinAction('{!finAction.Id}','{!finAction.IPM_Project_Span__c}','iTO',this.value);" />
-	                            <apex:outputField value="{!finAction.IPM_iTo_Action_Standard_Charter__c}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable,finAction.IPM_Project_Span__c='Global')}"/>
+	                            <apex:outputText value="{!finAction.IPM_iTo_Action_Standard_Charter__c}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable,finAction.IPM_Project_Span__c='Global')}"/>
 	                        </div>
 	                        <div class="glbValM glbVal5">
 	                        <!-- Rendering Condition for Displaying Read only and Editable Fileds -->
@@ -97,7 +97,7 @@
 	                        <div class="glbValM2 glbVal6">
 	                        <!-- Rendering Condition for Displaying Read only and Editable Fileds -->
 	                            <apex:inputField value="{!finAction.IPM_NPV_Action_Standard_Charter__c}" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}" onchange="updateFinAction('{!finAction.Id}','{!finAction.IPM_Project_Span__c}','NPV',this.value);"/>
-	                            <apex:outputField value="{!finAction.IPM_NPV_Action_Standard_Charter__c}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}"/>
+	                            <apex:outputText value="{!finAction.IPM_NPV_Action_Standard_Charter__c}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}"/>
 	                        </div>
 	                        <div class="glbValM2 glbVal7">
 	                        <!-- Rendering Condition for Displaying Read only and Editable Fileds -->
@@ -172,3 +172,4 @@ function updateFinAction(Id,Span,Field,Value){
 }
 </script>
 </apex:component>
+                                     
