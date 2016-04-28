@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PostTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <default>false</default>
+    <description>A Chatter approval request for Local events</description>
+    <fields>Name</fields>
+    <fields>StartDate__c</fields>
+    <fields>EndDate__c</fields>
+    <fields>Local_or_Global__c</fields>
+    <label>Approval Request [Local]</label>
+</PostTemplate>
