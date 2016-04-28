@@ -259,7 +259,7 @@ public with sharing class Amr_NewSaving_CC {
             }
             Amr_Saving__c savingObjInserted = [select Total_no_of_films__c,Cost_Per_Master__c,Cost_per_master_per_shoot_day__c,Percentage_Saving_Accepted_Quote__c,
                                 Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Saving_Accepted_Quote_Euro__c, 
-                                Production_Type__c,No_of_Masters__c,No_of_Masters2__c,Duration_of_Masters__c,No_of_Additional_Films__c,Duration_of_Additional_Films__c,
+                                Production_Type__c,No_of_Masters__c,No_of_Masters_List__c,Duration_of_Masters__c,No_of_Additional_Films__c,Duration_of_Additional_Films__c,
                                 No_of_shoot_days__c,Stage_RAP_engaged__c,Script_Title__c,Scope_re_brief__c,Number_Of_Quotes__c,Average_Total_Opening_Quotes__c,Shoot_Location__c
                                  from Amr_Saving__c where id =:savingObj.id];
             savingObj = savingObjInserted;

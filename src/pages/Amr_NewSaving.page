@@ -21,8 +21,8 @@
         .compulsory-field span {
             position:relative;
         }
-        .compulsory-field strong{
-            background: rgba(0, 0, 0, 0) url("/resource/1460632458000/Amr_static_resources/Amr-static-resource/images/star.png") no-repeat scroll center center;
+        .compulsory-field strong{            
+            background: url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/star.png')}")  no-repeat scroll center center;
             display: block;
             height: 1px;
             overflow: hidden;
@@ -40,63 +40,31 @@
     </apex:outputPanel>
     
     <script type="text/javascript">        
-        var stringArrayNewSaving            = JSON.parse('{!lstcov }');
+        var stringArrayNewSaving            = JSON.parse('{!lstcov}');
         
-        function PCEuroAmountAccepted() {                  
-            var PCCurrencyAccepted      = $j('.PCCurrencyAccepted').val();
-            var PCLocalAmountAccepted   = $j('.PCLocalAmountAccepted').val();
-            
-            PCEuroAmountAcceptedCall(stringArrayNewSaving, PCCurrencyAccepted, PCLocalAmountAccepted);
+        function PCEuroAmountAccepted() {            
+            pCEuroAmountAcceptedCall(stringArrayNewSaving);
         }
         
-        function PPCEuroAmountAccepted() {            
-            var PPCCurrencyAccepted = $j('.PPCCurrencyAccepted').val();
-            var PPCLocalAmountAccepted = $j('.PPCLocalAmountAccepted').val();
-            
-            PPCEuroAmountAcceptedCall(stringArrayNewSaving, PPCCurrencyAccepted, PPCLocalAmountAccepted);
+        function PPCEuroAmountAccepted() {                        
+            pPCEuroAmountAcceptedCall(stringArrayNewSaving);
         }
                         
-        function CAEuroAmountAccepted() {            
-            var CACurrencyAccepted = $j('.CACurrencyAccepted').val();
-            var CALocalAmountAccepted = $j('.CALocalAmountAccepted').val();
-            
-            CAEuroAmountAcceptedCall(stringArrayNewSaving, CACurrencyAccepted, CALocalAmountAccepted);
+        function CAEuroAmountAccepted() {                        
+            cAEuroAmountAcceptedCall(stringArrayNewSaving);
         }
 
-        function PCEuroAmount() {            
-            var PCCurrency = $j('.PCCurrency').val();
-            var PCLocalAmount = $j('.PCLocalAmount').val();
-            
-            PCEuroAmountCall(stringArrayNewSaving, PCCurrency, PCLocalAmount);            
+        function PCEuroAmount() {                        
+            pCEuroAmountCall(stringArrayNewSaving);            
         }
 
-        function PPCEuroAmount() {            
-            var PPCCurrency = $j('.PPCCurrency').val();
-            var PPCLocalAmount = $j('.PPCLocalAmount').val();
-            
-            PPCEuroAmountCall(stringArrayNewSaving, PPCCurrency, PPCLocalAmount);    
+        function PPCEuroAmount() {
+            pPCEuroAmountCall(stringArrayNewSaving);    
         }
                 
-        function CAEuroAmount() {            
-            var CACurrency = $j('.CACurrency').val();
-            var CALocalAmount = $j('.CALocalAmount').val();
-            
-            CAEuroAmountCall(stringArrayNewSaving, CACurrency, CALocalAmount);
-        }
-        
-        $j(function(){
-                        
-            if($j('.noOfMastersMain').val()) {                      
-                loadMasterProcess();
-            } /*
-              var fileMessage = '{!fileUploadMessage}';
-                  if(fileMessage == true){
-                      alert('Please upload file and submit');
-                  }
-              alert('HELLO' + fileMessage );    
-              */
-        //  addMasterDurationrowsCall();                                        
-        });
+        function CAEuroAmount() {                        
+            cAEuroAmountCall(stringArrayNewSaving);
+        }                
     </script>
     <apex:form >
       <apex:outputPanel style="display:{!if(savingMessages != true, 'none','')}" id="error-msg-pannel"> 
@@ -142,7 +110,7 @@
                                 </div>
                             </div>
                             -->
-                            <div class="job-field-parent job-field-parent-smaller displayIB VATop" style="margin-top:8px;width:350px !important;">
+                            <div class="job-field-parent job-field-parent-smaller displayIB VATop" style="margin-top:8px;">
                                 <div class="job-field-label">{!$Label.Amr_No_of_Additional_Films}</div>
                                 <div class="job-field-input" style="font-weight:bold;">
                                     <apex:inputField value="{!savingObj.No_of_Additional_Films__c}" />
@@ -172,13 +140,13 @@
                                     <apex:inputField value="{!savingObj.Script_Title__c}" />
                                 </div>
                             </div>
-                            <div class="job-field-parent job-field-parent-smaller displayIB VATop">
+                            <div class="job-field-parent job-field-parent-smaller displayIB VATop" style="margin-top:8px;">
                                 <div class="job-field-label compulsory-field"><span>{!$Label.Amr_scope_rebrief}<strong></strong></span></div>
                                 <div class="job-field-input" style="font-weight:bold;">
                                     <apex:inputField value="{!savingObj.Scope_re_brief__c}" />
                                 </div>
                             </div>
-                            <div class="job-field-parent job-field-parent-smaller displayIB VATop">
+                            <div class="job-field-parent job-field-parent-smaller displayIB VATop" style="margin-top:8px;">
                                 <div class="job-field-label compulsory-field"><span>{!$Label.Amr_Shoot_Location}<strong></strong></span></div>
                                 <div class="job-field-input job-field-input-multiselect" style="font-weight:bold;">
                                     <apex:selectList value="{!selectedCountry}" multiselect="true" size="5" label="Shoot Location">
@@ -187,13 +155,13 @@
                                 </div>
                             </div>
                             <div class="clear"></div>
-                            <div style="margin-bottom:5px;">
+                            <div style="margin-bottom:5px;margin-top:20px;">
                                 Masters
                             </div>
                             <div style="margin-bottom:30px;border:3px solid #205EA5;padding:20px;width:30%;">
                                 <div class="row1MainParent">
                                     <apex:inputField value="{!savingObj.Duration_of_Masters__c}" styleClass="durationOfMastersMain hide"/>
-                                    <apex:inputField value="{!savingObj.No_of_Masters2__c}" styleClass="noOfMastersMain hide"/>
+                                    <apex:inputField value="{!savingObj.No_of_Masters_List__c}" styleClass="noOfMastersMain hide"/>
                                     <apex:inputField value="{!savingObj.No_of_Masters__c}" styleClass="noOfMastersAddition hide"/>
                                     <div class="row1" style="margin-bottom:5px;">
                                         <div class="displayIB" style="width:170px;">
@@ -545,7 +513,7 @@
                 var stringArray = JSON.parse('{!lstcov }');
                 currencyPopup();
                 loadMasterProcess();
-                NoOfmasterdurationkeypress();
+                noOfmasterdurationkeypress();
                 remove_master_durationrows();
                 addMasterDurationrowsCall();
             </script>

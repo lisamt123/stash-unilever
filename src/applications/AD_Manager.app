@@ -7,11 +7,4 @@
     <tab>Saving_Summary</tab>
     <tab>RAP_Jobs_Portfolio</tab>
     <tab>CAP_Jobs_Portfolio</tab>
-    <tab>AM_Plan_Test__c</tab>
-    <tab>AMJobDetail__c</tab>
-    <tab>AMPlanSummary__c</tab>
-    <tab>AmJobSaving__c</tab>
-    <tab>PDF</tab>
-    <tab>CompareData__c</tab>
-    <tab>Device_POC__c</tab>
 </CustomApplication>

@@ -2,34 +2,8 @@
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
         <fullName>AMR_CAPNotificationAlert</fullName>
-        <ccEmails>maheshsankapal@gmail.com,chsunil2@yahoo.com,swarup.swarup@gmail.com,</ccEmails>
-        <ccEmails>utkarsh.salesforce@gmail.com</ccEmails>
         <description>AMR_CAPNotificationAlert</description>
         <protected>false</protected>
-        <recipients>
-            <recipient>gaurav.kakariya@mindtree.com</recipient>
-            <type>user</type>
-        </recipients>
-        <recipients>
-            <recipient>hannah.phillips@unilever.com</recipient>
-            <type>user</type>
-        </recipients>
-        <recipients>
-            <recipient>mahesh.sankapal@mindtree.com</recipient>
-            <type>user</type>
-        </recipients>
-        <recipients>
-            <recipient>swarup.kemparaju@mindtree.com</recipient>
-            <type>user</type>
-        </recipients>
-        <recipients>
-            <recipient>utkarsh.goswami@mindtree.com</recipient>
-            <type>user</type>
-        </recipients>
-        <recipients>
-            <recipient>utkarsh.goswami@mindtree.com</recipient>
-            <type>user</type>
-        </recipients>
         <senderType>CurrentUser</senderType>
         <template>AdManager/Amr_CAPNotification</template>
     </alerts>

@@ -192,13 +192,13 @@
                             </div>
                             <div class="form-field margin-left-minus30">
                                 <apex:outputlabel value="{!CheckWithCMI}" rendered="{!budgetAllocatedCountryFlag}" styleclass="loadError" />
-                                <apex:selectList value="{!selectedCountry }" size="1" id="selectedId" onchange="CalculateOnChangenKP('1')" styleClass="selectedIdClass">
+                                <apex:selectList value="{!selectedCountry }" size="1" id="selectedId" onchange="calculateOnChangenKP('1')" styleClass="selectedIdClass">
                                     <apex:selectOptions value="{!currencyRecords }" />
                                 </apex:selectList>
                             </div>
                             <div class="form-field">
                                 <apex:outputlabel value="{!CheckWithCMI}" rendered="{!budgetAllocatedInputFlag}" styleclass="loadError" />
-                                <apex:inputField value="{!jobDetails.Budget_Allocated_Input_Value__c}" id="inputId" onkeypress="return isCurrency(event)" onkeyup="CalculateOnChangenKP()" styleClass="inputIdClass" html-placeholder="Local Currency (Example 123,456.00)" html-autocomplete="off" />
+                                <apex:inputField value="{!jobDetails.Budget_Allocated_Input_Value__c}" id="inputId" onkeypress="return isCurrency(event)" onkeyup="calculateOnChangenKP()" styleClass="inputIdClass" html-placeholder="Local Currency (Example 123,456.00)" html-autocomplete="off" />
                             </div>
                             <div class="form-field">
                                 <apex:inputField value="{!jobDetails.Allocated_Budget_euro__c}" id="outputId" styleClass="outputIdClass" html-placeholder="Auto Calc to Euros" />

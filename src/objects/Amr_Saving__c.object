@@ -370,6 +370,15 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Display__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Display</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Duration_of_Additional_Films__c</fullName>
         <externalId>false</externalId>
         <label>Duration of Additional Films</label>
@@ -517,11 +526,10 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>No_of_Masters2__c</fullName>
-        <description>This is no of masters text field.</description>
+        <fullName>No_of_Masters_List__c</fullName>
+        <description>It will contain list of no. of masters.</description>
         <externalId>false</externalId>
-        <inlineHelpText>This is no of masters text field.</inlineHelpText>
-        <label>No of Masters2</label>
+        <label>No of Masters List</label>
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>

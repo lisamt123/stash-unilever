@@ -7,15 +7,7 @@
     <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/menu-shift.js')}"/>    
     <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/common.js')}"/>      
     <style type="text/css">
-        /*Overall*/
-        
-        .minusclass {
-        background-image: url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/Subtract-m.png')}");                       
-        }           
-        .plusclass {
-        background-image: url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/Add.png')}");        
-        }       
-        
+        /*Overall*/        
         .foldclass {
         background-image: url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/Ico_ExpandArrow.png')}");                       
         }           

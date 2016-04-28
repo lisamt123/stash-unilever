@@ -16,13 +16,13 @@
             margin-bottom: 0px !important;
         }
         
-        .holder-class span.common {
+        .holder-class span.common {  
             cursor: pointer;
         }
-        
+         
         .job-field-input {
             font-weight: bold;
-        }
+        } 
         
         .job-field-parent-smaller {
             width: 200px !important;
@@ -83,86 +83,46 @@
     <script type="text/javascript">
         var stringArraySavingSubmitted = JSON.parse('{!lstcov }');
 
+        function pCEuroAmountAccepted() {
+            pCEuroAmountAcceptedCall(stringArraySavingSubmitted);
+        }
 
-        function PCEuroAmountAccepted() {
-
-            var PCCurrency = $j('.PCCurrencyAccepted').val();
-            var PCLocalAmount = $j('.PCLocalAmountAccepted').val();
-
-            PCEuroAmountAcceptedCall(stringArraySavingSubmitted, PCCurrency, PCLocalAmount);
+        function pPCEuroAmountAccepted() {
+            pPCEuroAmountAcceptedCall(stringArraySavingSubmitted);
         }
 
 
-
-        function PPCEuroAmountAccepted() {
-            var PPCCurrency = $j('.PPCCurrencyAccepted').val();
-            var PPCLocalAmount = $j('.PPCLocalAmountAccepted').val();
-
-            PPCEuroAmountAcceptedCall(stringArraySavingSubmitted, PPCCurrency, PPCLocalAmount);
-
+        function cAEuroAmountAccepted() {
+            cAEuroAmountAcceptedCall(stringArraySavingSubmitted);
         }
-
-
-        function CAEuroAmountAccepted() {
-            var CACurrency = $j('.CACurrencyAccepted').val();
-            var CALocalAmount = $j('.CALocalAmountAccepted').val();
-
-            CAEuroAmountAcceptedCall(stringArraySavingSubmitted, CACurrency, CALocalAmount);
-        }
-
-
 
         function commonCurrencyRelatedNew() {
-
-            var PCLocalAmountNew = $j('.PCLocalAmountNew').val();
-            var PCEuroAmountNew = $j('.PCEuroAmountNew').val();
-            var PCCurrencyNew = $j('.commonCurrencyRelatedNew').val();
-
-            commonCurrencyRelatedNewCall(stringArraySavingSubmitted, PCLocalAmountNew, PCEuroAmountNew, PCCurrencyNew)
+            commonCurrencyRelatedNewCall(stringArraySavingSubmitted)
         }
 
-        function commonCurrencyRelatedPPCNewFun() {
-            var PPCLocalAmountNew = $j('.PPCLocalAmountNew').val();
-            var PPCEuroAmountNew = $j('.PPCEuroAmountNew').val();
-            var PPCCurrencyNew = $j('.commonCurrencyRelatedPPCNew').val();
-            commonCurrencyRelatedPPCNewFunCall(stringArraySavingSubmitted, PPCLocalAmountNew, PPCEuroAmountNew, PPCCurrencyNew);
+        function commonCurrencyRelatedPPCNewFun() {            
+            commonCurrencyRelatedPPCNewFunCall(stringArraySavingSubmitted); 
         }
 
         function commonCurrencyRelatedCANewFun() {
-
-            var CALocalAmountNew = $j('.CALocalAmountNew').val();
-            var CAEuroAmountNew = $j('.CAEuroAmountNew').val();
-            var CACurrencyNew = $j('.commonCurrencyRelatedCANew').val();
-
-            commonCurrencyRelatedCANewFunCall(stringArraySavingSubmitted, CALocalAmountNew, CAEuroAmountNew, CACurrencyNew);
+            commonCurrencyRelatedCANewFunCall(stringArraySavingSubmitted);
         }        
         
         $j(function() {
             var starRatingData = {!SelectedRatingStar};
             starRatingProcess(starRatingData);
-        });
-        
-        $j(function(){
-            
-            if( $j('.noOfMastersMain').length ) {
-                loadMasterProcess();
-                NoOfmasterdurationkeypress();
-                remove_master_durationrows();
-                addMasterDurationrowsCall();
-                $j('.show-on-edit').show();
-            }               
-        });
+        });        
         
     </script>
     <div class="container">
         <apex:form >
             <apex:actionRegion >
-                <apex:actionFunction name="EditSavingActionFun" action="{!edit}" ReRender="savingData">
+                <apex:actionFunction name="editSavingActionFun" action="{!edit}" ReRender="savingData">
                     <apex:param name="one" value="" assignTo="{!saveRecordValue}" />
                 </apex:actionFunction>
             </apex:actionRegion>
             <apex:pageBlock id="savingData">
-                <div style="display:{!if(savingMessages != true, 'none','')}">
+                <div style="display:{!if(savingMessages != true, 'none','')}"> 
                     <apex:pageMessages id="msg" />
                 </div>
                 <apex:outputPanel id="pageBlockId">
@@ -186,7 +146,7 @@
                                     </div>
                                 </apex:actionRegion>
                                 <div class="left margin-right12">
-                                    <apex:commandLink value="Edit" onclick="EditFun('{!savObj.id}');return Null;" styleclass="commonbtn anchorbtn" status="actStatusEditSav" />
+                                    <apex:commandLink value="Edit" onclick="editFun('{!savObj.id}');return Null;" styleclass="commonbtn anchorbtn" status="actStatusEditSav" />
                                     <apex:actionStatus id="actStatusEditSav">
                                         <apex:facet name="start">
                                             <img src="/img/loading.gif" alt="loading-image" />
@@ -207,7 +167,7 @@
                                                         if( $j('.noOfMastersMain').length ) {
                                                         showOnEdit();
                                                         loadMasterProcess();
-                                                        NoOfmasterdurationkeypress();
+                                                        noOfmasterdurationkeypress();
                                                         remove_master_durationrows();
                                                         addMasterDurationrowsCall();
                                                         $j('.show-on-edit').show();
@@ -242,7 +202,7 @@
                                                     <div class="job-field-input">
                                                         <apex:outputPanel >
                                                             <div class="nombydom">                                                              
-                                                                {!SUBSTITUTE(savObj.Duration_of_Masters__c,',','_')}:::{!SUBSTITUTE(savObj.No_of_Masters2__c,',','_')}
+                                                                {!SUBSTITUTE(savObj.Duration_of_Masters__c,',','_')}:::{!SUBSTITUTE(savObj.No_of_Masters_List__c,',','_')}
                                                             </div>
                                                         </apex:outputPanel>
                                                     </div>
@@ -435,7 +395,7 @@
                                                 <div style="margin-bottom:30px;border:3px solid #205EA5;padding:20px;width:30%;">
                                                     <div class="row1MainParent">
                                                         <apex:inputField value="{!savObj.Duration_of_Masters__c}" styleClass="durationOfMastersMain hide"/>
-                                                        <apex:inputField value="{!savObj.No_of_Masters2__c}" styleClass="noOfMastersMain hide"/>
+                                                        <apex:inputField value="{!savObj.No_of_Masters_List__c}" styleClass="noOfMastersMain hide"/>
                                                         <div class="row1" style="margin-bottom:5px;">
                                                             <div class="displayIB" style="width:170px;">
                                                                 Duration                                        
@@ -704,7 +664,7 @@
                                     <div class="job-field-label">{!$Label.Amr_Accepted_Final_Cost_PC_only_Currency}</div>
 
                                     <div class="job-field-input">
-                                        <apex:inputfield value="{!acceptedQuote.Accepted_Final_Cost_PC_only_Currency__c}" styleclass="PCCurrencyAccepted" onchange="PCEuroAmountAccepted()" rendered="{!editedSavingMode}" />
+                                        <apex:inputfield value="{!acceptedQuote.Accepted_Final_Cost_PC_only_Currency__c}" styleclass="PCCurrencyAccepted" onchange="pCEuroAmountAccepted()" rendered="{!editedSavingMode}" />
                                         <apex:outputText label="PC only (Currency)" value="{!acceptedQuote.Accepted_Final_Cost_PC_only_Currency__c}" rendered="{!viewSavingMode}" />
                                     </div>
 
@@ -713,7 +673,7 @@
                                     <div class="job-field-label">{!$Label.Amr_Accepted_Final_Cost_PC_only_Local_Amount}</div>
 
                                     <div class="job-field-input">
-                                        <apex:inputfield label="PC only (Local Amount)" value="{!acceptedQuote.Accepted_Final_Cost_PC_only_Local_Amo__c}" styleclass="PCLocalAmountAccepted" onkeypress="return isCurrency(event)" onkeyup="PCEuroAmountAccepted()" rendered="{!editedSavingMode}" />
+                                        <apex:inputfield label="PC only (Local Amount)" value="{!acceptedQuote.Accepted_Final_Cost_PC_only_Local_Amo__c}" styleclass="PCLocalAmountAccepted" onkeypress="return isCurrency(event)" onkeyup="pCEuroAmountAccepted()" rendered="{!editedSavingMode}" />
                                         <apex:outputText label="PC only (Local Amount)" value="{!acceptedQuote.Accepted_Final_Cost_PC_only_Local_Amo__c}" rendered="{!viewSavingMode}"></apex:outputText>
                                     </div>
                                 </div>
@@ -734,7 +694,7 @@
                                         {!$Label.Amr_Accepted_Final_Cost_PPC_only_Currency}
                                     </div>
                                     <div class="job-field-input">
-                                        <apex:inputfield label="PPC only (Currency)" value="{!acceptedQuote.Accepted_Final_Cost_PPC_only_Currency__c}" styleclass="PPCCurrencyAccepted" onchange="PPCEuroAmountAccepted()" rendered="{!editedSavingMode}" />
+                                        <apex:inputfield label="PPC only (Currency)" value="{!acceptedQuote.Accepted_Final_Cost_PPC_only_Currency__c}" styleclass="PPCCurrencyAccepted" onchange="pPCEuroAmountAccepted()" rendered="{!editedSavingMode}" />
                                         <apex:outputText label="PPC only (Currency)" value="{!acceptedQuote.Accepted_Final_Cost_PPC_only_Currency__c}" rendered="{!viewSavingMode}"></apex:outputText>
                                     </div>
                                 </div>
@@ -744,7 +704,7 @@
                                         {!$Label.Amr_Accepted_Final_Cost_PPC_only_Local_Amount}
                                     </div>
                                     <div class="job-field-input">
-                                        <apex:inputfield label="PPC only (Local Amount)" value="{!acceptedQuote.Accepted_Final_Cost_PPC_only_Local_Am__c}" styleclass="PPCLocalAmountAccepted" onkeypress="return isCurrency(event)" onkeyup="PPCEuroAmountAccepted()" rendered="{!editedSavingMode}" />
+                                        <apex:inputfield label="PPC only (Local Amount)" value="{!acceptedQuote.Accepted_Final_Cost_PPC_only_Local_Am__c}" styleclass="PPCLocalAmountAccepted" onkeypress="return isCurrency(event)" onkeyup="pPCEuroAmountAccepted()" rendered="{!editedSavingMode}" />
                                         <apex:outputText label="PPC only (Local Amount)" value="{!acceptedQuote.Accepted_Final_Cost_PPC_only_Local_Am__c}" rendered="{!viewSavingMode}"></apex:outputText>
                                     </div>
                                 </div>                                
@@ -765,7 +725,7 @@
                                         {!$Label.Amr_Accepted_Final_Cost_CA_only_Currency}
                                     </div>
                                     <div class="job-field-input">
-                                        <apex:inputfield label="CA only (Currency)" value="{!acceptedQuote.Accepted_Final_Cost_CA_only_Currency__c}" styleclass="CACurrencyAccepted" onchange="CAEuroAmountAccepted()" rendered="{!editedSavingMode}" />
+                                        <apex:inputfield label="CA only (Currency)" value="{!acceptedQuote.Accepted_Final_Cost_CA_only_Currency__c}" styleclass="CACurrencyAccepted" onchange="cAEuroAmountAccepted()" rendered="{!editedSavingMode}" />
                                         <apex:outputText label="CA only (Currency)" value="{!acceptedQuote.Accepted_Final_Cost_CA_only_Currency__c}" rendered="{!viewSavingMode}"></apex:outputText>
                                     </div>
                                 </div>
@@ -775,7 +735,7 @@
                                         {!$Label.Amr_Accepted_Final_Cost_CA_only_Local_Amount}
                                     </div>
                                     <div class="job-field-input">
-                                        <apex:inputfield label="CA only (Local Amount)" value="{!acceptedQuote.Accepted_Final_Cost_CA_Local_Amount__c}" styleclass="CALocalAmountAccepted" onkeypress="return isCurrency(event)" onkeyup="CAEuroAmountAccepted()" rendered="{!editedSavingMode}" />
+                                        <apex:inputfield label="CA only (Local Amount)" value="{!acceptedQuote.Accepted_Final_Cost_CA_Local_Amount__c}" styleclass="CALocalAmountAccepted" onkeypress="return isCurrency(event)" onkeyup="cAEuroAmountAccepted()" rendered="{!editedSavingMode}" />
                                         <apex:outputText label="CA only (Local Amount)" value="{!acceptedQuote.Accepted_Final_Cost_CA_Local_Amount__c}" rendered="{!viewSavingMode}"></apex:outputText>
                                     </div>
                                 </div>

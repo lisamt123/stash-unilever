@@ -587,12 +587,24 @@
                                                     {!job.Production_Type__c}
                                                 </div>
                                             </apex:outputText>
-                                        </apex:column>                                      
+                                        </apex:column>
+                                        <!--                                       
                                         <apex:column headerValue="Duration of Masters x No. of Masters" title="{!job.Duration_of_Masters__c}">
                                             <apex:outputText >
                                                 <div class="nombydom td-overflow width80 tdelement">    
-                                                    {!SUBSTITUTE(job.Duration_of_Masters__c,',','_')}:::{!SUBSTITUTE(job.No_of_Masters2__c,',','_')}
+                                                    {!SUBSTITUTE(job.Duration_of_Masters__c,',','_')}:::{!SUBSTITUTE(job.No_of_Masters_List__c,',','_')}
                                                 </div>
+                                            </apex:outputText>              
+                                        </apex:column>
+                                        -->
+                                        <apex:column headerValue="Number of Masters" title="{!job.No_of_Masters_List__c}">
+                                            <apex:outputText >
+                                                {!job.No_of_Masters_List__c}
+                                            </apex:outputText>              
+                                        </apex:column>
+                                        <apex:column headerValue="Duration of Masters" title="{!job.Duration_of_Masters__c}">
+                                            <apex:outputText >
+                                                {!job.Duration_of_Masters__c}
                                             </apex:outputText>              
                                         </apex:column>
                                         <apex:column value="{!job.No_of_Additional_Films__c}" headerValue="{!$Label.Amr_No_of_Additional_Films}" />

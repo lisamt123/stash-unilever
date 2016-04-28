@@ -656,13 +656,13 @@
                                 </div>
                                 <div class="form-field2 widthautocomp">
                                 <apex:outputlabel value="{!CheckWithCMI}" rendered="{!budgetAllocatedCountryFlag}" styleclass="loadError"/> 
-                                    <apex:selectList value="{!selectedCountry }" size="1" id="selectedId" onchange="Calculate()" styleClass="selectedIdClass">
+                                    <apex:selectList value="{!selectedCountry }" size="1" id="selectedId" onchange="calculate()" styleClass="selectedIdClass">
                                         <apex:selectOptions value="{!currencyRecords }" />
                                     </apex:selectList>
                                 </div>
                                 <div class="form-field2 widthautocomp">
                                 <apex:outputlabel value="{!CheckWithCMI}" rendered="{!budgetAllocatedInputFlag}" styleclass="loadError"/> 
-                                    <apex:inputField value="{!joblist.Budget_Allocated_Input_Value__c}" styleClass="inputIdClass" onkeypress="return isCurrency(event)" onkeyup="Calculate()" html-placeholder="Local Currency( Example 123456.00)"/>
+                                    <apex:inputField value="{!joblist.Budget_Allocated_Input_Value__c}" styleClass="inputIdClass" onkeypress="return isCurrency(event)" onkeyup="calculate()" html-placeholder="Local Currency( Example 123456.00)"/>
                                 </div>
                                 <div class="form-field2 widthautocomp">
                                     <apex:inputField value="{!joblist.Allocated_Budget_euro__c}" styleClass="outputIdClass disableclasscolor" html-placeholder="Auto Calc to Euros"/>
@@ -1807,13 +1807,21 @@
                                      <apex:column headerValue="Prod. Type">
                                     <apex:outputText value="{!obj.Production_Type__c}"/>
                                     </apex:column>
+                                    <!--  
                                     <apex:column headerValue="Duration of Masters x No. of Masters">
                                         <div class="nombydom">  
-                                            {!SUBSTITUTE(obj.Duration_of_Masters__c,',','_')}:::{!SUBSTITUTE(obj.No_of_Masters2__c,',','_')}
+                                            {!SUBSTITUTE(obj.Duration_of_Masters__c,',','_')}:::{!SUBSTITUTE(obj.No_of_Masters_List__c,',','_')}
                                         </div>              
+                                    </apex:column>
+                                    -->
+                                    <apex:column headerValue="Number of Masters">                                                      
+                                        <apex:outputText value="{!obj.No_of_Masters_List__c}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Duration of Masters">                                                      
+                                        <apex:outputText value="{!obj.Duration_of_Masters__c}"/>
                                     </apex:column>                                    
                                     <apex:column headerValue="No. of Additional Films">
-                                    <apex:outputText value="{!obj.No_of_Additional_Films__c}"/>
+                                    <apex:outputText value="{!obj.No_of_Additional_Films__c}"/> 
                                     </apex:column>
                                     <apex:column headerValue="Duration of Additional Films">
                                     <apex:outputText value="{!obj.Duration_of_Additional_Films__c}"/>
