@@ -162,12 +162,12 @@ public with sharing class VEP_Visitor_TriggerHandler implements ITrigger{
     public void recordVisibility(List<Vep_Visitor__c> listvisitors){
         set<string> setemails = new set<string>();
         List<User> listusers = new List<User>();
-        List<Vep_Visitor__Share> listvshare1 = new List<Vep_Visitor__Share>();
+        
         for(Vep_Visitor__c  v: listvisitors){            
-            if(v.travel_desk_email__c!=null && v.travel__c == true){
+            if(v.travel_desk_email__c!=null && v.travel__c){
                 setemails.add(v.travel_desk_email__c);
             }
-            if(v.lodging_desk_email__c!=null && v.lodging__c == true){
+            if(v.lodging_desk_email__c!=null && v.lodging__c){
                 setemails.add(v.lodging_desk_email__c);
             }                           
         }
@@ -179,8 +179,13 @@ public with sharing class VEP_Visitor_TriggerHandler implements ITrigger{
             for(user u :listusers){
                 mapuser.put(u.email,u);
             }
-            for(Vep_Visitor__c  v: listVisitors){
-                if(v.travel_desk_email__c!=null && v.travel__c == true){
+            recordVisibilityExt(mapuser,listVisitors);                             
+        }
+    }
+    public void recordVisibilityExt(Map<string,user> mapuser,List<Vep_Visitor__c> listvisitors){
+        List<Vep_Visitor__Share> listvshare1 = new List<Vep_Visitor__Share>();
+        for(Vep_Visitor__c  v: listVisitors){
+                if(v.travel_desk_email__c!=null && v.travel__c){
                     Vep_Visitor__Share vshare1 = new Vep_Visitor__Share();
                     vshare1.UserOrGroupId = mapUser.get(v.travel_desk_email__c).id;
                     vshare1.AccessLevel = 'Edit';
@@ -188,7 +193,7 @@ public with sharing class VEP_Visitor_TriggerHandler implements ITrigger{
                     vshare1.RowCause =Schema.Vep_Visitor__Share.RowCause.Manual;
                     listvshare1.add(vshare1);
                 }
-                if(v.lodging_desk_email__c!=null && v.lodging__c == true){
+                if(v.lodging_desk_email__c!=null && v.lodging__c){
                     Vep_Visitor__Share vshare2 = new Vep_Visitor__Share();
                     vshare2.UserOrGroupId = mapUser.get(v.lodging_desk_email__c).id;
                     vshare2.AccessLevel = 'Edit';
@@ -200,7 +205,5 @@ public with sharing class VEP_Visitor_TriggerHandler implements ITrigger{
             if(!listvshare1.isEmpty()){
                 insert listvshare1;
             }
-            
-        }
     }
 }
