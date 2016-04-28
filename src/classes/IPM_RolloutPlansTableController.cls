@@ -799,7 +799,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                     Date dateToCompare = getLeastProjectMilestonesDate();
                     for(IPM_Project_Rollout__c rollout : updaterolloutsMap.values())
                     {
-                        if(rollout.Target_Launch_Date__c <= System.today())
+                        if(String.isBlank(String.valueOf(rollout.Target_Launch_Date__c)) || rollout.Target_Launch_Date__c <= System.today())
                         {
                             validationError = Label.IPM_Target_Launch_Date_Error;
                             break;
@@ -817,7 +817,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                     
                     for(IPM_Project_Rollout__c rollout : updaterolloutsMap.values())
                     {
-                        if(rollout.Target_Launch_Date__c < System.today())
+                        if(String.isBlank(String.valueOf(rollout.Target_Launch_Date__c)) ||rollout.Target_Launch_Date__c <= System.today())
                         {
                             validationError = Label.IPM_Target_Launch_Date_Error;
                             break;
@@ -828,7 +828,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                     Date dateToCompare = getLeastProjectMilestonesDate();
                     for(IPM_Project__c localProject : updateLocalProjTLDList)
                     {
-                        if(localProject.Rollout_Plan_Target_Launch_Date__c < System.today())
+                        if(String.isBlank(String.valueOf(localProject.Rollout_Plan_Target_Launch_Date__c)) || localProject.Rollout_Plan_Target_Launch_Date__c <= System.today())
                         {
                             validationError = Label.IPM_Target_Launch_Date_Error;
                             break;
