@@ -20612,12 +20612,12 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>IPM_Bosscard__c.Used_By_Workflow_175_days__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>IPM_Bosscard__c.Used_By_Workflow_30_days__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -25523,7 +25523,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>IPM_Questionnaire__c.IPM_GK_Answers_Multiselect__c</field>
         <readable>true</readable>
     </fieldPermissions>
