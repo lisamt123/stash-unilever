@@ -1,315 +1,227 @@
+<!--  
+   *************************************************************************
+   *@Description:This page is used to change the custom settings 
+   *@Author: Cognizant
+   *@Created Date: 25/07/2014 
+   *************************************************************************
+   -->
 <apex:page controller="AF_CustomSetting" sidebar="false" >
-<!--<apex:includeScript value="{!URLFOR($Resource.FancyJquery17, 'jquery.min.js')}"/>
-<apex:includeScript value="{!URLFOR($Resource.ulw_brief_2_static_resources, 'static_resources/js/jquery.colorbox-min.js')}"/> 
-
-
-
-<script>
-    $(document).ready(function(){
-    $(".pg1").hover(function(){
-        $(".pg1").prop('title', 'Hi');
-    }
-    );
-    });
-   
-    </script>-->
-<apex:form >
-
-    <apex:pageblock title="QuarterlyBonus" id="pg2" >
-        <apex:outputText >{!$Label.AF_QuarterlyBonus}</apex:outputText>
-        <apex:pageblockTable value="{!quarterlyBonusList}" var="c">
+   <apex:form >
+      <apex:pageblock title="QuarterlyBonus" id="pg2" >
+         <apex:outputText >{!$Label.AF_QuarterlyBonus}</apex:outputText>
+         <apex:pageblockTable value="{!quarterlyBonusList}" var="c">
             <apex:column headerValue="Name">
-            <apex:inputText value="{!setting.Name}"/>
-            </apex:column><br/>
+               <apex:inputText value="{!setting.Name}"/>
+            </apex:column>
+            <br/>
             <apex:column headerValue="Minimum">
-            <apex:inputText value="{!setting.Min}"/>
-            </apex:column><br/>
+               <apex:inputText value="{!setting.Min}"/>
+            </apex:column>
+            <br/>
             <apex:column headerValue="Stretching">
-            <apex:inputText value="{!setting.Stretching}"/>
-            </apex:column><br/>
+               <apex:inputText value="{!setting.Stretching}"/>
+            </apex:column>
+            <br/>
             <apex:column headerValue="Outstanding">
-            <apex:inputText value="{!setting.Outstanding}"/>
-            </apex:column> <br/>
-            <apex:column > 
-            <apex:commandButton value="Submit" action="{!submitCustomSetting}"/>
+               <apex:inputText value="{!setting.Outstanding}"/>
+            </apex:column>
+            <br/>
+            <apex:column >
+               <apex:commandButton value="Submit" action="{!submitCustomSetting}"/>
             </apex:column>
          </apex:pageblockTable>
-    </apex:pageblock>
-    
-    <apex:pageblock title="Trigger Date">
-        <apex:outputText >{!$Label.AF_TriggerDate}</apex:outputText>
-            <apex:pageblockTable value="{!triggerDate}" var="t">
-                <apex:column headerValue="Date">
-                    <apex:inputText value="{!emailAlerts.triggerDate}"/>
-                </apex:column><br/>
-                <apex:column >
-                    <apex:commandButton value="Submit" action="{!submitTriggerDate}"/>
-                </apex:column>
+      </apex:pageblock>
+      <apex:pageblock title="Trigger Date">
+         <apex:outputText >{!$Label.AF_TriggerDate}</apex:outputText>
+         <apex:pageblockTable value="{!triggerDate}" var="t">
+            <apex:column headerValue="Date">
+               <apex:inputText value="{!emailAlerts.triggerDate}"/>
+            </apex:column>
+            <br/>
+            <apex:column >
+               <apex:commandButton value="Submit" action="{!submitTriggerDate}"/>
+            </apex:column>
          </apex:pageblockTable>
-    </apex:pageblock>
-    
-     <apex:pageblock title="Agency Email Alerts">
-     <apex:outputText >{!$Label.Agency_Email_Alerts}</apex:outputText>
-        <apex:pageblockTable value="{!agencyEmailAlertList}" var="c">
+      </apex:pageblock>
+      <apex:pageblock title="Agency Email Alerts">
+         <apex:outputText >{!$Label.Agency_Email_Alerts}</apex:outputText>
+         <apex:pageblockTable value="{!agencyEmailAlertList}" var="c">
             <apex:column headerValue="Name">
-            <apex:inputText value="{!emailAlerts.AgencyEmailName}"/>
-            </apex:column><br/>
+               <apex:inputText value="{!emailAlerts.AgencyEmailName}"/>
+            </apex:column>
+            <br/>
             <apex:column headerValue="Q1">
-            <apex:inputtext value="{!emailAlerts.Q1}"/>
-            </apex:column><br/>
+               <apex:inputtext value="{!emailAlerts.Q1}"/>
+            </apex:column>
+            <br/>
             <apex:column headerValue="Q2">
-            <apex:inputtext value="{!emailAlerts.Q2}"/>
-            </apex:column><br/>
+               <apex:inputtext value="{!emailAlerts.Q2}"/>
+            </apex:column>
+            <br/>
             <apex:column headerValue="Q3">
-            <apex:inputtext value="{!emailAlerts.Q3}"/>
-            </apex:column> <br/>
+               <apex:inputtext value="{!emailAlerts.Q3}"/>
+            </apex:column>
+            <br/>
             <apex:column headerValue="Q4">
-            <apex:inputtext value="{!emailAlerts.Q4}"/>
-            </apex:column> <br/>
-            <apex:column > 
-            <apex:commandButton value="Submit" action="{!submitAgencyEmailAlerts}"/>
+               <apex:inputtext value="{!emailAlerts.Q4}"/>
+            </apex:column>
+            <br/>
+            <apex:column >
+               <apex:commandButton value="Submit" action="{!submitAgencyEmailAlerts}"/>
             </apex:column>
          </apex:pageblockTable>
-         </apex:pageblock>
-         <apex:pageblock title="AgencyBonusMap">
+      </apex:pageblock>
+      <apex:pageblock title="AgencyBonusMap">
          <apex:outputText >{!$Label.AF_Agency_Bonus_Access}</apex:outputText>
-        <apex:pageblockTable value="{!agencyBonusList}" var="c">
+         <apex:pageblockTable value="{!agencyBonusList}" var="c">
             <apex:column headerValue="Name">
-            <apex:inputText value="{!emailAlerts.bonusName}"/>
-            </apex:column><br/>
+               <apex:inputText value="{!emailAlerts.bonusName}"/>
+            </apex:column>
+            <br/>
             <apex:column headerValue="Access Date">
-            <apex:inputText value="{!emailAlerts.BonusDate}"/>
-            </apex:column><br/>
+               <apex:inputText value="{!emailAlerts.BonusDate}"/>
+            </apex:column>
+            <br/>
             <apex:column headerValue="Year">
-            <apex:inputText value="{!emailAlerts.BonusYear}"/>
-            </apex:column><br/>
-            <apex:column > 
-            <apex:commandButton value="Submit" action="{!submitAgencyBonusMap}"/>
+               <apex:inputText value="{!emailAlerts.BonusYear}"/>
+            </apex:column>
+            <br/>
+            <apex:column >
+               <apex:commandButton value="Submit" action="{!submitAgencyBonusMap}"/>
             </apex:column>
          </apex:pageblockTable>
-         </apex:pageblock>
-         <!--<apex:pageblock title="Bonus Link">
-         <apex:outputText >{!$Label.AF_isBonusLinkForAgency}</apex:outputText>
-        <apex:pageblockTable value="{!bonusLinkList}" var="c">
-            <apex:column headerValue="Name">
-            <apex:inputField value="{!c.Name}"/>
-            </apex:column><br/>
-            <apex:column headerValue="Bonus Date">
-            <apex:inputField value="{!c.Bonus_Date__c}"/>
-            </apex:column><br/>
-            
-            
-         </apex:pageblockTable>
-        
-            <apex:commandButton value="Submit" action="{!submitAgencyBonusMap}"/>
-           
-         </apex:pageblock>-->
-         <apex:pageblock title="Dummy User">
+      </apex:pageblock>
+      <apex:pageblock title="Dummy User">
          <apex:outputText >{!$Label.AF_DummyUserID}</apex:outputText>
-        <apex:pageblockTable value="{!dummyUserId}" var="t">
+         <apex:pageblockTable value="{!dummyUserId}" var="t">
             <apex:column headerValue="User ID">
-            <apex:inputText value="{!emailAlerts.dummyUserId}"/>
-            </apex:column><br/>
+               <apex:inputText value="{!emailAlerts.dummyUserId}"/>
+            </apex:column>
+            <br/>
             <apex:column >
-            <apex:commandButton value="Submit" action="{!submitDummyUserId}"/>
+               <apex:commandButton value="Submit" action="{!submitDummyUserId}"/>
             </apex:column>
          </apex:pageblockTable>
-    </apex:pageblock>
-    <apex:pageblock title="AFCMCO Rights">
-    <apex:outputText >{!$Label.AF_CMCO_Rights}</apex:outputText>
-        <apex:pageblockTable value="{!afCMCO}" var="t">
+      </apex:pageblock>
+      <apex:pageblock title="AFCMCO Rights">
+         <apex:outputText >{!$Label.AF_CMCO_Rights}</apex:outputText>
+         <apex:pageblockTable value="{!afCMCO}" var="t">
             <apex:column headerValue="CMCO Rights">
-            <apex:inputCheckbox value="{!emailAlerts.cmcoRights}"/>
-            </apex:column><br/>
+               <apex:inputCheckbox value="{!emailAlerts.cmcoRights}"/>
+            </apex:column>
+            <br/>
             <apex:column >
-            <apex:commandButton value="Submit" action="{!submitAFCMCO}"/>
+               <apex:commandButton value="Submit" action="{!submitAFCMCO}"/>
             </apex:column>
          </apex:pageblockTable>
-    </apex:pageblock>
-    <apex:pageblock title="CatFinanceThreshold">
-    <apex:outputText >{!$Label.AF_CatFinanceThreshold}</apex:outputText>
-        <apex:pageblockTable value="{!catFinThreshold}" var="t">
+      </apex:pageblock>
+      <apex:pageblock title="CatFinanceThreshold">
+         <apex:outputText >{!$Label.AF_CatFinanceThreshold}</apex:outputText>
+         <apex:pageblockTable value="{!catFinThreshold}" var="t">
             <apex:column headerValue="Threshold Date">
-            <apex:inputText value="{!emailAlerts.catFinDate}"/>
-            </apex:column><br/>
+               <apex:inputText value="{!emailAlerts.catFinDate}"/>
+            </apex:column>
+            <br/>
             <apex:column >
-            <apex:commandButton value="Submit" action="{!submitCatFinThreshold}"/>
+               <apex:commandButton value="Submit" action="{!submitCatFinThreshold}"/>
             </apex:column>
          </apex:pageblockTable>
-    </apex:pageblock>
-    <apex:pageblock title="BrandEstimate TriggerDate">
-    <apex:outputText >{!$Label.AF_BrandEstimate_TriggerDate}</apex:outputText>
-        <apex:pageblockTable value="{!brandTriggerDate}" var="t">
+      </apex:pageblock>
+      <apex:pageblock title="BrandEstimate TriggerDate">
+         <apex:outputText >{!$Label.AF_BrandEstimate_TriggerDate}</apex:outputText>
+         <apex:pageblockTable value="{!brandTriggerDate}" var="t">
             <apex:column headerValue="Currency Uploaded">
-            <apex:inputCheckbox value="{!emailAlerts.Brandcurrency}"/>
-            </apex:column><br/>
+               <apex:inputCheckbox value="{!emailAlerts.Brandcurrency}"/>
+            </apex:column>
+            <br/>
             <apex:column headerValue="Trigger Date">
-            <apex:inputText value="{!emailAlerts.BrandTriggerDate}"/>
-            </apex:column><br/>
+               <apex:inputText value="{!emailAlerts.BrandTriggerDate}"/>
+            </apex:column>
+            <br/>
             <apex:column >
-            <apex:commandButton value="Submit" action="{!submitbrandTriggerDate}"/>
+               <apex:commandButton value="Submit" action="{!submitbrandTriggerDate}"/>
             </apex:column>
          </apex:pageblockTable>
-    </apex:pageblock>
-    <apex:pageblock title="Bonus Quarterly">
-    <apex:outputText >{!$Label.AF_BonusQuarterly}</apex:outputText>
-        <apex:pageblockTable value="{!bonusQuarterly}" var="t">
+      </apex:pageblock>
+      <apex:pageblock title="Bonus Quarterly">
+         <apex:outputText >{!$Label.AF_BonusQuarterly}</apex:outputText>
+         <apex:pageblockTable value="{!bonusQuarterly}" var="t">
             <apex:column headerValue="Q1">
-            <apex:inputText value="{!emailAlerts.BonusQuartQ1}"/>
+               <apex:inputText value="{!emailAlerts.BonusQuartQ1}"/>
             </apex:column>
-            <!--<apex:column headerValue="Q2">
-            <apex:inputText value="{!emailAlerts.BonusQuartQ2}"/>
-            </apex:column>
-            <apex:column headerValue="Q3">
-            <apex:inputText value="{!emailAlerts.BonusQuartQ3}"/>
-            </apex:column>--><br/>
+            <br/>
             <apex:column >
-            <apex:commandButton value="Submit" action="{!submitBonusQuarterly}"/>
+               <apex:commandButton value="Submit" action="{!submitBonusQuarterly}"/>
             </apex:column>
          </apex:pageblockTable>
-    </apex:pageblock>
-   
-         <apex:pageblock title="Annual Bonus Qual">
+      </apex:pageblock>
+      <apex:pageblock title="Annual Bonus Qual">
          <apex:outputText >{!$Label.AF_AnnualBonus_Qual}</apex:outputText>
-        <apex:pageblockTable value="{!dummyList}" var="c">
+         <apex:pageblockTable value="{!dummyList}" var="c">
             <apex:column headerValue="Name">
-            <apex:inputText value="{!emailAlerts.qualName}"/>
+               <apex:inputText value="{!emailAlerts.qualName}"/>
             </apex:column>
             <apex:column headerValue="X1">
-            <apex:inputText value="{!emailAlerts.X1}"/>
+               <apex:inputText value="{!emailAlerts.X1}"/>
             </apex:column>
             <apex:column headerValue="X2">
-            <apex:inputText value="{!emailAlerts.X2}"/>
+               <apex:inputText value="{!emailAlerts.X2}"/>
             </apex:column>
             <apex:column headerValue="X3">
-            <apex:inputText value="{!emailAlerts.X3}"/>
+               <apex:inputText value="{!emailAlerts.X3}"/>
             </apex:column>
             <apex:column headerValue="X4">
-            <apex:inputText value="{!emailAlerts.X4}"/>
-            </apex:column> 
+               <apex:inputText value="{!emailAlerts.X4}"/>
+            </apex:column>
             <apex:column headerValue="X5">
-            <apex:inputText value="{!emailAlerts.X5}"/>
-            </apex:column> 
-        </apex:pageblockTable>
-        <apex:pageblockTable value="{!dummyList}" var="c">
-            <apex:column >
-            <apex:inputText value="{!emailAlerts.qualName1}"/>
+               <apex:inputText value="{!emailAlerts.X5}"/>
             </apex:column>
-            <apex:column >
-            <apex:inputText value="{!emailAlerts.X11}"/>
-            </apex:column>
-            <apex:column >
-            <apex:inputText value="{!emailAlerts.X22}"/>
-            </apex:column>
-            <apex:column >
-            <apex:inputText value="{!emailAlerts.X33}"/>
-            </apex:column>
-            <apex:column >
-            <apex:inputText value="{!emailAlerts.X44}"/>
-            </apex:column> 
-            <apex:column >
-            <apex:inputText value="{!emailAlerts.X55}"/>
-            </apex:column> 
-            
          </apex:pageblockTable>
-          
-            <apex:commandButton value="Submit" action="{!submitAnnualBonusQual}"/>
-           
-         </apex:pageblock>
-        <!-- <table>
-            <apex:outputText >{!$Label.AF_AnnualBonus_Qual}</apex:outputText>
-            <apex:outputText >{!$Label.AF_AnnualBonus_Qual}</apex:outputText>
-            <thead>
-                <tr>
-                    <th>
-                    Name
-                    </th>
-                    <th>
-                    X1
-                    </th>
-                    <th>
-                    X2
-                    </th>
-                    <th>
-                    X3
-                    </th>
-                    <th>
-                    X4
-                    </th>
-                    <th>
-                    X5
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                <td>
-                <apex:inputText value="{!emailAlerts.qualName}"/>
-                </td>
-                <td>
-                <apex:inputText value="{!emailAlerts.X1}"/>
-                </td>
-                <td>
-                <apex:inputText value="{!emailAlerts.X2}"/>
-                </td>
-                <td>
-                <apex:inputText value="{!emailAlerts.X3}"/>
-                </td>
-                <td>
-                <apex:inputText value="{!emailAlerts.X4}"/>
-                </td>
-                <td>
-                <apex:inputText value="{!emailAlerts.X5}"/>
-                </td>
-                </tr>
-                <tr>
-                <td>
-                <apex:inputText value="{!emailAlerts.qualName1}"/>
-                </td>
-                <td>
-                <apex:inputText value="{!emailAlerts.X11}"/>
-                </td>
-                <td>
-                <apex:inputText value="{!emailAlerts.X22}"/>
-                </td>
-                <td>
-                <apex:inputText value="{!emailAlerts.X33}"/>
-                </td>
-                <td>
-                <apex:inputText value="{!emailAlerts.X44}"/>
-                </td>
-                <td>
-                <apex:inputText value="{!emailAlerts.X55}"/>
-                </td>
-                <td>
-                <apex:commandButton value="Submit" action="{!submitAnnualBonusQual}"/>
-                </td>
-                </tr>
-                
-            </tbody>
-            
-         </table>-->
-         <apex:pageblock title="OOPS Percentage">
+         <apex:pageblockTable value="{!dummyList}" var="c">
+            <apex:column >
+               <apex:inputText value="{!emailAlerts.qualName1}"/>
+            </apex:column>
+            <apex:column >
+               <apex:inputText value="{!emailAlerts.X11}"/>
+            </apex:column>
+            <apex:column >
+               <apex:inputText value="{!emailAlerts.X22}"/>
+            </apex:column>
+            <apex:column >
+               <apex:inputText value="{!emailAlerts.X33}"/>
+            </apex:column>
+            <apex:column >
+               <apex:inputText value="{!emailAlerts.X44}"/>
+            </apex:column>
+            <apex:column >
+               <apex:inputText value="{!emailAlerts.X55}"/>
+            </apex:column>
+         </apex:pageblockTable>
+         <apex:commandButton value="Submit" action="{!submitAnnualBonusQual}"/>
+      </apex:pageblock>
+      <apex:pageblock title="OOPS Percentage">
          <apex:outputText >{!$Label.AF_OopsPercentage}</apex:outputText>
-        <apex:pageblockTable value="{!oopsPercentage}" var="t">
+         <apex:pageblockTable value="{!oopsPercentage}" var="t">
             <apex:column headerValue="OOps Percenatge">
-            <apex:inputText value="{!emailAlerts.oopsPercentage}"/>
-            </apex:column><br/>
+               <apex:inputText value="{!emailAlerts.oopsPercentage}"/>
+            </apex:column>
+            <br/>
             <apex:column >
-            <apex:commandButton value="Submit" action="{!submitoopsPercentage}"/>
+               <apex:commandButton value="Submit" action="{!submitoopsPercentage}"/>
             </apex:column>
          </apex:pageblockTable>
-    </apex:pageblock>
-    <apex:pageblock title="AF Links">
-    <apex:outputText >{!$Label.AF_CommunityLink}</apex:outputText>
-        <apex:pageblockTable value="{!afLinks}" var="t">
+      </apex:pageblock>
+      <apex:pageblock title="AF Links">
+         <apex:outputText >{!$Label.AF_CommunityLink}</apex:outputText>
+         <apex:pageblockTable value="{!afLinks}" var="t">
             <apex:column headerValue="Community Link">
-            <apex:inputText value="{!emailAlerts.links}"/>
-            </apex:column><br/>
+               <apex:inputText value="{!emailAlerts.links}"/>
+            </apex:column>
+            <br/>
             <apex:column >
-            <apex:commandButton value="Submit" action="{!submitAFLinks}"/>
+               <apex:commandButton value="Submit" action="{!submitAFLinks}"/>
             </apex:column>
          </apex:pageblockTable>
-    </apex:pageblock>
-</apex:form>
+      </apex:pageblock>
+   </apex:form>
 </apex:page>

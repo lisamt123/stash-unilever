@@ -1,144 +1,131 @@
+<!--  
+   *************************************************************************
+   *@Description:This page is used to do raise new po
+   *@Author: Cognizant
+   *@Created Date: 29/07/2014 
+   *************************************************************************
+   -->
 <apex:page controller="AF_RaisenewPO_Homepage_lightbox" showHeader="false" sidebar="false">
-<apex:includeScript value="{!URLFOR($Resource.FancyJquery17, 'jquery.min.js')}"/>
-<script type="text/javascript" language="javascript" src="{!URLFOR($Resource.jquery_ui_1_10_4,'js/jquery-ui-1.10.4.custom.js')}"></script>
-<script type="text/javascript" language="javascript" src="{!URLFOR($Resource.jquery_ui_1_10_4,'js/jquery-ui-1.10.4.custom.min.js')}"></script>
-<link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.jquery_ui_1_10_4,'css/smoothness/jquery-ui-1.10.4.custom.css')}"/>
-<link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.jquery_ui_1_10_4,'css/smoothness/jquery-ui-1.10.4.custom.min.css')}"/>
-  
-      
-       
-<script type="text/javascript">
-  var $ = jQuery.noConflict();
- 
-        function btnClick() {           
-            $('input[id*=theUpdate]').attr('value','Saving...');
-            $('input[id*=theUpdate]').attr('class','btnDisabled');
-            callSave();
-        }
-        
-        function btnComplete(){
-            $('input[id*=theUpdate]').attr('value','Saved');
-            $('input[id*=theUpdate]').attr('class','continue_btn');
-            return true;
-        }
-        
-        function selectAllCheckboxes(obj,receivedInputID){
-            var inputCheckBox = document.getElementsByTagName("input");
-            for(var i=0; i<inputCheckBox.length; i++){         
-                if(inputCheckBox[i].id.indexOf(receivedInputID)!=-1){                                    
-                     if(!inputCheckBox[i].disabled){
-                      inputCheckBox[i].checked = obj.checked;
-                  }
-                    
+   <apex:includeScript value="{!URLFOR($Resource.FancyJquery17, 'jquery.min.js')}"/>
+   <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.jquery_ui_1_10_4,'js/jquery-ui-1.10.4.custom.js')}"></script>
+   <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.jquery_ui_1_10_4,'js/jquery-ui-1.10.4.custom.min.js')}"></script>
+   <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.jquery_ui_1_10_4,'css/smoothness/jquery-ui-1.10.4.custom.css')}"/>
+   <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.jquery_ui_1_10_4,'css/smoothness/jquery-ui-1.10.4.custom.min.css')}"/>
+   <script type="text/javascript">
+      var $ = jQuery.noConflict();
+            function btnClick() {           
+                $('input[id*=theUpdate]').attr('value','Saving...');
+                $('input[id*=theUpdate]').attr('class','btnDisabled');
+                callSave();
+            }
+            function btnComplete(){
+                $('input[id*=theUpdate]').attr('value','Saved');
+                $('input[id*=theUpdate]').attr('class','continue_btn');
+                return true;
+            }
+            function selectAllCheckboxes(obj,receivedInputID){
+                var inputCheckBox = document.getElementsByTagName("input");
+                for(var i=0; i<inputCheckBox.length; i++){         
+                    if(inputCheckBox[i].id.indexOf(receivedInputID)!=-1){                                    
+                         if(!inputCheckBox[i].disabled){
+                          inputCheckBox[i].checked = obj.checked;
+                      }
+                    }
                 }
             }
-        }
-  function callclosepopup(){
-   CallClose();
-   }  
-  function sayhello(){
-  consile.log('hi');
-  }   
-        
-</script>
-
-<!-- Common_Style File Start -->
-<link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
-<!-- Common_Style File End -->
-
-<apex:form styleClass="AF_RaisenewPO_Homepage_lightbox">
-      
-    <apex:pageBlock id="pb1">
-    <apex:pageMessages ></apex:pageMessages>
-   
-   <div class="row">           
-        <div class="col-lg-12 charttable1">         
-            <apex:image url="{!$Resource.header_new}" styleClass="headimg" />            
-        </div>          
-    </div>
-     <div class="heading_main">
-       <h1 class="heading_text">Raise New PO</h1>
-      </div>
-     
-        <apex:outputlabel value="{!$Label.AF_Raise_New_PO}" styleClass="titleDescription"/>
-        <br/>
-     <apex:outputPanel layout="block" styleClass="tableCont">
-    <apex:pageBlockTable value="{!QuarterEstimate}"  var="QE" rendered="{!noBrandEstimateRecords}" rowClasses="even,odd">
-        <apex:column headerValue="Select">
-            <apex:facet name="header">       
-                <apex:outputPanel >
-                   
-                       
-                <apex:outputLabel value="Select All"/><br/>
-                 <apex:inputCheckbox value="{!QE.selected}" onclick="selectAllCheckboxes(this,'chk1')"/>
-                </apex:outputPanel>
-            </apex:facet>
-            <apex:inputCheckbox value="{!QE.selected}" id="chk1" onselect="selectedCheckbox()"/>
-        </apex:column>
-    
-        <apex:column headerValue="">
-            <apex:facet name="header">       
-            <apex:commandLink action="{!queryBrandEstimate}" rerender="pb1" styleClass="basefeeName" > Current Base Fee Name
-             
-            <img src="/img/sort_asc_arrow.gif" alt="Sorted Ascending" title="Sorted Ascending" width="21" align="texttop" height="14" style="{!IF((sortDir = 'asc'),'','display:none')}"/>            
-            <img src="/img/sort_desc_arrow.gif" alt="Sorted Descending" title="Sorted Descending" width="21" align="texttop" height="14" style="{!IF((sortDir = 'desc'),'','display:none')}"/>              
-            </apex:commandLink>
-            </apex:facet>
-            <apex:outputText value="{!QE.BrandRecord.name}" />
-        </apex:column>
-        <apex:column headerValue="">
-            <apex:inputCheckbox value="{!QE.Q1}" disabled="{!QE.Q1}" />
-            <apex:outputLabel >Q1</apex:outputLabel>
-        </apex:column> 
-        <apex:column headerValue="">
-            <apex:facet name="header">       
-                <apex:outputPanel >
-                    <br/>
-                    <apex:inputCheckbox value="{!QE.Q2}"  onclick="selectAllCheckboxes(this,'chk2')"/>
-                    <apex:outputLabel value="All"/>
-                </apex:outputPanel>
-            </apex:facet>
-            <apex:inputCheckbox id="chk2" value="{!QE.Q2}"  disabled="{!QE.Q2}"/>
-            <apex:outputLabel >Q2</apex:outputLabel>
-        </apex:column> 
-        <apex:column headerValue="">
-            <apex:facet name="header">       
-                <apex:outputPanel >
-                    <br/>
-                    <apex:inputCheckbox value="{!QE.Q3}"  onclick="selectAllCheckboxes(this,'chk3')"/>
-                    <apex:outputLabel value="All"/>
-                </apex:outputPanel>
-            </apex:facet>
-            <apex:inputCheckbox id="chk3"  value="{!QE.Q3}"  disabled="{!QE.Q3}"/>
-            <apex:outputLabel >Q3</apex:outputLabel>
-        </apex:column>
-        <apex:column headerValue="">
-            <apex:facet name="header">       
-                <apex:outputPanel >
-                    <br/>
-                    <apex:inputCheckbox value="{!QE.Q4}"  onclick="selectAllCheckboxes(this,'chk4')"/>
-                    <apex:outputLabel value="All"/>
-                </apex:outputPanel>
-            </apex:facet>
-            <apex:inputCheckbox id="chk4" value="{!QE.Q4}"  disabled="{!QE.Q4}"/>
-            <apex:outputLabel >Q4</apex:outputLabel>
-        </apex:column> 
-   
-    </apex:pageBlockTable>
-     </apex:outputPanel>
-    
-   <apex:commandButton action="{!showPopup}" styleClass="continue_btn" value="Continue" id="theButton" rerender="pb1" rendered="{!noBrandEstimateRecords}" /> 
-   <apex:outputPanel id="ContinuePopup">
-        <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!displayPopUp}"/>
+      function callclosepopup(){
+       CallClose();
+       }  
+      function sayhello(){
+      consile.log('hi');
+      }   
+   </script>
+   <!-- Common_Style File Start -->
+   <link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'common_style.css')}" type="text/css"/>
+   <!-- Common_Style File End -->
+   <apex:form styleClass="AF_RaisenewPO_Homepage_lightbox">
+      <apex:pageBlock id="pb1">
+         <apex:pageMessages ></apex:pageMessages>
+         <div class="row">
+            <div class="col-lg-12 charttable1">
+               <apex:image url="{!$Resource.header_new}" styleClass="headimg" />
+            </div>
+         </div>
+         <div class="heading_main">
+            <h1 class="heading_text">Raise New PO</h1>
+         </div>
+         <apex:outputlabel value="{!$Label.AF_Raise_New_PO}" styleClass="titleDescription"/>
+         <br/>
+         <apex:outputPanel layout="block" styleClass="tableCont">
+            <apex:pageBlockTable value="{!QuarterEstimate}"  var="QE" rendered="{!noBrandEstimateRecords}" rowClasses="even,odd">
+               <apex:column headerValue="Select">
+                  <apex:facet name="header">
+                     <apex:outputPanel >
+                        <apex:outputLabel value="Select All"/>
+                        <br/>
+                        <apex:inputCheckbox value="{!QE.selected}" onclick="selectAllCheckboxes(this,'chk1')"/>
+                     </apex:outputPanel>
+                  </apex:facet>
+                  <apex:inputCheckbox value="{!QE.selected}" id="chk1" onselect="selectedCheckbox()"/>
+               </apex:column>
+               <apex:column headerValue="">
+                  <apex:facet name="header">
+                     <apex:commandLink action="{!queryBrandEstimate}" rerender="pb1" styleClass="basefeeName" > Current Base Fee Name
+                        <img src="/img/sort_asc_arrow.gif" alt="Sorted Ascending" title="Sorted Ascending" width="21" align="texttop" height="14" style="{!IF((sortDir = 'asc'),'','display:none')}"/>            
+                        <img src="/img/sort_desc_arrow.gif" alt="Sorted Descending" title="Sorted Descending" width="21" align="texttop" height="14" style="{!IF((sortDir = 'desc'),'','display:none')}"/>              
+                     </apex:commandLink>
+                  </apex:facet>
+                  <apex:outputText value="{!QE.BrandRecord.name}" />
+               </apex:column>
+               <apex:column headerValue="">
+                  <apex:inputCheckbox value="{!QE.Q1}" disabled="{!QE.Q1}" />
+                  <apex:outputLabel >Q1</apex:outputLabel>
+               </apex:column>
+               <apex:column headerValue="">
+                  <apex:facet name="header">
+                     <apex:outputPanel >
+                        <br/>
+                        <apex:inputCheckbox value="{!QE.Q2}"  onclick="selectAllCheckboxes(this,'chk2')"/>
+                        <apex:outputLabel value="All"/>
+                     </apex:outputPanel>
+                  </apex:facet>
+                  <apex:inputCheckbox id="chk2" value="{!QE.Q2}"  disabled="{!QE.Q2}"/>
+                  <apex:outputLabel >Q2</apex:outputLabel>
+               </apex:column>
+               <apex:column headerValue="">
+                  <apex:facet name="header">
+                     <apex:outputPanel >
+                        <br/>
+                        <apex:inputCheckbox value="{!QE.Q3}"  onclick="selectAllCheckboxes(this,'chk3')"/>
+                        <apex:outputLabel value="All"/>
+                     </apex:outputPanel>
+                  </apex:facet>
+                  <apex:inputCheckbox id="chk3"  value="{!QE.Q3}"  disabled="{!QE.Q3}"/>
+                  <apex:outputLabel >Q3</apex:outputLabel>
+               </apex:column>
+               <apex:column headerValue="">
+                  <apex:facet name="header">
+                     <apex:outputPanel >
+                        <br/>
+                        <apex:inputCheckbox value="{!QE.Q4}"  onclick="selectAllCheckboxes(this,'chk4')"/>
+                        <apex:outputLabel value="All"/>
+                     </apex:outputPanel>
+                  </apex:facet>
+                  <apex:inputCheckbox id="chk4" value="{!QE.Q4}"  disabled="{!QE.Q4}"/>
+                  <apex:outputLabel >Q4</apex:outputLabel>
+               </apex:column>
+            </apex:pageBlockTable>
+         </apex:outputPanel>
+         <apex:commandButton action="{!showPopup}" styleClass="continue_btn" value="Continue" id="theButton" rerender="pb1" rendered="{!noBrandEstimateRecords}" />
+         <apex:outputPanel id="ContinuePopup">
+            <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!displayPopUp}"/>
             <apex:outputPanel styleClass="custPopup custPopup1" layout="block" rendered="{!displayPopUp}">
-                "{!$Label.AF_RaiseNewPOConfirmMsg}"<br/><br/><br/>
-               <!-- <apex:actionFunction name="callSave" action="{!saveBrandEstimate}" reRender="pb1"/> --> 
-                 <apex:commandButton value="Confirm" id="theUpdate" onclick="this.disabled=true;" action="{!saveBrandEstimate}" styleClass="continue_btn" reRender="pb1"/>
-                <!-- <apex:commandButton value="X" styleClass="closeButton" action="{!closePopup}" rerender="ContinuePopup"/>-->
-                <apex:actionFunction name="CallClose" action="{!closePopup}" reRender="ContinuePopup"/>
-                <apex:image url="{!$Resource.Green_Close}" styleClass="closeButton2" onclick="callclosepopup();" />
+               "{!$Label.AF_RaiseNewPOConfirmMsg}"<br/><br/><br/>
+               <apex:commandButton value="Confirm" id="theUpdate" onclick="this.disabled=true;" action="{!saveBrandEstimate}" styleClass="continue_btn" reRender="pb1"/>
+               <apex:actionFunction name="CallClose" action="{!closePopup}" reRender="ContinuePopup"/>
+               <apex:image url="{!$Resource.Green_Close}" styleClass="closeButton2" onclick="callclosepopup();" />
             </apex:outputPanel>
-        </apex:outputPanel>
-    </apex:pageBlock>
-</apex:form>
+         </apex:outputPanel>
+      </apex:pageBlock>
+   </apex:form>
 </apex:page>
