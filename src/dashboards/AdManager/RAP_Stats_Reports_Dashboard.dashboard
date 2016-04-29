@@ -486,7 +486,6 @@
             <useReportChart>false</useReportChart>
         </components>
     </rightSection>
-    <runningUser>anusha.sanagaram@mindtree.com</runningUser>
     <textColor>#000000</textColor>
     <title>RAP Stats Reports Dashboard</title>
     <titleColor>#000000</titleColor>
