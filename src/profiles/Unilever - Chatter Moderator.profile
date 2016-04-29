@@ -4457,10 +4457,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>Test_af_SendCurrencyReminder</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>TriggerDispatcherBase</apexClass>
         <enabled>false</enabled>
     </classAccesses>
