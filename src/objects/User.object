@@ -231,6 +231,18 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>E_Voucher_Refund_Limit__c</fullName>
+        <description>CEC E-Voucher Refund Limit capture&apos;s the user’s refund limit</description>
+        <externalId>false</externalId>
+        <label>E-Voucher Refund Limit</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Edit_Article_Template_Front_End__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Ability to change the article content in the front end (the button Edit will be visible)</description>

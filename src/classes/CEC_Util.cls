@@ -203,5 +203,18 @@ public class CEC_Util {
                                          (finalReasonCodeConcatValue + reason4):finalReasonCodeConcatValue;                                         
         return finalReasonCodeConcatValue;
     }
+    
+    public static Boolean isValidEmailAddress(String emailAddress){
+        if(emailAddress != null && emailAddress.trim() != null && emailAddress.trim().length() > 0){
+            String[] split = emailAddress.split('@');
+            if(split != null && split.size() == 2){
+                split = split[1].split('\\.');
+                if(split != null && split.size() >= 2){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 	    
 }

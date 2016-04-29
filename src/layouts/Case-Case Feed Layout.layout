@@ -437,9 +437,6 @@
             <quickActionName>FeedItem.TextPost</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
-            <quickActionName>Case.Email</quickActionName>
-        </quickActionListItems>
-        <quickActionListItems>
             <quickActionName>FeedItem.ContentPost</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
@@ -476,6 +473,15 @@
         <relatedList>cec_Fulfilment__c.Case__c</relatedList>
         <sortField>NAME</sortField>
         <sortOrder>Desc</sortOrder>
+    </relatedLists>
+    <relatedLists>
+        <customButtons>New_Retrieval_Request</customButtons>
+        <excludeButtons>New</excludeButtons>
+        <fields>NAME</fields>
+        <fields>Appointment_Date__c</fields>
+        <fields>Retrieval_Status__c</fields>
+        <fields>Submitted_Date__c</fields>
+        <relatedList>CEC_Retrieval_Request__c.Case__c</relatedList>
     </relatedLists>
     <relatedLists>
         <excludeButtons>New</excludeButtons>

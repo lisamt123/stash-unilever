@@ -71,6 +71,10 @@
         <name>Debit_Card_Refund_Limit__c</name>
     </fields>
     <fields>
+        <label><!-- E-Voucher Refund Limit --></label>
+        <name>E_Voucher_Refund_Limit__c</name>
+    </fields>
+    <fields>
         <help><!-- Ability to change the article content in the front end (the button Edit will be visible) --></help>
         <label><!-- Edit Article Template Front End --></label>
         <name>Edit_Article_Template_Front_End__c</name>

@@ -37,6 +37,14 @@
         <name>CaseOrigin__c</name>
     </fields>
     <fields>
+        <label><!-- Company Address --></label>
+        <name>Company_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Phone --></label>
+        <name>Company_Phone__c</name>
+    </fields>
+    <fields>
         <label><!-- Country --></label>
         <name>Country__c</name>
         <relationshipLabel><!-- Case Market Mappings --></relationshipLabel>

@@ -850,6 +850,14 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Document Number --></label>
+        <name>Document_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Document Type --></label>
+        <name>Document_Type__c</name>
+    </fields>
+    <fields>
         <help><!-- Per Week --></help>
         <label><!-- Tea Drinking Frequency --></label>
         <name>Drinking_frequency__c</name>
@@ -1649,6 +1657,10 @@
         <sections>
             <label><!-- Debit Card --></label>
             <section>Debit Card</section>
+        </sections>
+        <sections>
+            <label><!-- Identifier Information --></label>
+            <section>Identifier Information</section>
         </sections>
         <sections>
             <label><!-- Preferences --></label>

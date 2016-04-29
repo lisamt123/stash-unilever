@@ -22,6 +22,10 @@
         <name>Alert_Retention_Days__c</name>
     </fields>
     <fields>
+        <label><!-- Brazil Factory Response Email Id --></label>
+        <name>Brazil_Factory_Response_Email_Id__c</name>
+    </fields>
+    <fields>
         <label><!-- Cosmetovigilence CaseId Reference --></label>
         <name>Cosmetovigilence_CaseId_Reference__c</name>
     </fields>
@@ -32,6 +36,10 @@
     <fields>
         <label><!-- Debit Card Expiry Days --></label>
         <name>Debit_Card_Expiry_Days__c</name>
+    </fields>
+    <fields>
+        <label><!-- E-Voucher Expiry Days --></label>
+        <name>E_Voucher_Expiry_Days__c</name>
     </fields>
     <fields>
         <label><!-- Factory Investigation Survey ID --></label>
