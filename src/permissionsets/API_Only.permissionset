@@ -610,6 +610,14 @@
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
+        <recordType>WU_Master_Warehouse__c.Edit_Warehouse_Capacity</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>WU_Master_Warehouse__c.New_Warehouse_Capacity</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
         <recordType>aa_Agent_App_Competitor_Brand__c.Competitor_Brand</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>

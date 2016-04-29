@@ -2101,6 +2101,24 @@
         </sections>
     </reportTypes>
     <reportTypes>
+        <description><!-- WU Warehouse Capacity Detail --></description>
+        <label><!-- WU Warehouse Capacity Detail --></label>
+        <name>WU_Warehouse_Capacity_Detail</name>
+        <sections>
+            <label><!-- Warehouse Capacity Detail --></label>
+            <name>Warehouse Capacity Detail</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Warehouse Utilization --></description>
+        <label><!-- Warehouse Utilization --></label>
+        <name>Warehouse_Utilization</name>
+        <sections>
+            <label><!-- Warehouse Capacitys --></label>
+            <name>Warehouse Capacitys</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
         <description><!-- Win@POS Upload Stats --></description>
         <label><!-- Win@POS Upload Stats --></label>
         <name>Win_POS_Upload_Stats</name>

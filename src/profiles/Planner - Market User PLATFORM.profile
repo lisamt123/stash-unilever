@@ -1440,6 +1440,20 @@
         <layout>Users_Category__c-Users Category Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>WU_Master_Warehouse__c-ADMIN  Warehouse Capacity CustomLayout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>WU_Master_Warehouse__c-ADMIN  Warehouse Capacity CustomLayout</layout>
+        <recordType>WU_Master_Warehouse__c.Edit_Warehouse_Capacity</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>WU_Master_Warehouse__c-ADMIN  Warehouse Capacity CustomLayout</layout>
+        <recordType>WU_Master_Warehouse__c.New_Warehouse_Capacity</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>WU_Warehouse_Capacity_Detail__c-Custom Warehouse Capacity Utilizaion Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>WorkAccess-Access Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -2539,6 +2553,16 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>PersonAccount.Pitch_Expert</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>WU_Master_Warehouse__c.Edit_Warehouse_Capacity</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>WU_Master_Warehouse__c.New_Warehouse_Capacity</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
