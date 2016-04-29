@@ -110,9 +110,8 @@
                                                             </div> 
                                                             <div class="ipmAcrdnExpand"> 
                                                              <ul class="docFilter accordionFilters">
-                                                                    <apex:repeat value="{!rolloutWrapper.lstFinancials}" var="financial">  
-                                                                        <li class="{!IF(financial.Status__c == $Label.IPM_SUBMITTED, $Label.IPM_SUBMIT_CODE, IF(financial.Status__c == $Label.IPM_IN_PROGRESS, $Label.IPM_PROGRESS_CODE, $Label.IPM_NOT_STARTED_CODE))} {!IF(currentFinancialId == financial.Id, $Label.IPM_Selected, '')} finRecord">
-                                                                            <div class="incHeight" id="flagID">              
+                                                                    <apex:repeat value="{!rolloutWrapper.lstFinancials}" var="financial">
+                                                                             <li class="{!IF(fieldSuffix == 'Global',IF(financial.Status_Global__c == 'Submitted', $Label.IPM_SUBMIT_CODE,IF(financial.Status_Global__c == 'In Progress', $Label.IPM_PROGRESS_CODE,$Label.IPM_NOT_STARTED_CODE)),IF(fieldSuffix == 'Regional',IF(financial.Status_Regional__c == 'Submitted', $Label.IPM_SUBMIT_CODE,IF(financial.Status_Regional__c == 'In Progress',$Label.IPM_PROGRESS_CODE,$Label.IPM_NOT_STARTED_CODE)),IF(fieldSuffix == 'Local',IF(financial.Status_Local__c == 'Submitted',$Label.IPM_SUBMIT_CODE,IF(financial.Status_Local__c == 'In Progress',$Label.IPM_PROGRESS_CODE, $Label.IPM_NOT_STARTED_CODE)),'')))} finRecord"> <div class="incHeight" id="flagID">
                                                                                 <span class="key wordwrap">
                                                                                     <!-- Rendered if bollean showKeyFinancial is true and custom field IPM_Key_Financial__c is true-->    
                                                                                     <apex:image styleClass="wid26" value="{!URLFOR($Resource.IPM_Resource, 'images/flag.svg')}" rendered="{!AND(showKeyFinancial,financial.IPM_Key_Financial__c)}" />

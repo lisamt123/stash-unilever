@@ -219,13 +219,7 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
         //recalculate TLD when rollout is deleted
         IPM_Project_Rollout__c newRollout = (IPM_Project_Rollout__c)so; 
         rolloutProjectTLDChanged.put(newRollout.Id,newRollout);
-        if(!globalProjIdRollout.containskey(newRollout.IPM_Project__c) && !globalProjIdRollout.containskey(newRollout.Regional_Project__c)){
-            if(newRollout.Regional_Project__c != null){
-                globalProjIdRollout.put(newRollout.Regional_Project__c,newRollout);  
-            } else if(newRollout.IPM_Project__c != null){
-                globalProjIdRollout.put(newRollout.IPM_Project__c,newRollout); 
-            }
-        }   
+          
     }
     
     /**

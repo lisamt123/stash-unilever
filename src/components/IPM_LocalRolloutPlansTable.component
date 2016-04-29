@@ -230,6 +230,7 @@ This componet used for regional rollout project
                                         </th>
                                         <th scope="col" width="190px" colspan="1">
                                             <div class="incHeight">
+												<apex:inputHidden value="{!changeDateVal}" id="hiddenDateVal"/> 
                                                 <apex:outputField value="{!localRollout.Target_Launch_Date__c}" rendered="{!NOT(isEditMode)}"/>
                                                 <apex:inputField value="{!lstcompleteRollout[localRolloutDuplicateId].Target_Launch_Date__c}" styleClass="dateInputBox calendar{!IF(AND(nonKeyMcoTLDMisaligned, NOT(localRollout.KeyMCO__c)), ' misaligned', '')}"  rendered="{!isEditMode}" onchange="checkTLDDate(this)"/>
                                             </div>
@@ -360,10 +361,7 @@ This componet used for regional rollout project
                         <div class="row">    
                             <div class="col-sm-12"> 
                                 <span class="skipDesc">
-                                    <apex:outputText value="{!$Label.IPM_PhaseChangeBKProcessWarning_Local}" escape="false"/>
-                                    <apex:outputPanel layout="block" styleClass="localModalDesc">
-                                        {!$Label.IPM_PhaseChangeBKProcessSecondWarning_Local}
-                                    </apex:outputPanel>
+                                    <apex:outputText value="{!$Label.IPM_PhaseChangeBKProcessWarning_Local}" escape="false"/>                                    
                                 </span> 
                             </div>            
                             <div class="skipButtoncontainer txtAlignright pull-right">
@@ -403,38 +401,17 @@ This componet used for regional rollout project
                             </div>
                             <div class="buttonMarginRight noPadright pull-left" >
                                 <!-- <span class="ipmButton primary" data-dismiss="modal" >Agree and Proceed</span> -->
-                    <apex:commandLink value="{!$Label.Agree_and_Proceed}"  rendered="{!AND(isEditable,project.IPM_Phase__c!=null)}" styleClass="coreparameters custMarginbottom ipmButton primary"  oncomplete="hideTldWarningDialog();" >
+                    <apex:commandLink value="{!$Label.Agree_and_Proceed}"  rendered="{!AND(isEditable,project.IPM_Phase__c!=null)}" styleClass="coreparameters custMarginbottom ipmButton primary"  onclick="setChangedDate();skipValidation();" oncomplete="hideTldWarningDialog();" reRender="fakeId">
                     </apex:commandLink>
-                        
-                            </div>
+                     
+                        <apex:actionFunction name="saveChangedTLDjs" action="{!saveRollout}" rerender=""/>
+                               </div>
                         </div>
                     </div>        
                 </div>
             </div>
         </div>
     </div>
-<script>
-    function checkTLDDate(param){
 
-        selectedDateInputBox = param;
-        var newTLDValue = param.defaultValue;
-        tldOrignalValue = param.value;
-        if(newTLDValue != tldOrignalValue){
-            jq('#tldWarningDialog').modal('show'); 
-            return false;
-        }
-        return true;
-    }
-    function revertTLDValue(){
-       // jq('.dateInputBox').val(tldOrignalValue);
-       selectedDateInputBox.value = selectedDateInputBox.defaultValue;
-    }
-    function hideTldWarningDialog(){
-        jq('#tldWarningDialog').modal('hide'); 
-    }
-    var selectedDateInputBox = "";
-    
-</script>   
-      
 <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_LocalRolloutPlans.js')}" type="text/javascript"></script>    
 </apex:component>

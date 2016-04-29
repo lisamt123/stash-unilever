@@ -505,10 +505,10 @@
         .assortList1,.assortList2{border:1px solid #c9c9c9 ;background:#fff ;left: 0px ;padding:0px ;top: 45px;margin-right:0px ;margin-top:15px ;}
         .assortList1 .ipmDropbuttons,.channelList .ipmDropreset{font-weight:bold;cursor:pointer;}
         .assortList1:before, .assortList2:before{left: 8%;top: -8px;position: absolute;border-top: 1px #c9c9c9 solid;border-right: 1px #c9c9c9 solid;background: #fff;content: " ";height: 15px;width: 15px;-ms-transform:rotate(-45deg);transform: rotate(-45deg);}
-        .customerstaticLabel{font-weight:normal;color:#666666;font-size:1em;padding-right: 8px ;padding-top: 0px;padding-left: 8px ;}
+        .customerstaticLabel{font-weight:normal;color:#666;font-size:1em;padding-right: 8px ;padding-top: 0px;padding-left: 8px ;}
         .scroll{height:300px;overflow:auto;}
         .assortSelect1:after, .assortSelect2:after{display: block;font-family: FontAwesome;content: "\f107";font-size: 1.4em;position: absolute;top: 3px;right: 0px;margin-right: 4px;top: 1px\9;right: 1px\9;width: 20px;height: 20px;text-align: center;background: #fff;color: #000;}        
-        .nopadLeft{padding-left:0px ;}
+        div.nopadLeft{padding-left:0px ;}
         .nopadRight{padding-right:0px ;}
         .icoButton{display: inline-block;width: 30px;margin: 0px 5px;height: 30px;border: 1px solid #1568b6;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;}
         .textwidth{width:100%;}    
@@ -838,3 +838,4 @@ div.metric table.ecoDesignCountry tbody tr td div.cellWidth:first-child{
     float: left;
     padding-left: 10px;
  }
+ .assortChannelList1 .assortList1{background:#fff;min-width: 270px;margin-top:10px;}

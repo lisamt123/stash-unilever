@@ -4,8 +4,8 @@
 * @description  This class is used to test the functionality of IPM_FinancialController class 
 */
 @isTest 
-public class IPM_FinancialController_Test { 
-    
+public class IPM_FinancialController_Test {
+   
     private static final string SELCTED_CURRENCY_EUR = 'EUR';
     private static final string SELCTED_CURRENCY_GBP = 'GBP';
     private static final string PROJECT_BI_LARGE = 'Large';
@@ -20,6 +20,16 @@ public class IPM_FinancialController_Test {
     private static final integer EXEC_PART_4 = 4;
     private static final integer EXEC_PART_5 = 5;
     private static final integer EXEC_PART_6 = 6;
+    private static final string INVALID_PROJECT_NAME = 'Invalid project name';
+    private static final string INVALID_ROLLOUT_NAME = 'Invalid rollout name';
+    private static final string INVALID_SPAN_NAME = 'Invalid span name';
+    private static final string INVALID_PROJECT_TYPE = 'Invalid project type';
+    private static final string INVALID_FINACIAL_EXT_ID = 'Invalid Financial external id';
+    private static final string MISALINGNED_NOT_CONFIRMED = 'Misaligned confirmation not found';
+    private static final string INCORRECT_LIST_SIZE = 'data size not matched';
+    private static final string INVALID_INDEX = 'Invalid index found';
+    private static final string INCORRECT_NAVIGATION_RESULT = 'Incorrect Navigation found';
+    
     
     //This method creates required global, regional and local projects and rollouts, also related financials. These records are then accessed across the testmethods.
     @testSetup static void financialSetUp() 
@@ -99,7 +109,7 @@ public class IPM_FinancialController_Test {
             system.assert(countryList.size()>0, 'country records not created');
         }
         
-        ///Create id set from projectlist
+        //Create id set from projectlist
         list<id> liGlobIds = new list<id>();
         set<id> setIds = new set<Id>();
         
@@ -139,10 +149,10 @@ public class IPM_FinancialController_Test {
             list<IPM_Project_Rollout__c> selRolloutList = [select KeyMCO__c, IPM_Regional_PL__c, IPM_Project_Job_Status__c, IPM_RolloutJobType__c, Target_Launch_Date__c, Previous_Target_Launch_Date__c from IPM_Project_Rollout__c where id in :setIds];
             for(IPM_Project_Rollout__c localRollout : selRolloutList)
             {
-                system.assertEquals(localRollout.KeyMCO__c, true);
-                system.assertEquals(localRollout.IPM_Regional_PL__c, userList[2].Id);
-                system.assertEquals(localRollout.IPM_Project_Job_Status__c, IPM_ConstantUtils.JOB_STATUS_ELIGIBLE);
-                system.assertEquals(localRollout.Previous_Target_Launch_Date__c, System.today()); //To cover 2523 line
+                system.assertEquals(localRollout.KeyMCO__c, true, 'Key MCO  is false');
+                system.assertEquals(localRollout.IPM_Regional_PL__c, userList[2].Id, 'Regional PL is null');
+                system.assertEquals(localRollout.IPM_Project_Job_Status__c, IPM_ConstantUtils.JOB_STATUS_ELIGIBLE, 'Job Status not eligible found');
+                system.assertEquals(localRollout.Previous_Target_Launch_Date__c, System.today(), 'target lanuch date is not today'); //To cover 2523 line
             }
         }
 
@@ -210,19 +220,29 @@ public class IPM_FinancialController_Test {
             system.assertEquals(pf, null,'page reference not set');
         ipmFinCon.changeSustainabilityPeriod();
          //is there an assert we can add here for sustainability period ?
-        system.assertEquals(ipmFinCon.sustainabilityPeriodChanging,true);
+        system.assertEquals(ipmFinCon.sustainabilityPeriodChanging,true, 'Sustainability period is false');
         
         ipmFinCon.refreshFinancials();
         system.assert(ipmFinCon.errorMessage.contains(Label.IPM_PLEASE_CONTACT_ADMINISTRATOR),'error message not captured');
         //assert fieldsuffix is set to Regional after financials are refreshed
         system.assertEquals(ipmFinCon.fieldsuffix, 'Regional', 'field suffix not set properly, financials will not be loaded as per tab');
+        
         ipmFinCon.editFinancials();
+        ipmFinCon.toShowEditButton = null;
+        system.assert(ipmFinCon.errorMessage.contains(Label.IPM_PLEASE_CONTACT_ADMINISTRATOR),'error message not captured');
         system.assertEquals(ipmFinCon.isEditMode, true,'Edit mode not set');
+        
         ipmFinCon.updateMisalignmentByFinanceLeader();
         system.assert(ipmFinCon.errorMessage.contains(Label.IPM_PLEASE_CONTACT_ADMINISTRATOR),'error message not captured');
         
         pf = ipmFinCon.loadCurrencyPage();
         system.assertEquals(pf, null, 'Page reference is null');
+        
+        ipmFincon.currentFinancial=null;
+        ipmFincon.refreshFromLocal();
+        system.assert(ipmFinCon.errorMessage.contains(Label.IPM_PLEASE_CONTACT_ADMINISTRATOR),'error message not captured');
+        ipmFincon.refreshFromRegional();
+        system.assert(ipmFinCon.errorMessage.contains(Label.IPM_PLEASE_CONTACT_ADMINISTRATOR),'error message not captured');
      }
      
      //Use case: Global original Feasibility phase and NON consilidate financnials
@@ -231,7 +251,7 @@ public class IPM_FinancialController_Test {
              //Name hard coded as we know it from nameset. It will be hard to make it dynamic.
              IPM_Project__c globalOriginal = [select id, name, IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c, BI__c, IPM_Target_Launch_Dates__c  from IPM_Project__c where IPMProject_Span__c='Global' and IPM_Project_Type__c='Original'  and Name='TestComments1' limit 1];
              system.assert(globalOriginal!=null, 'Global original project not created');
-             system.assertEquals(globalOriginal.name, 'TestComments1');
+             system.assertEquals(globalOriginal.name, 'TestComments1', INVALID_PROJECT_NAME);
              
              //Finance record for global project which is NON consolidate             
              IPM_Financial__c globFin = [select id, Financial_External_ID__c, Target_Launch_Date__c, RecordTypeId, Regional_External_Id__c, 
@@ -269,13 +289,13 @@ public class IPM_FinancialController_Test {
              //Name hard coded as we know it from nameset. It will be hard to make it dynamic.
              IPM_Project__c globalOriginal = [select id, name, IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c, BI__c, IPM_Target_Launch_Dates__c  from IPM_Project__c where IPMProject_Span__c='Global' and IPM_Project_Type__c='Original' and Name='TestComments1' limit 1];
              system.assert(globalOriginal!=null, 'Global project not created');
-             system.assertEquals(globalOriginal.name, 'TestComments1');
+             system.assertEquals(globalOriginal.name, 'TestComments1', INVALID_PROJECT_NAME);
              
              //Finance record for global project which is NON consolidate             
              IPM_Financial__c globFin = [select id, Financial_External_ID__c, Target_Launch_Date__c, RecordTypeId, Regional_External_Id__c, 
              Project_Sustainability_Period__c, Status__c, isGateSubmissionDue__c from IPM_Financial__c where Financial_External_ID__c='TestComments1_LA_CONSOLIDATED'];
              system.assert(globFin!=null, 'Finance record not found.');
-             system.assertEquals(globFin.Financial_External_ID__c, 'TestComments1_LA_CONSOLIDATED');
+             system.assertEquals(globFin.Financial_External_ID__c, 'TestComments1_LA_CONSOLIDATED', INVALID_FINACIAL_EXT_ID);
              
              setPage(globalOriginal.id);
              IPM_FinancialController ipmFinCon = new IPM_FinancialController();
@@ -292,9 +312,9 @@ public class IPM_FinancialController_Test {
              
              ipmFinCon.updateMisalignmentByFinanceLeader();
              ipm_project__c sel = [select IPM_Project_Type__c,IPMProject_Span__c, MisAligned_Confirmed_By_Finance_Leader__c from ipm_project__c where id = :globalOriginal.id];
-             system.assertEquals(sel.IPM_Project_Type__c, 'Original');
-             system.assertEquals(sel.IPMProject_Span__c, 'Global');
-             system.assertEquals(ipmFinCon.showMisalignedConfirmbtn, true);
+             system.assertEquals(sel.IPM_Project_Type__c, 'Original', INVALID_PROJECT_TYPE);
+             system.assertEquals(sel.IPMProject_Span__c, 'Global', INVALID_SPAN_NAME);
+             system.assertEquals(ipmFinCon.showMisalignedConfirmbtn, true, MISALINGNED_NOT_CONFIRMED);
              
              //asserts are in source method to check tab load
              loadTab(globalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_MYVIEW_NAME);
@@ -311,13 +331,13 @@ public class IPM_FinancialController_Test {
              //Name hard coded as we know it from nameset. It will be hard to make it dynamic.
              IPM_Project__c regionalRolloutNC = [select id, name, IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c, BI__c, IPM_Target_Launch_Dates__c  from IPM_Project__c where IPMProject_Span__c='Regional' and IPM_Project_Type__c='Rollout' and Name='TestComments1_LA' limit 1];
              system.assert(regionalRolloutNC!=null,'Regional rollout record for non consolidate not found');
-             system.assertEquals(regionalRolloutNC.name, 'TestComments1_LA');
+             system.assertEquals(regionalRolloutNC.name, 'TestComments1_LA', INVALID_PROJECT_NAME);
              
              //Finance record for global project which is NON consolidate             
              IPM_Financial__c regionalRolloutNCFin = [select id, Financial_External_ID__c, Target_Launch_Date__c, RecordTypeId, Regional_External_Id__c, 
              Project_Sustainability_Period__c, Status__c, isGateSubmissionDue__c from IPM_Financial__c where Financial_External_ID__c='TestComments1_LA_BR'];
              system.assert(regionalRolloutNCFin!=null, 'Finance record for regional rollout project could not be found');
-             system.assertEquals(regionalRolloutNCFin.Financial_External_ID__c, 'TestComments1_LA_BR');
+             system.assertEquals(regionalRolloutNCFin.Financial_External_ID__c, 'TestComments1_LA_BR', 'Invalid financial external id found');
              
              pageReference pf = setPage(regionalRolloutNC.id);
              IPM_FinancialController ipmFinCon = new IPM_FinancialController();
@@ -348,13 +368,18 @@ public class IPM_FinancialController_Test {
              //Name hard coded as we know it from nameset. It will be hard to make it dynamic.
              IPM_Project__c regionalRollout = [select id, name, IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c, BI__c, IPM_Target_Launch_Dates__c, IPM_Parent_Project__c  from IPM_Project__c where IPMProject_Span__c='Regional' and IPM_Project_Type__c='Rollout' and Name='TestComments1_LA' limit 1];
              system.assert(regionalRollout!=null,'Regional rollout consolidate record not found.');
-             system.assertEquals(regionalRollout.name, 'TestComments1_LA');
+             system.assertEquals(regionalRollout.name, 'TestComments1_LA', INVALID_PROJECT_NAME);
+             
+             regionalRollout.BI__c = 'Large';
+             update regionalRollout;
+             IPM_Project__c sel = [select BI__c from IPM_Project__c where id=:regionalRollout.id];
+             system.assertEquals(sel.BI__c, 'Large','BI did not update');
              
              //Finance record for global project which is NON consolidate             
              IPM_Financial__c regFinCon = [select id, Financial_External_ID__c, Target_Launch_Date__c, RecordTypeId, Regional_External_Id__c, 
              Project_Sustainability_Period__c, Status__c, isGateSubmissionDue__c, Parent_Project__c from IPM_Financial__c where Financial_External_ID__c='TestComments1_LA_CONSOLIDATED'];
              system.assert(regFinCon!=null,'Finance record for regional rollout not found.');
-             system.assertEquals(regFinCon.Financial_External_ID__c, 'TestComments1_LA_CONSOLIDATED');
+             system.assertEquals(regFinCon.Financial_External_ID__c, 'TestComments1_LA_CONSOLIDATED', INVALID_FINACIAL_EXT_ID);
              
              setPage(regionalRollout.id);
              IPM_FinancialController ipmFinCon = new IPM_FinancialController();
@@ -385,21 +410,23 @@ public class IPM_FinancialController_Test {
              //Name hard coded as we know it from nameset. It will be hard to make it dynamic.
              IPM_Project__c regionalOriginal = [select id, name, IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c, BI__c, IPM_Target_Launch_Dates__c  from IPM_Project__c where IPMProject_Span__c='Regional' and IPM_Project_Type__c='Original' and Name='TestRegionalComments1' limit 1];
              system.assert(regionalOriginal!=null,'Regional original record (Regional company card) record not found.');
-             system.assertEquals(regionalOriginal.name, 'TestRegionalComments1');
+             system.assertEquals(regionalOriginal.name, 'TestRegionalComments1', INVALID_PROJECT_NAME);
              
              //Finance record for global project which is NON consolidate             
              IPM_Financial__c regionalOrigFin = [select id, Financial_External_ID__c, Target_Launch_Date__c, RecordTypeId, Regional_External_Id__c, 
              Project_Sustainability_Period__c, Status__c, isGateSubmissionDue__c, Parent_Project__c from IPM_Financial__c where Financial_External_ID__c='TestRegionalComments1_UMCA'];
              system.assert(regionalOrigFin!=null,'Finance record for regional company card project (regional original) not found');
-             system.assertEquals(regionalOrigFin.Financial_External_ID__c, 'TestRegionalComments1_UMCA');
+             system.assertEquals(regionalOrigFin.Financial_External_ID__c, 'TestRegionalComments1_UMCA', INVALID_FINACIAL_EXT_ID);
              
              regionalOrigFin.Parent_Project__c = regionalOriginal.id;
              regionalOrigFin.Copy_Local_to_Regional__c = true;
              regionalOrigFin.Copy_Regional_to_Local__c = true;
              //parent project is not populated when financials are created from TestFactory so update manually.
              update regionalOrigFin;
-             //asserts starts below    
-	     Test.startTest();
+             //asserts starts below 
+             
+             Test.startTest();
+                
              setPage(regionalOriginal.id);
              IPM_FinancialController ipmFinCon = new IPM_FinancialController();
              ipmFinCon.project = regionalOriginal;
@@ -409,11 +436,10 @@ public class IPM_FinancialController_Test {
              
              ipmFinCon.updateMisalignmentByFinanceLeader();
              ipm_project__c sel = [select IPM_Project_Type__c, IPMProject_Span__c, MisAligned_Confirmed_By_Finance_Leader__c from ipm_project__c where id = :regionalOriginal.id];
-             system.assertEquals(sel.IPM_Project_Type__c, 'Original');
-             system.assertEquals(sel.IPMProject_Span__c, 'Regional');
-             system.assertEquals(ipmFinCon.showMisalignedConfirmbtn, true);
+             system.assertEquals(sel.IPM_Project_Type__c, 'Original', INVALID_PROJECT_TYPE);
+             system.assertEquals(sel.IPMProject_Span__c, 'Regional', INVALID_SPAN_NAME);
+             system.assertEquals(ipmFinCon.showMisalignedConfirmbtn, true, MISALINGNED_NOT_CONFIRMED);
              
-             ipmFinCon.refreshFromLocal();
              //asserts are in source method for callCtrlAction calls    
              callCtrlAction(ipmFinCon, EXEC_PART_3);
              callCtrlAction(ipmFinCon, EXEC_PART_4);
@@ -426,7 +452,7 @@ public class IPM_FinancialController_Test {
              loadTab(regionalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_TOPDOWN_NAME);//*//
              //Load Tab Rollup
              loadTab(regionalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_ROLLUP_NAME);
-         Test.stopTest();
+            Test.stopTest();
      }
      
      //Use case: Local Rollout Feasibility phase 
@@ -435,13 +461,18 @@ public class IPM_FinancialController_Test {
              //Name hard coded as we know it from nameset. It will be hard to make it dynamic.
              IPM_Project__c localRollout = [select id, name, IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c, BI__c, IPM_Target_Launch_Dates__c  from IPM_Project__c where IPMProject_Span__c='Local' and IPM_Project_Type__c='Rollout' and Name='TestRegionalComments1_UMCA' limit 1];
              system.assert(localRollout!=null,'Local rollout type project not created.');
-             system.assertEquals(localRollout.name, 'TestRegionalComments1_UMCA');
+             system.assertEquals(localRollout.name, 'TestRegionalComments1_UMCA', INVALID_ROLLOUT_NAME);
+             
+             localRollout.BI__c = 'Large';
+             update localRollout;
+             IPM_Project__c selP = [select BI__c from IPM_Project__c where id=:localRollout.id];
+             system.assertEquals(selP.BI__c, 'Large','BI did not update');
              
              //Finance record for global project which is NON consolidate             
              IPM_Financial__c localRolloutFin = [select id, Financial_External_ID__c, Target_Launch_Date__c, RecordTypeId, Regional_External_Id__c, 
              Project_Sustainability_Period__c, Status__c, isGateSubmissionDue__c from IPM_Financial__c where Financial_External_ID__c='TestRegionalComments1_UMCA'];
              system.assert(localRolloutFin!=null, 'Finance record for Local rollout project is not created.');
-             system.assertEquals(localRolloutFin.Financial_External_ID__c, 'TestRegionalComments1_UMCA');
+             system.assertEquals(localRolloutFin.Financial_External_ID__c, 'TestRegionalComments1_UMCA', INVALID_FINACIAL_EXT_ID);
              
              setPage(localRollout.id);
              IPM_FinancialController ipmFinCon = new IPM_FinancialController();
@@ -457,8 +488,8 @@ public class IPM_FinancialController_Test {
              
              ipmFinCon.updateMisalignmentByFinanceLeader();
              ipm_project__c sel = [select IPM_Project_Type__c, IPMProject_Span__c, MisAligned_Confirmed_By_Finance_Leader__c from ipm_project__c where id = :localRollout.id];
-             system.assertEquals(sel.IPMProject_Span__c, 'Local');
-             system.assertEquals(sel.MisAligned_Confirmed_By_Finance_Leader__c, true);
+             system.assertEquals(sel.IPMProject_Span__c, 'Local', INVALID_SPAN_NAME);
+             system.assertEquals(sel.MisAligned_Confirmed_By_Finance_Leader__c, true, MISALINGNED_NOT_CONFIRMED);
              
              //asserts are in source method to check tab load
              //Load Tab MyView
@@ -497,8 +528,8 @@ public class IPM_FinancialController_Test {
              
              ipmFinCon.updateMisalignmentByFinanceLeader();
              sel = [select IPM_Project_Type__c, MisAligned_Confirmed_By_Finance_Leader__c from ipm_project__c where id = :projectRecord.id];
-             system.assertEquals(sel.IPM_Project_Type__c, LIT_OPERATIONAL);
-             system.assertEquals(sel.MisAligned_Confirmed_By_Finance_Leader__c, true);
+             system.assertEquals(sel.IPM_Project_Type__c, LIT_OPERATIONAL, INVALID_PROJECT_TYPE);
+             system.assertEquals(sel.MisAligned_Confirmed_By_Finance_Leader__c, true, MISALINGNED_NOT_CONFIRMED);
         Test.stopTest();    
      }
      
@@ -529,12 +560,15 @@ public class IPM_FinancialController_Test {
              
              ipmFinCon.updateMisalignmentByFinanceLeader();
              sel = [select IPM_Project_Type__c, MisAligned_Confirmed_By_Finance_Leader__c from ipm_project__c where id = :projectRecord.id];
-             system.assertEquals(sel.IPM_Project_Type__c, LIT_OPERATIONAL);
-             system.assertEquals(sel.MisAligned_Confirmed_By_Finance_Leader__c, true);
+             system.assertEquals(sel.IPM_Project_Type__c, LIT_OPERATIONAL, INVALID_PROJECT_TYPE);
+             system.assertEquals(sel.MisAligned_Confirmed_By_Finance_Leader__c, true, MISALINGNED_NOT_CONFIRMED);
              ipmFinCon.project = null;
              ipmFinCon.updateMisalignmentByFinanceLeader();
              string msg = 'Please contact your administrator';
              system.assert(ipmFinCon.errorMessage.contains(msg),'error message not captured');
+             
+             boolean sn = ipmFinCon.showNext;
+             boolean sp = ipmFinCon.showPrevious;
              
              //asserts are in source method to check tab load
              //Load Tab MyView
@@ -553,12 +587,12 @@ public class IPM_FinancialController_Test {
                 liEX.add(new IPM_Exchange_Rate__c(Name='GBP', Currency_Code__c='GBP',Exchange_Rate__c=0.8)); 
                 liEX.add(new IPM_Exchange_Rate__c(Name='USD', Currency_Code__c='USD',Exchange_Rate__c=1.3));         
                 insert liEX;   
-                system.assertEquals(liEX.size(),3);
+                system.assertEquals(liEX.size(), 3, 'Exchange rate records not found correctly.');
 
                 Set<String> projectNameSet = new Set<String>{TESTREGIONALCOMMENTS1};
                 List<IPM_Project__c>  projectList = [Select Id, Name,IPM_Project_Type__c, IPM_Phase__c, (Select Id from Project_Documents__r),(Select Id,Name,recordTypeId,IPM_Project_Job_Status__c from IPM_Project_Rollout__r) from IPM_Project__c where Name in:projectNameSet];
                 system.assert(projectList.size() > 0,'Project not created.');
-                system.assertEquals(projectList[0].Name, 'TestRegionalComments1');
+                system.assertEquals(projectList[0].Name, 'TestRegionalComments1', INVALID_PROJECT_NAME);
 
             setPage(projectList[0].Id);
             
@@ -650,8 +684,8 @@ public class IPM_FinancialController_Test {
                 system.assert(doc == 'Charter','document not created');
                 
                 ipmFinCon.alignTLD(); //Should be after Sustainability method call
-                system.assertEquals(ipmFinCon.nextIndex, 0);
-                system.assertEquals(ipmFinCon.previousIndex, 0);
+                system.assertEquals(ipmFinCon.nextIndex, 0, INVALID_INDEX);
+                system.assertEquals(ipmFinCon.previousIndex, 0, INVALID_INDEX);
 
                 List<IPM_FinancialValueWrapper> lstIncrementalPLProfit = new List<IPM_FinancialValueWrapper>();
                 IPM_FinancialValueWrapper valueWrapper = new IPM_FinancialValueWrapper(0, IPM_ConstantUtils.INVALID_VALUE, 0);
@@ -701,22 +735,22 @@ public class IPM_FinancialController_Test {
                 
                 ipmFinCon.checkSustainabilityPeriodChanged();
                 //verify after sustainability check cunters are reset
-                system.assertEquals(ipmFinCon.nextIndex, 0);
-                system.assertEquals(ipmFinCon.previousIndex, 0);
-                system.assertEquals(ipmFinCon.isNavigation, false);
+                system.assertEquals(ipmFinCon.nextIndex, 0, INVALID_INDEX);
+                system.assertEquals(ipmFinCon.previousIndex, 0, INVALID_INDEX);
+                system.assertEquals(ipmFinCon.isNavigation, false, INCORRECT_NAVIGATION_RESULT);
              
                 ipmFinCon.selectedSustainabilityPeriod = SUST_PERIOD_5;
         }
         if (part == EXEC_PART_4){
                 
                 ipmFinCon.changeSustainabilityPeriod();
-                system.assertEquals(ipmFinCon.sustainabilityPeriodChanging, true);
+                system.assertEquals(ipmFinCon.sustainabilityPeriodChanging, true, 'Invalid Sustainability period change');
                 
                 ipmFinCon.checkSustainabilityPeriodChanged();
                 //verify after sustainability check cunters are reset
-                system.assertEquals(ipmFinCon.nextIndex, 0);
-                system.assertEquals(ipmFinCon.previousIndex, 0);
-                system.assertEquals(ipmFinCon.isNavigation, false);
+                system.assertEquals(ipmFinCon.nextIndex, 0, INVALID_INDEX);
+                system.assertEquals(ipmFinCon.previousIndex, 0, INVALID_INDEX);
+                system.assertEquals(ipmFinCon.isNavigation, false, INCORRECT_NAVIGATION_RESULT);
                 
                 ipmFinCon.isTargetLaunchDateMisaligned=true;
                 string tdDisplay = ipmFinCon.targetLaunchDateToDisplay;
@@ -729,12 +763,12 @@ public class IPM_FinancialController_Test {
             ipmFinCon.checkCountry=false;
             ipmFinCon.updateCountry();
             ctr = [select Calculation_Index__c from IPM_Country__c limit 1];
-            system.assert(!ctr.Calculation_Index__c,'calculation index field not updated');
+            system.assert(ctr.Calculation_Index__c == false,'calculation index field not updated');
 
             ipmFinCon.next();
-            system.assertEquals(ipmFinCon.isNavigation, false);
+            system.assertEquals(ipmFinCon.isNavigation, false, INCORRECT_NAVIGATION_RESULT);
             ipmFinCon.previous();
-            system.assertEquals(ipmFinCon.isNavigation, false);
+            system.assertEquals(ipmFinCon.isNavigation, false, INCORRECT_NAVIGATION_RESULT);
             
         }
         if (part == EXEC_PART_6){ //only for certain type
@@ -781,9 +815,6 @@ public class IPM_FinancialController_Test {
              ipmFinCon.currentTab = tab;
              system.assertEquals(ipmFinCon.currentTab,tab,'Current tab could not be set as -' + tab );
              ipmFinCon.changeTabs();
-             system.assertEquals(ipmFinCon.isEditMode, false);
+             system.assertEquals(ipmFinCon.isEditMode, false, 'Financial is editable');
      }
-
-     
-    
 }

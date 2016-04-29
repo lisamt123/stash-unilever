@@ -334,7 +334,8 @@
                                             </td>
                                             <td scope="col" width="190px">
                                                 <div class="incHeight">                                                    
-                                                    <apex:outputField value="{!localRollout.Target_Launch_Date__c}" rendered="{!NOT(isEditMode)}"/>
+													<apex:inputHidden value="{!changeDateVal}" id="hiddenDateVal"/> 
+                                                	<apex:outputField value="{!localRollout.Target_Launch_Date__c}" rendered="{!NOT(isEditMode)}"/>
                                                     <apex:inputField value="{!lstcompleteRollout[localRolloutId].Target_Launch_Date__c}" styleClass="dateInputBox calendar{!IF(AND(nonKeyMcoTLDMisaligned, NOT(localRollout.KeyMCO__c)), ' misaligned', '')}" rendered="{!isEditMode}" onchange="checkTLDDate(this)"/> 
                                                 </div>
                                             </td>
@@ -470,10 +471,11 @@
                             </div>
                             <div class="buttonMarginRight noPadright pull-left" >
                                 <!-- <span class="ipmButton primary" data-dismiss="modal" >Agree and Proceed</span> -->
-                    <apex:commandLink value="{!$Label.Agree_and_Proceed}"  rendered="{!AND(isEditable,project.IPM_Phase__c!=null)}" styleClass="coreparameters custMarginbottom ipmButton primary"  oncomplete="hideTldWarningDialog();" >
+                    <apex:commandLink value="{!$Label.Agree_and_Proceed}" rendered="{!AND(isEditable,project.IPM_Phase__c!=null)}" styleClass="coreparameters custMarginbottom ipmButton primary"  onclick="setChangedDate();" oncomplete="hideTldWarningDialog();"  >
                     </apex:commandLink>
                         
-                            </div>
+                        <apex:actionFunction name="saveChangedTLDjs" action="{!saveRollout}"/>
+                         </div>
                         </div>
                     </div>        
                 </div>

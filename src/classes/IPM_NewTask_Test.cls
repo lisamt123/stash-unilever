@@ -560,7 +560,8 @@ private class IPM_NewTask_Test{
                  {
                      system.assertEquals(tsk.IPM_Type_of_Task__c,IPM_ConstantUtils.FUTURE_ADHOC_TASKS, 'Future AdHoc Task not saved');
                  }
-            }         
+            }
+      Test.stopTest();               
     }    
     
     /***********************************
@@ -601,6 +602,8 @@ private class IPM_NewTask_Test{
                  List<SelectOption> optionSpanList=newTask.getGateSpecificSpan();
              	 system.assertEquals(!optionSpanList.isEmpty(),true,'Task Span List for standard tasks not populated as expected'); 
             }  
+            
+        Test.stopTest();      
     }
     
     /***********************************
@@ -643,7 +646,8 @@ private class IPM_NewTask_Test{
             catch(Exception ex)
             {
             	system.assertEquals(ex.getMessage(),'Attempt to de-reference a null object','Exception not thrown');
-            }     
+            }   
+        Test.stopTest();         
     }
  
 }

@@ -63,6 +63,9 @@
     <columns>
         <field>IPM_Analytics__c$IPM_Auto_Aligned_Fin_TLD__c</field>
     </columns>
+	<columns>
+        <field>IPM_Analytics__c$IPM_Auto_Aligned_Fin_TLD_for_financial__c</field>
+    </columns>
     <columns>
         <field>IPM_Analytics__c$IPM_Project_Description__c</field>
     </columns>

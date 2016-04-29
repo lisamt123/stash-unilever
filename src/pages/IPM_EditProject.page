@@ -135,7 +135,7 @@
                                                 <apex:actionRegion >
                                                     <apex:outputPanel >
                                                         <apex:selectList size="1" value="{!project.IPM_Company_Card__c}" onchange="callCompanyCard();" styleClass="selCompany" disabled="{!OR(ISBLANK(project.Id),project.IPM_IsSaved__c,NOT(isEditable))}">  
-                                                            <apex:selectOptions value="{!Allcompanycard}" />
+                                                            <apex:selectOption itemLabel="{!project.IPM_Company_Card__r.Name}" itemValue="{!project.IPM_Company_Card__c}"></apex:selectOption>
                                                         </apex:selectList>
                                                     </apex:outputPanel>
                                                     <apex:actionfunction name="callCompanyCard" onComplete="callBrandPos();" action="{!populateCategory}" reRender="ProjectSubTypePanel,WhiteSpaceFastTrackPanel,fastTrackPanel,whiteSpacePanel,gateKeepingPanel,questionCharter,categoryPanel,BrandPositionPanel,pos,selectNextTabScript,multiBPositions" status="refreshCategory" />

@@ -50,7 +50,6 @@
                                     <apex:inputtext value="{!searchCountry}" html-data-placeholder="{!$Label.IPM_Search_MCO_Country_Name}" styleclass="placeholder" html-onfocusout="skipValidation();"/>
                                     <img alt="Search" class="srchImage" src="{!URLFOR($Resource.IPM_Resource, 'images/search.svg')}" onclick="callsearch();skipValidation();"/>
                                 </div>
-                                <div class="rollRegInfo">{!$Label.IPM_REGIONAL_ROLLOUT_ADD_HELP}</div>
                             </div>
                              <!-- Function display all the countries matched with the search criteria -->
                             <apex:actionFunction action="{!searchRolloutCountry}" name="callsearch"/>
