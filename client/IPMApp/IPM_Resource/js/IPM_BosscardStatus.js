@@ -18,7 +18,6 @@ jq(document).ready(function() {
     jq('#ipmUpdateStatusTab .ipmStatusTabs li').on('click', function(e) {
         e.preventDefault();
 		unsaved = true;
-        checkChange(unsaved);
         var $this = jq(this);
         jq('#ipmUpdateStatusTab .ipmStatusTabs li').removeClass('active');
         jq('#ipmUpdateStatusTab .ipmStatusTabs li').removeClass('highlightRed');
@@ -66,40 +65,6 @@ jq('.searchLeader').keypress(function(e) {
     }
 });
 
-function checkChange(elem){
-jq(function(){  
-      var frame = parent.document.getElementById("ipmModalDiv");
-       jq(frame).find('.close').click(function(){
-           if(elem){
-               jq(this).removeAttr( "data-dismiss" );
-               unloadIframe();
-           }
-           else{
-               jq(this).attr("data-dismiss","modal");
-           }
-       });
-        
-   });   
-   
-   function unloadIframe(){
-       window.parent.location.href=IPMApp.bossurl + '?id=' + IPMApp.bosscardId;
-   }
-   
-  function unloadPage()
-  { 
-      if(elem){
-          return IPMApp.wmessage;
-      }
-  } 
- 
-  window.onbeforeunload = unloadPage;
-  
-  /* Below code is to skip the unsaved changes*/
-  function skipValidation() {
-     elem = false;
-  }
-}
-
 var oldTextareaval = "";
 var newTextareaval = "";
 var initialValue = true;
@@ -117,6 +82,7 @@ jq(function(){
         if(initialValue !== false){
             oldTextareaval = jq(".txtArea ").val();
         }
+		
    });   
    
    function unloadIframe(){
@@ -137,17 +103,15 @@ jq(function(){
          });
      }
   
-  function unloadPage()
+function unloadPagebs()
   { 
       if(unsaved){
           return IPMApp.wmessage;
       }
   } 
+ window.onbeforeunload = unloadPagebs;
  
-  window.onbeforeunload = unloadPage;
-  
   /* Below code is to skip the unsaved changes*/
   function skipValidation() {
     unsaved = false;
-	checkChange(unsaved);
   }

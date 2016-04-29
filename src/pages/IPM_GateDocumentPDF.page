@@ -594,6 +594,11 @@
 		.ipmFinancetable.inverse{width:100%;max-width:100%;}
 		.ipmFinancetable.inverse .finproject{font-size: 11px;color: #364354;font-weight: bold;float: none;}
 		.ipmFinancetable.inverse td div{font-size: 0.800em;color:#222;}
+		
+		@media print
+		{
+			div.gkcStatus{page-break-inside: avoid;}
+		}
     </style>
 </head>
 <body class="docBody">

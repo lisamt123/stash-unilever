@@ -25,10 +25,10 @@ ul.progress-bar li.completed {
   background-color: #A3C24B;
 }
 
-ul.pleProgress li.plePhase.visited {
+.progress-wrap ul.progress-bar.pleProgress li.plePhase.visited {
   background-color: #e98824;
 }
-ul.pleProgress li.plePhase.completed {
+.progress-wrap ul.progress-bar.pleProgress li.plePhase.completed {
   background-color: #A3C24B;
 }
 
