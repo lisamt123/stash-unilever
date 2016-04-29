@@ -6,6 +6,5 @@ Your Factory visit has been Approved by Mr./Mrs. {!Vep_Visitor__c.Factory_Manage
 <br/><br/>
 Please proceed to take the <a href="{!Vep_Visitor__c.BaseUrl__c}apex/VEP_SafetyQuiz_VF?VEPnumber={!Vep_Visitor__c.VEP_Number__c}">Safety quiz</a> and receive the visitor pass
 <br/><br/>
-
 Thank You,<br/>
 Factory Visit Portal, HUL.

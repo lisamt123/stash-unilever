@@ -5,6 +5,7 @@ This TriggerHandler is used to popuklate the travel, lodging, pickup desk emails
 on VEP records dynamically from custom settings
 VERSION   AUTHOR   DATE    
 1.0       Leena    Mar-2016   
+
 ***********************************************************************/
 
 public with sharing class VEP_Visitor_TriggerHandler implements ITrigger{
