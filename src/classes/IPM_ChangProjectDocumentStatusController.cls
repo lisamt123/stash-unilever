@@ -880,19 +880,19 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
         documentSectionId=null;
         if(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equals(project.IPMProject_Span__c) && (IPM_ConstantUtils.PHASE_CAPABILITY.equals(project.IPM_Phase__c) || IPM_ConstantUtils.PHASE_FEASIBILITY.equals(project.IPM_Phase__c))){
             finList=new List<IPM_Financial__c>();
-            finList=[SELECT IPM_Business_Case_Confirmed__c,Is_BC_Confirmed_Capability__c,Local_Project__r.IPM_Phase__c,Misaligned__c,Local_Project__r.Rollout_Plan_Target_Launch_Date__c,
+            finList=[SELECT IPM_Business_Case_Confirmed__c,Is_BC_Confirmed_Capability__c,Local_Project__r.IPM_Phase__c,Local_Project__r.Is_Archieved__c,Misaligned__c,Local_Project__r.Rollout_Plan_Target_Launch_Date__c,
             Local_Project__r.IPM_Target_Launch_Dates__c,Local_Project__r.IPM_Parent_Project__r.IPM_Target_Launch_Dates__c,
             Local_Project__r.IPM_Project_Name__c,Local_Project__c FROM IPM_Financial__c WHERE 
             Local_Project__r.IPM_Parent_Project__c=:projectId AND RecordType.Name=:IPM_ConstantUtils.DEFAULT_FINANCIAL_RT LIMIT 1000];
             if(!finList.isEmpty()){
                 for(IPM_Financial__c fin:finList){
                     //Business case alignment
-                    if(IPM_ConstantUtils.PHASE_FEASIBILITY.equals(fin.Local_Project__r.IPM_Phase__c) && !fin.IPM_Business_Case_Confirmed__c){
+                    if(IPM_ConstantUtils.PHASE_FEASIBILITY.equals(fin.Local_Project__r.IPM_Phase__c) && !fin.IPM_Business_Case_Confirmed__c && !fin.Local_Project__r.Is_Archieved__c ){
                         totalLocalProjects=totalLocalProjects+1;
                         businessCasePending=true;
                         showValidation=false;
                         localBCProjectName.add(fin.Local_Project__r.IPM_Project_Name__c);
-                    }else if(IPM_ConstantUtils.PHASE_CAPABILITY.equals(fin.Local_Project__r.IPM_Phase__c) && !fin.Is_BC_Confirmed_Capability__c){
+                    }else if(IPM_ConstantUtils.PHASE_CAPABILITY.equals(fin.Local_Project__r.IPM_Phase__c) && !fin.Is_BC_Confirmed_Capability__c && !fin.Local_Project__r.Is_Archieved__c ){
                         totalLocalProjects=totalLocalProjects+1;
                         businessCasePending=true;
                         showValidation=false;

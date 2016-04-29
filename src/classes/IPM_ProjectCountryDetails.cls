@@ -21,6 +21,7 @@ public with sharing class IPM_ProjectCountryDetails{
     public static Map<Id, Boolean> isDevelopedPresentMap = new Map<Id, Boolean>();
     public static Map<Id, Boolean> isDevelopingPresentMap = new Map<Id, Boolean>();
     public static Boolean SKIP_TRIGGER_EXECUTION = false;
+    public static Boolean checkAtLeastOneAssmntPerEICountryVar = false;
     
     /****************************************************************************
     @Description : Rollouts - Update the MarketType field of project from Countries
@@ -680,6 +681,7 @@ public with sharing class IPM_ProjectCountryDetails{
             Update toUpdateProjList;
             IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
         }
+        checkAtLeastOneAssmntPerEICountryVar = true;
     }
     
     /****************************************************************************
