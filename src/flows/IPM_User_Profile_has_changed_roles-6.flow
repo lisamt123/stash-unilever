@@ -8,18 +8,12 @@
             </value>
         </processMetadataValues>
         <name>myRule_1_A1</name>
-        <label>User profile has changed</label>
+        <label>User profile has changed roles</label>
         <locationX>100</locationX>
         <locationY>200</locationY>
         <actionName>IPM_NotifyUsersRoleChanged</actionName>
         <actionType>apex</actionType>
         <inputParameters>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>userIdLst</stringValue>
-                </value>
-            </processMetadataValues>
             <processMetadataValues>
                 <name>dataType</name>
                 <value>
@@ -30,6 +24,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>userIdLst</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -52,7 +52,7 @@
             </processMetadataValues>
             <name>userIdLst</name>
             <value>
-                <elementReference>myVariable_current.IPM_User__r.Id</elementReference>
+                <elementReference>myVariable_current.IPM_User__c</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -112,14 +112,8 @@
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
             <name>myRule_1</name>
-            <conditionLogic>and</conditionLogic>
+            <conditionLogic>3 AND 1 AND 2</conditionLogic>
             <conditions>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
                 <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
@@ -128,6 +122,12 @@
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
                     <value>
                         <stringValue>Boolean</stringValue>
                     </value>
@@ -146,12 +146,6 @@
             </conditions>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>Boolean</stringValue>
@@ -161,6 +155,12 @@
                     <name>leftHandSideType</name>
                     <value>
                         <stringValue>MultiPicklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -175,13 +175,41 @@
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>ID</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>ID</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>GlobalConstant</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.IPM_User__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
             <connector>
                 <targetReference>myRule_1_A1</targetReference>
             </connector>
             <label>User Profile role changed</label>
         </rules>
     </decisions>
-    <interviewLabel>IPM_User_Profile_has_changed_roles-2_IPM_User_Profile__c</interviewLabel>
+    <interviewLabel>IPM_User_Profile_has_changed_roles-6_IPM_User_Profile__c</interviewLabel>
     <label>IPM User Profile has changed roles</label>
     <processMetadataValues>
         <name>ObjectType</name>
