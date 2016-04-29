@@ -18,9 +18,7 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Edit</actionName>
-        <content>Oblix_VF4Bis_OverrideOtherItemsNews</content>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Visualforce</type>
+        <type>Default</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Follow</actionName>
@@ -32,9 +30,7 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>New</actionName>
-        <content>Oblix_VF4Bis_OverrideOtherItemsNews</content>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Visualforce</type>
+        <type>Default</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>SaveEdit</actionName>
@@ -113,11 +109,7 @@ Renamed to Other SOW items in reviews</description>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Other</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Regtional Status Meetings</fullName>
+                <fullName>Regional Status Meetings</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -126,6 +118,22 @@ Renamed to Other SOW items in reviews</description>
             </picklistValues>
             <picklistValues>
                 <fullName>USLP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Global Leadership</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Regional Leadership</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Category Leadership</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>true</sorted>
@@ -390,8 +398,11 @@ ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;))
         <externalId>false</externalId>
         <formula>IF(
     No_of_Hours_Required__c = 0, 
-    0, 
-    OblixOtherItemFee__c /  No_of_Hours_Required__c
+    0,
+    IF( RecordType.DeveloperName == &apos;Activity&apos;,
+        OblixOtherItemFee__c /  No_of_Hours_Required__c,
+        OblixOtherItemFee__c /  No_of_Hours_Required__c * 100
+    )    
 )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Hourly Rate</label>
@@ -1019,7 +1030,15 @@ Oblix_FTE_Real_Price__c)</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Category Leadership</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Competitive Reviews</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global Leadership</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1035,7 +1054,11 @@ Oblix_FTE_Real_Price__c)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Regtional Status Meetings</fullName>
+                <fullName>Regional Leadership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional Status Meetings</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1646,6 +1669,18 @@ Oblix_FTE_Real_Price__c)</formula>
             </values>
             <values>
                 <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Category Leadership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global Leadership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional Leadership</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
