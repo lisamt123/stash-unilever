@@ -9,7 +9,7 @@
 
 Thank you for the request.
 
-Your Factory visit has been Approved by Mr./Mrs. {!Vep_Visitor__c.Factory_Manager_Name__c} on {!Vep_Visitor__c.LastModifiedDate}.
+Your Factory visit has been Approved by Mr./Mrs. {!Vep_Visitor__c.Person_to_Meet__c} on {!Vep_Visitor__c.LastModifiedDate}.
 
 Please proceed to take the Safety quiz and receive the visitor pass
 {!Vep_Visitor__c.BaseUrl}apex/VEP_SafetyQuiz_VF?VEPnumber={!Vep_Visitor__c.VEP_Number__c}
