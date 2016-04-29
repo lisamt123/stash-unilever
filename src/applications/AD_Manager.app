@@ -7,4 +7,8 @@
     <tab>Saving_Summary</tab>
     <tab>RAP_Jobs_Portfolio</tab>
     <tab>CAP_Jobs_Portfolio</tab>
+    <tab>MB_Usage_Type__c</tab>
+    <tab>MB_Charge_Type__c</tab>
+    <tab>MB_Billing_Entity__c</tab>
+    <tab>MB_Device_Details__c</tab>
 </CustomApplication>
