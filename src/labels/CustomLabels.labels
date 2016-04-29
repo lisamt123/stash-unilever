@@ -16330,12 +16330,6 @@ Which Communications team do you represent? You must be associated to one Planne
         <value>Please enter your Inoplan project name. If you do not have an Inoplan project please select No Inoplan Project</value>
     </labels>
     <labels>
-<<<<<<< HEAD
-=======
- <labels>
->>>>>>> develop
-=======
->>>>>>> develop
         <fullName>WU_Category</fullName>
         <categories>Warehouse Utilization</categories>
         <language>en_US</language>
