@@ -38,7 +38,7 @@
 	.errorM3 .msgIcon, .errorMedium{display:none;}
 	.errorM3 ul li{color:#E13726 ;font-weight:normal ;}
 	.errorM3 ul{margin-left: 25px ;}
-	.buttonmarRight{margin-right:15px;}
+	.ipmButtonGroup .ipmButton.buttonmarRight{margin-right:15px;}
 	.dateFormat {display:none;}
 	.buttonMarginRight{margin-right:15px;}
 	.marginL100P {margin-left:100%;} 

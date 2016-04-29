@@ -31,7 +31,7 @@
                         <apex:repeat value="{!approverList}" var="appr">
                             <tr>
                                 <td>
-                                    <input type="radio" class="rbutton" name="UserP" id="{!appr.id}" value="{!appr.id}" onclick="selectedCMem('{!appr.IPM_User__c}')"/>
+                                    <input type="radio" class="rbutton" name="UserP" id="{!appr.id}" value="{!appr.id}" onclick="selectedCMem('{!appr.IPM_User__c}');changeText();"/>
                                     <label for="{!appr.id}"></label>
                                 </td>
                                 <td class="nozoomappr">
@@ -58,7 +58,7 @@
                 <a class="buttonmarRight apprCancel ipmButton pull-left" onclick="closepopup();">{!$Label.IPM_CANCEL}</a>
                 <apex:outputPanel layout="block" styleClass="pull-left" id="btnRefresh">
                     <!--Below rendered condition is used to show the command button for selecting approver  -->
-                    <apex:commandButton action="{!saveApprover}" styleClass="buttonmarRight ipmButton primary" oncomplete="closepopup();" value="{!$Label.IPM_Update_Approver}" rendered="{!displayApproveBtn}"/>
+                    <apex:commandButton action="{!saveApprover}" styleClass="buttonmarRight ipmButton primary" onclick="skipValidation();" oncomplete="closepopup();" value="{!$Label.IPM_Update_Approver}" rendered="{!displayApproveBtn}"/>
                     <!--Below rendered condition provides update user functionality-->
                     <apex:outputPanel layout="block" styleClass="addButtonContainer editbContainer pull-right" rendered="{!!displayApproveBtn}">
                         <span class="buttonmarRight apprDisable">{!$Label.IPM_Update_Approver}</span>
@@ -75,9 +75,6 @@
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery.clearsearch.js')}" type="text/javascript"></script>
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_ApproverList.js')}" type="text/javascript"></script>
     <script>
-        var bossurl='{!URLFOR($Page.IPM_Bosscard)}';
-        function closepopup(){
-            window.top.location.href=bossurl+'?id={!bosscardId}';
-        }
+        var IPMApproverApp = {bossurl:'{!URLFOR($Page.IPM_Bosscard)}',bosscardId:'{!bosscardId}',wmessage:'{!$Label.IPM_Unsaved_Alert}'};
     </script>
 </apex:page>

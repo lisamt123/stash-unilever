@@ -67,3 +67,35 @@ jq(document).ready(function() {
 function goToParentPage() {
     window.top.location.href = IPMApp.GateDocumentPageRef + '?id=' + IPMApp.projectId + '&printDoc=' + IPMApp.printDoc;
 }
+
+var unsaved = false;
+jq(function(){  
+	jq(":input").change(function() {
+           unsaved = true;
+       });
+      var frame = parent.document.getElementById("ipmModalDiv");
+       jq(frame).find('.close').click(function(){
+           if(unsaved){
+               jq(this).removeAttr("data-dismiss");
+               unloadIframe();
+           }
+       });
+   });   
+   
+   function unloadIframe(){
+       window.parent.location.href=IPMApp.GateDocumentPageRef + '?id=' + IPMApp.projectId + '&printDoc=' + IPMApp.printDoc;
+   }
+
+  function unloadPage()
+  { 
+      if(unsaved){
+          return IPMApp.wmessage;
+      }
+  }
+ 
+ window.onbeforeunload = unloadPage;
+  
+  /* Below code is to skip the unsaved changes*/
+  function skipValidation() {
+    unsaved = false;
+  }

@@ -37,7 +37,7 @@ jq(document).ready(function() {
 	/* The below if's cannot be merged as it may break functionality. Also if we try to merge it with the nested one, there will be contradiction with the other sonar issue 'Reduce the number of conditional operators' */
     if (window.CKEDITOR) {
         var strFrameParent = jq(document).find('.secEditSummary').find("textarea").attr('name');
-		if(strFrameParent !== null){
+		if(strFrameParent !== null && strFrameParent !== undefined){
 			if (strFrameParent.indexOf(strTextAreaID) >= 0) {
 				CKEDITOR.instances[strFrameParent].on("key", function(e) {
 					var objTextArea = this.document.$.body;

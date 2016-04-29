@@ -125,6 +125,7 @@ function unloadPage()
 } 
 
 if(window.parent.location.href.indexOf("Milestoneid") > -1) {
+	//Check if the URL has the word Milestoneid
  }else{
 window.onbeforeunload = unloadPage;
  }

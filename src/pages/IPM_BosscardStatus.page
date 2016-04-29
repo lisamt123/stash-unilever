@@ -143,7 +143,7 @@
                     </div> 
                     <apex:actionStatus id="loading" startStyleClass="proInit"></apex:actionStatus>
                     <div class="statusButtonContainer pull-right">
-                        <apex:commandLink value="{!$Label.IPM_CANCEL}" styleClass="ipmButton" onclick="cancel();"/>
+                        <span class="ipmButton" onclick="cancel();">{!$Label.IPM_CANCEL}</span>
                         <apex:outputPanel id="refresh">
                             <!-- When the bosscard is not approved then the navigation should be to the BOSSCARD page and not the project page -->
                             <apex:commandLink action="{!updateStatus}" value="{!$Label.IPM_CHANGE}" styleClass="ipmButton primary" oncomplete="goToBosscardParentPage();" onclick="skipValidation();"  rendered="{!isNotApproved}"/>   

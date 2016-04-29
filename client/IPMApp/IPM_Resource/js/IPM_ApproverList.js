@@ -16,10 +16,41 @@ jq('.ipmRadioButton .ipmTable td .rbutton').click(function() {
         jq(this).closest("tr").addClass("selected");
     }
 });
-
+var unsaved = false;
 /* Below function performs the redirection to the BOSSCARD page */
 function closepopup() {
     var approver = IPMApproverApp.bossurl;
     var id = IPMApproverApp.bosscardId;
     window.top.location.href = approver + '?id=' + id;
 }
+function changeText(){
+		unsaved = true;
+	}
+jq(function(){  
+	
+      var frame = parent.document.getElementById("editApprover");
+       jq(frame).find('.close').click(function(){
+           if(unsaved){
+               jq(this).removeAttr("data-dismiss");
+               unloadIframe();
+           }
+       });
+   });   
+   
+   function unloadIframe(){
+       window.parent.location.href=IPMApproverApp.bossurl + '?id=' + IPMApproverApp.bosscardId;
+   }
+
+  function unloadPage()
+  { 
+      if(unsaved){
+          return IPMApproverApp.wmessage;
+      }
+  }
+ 
+ window.onbeforeunload = unloadPage;
+  
+  /* Below code is to skip the unsaved changes*/
+  function skipValidation() {
+    unsaved = false;
+  }
