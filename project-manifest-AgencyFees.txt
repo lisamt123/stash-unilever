@@ -180,6 +180,8 @@ src/classes/AF_Utils_Test.cls
 src/classes/AF_Utils_Test.cls-meta.xml
 src/classes/AF_ViewAllController_Test.cls
 src/classes/AF_ViewAllController_Test.cls-meta.xml
+src/classes/TriggerFactory.cls
+src/classes/TriggerFactory.cls-meta.xml
 src/labels
 src/labels/CustomLabels.labels
 src/pages
