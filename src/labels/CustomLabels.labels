@@ -997,14 +997,6 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <value>Canceling ...</value>
     </labels>
     <labels>
-        <fullName>BET_CreateBetAddMembers</fullName>
-        <categories>BET</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>BET_CreateBetAddMembers</shortDescription>
-        <value>Create new BET & add members</value>
-    </labels>
-    <labels>
         <fullName>BET_CreateNewBet</fullName>
         <categories>BET</categories>
         <language>en_US</language>
