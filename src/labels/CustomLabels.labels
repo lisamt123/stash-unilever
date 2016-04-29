@@ -16409,4 +16409,2867 @@ Which Communications team do you represent? You must be associated to one Planne
         <shortDescription>WU_Report_SAP_Code</shortDescription>
         <value>00N8A000000PZIm</value>
     </labels>
+    <labels>
+        <fullName>Amr_AD_ID</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_AD ID</shortDescription>
+        <value>AdManager Number</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Acc_Final_Cost_Value_of_props_and_wardrobe_paid_for</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Acc. Final Cost - Value of props and wardrobe (paid for)</shortDescription>
+        <value>Accepted Final Cost - Value of props &amp; wardrobe (paid for)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Accepted</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Accepted</shortDescription>
+        <value>Accepted</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Accepted_And_Email_Sent</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Accepted_And_Email_Sent</shortDescription>
+        <value>Accepted And Email Sent</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Accepted_Final_Cost_CA_only_Currency</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Accepted Final Cost - CA only (Currency)</shortDescription>
+        <value>Accepted Final Cost - CA only (Currency)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Accepted_Final_Cost_CA_only_Euro_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Accepted Final Cost - CA only (Euro Amount)</shortDescription>
+        <value>Accepted Final Cost - CA only (Euro Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Accepted_Final_Cost_CA_only_Local_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Accepted Final Cost - CA only (Local Amount)</shortDescription>
+        <value>Accepted Final Cost - CA only (Local Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Accepted_Final_Cost_Editors_name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Accepted Final Cost - Editors name</shortDescription>
+        <value>Accepted Final Cost - Editors name</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Accepted_Final_Cost_PC_only_Currency</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Accepted Final Cost - PC only (Currency)</shortDescription>
+        <value>Accepted Final Cost - PC only (Currency)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Accepted_Final_Cost_PC_only_Euro_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Accepted Final Cost - PC only (Euro Amount)</shortDescription>
+        <value>Accepted Final Cost - PC only (Euro Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Accepted_Final_Cost_PC_only_Local_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Accepted Final Cost - PC only (Local Amount)</shortDescription>
+        <value>Accepted Final Cost - PC only (Local Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Accepted_Final_Cost_PPC_only_Currency</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Accepted Final Cost - PPC only (Currency)</shortDescription>
+        <value>Accepted Final Cost - PPC only (Currency)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Accepted_Final_Cost_PPC_only_Euro_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Accepted Final Cost - PPC only (Euro Amount)</shortDescription>
+        <value>Accepted Final Cost - PPC only (Euro Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Accepted_Final_Cost_PPC_only_Local_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_ Accepted Final Cost - PPC only (Local Amount)</shortDescription>
+        <value>Accepted Final Cost - PPC only (Local Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Accepted_Final_Cost_Sound_Studio_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Accepted Final Cost - Sound Studio Name</shortDescription>
+        <value>Accepted Final Cost - Sound Studio Name</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Accepted_Final_Cost_Total_Sound_Studio_costs</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Accepted Final Cost - Total Sound Studio costs</shortDescription>
+        <value>Accepted Final Cost - Total Sound Studio costs</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Accepted_Final_Cost_Total_editing_cost</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Accepted Final Cost - Total editing cost</shortDescription>
+        <value>Accepted Final Cost - Total editing costs (exc. Post production)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Accepted_Final_Cost_Travel_Costs</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Accepted Final Cost - Travel Costs</shortDescription>
+        <value>Accepted Final Cost - Travel Costs</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Accepted_Final_Costs</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_ Accepted Final Costs</shortDescription>
+        <value>Accepted Final Costs</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Accepted_Quote_Opening_and_Closing_Quote_1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_ Accepted Quote (Opening and Closing Quote 1)</shortDescription>
+        <value>Accepted Quote (Opening and Closing Quote 1)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Accepted_Quotes_And_Documents</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Accepted Quotes And Documents</shortDescription>
+        <value>Accepted Quotes and Documents</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Action</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Action</shortDescription>
+        <value>Action</value>
+    </labels>
+    <labels>
+        <fullName>Amr_AdManager</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_AdManager</shortDescription>
+        <value>AdManager</value>
+    </labels>
+    <labels>
+        <fullName>Amr_AdManager_No</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AdManager No</shortDescription>
+        <value>AdManager No.</value>
+    </labels>
+    <labels>
+        <fullName>Amr_AdManager_Number</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_ AdManager Number</shortDescription>
+        <value>AdManager Number</value>
+    </labels>
+    <labels>
+        <fullName>Amr_AddiSuppNewMaterial_atleast_oneoptionofMedium_must_be_selected_corr_to_Dig</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr AddiSuppNewMaterial:atleast oneoptionofMedium must be selected corr to Dig</shortDescription>
+        <value>For Additional Supplementary NewMaterial : at least one option of Medium must be selected corresponding to Digital</value>
+    </labels>
+    <labels>
+        <fullName>Amr_AdditSuppNewMaterial_at_least_one_optionofMedium_mustbeselect_cor_toinstore</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr AdditSuppNewMaterial at least one optionofMedium mustbeselect cor toinstore</shortDescription>
+        <value>For Additional Supplementary NewMaterial : at least one option of Medium must be selected corresponding to In Store</value>
+    </labels>
+    <labels>
+        <fullName>Amr_AdditiSuppNewMaterial_atleast_one_optionofMedium_mustbe_selected_corr_toou</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr AdditiSuppNewMaterial:atleast one optionofMedium mustbe selected corr toou</shortDescription>
+        <value>For Additional Supplementary NewMaterial : at least one option of Medium must be selected corresponding to Out of Home</value>
+    </labels>
+    <labels>
+        <fullName>Amr_AdditionalSupplNewMaterial_atleast_oneoptionof_MedChannel_mustbe_sel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr AdditionalSupplNewMaterial:atleast oneoptionof MedChannel mustbe sel</shortDescription>
+        <value>For Additional Supplementary NewMaterial : at least one option of Media Channel must be selected</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Additional_Quotes_And_Documents</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_ Additional Quotes And Documents</shortDescription>
+        <value>Additional Quotes and Documents</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Additional_Supplementary_New_Material</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Additional Supplementary New Material</shortDescription>
+        <value>Additional Supplementary New Material</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Advanced_Search</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Advanced Search</shortDescription>
+        <value>Advanced Search</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Agency_Information</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Agency Information</shortDescription>
+        <value>Agency Information</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Agency_contact_or_account_director_email</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Agency contact or account director email</shortDescription>
+        <value>Agency Contact or Account Director Email</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Alert</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Alert</shortDescription>
+        <value>Alert</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Alert_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Alert Message</shortDescription>
+        <value>Alert Message</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Alert_date_must_be_greater_than_or_equal_to_today_s_date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Alert date must be greater than or equal to today\&apos;s date</shortDescription>
+        <value>Alert date must be greater than or equal to today&apos;s date</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Alert_message_should_be_less_than_150_characters</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Alert message should be less than 150 characters</shortDescription>
+        <value>Alert message should be less than 150 characters</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Allocated_budget_euro</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Allocated budget(euro)</shortDescription>
+        <value>Allocated Budget(Euro)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Any_other_agencies_involved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Any other agencies involved?</shortDescription>
+        <value>Any other agencies involved?</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Appraisal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Appraisal</shortDescription>
+        <value>Appraisal</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Attachment_Animatics_Executive</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Attachment_Animatics_Executive</shortDescription>
+        <value>Animatics Executive Summary</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Attachment_Executive_Summary</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Attachment_Executive_Summary</shortDescription>
+        <value>General Executive Summary</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Attachment_Music_Executive</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Attachment_Music_Executive</shortDescription>
+        <value>Music Executive Summary</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Attachment_Talent_Executive</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Attachment_Talent_Executive</shortDescription>
+        <value>Talent Executive Summary</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Audio_Only</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Audio Only</shortDescription>
+        <value>Audio Only</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Average_of_all_total_opening_quotes</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Average of all total opening quotes</shortDescription>
+        <value>Average of All Total Opening Quotes</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Before_you_start</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Before you start</shortDescription>
+        <value>Before you start..</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Brand_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Brand Name</shortDescription>
+        <value>Brand Name</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Brand_Position_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Brand Position Name</shortDescription>
+        <value>Brand Position</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Broadcast_market</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Broadcast market</shortDescription>
+        <value>Broadcast Market</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Budget_Responsibility</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Budget Responsibility</shortDescription>
+        <value>Budget Responsibility</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Budget_allocated_for_this_activity_enter_full_amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Budget allocated for this activity (enter full amount)</shortDescription>
+        <value>Budget Allocated For This Activity (enter full amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Budget_responsibility_BD_BB_Other</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Budget responsibility (BD, BB, Other)</shortDescription>
+        <value>Budget Responsibility (BD, BB, Other)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_BuyTalent_atleastoneoption_of_Medium_mustbe_selected_corr_to_Digital</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr BuyTalent atleastoneoption of Medium mustbe selected corr to Digital</shortDescription>
+        <value>For Buyouts Talent : at least one option of Medium must be selected corresponding to Digital</value>
+    </labels>
+    <labels>
+        <fullName>Amr_BuyoutMusic_at_least_one_option_of_Medium_mustbe_selected_corre_to_OutOfHome</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr BuyoutMusic at least one option of Medium mustbe selected corre to OutOfHome</shortDescription>
+        <value>For Buyouts Music : at least one option of Medium must be selected corresponding to Out of Home</value>
+    </labels>
+    <labels>
+        <fullName>Amr_BuyoutsTalent_at_least_oneoptionofMedium_mustbe_selected_corre_to_Instore</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr BuyoutsTalent at least oneoptionofMedium mustbe selected corre to Instore</shortDescription>
+        <value>For Buyouts Talent : at least one option of Medium must be selected corresponding to In Store</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Buyouts_Music</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Buyouts - Music</shortDescription>
+        <value>Buyouts - Music</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Buyouts_Music_at_least_one_option_of_Medium_must_be_selected_corre_to_Digita</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Buyouts Music at least one option of Medium must be selected corre to Digita</shortDescription>
+        <value>For Buyouts Music : at least one option of Medium must be selected corresponding to Digital</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Buyouts_Music_at_least_one_option_of_Medium_mustbe_selected_corr_to_Instore</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Buyouts Music at least one option of Medium mustbe selected corr to Instore</shortDescription>
+        <value>For Buyouts Music : at least one option of Medium must be selected corresponding to In Store</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Buyouts_Talent</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Buyouts - Talent</shortDescription>
+        <value>Buyouts - Talent</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Buyouts_Talent_at_least_one_option_of_Media_Channel_must_be_selected</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Buyouts Talent : at least one option of Media Channel must be selected</shortDescription>
+        <value>For Buyouts Talent : at least one option of Media Channel must be selected</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Buyouts_Talent_atleast_one_optionofMedium_mustbe_selected_corr_to_OOH</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Buyouts Talent:atleast one optionofMedium mustbe selected corr to OOH</shortDescription>
+        <value>For Buyouts Talent : at least one option of Medium must be selected corresponding to Out of Home</value>
+    </labels>
+    <labels>
+        <fullName>Amr_CAP</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_CAP</shortDescription>
+        <value>CAP</value>
+    </labels>
+    <labels>
+        <fullName>Amr_CAP_Jobs_Portfolio_tab</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr CAP_Jobs_Portfolio__tab</shortDescription>
+        <value>CAP_Jobs_Portfolio__tab</value>
+    </labels>
+    <labels>
+        <fullName>Amr_CA_Additional_agency_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CA/Additional agency Name</shortDescription>
+        <value>CA/Additional Agency Name</value>
+    </labels>
+    <labels>
+        <fullName>Amr_CA_Appraisal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_CA Appraisal</shortDescription>
+        <value>CA Appraisal</value>
+    </labels>
+    <labels>
+        <fullName>Amr_CA_Cost_Local_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_CA_Cost_Local_Amount</shortDescription>
+        <value>Q3 CA Cost Only(Local Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_CA_Costs_Euro_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CA Costs Only (Euro Amount)</shortDescription>
+        <value>CA Costs Only (Euro Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_CA_Costs_Local_Currency</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CA Costs Only (Local Currency)</shortDescription>
+        <value>CA Costs Only (Local Currency)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_CA_Costs_Only_Local_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CA Costs Only (Local Amount)</shortDescription>
+        <value>CA Costs Only (Local Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_CA_Location</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CA Location</shortDescription>
+        <value>CA Location</value>
+    </labels>
+    <labels>
+        <fullName>Amr_CA_only_Currency</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_CA only (Currency)</shortDescription>
+        <value>CA only (Currency)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_CA_only_Euro_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AMR_CA only (Euro Amount)</shortDescription>
+        <value>CA only (Euro Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_CA_only_Local_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_CA only (Local Amount)</shortDescription>
+        <value>CA only (Local Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_CApJobPortFolio</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_CApJobPortFolio</shortDescription>
+        <value>/apex/Amr_CAPJobPortfolio</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Campaign_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Campaign_Name</shortDescription>
+        <value>Campaign Name</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Campaign_Name_Example</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Campaign_Name_Example</shortDescription>
+        <value>e.g. Nothing beats an astronaut</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Campaign_name_e_g_Nothing_beats_an_astronaut_if_known</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Campaign name (e.g. Nothing beats an astronaut) if known</shortDescription>
+        <value>Campaign Name if known</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Cancelled_Jobs_List</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_ Cancelled Jobs List</shortDescription>
+        <value>Cancelled Jobs</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Category</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Category</shortDescription>
+        <value>Category</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Category_Brand_Positioning_Brand</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Category Brand Positioning Brand</shortDescription>
+        <value>Category &gt; Brand Positioning &gt; Brand</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Cinema</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Cinema</shortDescription>
+        <value>Cinema</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Cost_Management</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Cost Management</shortDescription>
+        <value>Cost Management</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Cost_Per_Master</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Cost Per Master</shortDescription>
+        <value>Cost Per Master</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Cost_per_master_per_shoot_day</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Cost per master per shoot day</shortDescription>
+        <value>Cost per master per shoot day</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Country</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Country</shortDescription>
+        <value>Country</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Current_stage_of_your_production_activity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Current stage of your production activity</shortDescription>
+        <value>Current Stage of  Your Production Activity</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Dashboard</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Dashboard</shortDescription>
+        <value>Dashboard</value>
+    </labels>
+    <labels>
+        <fullName>Amr_DashboardSpace</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_DashboardSpace</shortDescription>
+        <value>Dash Board</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Date</shortDescription>
+        <value>Date</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Date_logged</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Date logged</shortDescription>
+        <value>Date Logged</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Delete</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Delete</shortDescription>
+        <value>Delete</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Digital</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Digital</shortDescription>
+        <value>Digital</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Digital_agency_name_if_applicable</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Digital agency name (if applicable)</shortDescription>
+        <value>Digital Agency Name (if applicable)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Do_you_anticipate_that_your_production_will_require_Celebrity_Talent</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Do you anticipate that your production will require Celebrity Talent</shortDescription>
+        <value>Do you anticipate that your production will require Celebrity Talent?</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Do_you_anticipate_that_your_production_will_require_Music</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Do you anticipate that your production will require Music</shortDescription>
+        <value>Do you anticipate that your production will require Music?</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Dormant</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Dormant</shortDescription>
+        <value>Dormant</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Duration_Of_Additional_Films</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Duration Of Additional Films</shortDescription>
+        <value>Duration of Additional Films</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Duration_Of_Master_Example</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Duration Of Master Example</shortDescription>
+        <value>(e.g. 30,30 or 30,20,15) In Seconds</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Duration_of_Masters</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Duration of Masters</shortDescription>
+        <value>Duration of Masters</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Edit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Edit</shortDescription>
+        <value>Edit</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Editorial</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Editorial</shortDescription>
+        <value>Editorial</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Editors_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Editors Name</shortDescription>
+        <value>Editors Name</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Email_AgencyNotification</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Email_AgencyNotification</shortDescription>
+        <value>Amr_AgencyNotification</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Email_ThresholdNotification</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Email_ThresholdNotification</shortDescription>
+        <value>Amr_ThresholdNotification</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Email_UserNotification</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Email_UserNotification</shortDescription>
+        <value>Amr_UserNotification</value>
+    </labels>
+    <labels>
+        <fullName>Amr_End_Date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_End_Date</shortDescription>
+        <value>End Date</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Enter_Quote</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Enter Quote</shortDescription>
+        <value>Enter Quote</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Error_FileUpload</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Error_FileUpload</shortDescription>
+        <value>Please enter at least one value,Folder Name and one file to upload</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Error_JobAlreadyAccepted</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Error_JobAlreadyAccepted</shortDescription>
+        <value>Job already accepted</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Error_JobAlreadyAllocated</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Error_JobAlreadyAllocated</shortDescription>
+        <value>This job has been already allocated to the selected RAP</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Error_JobAlreadyCancelled</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Error_JobAlreadyCancelled</shortDescription>
+        <value>Job already cancelled</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Error_JobIdNotFound</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Error_JobIdNotFound</shortDescription>
+        <value>JobId not found</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Error_JobIsCancelled</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Error_JobIsCancelled</shortDescription>
+        <value>This job has been cancelled</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Error_NoJobFound</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Error_NoJobFound</shortDescription>
+        <value>There&apos;s no job for given job id</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Error_SelectValue</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Error_SelectValue</shortDescription>
+        <value>Please select at least one value</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Euro_Saving_Accepted_Quote</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Euro  Saving - Accepted Quote</shortDescription>
+        <value>€ Saving - Accepted Quote</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Execution_Name_Example</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Execution_Name_Example</shortDescription>
+        <value>e.g. Lifeguard or Fireman</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Execution_name_e_g_Lifeguard_or_Fireman_if_known</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Execution name (e.g. Lifeguard or Fireman) if known</shortDescription>
+        <value>Execution Name if known</value>
+    </labels>
+    <labels>
+        <fullName>Amr_File</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>File</shortDescription>
+        <value>File</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Filter</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Filter</shortDescription>
+        <value>Filter</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Final_approver_of_material_email</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Final approver of material email</shortDescription>
+        <value>Final Approver of Material Email</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Folder_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Folder_Name</shortDescription>
+        <value>Folder Name</value>
+    </labels>
+    <labels>
+        <fullName>Amr_For_Buyouts_Music_at_least_one_option_of_Media_Channel_must_be_selected</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr For Buyouts Music : at least one option of Media Channel must be selected</shortDescription>
+        <value>For Buyouts Music : at least one option of Media Channel must be selected</value>
+    </labels>
+    <labels>
+        <fullName>Amr_For_New_Original_Masterat_least_one_option_of_Media_Channel_must_be_selected</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr For New Original Masterat least one option of Media Channel must be selected</shortDescription>
+        <value>For New Original Master : at least one option of Media Channel must be selected</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Have_you_checked_with_CMI</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Have you checked with CMI</shortDescription>
+        <value>Have you checked with CMI if there is an existing asset in the Millward Brown TV Ad Vitality Bank that could be utilised for this JTBD?</value>
+    </labels>
+    <labels>
+        <fullName>Amr_In_Store</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr In Store</shortDescription>
+        <value>In Store</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Internal_Video</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Internal Video</shortDescription>
+        <value>Internal Video</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Invalid_Job_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Invalid Job Id</shortDescription>
+        <value>Invalid Job Id</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Invalid_User</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Invalid User</shortDescription>
+        <value>Invalid User</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Is_PC_part_of_the_Roster</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Is PC part of the Roster ?</shortDescription>
+        <value>Is the PC part of the Roster?</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Is_PPC_Part_Of_Roster</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Is_PPC_Part_Of_Roster</shortDescription>
+        <value>Q2-Is the PPC part of the Roster?</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Is_PPC_part_of_the_Roster</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Is PPC part of the Roster?</shortDescription>
+        <value>Is the PPC part of the Roster?</value>
+    </labels>
+    <labels>
+        <fullName>Amr_JobAccepted</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_JobAccepted</shortDescription>
+        <value>Job accepted</value>
+    </labels>
+    <labels>
+        <fullName>Amr_JobSheet</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_JobSheet</shortDescription>
+        <value>/apex/Amr_JobSheet</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Job_Accepted</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Job_Accepted</shortDescription>
+        <value>Accepted</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Job_Allocated</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Job_Allocated</shortDescription>
+        <value>Job Allocated</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Job_Cancelled</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Job_Cancelled</shortDescription>
+        <value>Cancelled</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Job_Information</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Job Information</shortDescription>
+        <value>Job Information</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Job_List</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Job List</shortDescription>
+        <value>Job List</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Job_Reported</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Job Reported</shortDescription>
+        <value>Job Reported</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Job_Savings</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Job Savings</shortDescription>
+        <value>Job Savings</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Job_Shared</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_ Job Shared</shortDescription>
+        <value>Job Shared</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Job_Started</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Job Started</shortDescription>
+        <value>Job Started</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Job_Status</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Job Status</shortDescription>
+        <value>Job Status</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Job_already_Shared_with</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Job already Shared with</shortDescription>
+        <value>Job already Shared with</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Job_shared_successfully_with</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Job shared successfully with</shortDescription>
+        <value>Job shared successfully with</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Jobsheet_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Jobsheet Id</shortDescription>
+        <value>/apex/Amr_JobSheet?id=</value>
+    </labels>
+    <labels>
+        <fullName>Amr_LangAdaptMaster_atleast_one_option_of_Medium_mustbe_selected_correTo_OutO</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr LangAdaptMaster:atleast one option of Medium mustbe selected correTo OutO</shortDescription>
+        <value>For Language Adaption Master : at least one option of Medium must be selected corresponding to Out of Home</value>
+    </labels>
+    <labels>
+        <fullName>Amr_LangAdaptMaster_atleast_oneoption_of_Medium_mustbe_selectedcorres_in_st</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr LangAdaptMaster:atleast oneoption of Medium mustbe selectedcorres in st</shortDescription>
+        <value>For Language Adaption Master : at least one option of Medium must be selected corresponding to In Store</value>
+    </labels>
+    <labels>
+        <fullName>Amr_LanguageAdaptionMaster_least_one_optionofMedium_mustbe_selected_corr_to_Digi</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr LanguageAdaptionMaster:least one optionofMedium mustbe selected corr to Digi</shortDescription>
+        <value>For Language Adaption Master : at least one option of Medium must be selected corresponding to Digital</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Language_Adaptation_of_Master</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Language Adaptation of Master</shortDescription>
+        <value>Language Adaptation of Master</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Language_Adaption_Master_at_least_one_option_of_Medium_must_be_selected</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Language Adaption Master : at least one option of Medium must be selected</shortDescription>
+        <value>For Language Adaption Master : at least one option of Medium must be selected</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Lead_agency_location</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Lead agency location</shortDescription>
+        <value>Lead Agency Location</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Lead_agency_name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Lead agency name</shortDescription>
+        <value>Lead Agency Name</value>
+    </labels>
+    <labels>
+        <fullName>Amr_LimitValue</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr LimitValue</shortDescription>
+        <value>30</value>
+    </labels>
+    <labels>
+        <fullName>Amr_List_Of_Alerts</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_List_Of_Alerts</shortDescription>
+        <value>List of Alerts</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Live</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Live</shortDescription>
+        <value>Live</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Local_Amount_Of_PC</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Local Amount Of PC</shortDescription>
+        <value>PC Costs Only (Local Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Local_Amount_PC_Costs</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PC Costs Only (Local Amount)</shortDescription>
+        <value>PC Costs Only (Local Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Local_Amount_of_CA</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Local Amount of CA</shortDescription>
+        <value>CA Costs Only (Local Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Local_Amount_of_PPC</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_ Local Amount of PPC</shortDescription>
+        <value>PPC Costs Only (Local Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Local_Currency_Of_PC_Cost</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Local Currency Of PC Cost</shortDescription>
+        <value>PC Costs Only (Local Currency)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Local_Currency_of_CA_Costs</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Local Currency of CA Costs</shortDescription>
+        <value>CA Costs Only (Local Currency)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Local_Currency_of_PPC_Costs</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_ Local Currency of PPC Costs</shortDescription>
+        <value>PPC Costs Only (Local Currency)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Local_PC_Costs</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PC Costs Only (Local Currency)</shortDescription>
+        <value>PC Costs Only (Local Currency)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Location</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Location</shortDescription>
+        <value>Location of Project Leader (country)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Location_of_Unilever_project_leader</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Location of Unilever project leader</shortDescription>
+        <value>Location Of Unilever Project Leader</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Logout</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Logout</shortDescription>
+        <value>/_ui/core/chatter/ui/ChatterPage</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Media_Channel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Media Channel</shortDescription>
+        <value>Media Channel</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Medium</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Medium</shortDescription>
+        <value>Medium</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Moving_Image</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Moving Image</shortDescription>
+        <value>Moving Image</value>
+    </labels>
+    <labels>
+        <fullName>Amr_NewOrigiMastat_least_one_option_of_Medium_mustbe_selected_corresto_instore</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr NewOrigiMastat least one option of Medium mustbe selected corresto instore</shortDescription>
+        <value>For New Original Master : at least one option of Medium must be selected corresponding to In Store</value>
+    </labels>
+    <labels>
+        <fullName>Amr_NewOrigiMaster_at_least_one_optionofMedium_mustbe_selected_corres_inStore</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr NewOrigiMaster:at least one optionofMedium mustbe selected corres inStore</shortDescription>
+        <value>For New Original Master : at least one option of Medium must be selected corresponding to In Store</value>
+    </labels>
+    <labels>
+        <fullName>Amr_NewOriginMaster_at_least_one_option_of_Medium_must_be_selected_corres_to_Out</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr NewOriginMaster at least one option of Medium must be selected corres to Out</shortDescription>
+        <value>For New Original Master : at least one option of Medium must be selected corresponding to Out of Home</value>
+    </labels>
+    <labels>
+        <fullName>Amr_NewOriginMaster_at_least_one_option_of_Medium_mustbeselected_corre_todigital</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr NewOriginMaster:at least one option of Medium mustbeselected corre todigital</shortDescription>
+        <value>For New Original Master : at least one option of Medium must be selected corresponding to Digital</value>
+    </labels>
+    <labels>
+        <fullName>Amr_NewOriginMaster_at_leastoneoption_ofMedium_mustbe_selected_corres_to_outOfHo</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr NewOriginMaster at leastoneoption ofMedium mustbe selected corres to outOfHo</shortDescription>
+        <value>For New Original Master : at least one option of Medium must be selected corresponding to Out of Home</value>
+    </labels>
+    <labels>
+        <fullName>Amr_New_Original_Master</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr New Original Master</shortDescription>
+        <value>New Original Master</value>
+    </labels>
+    <labels>
+        <fullName>Amr_No_Job_Allocation_Record_For_LoggedIn_User</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr No Job Allocation Record For LoggedIn User</shortDescription>
+        <value>No Job Allocation Record For LoggedIn User</value>
+    </labels>
+    <labels>
+        <fullName>Amr_No_Of_Masters</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Of Masters</shortDescription>
+        <value>No. of Masters</value>
+    </labels>
+    <labels>
+        <fullName>Amr_No_of_Additional_Films</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No of Additional Films</shortDescription>
+        <value>No. of Additional Films</value>
+    </labels>
+    <labels>
+        <fullName>Amr_No_of_Quotes</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_No of Quotes</shortDescription>
+        <value>No. of Quotes</value>
+    </labels>
+    <labels>
+        <fullName>Amr_No_of_Shoot_Days</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No of Shoot Days</shortDescription>
+        <value>No. of Shoot Days</value>
+    </labels>
+    <labels>
+        <fullName>Amr_None</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_None</shortDescription>
+        <value>none</value>
+    </labels>
+    <labels>
+        <fullName>Amr_OR</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr  OR</shortDescription>
+        <value>OR</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Other</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Other</shortDescription>
+        <value>Other</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Out_of_Home</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Out of Home</shortDescription>
+        <value>Out of Home</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Output_Quality</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Output Quality</shortDescription>
+        <value>Output Quality</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Overview_of_Project</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Overview of Project</shortDescription>
+        <value>Overview of Project</value>
+    </labels>
+    <labels>
+        <fullName>Amr_PC_Appraisal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_PC Appraisal</shortDescription>
+        <value>PC Appraisal</value>
+    </labels>
+    <labels>
+        <fullName>Amr_PC_Cost_Euro_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_PC Costs (Euro Amount)</shortDescription>
+        <value>PC Costs Only (Euro Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_PC_Costs_Euro_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PC Costs Only (Euro Amount)</shortDescription>
+        <value>PC Costs Only (Euro Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_PC_Country</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_PC Country</shortDescription>
+        <value>PC Country Location</value>
+    </labels>
+    <labels>
+        <fullName>Amr_PC_Location</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PC Country Location</shortDescription>
+        <value>PC Country Location</value>
+    </labels>
+    <labels>
+        <fullName>Amr_PC_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PC Name</shortDescription>
+        <value>PC Name</value>
+    </labels>
+    <labels>
+        <fullName>Amr_PC_Part_Roster</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Is PC Part Of The Roster?</shortDescription>
+        <value>Is PC Part Of The Roster?</value>
+    </labels>
+    <labels>
+        <fullName>Amr_PC_only_Currency</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_PC only (Currency)</shortDescription>
+        <value>PC only (Currency)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_PC_only_Euro_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_PC only (Euro Amount)</shortDescription>
+        <value>PC only (Euro Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_PC_only_Local_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_PC only (Local Amount)</shortDescription>
+        <value>PC only (Local Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_PPC_Appraisal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_PPC Appraisal</shortDescription>
+        <value>PPC Appraisal</value>
+    </labels>
+    <labels>
+        <fullName>Amr_PPC_Cost_Only_Euro_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_PPC_Cost_Only_Euro_Amount</shortDescription>
+        <value>Q1(Accepted Quote)-PPC Costs Only (Euro Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_PPC_Cost_Only_Local_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_PPC_Cost_Only_Local_Amount</shortDescription>
+        <value>Q1(Accepted Quote)-PPC Costs Only (Local Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_PPC_Costs_Euro_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_ PPC Costs(Euro Amount)</shortDescription>
+        <value>PPC Costs Only (Euro Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_PPC_Costs_Local_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PPC Costs Only (Local Amount)</shortDescription>
+        <value>PPC Costs Only (Local Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_PPC_Costs_Local_Currency</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PPC Costs Only (Local Currency)</shortDescription>
+        <value>PPC Costs Only (Local Currency)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_PPC_Costs_euro</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PPC Costs Only (euro)</shortDescription>
+        <value>PPC Costs Only (euro)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_PPC_Country</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_ PPC Country</shortDescription>
+        <value>PPC Country Location</value>
+    </labels>
+    <labels>
+        <fullName>Amr_PPC_Country_Location</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PPC Country Location</shortDescription>
+        <value>PPC Country Location</value>
+    </labels>
+    <labels>
+        <fullName>Amr_PPC_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PPC Name</shortDescription>
+        <value>PPC Name</value>
+    </labels>
+    <labels>
+        <fullName>Amr_PPC_only_Currency</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_PPC only (Currency)</shortDescription>
+        <value>PPC only (Currency)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_PPC_only_Euro_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_PPC only (Euro Amount)</shortDescription>
+        <value>PPC only (Euro Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_PPC_only_Local_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_PPC only (Local Amount)</shortDescription>
+        <value>PPC only (Local Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_PPC_part_of_the_Roster</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Is the PPC part of the Roster?</shortDescription>
+        <value>Is the PPC part of the Roster?</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Pending</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Pending</shortDescription>
+        <value>Pending</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Percentage_Saving_Accepted_Quote</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Percentage  Saving - Accepted Quote</shortDescription>
+        <value>% Saving - Accepted Quote</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Percentage_Saving_Average_of_Quotes</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Percentage Saving - Average of Quotes</shortDescription>
+        <value>% Saving - Average of Quotes</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Please_Select_Any_Value</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Please Select Any Value</shortDescription>
+        <value>Please select any value</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Please_Select_Document</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Please Select Document</shortDescription>
+        <value>Please select document</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Please_enter_both_alert_date_and_alert_message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Please enter both alert date and alert message</shortDescription>
+        <value>Please enter both alert date and alert message</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Please_fill_in_missing_information</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Please fill in missing information</shortDescription>
+        <value>Please fill in missing information</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Print</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Print</shortDescription>
+        <value>Print</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Priority</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Priority</shortDescription>
+        <value>Priority</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Process_Management</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Process Management</shortDescription>
+        <value>Process Management</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Production_Activity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Production Activity</shortDescription>
+        <value>Production Activity</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Production_Activity_Detail</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Production Activity Detail</shortDescription>
+        <value>Production Activity Detail</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Production_Support</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Production Support</shortDescription>
+        <value>Production Support</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Production_Type</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Production Type</shortDescription>
+        <value>Prod. Type</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Production_activity_type</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Production activity type</shortDescription>
+        <value>Production Activity Type</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Production_activity_types_at_least_one_option_must_be_selected</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Production activity types at least one option must be selected</shortDescription>
+        <value>Production activity types : at least one option must be selected</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Project_Name_Example</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Project_Name_Example</shortDescription>
+        <value>e.g. Apollo</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Project_description</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Project description</shortDescription>
+        <value>Project Description</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Project_leader_email</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Project leader email</shortDescription>
+        <value>Project Leader Email</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Project_name_e_g_Apollo</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Project_name_e_g_Apollo</shortDescription>
+        <value>Project Name (e.g. Apollo)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q1_Additional_Agency_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q1_Additional_Agency_Name</shortDescription>
+        <value>Q1(Accepted Quote)-CA/Additional Agency Name</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q1_CA_Cost_Only</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q1_CA_Cost_Only</shortDescription>
+        <value>Q1(Accepted Quote)-CA Costs Only (Local Currency)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q1_CA_Local_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q1_CA_Local_Amount</shortDescription>
+        <value>Q1(Accepted Quote)-CA Costs Only (Local Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q1_CA_Location</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q1_CA_Location</shortDescription>
+        <value>Q1(Accepted Quote)-CA Location</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q1_Cost_Euro_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q1_Cost_Euro_Amount</shortDescription>
+        <value>Q1(Accepted Quote)-CA Costs Only (Euro Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q1_PC_Cost_Euro_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q1_PC_Cost_Euro_Amount</shortDescription>
+        <value>Q1 (Accepted Quote) - PC Costs Only (Euro Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q1_PC_Cost_Local_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q1_PC_Cost_Local_Amount</shortDescription>
+        <value>Q1(Accepted Quote)-PC Costs Only (Local Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q1_PC_Cost_Only</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q1_PC_Cost_Only</shortDescription>
+        <value>Q1(Accepted Quote)-PC Costs Only (Local Currency)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q1_PC_Country_Location</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q1_PC_Country_Location</shortDescription>
+        <value>Q1(Accepted Quote)-PC Country Location</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q1_PC_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q1_PC_Name</shortDescription>
+        <value>Q1(Accepted Quote)-PC Name</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q1_PC_Part_Of_Roster</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q1_PC_Part_Of_Roster</shortDescription>
+        <value>Q1(Accepted Quote)-Is the PC part of the Roster?</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q1_PPC_Cost_Only</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q1_PPC_Cost_Only</shortDescription>
+        <value>Q1(Accepted Quote)-PPC Costs Only (Local Currency)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q1_PPC_Country</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q1_PPC_Country</shortDescription>
+        <value>Q1(Accepted Quote)-PPC Country Location</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q1_PPC_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q1_PPC_Name</shortDescription>
+        <value>Q1(Accepted Quote)-PPC Name</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q1_PPC_Part_Of_Roster</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q1_PPC_Part_Of_Roster</shortDescription>
+        <value>Q1(Accepted Quote)-Is the PPC part of the Roster?</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q1_Service_company_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q1_Service_company_Name</shortDescription>
+        <value>Q1(Accepted Quote)-Service Company Name</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q1_Total_Cost</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q1_Total_Cost</shortDescription>
+        <value>Q1 (Accepted Quote) - Total Costs</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q2_Additional_Agency_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q2_Additional_Agency_Name</shortDescription>
+        <value>Q2-CA/Additional Agency Name</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q2_CA_Cost_Euro_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q2_CA_Cost_Euro_Amount</shortDescription>
+        <value>Q2 - CA Cost Only(Euro Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q2_CA_Cost_Local_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q2_CA_Cost_Local_Amount</shortDescription>
+        <value>Q2 - CA Cost Only(Local Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q2_CA_Cost_Only</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q2_CA_Cost_Only</shortDescription>
+        <value>Q2 - CA Cost Only(Local Currency)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q2_CA_Location</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q2_CA_Location</shortDescription>
+        <value>Q2 - CA Location</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q2_PC_Cost_Euro_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q2_PC_Cost_Euro_Amount</shortDescription>
+        <value>Q2 - PC Cost Only(Euro Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q2_PC_Cost_Local_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q2_PC_Cost_Local_Amount</shortDescription>
+        <value>Q2- PC Cost Only(Local Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q2_PC_Cost_Only</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q2_PC_Cost_Only</shortDescription>
+        <value>Q2 - PC Cost Only(Local Currency)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q2_PC_Country_Location</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q2_PC_Country_Location</shortDescription>
+        <value>Q2 - PC Country Location</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q2_PC_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q2_PC_Name</shortDescription>
+        <value>Q2 - PC Name</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q2_PPC_Cost_Euro_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q2_PPC_Cost_Euro_Amount</shortDescription>
+        <value>Q2 - PPC Cost Only(Euro Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q2_PPC_Cost_Local_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q2_PPC_Cost_Local_Amount</shortDescription>
+        <value>Q2 - PPC Cost Only(Local Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q2_PPC_Cost_Only</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q2_PPC_Cost_Only</shortDescription>
+        <value>Q2 - PPC Cost Only(Local Currency)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q2_PPC_Country</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q2_PPC_Country</shortDescription>
+        <value>Q2 - PPC Country</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q2_PPC_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q2_PPC_Name</shortDescription>
+        <value>Q2 - PPC Name</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q2_Part_Of_Roster</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q2_Part_Of_Roster</shortDescription>
+        <value>Q2-Is the PC part of the Roster?</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q2_Service_Company_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q2_Service_Company_ Name</shortDescription>
+        <value>Q2- Service Company Name</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q2_Total_Cost</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q2_Total_Cost</shortDescription>
+        <value>Q2 - Total Cost</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q3_Additional_Agency_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q3_Additional_Agency_Name</shortDescription>
+        <value>Q3-CA/Additional Agency Name</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q3_CA_Location</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q3_CA_Location</shortDescription>
+        <value>Q3- CA Location</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q3_Cost_Only</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q3_Cost_Only</shortDescription>
+        <value>Q3 -CA Cost Only(Local Currency)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q3_Is_PC_Part_Of_Roster</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q3_Is_PC_Part_Of_Roster</shortDescription>
+        <value>Q3-Is the PC part of the Roster?</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q3_Is_PPC_Part_Of_Roster</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q3_Is_PPC_Part_Of_Roster</shortDescription>
+        <value>Q3 - Is the PPC part of the Roster?</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q3_PC_Cost_Euro_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q3_PC_Cost_Euro_Amount</shortDescription>
+        <value>Q3 -PC Cost Only(Euro Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q3_PC_Cost_Local_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q3_PC_Cost_Local_Amount</shortDescription>
+        <value>Q3- PC Cost Only(Local Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q3_PC_Cost_Only</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q3_PC_Cost_Only</shortDescription>
+        <value>Q3- PC Cost Only(Local Currency)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q3_PC_Country_Location</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q3_PC_Country_Location</shortDescription>
+        <value>Q3- PC Country Location</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q3_PC_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q3_PC_Name</shortDescription>
+        <value>Q3- PC Name</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q3_PPC_Cost_Euro_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q3_PPC_Cost_Euro_Amount</shortDescription>
+        <value>Q3- PPC Cost Only(Euro Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q3_PPC_Cost_Local_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q3_PPC_Cost_Local_Amount</shortDescription>
+        <value>Q3 -PPC Cost Only(Local Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q3_PPC_Cost_Only</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q3_PPC_Cost_Only</shortDescription>
+        <value>Q3- PPC Cost Only(Local Currency)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q3_PPC_Country</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q3_PPC_Country</shortDescription>
+        <value>Q3 -PPC Country</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q3_PPC_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q3_PPC_Name</shortDescription>
+        <value>Q3- PPC Name</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q3_Service_Company_name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q3_Service_Company_name</shortDescription>
+        <value>Q3 -Service Company Name</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q3_Total_Cost</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q3_Total_Cost</shortDescription>
+        <value>Q3-Total Cost</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q4_Additional_Agency_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q4_Additional_Agency_Name</shortDescription>
+        <value>Q4-CA/Additional Agency Name</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q4_CA_Cost_Euro_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q4_CA_Cost_Euro_Amount</shortDescription>
+        <value>Q4 -CA Cost Only(Euro Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q4_CA_Cost_Local_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q4_CA_Cost_Local_Amount</shortDescription>
+        <value>Q4 -CA Cost Only(Local Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q4_CA_Cost_Only</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q4_CA_Cost_Only</shortDescription>
+        <value>Q4- CA Cost Only(Local Currency)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q4_CA_Location</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q4_CA_Location</shortDescription>
+        <value>Q4 -CA Location</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q4_Cost_Local_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q4_Cost_Local_Amount</shortDescription>
+        <value>Q4 -PC Cost Only(Local Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q4_Is_PC_Part_Of_Roster</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q4_Is_PC_Part_Of_Roster</shortDescription>
+        <value>Q4-Is the PC part of the Roster?</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q4_Is_PPC_Part_Of_Roster</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q4_Is_PPC_Part_Of_Roster</shortDescription>
+        <value>Q4- Is the PPC part of the Roster?</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q4_PC_Cost_Only</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q4_PC_Cost_Only</shortDescription>
+        <value>Q4 -PC Cost Only(Local Currency)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q4_PC_Country_Location</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q4_PC_Country_Location</shortDescription>
+        <value>Q4 -PC Country Location</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q4_PC_Euro_amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q4_PC_Euro_amount</shortDescription>
+        <value>Q4- PC Cost Only(Euro Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q4_PC_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q4_PC_Name</shortDescription>
+        <value>Q4 -PC Name</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q4_PPC_Cost_Euro_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q4_PPC_Cost_Euro_Amount</shortDescription>
+        <value>Q4 -PPC Cost Only(Euro Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q4_PPC_Cost_Local_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q4_PPC_Cost_Local_Amount</shortDescription>
+        <value>Q4- PPC Cost Only(Local Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q4_PPC_Cost_Only</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q4_PPC_Cost_Only</shortDescription>
+        <value>Q4 -PPC Cost Only(Local Currency)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q4_PPC_Country</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q4_PPC_Country</shortDescription>
+        <value>Q4 -PPC Country</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q4_PPC_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q4_PPC_Name</shortDescription>
+        <value>Q4 -PPC Name</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q4_Service_Company_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q4_Service_Company_Name</shortDescription>
+        <value>Q4 -Service Company Name</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q4_Total_Cost</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q4_Total_Cost</shortDescription>
+        <value>Q4-Total Cost</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q5_Additional_Agency_name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q5_Additional_Agency_name</shortDescription>
+        <value>Q5-CA/Additional Agency Name</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q5_CA_Cost_Local_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q5_CA_Cost_Local_Amount</shortDescription>
+        <value>Q5- CA Cost Only(Local Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q5_CA_Cost_Only</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q5_CA_Cost_Only</shortDescription>
+        <value>Q5- CA Cost Only(Local Currency)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q5_CA_Euro_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q5_CA_Euro_Amount</shortDescription>
+        <value>Q5- CA Cost Only(Euro Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q5_CA_Location</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q5_CA_Location</shortDescription>
+        <value>Q5 -CA Location</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q5_Is_PC_Part_Of_Roster</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q5_Is_PC_Part_Of_Roster</shortDescription>
+        <value>Q5-Is the PC part of the Roster?</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q5_Is_PPC_Part_Of_Roster</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q5_Is_PPC_Part_Of_Roster</shortDescription>
+        <value>Q5 - Is the PPC part of the Roster?</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q5_PC_Cost_Euro_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q5_PC_Cost_Euro_Amount</shortDescription>
+        <value>Q5 -PC Cost Only(Euro Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q5_PC_Cost_Local_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q5_PC_Cost_Local_Amount</shortDescription>
+        <value>Q5- PC Cost Only(Local Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q5_PC_Cost_Only</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q5_PC_Cost_Only</shortDescription>
+        <value>Q5 -PC Cost Only(Local Currency)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q5_PC_Country_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q5_PC_Country_Name</shortDescription>
+        <value>Q5 -PC Country Location</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q5_PC_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q5_PC_Name</shortDescription>
+        <value>Q5- PC Name</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q5_PPC_Cost_Euro_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q5_PPC_Cost_Euro_Amount</shortDescription>
+        <value>Q5 -PPC Cost Only(Euro Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q5_PPC_Cost_Local_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q5_PPC_Cost_Local_Amount</shortDescription>
+        <value>Q5 -PPC Cost Only(Local Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q5_PPC_Cost_Only</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q5_PPC_Cost_Only</shortDescription>
+        <value>Q5 -PPC Cost Only(Local Currency)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q5_PPC_Country</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q5_PPC_Country</shortDescription>
+        <value>Q5 -PPC Country</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q5_PPC_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q5_PPC_Name</shortDescription>
+        <value>Q5- PPC Name</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q5_Service_Company_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q5_Service_Company_Name</shortDescription>
+        <value>Q5 -Service Company Name</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Q5_Total_Cost</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q5_Total_Cost</shortDescription>
+        <value>Q5-Total Cost</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Query_BrandName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Query_BrandName</shortDescription>
+        <value>AM_Job_Detail__r.Brand_Final__c</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Query_BrandPosition</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Query_BrandPosition</shortDescription>
+        <value>AM_Job_Detail__r.Brand_Position__c</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Query_Category</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Query_Category</shortDescription>
+        <value>AM_Job_Detail__r.ProductCategory__c</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Query_Project_Detail</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Query_Project_Detail</shortDescription>
+        <value>AM_Job_Detail__r.Project_Details__c</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Query_User</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Query_User</shortDescription>
+        <value>User__c</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Quote</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Quote</shortDescription>
+        <value>Quote</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Quote_Col</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Quote:</shortDescription>
+        <value>Quote:</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Quote_Files</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Quote Files</shortDescription>
+        <value>Quote Files</value>
+    </labels>
+    <labels>
+        <fullName>Amr_RAP</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_RAP</shortDescription>
+        <value>RAP</value>
+    </labels>
+    <labels>
+        <fullName>Amr_RAPJobPortFolio</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_RAPJobPortFolio</shortDescription>
+        <value>/apex/Amr_RAPJobPortfolio</value>
+    </labels>
+    <labels>
+        <fullName>Amr_RAPSharedJob</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_RAPSharedJob</shortDescription>
+        <value>Amr_RAPSharedJob</value>
+    </labels>
+    <labels>
+        <fullName>Amr_RAP_Allocated</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_RAP_Allocated</shortDescription>
+        <value>RAP Allocated</value>
+    </labels>
+    <labels>
+        <fullName>Amr_RAP_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_RAP Name</shortDescription>
+        <value>RAP Name</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Radio</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Radio</shortDescription>
+        <value>Radio</value>
+    </labels>
+    <labels>
+        <fullName>Amr_ReBreif_Scope</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_ReBreif_Scope</shortDescription>
+        <value>Has there been a scope re-brief</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Region</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Region</shortDescription>
+        <value>Region</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Remove</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Remove</shortDescription>
+        <value>Remove</value>
+    </labels>
+    <labels>
+        <fullName>Amr_RewExistMaterial_atleastone_option_of_Medium_must_be_selected_corr_to_Digi</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr RewExistMaterial atleastone option of Medium must be selected corr to Digi</shortDescription>
+        <value>For Rework Existing Material : at least one option of Medium must be selected corresponding to Digital</value>
+    </labels>
+    <labels>
+        <fullName>Amr_RewExistingMat_at_least_one_optionofMedium_mustbe_selected_corr_to_OOH</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr RewExistingMat at least one optionofMedium mustbe selected corr to OOH</shortDescription>
+        <value>For Rework Existing Material : at least one option of Medium must be selected corresponding to Out of Home</value>
+    </labels>
+    <labels>
+        <fullName>Amr_ReworkExistMat_atleast_oneoption_of_Media_Channel_mustbe_selected</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr ReworkExistMat atleast oneoption of Media Channel mustbe selected</shortDescription>
+        <value>For Rework Existing Material : at least one option of Media Channel must be selected</value>
+    </labels>
+    <labels>
+        <fullName>Amr_ReworkExistMater_atleast_oneoption_of_Medium_mustbeselected_corr_to_inStor</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr ReworkExistMater atleast oneoption of Medium mustbeselected corr to inStor</shortDescription>
+        <value>For Rework Existing Material : at least one option of Medium must be selected corresponding to In Store</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Rework_Exisiting_Material</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Rework Exisiting Material</shortDescription>
+        <value>Rework Exisiting Material</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Save</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Save</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Saving_Accepted_Of_Quotes</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Saving_Accepted_Of_Quotes</shortDescription>
+        <value>€ Saving - Accepted Quote</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Saving_Average_of_Quotes</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_€ Saving - Average of Quotes</shortDescription>
+        <value>€ Saving - Average of Quotes</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Script_Title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Script Title</shortDescription>
+        <value>Script Title</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Search</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Search</shortDescription>
+        <value>Search</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Select_atleast_one_document</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Select atleast one document</shortDescription>
+        <value>Select atleast one document</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Service_Company_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Service Company Name</shortDescription>
+        <value>Service Company Name (if applicable)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Shoot_Location</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Shoot Location</shortDescription>
+        <value>Shoot Location(Country)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Sound_Studio_name_if_applicable</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Sound Studio name (if applicable)</shortDescription>
+        <value>Sound Studio name (if applicable)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Stage_RAP_engaged</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Stage RAP engaged</shortDescription>
+        <value>Stage RAP was Engaged</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Stage_of_production_activity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Stage of production activity</shortDescription>
+        <value>Stage of Production Activity</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Start_Date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Start_Date</shortDescription>
+        <value>Start Date</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Status_Dormant</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Status_Dormant</shortDescription>
+        <value>Dormant</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Status_Live</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Status_Live</shortDescription>
+        <value>Live</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Status_Pending</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Status_Pending</shortDescription>
+        <value>Pending</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Status_Priority</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Status_Priority</shortDescription>
+        <value>Priority</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Still_Image_Only</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Still Image Only</shortDescription>
+        <value>Still Image Only</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Submitted_Saving_Page_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Submitted Saving Page Id</shortDescription>
+        <value>/apex/Amr_SubmittedSavingPage?id=</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Success_AdManager</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Success_AdManager</shortDescription>
+        <value>Thank you for submitting the job successfully, shortly you will receive the email confirmation</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Success_JobAllocated</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Success_JobAllocated</shortDescription>
+        <value>Job allocated successfully</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Success_JobShared</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Success_JobShared</shortDescription>
+        <value>Job has been successfully Shared with seleted RAP/RAPs</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Success_ReportSaved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Success_ReportSaved</shortDescription>
+        <value>Record is saved successfully</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Success_StatusChanged</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Success_StatusChanged</shortDescription>
+        <value>Status changed successfully</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Successfully_updated</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Successfully updated</shortDescription>
+        <value>Successfully updated</value>
+    </labels>
+    <labels>
+        <fullName>Amr_TV</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr TV</shortDescription>
+        <value>TV</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Target_air_date_i_e_when_will_material_be_released</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Target air date (i.e. when will material be released)</shortDescription>
+        <value>Target Air Date (i.e. when will material be released)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_There_is_no_data_to_display</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_ There is no data to display</shortDescription>
+        <value>There is no data to display</value>
+    </labels>
+    <labels>
+        <fullName>Amr_This_job_has_already_been_cancelled</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr This job has already been cancelled</shortDescription>
+        <value>This job has already been cancelled</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Time_Management</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Time Management</shortDescription>
+        <value>Time Management</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Total_Acc_Final_Cost_CA_PC_PPC_Euro_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Total Acc. Final Cost (CA/PC/PPC) Euro Amount</shortDescription>
+        <value>Total Acc. Final Cost (CA/PC/PPC) Euro Amount</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Total_Accepted_Final_Cost</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Total_Accepted_Final_Cost</shortDescription>
+        <value>€ Total Accepted Final Cost</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Total_Cost</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Total Cost</shortDescription>
+        <value>Total Costs (€)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Total_Jobs</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Total Jobs</shortDescription>
+        <value>Total Jobs -</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Total_No_of_Films</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Total No of Films</shortDescription>
+        <value>Total No. of Films</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Total_Sound_Studio_costs</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Total Sound Studio costs</shortDescription>
+        <value>Total Sound Studio costs</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Total_editing_costs_exc_Post_production</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Total editing costs (exc. Post production)</shortDescription>
+        <value>Total editing costs (exc. Post production)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Travel_Costs</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Travel Costs</shortDescription>
+        <value>Travel Costs</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Type_Of_Saving</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Type_Of_Saving</shortDescription>
+        <value>What type of Savings is this?</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Uncancel_Error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Uncancel_Error</shortDescription>
+        <value>Please select the job to uncancel</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Unilever_Information</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Unilever Information</shortDescription>
+        <value>Unilever Information</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Unilever_finance_member_email</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Unilever finance member email</shortDescription>
+        <value>Unilever Finance Member Email</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Unilever_project_leader_email_if_different</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Unilever project leader email (if different)</shortDescription>
+        <value>Unilever Project Leader Email (if different)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Value_of_Props_and_Wardrobe_paid_for</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Value of Props and Wardrobe (paid for)</shortDescription>
+        <value>Value of Props and Wardrobe (paid for)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_What_type_of_Savings_is_this</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_ What type of Savings is this?</shortDescription>
+        <value>What type of Savings is this?</value>
+    </labels>
+    <labels>
+        <fullName>Amr_What_type_of_activity_will_this_production_support</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr What type of activity will this production support?</shortDescription>
+        <value>What type of activity will this production support?</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Which_function_are_you_part_of_BD_BB_Other</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Which function are you part of (BD/BB/Other)</shortDescription>
+        <value>Which function are you part of (BD/BB/Other)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Your_email_address</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr Your email address</shortDescription>
+        <value>Your Email Address</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Your_saving_review</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Your saving review</shortDescription>
+        <value>Your saving review</value>
+    </labels>
+    <labels>
+        <fullName>Amr_can_select_either_New_Original_Master_or_multiple_others</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr can select either New Original Master or multiple others</shortDescription>
+        <value>(can select either New Original Master or multiple others)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_can_select_multiple</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr can select multiple</shortDescription>
+        <value>(can select multiple)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_can_select_multiple_but_some_are_default</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr can select multiple but some are default</shortDescription>
+        <value>(can select multiple but some are default)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_celebrity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr celebrity)</shortDescription>
+        <value>celebrity)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_create_additional_material_eg_tag_on_pack_modify_message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr create additional material eg tag-on, pack, modify message</shortDescription>
+        <value>(create additional material eg tag-on, pack, modify message)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_create_different_length_size_version_or_simple_re_edit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr create different length/size version or simple re-edit</shortDescription>
+        <value>(create different length/size version or simple re-edit)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_incl_multiple_executions_cutdowns_within_project</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr incl. multiple executions/cutdowns within project</shortDescription>
+        <value>(incl. multiple executions/cutdowns within project)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_includes_key_talent</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr includes key talent</shortDescription>
+        <value>(includes key talent</value>
+    </labels>
+    <labels>
+        <fullName>Amr_internal_comms_videos_and_guides</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr internal comms videos and guides</shortDescription>
+        <value>(internal comms videos and guides)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_job_details</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr job-details</shortDescription>
+        <value>job-details</value>
+    </labels>
+    <labels>
+        <fullName>Amr_message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr message</shortDescription>
+        <value>message</value>
+    </labels>
+    <labels>
+        <fullName>Amr_non_UniAdapt_Model</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr non-UniAdapt Model</shortDescription>
+        <value>(non-UniAdapt Model)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_q3_Cost_Euro_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Q3_Cost_Euro_Amount</shortDescription>
+        <value>Q3 -CA Cost Only(Euro Amount)</value>
+    </labels>
+    <labels>
+        <fullName>Amr_scope_rebrief</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Has there been a scope re-brief?</shortDescription>
+        <value>Has there been a scope re-brief?</value>
+    </labels>
+    <labels>
+        <fullName>Amr_tab</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr tab</shortDescription>
+        <value>tab</value>
+    </labels>	
 </CustomLabels>
