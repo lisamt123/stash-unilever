@@ -1891,7 +1891,7 @@ This means that they will not have editing rights. You can manage member <br/> p
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CEC CaseRefreshAlertError</shortDescription>
-        <value>Please save changes to your case record and check the \'Case Action\' tab for Surveys</value>
+        <value>Please save changes to your case record and check the 'Case Action' tab for Surveys</value>
     </labels>
     <labels>
         <fullName>CEC_Case_Factory_Survey_Reference</fullName>
@@ -4135,14 +4135,14 @@ This means that they will not have editing rights. You can manage member <br/> p
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM Assignment Project Text</shortDescription>
-        <value>Following team member(s) added to the project : &nbsp;</value>
+        <value>Following team member(s) added to the project :  </value>
     </labels>
     <labels>
         <fullName>IPM_Assignment_User_Text</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM Assignment User Text</shortDescription>
-        <value>You have been assigned as a team member for this project &nbsp;</value>
+        <value>You have been assigned as a team member for this project  </value>
     </labels>
     <labels>
         <fullName>IPM_Assort_Distribution_Type</fullName>
@@ -7993,7 +7993,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_INCREMENTAL_P&L</shortDescription>
-        <value>Incremental P &amp; L</value>
+        <value>Incremental P & L</value>
     </labels>
     <labels>
         <fullName>IPM_INITIAL_HUNCHES_AND_HYPOTHESES</fullName>
@@ -10085,7 +10085,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_ProjectNameHelpText</shortDescription>
-        <value>The project name must be unique and cannot contain the following special characters: _!@#$%^&*()+=-][;'/.,\</value>
+        <value>The project name must be unique and cannot contain the following special characters: _!@#$%^&*()+=-][;'/.,</value>
     </labels>
     <labels>
         <fullName>IPM_ProjectNotRetrieved</fullName>
@@ -10190,7 +10190,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM Project Document Text</shortDescription>
-        <value>&nbsp; Document is &nbsp;</value>
+        <value>  Document is  </value>
     </labels>
     <labels>
         <fullName>IPM_Project_ID</fullName>
@@ -12992,7 +12992,7 @@ the campaign covers more than 15 countries</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Audio / Visual ORIGINATION – FULL</shortDescription>
-        <value>&nbsp;</value>
+        <value> </value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Score3</fullName>
@@ -13000,7 +13000,7 @@ the campaign covers more than 15 countries</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Audio / Visual ORIGINATION – FULL</shortDescription>
-        <value>&nbsp;</value>
+        <value> </value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Score4</fullName>
