@@ -22353,6 +22353,21 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>IPM_Financial__c.Status_Global__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Financial__c.Status_Regional__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Financial__c.Status_Local__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>IPM_Financial__c.Target_Launch_Date_Updated_From__c</field>
         <readable>true</readable>
     </fieldPermissions>
