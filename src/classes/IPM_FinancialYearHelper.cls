@@ -284,7 +284,7 @@ public with sharing class IPM_FinancialYearHelper
                                                     WHERE Id IN : finYearmap.keySet()
                                                     AND isActive__c = true 
                                                     AND Year__c =: IPM_ConstantUtils.Y1_YEARINDEX
-                                                    AND Year_Type__c =: IPM_ConstantUtils.YEAR_TYPE_INNOVATION AND PL_Type__c =: IPM_ConstantUtils.PL_TYPE_INCREMENTAL
+                                                    AND Year_Type__c =: IPM_ConstantUtils.YEAR_TYPE_INNOVATION AND PL_Type__c =: IPM_ConstantUtils.PL_TYPE_GROSS
                                                     AND IPM_Financial__r.RecordType.Name =: IPM_ConstantUtils.DEFAULT_FINANCIAL_RT
                                                     AND IPM_Financial__r.Regional_Project__c!=null ])
         {

@@ -1381,7 +1381,7 @@ public without sharing class IPM_Utils {
                                              from IPM_Financial_Year__c
                                              where Year__c =: IPM_ConstantUtils.INTRODUCTION_HEADER_SEQUENCE 
                                              AND Year_Type__c =: IPM_ConstantUtils.YEAR_TYPE_INNOVATION
-                                             AND PL_Type__c =: IPM_ConstantUtils.PL_TYPE_INCREMENTAL 
+                                             AND PL_Type__c =: IPM_ConstantUtils.PL_TYPE_GROSS 
                                              AND Financial_External_Id__c IN: externalIdSet]) {
             financialYearMap.put(financialYear.Financial_External_Id__c,financialYear);                                     
         }

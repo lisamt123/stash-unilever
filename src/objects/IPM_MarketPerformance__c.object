@@ -88,22 +88,22 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>GrossTurnover__c</field>
+            <field>IPM_Gross_Turnover__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>GM__c</field>
+            <field>IPM_GM__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>Gross_AP__c</field>
+            <field>IPM_Gross_BMI__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>GrossPBO__c</field>
+            <field>IPM_Gross_PBI__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -422,7 +422,7 @@
         <relationshipLabel>IPM Market Performance</relationshipLabel>
         <relationshipName>IPM_FinancialYear</relationshipName>
         <relationshipOrder>0</relationshipOrder>
-        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <reparentableMasterDetail>true</reparentableMasterDetail>
         <trackTrending>false</trackTrending>
         <type>MasterDetail</type>
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
@@ -449,6 +449,58 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>IPM_GM__c</fullName>
+        <description>get BB financial GM value</description>
+        <externalId>false</externalId>
+        <formula>IPMFinancialYear__r.GM_of_TO_Local__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>GM% (%)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Gross_BMI__c</fullName>
+        <description>get BB advertising promotion value</description>
+        <externalId>false</externalId>
+        <formula>IPMFinancialYear__r.Advertising_Promotions_Local__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Gross BMI (€)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Gross_PBI__c</fullName>
+        <description>Local Profit Before Overheads</description>
+        <externalId>false</externalId>
+        <formula>IPMFinancialYear__r.Profit_Before_Overheads_Local__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Gross PBI (€)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Gross_Turnover__c</fullName>
+        <description>local project turnover</description>
+        <externalId>false</externalId>
+        <formula>IPMFinancialYear__r.Turnover_Local__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Gross Turnover (€)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>InnovationValueShare__c</fullName>
