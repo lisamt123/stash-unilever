@@ -90,6 +90,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public IPM_Financial__c finRegional{get;set;}// for Financial Regional Business Impact
     public IPM_Financial__c finLocal{get;set;}// for Financial Local Business Impact
     public boolean isFinancialInvalid{get;set;}
+    public boolean isFinancialInvalidInnovation;
     //variable to capture financial type
     public Boolean isConsolidatedOrNonkey 
     {
@@ -226,6 +227,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         sustainabilityPeriod=0;
         isEditable=false;
         isFinancialInvalid = false;
+        isFinancialInvalidInnovation = false;
         isValidationFailed = false;
         isy0TurnoverInvalid = false;
         isy0ProfitInvalid = false;
@@ -1767,7 +1769,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                   isCalendarValidationFailed = validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR);
                   isInnovationValidationFailed = validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION);
           	  //check for hard validation - REQ3006
-          	  if(isFinancialInvalid){
+          	  if(isFinancialInvalid || isFinancialInvalidInnovation){
               	currentFinancial.isFinancialInvalid__c = true;
               }
               else{
@@ -2361,7 +2363,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 //Validate Turnover values.
        Boolean isValidWrapperFailed=false;
         isITOgrtGTO = false;
-        isFinancialInvalid = false;
+        isFinancialInvalidInnovation = false;
         isValidationError = false;
         validationErrorMessage = '';
         for(IPM_FinancialValueWrapper valueWrapperGross: lstGrossPLTurnover){
@@ -2377,7 +2379,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                	     if(valueWrapperGross.Value <  valueWrapperIncremental.Value){
                        isITOgrtGTO = true; 
                        valueWrapperGross.isGrossTOGRTIto = true;
-                       isFinancialInvalid = true;
+                       isFinancialInvalidInnovation = true;
                        isValidationError = true;
 	                	validationErrorMessage = IPM_ConstantUtils.INVALID_DATA_TO_SAVE;
                      }
@@ -2389,7 +2391,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 if(valueWrapperGross.Value <= IPM_ConstantUtils.INVALID_VALUE){
 	                	valueWrapperGross.isValueInvalid = true;
 	                	valueWrapperGross.isGrossTOValueInvalid = true;
-	                	isFinancialInvalid = true;
+                        isFinancialInvalidInnovation = true;
                         isValidationError = true;
 	                	validationErrorMessage = IPM_ConstantUtils.INVALID_DATA_TO_SAVE;
                 }
