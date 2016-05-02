@@ -498,10 +498,10 @@ public with sharing class IPM_ProjectOverviewCtrl {
 			//IF SPAN is Global
 			if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
 			{
-				fin=[SELECT Business_Impact_Global__c					            
+				fin=[SELECT Business_Impact_Global__c,Business_Impact_Regional__c					            
 					 FROM IPM_Financial__c 
 					 WHERE Parent_Project__c=:project.Id AND Financial_External_ID__c=:project.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
-				globalbusinessImpactStr = (fin.isEmpty() ? IPM_ConstantUtils.EDITMODE_FALSE : (fin[0].Business_Impact_Global__c != null ? fin[0].Business_Impact_Global__c : IPM_ConstantUtils.BLANK) );
+		            globalbusinessImpactStr = (fin.isEmpty() ? IPM_ConstantUtils.EDITMODE_FALSE : (fin[0].Business_Impact_Global__c != null ? (project.IPM_Phase__c!=IPM_ConstantUtils.PHASE_IDEAS ? fin[0].Business_Impact_Regional__c : fin[0].Business_Impact_Global__c ):  IPM_ConstantUtils.BLANK) );
 			}
 			//IF SPAN is Regional
 			else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
@@ -516,10 +516,10 @@ public with sharing class IPM_ProjectOverviewCtrl {
 				else if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)
 				{
 					//Project Type is Rollout
-					fin=[SELECT Business_Impact_Global__c
+					fin=[SELECT Business_Impact_Global__c,Business_Impact_Regional__c
 						 FROM IPM_Financial__c 
 						 WHERE Parent_Project__c=:project.IPM_Parent_Project__c AND Financial_External_ID__c=:project.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
-					 globalbusinessImpactStr = (fin.isEmpty() ? IPM_ConstantUtils.EDITMODE_FALSE :(fin[0].Business_Impact_Global__c != null ? fin[0].Business_Impact_Global__c :IPM_ConstantUtils.BLANK));
+					 globalbusinessImpactStr = (fin.isEmpty() ? IPM_ConstantUtils.EDITMODE_FALSE :(fin[0].Business_Impact_Regional__c != null ? fin[0].Business_Impact_Regional__c :IPM_ConstantUtils.BLANK));
 				}
 			}
 			else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
@@ -537,12 +537,12 @@ public with sharing class IPM_ProjectOverviewCtrl {
 				else if(parentProjectType==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)// traverse to its Global Project for getting BI from CONSOLIDATED Financial
 				{
 					IPM_Project__c globalParentId= [Select IPM_Parent_Project__r.IPM_Parent_Project__c,IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c FROM IPM_Project__c where ID=:project.Id];
-					fin=[SELECT Business_Impact_Global__c FROM IPM_Financial__c 
+					fin=[SELECT Business_Impact_Global__c,Business_Impact_Regional__c FROM IPM_Financial__c 
 							 WHERE Parent_Project__c=:globalParentId.IPM_Parent_Project__r.IPM_Parent_Project__c
 							 AND Financial_External_ID__c=:globalParentId.IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
 					 
 					 
-					globalbusinessImpactStr =  (fin.isEmpty() ? IPM_ConstantUtils.EDITMODE_FALSE :(fin[0].Business_Impact_Global__c != null ? fin[0].Business_Impact_Global__c :IPM_ConstantUtils.BLANK));
+					globalbusinessImpactStr =  (fin.isEmpty() ? IPM_ConstantUtils.EDITMODE_FALSE :(fin[0].Business_Impact_Regional__c != null ? fin[0].Business_Impact_Regional__c :IPM_ConstantUtils.BLANK));
 				}
 				
 			}

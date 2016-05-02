@@ -57,7 +57,7 @@
 		    <apex:outputPanel layout="block" styleClass="col-xs-12"> 
                     <div class="buttonMarginRight marginTop ipmButtonGroup pull-right"> 
                          
-                            <apex:commandLink value="{!$Label.IPM_CANCEL}" styleClass="ipmButton buttonmarRight" onClick="pageclose();"/>  
+                            <span class="ipmButton buttonmarRight" onClick="pageclose();">{!$Label.IPM_CANCEL}</span>  
                             <apex:commandLink value="{!$Label.IPM_SAVE}" styleClass="ipmButton green" action="{!saveMilestones}" reRender="messages,form,displaymessage"  rendered="{!AND( OR(adhocmilestoneFlag, miniMilestoneFlag),milestoneFlag)}" onclick="skipValidation();" oncomplete="{!if(validateSuccess,'pageclose();','')}" />
                             <apex:commandLink value="{!$Label.IPM_SAVE}" styleClass="ipmButton green" action="{!promptForTaskUpdate}" reRender="messages,form,displaymessage"  rendered="{!AND(stndMilestoneFlag, milestoneFlag)}" onclick="skipValidation();" oncomplete="{!if(validateSuccess,'pageclose();','')}" />                                                 
                         </div> 

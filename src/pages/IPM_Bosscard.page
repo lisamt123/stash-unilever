@@ -281,7 +281,7 @@
                                                     <apex:outputPanel styleClass="selectContainer" html-value="{!$Page.IPM_ApproverList}?Id={!bosscard.id}" html-data-target="#editApprover" layout="block" rendered="{!isAddApprover}">
                                                         <!-- Below render condition is used to provide select approver label -->
                                                         <apex:outputpanel rendered="{!if(bosscard.IPM_Bosscard_Status__c='In Progress',true,false)}">
-                                                            <span class="selectAppr" onclick="saveboss();" >{!$Label.IPM_Select_Approver}</span>
+                                                            <span class="selectAppr" onclick="saveboss();skipValidation();" >{!$Label.IPM_Select_Approver}</span>
                                                         </apex:outputPanel>  
                                                     </apex:outputPanel>                                                                                        
                                                     <apex:actionfunction name="saveboss" action="{!save}" reRender="validscript,companyMand,CateMand,pgmsg,nameMsg,specialchar,fill,modalpop,bossHeader" onComplete="slctApprover();">

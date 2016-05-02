@@ -1012,9 +1012,15 @@
         jq('#ipmGetStartedTab .ipmStartedTabs li').removeClass('active');                   
         var getClass= jq(belem).attr('class').split(' ');
         var getId = getClass[0];
-        jq('#ipmGetStartedTab').parent().find('.ipmGetStartedContent').hide();
-        jq("#ipmGetStartedTab .ipmStartedTabs li."+getId).addClass('active');
-        jq('#'+getId).fadeIn("fast");
+		if(unsaved){
+          if(getId == 'projectdetails'){
+              window.parent.location.href="/apex/IPM_ProjectSetupView?Pid={!projectId}&Projectid=projectdetails";
+          }
+        }else{
+		      jq('#ipmGetStartedTab').parent().find('.ipmGetStartedContent').hide();
+		      jq("#ipmGetStartedTab .ipmStartedTabs li."+getId).addClass('active');
+		      jq('#'+getId).fadeIn("fast");
+		  }
     }
     
     function custnextTab(celem){

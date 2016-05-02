@@ -246,7 +246,7 @@
 	.finNavTab{height:47px ;}
 	.finNavTab .tabEven{}
 	.finNavTab .tabEven.active{}
-	.refreshFromLocal{margin-right:15px ;}
+	.ipmButtonGroup .ipmButton.green.refreshFromLocal{margin-right:15px ;}
 	.cancelAction{margin-right:10px;}
 	.finAlertBox{display: block;padding: 10px;border-radius: 4px;margin-top: 20px;margin-bottom: 20px;background: #FFFB42;float:left; width:100%}
 	.finAlertBox .col-sm-1{margin-top: 10px;width: 35px;padding-left: 0;padding-right: 0;}

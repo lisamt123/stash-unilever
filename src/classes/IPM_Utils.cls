@@ -1041,12 +1041,8 @@ public without sharing class IPM_Utils {
                     && finYr.IPM_Financial__r.IPM_Project_Rollout__c == null && finYr.IPM_Financial__r.Regional_Project__c == null && finYr.IPM_Financial__r.Local_Project__c == null
                     && finYr.Turnover_Global__c != null && finYr.IPM_Financial__r.Parent_Project__c != null ) 
                 {
-                     if(finYr.IPM_Financial__r.Parent_Project__r.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS){
-                    	iTOValue = (finYr.Turnover_Global__c)/1000; 
-                    }
-                    else{
-                    	iTOValue = (finYr.Turnover_Regional__c)/1000;// if not ideas the Year3 iTO is from Market Cluster Bottom Up
-                    }
+                    iTOValue = finYr.IPM_Financial__r.Parent_Project__r.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS ? (finYr.Turnover_Global__c)/1000 : (finYr.Turnover_Regional__c)/1000; 
+
                     projIdiTOMap.put(finYr.IPM_Financial__r.Parent_Project__c,iTOValue);
                 }
                 
@@ -1381,7 +1377,7 @@ public without sharing class IPM_Utils {
                                              from IPM_Financial_Year__c
                                              where Year__c =: IPM_ConstantUtils.INTRODUCTION_HEADER_SEQUENCE 
                                              AND Year_Type__c =: IPM_ConstantUtils.YEAR_TYPE_INNOVATION
-                                             AND PL_Type__c =: IPM_ConstantUtils.PL_TYPE_INCREMENTAL 
+                                             AND PL_Type__c =: IPM_ConstantUtils.PL_TYPE_GROSS 
                                              AND Financial_External_Id__c IN: externalIdSet]) {
             financialYearMap.put(financialYear.Financial_External_Id__c,financialYear);                                     
         }

@@ -815,7 +815,8 @@ input.misalignedField{border:2px solid red;}
 .bPageBlock .list.ipmTable.monitor thead th {background-color: #dceefa;} 
 tr.odd {background-color: #f8f8f8;} 
 .errorConsole .x-grid3-row-over, body .pbBody table.list.monitor tr.dataRow.highlight td, body .pbBody table.list.monitor tr.dataRow.highlight th {background-color: transparent;}
-
+.bPageBlock .list.ipmTable.monitor thead th {white-space: normal;}
+.list.monitor.ipmTable td input {width: 53px;}
 
 table.ipmTable.table.table-bordered.ecoDesignCountry tr th{
     font-size: 11.5px;

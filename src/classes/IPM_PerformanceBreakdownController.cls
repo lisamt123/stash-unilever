@@ -1,299 +1,366 @@
-/*************************************************************************************************
-*@Author:Cognizant
-*@Created Date:15/03/2016
-*@Description:this class is used to take input's from Finance/CMI/PD/DPL/Cental Team/Business Partner user
-*for market performance break down.this is editable on Market Ready phase.Market performance data is coming
-*from capability phase of regional rollout project.
-**************************************************************************************************/
-
-public with sharing class IPM_PerformanceBreakdownController {
-    public IPM_MarketPerformance__c marketperformance{get;set;}//get info of market performance record
-    public String projectId {get;set;}//hold project id from page url
-    public IPM_Project__c project;//hold project info
-    public List<IPM_MarketPerformanceBreakdown__c> marketPerformanceBreakdownList{get;set;}//hold list of market performance breakdown records
-    public String marketPerString;//hold market performance id
-    public decimal decMultFactor = 1.00;//decimal place value
-    public decimal exRate{get;set;}//hold exchange rate value
-    public map<string,decimal> mapCurrency;//map of country code and exchange rate     
-    public boolean appliedRate = false;//check if other currency is selected
-    public static set<string>avoidConversionSet=new set<String>{'WeightedDistribution__c','RelativePricetoMarket__c'};//set of fields name where no need to apply currency conversion
-    public set<string>scaleSet=new set<string>{'MediaSpend__c'};//set of fields to set default decimal place
-    public Set<string>greaterThanSet{get;set;}//set of fields name where user has entered more than 100 %
-    public String sMisalignmentMsg{get;set;} //hold misaligned message
-    public string period_STR{get;set;} //hold period api name
-    private List<String> mktPerFldList = new List<String>();//list of fields api name
-    public List<String>misAlignedList{get;set;}//hold misaligned fields name
-    public Map<string,string> mapWithRecordNCell{get;set;}// map with record and field
-    public boolean isgreaterThan{get;set;}//check if values are greater than 100
-    private final string CLASS_NAME=IPM_PerformanceBreakdownController.class.getName();//get class name
-    public boolean isMisaligned{get;set;}//check for misaligned value
-    /**************************************************************************************
-    *@Description :Constructor to read the information from the page paramaters , 
-    *get project details based on page url parameter.
-    *display market performance data and market performance break down data.
-    ***************************************************************************************/
-    public IPM_PerformanceBreakdownController() {   
-	    Map<String,String> paramMap = Apexpages.currentpage().getparameters();
-	    period_STR=IPM_ConstantUtils.PERFORMANCE_PERIOD;
-        greaterThanSet=new Set<string>();
-        isgreaterThan=false;
-        mapWithRecordNCell=new Map<string,string>();
-	    if(paramMap != null && paramMap.containsKey(IPM_ConstantUtils.SF_ID)) {
-	        projectId =  paramMap.get(IPM_ConstantUtils.SF_ID);
-	        list<IPM_Project__c>projectDetails=new list<IPM_Project__c>();
-	        projectDetails=[Select id, Name,IPM_Project_Name__c From IPM_Project__c Where id =:projectId Limit 1];
-	        if(!projectDetails.isEmpty()){
-	        	project =projectDetails[0];	
-	        	loadMarketPerformanceBreakDown();
-	        }
-	        
-	    }
-    } 
-    /**************************************************************************************
-    *@Description :getting call from constructor.
-    *display market performance data and market performance break down data.
-    ***************************************************************************************/
-    public void loadMarketPerformanceBreakDown() { 
-        Set<String> financialYearExternalIdSet = new Set<String>();
-        Map<String,IPM_Financial_Year__c> financialYearMap = IPM_Utils.getRelatedY1InnovationYear(new Set<String>{project.Name});
-        for(IPM_Financial_Year__c financialYear : financialYearMap.values()) {
-            financialYearExternalIdSet.add(financialYear.Id);
-        }
-        if(!financialYearExternalIdSet.isEmpty()) {
-            String marketPerformantceQueryStr =  IPM_Utils.getSOQLQueryFromFieldSet('UML_KeyMetrics','IPM_MarketPerformance__c',false);
-            marketPerformantceQueryStr += ' WHERE IPMFinancialYear__c IN: financialYearExternalIdSet LIMIT 1';
-            List<IPM_MarketPerformance__c> marketperformanceList = Database.query(marketPerformantceQueryStr);
-            if(!marketperformanceList.isEmpty()) {
-                // Get the Market Performance Record for the local project
-                marketperformance = marketperformanceList[0];
-                marketPerString = marketperformance.Id;
-                // Get existing associated Market Performance Breakdown records for the  marketperformance record.
-                String marketPerformantceBrkQueryStr =  IPM_Utils.getSOQLQueryFromFieldSet('UML_KeyMetrics','IPM_MarketPerformanceBreakdown__c',false);
-                marketPerformantceBrkQueryStr += ' WHERE MarketPerformance__c =: marketPerString';
-                //Apending Order By clause
-                marketPerformantceBrkQueryStr += ' order by Sequence__c';        
-                // Again fetch the final Breakdown list.
-                 
-                marketPerformanceBreakdownList = database.query(marketPerformantceBrkQueryStr);
-                checkMisalignments();
+/**********************************************************************************************************************
+* @author       Cognizant 
+* @date         27/04/2015
+* @description  This class is used for managing the trigger methods for IPM_Financial_Year__c object this contains 
+*               initialiseFYConsolidation: contains Financial Year Consolidation Logic
+			    updateFinancialActionStandard: updates IPM_Project_Document_Section_Content__c
+			    and getFinancialYearQuery: Query for the financial year records required for processing.
+*************************************************************************************************************************/
+public with sharing class IPM_FinancialYearHelper
+{
+    private static final String UPDATE_FINANCIAL_ACTION_STANDARD_STR = 'updateFinancialActionStandard';
+    private static final String CLASS_NAME = IPM_FinancialYearHelper.Class.getName(); //Class Name for Exception Logging
+    private static Boolean IS_RECURSSIVE = false;
+    // Field set used for consolidation  
+    private static final Set<String> FIELDS_TO_CONSOLIDATE = new Set<String>{
+            'Advertising_Promotions_Global__c','Advertising_Promotions_Local__c','Advertising_Promotions_Regional__c',
+            'Profit_Before_Overheads_Global__c','Profit_Before_Overheads_Local__c','Profit_Before_Overheads_Regional__c',
+            'Gross_Profit_Global__c','Gross_Profit_Local__c','Gross_Profit_Regional__c',
+            'Turnover_Global__c','Turnover_Local__c','Turnover_Regional__c',
+            'Volume_Global__c','Volume_Regional__c','Volume_Local__c',
+            'Volume_Tons_Global__c','Volume_Tons_Regional__c','Volume_Tons_Local__c'
+        };
+    
+    public static Boolean SKIP_TRIGGER_EXECUTION = false;
+    
+    /*******************************************************************************************************************
+    * @description                      Method to initialise consolidation of financial year records. In this method we 
+    									query existing financial record based on the project type
+    *									and update consildated record for active financial records.
+    * @param newFinancialYearList       Map of Trigger.new records
+    * @param oldFinancialYearMap        Map of Trigger.old records
+    * @param financialYearDetailMap	    Queried List of Financial Records from DB 		
+    * @param upsertconsolidatedFinancialYearMap udapted financial record to be upsert.
+    * @return                           NONE
+    *********************************************************************************************************************/
+    public static void initialiseFYConsolidation(List<IPM_Financial_Year__c> newFinancialYearList, Map<Id, IPM_Financial_Year__c> oldFinancialYearMap,Map<Id,IPM_Financial_Year__c> financialYearDetailMap,Map<String,IPM_Financial_Year__c> upsertconsolidatedFinancialYearMap )
+    {
+        Set<String> globalProjectIdSet = new Set<String>();
+        Set<String> regionalProjectIdSet = new Set<String>();
+        
+        Set<String> changedFinancialFieldSet = new Set<String>();
+        
+       
+        for(IPM_Financial_Year__c newfinancialYear : newFinancialYearList) 
+        {
+            IPM_Financial_Year__c oldFinancialYear = null;
+            if(oldFinancialYearMap !=null && oldFinancialYearMap.containsKey(newfinancialYear.Id))
+            {
+                oldFinancialYear = oldFinancialYearMap.get(newfinancialYear.Id);
             }
-        }
-        if(marketPerformanceBreakdownList!=null && !marketPerformanceBreakdownList.isEmpty()){
-        	fieldMoreThanValue();
+             
+            changedFinancialFieldSet.addAll(IPM_FinancialUtils.isConsolidationChanged(newFinancialYear.IPM_AssociatedFinancialRecordTypeId__c,newfinancialYear,oldFinancialYear,FIELDS_TO_CONSOLIDATE,'External_Id__c'));  
         }
         
-    }
-    /**************************************************************************************
-    *@Description :Map of record id's and field name with css class,this is used to show table
-    *cell as red color.
-    *Return:Null
-    ***************************************************************************************/
-    public void fieldMoreThanValue(){
-    	for(IPM_MarketPerformanceBreakdown__c mktPer : marketPerformanceBreakdownList)
-	        {
-	        	for(Schema.FieldSetMember fieldSetMember : SObjectType.IPM_MarketPerformanceBreakdown__c.FieldSets.UML_KeyMetrics.getFields())
-	            {
-	            	mapWithRecordNCell.put(mktPer.Id+fieldSetMember.getFieldPath() , '');
-	            }
-	        }
-    }
-    /**************************************************************************************
-    *@Description :get all currency code list along with exchange rate.
-    *Return:List of SelectOption
-    ***************************************************************************************/
-    public List<SelectOption> getItems() {
-        list<IPM_Exchange_Rate__c> lstCurrency = [SELECT Currency_Code__c,Exchange_Rate__c FROM IPM_Exchange_Rate__c order by Currency_Code__c limit 10000];
-        List<SelectOption> options = new List<SelectOption>();
-        mapCurrency = new map<string,decimal>();
-        //populate picklist with currency codes
-        for(IPM_Exchange_Rate__c curr: lstCurrency){
-            options.add(new SelectOption(curr.Currency_Code__c,curr.Currency_Code__c));
-            mapCurrency.put(curr.Currency_Code__c, curr.Exchange_Rate__c);
-        }
-        return options;
-    }
-    /**************************************************************************************
-    *@Description :set firt selected currency code as EURO on page load
-    *Return:null
-    ***************************************************************************************/ 
-    public String selectedCurrency {
-        get {
-           if(selectedCurrency==null){
-            selectedCurrency=IPM_ConstantUtils.EURO;
-           }
-           return selectedCurrency;
-        }
-    set; 
-    }
-    /**************************************************************************************
-    *@Description :save 13 periods break dowm data from UI. validation is checked while saving
-    *the records.misAligned is checked while saving the records.before saving the records again
-    *system is converting user input values as EURO.
-    ***************************************************************************************/
-    public PageReference saveRecords() {
-        greaterThanSet.clear();
-        isgreaterThan=false;
-        //get market performance breakdown data
-        for(IPM_MarketPerformanceBreakdown__c mktPer:marketPerformanceBreakdownList){
-            for(Schema.FieldSetMember fieldSetMember : SObjectType.IPM_MarketPerformanceBreakdown__c.FieldSets.Performance_Fields_To_Validate.getFields())
-                {
-                      if((Double)mktPer.get(fieldSetMember.getFieldPath()) > 100 )
-                      {
-                          mapWithRecordNCell.put(mktPer.id+fieldSetMember.getFieldPath(),IPM_ConstantUtils.MISALIGNED_CSS);
-		                  greaterThanSet.add(fieldSetMember.getLabel()+IPM_ConstantUtils.Colon+System.label.IPM_Can_not_be_greater );
-		            	  isgreaterThan=true; 
-                      }
-                }   
+        if(!changedFinancialFieldSet.isEmpty())
+        {   
+            String financialYearSelectQuery = IPM_FinancialYearHelper.getFinancialYearQuery(); 
             
+            if(financialYearDetailMap == null || financialYearDetailMap.isEmpty())
+            {
+                String financialYearDetailQuery = financialYearSelectQuery + ' where Id in :newFinancialYearList LIMIT 50000 ';     
+                financialYearDetailMap = new Map<Id,IPM_Financial_Year__c>( (List<IPM_Financial_Year__c>) database.query(financialYearDetailQuery));
+            }  
             
-         }
-        if(!isgreaterThan){
-	        //if user has selected currency change then below code will execute
-	        fieldMoreThanValue();
-	        if(appliedRate) {
-	        	List<IPM_MarketPerformanceBreakdown__c> mktPerBrkdownTempList = new List<IPM_MarketPerformanceBreakdown__c>(marketPerformanceBreakdownList);
-	            marketPerformanceBreakdownList.clear();     
-	            for(IPM_MarketPerformanceBreakdown__c mktPer : mktPerBrkdownTempList) {
-	                IPM_MarketPerformanceBreakdown__c mktPerTemp = new IPM_MarketPerformanceBreakdown__c();
-	                mktPerTemp = mktPer;
-	                for(String mktFld : mktPerFldList) {
-	                    integer scale=2;
-	                    if(scaleSet.contains(mktFld)){
-	                        scale=1;
-	                    }
-	                    if(mktPer.get(mktFld)!=null){
-	                    	decimal fieldvalue=(Double)mktPer.get(mktFld) / decMultFactor;
-	                    	mktPerTemp.put(mktFld,fieldvalue.setScale(scale));	
-	                    }
-	                }  
-	                marketPerformanceBreakdownList.add(mktPerTemp);     
-	            }
-	        
-	        }
-	        try{
-		        update marketPerformanceBreakdownList;//if validation successful then save the records
-		        applyRate();
-		        checkMisalignments();
-	        }catch(Exception ex){
-	        	isgreaterThan=true; 
-                greaterThanSet.add(Label.IPM_PLEASE_CONTACT_ADMINISTRATOR);
-                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,'saveRecords',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, null);
-            } 
-        }
-        return null;
-    }
-    
-    /**************************************************************************************
-    *@Description :system is converting user input values from EURO to any other currency.
-    ***************************************************************************************/
-    public pageReference applyRate(){
-        if (selectedCurrency!=null){
-            if (mapCurrency.containsKey(selectedCurrency)){
-                exrate = mapCurrency.get(selectedCurrency);
-                decMultFactor = exrate; 
-            }else{
-                decMultFactor = 1; 
-                exrate = 1;
-            }
-            
-            //Again query database so that conversion should not be applicable to the updated values
-            String marketPerformantceBrkQueryStr =  IPM_Utils.getSOQLQueryFromFieldSet('UML_KeyMetrics','IPM_MarketPerformanceBreakdown__c',false);
-            marketPerformantceBrkQueryStr += ' WHERE MarketPerformance__c =: marketPerString  order by Sequence__c';
-            
-            marketPerformanceBreakdownList = database.query(marketPerformantceBrkQueryStr);
-            mktPerFldList = getSOQLQueryFromFieldSetList('UML_KeyMetrics','IPM_MarketPerformanceBreakdown__c',false);
-            List<IPM_MarketPerformanceBreakdown__c> mktPerBrkdownTempList = new List<IPM_MarketPerformanceBreakdown__c>(marketPerformanceBreakdownList);
-            marketPerformanceBreakdownList.clear();
-            for(IPM_MarketPerformanceBreakdown__c mktPer : mktPerBrkdownTempList) {
-                IPM_MarketPerformanceBreakdown__c mktPerTemp = new IPM_MarketPerformanceBreakdown__c();
-                mktPerTemp = mktPer;
-                for(String mktFld : mktPerFldList){
-                    integer scale=2;
-                    if(scaleSet.contains(mktFld)){
-                        scale=1;
-                    } 
-                    if(mktPer.get(mktFld)!=null){
-                    	decimal fieldvalue=(Double)mktPer.get(mktFld) * decMultFactor;
-	                    mktPerTemp.put(mktFld,fieldvalue.setScale(scale));	 
-                    }
-                    
-                }   
-                marketPerformanceBreakdownList.add(mktPerTemp);     
-            }
-        }
-        appliedRate = true;
-        return null;
-    }
-    
-   /**************************************************************************************
-    *@Description :get all fields name from IPM_MarketPerformanceBreakdown__c object
-    ***************************************************************************************/
-    public static List<String> getSOQLQueryFromFieldSetList(String fieldSetName,String fieldSetSobjectName,boolean excludePercentageFlds) {
-       
-        List<String> fieldNamesList = new List<String>();
-        Map<String,Schema.SobjectType> globalDescribeMap = Schema.getGlobalDescribe();
-        Schema.FieldSet targetFieldSetObject = null;
-        if(globalDescribeMap.containsKey(fieldSetSobjectName)) {
-            Schema.DescribeSObjectResult sobjectDescResult = globalDescribeMap.get(fieldSetSobjectName).getDescribe(); 
-            Map<String, Schema.FieldSet> associatedFieldSetMap = sobjectDescResult.fieldSets.getMap();
-            if(associatedFieldSetMap.containsKey(fieldSetName)) {
-                targetFieldSetObject = associatedFieldSetMap.get(fieldSetName); 
+            for(IPM_Financial_Year__c financialYear : newFinancialYearList)
+            {
+                IPM_Financial_Year__c newfinancialYear = financialYearDetailMap.get(financialYear.Id);
                 
+                if(newfinancialYear.Global_External_Id__c != null && newfinancialYear.Global_External_Id__c != '')
+                {
+                    globalProjectIdSet.add(newfinancialYear.Global_External_Id__c);
+                }
+                
+                if(newfinancialYear.Regional_External_Id__c != null && newfinancialYear.Regional_External_Id__c != '')
+                {
+                    regionalProjectIdSet.add(newfinancialYear.Regional_External_Id__c);
+                }  
             }
-        }
-        if(targetFieldSetObject != null) {
-            for(Schema.FieldSetMember targetField : targetFieldSetObject.getFields()) {
-                if(targetField.getFieldPath() != IPM_ConstantUtils.SF_ID && ((targetField.getType() == Schema.DisplayType.Percent && excludePercentageFlds)|| targetField.getType() == Schema.DisplayType.Double) && !avoidConversionSet.contains(targetField.getFieldPath())) {
-                    fieldNamesList.add(targetField.getFieldPath());
+
+            // Get the complete list of Financial Years from the prepared List of Regional and Global Project.
+            
+            String financialYearWhereClause = '  where isActive__c = true AND (Global_External_Id__c in :globalProjectIdSet OR Regional_External_Id__c in :regionalProjectIdSet)  LIMIT 50000';
+            String financialYearQuery = financialYearSelectQuery + financialYearWhereClause; 
+           
+            List<IPM_Financial_Year__c> completeFinancialYearList = database.query(financialYearQuery);
+            
+            Map<String,Map<Id,sObject>> consolidatedToRelatedFinancialYearMap = new Map<String,Map<Id,sObject>>();
+            Map<String,sObject> consolidatedFinancialYearMap = new Map<String,sObject>();
+            
+            for(IPM_Financial_Year__c financialYear : completeFinancialYearList) 
+            {                                                      
+                IPM_FinancialUtils.prepareConsolidatedToRelatedFinancials('IPM_Financial_Year__c','External_Id__c',financialYear,consolidatedFinancialYearMap,consolidatedToRelatedFinancialYearMap,'Global_External_Id__c',financialYear.IPM_Financial__r.RecordTypeId);
+                IPM_FinancialUtils.prepareConsolidatedToRelatedFinancials('IPM_Financial_Year__c','External_Id__c',financialYear,consolidatedFinancialYearMap,consolidatedToRelatedFinancialYearMap,'Regional_External_Id__c',financialYear.IPM_Financial__r.RecordTypeId);
+            }
+                        
+            for(String consolidatedFinancialYearKey : consolidatedFinancialYearMap.KeySet())
+            {
+                sObject consolidatedFinancialYear = consolidatedFinancialYearMap.get(consolidatedFinancialYearKey);
+                if(consolidatedToRelatedFinancialYearMap.containsKey(consolidatedFinancialYearKey))
+                { 
+                    Map<Id,sObject> relatedDefaultFinancialsYear = consolidatedToRelatedFinancialYearMap.get(consolidatedFinancialYearKey);
+                        
+                    if(!relatedDefaultFinancialsYear.isEmpty())
+                    {
+                        IPM_FinancialUtils.processConsolidation('IPM_Financial_Year__c','External_Id__c',consolidatedFinancialYearKey,consolidatedFinancialYear,relatedDefaultFinancialsYear,upsertconsolidatedFinancialYearMap,changedFinancialFieldSet);    
+                    }
+                    else
+                    {
+                        for(String consolidatefieldAPI : changedFinancialFieldSet)
+	                    {
+	                        consolidatedFinancialYear.put(consolidatefieldAPI,0);
+	                    }
+	                    upsertconsolidatedFinancialYearMap.put(consolidatedFinancialYearKey,(IPM_Financial_Year__c)consolidatedFinancialYear);    
+                    }
+                         
+                }
+                else
+                {
+                    for(String consolidatefieldAPI : changedFinancialFieldSet)
+                    {
+                        consolidatedFinancialYear.put(consolidatefieldAPI,0);
+                    }
+                    upsertconsolidatedFinancialYearMap.put(consolidatedFinancialYearKey,(IPM_Financial_Year__c)consolidatedFinancialYear);
                 }
             }
-        }   
-        return fieldNamesList;
+        }
     }
-    /**************************************************************************************
-    *@Description :misAligned is checked while saving the records
-    ***************************************************************************************/
-    public void checkMisalignments(){
-        String sOriginalMsg = system.label.IPM_Total_add_up_periods + IPM_ConstantUtils.IPM_SPACE;
-        sMisalignmentMsg = IPM_ConstantUtils.BLANK;
-        isMisaligned=false;
-        misAlignedList=new List<String>();
-        for( IPM_MarketPerformance__c ipmMarketperformance : [Select Id, GrossTurnover__c, AggregateGrossTurnover__c,
-                                                                                                  Gross_AP__c, AggregateGrossAP__c,
-                                                                                              GrossPBO__c, AggregateGrossPBO__c,
-                                                                                                  MediaSpend__c, AggregateMediaSpend__c
-                                                                                                 from IPM_MarketPerformance__c where Id =: marketperformance.Id Limit 1] )
-        { 
-            //check if sum of gross turnover value is greater than aggregate gross turnover 
-            if(ipmMarketperformance.GrossTurnover__c < ipmMarketperformance.AggregateGrossTurnover__c){
-                sMisalignmentMsg +=  sOriginalMsg +  Schema.sObjectType.IPM_MarketPerformance__c.fields.GrossTurnover__c.getLabel()  + IPM_ConstantUtils.Colon+ ipmMarketperformance.AggregateGrossTurnover__c + IPM_ConstantUtils.BREAKELINE;
-                misAlignedList.add(sOriginalMsg +  Schema.sObjectType.IPM_MarketPerformance__c.fields.GrossTurnover__c.getLabel()  + IPM_ConstantUtils.Colon+ ipmMarketperformance.AggregateGrossTurnover__c);
-                
-            } 
-            //check if sum of gross BMI value is greater than aggregate gross BMI   
-            if(ipmMarketperformance.Gross_AP__c < ipmMarketperformance.AggregateGrossAP__c){
-                sMisalignmentMsg += sOriginalMsg +Schema.sObjectType.IPM_MarketPerformance__c.fields.Gross_AP__c.getLabel() + IPM_ConstantUtils.Colon + ipmMarketperformance.AggregateGrossAP__c + IPM_ConstantUtils.BREAKELINE;
-                misAlignedList.add(sOriginalMsg +Schema.sObjectType.IPM_MarketPerformance__c.fields.Gross_AP__c.getLabel() + IPM_ConstantUtils.Colon + ipmMarketperformance.AggregateGrossAP__c);
-                
-            } 
-            //check if sum of gross PBI value is greater than aggregate gross PBI    
-            if(ipmMarketperformance.GrossPBO__c < ipmMarketperformance.AggregateGrossPBO__c){
-                sMisalignmentMsg += sOriginalMsg + Schema.sObjectType.IPM_MarketPerformance__c.fields.GrossPBO__c.getLabel() + IPM_ConstantUtils.Colon + ipmMarketperformance.AggregateGrossPBO__c + IPM_ConstantUtils.BREAKELINE;
-                misAlignedList.add(sOriginalMsg + Schema.sObjectType.IPM_MarketPerformance__c.fields.GrossPBO__c.getLabel() + IPM_ConstantUtils.Colon + ipmMarketperformance.AggregateGrossPBO__c);
-                
+    
+    /**********************************************************************************************************************************
+    * @description                  Method to update Financial Action Standards, updates project documentation section content with 
+    *								financial year details based on project ID, content type and phase of the project.
+    * @param newFinancialYear       New Financial Year record
+    * @return                       NONE
+    * Business Logic: At Charter section 6.1 Business Case V/S Action Standard needs to be populated with IRR,ValueShare,ITO,GTO values from First Full Year of financials.
+                             The Below code updates those values from the Financial object into the Project DocumetnSection Content object when the Gate document IS Charter.
+                             From Contract Document Onwards, only the Results set at contract gets populated.Similary the logic extends till Market Ready Gate
+    ***********************************************************************************************************************************/
+    public static void updateFinancialActionStandard(Map<Id, IPM_Financial_Year__c> mapNewFinancialYears){
+        try{
+            List<IPM_Financial_Year__c> newFinYearList=new  List<IPM_Financial_Year__c>();
+            List<IPM_Project_Document_Section_Content__c> projDocSecConList=new List<IPM_Project_Document_Section_Content__c>();
+            Set<Id> projectIds=new Set<Id>();
+            for(IPM_Financial_Year__c newFinYear:mapNewFinancialYears.values())
+            {
+                if(newFinYear.Financial_External_Id__c.contains(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE) && (String.isBlank(newFinYear.Regional_External_Id__c) || String.isBlank(newFinYear.Global_External_Id__c)) && (newFinYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationIncremental || newFinYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationGross) && !newFinYear.Charter_Approved__c)
+                {
+                    newFinYearList.add(newFinYear);
+                    projectIds.add(newFinYear.Global_Project_Id__c);
+                }
+                else if(String.isNotBlank(newFinYear.Global_External_Id__c) && newFinYear.Financial_External_Id__c==newFinYear.Global_External_Id__c && (newFinYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationIncremental || newFinYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationGross) && !newFinYear.Charter_Approved__c)
+                {
+                    newFinYearList.add(newFinYear);
+                    projectIds.add(newFinYear.Global_Project_Id__c);
+                }
+                else if(String.isNotBlank(newFinYear.Regional_External_Id__c) && newFinYear.Financial_External_Id__c==newFinYear.Regional_External_Id__c && (newFinYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationIncremental || newFinYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationGross) && !newFinYear.Charter_Approved__c)
+                {
+                    newFinYearList.add(newFinYear);
+                    projectIds.add(newFinYear.Global_Project_Id__c);
+                }
+                else if(String.isBlank(newFinYear.Regional_External_Id__c) && String.isBlank(newFinYear.Global_External_Id__c)  && (newFinYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationIncremental || newFinYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationGross) && !newFinYear.Charter_Approved__c)
+                {
+                    newFinYearList.add(newFinYear);
+                    projectIds.add(newFinYear.Global_Project_Id__c);
+                }
             }
-            //check if sum of media spend value is greater than aggregate media spend 
-            if(ipmMarketperformance.MediaSpend__c < ipmMarketperformance.AggregateMediaSpend__c){
-                sMisalignmentMsg += sOriginalMsg + Schema.sObjectType.IPM_MarketPerformance__c.fields.MediaSpend__c.getLabel() + IPM_ConstantUtils.Colon + ipmMarketperformance.AggregateMediaSpend__c + IPM_ConstantUtils.BREAKELINE;
-                misAlignedList.add(sOriginalMsg + Schema.sObjectType.IPM_MarketPerformance__c.fields.MediaSpend__c.getLabel() + IPM_ConstantUtils.Colon + ipmMarketperformance.AggregateMediaSpend__c);
-                
-            } 
-             
-        } 
-        if(!misAlignedList.isEmpty()){
-        	isMisaligned=true;
-        }    
+            
+            if(projectIds!=null && !projectIds.isEmpty())
+            {
+                projDocSecConList=[SELECT Id,IPM_iTo_Action_Standard_Charter__c,IPM_Innov_Value_Share_Action_Charter__c,IPM_Inc_Value_Share_Action_Charter__c,IPM_gTO_Action_Standard_Charter__c,IPM_GM_Action_Standards_Charter__c,
+                                          IPM_Project_Document_Section__c,IPM_Project_Document_Section__r.IPM_Project_Document__c,IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c,IPM_Content_Type__c,
+                                          IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Phase__c,IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPMProject_Span__c,
+                                          IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Project_Type__c
+                                   FROM IPM_Project_Document_Section_Content__c
+                                   WHERE IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c In:projectIds AND IPM_Content_Type__c=:IPM_ConstantUtils.FINANCIAL_ACTION_STANDARDS AND 
+                                         IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Phase__c=:IPM_ConstantUtils.PHASE_IDEAS];  
+            }
+            
+            for(IPM_Financial_Year__c finYear:newFinYearList)
+            {  
+                for(IPM_Project_Document_Section_Content__c secContent:projDocSecConList)
+                {  
+                    if(secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c==finYear.Global_Project_Id__c)
+                    {
+                        if(finYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationIncremental)
+                        {
+                            secContent.IPM_Inc_Value_Share_Action_Charter__c=finYear.Value_Market_Share_Global__c;
+                            secContent.IPM_iTo_Action_Standard_Charter__c=finYear.Turnover_Global__c;
+                        }
+                        if(finYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationGross)
+                        {
+                            secContent.IPM_Innov_Value_Share_Action_Charter__c=finYear.Value_Market_Share_Global__c;
+                            secContent.IPM_gTO_Action_Standard_Charter__c=finYear.Turnover_Global__c;
+                            secContent.IPM_GM_Action_Standards_Charter__c=finYear.GM_of_TO_Global__c;
+                        }
+                    }
+                    else if(secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c==finYear.Global_Project_Id__c)
+                    {
+                        if(finYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationIncremental)
+                        {
+                            secContent.IPM_Inc_Value_Share_Action_Charter__c=finYear.Value_Market_Share_Regional__c;
+                            secContent.IPM_iTo_Action_Standard_Charter__c=finYear.Turnover_Regional__c;
+                        }
+                        if(finYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationGross)
+                        {
+                            secContent.IPM_Innov_Value_Share_Action_Charter__c=finYear.Value_Market_Share_Regional__c;
+                            secContent.IPM_gTO_Action_Standard_Charter__c=finYear.Turnover_Regional__c;
+                            secContent.IPM_GM_Action_Standards_Charter__c=finYear.GM_of_TO_Regional__c;
+                        }
+                    }
+                    else if(secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL && secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c==finYear.Global_Project_Id__c)
+                    {
+                        if(finYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationIncremental)
+                        {
+                            secContent.IPM_Inc_Value_Share_Action_Charter__c=finYear.Value_Market_Share_Local__c;
+                            secContent.IPM_iTo_Action_Standard_Charter__c=finYear.Turnover_Local__c;
+                        }
+                        
+                        if(finYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationGross)
+                        {
+                            secContent.IPM_Innov_Value_Share_Action_Charter__c=finYear.Value_Market_Share_Local__c;
+                            secContent.IPM_gTO_Action_Standard_Charter__c=finYear.Turnover_Local__c;
+                            secContent.IPM_GM_Action_Standards_Charter__c=finYear.GM_of_TO_Local__c;
+                        }
+                    }
+                }
+            }
+            
+            if(projDocSecConList!=null && !projDocSecConList.isEmpty())
+            {
+                update projDocSecConList;
+            }
+        }
+        catch(Exception ex)
+        {
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
+                UPDATE_FINANCIAL_ACTION_STANDARD_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION); 
+        }
+    }
+    
+    /**********************************************************************************************************************************
+    * @description                  This method queries for all the financial year record required for consolidation and updating the  
+    *								the document section.
+    * @param newFinancialYear       New Financial Year record
+    * @return                       NONE
+    ***********************************************************************************************************************************/
+     
+    public static String getFinancialYearQuery()
+    {
+        Map<String,Schema.SObjectField> financialYearFieldMap = Schema.SObjectType.IPM_Financial_Year__c.fields.getMap();
+        
+        String financialYearQuery = ' SELECT ';        
+        for(String financialYearFieldAPI  : financialYearFieldMap.keySet())
+        {
+            Schema.DescribeFieldResult fieldDescribe = financialYearFieldMap.get(financialYearFieldAPI).getDescribe();
+            
+            if(fieldDescribe.isCustom()  && financialYearFieldAPI != 'Id')
+            {
+                financialYearQuery += ' '+financialYearFieldAPI+',';
+            }
+        }
+        financialYearQuery += 'Id,Name,IPM_Financial__r.Financial_External_ID__c,IPM_Financial__r.RecordTypeId FROM IPM_Financial_Year__c';
+        
+        return financialYearQuery;
+    }
 
+    //This method is used to create market performance(6.5) and performance breakdown(6.3) data when financial years are created as part of local rollout creation.
+    public static void createMarketPerformance(Map<id,IPM_Financial_Year__c>finYearmap){
+        Map<String, IPM_Financial_Year__c> mapFinancialExternalIdwithFinancialYear = new Map<String, IPM_Financial_Year__c>();
+       
+        List<IPM_MarketPerformance__c>lstMarketPerformaceData = new List<IPM_MarketPerformance__c>();
+        IPM_MarketPerformance__c marketPerformanceData;
+        
+        List<IPM_MarketPerformanceBreakdown__c> lstPerformanceBreakdownData = new List<IPM_MarketPerformanceBreakdown__c>();
+        IPM_MarketPerformanceBreakdown__c performanceBreakdownData;
+        
+        Integer counter;
+        final String PERIOD = 'Period ';
+        final integer PERIOD_COUNT = 13;
+         
+        set<String> setFinancialExternalIds = new Set<String>();
+        for( IPM_Financial_Year__c financialYear : [SELECT Id, Year__c, Year_Type__c, PL_Type__c, Financial_External_Id__c, IPM_Financial__r.Financial_External_ID__c, 
+                                                    IPM_Financial__r.RecordType.Name, IPM_Financial__r.Regional_Project__c
+                                                    FROM IPM_Financial_Year__c
+                                                    WHERE Id IN : finYearmap.keySet()
+                                                    AND isActive__c = true 
+                                                    AND Year__c =: IPM_ConstantUtils.Y1_YEARINDEX
+                                                    AND Year_Type__c =: IPM_ConstantUtils.YEAR_TYPE_INNOVATION AND PL_Type__c =: IPM_ConstantUtils.PL_TYPE_GROSS
+                                                    AND IPM_Financial__r.RecordType.Name =: IPM_ConstantUtils.DEFAULT_FINANCIAL_RT
+                                                    AND IPM_Financial__r.Regional_Project__c!=null ])
+        {
+                mapFinancialExternalIdwithFinancialYear.put(financialYear.Financial_External_Id__c, financialYear);
+                setFinancialExternalIds.add(financialYear.IPM_Financial__r.Financial_External_ID__c);
+        }
+        for(IPM_Project_Rollout__c projectRollout : [Select Id, MCO_Name__c, IPM_Rollout_Project__c from IPM_Project_Rollout__c where IPM_Rollout_Project__c IN : setFinancialExternalIds  limit 1000]){
+                marketPerformanceData = new IPM_MarketPerformance__c();
+                marketPerformanceData.IPMFinancialYear__c = mapFinancialExternalIdwithFinancialYear.get(projectRollout.IPM_Rollout_Project__c).Id;
+                marketPerformanceData.IPMProjectRollout__c = projectRollout.Id;
+                marketPerformanceData.External_Id__c = mapFinancialExternalIdwithFinancialYear.get(projectRollout.IPM_Rollout_Project__c).Financial_External_Id__c;
+                lstMarketPerformaceData.add(marketPerformanceData);
+        }
+        
+	    if(!lstMarketPerformaceData.isEmpty()){    
+	        insert lstMarketPerformaceData;
+                
+	        for(IPM_MarketPerformance__c marketPerformance : [Select Id, External_Id__c from IPM_MarketPerformance__c 
+	                                                                                              where Id IN : (new Map<Id, IPM_MarketPerformance__c>( lstMarketPerformaceData)).keySet()])
+	        {
+	            for(counter=1;counter<=PERIOD_COUNT;counter++){
+	                performanceBreakdownData = new IPM_MarketPerformanceBreakdown__c();
+	                performanceBreakdownData.MarketPerformance__c = marketperformance.Id;
+	                performanceBreakdownData.External_Id__c = marketperformance.External_Id__c + IPM_ConstantUtils.IPM_SPACE + PERIOD + counter;
+	                performanceBreakdownData.Period__c = PERIOD+counter;
+	                performanceBreakdownData.Sequence__c = counter;
+	                lstPerformanceBreakdownData.add(performanceBreakdownData);
+	            }
+	        }
+	        if(!lstPerformanceBreakdownData.isEmpty())
+	            insert lstPerformanceBreakdownData;
+	    }
+        
         
     }
+	
+	 /**********************************************************************************************************************************
+    * @description                  This method queries for all the financial year record required for consolidation and updating the  
+    *                               the financial action standard records.
+    * @param mapNewFinancialYears   New Financial Year record
+    * @return                       NONE
+    ***********************************************************************************************************************************/
+    public static void updateGlobalFinancialActionStandards(Map<Id, IPM_Financial_Year__c> mapNewFinancialYears){
+		try{
+			List<IPM_Financial_Year__c> newFinYearList=new  List<IPM_Financial_Year__c>();
+			List<IPM_Financial_Action_Standards__c> updateFinActionStdsList=new List<IPM_Financial_Action_Standards__c>();
+			Set<Id> projectIds=new Set<Id>();
+			for(IPM_Financial_Year__c newFinYear:mapNewFinancialYears.values()){
+				if(newFinYear.Financial_External_Id__c.contains(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)  && (newFinYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationIncremental || newFinYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationGross) && !newFinYear.Charter_Approved__c){
+					newFinYearList.add(newFinYear);
+					projectIds.add(newFinYear.Global_Project_Id__c);
+				}
+			}
+			for(IPM_Financial_Action_Standards__c finActionStd:[SELECT Id,IPM_Project_Span__c,IPM_Financial_Year_Y1_Gross__c,IPM_Financial_Year_Y1_Incremental__c,IPM_GM_Action_Standards_Charter__c,IPM_gTO_Action_Standard_Charter__c,IPM_Inc_Value_Share_Action_Charter__c,
+																	   IPM_Innov_Value_Share_Action_Charter__c,IPM_iTo_Action_Standard_Charter__c,IPM_Project__c FROM IPM_Financial_Action_Standards__c
+																WHERE IPM_Project__c In:projectIds]){
+				for(IPM_Financial_Year__c finYear:newFinYearList){
+					if(finActionStd.IPM_Financial_Year_Y1_Gross__c==finYear.Id){
+						finActionStd.IPM_Innov_Value_Share_Action_Charter__c=finYear.Value_Market_Share_Global__c;
+						finActionStd.IPM_gTO_Action_Standard_Charter__c=finYear.Turnover_Global__c;
+						finActionStd.IPM_GM_Action_Standards_Charter__c=finYear.GM_of_TO_Global__c;
+					}
+					else if(finActionStd.IPM_Financial_Year_Y1_Incremental__c==finYear.Id){
+						finActionStd.IPM_Inc_Value_Share_Action_Charter__c=finYear.Value_Market_Share_Global__c;
+						finActionStd.IPM_iTo_Action_Standard_Charter__c=finYear.Turnover_Global__c;
+					}
+				}
+				updateFinActionStdsList.add(finActionStd);
+			}
+			if(updateFinActionStdsList!=null && !updateFinActionStdsList.isEmpty()){
+				update updateFinActionStdsList;
+			}
+		}
+		catch(Exception ex){
+			ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
+				UPDATE_FINANCIAL_ACTION_STANDARD_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION); 
+		}
+	}	
 }

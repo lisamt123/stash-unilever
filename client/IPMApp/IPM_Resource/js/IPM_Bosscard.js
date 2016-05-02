@@ -99,6 +99,7 @@ jq(document).on('click', '.imgDelButton', function(e) {
 });
 /* Below function performs a validation before opening the change status modal for changing the status of BOSSCARD. If the condition is true it opens the modal else it hides the modal. */
 function checkValidation() {
+	mainPageUnsaved = false;
     var bossCardName = jq('.BosscardNameInputBox').val();
     var companyName = jq('.compC').val();
     var categoryName = jq('.cateG').val();
@@ -144,6 +145,7 @@ function createPro() {
 
 /* Below function is used to open upload image modal. When condition is true it opens a modal where user can upload image else it hides the modal. */
 function upldImage(){
+	mainPageUnsaved = false;
 	var bossCardName = jq('.BosscardNameInputBox').val();
     var companyName = jq('.compC').val();
     var categoryName = jq('.cateG').val();
@@ -169,6 +171,7 @@ function upldImage(){
 
 /* Below function is used to open select approver modal. When condition is true it opens a modal where user can select approver else it hides the modal. */
 function slctApprover(){
+	mainPageUnsaved = false;
 	var bossCardName = jq('.BosscardNameInputBox').val();
     var companyName = jq('.compC').val();
     var categoryName = jq('.cateG').val();
@@ -217,10 +220,15 @@ jq(function(){
    jq(":input").change(function() {
 		mainPageUnsaved = true;
 	});
-	for (var i in CKEDITOR.instances) {
-		CKEDITOR.instances[i].on('change', function() {
-		unsaved = true; });
-	}
+	for (var i in CKEDITOR.instances) {		
+      	defineOnchange(CKEDITOR.instances, i);		
+      }		
+  		
+  	function defineOnchange(CKEDITORObj, index){		
+	    CKEDITORObj[index].on("change", function() {		
+	      mainPageUnsaved = true		
+	    });		
+  	}
 });
 
  function changeAlert(){

@@ -313,8 +313,8 @@ private class IPM_ProjectHandler_Test {
         List < IPM_Project__c > projList = [SELECT Id, Name, IPM_Project_Name__c FROM IPM_Project__c Limit 1];
         //Validating that the project has beeen successfully inserted
         system.assertEquals(1, projList.size(), 'IPM_Project__c Record Size Not Matched');
-        List<User> userLst = [Select Id from User Limit 10];
-        system.runAs(userLst[0]){             
+        
+        system.runAs(adminUser){             
             Test.startTest();
             IPM_ProjectHandler projectHandler = new IPM_ProjectHandler();
             Test.stopTest();              

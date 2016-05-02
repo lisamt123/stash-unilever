@@ -22881,6 +22881,26 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_MarketPerformance__c.IPM_GM__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_MarketPerformance__c.IPM_Gross_BMI__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_MarketPerformance__c.IPM_Gross_PBI__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_MarketPerformance__c.IPM_Gross_Turnover__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_MarketPerformance__c.InnovationValueShare__c</field>
         <readable>true</readable>
     </fieldPermissions>

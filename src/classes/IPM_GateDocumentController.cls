@@ -785,7 +785,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
 					            IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c 
 						 FROM IPM_Financial__c 
 						 WHERE Parent_Project__c=:project.Id AND Financial_External_ID__c=:nam+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
-					globalbusinessImpactStr = fin.Business_Impact_Global__c;
+ 			            globalbusinessImpactStr = gateDocument==IPM_ConstantUtils.CHARTER_GATE? fin.Business_Impact_Global__c:fin.Business_Impact_Regional__c;
 				}
 				else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
 				{		
@@ -803,7 +803,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
 								Year_3_iTO_Local__c,Year_3_iTO_Regional__c,IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c
 						 FROM IPM_Financial__c 
 						 WHERE Parent_Project__c=:project.IPM_Parent_Project__c AND Financial_External_ID__c=:project.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
-						 globalbusinessImpactStr = finRegional.Business_Impact_Global__c;
+						 globalbusinessImpactStr = finRegional.Business_Impact_Regional__c;
 					}
 				}
 				else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
@@ -827,12 +827,12 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
 					else if(parentProjectType==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)// traverse to its Global Project for getting BI from CONSOLIDATED Financial
 					{
 						IPM_Project__c globalParentId= [Select IPM_Parent_Project__r.IPM_Parent_Project__c,IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c FROM IPM_Project__c where ID=:project.Id];
-						finLocal=[SELECT Business_Impact_Global__c,IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c FROM IPM_Financial__c 
+						finLocal=[SELECT Business_Impact_Global__c,Business_Impact_Regional__c,IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c FROM IPM_Financial__c 
 								 WHERE Parent_Project__c=:globalParentId.IPM_Parent_Project__r.IPM_Parent_Project__c
 								 AND Financial_External_ID__c=:globalParentId.IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
 						 
 						 
-						 globalbusinessImpactStr = finLocal.Business_Impact_Global__c;
+						 globalbusinessImpactStr = finLocal.Business_Impact_Regional__c;
 					}
 					
 				}
