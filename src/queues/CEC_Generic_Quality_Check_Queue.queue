@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
-    <doesSendEmailToMembers>false</doesSendEmailToMembers>
-    <name>CEC Generic Quality Check Queue</name>
-    <queueSobject>
-        <sobjectType>cec_Fulfilment__c</sobjectType>
-    </queueSobject>
-</Queue>
