@@ -90,6 +90,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public IPM_Financial__c finRegional{get;set;}// for Financial Regional Business Impact
     public IPM_Financial__c finLocal{get;set;}// for Financial Local Business Impact
     public boolean isFinancialInvalid{get;set;}
+    public boolean isFinancialInvalidInnovation;
     //variable to capture financial type
     public Boolean isConsolidatedOrNonkey 
     {
@@ -226,6 +227,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         sustainabilityPeriod=0;
         isEditable=false;
         isFinancialInvalid = false;
+        isFinancialInvalidInnovation = false;
         isValidationFailed = false;
         isy0TurnoverInvalid = false;
         isy0ProfitInvalid = false;
@@ -749,7 +751,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
              
         
         
-        List<IPM_Financial__c> lstRegionalFinancials = [SELECT Id, Name,recordTypeId,Financial_External_ID__c, Status__c,IPM_Key_Financial__c  FROM IPM_Financial__c
+        List<IPM_Financial__c> lstRegionalFinancials = [SELECT Id, Name,recordTypeId,Financial_External_ID__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c FROM IPM_Financial__c
                                                             WHERE Regional_Project__c =: project.Id 
                                                             AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND isActive__c = true
                                                             ORDER BY Sorting_Order__c, Financial_External_Id__c Limit: IPM_ConstantUtils.MaxLimit];
@@ -772,7 +774,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
         List<IPM_Financial__c> lstIpmFinancial = new List<IPM_Financial__c>();
         
-        lstIpmFinancial = [SELECT Id, Name, Financial_External_ID__c,RecordTypeId,Status__c, Regional_Project__c, Regional_Project__r.Market_Cluster_Name__c,IPM_Key_Financial__c 
+        lstIpmFinancial = [SELECT Id, Name, Financial_External_ID__c,RecordTypeId,Status__c, Regional_Project__c, Regional_Project__r.Market_Cluster_Name__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c 
                             FROM IPM_Financial__c 
                             WHERE RecordTypeId =: CONSOLIDATED_FINANCIAL_RECORDTYPE
                             AND Regional_Project__c =: project.Id Limit: IPM_ConstantUtils.MaxLimit];
@@ -800,7 +802,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         String firstFinancialId = '';
         List<IPM_Project_Rollout__c> lstRegionalRollout = new List<IPM_Project_Rollout__c>();
         
-        lstRegionalRollout = [SELECT Id, Market_Cluster_Name__c,KeyMCO__c, Previous_Target_Launch_Date__c,(SELECT Id, Name,recordTypeID,Financial_External_ID__c, Status__c,IPM_Key_Financial__c  
+        lstRegionalRollout = [SELECT Id, Market_Cluster_Name__c,KeyMCO__c, Previous_Target_Launch_Date__c,(SELECT Id, Name,recordTypeID,Financial_External_ID__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c   
                                                             FROM IPM_Financials__r
                                                             WHERE RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND isActive__c = true
                                                             ORDER BY Sorting_Order__c, Financial_External_Id__c)
@@ -829,7 +831,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
         List<IPM_Financial__c> lstIpmFinancial = new List<IPM_Financial__c>();
       
-        lstIpmFinancial = [SELECT Id, Name, Financial_External_ID__c,recordTypeID, Status__c, IPM_Project_Rollout__c, IPM_Project_Rollout__r.Market_Cluster_Name__c,IPM_Key_Financial__c 
+        lstIpmFinancial = [SELECT Id, Name, Financial_External_ID__c,recordTypeID, Status__c, IPM_Project_Rollout__c, IPM_Project_Rollout__r.Market_Cluster_Name__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c 
                                                  FROM IPM_Financial__c
                                                  WHERE RecordTypeId =: CONSOLIDATED_FINANCIAL_RECORDTYPE AND isActive__c = true
                                                  AND Parent_Project__c =: project.Id Limit: IPM_ConstantUtils.MaxLimit];
@@ -941,7 +943,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         String firstFinancialId = '';
         String nonKeyLike = IPM_ConstantUtils.PERCENTAGE + IPM_ConstantUtils.FINANCIAL_NONKEY;
         
-        List<IPM_Project__c> lstRegionalProject = [SELECT Id, Market_Cluster_Name__c, (SELECT Id,recordTypeID,Financial_External_Id__c, Status__c,IPM_Key_Financial__c  
+        List<IPM_Project__c> lstRegionalProject = [SELECT Id, Market_Cluster_Name__c, (SELECT Id,recordTypeID,Financial_External_Id__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c  
                                                             FROM IPM_Financials_Regional__r
                                                             WHERE RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND isActive__c = true                                                          
                                                             ORDER BY Sorting_Order__c, Financial_External_Id__c)
@@ -971,7 +973,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
        
         List<IPM_Financial__c> lstIpmFinancial = new List<IPM_Financial__c>();
         
-        lstIpmFinancial = [SELECT Id, Name,recordTypeID, Financial_External_ID__c, Status__c, Regional_Project__c, Regional_Project__r.Market_Cluster_Name__c,IPM_Key_Financial__c 
+        lstIpmFinancial = [SELECT Id, Name,recordTypeID, Financial_External_ID__c, Status__c, Regional_Project__c, Regional_Project__r.Market_Cluster_Name__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c 
                                                  FROM IPM_Financial__c
                                                  WHERE RecordTypeId =: CONSOLIDATED_FINANCIAL_RECORDTYPE AND isActive__c = true
                                                      AND Parent_Project__c =: project.Id Limit: IPM_ConstantUtils.MaxLimit];
@@ -1010,7 +1012,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         // No need to display Non Key financials in case of Regional View. Only needs to be displayed in Global Charter
         String nonKeyLike = IPM_ConstantUtils.PERCENTAGE + IPM_ConstantUtils.FINANCIAL_NONKEY;
         
-        List<IPM_Financial__c> lstRegionalFinancials = [SELECT Id, Name,recordTypeID, Financial_External_ID__c, Status__c,IPM_Key_Financial__c 
+        List<IPM_Financial__c> lstRegionalFinancials = [SELECT Id, Name,recordTypeID, Financial_External_ID__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c 
                                                             FROM IPM_Financial__c
                                                             WHERE Regional_Project__c =: project.Id AND isActive__c = true
                                                             AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE 
@@ -1034,7 +1036,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
         List<IPM_Financial__c> lstIpmFinancial = new List<IPM_Financial__c>();
         
-          lstIpmFinancial = [SELECT Id, Name, recordTypeID,Financial_External_ID__c, Status__c, Regional_Project__c, Regional_Project__r.Market_Cluster_Name__c,IPM_Key_Financial__c 
+          lstIpmFinancial = [SELECT Id, Name, recordTypeID,Financial_External_ID__c, Status__c, Regional_Project__c, Regional_Project__r.Market_Cluster_Name__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c 
                                                  FROM IPM_Financial__c
                                                  WHERE RecordTypeId =: CONSOLIDATED_FINANCIAL_RECORDTYPE AND isActive__c = true
                                                      AND Parent_Project__c =: project.IPM_Parent_Project__c Limit: IPM_ConstantUtils.MaxLimit];
@@ -1063,7 +1065,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     private void getRegionalOriginalTopDownWrappers()
     {
         
-        List<IPM_Financial__c> lstRegionalFinancials = [SELECT Id, Name,recordTypeID, Financial_External_ID__c, Status__c,IPM_Key_Financial__c  FROM IPM_Financial__c
+        List<IPM_Financial__c> lstRegionalFinancials = [SELECT Id, Name,recordTypeID, Financial_External_ID__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c  FROM IPM_Financial__c
                                                             WHERE Regional_Project__c =: project.Id 
                                                             AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE
                                                             AND Charter_Approved__c = true 
@@ -1088,7 +1090,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
         List<IPM_Financial__c> lstIpmFinancial = new List<IPM_Financial__c>();
         
-        lstIpmFinancial =   [SELECT Id, Name,recordTypeID, Financial_External_ID__c, Status__c, Regional_Project__c, Regional_Project__r.Market_Cluster_Name__c,IPM_Key_Financial__c 
+        lstIpmFinancial =   [SELECT Id, Name,recordTypeID, Financial_External_ID__c, Status__c, Regional_Project__c, Regional_Project__r.Market_Cluster_Name__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c 
                                 FROM IPM_Financial__c
                                 WHERE RecordTypeId =: CONSOLIDATED_FINANCIAL_RECORDTYPE
                                 AND Regional_Project__c =: project.Id Limit: IPM_ConstantUtils.MaxLimit];
@@ -1118,7 +1120,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     {
     	// Get the regional Rollout from where regional Projects got created.Get associated financials from those regional Rollouts.
         IPM_Project_Rollout__c regionalRollout = [SELECT Id, Market_Cluster_Name__c, KeyMCO__c,Previous_Target_Launch_Date__c ,
-                                                    (SELECT Id, Name, recordTypeID,Financial_External_ID__c, Status__c,IPM_Key_Financial__c 
+                                                    (SELECT Id, Name, recordTypeID,Financial_External_ID__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c 
                                                         FROM IPM_Financials__r WHERE RecordtypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND Charter_Approved__c = true
                                                         ORDER BY Sorting_Order__c, recordTypeID,Financial_External_Id__c)
                                                     FROM IPM_Project_Rollout__c
@@ -1145,7 +1147,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
         List<IPM_Financial__c> lstIpmFinancial = new List<IPM_Financial__c>();
         
-        lstIpmFinancial =   [SELECT Id, Name,recordTypeID, Financial_External_ID__c, Status__c, Regional_Project__c, Regional_Project__r.Market_Cluster_Name__c,IPM_Key_Financial__c 
+        lstIpmFinancial =   [SELECT Id, Name,recordTypeID, Financial_External_ID__c, Status__c, Regional_Project__c, Regional_Project__r.Market_Cluster_Name__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c 
                                 FROM IPM_Financial__c
                                 WHERE RecordTypeId =: CONSOLIDATED_FINANCIAL_RECORDTYPE
                                 AND Parent_Project__c =: project.IPM_Parent_Project__c Limit: IPM_ConstantUtils.MaxLimit];
@@ -1181,7 +1183,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     private void getRegionalRollupWrappers()
     {
         String nonKeyLike = IPM_ConstantUtils.PERCENTAGE + IPM_ConstantUtils.FINANCIAL_NONKEY;
-        List<IPM_Financial__c> lstRegionalFinancials =  [SELECT Id, Name,recordTypeID, Financial_External_ID__c, Status__c,IPM_Key_Financial__c 
+        List<IPM_Financial__c> lstRegionalFinancials =  [SELECT Id, Name,recordTypeID, Financial_External_ID__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c 
                                                             FROM IPM_Financial__c   
                                                             WHERE Regional_Project__c =: project.Id AND isActive__c = true
                                                             AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE
@@ -1208,7 +1210,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
         List<IPM_Financial__c> lstIpmFinancial = new List<IPM_Financial__c>();
         
-        lstIpmFinancial =   [SELECT Id, Name,recordTypeID, Financial_External_ID__c, Status__c, Regional_Project__c, Regional_Project__r.Market_Cluster_Name__c,IPM_Key_Financial__c 
+        lstIpmFinancial =   [SELECT Id, Name,recordTypeID, Financial_External_ID__c, Status__c, Regional_Project__c, Regional_Project__r.Market_Cluster_Name__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c 
                             FROM IPM_Financial__c
                             WHERE RecordTypeId =: CONSOLIDATED_FINANCIAL_RECORDTYPE AND isActive__c = true
                             AND Regional_Project__c =: project.Id Limit: IPM_ConstantUtils.MaxLimit];
@@ -1245,7 +1247,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     * @return       NONE
     */
     private void getLocalMyViewWrappers(){
-        List<IPM_Financial__c> lstLocalFinancials = [SELECT Id, Name,recordTypeID, Financial_External_ID__c, Status__c,IPM_Key_Financial__c 
+        List<IPM_Financial__c> lstLocalFinancials = [SELECT Id, Name,recordTypeID, Financial_External_ID__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c 
                                                             FROM IPM_Financial__c
                                                             WHERE Local_Project__c =: project.Id
                                                                 AND RecordtypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND isActive__c = true 
@@ -1270,7 +1272,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         }
 
         List<IPM_Financial__c> lstIpmFinancial = new List<IPM_Financial__c>();
-        lstIpmFinancial = [SELECT Id, Name,recordTypeID, Financial_External_ID__c, Status__c, Regional_Project__c, Regional_Project__r.Market_Cluster_Name__c,IPM_Key_Financial__c 
+        lstIpmFinancial = [SELECT Id, Name,recordTypeID, Financial_External_ID__c, Status__c, Regional_Project__c, Regional_Project__r.Market_Cluster_Name__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c 
                                                  FROM IPM_Financial__c
                                                  WHERE RecordTypeId =: CONSOLIDATED_FINANCIAL_RECORDTYPE
                                                      AND Parent_Project__c =: project.IPM_Parent_Project__r.IPM_Parent_Project__c Limit: IPM_ConstantUtils.MaxLimit];
@@ -1767,7 +1769,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                   isCalendarValidationFailed = validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR);
                   isInnovationValidationFailed = validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION);
           	  //check for hard validation - REQ3006
-          	  if(isFinancialInvalid){
+          	  if(isFinancialInvalid || isFinancialInvalidInnovation){
               	currentFinancial.isFinancialInvalid__c = true;
               }
               else{
@@ -2361,7 +2363,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 //Validate Turnover values.
        Boolean isValidWrapperFailed=false;
         isITOgrtGTO = false;
-        isFinancialInvalid = false;
+        isFinancialInvalidInnovation = false;
         isValidationError = false;
         validationErrorMessage = '';
         for(IPM_FinancialValueWrapper valueWrapperGross: lstGrossPLTurnover){
@@ -2377,7 +2379,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                	     if(valueWrapperGross.Value <  valueWrapperIncremental.Value){
                        isITOgrtGTO = true; 
                        valueWrapperGross.isGrossTOGRTIto = true;
-                       isFinancialInvalid = true;
+                       isFinancialInvalidInnovation = true;
                        isValidationError = true;
 	                	validationErrorMessage = IPM_ConstantUtils.INVALID_DATA_TO_SAVE;
                      }
@@ -2389,7 +2391,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 if(valueWrapperGross.Value <= IPM_ConstantUtils.INVALID_VALUE){
 	                	valueWrapperGross.isValueInvalid = true;
 	                	valueWrapperGross.isGrossTOValueInvalid = true;
-	                	isFinancialInvalid = true;
+                        isFinancialInvalidInnovation = true;
                         isValidationError = true;
 	                	validationErrorMessage = IPM_ConstantUtils.INVALID_DATA_TO_SAVE;
                 }
