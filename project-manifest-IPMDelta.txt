@@ -4,3 +4,7 @@ src/classes/IPM_ChangProjectDocumentStatusController.cls
 src/classes/IPM_ChangProjectDocumentStatusController.cls-meta.xml
 src/classes/IPM_FinancialController.cls
 src/classes/IPM_FinancialController.cls-meta.xml
+src/classes/IPM_FinancialController_Test.cls
+src/classes/IPM_FinancialController_Test.cls-meta.xml
+src/classes/IPM_OTIF_Report_Batch.cls
+src/classes/IPM_OTIF_Report_Batch.cls-meta.xml
