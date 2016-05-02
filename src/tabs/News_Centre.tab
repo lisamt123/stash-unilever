@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
-    <auraComponent>CORE_NC_SwitchingBase</auraComponent>
-    <icon>NewsApp/NewsTabIcon.png</icon>
-    <label>News Centre</label>
-    <mobileReady>false</mobileReady>
-    <motif>Custom153: TV Widescreen</motif>
-</CustomTab>

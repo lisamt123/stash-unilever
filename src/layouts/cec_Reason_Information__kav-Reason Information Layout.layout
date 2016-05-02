@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Layout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layoutSections>
+        <customLabel>false</customLabel>
+        <detailHeading>false</detailHeading>
+        <editHeading>false</editHeading>
+        <label>Information</label>
+        <layoutColumns>
+            <layoutItems>
+                <field>Short_Code__c</field>
+            </layoutItems>
+            <layoutItems>
+                <field>Reason_Description__c</field>
+            </layoutItems>
+            <layoutItems>
+                <field>Response_to_Consumer__c</field>
+            </layoutItems>
+            <layoutItems>
+                <field>Approved_by_Legal__c</field>
+            </layoutItems>
+            <layoutItems>
+                <field>Additional_Sensitive_Information__c</field>
+            </layoutItems>
+            <layoutItems>
+                <field>Sensitive_Text__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <style>OneColumn</style>
+    </layoutSections>
+</Layout>

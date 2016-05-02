@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ApexComponent xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>32.0</apiVersion>
-    <description>Section 2.2 for Charter Gate and Onwards</description>
-    <label>IPM_Customer_Channels</label>
-</ApexComponent>

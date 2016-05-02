@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Network xmlns="http://soap.sforce.com/2006/04/metadata">
+    <allowMembersToFlag>false</allowMembersToFlag>
+    <branding>
+        <pageHeader>SharedDocuments/UL_Logo.jpg</pageHeader>
+        <primaryColor>#022072</primaryColor>
+        <primaryComplementColor>#FFFFFF</primaryComplementColor>
+        <quaternaryColor>#C3DFFC</quaternaryColor>
+        <quaternaryComplementColor>#222222</quaternaryComplementColor>
+        <secondaryColor>#022072</secondaryColor>
+        <tertiaryColor>#1882ED</tertiaryColor>
+        <tertiaryComplementColor>#FFFFFF</tertiaryComplementColor>
+        <zeronaryColor>#FFFFFF</zeronaryColor>
+        <zeronaryComplementColor>#222222</zeronaryComplementColor>
+    </branding>
+    <changePasswordTemplate>unfiled$public/CommunityChangePasswordEmailTemplate</changePasswordTemplate>
+    <description>Community set up for the Customer Development Function</description>
+    <emailSenderAddress>CD.Community@unilever.com</emailSenderAddress>
+    <emailSenderName>Customer Development</emailSenderName>
+    <enableGuestChatter>false</enableGuestChatter>
+    <enableInvitation>false</enableInvitation>
+    <enableKnowledgeable>false</enableKnowledgeable>
+    <enableNicknameDisplay>false</enableNicknameDisplay>
+    <enablePrivateMessages>false</enablePrivateMessages>
+    <enableReputation>false</enableReputation>
+    <forgotPasswordTemplate>unfiled$public/CommunityForgotPasswordEmailTemplate</forgotPasswordTemplate>
+    <networkMemberGroups>
+        <permissionSet>WIN_POS_Agency_User</permissionSet>
+        <profile>Admin</profile>
+    </networkMemberGroups>
+    <picassoSite>Customer_Development1</picassoSite>
+    <selfRegistration>false</selfRegistration>
+    <sendWelcomeEmail>true</sendWelcomeEmail>
+    <site>Customer_Development</site>
+    <status>Live</status>
+    <tabs>
+        <customTab>WinatPOS</customTab>
+        <customTab>Category__c</customTab>
+        <customTab>Brand_Master__c</customTab>
+        <customTab>Asset_Group__c</customTab>
+        <customTab>Asset__c</customTab>
+        <customTab>Welcome</customTab>
+        <defaultTab>01rE00000001wUj</defaultTab>
+        <standardTab>Chatter</standardTab>
+    </tabs>
+    <urlPathPrefix>CD</urlPathPrefix>
+    <welcomeTemplate>unfiled$public/CommunityWelcomeEmailTemplate</welcomeTemplate>
+</Network>
