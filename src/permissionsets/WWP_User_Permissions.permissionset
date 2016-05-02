@@ -8,6 +8,10 @@
         <apexClass>WWP_LossTree_CC</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+    <classAccesses>
+        <apexClass>WWP_LossTree_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <fieldPermissions>
         <editable>false</editable>
         <field>WWP_Loss_Tree__c.Actual_Dispatch__c</field>
@@ -54,7 +58,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WWP_Loss_Tree__c.Loss_Updated_in_Salesforce__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -95,6 +99,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>WWP_Loss_Tree__c.SKU_Description__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>WWP_Loss_Tree__c.SKU__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -110,11 +119,11 @@
     </fieldPermissions>
     <label>WWP User Permissions</label>
     <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>false</allowDelete>
+        <allowCreate>false</allowCreate>
+        <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>WWP_Loss_Tree__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
