@@ -111,7 +111,11 @@
     <rightSection>
         <columnSize>Medium</columnSize>
     </rightSection>
+<<<<<<< HEAD
     <runningUser>vaibhav.vora@unilever.com</runningUser>
+=======
+    <runningUser>anusha.sanagaram@mindtree.com</runningUser>
+>>>>>>> develop
     <textColor>#000000</textColor>
     <title>RAP Stats 4</title>
     <titleColor>#000000</titleColor>

@@ -159,7 +159,11 @@
             <useReportChart>false</useReportChart>
         </components>
     </rightSection>
+<<<<<<< HEAD
     <runningUser>vaibhav.vora@unilever.com</runningUser>
+=======
+    <runningUser>anusha.sanagaram@mindtree.com</runningUser>
+>>>>>>> develop
     <textColor>#000000</textColor>
     <title>RAP Stats 2</title>
     <titleColor>#000000</titleColor>

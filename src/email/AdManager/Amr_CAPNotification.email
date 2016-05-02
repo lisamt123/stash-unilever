@@ -29,7 +29,11 @@
 <div style="padding:4px 0;">
 <span style="font-weight:bold;">Unilever Finance Member Email: </span>&emsp;<span>{!Amr_Job_Details__c.Unilever_Finance_Member_Email__c}	</span> </div>
 <div style="padding:4px 0;">
+<<<<<<< HEAD
 <span style="font-weight:bold;">Final Approver of Material Email: </span>&emsp;<span>{!Amr_Job_Details__c.Final_Approver_Of_Material_Email__c} </span> </div>
+=======
+<span style="font-weight:bold;">Final Approver Of Material Email: </span>&emsp;<span>{!Amr_Job_Details__c.Final_Approver_Of_Material_Email__c} </span> </div>
+>>>>>>> develop
 <div style="padding:4px 0;">
 <span style="font-weight:bold;">Which function are you part of (BD/BB/Other): </span>&emsp;<span>{!Amr_Job_Details__c.Function_You_Are_Part__c} </span> </div>
 <div style="padding:4px 0;">
@@ -47,7 +51,11 @@
 <div style="padding:4px 0;">
 <span style="font-weight:bold;">Lead Agency Location: </span>&emsp;<span>{!Amr_Job_Details__c.Lead_Agency_Location_Cluster__c} --  {!Amr_Job_Details__c.Lead_Agency_Location_Country__c}</span> </div>
 <div style="padding:4px 0;">
+<<<<<<< HEAD
 <span style="font-weight:bold;">Agency Contact or Account Director Email: </span>&emsp;</span>{!Amr_Job_Details__c.Agency_Contact_Account_Director_Email__c}</span> </div>
+=======
+<span style="font-weight:bold;">Agency Contact Or Account Director Email: </span>&emsp;</span>{!Amr_Job_Details__c.Agency_Contact_Account_Director_Email__c}</span> </div>
+>>>>>>> develop
 <div style="padding:4px 0;">
 <span style="font-weight:bold;">Digital Agency Name (If Applicable): </span>&emsp;<span>{!Amr_Job_Details__c.Digital_Agency_Name__c}</span> </div>
 <div style="padding:4px 0;">
@@ -75,7 +83,11 @@
 <div>
 <span style="font-weight:bold;">Do you anticipate that your production will require Celebrity Talent?: </span>&emsp;<span>{!Amr_Job_Details__c.Require_Celebrity_Talent__c }</span> </div>
 <div>
+<<<<<<< HEAD
 <span style="font-weight:bold;">Current Stage of Your Production Activity: </span>&emsp;<span>{!Amr_Job_Details__c.Stage_of_Production_Activity__c} </span> </div>
+=======
+<span style="font-weight:bold;">Current Stage Of Your Production Activity: </span>&emsp;<span>{!Amr_Job_Details__c.Stage_of_Production_Activity__c} </span> </div>
+>>>>>>> develop
 </div>
 <div style="margin-top:30px;">
 https://unilever--chazwa.cs23.my.salesforce.com/apex/Amr_JobSheet?id={!Amr_Job_Details__c.Id}
