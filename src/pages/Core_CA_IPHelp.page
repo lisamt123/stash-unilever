@@ -1,0 +1,9 @@
+<apex:page controller="Core_CA_HelpContentController" action="{!helpContentURL}"> 
+ 
+  <!--Dear {!$User.FirstName} {!$User.LastName}, the help page for Mobile Approvals is currently being updated. Kindly visit after some time. -->
+ <apex:form >
+     <br/><br/>
+     <b>{!aribaText}&nbsp; - &nbsp; </b><apex:outputLink value="{!aribaURL}" target="_blank"><b>{!aribaURL}</b></apex:outputLink> <br/><br/>
+     <b>{!gtesText}&nbsp; - &nbsp;</b> <apex:outputLink value="{!gtesURL}" target="_blank"><b>{!gtesURL}</b></apex:outputLink>    
+ </apex:form> 
+</apex:page>

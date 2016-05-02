@@ -1,0 +1,5 @@
+<aura:event type="APPLICATION" description="Event template" >
+    <aura:attribute name="selectedWrokplaceId" type="String"/>
+    <aura:attribute name="displayWorkplaceHome" type="Boolean"/>
+    <aura:attribute name="WorkplacePannelType" type="String"/>
+</aura:event>

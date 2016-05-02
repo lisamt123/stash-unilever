@@ -1,0 +1,35 @@
+<apex:page showHeader="false" sidebar="false">
+ <link rel="stylesheet" type="text/css" media="all" href="{!URLFOR($Resource.ulw_brief_2_static_resources, 'static_resources/css/style.css')}" />
+<div class="help_template">
+<div class="title"> BRAND CENTRE LANDING PAGE</div>
+<p>This is the Brand Centre landing page. All the Brands that you can view will be listed here.
+</p>
+<p>
+ <img src="{!URLFOR($Resource.ulw_help_pop_up, 'img/help_image_1_1.jpg')}"/>
+  
+</p>
+
+<table width="800" border="0" cellpadding="4">
+  <tr>
+    <td class="bubblebox"><span class="numcolor">1</span></td>
+    <td class="bubbletxt"><span>Navigate to The Hub, Chatter or Brand Experience using the navigation bar. 
+</span></td>
+  </tr>
+  <tr>
+    <td class="bubblebox"><span class="numcolor">2</span></td>
+    <td class="bubbletxt"><span>Use the View drop down to filter the type of Brands you are looking for. E.g. Food Brands, Homecare Brands. 
+</span></td>
+  </tr>
+  <tr>
+    <td class="bubblebox"><span class="numcolor">3</span></td>
+    <td class="bubbletxt"><span>If you want to make a new Brand Centre click New. 
+</span></td>
+  </tr>
+  <tr>
+    <td class="bubblebox"><span class="numcolor">4</span></td>
+    <td class="bubbletxt"><span>Click on the Brand you want to view to go to the Brand Centre
+</span></td>
+  </tr>
+</table>
+</div>
+</apex:page>

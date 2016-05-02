@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>This custom setting is used to display strategic intent graph.</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>IPM_BLG_Improvement__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>if answers of core parameter questions are BLG and Improvement then checkbox should be checked.</description>
+        <externalId>false</externalId>
+        <label>BLG/Improvement</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_BLG_New_Benefit__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>if answers of core parameter questions are BLG and New Benefit then checkbox should be checked.</description>
+        <externalId>false</externalId>
+        <label>BLG/New Benefit</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_BLG_New_Core_Product__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>if answers of core parameter questions are BLG and New Core Product then checkbox should be checked.</description>
+        <externalId>false</externalId>
+        <label>BLG/New Core Product</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_BLG_No_Change__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>if answers of core parameter questions are BLG and No Change then checkbox should be checked.</description>
+        <externalId>false</externalId>
+        <label>BLG/No Change</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_BLG_Variant__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>if answers of core parameter questions are BLG and Variant then checkbox should be checked.</description>
+        <externalId>false</externalId>
+        <label>BLG/Variant</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Base_Improvement__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>if answers of core parameter questions are Base and improvement then checkbox should be checked.</description>
+        <externalId>false</externalId>
+        <label>Base/Improvement</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Base_New_Benefit__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>if answers of core parameter questions are Base and New Benefit then checkbox should be checked.</description>
+        <externalId>false</externalId>
+        <label>Base/New Benefit</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Base_New_Core_Product__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>if answers of core parameter questions are Base and New Core Product then checkbox should be checked.</description>
+        <externalId>false</externalId>
+        <label>Base/New Core Product</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Base_No_Change__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>if answers of core parameter questions are Base and No Change then checkbox should be checked.</description>
+        <externalId>false</externalId>
+        <label>Base/No Change</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Base_Operational__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>if answers of core parameter questions are Base and Operational then checkbox should be checked.</description>
+        <externalId>false</externalId>
+        <label>Base/Operational</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Base_Variant__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>if answers of core parameter questions are Base and Variant then checkbox should be checked.</description>
+        <externalId>false</externalId>
+        <label>Base/Variant</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_CVP__c</fullName>
+        <description>store cvp answer</description>
+        <externalId>false</externalId>
+        <label>CVP</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_ET__c</fullName>
+        <description>store ET answer</description>
+        <externalId>false</externalId>
+        <label>ET</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Incremental_Improvement__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>if answers of core parameter questions are Improvement and Incremental then checkbox should be checked.</description>
+        <externalId>false</externalId>
+        <label>Incremental/Improvement</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Incremental_New_Benefit__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>if answers of core parameter questions are Improvement and New Benefit then checkbox should be checked.</description>
+        <externalId>false</externalId>
+        <label>Incremental/New Benefit</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Incremental_New_Core_Product__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>if answers of core parameter questions are Improvement and New Core Product then checkbox should be checked.</description>
+        <externalId>false</externalId>
+        <label>Incremental/New Core Product</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Incremental_No_Change__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>if answers of core parameter questions are Improvement and No Change then checkbox should be checked.</description>
+        <externalId>false</externalId>
+        <label>Incremental/No Change</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Incremental_Operational__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>if answers of core parameter questions are Improvement and Operational then checkbox should be checked.</description>
+        <externalId>false</externalId>
+        <label>Incremental/Operational</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Incremental_Variant__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>if answers of core parameter questions are Improvement and Variant then checkbox should be checked.</description>
+        <externalId>false</externalId>
+        <label>Incremental/Variant</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Next_Generation_Improvement__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>if answers of core parameter questions are Next Generation and Improvement  then checkbox should be checked.</description>
+        <externalId>false</externalId>
+        <label>Next Generation/Improvement</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Next_Generation_New_Benefit__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>if answers of core parameter questions are Next Generation and New Benefit then checkbox should be checked.</description>
+        <externalId>false</externalId>
+        <label>Next Generation/New Benefit</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Next_Generation_New_Core_Product__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>if answers of core parameter questions are Next Generation and New Core Product then checkbox should be checked.</description>
+        <externalId>false</externalId>
+        <label>Next Generation/New Core Product</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Next_Generation_No_Change__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>if answers of core parameter questions are Next Generation and No Change then checkbox should be checked.</description>
+        <externalId>false</externalId>
+        <label>Next Generation/No Change</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Next_Generation_Operational__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>if answers of core parameter questions are Next Generation and Operational then checkbox should be checked.</description>
+        <externalId>false</externalId>
+        <label>Next Generation/Operational</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Next_Generation_Variant__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>if answers of core parameter questions are Next Generation and Variant then checkbox should be checked.</description>
+        <externalId>false</externalId>
+        <label>Next Generation/Variant</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Radical_Improvement__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>if answers of core parameter questions are Radical and Improvement  then checkbox should be checked.</description>
+        <externalId>false</externalId>
+        <label>Radical/Improvement</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Radical_New_Benefit__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>if answers of core parameter questions are Radical and New Benefit then checkbox should be checked.</description>
+        <externalId>false</externalId>
+        <label>Radical/New Benefit</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Radical_New_Core_Product__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>if answers of core parameter questions are Radical and New Core Product then checkbox should be checked.</description>
+        <externalId>false</externalId>
+        <label>Radical/New Core Product</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Radical_No_Change__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>if answers of core parameter questions are Radical and No Change then checkbox should be checked.</description>
+        <externalId>false</externalId>
+        <label>Radical/No Change</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Radical_Operational__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>if answers of core parameter questions are Radical and Operational then checkbox should be checked.</description>
+        <externalId>false</externalId>
+        <label>Radical/Operational</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Radical_Variant__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>if answers of core parameter questions are Radical and Variant then checkbox should be checked.</description>
+        <externalId>false</externalId>
+        <label>Radical/Variant</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Strategic_Intent__c</fullName>
+        <description>store strategic intent</description>
+        <externalId>false</externalId>
+        <label>Strategic Intent</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>IPM Coreparameter Graph</label>
+    <visibility>Public</visibility>
+</CustomObject>

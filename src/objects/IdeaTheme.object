@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <content>ChatterIdeasThemesList</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Active_Challenge__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Select this checkbox to activate and launch the Idea theme.</inlineHelpText>
+        <label>Active Challenge</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Active__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Active_Challenge__c , IMAGE(&quot;/resource/ideastaticresources/green_tick.gif&quot;,&quot;OK&quot;), IMAGE(&quot;/resource/ideastaticresources/ex_mark.gif&quot;,&quot;Warning&quot;))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Active</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BatchInvoked__c</fullName>
+        <description>Field updated from CORE_IC_ICampaignStatusUpdate batch job. Hidden field</description>
+        <externalId>false</externalId>
+        <label>BatchInvoked</label>
+        <length>1</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Categories</fullName>
+        <picklist>
+            <picklistValues>
+                <fullName>CD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Deodorants</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fragrance</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>General</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hair</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Labelling</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Marketing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Oral Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Packaging Shape</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Packaging Size</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>R&amp;D</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Skin Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Skin Cleansing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Usage</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ice-Cream</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not Applicable</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Kids</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Teens</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Desi Flavors</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Indo Western Fusion</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Western Indulgence</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Healthy Indulgence</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>I Need to Find…</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>I Need to Do…</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>I Work with Others On…</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>What’s relevant for me to see…</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3D Printing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Big Data</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BioTech</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cloud</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Collaboration</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Crowd Sourcing (and ideation)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Crypto Currencies</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>eCommerce</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Gamification</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In-Memory</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IoT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mobile</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Social Media</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Wearable Tech</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Misc</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Categories__c</fullName>
+        <description>Please enter Categories for Idea Campaign separated by comma</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Please enter Categories for Idea Campaign separated by comma.</inlineHelpText>
+        <label>Categories</label>
+        <length>255</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Chatter_Post__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>If checked chatter feed will be posted to chatter groups</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Click to get chatter post to groups</inlineHelpText>
+        <label>Chatter Post</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CommunityId</fullName>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Dashboard__c</fullName>
+        <description>Dashboard Id for the VF Page button redirection</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the Salesforce Id of Dashboard.</inlineHelpText>
+        <label>Dashboard</label>
+        <length>50</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Description</fullName>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <length>32768</length>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>EndDate</fullName>
+    </fields>
+    <fields>
+        <fullName>Groups_to_Post__c</fullName>
+        <description>Enter the Salesforce Id&apos;s of the Groups to post the launch of Idea Theme</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the Salesforce Id&apos;s of the Groups separated by comma. This will be used to create Chatter post for launch of Idea Theme</inlineHelpText>
+        <label>Groups to Post</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IdeaCount</fullName>
+    </fields>
+    <fields>
+        <fullName>Idea_Theme_Poster_URL__c</fullName>
+        <description>Enter the Salesforce File Id for the Idea Theme Poster</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the Salesforce Id  of the File to be used as Idea Theme Poster in Chatter Post</inlineHelpText>
+        <label>Idea Theme Poster</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Idea_Theme_Title__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the summary for the Idea Theme. This will be displayed in Chatter post created during theme launch.</inlineHelpText>
+        <label>Idea Theme Summary</label>
+        <length>32768</length>
+        <type>LongTextArea</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Idea_Themes_Banner__c</fullName>
+        <description>Idea Themes Banner</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Insert the image to be set as Banner for the Idea Themes landing page.</inlineHelpText>
+        <label>Idea Themes Banner</label>
+        <length>32768</length>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>LeaderboardId__c</fullName>
+        <description>Dashboard Id for Leaderboard on VF Page</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the Salesforce Id of the Leaderboard to be displayed on Idea Theme page.</inlineHelpText>
+        <label>LeaderboardId</label>
+        <length>50</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Promoted__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Promoted</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>StartDate</fullName>
+    </fields>
+    <fields>
+        <fullName>Status</fullName>
+        <picklist>
+            <picklistValues>
+                <fullName>New</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Archived</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Title</fullName>
+    </fields>
+    <fields>
+        <fullName>Video_URL__c</fullName>
+        <description>URL of the Video to be embedded on Idea Themes Landing Page</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the URL of the Video to be embedded on Idea Themes Landing Page</inlineHelpText>
+        <label>Video URL</label>
+        <required>false</required>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>View__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;/apex/ChatterIdeaThemes?id=&quot;&amp;Id,IMAGE(&quot;/img/func_icons/util/info16.png&quot;,&quot;View&quot;),&quot;_top&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>View</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Zone_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>Zone Id</label>
+        <length>50</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <searchLayouts>
+        <customTabListAdditionalFields>IDEATHEME.TITLE</customTabListAdditionalFields>
+        <customTabListAdditionalFields>IDEATHEME.DESC</customTabListAdditionalFields>
+        <customTabListAdditionalFields>IDEATHEME.STATUS</customTabListAdditionalFields>
+        <customTabListAdditionalFields>COMMUNITY.NAME</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>IDEATHEME.TITLE</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>IDEATHEME.STATUS</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>IDEATHEME.TITLE</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>IDEATHEME.STATUS</lookupPhoneDialogsAdditionalFields>
+        <searchResultsAdditionalFields>IDEATHEME.TITLE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>IDEATHEME.DESC</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>IDEATHEME.STATUS</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>COMMUNITY.NAME</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

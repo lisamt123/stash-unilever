@@ -1,0 +1,132 @@
+<apex:page controller="ChatterHomePageController" sidebar="true" showHeader="false" standardStylesheets="true">
+<script src="{!URLFOR($Resource.termsOfUseStatics)}/js/jquery/jquery-1.7.min.js"></script>
+
+<script>
+$j = jQuery.noConflict();
+
+ $j(document).ready(function(){
+     $j('a[href^="https://"]').attr('target','_blank');
+     
+     //$j('.feedSearch').hide();
+     //$j('.feedSortMenuContainer').hide();
+     //$j('.dropDownFilters').hide();
+     //$j('.clearingBox').hide();
+     //$j('.preamblecontainer').hide();
+     //$j('.feeditemfooter').hide();
+     //$j('.chatter-avatar').hide();
+     //$j('.feeditemseparatingdot').hide();
+     //$j('.more-file-actions').hide();
+     //$j('.embedlyIcon').hide();
+    
+ });
+
+</script>
+<style>
+.feeditemtext{
+font-size:12px;
+font-weight:bold;
+}
+
+table tr.separator { height: 20px; }
+
+img{
+align:center;
+display:inline;
+}
+
+.pbTitle {
+        white-space: nowrap
+    }
+    
+ .headerRow{
+   display: none; 
+  }
+  
+  #wrapper {
+    width: 100%;
+    margin: 0 auto;
+
+#leftcolumn { width: 50%; border: 1px ; float: left;  }
+#rightcolumn { width: 50%; border: 1px ; float: right; }
+.clear { clear: both;}
+</style>
+
+    <table border="0" width="100%">
+        <tr>
+            <td colspan="2" width="50%" valign="top">
+                <apex:outputpanel layout="block"  style="overflow:auto;height:350px;" >
+                    <apex:pageBlock title="Chatter User Guides" >
+                        <apex:repeat value="{!Groups}" var="group">
+                            <b>
+                            <apex:outputText value="{!TEXT(group.Sort_Order__c) & '. '}"/>
+                            <apex:outputField value="{!group.Display_Text__c}"/>
+                            </b><br/>&nbsp;
+            
+                            <apex:pageBlockTable value="{!Feeds[group]}" var="feed">
+                                <apex:column ><apex:outputField value="{!feed.Sort_Order__c}"/></apex:column>
+                                <apex:column ><apex:image value="{!feed.Image_URL__c}"/></apex:column>
+                                <apex:column ><apex:outputLink value="{!feed.Asset_URL__c}" target="_BLANK">{!feed.Display_Text__c}</apex:outputLink></apex:column>
+                            </apex:pageBlockTable>
+            
+                            <br/>
+                        </apex:repeat>
+                    </apex:pageBlock>
+                </apex:outputpanel>
+            </td>
+            <td colspan="2" width="50%" valign="top">
+                <apex:outputpanel layout="block"  style="overflow:auto;height:350px;" >
+                    <apex:pageBlock title="Chatter Help Group">
+                        <chatter:feed entityId="0F9E0000000ItSi" showPublisher="true"/>
+                    </apex:pageBlock>
+                </apex:outputpanel>
+            </td>
+        </tr>
+        <!--<tr>
+            <td colspan="4">
+                adfasdfasdf
+            </td>
+        </tr>-->
+    </table>
+
+
+<!--<div id="wrapper" >
+<div id="leftcolumn"><p><span>
+<apex:pageBlock title="Chatter User Guides" >
+
+<apex:repeat value="{!Groups}" var="group">
+<b>
+<apex:outputText value="{!TEXT(group.Sort_Order__c) & '. '}"/>
+<apex:outputField value="{!group.Display_Text__c}"/>
+</b><br/>&nbsp;
+
+<apex:pageBlockTable value="{!Feeds[group]}" var="feed">
+
+<apex:column ><apex:outputField value="{!feed.Sort_Order__c}"/></apex:column>
+<apex:column ><apex:image value="{!feed.Image_URL__c}"/></apex:column>
+<apex:column ><apex:outputLink value="{!feed.Asset_URL__c}" target="_BLANK">{!feed.Display_Text__c}</apex:outputLink></apex:column>
+
+</apex:pageBlockTable>
+
+<br/>
+
+</apex:repeat>
+
+</apex:pageBlock>
+</span></p></div>
+
+<div id="rightcolumn"><p>
+<span>
+<apex:pageBlock title="Chatter Videos">
+
+<chatter:feed entityId="0F9c00000000BMD" showPublisher="false"/>
+</apex:pageBlock>
+</span>
+
+</p></div>
+<div class="clear"></div>
+</div>-->
+<div class="clear"></div>
+<apex:iframe src="/01Zc00000008g6H" height="0" width="0" frameborder="false" />
+
+
+</apex:page>

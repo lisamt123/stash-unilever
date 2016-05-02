@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>FA_Context__c</fullName>
+        <externalId>false</externalId>
+        <label>Context</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FA_Course_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>FA_Course__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Course Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FA_Course_Occ_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>FA_Course__r.FA_Course_Code__c+&apos;_&apos;  +
+TEXT(DAY( DATEVALUE(FA_Start_Date_Time__c)))  
+
++ IF(MONTH( DATEVALUE(FA_Start_Date_Time__c))=1,&apos;JAN&apos;,
+IF(MONTH( DATEVALUE(FA_Start_Date_Time__c))=2,&apos;FEB&apos;,
+IF(MONTH( DATEVALUE(FA_Start_Date_Time__c))=3,&apos;MAR&apos;,
+IF(MONTH( DATEVALUE(FA_Start_Date_Time__c))=4,&apos;APR&apos;,
+IF(MONTH( DATEVALUE(FA_Start_Date_Time__c))=5,&apos;MAY&apos;,
+IF(MONTH( DATEVALUE(FA_Start_Date_Time__c))=6,&apos;JUN&apos;,
+IF(MONTH( DATEVALUE(FA_Start_Date_Time__c))=7,&apos;JUL&apos;,
+IF(MONTH( DATEVALUE(FA_Start_Date_Time__c))=8,&apos;AUG&apos;,
+IF(MONTH( DATEVALUE(FA_Start_Date_Time__c))=9,&apos;SEP&apos;,
+IF(MONTH( DATEVALUE(FA_Start_Date_Time__c))=10,&apos;OCT&apos;,
+IF(MONTH( DATEVALUE(FA_Start_Date_Time__c))=11,&apos;NOV&apos;,
+IF(MONTH( DATEVALUE(FA_Start_Date_Time__c))=12,&apos;DEC&apos;,&apos;&apos;
+))))))))))))
++
+TEXT( YEAR( DATEVALUE(FA_Start_Date_Time__c) ))
++ &apos;_&apos; +  RIGHT( Name, 5)</formula>
+        <label>Course Occurence Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FA_Course__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Course</label>
+        <referenceTo>FA_Course__c</referenceTo>
+        <relationshipLabel>Course Occurence</relationshipLabel>
+        <relationshipName>FA_Course_Occurance</relationshipName>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FA_End_Date_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>End Date Time</label>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>FA_External_ID__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>false</externalId>
+        <label>External ID</label>
+        <length>120</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>FA_Important_Logistics__c</fullName>
+        <externalId>false</externalId>
+        <label>Important Logistics</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FA_Initiate_Feedback__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Initiate Feedback</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FA_Mail_Content_1__c</fullName>
+        <externalId>false</externalId>
+        <label>Invitation Mail Content</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>20</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FA_Mail_Content_2__c</fullName>
+        <externalId>false</externalId>
+        <label>Extended Mail Content</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>20</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FA_No_Of_Occurence_Members__c</fullName>
+        <externalId>false</externalId>
+        <label>No Of Occurence Members</label>
+        <summaryForeignKey>FA_Occurence_Member__c.FA_Course_Occurence__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>FA_No_of_Participants__c</fullName>
+        <description>Displays the Number of Participants attending the Particular Course</description>
+        <externalId>false</externalId>
+        <label>No of Participants</label>
+        <summaryFilterItems>
+            <field>FA_Occurence_Member__c.FA_Participation_Status__c</field>
+            <operation>equals</operation>
+            <value>Confirmed, Attended</value>
+        </summaryFilterItems>
+        <summaryForeignKey>FA_Occurence_Member__c.FA_Course_Occurence__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>FA_Outlook_Invite_URL__c</fullName>
+        <externalId>false</externalId>
+        <label>Calendar Invite</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FA_Post_Prog_End_Date__c</fullName>
+        <description>To capture the Post Program end date</description>
+        <externalId>false</externalId>
+        <label>Post Work Deadline</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>FA_Pre_Work_Start_Date__c</fullName>
+        <description>This field will capture the date for the Programme Pre work start date.</description>
+        <externalId>false</externalId>
+        <label>Pre Work Deadline</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>FA_Programme_Overview__c</fullName>
+        <externalId>false</externalId>
+        <label>Programme Overview</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FA_Required_Action__c</fullName>
+        <externalId>false</externalId>
+        <label>Required Action</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FA_Send_Invite_Mail__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This field is used to send Invitation Mail to the Occ Members of the Course Occurrence</description>
+        <externalId>false</externalId>
+        <label>Send Invite Mail</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FA_Signature__c</fullName>
+        <externalId>false</externalId>
+        <label>Signature</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FA_Start_Date_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Start Date Time</label>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>FA_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Active</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>FA_Training_Room_Image__c</fullName>
+        <externalId>false</externalId>
+        <formula>IMAGE( FA_Training_Room__r.FA_Image_URL__c, &quot;Training Room Image&quot;,200,300)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Training Room Image</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FA_Training_Room__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Training Room</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>FA_Training_Room__c.FA_Training_Venue__c</field>
+                <operation>equals</operation>
+                <valueField>$Source.FA_Training_Venue__c</valueField>
+            </filterItems>
+            <filterItems>
+                <field>FA_Training_Room__c.FA_Active__c</field>
+                <operation>equals</operation>
+                <value>True</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>FA_Training_Room__c</referenceTo>
+        <relationshipLabel>Course Occurence</relationshipLabel>
+        <relationshipName>Course_Occurance</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FA_Training_Venue_Image__c</fullName>
+        <externalId>false</externalId>
+        <formula>IMAGE( FA_Training_Venue__r.FA_Image_URL__c, &quot;Training Venue Image&quot;,200,300)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Training Venue Image</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FA_Training_Venue__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Training Venue</label>
+        <referenceTo>FA_Training_Venue__c</referenceTo>
+        <relationshipLabel>Course Occurence</relationshipLabel>
+        <relationshipName>Course_Occurance</relationshipName>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Course Occurence</label>
+    <nameField>
+        <displayFormat>CO-{00000}</displayFormat>
+        <label>ID</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Course Occurence</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>FA_Course_Occ_Name__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>FA_Course_Name__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>FA_Start_Date_Time__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>FA_End_Date_Time__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>FA_Course_Occ_Name__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>FA_Course__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>FA_Start_Date_Time__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>FA_End_Date_Time__c</lookupDialogsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Private</sharingModel>
+    <sharingReasons>
+        <fullName>FA_Facilitator_Access__c</fullName>
+        <label>Facilitator Access</label>
+    </sharingReasons>
+    <sharingReasons>
+        <fullName>FA_Member_Access__c</fullName>
+        <label>Member Access</label>
+    </sharingReasons>
+    <validationRules>
+        <fullName>FA_DateValidation</fullName>
+        <active>true</active>
+        <errorConditionFormula>IF(   DATEVALUE(FA_Start_Date_Time__c) &gt;  DATEVALUE(  FA_End_Date_Time__c) , true, false)</errorConditionFormula>
+        <errorDisplayField>FA_End_Date_Time__c</errorDisplayField>
+        <errorMessage>Course End date cannot be before Course Start date</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FA_Feedback_EndDate_Check</fullName>
+        <active>true</active>
+        <description>Feedback shouldnot be triggered if the course occurrence End date is &gt; today() and if Status is Cancelled.</description>
+        <errorConditionFormula>If(OR(DATEVALUE(FA_End_Date_Time__c )   &gt;  TODAY(),  ISPICKVAL( FA_Status__c , &apos;Cancelled&apos;) ) ,  FA_Initiate_Feedback__c ==TRUE,False)</errorConditionFormula>
+        <errorDisplayField>FA_Initiate_Feedback__c</errorDisplayField>
+        <errorMessage>Cannot Initiate Feedback if Occurrence End date greater than today. and If Status is also cancelled</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FA_Initiate_Feedback_Check</fullName>
+        <active>false</active>
+        <description>Condition Feedback button once checked, cannot be further operated</description>
+        <errorConditionFormula>IF(PRIORVALUE(FA_Initiate_Feedback__c)= TRUE,ISCHANGED(FA_Initiate_Feedback__c),False)</errorConditionFormula>
+        <errorDisplayField>FA_Initiate_Feedback__c</errorDisplayField>
+        <errorMessage>Feedback already Initiated, cannot Undo</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FA_NewOccStartDate_Validation</fullName>
+        <active>false</active>
+        <errorConditionFormula>ISNEW() &amp;&amp; IF( DATEVALUE(FA_Start_Date_Time__c)  &lt;TODAY()  -0.5  , true , false )</errorConditionFormula>
+        <errorMessage>Start Date of the new Course Occurrence cannot be less than Today.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FA_Occ_Completion_Check</fullName>
+        <active>false</active>
+        <description>To check the End date to change the status to completed</description>
+        <errorConditionFormula>IF( FA_End_Date_Time__c  &gt; Now(),  ISPICKVAL( FA_Status__c , &apos;Completed&apos;) ,False )</errorConditionFormula>
+        <errorDisplayField>FA_Status__c</errorDisplayField>
+        <errorMessage>Cannot change the Status to Completed if end day is greater than today</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FA_Occurance_for_Active_Course</fullName>
+        <active>true</active>
+        <description>This validation will restrict the User of creating new occurrence in active Course</description>
+        <errorConditionFormula>ISNEW() &amp;&amp;  ISPICKVAL(FA_Course__r.FA_Status__c , &apos;Inactive&apos;)</errorConditionFormula>
+        <errorMessage>Occurrence can be Associated with Active Courses.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FA_Record_Validation</fullName>
+        <active>false</active>
+        <description>Validation to ensure that Course Occurrence Start Date &lt;today() should not be able to be created / updated should be included</description>
+        <errorConditionFormula>IF( today()  &gt; DATEVALUE(FA_Start_Date_Time__c) ,
+OR( ISCHANGED( FA_Outlook_Invite_URL__c ) ,
+         ISCHANGED(FA_Course__c),
+         ISCHANGED(FA_Course_Occ_Name__c),
+         ISCHANGED(FA_End_Date_Time__c),
+         ISCHANGED(FA_Start_Date_Time__c),
+         ISCHANGED(FA_Training_Venue__c),
+         ISCHANGED(FA_Training_Room__c), 
+         ISCHANGED(FA_Pre_Work_Start_Date__c) ,
+         ISCHANGED(FA_Post_Prog_End_Date__c) ,
+         ISCHANGED(FA_Mail_Content_1__c) ,
+         ISCHANGED(FA_Mail_Content_2__c ) ,
+         ISCHANGED(FA_Training_Room_Image__c ) ,
+         ISCHANGED(FA_Training_Venue_Image__c )) ,
+         False)</errorConditionFormula>
+        <errorMessage>Record cannot be modified if start date is less than today</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FA_Status_Cancelled_Check</fullName>
+        <active>true</active>
+        <description>Status shouldnot be changed to Cancel if the course occurrence End date is &gt; today()</description>
+        <errorConditionFormula>AND(ISPICKVAL(FA_Status__c,&apos;Cancelled&apos;),( NOW() &gt; FA_End_Date_Time__c ))</errorConditionFormula>
+        <errorMessage>Cannot Cancel the Course Occurrence which has scheduled in Past.</errorMessage>
+    </validationRules>
+</CustomObject>

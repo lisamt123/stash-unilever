@@ -1,0 +1,19 @@
+<!-- 
+************************************************************************************
+*@Author: Nandini
+*@Created Date: 17/Aug/2015
+*@Description: This Page helps upload the business Case to Project from financial 
+                copypaste page.
+************************************************************************************
+    
+-->
+
+<apex:page controller="IPM_UploadBusinessCase" sidebar="false" showHeader="false" docType="html-5.0" cache="false" extensions="IPM_GetHelpDoc">
+  <apex:form id="fom">  
+      <apex:pageMessages />                  
+      <apex:inputfile id="Fn"  accept="xls, xlsx" value="{!filebody}" filename="{!fileName}" ></apex:inputfile>
+      <apex:actionRegion >
+          <apex:commandButton value="Save" action="{!saveBusinessCase}" />
+      </apex:actionRegion>
+  </apex:form>
+</apex:page>

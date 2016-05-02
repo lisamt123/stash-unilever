@@ -1,0 +1,85 @@
+<!--  
+*************************************************************************************************************************************************************
+*@Description:This page is used in landing page of team assignment. User can see,add,update and delete team members.
+*@Author: Cognizant
+*@Created Date: 27/01/2015
+*@Copyright © 2015  Unilever  
+*************************************************************************************************************************************************************
+-->
+<apex:page standardController="IPM_Project__c" extensions="IPM_Taskview"  sidebar="false" id="IPM_TeamPage" > 
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Team_revamp.css')}"/>
+    <apex:composition template="IPM_TemplateRevamp">
+        <apex:define name="body">  
+            <div class="gradientbg">
+                <apex:form >  
+                <apex:pagemessages id="pgmsg"/>
+                    <c:IPM_ProjectDetails project="{!project}" activeItem="teamAssignment" />
+                 </apex:form>
+            </div>
+                     
+            <div class="ipmContent">  
+                <c:IPM_Team_Assignment_Page />
+            </div>
+            <div id="ipmAddMemberModal" tabindex="-1" data-backdrop-limit="1" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <div class="modal-title"></div>
+                        </div>
+                        <div class="modal-body">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="ipmModalEdit" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <div id="ipmModalDelete" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <div class="modal-title">{!$Label.IPM_Remove_Member}</div>
+                        </div>
+                        
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <div class="row">       
+                                    <div class="col-sm-12">
+                                        <span class="DelDesc">{!$Label.IPM_Delete_Member}</span>
+                                    </div>
+                                    
+                                    <div class="deleteButtoncontainer txtAlignright pull-right">
+                                        <div class="noPadright buttonMarginRight pull-left">
+                                            <input type="button" class="ipmButton" data-dismiss="modal" value="{!$Label.IPM_CANCEL}"/>
+                                        </div> 
+                                        <apex:outputPanel id="SkipBossC">
+                                            <div class="fleft noPadright">
+                                                <input type="button" class="ipmButton primary confirmAction" value="{!$Label.IPM_Remove}" data-dismiss="modal" />
+                                            </div> 
+                                        </apex:outputPanel>
+                                    </div> 
+                                 </div> 
+                            </div>          
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="ipmDeleteModalDiv">
+                <c:IPM_ConfirmModal />
+            </div>       
+            
+            
+            
+            <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_functions.js')}" type="text/javascript"></script>
+            <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Accordion.js')}" type="text/javascript"></script>
+            <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Team.js')}" type="text/javascript"></script>           
+        </apex:define>  
+    </apex:composition>         
+</apex:page>

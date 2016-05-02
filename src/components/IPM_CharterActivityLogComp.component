@@ -1,0 +1,67 @@
+<!--  
+*************************************************************************************************************************************************************
+*@Description:To display the chatter notifications in overview page
+*@Author: Cognizant
+*@Created Date: 07/01/2015 
+*@Copyright © 2015  Unilever  
+*************************************************************************************************************************************************************
+-->
+<apex:component controller="IPM_ProjectOverviewCtrl">
+    
+    <!-- Attribute Definition -->
+    <div class="col-sm-3">
+        <div class="topheader">Recent Activities</div>
+        <div class="greyborder"></div>
+        <chatter:follow entityId="{!projectId}" />
+        <div class="col-xs-12 secUsersHistory contentscroll">
+            <div class="tlCircle"></div>
+            <div>
+                <div class="panel-group">
+                    <apex:repeat value="{!activityHistory}" var="History">
+                        <div class="row">
+                            <div class="col-xs-2"><img alt="History" src="{!History.whoImage}" class="circularimg"/> 
+                            </div>
+                            <div class="col-xs-9 {!CASE(History.actionType, 'Change', 'listHistory-ltgreen', 'Complete', 'listHistory-blue', 'Owner', 'listHistory-green','listHistory-blue')}">
+                                <div class="col-xs-12">
+                                    <div class="row username">{!History.who}
+                                    </div>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="row date dueDate">{!History.thedate}
+                                    </div>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="row action"><span>
+                                        {!History.action}</span>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                    </apex:repeat>
+                    <div class="row mt70">
+                        <div class="tlCircle cirpos">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   
+    <outputPanel id="jsLoad">
+        <script>
+        function showDiv() {
+            document.getElementById('followchatter').style.display = "block";
+            document.getElementById('chatterblock').style.display = "none";
+        }
+        
+        jq( ".unfollowLink" ).click(function( event ) {
+            event.preventDefault();
+            document.getElementById('followchatter').style.display = "none";
+            document.getElementById('chatterblock').style.display = "block";
+        });
+        jq(document).ready(function(){
+            jq('.zen-media.zen-mediaExt img.chatter-followIcon').addClass('chatterIcon');
+            jq('.zen-media.zen-mediaExt img.chatter-checkedIcon').addClass('chatterIcon');
+        });
+        </script>
+    </outputPanel> 
+</apex:component>

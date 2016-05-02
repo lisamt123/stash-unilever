@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>ErrorLog</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>ErrorLogs</value>
+    </caseValues>
+    <fields>
+        <label><!-- Apex Class/ Trigger --></label>
+        <name>FA_Apex_Class_Trigger__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>FA_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Method Name --></label>
+        <name>FA_Method_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Object Name --></label>
+        <name>FA_Object_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Severity --></label>
+        <name>FA_Severity__c</name>
+        <picklistValues>
+            <masterLabel>CONFIRM</masterLabel>
+            <translation><!-- CONFIRM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ERROR</masterLabel>
+            <translation><!-- ERROR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FATAL</masterLabel>
+            <translation><!-- FATAL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>INFO</masterLabel>
+            <translation><!-- INFO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WARNING</masterLabel>
+            <translation><!-- WARNING --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>FA_Type__c</name>
+        <picklistValues>
+            <masterLabel>Error</masterLabel>
+            <translation><!-- Error --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Exception</masterLabel>
+            <translation><!-- Exception --></translation>
+        </picklistValues>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

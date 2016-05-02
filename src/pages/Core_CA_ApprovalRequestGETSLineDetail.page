@@ -1,0 +1,247 @@
+<apex:page docType="html-5.0" showHeader="false" standardStylesheets="false" sidebar="false">
+<meta http-equiv="content-type" content="text/html; charset=UTF8" />
+    <div class="iPhoneHomeScreenHeight">
+        <div class="headerBarBackground" id="pageTop">
+            <table class="headerBarWidth">
+                <tr>
+                    <td class="headerBarRowAlign"> <img src="{!URLFOR($Resource.MyApprovalsSR, 'img/back.svg')}" alt="back" ng-click='gotoApprovalDetailPage()' class="homePageFilter"/> </td>
+                    <td class="headerBarRowAlign" id="alignCenter"> <label class="headerBarTitle">{{approvalLineDetailRequestData.RequestId}}</label> </td>
+                    <td class="headerBarRowAlign"> </td>
+                </tr>
+            </table>
+        </div>
+            <br/><div class="template" ng-init="expenseDetailsPanelDisplay=false">
+                <div class="defaultBottomBorder" ng-click="expenseDetailsPanelDisplay= (expenseDetailsPanelDisplay=='true' ? 'false' : 'true')">
+                    <span>
+                        <label class="detailSectionHeader" >{{'LBL_EXP_LINEITEM_DETAIL_EXPENSE_DETAILS' | translate}}</label>
+                    </span>
+                    <span class="alignRight">                    
+                        <img class="arrowButtonStyle" ng-hide="expenseDetailsPanelDisplay" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}" alt="showArrow" />
+                        <img class="arrowButtonStyle" ng-show="expenseDetailsPanelDisplay" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}" alt="hideArrow" />
+                    </span>
+                </div>
+                <div ng-hide="expenseDetailsPanelDisplay" id="responsiveDetailSectionwrapper">
+                    <div class="row">
+                        <div class="responsiveDetailSectionData">   
+                            <table class="responsiveDetailSectionTable">
+                                <tr>
+                                    <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_DETAIL_EXPENSE_TYPE'| translate}}</td>
+                                    <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_LINEITEM_DETAIL_AMOUNT' | translate}}</td>
+                                </tr>
+                                <tr>
+                                     <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.ExpenseType}}</td>
+                                     <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.Amount}}</td>
+                                </tr>
+                              </table> 
+                         </div>
+                         <div class="responsiveDetailSectionData">   
+                            <table class="responsiveDetailSectionTable">
+                                <tr>
+                                    
+                                    <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_DETAIL_CURRENCY' | translate}}</td>
+                                    <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_DETAIL_CHARGE_TO' | translate}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.Currencies}}</td>
+                                    <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.ChargeTo}}</td>
+                                </tr>
+                              </table> 
+                         </div>
+                    </div>
+                    <div class="row">
+                         <div class="responsiveDetailSectionData">   
+                            <table class="responsiveDetailSectionTable">
+                                <tr>
+                                    
+                                    <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_LINEITEM_DETAIL_PAYMENT_TYPE' | translate}}</td>
+                                    <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_LINEITEM_DETAIL_REIMBURSABLE' | translate}}</td>
+                                </tr>
+                                <tr>
+                                     <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.PaymentType}}</td>
+                                    <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.Reimbursable}}</td> 
+                                </tr>
+                              </table> 
+                         </div>
+                         <div class="responsiveDetailSectionData">   
+                            <table class="responsiveDetailSectionTable" ng-hide="approvalLineDetailRequestData.IsPerDiem">
+                                <tr>
+                                    <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_LINEITEM_DETAIL_CITY' | translate}}</td>
+                                    <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_LINEITEM_DETAIL_COUNTRY' | translate}}</td>
+                                </tr>
+                                <tr>
+                                     <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.City}}</td>
+                                     <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.Country}}</td>
+                                </tr>
+                              </table> 
+                         </div>
+                    </div>
+                    <div class="row" ng-hide="approvalLineDetailRequestData.IsPerDiem">
+                         <div class="responsiveDetailSectionData">   
+                            <table class="responsiveDetailSectionTable">
+                                <tr>
+                                    <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_LINEITEM_DETAIL_EXPENSE_DATE' | translate}}</td>
+                                    <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_LINEITEM_DETAIL_END_DATE' | translate}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.ExpenseDate}}</td>
+                                    <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.EndDate}}</td>                                   
+                                </tr>
+                              </table> 
+                         </div>
+                         <div class="responsiveDetailSectionData">   
+                            <table class="responsiveDetailSectionTable">
+                                <tr>
+                                    <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_LINEITEM_DETAIL_RECEIPT' | translate}}</td>                                
+                                    <!--<td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_LINEITEM_DETAIL_RECEIPT' | translate}}</td>-->
+                                </tr>
+                                <tr>
+                                    <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.Receipt}}</td>
+                                    <!--<td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.Receipt}}</td>-->
+                                </tr>
+                              </table> 
+                         </div>    
+                    </div>
+                </div>
+            </div><br/>
+            <div class="template" ng-init="purposeAndReasonPanel=false">
+                <div class="defaultBottomBorder" ng-click="purposeAndReasonPanel=!purposeAndReasonPanel">
+                    <span>
+                        <label class="detailSectionHeader">{{'LBL_EXP_DETAIL_PURPOSE_REASON' | translate}}</label>
+                    </span>
+                    <span class="alignRight">                    
+                        <img class="arrowButtonStyle" ng-hide="purposeAndReasonPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}" alt="showArrow" />
+                        <img class="arrowButtonStyle" ng-show="purposeAndReasonPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}" alt="hideArrow" />
+                    </span>                
+                </div>
+                <div ng-hide="purposeAndReasonPanel">
+                    <div class="responsiveDetailSectionTable">
+                        <span class="fieldLabel">{{'LBL_EXP_DETAIL_PURPOSE' | translate}}</span><br/>
+                        <span class="fieldValue" id="fieldValueRichTextFormate">{{approvalLineDetailRequestData.Purpose}}</span>
+                    </div>     
+                    <div class="responsiveDetailSectionTable">
+                        <span class="fieldLabel">{{'LBL_EXP_DETAIL_REASON' | translate}}</span><br/>
+                        <span class="fieldValue" id="fieldValueRichTextFormate">{{approvalLineDetailRequestData.Reason}}</span>
+                    </div>
+                </div>
+            </div><br/>
+            <div class="template" ng-init="expenseDescriptionPanel=true">
+                <div class="defaultBottomBorder" ng-click="expenseDescriptionPanel= (expenseDescriptionPanel=='false' ? 'true' : 'false')">
+                    <span>
+                        <label class="detailSectionHeader">{{'LBL_EXP_LINEITEM_DETAIL_EXPENSE_DESCRIPTION' | translate}}</label>
+                    </span>
+                    <span class="alignRight">                    
+                        <img class="arrowButtonStyle" ng-hide="expenseDescriptionPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}" alt="showArrow" />
+                        <img class="arrowButtonStyle" ng-show="expenseDescriptionPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}" alt="hideArrow" />
+                    </span>                
+                </div>
+                <div ng-hide="expenseDescriptionPanel" class="responsiveDetailSectionTable">
+                    <span class="fieldValue" id="fieldValueRichTextFormate">{{approvalLineDetailRequestData.ExpenseDescription}}</span>
+                </div>
+            </div><br/>
+            <div class="template" ng-init="attendeesPanel=true">
+                <div class="defaultBottomBorder" ng-click="attendeesPanel= (attendeesPanel=='false' ? 'true' : 'false')">
+                    <span>
+                        <label class="detailSectionHeader">{{'LBL_EXP_LINEITEM_DETAIL_ATTENDEES' | translate}}</label>
+                    </span>
+                    <span class="alignRight">                    
+                        <img class="arrowButtonStyle" ng-hide="attendeesPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}" alt="showArrow" />
+                        <img class="arrowButtonStyle" ng-show="attendeesPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}" alt="hideArrow" />
+                    </span>                
+                </div>
+                <div ng-hide="attendeesPanel" class="responsiveDetailSectionTable">
+                    <span class="fieldValue" id="fieldValueRichTextFormate">{{approvalLineDetailRequestData.Attendees}}</span>
+                </div>
+            </div><br/>
+            <div class="template" ng-init="carDetailsPanel=true">
+                <div class="defaultBottomBorder" ng-click="carDetailsPanel= (carDetailsPanel=='false' ? 'true' : 'false')">
+                    <span>
+                        <label class="detailSectionHeader">{{'LBL_EXP_LINETEMS_DETAIL_CAR_DETAILS' | translate}}</label>
+                    </span>
+                    <span class="alignRight">                    
+                        <img class="arrowButtonStyle" ng-hide="carDetailsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}" alt="showArrow" />
+                        <img class="arrowButtonStyle" ng-show="carDetailsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}" alt="hideArrow" />
+                    </span>                
+                </div>
+                <div ng-hide="carDetailsPanel" class="responsiveDetailSectionTable">
+                    <span class="fieldValue" id="fieldValueRichTextFormate">{{approvalLineDetailRequestData.TravelDetails.CarDetails}}</span>
+                </div>
+            </div><br/>
+            <div class="template" ng-init="flightDetailsPanel=true">
+                <div class="defaultBottomBorder" ng-click="flightDetailsPanel= (flightDetailsPanel=='false' ? 'true' : 'false')">
+                    <span>
+                        <label class="detailSectionHeader">{{'LBL_EXP_LINEITEM_DETAIL_FLIGHT_DETAILS' | translate}}</label>
+                    </span>
+                    <span class="alignRight">                    
+                        <img class="arrowButtonStyle" ng-hide="flightDetailsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}" alt="showArrow" />
+                        <img class="arrowButtonStyle" ng-show="flightDetailsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}" alt="hideArrow" />
+                    </span>                
+                </div>
+                <div ng-hide="flightDetailsPanel" class="responsiveDetailSectionTable">
+                    <span class="fieldValue" id="fieldValueRichTextFormate">{{approvalLineDetailRequestData.TravelDetails.FlightDetails}}</span>
+                </div>
+            </div><br/>
+            <div class="template" ng-init="roomDetailsPanel=true">
+                <div class="defaultBottomBorder" ng-click="roomDetailsPanel= (roomDetailsPanel=='false' ? 'true' : 'false')">
+                    <span>
+                        <label class="detailSectionHeader">{{'LBL_EXP_LINEITEM_DETAIL_ROOM_DETAILS' | translate}}</label>
+                    </span>
+                    <span class="alignRight">                    
+                        <img class="arrowButtonStyle" ng-hide="roomDetailsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}" alt="showArrow" />
+                        <img class="arrowButtonStyle" ng-show="roomDetailsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}" alt="hideArrow" />
+                    </span>                
+                </div>
+                <div ng-hide="roomDetailsPanel" class="responsiveDetailSectionTable">
+                    <span class="fieldValue" id="fieldValueRichTextFormate">{{approvalLineDetailRequestData.TravelDetails.RoomDetails}}</span>
+                </div>
+            </div><br/>
+            <div class="template" ng-init="prediemPanel=true">
+                <div class="defaultBottomBorder" ng-click="prediemPanel= (prediemPanel=='false' ? 'true' : 'false')">
+                    <span>
+                        <label class="detailSectionHeader">{{'LBL_EXP_LINEITEM_DETAIL_PER_DIEM_DETAILS' | translate}}</label>
+                    </span>
+                    <span class="alignRight">                    
+                        <img class="arrowButtonStyle" ng-hide="prediemPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}" alt="hideArrow" />
+                        <img class="arrowButtonStyle" ng-show="prediemPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}" alt="showArrow" />
+                    </span>                
+                </div>
+                <div ng-hide="prediemPanel" class="responsiveDetailSectionTable">
+                    <div class="responsiveDetailSectionTable" ng-hide="approvalLineDetailRequestData.IsPerDiem">
+                        <span class="fieldLabel">{{'LBL_EXP_LINEITEM_DETAIL_PER_DIEM_AMOUNT' | translate}}</span><br/>
+                        <span class="fieldValue" id="fieldValueRichTextFormate">{{approvalLineDetailRequestData.PerDiemAmount}}</span>
+                    </div>     
+                    <div class="responsiveDetailSectionTable">
+                        <span class="fieldLabel">{{'LBL_EXP_LINEITEM_DETAIL_PER_DIEM_DETAILS' | translate}}</span><br/>
+                        <span class="fieldValue" id="fieldValueRichTextFormate">{{approvalLineDetailRequestData.PerDiemDetails}}</span>
+                    </div>
+                </div>
+            </div><br/>
+            <div class="template" ng-init="commentsPanel=true">
+                <div class="defaultBottomBorder" ng-click="commentsPanel= (commentsPanel=='false' ? 'true' : 'false')">
+                    <span>
+                        <label class="detailSectionHeader">{{'LBL_EXP_LINEITEM_DETAIL_COMMENTS' | translate}}</label>
+                    </span>
+                    <span class="alignRight">                    
+                        <img class="arrowButtonStyle" ng-hide="commentsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}" alt="showArrow" />
+                        <img class="arrowButtonStyle" ng-show="commentsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}" alt="hideArrow" />
+                    </span>                
+                </div>
+                <div ng-hide="commentsPanel" class="responsiveDetailSectionTable">
+                    <span class="fieldValue" id="fieldValueRichTextFormate">{{approvalLineDetailRequestData.Comments}}</span>
+                </div>
+            </div><br/>
+            <div class="template" ng-init="policyExceptionsPanel=true">
+                <div class="defaultBottomBorder" ng-click="policyExceptionsPanel= (policyExceptionsPanel=='false' ? 'true' : 'false')">
+                    <span>
+                        <label class="detailSectionHeader">{{'LBL_EXP_LINEITEM_DETAIL_POLICY_EXCEPTIONS' | translate}}</label>
+                    </span>
+                    <span class="alignRight">                    
+                        <img class="arrowButtonStyle" ng-hide="policyExceptionsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}" alt="showArrow" />
+                        <img class="arrowButtonStyle" ng-show="policyExceptionsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}" alt="hideArrow" />
+                    </span>                
+                </div>
+                <div ng-hide="policyExceptionsPanel" class="responsiveDetailSectionTable">
+                    <span class="fieldValue" id="fieldValueRichTextFormate">{{approvalLineDetailRequestData.PolicyExceptions}}</span>
+                </div>
+            </div><br/>
+    </div>
+</apex:page>

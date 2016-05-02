@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Contains name of valid migrated categories from inoplan.</description>
+    <enableFeeds>false</enableFeeds>
+    <label>IPM_BET_Valid_Categories</label>
+    <visibility>Public</visibility>
+</CustomObject>

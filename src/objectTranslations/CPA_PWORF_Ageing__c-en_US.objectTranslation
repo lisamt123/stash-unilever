@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>CPA PWORF Ageing</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>CPA PWORF Ageing</value>
+    </caseValues>
+    <fields>
+        <label><!-- PWORF ID --></label>
+        <name>PWORF_ID__c</name>
+        <relationshipLabel><!-- CPA PWORF Ageing --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Latest Update Date --></label>
+        <name>dat_Latest_Update_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Resubmitted Date --></label>
+        <name>dat_Resubmitted_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Submitted Date --></label>
+        <name>dat_Submitted_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fianl PWORF Ageing --></label>
+        <name>fml_Fianl_PWORF_Ageing__c</name>
+    </fields>
+    <fields>
+        <label><!-- PWORF Age --></label>
+        <name>num_PWORF_Age__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total PWORF Ageing Days --></label>
+        <name>num_Total_PWORF_Ageing_Days__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>txt_Status__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

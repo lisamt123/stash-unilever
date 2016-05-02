@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Location</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Locations</value>
+    </caseValues>
+    <fields>
+        <label><!-- Category --></label>
+        <name>Category__c</name>
+        <relationshipLabel><!-- Locations --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Location Code --></label>
+        <name>Location_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Location Type --></label>
+        <name>Location_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Responsible Planner --></label>
+        <name>Responsible_Planner__c</name>
+        <relationshipLabel><!-- Locations --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Type Code --></label>
+        <name>Type_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- View Dashboard --></label>
+        <name>ViewDashboard__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,20 @@
+.THIS .activeFilter{
+         font-weight: bold;
+    	  color: #0C8EFF;
+    font-size: 1.4rem;
+        }
+.THIS .tick_img {
+  width: 25px;
+  height: 20px;
+  position: absolute;
+  display: inline-block;
+  margin-left: 80%;
+  margin-top: -21px;
+}
+.THIS .list-sec{
+        margin-left:25px;
+        }
+.THIS .slds ul {
+    list-style: none;
+    margin-left: 12px;
+}

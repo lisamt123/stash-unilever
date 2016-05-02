@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Module Participant</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Module Participants</value>
+    </caseValues>
+    <fields>
+        <help><!-- Stay Home - the participant staying at home 
+Hotel - the program assigns a hotel --></help>
+        <label><!-- Accommodation Type --></label>
+        <name>FAU_Accommodation_Type__c</name>
+        <picklistValues>
+            <masterLabel>Hotel</masterLabel>
+            <translation><!-- Hotel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stay Home</masterLabel>
+            <translation><!-- Stay Home --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Arrival Car Transfer Needed? --></label>
+        <name>FAU_Arrival_Car_Transfer_Needed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Arrival Date --></label>
+        <name>FAU_Arrival_Date_and_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Arrival Flight Number --></label>
+        <name>FAU_Arrival_Flight_Number__c</name>
+    </fields>
+    <fields>
+        <help><!-- The arrival time in local time. Please enter the time in 24 hour format (i.e. HH:mm). --></help>
+        <label><!-- Arrival Time --></label>
+        <name>FAU_Arrival_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Check-in Date --></label>
+        <name>FAU_Check_in_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Check-out Date --></label>
+        <name>FAU_Check_out_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Departure Car Transfer Needed? --></label>
+        <name>FAU_Departure_Car_Transfer_Needed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Departure Date --></label>
+        <name>FAU_Departure_Date_and_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Departure Flight Number Number --></label>
+        <name>FAU_Departure_Flight_Number__c</name>
+    </fields>
+    <fields>
+        <help><!-- The departure time in local time. Please enter the time in 24 hour format (i.e. HH:mm). --></help>
+        <label><!-- Departure Time --></label>
+        <name>FAU_Departure_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dietary Restrictions (Describe if Other) --></label>
+        <name>FAU_Dietary_Restrictions_Describe_Other__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dietary Restrictions --></label>
+        <name>FAU_Dietary_Restrictions__c</name>
+        <picklistValues>
+            <masterLabel>Dairy-free</masterLabel>
+            <translation><!-- Dairy-free --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gluten-free</masterLabel>
+            <translation><!-- Gluten-free --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Halal</masterLabel>
+            <translation><!-- Halal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Indian Vegetarian</masterLabel>
+            <translation><!-- Indian Vegetarian --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vegetarian</masterLabel>
+            <translation><!-- Vegetarian --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Flight Details Flag --></label>
+        <name>FAU_Flight_Details_Flag__c</name>
+    </fields>
+    <fields>
+        <label><!-- Has Flight Details --></label>
+        <name>FAU_Has_Flight_Details__c</name>
+    </fields>
+    <fields>
+        <label><!-- Has Hotel Details --></label>
+        <name>FAU_Has_Hotel_Details__c</name>
+    </fields>
+    <fields>
+        <label><!-- Hotel Details Flag --></label>
+        <name>FAU_Hotel_Details_Flag__c</name>
+    </fields>
+    <fields>
+        <label><!-- Hotel Name --></label>
+        <name>FAU_Hotel_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Are you arriving by flying? --></help>
+        <label><!-- Is Local --></label>
+        <name>FAU_Is_Local__c</name>
+    </fields>
+    <fields>
+        <label><!-- Module Complete Flag --></label>
+        <name>FAU_Module_Complete_Flag__c</name>
+    </fields>
+    <fields>
+        <label><!-- Module Complete --></label>
+        <name>FAU_Module_Complete__c</name>
+    </fields>
+    <fields>
+        <label><!-- Module End Date --></label>
+        <name>FAU_Module_End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Module Form --></label>
+        <name>FAU_Module_Form__c</name>
+    </fields>
+    <fields>
+        <label><!-- Module Name --></label>
+        <name>FAU_Module_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Module Number --></label>
+        <name>FAU_Module_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Module Pre-Work --></label>
+        <name>FAU_Module_Pre_Work__c</name>
+    </fields>
+    <fields>
+        <label><!-- Module Start Date --></label>
+        <name>FAU_Module_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Module --></label>
+        <name>FAU_Module__c</name>
+        <relationshipLabel><!-- Module Participants --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Note --></label>
+        <name>FAU_Note__c</name>
+    </fields>
+    <fields>
+        <label><!-- Participant Name --></label>
+        <name>FAU_Participant_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Participant PA&apos;s Email --></label>
+        <name>FAU_Participant_PA_s_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Participant --></label>
+        <name>FAU_Participant__c</name>
+        <relationshipLabel><!-- Module Participants --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Participant&apos;s Email --></label>
+        <name>FAU_Participant_s_Email__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is not to be shown --></help>
+        <label><!-- Participant&apos;s Invite Status --></label>
+        <name>FAU_Participant_s_Invite_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Banner URL --></label>
+        <name>FAU_Program_Banner_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Location --></label>
+        <name>FAU_Program_Location__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Name --></label>
+        <name>FAU_Program_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Remind me about completion of Bio --></label>
+        <name>FAU_Remind_me_about_completion_of_Bio__c</name>
+    </fields>
+    <fields>
+        <label><!-- Remind me about course pre-work --></label>
+        <name>FAU_Remind_me_about_course_pre_work__c</name>
+    </fields>
+    <fields>
+        <help><!-- Do you wish to receive reminders of your participation? --></help>
+        <label><!-- Reminder Opt in/out --></label>
+        <name>FAU_Reminder_Opt_in_out__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>FAU_Status__c</name>
+        <picklistValues>
+            <masterLabel>Attended</masterLabel>
+            <translation><!-- Attended --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New</masterLabel>
+            <translation><!-- New --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Attended</masterLabel>
+            <translation><!-- Not Attended --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Travel Details Deadline --></label>
+        <name>FAU_Travel_Details_Deadline__c</name>
+    </fields>
+    <fields>
+        <help><!-- Not for viewing, this is used for workflows. --></help>
+        <label><!-- Workflow End Date --></label>
+        <name>FAU_Workflow_End_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Not for viewing, this is used for workflows. --></help>
+        <label><!-- Workflow Start Date --></label>
+        <name>FAU_Workflow_Start_Date__c</name>
+    </fields>
+    <recordTypes>
+        <label><!-- Campus --></label>
+        <name>FAU_Campus</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Off Campus --></label>
+        <name>FAU_Off_Campus</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Sorry, but the Arrival date and time must be before the Departure date and time --></errorMessage>
+        <name>FAU_Arrival_before_Departure</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Sorry, but you must check-in on or before the module start date. --></errorMessage>
+        <name>FAU_Checkin_before_Start_Module</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Sorry, but you must check-out on or after the module end date. --></errorMessage>
+        <name>FAU_Checkout_after_End_Module</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Module and Participant must use the same Program. 
+Please select a participant from the same program as the module. --></errorMessage>
+        <name>FAU_Module_and_Particpt_use_same_Program</name>
+    </validationRules>
+</CustomObjectTranslation>

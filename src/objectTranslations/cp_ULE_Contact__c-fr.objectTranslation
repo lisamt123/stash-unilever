@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Unilever Leadership Executive --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Unilever Leadership Executive --></value>
+    </caseValues>
+    <fields>
+        <help><!-- If this is unticked, the ULE will not be selectable from the events as a representative --></help>
+        <label><!-- Active ULE? --></label>
+        <name>Active_ULE__c</name>
+    </fields>
+    <fields>
+        <label><!-- Assistant --></label>
+        <name>AssistantName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Asst. Phone --></label>
+        <name>AssistantPhone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label>Prénom</label>
+        <name>FirstName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Full Name --></label>
+        <name>Full_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Links to unilever.com biography --></help>
+        <label><!-- Link to Unilever Biography --></label>
+        <name>Link2UnileverBiography__c</name>
+    </fields>
+    <fields>
+        <label><!-- Salutation --></label>
+        <name>Salutation__c</name>
+        <picklistValues>
+            <masterLabel>Dr.</masterLabel>
+            <translation><!-- Dr. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mr.</masterLabel>
+            <translation><!-- Mr. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mrs.</masterLabel>
+            <translation><!-- Mrs. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ms.</masterLabel>
+            <translation><!-- Ms. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Professor</masterLabel>
+            <translation><!-- Professor --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Titre</label>
+        <name>Title__c</name>
+    </fields>
+    <gender><!-- Masculine --></gender>
+    <nameFieldLabel><!-- Last Name --></nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
+</CustomObjectTranslation>

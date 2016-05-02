@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>BET Team Member</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>BET Team Members</value>
+    </caseValues>
+    <fields>
+        <label><!-- Access Level --></label>
+        <name>Access_Level__c</name>
+        <picklistValues>
+            <masterLabel>External View (Chatter group only)</masterLabel>
+            <translation><!-- External View (Chatter group only) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Full Brand Experience (Toolkit &amp; Studio)</masterLabel>
+            <translation><!-- Full Brand Experience (Toolkit &amp; Studio) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toolkit Experience (Toolkit only)</masterLabel>
+            <translation><!-- Toolkit Experience (Toolkit only) --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Toolkit --></label>
+        <name>BETEnabled__c</name>
+    </fields>
+    <fields>
+        <label><!-- BET --></label>
+        <name>BET__c</name>
+        <relationshipLabel><!-- BET Team Members --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Editing --></label>
+        <name>Editing__c</name>
+    </fields>
+    <fields>
+        <label><!-- Invite Pending --></label>
+        <name>Invite_Pending__c</name>
+    </fields>
+    <fields>
+        <label><!-- IsOwnerOfBet --></label>
+        <name>IsOwner__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pending Request --></label>
+        <name>Pending_Request__c</name>
+    </fields>
+    <fields>
+        <label><!-- Request Status --></label>
+        <name>Request_Status__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Denied</masterLabel>
+            <translation><!-- Denied --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Select the role this person will have within the Brand Experience --></help>
+        <label><!-- Role --></label>
+        <name>Role__c</name>
+        <picklistValues>
+            <masterLabel>External Agency User</masterLabel>
+            <translation><!-- External Agency User --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Manager</masterLabel>
+            <translation><!-- Manager --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Member</masterLabel>
+            <translation><!-- Member --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Scheduled Delete Date --></label>
+        <name>Scheduled_Delete_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Studio --></label>
+        <name>StudioEnabled__c</name>
+    </fields>
+    <fields>
+        <label><!-- Team Member --></label>
+        <name>Team_Member__c</name>
+        <relationshipLabel><!-- BET Team Members --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- email --></label>
+        <name>email__c</name>
+    </fields>
+    <recordTypes>
+        <label><!-- InternalUser --></label>
+        <name>InternalUser</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

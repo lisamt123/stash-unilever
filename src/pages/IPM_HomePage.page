@@ -1,0 +1,227 @@
+<!--
+******************************************************************************************************************
+*@Description: This is landing page of IPM NG users.It is used display the alertmessages and Taskcount or Project
+*@Author: Cognizant
+*@Created Date: 13/05/2015
+*@Copyright Â© 2015  Unilever    
+******************************************************************************************************************
+-->
+<apex:page controller="IPM_HomePageController" sidebar="false" standardStylesheets="false"  extensions="IPM_GetHelpDoc">     
+   
+    <apex:pageMessages />
+    <div class="row negMargin {!if(alertscount >= 1,'homeboxShow','homeboxhide')}" >
+        <i class="minus fa fa-plus alertAccordian" tabindex="0"></i>               
+        <div class="col-sm-12">
+            <div class="col-sm-1"><img class="alertimg" alt="Alert" src="{!URLFOR($Resource.IPM_Resource, 'images/alert_1a.png')}"/></div>
+            <div class="col-sm-11 alerttext">
+                <p>{!$Label.IPM_YOU_HAVE_ALERT} {!alertscount} Alerts </p>                        
+            </div>
+            <div class="col-sm-12 alertContent">
+            <apex:form >
+                <ul class="alertList">
+                    <apex:repeat var="key" value="{!alertsOTIF}">
+                        <li>
+                            <apex:commandLink value="{!alertsOTIF[key]}" action="{!$Page.IPM_ProjectOverview}?id={!key}"/>
+                        </li>
+                    </apex:repeat>
+                    
+                    <apex:repeat var="key" value="{!alertMessage}">
+                        <li>
+                            <apex:commandLink value="{!key} {!$Label.IPM_APPROVER_IS_DUE_IN} {!alertMessage[key]}" action="{!$Page.IPM_GateDocument}?id={!ProjectId}"/>
+                        </li>
+                    </apex:repeat>
+                    <apex:repeat var="key" value="{!alertMessageDueDatePast}">
+                        <li>
+                            <apex:commandLink value="{!alertMessageDueDatePast[key]} {!$Label.IPM_PASSED_WITHOUT_APPROVAL} {!$Label.IPM_UPDATE_YOUR_DUE_DATE}" action="{!$Page.IPM_Tasklist}?id={!ProjectIdMap[key]}"/>
+                      </li>
+                    </apex:repeat>
+                    <apex:repeat var="key" value="{!alertMessageDueDateToday}">
+                        <li>
+                            <apex:commandLink value="{!alertMessageDueDateToday[key]} {!$Label.IPM_DUE_ON_TODAY}{!$Label.IPM_Remember_To_Update}" action="{!$Page.IPM_GateDocument}?id={!ProjectIdMap[key]}"/>
+                        </li>
+                    </apex:repeat>
+                    <apex:repeat var="key" value="{!alertMessageDueDateApproaching}">
+                        <li>
+                            <apex:commandLink value="{!alertMessageDueDateApproaching[key]} {!$Label.IPM_DAYS}" action="{!$Page.IPM_GateDocument}?id={!ProjectIdMap[key]}"/>
+                        </li>
+                    </apex:repeat>
+                    <apex:repeat var="hprojects" value="{!mapphistory}">
+                        <li>
+                            <apex:commandLink value="{!mapphistory[hprojects].Parent.Name} {!if(mapphistory[hprojects].Parent.IPM_Fast_Track_Project__c,$Label.IPM_PROJECT_IS_FASTTRACK,$Label.IPM_PROJECT_NO_FASTTRACK)}" action="{!$Page.IPM_ProjectOverview}?id={!mapphistory[hprojects].Parent.Id}"/>
+                        </li>
+                    </apex:repeat>
+                    <apex:repeat var="message" value="{!LstFinMisalignedMessage}">
+                        <li>
+                            <apex:commandLink value="{!message}" action="{!$Page.IPM_Financial}?id={!ProjectId}"/>
+                           </li>
+                    </apex:repeat>
+                    <apex:repeat var="message" value="{!BusinessCaseMessageMap}">
+                        <li>
+                            <apex:commandLink value="{!BusinessCaseMessageMap[message]}" action="{!$Page.IPM_Financial}?id={!ProjectId}"/>
+                           </li>
+                    </apex:repeat>
+                    <apex:repeat var="key" value="{!LstFinTLDMisalignedMessageMap}">
+                        <li>
+                            <apex:commandLink value="{!LstFinTLDMisalignedMessageMap[key]}" action="{!$Page.IPM_RolloutPlans}?id={!ProjectIdMap[key]}"/>
+                        </li>
+                    </apex:repeat>
+                    <apex:repeat var="key" value="{!LstLocalFinTLDMisalignedMessageMap}">
+                        <li>
+                            <apex:commandLink value="{!LstLocalFinTLDMisalignedMessageMap[key]}" action="{!$Page.IPM_Tasklist}?id={!ProjectIdMap[key]}"/>
+                        </li>
+                    </apex:repeat>
+                    <apex:repeat var="messageRollout" value="{!RolloutProjectAlertMessageMap}">
+                        <li>
+                            <apex:commandLink value="{!RolloutProjectAlertMessageMap[messageRollout]}" action="{!$Page.IPM_RolloutPlans}?id={!messageRollout}"/>
+                        </li>
+                   </apex:repeat>
+                      
+                    <apex:repeat var="key" value="{!documentAlertMessageMap}">
+                        <li>
+                            <apex:commandLink value="{!documentAlertMessageMap[key]}" action="{!$Page.IPM_ProjectOverview}?id={!key}"/>
+                        </li>
+                    </apex:repeat>
+                    <apex:repeat var="message" value="{!betMsgFirstReleaseDueDate}">
+                        <li>
+                            <apex:commandLink value="{!message}" action="{!$Page.IPM_ProjectOverview}?id={!ProjectId}"/>
+                           </li>
+                    </apex:repeat>
+                    <apex:repeat var="message" value="{!betMsgFinalReleaseDueDate}">
+                        <li>
+                            <apex:commandLink value="{!message}" action="{!$Page.IPM_ProjectOverview}?id={!ProjectId}"/>
+                           </li>
+                    </apex:repeat>
+                    
+                </ul>
+             </apex:form>
+            </div>
+        </div>
+    </div>
+    
+    <apex:composition template="IPM_TemplateRevamp">
+        <apex:define name="body">     
+            <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_HomePage.css')}"/>                
+            <div class="row negMargin">    
+                <div class="col-sm-12 SecButtonSet iconsContainer pull-right">  
+                </div>
+            </div>
+            <div class="row sliderContainer">
+            
+                <!-- To place the help symbol in the top right hand corner of page -->
+                <apex:outputPanel layout="block" styleClass="SecButtonSet delete pull-right" style="text decoration: none">
+                    <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
+                </apex:outputPanel> 
+                        
+                <div class="col-sm-8 homeSlider">
+                    <div class="row">
+                        <div class="heading3 blue sliderTitle">{!$Label.IPM_LATEST_NEWS}</div>
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                            <!-- Indicators -->
+                            <ol class="carousel-indicators">
+                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>                           
+                            </ol>                       
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <div class="col-sm-7 sliderImage">                        
+                                        <div class="imgHolder">                       
+                                            <apex:image url="{!$Resource.IPM_HHC_Carousel}" alt="HHC Products" width="380" height="251"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <div class="col-sm-12 noPadding">
+                                            <span class="contentHeader">{!$Label.IPM_PROCEDURE_CHANGE}</span>
+                                        </div>
+                                        <div class="col-sm-12 noPadding sliderContent">
+                                            <span class="contentTitle">{!$Label.IPM_TECHNICAL_ISSUE}</span>
+                                            <p>{!$Label.IPM_INTERIN_SUPPORT_SOLUTION} </p><br />
+                                            <p>{!$Label.IPM_INOPLAN_USER_QUERY}</p><br />
+                                            <p>{!$Label.IPM_TRAINING_OR_TECHNICAL}</p>                           
+                                        </div>
+                                        <div class="col-sm-12 noPadding"><a tabindex="0" class="moreLink">More>></a><a tabindex="0" class="lessLink">Less</a></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="item">
+                                    <div class="col-sm-7 sliderImage">                        
+                                        <div class="imgHolder">                       
+                                            <apex:image url="{!$Resource.IPM_FabCon_Carousel}" alt="FabCon Products" width="380" height="251"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <div class="col-sm-12 noPadding">
+                                            <h5 class="contentHeader">{!$Label.IPM_PROJECT_UPDATE}</h5>
+                                        </div>
+                                        <div class="col-sm-12 noPadding sliderContent">
+                                            <span class="contentTitle">{!$Label.IPM_TECHNICAL_ISSUE}</span>
+                                            <p>{!$Label.IPM_WATCH_FOR_UPDATES_TO}</p><br />
+                                            <p>{!$Label.IPM_PDL_FOR_PC}</p>                                                                                                                                  
+                                        </div>
+                                        <div class="col-sm-12 noPadding"><a tabindex="0" class="moreLink">More>></a><a tabindex="0" class="lessLink">Less</a></div>
+                                    </div>
+                                </div>   
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 rightBoxes">
+                    <div class="setAuto">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <apex:outputpanel rendered="{! if(OR(isProjectEditable=true,isBossCardEditable=true),'true','false')}">
+                                    <div id="createProject" class="col-sm-6 centerAlign noPadleft noPadright box1 SecButtonSet" data-toggle="modal" data-keyboard="true" data-target="#ipmModal" title="Create Project" value="{!$Page.IPM_createproject}?IsBossCardEditable={!isBossCardEditable}&IsProjectEditable={!isProjectEditable}" data-backdrop="static" >
+                                        <a class="icoButton newproject" tabindex="0"></a>                                  
+                                        <span class="boxTitle"><div>{!$Label.IPM_CREATE_NEW}</div><div>{!$Label.IPM_PROJECT}</div></span>           
+                                    </div>
+                                </apex:outputpanel>
+                                <apex:outputpanel rendered="{! if(AND(isProjectEditable=false,isBossCardEditable=false),'true','false')}">
+                                    <div id="createProject1" class="col-sm-6 centerAlign noPadleft noPadright box1 SecButtonSet" value="{!$Page.IPM_CreateProject}">
+                                        <a class="icoButton newproject" tabindex="0"></a>
+                                        <span class="boxTitle"><div>{!$Label.IPM_CREATE_NEW}</div><div>{!$Label.IPM_PROJECT}</div></span>
+                                    </div>
+                                </apex:outputpanel>
+                                <div class="col-sm-6 centerAlign box2 noPadleft noPadright SecButtonSet actionBox" value="{!$Page.IPM_ProjectSearchPage}" title="View All Projects">
+                                    <a class="icoButton view" tabindex="0"></a>
+                                    <span class="boxTitle"><div>{!$Label.IPM_VIEW_ALL}</div><div>{!$Label.IPM_PROJECTS}</div></span>            
+                                </div>
+                            </div>  
+                        </div>  
+                        <div class="row boxTop">
+                            <div class="col-sm-12">
+                                <div class="col-sm-6 centerAlign box3 noPadleft noPadright SecButtonSet" title="{!$Label.IPM_AskIPM}">
+                                    <a class="icoButton askipm" href="https://unilever.my.salesforce.com/_ui/core/chatter/groups/GroupProfilePage?g=0F9E0000000Qc6Y&s=IPM+help&r=1" target="_blank" title="Ask IPM"></a>
+                                    <span class="boxTitle">{!$Label.IPM_ASK_IPM}</span>           
+                                </div>
+                                <div class="col-sm-6 centerAlign box4 noPadleft noPadright SecButtonSet" title="{!$Label.IPM_GotoIPMPortal}">
+                                    <a class="icoButton ipmportal" href="http://inside.unilever.com/marketing/IPM/Pages/ipmnav.aspx" target="_blank" title="Navigate to IPM Portal"></a>
+                                    <span class="boxTitle"><div>{!$Label.IPM_GO_TO}</div><div>{!$Label.IPM_PORTAL}</div></span>             
+                                </div>
+                            </div>  
+                        </div>  
+                    </div>
+                </div>
+            </div> 
+            <div class="row">
+                <div class="col-sm-7">
+                    <c:IPM_MyActiveProjects />
+                </div>
+                <div class="col-sm-5 todoWrapper">
+                    <c:IPM_MyToDoListHome overduecount="{!overduetaskscount}" />        
+                </div>
+            </div>         
+            <div>               
+            </div>
+            <div id="ipmModalDiv">
+                <c:IPM_ModalHeaderDiv />
+            </div>   
+            <script> 
+                var jq = jQuery.noConflict();    
+                jq(['{!URLFOR($Resource.IPM_Resource, 'images/pb11.svg')}','{!URLFOR($Resource.IPM_Resource, 'images/pb22.svg')}','{!URLFOR($Resource.IPM_Resource, 'images/pb33.svg')}', '{!URLFOR($Resource.IPM_Resource, 'images/pb44.svg')}']).preload();
+                ipmModal('#createProject','Create Project','70%','370px','10%');             
+            </script> 
+        </apex:define>
+    </apex:composition>    
+    <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_initHome.js')}" type="text/javascript" />
+    <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_functions.js')}" type="text/javascript" /> 
+    <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Accordion.js')}" type="text/javascript" />
+</apex:page>

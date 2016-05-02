@@ -1,0 +1,48 @@
+<apex:component controller="BET_LinkedProjectsComponentController" allowDML="true">
+
+	<apex:attribute name="betId" assignTo="{!betIdentifier}" 
+                    description="Id of an related BET" required="true" type="Id" />
+
+    <apex:attribute name="betadmin" assignTo="{!admin}" 
+                    description="Current user is bet admin" required="true" type="Boolean" />
+
+    <apex:outputPanel rendered="{!linkedProjects.size == 0}">
+        <div class="linkedInfo">
+            <apex:outputText escape="false" value="{!$Label.BET_NoLinkedProjectsAvailable}"/>
+        </div>
+    </apex:outputPanel>
+
+    <apex:outputPanel rendered="{!NOT(linkedProjects.size == 0)}">
+    	<div class="linkedInfo">
+        	<apex:outputText escape="false" value="{!$Label.BET_LinkedProjectHeaderOne}"/>
+        </div>
+
+        <div class="linkedInfo">
+        	<apex:outputText escape="false" value="{!$Label.BET_LinkedProjectHeaderTwo}"/>
+        </div>
+
+        <div class="clear">&nbsp;</div> 
+
+        <apex:repeat value="{!linkedProjects}" var="project">
+
+            <hr width="100%"/> 
+
+        	<div class="linkedProjectName">
+        		<apex:outputLink style="text-decoration:none;color:#E6007E;" value="/apex/IPM_ProjectOverview?id={!project.projectId}" 
+                    target="_blank">
+                    <apex:outputText >{!project.projectName}</apex:outputText>
+                </apex:outputLink>
+        	</div>
+        	<div class="linkedProjectNameLead" style="{!IF(project.isLeadProject,'','display:none;')}">
+        		Lead project
+        	</div>
+            <div  class="linkedProjectNameLead" style="{!IF(NOT(project.isLeadProject),'','display:none;')}">
+                <apex:commandLink action="{!setAsLeadProject}" value="Set As Lead" rendered="{!admin}">
+                    <apex:param name="proid" assignTo="{!selectedProjectId}" value="{!project.projectId}"/>
+                </apex:commandLink>
+            </div>
+        </apex:repeat>
+        <hr width="100%"/> 
+    </apex:outputPanel>
+
+</apex:component>

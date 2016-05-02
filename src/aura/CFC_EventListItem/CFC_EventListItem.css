@@ -1,0 +1,36 @@
+.THIS.itemPanel {
+    background-color: white;
+    padding: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border: 1px #D1D1D4 solid;
+}
+.THIS .fourLineEllipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    word-wrap: break-word;
+    white-space: pre-wrap;  
+}
+.THIS .rightFloat {
+	display: inline-block;
+    text-align: right;
+    float: right;    
+}
+.THIS .bannerImage{
+    height: 90px;
+    width: 100%;
+}
+.THIS .topicStyle{
+    margin-top: 10px;
+    background: #008FCB;
+    height: 20px;
+    width: 60px;
+    padding: 5px;
+    font-size: xx-small;
+    text-align:center;
+    color:#FFFFFF;
+}

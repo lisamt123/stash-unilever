@@ -1,0 +1,772 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>IPM Financial</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>IPM Financials</value>
+    </caseValues>
+    <fields>
+        <label><!-- Added At Stage --></label>
+        <name>Added_At_Stage__c</name>
+        <picklistValues>
+            <masterLabel>Capability</masterLabel>
+            <translation><!-- Capability --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Feasibility</masterLabel>
+            <translation><!-- Feasibility --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ideas</masterLabel>
+            <translation><!-- Ideas --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Market Deployment</masterLabel>
+            <translation><!-- Market Deployment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Market Ready</masterLabel>
+            <translation><!-- Market Ready --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PLE</masterLabel>
+            <translation><!-- PLE --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- BIC Charter --></label>
+        <name>BIC_Charter__c</name>
+    </fields>
+    <fields>
+        <label><!-- BIC Contract --></label>
+        <name>BIC_Contract__c</name>
+    </fields>
+    <fields>
+        <label><!-- BIC Difference --></label>
+        <name>BIC_Difference__c</name>
+    </fields>
+    <fields>
+        <label><!-- BIC Global --></label>
+        <name>BIC_Global__c</name>
+    </fields>
+    <fields>
+        <label><!-- BIC Local --></label>
+        <name>BIC_Local__c</name>
+    </fields>
+    <fields>
+        <label><!-- BIC MD --></label>
+        <name>BIC_MD__c</name>
+    </fields>
+    <fields>
+        <label><!-- BIC MR --></label>
+        <name>BIC_MR__c</name>
+    </fields>
+    <fields>
+        <label><!-- BIC Regional --></label>
+        <name>BIC_Regional__c</name>
+    </fields>
+    <fields>
+        <label><!-- Business Impact Global --></label>
+        <name>Business_Impact_Global__c</name>
+    </fields>
+    <fields>
+        <label><!-- Business Impact Local --></label>
+        <name>Business_Impact_Local__c</name>
+    </fields>
+    <fields>
+        <label><!-- Business Impact Regional --></label>
+        <name>Business_Impact_Regional__c</name>
+    </fields>
+    <fields>
+        <label><!-- CAPEX Charter --></label>
+        <name>CAPEX_Charter__c</name>
+    </fields>
+    <fields>
+        <label><!-- CAPEX Contract --></label>
+        <name>CAPEX_Contract__c</name>
+    </fields>
+    <fields>
+        <label><!-- CAPEX Difference --></label>
+        <name>CAPEX_Difference__c</name>
+    </fields>
+    <fields>
+        <label><!-- CAPEX Global --></label>
+        <name>CAPEX_Global__c</name>
+    </fields>
+    <fields>
+        <label><!-- CAPEX Local --></label>
+        <name>CAPEX_Local__c</name>
+    </fields>
+    <fields>
+        <label><!-- CAPEX MD --></label>
+        <name>CAPEX_MD__c</name>
+    </fields>
+    <fields>
+        <label><!-- CAPEX MR --></label>
+        <name>CAPEX_MR__c</name>
+    </fields>
+    <fields>
+        <label><!-- CAPEX Regional --></label>
+        <name>CAPEX_Regional__c</name>
+    </fields>
+    <fields>
+        <label><!-- Charter Approved --></label>
+        <name>Charter_Approved__c</name>
+    </fields>
+    <fields>
+        <label><!-- Charter Locked --></label>
+        <name>Charter_Locked__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contract Approved --></label>
+        <name>Contract_Approved__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contract Locked --></label>
+        <name>Contract_Locked__c</name>
+    </fields>
+    <fields>
+        <label><!-- Copy Global to Local --></label>
+        <name>Copy_Global_to_Local__c</name>
+    </fields>
+    <fields>
+        <label><!-- Copy Global to Regional --></label>
+        <name>Copy_Global_to_Regional__c</name>
+    </fields>
+    <fields>
+        <label><!-- Copy Local to Regional --></label>
+        <name>Copy_Local_to_Regional__c</name>
+    </fields>
+    <fields>
+        <label><!-- Copy Regional to Local --></label>
+        <name>Copy_Regional_to_Local__c</name>
+    </fields>
+    <fields>
+        <label><!-- Display Name --></label>
+        <name>Display_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- List of countries to be shown for the particular financial on the page --></help>
+        <label><!-- Financial Countries --></label>
+        <name>Financial_Countries__c</name>
+    </fields>
+    <fields>
+        <label><!-- Financial External ID --></label>
+        <name>Financial_External_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- GM Y1 bps vs DNDS Charter --></label>
+        <name>GM_Y1_bps_vs_DNDS_Charter__c</name>
+    </fields>
+    <fields>
+        <label><!-- GM Y1 bps vs DNDS Contract --></label>
+        <name>GM_Y1_bps_vs_DNDS_Contract__c</name>
+    </fields>
+    <fields>
+        <label><!-- GM Y1 bps vs DNDS Difference --></label>
+        <name>GM_Y1_bps_vs_DNDS_Difference__c</name>
+    </fields>
+    <fields>
+        <label><!-- GM Y1 bps vs DNDS Global --></label>
+        <name>GM_Y1_bps_vs_DNDS_Global__c</name>
+    </fields>
+    <fields>
+        <label><!-- GM Y1 bps vs DNDS Local --></label>
+        <name>GM_Y1_bps_vs_DNDS_Local__c</name>
+    </fields>
+    <fields>
+        <label><!-- GM Y1 bps vs DNDS MD --></label>
+        <name>GM_Y1_bps_vs_DNDS_MD__c</name>
+    </fields>
+    <fields>
+        <label><!-- GM Y1 bps vs DNDS MR --></label>
+        <name>GM_Y1_bps_vs_DNDS_MR__c</name>
+    </fields>
+    <fields>
+        <label><!-- GM Y1 bps vs DNDS Regional --></label>
+        <name>GM_Y1_bps_vs_DNDS_Regional__c</name>
+    </fields>
+    <fields>
+        <label><!-- Global External Id --></label>
+        <name>Global_External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Global Project Id --></label>
+        <name>Global_Project_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gross Y1 Gross Profit Global --></label>
+        <name>Gross_Y1_Gross_Profit_Global__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gross Y1 Gross Profit Local --></label>
+        <name>Gross_Y1_Gross_Profit_Local__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gross Y1 Gross Profit Regional --></label>
+        <name>Gross_Y1_Gross_Profit_Regional__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gross Y1 Profit Before Overheads Global --></label>
+        <name>Gross_Y1_Profit_Before_Overheads_Global__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gross Y1 Profit Before Overheads Local --></label>
+        <name>Gross_Y1_Profit_Before_Overheads_Local__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gross Y1 Profit Before Overheads Regiona --></label>
+        <name>Gross_Y1_Profit_Before_Overheads_Regiona__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gross Y1 Turnover Global --></label>
+        <name>Gross_Y1_Turnover_Global__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gross Y1 Turnover Local --></label>
+        <name>Gross_Y1_Turnover_Local__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gross Y1 Turnover Regional --></label>
+        <name>Gross_Y1_Turnover_Regional__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Auto Aligned Fin TLD --></label>
+        <name>IPM_Auto_Aligned_Fin_TLD__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM BD-BB Feedback --></label>
+        <name>IPM_BD_BB_Feedback__c</name>
+    </fields>
+    <fields>
+        <label><!-- Business Case Confirmed --></label>
+        <name>IPM_Business_Case_Confirmed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Business_Impact_Charter --></label>
+        <name>IPM_Business_Impact_Charter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Business_Impact_Contract --></label>
+        <name>IPM_Business_Impact_Contract__c</name>
+    </fields>
+    <fields>
+        <label><!-- Business_Impact_MD --></label>
+        <name>IPM_Business_Impact_MD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Business_Impact_MR --></label>
+        <name>IPM_Business_Impact_MR__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM CPP Local --></label>
+        <name>IPM_CPP_Local__c</name>
+    </fields>
+    <fields>
+        <label><!-- Category --></label>
+        <name>IPM_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- Country Feedback --></label>
+        <name>IPM_Country_Feedback__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Financial Postfix --></label>
+        <name>IPM_Financial_Postfix__c</name>
+        <picklistValues>
+            <masterLabel>Global</masterLabel>
+            <translation><!-- Global --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Local</masterLabel>
+            <translation><!-- Local --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Regional</masterLabel>
+            <translation><!-- Regional --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IPM_Inoplan_Fin_External_Id --></label>
+        <name>IPM_Inoplan_Fin_External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Key Financial --></label>
+        <name>IPM_Key_Financial__c</name>
+    </fields>
+    <fields>
+        <label><!-- Regional Rollout --></label>
+        <name>IPM_Project_Rollout__c</name>
+        <relationshipLabel><!-- IPM Financials --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- IPM Project Type --></label>
+        <name>IPM_Project_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- IRR Charter --></label>
+        <name>IRR_Charter__c</name>
+    </fields>
+    <fields>
+        <label><!-- IRR Contract --></label>
+        <name>IRR_Contract__c</name>
+    </fields>
+    <fields>
+        <label><!-- IRR Difference --></label>
+        <name>IRR_Difference__c</name>
+    </fields>
+    <fields>
+        <label><!-- IRR Global --></label>
+        <name>IRR_Global__c</name>
+    </fields>
+    <fields>
+        <label><!-- IRR Local --></label>
+        <name>IRR_Local__c</name>
+    </fields>
+    <fields>
+        <label><!-- IRR MD --></label>
+        <name>IRR_MD__c</name>
+    </fields>
+    <fields>
+        <label><!-- IRR MR --></label>
+        <name>IRR_MR__c</name>
+    </fields>
+    <fields>
+        <label><!-- IRR Regional --></label>
+        <name>IRR_Regional__c</name>
+    </fields>
+    <fields>
+        <label><!-- Incremental Y1 Gross Profit Global --></label>
+        <name>Incremental_Y1_Gross_Profit_Global__c</name>
+    </fields>
+    <fields>
+        <label><!-- Incremental Y1 Gross Profit Local --></label>
+        <name>Incremental_Y1_Gross_Profit_Local__c</name>
+    </fields>
+    <fields>
+        <label><!-- Incremental Y1 Gross Profit Regional --></label>
+        <name>Incremental_Y1_Gross_Profit_Regional__c</name>
+    </fields>
+    <fields>
+        <label><!-- Incremental Y1 Profit Before Overheads G --></label>
+        <name>Incremental_Y1_Profit_Before_Overheads_G__c</name>
+    </fields>
+    <fields>
+        <label><!-- Incremental Y1 Profit Before Overheads L --></label>
+        <name>Incremental_Y1_Profit_Before_Overheads_L__c</name>
+    </fields>
+    <fields>
+        <label><!-- Incremental Y1 Profit Before Overheads R --></label>
+        <name>Incremental_Y1_Profit_Before_Overheads_R__c</name>
+    </fields>
+    <fields>
+        <label><!-- Incremental Y1 Turnover Global --></label>
+        <name>Incremental_Y1_Turnover_Global__c</name>
+    </fields>
+    <fields>
+        <label><!-- Incremental Y1 Turnover Local --></label>
+        <name>Incremental_Y1_Turnover_Local__c</name>
+    </fields>
+    <fields>
+        <label><!-- Incremental Y1 Turnover Regional --></label>
+        <name>Incremental_Y1_Turnover_Regional__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is BC Confirmed Capability --></label>
+        <name>Is_BC_Confirmed_Capability__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Saved By (Global) --></label>
+        <name>Last_Saved_By_Global__c</name>
+        <relationshipLabel><!-- IPM Financials (Global) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Last Saved By (Local) --></label>
+        <name>Last_Saved_By_Local__c</name>
+        <relationshipLabel><!-- IPM Financials (Local) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Last Saved By (Regional) --></label>
+        <name>Last_Saved_By_Regional__c</name>
+        <relationshipLabel><!-- IPM Financials (Regional) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Last Saved (Global) --></label>
+        <name>Last_Saved_Global__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Saved (Local) --></label>
+        <name>Last_Saved_Local__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Saved (Regional) --></label>
+        <name>Last_Saved_Regional__c</name>
+    </fields>
+    <fields>
+        <label><!-- Local Project --></label>
+        <name>Local_Project__c</name>
+        <relationshipLabel><!-- IPM Financials (Local) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- MD Approved --></label>
+        <name>MD_Approved__c</name>
+    </fields>
+    <fields>
+        <label><!-- MD Locked --></label>
+        <name>MD_Locked__c</name>
+    </fields>
+    <fields>
+        <label><!-- MR Approved --></label>
+        <name>MR_Approved__c</name>
+    </fields>
+    <fields>
+        <label><!-- MR Locked --></label>
+        <name>MR_Locked__c</name>
+    </fields>
+    <fields>
+        <label><!-- Misaligned Date --></label>
+        <name>Misaligned_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Misaligned --></label>
+        <name>Misaligned__c</name>
+    </fields>
+    <fields>
+        <label><!-- MisalignmentDateTime --></label>
+        <name>MisalignmentDateTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- NPV Charter --></label>
+        <name>NPV_Charter__c</name>
+    </fields>
+    <fields>
+        <label><!-- NPV Contract --></label>
+        <name>NPV_Contract__c</name>
+    </fields>
+    <fields>
+        <label><!-- NPV Difference --></label>
+        <name>NPV_Difference__c</name>
+    </fields>
+    <fields>
+        <label><!-- NPV Global --></label>
+        <name>NPV_Global__c</name>
+    </fields>
+    <fields>
+        <label><!-- NPV Local --></label>
+        <name>NPV_Local__c</name>
+    </fields>
+    <fields>
+        <label><!-- NPV MD --></label>
+        <name>NPV_MD__c</name>
+    </fields>
+    <fields>
+        <label><!-- NPV MR --></label>
+        <name>NPV_MR__c</name>
+    </fields>
+    <fields>
+        <label><!-- NPV Regional --></label>
+        <name>NPV_Regional__c</name>
+    </fields>
+    <fields>
+        <label><!-- OpCo --></label>
+        <name>OpCo__c</name>
+    </fields>
+    <fields>
+        <label><!-- PBO Y1 bps vs DNDS Charter --></label>
+        <name>PBO_Y1_bps_vs_DNDS_Charter__c</name>
+    </fields>
+    <fields>
+        <label><!-- PBO Y1 bps vs DNDS Contract --></label>
+        <name>PBO_Y1_bps_vs_DNDS_Contract__c</name>
+    </fields>
+    <fields>
+        <label><!-- PBO Y1 bps vs DNDS Difference --></label>
+        <name>PBO_Y1_bps_vs_DNDS_Difference__c</name>
+    </fields>
+    <fields>
+        <label><!-- PBO Y1 bps vs DNDS Global --></label>
+        <name>PBO_Y1_bps_vs_DNDS_Global__c</name>
+    </fields>
+    <fields>
+        <label><!-- PBO Y1 bps vs DNDS Local --></label>
+        <name>PBO_Y1_bps_vs_DNDS_Local__c</name>
+    </fields>
+    <fields>
+        <label><!-- PBO Y1 bps vs DNDS MD --></label>
+        <name>PBO_Y1_bps_vs_DNDS_MD__c</name>
+    </fields>
+    <fields>
+        <label><!-- PBO Y1 bps vs DNDS MR --></label>
+        <name>PBO_Y1_bps_vs_DNDS_MR__c</name>
+    </fields>
+    <fields>
+        <label><!-- PBO Y1 bps vs DNDS Regional --></label>
+        <name>PBO_Y1_bps_vs_DNDS_Regional__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parent Project --></label>
+        <name>Parent_Project__c</name>
+        <relationshipLabel><!-- IPM Financials (Consolidated) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Payback Charter --></label>
+        <name>Payback_Charter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payback Contract --></label>
+        <name>Payback_Contract__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payback Difference --></label>
+        <name>Payback_Difference__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payback Global --></label>
+        <name>Payback_Global__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payback Local --></label>
+        <name>Payback_Local__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payback MD --></label>
+        <name>Payback_MD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payback MR --></label>
+        <name>Payback_MR__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payback Regional --></label>
+        <name>Payback_Regional__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Sustainability Period --></label>
+        <name>Project_Sustainability_Period__c</name>
+    </fields>
+    <fields>
+        <label><!-- Regional External Id --></label>
+        <name>Regional_External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Regional Market Cluster Name --></label>
+        <name>Regional_Market_Cluster_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Regional Project --></label>
+        <name>Regional_Project__c</name>
+        <relationshipLabel><!-- IPM Financials (Regional) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Sorting Order --></label>
+        <name>Sorting_Order__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Started</masterLabel>
+            <translation><!-- Not Started --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Submitted</masterLabel>
+            <translation><!-- Submitted --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Target Launch Date Updated From --></label>
+        <name>Target_Launch_Date_Updated_From__c</name>
+        <picklistValues>
+            <masterLabel>None</masterLabel>
+            <translation><!-- None --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Project</masterLabel>
+            <translation><!-- Project --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rollout</masterLabel>
+            <translation><!-- Rollout --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Target Launch Date --></label>
+        <name>Target_Launch_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Threshold Status Global --></label>
+        <name>Threshold_Status_Global__c</name>
+    </fields>
+    <fields>
+        <label><!-- Threshold Status Local --></label>
+        <name>Threshold_Status_Local__c</name>
+    </fields>
+    <fields>
+        <label><!-- Threshold Status Regional --></label>
+        <name>Threshold_Status_Regional__c</name>
+    </fields>
+    <fields>
+        <label><!-- Threshold --></label>
+        <name>Threshold__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total FY Difference --></label>
+        <name>Total_FY_Difference__c</name>
+    </fields>
+    <fields>
+        <label><!-- Volume Unit Charter --></label>
+        <name>Volume_Unit_Charter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Volume Unit Contract --></label>
+        <name>Volume_Unit_Contract__c</name>
+    </fields>
+    <fields>
+        <label><!-- Volume Unit Difference --></label>
+        <name>Volume_Unit_Difference__c</name>
+    </fields>
+    <fields>
+        <label><!-- Volume Unit Global --></label>
+        <name>Volume_Unit_Global__c</name>
+        <picklistValues>
+            <masterLabel>Total &apos;000 Units</masterLabel>
+            <translation><!-- Total &apos;000 Units --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Total 000 Units</masterLabel>
+            <translation><!-- Total 000 Units --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Total Tons</masterLabel>
+            <translation><!-- Total Tons --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Volume Unit Local --></label>
+        <name>Volume_Unit_Local__c</name>
+        <picklistValues>
+            <masterLabel>Total &apos;000 Units</masterLabel>
+            <translation><!-- Total &apos;000 Units --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Total 000 Units</masterLabel>
+            <translation><!-- Total 000 Units --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Total Tons</masterLabel>
+            <translation><!-- Total Tons --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Volume Unit MD --></label>
+        <name>Volume_Unit_MD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Volume Unit MR --></label>
+        <name>Volume_Unit_MR__c</name>
+    </fields>
+    <fields>
+        <label><!-- Volume Unit Regional --></label>
+        <name>Volume_Unit_Regional__c</name>
+        <picklistValues>
+            <masterLabel>Total &apos;000 Units</masterLabel>
+            <translation><!-- Total &apos;000 Units --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Total 000 Units</masterLabel>
+            <translation><!-- Total 000 Units --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Total Tons</masterLabel>
+            <translation><!-- Total Tons --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Volume Unit --></label>
+        <name>Volume_Unit__c</name>
+        <picklistValues>
+            <masterLabel>Total &apos;000 Units</masterLabel>
+            <translation><!-- Total &apos;000 Units --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Total Tons</masterLabel>
+            <translation><!-- Total Tons --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Year3 ITO --></label>
+        <name>Year3_ITO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Year 1 iTO Local --></label>
+        <name>Year_1_iTO_Local__c</name>
+    </fields>
+    <fields>
+        <label><!-- Year 3 iTO Charter --></label>
+        <name>Year_3_iTO_Charter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Year 3 iTO Contract --></label>
+        <name>Year_3_iTO_Contract__c</name>
+    </fields>
+    <fields>
+        <label><!-- Year 3 iTO Global --></label>
+        <name>Year_3_iTO_Global__c</name>
+    </fields>
+    <fields>
+        <label><!-- Year 3 iTO Local --></label>
+        <name>Year_3_iTO_Local__c</name>
+    </fields>
+    <fields>
+        <label><!-- Year 3 iTO MD --></label>
+        <name>Year_3_iTO_MD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Year 3 iTO MR --></label>
+        <name>Year_3_iTO_MR__c</name>
+    </fields>
+    <fields>
+        <label><!-- Year 3 iTO Regional --></label>
+        <name>Year_3_iTO_Regional__c</name>
+    </fields>
+    <fields>
+        <label><!-- isActive --></label>
+        <name>isActive__c</name>
+    </fields>
+    <fields>
+        <label><!-- isGateSubmissionDue --></label>
+        <name>isGateSubmissionDue__c</name>
+    </fields>
+    <recordTypes>
+        <label><!-- Consolidated --></label>
+        <name>Consolidated</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Default --></label>
+        <name>Default</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Charter snapshot Financials cannot be changed once Charter has been approved --></errorMessage>
+        <name>Charter_Locked</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Contract snapshot Financials cannot be changed once Contract has been approved --></errorMessage>
+        <name>Contract_Locked</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Market Deployment snapshot Financials cannot be changed once Market Deployment has been approved --></errorMessage>
+        <name>MD_Locked</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Market Ready snapshot Financials cannot be changed once Market Ready has been approved --></errorMessage>
+        <name>MR_Locked</name>
+    </validationRules>
+</CustomObjectTranslation>

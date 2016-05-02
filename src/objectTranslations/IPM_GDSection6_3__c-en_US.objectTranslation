@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>IPM GDSection6.3</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>IPM GDSection6.3</value>
+    </caseValues>
+    <fields>
+        <label><!-- Avg Retail Price --></label>
+        <name>Avg_Retail_Price__c</name>
+    </fields>
+    <fields>
+        <label><!-- GM% --></label>
+        <name>GM__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gross A&amp;P --></label>
+        <name>Gross_A_P__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gross PBI --></label>
+        <name>Gross_PBI__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gross Turnover --></label>
+        <name>Gross_Turnover__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM GDSection6.5 --></label>
+        <name>IPM_GDSection6_5__c</name>
+        <relationshipLabel><!-- IPM GDSection6.3 --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Innov Value Share --></label>
+        <name>Innov_Value_Share__c</name>
+    </fields>
+    <fields>
+        <label><!-- Innov Volume Share --></label>
+        <name>Innov_Volume_Share__c</name>
+    </fields>
+    <fields>
+        <label><!-- Media Spend (dedicated) --></label>
+        <name>Media_Spend_dedicated__c</name>
+    </fields>
+    <fields>
+        <label><!-- Penetration (cum) --></label>
+        <name>Penetration_cum__c</name>
+    </fields>
+    <fields>
+        <label><!-- Period --></label>
+        <name>Period__c</name>
+        <picklistValues>
+            <masterLabel>Period 1</masterLabel>
+            <translation><!-- Period 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Period 10</masterLabel>
+            <translation><!-- Period 10 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Period 11</masterLabel>
+            <translation><!-- Period 11 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Period 12</masterLabel>
+            <translation><!-- Period 12 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Period 13</masterLabel>
+            <translation><!-- Period 13 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Period 2</masterLabel>
+            <translation><!-- Period 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Period 3</masterLabel>
+            <translation><!-- Period 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Period 4</masterLabel>
+            <translation><!-- Period 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Period 5</masterLabel>
+            <translation><!-- Period 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Period 6</masterLabel>
+            <translation><!-- Period 6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Period 7</masterLabel>
+            <translation><!-- Period 7 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Period 8</masterLabel>
+            <translation><!-- Period 8 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Period 9</masterLabel>
+            <translation><!-- Period 9 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Relative Price to Mktg (API) --></label>
+        <name>Relative_Price_to_Mktg_API__c</name>
+    </fields>
+    <fields>
+        <label><!-- Repeat Rate --></label>
+        <name>Repeat_Rate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Wtd Distribution --></label>
+        <name>Wtd_Distribution__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

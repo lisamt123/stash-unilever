@@ -1,0 +1,14 @@
+<apex:component access="global" layout="block" controller="HRO_OnboardingTaskList_CC" >
+    <apex:attribute required="true" description="Leader Start Date" access="global" id="startDate" name="startDate" type="Date" assignTo="{!cStartDate}"/>
+    <apex:attribute required="true" description="HRO Onboadring Task Set record id" access="global" id="recordId" name="recordId" type="String" assignTo="{!cRecordId}"/>
+    <apex:attribute required="true" description="HRO Onboadring Task Set New Leader Name" access="global" id="leaderName" name="leaderName" type="String" assignTo="{!cLeaderName}" />
+    <apex:attribute required="false" description="If selected then task will be retrived from particular phase" access="global" id="selectedPhase" name="selectedPhase" type="String" assignTo="{!cPhase}" />
+    <apex:dataTable border="2"  value="{!taskAssignedToPhase}" var="taskItem">
+        <apex:column headerValue="Task" value="{!taskItem.taskName}"/>
+        <apex:column width="150" headerValue="Due Date" value="{!taskItem.taskDueDate}"/>
+        <apex:column width="150">
+            <apex:facet name="header">Link to task</apex:facet>
+            <a target="_blank" href="{!taskItem.taskLink}">Take Action</a>
+        </apex:column>    
+    </apex:dataTable>
+</apex:component>

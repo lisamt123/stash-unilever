@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>THis is used in IPM to store Project documents</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>External_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>true</externalId>
+        <label>External Id</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Approval_Date__c</fullName>
+        <description>This will capture the Approval date for Gate doc</description>
+        <externalId>false</externalId>
+        <label>IPM Approval Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Approved_Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Approved Comments</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>IPM_Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Comments</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>IPM_Contract_GateKeeper_Model__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Contract GateKeeper Model</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Document_Complexity__c</fullName>
+        <externalId>false</externalId>
+        <label>Document Complexity</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Full</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Lite</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Document_Order__c</fullName>
+        <description>To store the order of the document in a project based on the Document Template</description>
+        <externalId>false</externalId>
+        <label>IPM Project Document Order</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Document_Status__c</fullName>
+        <description>This is the average values of the project sections associated with it.</description>
+        <externalId>false</externalId>
+        <label>IPM Document Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Not Started</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Proposed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Stopped</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Postponed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Approved with Edits</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Document_Template__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>IPM Document Template</label>
+        <referenceTo>IPM_Document_Template__c</referenceTo>
+        <relationshipLabel>IPM Project Documents</relationshipLabel>
+        <relationshipName>IPM_Project_Documents</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>IPM_GateDocuments__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM_GateDocuments</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Charter</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Contract</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Market Ready</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Market Deployment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Postponed_Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Postponed Comments</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>IPM_Postponement_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Postponement Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Project_Complexity__c</fullName>
+        <description>To hold the complexity of the project</description>
+        <externalId>false</externalId>
+        <formula>TEXT(IPM_Project__r.IPM_Complexity__c)</formula>
+        <label>IPM Project Complexity</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Project_Document_External_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>true</externalId>
+        <label>Project Document External Id</label>
+        <length>255</length>
+        <required>true</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Project_External_Id__c</fullName>
+        <description>To store the External Id from the related Project</description>
+        <externalId>false</externalId>
+        <label>IPM Project External Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Project_Span__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(IPM_Project__r.IPMProject_Span__c)</formula>
+        <label>IPM Project Span</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Project_Stopped__c</fullName>
+        <description>Set it to True based on Projects Archived Button</description>
+        <externalId>false</externalId>
+        <formula>IPM_Project__r.Is_Archieved__c</formula>
+        <label>Project Stopped</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Project_Template__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>IPM Project Template</label>
+        <referenceTo>IPM_Project_Template__c</referenceTo>
+        <relationshipLabel>IPM Project Documents</relationshipLabel>
+        <relationshipName>IPM_Project_Documents</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Project__c</fullName>
+        <description>Relation to the Project Object</description>
+        <externalId>false</externalId>
+        <label>IPM Project</label>
+        <referenceTo>IPM_Project__c</referenceTo>
+        <relationshipLabel>IPM Project Documents</relationshipLabel>
+        <relationshipName>Project_Documents</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>IPM_Proposed_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Proposed Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Status_Icon__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE(  IPM_Document_Status__c , &quot;Not Started&quot;,  IMAGE(&quot;/resource/ipmResource/images/cone.png&quot;, &quot;Not Started&quot;,30,30), 
+&quot;In Progress&quot;, IMAGE(&quot;/resource/ipmResource/images/cone.png&quot;, &quot;Not Started&quot;,30,30),
+&quot;Submitted For Review&quot;, IMAGE(&quot;/resource/ipmResource/images/review.png&quot;, &quot;Not Started&quot;,25,25),
+&quot;Approved&quot;, IMAGE(&quot;/resource/ipmResource/images/approve.png&quot;, &quot;Not Started&quot;,25,25),
+&quot;Rejected&quot;, IMAGE(&quot;/resource/ipmResource/images/reject.png&quot;, &quot;Not Started&quot;,25,25),
+&quot;Not Validated&quot;, IMAGE(&quot;/resource/ipmResource/images/warning.png&quot;, &quot;Not Started&quot;,25,25),
+IMAGE(&quot;/resource/ipmResource/images/cone.png&quot;, &quot;Not Started&quot;,25,25))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>IPM Status Icon</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Stopped_Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Stopped Comments</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>IPM_Stopped_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Stopped Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Updated_User_By__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This field is to record the Document Update status user</description>
+        <externalId>false</externalId>
+        <label>Updated User By</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>IPM_Project_Documents</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>IPM Project Document</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>External_Id__c</columns>
+        <columns>IPM_Project__c</columns>
+        <columns>IPM_GateDocuments__c</columns>
+        <columns>IPM_Approval_Date__c</columns>
+        <columns>IPM_Approved_Comments__c</columns>
+        <columns>IPM_Document_Status__c</columns>
+        <columns>IPM_Contract_GateKeeper_Model__c</columns>
+        <columns>UPDATEDBY_USER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>External_Id__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>Project Document Id</label>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>IPM Project Documents</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

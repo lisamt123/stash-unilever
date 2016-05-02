@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Course Occurence</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Course Occurence</value>
+    </caseValues>
+    <fields>
+        <label><!-- Context --></label>
+        <name>FA_Context__c</name>
+    </fields>
+    <fields>
+        <label><!-- Course Name --></label>
+        <name>FA_Course_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Course Occurence Name --></label>
+        <name>FA_Course_Occ_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Course --></label>
+        <name>FA_Course__c</name>
+        <relationshipLabel><!-- Course Occurence --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- End Date Time --></label>
+        <name>FA_End_Date_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- External ID --></label>
+        <name>FA_External_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Important Logistics --></label>
+        <name>FA_Important_Logistics__c</name>
+    </fields>
+    <fields>
+        <label><!-- Initiate Feedback --></label>
+        <name>FA_Initiate_Feedback__c</name>
+    </fields>
+    <fields>
+        <label><!-- Invitation Mail Content --></label>
+        <name>FA_Mail_Content_1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Extended Mail Content --></label>
+        <name>FA_Mail_Content_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- No Of Occurence Members --></label>
+        <name>FA_No_Of_Occurence_Members__c</name>
+    </fields>
+    <fields>
+        <label><!-- No of Participants --></label>
+        <name>FA_No_of_Participants__c</name>
+    </fields>
+    <fields>
+        <label><!-- Calendar Invite --></label>
+        <name>FA_Outlook_Invite_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Post Work Deadline --></label>
+        <name>FA_Post_Prog_End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pre Work Deadline --></label>
+        <name>FA_Pre_Work_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Programme Overview --></label>
+        <name>FA_Programme_Overview__c</name>
+    </fields>
+    <fields>
+        <label><!-- Required Action --></label>
+        <name>FA_Required_Action__c</name>
+    </fields>
+    <fields>
+        <label><!-- Send Invite Mail --></label>
+        <name>FA_Send_Invite_Mail__c</name>
+    </fields>
+    <fields>
+        <label><!-- Signature --></label>
+        <name>FA_Signature__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Date Time --></label>
+        <name>FA_Start_Date_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>FA_Status__c</name>
+        <picklistValues>
+            <masterLabel>Active</masterLabel>
+            <translation><!-- Active --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cancelled</masterLabel>
+            <translation><!-- Cancelled --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Completed</masterLabel>
+            <translation><!-- Completed --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Training Room Image --></label>
+        <name>FA_Training_Room_Image__c</name>
+    </fields>
+    <fields>
+        <label><!-- Training Room --></label>
+        <name>FA_Training_Room__c</name>
+        <relationshipLabel><!-- Course Occurence --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Training Venue Image --></label>
+        <name>FA_Training_Venue_Image__c</name>
+    </fields>
+    <fields>
+        <label><!-- Training Venue --></label>
+        <name>FA_Training_Venue__c</name>
+        <relationshipLabel><!-- Course Occurence --></relationshipLabel>
+    </fields>
+    <sharingReasons>
+        <label><!-- Facilitator Access --></label>
+        <name>FA_Facilitator_Access</name>
+    </sharingReasons>
+    <sharingReasons>
+        <label><!-- Member Access --></label>
+        <name>FA_Member_Access</name>
+    </sharingReasons>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Course End date cannot be before Course Start date --></errorMessage>
+        <name>FA_DateValidation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cannot Initiate Feedback if Occurrence End date greater than today. and If Status is also cancelled --></errorMessage>
+        <name>FA_Feedback_EndDate_Check</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Feedback already Initiated, cannot Undo --></errorMessage>
+        <name>FA_Initiate_Feedback_Check</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Start Date of the new Course Occurrence cannot be less than Today. --></errorMessage>
+        <name>FA_NewOccStartDate_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cannot change the Status to Completed if end day is greater than today --></errorMessage>
+        <name>FA_Occ_Completion_Check</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Occurrence can be Associated with Active Courses. --></errorMessage>
+        <name>FA_Occurance_for_Active_Course</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Record cannot be modified if start date is less than today --></errorMessage>
+        <name>FA_Record_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cannot Cancel the Course Occurrence which has scheduled in Past. --></errorMessage>
+        <name>FA_Status_Cancelled_Check</name>
+    </validationRules>
+</CustomObjectTranslation>

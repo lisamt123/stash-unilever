@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <articleTypeChannelDisplay>
+        <articleTypeTemplates>
+            <channel>App</channel>
+            <template>Toc</template>
+        </articleTypeTemplates>
+        <articleTypeTemplates>
+            <channel>Prm</channel>
+            <template>Tab</template>
+        </articleTypeTemplates>
+        <articleTypeTemplates>
+            <channel>Csp</channel>
+            <template>Tab</template>
+        </articleTypeTemplates>
+        <articleTypeTemplates>
+            <channel>Pkb</channel>
+            <template>Toc</template>
+        </articleTypeTemplates>
+    </articleTypeChannelDisplay>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Used for PlanCraft/PBS Articles that are displayed as Articles within Chatter Questions</description>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <fields>
+        <fullName>Attachment_1__c</fullName>
+        <description>Allows users to attach documents to Articles of PBS FAQ Types</description>
+        <externalId>false</externalId>
+        <label>Attachment 1</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>File</type>
+    </fields>
+    <fields>
+        <fullName>Attachment_2__c</fullName>
+        <externalId>false</externalId>
+        <label>Attachment 2</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>File</type>
+    </fields>
+    <fields>
+        <fullName>Attachment_3__c</fullName>
+        <externalId>false</externalId>
+        <label>Attachment 3</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>File</type>
+    </fields>
+    <fields>
+        <fullName>Attachment_4__c</fullName>
+        <externalId>false</externalId>
+        <label>Attachment 4</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>File</type>
+    </fields>
+    <fields>
+        <fullName>Attachment_5__c</fullName>
+        <externalId>false</externalId>
+        <label>Attachment 5</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>File</type>
+    </fields>
+    <fields>
+        <fullName>Custom_PBS_Field_2__c</fullName>
+        <externalId>false</externalId>
+        <label>Custom PBS Field 2</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Custom_PBS_Field__c</fullName>
+        <externalId>false</externalId>
+        <label>Custom PBS Field</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Expectations__c</fullName>
+        <description>Used to store the Expectations for a FAQ Article Type</description>
+        <externalId>false</externalId>
+        <label>Expectations</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Group_Name__c</fullName>
+        <description>Used to store Group Name to link to Wiki VF pages</description>
+        <externalId>false</externalId>
+        <label>Group Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Learning_Activities__c</fullName>
+        <description>Learning Activities for the FAQ&apos;s Article Type</description>
+        <externalId>false</externalId>
+        <label>Learning Activities</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Overview__c</fullName>
+        <description>Used to store the Overview of the Article Type for FAQ&apos;s</description>
+        <externalId>false</externalId>
+        <label>Overview</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>PBS_Training_Course__c</fullName>
+        <description>Used to store the Almond URL for any potential Training Courses that are related to this Article</description>
+        <externalId>false</externalId>
+        <label>PBS Training Course</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <label>PBS FAQ</label>
+    <pluralLabel>PBS FAQ&apos;s</pluralLabel>
+</CustomObject>

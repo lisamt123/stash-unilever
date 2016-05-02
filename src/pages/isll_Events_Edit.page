@@ -1,0 +1,236 @@
+<apex:page showHeader="true" sidebar="true" tabStyle="Event__c" standardcontroller="Event__c" extensions="isll_EventController">
+<apex:includeScript value="{!URLFOR($Resource.isll_VidComp, 'lib/jquery-1.9.1.min.js')}" />
+<apex:includeScript value="{!URLFOR($Resource.tinymce_richTextEditor, '/tinymce.min.js')}" />
+<script type="text/javascript">
+tinymce.init({
+    selector: "textarea.customRich",
+    theme: "modern",
+    removed_menuitems: 'newdocument',
+    theme_advanced_font_sizes: "10px,12px,13px,14px,16px,18px,20px",
+    font_size_style_values: "12px,13px,14px,16px,18px,20px",
+    plugins: [
+        "advlist autolink lists link image charmap hr anchor pagebreak",
+        "searchreplace wordcount visualblocks visualchars code",
+        "insertdatetime media nonbreaking save table contextmenu directionality",
+        "emoticons template paste textcolor"
+    ],
+    toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image| media | fontsizeselect forecolor backcolor emoticons",
+    image_advtab: true,
+     forced_root_block : false,
+     textcolor_map: [
+        "E59063", "E59063",
+        "E56DB1", "E56DB1",
+        "DF1995", "DF1995",
+        "3C1053", "3C1053",
+        "0E0E9A", "0E0E9A",
+        "0085CA", "0085CA",
+        "40A4D7", "40A4D7",
+        "7FC0B1", "7FC0B1",
+        "00B388", "00B388",
+        "E9D561", "E9D561",
+        "E1C72C", "E1C72C",
+        "AC4FC6", "AC4FC6",
+        "B288B9", "B288B9",
+        "DC6B2F", "DC6B2F",
+        "E4002B", "E4002B",
+        "DF1995", "DF1995",
+        "702F8A", "702F8A",
+        "0E0E9A", "0E0E9A",
+        "EDB597", "EDB597",
+        "DC6B2F", "DC6B2F",
+        "40A4DA", "40A4DA",
+        "00573F", "00573F",
+        "7FC2E4", "7FC2E4"
+    ],
+      textcolor_rows: 6,
+    textcolor_cols: 4
+});
+</script>
+
+<style>
+    .fileLabel{
+        color: #4a4a56;
+        text-align: right;
+        font-size: 91%;
+        font-weight: bold;
+        margin-right: 12px;
+        margin-left: 103px;
+    }
+</style>
+<script>
+    $(document).ready(function() {
+
+        if ('{!Event__c.Id}' == '')
+        {
+            $('#newGroupRadio').prop('checked',true);
+            $('.exGroup').parent().parent().parent().hide();
+        }
+        
+        $('input[name="chatter_group_option"]').change(function(){
+            if ($('#newGroupRadio').prop('checked'))
+            {
+                $('.newGroup').parent().parent().parent().show('slow');
+                $('.exGroup').parent().parent().parent().hide();
+                $('.exGroup').val('');
+                $('input[id*="chatterGroupId"]').val('');
+            }
+            else
+            {
+                $('.exGroup').parent().parent().parent().show('slow');
+                $('.newGroup').parent().parent().parent().hide();
+                $('.newGroup').val('');
+            }
+        });
+    });
+
+    function openChatterGroupSearch()
+    {
+        var w = 800
+        var h = 400
+        var left = (screen.width/2)-(w/2);
+        var top = (screen.height/2)-(h/2);
+
+        window.open(
+            '/apex/isll_ChatterGroupSearch',
+            'targetWindow',
+            'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width='+w+',height='+h+',left='+left+',top='+top
+        );
+    }
+
+    function selectChatterGroup(groupId, groupName)
+    {
+        $('.exGroup').val(groupName);
+        $('input[id*="chatterGroupId"]').val(groupId);
+    }
+</script>
+    <apex:form id="theForm" >
+        <apex:sectionHeader title="ISLL Events" subtitle="{!IF(Event__c.id == null,'New Event', Event__c.name)}"/>
+        <apex:pageBlock title="Event Builder" mode="edit"  >
+        <apex:pagemessages id="pagemessages"/>
+            <apex:pageBlockButtons >    
+                    <apex:commandButton action="{!save}" value="Save"/>
+                    <apex:commandButton action="{!cancel}" value="Cancel"/>
+                </apex:pageBlockButtons>
+
+                <apex:PageBlockSection title="Event Details" collapsible="false" >
+                    <apex:inputField value="{!Event__c.Name}" required="true" />
+                    <apex:inputField value="{!Event__c.Status__c}"/>
+                    <apex:pageBlockSectionItem rendered="{!Event__c.Id == null}">
+                        <apex:outputLabel value="Chatter Group" />
+                        <apex:outputText >
+                            <input type="radio" name="chatter_group_option" value="new" id="newGroupRadio" /> New Group
+                            &nbsp;&nbsp;
+                            <input type="radio" name="chatter_group_option" value="existing" id="existingGroupRadio" /> Existing Group
+                        </apex:outputText>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:outputText value="    " rendered="{!Event__c.Id == null}" />
+
+                    <apex:pageBlockSectionItem rendered="{!Event__c.Id == null}">
+                        <apex:outputLabel value="New Chatter Group Name" />
+                        <apex:outputPanel layout="block" styleClass="requiredInput">
+                            <apex:outputPanel layout="block" styleClass="requiredBlock" />
+                            <apex:inputText value="{!newChatterGroupName}" styleClass="newGroup" />
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:outputText value="    " rendered="{!Event__c.Id == null}" />
+
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Existing Chatter Group" />
+                        <apex:outputPanel layout="block" styleClass="requiredInput">
+                            <apex:outputPanel layout="block" styleClass="requiredBlock" />
+                            <apex:inputText value="{!exChatterGroupName}" styleClass="exGroup" label="Existing Chatter Group" />
+                            <apex:inputHidden value="{!existingGroupId}" id="chatterGroupId" />
+                            <apex:outputLink styleClass="btn" style="text-decoration:none;" value="javascript:openChatterGroupSearch();">
+                                Search
+                            </apex:outputLink>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:outputText value="    " />
+                    <apex:inputField value="{!Event__c.Start_Date_Time__c}"/>
+                    <apex:inputField value="{!Event__c.End_Date_Time__c}"/>
+                    <apex:inputField value="{!Event__c.Locked__c}" />
+                    <apex:inputField value="{!Event__c.Type__c}" />
+                    <apex:inputField value="{!Event__c.Is_Big_Six__c}" />
+                    <apex:panelGrid columns="2" >
+                        <apex:outputLabel value="Event Branding" for="file" styleclass="fileLabel"/>
+                        <apex:inputFile value="{!attachment.body}" filename="{!attachment.name}" id="file" />
+                    </apex:panelGrid>
+                    <apex:panelGrid columns="2" >
+                        <apex:outputLabel value="Event Logo" for="logoFile" styleclass="fileLabel"/>
+                        <apex:inputFile value="{!attachmentLogo.body}" filename="{!attachmentLogo.name}" id="logoFile" />
+                    </apex:panelGrid>
+                    <apex:inputField value="{!Event__c.Event_Summary_Document_Link__c}" />
+                    
+                     
+                </apex:PageBlockSection>
+                 <apex:outputPanel style="display : block; padding-left: 227px; width: 838px;" id="testArea" >
+                      <apex:outputLabel value="Event Description" for="file" styleclass="fileLabel" style="position: relative; right: 214px; top: 11px;"/>
+                    <apex:inputTextarea value="{!Event__c.Event_Description__c}" styleClass="customRich"/>
+                    </apex:outputPanel>
+
+                <apex:PageBlockSection title="Internal Attendee Selection" collapsible="false" columns="1" rendered="{!IF(Event__c.id != null, true, false)}">
+                    <apex:actionRegion >
+                        <apex:panelGrid columns="3" id="theGrid">
+                             <apex:outputlabel >User Search</apex:outputlabel>
+                             <apex:inputText value="{!search}" id="UserSearch" /> <apex:commandLink action="{!refreshUser}" rerender="userSelection"> Find </apex:commandLink>
+                        </apex:panelGrid>
+                        <apex:panelGrid columns="2">
+                            <apex:panelGrid columns="1">
+                                <c:isll_MultiselectPicklist id="userSelection" leftLabel="Available Users"
+                                    leftOptionsAttr="{!userList}"
+                                    rightLabel="Selected Users"
+                                    rightOptionsAttr="{!selectedUsers}"
+                                    size="14"
+                                    width="150px"/> 
+                                    <apex:commandButton action="{!addMembersToGroup}" value="Update Users" rerender="expertSelection, pagemessages, internalEmail, externalEmail" oncomplete="window.scrollTo(0,0);"/>
+                            </apex:panelGrid>
+                            <apex:panelGrid columns="2" style="padding-top : 28px;" id="internalEmail">
+                                <apex:inputTextarea value="{!attendeeEmails}" cols="80" disabled="true" rows="7" />
+                                <a href="mailto:{!SUBSTITUTE(attendeeEmails,' ','')}">Email Members</a> 
+                            </apex:panelGrid>
+                         </apex:panelGrid>
+                     </apex:actionRegion>
+                 </apex:PageBlockSection>
+
+                <apex:PageBlockSection title="External Attendee Selection" collapsible="false" columns="1" rendered="{!IF(Event__c.id != null, true, false)}">
+                 <apex:actionRegion >
+                    <apex:panelGrid columns="2">
+                        <apex:panelGrid columns="1">
+
+                            <c:isll_MultiselectPicklist id="externalUserSelection" leftLabel="Available External Users"
+                                leftOptionsAttr="{!externalUserList}"
+                                rightLabel="Selected External Users"
+                                rightOptionsAttr="{!selectedExternalUsers}"
+                                size="14"
+                                width="150px"/> 
+                        <apex:commandButton action="{!addExternalMemberToGroup}" value="Update External Members" rerender="expertSelection, pagemessages" oncomplete="window.scrollTo(0,0);"/>
+                        </apex:panelGrid>
+                        <apex:panelGrid columns="2" style="padding-top : 28px;" id="externalEmail">
+                            <apex:inputTextarea value="{!externalAttendeeEmails}" cols="80" disabled="true" rows="7"/>
+                            <a href="mailto:{!SUBSTITUTE(externalAttendeeEmails,' ','')}">Email Members</a> 
+                        </apex:panelGrid>
+                     </apex:panelGrid>
+                    {!eventURL}
+                     </apex:actionRegion>
+                 </apex:PageBlockSection>
+
+                <apex:PageBlockSection title="Experts Selection" collapsible="false" columns="1" rendered="{!IF(Event__c.id != null, true, false)}">
+                   <apex:actionRegion >
+                        <c:isll_MultiselectPicklist id="expertSelection" leftLabel="Available Users"
+                            leftOptionsAttr="{!potentialExpertUserList}"
+                            rightLabel="Selected Experts"
+                            rightOptionsAttr="{!expertUserList}"
+                            size="14"
+                            width="150px"/> 
+                        <apex:commandButton action="{!addExpertsToGroup}" value="Update Experts" rerender="expertSelection, pagemessages" oncomplete="window.scrollTo(0,0);"/>
+                    </apex:actionRegion>
+                </apex:PageBlockSection>
+
+  
+
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>ChequeBook Detail</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>ChequeBook Details</value>
+    </caseValues>
+    <fields>
+        <label><!-- Active --></label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Brand --></label>
+        <name>Brand__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cheque Book --></label>
+        <name>Cheque_Book__c</name>
+    </fields>
+    <fields>
+        <label><!-- Country Name --></label>
+        <name>Country_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Country --></label>
+        <name>Country__c</name>
+        <relationshipLabel><!-- ChequeBook Details --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Textual version of decimal currency, e.g. CENTS --></help>
+        <label><!-- Currency Decimal Text --></label>
+        <name>Currency_Decimal_Text__c</name>
+    </fields>
+    <fields>
+        <help><!-- Textual version of currency, e.g. DOLLARS --></help>
+        <label><!-- Currency Text --></label>
+        <name>Currency_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Currency --></label>
+        <name>Currency__c</name>
+        <picklistValues>
+            <masterLabel>CAD</masterLabel>
+            <translation><!-- CAD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>USD</masterLabel>
+            <translation><!-- USD --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Increment Number --></label>
+        <name>Increment_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Cheque Number --></label>
+        <name>Last_Cheque_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Max Cheque Number --></label>
+        <name>Max_Cheque_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product Category Name --></label>
+        <name>Product_Category_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product Category --></label>
+        <name>Product_Category__c</name>
+        <relationshipLabel><!-- ChequeBook Details --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Starting Number --></label>
+        <name>Starting_Number__c</name>
+    </fields>
+    <nameFieldLabel><!-- ChequeBook Details Number --></nameFieldLabel>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

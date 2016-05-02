@@ -1,0 +1,780 @@
+<apex:page standardStylesheets="false" sidebar="false" docType="html-5.0" tabStyle="Sustainable_Living_Lab__tab" title="Internal Sustainable Living Lab">
+
+    <apex:includeScript value="{!URLFOR($Resource.isll_VidComp, 'lib/jquery-1.9.1.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.isll_colorbox, 'jquery.colorbox-min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.isll_VidComp, 'lib/jwplayer.js')}" />
+     <apex:includeScript value="{!URLFOR($Resource.bootstrap, 'bootstrap.min.js')}" />
+     
+	<apex:includeScript value="{!URLFOR($Resource.jquery_ui_1_10_4, 'js/jquery-ui-1.10.4.custom.min.js')}" />
+
+
+    <apex:stylesheet value="{!URLFOR($Resource.isll_colorbox, 'colorbox.css')}" />
+
+
+
+
+     
+    
+    
+<style>
+@font-face {
+    font-family: knockout;
+    src: url("{!URLFOR($Resource.ISLL_Fonts, 'Knockout/Knockout-HTF48-Featherweight.otf')}");
+}
+
+/*@font-face
+{
+  font-family: 'din';
+  src: url('{!URLFOR($Resource.ISLL_Fonts, 'DIN/DINReg.eot')}?') format('eot'), url('{!URLFOR($Resource.ISLL_Fonts, 'DIN/DINReg.otf')}') format('opentype');
+}*/
+
+@font-face {
+  font-family: 'din';
+  src: url('{!URLFOR($Resource.ISLL_Fonts, 'DIN/din-bold-webfont.eot')}');
+  src: url('{!URLFOR($Resource.ISLL_Fonts, 'DIN/din-bold-webfont.eot')}?#iefix') format('eot'),
+  url('{!URLFOR($Resource.ISLL_Fonts, 'DIN/din-bold-webfont.woff')}') format('woff'),
+  url('{!URLFOR($Resource.ISLL_Fonts, 'DIN/din-bold-webfont.ttf')}') format('truetype'),
+  url('{!URLFOR($Resource.ISLL_Fonts, 'DIN/din-bold-webfont.svg')}') format('svg');
+}
+
+.popover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1010;
+    display: none;
+    max-width: 220px;
+    padding: 1px;
+    text-align: left;
+    white-space: normal;
+    color: #ffffff;
+}
+.popover.top {
+  margin-top: -10px;
+}
+.popover.right {
+  margin-left: 10px;
+}
+.popover.bottom {
+  margin-top: 10px;
+}
+.popover.left {
+  margin-left: -10px;
+}
+.popover-title {
+    padding: 0px 15px 22px;
+    padding-top: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 18px;
+}
+.popover-title:empty {
+  display: none;
+}
+.popover-content {
+  padding: 2px 14px;
+  font-size: 12px !important;
+}
+.popover .arrow,
+.popover .arrow:after {
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+}
+.popover .arrow {
+  border-width: 11px;
+}
+.popover .arrow:after {
+  border-width: 10px;
+  content: "";
+}
+.popover.top .arrow {
+  left: 50%;
+  margin-left: -11px;
+  border-bottom-width: 0;
+  border-top-color: #999;
+  border-top-color: rgba(0, 0, 0, 0.25);
+  bottom: -11px;
+}
+.popover.top .arrow:after {
+  bottom: 1px;
+  margin-left: -10px;
+  border-bottom-width: 0;
+  border-top-color: #ffffff;
+}
+.popover.right .arrow {
+  top: 50%;
+  left: -11px;
+  margin-top: -11px;
+  border-left-width: 0;
+  border-right-color: #999;
+  border-right-color: rgba(0, 0, 0, 0.25);
+}
+.popover.right .arrow:after {
+  left: 1px;
+  bottom: -10px;
+  border-left-width: 0;
+  border-right-color: #ffffff;
+}
+.popover.bottom .arrow {
+  left: 50%;
+  margin-left: -11px;
+  border-top-width: 0;
+  border-bottom-color: #999;
+  border-bottom-color: rgba(0, 0, 0, 0.25);
+  top: -11px;
+}
+.popover.bottom .arrow:after {
+  top: 1px;
+  margin-left: -10px;
+  border-top-width: 0;
+  border-bottom-color: #ffffff;
+}
+.popover.left .arrow {
+  top: 50%;
+  right: -11px;
+  margin-top: -11px;
+  border-right-width: 0;
+  border-left-color: #999;
+  border-left-color: rgba(0, 0, 0, 0.25);
+}
+.popover.left .arrow:after {
+  right: 1px;
+  border-right-width: 0;
+  border-left-color: #ffffff;
+  bottom: -10px;
+}
+#closeHelp{
+    z-index: 1010;
+    position: fixed;
+    top: 27px;
+    right: 31px;
+    display : none;
+}
+
+
+.fadedBackground{
+    display: block !important;
+    opacity: 0.8;
+    background: black !important;
+    z-index: 1000 !important;
+    filter:alpha(opacity=80) !important; /* For IE8 and earlier */
+}
+
+div.background
+  {
+    /*
+    margin: 0;
+		width: 100%;
+		min-width: 900px;
+		height: 911px;
+		background-image: url('{!URLFOR($Resource.isll_images, 'background.png')}');
+		background-repeat: no-repeat;
+		background-position: 187% 72%;
+		background-size: 89% 119%;
+		color: #767676;
+		*/
+		margin:0;
+		width: 100%;
+		min-width: 900px;
+		padding:0;
+		background-image: url('{!URLFOR($Resource.isll_images, 'background.png')}');
+		background-repeat:repeat-y;
+		background-position:right top;
+		overflow:auto;
+		color:#767676;
+  }
+div.transbox
+  {
+     width: 94.5%;
+    min-width: 834px;
+    height: auto;
+    margin: -18px 0 0 41px;
+    background-color: #ffffff;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+  }
+  
+  sidebar, .sidebar
+        {
+            width: 136px;
+            float: left;
+            display: inline;
+            margin: 0;
+            padding: 0;
+            margin-right: 23px;
+        }
+        
+                
+        .searchbar
+        {
+            height: 12px;
+            padding: 0;
+            padding-bottom: 20px;
+        }
+        
+        .search
+        {
+            width:125px;
+            padding: 6px 15px 6px 5px;
+            margin: 3px;
+            margin-bottom: 5px;
+            margin-left: 0;
+            height: 12px;
+        }   
+        
+        .search input
+        {
+            border:1px solid #2a2e31;
+            background-color:#2d3035;
+            color:#505358;
+        }
+        
+        .searchbarLinks
+        {
+            margin-bottom: 20px;
+            font-size: 9px;
+        }
+        
+    #content {
+        width: 80%;
+        float: left;
+        /*margin-bottom: 5px;*/
+        margin-bottom:0;
+        margin-left: 36px;
+        background-color: #ffffff;
+        position: relative;
+        /*bottom: 6px;*/
+        bottom:0;
+        left: 21px;
+        border-top-right-radius: 50px;
+        /*border-bottom-right-radius: 50px;*/
+        padding-top: 10px;
+        padding-right: 10px;
+        padding-bottom: 30px;
+    }
+    
+    #firstColumn {
+            margin-bottom: 20px;
+            width: 48%;
+            float: left;
+        }
+        
+    #secondColumn {
+        margin-bottom: 20px;
+        width: 48%;
+        float: left;
+        margin-left: 22px;
+    }
+    
+     #secondRow
+        {
+            clear: both;
+        }
+        
+        header footer {
+            clear: both;
+            margin-top: 20px;
+        }
+         .logo
+        {
+          margin: -40px 0 30px -20px;
+          width: 160px;
+        }
+        
+          .link
+        {
+            margin-bottom: 10px;
+            font-size:10px;
+            color: #343434;
+        }
+        
+        .help-link
+        {
+            margin-top: 35px;
+            font-size:10px;
+            color: #343434;
+            width: 150px;
+        }
+        
+         .linkSelected
+        {
+            float: left;
+            margin: 3px 0px 0px -7px;
+            background:url('{!URLFOR($Resource.isll_images, 'navigationIcon_7x8.png')}') no-repeat 0 0;
+            height:8px;
+            width:7px;
+            position: relative;
+            right: 10px;
+        }
+        
+           .linkHeader
+        {
+            font-size:19px;
+            /* font-family: Arial, Verdana, Helvetica; */
+            font-family: din;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        a.sidelink{
+            text-decoration: none;
+            font-size: 12px;
+        }
+        
+                
+        .cmsContentTitle{
+            display: block;
+            font-size: 24px;
+            /*font-weight: bold;
+            margin: 20px 0 20px 0;*/
+            color: #343434;
+            /*text-transform: uppercase;*/
+            font-family: knockout !important; /* no .ttf */
+        }
+        .linkImg{
+            vertical-align: text-bottom;
+            height: 20px;
+            margin-right: 10px;
+        }
+        .editLink{
+            float: right;
+            text-decoration: none;
+            text-transform: none;
+            font-size: 12px;
+            font-weight: normal;
+            position: relative;
+            top : -5px;
+
+        }
+        
+        .videobox { position: relative; }
+        
+        .videobox span
+        {
+            display: inline;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: 1;
+            background: url("{!$Resource.isll_PlayButton}" ) no-repeat center center;
+            background-size: 80px 80px;
+        }
+        
+        .searchCell{
+            visibility: hidden;
+        }
+
+        .logoImage{
+           position: relative;
+            top: 32px;
+            left: 12px;
+            width: 188px;
+        }
+
+        .noSidebarCell{
+            padding: 0px;
+        }
+
+        /*side bar*/
+        #findHelp + .popover .popover-title {color: rgb(220,107,47);} 
+        #findHelp + .popover.top .arrow:after {border-top-color: rgb(220,107,47);}
+
+        #libHelp + .popover .popover-title {color: rgb(228,0,43);} 
+        #libHelp + .popover.top .arrow:after {border-top-color: rgb(228,0,43);} 
+
+        /* common */
+        #moderatorHelp + .popover .popover-title {color: rgb(64,164,215);} 
+        #moderatorHelp + .popover.left .arrow:after {border-left-color: rgb(64,164,215);} 
+
+        #wordCloudHelp + .popover .popover-title {color: rgb(223,25,149);} 
+        #wordCloudHelp + .popover.left .arrow:after {border-left-color: rgb(223,25,149);} 
+
+        #parentChatterFeedContainer + .popover .popover-title {color: rgb(127,192,177);} 
+        #parentChatterFeedContainer + .popover.left .arrow:after {border-left-color: rgb(127,192,177);}  
+       
+        /*home page*/
+        #carouselHelp + .popover .popover-title {color: rgb(225,199,44);} 
+        #carouselHelp + .popover.top .arrow:after {border-top-color: rgb(225,199,44);} 
+
+        #topInfluencersHelp + .popover .popover-title {color: rgb(0,179,136);} 
+        #topInfluencersHelp + .popover.top .arrow:after {border-top-color: rgb(0,179,136);} 
+
+        /*communi brain */
+        #sustainExpertsHelp + .popover .popover-title {color: rgb(225,199,44);} 
+        #sustainExpertsHelp + .popover.right .arrow:after {border-left-color: rgb(225,199,44);} 
+
+        #topLibraryFiles + .popover .popover-title {color:rgb(0,179,136);} 
+        #topLibraryFiles + .popover.right .arrow:after {border-left-color: rgb(0,179,136);} 
+
+        /*uslp ambi*/
+        #brandTable + .popover .popover-title {color: rgb(225,199,44);} 
+        #brandTable + .popover.top .arrow:after {border-top-color: rgb(225,199,44);} 
+
+        /*isll_EmbedSustainableLIMP*/
+        #ipmModel + .popover .popover-title {color: rgb(225,199,44);} 
+        #ipmModel + .popover.top .arrow:after {border-top-color: rgb(225,199,44);} 
+
+        /*business fundamentals */
+        
+        #clickableImageOne + .popover .popover-title {color: rgb(225,199,44);} 
+        #clickableImageOne + .popover.top .arrow:after {border-top-color: rgb(225,199,44);} 
+
+        #clickableImageTwo + .popover .popover-title {color: rgb(0,179,136);} 
+        #clickableImageTwo + .popover.top .arrow:after {border-top-color:rgb(0,179,136);}
+
+        /*search results*/
+        #addToMyLibrary + .popover .popover-title {color: rgb(225,199,44);} 
+        #addToMyLibrary + .popover.left .arrow:after {border-left-color: rgb(225,199,44); margin-left: -18px;} 
+        #addToMyLibrary + .popover.fade.left.in { top: 166px !important; left: 641px !important;}
+
+
+        #shareFileHelp + .popover .popover-title {color: rgb(0,179,136);} 
+        #shareFileHelp + .popover.left .arrow:after {border-left-color: rgb(0,179,136); margin-top: -23px } 
+        #shareFileHelp + .popover.fade.left.in { top: 202px !important;}
+
+        #downloadFileHelp + .popover .popover-title {color:rgb(223,25,149); padding-right: 11px !important;} 
+        #downloadFileHelp + .popover.top .arrow:after {border-top-color: rgb(223,25,149);margin-left: -7px !important; } 
+        #downloadFileHelp + .popover.fade.top.in  {top: 169px  !important; left: 810px !important;}
+
+        
+        #fileInfoHelp + .popover .popover-title {color: rgb(64,164,215);} 
+        #fileInfoHelp + .popover.top .arrow:after {border-top-color: rgb(64,164,215); margin-left: -19px !important;} 
+
+        #fileSortHelp + .popover .popover-title {color: rgb(178,136,185);} 
+        #fileSortHelp + .popover.left .arrow:after {border-left-color: rgb(178,136,185); margin-top: -3px !important;} 
+        
+        #peopleHelp + .popover .popover-title {color: rgb(127,1194,228);} 
+        #peopleHelp + .popover.top .arrow:after {border-top-color: rgb(127,1194,228);} 
+
+        #chatterResults + .popover .popover-title {color: rgb(0,87,43);} 
+        #chatterResults + .popover.right .arrow:after {border-right-color: rgb(0,87,43);}
+        
+        /*.chatterexpando .feedpage {width:100%;}*/
+        
+        #isllContent span, #isllContent div, #isllContent input, #isllContent select, #isllContent textarea, #isllContent h1, #isllContent h2, #isllContent h3
+		{
+			font-family: din;
+		}
+		
+		.video-button
+		{
+			background-image: url(s.gif);
+			/*background-image: url(https://img.youtube.com/vi/bnzDm-KuBmc/0.jpg);*/
+			/*background-image: url(play_overlay.png);*/
+			cursor: pointer;
+			position: absolute;
+			z-index: 10;
+		}
+			 
+		.video-embed
+		{
+			position: relative;
+			z-index: 0;
+		}
+</style>
+
+<script type="text/javascript"> 
+
+
+
+// run script after all the images have loaded & on window resize
+$(window)
+    .load(function() {
+    if($(window).width() <= 1200)
+        $("body").css("width","1200px");
+    else
+    $("body").css("width","100%");
+    })
+
+    .resize(function() {
+    if($(window).width() <= 1200)
+        $("body").css("width","1200px");
+    else
+    $("body").css("width","100%");
+    });
+
+ function showHelpPopOver ()
+{   
+    $("#cboxOverlay").addClass('fadedBackground');
+    $("#closeHelp").show();
+
+    //side
+    $("#libHelp").popover({placement:'top'});
+    $("#findHelp").popover({placement:'top'});
+
+    //commin
+    //$("#moderatorHelp").popover({placement:'left'});
+    $("#moderatorHelp").popover({placement:'left'});
+    $("#wordCloudHelp").popover({placement:'left'});
+    //$("#parentChatterFeedContainer").popover({placement:'left'});
+    $("#parentChatterFeedContainer").popover({placement:'top'});
+    
+     //home page help
+    //$("#carouselHelp").popover({placement:'top'});
+    //$("#topInfluencersHelp").popover({placement:'top'});
+    $("#carouselHelp").popover({placement:'left'});
+    $("#topInfluencersHelp").popover({placement:'left'});
+
+    //communi brain
+    $("#sustainExpertsHelp").popover({placement:'right'});
+    $("#topLibraryFiles").popover({placement:'right'});
+    
+    //uslp ambi
+    $("#brandTable").popover({placement:'top'});
+    
+    //isll_EmbedSustainableLIMP
+    $("#ipmModel").popover({placement:'top'});
+
+    //business fundamentals
+    $("#clickableImageOne").popover({placement:'top'});
+    $("#clickableImageTwo").popover({placement:'top'});
+    
+    //search results
+    
+    $("#addToMyLibrary").popover({placement:'left'});
+    $("#shareFileHelp").popover({placement:'left'});
+    $("#downloadFileHelp").popover({placement:'top'});
+    $("#fileInfoHelp").popover({placement:'top'});
+    $("#fileSortHelp").popover({placement:'left'});
+    $("#peopleHelp").popover({placement:'top'});
+    $("#chatterResults").popover({placement:'right'});
+
+
+    
+
+    $(".helpClass").popover('show');
+ 
+
+}
+
+function hideHelpPopOver ()
+{   $(".helpClass").popover('destroy');
+    $("#closeHelp").hide();
+    $("#cboxOverlay").removeClass('fadedBackground');
+}
+
+
+    // Added by MSael
+    $(document).ready(function()
+    {
+
+        $('input[id="search"]').each(function()
+        {
+            $(this).keyup(function(e)
+            {
+                if(e.keyCode == 13 && $(this).is(':focus'))
+                {
+                    top.location = '/apex/isll_BrainResults?search=' + encodeURI($(this).val());
+                    
+                    return false;
+                }
+            });
+        });
+
+        $('input[id="searchResults"]').each(function()
+        {
+            $(this).keyup(function(e)
+            {
+                if(e.keyCode == 13 && $(this).is(':focus'))
+                {
+                    top.location = '/apex/isll_BrainResults?search=' + encodeURI($(this).val());
+                    
+                    return false;
+                }
+            });
+        });
+    });
+    
+    //function to show video popup
+    function showVideo(resource, place, colorbox_content){
+	    var isJWPlayer = setupVideo(resource, place, 750, 572);
+    	
+    	$.colorbox({ inline: true, href:'#'+colorbox_content});
+    	if(isJWPlayer){
+    		jwplayer(place).play(true);
+    	} 
+    }
+    
+    var c_counted = false;
+    
+    //setup video
+    function setupVideo(resource, place, c_width, c_height){
+    	$("#"+ place+"_wrapper").attr("id", place);
+	    
+	    var isJWPlayer = true;
+	    //content in salesforce
+	    if(resource.indexOf("/") < 0){
+	    	jwplayer(place).setup({
+            	flashplayer: "{!URLFOR($Resource.isll_VidComp, 'lib/player.swf')}",
+                file: '/sfc/servlet.shepherd/version/download/'+resource,
+                width: c_width,
+                height: c_height,
+                provider: "video"
+            });
+	    } else if(resource.toLowerCase().indexOf("vimeo") >= 0){ //vimeo video
+	    	//get video id
+	    	var temp = resource.split('/');
+	    	var vId = temp[temp.length - 1];
+	    	$("#"+ place).html('<div class="video-button" style="background-size: ' + c_width + 'px ' + c_height + 'px; width:' + c_width + 'px; height:' + c_height + 'px;"></div><iframe class="video-embed" src="https://player.vimeo.com/video/'+vId+'" width="'+c_width+'" height="'+c_height+'" frameborder="0" webkitAllowFullScreen ="true" mozallowfullscreen="true"></iframe>');
+	    	isJWPlayer = false;
+	    	
+	    	$(".video-button").click(function()
+			{
+				$(".theStartBtn").click();
+				
+				$(".video-button").css({"opacity":"0", "display":"none"});
+
+				var param_char = '?';
+
+				if($(".video-embed")[0].src.indexOf('?') > 0)
+				{
+					param_char = '&'
+				}
+
+				$(".video-embed")[0].src = $(".video-embed")[0].src + param_char + "autoplay=1";
+
+				$(this).unbind("click");
+			});
+        } else if (resource.toLowerCase().indexOf("youtu") >= 0){ //youtube video
+            var temp = resource.split('/');
+            var vId = temp[temp.length - 1];
+            $("#"+ place).html('<div class="video-button" style="background-size: ' + c_width + 'px ' + c_height + 'px; width:' + c_width + 'px; height:' + c_height + 'px;"></div><iframe class="video-embed" src="//www.youtube.com/embed/'+vId+'?wmode=opaque" width="'+c_width+'" height="'+c_height+'" wmode="Opaque" frameborder="0" webkitAllowFullScreen ="true" mozallowfullscreen="true"></iframe>');
+	    	
+	    	$(".video-button").click(function()
+			{
+				$(".theStartBtn").click();
+				
+				$(".video-button").css({"opacity":"0", "display":"none"});
+
+				var param_char = '?';
+
+				if($(".video-embed")[0].src.indexOf('?') > 0)
+				{
+					param_char = '&'
+				}
+
+				$(".video-embed")[0].src = $(".video-embed")[0].src + param_char + "autoplay=1";
+
+				$(this).unbind("click");
+			});
+            
+            isJWPlayer = false;
+    	} else { // another videos
+    		jwplayer(place).setup({
+            	flashplayer: "{!URLFOR($Resource.isll_VidComp, 'lib/player.swf')}",
+                file: resource,
+                width: c_width,
+                height: c_height
+            });
+    	}
+    	
+    	return isJWPlayer;
+    }
+</script>
+
+    <div id="isllContent" class="background">&nbsp;
+        <br/><br/><br/>
+        <div class="transbox">
+        	<div class="sidebar" style="font-family: din;">
+            <!-- <sidebar role="main">-->
+                 <a href = "#" onClick = "hideHelpPopOver();">
+                    <div id = "closeHelp">
+                        <img src = "{!URLFOR($Resource.isll_images, 'closeIcon.png')}" width = "30px" height = "30px"/>
+                    </div>
+                </a>
+                <div class="logo">
+                    <a href="/apex/isll_Home">
+                        <apex:image value="{!URLFOR($Resource.isll_images, 'SLL_LOGO.png')}" styleclass="logoImage"/>
+                    </a>    
+                </div>
+                <apex:outputPanel rendered="{!IF($Profile.Name != 'ISLL External Event Member', true, false)}">
+                    <div  class = "helpClass"  id = "findHelp" rel="popover" data-content="Enter key words here to search the lab for people, information and tools"  data-original-title="Find">
+                        <div class="linkHeader" style="color:#DC6B2F;" id = "findHeader"  >FIND</div>
+                        <!-- Added by MSael -->
+                        <c:isll_SearchBarComponent isSideBar="true"  /><br />
+                    </div>   
+                    <div class="linkHeader" style="color:#E56DB1;">TAKE PART</div>
+                    <apex:outputpanel rendered="{!$CurrentPage.Name == 'isll_CommuniBrain' || $CurrentPage.Name == 'isll_BrainResults'}"><span class="linkSelected"></span></apex:outputpanel>
+                    <div class="link" ><a class = "sidelink"  id =  "theBrain" href="/apex/isll_CommuniBrain">Community</a></div>
+                    <apex:outputpanel rendered="{!$CurrentPage.Name == 'isll_Events'}"><span class="linkSelected"></span></apex:outputpanel>
+                    <div class="link" ><a href="/apex/isll_Events" class = "sidelink"  id = "events" >Live Events</a></div>
+                    <div class="link" ><a class = "sidelink"  id =  "theExperts" href="/apex/isll_SustainableLivingExperts">Sustainable Living Experts</a></div>
+                    <br />
+                   
+                    <div class="linkHeader" style="color: #AC4FC6;">TAKE ACTION</div>
+                    <apex:outputpanel rendered="{!$CurrentPage.Name == 'isll_UslpAmbition'}"><span class="linkSelected"></span></apex:outputpanel>
+                    <div class="link"><a class = "sidelink" href="/apex/isll_UslpAmbition" >Develop Brand USLP Ambition</a></div>
+                    <apex:outputpanel rendered="{!$CurrentPage.Name == 'isll_EmbedSustainableLIMP'}"><span class="linkSelected"></span></apex:outputpanel>
+                    <div class="link"><a class = "sidelink" href="/apex/isll_EmbedSustainableLIMP">BD: Strengthen my Project</a></div>
+                    <apex:outputpanel rendered="{!$CurrentPage.Name == 'isll_DeliverSLBrandExp'}"><span class="linkSelected"></span></apex:outputpanel>
+                    <div class="link"><a class = "sidelink" href="/apex/isll_DeliverSLBrandExp">BB: Strengthen my BMP</a></div>
+                    <apex:outputpanel rendered="{!$CurrentPage.Name == 'isll_Partnerships'}"><span class="linkSelected"></span></apex:outputpanel>
+                    <div class="link"><a class = "sidelink" href="/apex/isll_Partnerships">Partnerships</a></div>
+                    <br />
+                    
+                    <div class="linkHeader" style="color:#00B388;">UNDERSTAND</div>
+                    <apex:outputpanel rendered="{!$CurrentPage.Name == 'isll_BusinessFundamentals'}"><span class="linkSelected"></span></apex:outputpanel>
+                    <div class="link"><a class = "sidelink" href="/apex/isll_BusinessFundamentals">Business Fundamentals</a></div> 
+                    
+               </apex:outputPanel>
+               <apex:outputPanel rendered="{!IF($Profile.Name != 'ISLL External Event Member', true, false)}">
+               		<div class="help-link">
+                        <a class = "sidelink" href="#" onclick="showHelpPopOver();" style = "font-size: 11px;" >Help</a> | 
+                            <span id = "libHelp" class = "helpClass" rel="popover" data-content="Access the full lab library or see your own favourites" data-original-title="My Library & Full Library">
+                                <a  class = "sidelink" href="/apex/isll_MyLibrary" style = "font-size: 11px;" >My Library</a> | 
+                                <a class = "sidelink" href="/apex/isll_AllContentInIsll" style = "font-size: 11px;" >Full Library </a> |
+                                <a class = "sidelink" href="/apex/isll_NewsArchive" style = "font-size: 11px;" >News</a>
+                            </span>
+                    </div>
+               </apex:outputPanel>
+            </div>
+            <!--</sidebar>-->
+            <div id="content">
+                 <header>
+                    <apex:insert name="headerContent" />
+                </header>
+                <div id="firstColumn">
+                    <apex:insert name="firstColumn" /> 
+                </div>
+                <div id="secondColumn">
+                    <apex:insert name="secondColumn" />
+                </div>
+                <div id="thirdColumn">
+                    <apex:insert name="thirdColumn" />
+                </div>
+                <div id="secondRow">
+                    <apex:insert name="secondRow" />
+                </div>
+                <footer>
+                    <apex:insert name="footerContent" />
+                </footer>
+            </div>
+        
+        </div>
+    </div>
+    
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36302283-1']);
+  _gaq.push(['_setDomainName', '{!$Site.Domain}']);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  
+
+</script>
+    
+  
+</apex:page>

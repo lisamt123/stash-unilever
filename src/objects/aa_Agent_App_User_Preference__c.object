@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Agent_App_Unilever_Brand__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Unilever Brand Name</label>
+        <referenceTo>aa_Agent_App_Competitor_Brand__c</referenceTo>
+        <relationshipLabel>Agent App User Preferences (Unilever Brand Name)</relationshipLabel>
+        <relationshipName>Agent_App_User_Preferences1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Category__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Category</label>
+        <referenceTo>aa_Agent_App_Category__c</referenceTo>
+        <relationshipLabel>Agent App User Preferences</relationshipLabel>
+        <relationshipName>Agent_App_User_Preferences</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Cluster__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Cluster</label>
+        <referenceTo>aa_Cluster__c</referenceTo>
+        <relationshipLabel>Agent App User Preferences</relationshipLabel>
+        <relationshipName>Agent_App_User_Preferences</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Competitor_Brand__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Competitor Brand</label>
+        <referenceTo>aa_Agent_App_Competitor_Brand__c</referenceTo>
+        <relationshipLabel>Agent App User Preferences</relationshipLabel>
+        <relationshipName>Agent_App_User_Preferences</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Competitor_Name__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Competitor Name</label>
+        <referenceTo>aa_Agent_Competitor__c</referenceTo>
+        <relationshipLabel>Agent App User Preferences</relationshipLabel>
+        <relationshipName>Agent_App_User_Preferences</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Country__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Country</label>
+        <referenceTo>aa_Country__c</referenceTo>
+        <relationshipLabel>Agent App User Preferences</relationshipLabel>
+        <relationshipName>Agent_App_User_Preferences</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Is_Accepted_Terms_Condition__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This field saves the acceptance by the user that he/she agrees for the terms and condition of the Agent App.</description>
+        <externalId>false</externalId>
+        <label>Is Accepted Terms &amp; Condition</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>RecordTypeId__c</fullName>
+        <externalId>false</externalId>
+        <label>RecordTypeId</label>
+        <length>55</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ReportingOn__c</fullName>
+        <externalId>false</externalId>
+        <label>ReportingOn</label>
+        <length>250</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Retailer__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Retailer</label>
+        <referenceTo>aa_Agent_Retailer__c</referenceTo>
+        <relationshipLabel>Agent App User Preferences</relationshipLabel>
+        <relationshipName>Agent_App_User_Preferences</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>T_C_AcceptedDate__c</fullName>
+        <description>This field is for the terms and condition accepted date and time.</description>
+        <externalId>false</externalId>
+        <label>T&amp;C_AcceptedDate</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Topic__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Agent Topic</label>
+        <referenceTo>aa_Topic__c</referenceTo>
+        <relationshipLabel>Agent App User Preferences</relationshipLabel>
+        <relationshipName>Agent_App_User_Preferences</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UserId__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This field is a lookup to the user object</description>
+        <externalId>false</externalId>
+        <label>User</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Agent_App_User_Preferences</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>User_Last_Login__c</fullName>
+        <description>Capture user&apos;s last login in agent app</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Capture user&apos;s last login in agent app</inlineHelpText>
+        <label>User Last Login</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <label>Agent App User Preference</label>
+    <nameField>
+        <label>Agent App User Preferences Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Agent App User Preferences</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

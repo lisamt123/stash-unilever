@@ -1,0 +1,61 @@
+<apex:page tabStyle="Sustainable_Living_Lab__tab" standardcontroller="Event__c" extensions="isll_EventDetailExtention">
+<style type="text/css">
+	#firstColumn {
+	    margin-bottom: 20px;
+	    width: 70% !important;
+	    float: left;
+	}
+
+	.hearderImage{
+		width : 99%;
+		height: 150px;
+	}
+	
+	.viewLink {
+	 	clear:both;
+	 }
+	 
+	 .viewLink a{ 
+		color : #6e6cb8;
+	 	text-decoration: none;
+	 	/*text-transform: uppercase;*/
+	 	font-size: 11px;
+	 }
+	 
+	
+
+</style>
+	<apex:composition template="isll_TemplateMain">
+			<apex:define name="headerContent">
+				<apex:image value="http://www.unilever.com.sg/Images/walls%20header_tcm205-70334.jpg" styleClass="hearderImage"/> 
+
+			</apex:define>
+			<apex:define name="firstColumn">
+				<span class = "cmsContentTitle">{!Event__c.Name}</span>
+ 				<apex:outputpanel rendered="{!showExperts}">
+					<span class="cmsContentTitle">Experts</span>
+					<apex:repeat value="{!allExperts}" var="aExpert">
+						<apex:outputpanel rendered="{!aExpert != null}">
+		               		<a href="/{!aExpert.Id}" ><c:isll_UserpicWithFlagV2 user="{!aExpert}" width="60" height="60" style="float:left; margin-right:3px;"/></a>
+		               	</apex:outputpanel>
+		            </apex:repeat><br/>
+	            </apex:outputpanel>
+	            <div style="clear:both;"></div>
+	            <apex:outputpanel rendered="{!showInternalMembers}">
+	            	<span class="cmsContentTitle">Internal Members</span>
+		            <apex:repeat value="{!allInternalMembers}" var="member">
+		            	<a href="/{!member.Id}" ><c:isll_UserpicWithFlagV2 user="{!member}" width="60" height="60" style="float:left; margin-right:3px;"/></a>
+		            </apex:repeat><br/>
+	            </apex:outputpanel>
+	            <div style="clear:both;"></div>
+	            <apex:outputpanel rendered="{!showExternalMembers}">
+					<span class="cmsContentTitle">External Members</span>
+		            <apex:repeat value="{!allExternalMembers}" var="member">
+		            	<apex:outputpanel rendered="{!member != null}">
+		               		<a href="/{!member.Id}" ><c:isll_UserpicWithFlagV2 user="{!member}" width="60" height="60" style="float:left; margin-right:3px;"/></a>
+		               	</apex:outputpanel>
+		            </apex:repeat> 
+	            </apex:outputpanel>  
+			</apex:define>
+	</apex:composition>
+</apex:page>

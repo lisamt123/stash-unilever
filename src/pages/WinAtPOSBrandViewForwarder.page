@@ -1,0 +1,2 @@
+<apex:page standardController="Brand_Master__c" extensions="WinatPOSBrandViewController" action="{!doAction}" >
+</apex:page>

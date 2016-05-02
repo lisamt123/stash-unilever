@@ -1,0 +1,30 @@
+.THIS.itemPanel {
+    background-color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 0px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border: 1px #D1D1D4 solid;
+}
+.THIS .rightFloat {
+	display: inline-block;
+    text-align: right;
+    float: right;    
+}
+.THIS .bannerImage{
+    height: 90px;
+    width: 100%;
+}
+.THIS .topicStyle{
+    margin-top: 10px;
+    background: #008FCB;
+    height: 20px;
+    width: 60px;
+    padding: 5px;
+    font-size: xx-small;
+    text-align:center;
+    color:#FFFFFF;
+}

@@ -1,0 +1,343 @@
+<apex:page docType="html-5.0" controller="AR_AgencyGridView" sidebar="false" standardStylesheets="false" title="The Agency List">
+
+	<apex:includeScript value="{!$Resource.google_analytics}" />
+
+	<apex:form id="theForm" styleClass="body">
+
+		<apex:stylesheet value="{!URLFOR($Resource.AR_InternalStaticResources, 'css/jquery-ui-1.10.3.css')}" />	 
+		<apex:stylesheet value="{!URLFOR($Resource.AR_InternalStaticResources, 'css/styles.css')}" />
+	    <apex:stylesheet value="{!URLFOR($Resource.AR_InternalStaticResources, 'royalslider/royalslider.css')}" />
+	    <apex:stylesheet value="{!URLFOR($Resource.AR_InternalStaticResources, 'royalslider/skins/default/rs-default.css')}" />
+	    <apex:stylesheet value="{!URLFOR($Resource.AR_InternalStaticResources, 'fancybox/jquery.fancybox.css')}" />
+	    <apex:includeScript value="{!URLFOR($Resource.AR_InternalStaticResources, 'js/vendor/jquery-1.9.1.min.js')}" />
+	    <apex:includeScript value="{!URLFOR($Resource.AR_InternalStaticResources, 'js/vendor/jquery-ui-1.10.3.js')}" />
+	    <apex:includeScript value="{!URLFOR($Resource.AR_InternalStaticResources, 'js/vendor/modernizr-2.6.2.min.js')}" />
+	    <apex:includeScript value="{!URLFOR($Resource.AR_InternalStaticResources, 'royalslider/jquery.royalslider.min.js')}" />
+	    <apex:includeScript value="{!URLFOR($Resource.AR_InternalStaticResources, 'fancybox/jquery.fancybox.js?v=2.1.4')}" />
+	    <apex:includeScript value="{{!URLFOR($Resource.AR_InternalStaticResources, 'fancybox/helpers/jquery.fancybox-media.js?v=1.0.5')}" />
+	    <apex:includeScript value="{!URLFOR($Resource.AR_InternalStaticResources, 'js/plugins.js')}" />
+	    <apex:includeScript value="{!URLFOR($Resource.AR_InternalStaticResources, 'js/main.js')}" />
+	    
+	    <script>
+			jQuery(document).ready(function($) {
+				$(".royalSlider").royalSlider({
+					// general options go here
+					controlNavigation: 'none',
+					arrowsNavAutoHide:  false,
+					arrowsNav: true,
+				});
+		             
+			    $('#expertiseFilter').keyup(function() { filterOptions('expertiseOptions', $(this).val()); });
+				$('#categoryFilter').keyup(function() { filterOptions('categoryOptions', $(this).val()); });
+				$('#brandFilter').keyup(function() { filterOptions('brandOptions', $(this).val()); });
+				$('#locationFilter').keyup(function() { filterOptions('locationOptions', $(this).val()); });
+	
+				var availableTags = [
+					<apex:repeat value="{!allAgencies}" var="agency">
+						"{!agency.Name}",
+					</apex:repeat>
+				];
+				
+				$( "input.search" ).autocomplete({
+			    	source: availableTags,
+			    	select: function( event, ui ) { 
+			    		$( "input.search" ).val(ui.item.value);
+			    		applyFilter(); 
+			    	}
+			  	});
+	
+			});
+	
+			function filterOptions(filterCategory, filterValue) {
+				$('input[id*=' + filterCategory + ']').each(function(index, element) {
+					if( $(this).val().toLowerCase().indexOf(filterValue.toLowerCase()) != -1)
+					{
+						$(this).parent().parent().show();
+					} else
+					{
+						$(this).parent().parent().hide();
+					}
+				});
+			}
+			function setFocusOnLoad() {}
+		</script>
+	    
+	    <style>
+			ul li, ol li { margin-left: 0; }
+			h1, h2, h3, h4, h5, h6 { display: block; }
+			.accordion ul label { color: #646464; }
+			.filterInput { margin: 5px 0; }
+			.global-header { position:static; }
+			.global-footer a, .global-footer p { line-height: 15px; }
+			.zen .postToDropdown .zen-select .zen-trigger { overflow-x: visible; }
+			img.allTabsArrow {display:inline;}
+		</style>
+	
+	    <nav class="visuallyhidden">
+	        <a href="#content">Skip to content</a>
+	    </nav>
+	    
+	    <apex:pageMessages />
+	 
+	    <header class="global-header" style="font-family: 'Din', sans-serif !important;">
+	    	<div class="header-wrapper">
+		        <h1>
+		            <img src="{!URLFOR($Resource.AR_InternalStaticResources, 'img/logo.png')}" alt="The Agency List" style="margin-left:20px;" />
+		        </h1>
+		    </div>
+	    </header>
+    
+    	<section id="content" class="homepage-banner clearfix" style="font-family: 'Din', sans-serif !important;">
+    
+            <div class="banner-wrapper">
+                <article class="article-intro-text">
+                    <apex:outputText escape="false" value="{!featuredText.Body__c}" />
+                </article>
+                <section class="royalSlider slider rsDefault">
+                	<apex:repeat value="{!featuredAgencies}" var="agency">
+	                    <article class="article-slider-agency">
+	                        <ul class="text-holder">
+	                            <li><h1 style="font-family: 'Din', sans-serif !important;">Featured Agency</h1></li>
+	                            <li><h2 style="font-family: 'Din', sans-serif !important;"> <a href="/apex/AR_AgencyDetail?id={!agency.agency.Id}" style="color:white;text-decoration:none;">{!agency.agency.Name}</a></h2></li>
+	                            <li><p>{!SUBSTITUTE(agency.agency.Agency_Expertise__c,';',', ')}</p></li>
+	                        </ul>
+	                        <div class="image-holder">
+	                        	<apex:image value="/servlet/servlet.FileDownload?file={!agency.attachment.Id}" rendered="{!agency.attachment != null}" />
+	                        </div>
+	                    </article>
+                    </apex:repeat>
+                </section>
+            </div>
+        </section>
+        <section class="similar-agencies" style="font-family: 'Din', sans-serif !important;">
+            <nav class="accordion clearfix">
+                <ul>
+                    <h2>Refine</h2>
+                    <apex:outputPanel layout="block" styleClass="clear_all" style="right:80px;" rendered="{!filterApplied}">
+                    	<apex:commandLink action="{!clearFilters}" value="Clear All" style="color:white;text-decoration:none;" />
+                    </apex:outputPanel>
+                    <apex:outputPanel layout="block" styleClass="clear_all">
+                    	<apex:commandLink action="{!filterAgencies}" value="Filter" style="color:white;text-decoration:none;" />
+                    </apex:outputPanel>
+                    <li class="open">
+                        <h2>Name</h2>
+                        <ul>
+                        	<li><apex:inputText value="{!searchText}" styleClass="search" /></li>
+                        </ul>
+                    </li>
+                    <li class="closed">
+                        <h2>Discipline</h2>
+                        <ul>
+                            <li>
+	                            <apex:selectCheckboxes value="{!disciplineSelectedOptions}" layout="pageDirection">
+									<apex:selectOptions value="{!disciplineOptions}" />
+								</apex:selectCheckboxes>
+							</li>
+                        </ul>
+                    </li>
+                    <li class="closed">
+                        <h2>Expertise</h2>
+                        <ul>
+                        	<li><input type="text" placeholder="Filter options..." id="expertiseFilter" class="filterInput" /></li>
+                            <li>
+	                            <apex:selectCheckboxes value="{!expertiseSelectedOptions}" layout="pageDirection" id="expertiseOptions">
+									<apex:selectOptions value="{!expertiseOptions}" />
+								</apex:selectCheckboxes>
+							</li>
+                        </ul>
+                    </li>
+                    <li class="closed">
+                        <h2>Category</h2>
+                        <ul>
+                        	<li><input type="text" placeholder="Filter options..." id="categoryFilter" class="filterInput" /></li>
+                            <apex:selectCheckboxes value="{!categorySelectedOptions}" layout="pageDirection" id="categoryOptions">
+								<apex:selectOptions value="{!categoryOptions}" />
+							</apex:selectCheckboxes>
+                        </ul>
+                    </li>
+                    <li class="closed">
+                        <h2>Brand Experience</h2>
+                        <ul>
+                        	<li><input type="text" placeholder="Filter options..." id="brandFilter" class="filterInput" /></li>
+                            <apex:selectCheckboxes value="{!brandSelectedOptions}" layout="pageDirection" id="brandOptions">
+								<apex:selectOptions value="{!brandOptions}" />
+							</apex:selectCheckboxes>
+                        </ul>
+                    </li>
+                    <li class="closed">
+                        <h2>Location</h2>
+                        <ul>
+                        	<li><input type="text" placeholder="Filter options..." id="locationFilter" class="filterInput" /></li>
+                            <apex:selectCheckboxes value="{!locationSelectedOptions}" layout="pageDirection" id="locationOptions">
+								<apex:selectOptions value="{!locationOptions}" />
+							</apex:selectCheckboxes>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <section class="agency-results" style="font-family: 'Din', sans-serif !important;">
+            
+            	<nav class="agency-nav">
+            		<strong>Filters:</strong>&nbsp;
+            		
+            		<apex:outputText rendered="{!!filterApplied}" value="None" />
+            		
+            		<apex:outputText value="{!searchText}" />
+            		
+            		<apex:outputText rendered="{!disciplineSelectedOptions.size > 0}">
+						Discipline:&nbsp;[
+						<apex:repeat value="{!disciplineSelectedOptions}" var="option">
+							{!option}&nbsp;
+							<apex:commandLink action="{!removeFilter}" value="(X)">
+								<apex:param name="removeString" assignTo="{!removeFilterString}" value="{!option}" />
+							</apex:commandLink>
+							&nbsp;&nbsp;
+						</apex:repeat>
+						]
+						&nbsp;&nbsp;
+					</apex:outputText>
+					
+					<apex:outputText rendered="{!expertiseSelectedOptions.size > 0}">
+						Expertise:&nbsp;[
+						<apex:repeat value="{!expertiseSelectedOptions}" var="option">
+							{!option}&nbsp;
+							<apex:commandLink action="{!removeFilter}" value="(X)">
+								<apex:param name="removeString" assignTo="{!removeFilterString}" value="{!option}" />
+							</apex:commandLink>
+							&nbsp;&nbsp;
+						</apex:repeat>
+						]
+						&nbsp;&nbsp;
+					</apex:outputText>
+					
+					<apex:outputText rendered="{!categorySelectedOptions.size > 0}">
+						Category:&nbsp;[
+						<apex:repeat value="{!categorySelectedOptions}" var="option">
+							{!option}&nbsp;
+							<apex:commandLink action="{!removeFilter}" value="(X)">
+								<apex:param name="removeString" assignTo="{!removeFilterString}" value="{!option}" />
+							</apex:commandLink>
+							&nbsp;&nbsp;
+						</apex:repeat>
+						]
+						&nbsp;&nbsp;
+					</apex:outputText>
+					
+					<apex:outputText rendered="{!brandSelectedOptions.size > 0}">
+						Brand:&nbsp;[
+						<apex:repeat value="{!brandSelectedOptions}" var="option">
+							{!option}&nbsp;
+							<apex:commandLink action="{!removeFilter}" value="(X)">
+								<apex:param name="removeString" assignTo="{!removeFilterString}" value="{!option}" />
+							</apex:commandLink>
+							&nbsp;&nbsp;
+						</apex:repeat>
+						]
+						&nbsp;&nbsp;
+					</apex:outputText>
+					
+					<apex:outputText rendered="{!locationSelectedOptions.size > 0}">
+						Location:&nbsp;[
+						<apex:repeat value="{!locationSelectedOptions}" var="option">
+							{!option}&nbsp;
+							<apex:commandLink action="{!removeFilter}" value="(X)">
+								<apex:param name="removeString" assignTo="{!removeFilterString}" value="{!option}" />
+							</apex:commandLink>
+							&nbsp;&nbsp;
+						</apex:repeat>
+						]
+						&nbsp;&nbsp;
+					</apex:outputText>
+					
+            	</nav>
+				
+                <nav class="agency-nav">
+                    <p>SORT BY</p>
+                    <apex:selectList value="{!sortBy}" size="1" onchange="reSort();">
+						<apex:selectOptions value="{!sortByOptions}" />
+					</apex:selectList>
+					
+					<div style="float:left;position:relative;">
+						<apex:actionStatus id="sortStatus">
+							<apex:facet name="start">
+								<apex:image value="/img/loading.gif" />
+							</apex:facet>
+						</apex:actionStatus>
+					</div>
+					
+                    <apex:commandLink action="{!nextPage}" styleClass="nav-next" rendered="{!setCon.hasNext}" />
+                    <apex:outputText rendered="{!pageNumbers.size > 1}" >
+	                    <ul>
+	                    	<apex:repeat value="{!pageNumbers}" var="page">
+	                       		<li>
+	                       			<apex:commandLink value="{!page}" action="{!goToPage}" style="text-decoration:none;{!IF(page == setCon.pageNumber,'color:#b21c89','')}">
+	                       				<apex:param value="{!page}" name="goToPage" assignTo="{!goToPage}" />
+	                       			</apex:commandLink>
+	                       		</li>
+	                       </apex:repeat>
+	                    </ul>
+	                </apex:outputText>
+                    <apex:commandLink action="{!previousPage}" styleClass="nav-prev" rendered="{!setCon.hasPrevious}" />
+                    
+                    <p style="font-size:1em;float:right;margin-right:20px;margin-top:4px;">
+						Showing {!agencies.size} {!IF(agencies.size == 1, 'agency','agencies')} out of {!totalAgencies} total.
+					</p>
+					
+                </nav>
+                
+                <apex:repeat value="{!agencies}" var="agency">
+
+	                <article class="article-agency" onclick="window.location.href = '/apex/AR_AgencyDetail?id={!agency.Id}';">
+	                    <header class="article-agency-header">
+	                    	<div class="article-image-container resizer-container">
+		                        <apex:image value="/servlet/servlet.FileDownload?file={!agency.Attachments[0].Id}" rendered="{!agency.Attachments.size > 0}" />
+		                        <apex:image value="{!URLFOR($Resource.AR_InternalStaticResources, 'img/NoImage.png')}" rendered="{!agency.Attachments.size == 0}" />
+		                    </div>
+	                        <h1><a href="#">{!agency.Name}</a><span class="stars{!FLOOR(agency.Overall_Rating__c)}"></span></h1>
+	                    </header>
+	                    <div class="article-content" style="overflow:auto;">
+	                        <p><apex:outputField value="{!agency.Strategic_Capabilities__c}" /></p>
+	                    </div>
+	                    <footer>
+	                        <span class="expertise" style="padding-left:5px;float:left;width:98%;margin-top:5px;">
+	                            {!SUBSTITUTE(agency.Agency_Expertise__c,';',' | ')}
+	                        </span>
+	                    </footer>
+	                </article>
+	            </apex:repeat>
+                
+			</section>
+		</section>
+		
+		<apex:actionFunction action="{!reSortAgencies}" status="sortStatus" name="reSort" />
+        <apex:actionFunction action="{!filterAgencies}" status="sortStatus" name="applyFilter" />
+		
+	</apex:form>
+		
+	<footer class="global-footer" style="font-family: 'Din', sans-serif !important;">
+	    <div class="footer-wrapper">
+	        <img src="{!URLFOR($Resource.AR_InternalStaticResources, 'img/logo-white.png')}" style="margin-left:20px;" />
+	        <ul>
+	        	<!--  
+	            <li><a href="">Terms and Conditions</a></li>
+	            <li><a href="">About the Agency List</a></li>
+	            -->
+	        </ul>
+	        <a class="link-chatter activate-chatter" id="chatter">Chatter</a>
+	        <section class="chatter" style="width:50%;">
+	            <header class="chatter-header">
+                   <img src="{!URLFOR($Resource.AR_InternalStaticResources, 'img/ico-chatter-header.png')}" />
+                   <h1>Chatter</h1>
+                   <a class="chatter-close"></a>
+                </header>
+	            <div class="chatter-content">
+	                <chatter:newsFeed />
+	            </div>
+	            <footer class="chatter-footer">
+	                <p>Chatter</p>
+	            </footer>
+	        </section>
+	    </div>
+	</footer>
+         
+</apex:page>

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Brand Centre</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Brand Centres List</value>
+    </caseValues>
+    <fields>
+        <help><!-- Choose the background colour for the Brand Centre using the HTML colour picker. --></help>
+        <label><!-- Background Colour --></label>
+        <name>Background_Colour__c</name>
+    </fields>
+    <fields>
+        <help><!-- Add an image which will be used as the background for your Brand Centre.  You can copy and paste and image or use the add file button if required.  Maximum size 1 MB. Only png, gif or jpeg. --></help>
+        <label><!-- Background Image --></label>
+        <name>Background_Image__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter a one sentence description for the Brand Centre. --></help>
+        <label><!-- Brand Centre Description --></label>
+        <name>Brand_Centre_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Brand Name unique --></label>
+        <name>Brand_Name_unique__c</name>
+    </fields>
+    <fields>
+        <help><!-- CSS used on the All stories Template - please do not add .css --></help>
+        <label><!-- CSS All Stories Template --></label>
+        <name>CSS_All_Stories_Template__c</name>
+    </fields>
+    <fields>
+        <help><!-- CSS used on the Article template - please do not add .css --></help>
+        <label><!-- CSS Article Template --></label>
+        <name>CSS_Article_Template__c</name>
+    </fields>
+    <fields>
+        <help><!-- CSS used in the Brand Centre landing page - please do not add .css --></help>
+        <label><!-- CSS Landing page --></label>
+        <name>CSS_name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Choose a Category which defines the Brand Centre.  The Category chosen will restrict the Sub Category which can be chosen. --></help>
+        <label><!-- Category --></label>
+        <name>Category__c</name>
+        <picklistValues>
+            <masterLabel>Foods</masterLabel>
+            <translation><!-- Foods --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Homecare</masterLabel>
+            <translation><!-- Homecare --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Personal Care</masterLabel>
+            <translation><!-- Personal Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Refreshment</masterLabel>
+            <translation><!-- Refreshment --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Populate with the Salesforce ID of the Chatter Group which will display on your Brand Centre.  It is a 15 digit ID.  Go to Chatter Tab -&gt; Groups -&gt; Click your group.  Take the last 15 digits : example - 0F9L00000004N9Q. --></help>
+        <label><!-- Chatter Group Id --></label>
+        <name>Chatter_Group_Id__c</name>
+    </fields>
+    <fields>
+        <help><!-- The footer can be defined as an image, or text, or hyper links etc. Images are limited to a maximum size 1 MB. Only png, gif or jpeg. --></help>
+        <label><!-- Footer --></label>
+        <name>Footer__c</name>
+    </fields>
+    <fields>
+        <help><!-- Defines a Hyperlink which is used to go to the Brand Centre page which end users see. Dynamically created by the system. --></help>
+        <label><!-- Go to Brand Centre --></label>
+        <name>Go_to_Brand_Centre__c</name>
+    </fields>
+    <fields>
+        <help><!-- Add an image which will be the Logo for the Brand Centre.
+You can copy and paste an image or use the upload button.
+Maximum size 1 MB. Only png, gif or jpeg. --></help>
+        <label><!-- Logo --></label>
+        <name>Logo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parent Brand --></label>
+        <name>Parent_Brand__c</name>
+        <relationshipLabel><!-- Brand Centres List --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Choose who will be the primary contact for the Brand Centre. --></help>
+        <label><!-- Primary Contact --></label>
+        <name>Primary_Contact__c</name>
+        <relationshipLabel><!-- Brand Centres List --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- the name of the Static resource where will stored the css files --></help>
+        <label><!-- Static Resource Name --></label>
+        <name>Static_Resource_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Status of the Brand Centre.
+Draft or Published. --></help>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Draft</masterLabel>
+            <translation><!-- Draft --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Published</masterLabel>
+            <translation><!-- Published --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Choose a Sub Category in which the Brand Centre sits. --></help>
+        <label><!-- Sub Category --></label>
+        <name>Sub_Category__c</name>
+        <picklistValues>
+            <masterLabel>Beverages</masterLabel>
+            <translation><!-- Beverages --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deo</masterLabel>
+            <translation><!-- Deo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deo, Hair, Skin Care &amp; Cleansing</masterLabel>
+            <translation><!-- Deo, Hair, Skin Care &amp; Cleansing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dressings</masterLabel>
+            <translation><!-- Dressings --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hair</masterLabel>
+            <translation><!-- Hair --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Household Care</masterLabel>
+            <translation><!-- Household Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ice Cream</masterLabel>
+            <translation><!-- Ice Cream --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Laundry</masterLabel>
+            <translation><!-- Laundry --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lipton</masterLabel>
+            <translation><!-- Lipton --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Oral Care</masterLabel>
+            <translation><!-- Oral Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Savoury</masterLabel>
+            <translation><!-- Savoury --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Skin Care</masterLabel>
+            <translation><!-- Skin Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Skin Care &amp; Cleansing</masterLabel>
+            <translation><!-- Skin Care &amp; Cleansing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Skin Cleansing</masterLabel>
+            <translation><!-- Skin Cleansing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Spreads</masterLabel>
+            <translation><!-- Spreads --></translation>
+        </picklistValues>
+    </fields>
+    <nameFieldLabel>Brand Centre Name</nameFieldLabel>
+    <recordTypes>
+        <label><!-- Brand Centre Management --></label>
+        <name>Brand_Centre_Management</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Brand Centre Read only --></label>
+        <name>Brand_Centre_Read_only</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- The Chatter group you have entered does not have 15 characters.
+Please try again. --></errorMessage>
+        <name>BC_Chatter_Group_Exists</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Preview_Brand_Centre_Landing_Page --></label>
+        <name>Preview_Brand_Centre_Landing_Page</name>
+    </webLinks>
+</CustomObjectTranslation>

@@ -1,0 +1,116 @@
+<apex:page controller="uw_TermsConditionsController" showHeader="false" id="terms_conditions">
+
+<link rel="stylesheet" href="{!URLFOR($Resource.TaCs_Resources, 'TaC.css')}" type="text/css" media="screen" />
+    
+<script>
+
+function handleChange(cb) {
+ 
+
+ var element =  document.getElementById("terms_conditions:theForm:continueBtn");
+
+ var attribute = element.getAttribute("disabled");
+
+
+ if(attribute == "disabled")
+ {
+    element.removeAttribute(attribute);
+    
+ }
+ else if (attribute == "true")
+ {
+  
+  element.removeAttribute("disabled");
+ }
+ else
+ {
+    element.setAttribute("disabled", "true");
+    
+ }
+ 
+ 
+}
+
+</script>
+
+
+<apex:form id="theForm">
+<div id="page-wrapper">
+    
+    <div id="page">
+        
+        <div id="header">
+            <div class="section clearfix">
+                <div id="logo">
+                    
+                    <img src="{!URLFOR($Resource.TaCs_Resources, 'so_logo.gif')}"  alt="Unilever" />
+                     
+                </div>
+                <div id="slogan">
+                
+                Terms and Conditions 
+                </div>
+            </div>
+         </div>
+         
+         <div id="main-wrapper">
+            <div id="introText">
+                <h1>The Unilever Way Terms and Conditions</h1>
+                <br/>
+                <br/>
+                These are the Unilever Way Terms and Conditions that apply to you as a external agent. <br/> If you do not agree to these Terms of Use, please do not use Unilever Way.
+            </div>
+            
+            <div id="download">
+            
+                <div class="column"> 
+                    <div class="module">
+                            <h2>Downloads</h2>
+                            <br/>
+                            <br/>
+                            <a class="download" target="_blank" title="The Unilever Way Terms and Conditions" href="#">
+                            The Unilever Way Terms and Conditions
+                            </a>
+                            
+                        </div>
+                </div> 
+            </div>
+            </div>
+            <div class="DocViewer">
+                 <apex:outputPanel >
+                   <embed src="/_swf/121310/sfc/flex/DocViewer.swf" flashvars="shepherd_prefix=/sfc/servlet.shepherd&v=068c00000005X8DAAU&mode=details&fwidth=100" width="750px" height="1000px" align="middle" id="renditionLarge" quality="high" bgcolor="#f3f3f3" name="renditionLarge" allowscriptaccess="sameDomain" allowfullscreen="true" pluginspage="http://www.adobe.com/go/getflashplayer" wmode="opaque" fitWidth="" type="application/x-shockwave-flash"/>
+                 </apex:outputPanel> 
+             </div>
+             
+             <apex:pageMessage severity="1" summary="Please Indicate you accept the Terms and Conditions" rendered="{!ShowAcceptErrorMessage}"/>
+           
+          <div id="checkboxAgree">
+            <p class="moreinfo">
+                
+                <span>
+                    
+                     
+                     <input type="checkbox" />I HAVE READ AND AGREED TO THE FOLLOWING TERMS OF USE
+                     
+                </span>
+            </p>
+          
+          </div>
+          
+          <div id="continueBtn">
+          
+          <apex:commandButton disabled="true" id="continueBtn" styleClass="theButton" action="{!continueOnTnCPage}" title="Continue" value="Continue >>" />
+          <apex:commandButton id="continueBtnAH" styleClass="theButton" action="{!continueOnTnCPage}" title="Continue AH" value="Continue AH>>" />
+         
+          </div>
+         
+         <div class="region region-footer">
+         © Unilever 2012
+         </div>
+         
+    </div>
+    
+</div>
+</apex:form>
+
+</apex:page>

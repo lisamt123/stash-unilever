@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>FA_FBQuestionSet</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>FA_FBQuestionSet</value>
+    </caseValues>
+    <fields>
+        <label><!-- QuestionOrder --></label>
+        <name>FA_QuestionOrder__c</name>
+    </fields>
+    <fields>
+        <label><!-- QuestionType --></label>
+        <name>FA_QuestionType__c</name>
+    </fields>
+    <fields>
+        <label><!-- Question --></label>
+        <name>FA_Question__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rating --></label>
+        <name>FA_Rating__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

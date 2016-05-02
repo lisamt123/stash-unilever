@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApexComponent xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>33.0</apiVersion>
+    <description>Too be used to display sec 6.1 in Gate Document</description>
+    <label>IPM_Financial_ActionStandards</label>
+</ApexComponent>

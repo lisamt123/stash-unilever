@@ -1,0 +1,15 @@
+<aura:component >
+    <aura:attribute name="mykpiElements" type="OV_Wrapper.KPIElementWrapper[]" />
+
+    <div style="position:relative; height: 300px;" aura:id="kpiCarouselRoot">
+        <div aura:id="kpiCarouselLeft" onclick="{!c.scrollLeft}" class="carouselLeftButton"> <span>&lt;</span> </div>
+        <div aura:id="kpiCarouselArea" style="white-space: nowrap; position:absolute;" id="kpicarousel" class="kpiCarouselArea">
+            <aura:iteration items="{!v.mykpiElements}" var="kpielement">
+                <div class="js-kpiElement" style="display: inline-block;">
+                    <c:OV_ReportKPIItem kpielement="{!kpielement}" />
+                </div>
+            </aura:iteration>
+        </div>
+        <div aura:id="kpiCarouselRight" onclick="{!c.scrollRight}" class="carouselRightButton"> <span>&gt;</span> </div>
+    </div>
+</aura:component>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>HomePage Feed</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>HomePage Feeds</value>
+    </caseValues>
+    <fields>
+        <label><!-- Active --></label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Asset URL --></label>
+        <name>Asset_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Display Text --></label>
+        <name>Display_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Group --></label>
+        <name>Group__c</name>
+        <relationshipLabel><!-- HomePage Feeds --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Image URL --></label>
+        <name>Image_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sort Order --></label>
+        <name>Sort_Order__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Feed</masterLabel>
+            <translation><!-- Feed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Group</masterLabel>
+            <translation><!-- Group --></translation>
+        </picklistValues>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

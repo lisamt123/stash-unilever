@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>IPM CMI Color Mapping</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>IPM CMI Color Mapping</value>
+    </caseValues>
+    <fields>
+        <label><!-- IPM CMI Color --></label>
+        <name>IPM_CMI_Color__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Color Score Value --></label>
+        <name>IPM_Color_Score_Value__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

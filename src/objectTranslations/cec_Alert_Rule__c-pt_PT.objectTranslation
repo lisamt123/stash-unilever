@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Alert Rule --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Alert Rule --></value>
+    </caseValues>
+    <fields>
+        <label><!-- Active --></label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Alert Type --></label>
+        <name>Alert_Type_Image__c</name>
+    </fields>
+    <fields>
+        <help>Quando selecionado, a regra aplica-se a todos os mercados, independente do campo &quot;Mercado&quot;</help>
+        <label><!-- All Markets --></label>
+        <name>All_Market__c</name>
+    </fields>
+    <fields>
+        <label><!-- Case Product --></label>
+        <name>Case_Product__c</name>
+        <relationshipLabel><!-- Alert Rule --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Consumer Product Descriptor (no size) --></label>
+        <name>Consumer_Product_Descriptor_no_size__c</name>
+    </fields>
+    <fields>
+        <help>Quando selecionados, os casos deverão ter número de lote/data validade de forma a serem rastreados.</help>
+        <label>Agrupar por dia de produção?</label>
+        <name>Group_By_Day_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- L0 Product Category --></label>
+        <name>L0_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- L1 Product Category --></label>
+        <name>L1_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- L1 Reason Code --></label>
+        <name>L1_Reason_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- L2 Product Category --></label>
+        <name>L2_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- L2 Reason Code --></label>
+        <name>L2_Reason_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- L3 Product Category --></label>
+        <name>L3_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- L3 Reason Code --></label>
+        <name>L3_Reason_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- L4 Product Category --></label>
+        <name>L4_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- L4 Reason Code --></label>
+        <name>L4_Reason_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- L5 Product Category --></label>
+        <name>L5_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- L5 Reason Code --></label>
+        <name>L5_Reason_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- L7 Product Category --></label>
+        <name>L7_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label>Mercado</label>
+        <name>Market__c</name>
+        <picklistValues>
+            <masterLabel>Baltics</masterLabel>
+            <translation><!-- Baltics --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Benelux</masterLabel>
+            <translation><!-- Benelux --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brazil</masterLabel>
+            <translation><!-- Brazil --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Czech Republic</masterLabel>
+            <translation><!-- Czech Republic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DACH</masterLabel>
+            <translation><!-- DACH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>France</masterLabel>
+            <translation><!-- France --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Greece</masterLabel>
+            <translation><!-- Greece --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hungary</masterLabel>
+            <translation><!-- Hungary --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>India</masterLabel>
+            <translation><!-- India --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Italy</masterLabel>
+            <translation><!-- Italy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Middle Americas</masterLabel>
+            <translation><!-- Middle Americas --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nordic</masterLabel>
+            <translation><!-- Nordic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>North America</masterLabel>
+            <translation><!-- North America --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Poland</masterLabel>
+            <translation><!-- Poland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Portugal</masterLabel>
+            <translation><!-- Portugal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Southern Cone</masterLabel>
+            <translation><!-- Southern Cone --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Spain</masterLabel>
+            <translation><!-- Spain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sri Lanka</masterLabel>
+            <translation><!-- Sri Lanka --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>United Kingdom</masterLabel>
+            <translation><!-- United Kingdom --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Product Category Concat Value --></label>
+        <name>Product_Category_Concat_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product Category --></label>
+        <name>Product_Category__c</name>
+        <relationshipLabel><!-- Alert Rule --></relationshipLabel>
+    </fields>
+    <fields>
+        <help>Após selecionar uma categoria de produto, este campo determina qual o nível a ser usado para correspondência.</help>
+        <label><!-- Product Level --></label>
+        <name>Product_Level__c</name>
+        <picklistValues>
+            <masterLabel>0</masterLabel>
+            <translation><!-- 0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation><!-- 7 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- ReasonCode Concat Value --></label>
+        <name>ReasonCode_Concat_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reason Code --></label>
+        <name>Reason_Code__c</name>
+        <relationshipLabel><!-- Alert Rule --></relationshipLabel>
+    </fields>
+    <fields>
+        <help>Após selecionar o assunto, este campo determina qual o nível a ser usado para correspondência.</help>
+        <label><!-- Reason Level --></label>
+        <name>Reason_Level__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>Quando a contagem de resultados correspondentes é igual ou maior que este valor, as ações de alerta associadas a esta regra serão acionadas</help>
+        <label><!-- Threshold --></label>
+        <name>Threshold__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Quality</masterLabel>
+            <translation><!-- Quality --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Safety</masterLabel>
+            <translation><!-- Safety --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- 30 Days Limit --></label>
+        <name>X30_Days_Limit__c</name>
+    </fields>
+    <gender><!-- Feminine --></gender>
+    <nameFieldLabel><!-- Alert Rule Name --></nameFieldLabel>
+    <validationRules>
+        <errorMessage>Verifique por favor que o nome da divisão de categoria de produto não é nulo</errorMessage>
+        <name>L0_Product_Category_Mandatory_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please make sure that the Product Category&apos;s &apos;Category Name&apos; is not null for &apos;Quality&apos; alerts. --></errorMessage>
+        <name>L2_Product_Category_Mandatory_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Confirme por favor se o nível do assunto é o 5 e se o código 5 na hierarquia global não está vazio</errorMessage>
+        <name>L5_ReasonCode_Mandatory_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Por favor especifique o mercado ou confirme todos os campos de mercado</errorMessage>
+        <name>Market_And_Global_Flag_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Only one of  &apos;Product Category&apos; or &apos;Case Product&apos; value is allowed. --></errorMessage>
+        <name>Product_Mandatory_Alert_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please verify the Product Level and its corresponding Product Category value : &apos;Category Name(L2)&apos; or  &apos;Sector Name(L4)&apos; is populated and not null for the type &apos;Quality&apos;. --></errorMessage>
+        <name>QualityAlert_Product_Category_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please verify the Product Level and its corresponding Product Category value : &apos;Division Name(L0)&apos; or &apos;Sector Name(L4)&apos; is populated and not null for the type &apos;Safety&apos;. --></errorMessage>
+        <name>SafetyAlert_Product_Category_Validation</name>
+    </validationRules>
+</CustomObjectTranslation>

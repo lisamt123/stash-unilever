@@ -1,0 +1,49 @@
+<apex:page docType="html-5.0" showHeader="false" standardStylesheets="false" sidebar="false" >
+    <meta http-equiv="content-type" content="text/html; charset=UTF8" />
+    <div class="iPhoneHomeScreenHeight">
+        <div name="top" id="pageTop" class="headerBarBackground">
+            <table class="headerBarWidth">
+                <tr>
+                    <td class="headerBarRowAlign" >
+                        <img src="{!URLFOR($Resource.MyApprovalsSR, 'img/back.svg')}" ng-click='gotoApprovalDetailPage()' alt="back" class="homePageFilter" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <br/>
+        <div class="template" >
+            <div class="row" id="responsiveDetailSectionwrapper" >
+                <div class="row">
+                    <div class="responsiveDetailSectionData fixed-nav-bar-padding">
+                        <div class="fieldLabel"> {{'LBL_INV_DESCRIPTION' | translate}} </div>
+                        <div class="fieldValue">{{approvalLineDetailRequestData.Description}}</div>
+                    </div>
+                    <div class="responsiveDetailSectionData fixed-nav-bar-padding">
+                        <div class="fieldLabel"> {{'LBL_INV_NET_AMOUNT' | translate}}</div>
+                        <div class="fieldValue"> {{approvalLineDetailRequestData.Currencies}} &nbsp;{{approvalLineDetailRequestData.NetAmnt}} </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="responsiveDetailSectionData fixed-nav-bar-padding">
+                        <div class="fieldLabel"> {{'LBL_INV_INTERNAL_ORDER' | translate}}</div>
+                        <div id="fieldValueRichTextFormate" class="fieldValue"> {{approvalLineDetailRequestData.IntOrder}}</div>
+                    </div>
+                    <div class="responsiveDetailSectionData fixed-nav-bar-padding">
+                        <div class="fieldLabel">  {{'LBL_INV_GL_ACCOUNT' | translate}} </div>
+                        <div id="fieldValueRichTextFormate" class="fieldValue"> {{approvalLineDetailRequestData.GLAccount}}</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="responsiveDetailSectionData fixed-nav-bar-padding">
+                        <div class="fieldLabel"> {{'LBL_INV_COST_CENTER' | translate}} </div>
+                        <div id="fieldValueRichTextFormate" class="fieldValue"> {{approvalLineDetailRequestData.CstCntr}}</div>
+                    </div>
+                    <div class="responsiveDetailSectionData fixed-nav-bar-padding">
+                        <div class="fieldLabel">  {{'LBL_INV_PROFIT_CENTER' | translate}}</div>
+                        <div id="fieldValueRichTextFormate" class="fieldValue"> {{approvalLineDetailRequestData.ProfitCntr}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</apex:page>

@@ -1,0 +1,210 @@
+<!--  
+*************************************************************************
+*@Description:This page is used for business case confirmation
+*@Author: Cognizant
+*@Created Date: 15/04/2015
+*@Copyright © 2015  Unilever   
+*************************************************************************
+-->
+<apex:page sidebar="false" controller="IPM_BCCController" standardStylesheets="false" extensions="IPM_GetHelpDoc">        
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/jquery-ui.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Bcc_Document.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Modal1.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Header-new.css')}"/>
+    <apex:composition template="IPM_TemplateRevamp"> 
+        <apex:define name="body">
+            <div class="gradientbg">
+               
+                    <apex:form >
+                       <c:IPM_ProjectDetails project="{!project}" activeItem="gateDocument"/>
+                    </apex:form>
+            </div>
+            <div class="ipmContent">
+                <apex:form id="form">
+                    <apex:outputPanel id="showMsg" layout="block">
+                        
+                        <apex:outputPanel id="floatedSaveMsg" layout="block" styleClass="floatedMsg" >
+                            <apex:pageMessages id="pgmsg"  /> 
+                            
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                    <apex:actionPoller action="{!hideSaveMsg}" reRender="floatedSaveMsg" interval="5"/><!--to hide the message-->
+                    <div class="col-sm-12 noPadleft">
+                        <div class="panel-group pageHeadToolbar clearfix">
+                            <div class="row">
+                                <div class="bcctitleContainer pull-left">
+                                    <span class="pageTitle">
+                                        {!$Label.IPM_BUSINESS_CASE_CONFIRMATION}
+                                    </span>   
+                                </div>                                
+                                <div class="bccStatusContainer pull-right clearfix">                    
+                                     <!--Below rendered condition will execute the below output panel if isEditable is true -->
+                                    <apex:outputPanel rendered="{!isEditable}">
+                                        <!--Below rendered condition will execute the below output panel if showConfirmButton is true  -->
+                                        <apex:outputPanel rendered="{!showConfirmButton}">
+                                            <div class="SecStatusUpdate pull-right updateBox" data-toggle="modal" data-target="#ipmModalConfirmBcc" data-backdrop="static" data-keyboard="false" >
+                                                <a class="ipmButton orangebg">{!$Label.IPM_CONFIRM_BUSINESS_CASE}</a>
+                                            </div>
+                                        </apex:outputPanel>
+                                    </apex:outputPanel>
+                                    
+                                    <!-- To place the help symbol in the top right hand corner of page -->
+                                    <apex:outputPanel layout="block" styleClass="SecButtonSet delete pull-right" >
+                                        <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
+                                    </apex:outputPanel>
+                                    
+                                    <div class="SecCurrentStatus pull-right">
+                                        {!$Label.IPM_CURRENT_DOCUMENT_STATUS}
+                                        <apex:outputPanel id="confirmBCC">
+                                            <span class="status">
+                                                <!-- Below rendered condition is used to show the below output text -->
+                                                <apex:outputText value="In Progress" rendered="{!!finance.IPM_Business_Case_Confirmed__c }"/>
+                                                 <!-- Below rendered condition is used to show the below output text -->
+                                                <apex:outputText value="Confirmed" rendered="{!finance.IPM_Business_Case_Confirmed__c }"/>
+                                            </span>
+                                        </apex:outputPanel>                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                     
+                    
+                    
+                    <div class="col-sm-12 bosscardMtop">
+                        <div class="pull-right noPadright txtAlignright">
+                             <!-- Below rendered condition will execute the below output panel if isFinanceUpdate is true -->
+                            <apex:outputPanel rendered="{!isFinanceUpdate}">
+                                <apex:commandLink value="Cancel" styleClass="ipmButton bosscardmright"/>
+                                <apex:commandLink value="Save" action="{!save}" styleClass="ipmButton primary">
+                                </apex:commandLink>
+                            </apex:outputPanel>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 noPadleft">
+                        <div class="ipmAccordion">
+                            <div class="bcsinglecontainer">   
+                                <span class="pHead">
+                                    <span class='expico fa fa-minus'></span>{!$Label.IPM_COUNTRY_FEEDBACK_AND_REQUIREMENT}
+                                    
+                                </span>
+                                <div class="ipmAcrdnExpand">
+                                    <div>
+                                        <span class="bcFielddesc">{!$Label.IPM_COPY_COUNTRY_INPUT_TO_SEC}</span>
+                                        <!-- Below rendered condition will execute the below output panel if isFinanceUpdate is true -->
+                                        <apex:outputPanel rendered="{!isFinanceUpdate}">
+                                            <apex:inputField value="{!finance.IPM_Country_Feedback__c}"/>
+                                        </apex:outputPanel>
+                                         <!-- Below rendered condition will execute the below output panel if isFinanceUpdate is false -->
+                                        <apex:outputPanel rendered="{!!isFinanceUpdate}">
+                                            <apex:outputField value="{!finance.IPM_Country_Feedback__c}"/>
+                                        </apex:outputPanel>
+                                        <div class="charCountbbc txtRight">{!$Label.IPM_CHAR_REMAINING}<strong>500</strong></div>
+                                    </div>
+                                </div>
+                            </div> 
+                            <div class="bcsinglecontainer">   
+                                <span class="pHead">
+                                    <span class='expico fa fa-minus'></span><a href="{!$Page.IPM_Financial}?Id={!finance.Local_Project__c}">{!$Label.IPM_BD_BB_ALIGNMENT}</a>
+                                    <span class="SecButtonSet infoMarTop">
+                                    	<a class="icoButton info smalllinfo" title="{!$Label.IPM_TO_EDIT_YOUR_NUMBERS}"></a>
+                                    </span>
+                                </span>
+                                <div class="ipmAcrdnExpand">
+                                    <div>
+                                        <span class="bcFielddesc">{!$Label.IPM_BB_BD_COPIED_TO_SEC}</span>
+                                        <table class="ipmTable table table-bordered gateKeeperlist">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        {!$Label.IPM_ROLLOUTS}
+                                                    </th>
+                                                    <th>
+                                                        {!$Label.IPM_BUSINESS_CASE_ALIGNMENT}
+                                                    </th>
+                                                    <th>
+                                                        Financial alignment
+                                                    </th>
+                                                    <th>
+                                                        {!$Label.IPM_TLD_ALIGNMENT}
+                                                    </th>
+                                                </tr>                                      
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <apex:outputText value="{!finance.Local_Project__r.name}"/>
+                                                    </td>
+                                                    <td>
+                                                        <apex:outputText value="{!businessCaseConfirmed}"></apex:outputText>
+                                                    </td>
+                                                    <td>
+                                                      <apex:outputText value="{!IF(finance.Misaligned__c,'Misaligned','Aligned')}"></apex:outputText>
+                                                    </td>
+                                                    <td>
+                                                        <apex:outputText value="{!IF(tldAlignment=True,'Aligned','Misaligned')}"></apex:outputText>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                     <!--Below rendered condition will execute the below output panel if isFinanceUpdate is true  -->
+                                    <apex:outputPanel rendered="{!isFinanceUpdate}">
+                                    	<apex:inputField value="{!finance.IPM_BD_BB_Feedback__c}"/>
+                                    </apex:outputPanel>
+                                     <!-- Below rendered condition will execute the below output panel if isFinanceUpdate is false-->
+                                    <apex:outputPanel rendered="{!!isFinanceUpdate}">
+                                    	<apex:outputField value="{!finance.IPM_BD_BB_Feedback__c}"/>
+                                    </apex:outputPanel>
+                                </div>
+                            </div> 
+                        </div>                                  
+                    </div>
+                </apex:form>
+            </div>
+             <!--Below rendered condition will execute the below output panel if isEditable is true  -->
+            <apex:outputPanel rendered="{!isEditable}">
+                <div id="ipmModalConfirmBcc" class="modal fade">
+                    <apex:form >
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <div class="modal-title">{!$Label.IPM_CONFIRM_BUSINESS_CASE}</div>
+                                </div>
+                                
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <div class="row">    
+                                            <div class="col-sm-12">
+                                                <span class="skipDesc">{!$Label.IPM_ABOUT_TO_SUBMIT_BCC}</span>
+                                            </div>
+                                            
+                                            <div class="skipButtoncontainer txtAlignright pull-right">
+                                                <div class="buttonMarginRight noPadright pull-left">
+                                                    <input type="button" class="ipmButton" value="Cancel" data-dismiss="modal" />
+                                                </div>
+                                                <div class="pull-left noPadright confirmcase">
+                                                    <apex:commandLink styleClass="ipmButton primary" value="Confirm Business Case" action="{!changeStatus}"/>
+                                                </div> 
+                                            </div>
+                                        </div>  
+                                    </div>          
+                                </div>
+                            </div>
+                        </div>
+                    </apex:form>    
+                </div>
+            </apex:outputPanel>
+        </apex:define>
+    </apex:composition>   
+    
+    <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery.js')}" type="text/javascript"></script>
+    <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery-ui.js')}" type="text/javascript"></script>
+    <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_functions.js')}" type="text/javascript"></script>    
+    <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Accordion.js')}" type="text/javascript"></script>    
+    <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Bcc_Document.js')}" type="text/javascript"></script>
+    
+</apex:page>

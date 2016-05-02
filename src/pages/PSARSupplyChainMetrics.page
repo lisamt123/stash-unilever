@@ -1,0 +1,39 @@
+<apex:page standardController="PSARCategory__c" sidebar="false" showChat="true">
+    
+    <apex:pageBlock >
+
+          <apex:pageBlockSection columns="2">
+        
+            <apex:pageBlockSectionItem >
+            
+                <apex:pageBlockSection columns="1">
+                    <apex:outputField value="{!PSARCategory__c.Name}"/>
+
+                 </apex:pageBlockSection>
+            </apex:pageBlockSectionItem>
+          
+        </apex:pageBlockSection>
+
+        <apex:pageBlockSection columns="1">
+            
+            <apex:outputPanel >
+                <iframe width="100%" height="800" src="https://mbi-tab.unilever.com/t/PR_Supply_Chain_Analytics/views/PredictiveServiceAlertreport/PlannerDetailView#1" frameborder="0" >
+                </iframe>
+            </apex:outputPanel>
+            
+        </apex:pageBlockSection>
+        
+    </apex:pageBlock>
+
+    <apex:pageBlock title="{!$Label.PSAR_Chatter}">
+        
+        <apex:pageBlockSection columns="1">
+            
+            <apex:outputPanel >
+                <chatter:feedWithFollowers entityId="{!PSARCategory__c.Id}"/>
+            </apex:outputPanel>
+            
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+   
+</apex:page>

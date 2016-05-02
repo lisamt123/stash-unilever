@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Sub Result</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Sub Result</value>
+    </caseValues>
+    <fields>
+        <label><!-- Bonus Threshold --></label>
+        <name>AF_Bonus_Threshold__c</name>
+        <relationshipLabel><!-- Sub Result --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- BonusableFee --></label>
+        <name>AF_Bonusable_Fees__c</name>
+    </fields>
+    <fields>
+        <label><!-- Class code --></label>
+        <name>AF_Class_code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comment --></label>
+        <name>AF_Comment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Digital --></label>
+        <name>AF_Digital__c</name>
+    </fields>
+    <fields>
+        <label><!-- Locked --></label>
+        <name>AF_Locked__c</name>
+    </fields>
+    <fields>
+        <label><!-- Minimum --></label>
+        <name>AF_Minimum__c</name>
+    </fields>
+    <fields>
+        <label><!-- Outstanding --></label>
+        <name>AF_Outstanding__c</name>
+    </fields>
+    <fields>
+        <label><!-- Period --></label>
+        <name>AF_Period__c</name>
+        <picklistValues>
+            <masterLabel>Q1</masterLabel>
+            <translation><!-- Q1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Q2</masterLabel>
+            <translation><!-- Q2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Q3</masterLabel>
+            <translation><!-- Q3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Q4</masterLabel>
+            <translation><!-- Q4 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Qual Bonus Value --></label>
+        <name>AF_Qual_Bonus_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Qual Bonus% --></label>
+        <name>AF_Qual_Per__c</name>
+    </fields>
+    <fields>
+        <label><!-- Qual Result --></label>
+        <name>AF_Qual__c</name>
+    </fields>
+    <fields>
+        <label><!-- Quant Bonus Value --></label>
+        <name>AF_Quant_Bonus_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Quant Bonus % --></label>
+        <name>AF_Quant_Bonus__c</name>
+    </fields>
+    <fields>
+        <label><!-- Quant Result --></label>
+        <name>AF_Quant__c</name>
+    </fields>
+    <fields>
+        <label><!-- Result Type --></label>
+        <name>AF_Result_type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>AF_Status__c</name>
+        <picklistValues>
+            <masterLabel>Draft</masterLabel>
+            <translation><!-- Draft --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>None</masterLabel>
+            <translation><!-- None --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Submitted</masterLabel>
+            <translation><!-- Submitted --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Stretching --></label>
+        <name>AF_Stretching__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Bonus Value --></label>
+        <name>AF_Total_Bonus_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Bonus % --></label>
+        <name>AF_Total_Bonus__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total bonus fees --></label>
+        <name>AF_Total_bonus_fees__c</name>
+    </fields>
+    <fields>
+        <label><!-- Traditional --></label>
+        <name>AF_Traditional__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unique Key --></label>
+        <name>AF_Unique_Key__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unique Thresholds --></label>
+        <name>AF_Unique_Thresholds__c</name>
+    </fields>
+    <fields>
+        <label><!-- Country --></label>
+        <name>AF_country__c</name>
+        <relationshipLabel><!-- Sub Result --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- deletion_key --></label>
+        <name>AF_deletion_key__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bonus Measure --></label>
+        <name>Bonus_Measure__c</name>
+        <picklistValues>
+            <masterLabel>% GREEN CELLS</masterLabel>
+            <translation><!-- % GREEN CELLS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>% of Turnover Gaining</masterLabel>
+            <translation><!-- % of Turnover Gaining --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Innovative/White Space Turnover (€M Absolute)</masterLabel>
+            <translation><!-- Innovative/White Space Turnover (€M Absolute) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Market Share MAT (% Absolute)</masterLabel>
+            <translation><!-- Market Share MAT (% Absolute) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Market Share MAT (Bps Change)</masterLabel>
+            <translation><!-- Market Share MAT (Bps Change) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Turnover (€M Absolute)</masterLabel>
+            <translation><!-- Turnover (€M Absolute) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>USG%</masterLabel>
+            <translation><!-- USG% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Weighted Average</masterLabel>
+            <translation><!-- Weighted Average --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Qual Result --></label>
+        <name>Qual_Result__c</name>
+    </fields>
+    <fields>
+        <label><!-- Quant Result --></label>
+        <name>Quant_Result__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sub Result AnnualID --></label>
+        <name>Sub_Result_AnnualID__c</name>
+    </fields>
+    <fields>
+        <label><!-- key --></label>
+        <name>key__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

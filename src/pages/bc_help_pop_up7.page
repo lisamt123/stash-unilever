@@ -1,0 +1,33 @@
+<apex:page showHeader="false" sidebar="false">
+ <link rel="stylesheet" type="text/css" media="all" href="{!URLFOR($Resource.ulw_brief_2_static_resources, 'static_resources/css/style.css')}" />
+
+<div class="help_template">
+  <div class="title">SELECT ARTICLE RECORD TYPE</div>
+  <p>  To add a new Article to  your Brand Centre or a Brilliant Example to Hub page you first need to select the record type.    </p>
+
+  <p> <img src="{!URLFOR($Resource.ulw_help_pop_up, 'img/help_image_7.jpg')}"/> </p>
+
+  <table width="800" border="0" cellpadding="4">
+  <tr>
+    <td class="bubblebox"><span class="numcolor">1</span></td>
+    <td class="bubbletxt"><span>Select Record Type. This is whether the file is a Article or a Brilliant Example.  
+  </span></td>
+  </tr>
+  <tr>
+    <td class="bubblebox"><span class="numcolor">2</span></td>
+    <td class="bubbletxt"><span>Click Continue to carry on. 
+</span></td>
+  </tr>
+  <tr>
+    <td class="bubblebox"><span class="numcolor">3</span></td>
+    <td class="bubbletxt"><span>Cancel to stop setting up the Article or Brilliant Example.
+</span></td>
+  </tr>
+  <tr>
+    <td class="bubblebox"><span class="numcolor">4</span></td>
+    <td class="bubbletxt"><span>A description of the options available to you are shown in this section of the screen. 
+</span></td>
+  </tr>
+</table>
+</div>
+</apex:page>

@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Article --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Article --></value>
+    </caseValues>
+    <fields>
+        <help><!-- Tick this box if you want users to Chatter about this Article --></help>
+        <label><!-- Allow Chatter --></label>
+        <name>Allow_Chatter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Apply to Profiles --></label>
+        <name>Apply_to_Profiles__c</name>
+        <picklistValues>
+            <masterLabel>Profile 1</masterLabel>
+            <translation><!-- Profile 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Profile 10</masterLabel>
+            <translation><!-- Profile 10 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Profile 2</masterLabel>
+            <translation><!-- Profile 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Profile 3</masterLabel>
+            <translation><!-- Profile 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Profile 4</masterLabel>
+            <translation><!-- Profile 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Profile 5</masterLabel>
+            <translation><!-- Profile 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Profile 6</masterLabel>
+            <translation><!-- Profile 6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Profile 7</masterLabel>
+            <translation><!-- Profile 7 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Profile 8</masterLabel>
+            <translation><!-- Profile 8 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Profile 9</masterLabel>
+            <translation><!-- Profile 9 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Only Approved Articles are displayed on the live website --></help>
+        <label><!-- Approval Status --></label>
+        <name>Approval_Status__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation>Goedgekeurd</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Created</masterLabel>
+            <translation><!-- Created --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Under Review</masterLabel>
+            <translation><!-- Under Review --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- This is the body of the article that will appear on the Intranet page --></help>
+        <label><!-- Article Body --></label>
+        <name>Article_Body__c</name>
+    </fields>
+    <fields>
+        <label><!-- Article Subtitle --></label>
+        <name>Article_Subtitle__c</name>
+    </fields>
+    <fields>
+        <label><!-- Author --></label>
+        <name>AuthorUser__c</name>
+        <relationshipLabel><!-- Articles --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Displayed on the page as the author of this article --></help>
+        <label><!-- Displayed Author --></label>
+        <name>Author__c</name>
+    </fields>
+    <fields>
+        <help><!-- Main body text for the article --></help>
+        <label><!-- Body Text --></label>
+        <name>Body_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Chatter Enabled --></label>
+        <name>Chatter_Enabled__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contains Picture --></label>
+        <name>Contains_Picture__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the name of the content delivery link on the article detail page --></help>
+        <label><!-- Content Delivery Link Name --></label>
+        <name>Content_Delivery_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- URL link to a &quot;Content Delivery&quot; created in Content. --></help>
+        <label><!-- Content Delivery --></label>
+        <name>Content_Delivery__c</name>
+    </fields>
+    <fields>
+        <label><!-- End Time --></label>
+        <name>End_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Link --></label>
+        <name>External_URL__c</name>
+    </fields>
+    <fields>
+        <help><!-- this is some help --></help>
+        <label><!-- Fuse --></label>
+        <name>Fuse__c</name>
+        <picklistValues>
+            <masterLabel>A</masterLabel>
+            <translation><!-- A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>B</masterLabel>
+            <translation><!-- B --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>C</masterLabel>
+            <translation><!-- C --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Image Align --></label>
+        <name>Image_Align__c</name>
+        <picklistValues>
+            <masterLabel>Left</masterLabel>
+            <translation><!-- Left --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Right</masterLabel>
+            <translation><!-- Right --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Optional caption for images. Displayed underneath an image when clicked --></help>
+        <label><!-- Image Caption --></label>
+        <name>Image_Caption__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is a scaled version of the image - 100px by 130px --></help>
+        <label><!-- Image Preview --></label>
+        <name>Image_Preview__c</name>
+    </fields>
+    <fields>
+        <help><!-- Check this box to include a web to lead form underneath the full view of the article --></help>
+        <label><!-- Include web to lead form on page? --></label>
+        <name>Include_web_to_lead__c</name>
+    </fields>
+    <fields>
+        <help><!-- References an external URL e.g. Sharepoint etc. --></help>
+        <label><!-- Link --></label>
+        <name>Link__c</name>
+    </fields>
+    <fields>
+        <help><!-- Indicates if this article is live on the How To application --></help>
+        <label><!-- Live --></label>
+        <name>On_Website__c</name>
+    </fields>
+    <fields>
+        <help><!-- The sequence in which the articles should be displayed --></help>
+        <label><!-- Ordinal --></label>
+        <name>Ordinal__c</name>
+    </fields>
+    <fields>
+        <help><!-- Please select Manage Content Library, Select an image from a library and copy the ID from the CMS_ID field. Ideal size of the image is 290 x 290 pixels. --></help>
+        <label><!-- Article Image ID --></label>
+        <name>Picture_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Picture --></label>
+        <name>Picture__c</name>
+    </fields>
+    <fields>
+        <help><!-- Used to sort the content (most recent is always at the top) and is displayed on the full view of an article --></help>
+        <label><!-- Publish Date --></label>
+        <name>Publish_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Tick this box to have the article appear on the site --></help>
+        <label><!-- Display? --></label>
+        <name>Published__c</name>
+    </fields>
+    <fields>
+        <label><!-- Render Image --></label>
+        <name>Render_Image__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Time --></label>
+        <name>Start_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status Indicator --></label>
+        <name>Status_Indicator__c</name>
+    </fields>
+    <fields>
+        <help><!-- Note - Only Approved articles will be displayed on the website. --></help>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation>Goedgekeurd</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Created</masterLabel>
+            <translation><!-- Created --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending approval</masterLabel>
+            <translation><!-- Pending approval --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- This is the article summary that appears on the News Stories page --></help>
+        <label><!-- Summary --></label>
+        <name>Summary__c</name>
+    </fields>
+    <fields>
+        <help><!-- Used to classify which pages this article should be displayed on --></help>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Brand Key</masterLabel>
+            <translation><!-- Brand Key --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Products</masterLabel>
+            <translation><!-- Products --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Services</masterLabel>
+            <translation><!-- Services --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Reference a link to a YouTube video. Copy in the entire &lt;object&gt;...&lt;/object&gt; embed link. --></help>
+        <label><!-- YouTube Embed Link --></label>
+        <name>YouTube_embed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Brand --></label>
+        <name>uw_Brand__c</name>
+        <relationshipLabel><!-- Articles --></relationshipLabel>
+    </fields>
+    <gender><!-- Neuter --></gender>
+    <nameFieldLabel><!-- Article Title --></nameFieldLabel>
+    <recordTypes>
+        <label><!-- Brand Centre Article --></label>
+        <name>Brand_Centre_Article</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Home Page Article --></label>
+        <name>Home_Page_Article</name>
+    </recordTypes>
+    <webLinks>
+        <label><!-- Preview_Article --></label>
+        <name>Preview_Article</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- VF_Upload_Image --></label>
+        <name>VF_Upload_Image</name>
+    </webLinks>
+</CustomObjectTranslation>

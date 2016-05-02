@@ -1,0 +1,424 @@
+<!-- 
+//******************************************************************************************************
+//      THE CONTENT OF THIS PAGE HAS BEEN COMMENT OUT AS THIS PAGE IS NO LONGER USED
+//      AS PART OF CODE REFACTORING, NEW PAGES HAVE REPLACED THESE - DESTRUCTIVE CHANGES SHOULD REMOVE THIS
+//      S.M. 2016-03-30
+//****************************************************************************************************** 
+<apex:page sidebar="false" controller="Oblix_Ctrl06SOWView_CC" docType="html-5.0">
+-->
+<apex:page >
+
+<!--   <apex:form id="jqueryId">
+  
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
+
+   
+     <div class="Oblix_Container">
+    <div id="dialog" title="Attachment list" style="display:none">   
+      <apex:pageBlock >
+       <apex:pageBlockTable value="{!lstAttachements}" var="attach">
+           <apex:column headerValue="Name">
+               
+               <apex:outputLink value="{!attach.Id}">{!attach.Name}</apex:outputLink>
+           </apex:column>
+            <apex:column headerValue="Parent Name">
+                 <apex:outputField value="{!attach.Parent.Name}"/>
+           </apex:column>
+       </apex:pageBlockTable>
+     </apex:pageBlock>
+   </div>
+
+    <center>
+    <div class="Oblix_header">
+       
+        <table width="90%" cellspacing="10px">
+            <tr>
+                <td width="8%">
+                <apex:image value="{!$Resource.Oblix_Unilever_logo}" width="60px" height="60px" />
+                </td>
+                <td>
+                <div class="Oblix_header_title">SWOP</div><br/>Sow Online Planner
+                </td>
+                 <td>
+                <div class="Oblix_header_title">Create SOW</div><br/>
+                </td>
+                <td>
+                <div style="float:right"><p>Hi {!userConnected.Name} !</p></div>
+                </td>
+            </tr>
+        </table>
+       
+    </div>
+   
+    </center>
+    
+        <div class="Oblix_sowDetail">
+       
+      
+            <table cellspacing="20px">
+            <tr>
+            <td width="60%">
+            <section class="column1">
+               <table width="100%" class="Oblix_tableDetails">
+                 <tr>
+                      <td width="50%"><strong>SOW Name</strong></td>
+                      <td><apex:inputField value="{!selSow.Name}"/></td>
+                 </tr>
+                 <tr>
+                     <td><strong>BD/BD</strong></td>
+                     <td><apex:inputField value="{!selSow.BB_or_BD__c}"/></td>
+                 </tr>   
+                 <tr>
+                     <td><strong>Brand</strong></td>
+                     <td><apex:inputField value="{!selSow.OblixBrand__r.Name}"/></td>
+                 </tr>
+                 <tr>
+                     <td><strong>Big Category</strong></td>
+                     <td><apex:inputField value="{!selSow.BigOblixProductCategory__r.name}"/></td>
+                 </tr>
+                 <tr>
+                     <td><strong>Small Category</strong></td>
+                     <td><apex:inputField value="{!selSow.SmallProductCategory__r.name}"/></td>
+                 </tr>
+               </table>
+           </section>
+           
+           <section class="column2">
+               <table width="100%" > 
+                   <tr>    
+                      <td width="50%" colspan="2"><strong>Agency Contact</strong><apex:inputField value="{!selSow.Agency_Contact__c}"/></td>
+                   </tr>
+                   <tr>
+                      <td colspan="2"><strong>Unilever Contact </strong><apex:inputField value="{!selSow.Unilever_Lead__c}"/></td>
+                   </tr>
+                   <tr>
+                     <td><strong>FY 2015</strong></td>
+                     <td><apex:inputField value="{!selSow.Financial_Year__c}"/></td>
+                   </tr>
+                   <tr>
+                     <td><strong>Currency</strong></td>
+                     <td><apex:inputField value="{!selSow.Currency__c}"/></td>
+                   </tr>
+                   <tr>
+                   </tr>
+               </table>
+           </section> 
+           </td>
+           <td width="15%">
+           <section class="column3">   
+              <strong>Notes</strong><br/>
+              <p class="Oblix_notes">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+              
+              </p> 
+              
+               <apex:commandButton value="Add Attachments" title="Back to th main page" onclick="Popup();return false" styleClass="Oblix_large_btn Oblix_attachment" rendered="{!lstAttachements.size<>0}"/>
+               
+           </section>
+           </td>
+           <td>
+           <section class="column4">
+               <table width="100%" >  
+                   <tr> 
+                      <td><strong>Created today by </strong> <br/>{!userConnected.Name}</td>
+                   </tr>
+                   
+                    <tr>
+                     <td><strong><br/>Current</strong></td>
+                   </tr>
+                   <tr>
+                       <td><h1><center><br/>Unsaved</center></h1></td>
+                   </tr>
+              </table>
+          </section>
+         
+          <section class="column5">
+             <center>
+                 <apex:commandButton value="Back" title="View project details" reRender="Oblix_sowDetail" styleClass="Oblix_large_btn"/><br/>
+                 <apex:commandButton value="Share" onclick="" title="Share SOW with others"  styleClass="Oblix_large_btn"/><br/>
+                 <apex:commandButton value="Save" onclick="" title="View PDF format"  styleClass="Oblix_large_btn"/><br/>
+                 <apex:commandButton value="Submit" title="Return"  onclick="" styleClass="Oblix_large_btn"/>
+             </center>  
+          </section>   
+          </td>
+          </tr>
+          </table>
+  </div>
+  
+     <div class="Oblix_table padding_remove">
+         <div class="Oblix_projects_container">  
+            <table class="Oblix_projects_header" width="100%">
+                <tr>
+                    <td width="20%">
+                        <h1>Project and Stewardship</h1>
+                    </td>
+                    <td>
+                    </td>
+                    <td  width="15%">
+                        <apex:commandButton value="Add Stewardship" styleClass="Oblix_projects_btn"/>
+                    </td>
+                    <td  width="15%">
+                        <apex:commandButton value="Add Project" styleClass="Oblix_projects_btn"/>
+                    </td>
+                </tr>
+            </table>
+
+            <table width="100%">
+                <tbody>   
+                <apex:outputPanel rendered="{!lstProjects <> null}"> 
+                <apex:repeat value="{!lstProjects}" var="pr">
+                 <tr class="Oblix_heading">
+                    <th>
+                        <table width="100%">
+                            <tr>
+                                <td width="20%">
+                                    {!pr.name}
+                                </td>
+                                <td>
+                                </td>
+                                <td width="10%">
+                                    In progress
+                                </td>
+                                <td width="3%" class="Oblix_icon">
+                                    <i class="fa fa-2x fa-sort-desc"></i>
+                                    <i class="fa fa-2x fa-sort-up"></i>
+                                </td>
+                            </tr>
+                        </table>
+                    </th>   
+                </tr>
+                <tr class="data">
+                    <td width="100%">
+                   <apex:outputPanel id="EditPanel">
+
+                         <table width="100%" cellspacing="10px" valign="Top"> 
+                               <tr>    
+                                  <td><strong>Description </strong></td>
+                                  <td><strong>Priority</strong><apex:outputField value="{!pr.Project_Priority__c}"/></td>
+                                  <td width="15%"><strong>Due date of BET </strong></td>
+                                  <td><apex:outputField value="{!pr.Project_Start_Date__c}"/></td>
+                                  <td>Created &nbsp;
+                                      <apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+                                            <apex:param value="{!pr.CreatedDate}" /> 
+                                      </apex:outputText>
+                                  </td>
+                                  <td>By {!pr.CreatedById}</td>
+                                  <td rowspan="7" width="10%">
+                                      <apex:commandButton value="Save project" action="{!EditAction}" rerender="EditPanel" styleClass="Oblix_projects_btn"/><br/>
+                                      <apex:commandButton value="Edit" styleClass="Oblix_projects_btn"/><br/>
+                                      <apex:commandButton value="Clone Project " styleClass="Oblix_projects_btn"/>
+                                  </td>
+                                  
+                               </tr>
+                               <tr>
+                                  <td rowspan="2" style="vertical-align: top;"><apex:outputField value="{!pr.Description__c}"/></td>
+                                  <td><strong>Platforme </strong>{!pr.Platform__c}</td>
+                                  <td><strong>Project Completion date </strong></td>
+                                  <td><apex:outputField value="{!pr.Project_Start_Date__c}"/></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                               </tr>
+                                <tr>
+                                  <td rowspan="2" style="vertical-align: top;" ><strong>Contries/Region </strong><br/><apex:outputField value="{!pr.Campaign_Countries__c}"/></td>
+                                  <td><strong>First Air date </strong></td>
+                                  <td><apex:outputField value="{!pr.Project_Start_Date__c}"/></td>
+                                  <td></td>
+                                  <td>***On Hold picklist***</td>
+                                  <td></td>
+                                  <td></td>
+                               </tr>
+                                <tr>
+                                  <td><strong> JTBD </strong></td>
+                                  <td>
+                                  <strong>Production completed date </strong>
+                                  </td>
+                                  <td>
+                                  <apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+                                        <apex:param value="{!pr.Production_Completion_Date__c}" /> 
+                                  </apex:outputText></td>
+                                  <td></td>
+                                  <td>
+                                   *** Project status picklist ***
+                                  </td>
+                                  <td></td>
+                                  <td></td>
+                               </tr>
+                               <tr>
+                                  <td rowspan="2" style="vertical-align: top;"><apex:outputField value="{!pr.Description__c}"/></td>
+                                  <td>
+                                      <strong>Agency Hub Split</strong>
+                                  </td>
+                                  <td><strong>% Of fee this FY </strong></td>
+                                  <td> 70%</td>
+                                  <td></td>
+                                  <td></td>
+                               </tr>          
+                               <tr>
+                                   <td rowspan="2" style="vertical-align: top;">Detail de Agency hub</td>
+                                  <td rowspan="2" style="vertical-align: top;">
+                                      Detail de % Of fee this FY
+                                  </td>
+                                  
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                               </tr>         
+                              
+                               <tr>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                               </tr>         
+                                <tr>
+                                  <td></td>
+                                  <td><strong>Value Driver</strong></td>
+                                  <td><strong>Timescale notes</strong></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                               </tr>         
+                               <tr>
+                                  <td></td>
+                                  <td>Details Value Driver</td>
+                                  <td>Details notes</td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                               </tr>         
+                                                     
+                           </table>
+                           
+                           
+                           </apex:outputPanel>
+                           <div class="Oblix_recordType">
+                           <table width="100%">
+                                <tr class="Oblix_recordTypeth">
+                                    <th>
+                                        <div class="Oblix_div_left">
+                                            Audio Visuel
+                                        </div>
+                                        <div class="Oblix_icon_right Oblix_icon">
+                                            <i class="fa fa-2x fa-sort-desc"></i>
+                                            <i class="fa fa-2x fa-sort-up"></i>      
+                                        </div>
+                                    </th>   
+                                </tr>
+                                <tr class="data Oblix_subCat">
+                                    <td width="100%">
+                                       voilà un texte
+                                    </td>
+                                </tr>
+                                <tr class="Oblix_recordTypeth">
+                                    <th>
+                                        <div class="Oblix_div_left">
+                                          Static Emergency
+                                        </div>
+                                        <div class="Oblix_icon_right Oblix_icon">
+                                            <i class="fa fa-2x fa-sort-desc"></i>
+                                            <i class="fa fa-2x fa-sort-up"></i>      
+                                        </div>
+                                    </th>   
+                                </tr>
+                                 <tr class="data Oblix_subCat">
+                                     <td width="100%">
+                                       voilà un texte
+                                    </td>
+                                </tr>
+                                <tr class="Oblix_recordTypeth">
+                                    <th>
+                                        <div class="Oblix_div_left">
+                                           Experiential
+                                        </div>
+                                        <div class="Oblix_icon_right Oblix_icon">
+                                            <i class="fa fa-2x fa-sort-desc"></i>
+                                            <i class="fa fa-2x fa-sort-up"></i>      
+                                        </div>
+                                    </th>   
+                                </tr>
+                                <tr class="data Oblix_subCat">
+                                     <td width="100%">
+                                       voilà un texte
+                                    </td>
+                                </tr>
+                                 <tr class="Oblix_recordTypeth">
+                                    <th>
+                                        <div class="Oblix_div_left">
+                                           Digital
+                                        </div>
+                                        <div class="Oblix_icon_right Oblix_icon">
+                                            <i class="fa fa-2x fa-sort-desc"></i>
+                                            <i class="fa fa-2x fa-sort-up"></i>      
+                                        </div>
+                                    </th>   
+                                </tr>
+                                <tr class="data Oblix_subCat">
+                                     <td width="100%">
+                                       voilà un texte
+                                    </td>
+                                </tr>
+                                <tr class="Oblix_recordTypeth">
+                                    <th>
+                                        <div class="Oblix_div_left">
+                                           Value Drivers
+                                        </div>
+                                        <div class="Oblix_icon_right Oblix_icon">
+                                            <i class="fa fa-2x fa-sort-desc"></i>
+                                            <i class="fa fa-2x fa-sort-up"></i>      
+                                        </div>
+                                    </th>   
+                                </tr>
+                                <tr class="data Oblix_subCat">
+                                    <td width="100%">
+                                       voilà un texte
+                                    </td>
+                                </tr>
+                                <tr class="Oblix_recordTypeth">
+                                    <th>
+                                        <div class="Oblix_div_left">
+                                           Research Drivers
+                                        </div>
+                                        <div class="Oblix_icon_right Oblix_icon">
+                                            <i class="fa fa-2x fa-sort-desc"></i>
+                                            <i class="fa fa-2x fa-sort-up"></i>      
+                                        </div>
+                                    </th>   
+                                </tr>
+                                <tr class="data Oblix_subCat">
+                                     <td width="100%">
+                                       voilà un texte
+                                    </td>
+                                </tr>
+                            </table>
+                            </div>
+                            
+                         <div class="Oblix_card"> Card </div>
+                       </td>
+                       
+                </tr>
+               
+            </apex:repeat>
+            </apex:outputPanel>
+          </tbody>
+        </table>
+     
+    </div>
+ </div>
+ </div>
+</apex:form> -->
+</apex:page>

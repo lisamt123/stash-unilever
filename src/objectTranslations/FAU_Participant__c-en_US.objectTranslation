@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Participant</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Participants</value>
+    </caseValues>
+    <fields>
+        <label><!-- Chatter Group Id --></label>
+        <name>Chatter_Group_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Current Role/ Responsibilities --></label>
+        <name>Current_Role_Responibilities__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approver of Nomination --></label>
+        <name>FAU_Approver_of_Nomination__c</name>
+        <relationshipLabel><!-- Participants (Approver of Nomination) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Approver of Nomination&apos;s Email --></label>
+        <name>FAU_Approver_of_Nomination_s_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bio Completeness Flag --></label>
+        <name>FAU_Bio_Completeness_Flag__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bio Page Link --></label>
+        <name>FAU_Bio_Page_Link__c</name>
+    </fields>
+    <fields>
+        <label><!-- Biography Deadline --></label>
+        <name>FAU_Biography_Deadline__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is from your  &apos;About Me&apos; section of your Personal Chatter. --></help>
+        <label><!-- Biography --></label>
+        <name>FAU_Biography__c</name>
+    </fields>
+    <fields>
+        <label><!-- Budget Holder --></label>
+        <name>FAU_Budget_Holder__c</name>
+        <relationshipLabel><!-- Participants (Budget Holder) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Budget Holder&apos;s Email --></label>
+        <name>FAU_Budget_Holder_s_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Chatter Group --></label>
+        <name>FAU_Chatter_Group__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Building and Street --></label>
+        <name>FAU_Company_Building_and_Street__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company City --></label>
+        <name>FAU_Company_City__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Code --></label>
+        <name>FAU_Company_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Country --></label>
+        <name>FAU_Company_Country__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Details Flag --></label>
+        <name>FAU_Company_Details_Flag__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Details Message --></label>
+        <name>FAU_Company_Details_Message__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Name --></label>
+        <name>FAU_Company_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Zip Code --></label>
+        <name>FAU_Company_Zip_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Registration Flag --></label>
+        <name>FAU_Completeness_Flag__c</name>
+    </fields>
+    <fields>
+        <label><!-- Registration Icon --></label>
+        <name>FAU_Completeness_Icon__c</name>
+    </fields>
+    <fields>
+        <label><!-- Completeness Message --></label>
+        <name>FAU_Completeness_Message__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cost Center --></label>
+        <name>FAU_Cost_Center__c</name>
+    </fields>
+    <fields>
+        <label><!-- Decline Reason --></label>
+        <name>FAU_Decline_Reason__c</name>
+        <picklistValues>
+            <masterLabel>Going on Leave</masterLabel>
+            <translation><!-- Going on Leave --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Leaving Company</masterLabel>
+            <translation><!-- Leaving Company --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Moving Roles</masterLabel>
+            <translation><!-- Moving Roles --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No Budget</masterLabel>
+            <translation><!-- No Budget --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Interested</masterLabel>
+            <translation><!-- Not Interested --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Schedule Contrainsts</masterLabel>
+            <translation><!-- Schedule Contrainsts --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Education --></label>
+        <name>FAU_Education__c</name>
+    </fields>
+    <fields>
+        <label><!-- Email Address --></label>
+        <name>FAU_Email_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- Employee Details Flag --></label>
+        <name>FAU_Employee_Details_Flag__c</name>
+    </fields>
+    <fields>
+        <label><!-- Employee Details Message --></label>
+        <name>FAU_Employee_Details_Message__c</name>
+    </fields>
+    <fields>
+        <label><!-- Employee Number --></label>
+        <name>FAU_Employee_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- External ID --></label>
+        <name>FAU_External_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- First Name --></label>
+        <name>FAU_First_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- GL Code --></label>
+        <name>FAU_GL_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- ICC --></label>
+        <name>FAU_ICC__c</name>
+    </fields>
+    <fields>
+        <label><!-- Invitation Link --></label>
+        <name>FAU_Invitation_Link__c</name>
+    </fields>
+    <fields>
+        <help><!-- New - The Participant has not been sent an invite yet
+Invited - The Participant has been sent an invite, but not accepted/declined yet
+Accepted - The Participant accepted 
+Declined - The Participant Declined
+Completed - The Participant Completed --></help>
+        <label><!-- Invite State --></label>
+        <name>FAU_Invite_State__c</name>
+        <picklistValues>
+            <masterLabel>Accepted</masterLabel>
+            <translation><!-- Accepted --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Completed</masterLabel>
+            <translation><!-- Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Declined</masterLabel>
+            <translation><!-- Declined --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Invited</masterLabel>
+            <translation><!-- Invited --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not yet invited</masterLabel>
+            <translation><!-- Not yet invited --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- New - The Participant has not been sent an invite yet
+Invited - The Participant has been sent an invite, but not accepted/declined yet
+Accepted - The Participant accepted a place on the program
+Declined - The Participant Declined a place on the program --></help>
+        <label><!-- Invite Status --></label>
+        <name>FAU_Invite_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Participant Shared --></label>
+        <name>FAU_Is_Participant_Shared__c</name>
+    </fields>
+    <fields>
+        <help><!-- Would you like your PA to handle this request? --></help>
+        <label><!-- Is deferred To PA? --></label>
+        <name>FAU_Is_deferred_To_PA__c</name>
+    </fields>
+    <fields>
+        <label><!-- Job Title --></label>
+        <name>FAU_Job_Title__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the Last Email Sent --></help>
+        <label><!-- Last Email Sent --></label>
+        <name>FAU_Last_Email_Sent__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Name --></label>
+        <name>FAU_Last_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Line Manager Details Flag --></label>
+        <name>FAU_Line_Manager_Details_Flag__c</name>
+    </fields>
+    <fields>
+        <label><!-- Line Manager --></label>
+        <name>FAU_Line_Manager__c</name>
+        <relationshipLabel><!-- Participants (Line Manager) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Line Manager&apos;s Details Message --></label>
+        <name>FAU_Line_Manager_s_Details_Message__c</name>
+    </fields>
+    <fields>
+        <label><!-- Line Manager&apos;s Email Address --></label>
+        <name>FAU_Line_Manager_s_Email_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- Line Manager&apos;s Job Title --></label>
+        <name>FAU_Line_Manager_s_Job_Title__c</name>
+    </fields>
+    <fields>
+        <label><!-- Line Manager&apos;s Name --></label>
+        <name>FAU_Line_Manager_s_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Line Manager’s Secretary’s Name --></label>
+        <name>FAU_Line_Manager_s_Secretary_s_Name__c</name>
+        <relationshipLabel><!-- Participants (Line Manager’s Secretary’s Name) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Link --></label>
+        <name>FAU_Link__c</name>
+    </fields>
+    <fields>
+        <label><!-- Mobile Number --></label>
+        <name>FAU_Mobile_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Module 1 End Date --></label>
+        <name>FAU_Module_1_End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Module 1 Start Date --></label>
+        <name>FAU_Module_1_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- No of Incomplete Modules --></label>
+        <name>FAU_No_of_Incomplete_Modules__c</name>
+    </fields>
+    <fields>
+        <label><!-- Participants Workbook --></label>
+        <name>FAU_Participants_Workbook__c</name>
+    </fields>
+    <fields>
+        <label><!-- Person to Invoice&apos;s Email --></label>
+        <name>FAU_Person_to_Invoice_s_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Person to invoice --></label>
+        <name>FAU_Person_to_invoice__c</name>
+        <relationshipLabel><!-- Participants (Person to invoice) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Personal Assistant --></label>
+        <lookupFilter>
+            <errorMessage><!-- An active standard user needs to be chosen. --></errorMessage>
+        </lookupFilter>
+        <name>FAU_Personal_Assistant__c</name>
+        <relationshipLabel><!-- Participants (Personal Assistant) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Personal Assistant&apos;s Email --></label>
+        <name>FAU_Personal_Assistant_s_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Personal Details Flag --></label>
+        <name>FAU_Personal_Details_Flag__c</name>
+    </fields>
+    <fields>
+        <label><!-- Personal Details Message --></label>
+        <name>FAU_Personal_Details_Message__c</name>
+    </fields>
+    <fields>
+        <help><!-- Share anything you like about yourself, where you live, hobbies, family --></help>
+        <label><!-- Personal --></label>
+        <name>FAU_Personal__c</name>
+    </fields>
+    <fields>
+        <help><!-- If the user has previously attended this course and has taken a sabbatical. Enter the Participant record and the information from previously will be filled. --></help>
+        <label><!-- Previously a Participant --></label>
+        <name>FAU_Previously_a_Participant__c</name>
+        <relationshipLabel><!-- Participants --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Prior Career --></label>
+        <name>FAU_Prior_Career__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Banner URL --></label>
+        <name>FAU_Program_Banner_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Chatter Group Id --></label>
+        <name>FAU_Program_Chatter_Group_Id__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is set at program level. It stops reminders being set. --></help>
+        <label><!-- Program:Don&apos;t Send Reminders --></label>
+        <name>FAU_Program_Don_t_Send_Reminders__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Fee --></label>
+        <name>FAU_Program_Fee__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Id --></label>
+        <name>FAU_Program_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Location --></label>
+        <name>FAU_Program_Location__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Name --></label>
+        <name>FAU_Program_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Start Date Quarter --></label>
+        <name>FAU_Program_Start_Date_Quarter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Start Date --></label>
+        <name>FAU_Program_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Type --></label>
+        <name>FAU_Program_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program --></label>
+        <name>FAU_Program_Wave__c</name>
+        <relationshipLabel><!-- Participants --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- RSVP Deadline --></label>
+        <name>FAU_RSVP_Deadline__c</name>
+    </fields>
+    <fields>
+        <help><!-- This gets filled when the participant can&apos;t find the Personal Assistant User and is requesting a user login for the PA. --></help>
+        <label><!-- Request PA User Email Address --></label>
+        <name>FAU_Request_PA_User_Email_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- Title --></label>
+        <name>FAU_Title__c</name>
+        <picklistValues>
+            <masterLabel>Dr.</masterLabel>
+            <translation><!-- Dr. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mr.</masterLabel>
+            <translation><!-- Mr. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mrs.</masterLabel>
+            <translation><!-- Mrs. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ms.</masterLabel>
+            <translation><!-- Ms. --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Unilever Career --></label>
+        <name>FAU_Unilever_Career__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unique ID --></label>
+        <name>FAU_Unique_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Upload final IDP on Talent Plus --></label>
+        <name>FAU_Upload_final_IDP_on_Talent_Plus__c</name>
+    </fields>
+    <fields>
+        <label><!-- User License --></label>
+        <name>FAU_User_License__c</name>
+    </fields>
+    <fields>
+        <label><!-- User --></label>
+        <lookupFilter>
+            <errorMessage><!-- An active standard user needs to be chosen. --></errorMessage>
+            <informationalMessage><!-- Select the Salesforce User who you want to participate in this program wave. --></informationalMessage>
+        </lookupFilter>
+        <name>FAU_User__c</name>
+        <relationshipLabel><!-- Participants (User) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Video Introduction --></label>
+        <name>FAU_Video_Introduction__c</name>
+    </fields>
+    <fields>
+        <label><!-- Webinar Date/Time --></label>
+        <name>FAU_Webinar_Date_Time__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- If application has been assigned to Personal Assistant to fill the forms then the Personal Assistant needs to be identified. --></errorMessage>
+        <name>FAU_If_PA_active_PA_needs_to_be_filled</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can&apos;t nominate yourself as your Personal Assistant. --></errorMessage>
+        <name>FAU_PA_cant_be_the_participant</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can&apos;t nominate program owner as your Personal Assistant. --></errorMessage>
+        <name>FAU_PA_cant_be_the_program_owner</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Participant&apos;s program can&apos;t be changed. --></errorMessage>
+        <name>FAU_Participant_Program_cant_be_changed</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Participant can&apos;t be the progam owner --></errorMessage>
+        <name>FAU_Participant_cant_be_the_progam_owner</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Participants can only be added to Active Programs.
+Change the program status to &apos;Active&apos; to continue. --></errorMessage>
+        <name>FAU_Participants_added_Active_Programs</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- FAU_Send_Email --></label>
+        <name>FAU_Send_Email</name>
+    </webLinks>
+</CustomObjectTranslation>

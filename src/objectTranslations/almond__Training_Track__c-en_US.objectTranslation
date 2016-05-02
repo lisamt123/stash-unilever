@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Geography --></label>
+        <name>Geography__c</name>
+        <picklistValues>
+            <masterLabel>Americas</masterLabel>
+            <translation><!-- Americas --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Asia (Fusion)</masterLabel>
+            <translation><!-- Asia (Fusion) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Asia / Africa (U2K2)</masterLabel>
+            <translation><!-- Asia / Africa (U2K2) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Europe</masterLabel>
+            <translation><!-- Europe --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Global</masterLabel>
+            <translation><!-- Global --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Guest</masterLabel>
+            <translation><!-- Guest --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- User Role --></label>
+        <name>PBS_Standard_Job_Profile__c</name>
+        <relationshipLabel><!-- Training Tracks --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Work_Level --></label>
+        <name>Work_Level__c</name>
+        <picklistValues>
+            <masterLabel>Guest</masterLabel>
+            <translation><!-- Guest --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Level 1</masterLabel>
+            <translation><!-- Level 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Level 2</masterLabel>
+            <translation><!-- Level 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Level 3</masterLabel>
+            <translation><!-- Level 3 --></translation>
+        </picklistValues>
+    </fields>
+</CustomObjectTranslation>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Category</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Categories</value>
+    </caseValues>
+    <fields>
+        <label><!-- CCFOT --></label>
+        <name>CCFOT__c</name>
+    </fields>
+    <fields>
+        <label><!-- Stock DOH --></label>
+        <name>DOH__c</name>
+    </fields>
+    <fields>
+        <label><!-- Forecast Bias --></label>
+        <name>ForecastBias__c</name>
+    </fields>
+    <fields>
+        <label><!-- Level --></label>
+        <name>Level__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parent Category --></label>
+        <name>ParentCategory__c</name>
+        <relationshipLabel><!-- Sub Categories --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Responsible Director --></label>
+        <name>ResponsibleDirector__c</name>
+        <relationshipLabel><!-- Categories --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Target --></label>
+        <name>Target__c</name>
+    </fields>
+    <fields>
+        <label><!-- View Dashboard --></label>
+        <name>ViewDashboard__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,46 @@
+<aura:component controller="Core_NC_NewsCenterController">
+	<aura:handler name="init" value="{!this}" action="{!c.getGlobalNewsMostRecent}" />
+    <aura:attribute name="NewsType" type="String"/>
+    
+    <aura:attribute name="wrapper" type="Core_NC_NewsWrapperClass"/>
+    <aura:attribute name="loadMoreDisplay" type="Boolean" default="false"/>
+    <aura:attribute name="NewsList" type="Core_NC_NewsWrapperClass"/>
+    <aura:attribute name="ErrorMessage" type="Boolean" default="false"/>
+    <aura:attribute name="UserId" type="String"/>
+    <aura:attribute name="GAId" type="String"/>
+    
+        <div class="container">
+            <div id="list" class="row">                
+                <div class="topPadding">
+                    <div style="display:inline-block;float:left;padding-left:10px;">
+                    	<img src="/resource/NewsCenterIcons/Paul.png" alt="owner" height="72" width="72" border="0"/>
+                    </div>
+                    <div style="display:inline-block;padding-left:10px;padding-top: 10px;">                    	
+                        <span class="blogTitle">My Perspective</span><br/>
+                        <span class="blogSubTitle">Paul Polman's Blog</span>
+                    </div>
+                </div>
+                <div style="text-align:center;">
+                    <aura:if isTrue="{!v.ErrorMessage}">
+                        <ui:outputText value="No data" class="SubText"/>
+                    </aura:if>
+                </div>    
+                <aura:iteration items="{!v.NewsList}" var="newsArticle" indexVar="index">
+                    <div>
+                        <aura:if isTrue="{!index == 0 ? true : false}">                         
+                            <c:CORE_NC_NewsBanner newsArticle="{!newsArticle}" newsType="{!v.NewsType}"/>
+                          <aura:set attribute="else">                              
+                              <c:CORE_NC_NewsItem newsArticle="{!newsArticle}" newsType="{!v.NewsType}"/>
+                          </aura:set>
+                        </aura:if>
+                    </div>
+                </aura:iteration>
+                <aura:if isTrue="{!v.loadMoreDisplay}">
+                    <div class="loadMoreBar" >    
+                        <div class="loadMoreButton" onclick="{!c.loadMoreNewsList}">  Load More  </div>
+                    </div>
+                </aura:if>
+            </div>
+        </div>
+    <!--</div>-->
+</aura:component>

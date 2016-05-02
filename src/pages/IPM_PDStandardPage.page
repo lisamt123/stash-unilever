@@ -1,0 +1,11 @@
+<!--  
+*************************************************************************
+*@Description:This page is used <…..>
+*@Author: Cognizant
+*@Created Date: 16/02/2015
+*@Copyright © 2015  Unilever  
+*************************************************************************
+-->
+
+<apex:page standardController="IPM_Project_Document__c" extensions="IPM_GenericExtCtrl" action="{!red}">
+</apex:page>

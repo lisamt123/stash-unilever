@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>IPM Gate CMI</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>IPM Gate CMIs</value>
+    </caseValues>
+    <fields>
+        <label><!-- Approx. Results Timing --></label>
+        <name>Approx_Results_Timing__c</name>
+    </fields>
+    <fields>
+        <label><!-- Country --></label>
+        <name>Country__c</name>
+        <picklistValues>
+            <masterLabel>BR</masterLabel>
+            <translation><!-- BR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CN</masterLabel>
+            <translation><!-- CN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>US</masterLabel>
+            <translation><!-- US --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ZA</masterLabel>
+            <translation><!-- ZA --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Element --></label>
+        <name>Element__c</name>
+        <picklistValues>
+            <masterLabel>Communication</masterLabel>
+            <translation><!-- Communication --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Concept</masterLabel>
+            <translation><!-- Concept --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Full Mix-Volume</masterLabel>
+            <translation><!-- Full Mix-Volume --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pack Test</masterLabel>
+            <translation><!-- Pack Test --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product Test</masterLabel>
+            <translation><!-- Product Test --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gate --></label>
+        <name>Gate__c</name>
+        <picklistValues>
+            <masterLabel>Charter</masterLabel>
+            <translation><!-- Charter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Contract</masterLabel>
+            <translation><!-- Contract --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Market Ready</masterLabel>
+            <translation><!-- Market Ready --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IPM CMI Added At --></label>
+        <name>IPM_CMI_Added_At__c</name>
+        <picklistValues>
+            <masterLabel>Charter</masterLabel>
+            <translation><!-- Charter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Contract</masterLabel>
+            <translation><!-- Contract --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Market Ready</masterLabel>
+            <translation><!-- Market Ready --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IPM CMI Overall Colour Score Method --></label>
+        <name>IPM_CMI_Overall_Colour_Score_Method__c</name>
+        <picklistValues>
+            <masterLabel>Manual</masterLabel>
+            <translation><!-- Manual --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Applicable</masterLabel>
+            <translation><!-- Not Applicable --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>System</masterLabel>
+            <translation><!-- System --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IPM CMI Records Count --></label>
+        <name>IPM_CMI_Records_Count__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Project --></label>
+        <name>IPM_Project__c</name>
+        <relationshipLabel><!-- IPM Gate CMIs --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- IPM Skip Test Reason --></label>
+        <name>IPM_Skip_Test_Reason__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Skip Test --></label>
+        <name>IPM_Skip_Test__c</name>
+    </fields>
+    <fields>
+        <label><!-- Input --></label>
+        <name>Input__c</name>
+        <picklistValues>
+            <masterLabel>Attraction</masterLabel>
+            <translation><!-- Attraction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Awareness Index</masterLabel>
+            <translation><!-- Awareness Index --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CVM (Concept Viability Measure)</masterLabel>
+            <translation><!-- CVM (Concept Viability Measure) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Communication</masterLabel>
+            <translation><!-- Communication --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Differentiation</masterLabel>
+            <translation><!-- Differentiation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Expensiveness</masterLabel>
+            <translation><!-- Expensiveness --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Key Attributes</masterLabel>
+            <translation><!-- Key Attributes --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Overall liking</masterLabel>
+            <translation><!-- Overall liking --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Persuation</masterLabel>
+            <translation><!-- Persuation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Point of Purchase</masterLabel>
+            <translation><!-- Point of Purchase --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Relevance</masterLabel>
+            <translation><!-- Relevance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Salience</masterLabel>
+            <translation><!-- Salience --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>package communication</masterLabel>
+            <translation><!-- package communication --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>shelf findability</masterLabel>
+            <translation><!-- shelf findability --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>shelf purchase</masterLabel>
+            <translation><!-- shelf purchase --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>shelf visibility</masterLabel>
+            <translation><!-- shelf visibility --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- KPI --></label>
+        <name>KPI__c</name>
+        <picklistValues>
+            <masterLabel>IntroSCAPE</masterLabel>
+            <translation><!-- IntroSCAPE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Judgement call</masterLabel>
+            <translation><!-- Judgement call --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Overall Score</masterLabel>
+            <translation><!-- Overall Score --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Performance</masterLabel>
+            <translation><!-- Performance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Persuation/Awareness</masterLabel>
+            <translation><!-- Persuation/Awareness --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RED</masterLabel>
+            <translation><!-- RED --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SCAPE</masterLabel>
+            <translation><!-- SCAPE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Salience/Attraction Matrix</masterLabel>
+            <translation><!-- Salience/Attraction Matrix --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Results --></label>
+        <name>Results__c</name>
+        <picklistValues>
+            <masterLabel>Bottom 30%</masterLabel>
+            <translation><!-- Bottom 30% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Failure (=&lt; 33%)</masterLabel>
+            <translation><!-- Failure (=&lt; 33%) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>High Potential</masterLabel>
+            <translation><!-- High Potential --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Loss</masterLabel>
+            <translation><!-- Loss --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Low Potential</masterLabel>
+            <translation><!-- Low Potential --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Medium Potential</masterLabel>
+            <translation><!-- Medium Potential --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mid 40%</masterLabel>
+            <translation><!-- Mid 40% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Outstanding (&gt;= 85%)</masterLabel>
+            <translation><!-- Outstanding (&gt;= 85%) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Parity</masterLabel>
+            <translation><!-- Parity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Possible Failure</masterLabel>
+            <translation><!-- Possible Failure --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Potential Failure</masterLabel>
+            <translation><!-- Potential Failure --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Risky</masterLabel>
+            <translation><!-- Risky --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Risky (34% - 69%)</masterLabel>
+            <translation><!-- Risky (34% - 69%) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Satisfactory</masterLabel>
+            <translation><!-- Satisfactory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Satisfactory (70% - 84%)</masterLabel>
+            <translation><!-- Satisfactory (70% - 84%) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Top 30%</masterLabel>
+            <translation><!-- Top 30% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Win</masterLabel>
+            <translation><!-- Win --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Test --></label>
+        <name>Test__c</name>
+        <picklistValues>
+            <masterLabel>Bases I - Nielsen</masterLabel>
+            <translation><!-- Bases I - Nielsen --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bases II - Nielsen</masterLabel>
+            <translation><!-- Bases II - Nielsen --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bases III - Nielsen</masterLabel>
+            <translation><!-- Bases III - Nielsen --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Blind Product Test - Ipsos</masterLabel>
+            <translation><!-- Blind Product Test - Ipsos --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Branded Product Test - Ipsos</masterLabel>
+            <translation><!-- Branded Product Test - Ipsos --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bundle Builder -Nielsen</masterLabel>
+            <translation><!-- Bundle Builder -Nielsen --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Concept Product test - Ipsos</masterLabel>
+            <translation><!-- Concept Product test - Ipsos --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Designor post use - Ipsos</masterLabel>
+            <translation><!-- Designor post use - Ipsos --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Designor post use with full mix - Ipsos</masterLabel>
+            <translation><!-- Designor post use with full mix - Ipsos --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Designor pre use - Ipsos</masterLabel>
+            <translation><!-- Designor pre use - Ipsos --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Idea Screener - Nielsen</masterLabel>
+            <translation><!-- Idea Screener - Nielsen --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Innoscreen * Concepts - Ipsos</masterLabel>
+            <translation><!-- Innoscreen * Concepts - Ipsos --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Innoscreen * ideas - Ipsos</masterLabel>
+            <translation><!-- Innoscreen * ideas - Ipsos --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Preview - MWB</masterLabel>
+            <translation><!-- Preview - MWB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Qual Concept</masterLabel>
+            <translation><!-- Qual Concept --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Qual Pack Test</masterLabel>
+            <translation><!-- Qual Pack Test --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quant Pack test - PRS PackEval</masterLabel>
+            <translation><!-- Quant Pack test - PRS PackEval --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Snapshot - Nielsen</masterLabel>
+            <translation><!-- Snapshot - Nielsen --></translation>
+        </picklistValues>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

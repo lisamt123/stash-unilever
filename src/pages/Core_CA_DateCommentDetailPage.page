@@ -1,0 +1,84 @@
+<apex:page docType="html-5.0" showHeader="false" standardStylesheets="false" sidebar="false" >
+    <meta http-equiv="content-type" content="text/html; charset=UTF8" />
+    <div class="iPhoneHomeScreenHeight" id="pageTop" ng-init="approverCount = approvalRequestData.ApproverCnt; endorserCount = approvalRequestData.EndorserCnt;">
+        <div id="homePage1" class="headerBarBackground" >
+            <table class="headerBarWidth">
+                <tr>
+                    <td class="headerBarRowAlign" >
+                        <img src="{!URLFOR($Resource.MyApprovalsSR, 'img/back.svg')}" ng-click='gotoDetailPage()'  alt="back" class="homePageFilter" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <br/>
+        <div ng-repeat="approvalHistory in approvalRequestData.ApprovalHistory">
+            <div class="template" ng-init="EndorserPanelDisplay=false" >
+                <div class="defaultBottomBorder" ng-click="EndorserPanelDisplay = (EndorserPanelDisplay=='true' ? 'false' : 'true')">
+                    <span>
+                   
+                    
+                        <label class="detailSectionHeader" ng-show="approvalHistory.Role == 'END'" >
+                            {{'LBL_ENDORSER' | translate}} 
+                            <span ng-init="approverSerial=$parent.approverCount; $parent.approverCount=(approvalHistory.Role == 'END')?$parent.approverCount-1:$parent.approverCount;">{{approverSerial}}</span>
+                        </label>
+                        <label class="detailSectionHeader" ng-show="approvalHistory.Role == 'APP'"> 
+                            {{'LBL_APPROVER' | translate}} 
+                            <span ng-init="endorserSerial=$parent.endorserCount; $parent.endorserCount=(approvalHistory.Role == 'APP')?$parent.endorserCount-1:$parent.endorserCount;">{{endorserSerial}}</span>
+                        </label> 
+                    </span>
+                    <span class="alignRight">
+                        <img class="arrowButtonStyle" ng-show="EndorserPanelDisplay" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}" alt="showArrow" />
+                        <img class="arrowButtonStyle" ng-hide="EndorserPanelDisplay" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}" alt="hideArrow" />
+                    </span>
+                </div>
+                <div ng-hide="EndorserPanelDisplay" id="responsiveDetailSectionwrapper">
+                    <div class="row">
+                        <div class="responsiveDetailSectionData">
+                            <table class="responsiveDetailSectionTable">
+                                <tr>
+                                    <td class="responsiveDetailSectionTableRowLabel">{{'LBL_STATUS' | translate}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="responsiveDetailSectionTableRowValue">{{approvalHistory.ApproverAction }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="responsiveDetailSectionData">
+                            <table class="responsiveDetailSectionTable">
+                                <tr>
+                                    <td class="responsiveDetailSectionTableRowLabel">{{'LBL_NAME' | translate}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="responsiveDetailSectionTableRowValue">{{approvalHistory.ApproverName | replaceNullValue}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="responsiveDetailSectionData">
+                            <table class="responsiveDetailSectionTable">
+                                <tr>
+                                    <td class="responsiveDetailSectionTableRowLabel">{{'LBL_DATE' | translate}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="responsiveDetailSectionTableRowValue">{{approvalHistory.ApprovedDate | replaceNullValue}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="responsiveDetailSectionData">
+                            <table class="responsiveDetailSectionTable">
+                                <tr>
+                                    <td class="responsiveDetailSectionTableRowLabel">{{'LBL_COMMENT' | translate}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="responsiveDetailSectionTableRowValue">{{approvalHistory.Comment | replaceNullValue}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+        </div>
+    </div>
+</apex:page>

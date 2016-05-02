@@ -1,0 +1,39 @@
+<aura:component >
+    <aura:attribute name="shelfTileId" type="String" />
+    <aura:attribute name="shelfTileShelfId" type="String" />
+    <aura:attribute name="shelfColour" type="String" />
+    <aura:attribute name="shelfIcon" type="String" />
+
+    <aura:attribute name="reportList" type="Object[]" />
+    <aura:attribute name="folderName" type="String" />
+    <aura:attribute name="headerTitle" type="String" />
+
+    <aura:attribute name="shelfTitle" type="String" />
+    <aura:attribute name="shelfTileTitle" type="String" />
+
+    <aura:attribute name="componentId" type="String" />
+    <aura:attribute name="isExpanded" type="Boolean" />
+
+    <div class="{! 'OVBS bootstrap-sf1 row shelfTileContent_wrapper' + ($Browser.isPhone?' OV_phone':'') + ((!$Browser.isPhone &amp;&amp; ($Browser.isIOS || $Browser.isAndroid) )?' OV_tablet':'' ) + ((!$Browser.isPhone &amp;&amp; !$Browser.isIOS &amp;&amp; !$Browser.isAndroid )?' OV_desktop':'') }">
+        <div class="folderItemsContent col-xs-12">
+            <div class="row innerFolderWrapper" style="{!'border-color: ' + v.shelfColour}">
+                <div class="folderTitle col-xs-12">
+
+                    <div class="folderIcon SF1-custom-icon-reportFolder" style="{!'background-color:'+ v.shelfColour}">&nbsp;</div>
+                        <div class="cShelf-title-shelf-tile" style="{!'color:'+ v.shelfColour}">
+                            {!v.shelfTileTitle} &rsaquo; {!v.headerTitle}
+                        </div>
+                        <div class="cShelf-title">
+                            {!v.folderName}
+                        </div>
+                </div>
+
+                <div>
+                    <aura:iteration items="{!v.reportList}" var="reportOrFolder">
+                        <c:OV_ShelfTileContentItem shelfTitle="{!v.shelfTitle}" shelfTileTitle="{!v.shelfTileTitle}" shelfTileShelfId="{!v.shelfTileShelfId}" reportItem="{!reportOrFolder}" shelfColour="{!v.shelfColour}" shelfIcon="{!v.shelfIcon}" shelfTileId="{!v.shelfTileId}" />
+                    </aura:iteration>
+                </div>
+            </div>
+        </div>
+    </div>
+</aura:component>

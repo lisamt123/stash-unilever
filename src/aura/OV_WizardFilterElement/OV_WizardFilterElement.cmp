@@ -1,0 +1,59 @@
+<aura:component controller="OV_RemoteController">
+<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+<aura:handler event="aura:doneRendering" action="{!c.afterRender}" />
+<!-- <aura:handler event="aura:doneRendering" action="{!c.doInitFiltersCode}" /> -->
+<aura:registerEvent name="OV_WizardFilterSelectedEvent" type="c:OV_WizardFilterSelectedEvent" />
+<aura:handler event="c:OV_WizardFilterSelectedEvent" action="{!c.onFilterSelection}" />
+<aura:registerEvent name="OV_WizardChangeStepEvent" type="c:OV_WizardChangeStepEvent" />
+<aura:handler event="c:OV_WizardChangeStepEvent" action="{!c.onStepChange}" />
+<ltng:require styles="/resource/OV_stylesMerged/styles.css?rev6l" scripts="/resource/OV_jquery, /resource/OV_bootstrap_drilldown"/>
+<aura:attribute name="isCodeApplied" type="Boolean" default="false"/>
+<aura:attribute name="selectedFilter" type="Object"/>
+<aura:attribute name="selectedFilters" type="Object"/>
+<aura:attribute name="selectedFilterLevel1" type="Integer" default="-1"/>
+<aura:attribute name="filtersExpandedLevel1" type="Boolean" default="false"/>
+<aura:attribute name="filtersDefinition" type="Object[]"/>
+<aura:attribute name="filterItem" type="Object" />
+<aura:attribute name="filter1Index" type="Integer" />
+<aura:attribute name="drilldownConfig" type="Object" />
+<aura:attribute name="step" type="Integer" default="0"/>
+<aura:attribute name="isTreeCreated" type="Boolean" default="false"/>
+<aura:attribute name="isTreeInitialized" type="Boolean" default="false"/>
+<aura:attribute name="KPItransactionsHeadersArray" type="Object[]"/>
+<aura:attribute name="filtersVisible" type="Boolean" default="true"/>
+
+<aura:attribute name="selectedFiltersArray" type="Object[]"/>
+
+<aura:attribute name="currentlyShownFiltersArray" type="Object[]"/>
+<aura:attribute name="filterBreadcrumbs" type="Object[]"/>
+
+
+
+<div class="{! 'filterItemLevel1 ' + (!!v.selectedFilter &amp;&amp; !!v.selectedFilter.Name ? 'filterSelected':'noFilterSelected')  + ((v.filterItem.Items &amp;&amp; v.filterItem.Items.length>0 &amp;&amp; v.selectedFilterLevel1==v.filter1Index)?' expanded':'') + (v.filtersVisible?'':' hidden')}">
+    <div class="filterLabel clickable" data-filter1Index="{!v.filter1Index}" onclick="{!c.selectFiltersLevel1}">
+        <div>
+            <i class="{! (v.filterItem.Icon)?(v.filterItem.Icon):('s1utility-topic')}"></i>
+            {!v.filterItem.DisplayName}
+        </div>
+        <div>
+            <aura:if isTrue="{! !empty(v.selectedFilter) &amp;&amp; !!v.selectedFilter &amp;&amp; !!v.selectedFilter.Name}">
+            <span class="selectedFilterName">
+            {!v.selectedFilter.Name}
+            </span>
+            </aura:if>
+            <i class="{! 'glyphicon menuExpandIcon ' + ( v.filterItem &amp;&amp; v.filterItem.Items &amp;&amp; v.filterItem.Items.length>0?'':'hidden ') + ((v.selectedFilterLevel1==v.filter1Index &amp;&amp; v.filtersExpandedLevel1)?'glyphicon-chevron-down':'glyphicon-chevron-right')}"></i>
+        </div>
+    </div>
+    <div class="{! 'filtersDrilldown' + ((v.filterItem.Items &amp;&amp; v.filterItem.Items.length>0 &amp;&amp; v.selectedFilterLevel1==v.filter1Index)?'':' collapsed')}">
+        <div class="wizard-drilldown drilldown">
+            <div class="breadcrumbwrapper">
+                <ul class="breadcrumb" aura:id="breadcrumbs">
+                </ul>
+            </div>
+            <ul id="{!v.filterItem.Name}" aura:id="listNode" class="drilldown-menu nav">
+            </ul>
+        </div>
+    </div>
+
+</div>
+</aura:component>

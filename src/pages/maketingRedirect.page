@@ -1,0 +1,22 @@
+<apex:page title="maketingRedirect">
+
+ 
+<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>  
+
+
+<script>
+
+window.onload = function () {
+        
+        window.open('http://marketing.unilever.com', "_new");
+      
+          window.history.back();
+}
+       
+       
+</script>
+
+
+
+
+</apex:page>
