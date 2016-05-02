@@ -204,8 +204,10 @@ public with sharing class TriggerFactory
          if (soType == VEP_Visitor__c.sObjectType)
         {
             return new VEP_Visitor_TriggerHandler();
+        }
                 
         return null;
+
     }
 
 }
