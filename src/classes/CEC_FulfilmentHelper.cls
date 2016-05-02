@@ -72,20 +72,20 @@ System.debug('Exception in CEC_FulfilmentHelper.qualityCheck() -> Exception :'  
         
     }
     // Commented for CSC - 3135 
-   /* public void refundApprovalCheck(List<cec_Fulfilment__c> fulfilmentList, Map<Id, cec_fulfilment__C> fulfilmentOldMap){
-        
-        User loggedinuser = [select Max_Refund_Amount__c from User where id = :UserInfo.getUserId()];
-        Double qualityMaxRefund = loggedinuser.Max_Refund_Amount__c;
-        
-        for (cec_Fulfilment__c fulfilmentObj : fulfilmentList){
-            Double oldRefundVal = fulfilmentOldMap.get(fulfilmentObj.Id).Refund_Value__c;
-            if(fulfilmentObj.Refund_Value__c != oldRefundVal ){
-                if((fulfilmentObj.Refund_Value__c!= null && fulfilmentObj.Refund_Value__c > qualityMaxRefund) || (fulfilmentObj.Refund_Value__c!= null && qualityMaxRefund == null)){
-                    fulfilmentObj.QA_flag__c = true;
-                }
-            }
-        } 
-    } */
+    /* public void refundApprovalCheck(List<cec_Fulfilment__c> fulfilmentList, Map<Id, cec_fulfilment__C> fulfilmentOldMap){
+
+User loggedinuser = [select Max_Refund_Amount__c from User where id = :UserInfo.getUserId()];
+Double qualityMaxRefund = loggedinuser.Max_Refund_Amount__c;
+
+for (cec_Fulfilment__c fulfilmentObj : fulfilmentList){
+Double oldRefundVal = fulfilmentOldMap.get(fulfilmentObj.Id).Refund_Value__c;
+if(fulfilmentObj.Refund_Value__c != oldRefundVal ){
+if((fulfilmentObj.Refund_Value__c!= null && fulfilmentObj.Refund_Value__c > qualityMaxRefund) || (fulfilmentObj.Refund_Value__c!= null && qualityMaxRefund == null)){
+fulfilmentObj.QA_flag__c = true;
+}
+}
+} 
+} */
     
     /* Start Changes for : CSC - 2765 - US-009 Letter/Enclosure auto population */    
     /**
@@ -188,8 +188,9 @@ This method is being called from CEC_ChequeProcess class which is called from "A
                 //integer newChequeNumber = Integer.valueOf(chequeBookQuery[0].Last_Cheque_Number__c )+ Integer.valueOf(chequeBookQuery[0].Increment_Number__c);
                 chequeBookQuery[0].Last_Cheque_Number__c = chequeBookQuery[0].Last_Cheque_Number__c + chequeBookQuery[0].Increment_Number__c;
                 update chequeBookQuery;                
-                fulfilment.Cheque_Number__c   = string.valueof(chequeBookQuery[0].Last_Cheque_Number__c);  
+                fulfilment.Cheque_Number__c   = string.valueof(chequeBookQuery[0].Last_Cheque_Number__c); 
                 fulfilment.Refund_Currency__c = chequeBookQuery[0].Currency__c;
+                fulfilment.ChequeBook__c = chequeBookQuery[0].id;
                 update fulfilment;                
                 result.status = 'S';
                 result.message = 'Success';                
@@ -204,6 +205,8 @@ This method is being called from CEC_ChequeProcess class which is called from "A
         System.debug('@@@@ result@@@@' + result);
         return result;  
     }
+    
+    
     
     /**
 This method is used to insert records in FulfilmentEnclosure object based on Enclosure details selected on Fulfillment Object.
@@ -415,8 +418,344 @@ This method is used to delete records in FulfillmentEnclosure object based on En
                 System.debug(e.getMessage());
                 throw e;
             }           
-                 
+            
         }  
         
     }                    
+    
+    /**
+This method is used to convert Refund Value on Fulfilment Object  in words.
+*/
+    public void convertRefundValueToWords(List<cec_Fulfilment__c> fulfilmentList, Map<Id, cec_fulfilment__C> fulfilmentOldMap){
+        system.debug(' In convertRefundValueToWords Method');
+        
+        if (!fulfilmentList.isEmpty()){
+            try{
+                for (cec_Fulfilment__c fulfilmentObj : fulfilmentList){
+                    if ((fulfilmentObj.Refund_Value__c != fulfilmentOldMap.get(fulfilmentObj.Id).Refund_Value__c) || 
+                        (fulfilmentObj.ChequeBook__c   != fulfilmentOldMap.get(fulfilmentObj.Id).ChequeBook__c) ){
+                            if (fulfilmentObj.Refund_Value__c == null || fulfilmentObj.ChequeBook__c == null){
+                                fulfilmentObj.Refund_Value_in_Words__c = '';
+                            }
+                            else {
+                                string result=CEC_Util.convertAllDigitsToWord(fulfilmentObj.Refund_Value__c,fulfilmentObj.Currency_Text__c,fulfilmentObj.Currency_Decimal_Text__c);
+                                System.debug('Final result is  ' + result );
+                                fulfilmentObj.Refund_Value_in_Words__c = result;                        
+                            }
+                        }
+                }
+            } catch(Exception e) {
+                System.debug(e.getMessage()); 
+                throw e;
+            }           
+        }
+        
+        
+    } 
+    
+    
+    /**
+This method is used to get the latest cheque number based on Brand , Country & Product Category from ChequeBook_Detail__c. 
+This method is being called from CEC_ChequeProcess class which is called from "Add Cheque Details" button on Fulfillment object.
+@param : fulfilmentId - 
+@return : Wrapper  class which will have status and message as o/p.
+*/  
+    
+    public CEC_DebitCardProcess.debitProcessWrapperResponse updateDebitCardDetails(string fulfilmentId){
+        CEC_DebitCardProcess.debitProcessWrapperResponse  result =  new CEC_DebitCardProcess.debitProcessWrapperResponse();
+        try{
+            cec_Fulfilment__c    fulfilment      = [Select Id,Debit_Card_Number__c,Date_of_Birth__c,case__r.Accountid,Country__c,case__r.Country__r.name, Local_Identifier__c,Mailing_Address__c,Account_Card_Number__c, Issue_Card__c
+                                                    From cec_Fulfilment__c 
+                                                    Where id = :fulfilmentId limit 1 FOR Update];
+            
+            
+            system.debug('fulfilment @@@+ ' + fulfilment);
+            system.debug('case__r.Accountid @@@+ ' + fulfilment.case__r.Accountid);
+            
+            if (fulfilment.Account_Card_Number__c != null && fulfilment.Issue_Card__c == true){
+                List<CEC_Debit_Card_Detail__c> debitCardQuery = [Select Id,Status__c,Cancelled_Date__c
+                                                                 From CEC_Debit_Card_Detail__c 
+                                                                 Where Name   =:fulfilment.Account_Card_Number__c  and
+                                                                 Account_Id__c          =:fulfilment.case__r.Accountid       and
+                                                                 Active__c              = true limit 1 ];
+                
+                
+                
+                if (debitCardQuery.size() > 0 ){
+                    debitCardQuery[0].Status__c = CEC_Constants.CANCELLED;
+                    debitCardQuery[0].Active__c = false;
+                    debitCardQuery[0].Cancelled_Date__c = System.now();
+                    update debitCardQuery;                
+                    
+                }
+            }   
+            
+            List<CEC_Debit_Card_Detail__c> debitCardQuery1 = [Select Id,Name,Status__c,Expiry_Date__c
+                                                              From CEC_Debit_Card_Detail__c 
+                                                              Where Status__c       in (:CEC_Constants.ISSUED , :CEC_Constants.REACTIVATED) and
+                                                              Account_Id__c   = :fulfilment.case__r.Accountid and 
+                                                              Country_Name__c = :fulfilment.Country__c    and 
+                                                              Active__c       = true
+                                                              limit 1 ];
+            
+            system.debug('debitCardQuery1 @@@ ' + debitCardQuery1);
+            system.debug('fulfilment.case__r.Country__c @@@ ' + fulfilment.Country__c);
+            system.debug('fulfilment.Country__c @@@ ' + fulfilment.Country__c);
+            system.debug('fulfilment.Country__c  @@@ ' + fulfilment.Country__c );
+            system.debug('fulfilment.Account_Id__c @@@ ' + fulfilment.case__r.Accountid);
+            
+            
+            if (debitCardQuery1.size() > 0){
+                cec_Org_Settings__c OrgSetting    = cec_Org_Settings__c.getOrgDefaults();
+                debitCardQuery1[0].Expiry_Date__c = DateTime.Now().addDays(integer.valueof(OrgSetting.Debit_Card_Expiry_Days__c));
+                debitCardQuery1[0].Status__c      = CEC_Constants.REACTIVATED;
+                update debitCardQuery1;  
+                
+                fulfilment.Debit_Card_Number__c =   debitCardQuery1[0].id;
+                update fulfilment; 
+                
+                result.status = 'S';
+                result.message = 'Success';             
+                
+            } 
+            else {
+                
+                List<CEC_Debit_Card_Detail__c> debitCardQuery2 = [Select Id,Name,Status__c,Expiry_Date__c,Issued_Date__c,Account_Id__c
+                                                                  From CEC_Debit_Card_Detail__c 
+                                                                  Where Status__c        = :CEC_Constants.STATUS_NEW  and
+                                                                  Country_Name__c = :fulfilment.Country__c    and 
+                                                                  Active__c       = true
+                                                                  order by Issued_Date__c desc
+                                                                  limit 1 ];
+                
+                system.debug('debitCardQuery2 @@@ ' + debitCardQuery2);
+                
+                if (debitCardQuery2.size() > 0){
+                    cec_Org_Settings__c OrgSetting = cec_Org_Settings__c.getOrgDefaults();
+                    debitCardQuery2[0].Expiry_Date__c = DateTime.Now().addDays(integer.valueof(OrgSetting.Debit_Card_Expiry_Days__c));
+                    debitCardQuery2[0].Issued_Date__c = DateTime.Now();
+                    debitCardQuery2[0].Status__c      = CEC_Constants.Issued;
+                    debitCardQuery2[0].Account_Id__c  = fulfilment.case__r.Accountid;
+                    update debitCardQuery2;      
+                    system.debug('debitCardQuery2 @#@# '+ debitCardQuery2);
+                    
+                    //fulfilment.Debit_Card_Id__c     =   debitCardQuery2[0].id;
+                    fulfilment.Debit_Card_Number__c =   debitCardQuery2[0].id;
+                    update fulfilment;           
+                    system.debug('fulfilment @#@# '+ fulfilment);
+                    system.debug('fulfilment.Debit_Card_Number__c @#@# '+ fulfilment.Debit_Card_Number__c);
+                    
+                    Account acctQuery = [select Id,     Debit_Card_Number__c  from account where id = :fulfilment.case__r.Accountid LIMIT 1];
+                    acctQuery.Debit_Card_Number__c = fulfilment.Debit_Card_Number__C ;   
+                    update AcctQuery;
+                    system.debug('AcctQuery @#@# '+ AcctQuery);
+                    
+                    result.status = 'S';
+                    result.message = 'Success';             
+                    
+                } 
+                else {
+                    result.status = 'E';
+                    result.message = Label.CEC_DebitCardDetails_No_Active_DebitCard_For_Country;// there is no Active debit card present for this country
+                    
+                }           
+            }
+            system.debug('  my result' + result);
+        }catch(Exception e){               
+            System.debug('Exception in CEC_FulfilmentHelper.updateDebitCardDetails method ' + e.getMessage());
+            result.status = 'E';
+            result.message = e.getMessage();  
+        }
+        System.debug('@@@@ result@@@@' + result);
+        return result;  
+    }
+    
+    /**
+This method is used to update debit card value after fulfillment approval. 
+@param : fulfilment List- List of new values from trigger context variable
+oldFulfilmentMap - Trigger context variable for old details
+*/ 
+    public void updateDebitCardValue(List<cec_Fulfilment__c> fulfilmentList,Map<Id,cec_Fulfilment__c> oldFulfilmentMap){
+        system.debug(' In updateDebitCardValue Method : fulfilmentList = ' + fulfilmentList);
+        system.debug(' In updateDebitCardValue Method : oldFulfilmentMap = ' + oldFulfilmentMap);
+        
+        List<CEC_Debit_Card_Detail__c> debitCardListToUpdate = new List<CEC_Debit_Card_Detail__c>();
+        CEC_Debit_Card_Detail__c debitCardDetailObj = new CEC_Debit_Card_Detail__c();
+        for(cec_Fulfilment__c fulfilment : fulfilmentList){
+            if(fulfilment.isApproved__c && 
+               oldFulfilmentMap.get(fulfilment.Id).isApproved__c != fulfilment.isApproved__c &&
+               fulfilment.Debit_Card_Number__c != null && 
+               fulfilment.Debit_Card_Value__c != null) {
+                   debitCardDetailObj = new CEC_Debit_Card_Detail__c(  Id = fulfilment.Debit_Card_Number__c ,
+                                                                     Card_Value__c = fulfilment.Debit_Card_Detail_Card_Value__c +
+                                                                     fulfilment.Debit_Card_Value__c);
+                   System.debug('@@@debitCardDetailObj '+ debitCardDetailObj);
+                   debitCardListToUpdate.add(debitCardDetailObj);
+               }
+        }
+        System.debug('@@debitCardListToUpdate size' +debitCardListToUpdate.size());
+        if(!debitCardListToUpdate.isEmpty()){
+            update debitCardListToUpdate;
+        }
+    }
+    
+    /**
+This method is used to update Account details for DOB and Local Identifier
+@param :fulfilment List- List of new values from trigger context variable
+oldFulfilmentMap - Trigger context variable for old details
+*/
+    public void updateAccountDetails(List<cec_Fulfilment__c> fulfilmentList,Map<Id,cec_Fulfilment__c> oldFulfilmentMap){
+        system.debug(' In updateDebitCardValue Method : fulfilmentList = ' + fulfilmentList);
+        system.debug(' In updateDebitCardValue Method : oldFulfilmentMap = ' + oldFulfilmentMap);
+        try {
+            List<Account> accountList = new List<Account>();
+            for(cec_Fulfilment__c fulfilment : fulfilmentList) {
+                if ((fulfilment.Date_of_Birth__c != null && 
+                     oldFulfilmentMap.get(fulfilment.Id).Date_of_Birth__c != fulfilment.Date_of_Birth__c) ||
+                    (String.isNotBlank(fulfilment.Local_Identifier__c) && 
+                     oldFulfilmentMap.get(fulfilment.Id).Local_Identifier__c != fulfilment.Local_Identifier__c) || 
+                    (String.isNotBlank(fulfilment.PersonEmail__c) && 
+                     oldFulfilmentMap.get(fulfilment.Id).PersonEmail__c != fulfilment.PersonEmail__c)) {
+                        
+                        Account accountObj = new Account(   Id = fulfilment.Account_Id__c,
+                                                         PersonBirthdate = fulfilment.Date_of_Birth__c,
+                                                         Local_Identifier__c = fulfilment.Local_Identifier__c,
+                                                         PersonEmail = fulfilment.PersonEmail__c);
+                        accountList.add(accountObj); 
+                    }            
+            }
+            if(!accountList.isEmpty())
+                update accountList;
+        } catch (DmlException e) {
+            for(cec_Fulfilment__c fulfilment : fulfilmentList) { 
+                if(e.getMessage().contains(CEC_Constants.LOCALIDENTIFIER_CPF)) {
+                    fulfilment.addError(e.getDMLMessage(0)); 
+                } else {
+                    fulfilment.addError(e.getMessage());
+                }
+            }
+        } catch (Exception e) {
+            throw e;            
+        }        
+    }
+    
+    
+    /**
+This method is used to get the e voucher number from ChequeBook_Detail__c. 
+This method is being called from CEC_EvoucherProcess class which is called from "Add E-Voucher Details" button on Fulfillment object.
+@param : fulfilmentId - 
+@return : Wrapper  class which will have status and message as o/p.
+*/  
+    
+    public CEC_EvoucherProcess.eVoucherProcessWrapperResponse updateEvoucherDetails(string fulfilmentId){
+        CEC_EvoucherProcess.eVoucherProcessWrapperResponse  result =  new CEC_EvoucherProcess.eVoucherProcessWrapperResponse();
+        Savepoint sp = Database.setSavepoint();
+        try{
+            cec_Fulfilment__c    fulfilment      = [Select Id,E_Voucher_Number__c,Date_of_Birth__c,case__r.Accountid,Country__c,case__r.Country__r.name, Local_Identifier__c,Mailing_Address__c
+                                                    From cec_Fulfilment__c 
+                                                    Where id = :fulfilmentId limit 1 FOR Update];
+            
+            
+            system.debug('fulfilment @@@+ ' + fulfilment);
+            system.debug('fulfilment.Country__c @@@+ ' + fulfilment.Country__c);
+            system.debug('case__r.Accountid @@@+ ' + fulfilment.case__r.Accountid);
+            
+            
+            
+            List<CEC_E_Voucher_Details__c> eVoucherQuery = [Select Id,Name,Status__c,Expiry_Date__c,Issued_Date__c,Account_Id__c
+                                                            From CEC_E_Voucher_Details__c 
+                                                            Where Status__c        = :CEC_Constants.STATUS_NEW  and
+                                                            Country_Name__c = :fulfilment.Country__c    and 
+                                                            Active__c       = true
+                                                            order by CreatedDate
+                                                            limit 1 ];
+            
+            system.debug('eVoucherQuery @@@ ' + eVoucherQuery);
+            
+            if (eVoucherQuery.size() > 0){
+                
+                cec_Org_Settings__c OrgSetting = cec_Org_Settings__c.getOrgDefaults();
+                eVoucherQuery[0].Expiry_Date__c = DateTime.Now().addDays(integer.valueof(OrgSetting.E_Voucher_Expiry_Days__c));
+                eVoucherQuery[0].Issued_Date__c = DateTime.Now();
+                eVoucherQuery[0].Status__c      = CEC_Constants.Issued;
+                eVoucherQuery[0].Account_Id__c  = fulfilment.case__r.Accountid;
+                system.debug('eVoucherQuery Before Update '+ eVoucherQuery);
+                update eVoucherQuery;      
+                system.debug('eVoucherQuery @#@# '+ eVoucherQuery);
+                
+                fulfilment.E_Voucher_Number__c =   eVoucherQuery[0].id;
+                update fulfilment;           
+                system.debug('fulfilment @#@# '+ fulfilment);
+                system.debug('fulfilment.E_Voucher_Number__c @#@# '+ fulfilment.E_Voucher_Number__c);
+                
+                
+                result.status = 'S';
+                result.message = 'Success';             
+                
+            } 
+            else {
+                result.status = 'E';
+                result.message = Label.CEC_EvoucherDetails_No_Active_EVoucher_For_Country;// there is no Active E Voucher present for this country
+                
+            }            
+            
+            system.debug('  my result' + result);
+        }catch(Exception e){
+            Database.rollback(sp);               
+            System.debug('Exception in CEC_FulfilmentHelper.updateEvoucherDetails method ' + e.getMessage());
+            result.status = 'E';
+            result.message = e.getMessage();  
+        }
+        System.debug('@@@@ result@@@@' + result);
+        return result;  
+    } 
+    
+    /**
+This method is used to update E-Voucher value after fulfillment approval. 
+@param : fulfilment List- List of new values from trigger context variable
+oldFulfilmentMap - Trigger context variable for old details
+*/ 
+    public void updateEvoucherValue(List<cec_Fulfilment__c> fulfilmentList,Map<Id,cec_Fulfilment__c> oldFulfilmentMap){
+        
+        system.debug(' In updateEvoucherValue Method : fulfilmentList = ' + fulfilmentList);
+        system.debug(' In updateEvoucherValue Method : oldFulfilmentMap = ' + oldFulfilmentMap);
+        
+        List<CEC_E_Voucher_Details__c> eVoucherDetailToUpdate = new List<CEC_E_Voucher_Details__c>();
+        CEC_E_Voucher_Details__c eVoucherDetailObj = new CEC_E_Voucher_Details__c();
+        for(cec_Fulfilment__c fulfilment : fulfilmentList){
+            if(fulfilment.isApproved__c && 
+               oldFulfilmentMap.get(fulfilment.Id).isApproved__c != fulfilment.isApproved__c &&
+               fulfilment.E_Voucher_Number__c != null && 
+               fulfilment.E_Voucher_Value__c != null) {
+                   
+                   System.debug('@@@fulfilment.E_Voucher_Value__c '+ fulfilment.E_Voucher_Value__c);
+                   eVoucherDetailObj = new CEC_E_Voucher_Details__c(  Id = fulfilment.E_Voucher_Number__c ,
+                                                                    Voucher_Value__c =  fulfilment.E_Voucher_Value__c);
+                   System.debug('@@@eVoucherDetailObj '+ eVoucherDetailObj);
+                   eVoucherDetailToUpdate.add(eVoucherDetailObj);
+               }
+        }
+        System.debug('@@eVoucherDetailToUpdate size' +eVoucherDetailToUpdate.size());
+        if(!eVoucherDetailToUpdate.isEmpty()){
+            update eVoucherDetailToUpdate;
+        }
+    }
+    /**
+This method is used to update Date Approved field on fulfilment object
+@param :fulfilment List- List of new values from trigger context variable
+oldFulfilmentMap - Trigger context variable for old details
+*/
+    public void updateFulfilmentApprovedDate(List<cec_Fulfilment__c> fulfilmentList,Map<Id,cec_Fulfilment__c> oldFulfilmentMap){
+        try {
+            for(cec_Fulfilment__c fulfilment : fulfilmentList) {
+                if (fulfilment.isApproved__c && 
+                    oldFulfilmentMap.get(fulfilment.Id).isApproved__c != fulfilment.isApproved__c) {
+                        fulfilment.Date_Approved__c=System.now();
+                    }    
+            }
+        } catch (Exception e) {
+            System.debug('Exception in CEC_FulfilmentHelper.updateFulfilmentApprovedDate method ' + e.getMessage());          
+        }        
+    }
+    
 }

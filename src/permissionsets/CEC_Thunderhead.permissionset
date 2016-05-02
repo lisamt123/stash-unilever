@@ -1977,10 +1977,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>Core_NC_Test_NewsApp</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>Core_SendToChatterController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -2820,7 +2816,6 @@
         <apexClass>IPM_FinancialHandler</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-
     <classAccesses>
         <apexClass>IPM_FinancialValueWrapper</apexClass>
         <enabled>false</enabled>
@@ -3317,7 +3312,6 @@
         <apexClass>IPM_UserProfileHandler</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-
     <classAccesses>
         <apexClass>IPM_Utils</apexClass>
         <enabled>false</enabled>
@@ -4184,10 +4178,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Test_SchedulableToBrandEstimatesBatch</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Test_af_SendCurrencyReminder</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>

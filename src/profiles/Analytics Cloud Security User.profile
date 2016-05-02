@@ -2084,10 +2084,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>Core_NC_Test_NewsApp</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>Core_SendToChatterController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -4477,10 +4473,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Test_SchedulableToBrandEstimatesBatch</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Test_af_SendCurrencyReminder</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
