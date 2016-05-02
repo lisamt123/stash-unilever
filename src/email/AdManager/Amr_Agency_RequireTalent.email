@@ -39,7 +39,7 @@ Your AdManager number is below. You will be required to have  and use the number
 <div style="padding:4px 0;">
 <span style="font-weight:bold;">Unilever Finance Member Email: </span><span>{!Amr_Job_Details__c.Unilever_Finance_Member_Email__c}	</span> </div>
 <div style="padding:4px 0;">
-<span style="font-weight:bold;">Final Approver Of Material Email: </span><span>{!Amr_Job_Details__c.Final_Approver_Of_Material_Email__c} </span> </div>
+<span style="font-weight:bold;">Final Approver of Material Email: </span><span>{!Amr_Job_Details__c.Final_Approver_Of_Material_Email__c} </span> </div>
 <div style="padding:4px 0;">
 <span style="font-weight:bold;">Which function are you part of (BD/BB/Other): </span><span>{!Amr_Job_Details__c.Function_You_Are_Part__c} </span> </div>
 
@@ -55,7 +55,7 @@ Your AdManager number is below. You will be required to have  and use the number
 <div style="padding:4px 0;">
 <span style="font-weight:bold;">Lead Agency Location: </span><span>{!Amr_Job_Details__c.Lead_Agency_Location_Cluster__c} --  {!Amr_Job_Details__c.Lead_Agency_Location_Country__c}</span> </div>
 <div style="padding:4px 0;">
-<span style="font-weight:bold;">Agency Contact Or Account Director Email: </span></span>{!Amr_Job_Details__c.Agency_Contact_Account_Director_Email__c}</span> </div>
+<span style="font-weight:bold;">Agency Contact or Account Director Email: </span></span>{!Amr_Job_Details__c.Agency_Contact_Account_Director_Email__c}</span> </div>
 <div style="padding:4px 0;">
 <span style="font-weight:bold;">Digital Agency Name (If Applicable): </span></span>{!Amr_Job_Details__c.Digital_Agency_Name__c}</span> </div>
 <div style="padding:4px 0;">
@@ -84,7 +84,7 @@ Your AdManager number is below. You will be required to have  and use the number
 <div>
 <span style="font-weight:bold;">Do you anticipate that your production will require Celebrity Talent?: </span></span>{!Amr_Job_Details__c.Require_Celebrity_Talent__c }</span> </div>
 <div>
-<span style="font-weight:bold;">Current Stage Of Your Production Activity: </span><span>{!Amr_Job_Details__c.Stage_of_Production_Activity__c} </span> </div>
+<span style="font-weight:bold;">Current Stage of Your Production Activity: </span><span>{!Amr_Job_Details__c.Stage_of_Production_Activity__c} </span> </div>
 </div>
 <div style="margin:30px 0;">
 	<div style="float:left;">

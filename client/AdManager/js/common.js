@@ -377,7 +377,6 @@ $j(function() {
 
     });
 
-    //Utkarsh code
 
     $j('.holder-class span.common').click(function() {
 
@@ -385,7 +384,6 @@ $j(function() {
         $j(this).closest('.holder-class').find('.categoryStyle').append('<img src="/img/loading.gif"  class="loadingclass" />');
 
         var num = $j(this).attr('rel');
-        //  $(this).removeClass('changeColor');
         $j(this).parent().find('span').removeClass('changeColor');
 
         var jq;
@@ -399,13 +397,11 @@ $j(function() {
 
         var fnstring = data_id;
         var fnparams = [num, data_id];
-        //  var fnparams1 = [];
-
-
         var fn = window[fnstring];
 
-        if (typeof fn === "function")
+        if (typeof fn === "function"){
             fn.apply(null, fnparams);
+	}
 
     });
 

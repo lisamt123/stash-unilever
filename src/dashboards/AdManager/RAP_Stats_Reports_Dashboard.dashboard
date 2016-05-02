@@ -486,6 +486,7 @@
             <useReportChart>false</useReportChart>
         </components>
     </rightSection>
+    <runningUser>vaibhav.vora@unilever.com</runningUser>
     <textColor>#000000</textColor>
     <title>RAP Stats Reports Dashboard</title>
     <titleColor>#000000</titleColor>

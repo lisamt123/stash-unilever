@@ -97,10 +97,12 @@ $j(document).ready(function() {
 			if($j(this).hasClass('original_master')) {
 				$j('.other_master').prop('checked', false);
 				$j('.secondary-parent').each(function(){
-					if($j(this).hasClass('main-new-original-master')) {						
-					} else {
-						$j(this).find('input:checkbox').prop('checked',false);						
-					}					
+					if(!($j(this).hasClass('main-new-original-master'))) {	
+						$j(this).find('input:checkbox').prop('checked',false);					
+					} 
+				//	else {
+				//		$j(this).find('input:checkbox').prop('checked',false);						
+				//	}					
 				});
 			} else {
 				$j('.original_master').prop('checked', false);				
@@ -241,10 +243,12 @@ $j(document).ready(function() {
 				//$j('.other_master').attr('disabled', 'disabled');
 				$j('.other_master').prop('checked', false);
 				$j('.secondary-parent').each(function(){
-					if($j(this).hasClass('main-new-original-master')) {						
-					} else {
-						$j(this).find('input:checkbox').prop('checked',false);						
-					}					
+					if(!($j(this).hasClass('main-new-original-master'))) {						
+						$j(this).find('input:checkbox').prop('checked',false);	
+					}
+				//	 else {
+				//		$j(this).find('input:checkbox').prop('checked',false);						
+				//	}					
 				});
 			} else {
 				//$j('.original_master').attr('disabled', 'disabled');

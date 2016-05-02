@@ -245,7 +245,7 @@ function pPCEuroAmountCall(stringArray) {
         }
 		
 		function alertDocumentSubmission() {
-        	alert('Please attach documents and submit the data.');
+        //	alert('Please attach documents and submit the data.');
         }
 		
 		$j(function(){			

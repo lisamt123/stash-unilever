@@ -392,14 +392,14 @@ function commonCurrencyRelatedCall(stringArray, PCLocalAmount, PCEuroAmount, PCC
 
 function multiSelectShootLocation() {
 	var multiselectJq_selected = $j('.job-field-input-multiselectJq select').attr('datalist'); 
-	alert(multiselectJq_selected_array);
+//	alert(multiselectJq_selected_array);
 	   if(multiselectJq_selected) {         
 		    var multiselectJq_selected_array = multiselectJq_selected.split(",");		   
 		    $j.each(multiselectJq_selected_array,function(i){           		
 			var multiselectJq_selected_arrayvalue = multiselectJq_selected_array[i]; 			
 			$j('.job-field-input-multiselectJq select option[value="'+multiselectJq_selected_arrayvalue+'"]').attr('selected',1);
 			system.debug(multiselectJq_selected_arrayvalue);
-			alert(multiselectJq_selected_arrayvalue);
+		//	alert(multiselectJq_selected_arrayvalue);
 	 });					  
    }        
 }
@@ -503,8 +503,9 @@ function starRatingProcess(data) {
             
                 var fn = window[fnstring];
             
-                if (typeof fn === "function") 
+                if (typeof fn === "function") {
                     fn.apply(null, fnparams);
+		}
                    
            });
 		   
