@@ -4457,10 +4457,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>Test_af_SendCurrencyReminder</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>TriggerDispatcherBase</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -4784,10 +4780,7 @@
         <apexClass>WinatPOSCategoryViewController_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>af_SendCurrencyReminder</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
+     
     <classAccesses>
         <apexClass>af_usersearch</apexClass>
         <enabled>false</enabled>
