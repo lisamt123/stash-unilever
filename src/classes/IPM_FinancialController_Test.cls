@@ -24,12 +24,11 @@ public class IPM_FinancialController_Test {
     private static final string INVALID_ROLLOUT_NAME = 'Invalid rollout name';
     private static final string INVALID_SPAN_NAME = 'Invalid span name';
     private static final string INVALID_PROJECT_TYPE = 'Invalid project type';
-    private static final string INVALID_FINACIAL_EXT_ID = 'Invalid Financial external id';
-    private static final string MISALINGNED_NOT_CONFIRMED = 'Misaligned confirmation not found';
-    private static final string INCORRECT_LIST_SIZE = 'data size not matched';
-    private static final string INVALID_INDEX = 'Invalid index found';
-    private static final string INCORRECT_NAVIGATION_RESULT = 'Incorrect Navigation found';
-    
+	private static final string INVALID_FINACIAL_EXT_ID = 'Invalid Financial external id';
+	private static final string MISALINGNED_NOT_CONFIRMED = 'Misaligned confirmation not found';
+	private static final string INVALID_INDEX = 'Invalid index found';
+	private static final string INCORRECT_NAVIGATION_RESULT = 'Incorrect Navigation found';
+    private static final string ERROR_MSG_NOT_CAPTURED = 'error message not captured';
     
     //This method creates required global, regional and local projects and rollouts, also related financials. These records are then accessed across the testmethods.
     @testSetup static void financialSetUp() 
@@ -223,26 +222,26 @@ public class IPM_FinancialController_Test {
         system.assertEquals(ipmFinCon.sustainabilityPeriodChanging,true, 'Sustainability period is false');
         
         ipmFinCon.refreshFinancials();
-        system.assert(ipmFinCon.errorMessage.contains(Label.IPM_PLEASE_CONTACT_ADMINISTRATOR),'error message not captured');
+        system.assert(ipmFinCon.errorMessage.contains(Label.IPM_PLEASE_CONTACT_ADMINISTRATOR),ERROR_MSG_NOT_CAPTURED);
         //assert fieldsuffix is set to Regional after financials are refreshed
         system.assertEquals(ipmFinCon.fieldsuffix, 'Regional', 'field suffix not set properly, financials will not be loaded as per tab');
         
         ipmFinCon.editFinancials();
         ipmFinCon.toShowEditButton = null;
-        system.assert(ipmFinCon.errorMessage.contains(Label.IPM_PLEASE_CONTACT_ADMINISTRATOR),'error message not captured');
+        system.assert(ipmFinCon.errorMessage.contains(Label.IPM_PLEASE_CONTACT_ADMINISTRATOR),ERROR_MSG_NOT_CAPTURED);
         system.assertEquals(ipmFinCon.isEditMode, true,'Edit mode not set');
         
         ipmFinCon.updateMisalignmentByFinanceLeader();
-        system.assert(ipmFinCon.errorMessage.contains(Label.IPM_PLEASE_CONTACT_ADMINISTRATOR),'error message not captured');
+        system.assert(ipmFinCon.errorMessage.contains(Label.IPM_PLEASE_CONTACT_ADMINISTRATOR),ERROR_MSG_NOT_CAPTURED);
         
         pf = ipmFinCon.loadCurrencyPage();
         system.assertEquals(pf, null, 'Page reference is null');
         
         ipmFincon.currentFinancial=null;
         ipmFincon.refreshFromLocal();
-        system.assert(ipmFinCon.errorMessage.contains(Label.IPM_PLEASE_CONTACT_ADMINISTRATOR),'error message not captured');
+        system.assert(ipmFinCon.errorMessage.contains(Label.IPM_PLEASE_CONTACT_ADMINISTRATOR),ERROR_MSG_NOT_CAPTURED);
         ipmFincon.refreshFromRegional();
-        system.assert(ipmFinCon.errorMessage.contains(Label.IPM_PLEASE_CONTACT_ADMINISTRATOR),'error message not captured');
+        system.assert(ipmFinCon.errorMessage.contains(Label.IPM_PLEASE_CONTACT_ADMINISTRATOR),ERROR_MSG_NOT_CAPTURED);
      }
      
      //Use case: Global original Feasibility phase and NON consilidate financnials
@@ -370,10 +369,10 @@ public class IPM_FinancialController_Test {
              system.assert(regionalRollout!=null,'Regional rollout consolidate record not found.');
              system.assertEquals(regionalRollout.name, 'TestComments1_LA', INVALID_PROJECT_NAME);
              
-             regionalRollout.BI__c = 'Large';
+             regionalRollout.BI__c = PROJECT_BI_LARGE;
              update regionalRollout;
              IPM_Project__c sel = [select BI__c from IPM_Project__c where id=:regionalRollout.id];
-             system.assertEquals(sel.BI__c, 'Large','BI did not update');
+             system.assertEquals(sel.BI__c, PROJECT_BI_LARGE,'BI did not update');
              
              //Finance record for global project which is NON consolidate             
              IPM_Financial__c regFinCon = [select id, Financial_External_ID__c, Target_Launch_Date__c, RecordTypeId, Regional_External_Id__c, 
@@ -463,10 +462,10 @@ public class IPM_FinancialController_Test {
              system.assert(localRollout!=null,'Local rollout type project not created.');
              system.assertEquals(localRollout.name, 'TestRegionalComments1_UMCA', INVALID_ROLLOUT_NAME);
              
-             localRollout.BI__c = 'Large';
+             localRollout.BI__c = PROJECT_BI_LARGE;
              update localRollout;
              IPM_Project__c selP = [select BI__c from IPM_Project__c where id=:localRollout.id];
-             system.assertEquals(selP.BI__c, 'Large','BI did not update');
+             system.assertEquals(selP.BI__c, PROJECT_BI_LARGE,'BI did not update');
              
              //Finance record for global project which is NON consolidate             
              IPM_Financial__c localRolloutFin = [select id, Financial_External_ID__c, Target_Launch_Date__c, RecordTypeId, Regional_External_Id__c, 
@@ -508,7 +507,7 @@ public class IPM_FinancialController_Test {
                 IPM_PROJECT_LEADER__c = UserInfo.getUserId(),IPM_CompanyCardText__c = 'Global Company Card',
                 IPM_Brand_Positioning__c = 'Dirt is Good',IPM_Project_Type__c = LIT_OPERATIONAL,
                 IPM_ProjectSubType__c = 'Innovation/Renovation',IPM_Phase__c='Ideas',IPM_SourceProjectType__c = LIT_OPERATIONAL,
-                Sustainability_Period__c = '3',IPM_Category_Text__c ='Household Care',IPM_Child_Complexity__c =IPM_ConstantUtils.COMPLEXITY_FULL, BI__c='Large');
+                Sustainability_Period__c = '3',IPM_Category_Text__c ='Household Care',IPM_Child_Complexity__c =IPM_ConstantUtils.COMPLEXITY_FULL, BI__c=PROJECT_BI_LARGE);
          insert projectRecord;
          system.assertNotEquals(projectRecord,null, 'Record for Global Operational not created in previous step.'); 
          
@@ -541,7 +540,7 @@ public class IPM_FinancialController_Test {
                 IPM_PROJECT_LEADER__c = UserInfo.getUserId(),IPM_CompanyCardText__c = 'Local Company Card',
                 IPM_Brand_Positioning__c = 'Dirt is Good',IPM_Project_Type__c = LIT_OPERATIONAL,
                 IPM_ProjectSubType__c = 'Innovation/Renovation',IPM_Phase__c='Ideas',IPM_SourceProjectType__c = LIT_OPERATIONAL,
-                Sustainability_Period__c = '3',IPM_Category_Text__c ='Household Care',IPM_Child_Complexity__c =IPM_ConstantUtils.COMPLEXITY_FULL, BI__c='Large');
+                Sustainability_Period__c = '3',IPM_Category_Text__c ='Household Care',IPM_Child_Complexity__c =IPM_ConstantUtils.COMPLEXITY_FULL, BI__c=PROJECT_BI_LARGE);
                 
          insert projectRecord;
          
@@ -565,7 +564,7 @@ public class IPM_FinancialController_Test {
              ipmFinCon.project = null;
              ipmFinCon.updateMisalignmentByFinanceLeader();
              string msg = 'Please contact your administrator';
-             system.assert(ipmFinCon.errorMessage.contains(msg),'error message not captured');
+             system.assert(ipmFinCon.errorMessage.contains(msg),ERROR_MSG_NOT_CAPTURED);
              
              boolean sn = ipmFinCon.showNext;
              boolean sp = ipmFinCon.showPrevious;
@@ -763,7 +762,7 @@ public class IPM_FinancialController_Test {
             ipmFinCon.checkCountry=false;
             ipmFinCon.updateCountry();
             ctr = [select Calculation_Index__c from IPM_Country__c limit 1];
-            system.assert(ctr.Calculation_Index__c == false,'calculation index field not updated');
+            system.assert(!ctr.Calculation_Index__c,'calculation index field not updated');
 
             ipmFinCon.next();
             system.assertEquals(ipmFinCon.isNavigation, false, INCORRECT_NAVIGATION_RESULT);
