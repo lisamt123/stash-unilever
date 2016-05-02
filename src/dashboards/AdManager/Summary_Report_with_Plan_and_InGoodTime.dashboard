@@ -145,11 +145,7 @@
     <rightSection>
         <columnSize>Medium</columnSize>
     </rightSection>
-<<<<<<< HEAD
     <runningUser>vaibhav.vora@unilever.com</runningUser>
-=======
-    <runningUser>anusha.sanagaram@mindtree.com</runningUser>
->>>>>>> develop
     <textColor>#6600CC</textColor>
     <title>Summary Report with Plan and InGoodTime</title>
     <titleColor>#990000</titleColor>

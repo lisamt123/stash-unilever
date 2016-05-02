@@ -168,11 +168,7 @@
                                                         showOnEdit();
                                                         loadMasterProcess();
                                                         noOfmasterdurationkeypress();
-<<<<<<< HEAD
                                                         removeMasterDurationRows();
-=======
-                                                        remove_master_durationrows();
->>>>>>> develop
                                                         addMasterDurationrowsCall();
                                                         $j('.show-on-edit').show();
                                                         }
@@ -1255,7 +1251,6 @@
                                 <div class="clear"></div>
 
                                 <apex:outputPanel rendered="{!if(feedItemAdditionalList.size>0,true,false)}">
-<<<<<<< HEAD
                                     <div>
                                         <apex:repeat value="{!feedItemAdditionalList}" var="obj">
                                             <div class="displayinlineblock margin-right20 margin-top20">
@@ -1283,35 +1278,6 @@
                                                 <div class="clear"></div>
                                             </div>                                        
                                         </apex:repeat>
-=======
-                                	<div>
-	                                    <apex:repeat value="{!feedItemAdditionalList}" var="obj">
-	                                        <div class="displayinlineblock margin-right20 margin-top20">
-	                                            <div class="left margin-right12 margin-top25 show-on-edit">
-	                                                <apex:commandLink value="x" action="{!deleteOtherFile}" style="font-size:18px;color:red;text-decoration:none;font-weight:bold;">
-	                                                    <apex:param name="recordId" assignTo="{!chosenFileId}" value="{!obj.id}" />
-	                                                </apex:commandLink>
-	                                            </div>
-	                                            <div class="left margin-right12">
-	                                                <apex:outputLink value="/sfc/servlet.shepherd/version/renditionDownload?rendition=THUMB720BY480&versionId={!obj.RelatedRecordId}" target="_blank">
-	                                                    <img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/file.png')}" class="pdficon" alt="Preview" height="90" />
-	                                                </apex:outputLink>
-	                                            </div>
-	                                            <div class="left margin-right12 margin-top25 width120">
-	                                                <a href="/sfc/servlet.shepherd/version/download/{!obj.relatedrecordid}"> {!obj.ContentFileName}</a>
-	                                            </div>
-	                                            <div class="left margin-right12 margin-top25">
-	                                                {!obj.CreatedBy.name}
-	                                            </div>
-	                                            <div class="left margin-top25">
-	                                                <apex:outputText value="{0,date,dd/MM/yy}">
-	                                                    <apex:param value="{!obj.createdDate}" />
-	                                                </apex:outputText>
-	                                            </div>
-	                                            <div class="clear"></div>
-	                                        </div>                                        
-	                                    </apex:repeat>
->>>>>>> develop
                                     <div class="clear"></div>
                                     </div>
                                 </apex:outputPanel>

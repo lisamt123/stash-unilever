@@ -355,6 +355,36 @@
         <readable>false</readable>
     </fieldPermissions>
     <label>VEP Security Permissions</label>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Vep_Visitor__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Vep_Visitor_Pass__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <recordTypeVisibilities>
+        <recordType>Vep_Visitor__c.Request</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Vep_Visitor__c.Request_Readonly</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Vep_Visitor__c.Request_on_Behalf</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
     <pageAccesses>
         <apexPage>VEP_SafetyQuiz_VF</apexPage>
         <enabled>false</enabled>

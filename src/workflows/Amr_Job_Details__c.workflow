@@ -4,13 +4,10 @@
         <fullName>AMR_CAPNotificationAlert</fullName>
         <description>AMR_CAPNotificationAlert</description>
         <protected>false</protected>
-<<<<<<< HEAD
         <recipients>
             <recipient>vaibhav.vora@unilever.com</recipient>
             <type>user</type>
         </recipients>
-=======
->>>>>>> develop
         <senderType>CurrentUser</senderType>
         <template>AdManager/Amr_CAPNotification</template>
     </alerts>
