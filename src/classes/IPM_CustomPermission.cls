@@ -1,5 +1,5 @@
 // /*************************************************************************************
-*@Description:use for security to get permission assigned to current logged in user
+/*@Description:use for security to get permission assigned to current logged in user
 *@Author: Cognizant
 *@Created Date: 07/09/2015 
 *@Copyright 2015  Unilever  
