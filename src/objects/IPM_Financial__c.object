@@ -1587,7 +1587,7 @@ IF(AND(
     </fields>
     <fields>
         <fullName>IsFinancialInvalid__c</fullName>
-        <defaultValue>false</defaultValue>
+        <defaultValue>true</defaultValue>
         <description>use this field for the hard validation from the gate document.</description>
         <externalId>false</externalId>
         <label>IsFinancialInvalid</label>
