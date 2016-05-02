@@ -12,6 +12,7 @@ src/objects/WWP_PlantCode_User_Mapping__c.object
 src/pages/WWP_LossTreeUpdate_VF.page
 src/pages/WWP_LossTreeUpdate_VF.page-meta.xml
 src/permissionsets/WWP_User_Permissions.permissionset
+src/permissionsets/WWP_Admin_Permissions.permissionset
 src/tabs/WWP_Loss_Tree__c.tab
 src/labels/CustomLabels.labels
 
