@@ -1,0 +1,326 @@
+<!--====================================================-->
+<!--Name:  CEC_NewAccountContact                          -->
+<!--Copyright ? 2015 Unilever                                   -->
+<!--====================================================-->
+<!--====================================================-->
+<!-- Purpose:This page is used for creation of New      -->
+<!-- consumer and populate that Consumer Name on Case Obj in the same page -->                                                                 
+<!--====================================================-->
+<!--====================================================-->
+<!-- History                                            -->
+<!-- -------                                            -->
+<!-- VERSION  AUTHOR        DATE            DETAIL                    RELEASE/CSR     -->
+<!-- 1.0 -    Kasi&Pavan   22/01/2015      INITIAL DEVELOPMENT        Phase III       -->
+<!-- 2.0 -    Sathish V    04/02/2015      Console UI Enhancement     Phase III       -->
+<!-- 3.0 -    Goverdhan S  16/12/2015      Added Consumer Note field  CSC-2755        -->
+<!--====================================================-->
+
+<apex:page controller="CEC_NewAccountController" tabStyle="Account" cache="true" language="{!$CurrentPage.parameters.lang}">
+    <apex:stylesheet value="{!URLFOR($Resource.cec_styles, 'cec_styles.css')}"/> 
+    <apex:includeScript value="{!URLFOR($Resource.jquery1112, 'jquery-1.11.2.min.js')}"/>
+    <apex:includeScript value="/soap/ajax/28.0/connection.js"/>
+    <apex:includeScript value="/support/console/30.0/integration.js"/>
+    <apex:include pageName="pca__Component"/>
+    <apex:form id="frm" >
+        <apex:outputPanel styleClass="tabs" layout="block">  
+            <ul>
+                <li class="tab search first">
+                    <a href="#">{!$Label.CEC_ConsumerSearchDisplay}</a>
+                </li>
+                <li class="tab results non-searchable last">
+                    <a href="#">{!$Label.CEC_ConsumerResultsDisplay}</a>
+                </li>
+            </ul>
+        </apex:outputPanel>
+        <apex:outputPanel styleClass="form" layout="block">
+            <apex:pageBlock id="detail" mode="maindetail"> 
+                <apex:pageBlockButtons id="Buttons" location="bottom"> 
+                    <apex:outputPanel id="ButtonDiv" layout="block">
+                        <apex:commandButton styleClass="non-create" value="{!$Label.CEC_Search_Button}" action="{!searchConsumer}" rerender="ButtonDiv,consumerResults,ErrorMessages,ResultTitle" oncomplete="resultsMode()"/>
+                        <apex:commandButton styleClass="non-searchable" value="{!$Label.CEC_Create_Button}" action="{!saveAccount}" rerender="ButtonDiv,consumerResults,ErrorMessages,ResultTitle" rendered="{!AND(searchPerformed,newConsumer.Id==null)}" oncomplete="createdMode({!isContactPopulated},{!isTransactionSuccess})"/>   
+                    </apex:outputPanel>
+                </apex:pageBlockButtons>           
+                <apex:pageMessages id="ErrorMessages" escape="false"/>
+                <apex:pageBlockSection columns="1" >
+                    <apex:pageBlockSectionItem id="title" labelStyleClass="non-searchable" dataStyleClass="non-searchable">
+                        <apex:outputLabel value="{!$Label.CEC_Title}" />
+                        <apex:selectList value="{!newConsumer.Salutation}" size="1">
+                            <apex:selectOptions value="{!Salutation}"/>
+                        </apex:selectList>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem labelStyleClass="non-searchable" dataStyleClass="non-searchable">
+                        <apex:outputLabel value="{!$Label.CEC_FirstName}"/>
+                        <apex:inputText value="{!newConsumer.Firstname}"/>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="{!$Label.CEC_Last_Name}"/>
+                        <apex:inputText value="{!newConsumer.Lastname}"/>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="{!$Label.CEC_Local_Indentifier}"/>
+                        <apex:inputField value="{!newConsumer.Local_Identifier__c}" id="consumerLocalIdentifier" />
+                    </apex:pageBlockSectionItem>						
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="{!$Label.CEC_PostCode}"/>                        
+                        <apex:inputField id="vf_account_postalcode" value="{!newConsumer.PersonMailingPostalCode}"/>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="{!$Label.CEC_Street}"/>
+                        <apex:inputField id="vf_account_street" value="{!newConsumer.PersonMailingStreet}" />    
+                    </apex:pageBlockSectionItem> 
+                    <apex:pageBlockSectionItem labelStyleClass="non-searchable" dataStyleClass="non-searchable">
+                        <apex:outputLabel value="{!$Label.CEC_Account_Site}"/>
+                        <apex:inputField id="vf_account_site" value="{!newConsumer.Site}" />
+                    </apex:pageBlockSectionItem>   
+                    <apex:pageBlockSectionItem labelStyleClass="non-searchable" dataStyleClass="non-searchable">
+                        <apex:outputLabel value="{!$Label.CEC_City}"/>
+                        <apex:inputField id="vf_account_city" value="{!newConsumer.PersonMailingCity}" />    
+                    </apex:pageBlockSectionItem>   
+                    <apex:pageBlockSectionItem labelStyleClass="non-searchable" dataStyleClass="non-searchable">
+                        <apex:outputLabel value="{!$Label.CEC_Country_region}"/>
+                        <apex:inputField id="vf_account_state" value="{!newConsumer.PersonMailingState}" />    
+                    </apex:pageBlockSectionItem>    
+                    <apex:pageBlockSectionItem labelStyleClass="non-searchable" dataStyleClass="non-searchable">
+                        <apex:outputLabel value="{!$Label.CEC_Country}"/>                        
+                        <apex:inputField id="vf_account_country" value="{!newConsumer.PersonMailingCountry}"/>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="{!$Label.CEC_Email_Label}"/>
+                        <apex:inputField value="{!newConsumer.PersonEmail}"/>    
+                    </apex:pageBlockSectionItem>    
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="{!$Label.CEC_Phone}"/>
+                        <apex:inputField value="{!newConsumer.Phone}" id="consumerPhoneField" />
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem labelStyleClass="non-searchable" dataStyleClass="non-searchable">
+                        <apex:outputLabel value="{!$Label.CEC_Marketing_Opt_in}"/>
+                        <apex:inputField value="{!newConsumer.CEC_Marketing_Opt_In__c}" Style="autoWidth" />
+                    </apex:pageBlockSectionItem>
+                </apex:pageBlockSection>     
+            </apex:pageBlock>
+        </apex:outputPanel>
+        <apex:outputPanel id="consumerResults" styleClass="results" layout="block">
+            <apex:pageBlock mode="maindetail">
+                <apex:outputPanel styleClass="results-title" layout="block">                    
+                    <h2 id="ResultTitle"> {!resultsOutputTitle} </h2>
+                </apex:outputPanel>
+                <apex:pageBlockTable value="{!duplicateConsumerList}" var="dupe" id="duplicates" frame="none" rules="none" >
+                    <tr class="container">
+                        <apex:column width="100%" colspan="2" styleClass="name top">                       
+                            <apex:image url="{!URLFOR($Resource.cec_images,'cec_link_arrow.png')}" width="18" height="18"/> &nbsp;                               
+                            <apex:actionSupport event="onclick" action="{!chooseAccount}" rerender="ButtonDiv,consumerResults,ErrorMessages" oncomplete="refreshPrimaryTab({!isContactPopulated},{!isTransactionSuccess})">
+                                <apex:param name="selectedAccount" assignTo="{!selectedAccountId}" value="{!dupe.consumer.id}"/>
+                            </apex:actionSupport>
+                            <apex:outputtext style="font-weight: bold" value="{!dupe.consumer.Salutation} {!dupe.consumer.Name}"/> &nbsp;
+                            <apex:outputText value="{!dupe.consumer.Consumer_Note__c}" escape="false"/>                           
+                        </apex:column>                        
+                        <apex:column width="30%" styleClass="more top">
+                            <apex:outputLabel value="Show more"/>
+                        </apex:column>                
+                        <apex:column width="20%" styleClass="results-label local-identifier" breakBefore="true">
+                            <apex:outputLabel value="Local Identifier:"/>
+                        </apex:column>		
+                        <apex:column width="80%" colspan="2" styleClass="results-data local-identifier">
+                            <apex:outputLabel value="{!dupe.consumer.Local_Identifier_No_Special_Char__c}"/>
+                        </apex:column>						
+                        <apex:column width="20%" styleClass="results-label partial-address" breakBefore="true">
+                            <apex:outputLabel value="Address:"/>
+                        </apex:column>
+                        <apex:column width="80%" colspan="2" styleClass="results-data partial-address">
+                            <apex:outputLabel value="{!dupe.consumer.PersonMailingStreet} {!dupe.consumer.PersonMailingPostalCode}"/>
+                        </apex:column>
+                        <apex:column width="20%" styleClass="results-label full-address" breakBefore="true">
+                            <apex:outputLabel value="Address:"/>
+                        </apex:column>
+                        <apex:column width="80%" colspan="2" styleClass="results-data full-address">
+                            <apex:outputLabel value="{!dupe.consumer.PersonMailingStreet} {!dupe.consumer.PersonMailingCity} {!dupe.consumer.PersonMailingState} {!dupe.consumer.PersonMailingPostalCode} {!dupe.consumer.PersonMailingCountry}"/>
+                        </apex:column>
+                        <apex:column width="20%" styleClass="results-label email" breakBefore="true">
+                            <apex:outputLabel value="Email:"/>
+                        </apex:column>
+                        <apex:column width="80%" colspan="2" styleClass="results-data email">
+                            <apex:outputLabel value="{!dupe.consumer.PersonEmail}"/>
+                        </apex:column>
+                        <apex:column width="20%" styleClass="results-label phone bottom" breakBefore="true">
+                            <apex:outputLabel value="Phone:"/>
+                        </apex:column>
+                        <apex:column width="80%" colspan="2" styleClass="results-data phone bottom">
+                            <apex:outputLabel value="{!dupe.consumer.Phone}"/>
+                        </apex:column>
+                        <apex:column width="20%" styleClass="results-label issue-title additional" breakBefore="true">
+                            <apex:outputLabel value=""/>
+                        </apex:column>
+                        <apex:column width="80%" colspan="2" styleClass="results-data issue-title additional">
+                            <apex:outputLabel value="Latest Case"/>
+                        </apex:column>
+                        <apex:column width="20%" styleClass="results-label LatestCaseNumber additional" breakBefore="true">
+                           <apex:outputLabel value="Case #:"/>
+                        </apex:column>
+                        <apex:column width="80%" colspan="2" styleClass="results-data LatestCaseNumber additional">
+                             <apex:outputLabel value="{!dupe.consumer.Latest_Case_Number__c}"/>
+                        </apex:column>
+                        <apex:column width="20%" styleClass="results-label LatestCaseProduct additional" breakBefore="true">
+                            <apex:outputLabel value="Product:"/>
+                        </apex:column>
+                        <apex:column width="80%" colspan="2" styleClass="results-data LatestCaseProduct additional">
+                            <apex:outputLabel value="{!dupe.consumer.Latest_Case_Product_Code__c}"/>
+                        </apex:column>
+                        <apex:column width="20%" styleClass="results-label LatestCaseReason additional bottom" breakBefore="true">
+                            <apex:outputLabel value="Reason:"/>
+                        </apex:column>
+                        <apex:column width="80%" colspan="2" styleClass="results-data LatestCaseReason additional bottom">
+                            <apex:outputLabel value="{!dupe.consumer.Latest_Case_Reason_Code__c}"/>
+                        </apex:column>
+                    </tr>
+                </apex:pageBlockTable>
+                <br/>   
+                <apex:outputPanel styleClass="results-footer" layout="block">    
+                    <apex:outputLabel value="{!resultsOutputLabel}" for="create-new-contact" id="ResultLabel"/>
+                    <br/>
+                    <apex:commandButton styleClass="btn" id="create-new-contact" value="{!$Label.CEC_ConsumerCreateContactButtonDisplay}" disabled="{!isContactPopulated}"/>
+                </apex:outputPanel>
+            </apex:pageBlock>     
+        </apex:outputPanel>
+    </apex:form>
+    <script type="text/javascript">
+        var isPhoneValid = true;
+        function refreshPrimaryTab(isContactPopulated, isTranSuccess) {
+            if (isContactPopulated && isTranSuccess) {
+                sforce.console.getFocusedPrimaryTabId(doRefresh);
+            } else {
+                // Else do not refresh.
+                searchMode();
+                $('.tab.results').hide();
+            }
+        }
+        var doRefresh = function doRefresh(result) {
+            sforce.console.refreshPrimaryTabById(result.id, true, refreshSuccess);
+        };
+        var refreshSuccess = function refreshSuccess(result) {
+            //Report whether refreshing the primary tab was successful
+            if (result.success != true) {
+                sforce.console.getFocusedPrimaryTabObjectId(rollbackSave);
+            }
+        };
+        var rollbackSave = function rollbackSave(result) {
+            Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.CEC_NewAccountController.rollbackSave}', result.id, handleResult);
+        };
+        function handleResult(result, event) {
+            if (result) {
+                alert('{!$Label.CEC_NewCaseError_BeforeAddNewConsumer}');
+                $('.tabs .create a').html('{!$Label.CEC_ConsumerSearchDisplay}').parent().addClass('search').removeClass('create');
+                searchMode();
+                $('.tab.results').hide();
+            }
+        }
+
+        $(document).ready(function () {
+            searchMode();
+        });
+
+        var resultsShown = false;
+
+        // Set active tab on click and switch to a workflow mode.
+        function setActiveTab(tab) {
+            $('.tab').removeClass('active');
+            $('.tab.' + tab).show().addClass('active');
+
+            $('.tab').find('a').click(function (e) {
+                e.preventDefault();
+                if ($(this).parent().hasClass('search')) {
+                    searchMode();
+                } else if ($(this).parent().hasClass('create')) {
+                    createMode();
+                } else if ($(this).parent().hasClass('results')) {
+                    resultsMode();
+                }
+            });
+        }
+
+        // Show/hide form/results blocks, depending on current mode.
+        function show(toShow) {
+            var $form = $('div.form');
+            var $results = $('div.results');
+            switch (toShow) {
+            case 'form':
+                $form.show();
+                $results.hide();
+                break;
+            case 'results':
+                $results.show();
+                $form.hide();
+                break;
+            case 'none':
+                $results.hide();
+                $form.hide();
+                break;
+            }
+        }
+
+        // Mode 1: searching for an existing consumer.
+        function searchMode() {
+            show('form');
+            setActiveTab('search');
+            $('.non-searchable').hide();
+            if (resultsShown) {
+                $('.tab.non-searchable').show();
+            }
+        }
+
+        // Mode 2: displaying the consumers found using the previous search.
+        function resultsMode() {
+            setActiveTab('results');
+            if ($('.errorM3, .infoM3').length > 0) {
+                searchMode();
+            } else {
+                resultsShown = true;
+                show('results');
+
+                $('.more').click(function () {
+                    $(this).parent().find('td').toggleClass('current');
+                    $(this).parent().nextAll().eq(0).find('.local-identifier').toggleClass('current');
+					$(this).parent().nextAll().eq(1).find('.partial-address').toggle();
+                    $(this).parent().nextAll().eq(2).find('.full-address').toggle().toggleClass('current');
+                    $(this).parent().nextAll().eq(3).find('.email').toggleClass('current');
+                    $(this).parent().nextAll().eq(4).find('.phone').toggleClass('bottom').toggleClass('current');
+                    $(this).parent().nextAll().eq(5).find('.additional').toggle().toggleClass('current').toggleClass('current-case-divider');
+                    $(this).parent().nextAll().eq(6).find('.additional').toggle().toggleClass('current');
+                    $(this).parent().nextAll().eq(7).find('.additional').toggle().toggleClass('current');
+                    $(this).parent().nextAll().eq(8).find('.additional').toggle().toggleClass('current');
+                    $(this).parent().nextAll().eq(9).find('.additional').toggle().toggleClass('current');
+                });
+
+                $('.results-footer .btn').click(function (e) {
+                    createMode();
+                    e.preventDefault();
+                });
+            }
+        }
+
+        // Mode 3: a matching consumer was not found, a new one needs to be created.
+        function createMode() {
+            $('.tabs .search a').html('{!$Label.CEC_CreateContactDisplay}').parent().addClass('create').removeClass('search');
+            setActiveTab('create');
+            show('form');
+            $('non-searchable').show();
+            $('.non-create').hide();
+            $('.non-searchable').show();
+            $('.tabs .results').hide();
+        }
+
+        // Mode 4: Confirmation that the new counsumer was created.
+        function createdMode(isContactPopulated, isTranSuccess) {
+            if (isContactPopulated && isTranSuccess) {
+                sforce.console.getFocusedPrimaryTabId(doRefresh);
+            } else if (isContactPopulated && !isTranSuccess) {
+                // Else do not refresh.                
+                $('.tabs .create a').html('{!$Label.CEC_ConsumerSearchDisplay}').parent().addClass('search').removeClass('create');
+                searchMode();
+                $('.tab.results').hide();
+            } else {
+                createMode();
+                $('.tab.results').hide();
+            }
+        }
+    </script>
+</apex:page>

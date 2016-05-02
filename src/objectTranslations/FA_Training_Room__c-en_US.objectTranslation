@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Training Room</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Training Room</value>
+    </caseValues>
+    <fields>
+        <label><!-- Active --></label>
+        <name>FA_Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Capacity --></label>
+        <name>FA_Capacity__c</name>
+    </fields>
+    <fields>
+        <label><!-- External ID --></label>
+        <name>FA_External_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Image URL --></label>
+        <name>FA_Image_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Network Connectivity --></label>
+        <name>FA_Network_Connectivity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Room Image --></label>
+        <name>FA_Room_Image__c</name>
+    </fields>
+    <fields>
+        <label><!-- Room Number --></label>
+        <name>FA_Room_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Training Venue --></label>
+        <name>FA_Training_Venue__c</name>
+        <relationshipLabel><!-- Training Room --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- VC Facilities --></label>
+        <name>FA_VC_Facilities__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

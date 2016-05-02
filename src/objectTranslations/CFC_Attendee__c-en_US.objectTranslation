@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Attendee</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Attendees</value>
+    </caseValues>
+    <fields>
+        <label><!-- Attendee Name --></label>
+        <name>Attendee__c</name>
+        <relationshipLabel><!-- Attendees --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Confirm --></label>
+        <name>Confirmation_del__c</name>
+    </fields>
+    <fields>
+        <label><!-- Event --></label>
+        <name>Event__c</name>
+        <relationshipLabel><!-- Attendees --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- TF Event From Date --></label>
+        <name>TF_Event_From_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- TF Event Name --></label>
+        <name>TF_Event_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- TF Event_To_Date --></label>
+        <name>TF_Event_To_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- TF SF Base Url --></label>
+        <name>TF_SF_Base_Url__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

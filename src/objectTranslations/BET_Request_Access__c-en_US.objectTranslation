@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>BET Request Access</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>BET Request Access</value>
+    </caseValues>
+    <fields>
+        <label><!-- Email Address --></label>
+        <name>Email_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- Footer --></label>
+        <name>Footer__c</name>
+    </fields>
+    <fields>
+        <label><!-- From Name --></label>
+        <name>From_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Logo Url --></label>
+        <name>Logo_Url__c</name>
+    </fields>
+    <fields>
+        <label><!-- Send Mail To Owner --></label>
+        <name>Send_Mail_To_Owner__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

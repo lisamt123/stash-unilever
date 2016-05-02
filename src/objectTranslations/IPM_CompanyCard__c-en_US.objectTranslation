@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>IPM CompanyCard</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>IPM CompanyCard</value>
+    </caseValues>
+    <fields>
+        <label><!-- Country --></label>
+        <name>IPM_Country__c</name>
+    </fields>
+    <fields>
+        <label><!-- Global --></label>
+        <name>IPM_Global__c</name>
+    </fields>
+    <fields>
+        <label><!-- Local --></label>
+        <name>IPM_Local__c</name>
+    </fields>
+    <fields>
+        <label><!-- MCO --></label>
+        <name>IPM_MCO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Market Cluster --></label>
+        <name>IPM_Market_Cluster__c</name>
+    </fields>
+    <fields>
+        <label><!-- Multiple Geographical Scope --></label>
+        <name>IPM_Multiple_Geographical_Scope__c</name>
+    </fields>
+    <fields>
+        <label><!-- Multiple Managed Catagory --></label>
+        <name>IPM_Multiple_Managed_Catagory__c</name>
+    </fields>
+    <fields>
+        <label><!-- Regional --></label>
+        <name>IPM_Regional__c</name>
+    </fields>
+    <fields>
+        <label><!-- Single Geographical Scope --></label>
+        <name>IPM_Single_Geographical_Scope__c</name>
+    </fields>
+    <fields>
+        <label><!-- Single Managed Catagory --></label>
+        <name>IPM_Single_Managed_Catagory__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

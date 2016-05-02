@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Holds information of Unilever and Agency users permission levels for brands, which define read/write access to SWOP records, and defines who can approve SWOP records.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Agency_ID__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASESAFEID( User_id__r.Contact.AccountId )</formula>
+        <label>Agency ID</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Agency_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>User_id__r.Contact.Account.Name</formula>
+        <label>Agency Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Brand_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>CategoryBrand_id__r.brand_id__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Brand Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CategoryBrand_id__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Lookup to a valid category-brand combination for which this user has the permissions specified</description>
+        <externalId>false</externalId>
+        <label>CategoryBrand</label>
+        <referenceTo>MDO_CategoryBrands__c</referenceTo>
+        <relationshipLabel>SWOP User Permission</relationshipLabel>
+        <relationshipName>SWOP_User_Permission</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Category_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>CategoryBrand_id__r.product_Category_Id__r.Name</formula>
+        <label>Category Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Level_of_Access__c</fullName>
+        <externalId>false</externalId>
+        <label>Level of Access</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Read Only</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Access &amp; Edit</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Superuser</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Approver</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>User_Email__c</fullName>
+        <externalId>false</externalId>
+        <formula>User_id__r.Email</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>User Email</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>User_id__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>User</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>SWOP_User_Permission</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>SWOP User Permission</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Brand_Name__c</columns>
+        <columns>Category_Name__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>User_id__c</columns>
+        <columns>Agency_Name__c</columns>
+        <columns>Level_of_Access__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>All1</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>UP-{0000}</displayFormat>
+        <label>Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>SWOP User Permission</pluralLabel>
+    <recordTypes>
+        <fullName>Oblix_Agency_User</fullName>
+        <active>true</active>
+        <label>Agency User</label>
+        <picklistValues>
+            <picklist>Level_of_Access__c</picklist>
+            <values>
+                <fullName>Access %26 Edit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Approver</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Read Only</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Superuser</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Oblix_Unilever_User</fullName>
+        <active>true</active>
+        <label>Unilever User</label>
+        <picklistValues>
+            <picklist>Level_of_Access__c</picklist>
+            <values>
+                <fullName>Access %26 Edit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Approver</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Read Only</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Superuser</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

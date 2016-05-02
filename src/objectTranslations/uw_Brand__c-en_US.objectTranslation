@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Brand Centre Old</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Brand Centre Old</value>
+    </caseValues>
+    <fields>
+        <label><!-- BETs URL --></label>
+        <name>BETs_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Background Colour --></label>
+        <name>Background_Colour__c</name>
+    </fields>
+    <fields>
+        <label><!-- Banner Colour --></label>
+        <name>Banner_Colour__c</name>
+    </fields>
+    <fields>
+        <label><!-- Banner Location --></label>
+        <name>Banner_Location__c</name>
+    </fields>
+    <fields>
+        <label><!-- Border Colour --></label>
+        <name>Border_Colour__c</name>
+    </fields>
+    <fields>
+        <label><!-- Go to Brand Centre --></label>
+        <name>Brand_Centre_Page__c</name>
+    </fields>
+    <fields>
+        <label><!-- Brand Centre Page --></label>
+        <name>Brand_Centre_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Brand Logo Image ID --></label>
+        <name>Brand_Logo_Image_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Category --></label>
+        <name>Category__c</name>
+        <picklistValues>
+            <masterLabel>Foods</masterLabel>
+            <translation><!-- Foods --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HomeCare</masterLabel>
+            <translation><!-- HomeCare --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Personal Care</masterLabel>
+            <translation><!-- Personal Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Refreshments</masterLabel>
+            <translation><!-- Refreshments --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Component Colour --></label>
+        <name>Component_Colour__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Facebook Link --></label>
+        <name>Facebook_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Facebook Feed --></label>
+        <name>Facebook__c</name>
+    </fields>
+    <fields>
+        <label><!-- Font Colour --></label>
+        <name>Font_Colour__c</name>
+    </fields>
+    <fields>
+        <label><!-- Learning Hub --></label>
+        <name>Learning_Hub__c</name>
+    </fields>
+    <fields>
+        <label><!-- Logo Location --></label>
+        <name>Logo_Location__c</name>
+    </fields>
+    <fields>
+        <label><!-- Logo --></label>
+        <name>Logo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Old Brand To Remove --></label>
+        <name>Old_Brand_To_Remove__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parent Brand --></label>
+        <name>Parent_Brand__c</name>
+        <relationshipLabel><!-- Brand Centre Old --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- StylePalette --></label>
+        <name>StylePalette__c</name>
+        <picklistValues>
+            <masterLabel>toolkit-theme-dark</masterLabel>
+            <translation><!-- toolkit-theme-dark --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>toolkit-theme-light</masterLabel>
+            <translation><!-- toolkit-theme-light --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Styleoutput --></label>
+        <name>Styleoutput__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sub Category --></label>
+        <name>Sub_Category__c</name>
+        <picklistValues>
+            <masterLabel>Beverages</masterLabel>
+            <translation><!-- Beverages --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deo</masterLabel>
+            <translation><!-- Deo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dressings</masterLabel>
+            <translation><!-- Dressings --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hair</masterLabel>
+            <translation><!-- Hair --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hair, Skin Cleansing, Deo, skin Care</masterLabel>
+            <translation><!-- Hair, Skin Cleansing, Deo, skin Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Household Care</masterLabel>
+            <translation><!-- Household Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ice Cream</masterLabel>
+            <translation><!-- Ice Cream --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Laundry</masterLabel>
+            <translation><!-- Laundry --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lipton</masterLabel>
+            <translation><!-- Lipton --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Oral Care</masterLabel>
+            <translation><!-- Oral Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Savoury</masterLabel>
+            <translation><!-- Savoury --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Skin Care</masterLabel>
+            <translation><!-- Skin Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Skin Cleansing</masterLabel>
+            <translation><!-- Skin Cleansing --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Twitter Link --></label>
+        <name>Twitter_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Twitter Feed --></label>
+        <name>Twitter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Website Link (.com) --></label>
+        <name>Website__c</name>
+    </fields>
+    <fields>
+        <help><!-- Please enter the name of a Youtube channel eg Persil UK. This is displayed at the bottom of the brand centre. Please change the brand or competitor name after .../users/... to retrieve the feed of a particular brand&apos;s Youtube channel. --></help>
+        <label><!-- Youtube Channel 2 --></label>
+        <name>You_Tube_2_URL__c</name>
+    </fields>
+    <fields>
+        <help><!-- Please enter the name of a Youtube channel eg Persil UK. This is displayed in the Social Media World area --></help>
+        <label><!-- Youtube Link --></label>
+        <name>You_Tube_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Youtube Feed --></label>
+        <name>Youtube__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- Edit_Brand_Layout --></label>
+        <name>Edit_Brand_Layout</name>
+    </webLinks>
+</CustomObjectTranslation>

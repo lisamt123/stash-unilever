@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>ProductCategory</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>ProductCategory</value>
+    </caseValues>
+    <fields>
+        <label><!-- Category Type --></label>
+        <name>category_type__c</name>
+        <picklistValues>
+            <masterLabel>Category</masterLabel>
+            <translation><!-- Category --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Category Group</masterLabel>
+            <translation><!-- Category Group --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Division</masterLabel>
+            <translation><!-- Division --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Market</masterLabel>
+            <translation><!-- Market --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product Form</masterLabel>
+            <translation><!-- Product Form --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sector</masterLabel>
+            <translation><!-- Sector --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Segment</masterLabel>
+            <translation><!-- Segment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sub Division</masterLabel>
+            <translation><!-- Sub Division --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sub Sector</masterLabel>
+            <translation><!-- Sub Sector --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Total Product Category</masterLabel>
+            <translation><!-- Total Product Category --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- MDM ID --></label>
+        <name>mdm_id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parent L10 --></label>
+        <name>parent_L10__c</name>
+        <relationshipLabel><!-- ProductCategory (Parent L10) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Parent L11 --></label>
+        <name>parent_L11__c</name>
+        <relationshipLabel><!-- ProductCategory (Parent L11) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Parent L12 --></label>
+        <name>parent_L12__c</name>
+        <relationshipLabel><!-- ProductCategory (Parent L12) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Parent L13 --></label>
+        <name>parent_L13__c</name>
+        <relationshipLabel><!-- ProductCategory (Parent L13) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Parent L14 --></label>
+        <name>parent_L14__c</name>
+        <relationshipLabel><!-- ProductCategory (Parent L14) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Parent L15 --></label>
+        <name>parent_L15__c</name>
+        <relationshipLabel><!-- ProductCategory (Parent L15) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Parent L16 --></label>
+        <name>parent_L16__c</name>
+        <relationshipLabel><!-- ProductCategory (Parent L16) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Parent L17 --></label>
+        <name>parent_L17__c</name>
+        <relationshipLabel><!-- ProductCategory (Parent L17) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Parent L1 --></label>
+        <name>parent_L1__c</name>
+        <relationshipLabel><!-- ProductCategory (Parent L1) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Parent L2 --></label>
+        <name>parent_L2__c</name>
+        <relationshipLabel><!-- ProductCategory (Parent L2) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Parent L3 --></label>
+        <name>parent_L3__c</name>
+        <relationshipLabel><!-- ProductCategory (Parent L3) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Parent L4 --></label>
+        <name>parent_L4__c</name>
+        <relationshipLabel><!-- ProductCategory (Parent L4) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Parent L5 --></label>
+        <name>parent_L5__c</name>
+        <relationshipLabel><!-- ProductCategory (Parent L5) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Parent L6 --></label>
+        <name>parent_L6__c</name>
+        <relationshipLabel><!-- ProductCategory (Parent L6) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Parent L7 --></label>
+        <name>parent_L7__c</name>
+        <relationshipLabel><!-- ProductCategory (Parent L7) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Parent L8 --></label>
+        <name>parent_L8__c</name>
+        <relationshipLabel><!-- ProductCategory (Parent L8) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Parent L9 --></label>
+        <name>parent_L9__c</name>
+        <relationshipLabel><!-- ProductCategory (Parent L9) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Parent ID --></label>
+        <name>parent_id__c</name>
+        <relationshipLabel><!-- ProductCategory --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Parent Id Tree --></label>
+        <name>parent_id_tree__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parent MDM Id --></label>
+        <name>parent_mdm_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parent MDM Id Tree --></label>
+        <name>parent_mdm_id_tree__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>status__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

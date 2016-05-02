@@ -1,0 +1,51 @@
+/*applying style for the top bar of the page*/ 
+.THIS .topBarStyle{
+    height: 40px;
+    padding-left: 10px;
+    padding-top: 8px;
+    background-color:#FFFFFF;
+}
+/*applying style for the top back aroow bar of the page*/ 
+.THIS .topBackBar{ 
+    height: 40px;    
+    padding-left: 10px;   
+    width: 50px;
+}
+/*applying full width*/
+.THIS .fullWidth{
+    width: 100%;
+}
+/*small icons style*/
+.THIS .newsCenterSmallIcons{
+    height:13px;
+    width:13px;
+}
+/*applying left spaceing*/
+.THIS .leftSpaceing{
+    padding-left:10px;
+}
+/*applying style for the top back aroow bar Icon of the page*/ 
+.THIS .topBackBarIcon{
+    height:22px;
+    width:22px; 
+}
+/*applying style for the load more bar*/ 
+.THIS .loadMoreBar{
+    text-align:center;
+    padding-bottom:10px;
+    padding-left: 20%;
+    padding-right: 20%;
+}
+/*applying style for the load more bar butoon*/ 
+.THIS .loadMoreButton{
+    width:100%;
+    text-align:center;
+    font-weight:normal;
+    padding-top:10px;
+    padding-bottom:10px;
+    font-size:14px; 
+    border-radius:8px;
+    border:1px solid #D1D1D4;    
+    background: #FFFFFF;
+    color:#344A5F;
+}

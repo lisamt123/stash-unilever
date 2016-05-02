@@ -1,0 +1,137 @@
+.THIS .activity-sec_acc{
+  background: #2E91CF;
+  height: 80px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding-top: 10px;
+  margin-top: 75px;
+  width: 90%;
+  margin-left: 5%;
+}
+.THIS .cross_img{
+    height: 35px;
+    width: 53px;
+    float: right;
+    margin-top: -8px;
+    padding-top: 6px;
+}
+.THIS .default-rating {
+    margin-top: -6px;
+}
+.THIS .section_acc {
+  background: white;
+  height: 225px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  width: 100%;
+  margin-left:0;
+   margin-top: 10px;
+}
+.THIS .t-title_acc {
+  margin-left: 10px;
+  color: white;
+  font-weight: 500;
+  font-size: 1.8rem;
+  line-height: 1.25;
+  margin-top: 5px;
+}
+.THIS .a-title_acc {
+  margin-left: 10px;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 300;
+  text-transform: uppercase;  
+}
+.THIS .starfill_acc{
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  margin-left: 10px;
+  margin-top: 15px;
+}
+.THIS .rateTitle_acc{
+  margin: 0 20%;
+  color: black;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 1.25;
+  width: 60%;
+  align-content: center;
+  text-align: center;
+  font-weight:bold;
+}
+.THIS .act_Req_user p {
+  text-align: center;
+}
+.THIS .act_Req_user
+{
+  color: black;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 1.25;
+  margin-top: 10px;
+}
+.THIS .cTitle_acc{
+    margin-left: 5px;
+  color: black;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 1.25; 
+    margin-top:50px;
+}
+.THIS .accept
+{
+  width: 90%;
+  margin-left:5%;  
+  height: 40px;
+  border-radius: 10px;
+  background-color: #2E91CF;
+  margin-top: 20px;
+  color: white;
+  border:none;
+}
+.THIS .decline
+{
+  width: 90%;
+  margin-left:5%;
+  height: 40px;
+  border-radius: 10px;
+  background-color: white;
+  margin-top: 245px;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 1.25;
+  color: black;
+  border: none;
+}
+.THIS .box-text
+    {
+  padding: 16px;
+  border-radius: 4px;
+  background-clip: padding-box;
+  border: 1px solid #d8dde6;
+  height: 150px; 
+}
+ .THIS .textbox-t{
+  font-size: 12px;
+  line-height: 1.25;
+  letter-spacing: .0625em;
+  color: #CFD7E6;
+ margin-left: 5px;
+}
+.THIS .img_profile{
+  width: 80px;
+  height: 80px;
+  border-radius: 100px;
+  margin-top: 20px;
+}
+
+.THIS .prof_pic {
+  text-align: center;
+}
+.THIS .close_btn{
+  width: 15px;
+  height: 20px;
+  float: right;
+  margin-right: 15px;
+}

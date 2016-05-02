@@ -1,0 +1,267 @@
+<aura:component implements="force:appHostable" controller="OV_KpiController">
+<aura:dependency resource="markup://c:OV_WizardFilterElement" />
+<aura:dependency resource="markup://c:OV_KpiTile" />
+<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+<ltng:require styles="/resource/OV_stylesMerged/styles.css?rev6u" scripts="/resource/OV_jquery, /resource/OV_bootstrap_drilldown" />
+<aura:registerEvent name="OV_WizardFilterSelectedEvent" type="c:OV_WizardFilterSelectedEvent" />
+<aura:handler event="c:OV_WizardFilterSelectedEvent" action="{!c.onFilterSelection}" />
+
+<aura:registerEvent name="OV_WizardOpenModalEvent" type="c:OV_WizardOpenModalEvent" />
+<aura:handler event="c:OV_WizardOpenModalEvent" action="{!c.showWizard}" />
+
+<aura:handler event="c:OV_FavouriteUpdateEvent" action="{!c.favUpdate}"/>
+
+<aura:registerEvent name="OV_WizardEditKpiEvent" type="c:OV_WizardEditKpiEvent" />
+<aura:handler event="c:OV_WizardEditKpiEvent" action="{!c.openKpiEditModal}" />
+
+<aura:registerEvent name="OV_WizardFavouriteReportSelectedEvent" type="c:OV_WizardFavouriteReportSelectedEvent" />
+
+<!-- general modal variables -->
+<aura:attribute name="wizardDisplayed" type="Boolean" default="false" />
+<aura:attribute name="step" type="Integer" default="1" />
+<aura:attribute name="operationPending" type="Boolean" default="false" />
+<!-- step 1 -->
+<aura:attribute name="kpiNames" type="Object[]"/>
+<aura:attribute name="selectedKPI" type="Object"/>
+<!-- step 2: filters -->
+<aura:attribute name="filtersDefinition" type="Object" />
+<aura:attribute name="flattenedFiltersDef" type="Object"/>
+<aura:attribute name="filtersExpandedLevel1" type="Boolean" default="false"/>
+<aura:attribute name="selectedFilterLevel1" type="Integer" default="-1"/>
+<aura:attribute name="selectedFilters" type="Object"/>
+<aura:attribute name="selectedFiltersArray" type="Object[]"/>
+<!-- step 2: kpi transactions -->
+<aura:attribute name="showResults" type="Boolean"/>
+<aura:attribute name="msg" type="String"/>
+<aura:attribute name="filteredKPItransactions" type="Object[]"/>
+<aura:attribute name="paginatedFilteredKPItransactions" type="Object[]"/>
+<aura:attribute name="KPItransactionsHeaders" type="Object"/>
+<aura:attribute name="KPItransactionsHeadersArray" type="Object[]"/>
+<aura:attribute name="KPIsCount" type="Integer" default="0"/>
+<aura:attribute name="selectedCount" type="Integer" default="0"/>
+<aura:attribute name="selectedKPITransactions" type="Object" />
+<!-- step 2: pagination -->
+<aura:attribute name="paginationArray" type="Integer[]"/>
+<aura:attribute name="paginationPageSize" type="Integer" default="20"/>
+<aura:attribute name="paginationPageNum" type="Integer" default="1"/>
+<!-- <aura:attribute name="paginationFirstIndex" type="Integer"/> -->
+<aura:attribute name="lastPageNum" type="Integer"/>
+<aura:attribute name="isFirstPage" type="boolean" default="true"/>
+<aura:attribute name="isLastPage" type="Boolean" default="true"/>
+<!-- step 3 -->
+<aura:attribute name="selectedKPITransactionsArray" type="Object[]" />
+<aura:attribute name="favouriteReports" type="Object[]" />
+<aura:attribute name="favouriteReportsAvailable" type="Boolean" default="false"/>
+
+<!-- edit kpi -->
+<aura:attribute name="editKpi" type="Boolean" default="false"/>
+
+<div class="bootstrap-sf1">
+
+    <aura:renderIf isTrue="{!v.wizardDisplayed}">
+    <div class="{! 'modalBackdrop step' + v.step +(v.editKpi?' editKpi':' ')}" onclick="{!c.closeWizard}">
+        <div class="modalWrapper">
+            <div class="{! 'loadingCover' + (v.operationPending?' pending':'')}">
+                <div class="">Loading</div>
+            </div>
+            <div class="modalHeader">
+                <div class="modalTitle">{!(v.editKpi?'Edit KPI':'KPI selection')}</div>
+                <div class="closeModal s1utility s1utility-close clickable" onclick="{!c.closeWizard}"></div>
+            </div>
+            <aura:if isTrue="{! !v.editKpi}">
+            <div class="stepIndicator">
+                <div class="progressBar">
+                    <div class="progressBarBackground">
+                        <div class="{! 'progressBarProgress step' + v.step}" ></div>
+                        <div class="progressIcons">
+                            <div class="{! (v.step == 1 ? 'active' : ('clickable ' + (v.step > 1? 'filled':'')))}" onclick="{!c.moveToStep1}">
+                                <i class="{! 'glyphicon glyphicon-stats ' + (v.step == 1 ? '' : 'transparent')}"></i>
+                                <i class="{! 'glyphicon glyphicon-ok ' + (v.step > 1 ? '' : 'transparent')}"></i>
+                            </div>
+                            <div class="{! (v.step == 2 ? 'active' : (v.step > 2? 'filled':'')) + (v.step == 3?' clickable':'')}" onclick="{!c.moveToStep2}">
+                                <i class="{! 'glyphicon glyphicon-filter ' + (v.step == 2 ? '' : 'transparent')}"></i>
+                                <i class="{! 'glyphicon glyphicon-ok ' + (v.step > 2 ? '' : 'transparent')}"></i>
+                            </div>
+                            <div class="{! (v.step == 3 ? 'active' : '') + ((v.step == 2 &amp;&amp; v.selectedCount>0)?' clickable':' ')}" onclick="{!c.moveToStep3}">
+                                <i class="{! 'glyphicon glyphicon-link ' + (v.step == 3 ? '' : 'transparent')}"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="labels">
+                    <div class="{! v.step == 1 ? 'active ' : 'clickable'}">
+                        Choose KPI
+                    </div>
+                    <div class="{! (v.step == 2 ? 'active ' : '') + (v.step == 3?' clickable':'')}">
+                        Filtering
+                    </div>
+                    <div class="{! (v.step == 3 ? 'active ' : '') + ((v.step == 2 &amp;&amp; v.selectedCount>0)?' clickable':' ')}">
+                        Linking
+                    </div>
+                </div>
+            </div>
+            </aura:if>
+            <div class="modalBody" aura:id="modalBody">
+                <aura:if isTrue="{! v.step == 1}">
+                <div class="step1Content">
+                    <div class="topSpace">
+                    </div>
+                    <div class="KPIsWrapper">
+                        <aura:if isTrue="{! v.step == 1 &amp;&amp; v.kpiNames}">
+                        <div>
+                            <aura:iteration items="{!v.kpiNames}" var="KPIItem" indexVar="index">
+                            <div class="{! 'KPIItem clickable' + (KPIItem.Selected?' selected':'')}" data-index="{! index}" onclick="{! c.pickKPI}"><div>{!KPIItem.name}</div></div>
+                            </aura:iteration>
+                        </div>
+                        </aura:if>
+                    </div>
+                </div>
+                </aura:if>
+                <aura:if isTrue="{! v.step == 2}">
+                <div class="step2Content clearfix">
+                    <div class="filtersMenuBackground"></div>
+                    <div class="filtersMenu">
+                        <div class="filtersMenuHeader"><div>Filtering</div></div>
+                        <div class="filtersMenuWrapper">
+                            <div class="{! 'filterItemsLevel1' +  (v.filtersExpandedLevel1 ? ' expanded':'')}">
+                                <aura:renderIf isTrue="{! !empty(v.filtersDefinition) &amp;&amp; v.step == 2}">
+                                    <div>
+                                        <aura:iteration items="{!v.filtersDefinition}" var="filterTypeItem" indexVar="filter1Index">
+                                            <c:OV_WizardFilterElement selectedFilterLevel1="{!v.selectedFilterLevel1}" selectedFilters="{! v.selectedFilters2 }" filtersExpandedLevel1="{!v.filtersExpandedLevel1}" selectedFiltersArray="{!v.selectedFiltersArray}" filterItem="{! filterTypeItem}" filter1Index="{!filter1Index}" filtersDefinition="{!v.filtersDefinition}" step="{!v.step}" KPItransactionsHeadersArray="{!v.KPItransactionsHeadersArray}"/>
+                                        </aura:iteration>
+                                    </div>
+                                </aura:renderIf>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filteredKPIs">
+                        <div class="header clearfix">
+                            <div class="KPIName">KPI: {!v.selectedKPI.name}</div>
+                            <div class="filteredResult">
+                                <div class="resultCount">{!v.KPIsCount} results</div>
+                                <div class="selectedCount">{!v.selectedCount} selected</div>
+                            </div>
+                        </div>
+                        <div class="filteredContent">
+                            <aura:renderIf isTrue="{!v.showResults}">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <aura:iteration items="{!v.KPItransactionsHeadersArray}" var="headerItem">
+                                        <th><div>{!headerItem.displayName}</div></th>
+                                        </aura:iteration>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <aura:iteration items="{!v.paginatedFilteredKPItransactions}" var="KPITransactionItem">
+                                    <tr data-transactionId="{!KPITransactionItem.id}" onclick="{!c.selectKPITransaction}" class="{! 'clickable ' + (KPITransactionItem.Selected?'active':'')}">
+                                        <c:OV_WizardTransactionElement KPITransactionItem="{!KPITransactionItem}" KPItransactionsHeaders="{!v.KPItransactionsHeaders}" KPItransactionsHeadersArray="{!v.KPItransactionsHeadersArray}"/>
+                                    </tr>
+                                    </aura:iteration>
+                                </tbody>
+                            </table>
+                            </aura:renderIf>
+                            <div>
+                            <aura:renderIf isTrue="{! !v.showResults}">
+                            <h2>{!v.msg}</h2>
+                            </aura:renderIf>
+                            </div>
+                        </div>
+                        <aura:renderIf isTrue="{!v.showResults}">
+                            <div class="footer clearfix">
+                                <aura:if isTrue="{!v.paginationArray &amp;&amp; v.paginationArray.length }">
+                                <div class="pagination">
+                                    <aura:renderIf isTrue="{! !v.isFirstPage}">
+                                    <div class="prevButton" onclick="{!c.prevPage}">
+                                        <i class="glyphicon glyphicon-chevron-left"></i>
+                                    </div>
+                                    </aura:renderIf>
+                                    <aura:iteration items="{! v.paginationArray }" var="pageNum">
+                                    <div class="paginationItemWrapper" data-pagenum="{! pageNum}" onclick="{!c.changePage}">
+                                        <c:OV_WizardPaginationItem pageNum="{!pageNum}" paginationPageNum="{!v.paginationPageNum}"  />
+                                    </div>
+                                    </aura:iteration>
+                                    <aura:renderIf isTrue="{! !v.isLastPage}">
+                                    <div class="nextButton" onclick="{!c.nextPage}">
+                                        <i class="glyphicon glyphicon-chevron-right"></i>
+                                    </div>
+                                    </aura:renderIf>
+                                </div>
+                                </aura:if>
+                                <div class="confirmButtonWrapper">
+                                    <div class="{! 'confirmButton' + (v.selectedCount>0?' clickable':' inactive')}" onclick="{!c.moveToStep3}">Confirm</div>
+                                </div>
+                            </div>
+                        </aura:renderIf>
+                    </div>
+                </div>
+                </aura:if>
+                <aura:if isTrue="{! v.step == 3}">
+                <div class="step3Content clearfix">
+                    <div class="topSpace">
+                    </div>
+                    <div class="transactionsWrapper">
+                        <aura:iteration items="{!v.selectedKPITransactionsArray}" var="kpiTransaction">
+                        <div class="transactionItem" data-transactionId="{! kpiTransaction.id}" >
+                            <aura:if isTrue="{!kpiTransaction.Error}">
+                            <div class="kpiSubmitErrorBackdrop clickable" onclick="{!c.closeSubmitError}">
+                                <div class="kpiSubmitErrorWrapper">
+                                    <div class="errorHeader"><div class="closeError s1utility s1utility-close"></div></div>
+                                    <div class="errorMsg">{!kpiTransaction.Error}</div>
+                                </div>
+                            </div>
+                            </aura:if>
+                            <div class="kpiContent clearfix">
+                                <div class="row">
+                                    <div class="col-xs-6 kpiTileWrapper">
+                                        <c:OV_KpiTile kpielement="{!kpiTransaction}" readOnly="true"/>
+                                    </div>
+                                    <div class="col-xs-6 kpiDetails">
+                                        <div>
+                                            <div class="{! 'kpiNotification switchWrapper' +(kpiTransaction.Submitted?' disabled':'')}">
+                                                <div class="switchLabel">Add notification for this KPI<div class="{! 'switchElement' +(kpiTransaction.Notification?' checked':'')}" onclick="{!c.setNotificationForKpi}"><div class="switchInner clickable"></div></div></div>
+                                            </div>
+                                        </div>
+                                        <aura:renderIf isTrue="{!v.favouriteReportsAvailable}">
+                                            <div class="kpiReportSelection">
+                                                <div class="{! 'switchWrapper' +(kpiTransaction.Submitted?' disabled':'')}">
+                                                    <div class="switchLabel">Select report to link to:<div class="{! 'switchElement' +(kpiTransaction.Report?' checked':'')}" onclick="{!c.enableReportSelectionForKpiTransaction}"><div class="switchInner clickable"></div></div></div>
+                                                </div>
+                                            </div>
+                                        </aura:renderIf>
+                                        <aura:renderIf isTrue="{!v.favouriteReportsAvailable}" aura:id="favList">
+                                            <aura:renderIf isTrue="{!kpiTransaction.Report}">
+                                                <div>
+                                                    <aura:iteration items="{!v.favouriteReports}" var="report">
+                                                    <div  class="favReport clickable">
+                                                        <div data-reportId="{!report.reportId}" onclick="{!c.selectReportForKpiTransaction}">
+                                                            <div class="reportName">{!report.reportTitle}</div>
+                                                            <c:OV_WizardFavouriteReport kpiTransaction="{! kpiTransaction}" report="{! report}"/>
+                                                        </div>
+                                                    </div>
+                                                    </aura:iteration>
+                                                </div>
+                                            </aura:renderIf>
+                                        </aura:renderIf>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="buttonsWrapper">
+                                <div class="{! 'submitButton' +((!!kpiTransaction.Submitted || (kpiTransaction.Report &amp;&amp; !kpiTransaction.ReportId))?' disabled':' clickable')}" onclick="{!c.submitKpi}">{! 'Submit'+  (kpiTransaction.Submitting?'ting':'') +  (kpiTransaction.Submitted?'ted':'')}</div>
+                                <aura:if isTrue="{! !kpiTransaction.Submitted}">
+                                <aura:if isTrue="{! !v.editKpi}">
+                                <div class="removeButton clickable" onclick="{!c.removeKpi}">Remove</div>
+                                </aura:if>
+                                </aura:if>
+                            </div>
+                        </div>
+                        </aura:iteration>
+                    </div>
+                </div>
+                </aura:if>
+            </div>
+        </div>
+    </div>
+    </aura:renderIf>
+</div>
+</aura:component>

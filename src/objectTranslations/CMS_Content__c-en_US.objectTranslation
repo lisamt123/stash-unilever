@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>CMS Content</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>CMS Contents</value>
+    </caseValues>
+    <fields>
+        <label><!-- Content --></label>
+        <name>Content__c</name>
+    </fields>
+    <fields>
+        <label><!-- Event --></label>
+        <name>Event__c</name>
+        <relationshipLabel><!-- CMS Contents --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- LinkTitle --></label>
+        <name>LinkTitle__c</name>
+    </fields>
+    <fields>
+        <label><!-- Link --></label>
+        <name>Link__c</name>
+    </fields>
+    <fields>
+        <label><!-- Media Description --></label>
+        <name>MediaDescription__c</name>
+    </fields>
+    <fields>
+        <label><!-- Media Type --></label>
+        <name>MediaType__c</name>
+        <picklistValues>
+            <masterLabel>Document</masterLabel>
+            <translation><!-- Document --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Image</masterLabel>
+            <translation><!-- Image --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Video</masterLabel>
+            <translation><!-- Video --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Short Media Description --></label>
+        <name>ShortMediaDescription__c</name>
+    </fields>
+    <fields>
+        <label><!-- Thumbnail Link --></label>
+        <name>ThumbnailLink__c</name>
+    </fields>
+    <fields>
+        <label><!-- Thumbnail Text --></label>
+        <name>ThumbnailText__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Image</masterLabel>
+            <translation><!-- Image --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Link</masterLabel>
+            <translation><!-- Link --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Text</masterLabel>
+            <translation><!-- Text --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TextLink</masterLabel>
+            <translation><!-- TextLink --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Title</masterLabel>
+            <translation><!-- Title --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Video</masterLabel>
+            <translation><!-- Video --></translation>
+        </picklistValues>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

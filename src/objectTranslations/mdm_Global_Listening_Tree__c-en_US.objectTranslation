@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Global Listening Tree</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Global Listening Trees</value>
+    </caseValues>
+    <fields>
+        <label><!-- Active --></label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Exclude From CSAT --></label>
+        <name>Exclude_From_CSAT__c</name>
+    </fields>
+    <fields>
+        <label><!-- L1 Code --></label>
+        <name>L1_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- L1 Desc --></label>
+        <name>L1_Desc__c</name>
+    </fields>
+    <fields>
+        <label><!-- L2 Code --></label>
+        <name>L2_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- L2 Desc --></label>
+        <name>L2_Desc__c</name>
+    </fields>
+    <fields>
+        <label><!-- L3 Code --></label>
+        <name>L3_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- L3 Desc --></label>
+        <name>L3_Desc__c</name>
+    </fields>
+    <fields>
+        <label><!-- L4 Code --></label>
+        <name>L4_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- L4 Desc --></label>
+        <name>L4_Desc__c</name>
+    </fields>
+    <fields>
+        <label><!-- L5 Code --></label>
+        <name>L5_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- L5 Desc --></label>
+        <name>L5_Desc__c</name>
+    </fields>
+    <fields>
+        <label><!-- L5 Short Desc --></label>
+        <name>L5_Short_Desc__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Insurance and Policy</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Insurance and Policies</value>
+    </caseValues>
+    <fields>
+        <label><!-- Agency --></label>
+        <name>Agency__c</name>
+        <relationshipLabel><!-- Insurance and Policies --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Application --></label>
+        <name>Application__c</name>
+        <relationshipLabel><!-- Insurance and Policies --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Attached to Supporting Docs Tab --></label>
+        <name>Attached_to_Supporting_Docs_Tab__c</name>
+    </fields>
+    <fields>
+        <label><!-- Custom_Setting_Data --></label>
+        <name>Custom_Setting_Data__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date First Joined --></label>
+        <name>Date_First_Joined__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Expiration Date --></label>
+        <name>Expiration_date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Held? --></label>
+        <name>Held__c</name>
+    </fields>
+    <fields>
+        <label><!-- Insurance Type --></label>
+        <name>Insurance_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Level of Cover --></label>
+        <name>Level_of_Cover__c</name>
+        <picklistValues>
+            <masterLabel>£1,000,000 - £2,499,000</masterLabel>
+            <translation><!-- £1,000,000 - £2,499,000 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>£2,500,000 -£4,999,999</masterLabel>
+            <translation><!-- £2,500,000 -£4,999,999 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>£5,000,000 or More</masterLabel>
+            <translation><!-- £5,000,000 or More --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>£999,999 or Less</masterLabel>
+            <translation><!-- £999,999 or Less --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Membership No. (Where applicable) --></label>
+        <name>Membership_No_Where_applicable__c</name>
+    </fields>
+    <fields>
+        <label><!-- Organisation --></label>
+        <name>Organisation__c</name>
+    </fields>
+    <fields>
+        <label><!-- Policy --></label>
+        <name>Policy__c</name>
+    </fields>
+    <fields>
+        <label><!-- Provider --></label>
+        <name>Provider__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sphere of Influence --></label>
+        <name>Sphere_of_Influence__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Date of Policy --></label>
+        <name>Start_Date_of_Policy__c</name>
+    </fields>
+    <recordTypes>
+        <label><!-- Company Policies --></label>
+        <name>Company_Policies</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Insurance --></label>
+        <name>Insurance</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Trade and Regulatory Bodies --></label>
+        <name>Trade_and_Regulatory_Bodies</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

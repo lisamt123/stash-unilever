@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>This is set up to manage SLA for contract process management.</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>DBTD_SLA1__c</fullName>
+        <externalId>false</externalId>
+        <label>DBTD SLA1</label>
+        <length>3</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DBTD_SLA2__c</fullName>
+        <externalId>false</externalId>
+        <label>DBTD SLA2</label>
+        <length>3</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Others_SLA1__c</fullName>
+        <externalId>false</externalId>
+        <label>Others SLA1</label>
+        <length>3</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Others_SLA2__c</fullName>
+        <externalId>false</externalId>
+        <label>Others SLA2</label>
+        <length>3</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PADBTD_SLA1__c</fullName>
+        <externalId>false</externalId>
+        <label>PADBTD SLA1</label>
+        <length>3</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PADBTD_SLA2__c</fullName>
+        <externalId>false</externalId>
+        <label>PADBTD SLA2</label>
+        <length>3</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PA_SLA1__c</fullName>
+        <externalId>false</externalId>
+        <label>PA SLA1</label>
+        <length>3</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PA_SLA2__c</fullName>
+        <externalId>false</externalId>
+        <label>PA SLA2</label>
+        <length>3</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RA_SLA1__c</fullName>
+        <externalId>false</externalId>
+        <label>RA SLA1</label>
+        <length>3</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RA_SLA2__c</fullName>
+        <externalId>false</externalId>
+        <label>RA SLA2</label>
+        <length>3</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>CPA_SLA Configuration</label>
+    <visibility>Public</visibility>
+</CustomObject>

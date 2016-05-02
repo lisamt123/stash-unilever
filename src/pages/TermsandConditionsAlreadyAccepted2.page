@@ -1,0 +1,41 @@
+<apex:page showHeader="false" id="terms_conditions_accept2">
+
+<link rel="stylesheet" href="{!URLFOR($Resource.TaCs_Resources, 'TaC.css')}" type="text/css" media="screen" />
+    
+     
+    <apex:form id="theForm">
+        <div id="page-wrapper">
+        
+            <div id="page">
+            
+                 <div id="header">
+                     <div class="section clearfix">
+                        <div id="logo">
+                            
+                            <img src="{!URLFOR($Resource.TaCs_Resources, 'so_logo.gif')}"  alt="Unilever" />
+                             
+                        </div>
+                        
+                        <div id="slogan">
+                        Accepted Terms and Conditions
+                        </div>
+                    </div>
+                 </div>
+                 
+                 <div id="main-wrapper" style="text-align:center">
+                 <h1>You have already accepted the Unilever Terms and Conditions</h1>
+                <br/>
+                <br/>
+                Please wait for your registration email to be sent to your Email mailbox. 
+                <br/>
+                <br/>
+                               
+               <!--   <div id="continueBtn">
+                <input type="button" id="closeWindowBtn" class="theButton" onclick="javascript:window.open('apex/TacClose','_parent','')" title="closeWindow" value="Close Window"/>
+                
+                 </div>-->
+                 </div>
+            </div>
+        </div>
+    </apex:form>   
+</apex:page>

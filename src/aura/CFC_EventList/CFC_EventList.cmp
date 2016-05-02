@@ -1,0 +1,64 @@
+<aura:component controller="CFC_EventsController" >
+    <aura:handler name="init" value="{!this}" action="{!c.eventsListData}" />
+    <aura:attribute name="eventList" type="CFC_EventsWrapper"/>
+    <aura:attribute name="filterTopic" type="String"/>
+    <aura:attribute name="sortTopic" type="String"/>
+    <aura:attribute name="displayData" type="Boolean" default="true"/>
+    <aura:attribute name="displayError" type="Boolean" default="false"/>
+    <aura:attribute name="RecordTypeId" type="String"/>
+    <div style="text-align:center;font-weight: bold;font-size:30px;color:Grey;padding:8px;background-color:#344A5F;color:#FFFFFF; padding-top: 15px;">
+        Conferences
+    </div>
+     
+    <div style="text-align:right;padding-right: 10px;padding-bottom:5px; padding-top: 10px;">
+        <div onclick="{!c.createRecord}" style="display:inline; Height:35px; width: 42px;border-top-left-radius: 5px;border-bottom-left-radius: 5px;border: 1px solid #d1d1d4;background-color: #f5f6f7;padding: 6px;content: url('/resource/Core_IC_IdeationApp/img/add.svg');background-repeat: no-repeat;"></div>
+        <div onclick="{!c.gotoSort}" style="display:inline; Height:35px; width: 42px;border: 1px solid #d1d1d4;background-color: #f5f6f7;padding: 6px;content: url('/resource/AgentAppStaticResource/images/Sort_steel.svg');background-repeat: no-repeat;"></div>
+		<div onclick="{!c.gotoFilter}" style="display:inline; Height:35px; width: 42px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;border: 1px solid #d1d1d4;background-color: #f5f6f7;padding: 6px;content: url('/resource/AgentAppStaticResource/images/Filter_steel.svg');background-repeat: no-repeat;"></div>
+        <!--<table style="float: right;">
+        	<tr>
+            	<td onclick="{!c.createRecord}" style="width: 30px;text-align: center;border-top-left-radius: 5px;border-bottom-left-radius: 5px;border: 1px solid #d1d1d4;background-color: #f5f6f7;padding: 6px;">
+                    <img src="/resource/Core_IC_IdeationApp/img/add.svg" style="height: 20px;" />
+                </td>
+                <td onclick="{!c.gotoSort}" style="width: 30px;text-align: center;border: 1px solid #d1d1d4;background-color: #f5f6f7;padding: 6px;">
+                    <img src="/resource/AgentAppStaticResource/images/Sort_steel.svg" style="height: 20px;" />
+                </td>
+                <td onclick="{!c.gotoFilter}" style="width: 30px;text-align: center;border-top-right-radius: 5px;border-bottom-right-radius: 5px;border: 1px solid #d1d1d4;background-color: #f5f6f7;padding: 6px;">
+                    <img src="/resource/AgentAppStaticResource/images/Filter_steel.svg" style="height: 20px;" />        
+                </td>
+            </tr>
+        </table>-->
+    </div>
+
+    <div class="container">
+        <div id="list" class="row">       
+            <aura:if isTrue="{!v.displayError}">
+               <div style="text-align:center;font-weight: bold;font-size:20px;color:red;"> Please Refresh And Try Again... </div>
+                <aura:set attribute="else">
+                    <aura:if isTrue="{!v.displayData}">
+                        <aura:iteration items="{!v.eventList}" var="eventListItemData">
+                            <c:CFC_EventListItem eventItem="{!eventListItemData}"/> 
+                        </aura:iteration>
+                        <aura:set attribute="else">
+                            <div style="text-align:center;font-weight: bold;font-size:20px;color:red;"> No Data... </div>
+                        </aura:set>
+                    </aura:if> 
+                </aura:set>
+            </aura:if>        
+         </div>
+    </div>
+    <!--<div class="fixedBottomBar">
+        <table width="100%" style="padding-left: 20%; padding-right: 20%;">
+        	<tr>
+            	<td style="text-align: center;width:33%;">
+        			<img src="/resource/NewsCenterIcons/ActionBar_Filter.svg" onclick="{!c.gotoFilter}" class="fixedBottomBarIcon" />
+                </td>
+                <td style="text-align: center;width:33%;">
+                	<img src="/resource/Core_IC_IdeationApp/img/ActionBar_Sort.svg" onclick="{!c.gotoSort}" class="fixedBottomBarIcon" />
+                </td>
+                <td style="text-align: center;">   
+                    <img src="/resource/ConferenceIcons/new.jpg" onclick="{!c.createRecord}" style="height:45px; width:45px;" />
+                </td>
+            </tr>
+        </table>  
+    </div>-->
+</aura:component>

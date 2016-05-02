@@ -1,0 +1,412 @@
+<apex:page Controller="AF_BrandEstimateController2" showHeader="false" sidebar="false" >
+   <!--<script type="text/javascript" language="javascript" src="{!URLFOR($Resource.jquery_ui_1_10_4,'js/jquery-1.10.2.js')}"></script>
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.jquery_ui_1_10_4,'js/jquery-ui-1.10.4.custom.js')}"></script>
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.jquery_ui_1_10_4,'js/jquery-ui-1.10.4.custom.min.js')}"></script>
+   <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.jquery_ui_1_10_4,'css/smoothness/jquery-ui-1.10.4.custom.css')}"/>
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.jquery_ui_1_10_4,'css/smoothness/jquery-ui-1.10.4.custom.min.css')}"/>--> 
+    <!-- jquery library Start-->
+    <apex:includeScript value="{!URLFOR($Resource.bootstrap_POC, 'jquery.min.js')}"/>
+    <!-- jquery library End-->
+    <!-- Bootstrap_css File By Kumar start-->
+<link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.css')}" type="text/css"/>
+<!-- Bootstrap_css File By Kumar End-->
+<SCRIPT language="javascript">
+        
+        function isTraditionalEmpty()
+        {           
+            if (document.getElementById('j_id0:j_id2:traditionalInput').value=="" ||document.getElementById('j_id0:j_id2:traditionalInput').value==undefined)
+            {           
+                alert('Please complete all mandatory fields');
+            }           
+            return false;      
+        }
+        
+         function isNumberKey(evt)
+       {
+          var charCode = (evt.which) ? evt.which : event.keyCode;
+          var result = false;
+          var errorMsg = document.getElementById("regTitle");
+          if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
+          {
+             errorMsg.innerHTML = "<b>Please enter numbers only.</b>";
+             result = false;
+          }
+          else
+          {
+           errorMsg.innerHTML = "";
+           result = true;         
+          }             
+          return result;
+       }
+     function handleChange(input) {
+    if (input.value < 0) input.value = 0;
+    if (input.value > 100) input.value = 100;
+  }
+        
+        function addRow(tableID) { 
+            var table = document.getElementById(tableID); 
+            var rowCount = table.rows.length;
+            var row = table.insertRow(rowCount); 
+            var cell1 = row.insertCell(0);
+            var element1 = document.createElement("input");
+            element1.type = "checkbox";
+            element1.name="chkbox[]";
+            cell1.appendChild(element1);                   
+            var cell2 = row.insertCell(1);          
+            cell2.innerHTML = '<b>' + document.getElementById('inputCountryValue').value + '</b>';          
+            var cell3 = row.insertCell(2);
+            cell3.innerHTML = '<b>' + document.getElementById('inputPercentageValue').value + ' (%)</b>';        
+            var cell4 = row.insertCell(3);
+            cell4.innerHTML = "OR";
+            var cell5 = row.insertCell(4);
+            cell5.innerHTML = '<b>' + document.getElementById('inputActualValue').value + ' (Value)</b>';
+      
+        }
+ 
+        function deleteRow(tableID) {
+            try {
+            var table = document.getElementById(tableID);
+            var rowCount = table.rows.length;
+ 
+            for(var i=0; i<rowCount; i++) {
+                var row = table.rows[i];
+                var chkbox = row.cells[0].childNodes[0];
+                if(null != chkbox && true == chkbox.checked) {
+                    table.deleteRow(i);
+                    rowCount--;
+                    i--;
+                } 
+            }
+            }catch(e) {
+                alert(e);
+            }
+        }
+ 
+    function clearapexmessage1(){
+    //alert('Hi..');
+    clearapexmessage();
+    }
+    
+    function bonusThresholdCheck(){
+    //alert('inside the script');
+    bonusThresholdfunction();
+    }
+    </SCRIPT>
+    
+<!-- Common_Style File Start -->
+<link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
+<!-- Common_Style File End -->
+
+<!-- Adding comma in Text box -->
+<script>
+jQuery( function() {
+ jQuery('input.number').keyup(function(event){
+      // skip for arrow keys
+      if(event.which >= 37 && event.which <= 40){
+          event.preventDefault();
+      }
+      var $this = jQuery(this);
+      var num = $this.val().replace(/,/gi, "").split("").reverse().join("");
+      var num2 = RemoveRougeChar(num.replace(/(.{3})/g,"$1,").split("").reverse().join("")); 
+      console.log(num2);
+      
+      
+      // the following line has been simplified. Revision history contains original.
+      $this.val(num2);
+  });
+});
+
+ function RemoveRougeChar(convertString){
+    
+    
+    if(convertString.substring(0,1) == ","){
+        
+        return convertString.substring(1, convertString.length)            
+        
+    }
+    return convertString;
+    
+}
+</script>
+<!-- Adding comma in Text box End -->
+
+<!-- Only Allow Numbers and (,.+-) -->
+ <script>  
+ jQuery( function() {
+    jQuery('.two-digits').keyup(function(){
+        //alert('Hi');
+        if(jQuery(this).val().indexOf('.')!=-1){         
+            if(jQuery(this).val().split(".")[1].length > 2){                
+                if( isNaN( parseFloat( this.value ) ) ) return;
+                this.value = parseFloat(this.value).toFixed(2);
+            }  
+         }            
+         return this; //for chaining
+    });
+    
+    
+     
+  jQuery(".two-digits").keypress(function (e) {
+      
+     if (e.which != 46 && e.which > 31 && (e.which < 48 || e.which > 57) && (e.which < 43 || e.which > 45)){
+        
+        //$("#errmsg").html("Digits Only").show().fadeOut("slow");
+        alert("Please enter numbers only.");
+               return false;
+    }
+   });
+});
+ </script> 
+<!-- Only Allow Numbers and (,.+-) End -->
+<apex:includeScript value="{!URLFOR($Resource.bootstrap_POC, 'jquery.min.js')}"/>
+<script type="text/javascript">
+$.noConflict();
+</script>
+<!-- Bootstrap_Js File By Kumar start-->
+<apex:includeScript value="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.js')}"/>
+<script type="text/javascript">
+//var bsjQuery = jQuery.noConflict();
+        //bsjQuery(document).ready(function() {
+           //bsjQuery(myFunction);
+         //}); 
+        //function myFunction() {
+            //bsjQuery('[data-toggle=tooltip]').tooltip();    
+        //}
+jQuery(document).ready(function(){
+   jQuery('.custom-link').tooltip();
+   
+});
+
+ //jQuery('.custom-link').not("[data-original-title]").tooltip();
+
+</script>
+<!-- Bootstrap_Js File By Kumar End -->
+<apex:form id="MainForm" styleClass="AF_BrandEstimate">       
+    
+   
+  <div class="row">           
+        <div class="col-lg-12 charttable1">         
+            <apex:image url="{!$Resource.header_new}" styleClass="headimg"/>            
+        </div>          
+    </div>
+  
+  <apex:tabPanel id="MainPanel" tabClass="activeTab" inactiveTabClass="inactiveTab" selectedTab="BrandEstimate" >
+     
+      <apex:tab label="Brand Estimates" name="BrandEstimate" id="BrandEstimate" >
+      <!--<apex:actionSupport action="{!clearErrorMsg}" event="onchange" rerender="pm2,pgb2"/>-->
+     <apex:PageMessages id="pm2" />
+      <div class="heading_main">
+       <h1 class="heading_text"> Target Base Fees </h1>
+      </div>
+    <apex:outputText value="{!$Label.AF_BrandEstimateDisplayText}" id="pageinstructions" styleClass="brandEstimatetxt"/>
+       <apex:pageBlock id="pgb2">
+              <!--<apex:outputtext value="{!$Label.AF_Brandestimate_instruction}" id="pageinstructions" style="font-size: 16px;margin-left: 12px;/* margin-bottom:10px; */display: block;" />-->
+       <table>
+        <tr>
+          <!--
+           <td style=" padding-left: 239px;margin-top: 10px; display: inline-block;">
+                 <span style="font-size: 16px; display: block;text-align: center;font-weight: bold;">Unilever Estimate:</span>             
+                 <span class="values_estimate">  €<apex:OutputText value="{!TotalDisplay}" id="totalFigure" /></span>    
+            </td> 
+                 -->
+             <td class="padL20">
+                 <span class="fiscalYear">Financial Year:
+                 <apex:OutputText value="{!BrandEstimateObj.AF_Fiscal_Year__c}" id="financialYear" StyleClass="values_estimate" />           
+                 </span>   
+            </td>         
+        </tr>
+    </table>
+    <table class="marginT20">      
+        <tr class="tablerow">                               
+           <td class="fisrtcell paddingR10">
+           <span>€ </span>
+           </td>
+           <td class="paddingR10">
+          <apex:image id="isRequired" value="{!$Resource.AF_isRequired}" width="2" height="21" styleClass="marginT30"/>
+           </td>
+            <td class="paddingR10">                 
+               <span class="labelName">Traditional: </span>                             
+            <apex:inputText value="{!TraditionalDisplay}" onkeypress="return isNumberKey(event)" id="traditionalInput"  styleClass="values1 number"> 
+                <apex:actionSupport event="onchange" 
+                                action="{!CalculateTotal}" 
+                                rerender="totalFigure" /> 
+            </apex:inputText>
+            </td> 
+                <td class="paddingR10"> 
+              <span class="labelName">Digital:</span>            
+                <apex:inputText value="{!DigitalDisplay}" onkeypress="return isNumberKey(event)" styleClass="values1 number" >                                               
+                            <apex:actionSupport event="onchange" 
+                                action="{!CalculateTotal}" 
+                                rerender="totalFigure" /> 
+            </apex:inputText>
+                    
+                    </td> 
+            <td class="paddingR10"> 
+              <span class="labelName">Adaptation:</span>                       
+                <apex:inputText onkeypress="return isNumberKey(event)" value="{!AdaptationDisplay}" styleClass="values1 number" >                                 
+                            <apex:actionSupport event="onchange" 
+                                action="{!CalculateTotal}" 
+                                rerender="totalFigure" /> 
+            </apex:inputText>
+                    </td>
+            <td> 
+              <span class="labelName">Unilever Estimate:</span>                       
+                <apex:outputText value="{0,number,###,###,###}" id="totalFigure" styleClass="values_Unileverestimate">
+                 <apex:param value="{!TotalDisplayN}"/> 
+                </apex:outputText>    
+            </td>   
+
+            
+            <td><div class="reg_Title" id="regTitle"></div></td>
+             
+             </tr>
+             <tr class="tablerowlast">
+             <td>
+             <div class="dispBlock">
+                            
+                       
+                       <span class="marginL-9P">
+                       <apex:commandButton action="{!Save}" value="Save" rendered="{!AND(IsLocked,IsCMCO_Fin_User)}" styleClass="submit_btn" reRender="pm2" status="status"/>
+                       </span>
+                    </div>
+                    </td>
+        </tr>
+
+    </table>
+    <apex:outputPanel id="ContinuePopup1">         
+        <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!displayPopUp}"/>
+            <apex:outputPanel styleClass="custPopup custPopup1" layout="block" rendered="{!displayPopUp}">
+                "{!$Label.AF_Brandestimate}"<br/><br/><br/>
+                 <apex:commandButton action="{!Save}"  value="Confirm" id="theUpdate" reRender="pm1" styleClass="continue_btn" />
+                 <apex:commandButton value="X" styleClass="closeButton" action="{!closePopup}" rerender="ContinuePopup"/>
+            </apex:outputPanel>
+        </apex:outputPanel>
+        <apex:outputPanel id="ContinuePopup2">
+        <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!displayPopUp1}"/>
+            <apex:outputPanel styleClass="custPopup custPopup1" layout="block" rendered="{!displayPopUp1}">
+                "{!$Label.AF_Mandatory_Fields}"<br/><br/><br/>
+                 <apex:commandButton value="X" styleClass="closeButton" action="{!closePopup1}" rerender="ContinuePopup2"/>                  
+            </apex:outputPanel>
+        </apex:outputPanel>       
+    <apex:outputLabel id="mess" value=""/>
+      </apex:pageBlock>
+   </apex:tab>
+   
+   
+   <apex:tab label="Bonus Thresholds" name="BonusThresholds" id="Bonus_Thresholds"  oncomplete="bonusThresholdCheck();" title="Please select the box if your brand is part of the pilot remuneration model" rendered="{!!NoBonusCheck}">
+  <!-- <apex:actionSupport action="{!clearErrorMsg}" event="onchange" reRender="pm3,pilotmainpage,out1,pb1"/>-->
+   <apex:PageMessages id="pm3" />
+   <apex:outputPanel id="pilotmainpage" >
+   <div style="" class="lable_message">
+       <apex:outputtext value="{!$Label.AF_Pilot_Model_Instructions}" id="pageinstructions2"/><br/>
+   <apex:inputcheckbox value="{!ispilotModel}" styleClass="checkbox_pilotmodel">
+
+   <apex:actionSupport action="{!checkpilot}" event="onclick" reRender="pm3,pilotmainpage,out1,Remuneration" disabled="{!Not(IsCMCO_Fin_User)}"/>
+   </apex:inputcheckbox>
+   <apex:outputLabel styleClass="pilotModelLable">Pilot Model</apex:outputLabel>
+    <br/>
+     <br/>
+   <apex:outputtext value="{!$Label.AF_UBFLB_Type_of_Fees}" id="pageinstructions3" styleClass="toggle_span pilotModelLabletxt" />
+   <br/>
+   
+  
+  
+ <apex:outputPanel id="Remuneration" rendered="{!showpilot}">
+ <apex:inputCheckbox value="{!R_Traditional}" id="R_Traditional" style="font-size:16px;"/>
+ <span style="font-size:16px;font-weight:bold;">Traditional</span>
+ <apex:inputCheckbox value="{!R_Digital}" id="R_Digital" style="font-size:16px;" />
+ <span style="font-size:16px;font-weight:bold;">Digital</span>
+ <!--<apex:selectList id="Measure1" value="{!Measure_val}" size="1" style="border: 2px solid #74AE00;border-radius: 3px; color: #000000;height: 30px;margin-left: 0.5px;margin-bottom:10px;padding-bottom: 3px;padding-top: 1px;width: 333px;font-size: 16px;">
+   <apex:selectOptions value="{!measure_criteria}"/>
+   </apex:selectList>-->
+ <apex:commandButton action="{!SaveBonusRemeneration}"  styleClass="submit_btn_basefee2" value="Save" reRender="pm3,Remuneration" disabled="{!Not(IsCMCO_Fin_User)}" status="status"/>
+ </apex:outputPanel>
+  
+    </div>
+  <apex:outputPanel rendered="{!!ispilotModel}" id="out1">
+  <!--<p style="font-size:16px;font-weight:bold;display: inline;margin-left:25px">Bonus Measure:</p>
+   <apex:selectList id="Measure" value="{!Measure_val}" size="1"  style="border: 2px solid #74AE00;border-radius: 3px; color: #000000;height: 30px;margin-left: 0.5px;margin-bottom:10px;padding-bottom: 3px;padding-top: 1px;width: 333px;font-size: 16px;" >
+      <apex:selectOptions value="{!measure_criteria}"/>
+   </apex:selectList>
+  -->
+ 
+ <apex:pageblock id="pb1">
+  <apex:pageBlockTable value="{!BonusThresholds}" var="BT" id="pbt" styleClass="tablegrid">
+  
+  <apex:column headerValue="Country" style="" rendered="{!not(ispilotModel)}">
+  <apex:selectList id="Countryname" value="{!BT.bonusthresholds.AF_country__c}" styleClass="custom-link label_tooltip" title="{!$Label.AF_UBFLB_Thresholds}"  size="1" rendered="{!not(ispilotModel)}">
+      <apex:selectOptions value="{!Countrynames}"/>
+   </apex:selectList>
+  </apex:Column>
+  <apex:column headerValue="Bonus Measure">
+   <apex:selectList id="Measure" value="{!BT.bonusthresholds.Bonus_Measure__c}" size="1">
+      <apex:selectOptions value="{!measure_criteria}"/>
+   </apex:selectList>   
+  </apex:column> 
+  <apex:column headerValue="Minimum">
+  <apex:inputText id="minimum" value="{!BT.bonusthresholds.AF_Minimum__c}"  styleClass="two-digits"/>
+  </apex:column>
+  <apex:column headerValue="Stretching">
+  <apex:inputText id="Stretch" value="{!BT.bonusthresholds.AF_Stretching__c}"  styleClass="two-digits"/>
+  </apex:column>
+  <apex:column headerValue="Outstanding">
+  <apex:inputText id="Outstanding" value="{!BT.bonusthresholds.AF_Outstanding__c}"  styleClass="two-digits"/>
+  </apex:column>
+   <apex:column headerValue="Digital">
+  <apex:inputcheckbox id="Digital" value="{!BT.bonusthresholds.AF_Digital__c}"/>
+  </apex:column>
+  <apex:column headerValue="Traditional">
+  <apex:inputcheckbox id="Traditional" value="{!BT.bonusthresholds.AF_Traditional__c}"/>
+  </apex:column> 
+ 
+ 
+  <apex:column >
+  <apex:outputPanel rendered="{!!hideDeleteLink}" >
+  
+    <apex:commandLink action="{!delCounrtyRecord}" rerender="pm3,pbt" rendered="{!IF(AND(IsCMCO_Fin_User,BT.bonusthresholds.AF_Bonus_Threshold__r.AF_of_Bonus_Result__c==0),'true','false')}" oncomplete="bonusThresholdCheck();" status="status">Delete
+        <apex:param name="DelCountry" value="{!BT.bonusthresholds.Id}" assignTo="{!delCountryId}"/>
+        <apex:param name="PosDelete" value="{!BT.position}" assignTo="{!posDelete}"/>
+    </apex:commandLink>
+ </apex:outputPanel>
+ </apex:column>  
+ 
+  </apex:pageBlockTable>
+  </apex:pageblock>  
+  
+  <apex:outputPanel rendered="{!!hideDeleteLink}" styleClass="floatR">  
+  <apex:commandButton value="Add" action="{!createBonusThreshold}" rendered="{!IsCMCO_Fin_User}" styleClass="submit_btn_basefee1 floatL" reRender="pbt"/>   
+  <apex:commandButton value="Save" action="{!SaveBonusThresholds}" rendered="{!IsCMCO_Fin_User}" styleClass="submit_btn_basefee2 floatL" reRender="pm3,pilotmainpage" status="status" />             
+  </apex:outputPanel>
+  </apex:outputPanel>
+  </apex:outputPanel>
+ 
+  </apex:tab> 
+  <apex:tab label="No Bonus" name="NoBonus" id="NoBonusTab" title="Please select this option if this Brand has no Bonus" rendered="{!!ReadyforPO}">
+    <apex:PageMessages id="pm4" />
+   <apex:outputpanel id="NoBonusMessage">    
+   <apex:outputtext value="{!$Label.AF_No_Bonus}" id="NoBonusinstructions" styleClass="no_Bonusinstructions" rendered="{!!NoBonusCheck}" />
+   <apex:outputtext value="{!$Label.AF_Yes_Bonus}" id="NoBonusinstructions1" styleClass="yes_Bonusinstructions" rendered="{!NoBonusCheck}"/>
+   </apex:outputpanel>
+       <br/>
+   
+       <apex:inputcheckbox value="{!NoBonusCheck}" >
+    <apex:actionSupport action="{!bonusCheck}" event="onclick" reRender="MainForm,pm4" />
+    </apex:inputcheckbox>
+    <apex:outputLabel styleClass="noBonusOutlable">No Bonus</apex:outputLabel>
+    
+   </apex:tab>
+  
+  </apex:tabPanel>
+  <apex:actionFunction name="clearapexmessage" action="{!clearErrorMsg}" rerender="BrandEstimate,Bonus_Thresholds"/>
+ 
+  <apex:actionFunction name="bonusThresholdfunction" action="{!bonusThresholdValidation}" rerender="pm3,pilotmainpage"> 
+  
+  </apex:actionFunction>
+  <!--<apex:actionFunction name="BonusMeasure" action="{!addwrapper}"  rerender="pilotmainpage,out1,pb1"/>-->
+        <apex:ActionStatus id="status" >
+        <apex:facet name="start">
+            <c:AF_Spinner BackColor="#efefef" borderColor="#efefef" borderSize="3" height="50px" width="180px" Message="Please wait" messageStyle="color:darkred;font-size:10pt;font-family:arial;font-weight:bold;"/>
+        </apex:facet>
+        </apex:ActionStatus>
+</apex:form>
+</apex:page>

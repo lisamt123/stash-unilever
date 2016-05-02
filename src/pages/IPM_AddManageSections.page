@@ -1,0 +1,83 @@
+<!--  
+*************************************************************************
+*@Description:This page is used in gate document page. Here user can manage the gate document sections. 
+*@Author: Cognizant
+*@Created Date: 16/06/2015
+*@Copyright © 2015  Unilever  
+*************************************************************************
+-->
+
+<apex:page controller="IPM_AddManageSection" title="Add Manage Section" sidebar="false" showHeader="false" extensions="IPM_GetHelpDoc">
+    <apex:form >
+        <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/bootstrap.min.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Styles.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Buttons.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Modal.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_AddManageSections.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'assets/font-awesome/css/font-awesome.min.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_HomePage.css')}"/> 
+        
+        <!-- To place the help symbol in the top right hand corner of page -->
+        <apex:outputPanel layout="block" styleClass="SecButtonSet delete pull-right" >
+            <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question  marginT5" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
+        </apex:outputPanel>
+        
+        <!-- To display the text area to input the comments and a button to add the comments -->
+        <div class="tempWrapper">
+            <div class="clearfix">
+                <div class="col-sm-3 pull-right expandTool">
+                    <span class="expandAll">{!$Label.IPM_EXPAND_ALL} </span> | <span class="collapseAll">{!$Label.IPM_COLLAPSE_ALL}</span>
+                </div>
+            </div>     
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="panel contenWrapper">
+                        <apex:outputPanel styleClass="ipmAccordian" id="DisplaySection">
+                            <apex:repeat value="{!projSectionList}" var="psl"> 
+                                <!--For Header--> 
+                                <apex:outputText value="{!psl.IPM_Section__r.IPM_Section_Sequence__c} {!psl.IPM_Section__r.IPM_Section_Name__c}" styleClass="aHead acrCollapse"></apex:outputText>
+                                <apex:outputPanel styleClass="ipmAcrdnExpand">
+                                    <apex:repeat value="{!projSubSectionList}" var="sub">
+                                        <div class="checkContainer"> 
+                                            <apex:outputPanel styleClass="col-xs-12 subSecDiv">
+                                                <!--Below rendered condition is used to show input check box-->
+                                                <apex:inputCheckbox styleClass="col-xs-1 checkBox checkAll" value="{!sub.IPM_Default_Section__c}" rendered="{!IF(psl.IPM_Section__r.Id=sub.IPM_Section__r.IPM_Parent_Section__c,True,False)}" disabled="{!sub.IPM_Section__r.IPM_Negotiable__c=false}" title="{!IF(sub.IPM_Negotiable__c=false,'Non-Negotiable','')}">
+                                                </apex:inputCheckbox>
+                                               <!--Below rendered condition is used to show section sequence-->
+                                                <apex:outputText styleClass="aHead col-xs-10"  value="{!sub.IPM_Section__r.IPM_Section_Sequence__c} {!sub.IPM_Section__r.IPM_Section_Name__c}" rendered="{!IF(psl.IPM_Section__r.Id=sub.IPM_Section__r.IPM_Parent_Section__c,True,False)}" />  
+                                            </apex:outputPanel>
+                                            <!--Below rendered condition is used to show to default sections-->
+                                            <apex:outputPanel styleClass="ipmAcrdnExpand" rendered="{!IF(psl.IPM_Section__r.Id=sub.IPM_Section__r.IPM_Parent_Section__c,True,False)}">
+                                                <apex:repeat value="{!projSubSectionList}" var="sub1">
+                                                    <apex:outputPanel styleClass="col-xs-12 cHead">
+                                                       <!--Below rendered condition is used to show to input checkbox-->
+                                                        <apex:inputCheckbox styleClass="col-xs-1 checkSub checkBox" value="{!sub1.IPM_Default_Section__c}" rendered="{!IF(sub.IPM_Section__r.Id=sub1.IPM_Section__r.IPM_Parent_Section__c,True,False)}" disabled="{!sub1.IPM_Section__r.IPM_Negotiable__c=false}">
+                                                        </apex:inputCheckbox>
+                                                        <!--Below rendered condition is used to show to the section sequence-->
+                                                        <apex:outputText styleClass="aHead col-xs-10" value="{!sub1.IPM_Section__r.IPM_Section_Sequence__c} {!sub1.IPM_Section__r.IPM_Section_Name__c}" rendered="{!IF(sub.IPM_Section__r.Id=sub1.IPM_Section__r.IPM_Parent_Section__c,True,False)}"/>
+                                                    </apex:outputPanel>
+                                                    
+                                                </apex:repeat>                                   
+                                                
+                                            </apex:outputPanel>  
+                                        </div>                           
+                                    </apex:repeat> 
+                                </apex:outputPanel>
+                            </apex:repeat>
+                        </apex:outputPanel> 
+                    </div> 
+                    <div class="col-xs-3 marginTop ipmButtonGroup pull-right">                    
+                        <apex:commandLink action="{!SaveAddManage}" oncomplete="goToParentPage();" value="{!$Label.IPM_Update}" styleClass="ipmButton primary"/> 
+                    </div>                        
+                </div>
+            </div>                     
+        </div>
+    </apex:form>    
+    <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery.js')}" type="text/javascript"></script>
+    <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_AddManageSections.js')}" type="text/javascript"></script>
+    <apex:outputPanel id="backtomainpg">
+        <script>
+            var IPMApp = {GateDocumentPageRef:'{!$Page.IPM_GateDocument}', projectId:'{!HTMLENCODE(projectId)}',printDoc:'{!HTMLENCODE(projectDoc.IPM_GateDocuments__c)}'};            
+        </script>
+    </apex:outputPanel>
+</apex:page>

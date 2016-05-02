@@ -1,0 +1,1475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <content>BET</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <customHelpPage>be_help_pop_up</customHelpPage>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Custom object for Brand Experience Toolkit</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>Background_Colour__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Help text</inlineHelpText>
+        <label>Background colour</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Banner_1_Location__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The Banner appears at the top of every BET. The default image will be used if no file is uploaded here.</inlineHelpText>
+        <label>Banner 1 Location</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Banner_2_Location__c</fullName>
+        <externalId>false</externalId>
+        <label>Banner 2 Location</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Banner_Colour__c</fullName>
+        <externalId>false</externalId>
+        <label>Banner colour</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Border_Colour__c</fullName>
+        <externalId>false</externalId>
+        <label>Border colour</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Brand_Keyword_Search__c</fullName>
+        <externalId>false</externalId>
+        <label>Brand Keyword Search</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Brand_Position_Keyword_Search__c</fullName>
+        <externalId>false</externalId>
+        <label>Brand Position Keyword Search</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Brand_Position__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Brand Positioning</label>
+        <referenceTo>MDO_BrandPosition__c</referenceTo>
+        <relationshipLabel>Brand Experience List</relationshipLabel>
+        <relationshipName>Brand_Experience_List</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Brand__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;/&quot; +  uw_Brand__r.Id , uw_Brand__r.Name  , &quot;_self&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Brand</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Category_Group_Keyword_Search__c</fullName>
+        <externalId>false</externalId>
+        <label>Category Group Keyword Search</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Category_Group__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Category Group</label>
+        <referenceTo>MDO_Category__c</referenceTo>
+        <relationshipLabel>Brand Experience List</relationshipLabel>
+        <relationshipName>Brand_Experience_List</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Category_Keyword_Search__c</fullName>
+        <externalId>false</externalId>
+        <label>Category Keyword Search</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Category_Level_2__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Based on your selection in Category Level 1, this list will populate with further categories.</inlineHelpText>
+        <label>Category</label>
+        <picklist>
+            <controllingField>Product_Category_Sub_Division__c</controllingField>
+            <picklistValues>
+                <fullName>Coffee &amp; Snacks</fullName>
+                <controllingFieldValues>Refreshment</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cooking Fats &amp; Oils Category</fullName>
+                <controllingFieldValues>Foods</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Deodorants &amp; Fragrances</fullName>
+                <controllingFieldValues>Personal Care excl Skin</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Desserts Category</fullName>
+                <controllingFieldValues>Foods</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dressings</fullName>
+                <controllingFieldValues>Foods</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Frozen Foods Category</fullName>
+                <controllingFieldValues>Foods</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hair Care</fullName>
+                <controllingFieldValues>Personal Care excl Skin</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Household Care</fullName>
+                <controllingFieldValues>Home Care excl Other Operations</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ice Cream</fullName>
+                <controllingFieldValues>Refreshment</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Laundry</fullName>
+                <controllingFieldValues>Home Care excl Other Operations</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Non Corporate Home Care Category</fullName>
+                <controllingFieldValues>Home Care excl Other Operations</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Non Corporate Personal Care Cat</fullName>
+                <controllingFieldValues>Personal Care excl Skin</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Oral Care</fullName>
+                <controllingFieldValues>Personal Care excl Skin</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other Foods</fullName>
+                <controllingFieldValues>Foods</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Prestige Legacy</fullName>
+                <controllingFieldValues>Personal Care excl Skin</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Savoury</fullName>
+                <controllingFieldValues>Foods</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Skin Care</fullName>
+                <controllingFieldValues>Skin</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Skin Cleansing</fullName>
+                <controllingFieldValues>Skin</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Spreads</fullName>
+                <controllingFieldValues>Foods</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tea and Soy &amp; Fruit Beverages</fullName>
+                <controllingFieldValues>Refreshment</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vitality Shots Category</fullName>
+                <controllingFieldValues>Foods</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Water Purification Category</fullName>
+                <controllingFieldValues>Refreshment</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Weight Management</fullName>
+                <controllingFieldValues>Refreshment</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Category_Level_3__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Based on your selection in Category Level 2, this list will populate with further categories.</inlineHelpText>
+        <label>Sub category</label>
+        <picklist>
+            <controllingField>Category_Level_2__c</controllingField>
+            <picklistValues>
+                <fullName>Colourants</fullName>
+                <controllingFieldValues>Hair Care</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cooking Fats &amp; Oils</fullName>
+                <controllingFieldValues>Cooking Fats &amp; Oils Category</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cooking Products</fullName>
+                <controllingFieldValues>Savoury</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Creams</fullName>
+                <controllingFieldValues>Spreads</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Deodorants</fullName>
+                <controllingFieldValues>Deodorants &amp; Fragrances</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Desserts</fullName>
+                <controllingFieldValues>Desserts Category</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dishwash</fullName>
+                <controllingFieldValues>Household Care</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fabric Conditioners</fullName>
+                <controllingFieldValues>Laundry</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fabrics Cleaning</fullName>
+                <controllingFieldValues>Laundry</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Face</fullName>
+                <controllingFieldValues>Skin Care</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fragrances</fullName>
+                <controllingFieldValues>Deodorants &amp; Fragrances</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Frozen Foods</fullName>
+                <controllingFieldValues>Frozen Foods Category</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hand &amp; Body Care</fullName>
+                <controllingFieldValues>Skin Care</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Household Cleaning</fullName>
+                <controllingFieldValues>Household Care</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In Home Ice Cream</fullName>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Leaf &amp; Instant Tea</fullName>
+                <controllingFieldValues>Tea and Soy &amp; Fruit Beverages</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mayonnaise</fullName>
+                <controllingFieldValues>Dressings</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Meals &amp; Dishes</fullName>
+                <controllingFieldValues>Savoury</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mouthwash &amp; Other Oral</fullName>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Non Corporate Home Care</fullName>
+                <controllingFieldValues>Non Corporate Home Care Category</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Non Corporate Personal Care</fullName>
+                <controllingFieldValues>Non Corporate Personal Care Cat</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other Dressings</fullName>
+                <controllingFieldValues>Dressings</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other Hair Care</fullName>
+                <controllingFieldValues>Hair Care</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other Misc Foods</fullName>
+                <controllingFieldValues>Other Foods</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other Savoury</fullName>
+                <controllingFieldValues>Savoury</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other Spreads</fullName>
+                <controllingFieldValues>Spreads</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Out of Home Ice Cream</fullName>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Perms &amp; Relaxers</fullName>
+                <controllingFieldValues>Hair Care</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Prestige Fragrance</fullName>
+                <controllingFieldValues>Prestige Legacy</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Prestige Skin Care</fullName>
+                <controllingFieldValues>Prestige Legacy</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ready To Drink Tea</fullName>
+                <controllingFieldValues>Tea and Soy &amp; Fruit Beverages</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Salad Dressings</fullName>
+                <controllingFieldValues>Dressings</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sauces</fullName>
+                <controllingFieldValues>Savoury</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Skin Cleansing</fullName>
+                <controllingFieldValues>Skin Cleansing</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Snacks</fullName>
+                <controllingFieldValues>Coffee &amp; Snacks</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Soups</fullName>
+                <controllingFieldValues>Savoury</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Soy &amp; Fruit Beverages</fullName>
+                <controllingFieldValues>Tea and Soy &amp; Fruit Beverages</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Styling</fullName>
+                <controllingFieldValues>Hair Care</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Toothbrush</fullName>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Toothpaste</fullName>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vitality Shots</fullName>
+                <controllingFieldValues>Vitality Shots Category</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Wash &amp; Care</fullName>
+                <controllingFieldValues>Hair Care</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Water Purification</fullName>
+                <controllingFieldValues>Water Purification Category</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>WM Weight Management</fullName>
+                <controllingFieldValues>Weight Management</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Yellow Fats</fullName>
+                <controllingFieldValues>Spreads</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Category__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Category</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>BET_Category__c.BET_Parent_Category__c</field>
+                <operation>equals</operation>
+                <value></value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>BET_Category__c</referenceTo>
+        <relationshipLabel>Brand Experience (BET Division)</relationshipLabel>
+        <relationshipName>Brand_Experience1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>CollaborationGroupId__c</fullName>
+        <externalId>false</externalId>
+        <label>CollaborationGroupId</label>
+        <length>40</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Collaboration_Group__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK( &apos;/_ui/core/chatter/groups/GroupProfilePage?g=&apos;  &amp; CollaborationGroupId__c ,  IMAGE(&apos;/servlet/servlet.FileDownload?file=015E00000016tHu&apos;, &apos;Open&apos;)  , &apos;_self&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Goto Studio</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Component_Colour__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Test Text</inlineHelpText>
+        <label>Section header colour</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Date_Published__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Published</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Deletion_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Deletion Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Add text that will help others search for your brand experience. If the text was copied over from an IPM project, editing this text will not modify the description of the IPM Navigator project, and only affects the description field of your BET.</inlineHelpText>
+        <label>Description</label>
+        <length>10000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FinalReleaseDate__c</fullName>
+        <externalId>false</externalId>
+        <label>Final Release Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Final_Release_Due_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Final Release Due Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Final_release_date__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( 
+MONTH(Launch_Date__c) &lt; 6, 
+DATE(YEAR(Launch_Date__c)-1, 12 + MONTH(Launch_Date__c)-6, 1), 
+DATE(YEAR(Launch_Date__c), MONTH(Launch_Date__c)-6, 1)
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Final release date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Final_release_otif__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(AND( NOT(ISNULL(FinalReleaseDate__c)), NOT(ISNULL(Final_Release_Due_Date__c))),IF(FinalReleaseDate__c &gt; Final_Release_Due_Date__c, &quot;Late&quot; , &quot;On Time&quot;), &quot;&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Final release otif</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FirstReleaseDate__c</fullName>
+        <externalId>false</externalId>
+        <label>First Release Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>First_Release_Due_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>First Release Due Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>First_release_date__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(
+MONTH(Launch_Date__c) &lt; 7,
+DATE(YEAR(Launch_Date__c)-1, 4, 15),
+DATE(YEAR(Launch_Date__c)-1, 6, 30)
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>First release date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>First_release_otif__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(AND( NOT(ISNULL(FirstReleaseDate__c)), NOT(ISNULL(First_Release_Due_Date__c))),IF(FirstReleaseDate__c &gt; First_Release_Due_Date__c, &quot;Late&quot; , &quot;On Time&quot;), &quot;&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>First release otif</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Font_Colour__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Test</inlineHelpText>
+        <label>Font colour</label>
+        <length>30</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Group__c</fullName>
+        <externalId>false</externalId>
+        <label>Group</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Project__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>IPM Project</label>
+        <referenceTo>IPM_Project__c</referenceTo>
+        <relationshipLabel>Brand Experience List</relationshipLabel>
+        <relationshipName>Brand_Experience_List</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Icon_Location__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The Icon appears on the Search pages. 
+The default image will be used if no file is uploaded here.</inlineHelpText>
+        <label>Icon Location</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Inherit_Branding__c</fullName>
+        <defaultValue>true</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Inherit banner, background colour, font colour from selected brand.</inlineHelpText>
+        <label>Inherit Branding</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Inoplan_Project_Keyword_Search__c</fullName>
+        <description>Field holds related project name. If toolkit is related to Inoplan project it holds Inoplan project&apos;s name if it is related to IPM Project it holds IPM project&apos;s name</description>
+        <externalId>false</externalId>
+        <label>Project Keyword Search</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Inoplan_Project__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <externalId>false</externalId>
+        <inlineHelpText>Please select the Inoplan project your BET should be linked to for reporting purposes. Where possible use the ORIGINAL project name and not a rollout.</inlineHelpText>
+        <label>Inoplan Project</label>
+        <referenceTo>uw_Inoplan_Project__c</referenceTo>
+        <relationshipLabel>Brand Experience</relationshipLabel>
+        <relationshipName>Brand_Experience</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Is_Archived__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is Archived</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_Deleted__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is Deleted</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_Fabric_Conditioners__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is this a Fabric Conditioner BET ?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Launch_Date__c</fullName>
+        <description>This should be your IPM Target Launch Date (ie: Ship to Trade date)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This should be your IPM Target Launch Date (ie: Ship to Trade date)</inlineHelpText>
+        <label>Launch Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Link__c</fullName>
+        <externalId>false</externalId>
+        <formula>Left($Api.Enterprise_Server_URL_190,(find(&apos;/services&apos;,$Api.Enterprise_Server_URL_190))) +  Id</formula>
+        <label>Link</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Market_Cluster__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Select the geographical level for your Brand Experience</inlineHelpText>
+        <label>Market Cluster</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Local</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Regional</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Market_Clusters__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please select ALL relevant clusters</inlineHelpText>
+        <label>Market Cluster(s)</label>
+        <picklist>
+            <picklistValues>
+                <fullName>North America</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Latin America</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>South Asia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>North Asia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NAMET &amp;  RUB</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Europe</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Africa</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>South East Asia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Max_of_Order_Of_Display__c</fullName>
+        <externalId>false</externalId>
+        <label>Max of Order Of Display</label>
+        <summarizedField>uw_Asset__c.Order_Of_Display__c</summarizedField>
+        <summaryFilterItems>
+            <field>uw_Asset__c.Studio_Asset_Type__c</field>
+            <operation>notEqual</operation>
+            <value>Brand Experience Presentation</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>uw_Asset__c.Promoted__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryForeignKey>uw_Asset__c.uw_BET__c</summaryForeignKey>
+        <summaryOperation>max</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>No_Of_Asset_Items__c</fullName>
+        <externalId>false</externalId>
+        <label>No Of Asset Items</label>
+        <summaryFilterItems>
+            <field>uw_Asset__c.Studio_Asset_Type__c</field>
+            <operation>notEqual</operation>
+            <value>Brand Experience Presentation</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>uw_Asset__c.Promoted__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryForeignKey>uw_Asset__c.uw_BET__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Owner_Keyword_Search__c</fullName>
+        <externalId>false</externalId>
+        <label>Owner Keyword Search</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Presentation_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>Presentation Id</label>
+        <length>18</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Product_Brand__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Brand</label>
+        <referenceTo>MDO_Brand__c</referenceTo>
+        <relationshipLabel>Brand Experience List</relationshipLabel>
+        <relationshipName>Brand_Experience_List</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Product_Category_Sub_Division__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Which category this BET will sit under. For example, &apos;Foods&apos; or &apos;Refreshment&apos;.</inlineHelpText>
+        <label>Division</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Cross Category</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Foods</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Home Care excl Other Operations</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Personal Care excl Skin</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Refreshment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Skin</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Product_Category__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Category</label>
+        <referenceTo>MDO_Category__c</referenceTo>
+        <relationshipLabel>Brand Experience List (Product Category)</relationshipLabel>
+        <relationshipName>Brand_Experience_List1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Project_ID__c</fullName>
+        <externalId>false</externalId>
+        <formula>Inoplan_Project__r.Project_Id__c</formula>
+        <label>Inoplan ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Project__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Project</label>
+        <referenceTo>Project__c</referenceTo>
+        <relationshipName>Brand_Experience_Toolkits</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Region_Keyword_Search__c</fullName>
+        <externalId>false</externalId>
+        <label>Region Keyword Search</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Region__c</fullName>
+        <externalId>false</externalId>
+        <label>Region</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Asia Pac</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Europe</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>North America</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>South America</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Scope__c</fullName>
+        <externalId>false</externalId>
+        <label>Scope</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Local</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Regional</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Sharing__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Private BETs will only be accessible to those in the Members list.
+
+Public toolkits will be accessible to all who have access to the Brand Experience Toolkits area in Chatter.</inlineHelpText>
+        <label>Visibility</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Public</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Private</fullName>
+                <default>true</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>In Progress - when BET is still being built
+Published - Once the BET is complete
+Expired - when the BET and its associated assets have expired.</inlineHelpText>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>First release</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Releasing assets</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Final release</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Release to refresh</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Unreleased</fullName>
+                <default>true</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Studio_Chatter_Group__c</fullName>
+        <externalId>false</externalId>
+        <label>Studio Chatter Group</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Studio__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;/apex/brandexperiencestudio?id=&quot; +Id + &quot;&amp;sfdc.override=1&quot;, IMAGE(&quot;/servlet/servlet.FileDownload?file=015E0000001I82Y&quot;, &quot;Brand Experience Studio&quot;,50, 50) , &quot;_self&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Studio</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>StylePalette__c</fullName>
+        <externalId>false</externalId>
+        <label>StylePalette</label>
+        <picklist>
+            <picklistValues>
+                <fullName>toolkit-theme-light</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>toolkit-theme-dark</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Sub_Category__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Sub Category</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>BET_Category__c.BET_Parent_Category__c</field>
+                <operation>equals</operation>
+                <valueField>$Source.Category__c</valueField>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>BET_Category__c</referenceTo>
+        <relationshipLabel>Brand Experience</relationshipLabel>
+        <relationshipName>Brand_Experience</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Total_Actual_Assets__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Actual Assets</label>
+        <summarizedField>BET_ExpectedAssets__c.Computed_Actual__c</summarizedField>
+        <summaryForeignKey>BET_ExpectedAssets__c.Brand_Experience_Toolkit__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Total_Expected_Assets__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Expected Assets</label>
+        <summarizedField>BET_ExpectedAssets__c.Expected__c</summarizedField>
+        <summaryForeignKey>BET_ExpectedAssets__c.Brand_Experience_Toolkit__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Total_Number_of_Members__c</fullName>
+        <description>Total Number of BET members.Updated by trigger,when a new member is added/deleted</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Total Number of BET members.Updated by trigger,when a new member is added/deleted</inlineHelpText>
+        <label>Total Number of Members</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_assets__c</fullName>
+        <externalId>false</externalId>
+        <label>Total assets</label>
+        <summaryFilterItems>
+            <field>uw_Asset__c.Promoted__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryForeignKey>uw_Asset__c.uw_BET__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>uw_Brand__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <inlineHelpText>Search and select your Brand, which includes &apos;Cross-Brand&apos; if your BET is cross brand. 
+Note: If you cannot find your brand then you can select any brand and uncheck &apos;Inherit branding&apos;.</inlineHelpText>
+        <label>Brand</label>
+        <referenceTo>uw_Brand__c</referenceTo>
+        <relationshipLabel>Brand Experience</relationshipLabel>
+        <relationshipName>BETs</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Brand Experience</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Status__c</columns>
+        <columns>Inoplan_Project__c</columns>
+        <columns>Launch_Date__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>Toolkit Name</label>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Brand Experience List</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>uw_Brand__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Category_Level_2__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Market_Cluster__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Sharing__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>OWNER.ALIAS</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CREATED_DATE</customTabListAdditionalFields>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <lookupDialogsAdditionalFields>Studio__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>uw_Brand__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Status__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Sharing__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>CREATEDBY_USER</lookupDialogsAdditionalFields>
+        <searchResultsAdditionalFields>Studio__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>uw_Brand__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Sharing__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CREATEDBY_USER</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Private</sharingModel>
+    <validationRules>
+        <fullName>VisibilityChangeBackToPrivate</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( NOT(ISNEW()),
+      ISCHANGED(Sharing__c),
+      ISPICKVAL(Sharing__c,&apos;Private&apos;) 
+      )</errorConditionFormula>
+        <errorMessage>Bet visibility cannot be set back to Private</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>UploadKeyVisual</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Upload Key Visual</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <url>/apex/UploadBETKeyVisual?pid={!uw_BET__c.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Upload_Background</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Upload Background</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <url>/apex/UploadBETBackground?pid={!uw_BET__c.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Upload_Banner</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Upload Banner</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <url>/apex/UploadBETBanner?pid={!uw_BET__c.Id}</url>
+    </webLinks>
+</CustomObject>

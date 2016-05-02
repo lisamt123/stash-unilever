@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>IPM Project Type</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Project Type</value>
+    </caseValues>
+    <fields>
+        <label><!-- FinancialCopyOverPrefix --></label>
+        <name>FinancialCopyOverPrefix__c</name>
+    </fields>
+    <fields>
+        <label><!-- Associated Company Card --></label>
+        <name>IPM_CompanyCard__c</name>
+    </fields>
+    <fields>
+        <label><!-- CopyLaunchDate2Parent --></label>
+        <name>IPM_CopyLaunchDate2Parent__c</name>
+    </fields>
+    <fields>
+        <label><!-- Copy MSDetails To Global --></label>
+        <name>IPM_CopyMilestoneToGlobal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Copy MSDetails To Local --></label>
+        <name>IPM_CopyMilestoneToLocal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Copy MSDetails To Regional --></label>
+        <name>IPM_CopyMilestoneToRegional__c</name>
+    </fields>
+    <fields>
+        <label><!-- Copy Phase To Global --></label>
+        <name>IPM_CopyPhase2Global__c</name>
+    </fields>
+    <fields>
+        <label><!-- Copy Phase To Local --></label>
+        <name>IPM_CopyPhase2Local__c</name>
+    </fields>
+    <fields>
+        <label><!-- Copy Phase To Regional --></label>
+        <name>IPM_CopyPhase2Regional__c</name>
+    </fields>
+    <fields>
+        <label><!-- Copy Over Assessments --></label>
+        <name>IPM_Copy_Over_Assessments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Create Financials --></label>
+        <name>IPM_CreateFinancials__c</name>
+    </fields>
+    <fields>
+        <label><!-- Create Local Projects On Status Change --></label>
+        <name>IPM_CreateLocalProjectOnStatusChange__c</name>
+    </fields>
+    <fields>
+        <label><!-- Create Local Projects --></label>
+        <name>IPM_CreateLocalProjects__c</name>
+    </fields>
+    <fields>
+        <label><!-- Create Regional Project On Status Change --></label>
+        <name>IPM_CreateRegionalProjectOnStatusChange__c</name>
+    </fields>
+    <fields>
+        <label><!-- Create Regional Projects --></label>
+        <name>IPM_CreateRegionalProjects__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Dont Sync Proj To EcoDesign --></label>
+        <name>IPM_Dont_Sync_Proj_To_EcoDesign__c</name>
+    </fields>
+    <fields>
+        <label><!-- EcoDesign Document Name --></label>
+        <name>IPM_EcoDesign_Document_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fast Forward Phase Change --></label>
+        <name>IPM_Fast_Forward_Phase_Change__c</name>
+    </fields>
+    <fields>
+        <label><!-- Financial Gate Approval Indicator --></label>
+        <name>IPM_FinancialGateApprovalIndicator__c</name>
+    </fields>
+    <fields>
+        <label><!-- Financials Insert Postfix --></label>
+        <name>IPM_FinancialsInsertPostfix__c</name>
+    </fields>
+    <fields>
+        <label><!-- Financials Insert Record Type --></label>
+        <name>IPM_FinancialsInsertRecordType__c</name>
+    </fields>
+    <fields>
+        <label><!-- Financials Update Postfix --></label>
+        <name>IPM_FinancialsUpdatePostfix__c</name>
+    </fields>
+    <fields>
+        <label><!-- GateKeeping Model --></label>
+        <name>IPM_GateKeeping_Model__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gate Document --></label>
+        <name>IPM_Gate_Document__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gate Sequence --></label>
+        <name>IPM_Gate_Sequence__c</name>
+    </fields>
+    <fields>
+        <label><!-- Insert Financials API Name --></label>
+        <name>IPM_InsertFinancialsAPIName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Local Project Default Phase --></label>
+        <name>IPM_LocalProjectDefaultPhase__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parent project Type --></label>
+        <name>IPM_Parent_project_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Phase --></label>
+        <name>IPM_Phase__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Span --></label>
+        <name>IPM_Project_Span__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Type --></label>
+        <name>IPM_Project_Type__c</name>
+    </fields>
+    <fields>
+        <help><!-- Applicable Only when Create Regional Project is true. If Regional Project creation is allowed, this identifies the default Status for that project --></help>
+        <label><!-- Regional Project Default Phase --></label>
+        <name>IPM_RegionalProjectDefaultPhase__c</name>
+    </fields>
+    <fields>
+        <label><!-- Source Project Name --></label>
+        <name>IPM_SourceProjectName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Source Company Card --></label>
+        <name>IPM_Source_Company_Card__c</name>
+    </fields>
+    <fields>
+        <label><!-- Update Financials API Name --></label>
+        <name>IPM_UpdateFinancialsAPIName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Update financials References --></label>
+        <name>IPM_UpdateFinancialsReferences__c</name>
+    </fields>
+    <fields>
+        <label><!-- Update Child Project Status --></label>
+        <name>IPM_Update_Child_Project_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Update Parent Project Status --></label>
+        <name>IPM_Update_Parent_Project_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Independent Project? --></label>
+        <name>Independent_Project__c</name>
+    </fields>
+    <fields>
+        <label><!-- Source Project Type --></label>
+        <name>Source_Project_Type__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,72 @@
+<!--  
+*************************************************************************
+*@Description:This component used for displaying navigation menu
+*@Author: Cognizant
+*@Created Date: 03/01/2015 
+*@Copyright © 2015  Unilever  
+*************************************************************************
+-->
+
+<apex:component >
+    <apex:attribute name="activeItem" type="String" description="Pass the Active Tab Item"/>
+    <apex:attribute name="projSpan" type="String" description="Pass the Project Span" />
+    <apex:attribute name="projType" type="String" description="Pass the Project Type" />
+    <apex:attribute name="projPhase" type="String" description="Pass the Project phase"/>
+    <apex:attribute name="projID" type="Id" description="Pass the Project Id"/>
+    <apex:attribute name="bosscardStatus" type="boolean" description="Pass the Bosscard Status"/>
+    <apex:attribute name="bosscardId" type="Id" description="Pass the Bosscard Id"/>
+    <apex:attribute name="gkm" type="String" description="Pass the project Gatekeeping Model"/>
+       
+    <div class="ipmNavMenuDiv" role="navigation" aria-label="Main menu">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="collapse navbar-collapse" id="ipm-navbar-collapse">
+                <ul class="nav navbar-nav" id="nav" role="menubar">
+                
+                    <li class="tabOdd {!IF(activeItem== 'overview', 'active', '')}"><a href="{!$Page.IPM_ProjectOverview}?id={!projID}"><span>{!$Label.IPM_Overview}</span></a></li>
+                    <li class="tabEven {!IF(activeItem=='milestonesAndTasks', 'active', '')}"><a href="{!$Page.IPM_Tasklist}?id={!projID}"><span>{!$Label.IPM_MilestoneAndTodo}</span></a></li>
+                   <li class="tabOdd dropdown {!IF(activeItem=='gateDocument', 'active', '')}">
+                        <a href="#" data-toggle="dropdown">
+                          <span>{!$Label.IPM_Gate} {!$Label.IPM_Document}<div class="gateddown"></div></span>
+                        </a>
+                    <ul class="dropdown-menu" role="menu" aria-hidden="true">
+                     <!--Below rendered condition provide link to bosscard page-->
+                    <apex:outputPanel layout="block" rendered="{!AND(projType!='Rollout',bosscardStatus)}">
+                    <li class="{!IF(activeItem=='bosscard', 'active', '')}"><a href="{!$Page.IPM_Bosscard}?id={!bosscardId}"><span>{!$Label.IPM_BOSSCARD}</span></a></li>
+                    </apex:outputPanel>
+                     <!-- Below rendered condition provide link to gate document page-->
+                    <apex:outputPanel layout="block" rendered="{!AND(OR(projSpan='Global',projType='Operational',AND(projSpan='Regional',projType!='Rollout')),OR(projPhase='Ideas',projPhase='Feasibility',projPhase='Capability',projPhase='Market Ready',projPhase='Market Deployment',projPhase='PLE'))}">
+                    <li class="{!IF(activeItem=='charter', 'active', '')}"><a href="{!$Page.IPM_GateDocument}?id={!projID}&printDoc=Charter"><span>{!$Label.IPM_CHARTER}</span></a></li>
+                    </apex:outputPanel>
+                     <!--Below rendered condition provide link to gate document page -->
+                    <apex:outputPanel layout="block" rendered="{!AND(OR(AND(projSpan='Global',gkm='GCLT & RCLT'),projSpan='Regional',projType='Operational'),OR(projPhase='Feasibility',projPhase='Capability',projPhase='Market Ready',projPhase='Market Deployment',projPhase='PLE'))}">
+                    <li class="{!IF(activeItem=='contract', 'active', '')}"><a href="{!$Page.IPM_GateDocument}?id={!projID}&printDoc=Contract"><span>{!$Label.IPM_Contract}</span></a></li>
+                    </apex:outputPanel>
+                     <!--Below rendered condition provide link to gate document page -->
+                    <apex:outputPanel layout="block" rendered="{!AND(OR(AND(projSpan='Global',gkm='GCLT & RCLT'),projSpan='Regional',projType='Operational'),OR(projPhase='Capability',projPhase='Market Ready',projPhase='Market Deployment',projPhase='PLE'))}">
+                    <li class="{!IF(activeItem=='market ready', 'active', '')}"><a href="{!$Page.IPM_GateDocument}?id={!projID}&printDoc=Market Ready"><span>{!$Label.IPM_MARKET_READY}</span></a></li>
+                    </apex:outputPanel>
+                     <!-- Below rendered condition provide link to gate document page-->
+                    <apex:outputPanel layout="block" rendered="{!AND(projSpan='Local',projType!='Operational',OR(projPhase='Market Ready',projPhase='Market Deployment',projPhase='PLE'))}">
+                    <li class="{!IF(activeItem=='market deployment', 'active', '')}"><a href="{!$Page.IPM_GateDocument}?id={!projID}&printDoc=Market Deployment"><span>{!$Label.IPM_MARKET_DEPLOYMENT}</span></a></li>
+                    </apex:outputPanel>
+                    </ul>
+                    </li>
+                    <li class="tabEven dropdown {!IF(activeItem=='coreParameters', 'active', '')}{!IF(activeItem=='rolloutPlan', 'active', '')}{!IF(activeItem=='financials', 'active', '')}">
+                        <a href="#" data-toggle="dropdown">
+                          <span>{!$Label.IPM_Essentials}<div class="essentialsddown"></div></span>
+                        </a>
+                    <ul class="dropdown-menu" role="menu" aria-hidden="true">
+                    <li class="{!IF(activeItem=='coreParameters', 'active', '')}"><a href="{!$Page.IPM_CoreParameters}?id={!projID}"><span>{!$Label.IPM_PROJECT} {!$Label.IPM_Parameters}</span></a></li>
+                    <!--This will provide link to rollout page if span is not local and project type is not operational-->
+                    <apex:outputPanel layout="block" rendered="{!AND(projSpan!='Local',projType!='Operational')}">
+                    <li class="{!IF(activeItem=='rolloutPlan', 'active', '')}"><a href="{!$Page.IPM_RolloutPlans}?id={!projID}"><span>{!$Label.IPM_RolloutPlan}</span></a></li>
+                    </apex:outputPanel>
+                    <li class="{!IF(activeItem=='financials', 'active', '')}"><a href="{!$Page.IPM_Financial}?id={!projID}"><span> {!$Label.IPM_FINANCIALS}</span></a></li>
+                    </ul>
+                    </li>
+                    <li class="tabOdd {!IF(activeItem=='teamAssignment', 'active', '')}"><a href="{!$Page.IPM_Team}?id={!projID}"><span>{!$Label.IPM_Team}</span></a></li>   
+                </ul>
+            </div>
+        </nav>
+    </div>
+</apex:component>

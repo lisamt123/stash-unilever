@@ -1,0 +1,6 @@
+<aura:documentation>
+	<aura:description>Documentation</aura:description>
+	<aura:example name="ExampleName" ref="exampleComponentName" label="Label">
+		Component responsible for displaying chatter post list and icon that allows to add new post using forceChatter component
+	</aura:example>
+</aura:documentation>

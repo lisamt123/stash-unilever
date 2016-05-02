@@ -1,0 +1,3 @@
+<apex:page standardController="Category__c">
+  <apex:detail subject="{!Category__c.id}" inlineEdit="true" relatedList="true" relatedListHover="true" title="true" showChatter="true" />
+</apex:page>

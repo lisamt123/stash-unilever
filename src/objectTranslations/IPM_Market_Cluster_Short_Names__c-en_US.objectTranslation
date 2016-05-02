@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>IPM Market Cluster Short Names</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>IPM Market Cluster Short Names</value>
+    </caseValues>
+    <fields>
+        <help><!-- This short name is taken from Cluster name that will be used in Rollout and financial naming convention at Regional Level. --></help>
+        <label><!-- Short Name --></label>
+        <name>Short_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- It is Cluster Name that is mapped with the ID and used to get short Name for that cluster. --></help>
+        <label><!-- Unilever Cluster --></label>
+        <name>Unilever_Cluster__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

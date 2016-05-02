@@ -1,0 +1,63 @@
+<apex:page sidebar="false" controller="Oblix_OuterPageTemplateController" docType="html-5.0" showHeader="false" standardStylesheets="false">
+    <apex:form id="jqueryId">
+        <div class="Oblix_header_bkgd">
+            <header class="Oblix_header_panel">
+                <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/s/bs-3.3.5/jqc-1.11.3,dt-1.10.10/datatables.min.css" />
+                <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/css/unilever-style.css')}" />
+
+                <img alt="Unilever logo" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/Oblix_Unilever_logo.png')}" width="54" height="60" />
+                <div class="header_divider_vertical"></div>
+                <div class="header_panel_text">
+                    <h2>Hi  {!$User.FirstName} {!$User.LastName }, Welcome to SWOP the Scope of Work Online Planner</h2>
+					<p>
+                        <apex:insert name="top_breadcrumb"/>    
+                    </p>
+                </div>
+                <apex:commandButton styleClass="btn btn-xs pull-right btn_cross btn_exit_swop" id="swopExitButton" action="{!exitSwop}" value="DONE FOR TODAY? EXIT SWOP">
+                </apex:commandButton>
+                <apex:commandLink styleClass="btn btn-xs pull-right btn-danger btn_report btn_go_to_reports" action="{!goToReportsHome}" value="REPORTS" target="_blank">
+                </apex:commandLink>
+
+            </header>
+        </div>
+        <div class="container SOW_body">
+            <div class="row">
+                <apex:pageMessages id="page_message_id" />
+                <apex:outputPanel id="swop_top_panel">
+                    <div class="col-lg-6 col-md-6">
+                        <h1 class="SOW_header_title">
+                        	<apex:insert name="header_text" />
+                        </h1>
+                        <p class="SOW_body_option_links">
+                        	<apex:insert name="top_option_links" />
+                       	</p>
+                    </div>
+
+                	<apex:insert name="top_right_panel" />
+            	</apex:outputPanel>
+            </div>
+
+   			<apex:insert name="body_content"/>
+   		</div>
+
+    <!-- 
+	*************************************************************************************************************************
+		Adding required scripts for the page
+	*************************************************************************************************************************
+    -->
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/s/bs-3.3.5/jqc-1.11.3,dt-1.10.10/datatables.min.js"></script>
+        <script src="{!URLFOR($Resource.Oblix_JQueryBlockUI)}"></script>
+        <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/swopJS.js')}" />
+        <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/readmore.min.js')}" />
+        <apex:insert name="page_scripts"/>                                                        
+
+    <!-- 
+	*************************************************************************************************************************
+		End required scripts for the page
+	*************************************************************************************************************************
+    -->
+    </apex:form>
+	
+</apex:page>

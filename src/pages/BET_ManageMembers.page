@@ -1,0 +1,257 @@
+<!--
+VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
+1.1     Kendre Dnyaneshwar      19 Mar 2015     T1- code changes to make custom buttons(Add members,Approve,Deny,Delete)
+                                                action progress visible.        
+1.2     Kendre Dnyaneshwar      27 Apr 2015     T2- Rendered attribute added in delete commnad button to hide delete option
+                                                for owner of the BET.       
+1.3     Michal Bluj             14 Aug 2015     IPM related changes                                                                         
+-->
+
+<apex:page standardController="BET_Member_Request__c" showHeader="false" extensions="BET_ManageMembersController"  id="memberpage">
+
+  <apex:stylesheet value="{!$Resource.BET}/css/BETCommon.css" />
+  <apex:stylesheet value="{!$Resource.BET}/css/BETManageMembersStyles.css" />
+  <apex:includeScript value="{!$Resource.BET}/scripts/BETManageMembersJS.js" />
+
+  <script>
+    function updateRoleOnMember(memId, role, idx){
+      Visualforce.remoting.Manager.invokeAction(
+        '{!$RemoteAction.BET_ManageMembersController.updateMemberRole}',
+        memId,
+        role,
+        function(result, event){
+          if (event.status) {
+          }
+        },
+        {escape: true}
+      );
+    }
+  </script>
+
+  <apex:form id="form">
+  <apex:outputpanel id="showpage">
+  <apex:pageMessages /> 
+
+  <apex:tabPanel switchType="client" selectedTab="browseMembers" id="MembersTabPanel" tabClass="activeTab" 
+                       inactiveTabClass="inactiveTab">
+
+    <apex:tab label="{!$Label.BET_Browse_members}" name="browseMembers" id="browseMembersid">
+     
+        <div style="{!If(isBETOperationAdmin,'display:none;','')}">
+        <div>
+          <apex:outputText value="{!$Label.BET_Add_Internal_User}" rendered="{!OR(isBetOwnerOrManager,isHubAdmin)}" styleClass="addMembersUserLabel"/>
+          <apex:outputText value="{!$Label.BET_Suggest_Member}" rendered="{!NOT(OR(isBetOwnerOrManager,isHubAdmin))}" styleClass="addMembersUserLabel"/>
+        </div>
+        <table width="100%">
+          <tr>
+            <td width="230px">
+              <div class="styled-select">
+              <apex:selectList value="{!betMemberRequest.Role__c}" styleClass="addMembersDropdown" required="false" size="1" multiselect="false">
+                <apex:selectOptions value="{!memberRequestRoles}" />
+              </apex:selectList>
+              </div>
+            </td>
+            <td>
+              <div class="hideOwner">   
+                <apex:inputField value="{!betMemberRequest.UserId__c}"/>
+              </div>
+            </td>
+            <td>
+              <div style="float:right">
+                <apex:commandButton value="{!$Label.BET_Add_Member}" action="{!addMember}" rendered="{!OR(isBetOwnerOrManager,isHubAdmin)}" styleClass="btn-small-pink" style="height: 35px;width: 110px;" >
+
+                </apex:commandButton>
+
+                <apex:commandButton value="{!$Label.BET_Suggest_Member}" action="{!addMember}" 
+                                    rendered="{!NOT(OR(isBetOwnerOrManager,isHubAdmin))}"
+                                    onclick="alert('{!$Label.BET_Suggest_Member_Message}'); return true;"
+                                    styleClass="btn-small-pink" style="height: 35px;width: 110px;">
+                </apex:commandButton>
+              </div>
+            </td>
+          </tr>
+        </table>
+        </div>
+    
+        <div style="{!If(OR(isBETOperationAdmin,NOT(OR(isBetOwnerOrManager,isHubAdmin))),'display:none;','')}">
+
+        <div style="padding-top: 20px;">
+          <apex:outputText value="{!$Label.BET_External_Agency_User}" styleClass="addMembersUserLabel"/>
+        </div>
+          <table width="100%">
+            <tr>
+              <td>
+                  <apex:inputField value="{!betMemberRequest.External_User_Email__c}" styleClass="addmemberEmailInput" />
+              </td>
+              <td>
+                <div style="float:right">
+                  <apex:commandButton value="{!$Label.BET_Add_Member}" action="{!addExternalMember}"
+                                    styleClass="btn-small-pink" style="height: 35px;width: 110px;"/> 
+                </div>
+              </td>
+            </tr>
+          </table>
+
+          <hr width="100%" style="color: rgb(121, 121, 121);background-color: rgb(121, 121, 121);height: 2px;border: medium none;" /> 
+          
+          </div>
+
+        <div class="headerButtonsBrowsMembers"> 
+        
+          <apex:commandButton value="{!$Label.BET_Delete_selected}" action="{!massDelete}" 
+                              rendered="{!OR(isBetOwnerOrManager,isHubAdmin)}"
+                              styleClass="btn-small-pink" style="height: 35px;width: 110px;"/> 
+       
+        </div>
+
+        <table width="100%" class="browseMembersTable">
+          <th class="browseMembersheaderStyle" style="{!IF(OR(isBetOwnerOrManager,isHubAdmin),'width: 45px;','display:none')}">
+            <apex:inputCheckbox value="{!selectAll}" id="globcheckboxbrowse" onchange="selectOrDeselectkAllBrowse();"/>
+          </th>
+          <th class="browseMembersheaderStyle" style="width: 90px;">
+            {!$Label.BET_Photo}
+          </th>
+          <th class="browseMembersheaderStyle" style="width: 150px;">
+            {!$Label.BET_Name}
+          </th>
+          <th class="browseMembersheaderStyle" style="width: 240px;">
+            {!$Label.BET_Title}
+          </th>
+          <th class="browseMembersheaderStyle" style="width: 200px;">
+            {!$ObjectType.BET_Member_Request__c.Fields.Role__c.Label}
+          </th>
+          <th class="browseMembersheaderStyle" style="{!IF(OR(isBetOwnerOrManager,isHubAdmin),'','display:none')}">
+            {!$Label.BET_Delete}
+          </th>
+          <apex:variable var="cnt" value="{!0}" /> 
+          <apex:repeat value="{!members}" var="member" id="repeater">
+            <tr class="memberRow" id="{!member.objectId}" >
+              <td style="{!IF(OR(isBetOwnerOrManager,isHubAdmin),'','display:none')}">
+                <apex:inputCheckbox value="{!member.isSelected}" rendered="{!NOT(member.isbetOwner)}"/>
+              </td>
+              <td>
+                <apex:image url="{!member.photo}"/>
+              </td>
+              <td>
+                <apex:outputText value="{!member.firstName} {!member.lastName}"/>
+              </td>
+              <td>
+                <apex:outputText value="{!member.title}"/>
+              </td>
+              <td style="{!IF(NOT(OR(isBetOwnerOrManager,isHubAdmin)),'','display:none')}">
+                <apex:outputText id="role" value="{!member.role}"/>
+              </td>
+              <td style="{!IF(OR(isBetOwnerOrManager,isHubAdmin),'','display:none')}">
+
+                <apex:selectList value="{!member.obj.Role__c}" required="false" size="1" multiselect="false" 
+                                 style="width: 180px;" 
+                                 onchange="updateRoleOnMember('{!member.objectId}',this.value,{!cnt})" 
+                                 rendered="{!AND(NOT(member.isbetOwner),member.obj.Role__c != 'External Agency User')}">
+                  <apex:selectOptions value="{!memberRequestRoles}" />
+                </apex:selectList>
+
+                <apex:outputField id="memberRoleExternal" value="{!member.obj.Role__c}" 
+                                  rendered="{!OR(member.isbetOwner,member.obj.Role__c == 'External Agency User')}"/> 
+
+              </td>
+              <td style="{!IF(OR(isBetOwnerOrManager,isHubAdmin),'','display:none')}">
+                <apex:commandButton action="{!doDelete}" value="{!$Label.BET_Delete}" styleClass="buttong2y" style="background: #e6007e; color:white;-webkit-appearance: none;" rendered="{!NOT(member.isbetOwner)}" rerender="browseMembersid" status="saveStatus4">
+                  <apex:actionStatus id="saveStatus4">
+                    <apex:facet name="start">
+                      <apex:image value="/img/loading.gif" style="width: 16px;height: 16px;" />
+                    </apex:facet> 
+                  </apex:actionStatus>  
+                  <apex:param name="obid" assignTo="{!selectedMemberId}" value="{!member.objectId}"/>
+                </apex:commandButton>
+              </td>
+            </tr>
+            <apex:variable var="cnt" value="{!cnt+1}"/>
+          </apex:repeat>
+        </table>
+
+    </apex:tab>
+
+    <apex:tab label="{!$Label.BET_Approve_members}" name="approveMembers" id="approveMembersid" rendered="{!isBetOwnerOrManager}">
+
+      <div class="headerButtons">  
+        <apex:commandButton value="{!$Label.BET_Approve_selected}" action="{!massApprove}" rendered="{!isBetOwnerOrManager}"
+          styleClass="btn-small-pink" style="height: 35px;width: 130px;"/> 
+        <apex:commandButton value="{!$Label.BET_Deny_selected}" action="{!massDeny}" rendered="{!isBetOwnerOrManager}"
+          styleClass="btn-small-gray" style="height: 35px;width: 130px;" /> 
+      </div>
+
+      <table width="100%" class="approveMembersTable">
+        <th class="approveMembersheaderStyle" style="{!IF(isBetOwnerOrManager,'width: 45px;','display:none')}">
+            <apex:inputCheckbox value="{!selectAll}" id="globcheckbox" onchange="selectOrDeselectkAll();"/>
+        </th>
+        <th class="approveMembersheaderStyle" style="width: 90px;">
+            {!$Label.BET_Photo}
+        </th>
+        <th class="approveMembersheaderStyle" style="width: 150px;">
+            {!$Label.BET_Name}
+        </th>
+        <th class="approveMembersheaderStyle" style="width: 240px;">
+            {!$Label.BET_Title}
+          </th>
+        <th class="approveMembersheaderStyle" style="width: 200px;">
+            {!$Label.BET_Project}
+        </th>
+        <th class="approveMembersheaderStyle" style="{!IF(isBetOwnerOrManager,'','display:none')}">
+            {!$Label.BET_Approve}
+        </th>
+
+        <apex:repeat value="{!memberRequests}" var="memberRequest">
+          <tr class="memberRequestRow">
+            <td style="{!IF(isBetOwnerOrManager,'','display:none')}">
+              <apex:inputCheckbox value="{!memberRequest.isSelected}"/>
+            </td>
+            <td>
+              <apex:image url="{!memberRequest.photo}"/>
+            </td>
+            <td>
+              <apex:outputText value="{!memberRequest.firstName} {!memberRequest.lastName}"/>
+            </td>
+            <td>
+              <apex:outputText value="{!memberRequest.title}"/>
+            </td>
+            <td>
+              <apex:outputText value="{!memberRequest.projectName }"/>
+            </td>
+            <td style="{!IF(isBetOwnerOrManager,'','display:none')}">
+
+              <div style="position:relative;left:-25px;">
+                <apex:commandButton action="{!doApprove}" value="{!$Label.BET_Approve}" styleClass="buttong2y" 
+                                    style="background: #e6007e; color:white;" rerender="memberpage">
+                    <apex:param name="obid" assignTo="{!selectedRequestId}" value="{!memberRequest.objectId}"/>
+                </apex:commandButton>
+
+              </div>
+              
+              <div style="position:relative;top:-27px;left:20px;">
+                <apex:commandButton action="{!doDeny}" value="{!$Label.BET_Delete}" styleClass="buttong2y" 
+                                   style="background: #e6007e; color:white;" rerender="memberpage">
+                  <apex:param name="obid" assignTo="{!selectedRequestId}" value="{!memberRequest.objectId}"/>
+                </apex:commandButton>
+              </div>  
+              <!--<apex:commandLink action="{!doApprove}" value="{!$Label.BET_Approve}">
+                <apex:param name="obid" assignTo="{!selectedRequestId}" value="{!memberRequest.objectId}"/>
+              </apex:commandLink>
+              &nbsp;|&nbsp; 
+              <apex:commandLink action="{!doDeny}" value="{!$Label.BET_Deny}">
+                <apex:param name="obid" assignTo="{!selectedRequestId}" value="{!memberRequest.objectId}"/>
+              </apex:commandLink>-->
+
+            </td>
+          </tr>
+        </apex:repeat>
+
+      </table>
+
+  
+    </apex:tab>
+
+  </apex:tabPanel>
+    
+  </apex:outputpanel>
+  </apex:form>
+</apex:page>

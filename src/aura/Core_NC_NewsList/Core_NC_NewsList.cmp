@@ -1,0 +1,67 @@
+<aura:component controller="Core_NC_NewsCenterController">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="NewsType" type="String"/>
+    <aura:attribute name="filterType" type="String"/>
+	<aura:attribute name="UserId" type="String"/>
+    <aura:attribute name="GAId" type="String"/>
+    
+    <!--<div class="bootstrap-sf1">-->
+        <div class="container">
+            <div id="list" class="row">
+       
+                <!--<div class="container">-->
+                <div style="padding-left:10px;padding-bottom: 12px; display: inline-table; width: 100%;">               
+                    <label style="padding-top: 6px;" >             
+                        <aura:if isTrue="{!v.sortTypeforGlobalNews == 'Recent' ? true : false}">
+                            <b>Recent</b> 
+                            
+                        </aura:if>
+                        <aura:if isTrue="{!v.sortTypeforGlobalNews == 'View' ? true : false}">
+                            <b>Most Viewed</b>
+                        </aura:if>
+                        <aura:if isTrue="{!v.sortTypeforGlobalNews == 'Like' ? true : false}">
+                            <b>Most Liked</b>
+                        </aura:if>
+                        <aura:if isTrue="{!v.sortTypeforGlobalNews == 'Comment' ? true : false}">
+                            <b>Most Commented</b>
+                        </aura:if>
+                    </label>
+                    <div class="alignRight">
+                        <table>
+                            <tr>
+                                <td>
+                                    <div onclick="{!c.getRecentNews}" aura:id="recentNewsSection"></div> 
+                                </td>
+                                <td>
+                                    <div onclick="{!c.getMostViewed}" aura:id="mostViewedSection"></div>                     
+                                </td>
+                                <td>
+                                    <div onclick="{!c.getMostLiked}" aura:id="mostLikeSection"></div>                     
+                                </td>
+                                <td>
+                                    <div onclick="{!c.getMostCommented}" aura:id="mostCommentSection"></div>                     
+                                </td>
+                            </tr>
+                        </table>                   
+                    </div>        
+                </div>
+                <!--</div>-->
+                <!--<br/><br/>-->
+                <div> 
+                    <aura:if isTrue="{!v.sortTypeforGlobalNews == 'Recent' ? true : false}">
+                        <c:CORE_NC_GlobalNewsRecent NewsType="{!v.NewsType}" filterType="{!v.filterType}"/><!--NewsType="GlobalNews"-->
+                    </aura:if>
+                    <aura:if isTrue="{!v.sortTypeforGlobalNews == 'View' ? true : false}">
+                        <c:Core_NC_TrendingNewsComponent NewsType="{!v.NewsType}" SortType="View" NewsType1="Most Viewed" />
+                    </aura:if>
+                    <aura:if isTrue="{!v.sortTypeforGlobalNews == 'Like' ? true : false}">
+                        <c:Core_NC_TrendingNewsComponent NewsType="{!v.NewsType}" SortType="Like" NewsType2="Most Liked" />
+                    </aura:if>
+                    <aura:if isTrue="{!v.sortTypeforGlobalNews == 'Comment' ? true : false}">
+                        <c:Core_NC_TrendingNewsComponent NewsType="{!v.NewsType}" SortType="Comment" NewsType3="Most Commented"/>
+                    </aura:if>
+                </div>
+            </div>
+        </div>
+    <!--</div>-->    
+</aura:component>

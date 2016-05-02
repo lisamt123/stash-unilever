@@ -1,0 +1,5 @@
+<apex:page >
+    <apex:form >
+        <c:isll_SustainabilityExpertsComponent isEditModeAtr="true" isSMEMode="true"/> 
+    </apex:form>
+</apex:page>

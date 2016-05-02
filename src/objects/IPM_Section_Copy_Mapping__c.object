@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Custom setting to store the section copy over in different gates</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Gate_To_Copy_From__c</fullName>
+        <description>Specifies to copy the value from which gate document</description>
+        <externalId>false</externalId>
+        <label>Gate To Copy From</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_SourceFieldAPIName__c</fullName>
+        <description>List of comma separated API Names which from which data has to be copied over.</description>
+        <externalId>false</externalId>
+        <label>Source Field API Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_TargetFieldAPIName__c</fullName>
+        <description>List of comma separated target field API names for copying section data</description>
+        <externalId>false</externalId>
+        <label>Target Field API Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Section_External_Id_To_Copy_Over__c</fullName>
+        <description>This will store the External Id&apos;s of the section to be copied over</description>
+        <externalId>true</externalId>
+        <label>Section External Id To Copy Over</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Type_Of_Gate__c</fullName>
+        <description>This will store the type of the gate document in which the sections needs to be copied over</description>
+        <externalId>false</externalId>
+        <label>Type Of Gate</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>IPM Section Copy Mapping</label>
+    <visibility>Public</visibility>
+</CustomObject>

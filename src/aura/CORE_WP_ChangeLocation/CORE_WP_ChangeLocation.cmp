@@ -1,0 +1,17 @@
+<aura:component controller="Core_WP_WorkPlaceController" >	
+    <!--Calling doInit method to get the default information on page load-->
+    <aura:attribute name="workplaceLocationId" type="String"/>
+	<div class="largeSpaceing">
+        <div class="largeButtonBar" >    
+            <div class="largeButton" onclick="{!c.loadKingstonWorkspace}">Kingston</div> 
+        </div>
+        <div class="largeButtonBar" >    
+            <div class="largeButton" onclick="{!c.load100VEWorkspace}">100 VE</div> 
+        </div>
+    </div>	
+    <div class="smallSpaceing">
+        <div class="largeButtonBar" >    
+            <div class="largeButton" onclick="{!c.gotoPreviousPage}">Cancel</div> 
+        </div>
+    </div>	
+</aura:component>

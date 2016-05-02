@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>IPM Exchange Rate</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>IPM Exchange Rate</value>
+    </caseValues>
+    <fields>
+        <label><!-- Currency Code --></label>
+        <name>Currency_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Exchange Rate --></label>
+        <name>Exchange_Rate__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

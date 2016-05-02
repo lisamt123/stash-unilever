@@ -1,0 +1,54 @@
+<apex:page docType="html-5.0" title="File Uploader" controller="BET_MultiUploadAssetsController" showHeader="false">
+  <apex:stylesheet value="{!$Resource.BET}/css/BETCommon.css" />
+  <apex:stylesheet value="{!$Resource.BET}/css/BETMultiUploadAssets.css" />
+
+  <p>{!$Label.BET_Select_Files}</p>
+  <form >
+    <input id="multiplefiles" type="file" multiple="multiple" onchange="filesSelected()"/>
+  </form>
+  <p class="form-errors"></p> 
+  <br />
+
+  <table width="100%" class="multiFileUploadTable" id="inputFiles">
+    <th class="multiFileUploadTableHeaderStyle" style="width:120px;">{!$Label.BET_Upload_Status}</th>
+    <th class="multiFileUploadTableHeaderStyle" style="">{!$Label.BET_File_Name}</th>
+    <th class="multiFileUploadTableHeaderStyle" style="">{!$Label.BET_Asset_Name}</th>
+    <th class="multiFileUploadTableHeaderStyle" style="width:100px;">{!$Label.BET_Asset_Type}</th>
+    <th class="multiFileUploadTableHeaderStyle" style="">{!$Label.BET_Asset_Media_Type}</th>
+    <th class="multiFileUploadTableHeaderStyle" style="">{!$Label.BET_Asset_Country}</th>
+    <th class="multiFileUploadTableHeaderStyle" style="">{!$Label.BET_Asset_Status}</th>
+  </table>
+
+  <br />  
+  <input id="resultFileId" type="hidden" name="resultFileId" />
+  <button id="btnUploadFiles" onclick="loadFiles(); return false;" class="betBtnPink">
+          {!$Label.BET_Upload_Files}
+  </button> 
+  
+  <apex:includeScript value="{!$Resource.BET}/scripts/jquery.min.js" />   
+  
+  <script type="text/javascript">
+    var __sfdcSessionId = '{!GETSESSIONID()}';
+    var groupId = "{!chatterGroupId}"; 
+    var betId = "{!betId}";
+    var liMediaType = {!AvailableMediaTypes};
+    var liCountries = {!AvailableCountries};
+    var liStatus = {!AvailableStatus};
+    var NO_ASSET_NAME = "{!$Label.BET_Asset_Name_Mandatory}";
+    var NO_COUNTRY_SELECTED = "{!$Label.BET_Asset_Country_Mandatory}";
+    var NO_FILE_SELECTED = "{!$Label.BET_Asset_No_Files_Selected}";
+    var defStatus = '{!status}';
+    var uploadOkInfo = '{!$Label.BET_Asset_Uploaded}';
+    var uploadFailedInfo = '{!$Label.BET_Asset_Not_Uploaded}';
+    var lblUploadFiles = '{!$Label.BET_Upload_Files}';
+    var lblUploadFilesLoading = '{!$Label.BET_Uploading}';
+    function labelFile(idx,assetName,mediaType,country,status,betId,index,cb){
+      Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.BET_MultiUploadAssetsController.saveFileAndConnect}',
+        idx,assetName,mediaType,country,status,betId,
+        function(result, event){labelFileCallback(event,result,index,cb);},{escape: true});
+    }
+  </script>
+
+  <apex:includeScript value="{!$Resource.BET}/scripts/BETMultiUploadAssets.js" />
+
+</apex:page>

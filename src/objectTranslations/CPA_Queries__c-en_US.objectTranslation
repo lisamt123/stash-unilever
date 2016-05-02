@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Queries</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Queries</value>
+    </caseValues>
+    <fields>
+        <label><!-- Assigned to --></label>
+        <name>Assigned_to__c</name>
+        <picklistValues>
+            <masterLabel>ADM</masterLabel>
+            <translation><!-- ADM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SMT</masterLabel>
+            <translation><!-- SMT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ULFT</masterLabel>
+            <translation><!-- ULFT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ULPM</masterLabel>
+            <translation><!-- ULPM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ULPT</masterLabel>
+            <translation><!-- ULPT --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- PWO Query --></label>
+        <name>CPA_Project_Work_Order__c</name>
+        <relationshipLabel><!-- Queries --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- CR ID --></label>
+        <name>CR_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Capture creator --></label>
+        <name>Capture_creator__c</name>
+    </fields>
+    <fields>
+        <label><!-- HLE ID --></label>
+        <name>HLE_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- HLE Request Query --></label>
+        <name>HLE_Request_Query__c</name>
+        <relationshipLabel><!-- Queries --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- LOI ID --></label>
+        <name>LOI_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- CR Query --></label>
+        <name>LookupCR_Query__c</name>
+        <relationshipLabel><!-- Queries --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- LOI Query --></label>
+        <name>LookupLOI_Query__c</name>
+        <relationshipLabel><!-- Queries --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Choose PWORF to raise queries against it. --></help>
+        <label><!-- PWORF Name --></label>
+        <name>LookupPWORF_Name__c</name>
+        <relationshipLabel><!-- Queries --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Project Work Order --></label>
+        <name>Lookup_Project_Work_Order_Query__c</name>
+        <relationshipLabel><!-- Project Work Order Queries --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- PWO ID --></label>
+        <name>PWO_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Work Order ID --></label>
+        <name>Project_Work_Order_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pworf ID --></label>
+        <name>Pworf_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Query Date --></label>
+        <name>Query_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- It shows query description regarding vendor contract management. --></help>
+        <label><!-- Query Description --></label>
+        <name>RTXTQuery_Description__c</name>
+    </fields>
+    <fields>
+        <help><!-- Please Select Type of Query --></help>
+        <label><!-- Type Of Query --></label>
+        <name>Type_Of_Query__c</name>
+        <picklistValues>
+            <masterLabel>Query</masterLabel>
+            <translation><!-- Query --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Request for Cancellation</masterLabel>
+            <translation><!-- Request for Cancellation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Request to Withhold</masterLabel>
+            <translation><!-- Request to Withhold --></translation>
+        </picklistValues>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

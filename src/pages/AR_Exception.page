@@ -1,0 +1,25 @@
+<apex:page docType="html-5.0" standardStylesheets="false" showHeader="false" title="Unilever Agency Portal - Exception">
+
+	<apex:composition template="AR_Template">
+	
+		<apex:define name="content">
+		
+			<section role="main" id="content" class="global-content single-column clearfix">
+			
+	            <h1>500 - Site Exception</h1>   
+	                  
+	            <article>
+	            	<p>
+	            		<apex:outputText styleClass="title" value="{!$Label.site.error}">
+                  	 		<apex:param value="{!$Site.ErrorMessage}"/>
+                  		</apex:outputText>
+                  	</p>
+	            </article>
+	            
+	        </section>
+		    
+		</apex:define>
+    
+	</apex:composition>
+	
+</apex:page>

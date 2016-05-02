@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>One View Unit</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>One View Units</value>
+    </caseValues>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Category 1</masterLabel>
+            <translation><!-- Category 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Category 2</masterLabel>
+            <translation><!-- Category 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Category 3</masterLabel>
+            <translation><!-- Category 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cluster 1</masterLabel>
+            <translation><!-- Cluster 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cluster 2</masterLabel>
+            <translation><!-- Cluster 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cluster 3</masterLabel>
+            <translation><!-- Cluster 3 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Name for the Unit --></help>
+        <label><!-- Unit Name --></label>
+        <name>Unit_Name__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

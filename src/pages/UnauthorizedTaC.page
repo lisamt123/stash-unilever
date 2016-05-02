@@ -1,0 +1,15 @@
+<apex:page showHeader="false" title="{!$Label.site.authorization_required}" id="Unauthorized" cache="false">
+    <p/><p/>
+    &nbsp;&nbsp;
+    <apex:image url="{!$Resource.UnileverLogo}" width="50" height="50"/>    
+    <p  style="margin-left : 2em;"/>
+    <hr/>
+    <h1  style="margin-left : 2em;">Hmmm, you don’t seem to be authorised to read the Terms and Conditions</h1>
+    <p style="margin-left : 2em;">
+    Not sure why, but it is most likely that your invitation has expired.
+    </p>
+    <p  style="margin-left : 2em;">
+    Please contact your local IT helpdesk for assistance.
+    </p>
+    <site:previewAsAdmin />
+</apex:page>

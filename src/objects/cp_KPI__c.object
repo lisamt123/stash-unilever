@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>CP</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>Date_Achieved__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Achieved</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Event__c</fullName>
+        <externalId>false</externalId>
+        <label>Event</label>
+        <referenceTo>cp_Event__c</referenceTo>
+        <relationshipLabel>KPIs</relationshipLabel>
+        <relationshipName>KPIs</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>true</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>KPI_Level1__c</fullName>
+        <externalId>false</externalId>
+        <label>KPI Level 1</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Use globally coordinated activity eg Big Moments to create impact</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Competitively shape public policy</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Prioritise our employees</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>70/30 Split of &apos;Local&apos; / Global effort &amp; focus on top 3 issues</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Brilliant basics to professionalise our function</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>KPI_Level2__c</fullName>
+        <externalId>false</externalId>
+        <label>KPI Level 2</label>
+        <picklist>
+            <picklistValues>
+                <fullName>% Tier 1 KOF actively engaged/advocating Unilever</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Media metric (amount of coverage, % favourable on sustainability, innovation, sustainable brands)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>At least 5 out of 10 top markets participating coordinated activities</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>% positive comments in qualitative feedback and % positive action taken via digital media tools</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>% top 10 markets actively lobbying on priority global advocacy campaign(s)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Revenue generated from Foundation related activities - eg CRM/external funding</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>100% compliance of issues management procedure verified via issues log</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>% issues on plan against stated objectives</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>% increase in employees advocating Unilever product brands</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>% employees actively engaged in Foundation activities and target reached of funds raised</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>% employees engaged in recognition programmes eg Heroes programme, Compass Awards</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>100% compliance look and feel to Unilever Brand ID and aligned to global editorial calendar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>% increase in number of tier one KOFs or priority media outlets directly and/or personally engaged in Unilever showcasing at least 3 &quot;big bets&quot; / business priorities and their contribution to sustainable growth</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Top 3 business issues per Cluster/MCO /Function /Category action plans in place with positive progress demonstrated to mitigate risk</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3 &quot;big bets&quot; / business priorities supported with internal campaigns driving positive advocacy scores (1-5 scale)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GPS score improvement on identified function/category /MCO focus area eg leadership communications / bias for action / line manager effectiveness</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Positive SOV in relation to sustainability / sustainable living mentions in key media vs key competitors</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital channels compliance: &lt; % errors tracking on external Websites / - add SharePoint analytic</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>100% compliance in completing capability programme with XX% employees attaining &gt;80% in completion test</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>100% compliance planning process: - Plan on a Page / - Local Plans [70%] Reflecting Top 3 Business Issues &amp; Priorities</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Function</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Expertise</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>KPI_Level3__c</fullName>
+        <externalId>false</externalId>
+        <label>KPI Level 3</label>
+        <picklist>
+            <picklistValues>
+                <fullName>KPI x1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KPI x2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KPI x3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>KPI_Other__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>// Remember to add Validation Rule for &quot;other&quot;</inlineHelpText>
+        <label>KPI Other</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>KPI_Progress_Detail__c</fullName>
+        <externalId>false</externalId>
+        <label>KPI Progress Detail</label>
+        <picklist>
+            <controllingField>KPI_Progress_Status__c</controllingField>
+            <picklistValues>
+                <fullName>Resource Constraints</fullName>
+                <controllingFieldValues>Amber</controllingFieldValues>
+                <controllingFieldValues>Red</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>New Leadership</fullName>
+                <controllingFieldValues>Amber</controllingFieldValues>
+                <controllingFieldValues>Red</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <controllingFieldValues>Amber</controllingFieldValues>
+                <controllingFieldValues>Red</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>KPI_Progress_Other__c</fullName>
+        <externalId>false</externalId>
+        <label>KPI Progress (Other)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>KPI_Progress_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>KPI Progress Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Green</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Amber</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Red</fullName>
+                <default>true</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>KPI_Status__c</fullName>
+        <description>Traffic Icons for KPI Status</description>
+        <externalId>false</externalId>
+        <formula>IMAGE( 
+CASE( KPI_Progress_Status__c , 
+&quot;Green&quot;, &quot;/img/samples/light_green.gif&quot;,
+&quot;Amber&quot;, &quot;/img/samples/light_yellow.gif&quot;,
+&quot;Red&quot;, &quot;/img/samples/light_red.gif&quot;, 
+&quot;/s.gif&quot;), 
+&quot;KPI Status Color&quot;)</formula>
+        <label>KPI Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>KPI</label>
+    <nameField>
+        <displayFormat>KPI-{000000}</displayFormat>
+        <label>KPI</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>KPIs</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>KPI_Level1_Other_is_populated</fullName>
+        <active>true</active>
+        <errorConditionFormula>ISPICKVAL(KPI_Level1__c, &quot;Other&quot;) &amp;&amp;  ISBLANK(KPI_Other__c)</errorConditionFormula>
+        <errorDisplayField>KPI_Other__c</errorDisplayField>
+        <errorMessage>Please enter a KPI description</errorMessage>
+    </validationRules>
+</CustomObject>

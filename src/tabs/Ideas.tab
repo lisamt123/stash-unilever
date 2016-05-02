@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <icon>Ideas/IdeationAppIcon.png</icon>
+    <label>Ideas</label>
+    <mobileReady>true</mobileReady>
+    <motif>Custom253: TV Widescreen</motif>
+    <page>Core_IC_IdeationHomePage</page>
+</CustomTab>

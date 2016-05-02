@@ -1,0 +1,644 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>SWOP Campaign Assets</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>SWOP Campaign Assets</value>
+    </caseValues>
+    <fields>
+        <help><!-- The date the asset was delivered --></help>
+        <label><!-- Actual Delivery Date --></label>
+        <name>Actual_Delivery_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Add further details of the required asset to be produced --></help>
+        <label><!-- Other Info --></label>
+        <name>Additional_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Agency Projects --></label>
+        <name>Agency_Projects__c</name>
+        <relationshipLabel><!-- SWOP Campaign Assets --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Asset Description --></label>
+        <name>Asset_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Asset Line Item Score --></label>
+        <name>Asset_Line_Item_Score__c</name>
+    </fields>
+    <fields>
+        <help><!-- Please select the Asset that most meets the type of Asset required? --></help>
+        <label><!-- Asset Name --></label>
+        <name>Asset_Picklist__c</name>
+        <picklistValues>
+            <masterLabel>Animatics</masterLabel>
+            <translation><!-- Animatics --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Animation</masterLabel>
+            <translation><!-- Animation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Behind the Scenes Footage</masterLabel>
+            <translation><!-- Behind the Scenes Footage --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Billboards</masterLabel>
+            <translation><!-- Billboards --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Branded Videos</masterLabel>
+            <translation><!-- Branded Videos --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bus Shelters</masterLabel>
+            <translation><!-- Bus Shelters --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bus Wraps</masterLabel>
+            <translation><!-- Bus Wraps --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Campaign Teaser Video</masterLabel>
+            <translation><!-- Campaign Teaser Video --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cinema Film</masterLabel>
+            <translation><!-- Cinema Film --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Complex Adaptation</masterLabel>
+            <translation><!-- Complex Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Complex Re-Edit</masterLabel>
+            <translation><!-- Complex Re-Edit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Concept Quals</masterLabel>
+            <translation><!-- Concept Quals --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cutdown</masterLabel>
+            <translation><!-- Cutdown --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Strategy Adaptation</masterLabel>
+            <translation><!-- Digital Strategy Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EDM Adaptation</masterLabel>
+            <translation><!-- EDM Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EDM/eNewsletter (Complex Adaptation)</masterLabel>
+            <translation><!-- EDM/eNewsletter (Complex Adaptation) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EDM/eNewsletter (Complex)</masterLabel>
+            <translation><!-- EDM/eNewsletter (Complex) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EDM/eNewsletter (Simple Adaptation)</masterLabel>
+            <translation><!-- EDM/eNewsletter (Simple Adaptation) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EDM/eNewsletter (Simple)</masterLabel>
+            <translation><!-- EDM/eNewsletter (Simple) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Experiential</masterLabel>
+            <translation><!-- Experiential --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Experiential - Adaptation</masterLabel>
+            <translation><!-- Experiential - Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Extended Stills</masterLabel>
+            <translation><!-- Extended Stills --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Film Adaptation</masterLabel>
+            <translation><!-- Film Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Film Re-edit</masterLabel>
+            <translation><!-- Film Re-edit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Finished Film</masterLabel>
+            <translation><!-- Finished Film --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Flash Banners</masterLabel>
+            <translation><!-- Flash Banners --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Flash Banners Adaptation</masterLabel>
+            <translation><!-- Flash Banners Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Flash Landing Pages</masterLabel>
+            <translation><!-- Flash Landing Pages --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Flash Landing Pages Adaptation</masterLabel>
+            <translation><!-- Flash Landing Pages Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Flash Take Over Adaptation</masterLabel>
+            <translation><!-- Flash Take Over Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Flash Take Overs</masterLabel>
+            <translation><!-- Flash Take Overs --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>High Digital Bundle</masterLabel>
+            <translation><!-- High Digital Bundle --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>High Digital Bundle - Adaptation</masterLabel>
+            <translation><!-- High Digital Bundle - Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Interactive Game</masterLabel>
+            <translation><!-- Interactive Game --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Interactive Game Adaptation</masterLabel>
+            <translation><!-- Interactive Game Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KV Adaptation</masterLabel>
+            <translation><!-- KV Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Key Visual</masterLabel>
+            <translation><!-- Key Visual --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Landing Pages Adaptations</masterLabel>
+            <translation><!-- Landing Pages Adaptations --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Logo</masterLabel>
+            <translation><!-- Logo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Low Digital Bundle</masterLabel>
+            <translation><!-- Low Digital Bundle --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Low Digital Bundle - Adaptation</masterLabel>
+            <translation><!-- Low Digital Bundle - Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Medium Digital Bundle</masterLabel>
+            <translation><!-- Medium Digital Bundle --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Medium Digital Bundle - Adaptation</masterLabel>
+            <translation><!-- Medium Digital Bundle - Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Microsite</masterLabel>
+            <translation><!-- Microsite --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Microsite Adaptation</masterLabel>
+            <translation><!-- Microsite Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mobile APP Conceptualisation</masterLabel>
+            <translation><!-- Mobile APP Conceptualisation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mobile App Adaptation</masterLabel>
+            <translation><!-- Mobile App Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mobile Marketing Strategy</masterLabel>
+            <translation><!-- Mobile Marketing Strategy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Moderate Adaptation</masterLabel>
+            <translation><!-- Moderate Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Moderate Edit</masterLabel>
+            <translation><!-- Moderate Edit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mood Boards</masterLabel>
+            <translation><!-- Mood Boards --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Narration</masterLabel>
+            <translation><!-- Narration --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OOH</masterLabel>
+            <translation><!-- OOH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OOH Adaptation</masterLabel>
+            <translation><!-- OOH Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>POS Adaptation</masterLabel>
+            <translation><!-- POS Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Photomatic</masterLabel>
+            <translation><!-- Photomatic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Podcast</masterLabel>
+            <translation><!-- Podcast --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Print Adaptation</masterLabel>
+            <translation><!-- Print Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product Demos</masterLabel>
+            <translation><!-- Product Demos --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Promotional</masterLabel>
+            <translation><!-- Promotional --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Promotional - Adaptation</masterLabel>
+            <translation><!-- Promotional - Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Radio</masterLabel>
+            <translation><!-- Radio --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Radio Adaptation</masterLabel>
+            <translation><!-- Radio Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Re Shoot</masterLabel>
+            <translation><!-- Re Shoot --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Simple Adaptation</masterLabel>
+            <translation><!-- Simple Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Simple Edit</masterLabel>
+            <translation><!-- Simple Edit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Social Content</masterLabel>
+            <translation><!-- Social Content --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Social Content - Adaptation</masterLabel>
+            <translation><!-- Social Content - Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Social Media App</masterLabel>
+            <translation><!-- Social Media App --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Social Media App - Adaptation</masterLabel>
+            <translation><!-- Social Media App - Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Static Banner Adaptation</masterLabel>
+            <translation><!-- Static Banner Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Static Banners</masterLabel>
+            <translation><!-- Static Banners --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Static Landing Page Adaptation</masterLabel>
+            <translation><!-- Static Landing Page Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Static Landing Pages</masterLabel>
+            <translation><!-- Static Landing Pages --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Static Page Take Over Adaptation</masterLabel>
+            <translation><!-- Static Page Take Over Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Static page take overs</masterLabel>
+            <translation><!-- Static page take overs --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stillomatics</masterLabel>
+            <translation><!-- Stillomatics --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stilomatic</masterLabel>
+            <translation><!-- Stilomatic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Storyboard</masterLabel>
+            <translation><!-- Storyboard --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Strategic Print</masterLabel>
+            <translation><!-- Strategic Print --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Street Banners</masterLabel>
+            <translation><!-- Street Banners --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TV Adaptation</masterLabel>
+            <translation><!-- TV Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TV Master</masterLabel>
+            <translation><!-- TV Master --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TV Re-Edit</masterLabel>
+            <translation><!-- TV Re-Edit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tactical Print</masterLabel>
+            <translation><!-- Tactical Print --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tactical Video</masterLabel>
+            <translation><!-- Tactical Video --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tag</masterLabel>
+            <translation><!-- Tag --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UX Strategy</masterLabel>
+            <translation><!-- UX Strategy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Voice to Camera Shots</masterLabel>
+            <translation><!-- Voice to Camera Shots --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Webcast</masterLabel>
+            <translation><!-- Webcast --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Website Optimisation for Mobile</masterLabel>
+            <translation><!-- Website Optimisation for Mobile --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>eNewsletters</masterLabel>
+            <translation><!-- eNewsletters --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Asset Score --></label>
+        <name>Asset_Score__c</name>
+    </fields>
+    <fields>
+        <label><!-- Asset Scoring Number --></label>
+        <name>Asset_Scoring_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Asset Title --></label>
+        <name>Asset_Title__c</name>
+    </fields>
+    <fields>
+        <label><!-- Asset Total Score --></label>
+        <name>Asset_Total_Score__c</name>
+    </fields>
+    <fields>
+        <label><!-- Category --></label>
+        <name>Asset_Type__c</name>
+        <picklistValues>
+            <masterLabel>Audio Visual</masterLabel>
+            <translation><!-- Audio Visual --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital</masterLabel>
+            <translation><!-- Digital --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Experiential</masterLabel>
+            <translation><!-- Experiential --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Static Imagery</masterLabel>
+            <translation><!-- Static Imagery --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stimulus Materials - Research requirements</masterLabel>
+            <translation><!-- Stimulus Materials - Research requirements --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Asset name --></label>
+        <name>Asset_name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Aggregated asset name used on Assets Table on Campaign summary. --></help>
+        <label><!-- Asset name --></label>
+        <name>Asset_summary_page_name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Asset Type/Subcategory --></label>
+        <name>Calculator_Question__c</name>
+    </fields>
+    <fields>
+        <label><!-- Campaign ID --></label>
+        <name>Campaign_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Category --></label>
+        <name>Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- Channels --></label>
+        <name>Channels__c</name>
+        <picklistValues>
+            <masterLabel>Cinema</masterLabel>
+            <translation><!-- Cinema --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cut Downs &amp; Tags</masterLabel>
+            <translation><!-- Cut Downs &amp; Tags --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Instore</masterLabel>
+            <translation><!-- Instore --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KV</masterLabel>
+            <translation><!-- KV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mobile</masterLabel>
+            <translation><!-- Mobile --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Online</masterLabel>
+            <translation><!-- Online --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Outdoor</masterLabel>
+            <translation><!-- Outdoor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Print</masterLabel>
+            <translation><!-- Print --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Radio</masterLabel>
+            <translation><!-- Radio --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Research Materials</masterLabel>
+            <translation><!-- Research Materials --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TV</masterLabel>
+            <translation><!-- TV --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Asset Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <help><!-- Filter on the word &quot;Score&quot; to capture full descriptions of the asset --></help>
+        <label><!-- Full Description --></label>
+        <name>FULL_Description__c</name>
+        <relationshipLabel><!-- SWOP Campaign Assets --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Other Description --></label>
+        <name>Location__c</name>
+    </fields>
+    <fields>
+        <label><!-- Oblix Cloned From Parent Asset --></label>
+        <name>OblixClonedFromParentAsset__c</name>
+    </fields>
+    <fields>
+        <label><!-- Option Name --></label>
+        <name>Option_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Quantity --></label>
+        <name>Quantity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sub Category --></label>
+        <name>Sub_Category__c</name>
+        <picklistValues>
+            <masterLabel>Adaptation</masterLabel>
+            <translation><!-- Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Adaptations and Reedits</masterLabel>
+            <translation><!-- Adaptations and Reedits --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Always on Social</masterLabel>
+            <translation><!-- Always on Social --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Audio</masterLabel>
+            <translation><!-- Audio --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cut Downs and Tags</masterLabel>
+            <translation><!-- Cut Downs and Tags --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Data Analytics Reporting Dashboards</masterLabel>
+            <translation><!-- Data Analytics Reporting Dashboards --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Adaptation</masterLabel>
+            <translation><!-- Digital Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Campaign Assets</masterLabel>
+            <translation><!-- Digital Campaign Assets --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Experiential - Promotional ideas ADAPTATION</masterLabel>
+            <translation><!-- Experiential - Promotional ideas ADAPTATION --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Experiential - Promotional ideas ORIGINATION</masterLabel>
+            <translation><!-- Experiential - Promotional ideas ORIGINATION --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Origination</masterLabel>
+            <translation><!-- Origination --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Origination Full</masterLabel>
+            <translation><!-- Origination Full --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Origination Lite</masterLabel>
+            <translation><!-- Origination Lite --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Specialist Digital</masterLabel>
+            <translation><!-- Specialist Digital --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stimulus Requirements</masterLabel>
+            <translation><!-- Stimulus Requirements --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- When is this asset due to be delivered? --></help>
+        <label><!-- Target Delivery Date --></label>
+        <name>Target_Delivery_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- MDM ID --></label>
+        <name>mdm_id__c</name>
+    </fields>
+    <recordTypes>
+        <label><!-- Admin --></label>
+        <name>Admin</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Audio Visual --></label>
+        <name>Audio_Visual</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Digital --></label>
+        <name>Digital</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Experiential --></label>
+        <name>Experiential</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Static Imagery --></label>
+        <name>Static_Imagery</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Stimulus Materials - Research requirements --></label>
+        <name>Stimulus_Materials_Research_requirements</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

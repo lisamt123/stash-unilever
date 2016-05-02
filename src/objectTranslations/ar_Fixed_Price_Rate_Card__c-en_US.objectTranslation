@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Fixed Price Rate Card</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Fixed Price Rate Cards</value>
+    </caseValues>
+    <fields>
+        <label><!-- Agency --></label>
+        <name>Agency__c</name>
+        <relationshipLabel><!-- Fixed Price Rate Cards --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Application --></label>
+        <name>Application__c</name>
+        <relationshipLabel><!-- Fixed Price Rate Cards --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Definition --></label>
+        <name>Definition__c</name>
+    </fields>
+    <fields>
+        <label><!-- Discipline --></label>
+        <name>Discipline__c</name>
+        <picklistValues>
+            <masterLabel>Advertising</masterLabel>
+            <translation><!-- Advertising --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Artwork</masterLabel>
+            <translation><!-- Artwork --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Design</masterLabel>
+            <translation><!-- Design --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital</masterLabel>
+            <translation><!-- Digital --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Direct Marketing/Integrated</masterLabel>
+            <translation><!-- Direct Marketing/Integrated --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PR</masterLabel>
+            <translation><!-- PR --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- FRC Country --></label>
+        <name>FRC_Country__c</name>
+        <relationshipLabel><!-- Fixed Price Rate Cards --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Master Artwork --></label>
+        <name>Master_Artwork__c</name>
+    </fields>
+    <fields>
+        <label><!-- Material Costs Included? --></label>
+        <name>Material_Costs_Included__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Maximum Allowable Price --></label>
+        <name>Maximum_Allowable_Price__c</name>
+    </fields>
+    <fields>
+        <label><!-- Order --></label>
+        <name>Order__c</name>
+    </fields>
+    <fields>
+        <label><!-- Per Item --></label>
+        <name>Per_Item__c</name>
+    </fields>
+    <fields>
+        <label><!-- Subject to Annual Rebate Scheme? --></label>
+        <name>Subject_to_Annual_Rebate_Scheme__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Task Group --></label>
+        <name>Task_Group__c</name>
+    </fields>
+    <fields>
+        <label><!-- Task_Group_short --></label>
+        <name>Task_Group_short__c</name>
+    </fields>
+    <recordTypes>
+        <label><!-- Artwork --></label>
+        <name>Artwork</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Task --></label>
+        <name>Task</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,28 @@
+<!--  
+*************************************************************************
+*@Description: The header for the Bosscard page to display progress
+*@Author: Cognizant
+*@Created Date:   22/01/2015
+*@Copyright © 2015  Unilever  
+*************************************************************************
+-->
+<apex:component id="ipmBosscardFunnelRevamp" controller="IPM_ProjectDetails">  
+<apex:attribute assignTo="{!isBoss}" name="isBosscard" type="Boolean" description="{!$Label.IPM_BosscardFunnel_Description}"/>
+    <div class="row">
+        <div class="col-sm-12">           
+            <div class="basic panel ipmFunnelPanel">
+                <div class="progress-wrap">
+                    <ul class="progress-bar">
+                        <li class="bosscard first"><span>{!IF(isBoss=true,$Label.IPM_BOSSCARD,$Label.IPM_INITIATION)}</span></li>
+                        <li class="{!IF(isBoss=false,'next visited','')}"><span>{!$Label.IPM_IDEA}</span></li>
+                        <li class="next"><span>{!$Label.IPM_FEASIBILITY}</span></li>
+                        <li class="next"><span>{!$Label.IPM_CAPABILITY}</span></li>
+                        <li class="next"><span>{!$Label.IPM_MARKET_READY}</span></li>
+                        <li class="next"><span>{!$Label.IPM_MARKET_DEPLOYMENT}</span></li>
+                        <li class="last"><span>{!$Label.IPM_PLE}</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</apex:component>

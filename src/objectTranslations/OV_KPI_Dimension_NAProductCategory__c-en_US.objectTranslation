@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>One View KPI Dimension NA Product Catego</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>One View KPI Dimension NA ProductCategor</value>
+    </caseValues>
+    <fields>
+        <label><!-- Code --></label>
+        <name>Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Level --></label>
+        <name>Level__c</name>
+    </fields>
+    <fields>
+        <help><!-- Parent NA Product Category --></help>
+        <label><!-- Parent Id --></label>
+        <name>Parent_Id__c</name>
+        <relationshipLabel><!-- One View KPI Dimension NA ProductCategor --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Parent Level --></label>
+        <name>Parent_Level__c</name>
+    </fields>
+    <startsWith>Vowel</startsWith>
+</CustomObjectTranslation>

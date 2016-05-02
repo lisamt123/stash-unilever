@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Case Action</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Case Actions</value>
+    </caseValues>
+    <fields>
+        <label><!-- Alert Tracker Item --></label>
+        <name>Alert_Tracker_Item__c</name>
+        <relationshipLabel><!-- Case Actions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Case Id --></label>
+        <name>Case_Id__c</name>
+        <relationshipLabel><!-- Case Actions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Q10 Data --></label>
+        <name>Q10_Data__c</name>
+    </fields>
+    <fields>
+        <label><!-- Q10 --></label>
+        <name>Q10__c</name>
+    </fields>
+    <fields>
+        <label><!-- Q11 Data --></label>
+        <name>Q11_Data__c</name>
+    </fields>
+    <fields>
+        <label><!-- Q11 --></label>
+        <name>Q11__c</name>
+    </fields>
+    <fields>
+        <label><!-- Q12 Data --></label>
+        <name>Q12_Data__c</name>
+    </fields>
+    <fields>
+        <label><!-- Q12 --></label>
+        <name>Q12__c</name>
+    </fields>
+    <fields>
+        <label><!-- Q2 Data --></label>
+        <name>Q2_Data__c</name>
+    </fields>
+    <fields>
+        <label><!-- Q2 --></label>
+        <name>Q2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Q3 Data --></label>
+        <name>Q3_Data__c</name>
+    </fields>
+    <fields>
+        <label><!-- Q3 --></label>
+        <name>Q3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Q4 Data --></label>
+        <name>Q4_Data__c</name>
+    </fields>
+    <fields>
+        <label><!-- Q4 --></label>
+        <name>Q4__c</name>
+    </fields>
+    <fields>
+        <label><!-- Q5 Data --></label>
+        <name>Q5_Data__c</name>
+    </fields>
+    <fields>
+        <label><!-- Q5 --></label>
+        <name>Q5__c</name>
+    </fields>
+    <fields>
+        <label><!-- Q6 Data --></label>
+        <name>Q6_Data__c</name>
+    </fields>
+    <fields>
+        <label><!-- Q6 --></label>
+        <name>Q6__c</name>
+    </fields>
+    <fields>
+        <label><!-- Q7 Data --></label>
+        <name>Q7_Data__c</name>
+    </fields>
+    <fields>
+        <label><!-- Q7 --></label>
+        <name>Q7__c</name>
+    </fields>
+    <fields>
+        <label><!-- Q8 Data --></label>
+        <name>Q8_Data__c</name>
+    </fields>
+    <fields>
+        <label><!-- Q8 --></label>
+        <name>Q8__c</name>
+    </fields>
+    <fields>
+        <label><!-- Q9 Data --></label>
+        <name>Q9_Data__c</name>
+    </fields>
+    <fields>
+        <label><!-- Q9 --></label>
+        <name>Q9__c</name>
+    </fields>
+    <fields>
+        <label><!-- Survey Id --></label>
+        <name>Survey_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Survey Name --></label>
+        <name>Survey_Name__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

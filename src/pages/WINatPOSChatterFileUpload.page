@@ -1,0 +1,56 @@
+<!--
+**********************************************************************
+Name: WINatPOSChatterUpload
+Copyright © 2014 Unilever.
+======================================================
+==========================================================
+Purpose: VisualForce page to support content upload process
+Used in: File New button
+==========================================================
+History
+-------
+VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
+1.0 -   Istvan Szegedi          17/09/2014      INITIAL DEVELOPMENT
+***********************************************************************
+-->
+<apex:page standardController="File__c" extensions="WINatPOSChatterUploadController">
+
+  <apex:form >
+    <apex:pageMessages />  
+    <apex:pageBlock title="Edit File"> 
+      <apex:pageBlockButtons >  
+        <style type="text/css">
+           [id*=HelpLink] { float:right; font-weight: bold;  }
+        </style>      
+        <apex:commandButton value="Save" action="{!saveAndDisplayChatterFeed}" />
+        <apex:commandButton value="Cancel" action="{!cancel}"/>
+        <apex:outputLink value="{!$Resource.WinatPOSHelpFileUpload}" id="HelpLink" target="_blank">Help for File Upload</apex:outputLink>
+      </apex:pageBlockButtons>
+      <apex:pageBlockSection title="File Information">
+        <apex:inputField value="{!file.Name}" required="true"/>
+        <apex:inputField label="Asset Type" value="{!file.POS_File_Type__c}" required="true"/>
+        <apex:outputField value="{!file.Asset__c}"/>
+        <apex:outputField value="{!file.Brand__c}"/>
+        <apex:outputField value="{!file.Category__c}"/>
+        <apex:outputField value="{!file.Asset_Group__c}"/>
+        <apex:inputField value="{!file.Type__c}" required="true"/>  
+        <apex:inputField value="{!file.Is_Primary_Image__c}"/> 
+        <apex:inputField value="{!file.Sub_Type__c}" required="true"/>                           
+      </apex:pageBlockSection>                           
+    </apex:pageBlock>
+  </apex:form>
+  <apex:pageBlock rendered="{!file.Id != null}">
+     <chatter:feed entityId="{!file.Id}"/>
+  </apex:pageBlock>
+  <apex:pageMessage summary="You need to store the uploaded file." 
+                          severity="info" 
+                          strength="3" rendered="{!file.Id != null}"/>
+  <apex:form >
+    <apex:pageBlock title="Store File" rendered="{!file.Id != null}">
+        <apex:commandButton value="Store" action="{!linkChatterContentPost}" rendered="{!file.Id != null}"/>
+        <!--
+        <apex:commandButton value="Cancel" action="{!cancel}" rendered="{!file.Id != null}"/>
+        -->
+     </apex:pageBlock>
+   </apex:form>
+</apex:page>

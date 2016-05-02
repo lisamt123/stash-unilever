@@ -1,0 +1,73 @@
+<apex:page showHeader="false" sidebar="false">
+ <link rel="stylesheet" type="text/css" media="all" href="{!URLFOR($Resource.ulw_brief_2_static_resources, 'static_resources/css/style.css')}" />
+
+<div class="help_template" id="top">
+ <ul class="popUpNavBtns">
+    <li><a href="#brandlinks" title="Go to Brand Links help">HELP WITH BRAND LINKS</a></li>
+    <li><a href="#newbrandlinks" title="Go to New Brand Links help">HELP WITH NEW BRAND LINKS</a></li>
+  </ul>
+  
+   <div class="helpPopUpDivider" id="brandlinks"> 
+<div class="title"> BRAND LINKS</div>
+  <p>
+        The Brand Links displayed here have been set up for your brand by marketing@unliever.
+They enable users of your Brand Centre to access further information about your brand and the work you have been doing. These links can be edited by the Brand Centre admin users. 
+</p>
+  <p> <img src="{!URLFOR($Resource.ulw_help_pop_up, 'img/help_image_5.jpg')}"/> </p>
+
+<table width="800" border="0" cellpadding="4">
+  <tr>
+    <td class="bubblebox"><span class="numcolor">1</span></td>
+    <td class="bubbletxt"><span>Links such as these have been added to support your Brand Centre and provide further information to users. 
+</span></td>
+  </tr>
+  <tr>
+        <td class="ToTop" colspan="2">
+              <a href="#top" title="Back to top">Return to the top of the page</a>
+        </td>
+      </tr>
+</table></div>
+  <div class="helpPopUpDivider" id="newbrandlinks">
+<div class="title"> NEW BRAND LINK SECTION</div>
+  <p>On this page you can add a new Brand Link Section on your Brand Centre. </p>
+  <p> <img src="{!URLFOR($Resource.ulw_help_pop_up, 'img/help_image_10.jpg')}"/> </p>
+
+ <table width="662" border="0" cellpadding="4">
+  <tr>
+    <td class="bubblebox"><span class="numcolor">1</span></td>
+    <td class="bubbletxt"><span>Enter the name you would like to appear on your Brand Link on the Brand Centre.</span></td>
+  </tr>
+  <tr>
+    <td class="bubblebox"><span class="numcolor">2</span></td>
+    <td class="bubbletxt"><span>Select if the link should be horizontal or vertical. </span></td>
+  </tr>
+  <tr>
+    <td class="bubblebox"><span class="numcolor">3</span></td>
+    <td class="bubbletxt"><span>Ensure the link to the Brand Centre is correct.</span></td>
+  </tr>
+  <tr>
+    <td class="bubblebox"><span class="numcolor">4</span></td>
+    <td class="bubbletxt"><span>The Ordinal is the order of the Brand Links on the page. Select between 0 and 99, 0 being the first link and 99 being the last.</span></td>
+  </tr>
+  <tr>
+    <td class="bubblebox"><span class="numcolor">5</span></td>
+    <td class="bubbletxt"><span>Chose the style class for your link. This is the way the link will look on the Brand Centre and the way the drop down will behave. </span></td>
+  </tr>
+  <tr>
+    <td class="bubblebox"><span class="numcolor">6</span></td>
+    <td class="bubbletxt"><span>If you have uploaded an image into the Chatter Library for this then add the ID here.
+</span></td>
+  </tr>
+  <tr>
+    <td class="bubblebox"><span class="numcolor">7</span></td>
+    <td class="bubbletxt"><span>Select “Save” to save the Brand Link or “Cancel” to cancel the changes you have made.
+ </span></td>
+<tr>
+        <td class="ToTop" colspan="2">
+              <a href="#top" title="Back to top">Return to the top of the page</a>
+        </td>
+      </tr>
+  </tr>
+</table></div>
+</div>
+</apex:page>

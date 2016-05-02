@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>MDO geography master data</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Read</externalSharingModel>
+    <fields>
+        <fullName>IPM_Effective_from__c</fullName>
+        <description>Date upon which a particular Geography is considered to take effect</description>
+        <externalId>false</externalId>
+        <label>Effective_from</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Effective_to__c</fullName>
+        <description>date until which a specific Geography was considered</description>
+        <externalId>false</externalId>
+        <label>Effective_to</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>ISO_3166_1_alpha__c</fullName>
+        <externalId>false</externalId>
+        <label>ISO 3166-1 Alpha</label>
+        <length>3</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ISO_3166_1_code__c</fullName>
+        <externalId>false</externalId>
+        <label>ISO 3166-1 Code</label>
+        <length>2</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ISO_3166_1_numeric__c</fullName>
+        <externalId>false</externalId>
+        <label>ISO 3166-1 Numeric</label>
+        <length>3</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <description>This field to get active records only.</description>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>geo_type__c</fullName>
+        <externalId>false</externalId>
+        <label>Geo Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Cluster</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country/Dependency</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country Cluste</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country Group</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country Sub Group</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Region</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>World</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>geography_type__c</fullName>
+        <externalId>false</externalId>
+        <label>Geography Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Cluster</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country/Dependency</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country Cluste</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country Group</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country Sub Group</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Region</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>World</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>mdm_id__c</fullName>
+        <externalId>true</externalId>
+        <label>MDM ID</label>
+        <length>32</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>name_ISO__c</fullName>
+        <externalId>false</externalId>
+        <label>Name ISO</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>name_ISO_medium__c</fullName>
+        <externalId>false</externalId>
+        <label>Name ISO Medium</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>name_ISO_office_english__c</fullName>
+        <externalId>false</externalId>
+        <label>Name ISO Office English</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>name_ISO_short__c</fullName>
+        <externalId>false</externalId>
+        <label>Name ISO Short</label>
+        <length>25</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>name_abbr__c</fullName>
+        <externalId>false</externalId>
+        <label>Name Abbr</label>
+        <length>6</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>name_united_nations__c</fullName>
+        <externalId>false</externalId>
+        <label>Name United Nations</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>parent_L10__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Parent L10</label>
+        <referenceTo>MDO_Geography__c</referenceTo>
+        <relationshipLabel>Geography (Parent L10)</relationshipLabel>
+        <relationshipName>GeographyL10</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>parent_L11__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Parent L11</label>
+        <referenceTo>MDO_Geography__c</referenceTo>
+        <relationshipLabel>Geography (Parent L11)</relationshipLabel>
+        <relationshipName>GeographyL11</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>parent_L12__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Parent L12</label>
+        <referenceTo>MDO_Geography__c</referenceTo>
+        <relationshipLabel>Geography (Parent L12)</relationshipLabel>
+        <relationshipName>GeographyL12</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>parent_L13__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Parent L13</label>
+        <referenceTo>MDO_Geography__c</referenceTo>
+        <relationshipLabel>Geography (Parent L13)</relationshipLabel>
+        <relationshipName>GeographyL13</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>parent_L14__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Parent L14</label>
+        <referenceTo>MDO_Geography__c</referenceTo>
+        <relationshipLabel>Geography (Parent L14)</relationshipLabel>
+        <relationshipName>GeographyL14</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>parent_L15__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Parent L15</label>
+        <referenceTo>MDO_Geography__c</referenceTo>
+        <relationshipLabel>Geography (Parent L15)</relationshipLabel>
+        <relationshipName>GeographyL15</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>parent_L1__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Parent L1</label>
+        <referenceTo>MDO_Geography__c</referenceTo>
+        <relationshipLabel>Geography (Parent L1)</relationshipLabel>
+        <relationshipName>GeographyL1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>parent_L2__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Parent L2</label>
+        <referenceTo>MDO_Geography__c</referenceTo>
+        <relationshipLabel>Geography (Parent L2)</relationshipLabel>
+        <relationshipName>GeographyL2</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>parent_L3__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Parent L3</label>
+        <referenceTo>MDO_Geography__c</referenceTo>
+        <relationshipLabel>Geography (Parent L3)</relationshipLabel>
+        <relationshipName>GeographyL3</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>parent_L4__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Parent L4</label>
+        <referenceTo>MDO_Geography__c</referenceTo>
+        <relationshipLabel>Geography (Parent L4)</relationshipLabel>
+        <relationshipName>GeographyL4</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>parent_L5__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Parent L5</label>
+        <referenceTo>MDO_Geography__c</referenceTo>
+        <relationshipLabel>Geography (Parent L5)</relationshipLabel>
+        <relationshipName>GeographyL5</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>parent_L6__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Parent L6</label>
+        <referenceTo>MDO_Geography__c</referenceTo>
+        <relationshipLabel>Geography (Parent L6)</relationshipLabel>
+        <relationshipName>GeographyL6</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>parent_L7__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Parent L7</label>
+        <referenceTo>MDO_Geography__c</referenceTo>
+        <relationshipLabel>Geography (Parent L7)</relationshipLabel>
+        <relationshipName>GeographyL7</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>parent_L8__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Parent L8</label>
+        <referenceTo>MDO_Geography__c</referenceTo>
+        <relationshipLabel>Geography (Parent L8)</relationshipLabel>
+        <relationshipName>GeographyL8</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>parent_L9__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Parent L9</label>
+        <referenceTo>MDO_Geography__c</referenceTo>
+        <relationshipLabel>Geography (Parent L9)</relationshipLabel>
+        <relationshipName>GeographyL9</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>parent_id__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Parent ID</label>
+        <referenceTo>MDO_Geography__c</referenceTo>
+        <relationshipLabel>Geography</relationshipLabel>
+        <relationshipName>Geography</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>parent_id_tree__c</fullName>
+        <externalId>false</externalId>
+        <label>parent Id Tree</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>parent_mdm_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>Parent MDM Id</label>
+        <length>32</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>parent_mdm_id_tree__c</fullName>
+        <externalId>false</externalId>
+        <label>Parent MDM Id Tree</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Geography</label>
+    <listViews>
+        <fullName>All1</fullName>
+        <columns>geography_type__c</columns>
+        <columns>NAME</columns>
+        <columns>parent_id__c</columns>
+        <columns>parent_L2__c</columns>
+        <columns>parent_mdm_Id__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Countries</fullName>
+        <columns>NAME</columns>
+        <columns>geography_type__c</columns>
+        <columns>parent_L2__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>geography_type__c</field>
+            <operation>equals</operation>
+            <value>Country/Dependency</value>
+        </filters>
+        <label>Countries</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Geography</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>Read</sharingModel>
+</CustomObject>

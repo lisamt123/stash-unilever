@@ -1,0 +1,49 @@
+<!--
+**********************************************************************
+Name: WINatPOSNewCategory
+Copyright © 2014 Unilever.
+======================================================
+==========================================================
+Purpose: VisualForce page to support creating new Category
+Used in: File New button
+==========================================================
+History
+-------
+VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
+1.0 -   Karol Szepietowski          10/12/2014      INITIAL DEVELOPMENT
+***********************************************************************
+-->
+<apex:page standardController="Category__c" extensions="WINatPOSDropDownController">
+  <style type="text/css">
+           [id*=HelpLink] { float:right; font-weight: bold;  }
+  </style> 	
+  <apex:form >
+    <apex:pageMessages />  
+        <apex:pageBlock mode="edit" title="{!if(ISNULL(Category__c.Id),'New Category','Category Edit')}"> 
+          <apex:pageBlockButtons location="bottom">       
+            <apex:commandButton value="Save" action="{!save}" />
+            <apex:commandButton value="Cancel" action="{!cancel}"/>
+          </apex:pageBlockButtons>
+          <apex:pageBlockButtons location="top">       
+            <apex:outputLink value="{!$Resource.WINatPOSHelperCreateCategory}" id="HelpLink" target="_blank">Help for Category <span class="helpButton" id="example-title-_help"><img src="/s.gif" class="helpOrb"/></span></apex:outputLink>
+          </apex:pageBlockButtons>
+          <script>
+       		sfdcPage.setHelp('example-title', '{!$Label.WinAtPOS_Helper_link_tooltip}');
+  		  </script>  
+          <apex:pageBlockSection columns="1" title="Information">
+              <apex:inputField value="{!Category__c.Name}" required="true"/>
+              <apex:pageBlockSectionItem helpText="{!$ObjectType.Category__c.fields.Parent_Category__c.inlineHelpText}">  
+                  <apex:outputLabel value="Parent Category Name" for="category"></apex:outputLabel>
+                   <apex:selectList id="category" value="{!Category__c.Parent_Category__c}" size="1" title="Category">
+                       <apex:selectOptions value="{!categories}"></apex:selectOptions>
+                   </apex:selectList>
+              </apex:pageBlockSectionItem>
+              <apex:inputField value="{!Category__c.Type__c}" />
+              <apex:inputField value="{!Category__c.Sort_Order__c}" required="true" />
+              <apex:inputField value="{!Category__c.Category_Logo__c}"  />
+              <apex:inputField value="{!Category__c.Category_URL_Link__c}"  />
+              <apex:inputField value="{!Category__c.Category_URL_Link_2__c}"  />
+          </apex:pageBlockSection>          
+       </apex:pageBlock>
+  </apex:form>      
+</apex:page>

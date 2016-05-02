@@ -1,0 +1,602 @@
+<apex:page standardController="FAU_Participant__c"
+    extensions="FAU_ParticipantControllerExtension"
+    showHeader="false"
+    sidebar="false"
+    docType="html-5.0" >
+<!--====================================================-->
+<!--Name:  FourAcresPArticipant                         -->
+<!--Copyright © 2014  Unilever                          -->
+<!--====================================================-->
+<!--====================================================-->
+<!-- Purpose: Allows Participants to view a & enter 
+    PRogram Registeration details                       -->
+<!---------                                             --> 
+<!--====================================================-->
+<!--====================================================-->
+<!-- History                                            -->
+<!-- -------                                            -->
+<!-- VERSION  AUTHOR           DATE              DETAIL                     RELEASE/CSR         -->
+<!--   1.0   Daniel Harfleet   07/09/2014        INITIAL DEVELOPMENT                            -->
+<!--   1.0   Jack Dermody      19/09/2014        INITIAL DEVELOPMENT                            -->
+<!--====================================================--> 
+    
+    <!--  <apex:pageMessages /> -->
+
+    <html>
+        <head>
+        <meta charset="utf-8"/>
+        <title>Participant's Registration</title> 
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" />
+    <apex:stylesheet value="{!URLFOR($Resource.FAU_styles)}" />
+    <script>
+            $(document).ready(function() 
+            {
+                $("[id*=employeeDetailsBudgetHolder_mlktp]").hide();
+                $("[id*=employeeDetailsApproverOfNomination_mlktp]").hide();
+                $("[id*=employeeDetailsPersonToInvoice_mlktp]").hide();
+                $("[id*=employeeDetailsPersonalAssistant_mlktp]").hide();
+                $("[id*=lineManagerDetailsLineManager_mlktp]").hide();
+                $("[id*=lineManagerSecretaryName_mlktp]").hide();
+                $("[id*=personalAssistantDetailsPersonalAssistant_mlktp]").hide();
+                $("[id*=paUser_mlktp]").hide();
+            });
+    </script>
+            <style>
+                *{
+                    font-family: Arial;
+                }
+                p{
+                    font-size:14px;
+                    color:#3E3E3E;
+                }
+                body{
+                    background:#A3BCE0 url({!$Resource.FAU_background_pattern}) no-repeat center center fixed; 
+                    -webkit-background-size: cover;
+                    -moz-background-size: cover;
+                    -o-background-size: cover;
+                    background-size: cover;
+                }
+                #main-container-one{
+                    width:960px;
+                    min-height:574px;
+                    
+                    margin-top:-50px;
+                    margin-left:auto;
+                    margin-right:auto;
+                }
+                #header-one{
+                    height:200px;
+                    width:950px;
+                    margin-right:auto;
+                    margin-left:auto;
+                    margin-bottom:10px;
+                    background: url({!$Resource.FAU_Header_Img}) no-repeat;
+                }
+                #logos{
+                    position:relative;
+                    display:block;
+                    top:60px;
+                    left:76px;
+                    width:798px;
+                }
+                #background-container-one{
+                    width:900px;
+                    min-height:574px;
+                    margin-right:auto;
+                    margin-left:auto;
+                    background:#FFFFFF;
+                    border-radius:30px;
+                    border:#E1F3FD 7px solid;
+                }
+                #content-header-one{
+                    width:818px;
+                    height:122px;
+                    line-height:135px;
+                    background: url({!$Resource.FAU_Content_Header_Img}) no-repeat;
+                    color:#FFFFFF;
+                    margin-left:auto;
+                    margin-right:auto;
+                    font-size:35px;
+                    font-weight:bolder;
+                }
+                #content-header-blue{
+                    color:#00A6DC;
+                }
+                #content-one{
+                    width:700px !important;
+                    min-height:574px;
+                    margin-left:auto;
+                    margin-right:auto;
+                    background:#FFFFFF;
+                }
+                button{
+                    width:150px;
+                    height:35px;
+                    border-radius:14px;
+                    border:#E1F3FD 2px solid;
+                    background:#FFFFFF;
+                    box-shadow:2px 2px 5px #8B8B8B;
+                    font-size:14px;
+                    font-weight:bolder;
+                    color:#054976;
+                    cursor:pointer;
+                }button:hover{box-shadow:1px 1px 1px #054976;}
+                #side_bar{
+                    height:574px;
+                    width:98px;
+                    position:relative;
+                    margin-top:-574px;
+                    bottom:0px;
+                    background: url({!$Resource.FAU_side_bar}) no-repeat;
+                }
+                #side_bar_right{
+                    height:574px;
+                    width:98px;
+                    position:relative;
+                    margin-top:-574px;
+                    left:802px;
+                    bottom:0px;
+                    background: url({!$Resource.FAU_side_bar_right}) no-repeat;
+                }
+                #thank_you_img{
+                    height:308px;
+                    width:900px;
+                    position:relative;
+                    bottom:0px;
+                    background: url({!$Resource.FAU_thank_you_img}) no-repeat;
+                }
+                #leaves_img_left{
+                    height:308px;
+                    width:127px;
+                    position:relative;
+                    bottom:0px;
+                    margin-top:-250px;
+                    background: url({!$Resource.FAU_leaves_left}) no-repeat;
+                }
+                #leaves_img_right{
+                    height:308px;
+                    width:127px;
+                    position:relative;
+                    bottom:0px;
+                    margin-top:-308px;
+                    background: url({!$Resource.FAU_leaves_right}) no-repeat;
+                }
+                #leaves_img_left_top{
+                    height:308px;
+                    width:127px;
+                    position:relative;
+                    bottom:0px;
+                    margin-top:-250px;
+                    background: url({!$Resource.FAU_leaves_left_top}) no-repeat;
+                }
+                #leaves_img_right_top{
+                    height:308px;
+                    width:127px;
+                    position:relative;
+                    bottom:0px;
+                    margin-top:-308px;
+                    background: url({!$Resource.FAU_leaves_right_top}) no-repeat;
+                }
+                h1, h4 ,h5 ,h6{
+                    color:#0D85C7;
+                    font-weight:bolder;
+                }
+                h2{
+                    color:#000;
+                }
+                #link{
+                    color:#000 !important;
+                }
+                a.linkStyle01 {
+                    background: #000;
+                }
+            </style>
+        </head>
+
+        <body>
+        <div id="main-container-one">
+            <div id="header-one">
+            <span id="logos">
+                    <span style="display:block; float:left;"><img src="{!$Resource.FAU_side_logo}" height="117" /></span>
+                    <span style="display:block; float:left; width:600px;"><img src="/{!FAU_Participant__c.FAU_program_banner_url__c}" height="117" /></span>
+                    <span style="display:block; float:left;"><img src="{!$Resource.FAU_side_logo_right}" height="117" /></span>
+            </span>
+            </div>
+            
+            <div id="background-container-one">
+            
+            <apex:pageMessages />
+            
+                <div id="container-one">
+        <!-- START INITIAL INVITE-->
+        <apex:form id="initialInviteForm" rendered="{!pageState=='Initial'}">
+                <div id="content-header-one">
+                    CONFIRM <span id="content-header-blue">APPROVAL</span>
+                </div>
+            <br/><br/>
+            <h2><apex:outputText value="{!program.FAU_Invite_Form_Text__c}" /></h2>
+            
+            <br/>
+            <div id="RegDiv" style="width:700px; margin:0 auto; ">
+                <table style="border:none !important;">
+                    <tbody style="border:none !important;">
+                    <tr style="border:none !important;">
+                        <td style="border:none !important;">
+                            <p style="color:#2060AD !important; font-weight:bold;">By accepting this invitation and providing the details on this form, you confirm that: </p>
+
+                            <ul>
+                                <li><strong>1.</strong> You have approval from the budget holder </li>
+                                <li><strong>2.</strong> You/budget holder accept the charges that will be cross-charged 1 month before the residential module 1 </li>
+                                <li><strong>3.</strong> You accept the cancellation policies 
+                                <ul>
+                                    <li>    - More than 60 days before the programme start date, no charge </li>
+                                    <li>    - Between 31 and 59 days before the programme start date 50% charge </li>
+                                    <li>    -  Within 30 days before the programme start date, 100% charge </li>
+                                </ul>
+                                </li>
+                            </ul>
+                            
+                            <p style="color:#2060AD !important; font-weight:bold;">To register, you will need </p>
+                            <ul>
+                                <li>- Your company name and code </li>
+                                <li>- Your cost center details </li>
+                                <li>- GL code (please check with your Finance BP on this)</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table> 
+            </div>
+ 
+            <br/>
+           
+            <div id="ReasonDiv" style="{!IF(declineReasonAvailable,'width:700px; margin:0 auto;','display:none;')}">
+                 <table>
+                          <tr>
+                                                    <td><apex:outputLabel value="Decline Reason" for="decreason" /></td>
+                                                    <td><apex:inputField value="{!FAU_Participant__c.FAU_Decline_Reason__c}"  id="decreason" style="width:200px;"/></td>
+                                            </tr>
+                                   </table>
+           </div>
+           
+            <br/><br/>
+             
+            <h2><apex:commandButton style="color:#054976; height:30px; width:250px; background:#FFFFFF; border-radius:10px;"
+                id="proceed" 
+                value="Proceed with Registration" 
+                action="{!proceedWithInvitation}" />
+            <apex:commandButton style="color:#054976; height:30px; width:150px; background:#FFFFFF; border-radius:10px;" 
+                id="decline" 
+                value="Decline Invitation" 
+                action="{!declineInvite}" /></h2>
+        <div id="leaves_img_left" style="left:0px;"></div>
+        <div id="leaves_img_right" style="left:773px;"></div>
+        </apex:form>
+
+    <!-- END INITIAL INVITE -->
+
+    <!-- DECLINED --> 
+
+        <apex:outputPanel rendered="{!pageState=='Declined'}">
+                <div id="content-header-one">
+                    THANK <span id="content-header-blue">YOU</span>
+                </div>
+        <div style="clear:both; height:200px;"></div>
+            <br/><br/>
+            <h2><apex:outputText value="{!$Label.FAU_Invite_Declined}"/></h2>
+            <div style="clear:both; height:300px;"></div>
+            <div id="side_bar_right"></div>
+        </apex:outputPanel>
+
+    <!-- END DECLINED -->
+    <!-- SELF FILL OR PA -->
+        <script type="text/javascript">
+
+        function enablePAButton()
+        {
+            var isSelfSelected = document.getElementById('selfFillChoice').checked;
+            document.getElementById('selfDiv').style.display = (isSelfSelected) ? 'block' : 'none';
+            document.getElementById('paDiv').style.display = (isSelfSelected) ? 'none' : 'block';
+        }
+
+        </script>
+
+        <apex:form id="proceedingForm" rendered="{!pageState=='Proceeding'}">
+                <div id="content-header-one">
+                    WELCOME TO <span id="content-header-blue">FOUR ACRES</span>
+                </div>
+            <div style="clear:both; height:175px;"></div>
+                <div style="width:320px; margin-left:auto; margin-right:auto; text-align:left;">
+                <h3 style="color:#404041; text-align:left !important; margin-left:10px;">
+                    <input style="float:left;" onclick="enablePAButton();" id="selfFillChoice" type="radio" name="group1" value="self" checked="true"/>
+                    <span style="color:#404041; text-align:left !important;">
+                        Fill the forms myself
+                    </span>
+                </h3>
+                <div style="clear:both; height:20px;"></div>
+                
+                <h3 style="color:#404041; text-align:left !important;">
+                    <input style="float:left;" onclick="enablePAButton();" id="paChoice" type="radio" name="group1" value="pa"/>  
+                    <span style="display:block; width:290px; float:left; margin-left:10px;">
+                        Have someone else (e.g. my assistant) fill this in for me (an email will be automatically sent to him/her).
+                    </span>
+                </h3>
+                <div style="clear:both; height:20px;"></div>
+                <div id="selfDiv" style="display:block;width:700px; margin:0 auto;">
+                    <div style="width:525px; margin-left:auto; margin-right:auto;">
+                    <h2>
+                    <apex:commandButton style="color:#054976; height:35px; width:150px; background:#FFFFFF; border-radius:10px; border:3px #E1F3FD solid; box-shadow:0px 0px 3px #000;"
+                        id="selfFillAction" 
+                        value="Start" 
+                        action="{!selfFill}" />
+                        </h2>
+                    </div>
+                </div>
+    
+                <div id="paDiv" style="display:none;width:700px; margin:0 auto;">
+                    <apex:inputField id="paUser"
+                        value="{!FAU_Participant__c.FAU_Personal_Assistant__c}"/>
+                        <br/><br/>
+                    <h3 style="color:#404041; text-align:left !important;">
+                    <span style="display:block; width:290px; float:left; margin-left:10px;">
+                        If you can't find your Personal Assistant, please enter your Personal Assistant's Email address below and we will activate them on the system.
+                        While this email address is being verified and given access, you may not be able to access your registration page. This process takes around 1-2 working days. Thank you for your understanding.
+                    </span>
+                    <br/>
+                    </h3>
+                     <p></p>
+                     <div style="clear:both; height:20px;"></div>
+                    <apex:inputField id="paUserRequestEmail"
+                        value="{!FAU_Participant__c.FAU_Request_PA_User_Email_Address__c}"/>
+                        <br/><br/>
+                    <div>
+                        <h2><apex:commandButton style="color:#054976; height:30px; width:150px; background:#FFFFFF; border-radius:10px;"
+                            id="deferToPaAction" 
+                            value="Give to PA" 
+                            action="{!deferToPA}"
+                            disabled="false"/></h2>
+                    </div>
+    
+                <br/><br/>
+                </div>
+            </div>      
+        <div style="clear:both; height:175px;"></div>
+        <div id="side_bar"></div>
+        </apex:form>
+    <!-- END SELF FILL OR PA -->
+
+    <!-- GIVEN TO PA -->
+
+        <apex:outputPanel rendered="{!pageState=='WithPA'}">
+                <div id="content-header-one">
+                    DEFERRED TO <span id="content-header-blue">ASSISTANT</span>
+                </div>
+        <div style="clear:both; height:95px;"></div>
+            <br/><br/><br/>
+            <h3><apex:outputText value="{!$Label.FAU_PA_Will_Complete}"/></h3>
+            <div id="thank_you_img" style="margin-top:100px;"></div>
+        </apex:outputPanel>
+
+    <!-- END GIVEN TO PA -->
+
+    <!-- START REGISTRATION FORM -->
+            <apex:form id="registrationForm" rendered="{!pageState=='Registering'}">
+                <div id="content-header-one">
+                    REGISTRATION <span id="content-header-blue">DETAILS</span>
+                </div>
+                <p><strong>  You may revisit this page by pressing ‘Update’ on Registration task in your workbook. </strong></p>
+                <br/><br/>
+                <table style="width:700px; margin-left:auto; margin-right:auto;">
+                    <tr>
+                        <td>
+                            <h2 style="color:#0D85C7 !important;"><apex:outputText value="Personal Details" /></h2>
+                            <td></td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <apex:outputLabel value="Title" for="personalDetailsTitle"/>
+                        </td>
+                        <td>
+                            <apex:inputField id="personalDetailsTitle" value="{!FAU_Participant__c.FAU_Title__c}" required="true"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <apex:outputLabel value="First Name" for="personalDetailsFirstName"/>
+                        </td>
+                        <td>
+                            <apex:inputField id="personalDetailsFirstName"
+                                value="{!FAU_Participant__c.FAU_First_Name__c}"
+                                required="true"/>
+                        </td>
+                    </tr>   
+                    <tr>
+                        <td>
+                            <apex:outputLabel value="Last Name" for="personalDetailsLastName"/>
+                        </td>
+                        <td>
+                            <apex:inputField id="personalDetailsLastName"
+                        value="{!FAU_Participant__c.FAU_Last_Name__c}"
+                        required="true"/>
+                        </td>
+                    </tr>   
+                    <tr>
+                        <td>
+                            <apex:outputLabel value="Job Title" for="personalDetailsJobTitle"/>
+                        </td>
+                        <td>
+                            <apex:inputField id="personalDetailsJobTitle"
+                                value="{!FAU_Participant__c.FAU_Job_Title__c}"
+                                required="true"/>
+                        </td>
+                    </tr>   
+                    <tr>
+                        <td>
+                            <apex:outputLabel value="Mobile Number" for="personalDetailsMobileNumber"/>
+                        </td>
+                        <td>            
+                            <apex:inputField id="personalDetailsMobileNumber"
+                            type="tel"
+                            value="{!FAU_Participant__c.FAU_Mobile_Number__c}"
+                            required="true"/>
+                        </td>
+                    </tr>   
+                    <tr>
+                        <td>
+                            <apex:outputLabel value="Email Address" for="personalDetailsEmailAddress"/>
+                        </td>
+                        <td>    
+                            <apex:inputField id="personalDetailsEmailAddress"
+                            type="email"
+                            value="{!FAU_Participant__c.FAU_Email_Address__c}"
+                            required="true"/>
+                        </td>
+                    </tr>
+                    <tr>
+                    
+                        <td>
+                            <h2 style="color:#0D85C7 !important;"><apex:outputText value="Line Manager Details" /></h2>
+                            <td></td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <apex:outputLabel value="Line Manager" for="lineManagerDetailsLineManager"/>
+                        </td>
+                        <td>
+                            <apex:inputField id="lineManagerDetailsLineManager" value="{!FAU_Participant__c.FAU_Line_Manager__c}"
+                                required="true"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <apex:outputLabel value="Line Manager's Job Title" for="lineManagerDetailsJobTitle" />
+                        </td>
+                        <td>
+                            <apex:inputField id="lineManagerDetailsJobTitle"
+                                value="{!FAU_Participant__c.FAU_Line_Manager_s_Job_Title__c}"
+                                required="true"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <apex:outputLabel value="Line Manager’s Secretary’s Name" for="lineManagerSecretaryName"/>
+                        </td>
+                        <td>
+                            <apex:inputField id="lineManagerSecretaryName"
+                                value="{!FAU_Participant__c.FAU_Line_Manager_s_Secretary_s_Name__c}"
+                                required="false"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h2 style="color:#0D85C7 !important;"><apex:outputText value="Personal Assistant Details" /></h2>
+                        <br/>
+                            If you wish for your assistant to be requested for travel details then please identify your PA or request a new user by filling their email address below.
+                            If you don’t want your PA receiving communicated from the system please skip.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <apex:outputLabel value="Personal Assistant" for="personalAssistantDetails"/>
+                        </td>
+                        <td>
+                            <apex:inputField id="personalAssistantDetailsPersonalAssistant" value="{!FAU_Participant__c.FAU_Personal_Assistant__c}"
+                                required="false"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <apex:outputLabel value="If you can't find your Personal Assistant above, please type your Personal Assistant's Email here " for="personalAssistantRequest"/>
+                        </td>
+                        <td>
+                            <apex:inputField id="personalAssistantRequest" value="{!FAU_Participant__c.FAU_Request_PA_User_Email_Address__c}"
+                                required="false"/>
+                        </td>
+                    </tr>
+                </table>
+            <!--JD-->   
+                <h2 style="color:#0D85C7 !important;"><apex:outputText value="Webinars" rendered="{!participant.FAU_Invite_State__c != 'Accepted'}"/></h2>
+                <br/>
+                <h2 style="color:#0D85C7 !important;"><apex:outputText value="Please Choose One" rendered="{!participant.FAU_Invite_State__c != 'Accepted'}"/></h2>
+
+                <br/>
+                <!-- Use this if you prefer a list
+                <apex:selectList value="{!selectedWebinars}" multiselect="true" required="true" size="4" title="CTRL+Click to multiselect">
+                    <apex:selectOptions value="{!webinarOptions}"/>
+                </apex:selectList>
+                -->
+                <!-- use selectoptions for single select and value should bind to selectedWebinar (singular) -->
+                <br/>
+                <div style="width:700px; margin-left:auto; margin-right:auto;">
+                <apex:selectCheckboxes value="{!selectedWebinars}"  required="true" layout="pageDirection" rendered="{!participant.FAU_Invite_State__c != 'Accepted'}">
+                    <apex:selectOptions value="{!webinarOptions}"/>
+                </apex:selectCheckboxes><br/>
+
+                <h2><apex:commandButton style="color:#054976; height:35px; width:150px; background:#FFFFFF; border-radius:10px; border:3px #E1F3FD solid; box-shadow:0px 0px 3px #000;" 
+                action="{!acceptInvite}" 
+                value="Accept" 
+                id="acceptButton"/></h2>
+                </div>
+            <div style="clear:both; height:250px;"></div>
+        <div id="side_bar" style="margin-top:-774px;"></div>
+            </apex:form>
+        </div>
+
+        <apex:form >
+            <!-- POST ACCEPTANCE OF INVITATION - JUST SHOWS MODULES -->
+            <apex:outputPanel rendered="{!pageState=='Accepted'}">
+                <div id="content-header-one" style="position:relative; z-index:50;">
+                    REGISTRATION <span id="content-header-blue">LINKS</span>
+                </div>
+                <div style="clear:both; height:50px;"></div>
+                 <h1><apex:outputText value="Next Steps:"/></h1><br/>
+
+                <h2><apex:outputText value="Step 1"/></h2><br/> 
+                <h3><apex:outputText value="Please click on the link below to complete the registration program."/><br/>
+                    <apex:outputText value="It will take you to a another web page with an Excel-based tool to collect billing information."/><br/><br/>
+                <a href="http://teamsites.unilever.com/collab/4ASG/Billing/SitePages/Home.aspx" target="_blank">Please click here to complete registration.</a></h3><br/>
+                <br/><br/><br/>
+                <h2><apex:outputText value="Step 2"/></h2><br/>
+                <h3><apex:outputText value="Click on the links below to add your travel details for your upcoming modules or "/><br/>
+                <apex:outputText value="or click on Fill Later to go to the Learning Milestones Checklist." /></h3><br/>
+
+                <h3><apex:repeat var="module" value="{!modules}">
+                    <a href="/apex/FAU_ModuleParticipant?Id={!module.Id}">{!module.FAU_Module__r.Name}</a>
+                    <!--<a href="/{!module.Id}">(Temporary Standard Page)</a>-->
+                    <br/>
+                </apex:repeat></h3>
+                    <br/><br/><br/>
+                 <h2><apex:commandButton style="color:#054976; height:35px; width:180px; background:#FFFFFF; border-radius:10px; border:3px #E1F3FD solid; box-shadow:0px 0px 3px #000;" 
+                action="{!selfFill}"  
+                value="Edit Registration Details" 
+                styleClass="btn" 
+                id="btnEdit" 
+                immediate="true"/></h2>
+                <h2><apex:commandButton style="color:#054976; height:35px; width:150px; background:#FFFFFF; border-radius:10px; border:3px #E1F3FD solid; box-shadow:0px 0px 3px #000;" 
+                action="{!cancel}" 
+                value="Fill Later" 
+                styleClass="btn" 
+                id="btnCancel" 
+                immediate="true"/></h2>
+            <div style="clear:both; height:250px;"></div>
+        <div id="leaves_img_right_top" style="margin-bottom: 380px;margin-top: -600px;margin-left: 773px; z-index:0px;"></div>
+        <div id="leaves_img_left_top" style="margin-bottom:100px;margin-top: -688px; z-index:0px;"></div>
+        <div id="thank_you_img" style="margin-top: -40px;"></div>
+            </apex:outputPanel>
+        </apex:form>
+        
+        
+    </div>
+    </div>
+    </body>
+    </html>
+
+    <!--
+        Note that when we come to User lookups, we need to remove the User Type dropdown using the .hide() script at top of file
+        <apex:inputField id="approverInput" value="{!FAU_Participant__c.FAU_Approver_of_Nomination__c}"/>
+    -->
+
+
+</apex:page>

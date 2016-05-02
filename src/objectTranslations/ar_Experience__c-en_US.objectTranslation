@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Experience</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Experiences</value>
+    </caseValues>
+    <fields>
+        <label><!-- Activity Ongoing --></label>
+        <name>Activity_Ongoing__c</name>
+    </fields>
+    <fields>
+        <help><!-- Only activity within the last 18months --></help>
+        <label><!-- Activity from --></label>
+        <name>Activity_from__c</name>
+    </fields>
+    <fields>
+        <help><!-- Only activity within the last 18months --></help>
+        <label><!-- Activity to --></label>
+        <name>Activity_to__c</name>
+    </fields>
+    <fields>
+        <label><!-- Agencies Strengths --></label>
+        <name>Agencies_Strengths__c</name>
+        <picklistValues>
+            <masterLabel>Branding</masterLabel>
+            <translation><!-- Branding --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Devices</masterLabel>
+            <translation><!-- Devices --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital</masterLabel>
+            <translation><!-- Digital --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Environment</masterLabel>
+            <translation><!-- Environment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Experience</masterLabel>
+            <translation><!-- Experience --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Experiments</masterLabel>
+            <translation><!-- Experiments --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Film</masterLabel>
+            <translation><!-- Film --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gaming</masterLabel>
+            <translation><!-- Gaming --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Indentity</masterLabel>
+            <translation><!-- Indentity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Interactive</masterLabel>
+            <translation><!-- Interactive --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lighting</masterLabel>
+            <translation><!-- Lighting --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Motion</masterLabel>
+            <translation><!-- Motion --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other (Sp...</masterLabel>
+            <translation><!-- Other (Sp... --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Packaging</masterLabel>
+            <translation><!-- Packaging --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Print</masterLabel>
+            <translation><!-- Print --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sound De...</masterLabel>
+            <translation><!-- Sound De... --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Touch</masterLabel>
+            <translation><!-- Touch --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trans-Me...</masterLabel>
+            <translation><!-- Trans-Me... --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Agency --></label>
+        <name>Agency__c</name>
+        <relationshipLabel><!-- Experiences --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Application --></label>
+        <name>Application__c</name>
+        <relationshipLabel><!-- Experiences --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Awards / Accolades --></label>
+        <name>Awards_Accolades__c</name>
+    </fields>
+    <fields>
+        <label><!-- Brand / Competitor --></label>
+        <name>Brand_Competitor__c</name>
+    </fields>
+    <fields>
+        <label><!-- Brand --></label>
+        <name>Brand__c</name>
+        <picklistValues>
+            <masterLabel>Ades</masterLabel>
+            <translation><!-- Ades --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Axe</masterLabel>
+            <translation><!-- Axe --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Becel</masterLabel>
+            <translation><!-- Becel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ben and Jerry’s</masterLabel>
+            <translation><!-- Ben and Jerry’s --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bertolli Sauce</masterLabel>
+            <translation><!-- Bertolli Sauce --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bovrill</masterLabel>
+            <translation><!-- Bovrill --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Breyers</masterLabel>
+            <translation><!-- Breyers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brummel &amp; Brown</masterLabel>
+            <translation><!-- Brummel &amp; Brown --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Caress</masterLabel>
+            <translation><!-- Caress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Carte D&apos;Or</masterLabel>
+            <translation><!-- Carte D&apos;Or --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Clear</masterLabel>
+            <translation><!-- Clear --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Colmans</masterLabel>
+            <translation><!-- Colmans --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Comfort</masterLabel>
+            <translation><!-- Comfort --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Consort</masterLabel>
+            <translation><!-- Consort --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cornetto</masterLabel>
+            <translation><!-- Cornetto --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country Crock Spreads</masterLabel>
+            <translation><!-- Country Crock Spreads --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DIG</masterLabel>
+            <translation><!-- DIG --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dawn</masterLabel>
+            <translation><!-- Dawn --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Degree</masterLabel>
+            <translation><!-- Degree --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Domestos</masterLabel>
+            <translation><!-- Domestos --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dove</masterLabel>
+            <translation><!-- Dove --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dove Men</masterLabel>
+            <translation><!-- Dove Men --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Duschdas</masterLabel>
+            <translation><!-- Duschdas --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FDS</masterLabel>
+            <translation><!-- FDS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fissan</masterLabel>
+            <translation><!-- Fissan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fruttare</masterLabel>
+            <translation><!-- Fruttare --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Good Humor</masterLabel>
+            <translation><!-- Good Humor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Heartbrand/Wall&apos;s/Good Humor</masterLabel>
+            <translation><!-- Heartbrand/Wall&apos;s/Good Humor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hellmans</masterLabel>
+            <translation><!-- Hellmans --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ICBIN</masterLabel>
+            <translation><!-- ICBIN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ice Cream Novelty</masterLabel>
+            <translation><!-- Ice Cream Novelty --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Imperial</masterLabel>
+            <translation><!-- Imperial --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Impulse</masterLabel>
+            <translation><!-- Impulse --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Just for Me</masterLabel>
+            <translation><!-- Just for Me --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Klondike</masterLabel>
+            <translation><!-- Klondike --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Knorr</masterLabel>
+            <translation><!-- Knorr --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lever 2000</masterLabel>
+            <translation><!-- Lever 2000 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lipton</masterLabel>
+            <translation><!-- Lipton --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lyons</masterLabel>
+            <translation><!-- Lyons --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Magnum</masterLabel>
+            <translation><!-- Magnum --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Maille</masterLabel>
+            <translation><!-- Maille --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Marmite</masterLabel>
+            <translation><!-- Marmite --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Motions</masterLabel>
+            <translation><!-- Motions --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nexxus</masterLabel>
+            <translation><!-- Nexxus --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Noxzema</masterLabel>
+            <translation><!-- Noxzema --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PG Tips</masterLabel>
+            <translation><!-- PG Tips --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pepsodent</masterLabel>
+            <translation><!-- Pepsodent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ponds</masterLabel>
+            <translation><!-- Ponds --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Popsicle</masterLabel>
+            <translation><!-- Popsicle --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pot Noodle</masterLabel>
+            <translation><!-- Pot Noodle --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Proline</masterLabel>
+            <translation><!-- Proline --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Q-tips</masterLabel>
+            <translation><!-- Q-tips --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ragu Sauce</masterLabel>
+            <translation><!-- Ragu Sauce --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rajah</masterLabel>
+            <translation><!-- Rajah --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rexona/Degree/Sure</masterLabel>
+            <translation><!-- Rexona/Degree/Sure --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Royco</masterLabel>
+            <translation><!-- Royco --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Signal</masterLabel>
+            <translation><!-- Signal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Simple</masterLabel>
+            <translation><!-- Simple --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Skip</masterLabel>
+            <translation><!-- Skip --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SlimFast</masterLabel>
+            <translation><!-- SlimFast --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Solero</masterLabel>
+            <translation><!-- Solero --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>St Ives</masterLabel>
+            <translation><!-- St Ives --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Suave</masterLabel>
+            <translation><!-- Suave --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sunlight</masterLabel>
+            <translation><!-- Sunlight --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sunsilk</masterLabel>
+            <translation><!-- Sunsilk --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sure</masterLabel>
+            <translation><!-- Sure --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Surf</masterLabel>
+            <translation><!-- Surf --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TCB</masterLabel>
+            <translation><!-- TCB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toni &amp; Guy</masterLabel>
+            <translation><!-- Toni &amp; Guy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tresemme</masterLabel>
+            <translation><!-- Tresemme --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unilever Food Solutions</masterLabel>
+            <translation><!-- Unilever Food Solutions --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vaseline</masterLabel>
+            <translation><!-- Vaseline --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vim/Cif</masterLabel>
+            <translation><!-- Vim/Cif --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wishbone</masterLabel>
+            <translation><!-- Wishbone --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yogo</masterLabel>
+            <translation><!-- Yogo --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Brief Description --></label>
+        <name>Brief_Description__c</name>
+    </fields>
+    <fields>
+        <help><!-- Please provide one or more case studies that demonstrate your strategic capabilities and are supported by evidence such as market share growth and results --></help>
+        <label><!-- Case Studies --></label>
+        <name>Case_Studies__c</name>
+    </fields>
+    <fields>
+        <label><!-- Category --></label>
+        <name>Category__c</name>
+        <picklistValues>
+            <masterLabel>Foods</masterLabel>
+            <translation><!-- Foods --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Home Care</masterLabel>
+            <translation><!-- Home Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Personal Care</masterLabel>
+            <translation><!-- Personal Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Refreshments</masterLabel>
+            <translation><!-- Refreshments --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Please provide contact details for at least one existing client that is prepared to act as a referee to support your agency. You may also include any approved quotes from current clients to support your application --></help>
+        <label><!-- Client Testimonials --></label>
+        <name>Client_Contact_Details__c</name>
+    </fields>
+    <fields>
+        <label><!-- Country/Market --></label>
+        <name>Country_Market__c</name>
+    </fields>
+    <fields>
+        <help><!-- Only activity within the last 18months --></help>
+        <label><!-- Date of Activity --></label>
+        <name>Date_of_Activity__c</name>
+    </fields>
+    <fields>
+        <help><!-- Please demonstrate where you have leveraged design to create cost efficiencies for a brand and illustrate with a recent case study --></help>
+        <label><!-- Design Efficiency --></label>
+        <name>Design_Efficiency__c</name>
+    </fields>
+    <fields>
+        <help><!-- Please provide documentation on your agency&apos;s design process,  indicating how you translate consumer insights into visual brand equity and design innovation --></help>
+        <label><!-- Design Process --></label>
+        <name>Design_Process__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Featured Quote --></label>
+        <name>Featured_Quote__c</name>
+    </fields>
+    <fields>
+        <label><!-- Links --></label>
+        <name>Links__c</name>
+    </fields>
+    <fields>
+        <help><!-- Please describe what experience you have of developed and developing markets. Please be specific on countries and regions --></help>
+        <label><!-- Market Developing Experience --></label>
+        <name>Market_Developing_Experience__c</name>
+    </fields>
+    <fields>
+        <label><!-- Other Supporting Information --></label>
+        <name>Other_supporting_Information__c</name>
+    </fields>
+    <fields>
+        <label><!-- Outline of Project --></label>
+        <name>Outline_of_Project__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Title --></label>
+        <name>Project_Title__c</name>
+    </fields>
+    <fields>
+        <help><!-- Please provide a brief description of what strategic capabilities your agency offers, and why they would be a good fit for Unilever (Max 950 Characters) --></help>
+        <label><!-- Strategic Capabilities --></label>
+        <name>Strategic_Capabilities__c</name>
+    </fields>
+    <fields>
+        <help><!-- Unilever is committed to creating a sustainable world, please provide any information or case studies that support your agency&apos;s viewpoint on sustainability and/or  case studies that demonstrate where your design has had a positive impact on sustainabilit --></help>
+        <label><!-- Sustainability --></label>
+        <name>Sustainability__c</name>
+    </fields>
+    <fields>
+        <label><!-- Experience Type --></label>
+        <name>Unilever_Non_Unilever__c</name>
+        <picklistValues>
+            <masterLabel>Non-Unilever</masterLabel>
+            <translation><!-- Non-Unilever --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unilever</masterLabel>
+            <translation><!-- Unilever --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Video Link --></label>
+        <name>Video_Link__c</name>
+    </fields>
+    <fields>
+        <label><!-- Video --></label>
+        <name>Video__c</name>
+    </fields>
+    <recordTypes>
+        <label><!-- Experience --></label>
+        <name>Experience</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Expertise --></label>
+        <name>Expertise</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Project --></label>
+        <name>Project</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

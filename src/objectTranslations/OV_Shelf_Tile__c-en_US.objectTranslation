@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>One View Shelf Tile</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>One View Shelf Tiles</value>
+    </caseValues>
+    <fields>
+        <help><!-- hex value populated by the Related Shelf --></help>
+        <label><!-- Colour --></label>
+        <name>Colour__c</name>
+    </fields>
+    <fields>
+        <help><!-- ICON code for Salesforce1 --></help>
+        <label><!-- ICON Label --></label>
+        <name>ICON_Label__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shelf --></label>
+        <name>Shelf__c</name>
+        <relationshipLabel><!-- One View Shelf Tiles --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Sort Order --></label>
+        <name>Sort_Order__c</name>
+    </fields>
+    <fields>
+        <help><!-- Colour received from related Shelf --></help>
+        <label><!-- Tile Colour --></label>
+        <name>Tile_Colour__c</name>
+    </fields>
+    <fields>
+        <help><!-- Tile ICON Background --></help>
+        <label><!-- Tile ICON --></label>
+        <name>Tile_ICON__c</name>
+        <picklistValues>
+            <masterLabel>Briefcase</masterLabel>
+            <translation><!-- Briefcase --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Factory</masterLabel>
+            <translation><!-- Factory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Helicopter</masterLabel>
+            <translation><!-- Helicopter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lorry</masterLabel>
+            <translation><!-- Lorry --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Motorbike</masterLabel>
+            <translation><!-- Motorbike --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Signpost</masterLabel>
+            <translation><!-- Signpost --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Table</masterLabel>
+            <translation><!-- Table --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Telescope</masterLabel>
+            <translation><!-- Telescope --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tent</masterLabel>
+            <translation><!-- Tent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>World</masterLabel>
+            <translation><!-- World --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Links to whether e Subject or Moment --></help>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

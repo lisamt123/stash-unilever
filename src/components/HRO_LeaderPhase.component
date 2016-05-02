@@ -1,0 +1,6 @@
+<apex:component access="global" layout="block" controller="HRO_OnboardingTaskList_CC">
+    <apex:attribute required="true" description="Leader Start Date" access="global" id="ownerName" name="ownerName" type="String" assignTo="{!cOwnerName}"/>
+    <apex:attribute required="true" description="Leader Start Date" access="global" id="ownerId" name="ownerName" type="String" assignTo="{!cOwnerId}"/>
+    <apex:attribute required="true" description="Leader Start Date" access="global" id="startDate" name="startDate" type="Date" assignTo="{!cStartDate}"/>
+    {!leaderPhase}
+</apex:component>

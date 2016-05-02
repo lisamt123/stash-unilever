@@ -1,0 +1,739 @@
+<!--===========================================================================-->
+<!--Name:  WinatPOS_Main                                                       -->
+<!--Copyright notice:                                                          -->
+<!--===========================================================================-->
+<!--===========================================================================-->
+<!-- Purpose:                                                                  -->
+<!---------                                                                    -->
+<!--===========================================================================-->
+<!--===========================================================================-->
+<!-- History                                                                   -->
+<!-- -------                                                                   -->
+<!-- VERSION  AUTHOR           DATE              DETAIL          RELEASE/CSR   -->
+<!--   1.0 -  Darren Sabey   22/10/2013      INITIAL DEVELOPMENT               -->
+<!--===========================================================================-->
+
+<apex:component controller="WINatPOSController" >    
+    <body>
+        <div class="main_container no_text_select" id="ng-app" ng-app="project" xmlns:ng="http://angularjs.org" ng-controller="CatalogueController">
+            <div id="top_menu" style="display: none;" >
+                <div id="home_btn" ng-click="reset()">
+                    <div class="other_home"></div>
+                </div>
+                <div ng-show="page!='{!$Label.WP_Repeatable_Models_Page}'">
+                    <div id="my_channels" ng-show="page!='{!$Label.WP_In_Store_Executions_Page}'">
+                        <span class="sub_menu_text" >channels</span>
+                    </div>                
+                    <div id="my_categories"> 
+                        <span class="sub_menu_text">categories</span>
+                        <div id="sel_to_cust_categ" class="sub_menu_text">{{selectedCategoryName}}</div>
+                    </div>
+                    <div id="my_brands" style="display:block;" > 
+                        <span class="sub_menu_text">brands</span>
+                        <div id="sel_to_cust_brands" class="sub_menu_text">{{selectedBrandName}}</div>
+                    </div>
+                </div>
+                <div id="sub_menu_wp" >                    
+                    <div id="channel_list" class="channel_list" >
+                        <div >
+                            <div class="cate_group_list">
+                                <!-- <div class="category_header">Traditional</div> -->
+                                <div ng-repeat="chnl in modernChannels" ng-click="updateChannels(chnl)" ng-class="{'channel_2 not_sel_channel selected_channel':inArray(selectedChannels, chnl) != -1,'channel_2 not_sel_channel':inArray(selectedChannels, chnl) == -1}"> 
+                                    <span>{{chnl}}</span> 
+                                </div>
+                            </div>
+                            <div class="cate_group_list">
+                                <!-- <div class="category_header">Modern Trade</div> -->
+                                <div ng-repeat="chnl in traditionalChannels" ng-click="updateChannels(chnl)" ng-class="{'channel_2 not_sel_channel selected_channel':inArray(selectedChannels, chnl) != -1,'channel_2 not_sel_channel':inArray(selectedChannels, chnl) == -1}"> 
+                                    <span>{{chnl}}</span> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="category_list" class="category_list">
+                        <div>
+                            <div id="cate_group_Foods" class="cate_group_list">
+                                <div class="category_header">Foods</div>
+                                <div ng-repeat="cat in categories | filter: { Parent_Category_Name__c: 'Foods' }:true" ng-class="{'not_sel_category':selectedCategoryId!=cat.Id,'not_sel_category selected_category':selectedCategoryId==cat.Id}" ng-click="updateCategory(cat)"> 
+                                    <span>{{cat.Name}}</span>
+                                </div>
+                            </div>
+                            <div id="cate_group_Home Care" class="cate_group_list">
+                                <div class="category_header">Home Care</div>
+                                <div ng-repeat="cat in categories | filter: { Parent_Category_Name__c: 'Home Care' }:true" ng-class="{'not_sel_category':selectedCategoryId!=cat.Id,'not_sel_category selected_category':selectedCategoryId==cat.Id}" ng-click="updateCategory(cat)"> 
+                                    <span>{{cat.Name}}</span>
+                                </div>
+                            </div>
+                            <div id="cate_group_Personal Care" class="cate_group_list">
+                                <div class="category_header">Personal Care</div>
+                                <div ng-repeat="cat in categories | filter: { Parent_Category_Name__c: 'Personal Care' }:true" ng-class="{'not_sel_category':selectedCategoryId!=cat.Id,'not_sel_category selected_category':selectedCategoryId==cat.Id}" ng-click="updateCategory(cat)"> 
+                                    <span>{{cat.Name}}</span>
+                                </div>
+                            </div>
+                            <div id="cate_group_Refreshments" class="cate_group_list">
+                                <div class="category_header">Refreshments</div>
+                                <div ng-repeat="cat in categories | filter: { Parent_Category_Name__c: 'Refreshments' }:true" ng-class="{'not_sel_category':selectedCategoryId!=cat.Id,'not_sel_category selected_category':selectedCategoryId==cat.Id}" ng-click="updateCategory(cat)"> 
+                                    <span>{{cat.Name}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="brand_list" class="brand_list">
+                        <div>
+                            <div class="cate_group_list">
+                            <div ng-repeat="brand in brands | orderObjectBy:'Name':false" ng-class="{'not_sel_brand':selectedBrandId!=brand.Id,'not_sel_brand selected_brand':selectedBrandId==brand.Id}" ng-click="updateBrand(brand)"> 
+                                    <span>{{brand.Name}}</span>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="close_btn"></div>
+                </div>
+                <div id="back_btn" ng-click="backToSearchResults()" ng-show="showBackToSearch"> 
+                    <span>back to results</span>
+                </div>
+            </div>
+            
+            <div id="display_container" class="jspScrollable" tabindex="0">
+                <div class="jspContainer">
+                    <div class="jspPane">
+                        <div id="left_menu" class="left_menu" style="display:none;">
+                            <div id="left_menu_cont" class="left_menu_cont" >
+                                <div class="empty_line" style="border: none;"></div>
+                                <div class="filter filter2">filters engine</div>
+                                <div class="filter">Placements</div>
+                                <div ng-repeat="p in placements" ng-click="updatePlacements(p);"  ng-class="{'left_channel left_seltd_channel':inArray(selectedPlacements, p) != -1,'left_channel':inArray(selectedPlacements, p) == -1}">
+                                    <span>{{p}}</span>
+                                </div>
+                                <div class="empty_line" ></div>
+                                <div class="filter">Clusters</div>
+                                <div ng-repeat="c in clusters" ng-click="updateClusters(c);"  ng-class="{'left_channel left_seltd_channel':inArray(selectedClusters, c) != -1,'left_channel':inArray(selectedClusters, c) == -1}">
+                                    <span>{{c}}</span>
+                                </div>
+                                <div class="empty_line" ></div>                                
+                            </div>
+                        </div>
+                        <div id="right_side">
+                            <!-- Category or brand level files -->
+                            <div id="file_downloads" ng-show="showFiles" style="display:none;">                            
+                                <div id="cont_downloads">
+                                    <div class="results_header">{{labels.fileLabel}}</div>
+                                    <div ng-repeat="f in files | filter: filterDownloadFiles">             
+                                        <div class="file_display">
+                                            <section class="section">
+                                                <div class="button_text">{{f.Name}}</div>
+                                                <div class="divider_image"><img src="{!URLFOR($Resource.winatpos,'winatpos/button/img/divider.jpg')}"/></div>
+                                                <div class="icons">
+                                                    <div class="download_text1">{{{true: 'DOWNLOAD', false: f.File_Button_Text__c}[f.File_Button_Text__c == null]}}</div>
+                                                    <div class="bar_division"><img src="{!URLFOR($Resource.winatpos,'winatpos/button/img/bars.jpg')}"/></div>
+                                                    <div class="single_icon" style="left:0px"><img ng-show="f.Show_Artwork__c=='visible'" ng-click="processFileButtonClick(f)" src="{!URLFOR($Resource.winatpos,'winatpos/button/img/all.png')}"/></div> 
+                                                    <div class="single_icon" style="left:3px"><img ng-show="f.Show_Production_Engineering__c=='visible'" ng-click="processFileButtonClick(f)" src="{!URLFOR($Resource.winatpos,'winatpos/button/img/settings.png')}"/></div>
+                                                    <div class="single_icon" style="left:6px"><img ng-show="f.Show_Presentation__c=='visible'" ng-click="processFileButtonClick(f)" src="{!URLFOR($Resource.winatpos,'winatpos/button/img/presentation.png')}" /></div>
+                                                    <div class="single_icon" style="left:9px"><img ng-show="f.Show_Download_Image__c=='visible'" ng-click="processFileButtonClick(f)" src="{!URLFOR($Resource.winatpos,'winatpos/button/img/camera.png')}"/></div>
+                                                 </div>
+                                            </section>
+                                            <footer class="footer"/>    
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Asset groups (for innovations or repeatable models -->
+                                
+                            <div id="asset_groups"  ng-show="showAssetGroups" style="display:none;">                        
+                                <div ng-repeat="ag in assetGroups | filter:matchOnClusters">
+                                    <div class="inn_project" id="project_110" ng-click="showAssetGroup(ag)" style="cursor:pointer;background: url('{!URLFOR($Resource.winatpos,'winatpos/innovations-icon.png')}') no-repeat;">
+                                        <div class="inn_project_name">{{ag.Name}}</div>
+                                        <div class="inn_project_date">{{ag.Description__c}}</div> 
+                                        <div class="download_text_inn">CLICK TO LOAD</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row-fluid"></div>
+                            <!-- Assets retrieved by filter criteria -->
+                            <div id="asset_displays" class="asset_displays" style="display:none;" ng-show="showAssetDisplays" >
+                                <div class="results_header">{{labels.assetsLabel}}</div>
+                                <div ng-repeat="a in assets | filter:filterAssets" class="asset_display_container">
+                                    <div class="asset_display">
+                                        <header class="asset_display_header">
+                                            <img src="{{a.feedURL}}" class="asset_display_image" ng-click="showAsset(a)"/>  
+                                        </header>
+                                        <section class="section">
+                                            <div class="button_text">{{a.sobj.Name}}</div>
+                                            <div class="divider_image"><img src="{!URLFOR($Resource.winatpos,'winatpos/button/img/divider.jpg')}"/></div>
+                                            <div class="icons">
+                                                <div class="download_text1">DOWNLOAD</div>
+                                                <div class="bar_division"><img src="{!URLFOR($Resource.winatpos,'winatpos/button/img/bars.jpg')}"/></div>
+                                                <div class="single_icon" style="left:0px"><img ng-show="a.artworkURL!=''" ng-click="processAssetButtonClick(a.artworkURL)" src="{!URLFOR($Resource.winatpos,'winatpos/button/img/all.png')}"/></div> 
+                                                <div class="single_icon" style="left:3px"><img ng-show="a.productionEngineeringURL!=''" ng-click="processAssetButtonClick(a.productionEngineeringURL)" src="{!URLFOR($Resource.winatpos,'winatpos/button/img/settings.png')}"/></div>
+                                                <div class="single_icon" style="left:6px"><img ng-show="a.presentationURL!=''" ng-click="processAssetButtonClick(a.presentationURL)" src="{!URLFOR($Resource.winatpos,'winatpos/button/img/presentation.png')}"/></div>
+                                                <div class="single_icon" style="left:9px"><img ng-show="a.downloadImageURL!=''" ng-click="processAssetButtonClick(a.downloadImageURL)" src="{!URLFOR($Resource.winatpos,'winatpos/button/img/camera.png')}"/></div>
+                                            </div>
+                                        </section>
+                                        <footer class="footer"/>
+                                    </div>                                   
+                                </div>
+                            </div>
+                            
+                            <div class="row-fluid"></div>
+                            
+                            <!-- Asset detail - individual asset has been selected -->
+                            <div id="asset_detail" ng-show="showAssetDetail" style="display:none;">
+                                <div class="element_name">{{selectedAsset.Name}}</div>
+                                <div id="viewport" class="element_view">
+                                    <img class="asset_image_view" src="{{selectedImageURL}}"/>
+                                </div>
+                                <div class="element_detail">
+                                    <div class="header_infor">{{labels.category}}</div>
+                                    <div class="element_details">{{selectedAsset.Category__r.Name}}</div>
+                                    <div class="header_infor">{{labels.brand}}</div>
+                                    <div class="element_details">{{selectedAsset.Brand__r.Name}}</div>
+                                    <div class="header_infor">{{labels.channels}}</div>
+                                    <div class="element_details" ng-repeat="channel in selectedAsset.channels" >{{channel}}</div>
+                                    <div ng-show="page!='{!$Label.WP_In_Store_Executions_Page}'">
+                                        <div class="header_infor">{{labels.linkToBET}}</div>
+                                        <div class="element_details" ><apex:outputLink value="/{{selectedAsset.BET__c}}" target="_blank">{{selectedAsset.BET__r.Name}}</apex:outputLink></div>
+                                    </div>                                        
+                                </div>
+                                <div class="view_cont">
+                                    <div ng-repeat="f in files | filter: {Type__c:'{!$Label.WP_File_Type_Image}'}" ng-click="showImage(f);" ng-class="{'normalview_btn seltd_view_btn':selectedImageId == f.Id,'view_btn':selectedImageId != f.Id}" > 
+                                        <span>{{f.Name}}</span>
+                                    </div>
+                                </div>                                    
+                            </div>    
+                             
+                            <div id="toolkit_detail" ng-show="showToolkitDetail" style="display:none;">
+                                <div class="asset_display">
+                                        <header class="asset_display_header" ng-show="selectedFile.Feed_Thumbnail_URL__c!='undefined'" >
+                                            <img src="{{selectedFile.Feed_Thumbnail_URL__c}}" alt="No Preview Available" class="asset_display_image"/>
+                                        </header>
+                                        <header class="asset_display_header" ng-show="selectedFile.Feed_Thumbnail_URL__c=='undefined'">
+                                            <img src="{!URLFOR($Resource.winatpos,'winatpos/no_preview.jpg')}" alt="No Preview Available" class="asset_display_image"/>  
+                                        </header>
+                                        <section class="section">
+                                            <div class="button_text">{{selectedFile.Name}}</div>
+                                            <div class="divider_image"><img src="{!URLFOR($Resource.winatpos,'winatpos/button/img/divider.jpg')}"/></div>
+                                            <div class="icons">
+                                                <div class="download_text1">DOWNLOAD</div>
+                                                <div class="bar_division"><img src="{!URLFOR($Resource.winatpos,'winatpos/button/img/bars.jpg')}"/></div>
+                                                <div class="single_icon" style="left:0px"><img ng-show="selectedFile.Show_Artwork__c=='visible'" ng-click="processFileButtonClick(selectedFile)" src="{!URLFOR($Resource.winatpos,'winatpos/button/img/all.png')}"/></div> 
+                                                <div class="single_icon" style="left:3px"><img ng-show="selectedFile.Show_Production_Engineering__c=='visible'" ng-click="processFileButtonClick(selectedFile)" src="{!URLFOR($Resource.winatpos,'winatpos/button/img/settings.png')}"/></div>
+                                                <div class="single_icon" style="left:6px"><img ng-show="selectedFile.Show_Presentation__c=='visible'" ng-click="processFileButtonClick(selectedFile)" src="{!URLFOR($Resource.winatpos,'winatpos/button/img/presentation.png')}"/></div>
+                                                <div class="single_icon" style="left:9px"><img ng-show="selectedFile.Show_Download_Image__c=='visible'" ng-click="processFileButtonClick(selectedFile)" src="{!URLFOR($Resource.winatpos,'winatpos/button/img/camera.png')}"/></div>
+                                            </div>
+                                        </section>
+                                        <footer class="footer"/>
+                                    </div>
+                            </div>
+                            
+                            <!-- Chatter feed -->
+                            <div id="chatter_feed" ng-show="showChatterFeed" style="display:none;">
+                                <c:WinatPOSChatterFeed entityId="{!chatterEntityId}" id="chatterForm"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-fluid"></div>
+                </div>                  
+            </div>
+        </div>                       
+        <div class="row-fluid"></div>
+                          
+        <script>
+        
+            var app = angular.module('project', []);
+            <!--Code added to fix Sort issue-->
+            app.filter('orderObjectBy', function() {
+              return function(items, field, reverse) {
+                var filtered = [];
+                angular.forEach(items, function(item) {
+                  filtered.push(item);
+                });
+                filtered.sort(function (a, b) {
+                  return (a[field] > b[field] ? 1 : -1);
+                });
+                if(reverse) filtered.reverse();
+                return filtered;
+              };
+            });
+            
+            
+            app.controller('CatalogueController', ['$scope', function($scope) {
+                var showMap = {};
+                showMap['winatpos_masterbrand initial'] = {files:false,assetDisplays:false,assetGroups:false,assetDetail:false,chatterFeed:false,backToSearch:false};
+                showMap['winatpos_masterbrand showbrands'] = {files:true,assetDisplays:false,assetGroups:false,assetDetail:false,chatterFeed:false,backToSearch:false};
+                showMap['winatpos_masterbrand showassets'] = {files:true,assetDisplays:true,assetGroups:false,assetDetail:false,chatterFeed:false,backToSearch:false};
+                showMap['winatpos_masterbrand showasset'] = {files:true,assetDisplays:false,assetGroups:false,assetDetail:true,chatterFeed:true,backToSearch:true};
+                
+                showMap['winatpos_innovations initial'] = {files:false,assetDisplays:false,assetGroups:false,assetDetail:false,toolkitDetail:false,chatterFeed:false,backToSearch:false};
+                showMap['winatpos_innovations showassetgroups'] = {files:false,assetDisplays:false,assetGroups:true,assetDetail:false,toolkitDetail:false,chatterFeed:false,backToSearch:false};
+                showMap['winatpos_innovations showbrands'] = {files:false,assetDisplays:false,assetGroups:false,assetDetail:false,toolkitDetail:false,chatterFeed:false,backToSearch:false};
+                showMap['winatpos_innovations showassets'] = {files:true,assetDisplays:true,assetGroups:false,assetDetail:false,toolkitDetail:false,chatterFeed:false,backToSearch:true};
+                showMap['winatpos_innovations showasset'] = {files:true,assetDisplays:false,assetGroups:false,assetDetail:true,toolkitDetail:false,chatterFeed:true,backToSearch:true};
+                showMap['winatpos_innovations showtoolkit'] = {files:false,assetDisplays:false,assetGroups:false,assetDetail:false,toolkitDetail:true,chatterFeed:true,backToSearch:true};
+                
+                showMap['winatpos_instoreexecutions initial'] = {files:false,assetDisplays:false,assetGroups:false,assetDetail:false,chatterFeed:false,backToSearch:false};
+                showMap['winatpos_instoreexecutions showbrands'] = {files:false,assetDisplays:false,assetGroups:false,assetDetail:false,chatterFeed:false,backToSearch:false};
+                showMap['winatpos_instoreexecutions showassets'] = {files:false,assetDisplays:true,assetGroups:false,assetDetail:false,chatterFeed:false,backToSearch:false};
+                showMap['winatpos_instoreexecutions showasset'] = {files:true,assetDisplays:false,assetGroups:false,assetDetail:true,chatterFeed:true,backToSearch:true};
+                
+                showMap['winatpos_repeatablemodels initial'] = {files:false,assetDisplays:false,assetGroups:false,assetDetail:false,chatterFeed:false,backToSearch:false};
+                showMap['winatpos_repeatablemodels showassetgroups'] = {files:false,assetDisplays:false,assetGroups:true,assetDetail:false,chatterFeed:false,backToSearch:false};
+                showMap['winatpos_repeatablemodels showassets'] = {files:true,assetDisplays:true,assetGroups:false,assetDetail:false,chatterFeed:false,backToSearch:true};
+                showMap['winatpos_repeatablemodels showasset'] = {files:true,assetDisplays:false,assetGroups:false,assetDetail:true,chatterFeed:true,backToSearch:true};
+                showMap['winatpos_repeatablemodels showtoolkit'] = {files:false,assetDisplays:false,assetGroups:false,assetDetail:false,toolkitDetail:true,chatterFeed:true,backToSearch:true};
+                
+                $scope.reset = function () {
+
+                    $scope.page = '{!$CurrentPage.Name}';
+                    $scope.mode = '{!mode}';
+                    $scope.selectedPlacements = new Array();
+                    $scope.selectedClusters = new Array();
+                    $scope.selectedChannels = new Array();
+                    
+                    // If a valid betId was passed to the page then set the category and brand
+                    if ('{!cat.Name}' == '{!$Label.WP_Select_Category}') {
+                        $scope.selectedCategoryName = '{!$Label.WP_Select_Category}';
+                        $scope.selectedCategoryId = null;    
+                    } else {
+                        var cat = {Name:'{!cat.Name}',Id:'{!cat.Id}'};
+                        $scope.updateCategory(cat);
+                    }
+                    
+                    if ('{!brand.Name}' == '{!$Label.WP_Select_Brand}') {
+                        $scope.selectedBrandName = '{!$Label.WP_Select_Brand}';
+                        $scope.selectedBrandId = null;    
+                    } else {
+                        var brand = {Name:'{!brand.Name}',Id:'{!brand.Id}'};
+                        $scope.updateBrand(brand);
+                    }
+                    
+                    $scope.selectedAsset = null;
+                    $scope.selectedFile = null;
+                    $scope.selectedImageId = null;
+                    $scope.selectedImageURL = null;
+                   
+                    $scope.modernChannels = null;
+                    $scope.traditionalChannels = null;
+                    $scope.channels = null;
+                    $scope.categories = null;
+                    $scope.brands = null;
+                    $scope.placements = null;
+                    $scope.clusters = null;
+                    
+                    $scope.assetGroups = null;
+                    $scope.assets = null;
+                    $scope.assetRangeFiles = null;
+                    $scope.files = null;
+                            
+                    $scope.retrieveChannelsAndCategories();
+                    $scope.resetLabels(true);
+                    
+                    if ($scope.page == '{!$Label.WP_Repeatable_Models_Page}') {                
+                        $scope.retrieveAssetGroups(null, $scope.mode);
+                    } else {
+                        $scope.show('initial');
+                    }
+                }
+                
+                $scope.resetLabels = function (clear) {
+                    $scope.labels = {};
+                    $scope.labels.fileLabel = clear ? '': 'File Downloads';
+                    $scope.labels.assetsLabel = clear ? '': 'Display Range';
+                    $scope.labels.category = clear ? '': 'Category';
+                    $scope.labels.brand = clear ? '': 'Brand';
+                    $scope.labels.channels = clear ? '': 'Channels';
+                    $scope.labels.linkToBET = clear ? '': 'Link to BET';                        
+                }
+                
+                $scope.show = function (view) {
+                    var key = $scope.page.toLowerCase() + " " + view.toLowerCase();
+                    
+                    var arr = showMap[key];
+                    $scope.showFiles = arr['files']; 
+                    $scope.showAssetDisplays = arr['assetDisplays']; 
+                    $scope.showAssetGroups = arr['assetGroups']; 
+                    $scope.showAssetDetail = arr['assetDetail'];
+                    $scope.showToolkitDetail = arr['toolkitDetail']; 
+                    $scope.showChatterFeed = arr['chatterFeed'];
+                    $scope.showBackToSearch = arr['backToSearch'];
+                }
+                
+                $scope.inArray = function (arr, val) {
+                    for (i = 0; i < arr.length; i++) {
+                        if (arr[i] == val) return i;
+                    }
+                    return -1;
+                }
+                
+                $scope.updateChannels = function (chnl) {
+                    var i = $scope.inArray($scope.selectedChannels, chnl);
+                    if (i == -1) {
+                        $scope.selectedChannels.push(chnl);
+                    } else {
+                        $scope.selectedChannels.splice(i, 1);
+                    }
+                }
+
+                $scope.updatePlacements = function (p) {
+                    var i = $scope.inArray($scope.selectedPlacements, p);
+                    if (i == -1) {
+                        $scope.selectedPlacements.push(p);
+                    } else {
+                        $scope.selectedPlacements.splice(i, 1);
+                    }
+                }
+                
+                $scope.updateClusters = function (c) {
+                    var i = $scope.inArray($scope.selectedClusters, c);
+                    if (i == -1) {
+                        $scope.selectedClusters.push(c);
+                    } else {
+                        $scope.selectedClusters.splice(i, 1);
+                    }
+                }
+
+                $scope.updateCategory = function (cat) {
+                    delete $scope.files;
+                    delete $scope.assets;
+                    delete $scope.assetGroups;
+                    delete $scope.brands;
+                    delete $scope.placements;
+                    delete $scope.clusters;
+                    $scope.selectedPlacements = new Array();
+                    $scope.selectedClusters = new Array();
+                    $scope.resetLabels(true);
+                    $scope.selectedBrandName = '{!$Label.WP_Select_Brand}';
+                    $scope.selectedBrandId = null;
+                    $scope.selectedCategoryId = cat.Id;
+                    $scope.selectedCategoryName = cat.Name;
+                    $scope.retrieveBrands(cat.Id);
+                    if ($scope.page == '{!$Label.WP_Innovations_Page}') {
+                        $scope.show('showBrands');                        
+                    } else {
+                        $scope.retrieveFilesForCategory($scope.selectedCategoryId, $scope.mode);
+                    }                        
+                    $('#sub_menu_wp, #category_list').hide();
+                }
+
+                $scope.updateBrand = function (b) {
+                    delete $scope.files;
+                    delete $scope.assets;
+                    $scope.resetLabels(true);
+                    $scope.selectedBrandId = b.Id;
+                    $scope.selectedBrandName = b.Name;
+                    if ($scope.page == '{!$Label.WP_Innovations_Page}') {
+                        $scope.retrieveAssetGroups($scope.selectedBrandId, $scope.mode);
+                    } else {
+                        $scope.retrieveAssets(null, $scope.selectedCategoryId, $scope.selectedBrandId, $scope.mode);
+                    }
+                    $('#sub_menu_wp, #brand_list').hide();                        
+                }
+                
+                $scope.showAssetGroup = function (ag) {
+                    delete $scope.assetGroups;
+                    $scope.retrieveAssets(ag.Id, null, $scope.selectedBrandId, $scope.mode);
+                }
+                                     
+                $scope.showAsset = function (a) {
+                    window.scrollTo(0, 0);
+                    $scope.resetLabels(true);
+                    $scope.selectedAsset = a.sobj;
+                    $scope.selectedAsset.files = a.files;
+                    if (typeof a.sobj.Channels__c !== "undefined") {
+                        var div = document.createElement('div');
+                        div.innerHTML = a.sobj.Channels__c;
+                        var decoded = div.firstChild.nodeValue;
+                        $scope.selectedAsset.channels = decoded.split(';');
+                    }
+                    $scope.files = $scope.selectedAsset.files;
+                    for (var i = 0; i < $scope.files.length; i++) {
+                        if ($scope.files[i].Type__c == '{!$Label.WP_File_Type_Image}') {
+                            if ($scope.files[i].Is_Primary_Image__c == true) {
+                                $scope.selectedImageId = $scope.files[i].Id;
+                                $scope.selectedImageURL = $scope.files[i].Feed_URL__c;
+                                break;                                                   
+                            }
+                        }
+                    }
+                    updateChatterEntityIdJS(a.sobj.Id);
+                    $scope.resetLabels(false);
+                    $scope.show('showAsset');
+                }
+                
+                $scope.showImage = function (f) {
+                    $scope.selectedImageId = f.Id;
+                    $scope.selectedImageURL = f.Feed_URL__c;                    
+                }
+                
+                $scope.backToSearchResults = function () {
+                    if ((($scope.page == '{!$Label.WP_Repeatable_Models_Page}') || ($scope.page == '{!$Label.WP_Innovations_Page}')) && $scope.showAssetDisplays) {
+                        window.scrollTo(0, 0);
+                        $scope.resetLabels(true);
+                        delete $scope.files;
+                        delete $scope.assets;
+                        $scope.retrieveAssetGroups($scope.selectedBrandId, $scope.mode);
+                    } else {
+                        window.scrollTo(0, 0);
+                        $scope.resetLabels(true);
+                        $scope.files = $scope.assetRangeFiles;
+                        $scope.resetLabels(false);
+                        $scope.show('showAssets');
+                    }
+                }
+                
+                $scope.processAssetButtonClick = function (aURL) {
+                    if (aURL.indexOf('winatposprintableview') != -1) {
+                        window.open(aURL + '&mode={!mode}', '_blank');
+                    } else {
+                        window.location = aURL;
+                    }
+                }
+                
+                $scope.processFileButtonClick = function (f) {
+                    if (f.Feed_URL__c !== 'undefined') {
+                        if (f.Type__c == '{!$Label.WP_File_Type_Download}') {
+                            window.location = f.Feed_URL__c;                    
+                        } else if (f.Type__c == '{!$Label.WP_File_Type_Generated}') {
+                            if (f.Feed_URL__c.indexOf('winatposprintableview') != -1) {
+                                window.open(f.Feed_URL__c + '&mode={!mode}', '_blank');
+                            }
+                        } else if (f.Type__c == '{!$Label.WP_File_Type_Toolkit}') {
+                            if ($scope.showToolkitDetail == true) {
+                                window.location = f.Feed_URL__c;
+                            } else {
+                                var div = document.createElement('div');
+                                div.innerHTML = f.Feed_Thumbnail_URL__c;
+                                var decoded = div.firstChild.nodeValue;
+                                f.Feed_Thumbnail_URL__c = decoded;
+                                $scope.selectedFile =  f;
+                                updateChatterEntityIdJS(f.Id); 
+                                $scope.show("showToolkit");
+                            }                            
+                        }                                                      
+                    }
+                }
+                
+                $scope.filterAssets = function(a) {
+                    if (! $scope.matchOnChannels(a)) {
+                        return false;
+                    } 
+                    if (! $scope.matchOnPlacements(a)) {
+                        return false;
+                    }
+                    if (! $scope.matchOnClusters(a)) {
+                        return false;
+                    }
+                    return true;
+                }
+                
+                $scope.matchOnChannels = function(a) {
+                    if ($scope.selectedChannels.length == 0) {                                       
+                        return true; // No channels were selected so there are no filters to apply
+                    } else {
+                        for (var i = 0; i < $scope.selectedChannels.length; i++) {
+                            if (a.sobj.Channels__c != null) {
+                                var arr = a.sobj.Channels__c.split(";");
+                                for (var j = 0; j < arr.length; j++) {
+                                    if ($scope.selectedChannels[i] == arr[j]) {                                    
+                                        return true; 
+                                    }                                
+                                }
+                            }                         
+                        }
+                        return false; // Channels were selected but none matched  
+                    }                               
+                }
+                
+                $scope.matchOnPlacements = function(a) {
+                    if ($scope.selectedPlacements.length == 0) {                                       
+                        return true; // No placements were selected so there are no filters to apply
+                    } else {
+                        for (var i = 0; i < $scope.selectedPlacements.length; i++) {
+                            if ($scope.selectedPlacements[i] == a.sobj.Placement__c) {                                    
+                                return true; 
+                            }
+                        }
+                        return false; // Placements were selected but none matched  
+                    }                               
+                }
+                
+                $scope.matchOnClusters = function(a) {                  
+                    if ($scope.selectedClusters.length == 0) {                                       
+                        return true; // No clusters were selected so there are no filters to apply
+                    } else {
+                        var obj = (typeof a.sobj === "undefined") ? a : a.sobj; // Work for assets and asset groups
+                        for (var i = 0; i < $scope.selectedClusters.length; i++) {
+                            if ($scope.selectedClusters[i] == obj.Market_Cluster__c) {                                    
+                                return true; 
+                            }
+                        }
+                        return false; // Clusters were selected but none matched  
+                    }                               
+                }                                
+                
+                $scope.filterDownloadFiles = function(f) {
+                    if (f.Type__c != '{!$Label.WP_File_Type_Image}') {
+                        return true;
+                    } else {
+                        return false;
+                    }                                         
+                }
+                
+                $scope.retrieveAssets = function (assetGroupId, catId, brandId, mode) {
+                    Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.WINatPOSController.retrieveAssets}', assetGroupId, catId, brandId, mode,
+                    function (result, event) {
+                        $scope.$apply(function () {
+                            $scope.assetRangeFiles = result.files;
+                            $scope.files = $scope.assetRangeFiles;
+                            $scope.assets = result.assets;
+                            $scope.placements = result.placements;
+                            $scope.clusters = result.clusters;
+                            $scope.selectedPlacements = new Array();
+                            $scope.selectedClusters = new Array();
+                            $scope.resetLabels(false);
+                            $scope.show('showAssets');
+                        });
+                    }, {escape: false});
+                }
+                
+                $scope.retrieveAssetGroups = function (brandId, mode) {
+                    Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.WINatPOSController.retrieveAssetGroups}', brandId, mode,
+                    function (result, event) {
+                        $scope.$apply(function () {
+                            $scope.assetGroups = result.assetGroups;
+                            $scope.placements = null;
+                            $scope.clusters = result.clusters;
+                            $scope.selectedPlacements = new Array();
+                            $scope.selectedClusters = new Array();
+                            $scope.show('showAssetGroups');                            
+                        });
+                    }, {escape: false});
+                }
+
+                $scope.retrieveFilesForCategory = function (id, mode) {
+                    Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.WINatPOSController.retrieveFiles}', null, id, null, null, mode,
+                    function (result, event) {
+                        $scope.$apply(function () {
+                            $scope.files = result;
+                            $scope.resetLabels(false);
+                            $scope.show('showBrands');
+                        });
+                    }, {escape: false});
+                }
+
+                $scope.retrieveChannelsAndCategories = function () {
+                    Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.WINatPOSController.getChannelsAndCategories}',
+                    function (result, event) {
+                        $scope.$apply(function () {
+                            $scope.categories = result.categories;
+                            $scope.modernChannels = result.modernChannels;
+                            $scope.traditionalChannels = result.traditionalChannels;
+                        });
+                    }, {escape: false});
+                }
+               
+
+                $scope.retrieveBrands = function (catId) {
+                    Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.WINatPOSController.retrieveBrandsForCategory}', catId,
+                    function (result, event) {
+                          $scope.$apply(function () {
+                            $scope.brands = result;
+                        });
+                    }, 
+                    {escape: false});
+                    }
+               $scope.reset();
+             }]);
+
+            angular.element(document).ready(function () {
+                //var e = window.document.getElementById("ng-app");
+                //var controller = angular.element(e).controller();
+                //var $scope = angular.element(window.document.getElementById("ng-app")).scope();
+            });
+                    
+            // Stop the bouncing of the webview on iPad
+            document.ontouchmove = function (event) {
+                event.preventDefault();
+            }
+
+            //Binding click events for iPad
+            mouse_touch = (navigator.userAgent.match(/iPad/i)) ? "touchstart" : "click";
+            //Stop Text election on selected items
+            $(function () {
+                $.extend($.fn.disableTextSelect = function () {
+                    return this.each(function () {
+                        if ($.browser.mozilla) { //Firefox
+                            $(this).css('MozUserSelect', 'none');
+                        } else if ($.browser.msie) { //IE
+                            $(this).bind('selectstart', function () {
+                                return false;
+                            });
+                        } else { //Opera, etc.
+                            $(this).mousedown(function () {
+                                return false;
+                            });
+                        }
+                    });
+                });
+                $('.mm_design_review_sub, .mm_buying_window_sub,.mm_equity_communicator_sub').disableTextSelect(); //No text selection on elements with selected class.'
+            });
+            
+            $(document).ready(function () {
+                $('#top_menu').show();
+                $('#left_menu').show();
+                $('#sub_menu_wp').hide();
+                
+                Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.WINatPOSController.upsertAppUsage}', function (result, event) {});
+                
+                $(document).on(mouse_touch, '#my_channels', function () {
+                    if ($('#channel_list').css('display') == 'none') {
+                        $('#sub_menu_wp').css('background', '#f8f8f8').show();
+                        $('#channel_list').show();
+                        $('#category_list').hide();    
+                        $('#brand_list').hide();                
+                    } else {
+                        $('#sub_menu_wp, #channel_list').hide();
+                    }   
+                });
+                
+                $(document).on(mouse_touch, '#my_categories', function () {
+                    if ($('#category_list').css('display') == 'none') {
+                        $('#sub_menu_wp').css('background', '#f8f8f8').show();
+                        $('#channel_list').hide();
+                        $('#category_list').show();    
+                        $('#brand_list').hide();         
+                    } else {
+                        $('#sub_menu_wp, #category_list').hide();
+                    }   
+                });
+                
+                $(document).on(mouse_touch, '#my_brands', function () {
+                    if ($('#brand_list').css('display') == 'none') {
+                        $('#sub_menu_wp').css('background', '#f8f8f8').show();
+                        $('#channel_list').hide();
+                        $('#category_list').hide();    
+                        $('#brand_list').show();                
+                    } else {
+                        $('#sub_menu_wp, #brand_list').hide();
+                    }   
+                });
+            });             
+
+            $(document).on(mouse_touch, '#display_container', function () {
+                $('#sub_menu_wp, #category_list, #brand_list').hide();             
+            });
+               
+            $(document).on(mouse_touch, '#close_btn', function () {
+                $('#sub_menu_wp, #category_list, #brand_list').hide();
+            });                        
+        </script>
+    </body>
+    <apex:form >
+        <apex:actionFunction action="{!updateChatterEntityId}" name="updateChatterEntityIdJS" rerender="chatterForm">
+            <apex:param name="chatterEntityId" assignTo="{!chatterEntityId}" value="" />
+        </apex:actionFunction>
+    </apex:form>         
+</apex:component>

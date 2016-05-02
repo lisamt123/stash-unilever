@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>OV Trigger Enablement</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>OV Trigger Enablement</value>
+    </caseValues>
+    <fields>
+        <label><!-- ContentDocument --></label>
+        <name>ContentDocument__c</name>
+    </fields>
+    <fields>
+        <label><!-- ContentProxy --></label>
+        <name>ContentProxy__c</name>
+    </fields>
+    <fields>
+        <label><!-- KPIElement --></label>
+        <name>KPIElement__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

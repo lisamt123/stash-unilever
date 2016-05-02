@@ -1,0 +1,26 @@
+<!-- 
+***********************************************
+*@Description: This component is used <…..>
+*@Author: Cognizant
+*@Created Date: 27/12/2014
+*@Copyright © 2015  Unilever 
+************************************************
+-->
+
+<apex:component layout="none">
+    <apex:attribute name="title" type="String" description="TODO"/>
+    <apex:attribute name="colorClass" type="String" description="TODO"/>
+    <apex:attribute name="iconClass" type="String" description="TODO"/>
+    <apex:attribute name="description" type="String" description="TODO"/>
+    <apex:attribute name="href" type="String" description="TODO"/>
+    
+    <div class="panel {!colorClass} ipmProjectComponent">
+        <div class="teal panel-title">{!title}</div>
+        <div class="panel-body">
+            <a href="{!href}">
+                <i class="fa {!iconClass}" />
+            </a>
+            <span>{!description}</span>
+        </div>
+    </div>
+</apex:component>

@@ -1,0 +1,242 @@
+<!--====================================================-->
+<!--Name:  CEC_IssueCreationPage                        -->
+<!--Copyright notice:                                   -->
+<!--====================================================-->
+<!--====================================================-->
+<!-- Purpose:This page is used for creation of New Issue-->
+<!--====================================================-->
+<!--====================================================-->
+<!-- History                                            -->
+<!-- -------                                            -->
+<!-- VERSION  AUTHOR        DATE            DETAIL                    RELEASE/CSR     -->
+<!-- 1.0 -    Shruti        01/10/2014      INITIAL DEVELOPMENT        Sprint II       -->
+<!--====================================================-->
+<apex:page standardController="cec_Issue__c" showHeader="false" extensions="CEC_IssueCreationPageController">
+
+    <apex:includeScript value="/support/console/30.0/integration.js"/>
+    <script src="/soap/ajax/28.0/connection.js" type="text/javascript"></script>
+
+
+    <script type="text/javascript">
+        function defaultTabTitle() {
+            sforce.console.setTabTitle('Case Reason');
+        }
+
+        ﻿var pageLoad = window.onload;
+        ﻿window.onload = function() {
+            if (pageLoad) {
+                pageLoad();
+            }
+            ﻿﻿defaultTabTitle();
+        ﻿}
+    
+        function refreshPrimaryTab() {
+            sforce.console.getFocusedPrimaryTabId(doRefresh);
+        }
+        
+        var doRefresh = function doRefresh(result) {
+            sforce.console.refreshPrimaryTabById(result.id, true, refreshSuccess);
+        };
+    
+        function refreshSuccess() {}
+
+        function closeTab() {
+            sforce.console.getEnclosingTabId(closeSubtab);
+        }
+        
+        var closeSubtab = function closeSubtab(result) {
+            var tabId = result.id;
+            sforce.console.closeTab(tabId);
+        };
+    
+        knowledgeLink = '';
+        function openKnowledgeTab(link) {
+            knowledgeLink = link;
+            sforce.console.getFocusedPrimaryTabId(openSubtab);
+        }
+    
+        var openSubtab = function openSubtab(result) {
+            var primaryTabId = result.id;
+            sforce.console.openSubtab(primaryTabId , knowledgeLink, true, 'Knowledge Article', null, openSuccess, 'Knowledge Article');
+        };
+    
+
+        function openSuccess() {}
+        
+        
+        function checkForValidReasonCode(){
+           //alert('1mmmmmmmmmmmmmmmmmmmmmmmmmmm');
+           var reasonIdVal =  document.getElementById("j_id0:j_id29:j_id30:reasonId").value;
+           //alert('reasonIdVal  = ' + reasonIdVal );
+           if (reasonIdVal != '' && reasonIdVal.length == 18 ){
+               callUpdateReasonHierarchy();
+           }
+        }
+        
+        function checkForValidProductCode(){
+           var productIdVal =  document.getElementById("j_id0:j_id29:j_id30:productId").value;
+           if (productIdVal != '' && productIdVal.length == 18 ){
+               callUpdateProductHierarchy();
+           }
+        }
+        
+    </script>
+
+    <apex:pageMessages ></apex:pageMessages>        
+    <apex:form >
+
+    <apex:pageBlock title="Enter Case Reason and Product" mode="edit">
+      <apex:pageBlockButtons location="bottom" >
+        <apex:commandButton value="Add to Case" action="{!saveAndContinue}" reRender="messages,knowledgeButton,questionnaireButton" oncomplete="javascript:refreshPrimaryTab()"/>
+        <apex:outputPanel id="buttons">
+         <!-- <apex:commandButton value="View in Knowledge" action="{!setKnowledgeUrl}" disabled="{!NOT(showKnowledgeLink)}" reRender="knowledgeButton" oncomplete="javascript:openKnowledgeTab('{!knowledgeLink}')" id="knowledgeButton"/> -->
+        </apex:outputPanel>
+        <apex:commandButton value="Close" action="{!validateCloseTab}" reRender="messages" oncomplete="javascript:closeTab()"/>        
+      </apex:pageBlockButtons>
+        <apex:inputHidden value="{!cec_Issue__c.Case__c}"/>
+        <apex:inputHidden id="reasonId" value="{!reasonId}" />
+        <apex:inputHidden id="productId" value="{!productId}" />  
+      <apex:pageBlockSection columns="1" id="messages">
+        <apex:pageMessage summary="{!userMessage}" rendered="{!userMessage!=''}" severity="Info" strength="3"/>      
+        <apex:pageMessage summary="{!userWarning}" rendered="{!userWarning!=''}" severity="Warning" strength="3"/> 
+      </apex:pageBlockSection>
+
+      <apex:pageBlockSection columns="2" title="Reason" >
+          <apex:pageBlockSectionItem onDataclick="checkForValidReasonCode();">
+              <c:Typeahead searchBoxId="reasonSearchBox" object="mdm_Reason_Code__c" destinationForSelectedId="reasonId" placeholder="{!reasonName}" />   
+          </apex:pageBlockSectionItem>
+          <apex:pageBlockSectionItem >
+              <apex:outputLabel value="Reason Hierarchy"/><apex:outputLabel id="ReasonHierarchy" value="{! reasonHierarchy }"></apex:outputLabel>
+          </apex:pageBlockSectionItem>
+      </apex:pageBlockSection>
+      
+      <apex:pageBlockSection columns="2" title="Product">
+        <apex:pageBlockSectionItem onDataclick="checkForValidProductCode();">
+          <c:Typeahead searchBoxId="productSearchBox" object="mdm_Case_Product__c" destinationForSelectedId="productId" placeholder="{!productName}" searchScope="All"/>   
+        </apex:pageBlockSectionItem>
+        <apex:pageBlockSectionItem >
+          <apex:outputLabel value="Product Hierarchy"/><apex:outputLabel id="ProductHierarchy" value="{! productHierarchy }"></apex:outputLabel>
+        </apex:pageBlockSectionItem>
+      </apex:pageBlockSection>
+          
+      <apex:pageBlockSection >
+          <apex:pageBlockSectionItem >
+              <apex:commandLink value="Missing Information" action="{!toggleMissingInfoDisplay}" reRender="j_id0:j_id29:j_id30:MissingInfoSectionOuter" />
+          </apex:pageBlockSectionItem>
+       </apex:pageBlockSection>
+       
+       <apex:outputPanel id="MissingInfoSectionOuter">
+       <apex:pageBlockSection id="MissingInfoSection" columns="1" title="Missing Information" rendered="{! missingInfoSectionDisplay }" >
+           <apex:pageBlockSectionItem >
+               <apex:outputLabel value="Please Specify which details are known"></apex:outputLabel>
+           </apex:pageBlockSectionItem>
+           
+           <apex:pageBlockSectionItem >
+               Form
+               <apex:actionRegion immediate="false">
+                   <apex:inputCheckbox selected="{! cec_Issue__c.isFormKnown__c}" label="FORM" value="{! cec_Issue__c.isFormKnown__c}" >
+                       <apex:actionSupport event="onchange" action="{!updateFormAvailabilityDetails}" reRender="j_id0:j_id29:j_id30:j_id71:j_id77:ProductHierarchy, j_id0:j_id29:j_id30:MissingInfoSectionOuter"/>
+                   </apex:inputCheckbox>
+               </apex:actionRegion>
+            </apex:pageBlockSectionItem>
+            
+           <apex:pageBlockSectionItem >
+               Variant
+               <apex:actionRegion immediate="false">
+                   <apex:inputCheckbox selected="{! cec_Issue__c.isVariantKnown__c}" label="VARIANT" value="{! cec_Issue__c.isVariantKnown__c}" >
+                   <apex:actionSupport event="onchange" action="{!updateVariantAvailabilityDetails}" reRender="j_id0:j_id29:j_id30:j_id71:j_id77:ProductHierarchy"/>
+                   </apex:inputCheckbox>
+               </apex:actionRegion>
+            </apex:pageBlockSectionItem>
+            
+           
+           <apex:pageBlockSectionItem >
+               Pack Size
+               <apex:actionRegion immediate="false">
+                   <apex:inputCheckbox selected="{! cec_Issue__c.isPacksizeKnown__c}" label="PACK SIZE" value="{! cec_Issue__c.isPacksizeKnown__c}" >
+                       <apex:actionSupport event="onchange" action="{!updatePacksizeAvailabilityDetails}" reRender="j_id0:j_id29:j_id30:j_id71:j_id77:ProductHierarchy"/>
+                   </apex:inputCheckbox>
+               </apex:actionRegion>
+           </apex:pageBlockSectionItem>
+           
+           <apex:pageBlockSectionItem >
+           Category <apex:actionRegion immediate="false" >
+               <apex:selectList value="{!productCategory}" size="1"  disabled="{! (!isProductCategoryEnabled) }">
+                   <apex:selectOptions value="{!CategoryValues}"  /> 
+                   <apex:actionSupport event="onchange" action="{!updateProductCategory}" reRender="j_id0:j_id29:j_id30:j_id71:j_id77:ProductHierarchy"/>
+               </apex:selectList> 
+            </apex:actionRegion>
+            </apex:pageBlockSectionItem>
+       </apex:pageBlockSection>
+       </apex:outputPanel>
+       
+       <apex:pageBlockSection title="Other details" id="OtherDetails" >
+       <apex:outputPanel >
+       
+        <apex:pageBlockSection columns="3">
+        <apex:pageBlockSectionItem >
+           <!-- Verbatim <apex:inputText value="{!cec_Issue__c.Verbatim__c}" size="102"/> -->
+           Verbatim <apex:inputTextArea value="{!cec_Issue__c.Verbatim__c}" rows="3" cols="25"/>
+           </apex:pageBlockSectionItem>
+           <apex:pageBlockSectionItem >
+            </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem >
+            </apex:pageBlockSectionItem>
+         <apex:pageBlockSectionItem >
+            Store <apex:inputField value="{!cec_Issue__c.Store__c}" />
+             </apex:pageBlockSectionItem>
+              <apex:pageBlockSectionItem >
+           Store Location<apex:inputField value="{!cec_Issue__c.Store_Location__c}" />
+            </apex:pageBlockSectionItem>
+             <apex:pageBlockSectionItem >
+             Purchase Date <apex:inputField value="{!cec_Issue__c.Purchase_Date__c}" />
+              </apex:pageBlockSectionItem>
+
+        
+        
+
+        <apex:pageBlockSectionItem id="OtherDetailsInner">
+        Production Code 
+        <apex:actionRegion immediate="false">
+           <apex:inputField value="{!cec_Issue__c.Production_Code__c}" >
+           <apex:actionSupport event="onchange" action="{!processProductionCode}"  status="displaystatus" immediate="false" reRender="j_id0:j_id29:j_id30:OtherDetails:j_id106:j_id125:DaycodeSection, j_id0:j_id29:j_id30:OtherDetails:j_id106:j_id127:DateOfPurchaseSection" />
+           </apex:inputField>
+           </apex:actionRegion> 
+           </apex:pageBlockSectionItem>
+           <apex:pageBlockSectionItem >
+            Daycode  <apex:inputField value="{!cec_Issue__c.DayCode__c}" id="DaycodeSection"/>
+            </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem >
+           Date of Manufacture<apex:inputField value="{!cec_Issue__c.Date_of_Manufacture_str__c}" id="DateOfPurchaseSection"/>
+           </apex:pageBlockSectionItem>
+        </apex:pageBlockSection>
+        
+        
+        
+       </apex:outputPanel>
+       </apex:pageBlockSection>
+     
+      
+      <apex:pageBlockSection title="Knowledge Articles" columns="1">
+            <apex:pageBlockTable value="{!knowledgeWrapperList}" var="wrapperObj" >
+                <apex:column width="50" headerValue="Select"> <apex:inputCheckbox value="{!wrapperObj.isSelected}"></apex:inputCheckbox></apex:column>
+                <apex:column width="1000" value="{!wrapperObj.articleType }" headerValue="Type"/>
+                
+                <apex:column width="1000" headerValue="Subject">
+                
+                         
+                 <apex:outputLink value="/{!wrapperObj.articleid}"  target="_blank" > {!wrapperObj.subject} </apex:outputLink> 
+                 
+                   </apex:column>           
+            </apex:pageBlockTable>
+      </apex:pageBlockSection>
+      
+    </apex:pageBlock>
+    
+    <apex:actionFunction name="callProcessProdCode" action="{!processProductionCode}" />
+    <apex:actionFunction name="callUpdateReasonHierarchy" action="{!updateReasonHierarchy}" />
+    <apex:actionFunction name="callUpdateProductHierarchy" action="{!updateProductHierarchy}" />
+    
+    
+  </apex:form>
+</apex:page>

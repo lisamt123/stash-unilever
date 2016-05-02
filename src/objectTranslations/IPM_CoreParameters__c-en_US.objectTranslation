@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>IPM CoreParameters</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>IPM CoreParameters</value>
+    </caseValues>
+    <fields>
+        <label><!-- Company --></label>
+        <name>IPMCompany__c</name>
+        <picklistValues>
+            <masterLabel>GIC HHC</masterLabel>
+            <translation><!-- GIC HHC --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Platform --></label>
+        <name>IPMPlatform__c</name>
+        <picklistValues>
+            <masterLabel>Sample 1</masterLabel>
+            <translation><!-- Sample 1 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Project Span --></label>
+        <name>IPMProject_Span__c</name>
+        <picklistValues>
+            <masterLabel>Global</masterLabel>
+            <translation><!-- Global --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Project Type --></label>
+        <name>IPMProject_Type__c</name>
+        <picklistValues>
+            <masterLabel>Original</masterLabel>
+            <translation><!-- Original --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Region --></label>
+        <name>IPMRegion__c</name>
+        <picklistValues>
+            <masterLabel>Europe</masterLabel>
+            <translation><!-- Europe --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Answer of Q1 --></label>
+        <name>IPM_Answer_of_Q1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Answer of Q2 --></label>
+        <name>IPM_Answer_of_Q2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Answer of Q3 --></label>
+        <name>IPM_Answer_of_Q3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Category Group --></label>
+        <name>IPM_Category_Group__c</name>
+        <picklistValues>
+            <masterLabel>Home Care</masterLabel>
+            <translation><!-- Home Care --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Category --></label>
+        <name>IPM_Category__c</name>
+        <picklistValues>
+            <masterLabel>Household Care</masterLabel>
+            <translation><!-- Household Care --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IsCompleted --></label>
+        <name>IPM_IsCompleted__c</name>
+    </fields>
+    <fields>
+        <label><!-- Market --></label>
+        <name>IPM_Market__c</name>
+        <picklistValues>
+            <masterLabel>Dishwash</masterLabel>
+            <translation><!-- Dishwash --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Household Cleaning</masterLabel>
+            <translation><!-- Household Cleaning --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IPM Project --></label>
+        <name>IPM_Project__c</name>
+        <relationshipLabel><!-- IPM CoreParameters --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Sector --></label>
+        <name>IPM_Sector__c</name>
+        <picklistValues>
+            <masterLabel>Cleaning Tools</masterLabel>
+            <translation><!-- Cleaning Tools --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Disinfectants</masterLabel>
+            <translation><!-- Disinfectants --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hand Dishwash</masterLabel>
+            <translation><!-- Hand Dishwash --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hard Surface Cleaners</masterLabel>
+            <translation><!-- Hard Surface Cleaners --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Machine Dishwash</masterLabel>
+            <translation><!-- Machine Dishwash --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Specialist Cleaners</masterLabel>
+            <translation><!-- Specialist Cleaners --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Sub sector --></label>
+        <name>IPM_Sub_sector__c</name>
+        <picklistValues>
+            <masterLabel>MDW Machine Maintenance</masterLabel>
+            <translation><!-- MDW Machine Maintenance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Machine Dishwash Adjustment</masterLabel>
+            <translation><!-- Machine Dishwash Adjustment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Machine Wash</masterLabel>
+            <translation><!-- Machine Wash --></translation>
+        </picklistValues>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,873 @@
+.cOV_KPIWizard {
+  font-family: Unilever; }
+  .cOV_KPIWizard .openModalButton {
+    font-size: 30px;
+    padding: 20px; }
+  .cOV_KPIWizard.container {
+    width: 100%;
+    padding: 10px 0;
+    margin: 0; }
+  .cOV_KPIWizard .content {
+    max-width: 768px;
+    font-size: 12px;
+    color: #3c3d3e; }
+  .cOV_KPIWizard .modalBackdrop {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    padding-top: 102px; }
+    .cOV_KPIWizard .modalBackdrop.editKpi .modalWrapper .modalBody {
+      height: calc(100% - 30px); }
+  .cOV_KPIWizard .step2 .modalWrapper {
+    min-width: 80%; }
+    .cOV_KPIWizard .step2 .modalWrapper .modalBody {
+      background-color: #ffffff; }
+  .cOV_KPIWizard .modalWrapper {
+    min-width: 330px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    margin: 20px;
+    display: inline-block;
+    max-width: calc(100% - 44px);
+    height: calc(100% - 44px);
+    position: relative;
+    overflow: hidden; }
+    .cOV_KPIWizard .modalWrapper .modalHeader {
+      background-color: #007dbb;
+      height: 30px;
+      line-height: 30px;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px; }
+      .cOV_KPIWizard .modalWrapper .modalHeader .modalTitle {
+        margin-left: 22px;
+        float: left;
+        color: #ffffff;
+        text-transform: uppercase;
+        font-size: 12px; }
+      .cOV_KPIWizard .modalWrapper .modalHeader .closeModal {
+        float: right;
+        background-color: #0270a7;
+        line-height: 1;
+        width: 14px;
+        height: 14px;
+        margin-top: 8px;
+        margin-right: 8px;
+        border-radius: 50%;
+        border: 1px solid #00689b;
+        font-size: 9px;
+        color: #ffffff;
+        padding: 2px 0 0 1px; }
+    .cOV_KPIWizard .modalWrapper .stepIndicator {
+      height: 40px;
+      padding-top: 6px;
+      border-bottom: 1px solid #e8e8e8;
+      background-color: #f2f2f2; }
+      .cOV_KPIWizard .modalWrapper .stepIndicator .progressBar {
+        width: 190px;
+        height: 18px;
+        margin: 0 auto;
+        padding: 6px 4px;
+        position: relative; }
+        .cOV_KPIWizard .modalWrapper .stepIndicator .progressBar .progressBarBackground {
+          width: 182px;
+          height: 6px;
+          background-color: #e8e8e8;
+          position: relative;
+          z-index: 1;
+          -webkit-box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+          -moz-box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+          box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.1); }
+          .cOV_KPIWizard .modalWrapper .stepIndicator .progressBar .progressBarBackground .progressBarProgress {
+            -webkit-transition: right 0.7s linear;
+            transition: right 0.7s linear;
+            background-color: #0270a7;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 100%;
+            border-radius: 3px;
+            z-index: 3; }
+            .cOV_KPIWizard .modalWrapper .stepIndicator .progressBar .progressBarBackground .progressBarProgress.step2 {
+              right: 50%; }
+            .cOV_KPIWizard .modalWrapper .stepIndicator .progressBar .progressBarBackground .progressBarProgress.step3 {
+              right: 0; }
+        .cOV_KPIWizard .modalWrapper .stepIndicator .progressBar .progressIcons > div {
+          -webkit-box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+          -moz-box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+          box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+          -webkit-transition: all 0.15s 0s linear;
+          transition: all 0.15s 0s linear;
+          z-index: 2;
+          position: absolute;
+          width: 10px;
+          height: 10px;
+          background-color: #e8e8e8;
+          top: -2px;
+          color: #ffffff;
+          border-radius: 50%; }
+          .cOV_KPIWizard .modalWrapper .stepIndicator .progressBar .progressIcons > div i {
+            font-size: 6px;
+            position: absolute;
+            top: calc(50% - 3px);
+            left: calc(50% - 3px);
+            opacity: 1;
+            transition: font 0s 0s, opacity 0s 0s, left 0s 0s, top 0s 0s;
+            -webkit-transition: font 0s 0s, opacity 0s 0s, left 0s 0s, top 0s 0s; }
+            .cOV_KPIWizard .modalWrapper .stepIndicator .progressBar .progressIcons > div i.transparent {
+              opacity: 0; }
+          .cOV_KPIWizard .modalWrapper .stepIndicator .progressBar .progressIcons > div.active {
+            top: -6px;
+            width: 18px;
+            height: 18px; }
+            .cOV_KPIWizard .modalWrapper .stepIndicator .progressBar .progressIcons > div.active i {
+              font-size: 10px;
+              transition: font 0s 0.7s, opacity 0s 0.7s, left 0s 0.7s, top 0s 0.7s;
+              -webkit-transition: font 0s 0.7s, opacity 0s 0.7s, left 0s 0.7s, top 0s 0.7s; }
+          .cOV_KPIWizard .modalWrapper .stepIndicator .progressBar .progressIcons > div.filled {
+            width: 10px;
+            height: 10px; }
+          .cOV_KPIWizard .modalWrapper .stepIndicator .progressBar .progressIcons > div.active, .cOV_KPIWizard .modalWrapper .stepIndicator .progressBar .progressIcons > div.filled {
+            background-color: #0270a7;
+            z-index: 4;
+            -webkit-transition: all 0.15s 0.7s linear;
+            transition: all 0.15s 0.7s linear; }
+          .cOV_KPIWizard .modalWrapper .stepIndicator .progressBar .progressIcons > div:first-child {
+            left: -2px; }
+            .cOV_KPIWizard .modalWrapper .stepIndicator .progressBar .progressIcons > div:first-child.active {
+              left: -6px; }
+              .cOV_KPIWizard .modalWrapper .stepIndicator .progressBar .progressIcons > div:first-child.active i {
+                position: absolute;
+                top: calc(50% - 6px);
+                left: calc(50% - 6px); }
+          .cOV_KPIWizard .modalWrapper .stepIndicator .progressBar .progressIcons > div:nth-child(2) {
+            left: calc(50% - 5px); }
+            .cOV_KPIWizard .modalWrapper .stepIndicator .progressBar .progressIcons > div:nth-child(2).active {
+              left: calc(50% - 9px); }
+              .cOV_KPIWizard .modalWrapper .stepIndicator .progressBar .progressIcons > div:nth-child(2).active i {
+                position: absolute;
+                top: calc(50% - 4px);
+                left: calc(50% - 5px); }
+          .cOV_KPIWizard .modalWrapper .stepIndicator .progressBar .progressIcons > div:last-child {
+            right: -2px; }
+            .cOV_KPIWizard .modalWrapper .stepIndicator .progressBar .progressIcons > div:last-child.active {
+              right: -6px; }
+              .cOV_KPIWizard .modalWrapper .stepIndicator .progressBar .progressIcons > div:last-child.active i {
+                top: calc(50% - 5px);
+                left: calc(50% - 5px); }
+      .cOV_KPIWizard .modalWrapper .stepIndicator .labels {
+        font-size: 9px;
+        width: 190px;
+        margin: 0 auto;
+        position: relative;
+        color: #cccccc;
+        font-weight: 100;
+        margin-top: 1px; }
+        .cOV_KPIWizard .modalWrapper .stepIndicator .labels > div {
+          position: absolute; }
+          .cOV_KPIWizard .modalWrapper .stepIndicator .labels > div:first-child {
+            left: -2em; }
+          .cOV_KPIWizard .modalWrapper .stepIndicator .labels > div:nth-child(2) {
+            left: calc(50% - 1.5em); }
+          .cOV_KPIWizard .modalWrapper .stepIndicator .labels > div:last-child {
+            right: -1em; }
+          .cOV_KPIWizard .modalWrapper .stepIndicator .labels > div.active {
+            color: #333; }
+    .cOV_KPIWizard .modalWrapper .modalBody {
+      background-color: #f2f2f2;
+      height: calc(100% - 70px);
+      overflow-x: hidden;
+      overflow-y: auto; }
+    .cOV_KPIWizard .modalWrapper .loadingCover {
+      display: none; }
+      .cOV_KPIWizard .modalWrapper .loadingCover.pending {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 10;
+        display: block; }
+        .cOV_KPIWizard .modalWrapper .loadingCover.pending > div {
+          margin: 80px auto 0;
+          color: #000000;
+          font-size: 15px;
+          font-weight: bold;
+          padding: 10px 20px;
+          border: 1px solid #000000;
+          border-radius: 5px;
+          background-color: #ffffff;
+          display: inline-block; }
+  .cOV_KPIWizard .step1Content {
+    height: 100%; }
+    .cOV_KPIWizard .step1Content .KPIsWrapper {
+      margin: 0 auto;
+      padding: 0 5px;
+      display: inline-block;
+      min-width: 200px;
+      border-left: 1px solid #e8e8e8;
+      border-right: 1px solid #e8e8e8;
+      border-bottom: 1px solid #e8e8e8;
+      background-color: #ffffff; }
+      .cOV_KPIWizard .step1Content .KPIsWrapper .KPIItem {
+        text-align: left;
+        height: 30px;
+        color: #000000;
+        line-height: 30px;
+        font-size: 12px;
+        border-bottom: 2px solid #e8e8e8; }
+        .cOV_KPIWizard .step1Content .KPIsWrapper .KPIItem.selected > div {
+          background-color: #f2f2f2;
+          margin: 0 -5px;
+          padding: 0 5px; }
+        .cOV_KPIWizard .step1Content .KPIsWrapper .KPIItem:last-child {
+          border-bottom: none; }
+  .cOV_KPIWizard .step2Content {
+    background-color: #ffffff; }
+    .cOV_KPIWizard .step2Content .filtersMenuBackground {
+      top: 70px;
+      bottom: 0;
+      background-color: #007dbb;
+      width: 200px;
+      position: absolute; }
+    .cOV_KPIWizard .step2Content .filtersMenu {
+      text-align: left;
+      width: 200px;
+      background-color: #007dbb;
+      color: #ffffff;
+      float: left;
+      min-height: 100%;
+      position: relative; }
+      .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuHeader {
+        border-bottom: 2px solid #80bedd; }
+        .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuHeader > div {
+          margin-top: 110px;
+          font-size: 12px;
+          color: #ffffff;
+          padding-left: 10px;
+          line-height: 20px;
+          text-align: left; }
+      .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuWrapper .wizard-drilldown {
+        border: none !important; }
+        .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuWrapper .wizard-drilldown ul, .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuWrapper .wizard-drilldown ul li, .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuWrapper .wizard-drilldown li, .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuWrapper .wizard-drilldown li ul, .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuWrapper .wizard-drilldown li ul li {
+          list-style: none; }
+        .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuWrapper .wizard-drilldown .drilldown-menu {
+          overflow: hidden;
+          position: relative; }
+        .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuWrapper .wizard-drilldown .drilldown-menu ul {
+          top: 0;
+          margin: 0;
+          right: 0;
+          position: absolute; }
+        .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuWrapper .wizard-drilldown .drilldown-menu li {
+          background-color: #007dbb; }
+          .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuWrapper .wizard-drilldown .drilldown-menu li a {
+            text-align: left;
+            display: block;
+            position: relative;
+            padding: 0 10px 0 0;
+            margin: 0 10px;
+            line-height: 28px;
+            border-bottom: 2px solid #80bedd;
+            font-size: 12px;
+            color: #ffffff; }
+            .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuWrapper .wizard-drilldown .drilldown-menu li a:hover {
+              background-color: transparent; }
+            .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuWrapper .wizard-drilldown .drilldown-menu li a span {
+              position: absolute;
+              top: 0;
+              right: 9px;
+              margin-top: 9px;
+              font-size: 8px; }
+          .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuWrapper .wizard-drilldown .drilldown-menu li:last-child a {
+            border-bottom: none; }
+        .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuWrapper .wizard-drilldown .drilldown-menu li a .wizard-dd-icon {
+          margin-left: 20px;
+          margin-right: 20px; }
+        .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuWrapper .wizard-drilldown .breadcrumb {
+          margin-bottom: 0;
+          border-radius: 0 !important; }
+        .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuWrapper .wizard-drilldown .breadcrumbwrapper {
+          background-color: transparent; }
+          .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuWrapper .wizard-drilldown .breadcrumbwrapper .breadcrumb {
+            background-color: #0274ad;
+            padding: 5px;
+            margin: 5px; }
+            .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuWrapper .wizard-drilldown .breadcrumbwrapper .breadcrumb li {
+              font-size: 10px;
+              color: #81baca; }
+              .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuWrapper .wizard-drilldown .breadcrumbwrapper .breadcrumb li a {
+                color: #81baca; }
+              .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuWrapper .wizard-drilldown .breadcrumbwrapper .breadcrumb li:before {
+                content: '';
+                padding: 0; }
+              .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuWrapper .wizard-drilldown .breadcrumbwrapper .breadcrumb li:not(.active):after {
+                content: "\e258";
+                padding: 0 5px;
+                color: #ffffff;
+                position: relative;
+                top: 1px;
+                display: inline-block;
+                font-family: 'Glyphicons Halflings';
+                font-style: normal;
+                font-weight: normal;
+                line-height: 1;
+                -webkit-font-smoothing: antialiased; }
+              .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuWrapper .wizard-drilldown .breadcrumbwrapper .breadcrumb li:nth-last-child(4) > * {
+                display: none; }
+              .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuWrapper .wizard-drilldown .breadcrumbwrapper .breadcrumb li:nth-last-child(4):before {
+                content: '...'; }
+              .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuWrapper .wizard-drilldown .breadcrumbwrapper .breadcrumb li:not(:nth-last-child(-n+4)) {
+                display: none; }
+              .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuWrapper .wizard-drilldown .breadcrumbwrapper .breadcrumb li.active {
+                font-size: 12px;
+                color: #ffffff;
+                width: 100%; }
+      .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuWrapper .filterItemsLevel1 .filterItemLevel1:last-child .filterLabel {
+        border-bottom: none !important; }
+      .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuWrapper .filterItemsLevel1 .filterItemLevel1.expanded .filterLabel {
+        border-bottom: none !important; }
+      .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuWrapper .filterItemsLevel1 .filterItemLevel1 .filterLabel {
+        padding: 0 10px;
+        height: 30px;
+        box-sizing: border-box;
+        border-bottom: 2px solid #80bedd;
+        text-align: left;
+        font-size: 12px;
+        line-height: 30px;
+        text-transform: capitalize;
+        position: relative;
+        white-space: nowrap;
+        display: -webkit-flex;
+        display: flex;
+        justify-content: space-between; }
+        .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuWrapper .filterItemsLevel1 .filterItemLevel1 .filterLabel div {
+          flex: 0 0 auto;
+          -webkit-flex: 0 0 auto; }
+          .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuWrapper .filterItemsLevel1 .filterItemLevel1 .filterLabel div:last-child {
+            padding: 0 15px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            flex: 0 1 auto;
+            -webkit-flex: 0 1 auto; }
+        .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuWrapper .filterItemsLevel1 .filterItemLevel1 .filterLabel i:first-child:not(.menuExpandIcon) {
+          font-size: 20px;
+          vertical-align: -15%;
+          margin-right: 5px;
+          margin-left: -5px; }
+        .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuWrapper .filterItemsLevel1 .filterItemLevel1 .filterLabel i.menuExpandIcon {
+          position: absolute;
+          top: 0;
+          right: 9px;
+          margin-top: 9px;
+          font-size: 8px; }
+      .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuWrapper .filterItemsLevel1 .noFilterSelected .breadcrumbwrapper {
+        display: none; }
+      .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuWrapper .filterItemsLevel1.expanded .filterItemLevel1 > .filterLabel {
+        background-color: #00608f; }
+      .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuWrapper .filterItemsLevel1 .filtersDrilldown {
+        height: auto;
+        overflow: hidden;
+        transition: height 0.7s; }
+        .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuWrapper .filterItemsLevel1 .filtersDrilldown.collapsed {
+          height: 0; }
+        .cOV_KPIWizard .step2Content .filtersMenu .filtersMenuWrapper .filterItemsLevel1 .filtersDrilldown .wizard-drilldown {
+          width: 100% !important;
+          overflow-y: auto;
+          overflow-x: hidden;
+          height: auto !important; }
+    .cOV_KPIWizard .step2Content .filteredKPIs {
+      width: calc(100% - 200px);
+      float: left;
+      background-color: #ffffff;
+      position: relative;
+      min-height: 100%; }
+      .cOV_KPIWizard .step2Content .filteredKPIs .header {
+        min-width: 300px;
+        height: 110px; }
+        .cOV_KPIWizard .step2Content .filteredKPIs .header > div {
+          padding: 20px 15px; }
+        .cOV_KPIWizard .step2Content .filteredKPIs .header .KPIName {
+          float: left;
+          font-size: 19px;
+          color: #007dbb; }
+        .cOV_KPIWizard .step2Content .filteredKPIs .header .filteredResult {
+          float: right; }
+          .cOV_KPIWizard .step2Content .filteredKPIs .header .filteredResult .resultCount {
+            font-size: 19px;
+            color: #666666; }
+          .cOV_KPIWizard .step2Content .filteredKPIs .header .filteredResult .selectedCount {
+            font-size: 12px;
+            color: #cccccc; }
+      .cOV_KPIWizard .step2Content .filteredKPIs .filteredContent {
+        margin-bottom: 85px; }
+        .cOV_KPIWizard .step2Content .filteredKPIs .filteredContent table {
+          margin: 0 20px;
+          width: calc(100% - 40px); }
+          .cOV_KPIWizard .step2Content .filteredKPIs .filteredContent table tr {
+            height: 32px;
+            box-sizing: border-box; }
+            .cOV_KPIWizard .step2Content .filteredKPIs .filteredContent table tr th div {
+              font-size: 12px;
+              line-height: 30px;
+              white-space: nowrap;
+              padding: 0 10px;
+              border-bottom: 2px solid #007dbb; }
+            .cOV_KPIWizard .step2Content .filteredKPIs .filteredContent table tr th:first-child {
+              padding-left: 5px;
+              margin-left: 5px; }
+              .cOV_KPIWizard .step2Content .filteredKPIs .filteredContent table tr th:first-child div {
+                padding-left: 5px; }
+            .cOV_KPIWizard .step2Content .filteredKPIs .filteredContent table tr th:last-child {
+              padding-right: 5px;
+              margin-right: 5px;
+              text-align: right; }
+              .cOV_KPIWizard .step2Content .filteredKPIs .filteredContent table tr th:last-child div {
+                padding-right: 5px; }
+            .cOV_KPIWizard .step2Content .filteredKPIs .filteredContent table tr th:not(:last-child) div {
+              text-align: left; }
+            .cOV_KPIWizard .step2Content .filteredKPIs .filteredContent table tr.active {
+              font-weight: bold; }
+              .cOV_KPIWizard .step2Content .filteredKPIs .filteredContent table tr.active td {
+                background-color: #f2f2f2; }
+                .cOV_KPIWizard .step2Content .filteredKPIs .filteredContent table tr.active td:first-child div {
+                  border-left: 1px solid #cccccc;
+                  border-top-left-radius: 5px;
+                  border-bottom-left-radius: 5px;
+                  padding-left: 9px;
+                  margin-left: 0; }
+                .cOV_KPIWizard .step2Content .filteredKPIs .filteredContent table tr.active td:last-child div {
+                  border-right: 1px solid #cccccc;
+                  border-top-right-radius: 5px;
+                  border-bottom-right-radius: 5px;
+                  padding-right: 9px;
+                  margin-right: 0; }
+                .cOV_KPIWizard .step2Content .filteredKPIs .filteredContent table tr.active td div {
+                  border-bottom: 1px solid #cccccc; }
+            .cOV_KPIWizard .step2Content .filteredKPIs .filteredContent table tr td:first-child div {
+              padding-left: 5px;
+              margin-left: 5px; }
+            .cOV_KPIWizard .step2Content .filteredKPIs .filteredContent table tr td:last-child div {
+              padding-right: 5px;
+              margin-right: 5px;
+              text-align: right;
+              white-space: nowrap; }
+            .cOV_KPIWizard .step2Content .filteredKPIs .filteredContent table tr td:not(:last-child) div {
+              text-align: left; }
+            .cOV_KPIWizard .step2Content .filteredKPIs .filteredContent table tr td div {
+              line-height: 30px;
+              border-top: 1px solid #cccccc;
+              border-bottom: 1px solid #cccccc;
+              font-size: 12px;
+              padding: 0 10px;
+              height: 33px;
+              margin-bottom: -1px;
+              white-space: nowrap; }
+              .cOV_KPIWizard .step2Content .filteredKPIs .filteredContent table tr td div i {
+                display: inline-block;
+                margin-left: 10px; }
+                .cOV_KPIWizard .step2Content .filteredKPIs .filteredContent table tr td div i.arrowUp.good, .cOV_KPIWizard .step2Content .filteredKPIs .filteredContent table tr td div i.arrowDown.good, .cOV_KPIWizard .step2Content .filteredKPIs .filteredContent table tr td div i.arrowFlat.good {
+                  color: #78BE20; }
+                .cOV_KPIWizard .step2Content .filteredKPIs .filteredContent table tr td div i.arrowUp.bad, .cOV_KPIWizard .step2Content .filteredKPIs .filteredContent table tr td div i.arrowDown.bad, .cOV_KPIWizard .step2Content .filteredKPIs .filteredContent table tr td div i.arrowFlat.bad {
+                  color: #BF0D3E; }
+                .cOV_KPIWizard .step2Content .filteredKPIs .filteredContent table tr td div i.arrowUp.NO.CHANGE, .cOV_KPIWizard .step2Content .filteredKPIs .filteredContent table tr td div i.arrowDown.NO.CHANGE, .cOV_KPIWizard .step2Content .filteredKPIs .filteredContent table tr td div i.arrowFlat.NO.CHANGE {
+                  color: #e37325; }
+    .cOV_KPIWizard .step2Content .footer {
+      position: absolute;
+      height: 85px;
+      bottom: 0;
+      width: 100%; }
+      .cOV_KPIWizard .step2Content .footer .pagination {
+        float: left;
+        margin-top: 30px;
+        margin-left: 20px;
+        cursor: pointer;
+        padding-right: 120px; }
+        .cOV_KPIWizard .step2Content .footer .pagination > div {
+          margin-left: -1px;
+          width: 25px;
+          height: 25px;
+          color: #666666;
+          float: left;
+          line-height: 25px;
+          font-size: 10px;
+          border: 1px solid #007dbb;
+          margin-bottom: 5px; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div:last-child {
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div:first-child {
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="1"][data-paginationnum="1"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="2"][data-paginationnum="2"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="3"][data-paginationnum="3"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="4"][data-paginationnum="4"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="5"][data-paginationnum="5"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="6"][data-paginationnum="6"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="7"][data-paginationnum="7"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="8"][data-paginationnum="8"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="9"][data-paginationnum="9"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="10"][data-paginationnum="10"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="11"][data-paginationnum="11"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="12"][data-paginationnum="12"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="13"][data-paginationnum="13"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="14"][data-paginationnum="14"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="15"][data-paginationnum="15"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="16"][data-paginationnum="16"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="17"][data-paginationnum="17"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="18"][data-paginationnum="18"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="19"][data-paginationnum="19"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="20"][data-paginationnum="20"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="21"][data-paginationnum="21"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="22"][data-paginationnum="22"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="23"][data-paginationnum="23"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="24"][data-paginationnum="24"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="25"][data-paginationnum="25"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="26"][data-paginationnum="26"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="27"][data-paginationnum="27"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="28"][data-paginationnum="28"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="29"][data-paginationnum="29"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="30"][data-paginationnum="30"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="31"][data-paginationnum="31"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="32"][data-paginationnum="32"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="33"][data-paginationnum="33"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="34"][data-paginationnum="34"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="35"][data-paginationnum="35"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="36"][data-paginationnum="36"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="37"][data-paginationnum="37"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="38"][data-paginationnum="38"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="39"][data-paginationnum="39"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="40"][data-paginationnum="40"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="41"][data-paginationnum="41"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="42"][data-paginationnum="42"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="43"][data-paginationnum="43"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="44"][data-paginationnum="44"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="45"][data-paginationnum="45"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="46"][data-paginationnum="46"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="47"][data-paginationnum="47"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="48"][data-paginationnum="48"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="49"][data-paginationnum="49"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="50"][data-paginationnum="50"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="51"][data-paginationnum="51"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="52"][data-paginationnum="52"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="53"][data-paginationnum="53"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="54"][data-paginationnum="54"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="55"][data-paginationnum="55"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="56"][data-paginationnum="56"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="57"][data-paginationnum="57"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="58"][data-paginationnum="58"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="59"][data-paginationnum="59"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="60"][data-paginationnum="60"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="61"][data-paginationnum="61"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="62"][data-paginationnum="62"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="63"][data-paginationnum="63"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="64"][data-paginationnum="64"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="65"][data-paginationnum="65"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="66"][data-paginationnum="66"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="67"][data-paginationnum="67"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="68"][data-paginationnum="68"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="69"][data-paginationnum="69"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="70"][data-paginationnum="70"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="71"][data-paginationnum="71"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="72"][data-paginationnum="72"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="73"][data-paginationnum="73"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="74"][data-paginationnum="74"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="75"][data-paginationnum="75"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="76"][data-paginationnum="76"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="77"][data-paginationnum="77"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="78"][data-paginationnum="78"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="79"][data-paginationnum="79"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="80"][data-paginationnum="80"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="81"][data-paginationnum="81"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="82"][data-paginationnum="82"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="83"][data-paginationnum="83"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="84"][data-paginationnum="84"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="85"][data-paginationnum="85"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="86"][data-paginationnum="86"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="87"][data-paginationnum="87"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="88"][data-paginationnum="88"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="89"][data-paginationnum="89"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="90"][data-paginationnum="90"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="91"][data-paginationnum="91"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="92"][data-paginationnum="92"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="93"][data-paginationnum="93"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="94"][data-paginationnum="94"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="95"][data-paginationnum="95"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="96"][data-paginationnum="96"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="97"][data-paginationnum="97"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="98"][data-paginationnum="98"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="99"][data-paginationnum="99"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem[data-pagenum="100"][data-paginationnum="100"] {
+            color: #007dbb; }
+          .cOV_KPIWizard .step2Content .footer .pagination > div .paginationPageItem.active {
+            color: #007dbb; }
+      .cOV_KPIWizard .step2Content .footer .confirmButtonWrapper {
+        cursor: pointer;
+        margin-right: 20px;
+        float: right;
+        margin-top: 30px;
+        margin-bottom: 25px;
+        position: absolute;
+        right: 0;
+        top: 0; }
+        .cOV_KPIWizard .step2Content .footer .confirmButtonWrapper .confirmButton {
+          background-color: #007dbb;
+          line-height: 25px;
+          font-size: 10px;
+          color: #ffffff;
+          padding: 0 25px;
+          border-radius: 5px; }
+          .cOV_KPIWizard .step2Content .footer .confirmButtonWrapper .confirmButton.inactive {
+            background-color: #cccccc; }
+  .cOV_KPIWizard .step3Content {
+    background-color: #ffffff; }
+    .cOV_KPIWizard .step3Content .transactionsWrapper {
+      margin: 0 18px; }
+      .cOV_KPIWizard .step3Content .transactionsWrapper .transactionItem {
+        padding: 25px 50px 10px 30px;
+        min-height: 285px;
+        position: relative;
+        border-bottom: 1px solid #ccc; }
+        .cOV_KPIWizard .step3Content .transactionsWrapper .transactionItem:last-child {
+          border-bottom: none; }
+        .cOV_KPIWizard .step3Content .transactionsWrapper .transactionItem .kpiContent {
+          margin-bottom: 45px; }
+          .cOV_KPIWizard .step3Content .transactionsWrapper .transactionItem .kpiContent .col-xs-6.kpiTileWrapper {
+            width: 220px; }
+          .cOV_KPIWizard .step3Content .transactionsWrapper .transactionItem .kpiContent .col-xs-6.kpiDetails {
+            width: calc(100% - 220px); }
+          .cOV_KPIWizard .step3Content .transactionsWrapper .transactionItem .kpiContent .kpiTileWrapper .cOV_KpiTile.kpiRoot {
+            margin: 0 20px 0 0; }
+          .cOV_KPIWizard .step3Content .transactionsWrapper .transactionItem .kpiContent .kpiDetails {
+            text-align: left; }
+            .cOV_KPIWizard .step3Content .transactionsWrapper .transactionItem .kpiContent .kpiDetails > div {
+              min-height: 28px; }
+            .cOV_KPIWizard .step3Content .transactionsWrapper .transactionItem .kpiContent .kpiDetails .kpiNotification {
+              border-bottom: 2px solid #cccccc; }
+            .cOV_KPIWizard .step3Content .transactionsWrapper .transactionItem .kpiContent .kpiDetails .switchWrapper {
+              position: relative;
+              padding-right: 35px;
+              line-height: 26px;
+              margin: 0 8px;
+              min-width: 180px; }
+              .cOV_KPIWizard .step3Content .transactionsWrapper .transactionItem .kpiContent .kpiDetails .switchWrapper .switchLabel {
+                font-size: 12px;
+                white-space: nowrap; }
+              .cOV_KPIWizard .step3Content .transactionsWrapper .transactionItem .kpiContent .kpiDetails .switchWrapper .switchElement {
+                width: 25px;
+                height: 16px;
+                border-radius: 8px;
+                background-color: #cccccc;
+                position: relative;
+                display: inline-block;
+                margin-left: 10px;
+                position: absolute;
+                right: 0;
+                top: calc(50% - 8px); }
+                .cOV_KPIWizard .step3Content .transactionsWrapper .transactionItem .kpiContent .kpiDetails .switchWrapper .switchElement .switchInner {
+                  background-color: #ffffff;
+                  height: 14px;
+                  width: 14px;
+                  position: absolute;
+                  top: 1px;
+                  left: 1px;
+                  border-radius: 50%; }
+                .cOV_KPIWizard .step3Content .transactionsWrapper .transactionItem .kpiContent .kpiDetails .switchWrapper .switchElement.checked {
+                  background-color: #4cd864; }
+                  .cOV_KPIWizard .step3Content .transactionsWrapper .transactionItem .kpiContent .kpiDetails .switchWrapper .switchElement.checked .switchInner {
+                    left: 10px; }
+          .cOV_KPIWizard .step3Content .transactionsWrapper .transactionItem .kpiContent .favReport {
+            background-color: #f2f2f2; }
+            .cOV_KPIWizard .step3Content .transactionsWrapper .transactionItem .kpiContent .favReport .reportName {
+              padding-right: 20px; }
+            .cOV_KPIWizard .step3Content .transactionsWrapper .transactionItem .kpiContent .favReport:last-child {
+              border-bottom-left-radius: 5px;
+              border-bottom-right-radius: 5px; }
+            .cOV_KPIWizard .step3Content .transactionsWrapper .transactionItem .kpiContent .favReport > div {
+              margin: 0 8px; }
+            .cOV_KPIWizard .step3Content .transactionsWrapper .transactionItem .kpiContent .favReport:not(:last-child) > div {
+              border-bottom: 2px solid #cccccc; }
+            .cOV_KPIWizard .step3Content .transactionsWrapper .transactionItem .kpiContent .favReport > div {
+              position: relative;
+              line-height: 26px; }
+              .cOV_KPIWizard .step3Content .transactionsWrapper .transactionItem .kpiContent .favReport > div .indicator {
+                position: absolute;
+                right: 0;
+                top: calc(50% - 7px);
+                color: #007dbb; }
+          .cOV_KPIWizard .step3Content .transactionsWrapper .transactionItem .kpiContent .kpiReportSelection + .favReport {
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px; }
+        .cOV_KPIWizard .step3Content .transactionsWrapper .transactionItem .buttonsWrapper {
+          position: absolute;
+          bottom: 10px;
+          width: calc(100% - 80px); }
+          .cOV_KPIWizard .step3Content .transactionsWrapper .transactionItem .buttonsWrapper > div {
+            width: 70px;
+            height: 25px;
+            line-height: 23px;
+            font-size: 12px;
+            text-align: center;
+            border: 1px solid #007dbb;
+            border-radius: 5px;
+            float: right; }
+            .cOV_KPIWizard .step3Content .transactionsWrapper .transactionItem .buttonsWrapper > div.disabled {
+              color: #ffffff;
+              background-color: #cccccc;
+              border: 1px solid #cccccc; }
+          .cOV_KPIWizard .step3Content .transactionsWrapper .transactionItem .buttonsWrapper .removeButton {
+            color: #007dbb;
+            background-color: #ffffff;
+            margin-right: 10px; }
+          .cOV_KPIWizard .step3Content .transactionsWrapper .transactionItem .buttonsWrapper .submitButton {
+            color: #ffffff;
+            background-color: #007dbb; }
+        .cOV_KPIWizard .step3Content .transactionsWrapper .transactionItem:last-child .kpiSubmitErrorBackdrop {
+          bottom: 0; }
+        .cOV_KPIWizard .step3Content .transactionsWrapper .transactionItem .kpiSubmitErrorBackdrop {
+          font-size: 12px;
+          position: absolute;
+          top: 0;
+          bottom: -1px;
+          left: -18px;
+          right: -18px;
+          background-color: rgba(0, 0, 0, 0.3);
+          z-index: 1;
+          padding: 30px 10px; }
+          .cOV_KPIWizard .step3Content .transactionsWrapper .transactionItem .kpiSubmitErrorBackdrop .kpiSubmitErrorWrapper {
+            background-color: #ffffff;
+            color: red;
+            padding: 10px;
+            border: 1px solid #000000;
+            border-radius: 5px;
+            position: relative; }
+            .cOV_KPIWizard .step3Content .transactionsWrapper .transactionItem .kpiSubmitErrorBackdrop .kpiSubmitErrorWrapper .errorHeader {
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              height: 20px; }
+              .cOV_KPIWizard .step3Content .transactionsWrapper .transactionItem .kpiSubmitErrorBackdrop .kpiSubmitErrorWrapper .errorHeader .closeError {
+                position: absolute;
+                top: 4px;
+                right: 4px; }
+            .cOV_KPIWizard .step3Content .transactionsWrapper .transactionItem .kpiSubmitErrorBackdrop .kpiSubmitErrorWrapper .errorMsg {
+              margin: 20px; }
+  .cOV_KPIWizard .topSpace {
+    height: 30px;
+    border-bottom: 1px solid #e8e8e8;
+    background-color: #ffffff; }
+  .cOV_KPIWizard .clearfix {
+    *zoom: 1; }
+    .cOV_KPIWizard .clearfix:before, .cOV_KPIWizard .clearfix:after {
+      display: table;
+      content: "";
+      line-height: 0; }
+    .cOV_KPIWizard .clearfix:after {
+      clear: both; }

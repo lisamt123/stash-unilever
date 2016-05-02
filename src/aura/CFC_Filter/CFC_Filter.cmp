@@ -1,0 +1,41 @@
+<aura:component >
+<aura:handler name="init" value="{!this}" action="{!c.updateFilterSelection}" />
+    
+    <!--Creating attributes-->
+    <!--<aura:attribute name="selectedFilter" type="String"/>-->
+    <aura:attribute name="newSelectedFilter" type="String"/>  
+    <aura:attribute name="filterTopic" type="String"/>
+    <aura:attribute name="sortTopic" type="String"/>
+    
+    <!--<aura:handler event="aura:doneRendering" action="{!c.doneRendering}"/> -->
+    
+    <!--add bootstrap style class to give space in the both left and right side of the display pannel-->
+    <div class="container">
+        <div class="row">
+            <!--top bar with cancel and apply button-->                
+            <table class="filterHeader">
+                <tr>
+                    <td class="leftAlign">
+                        <span onclick="{!c.cancelFilter}" class="cancelButton">Cancel</span>
+                    </td>
+                    <td class="centerAlign">
+                        Filter
+                    </td>
+                    <td class="rightAlign">
+                        <span onclick="{!c.applyFilter}" class="applyButton">Apply</span>
+                    </td>
+                </tr>
+            </table>             
+            <!--filter menu options--> 
+            <div class="filtePannel">        
+                <div onclick="{!c.showAllActive}" aura:id="showAll">       					Show all topics   		 </div>  
+                <div onclick="{!c.showITActive}" aura:id="showIT">          IT   </div>
+                <div onclick="{!c.showConsumerActive}" aura:id="showConsumer">          Consumer   			 </div>
+                <div onclick="{!c.showDigitalActive}" aura:id="showDigital">          Digital   			 </div>
+                <div onclick="{!c.showMobileActive}" aura:id="showMobile">        Mobile  			 </div>
+                <div onclick="{!c.showRNDActive}" aura:id="showRND">        	R &amp; D   			 </div>
+                <div onclick="{!c.showInnovationActive}" aura:id="showInnovation">        Innovation </div>
+            </div>
+        </div>
+    </div>	
+</aura:component>

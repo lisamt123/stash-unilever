@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Holds  the fields used in  column display  logic  on  BET search results on BET selection/change page.</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Field_Label__c</fullName>
+        <description>Value of this field is displayed as a column header in BET search results on BET selection/change page.</description>
+        <externalId>false</externalId>
+        <label>Field Label</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Field_Name__c</fullName>
+        <description>This  should be one of the properties in the &apos;IPM_BET_BETWrapper&apos; wrapper class in  IPM_Coreparameters class. This is used to display data dynamically on page.</description>
+        <externalId>false</externalId>
+        <label>Field Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Is_Date__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Specifies  if the column on BET selection/change page holds the date data.This is used in the formating of date values.</description>
+        <externalId>false</externalId>
+        <label>Is Date</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>IPM BET Search Fields</label>
+    <visibility>Public</visibility>
+</CustomObject>

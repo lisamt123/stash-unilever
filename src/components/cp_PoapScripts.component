@@ -1,0 +1,131 @@
+<apex:component controller="cp_PoapController">
+
+	<script>
+
+	    function setCustomFunction(fullResetVar) 
+	    {
+			setAdvancedFilters(null, null, null, null, fullResetVar);
+	    } 
+
+	    function resetAll() 
+	    {
+			j$('input[data-type]').each(function(e) 
+			{
+				j$(this).attr('checked', false);
+	      	});
+	      	setCustomFunction('true');
+	    }
+
+		j$('#btn-filter-apply').click(function(e) 
+		{
+			j$('#filter-dialog').dialog('close');
+
+	        var FieldName = j$('#filter-set-1').find('.filter-field-name').val();
+	        var FieldLabel = j$('#filter-set-1').find('.filter-field-name option[value="' + FieldName + '"]').text();
+	        var Operator = j$('#filter-set-1').find('.filter-operator-type').val();
+	        var FieldValueDate = j$('#filter-set-1').find('.real-date-value').val();
+	        var FieldValue = j$('#filter-set-1').find('.select-filter-field-value').val();
+
+	        var temp = "";
+	        if (Operator == 'includes' || Operator == 'excludes'){
+	          	for (var i = 0; i < FieldValue.length; i++) 
+	          	{
+					temp += FieldValue[i]+ ",";
+	          	}
+	          	FieldValue = temp;
+	        }
+	        setAdvancedFilters(FieldLabel, FieldName, Operator, FieldValue, FieldValueDate, 'false');
+	    });
+
+	    function bindCheckbox() 
+	    {
+	    	// When a filter option is chosen, de-select other filters
+	    	// Only one can be chosen.
+	      	j$('.filterCheckbox').change(function(e)
+	      	{
+	      		// Uncheck all checkboxes
+	      		j$('.filterCheckbox').prop('checked', false);
+
+	      		// Re-check the checkbox that was checked
+	      		j$(this).prop('checked' , true);
+
+	      		// Set selected planner to controller
+				setPlanner(j$(this).val());
+
+				// Uncheck global only checkbox
+				j$('[id*="globalOnly"]').prop('checked',false);
+	      	});
+
+	      	// If global only is checked, uncheck everything else
+	      	j$('[id*="globalOnly"]').change(function(e)
+	      	{
+	      		if (j$(this).prop('checked'))
+				{
+	      			j$('.filterCheckbox').prop('checked', false);
+	      			j$('[id*="addGlobal"]').prop('checked',false);
+		      		// Set selected planner to controller
+					setPlanner('');
+				}
+				else
+				{
+					setDefaultPlanner();
+				}
+
+	      	});
+
+	      	// If include global is checked, uncheck global only
+	      	j$('[id*="addGlobal"]').change(function(e)
+	      	{
+	      		if (j$(this).prop('checked'))
+	      		{
+	      			// Uncheck global only checkbox
+	      			if (j$('[id*="globalOnly"]').prop('checked') == true)
+	      			{
+	      				j$('[id*="globalOnly"]').prop('checked',false);
+	      				setDefaultPlanner();
+	      			}
+	      		}
+
+	      	});
+
+	      	// Checked default planner option on page load
+            j$('input[value="{!defaultPreference.Planner__c}"]').prop('checked',true);
+
+	    }
+
+	    function setDefaultPlanner()
+	    {
+	    	setPlanner('{!defaultPreference.Planner__c}');
+	    }
+
+	    function StartEvent() 
+	    {
+	        j$('input').each(function(e) {
+	          j$(this).attr('disabled', 'disabled');
+	        });
+	        j$('select').each(function(e) {
+	          j$(this).attr('disabled', 'disabled');
+	        });
+	    }
+
+	    function StopEvent() 
+	    {
+	        j$('input').each(function(e) {
+	          j$(this).removeAttr('disabled');
+	        });
+	        j$('select').each(function(e) {
+	          j$(this).removeAttr('disabled');
+	        });
+	    }
+	    function runSearch(e) 
+	    {
+	        if (e.keyCode == 13) 
+	        {
+	            searchValue();
+	            return false;
+	        }
+	    }
+
+	</script>
+
+</apex:component>

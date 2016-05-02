@@ -2,119 +2,144 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
         <members>*</members>
-        <name>Dashboard</name>
+        <name>AnalyticSnapshot</name>
     </types>
     <types>
         <members>*</members>
-        <name>DataCategoryGroup</name>
+        <name>ApexClass</name>
     </types>
     <types>
         <members>*</members>
-        <name>Document</name>
+        <name>ApexComponent</name>
     </types>
     <types>
         <members>*</members>
-        <name>EmailTemplate</name>
+        <name>ApexPage</name>
     </types>
     <types>
         <members>*</members>
-        <name>ExternalDataSource</name>
+        <name>ApexTrigger</name>
     </types>
     <types>
         <members>*</members>
-        <name>FieldSet</name>
+        <name>ApprovalProcess</name>
     </types>
     <types>
         <members>*</members>
-        <name>Flow</name>
+        <name>AssignmentRules</name>
     </types>
     <types>
         <members>*</members>
-        <name>Group</name>
+        <name>AuraDefinitionBundle</name>
     </types>
     <types>
         <members>*</members>
-        <name>HomePageComponent</name>
+        <name>AuthProvider</name>
     </types>
     <types>
         <members>*</members>
-        <name>HomePageLayout</name>
+        <name>AutoResponseRules</name>
     </types>
     <types>
         <members>*</members>
-        <name>Layout</name>
+        <name>BusinessProcess</name>
     </types>
     <types>
         <members>*</members>
-        <name>ListView</name>
+        <name>CallCenter</name>
     </types>
     <types>
         <members>*</members>
-        <name>NamedFilter</name>
+        <name>Community</name>
     </types>
     <types>
         <members>*</members>
-        <name>Network</name>
+        <name>CompactLayout</name>
     </types>
     <types>
         <members>*</members>
-        <name>PermissionSet</name>
+        <name>ConnectedApp</name>
     </types>
     <types>
         <members>*</members>
-        <name>PostTemplate</name>
+        <name>CustomApplication</name>
     </types>
     <types>
         <members>*</members>
-        <name>Profile</name>
+        <name>CustomApplication</name>
     </types>
     <types>
         <members>*</members>
-        <name>Queue</name>
+        <name>CustomApplicationComponent</name>
     </types>
     <types>
         <members>*</members>
-        <name>QuickAction</name>
+        <name>CustomField</name>
     </types>
     <types>
         <members>*</members>
-        <name>RecordType</name>
+        <name>CustomLabels</name>
     </types>
     <types>
         <members>*</members>
-        <name>RemoteSiteSetting</name>
+        <name>CustomMetadata</name>
     </types>
     <types>
         <members>*</members>
-        <name>Report</name>
+        <members>Account</members>
+        <members>AccountContactRole</members>
+        <members>Asset</members>
+        <members>Campaign</members>
+        <members>CampaignMember</members>
+        <members>Case</members>
+        <members>CaseComment</members>
+        <members>CaseContactRole</members>
+        <members>Contact</members>
+        <members>ContentVersion</members>
+        <members>Contract</members>
+        <members>ContractContactRole</members>
+        <members>DuplicateRecordItem</members>
+        <members>DuplicateRecordSet</members>
+        <members>Event</members>
+        <members>Idea</members>
+        <members>IdeaComment</members>
+        <members>IdeaTheme</members>
+        <members>KnowledgeArticleVersion</members>
+        <members>Lead</members>
+        <members>Macro</members>
+        <members>Opportunity</members>
+        <members>OpportunityCompetitor</members>
+        <members>OpportunityContactRole</members>
+        <members>OpportunityLineItem</members>
+        <members>PartnerRole</members>
+        <members>Pricebook2</members>
+        <members>PricebookEntry</members>
+        <members>Product2</members>
+        <members>Site</members>
+        <members>Solution</members>
+        <members>StreamingChannel</members>
+        <members>Task</members>
+        <members>User</members>
+        <members>WorkBadge</members>
+        <members>WorkBadgeDefinition</members>
+        <members>WorkThanks</members>
+        <name>CustomObject</name>
     </types>
     <types>
         <members>*</members>
-        <name>ReportType</name>
+        <name>CustomObjectTranslation</name>
     </types>
     <types>
         <members>*</members>
-        <name>Role</name>
+        <name>CustomPageWebLink</name>
     </types>
     <types>
         <members>*</members>
-        <name>Scontrol</name>
+        <name>CustomSite</name>
     </types>
     <types>
         <members>*</members>
-        <name>SharingReason</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>Translations</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>ValidationRule</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>Workflow</name>
+        <name>CustomTab</name>
     </types>
     <version>34.0</version>
 </Package>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>One View KPI</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>One View KPIs</value>
+    </caseValues>
+    <fields>
+        <label><!-- Brand Comparator --></label>
+        <name>Brand_Comparator__c</name>
+        <relationshipLabel><!-- One View KPIs --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Brand --></label>
+        <name>Brand__c</name>
+        <relationshipLabel><!-- One View KPIs --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Category --></label>
+        <name>Category__c</name>
+        <relationshipLabel><!-- One View KPIs --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Channel --></help>
+        <label><!-- Channel --></label>
+        <name>Channel__c</name>
+        <picklistValues>
+            <masterLabel>Cash &amp; Carry</masterLabel>
+            <translation><!-- Cash &amp; Carry --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Club</masterLabel>
+            <translation><!-- Club --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Convenience (CVS)</masterLabel>
+            <translation><!-- Convenience (CVS) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Direct to Customer</masterLabel>
+            <translation><!-- Direct to Customer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Discounter</masterLabel>
+            <translation><!-- Discounter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Distributor</masterLabel>
+            <translation><!-- Distributor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Drug</masterLabel>
+            <translation><!-- Drug --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hypermarket</masterLabel>
+            <translation><!-- Hypermarket --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Independent Grocery</masterLabel>
+            <translation><!-- Independent Grocery --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mass Merchandiser</masterLabel>
+            <translation><!-- Mass Merchandiser --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OOH</masterLabel>
+            <translation><!-- OOH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Small/Open Market</masterLabel>
+            <translation><!-- Small/Open Market --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Supermarket</masterLabel>
+            <translation><!-- Supermarket --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wholesaler</masterLabel>
+            <translation><!-- Wholesaler --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>eCommerce</masterLabel>
+            <translation><!-- eCommerce --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Customer --></help>
+        <label><!-- One View Customer --></label>
+        <name>Customer__c</name>
+        <relationshipLabel><!-- One View KPIs --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- OneView status of a KPI Element --></help>
+        <label><!-- Direction --></label>
+        <name>Direction__c</name>
+        <picklistValues>
+            <masterLabel>Down</masterLabel>
+            <translation><!-- Down --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On Track</masterLabel>
+            <translation><!-- On Track --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Up</masterLabel>
+            <translation><!-- Up --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Function --></label>
+        <name>Function__c</name>
+        <relationshipLabel><!-- One View KPIs --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Geography --></label>
+        <name>Geography__c</name>
+        <relationshipLabel><!-- One View KPIs --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- When checked send an alert to all One View Consumers who are following the KPI Elements --></help>
+        <label><!-- KPI Alert --></label>
+        <name>KPI_Alert__c</name>
+    </fields>
+    <fields>
+        <help><!-- Pure KPI Value to be rounded for KPI Visulisation --></help>
+        <label><!-- KPI Value --></label>
+        <name>KPI_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- KPI Name --></label>
+        <name>KPI__c</name>
+        <relationshipLabel><!-- One View KPIs --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Report --></label>
+        <name>Report__c</name>
+        <relationshipLabel><!-- One View KPIs --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Rounded KPI Value  to 2 decimal places --></help>
+        <label><!-- Rounded Value --></label>
+        <name>Rounded_Value__c</name>
+    </fields>
+    <fields>
+        <help><!-- OneView KPI Target --></help>
+        <label><!-- Target --></label>
+        <name>Target__c</name>
+    </fields>
+    <fields>
+        <help><!-- OneView Timespan for KPI Elements --></help>
+        <label><!-- TimeSpan --></label>
+        <name>TimeSpan__c</name>
+        <picklistValues>
+            <masterLabel>12 Week</masterLabel>
+            <translation><!-- 12 Week --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4 Week</masterLabel>
+            <translation><!-- 4 Week --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Moving Annual Total</masterLabel>
+            <translation><!-- Moving Annual Total --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quarter</masterLabel>
+            <translation><!-- Quarter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unilever YTD</masterLabel>
+            <translation><!-- Unilever YTD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Weekly</masterLabel>
+            <translation><!-- Weekly --></translation>
+        </picklistValues>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

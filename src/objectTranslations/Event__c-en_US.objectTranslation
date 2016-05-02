@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Event</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Events</value>
+    </caseValues>
+    <fields>
+        <label><!-- Chatter Group Name --></label>
+        <name>Chatter_Group_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- End Date Time --></label>
+        <name>End_Date_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Event Carousel --></label>
+        <name>Event_Carousel__c</name>
+        <relationshipLabel><!-- Events --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Event Description --></label>
+        <name>Event_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Event Summary Document Link --></label>
+        <name>Event_Summary_Document_Link__c</name>
+    </fields>
+    <fields>
+        <label><!-- IsStarted --></label>
+        <name>IsStarted__c</name>
+    </fields>
+    <fields>
+        <label><!-- Big Six --></label>
+        <name>Is_Big_Six__c</name>
+    </fields>
+    <fields>
+        <label><!-- Locked --></label>
+        <name>Locked__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Date Time --></label>
+        <name>Start_Date_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Ready</masterLabel>
+            <translation><!-- Ready --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- This is the count of unique visits that loaded the event page within the start and end time of an event. --></help>
+        <label><!-- Total Unique Visits --></label>
+        <name>Total_Unique_Visits__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Private</masterLabel>
+            <translation><!-- Private --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Public</masterLabel>
+            <translation><!-- Public --></translation>
+        </picklistValues>
+    </fields>
+    <sharingReasons>
+        <label><!-- External Member --></label>
+        <name>External_Member</name>
+    </sharingReasons>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Pre-Work Task Assignment</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Pre-Work Task Assignments</value>
+    </caseValues>
+    <fields>
+        <label><!-- Due Date --></label>
+        <name>FA_Due_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Course Occurence --></label>
+        <name>FA_Occurence__c</name>
+        <relationshipLabel><!-- Pre-Work Task Assignments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Task Description --></label>
+        <name>FA_Task_Description_PWTA__c</name>
+    </fields>
+    <fields>
+        <label><!-- Task Name --></label>
+        <name>FA_Task_Name_PWTA__c</name>
+    </fields>
+    <fields>
+        <label><!-- Upload/Mark Complete --></label>
+        <name>FA_Upload_Mark_Complete__c</name>
+        <picklistValues>
+            <masterLabel>Mark Complete</masterLabel>
+            <translation><!-- Mark Complete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Upload/Download</masterLabel>
+            <translation><!-- Upload/Download --></translation>
+        </picklistValues>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,275 @@
+<apex:page controller="cp_DefaultPreferenceController" showHeader="true" sidebar="false" tabStyle="cp_PlannerPreference__c">	
+	<apex:sectionHeader title="Planner Default" subtitle="{!$User.FirstName} {!$User.LastName}"/>
+
+	<!-- CSS STYLE -->
+	<style>
+		.plist {
+			height: 200px;
+			overflow: auto;	
+		}
+		.maintable {
+			vertical-align: top;
+			width: 100%;
+		}
+		.maintable td {
+			vertical-align: top;
+			width: 33%;
+		}
+		.cpanel {
+			-webkit-border-radius: 2px;
+			-moz-border-radius: 2px;
+			border-radius: 2px;
+			background-color: #00A7DD;//#efefef;
+			font: normal 13px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+			color: white;
+			text-decoration:none;
+			text-align: center;
+			height: 30px;
+		}
+		.header span {	
+			vertical-align: middle;
+			display: table-cell;
+		}
+		.header img {	
+			vertical-align: middle;
+			display: table-cell;
+		}
+		.defaultSelection {
+			-webkit-border-radius: 2px;
+			-moz-border-radius: 2px;
+			border-radius: 2px;
+			background-color: #9b9b9b;
+			font: normal 15px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+			color: white;
+			text-decoration:none;
+			text-align: center;
+			width: 250px;
+		}
+		.section {
+			-moz-box-shadow: 0 0 5px #d0cece;
+			-webkit-box-shadow: 0 0 5px #d0cece;
+			box-shadow: 0 0 5px #d0cece;
+			border: 1px solid #d0cece;
+			padding: 8px;
+			width: 80%;
+		}
+		.label {
+			display: block;
+			width: 100%;
+			text-decoration: none;
+			font: normal 13px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+			cursor: pointer;
+			height: 100%;
+		}
+		.label:hover {
+			text-decoration:none;
+		}
+		.selected {
+			background-color:#9b9b9b !important; //74BC38
+		}
+		.loading {
+			-webkit-border-radius: 2px;
+			-moz-border-radius: 2px;
+			border-radius: 2px;
+			border: 2px solid #efefef;
+			text-decoration: none;
+			background-color: #efefef;	
+			height: 40px;
+			font-weight: bold;
+			font-size: 15px;
+			text-align: center;
+			position: fixed;
+			top: 45%;
+			left: 45%;
+			z-index: 99;
+		}
+	</style>
+
+	<apex:form id="theForm">
+		<br/>
+
+		<!-- LOADING STATUS -->
+		<apex:actionStatus id="status">
+			<apex:facet name="start">
+				<table class="loading" cellpadding="5">
+					<tr>
+					<td style="vertical-aling:middle;">Saving...</td>
+					</tr>
+				</table>
+			</apex:facet>
+		</apex:actionStatus>
+		<apex:pageMessages id="errorMess"/>
+
+		<center>
+			<apex:commandButton action="{!backToPlanner}" value="Back to Planner" immediate="true"/> 
+		</center>
+		<br/>
+
+		<!-- MY SELECTION -->
+		<center>
+			<apex:panelGrid styleclass="defaultSelection" cellpadding="5" cellspacing="5" rendered="{!!ISBLANK(selectedPlannerName)}">
+				<!--<span>Default Planner </span><br/> -->
+				<span style="color:white;font-weight:bold;">{!selectedPlannerName}</span>
+			</apex:panelGrid>
+			<apex:panelGrid styleclass="defaultSelection" style="background-color:#FFB30D;width:80%" cellpadding="5" cellspacing="5" rendered="{!ISBLANK(selectedPlannerName)}">
+				<span>{!$Label.cp_UserPreferenceValidationMessage}</span>
+			</apex:panelGrid>
+		</center>
+		<br/><br/>
+
+		<!-- CENTRAL SECTION -->
+		<center>
+		<apex:outputPanel layout="block" styleClass="section" rendered="{!!isMarket}">
+		<apex:pageBlock title="Central Planner" mode="mainDetail">
+		<table class="maintable" cellpadding="5" cellspacing="5">
+			<tr>
+				<td>
+					<div class="cpanel header" style="background-color: #AA5FFC;">
+						<span>
+							<apex:image value="{!$Resource.cp_whitecentral}" width="20"/>
+						</span>
+						<span>At Category level</span>
+					</div>
+				</td>
+				<td>
+					<div class="cpanel header" style="background-color: #FFA929;">
+						<span>
+							<apex:image value="{!$Resource.cp_whitecentral}" width="20"/>
+						</span>
+						<span>At Expertise level</span>
+					</div>
+				</td>
+				<td>
+					<div class="cpanel header" style="background-color: #FF347A;">
+						<span>
+							<apex:image value="{!$Resource.cp_whitecentral}" width="20"/>
+						</span>
+						<span>At Function level</span>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<div class="plist">
+					<apex:pageBlockTable value="{!categories}" var="p">
+						<apex:column headerValue="Available Planners" styleClass="{!IF(p.selected,'selected','')}">
+							<apex:commandLink value="{!p.planner.Name}" action="{!selectPlanner}" reRender="theForm" status="status" styleClass="label" style="{!IF(p.selected,'color:white;','')}">
+								<apex:image value="{!$Resource.cp_whitecheck}" width="15" rendered="{!p.selected}" style="float:right;"/>
+								<apex:param name="sp" value="{!p.planner.Id}" assignTo="{!selectedPlanner}"/>
+							</apex:commandLink>
+						</apex:column>
+					</apex:pageBlockTable>
+				</div>	
+				</td>
+				<td>
+				<div class="plist">
+					<apex:pageBlockTable value="{!expertises}" var="p">
+						<apex:column headerValue="Available Planners" styleClass="{!IF(p.selected,'selected','')}">
+							<apex:commandLink value="{!p.planner.Name}" action="{!selectPlanner}" reRender="theForm" status="status" styleClass="label" style="{!IF(p.selected,'color:white;','')}">
+								<apex:image value="{!$Resource.cp_whitecheck}" width="15" rendered="{!p.selected}" style="float:right;"/>
+								<apex:param name="sp" value="{!p.planner.Id}" assignTo="{!selectedPlanner}"/>
+							</apex:commandLink>
+						</apex:column>
+					</apex:pageBlockTable>
+				</div>	
+				</td>
+				<td>
+				<div class="plist">
+					<apex:pageBlockTable value="{!functions}" var="p">
+						<apex:column headerValue="Available Planners" styleClass="{!IF(p.selected,'selected','')}">
+							<apex:commandLink value="{!p.planner.Name}" action="{!selectPlanner}" reRender="theForm" status="status" styleClass="label" style="{!IF(p.selected,'color:white;','')}">
+								<apex:image value="{!$Resource.cp_whitecheck}" width="15" rendered="{!p.selected}" style="float:right;"/>
+								<apex:param name="sp" value="{!p.planner.Id}" assignTo="{!selectedPlanner}"/>
+							</apex:commandLink>
+						</apex:column>
+					</apex:pageBlockTable>
+				</div>	
+				</td>
+			</tr>	
+		</table>
+		</apex:pageBlock>
+		</apex:outputPanel>
+
+		<br/><br/>
+
+		<!-- MARKET SECTION -->
+		<apex:outputPanel layout="block" styleClass="section" rendered="{!isMarket}">
+		<apex:pageBlock title="Market Planner" mode="mainDetail">
+		<table class="maintable" cellpadding="5" cellspacing="5">
+			<tr>
+				<td>
+					<div class="cpanel header" style="background-color: #79B627;">
+						<span>
+							<apex:image value="{!$Resource.cp_whitemarket}" width="20"/>
+						</span>
+						<span>At Cluster level</span>
+					</div>
+				</td>
+				<td>
+					<div class="cpanel header" style="background-color: #1692DE;">
+						<span>
+							<apex:image value="{!$Resource.cp_whitemarket}" width="20"/>
+						</span>
+						<span>At MCO level</span>
+					</div>
+				</td>
+				<td>
+					<div class="cpanel header" style="background-color: #D62099;">
+						<span>
+							<apex:image value="{!$Resource.cp_whitemarket}" width="20"/>
+						</span>
+						<span>At Country level</span>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<div class="plist">
+					<apex:pageBlockTable value="{!clusters}" var="p">
+						<apex:column headerValue="Available Planners" styleClass="{!IF(p.selected,'selected','')}">
+							<apex:commandLink value="{!p.planner.Name}" action="{!selectPlanner}" reRender="theForm" status="status" styleClass="label" style="{!IF(p.selected,'color:white;','')}">
+								<apex:image value="{!$Resource.cp_whitecheck}" width="15" rendered="{!p.selected}" style="float:right;"/>
+								<apex:param name="sp" value="{!p.planner.Id}" assignTo="{!selectedPlanner}"/>
+							</apex:commandLink>
+						</apex:column>
+					</apex:pageBlockTable>
+				</div>	
+				</td>
+				<td>
+				<div class="plist">
+					<apex:pageBlockTable value="{!mcos}" var="p">
+						<apex:column headerValue="Available Planners" styleClass="{!IF(p.selected,'selected','')}">
+							<apex:commandLink value="{!p.planner.Name}" action="{!selectPlanner}" reRender="theForm" status="status" styleClass="label" style="{!IF(p.selected,'color:white;','')}">
+								<apex:image value="{!$Resource.cp_whitecheck}" width="15" rendered="{!p.selected}" style="float:right;"/>
+								<apex:param name="sp" value="{!p.planner.Id}" assignTo="{!selectedPlanner}"/>
+							</apex:commandLink>
+						</apex:column>
+					</apex:pageBlockTable>
+				</div>	
+				</td>
+				<td>
+				<div class="plist">
+					<apex:pageBlockTable value="{!countries}" var="p">
+						<apex:column headerValue="Available Planners" styleClass="{!IF(p.selected,'selected','')}">
+							<apex:commandLink value="{!p.planner.Name}" action="{!selectPlanner}" reRender="theForm" status="status" styleClass="label" style="{!IF(p.selected,'color:white;','')}">
+								<apex:image value="{!$Resource.cp_whitecheck}" width="15" rendered="{!p.selected}" style="float:right;"/>
+								<apex:param name="sp" value="{!p.planner.Id}" assignTo="{!selectedPlanner}"/>
+							</apex:commandLink>
+						</apex:column>
+					</apex:pageBlockTable>
+				</div>	
+				</td>
+			</tr>	
+		</table>
+		</apex:pageBlock>
+		</apex:outputPanel>
+		</center>
+
+		<br/><br/>
+		<center>
+			<apex:commandButton action="{!backToPlanner}" value="Back to Planner" immediate="true"/> 
+		</center>
+
+	</apex:form>
+
+</apex:page>

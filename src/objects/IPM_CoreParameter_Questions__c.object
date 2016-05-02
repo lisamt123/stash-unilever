@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>To store core parameter questions like MPA,CPV,ET.</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>IPM_BLG__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>check box should be checked for BGL related questions</description>
+        <externalId>false</externalId>
+        <label>BLG</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Innovation_Renovation__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>check box should be checked for innovation/renovation related questions</description>
+        <externalId>false</externalId>
+        <label>Innovation/Renovation</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Operational__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>check box should be checked for operational related questions</description>
+        <externalId>false</externalId>
+        <label>Operational</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Option__c</fullName>
+        <description>store option name</description>
+        <externalId>false</externalId>
+        <label>Option</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Order_Number__c</fullName>
+        <description>define option orders</description>
+        <externalId>false</externalId>
+        <label>Order Number</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Project_Type__c</fullName>
+        <description>store project type value</description>
+        <externalId>false</externalId>
+        <label>Project Type</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Question_Number__c</fullName>
+        <description>assign which option should belongs to which question numbers</description>
+        <externalId>false</externalId>
+        <label>Question Number</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>IPM CoreParameter Questions</label>
+    <visibility>Public</visibility>
+</CustomObject>

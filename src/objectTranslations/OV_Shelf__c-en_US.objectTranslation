@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>One View Shelf</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>One View Shelves</value>
+    </caseValues>
+    <fields>
+        <help><!-- hex defined Colour for the OneView Shelf  - for display on Shelf Tiles --></help>
+        <label><!-- Colour --></label>
+        <name>Colour__c</name>
+    </fields>
+    <fields>
+        <help><!-- Person who approved creation of the shelf --></help>
+        <label><!-- Shelf Approver --></label>
+        <name>Shelf_Approver__c</name>
+        <relationshipLabel><!-- One View Shelves --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Sort Order --></label>
+        <name>Sort_Order__c</name>
+    </fields>
+    <fields>
+        <help><!-- Themes to determine the colour to be displayed for the Shelf Tiles on a Shelf --></help>
+        <label><!-- Theme --></label>
+        <name>Theme__c</name>
+        <picklistValues>
+            <masterLabel>Dark Green</masterLabel>
+            <translation><!-- Dark Green --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Light Blue</masterLabel>
+            <translation><!-- Light Blue --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Olive</masterLabel>
+            <translation><!-- Olive --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Orange</masterLabel>
+            <translation><!-- Orange --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pink</masterLabel>
+            <translation><!-- Pink --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Plum</masterLabel>
+            <translation><!-- Plum --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Purple</masterLabel>
+            <translation><!-- Purple --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Turquoise</masterLabel>
+            <translation><!-- Turquoise --></translation>
+        </picklistValues>
+    </fields>
+    <recordTypes>
+        <label><!-- Moment --></label>
+        <name>Moment</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Subject --></label>
+        <name>Subject</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>CNF/TNF</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>CNF/TNFs</value>
+    </caseValues>
+    <fields>
+        <label><!-- CNF Status --></label>
+        <name>CNF_Status__c</name>
+        <picklistValues>
+            <masterLabel>Accepted</masterLabel>
+            <translation><!-- Accepted --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cancelled</masterLabel>
+            <translation><!-- Cancelled --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Delivered</masterLabel>
+            <translation><!-- Delivered --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Resubmitted</masterLabel>
+            <translation><!-- Resubmitted --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Returned</masterLabel>
+            <translation><!-- Returned --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Saved</masterLabel>
+            <translation><!-- Saved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sent for Signature</masterLabel>
+            <translation><!-- Sent for Signature --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Signed</masterLabel>
+            <translation><!-- Signed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Submitted</masterLabel>
+            <translation><!-- Submitted --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- CNF TAT --></label>
+        <name>CNF_TAT__c</name>
+    </fields>
+    <fields>
+        <label><!-- PWO --></label>
+        <name>PWO__c</name>
+        <relationshipLabel><!-- CNF/TNFs --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- TNF Auto ID --></label>
+        <name>TNF_Auto_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- TNF Status --></label>
+        <name>TNF_Status__c</name>
+        <picklistValues>
+            <masterLabel>Accepted</masterLabel>
+            <translation><!-- Accepted --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cancelled</masterLabel>
+            <translation><!-- Cancelled --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Delivered</masterLabel>
+            <translation><!-- Delivered --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Resubmitted</masterLabel>
+            <translation><!-- Resubmitted --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Returned</masterLabel>
+            <translation><!-- Returned --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Saved</masterLabel>
+            <translation><!-- Saved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sent for Signature</masterLabel>
+            <translation><!-- Sent for Signature --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Signed</masterLabel>
+            <translation><!-- Signed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Submitted</masterLabel>
+            <translation><!-- Submitted --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- CNF_Contract_Attached --></label>
+        <name>chk_CNF_Contract_Attached__c</name>
+    </fields>
+    <fields>
+        <label><!-- TNF Contract Attached --></label>
+        <name>chk_TNF_Contract_Attached__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNF Accepted Date --></label>
+        <name>dat_CNF_Accepted_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNF Cancelled Date --></label>
+        <name>dat_CNF_Cancelled_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNF Delivered Date --></label>
+        <name>dat_CNF_Delivered_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNF Resubmitted Date --></label>
+        <name>dat_CNF_Resubmitted_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNF Returned Date --></label>
+        <name>dat_CNF_Returned_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNF Sent for Signature Date --></label>
+        <name>dat_CNF_Sent_for_Signature_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNF Signed Date --></label>
+        <name>dat_CNF_Signed_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNF Submitted Date --></label>
+        <name>dat_CNF_Submitted_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- TNF Accepted Date --></label>
+        <name>dat_TNF_Accepted_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- TNF Cancelled Date --></label>
+        <name>dat_TNF_Cancelled_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- TNF Delivered Date --></label>
+        <name>dat_TNF_Delivered_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- TNF Resubmitted Date --></label>
+        <name>dat_TNF_Resubmitted_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- TNF Returned Date --></label>
+        <name>dat_TNF_Returned_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- TNF Sent for Signature --></label>
+        <name>dat_TNF_Sent_for_Signature__c</name>
+    </fields>
+    <fields>
+        <label><!-- TNF Signed Date --></label>
+        <name>dat_TNF_Signed_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- TNF Submitted Date --></label>
+        <name>dat_TNF_Submitted_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNF Actual PWO End Date* --></label>
+        <name>dt_CNF_Actual_PWO_End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNF Planned PWO End Date* --></label>
+        <name>dt_CNF_Planned_PWO_End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- TNF Date Notified* --></label>
+        <name>dt_TNF_TD_Date_Notified__c</name>
+    </fields>
+    <fields>
+        <label><!-- TNF Effective Date* --></label>
+        <name>dt_TNF_TD_Effective_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNF Unilever Budget Approver Email* --></label>
+        <name>eml_CNF_Unilever_Budget_Approver_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNF Unilever Content Approver Email* --></label>
+        <name>eml_CNF_Unilever_Content_Approver_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- TNF Unilever Contact Email* --></label>
+        <name>eml_TNF_Unilever_Contact_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNF Comments --></label>
+        <name>ltxta_CNF_Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNF Reason for Cancellation --></label>
+        <name>ltxta_CNF_Reason_for_Cancellation__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNF Currency* --></label>
+        <name>mpkl_CNF_Currency__c</name>
+        <picklistValues>
+            <masterLabel>EURO</masterLabel>
+            <translation><!-- EURO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GBP</masterLabel>
+            <translation><!-- GBP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>INR</masterLabel>
+            <translation><!-- INR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OTHER</masterLabel>
+            <translation><!-- OTHER --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>USD</masterLabel>
+            <translation><!-- USD --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- CNF Actual Day Rate* --></label>
+        <name>num_CNF_Actual_Day_rate__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNF Actual Fixed Price Contingency --></label>
+        <name>num_CNF_Actual_Fixed_Price_Contingency__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNF Actual PMO Tax* --></label>
+        <name>num_CNF_Actual_PMO_tax__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNF Actual Expenses* --></label>
+        <name>num_CNF_Actual_expenses__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNF Actual Fees (Inclusive of Discount)* --></label>
+        <name>num_CNF_Actual_fees_inclusive_of_discoun__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNF Actual Man-Days* --></label>
+        <name>num_CNF_Actual_man_days__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNF Actual Total Charges* --></label>
+        <name>num_CNF_Actual_total_charges__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNF Planned Day Rate* --></label>
+        <name>num_CNF_Planned_Day_rate__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNF Planned Fixed Price Contingency --></label>
+        <name>num_CNF_Planned_Fixed_Price_Contingency__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNF Planned PMO Tax* --></label>
+        <name>num_CNF_Planned_PMO_tax__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNF Planned Expenses* --></label>
+        <name>num_CNF_Planned_expenses__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNF Planned Fees (Inclusive of Disc) * --></label>
+        <name>num_CNF_Planned_fees_inclusive_of_discou__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNF Planned Man-Days* --></label>
+        <name>num_CNF_Planned_man_days__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNF Planned Total Charges* --></label>
+        <name>num_CNF_Planned_total_charges__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNF Variance (Number in Man-Days)* --></label>
+        <name>num_CNF_Variance_number_in_man_days__c</name>
+    </fields>
+    <fields>
+        <label><!-- TNF Actual Charges* --></label>
+        <name>num_TNF_Actual_charges__c</name>
+    </fields>
+    <fields>
+        <label><!-- TNF Planned Charges* --></label>
+        <name>num_TNF_Planned_charges__c</name>
+    </fields>
+    <fields>
+        <label><!-- TNF Planned Effort in Days* --></label>
+        <name>num_TNF_Planned_effort_in_days__c</name>
+    </fields>
+    <fields>
+        <label><!-- TNF Variance in Charges * --></label>
+        <name>num_TNF_Variance_in_charges__c</name>
+    </fields>
+    <fields>
+        <label><!-- TNF Variance in Effort* --></label>
+        <name>num_TNF_Variance_in_effort__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNF PIR Status --></label>
+        <name>pkl_CNF_PIR_Status__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- TNF Currency* --></label>
+        <name>pkl_TNF_Currency__c</name>
+        <picklistValues>
+            <masterLabel>EURO</masterLabel>
+            <translation><!-- EURO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GBP</masterLabel>
+            <translation><!-- GBP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>INR</masterLabel>
+            <translation><!-- INR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OTHER</masterLabel>
+            <translation><!-- OTHER --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>USD</masterLabel>
+            <translation><!-- USD --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- TNF Terminated By* --></label>
+        <name>pkl_TNF_Terminated_by__c</name>
+        <picklistValues>
+            <masterLabel>Accenture</masterLabel>
+            <translation><!-- Accenture --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unilever</masterLabel>
+            <translation><!-- Unilever --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- CNF Accenture Project Manager* --></label>
+        <name>txt_CNF_Accenture_Project_Manager__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNF CR Number --></label>
+        <name>txt_CNF_CR_number__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNF Unilever Budget Approver Name* --></label>
+        <name>txt_CNF_Unilever_Budget_Approver_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNF Unilever Clarity ID* --></label>
+        <name>txt_CNF_Unilever_Clarity_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNF Unilever Content Approver Name* --></label>
+        <name>txt_CNF_Unilever_Content_Approver_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- TNF Actual Effort in Days* --></label>
+        <name>txt_TNF_Actual_effort_in_days__c</name>
+    </fields>
+    <fields>
+        <label><!-- TNF Approved By* --></label>
+        <name>txt_TNF_Approved_by__c</name>
+    </fields>
+    <fields>
+        <label><!-- TNF Comments* --></label>
+        <name>txt_TNF_Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- TNF Other Currency --></label>
+        <name>txt_TNF_Other_Currency__c</name>
+    </fields>
+    <fields>
+        <label><!-- TNF Reason for Termination* --></label>
+        <name>txt_TNF_Reason_for_termination__c</name>
+    </fields>
+    <fields>
+        <label><!-- TNF Relocation of Resources* --></label>
+        <name>txt_TNF_Relocation_of_resources__c</name>
+    </fields>
+    <fields>
+        <label><!-- TNF Notice Required* --></label>
+        <name>txt_TNF_TD_Notice_Required__c</name>
+    </fields>
+    <fields>
+        <label><!-- TNF Unilever Clarity ID* --></label>
+        <name>txt_TNF_Unilever_Clarity_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- TNF Unilever Contact Name* --></label>
+        <name>txt_TNF_Unilever_Contact_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNF Reason for Return --></label>
+        <name>txta_CNF_Reason_for_Return__c</name>
+    </fields>
+    <fields>
+        <label><!-- TNF Reason for Cancellation --></label>
+        <name>txta_TNF_Reason_for_Cancellation__c</name>
+    </fields>
+    <fields>
+        <label><!-- TNF Reason for Return --></label>
+        <name>txta_TNF_Reason_for_Return__c</name>
+    </fields>
+    <recordTypes>
+        <label><!-- CNF --></label>
+        <name>CNF</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- TNF --></label>
+        <name>TNF</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,212 @@
+<apex:page standardController="FAU_Participant__c" 
+	extensions="FAU_PArticipant_BioControllerExtension"  
+	showHeader="false"
+	sidebar="false"
+	docType="html-5.0" >
+<!--====================================================-->
+<!--Name:  FAU_EmailTemplateSender                      -->
+<!--Copyright © 2014  Unilever                          -->
+<!--====================================================-->
+<!--====================================================-->
+<!-- Purpose:                                           -->
+<!---------                                             -->
+<!--====================================================-->
+<!--====================================================-->
+<!-- History                                            -->
+<!-- -------                                            -->
+<!-- VERSION  AUTHOR           DATE              DETAIL                     RELEASE/CSR         -->
+<!--   1.0   Jack Dermody      07/09/2014        INITIAL DEVELOPMENT                            -->
+<!--====================================================-->
+	<apex:stylesheet value="{!URLFOR($Resource.FAU_styles)}" /> 
+
+	<html>
+        <head>
+        <meta charset="utf-8"/>
+        <title>Partiicpant's Biography</title>
+            <style>
+                *{
+                    font-family: Arial;
+                }
+                .WidthClass { width: 500px; height: 150px;}
+                p{
+                    font-size:14px;
+                    color:#3E3E3E;
+                }
+                body{
+                    background:#A3BCE0 url({!$Resource.FAU_background_pattern}) no-repeat center center fixed; 
+                    -webkit-background-size: cover;
+                    -moz-background-size: cover;
+                    -o-background-size: cover;
+                    background-size: cover;
+                }
+                #main-container-one{
+                    width:960px;
+                    height:auto;
+                    min-height:574px;
+                    
+                    margin-top:-50px;
+                    margin-left:auto;
+                    margin-right:auto;
+                }
+                #header-one{
+                    height:200px;
+                    width:950px;
+                    margin-right:auto;
+                    margin-left:auto;
+                    margin-bottom:10px;
+                    background: url({!$Resource.FAU_Header_Img}) no-repeat;
+                }
+                #logos{
+                    position:relative;
+                    display:block;
+                    top:60px;
+                    left:76px;
+                    width:798px;
+                }
+                #background-container-one{
+                    width:900px;
+                    height:auto;
+                    min-height:574px;
+                    margin-right:auto;
+                    margin-left:auto;
+                    background:#FFFFFF;
+                    border-radius:30px;
+                    border:#E1F3FD 7px solid;
+                }
+                #content-header-one{
+                    width:818px;
+                    height:122px;
+                    line-height:135px;
+                    background: url({!$Resource.FAU_Content_Header_Img}) no-repeat;
+                    color:#FFFFFF;
+                    text-align:center;
+                    margin-left:auto;
+                    margin-right:auto;
+                    font-size:35px;
+                    font-weight:bolder;
+                }
+                #content-header-blue{
+                    color:#00A6DC;
+                }
+                #content-one{
+                    width:700px !important;
+                    height:auto;
+                    min-height:574px;
+                    margin-left:auto;
+                    margin-right:auto;
+                    background:#FFFFFF;
+                }
+                button{
+                    width:150px;
+                    height:35px;
+                    border-radius:14px;
+                    border:#E1F3FD 2px solid;
+                    background:#FFFFFF;
+                    box-shadow:2px 2px 5px #8B8B8B;
+                    font-size:14px;
+                    font-weight:bolder;
+                    color:#054976;
+                    cursor:pointer;
+                }button:hover{box-shadow:1px 1px 1px #054976;}
+                #side_bar{
+                    height:574px;
+                    width:98px;
+                    position:relative;
+                    margin-top:-574px;
+                    bottom:0px;
+                    left:802px;
+                    background: url({!$Resource.FAU_side_bar_right}) no-repeat;
+                }
+                h1, h3 ,h4 ,h5 ,h6{
+                    color:#0D85C7;
+                    font-weight:bolder;
+                }
+                h2{
+                    color:#000;
+                }
+                #link{
+                    color:#000 !important;
+                }
+                a.linkStyle01 {
+                	background: #000;
+                }
+            </style>
+        </head>
+
+        <body>
+        <div id="main-container-one">
+            <div id="header-one">
+            <span id="logos">
+                    <span style="display:block; float:left;"><img src="{!$Resource.FAU_side_logo}" height="117" /></span>
+                    <span style="display:block; float:left; width:600px;"><img src="/{!FAU_Participant__c.FAU_program_banner_url__c}" height="117" /></span>
+                    <span style="display:block; float:left;"><img src="{!$Resource.FAU_side_logo_right}" height="117" /></span>
+            </span>
+            </div>
+            
+            <div id="background-container-one">
+                <div id="content-header-one">
+                    PARTICIPANT <span id="content-header-blue">BIOGRAPHY</span>
+                </div>
+                 
+                <div id="container-one">
+
+	 			<apex:pageMessages /> 
+			<br/><br/>
+			<apex:form id="bioForm">
+				<br/><br/>
+				<table style="width:700px; margin-left:auto; margin-right:auto;">
+					<tr>
+						<td>
+							<h2 style="color:#0D85C7 !important; font-size:22px;">Biography</h2>
+							<p><apex:outputLabel value=" This is the 'About Me' section of your Chatter home page : 1000 max" for="bioDetailsBiography2" /></p>
+						</td>
+						<td>
+							<apex:inputField id="bioDetailsBiography" styleClass="WidthClass" value="{!FAU_Participant__c.FAU_Biography__c}" required="false"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h2 style="color:#0D85C7 !important; font-size:22px;">Unilever Career</h2>
+						</td>
+						<td>	
+							<apex:inputField id="bioDetailsUnileverCareer" styleClass="WidthClass" value="{!FAU_Participant__c.FAU_Unilever_Career__c}" required="false"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h2 style="color:#0D85C7 !important; font-size:22px;">Prior Career</h2>
+						</td>
+						<td>	
+							<apex:inputField id="bioDetailsPriorCareer" styleClass="WidthClass" value="{!FAU_Participant__c.FAU_Prior_Career__c}" required="false"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h2 style="color:#0D85C7 !important; font-size:22px;">Education</h2>
+						</td>
+						<td>
+							<apex:inputField id="bioDetailsEducation" styleClass="WidthClass" value="{!FAU_Participant__c.FAU_Education__c}" required="false"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h2 style="color:#0D85C7 !important; font-size:22px;">Personal</h2>
+							<p><apex:outputLabel value="Share anything you like about yourself, where you live, hobbies, family.." for="bioDetailsPersonal2"/></p>
+						</td>
+						<td>
+							<apex:inputField id="bioDetailsPersonal" styleClass="WidthClass" value="{!FAU_Participant__c.FAU_Personal__c}" required="false"/>
+						</td>
+					</tr>
+				</table>
+				<h2><apex:commandButton style="color:#054976; height:30px; width:100px; background:#FFFFFF; border-radius:10px;" action="{!submitBio}" value="Submit" styleClass="btn" id="submitButton"/></h2>
+				<h2><apex:commandButton style="color:#054976; height:30px; width:100px; background:#FFFFFF; border-radius:10px;" action="{!cancelBio}" value="Fill Later" styleClass="btn" id="btnCancel" immediate="true"/></h2>
+			</apex:form>
+			
+            <div style="clear:both; height:75px;"></div>
+            <div id="side_bar"></div>
+			</div>
+		</div>
+	</div>
+	</body>
+	</html>
+</apex:page>

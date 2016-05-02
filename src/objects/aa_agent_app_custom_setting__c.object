@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Agent app runtime require parameters</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Key__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>Agent app custom setting key</description>
+        <externalId>false</externalId>
+        <label>Key</label>
+        <length>150</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Value__c</fullName>
+        <description>Agent app custom setting values</description>
+        <externalId>false</externalId>
+        <label>Value</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <label>Agent App Custom Setting</label>
+    <visibility>Public</visibility>
+</CustomObject>

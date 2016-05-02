@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Pitch Expertise</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Pitch Expertise</value>
+    </caseValues>
+    <fields>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Pitch Expertise --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Expertise --></label>
+        <name>Expertise__c</name>
+        <relationshipLabel><!-- Pitch Expertise --></relationshipLabel>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

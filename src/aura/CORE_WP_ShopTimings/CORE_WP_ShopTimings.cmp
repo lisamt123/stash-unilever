@@ -1,0 +1,29 @@
+<aura:component controller="Core_WP_WorkPlaceController">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="workplaceLocationId" type="String"/>
+    <aura:attribute name="noDataErrorMessage" type="Boolean" default="false"/>    
+    <style>
+        .responsiveRichText img, .responsiveRichText div, .responsiveRichText span, .responsiveRichText table{
+            height: 100% !important;
+            width: 100% !important;
+        }
+    </style> 
+    <div class="topBarStyle">
+        <div onclick="{!c.gotoPreviousPage}" class="topBackBar">
+            <img src="/resource/NewsCenterIcons/back.svg" class="topBackBarIcon"></img>
+        </div>
+    </div>
+    <div class="allPadding"> 
+        <div class="topicHeader">            
+            <img src="/resource/CORE_WP_WorkplaceStyles/Icons/ShopTimings.svg" class="smallIcons"/>
+            <div class="allPadding pageTitle">Shop-timings</div>
+        </div>
+        <div class="responsiveRichText">
+        	<aura:unescapedHtml value="{!v.shopTimings}" />             
+            <aura:if isTrue="{!v.noDataErrorMessage}">
+                There is no data available currently to display for this section.
+            </aura:if> 
+        </div>
+    </div>
+    
+</aura:component>

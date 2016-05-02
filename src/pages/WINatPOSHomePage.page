@@ -1,0 +1,90 @@
+<apex:page controller="WinAtPOSHomeController" applyBodyTag="false" applyHtmlTag="true" showHeader="true" sidebar="false" standardStylesheets="false" docType="html-5.0">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        
+        <link rel="stylesheet" href="{!$Resource.winatposapp}/styles/vendor.8956f383.css"/>
+        
+        <link rel="stylesheet" href="{!$Resource.winatposapp}/styles/main.e8b8bc68.css"/>
+        <!--[if lt IE 9]>
+        <link rel="stylesheet" href="styles/ie8fix.b13b4bc0.css">
+        <![endif]-->
+        <div id="unileverApp" ng-app="unileverApp" ng-controller="MainCtrl" class="winatpos">
+            <div class="unilever-container">
+          <apex:outputText value='<div ps-menu ps-bind-to="menu" class="menu-container"></div>' escape="false"></apex:outputText>
+                <div class="main-container">
+                    <div class="row">
+                        <div class="col-left">
+                            <apex:outputText value="<div ui-view></div>" escape="false"></apex:outputText>
+                        </div>
+                        <div class="col-right">                            
+                            <div id="announcementPost" ui-view="annoucement"></div>
+                            <div id="chatter-container" class="chatter-container" style="display: none">
+                                <apex:outputText value="<div ps-chatter-display></div>" escape="false"></apex:outputText>
+                                <div class="chatter-box">
+                                    
+                                    <div class="chatter-body">
+                                        <apex:form >
+    <apex:actionFunction name="UpdateChatterFeed" action="{!updateChatterFeed}" rerender="chatterFeed" oncomplete="Ps.Chatter.onActionCallComplete();">
+        <apex:param name="entityId" assignTo="{!entityId}" value="" />
+    </apex:actionFunction>                                   
+</apex:form>
+<div id="chatter"></div>
+                                     
+<chatter:feed id="chatterFeed" entityid="{!winAtPosGroupId}" onComplete="Ps.Chatter.onChatterComplete();"/> 
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+            </div>
+        </div>          
+    <!--[if lt IE 9]>
+    <script src="scripts/oldieshim.4801c9ae.js"></script>
+    <![endif]-->
+    
+    <script src="{!$Resource.winatposapp}/scripts/vendor.a2a2d2cd.js"></script>
+    <script type="text/javascript">
+    var winAtPOSUrlArray = {!winAtPOSUrlJson};
+    var winAtPOSUrlMap = {};
+    for (var i = 0; i < winAtPOSUrlArray.length; i++) {
+        winAtPOSUrlMap[winAtPOSUrlArray[i].Name] = winAtPOSUrlArray[i];
+    }
+
+    //here are some variables for application init on  salsforce 
+    var appConfig = angular.module('appConfig', []).constant('resourceBasePath', '{!URLFOR($Resource.winatposapp, '')}' + '/')    
+                                                   .constant('environment', 'SF')
+                                                   .constant('userGroupName', '{!winAtPosGroupName}')
+                                                   .constant('userGroupId', '{!winAtPosGroupId}')
+                                                   .constant('customUrls', winAtPOSUrlMap)
+                                                   .constant('newTabs', '{!$Setup.WinAtPOS_New_Tabs__c.Tab_String__c}')
+    											   .constant('isCommunityUser', '{!isCommunityUser}');
+    //hide global search
+    $(document).ready(function() { 
+        $(".searchCell").hide();
+    });                                                    
+</script>
+     
+        <script src="{!$Resource.winatposapp}/scripts/scripts.467872ff.js"></script>
+    <script type="text/javascript">
+        jQuery( document ).ready(function() {
+            var styles = document.styleSheets[0];
+            var ruleIndex = styles.insertRule("div.autoCompleteBoxScrolling {margin-top: 0;}", styles.cssRules.length);
+            var rule = styles.cssRules.item(ruleIndex);
+
+            var ruleIndex2 = styles.insertRule("#contentCommentDropdown {margin-top: 0;}", styles.cssRules.length);
+            var rule2 = styles.cssRules.item(ruleIndex2);
+            
+            jQuery('.chatter-body').on('scroll', function(){ 
+                var rule = styles.cssRules.item(ruleIndex);
+                console.log(rule);
+                rule.style.marginTop = -this.scrollTop+'px';
+
+                var rule2 = styles.cssRules.item(ruleIndex2);
+                console.log(rule2);
+                rule2.style.marginTop = -this.scrollTop+'px';
+            });
+        });
+    </script>
+</apex:page>
