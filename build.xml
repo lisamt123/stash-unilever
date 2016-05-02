@@ -18,7 +18,7 @@
                      pollWaitMillis="${sfdc.pollWaitMillis}"
                      maxPoll="${sfdc.maxPoll}"/>
         <delete includeemptydirs="true">
-            <fileset dir="src" includes="**/*" excludes="package2.xml"/>
+            <fileset dir="src" includes="**/*" excludes="package*"/>
         </delete>                     
         <move file="${basedir}/${sfdc.retrieveTarget}" tofile="src"/>
     </target>
@@ -32,7 +32,7 @@
                      unpackaged="src/package2.xml"
                      pollWaitMillis="${sfdc.pollWaitMillis}"
                      maxPoll="${sfdc.maxPoll}"/>
-        <fileset dir="src" includes="**/*"/>      
+        <fileset dir="src" includes="**/*excludes="package*"/>      
         <move file="${basedir}/${sfdc.retrieveTarget}" tofile="src"/>
     </target>
     <target name="deploy"> 
