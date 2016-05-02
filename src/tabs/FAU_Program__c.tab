@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
-    <customObject>true</customObject>
-    <description>An instance of a program, for example Excel-rator WL3 - Summer 2015</description>
-    <mobileReady>false</mobileReady>
-    <motif>Custom96: Street Sign</motif>
-</CustomTab>

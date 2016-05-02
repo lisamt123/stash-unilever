@@ -1,4 +1,0 @@
-<apex:page standardController="uw_Asset__c">
-    <chatter:feedwithFollowers entityId="{!id}" showheader="true"/>
-    <apex:detail />
-</apex:page>

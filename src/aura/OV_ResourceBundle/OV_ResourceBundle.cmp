@@ -1,3 +1,0 @@
-<aura:component >
-    <ltng:require styles="/resource/bootstrapSF1/css/bootstrap-namespaced.css, /resource/SF1customFonts/styles.css, /resource/OV_unileverDinPro/styles.css, /resource/OV_styles" />
-</aura:component>

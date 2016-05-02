@@ -1,8 +1,0 @@
-<apex:component access="global"  controller="HRO_OnboardingTaskList_CC">
-     <apex:attribute required="false" description="Task owner id" access="global" id="ownerId" name="ownerId" type="String" assignTo="{!cOwnerId}"/>
-    <apex:attribute required="false" description="HRO Onboadring Task Set New Leader Name" access="global" id="leaderName" name="leaderName" type="String" assignTo="{!cLeaderName}" />
-    <apex:attribute required="false" description="Task ID" access="global" id="taskID" name="taksId" type="String" assignTo="{!cTaskId}" />
-    <apex:attribute required="false" description="Task Link" access="global" id="taskLinkUrl" name="taskLinkUrl" type="String" assignTo="{!cTaskLink}" />
-    <apex:attribute required="false" description="Task Id " access="global" id="linkLabel" name="linkLabel" type="String" />
-    <a target="_blank" href="{!taskLink}">{!linkLabel}</a>
-</apex:component>

@@ -1,1 +1,0 @@
-<apex:page standardController="Article__c" extensions="uw_RedirectArticle"  showheader="true" action="{!redirectedit}" />

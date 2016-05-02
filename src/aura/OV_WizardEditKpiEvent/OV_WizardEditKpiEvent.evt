@@ -1,3 +1,0 @@
-<aura:event type="APPLICATION">
-	<aura:attribute name="kpiItem" type="Object"/>
-</aura:event>
