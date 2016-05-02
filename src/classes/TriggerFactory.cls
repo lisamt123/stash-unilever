@@ -206,12 +206,7 @@ public with sharing class TriggerFactory
             return new VEP_Visitor_TriggerHandler();
         }       
 		// Agencies Trigger Handlers start
-        
-        if (soType == AF_Agency_Estimate__c.sObjectType)
-        {
-            return new AF_Agency_EstimateHandler();
-        }
-        
+                
         if (soType == AF_Bonus_Results__c.sObjectType)
         {
             return new AF_Bonus_ResultsHandler();
