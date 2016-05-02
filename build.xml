@@ -32,7 +32,7 @@
                      unpackaged="src/package2.xml"
                      pollWaitMillis="${sfdc.pollWaitMillis}"
                      maxPoll="${sfdc.maxPoll}"/>
-         <fileset dir="src" includes="**/*" excludes="package.xml,package2.xml"/>
+         <fileset dir="src" includes="**/*" excludes="package.xml"/>
         <move file="${basedir}/${sfdc.retrieveTarget}" tofile="src"/>
     </target>
     <target name="deploy"> 
