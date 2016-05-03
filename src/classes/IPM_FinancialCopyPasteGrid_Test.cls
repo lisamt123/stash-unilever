@@ -161,6 +161,7 @@ public class IPM_FinancialCopyPasteGrid_Test {
             fy = IPM_FinancialCopyPasteGrid.assignVolumevaluesRegional(mapfields,fy1,'400');
             IPM_FinancialCopyPasteGrid.getFinancialyear(rowcol,lstFinancial[0].Id,Global_STR,projectList[0].IPM_Project_Type__c);
             system.assertNotEquals(IPM_ConstantUtils.STATUS_IN_PROGRESS, lstFinancial[0].status__c , getFinancial_MSG );
+            ipmFinCon2.projectId = projectList[0].Id;
             PageReference goback = ipmFinCon2.goBack();
             PageRef.getParameters().put('id' , projectList[0].Id );
             system.assertEquals(string.valueOf(PageRef), string.valueOf(goback) ,GoBack_MSG);
@@ -299,6 +300,7 @@ public class IPM_FinancialCopyPasteGrid_Test {
             String rowcol = input1;
             IPM_FinancialCopyPasteGrid.getFinancialyear(rowcol,lstFinancial[2].Id,Regional_STR,projectList[1].IPM_Project_Type__c);
             system.assertNotEquals(IPM_ConstantUtils.STATUS_IN_PROGRESS, lstFinancial[2].status__c , getFinancial_MSG );
+            ipmFinConReg1.projectId = projectList[1].Id;
             PageReference gobckreg1 = ipmFinConReg1.goBack();
             PageRef.getParameters().put('id' , projectList[1].Id );
             system.assertEquals(string.valueOf(PageRef), string.valueOf(gobckreg1) ,GoBack_MSG);

@@ -25,13 +25,6 @@ ul.progress-bar li.completed {
   background-color: #A3C24B;
 }
 
-.progress-wrap ul.progress-bar.pleProgress li.plePhase.visited {
-  background-color: #e98824;
-}
-.progress-wrap ul.progress-bar.pleProgress li.plePhase.completed {
-  background-color: #A3C24B;
-}
-
 ul.progress-bar li.visited:nth-child(1) {
 background: #e98824 url(../images/img_pb_1a.png) 12px 8px no-repeat;
 background-size: 56%;
@@ -73,11 +66,11 @@ background-size: 68%;
 }
 
 ul.pleProgress li.plePhase.visited:nth-child(6){
-background: #fff url(../images/img_pb_1g.png)7px 7px no-repeat;
+background: url(../images/img_pb_1g.png)7px 7px no-repeat;
 background-size: 65%;
 }
 ul.pleProgress li.plePhase.completed:nth-child(6){
-background: #fff url(../images/img_pb_1g.png)7px 7px no-repeat; 
+background: url(../images/img_pb_1g.png)7px 7px no-repeat; 
 background-size: 65%;
 }
 
@@ -259,6 +252,14 @@ top: 65px;
 position: absolute;
 z-index: 100;
 width: 279.5%;  
+}
+
+
+ul.progress-bar.pleProgress li.plePhase.visited{
+  background-color: #e98824;
+}
+ul.progress-bar.pleProgress li.plePhase.completed {
+  background-color: #A3C24B;
 }
 
 .funnelBlock{width:525px;float:right;margin-right:15px;}
