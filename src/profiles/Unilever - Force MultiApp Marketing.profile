@@ -313,10 +313,7 @@
         <apexClass>AF_ApproveActualsCtrl</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>AF_Assign_Category_Brand</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
+       
     <classAccesses>
         <apexClass>AF_Assigncategories</apexClass>
         <enabled>false</enabled>

@@ -316,14 +316,8 @@
         <apexClass>AF_ApproveActualsCtrl</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>AF_Assign_Category_Brand</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>AF_Assigncategories</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
+       
+       
     <classAccesses>
         <apexClass>AF_AttachmentUploadController</apexClass>
         <enabled>true</enabled>
