@@ -3013,7 +3013,6 @@ This means that they will not have editing rights. You can manage member &lt;br/
     <labels>
         <fullName>CEC_PhoneSearchValidationError</fullName>
         <categories>CEC:Case_Error</categories>
-<<<<<<< HEAD
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CEC_PhoneSearchValidationError</shortDescription>
@@ -3166,7 +3165,6 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <fullName>Core_NT_App_Url</fullName>
         <language>en_US</language>
         <protected>false</protected>
-=======
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CEC_PhoneSearchValidationError</shortDescription>
@@ -15137,8 +15135,6 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
         <protected>false</protected>
         <shortDescription>UW_PINNOVATE_LAUNCHED</shortDescription>
         <value>has launched the pinnovate wall. See the Link in the information section.</value>
-<<<<<<< HEAD
-=======
     </labels>
     <labels>
         <fullName>UW_SET_BACKGROUND_CMD</fullName>
@@ -16004,8 +16000,5 @@ Which Communications team do you represent? You must be associated to one Planne
         <shortDescription>User doesn&apos;t enter any value for &apos;Inoplan Project Name&apos;</shortDescription>
         <value>Please enter your Inoplan project name. If you do not have an Inoplan project please select No Inoplan Project</value>
     </labels>
-<<<<<<< HEAD
 </CustomLabels>
-=======
-</CustomLabels>
->>>>>>> 4777094791912b7a069e5955ef915c3ee32096f3
+
