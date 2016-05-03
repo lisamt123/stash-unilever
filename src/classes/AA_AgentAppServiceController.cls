@@ -149,17 +149,17 @@ public with sharing class AA_AgentAppServiceController {
         if(!String.isEmpty(objAgentApp.CategoryId)){
             newObjToBeInserted.Category__c  = objAgentApp.CategoryId;
         }
-        if(!String.isEmpty(objAgentApp.TopicId)){
+      /*  if(!String.isEmpty(objAgentApp.TopicId)){
             newObjToBeInserted.Topic__c  = objAgentApp.TopicId;
             if(!String.isEmpty(objAgentApp.SubTopic)){
                 newObjToBeInserted.Sub_Topics__c  = objAgentApp.SubTopic;    
             }
             
-        }    
+        }*/    
         
-               if(!String.isEmpty(objAgentApp.CountryId)) {
+         if(!String.isEmpty(objAgentApp.CountryId)) {
                 newObjToBeInserted.Country__c = objAgentApp.CountryId;
-            }
+          }
             
             newObjToBeInserted.Town__c = objAgentApp.Town;
             newObjToBeInserted.longitude__c = objAgentApp.Longitude;
