@@ -26,6 +26,7 @@ src
 src/tabs
 src/tabs/AD_Manager.tab
 src/tabs/AMPlanSummary__c.tab
+src/tabs/Admin.tab
 src/tabs/CAP_Jobs_Portfolio.tab
 src/tabs/RAP_Jobs_Portfolio.tab
 src/tabs/Saving_Summary.tab
