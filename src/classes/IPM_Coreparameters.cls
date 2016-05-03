@@ -681,6 +681,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
                     editMarketActivityByPL=true;
                 } 
                 isEditable=true;
+                editETByTPL=false;
                 if(IPM_ConstantUtils.PHASE_IDEAS.equals(IPM_Coreparameter.IPM_Phase__c)){
                     editSubSector=true;
                 }
