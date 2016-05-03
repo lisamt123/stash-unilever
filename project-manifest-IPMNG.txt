@@ -677,6 +677,7 @@ src/flows
 src/flows/IPM_Copy_Financial_Action_Standards_To_Section_Content-2.flow
 src/flows/IPM_Financial_SnapShot-6.flow
 src/flows/IPM_Global_Financial_Action_Standard-1.flow
+src/flows/IPM_User_Profile_has_changed_roles-6.flow
 src/labels
 src/labels/CustomLabels.labels
 src/layouts
@@ -686,6 +687,7 @@ src/layouts/IPM_MarketPerformanceBreakdown__c-IPM Market Performance Breakdown L
 src/layouts/IPM_MarketPerformance__c-IPM Market Performance Monitoring Layout.layout
 src/layouts/IPM_Project_Rollout__c-Local Rollout.layout
 src/layouts/IPM_Project__c-IPM Project Layout.layout
+src/layouts/IPM_Questionnaire__c-IPM Gate Keeping Layout.layout
 src/objects
 src/objects/IPM_Analytics_OTIF__c.object
 src/objects/IPM_Analytics__c.object
