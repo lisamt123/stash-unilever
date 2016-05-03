@@ -18707,4 +18707,11 @@ Which Communications team do you represent? You must be associated to one Planne
         <shortDescription>Amr tab</shortDescription>
         <value>tab</value>
     </labels>
+    <labels>
+        <fullName>Total_Accepted_Final_Cost_PC_PPC_CA</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Total_Accepted_Final_Cost_PC_PPC_CA</shortDescription>
+        <value>Total Accepted Final Cost (CA/PC/PPC) Euro Amount</value>
+    </labels>	
 </CustomLabels>
