@@ -6898,7 +6898,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_EcoDesign_Take_Me_To_EcoDesign_Url</shortDescription>
-        <value>https://ecodesign-q.unilever.com/Project/GetIPMProject</value>
+        <value>http://ecodesign.unilever.com/Project/GetIPMProject</value>
     </labels>
     <labels>
         <fullName>IPM_EcoDesign_Waste</fullName>
