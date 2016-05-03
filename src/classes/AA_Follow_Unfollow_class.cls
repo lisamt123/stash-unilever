@@ -187,7 +187,7 @@ public static void ExecuteFollowUnFollow(List<aa_Agent_App_User_Preference__c> U
              }// end if
            }// end for
                     
-            if(AfricaFlag==false)
+            if(!AfricaFlag)
             {
                    EntitySubscription objTemp = new EntitySubscription();
                    objTemp.SubscriberId = userid.UserId__c;
@@ -195,46 +195,46 @@ public static void ExecuteFollowUnFollow(List<aa_Agent_App_User_Preference__c> U
                    UnfollowList.add(objTemp);
                     
             }
-            if(EuropeFlag==false)
+            if(!EuropeFlag)
             {     
                    EntitySubscription objTemp = new EntitySubscription();
                    objTemp.SubscriberId = userid.UserId__c;
                    objTemp.ParentId = clusterNameIdMap.get('Europe');
                    UnfollowList.add(objTemp);
             }
-            if(LatinAmericaFlag==false)
+            if(!LatinAmericaFlag)
             {
                    EntitySubscription objTemp = new EntitySubscription();
                    objTemp.SubscriberId = userid.UserId__c;
                    objTemp.ParentId = clusterNameIdMap.get('Latin America');
                    UnfollowList.add(objTemp);
             }
-            if(NAMETRUBFlag==false){
+            if(!NAMETRUBFlag){
                    EntitySubscription objTemp = new EntitySubscription();
                    objTemp.SubscriberId = userid.UserId__c;
                    objTemp.ParentId = clusterNameIdMap.get('NAMET & RUB');
                    UnfollowList.add(objTemp);
             } 
-            if(NorthAmericaFlag==false)
+            if(!NorthAmericaFlag)
             {
                    EntitySubscription objTemp = new EntitySubscription();
                    objTemp.SubscriberId = userid.UserId__c;
                    objTemp.ParentId = clusterNameIdMap.get('North America');
                    UnfollowList.add(objTemp);
              } 
-             if(SouthAsiaFlag==false){
+             if(!SouthAsiaFlag){
                    EntitySubscription objTemp = new EntitySubscription();
                    objTemp.SubscriberId = userid.UserId__c;
                    objTemp.ParentId = clusterNameIdMap.get('South Asia');
                    UnfollowList.add(objTemp);
              }
-             if(NorthAsiaFlag==false){
+             if(!NorthAsiaFlag){
                    EntitySubscription objTemp = new EntitySubscription();
                    objTemp.SubscriberId = userid.UserId__c;
                    objTemp.ParentId = clusterNameIdMap.get('North Asia');
                    UnfollowList.add(objTemp);
              }   
-             if(SEAAFlag==false)
+             if(!SEAAFlag)
              {
                    EntitySubscription objTemp = new EntitySubscription();
                    objTemp.SubscriberId = userid.UserId__c;
@@ -278,7 +278,7 @@ public static void ExecuteFollowUnFollow(List<aa_Agent_App_User_Preference__c> U
                  system.debug('keep global follow for user :'+userid.UserId__c);
              }
        }
-           if(AllClusterFlag==false)
+           if(!AllClusterFlag)
              {
              	   EntitySubscription objTemp = new EntitySubscription();
                    objTemp.SubscriberId = userid.UserId__c;
