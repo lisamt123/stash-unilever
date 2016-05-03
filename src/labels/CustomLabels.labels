@@ -3165,8 +3165,6 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <fullName>Core_NT_App_Url</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <language>en_US</language>
-        <protected>false</protected>
         <shortDescription>CEC_PhoneSearchValidationError</shortDescription>
         <value>The Phone Search should be 6 Character length</value>
     </labels>
