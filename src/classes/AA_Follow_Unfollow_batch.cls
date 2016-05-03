@@ -10,7 +10,8 @@ global with sharing class AA_Follow_Unfollow_batch implements Database.Batchable
     global void execute(Database.BatchableContext BC, List<aa_Agent_App_User_Preference__c> scope)
     {   
     	// Calling the static method   
-        AA_Follow_Unfollow_class.ExecuteFollowUnFollow(scope);  
+        AA_Follow_Unfollow_class.ExecuteFollow(scope);  
+        AA_Follow_Unfollow_class.ExecuteUnFollow(scope); 
     }  
     global void finish(Database.BatchableContext BC)
     {

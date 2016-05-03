@@ -1,11 +1,12 @@
 public with sharing class AA_Follow_Unfollow_class {
-public static void ExecuteFollowUnFollow(List<aa_Agent_App_User_Preference__c> UserSet){
 	
-	  Map<string,aa_agent_app_custom_setting__c> BatchUserIDList = aa_agent_app_custom_setting__c.getAll();
-	  String lastbatchtime = BatchUserIDList.get('Follow Batch Last Run Time').Value__c;
-	  String BatchUserID = BatchUserIDList.get('Follow Batch User ID').Value__c; 
-
-  
+	
+public static void ExecuteFollow(List<aa_Agent_App_User_Preference__c> UserSet){
+	
+	    Map<string,aa_agent_app_custom_setting__c> BatchUserIDList = aa_agent_app_custom_setting__c.getAll();
+	    String lastbatchtime = BatchUserIDList.get('Follow Batch Last Run Time').Value__c;
+	    String BatchUserID = BatchUserIDList.get('Follow Batch User ID').Value__c; 
+ 
         List<aa_Cluster__c> ClusterIdName= [SELECT Id,Name FROM aa_Cluster__c limit 15]; 
         Map<String,ID> clusterNameIdMap=new  Map<String,ID>(); 
         Set<ID> clustIdSet=new Set<ID>();
@@ -16,6 +17,7 @@ public static void ExecuteFollowUnFollow(List<aa_Agent_App_User_Preference__c> U
             clusterNameIdMap.put(clustone.Name,clustone.Id);
             clustIdSet.add(clustone.Id);
         }
+        
         // Create userId set
         Set<Id> userIds = new Set<Id>();
         for(aa_Agent_App_User_Preference__c obj:UserSet){
@@ -39,25 +41,26 @@ public static void ExecuteFollowUnFollow(List<aa_Agent_App_User_Preference__c> U
 
         for(EntitySubscription obj:lstEntitySub){
         
-	             EntitySubscription objTemp = new EntitySubscription();
-	             objTemp.SubscriberId = obj.SubscriberId;
-	             objTemp.ParentId = ClusterId.get(obj.ParentId);
-	                         
-	             lstUpsertSub.add(objTemp);
+            EntitySubscription objTemp = new EntitySubscription();
+	        objTemp.SubscriberId = obj.SubscriberId;
+	        objTemp.ParentId = ClusterId.get(obj.ParentId);
+	        lstUpsertSub.add(objTemp);
         
-             //collect userid to be set for global cluster follow
-             if (!globaluserid.containskey(obj.SubscriberId))
-             {
+            //collect userid to be set for global cluster follow
+            if (!globaluserid.containskey(obj.SubscriberId))
+            {
                 globaluserid.put(obj.SubscriberId,'Global');
-             }  
-        }
-        //get global cluster id 
-        aa_Cluster__c GlobalclusterID = [SELECT Id FROM aa_Cluster__c where name='Global' Limit 1];
+            }  
+         }
+         
+         //get global cluster id 
+         aa_Cluster__c GlobalclusterID = [SELECT Id FROM aa_Cluster__c where name='Global' Limit 1];
         
-        List<EntitySubscription> lstEntitySubCluster= [SELECT CreatedById,CreatedDate,Id,IsDeleted,NetworkId,ParentId,SubscriberId FROM EntitySubscription where SubscriberId in:UserIds and ParentId  In:clustIdSet ];
+         List<EntitySubscription> lstEntitySubCluster= [SELECT CreatedById,CreatedDate,Id,IsDeleted,NetworkId,ParentId,SubscriberId FROM EntitySubscription where SubscriberId in:UserIds and ParentId  In:clustIdSet ];
+         
          //if user is following any cluster it should follow global
-        for(EntitySubscription oneclust:lstEntitySubCluster)
-        {  
+         for(EntitySubscription oneclust:lstEntitySubCluster)
+         {  
         	for(aa_Agent_App_User_Preference__c userid1:UserSet)
            {
            	  if(oneclust.SubscriberId==userid1.UserId__c && oneclust.ParentId!=GlobalclusterID.Id)
@@ -65,11 +68,11 @@ public static void ExecuteFollowUnFollow(List<aa_Agent_App_User_Preference__c> U
              	 globaluserid.put(oneclust.SubscriberId,'Global');
              }
            }        
-        }
+         }
+        
         //add global id & user id to final follow objectlist 
         for(ID userIDforclust:globaluserid.keyset())
         {
-        
          EntitySubscription objTemp = new EntitySubscription();
          objTemp.SubscriberId = userIDforclust;
          objTemp.ParentId = GlobalclusterID.Id;
@@ -80,8 +83,7 @@ public static void ExecuteFollowUnFollow(List<aa_Agent_App_User_Preference__c> U
         //remove objects if already present in the database 
         for(EntitySubscription singleclust:lstEntitySubCluster)
         {
-            
-            if(lstUpsertSub.size()>0){
+          if(lstUpsertSub.size()>0){
             for (Integer  i=0; i<lstUpsertSub.size(); i++)
             {  
                 if(singleClust.ParentId==lstUpsertSub[i].ParentID && singleClust.SubscriberId==lstUpsertSub[i].SubscriberId)
@@ -89,17 +91,51 @@ public static void ExecuteFollowUnFollow(List<aa_Agent_App_User_Preference__c> U
                     lstUpsertSub.remove(i);
                 }
             }
-            }
+          }
         }
               
-       //  system.debug('Final insert follow=========>'+lstUpsertSub);     
         if(lstUpsertSub.size()>0){
         insert lstUpsertSub;
         }
-      
-      
+}
+
+ 
         //Unfollow starts here
+ public static void ExecuteUnFollow(List<aa_Agent_App_User_Preference__c> UserSet){
+ 	
+ 	    Map<string,aa_agent_app_custom_setting__c> BatchUserIDList = aa_agent_app_custom_setting__c.getAll();
+        String lastbatchtime = BatchUserIDList.get('Follow Batch Last Run Time').Value__c;
+        String BatchUserID = BatchUserIDList.get('Follow Batch User ID').Value__c; 
+ 	
+ 	    List<aa_Cluster__c> ClusterIdName= [SELECT Id,Name FROM aa_Cluster__c limit 15]; 
+        Map<String,ID> clusterNameIdMap=new  Map<String,ID>(); 
+        Set<ID> clustIdSet=new Set<ID>();
         
+        //create cluser name & id map
+        for(aa_Cluster__c clustone:ClusterIdName)
+        {
+            clusterNameIdMap.put(clustone.Name,clustone.Id);
+            clustIdSet.add(clustone.Id);
+        }
+ 	  
+ 	   // Create userId set
+        Set<Id> userIds = new Set<Id>();
+        for(aa_Agent_App_User_Preference__c obj:UserSet){
+         userIds.add(obj.UserId__c);
+        }
+        
+        //Creat map of cluster id & name
+        List<aa_Country__c> CountryIds= [SELECT Id,Cluster_Id__c  FROM aa_Country__c limit 150];
+        Map<Id,Id> ClusterId= new Map<Id,Id>();
+        for(aa_Country__c obj:CountryIds){
+           ClusterId.put(obj.Id,obj.Cluster_Id__c);
+        }
+        
+                 
+        //fetch entires from entity subscribtion table for Agent User & countries & createdate >= lastjobRun              
+        List<EntitySubscription> lstEntitySub= [SELECT CreatedById,CreatedDate,Id,IsDeleted,NetworkId,ParentId,SubscriberId FROM EntitySubscription where SubscriberId in:UserIds and ParentId In:CountryIds and CreatedDate >=:
+        datetime.valueOf(lastbatchtime) ]; 	
+ 	       
         Map<ID,String> AfricaCountryMap=new Map<ID,String>();
         Map<ID,String> EuropeCountryMap=new Map<ID,String>();
         Map<ID,String> LatinAmericaCountryMap=new Map<ID,String>();
@@ -305,5 +341,6 @@ public static void ExecuteFollowUnFollow(List<aa_Agent_App_User_Preference__c> U
         
         }
          
+      
       
 }
