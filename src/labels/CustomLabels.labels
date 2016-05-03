@@ -3165,156 +3165,6 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <fullName>Core_NT_App_Url</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>CEC_PhoneSearchValidationError</shortDescription>
-        <value>The Phone Search should be 6 Character length</value>
-    </labels>
-    <labels>
-        <fullName>CEC_PostCode</fullName>
-        <categories>CEC: VF Page Global Display</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>CEC_PostCode</shortDescription>
-        <value>Postcode</value>
-    </labels>
-    <labels>
-        <fullName>CEC_Product</fullName>
-        <categories>CEC: VF Page Global Display</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>CEC_Product</shortDescription>
-        <value>Product</value>
-    </labels>
-    <labels>
-        <fullName>CEC_Product_Hierarchy</fullName>
-        <categories>CEC: VF Page Global Display</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>CEC_Product_Hierarchy</shortDescription>
-        <value>Product Hierarchy</value>
-    </labels>
-    <labels>
-        <fullName>CEC_Quick_Code_Change_Error</fullName>
-        <categories>VF:CEC_QuickCode</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>CEC Quick Code Change Error</shortDescription>
-        <value>Please Enter Country code before changing Quick Code!</value>
-    </labels>
-    <labels>
-        <fullName>CEC_Reason</fullName>
-        <categories>CEC: VF Page Global Display</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>CEC_Reason</shortDescription>
-        <value>Reason</value>
-    </labels>
-    <labels>
-        <fullName>CEC_ReasonCode</fullName>
-        <categories>CEC: VF Page Global Display</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>CEC_ReasonCode</shortDescription>
-        <value>Reason Code</value>
-    </labels>
-    <labels>
-        <fullName>CEC_Reason_Hierarchy</fullName>
-        <categories>CEC: VF Page Global Display</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>CEC_Reason_Hierarchy</shortDescription>
-        <value>Reason Hierarchy</value>
-    </labels>
-    <labels>
-        <fullName>CEC_RelatedCases</fullName>
-        <categories>CEC: VF Page Global Display</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>CEC_RelatedCases</shortDescription>
-        <value>Related Cases</value>
-    </labels>
-    <labels>
-        <fullName>CEC_SearchValidationError</fullName>
-        <categories>CEC:Case_Error</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>CEC_SearchValidationError</shortDescription>
-        <value>Validation Error : Please fill at least one field in the search form</value>
-    </labels>
-    <labels>
-        <fullName>CEC_Search_Button</fullName>
-        <categories>Visualforce Page :CEC_NewAccountContact</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>CEC_Search_Button</shortDescription>
-        <value>Search</value>
-    </labels>
-    <labels>
-        <fullName>CEC_Specify_Details_in_Missing_Info</fullName>
-        <categories>CEC: VF Page Global Display</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>CEC_Specify Details in Missing Info</shortDescription>
-        <value>Please Specify which details are known</value>
-    </labels>
-    <labels>
-        <fullName>CEC_Status</fullName>
-        <categories>VF page :CEC_NewAccountCase</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>To display Case Status as required message</shortDescription>
-        <value>Status: Validation Error: Value is required.</value>
-    </labels>
-    <labels>
-        <fullName>CEC_Street</fullName>
-        <categories>CEC: VF Page Global Display</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>CEC_Street</shortDescription>
-        <value>Street</value>
-    </labels>
-    <labels>
-        <fullName>CEC_Title</fullName>
-        <categories>CEC: VF Page Global Display</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>CEC_Title</shortDescription>
-        <value>Title</value>
-    </labels>
-    <labels>
-        <fullName>CEC_ValidEmailTemplate</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>CEC_ValidEmailTemplate</shortDescription>
-        <value>Please enter a valid Email Template Name.</value>
-    </labels>
-    <labels>
-        <fullName>CEC_isFormKnown</fullName>
-        <categories>CEC: VF Page Global Display</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>CEC_isFormKnown</shortDescription>
-        <value>Is Form Known?</value>
-    </labels>
-    <labels>
-        <fullName>CEC_isPacksizeKnown</fullName>
-        <categories>CEC: VF Page Global Display</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>CEC_isPacksizeKnown</shortDescription>
-        <value>Is Pack Size Known?</value>
-    </labels>
-    <labels>
-        <fullName>CEC_isVariantKnown</fullName>
-        <categories>CEC: VF Page Global Display</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>CEC_isVariantKnown</shortDescription>
-        <value>Is Variant Known?</value>
-    </labels>
-    <labels>
-        <fullName>Core_NT_App_Url</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
         <shortDescription>Core NT App Url</shortDescription>
         <value>https://unilever.my.salesforce.com/home/home.jsp?tsid=02uE00000001sfc</value>
     </labels>
@@ -15206,20 +15056,18 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
         <value>00Nc0000001NXDo</value>
     </labels>
     <labels>
-        <fullName>UW_SET_BACKGROUND_CMD</fullName>
-        <categories>Pinnovate</categories>
+        <fullName>VEP_Visitor_Department_id</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>UW_SET_BACKGROUND_CMD</shortDescription>
-        <value>#setbackground</value>
+        <shortDescription>VEP Visitor Department id</shortDescription>
+        <value>00Nc0000001NXCq</value>
     </labels>
     <labels>
-        <fullName>UW_SET_HEADER_CMD</fullName>
-        <categories>Pinnovate</categories>
+        <fullName>VEP_Visitor_Email_Id</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>UW_SET_HEADER_CMD</shortDescription>
-        <value>#setheader</value>
+        <shortDescription>VEP Visitor Email Id</shortDescription>
+        <value>00Nc0000001NXD5</value>
     </labels>
     <labels>
         <fullName>WINatPOS_Empty_Param</fullName>
@@ -15997,4 +15845,3 @@ Which Communications team do you represent? You must be associated to one Planne
         <value>Please enter your Inoplan project name. If you do not have an Inoplan project please select No Inoplan Project</value>
     </labels>
 </CustomLabels>
-
