@@ -1,0 +1,6 @@
+<apex:component access="global"  controller="HRO_OnboardingTaskList_CC">
+    <apex:attribute required="false" description="Task owner id" access="global" id="ownerId" name="ownerId" type="String" assignTo="{!cOwnerId}"/>
+    <apex:attribute required="false" description="HRO Onboadring Task Set New Leader Name" access="global" id="leaderName" name="leaderName" type="String" assignTo="{!cLeaderName}" />
+    <apex:attribute required="false" description="Link displayed text" access="global" id="linkLabel" name="linkLabel" type="String" />
+    <a target="_blank" href="{!headStartLink}">{!IF(ISBLANK(linkLabel),"Headstart",linkLabel)}</a>
+</apex:component>

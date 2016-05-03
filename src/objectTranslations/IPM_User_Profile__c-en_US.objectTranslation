@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>IPM User Profile</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>IPM User Profile</value>
+    </caseValues>
+    <fields>
+        <label><!-- Export Portfolio Data --></label>
+        <name>Export_Porfolio_Data__c</name>
+    </fields>
+    <fields>
+        <label><!-- Business Partner --></label>
+        <name>IPM_Business_Partner__c</name>
+    </fields>
+    <fields>
+        <label><!-- Category --></label>
+        <name>IPM_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- Central Team --></label>
+        <name>IPM_Central_Team__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field is to associate the User Profile to Company card --></help>
+        <label><!-- Company Card --></label>
+        <name>IPM_Company_Card__c</name>
+        <relationshipLabel><!-- User Profiles --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Deputy Business Partner --></label>
+        <name>IPM_Deputy_Business_Partner__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Finance Member --></label>
+        <name>IPM_Finance_Member__c</name>
+    </fields>
+    <fields>
+        <label><!-- GateKeeper --></label>
+        <name>IPM_GateKeeper__c</name>
+    </fields>
+    <fields>
+        <label><!-- HoldCategory --></label>
+        <name>IPM_HoldCategory__c</name>
+    </fields>
+    <fields>
+        <label><!-- IT Contacts --></label>
+        <name>IPM_IT_Contacts__c</name>
+    </fields>
+    <fields>
+        <label><!-- Job title --></label>
+        <name>IPM_Job_title__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Project Leader --></label>
+        <name>IPM_Project_Leader__c</name>
+    </fields>
+    <fields>
+        <label><!-- Region --></label>
+        <name>IPM_Region__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Reporting --></label>
+        <name>IPM_Reporting__c</name>
+    </fields>
+    <fields>
+        <label><!-- Category --></label>
+        <name>IPM_User_Category__c</name>
+        <picklistValues>
+            <masterLabel>Household Care</masterLabel>
+            <translation><!-- Household Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ice Cream</masterLabel>
+            <translation><!-- Ice Cream --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Laundry</masterLabel>
+            <translation><!-- Laundry --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- User Role --></label>
+        <name>IPM_User_Function__c</name>
+        <picklistValues>
+            <masterLabel>Deputy Business Partner</masterLabel>
+            <translation><!-- Deputy Business Partner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gatekeeper</masterLabel>
+            <translation><!-- Gatekeeper --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Project Leader</masterLabel>
+            <translation><!-- Project Leader --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Team-worker</masterLabel>
+            <translation><!-- Team-worker --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- User Function --></label>
+        <name>IPM_User_Role__c</name>
+        <picklistValues>
+            <masterLabel>Audit</masterLabel>
+            <translation><!-- Audit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BB</masterLabel>
+            <translation><!-- BB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BD</masterLabel>
+            <translation><!-- BD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CD</masterLabel>
+            <translation><!-- CD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CMI</masterLabel>
+            <translation><!-- CMI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Finance</masterLabel>
+            <translation><!-- Finance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MO</masterLabel>
+            <translation><!-- MO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>R&amp;D</masterLabel>
+            <translation><!-- R&amp;D --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Supply Chain</masterLabel>
+            <translation><!-- Supply Chain --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- User --></label>
+        <name>IPM_User__c</name>
+        <relationshipLabel><!-- IPM User Profile --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Work Level --></label>
+        <name>IPM_Work_Level__c</name>
+        <picklistValues>
+            <masterLabel>WL1</masterLabel>
+            <translation><!-- WL1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WL2+</masterLabel>
+            <translation><!-- WL2+ --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Justification --></label>
+        <name>Justification__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unique User Company Card --></label>
+        <name>Unique_User_Company_Card__c</name>
+    </fields>
+    <fields>
+        <label><!-- WL --></label>
+        <name>WL__c</name>
+        <picklistValues>
+            <masterLabel>WL1</masterLabel>
+            <translation><!-- WL1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WL2</masterLabel>
+            <translation><!-- WL2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WL3</masterLabel>
+            <translation><!-- WL3 --></translation>
+        </picklistValues>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>IPM Bosscard</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>IPM Bosscard</value>
+    </caseValues>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPMBosscard_Span --></label>
+        <name>IPMBosscard_Span__c</name>
+    </fields>
+    <fields>
+        <label><!-- Assumptions --></label>
+        <name>IPM_Assumptions__c</name>
+    </fields>
+    <fields>
+        <label><!-- Background --></label>
+        <name>IPM_Background__c</name>
+    </fields>
+    <fields>
+        <label><!-- Idea --></label>
+        <name>IPM_BosscardIdea__c</name>
+    </fields>
+    <fields>
+        <label><!-- Name --></label>
+        <name>IPM_BosscardName__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Bosscard Approver Comments --></label>
+        <name>IPM_Bosscard_Approver_Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Bosscard Last Modified Date Time --></label>
+        <name>IPM_Bosscard_Last_Modified_Date_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bosscard Logo Id --></label>
+        <name>IPM_Bosscard_Logo_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bosscard Logo --></label>
+        <name>IPM_Bosscard_Logo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bosscard Span Logo --></label>
+        <name>IPM_Bosscard_Span_Logo__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Bosscard Status --></label>
+        <name>IPM_Bosscard_Status__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Discard</masterLabel>
+            <translation><!-- Discard --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Approved</masterLabel>
+            <translation><!-- Not Approved --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Bosscord Approval Date --></label>
+        <name>IPM_Bosscord_Approval_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Brand Positioning --></label>
+        <name>IPM_Brand_Positioning__c</name>
+    </fields>
+    <fields>
+        <label><!-- Brand --></label>
+        <name>IPM_Brand__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Category Icon --></label>
+        <name>IPM_Category_Icon__c</name>
+    </fields>
+    <fields>
+        <label><!-- Category --></label>
+        <name>IPM_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Company Card --></label>
+        <name>IPM_Company_Card__c</name>
+        <relationshipLabel><!-- IPM Bosscard --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Constraints --></label>
+        <name>IPM_Constraints__c</name>
+    </fields>
+    <fields>
+        <label><!-- Consumer Need --></label>
+        <name>IPM_Consumer_Need__c</name>
+    </fields>
+    <fields>
+        <label><!-- Deliverables --></label>
+        <name>IPM_Deliverables__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Filled In Percent --></label>
+        <name>IPM_Filled_In_Percent__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gate Keeper --></label>
+        <name>IPM_Gate_Keeper__c</name>
+        <relationshipLabel><!-- IPM Bosscard (Gate Keeper) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- IsSaved --></label>
+        <name>IPM_IsSaved__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Accepted --></label>
+        <name>IPM_Is_Accepted__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Archived --></label>
+        <name>IPM_Is_Archived__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Draft --></label>
+        <name>IPM_Is_Draft__c</name>
+    </fields>
+    <fields>
+        <help><!-- Opportunity Information --></help>
+        <label><!-- Opportunity --></label>
+        <name>IPM_Opportunity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Potential Business Opportunity --></label>
+        <name>IPM_Potential_Business_Opportunity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Leader --></label>
+        <name>IPM_Project_Leader__c</name>
+        <relationshipLabel><!-- IPM Bosscard (Project Leader) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Region --></label>
+        <name>IPM_Region_Shr__c</name>
+    </fields>
+    <fields>
+        <label><!-- Region --></label>
+        <name>IPM_Region__c</name>
+    </fields>
+    <fields>
+        <label><!-- Resources --></label>
+        <name>IPM_Resources__c</name>
+    </fields>
+    <fields>
+        <label><!-- Scope --></label>
+        <name>IPM_Scope__c</name>
+    </fields>
+    <fields>
+        <label><!-- Small C --></label>
+        <name>IPM_Small_C_shr__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sustainability --></label>
+        <name>IPM_Sustainibility__c</name>
+    </fields>
+    <fields>
+        <label><!-- Target Launch Date --></label>
+        <name>IPM_Target_Launch_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- isBosscardSkipped --></label>
+        <name>IPM_isBosscardSkipped__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Delete? --></label>
+        <name>Is_Delete__c</name>
+    </fields>
+    <fields>
+        <label><!-- ProjectTypeValue --></label>
+        <name>ProjectTypeValue__c</name>
+    </fields>
+    <fields>
+        <label><!-- To be Deleted? --></label>
+        <name>To_be_Deleted__c</name>
+    </fields>
+    <fields>
+        <help><!-- Value selected here will be default for Project creation --></help>
+        <label><!-- Type of Project --></label>
+        <name>Type_of_Project__c</name>
+        <picklistValues>
+            <masterLabel>Brand Led Growth(BLG)</masterLabel>
+            <translation><!-- Brand Led Growth(BLG) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Innovation/Renovation</masterLabel>
+            <translation><!-- Innovation/Renovation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Operational</masterLabel>
+            <translation><!-- Operational --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Used By Workflow 175 days --></label>
+        <name>Used_By_Workflow_175_days__c</name>
+    </fields>
+    <fields>
+        <label><!-- Used By Workflow 30 days --></label>
+        <name>Used_By_Workflow_30_days__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

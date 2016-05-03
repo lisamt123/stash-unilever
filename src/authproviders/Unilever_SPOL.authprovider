@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AuthProvider xmlns="http://soap.sforce.com/2006/04/metadata">
+    <authorizeUrl>https://unilever.sharepoint.com/sites/salesforcedev/_layouts/15/OauthAuthorize.aspx</authorizeUrl>
+    <consumerKey>8d252857-2303-473d-9500-efd4bf342023</consumerKey>
+    <consumerSecret>Bg0mnuIWG9BG2bL91AckxiZFlTrLcCti2h1QiKMJu4GgGonuCkxFDHAKPngC6dL/</consumerSecret>
+    <friendlyName>Unilever-SPOL</friendlyName>
+    <includeOrgIdInIdentifier>false</includeOrgIdInIdentifier>
+    <providerType>MicrosoftACS</providerType>
+    <sendAccessTokenInHeader>false</sendAccessTokenInHeader>
+    <sendClientCredentialsInHeader>false</sendClientCredentialsInHeader>
+    <tokenUrl>https://accounts.accesscontrol.windows.net/unilever.onmicrosoft.com/tokens/OAuth/2?resource=00000003-0000-0ff1-ce00-000000000000/unilever.sharepoint.com@unilever.onmicrosoft.com</tokenUrl>
+</AuthProvider>

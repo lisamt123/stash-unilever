@@ -1,0 +1,53 @@
+<!--  
+*********************************************************************************************
+*@Description:This page is used to display trademark questions and responses in Gate Document Page
+*@Author: Cognizant
+*@Created Date: 15/04/2015 30/09/2015 
+*@Copyright © 2015  Unilever  
+*********************************************************************************************
+-->
+<apex:component controller="IPM_GatekeeperChecklist" allowDML="false">
+  <apex:attribute name="TradeMarkEdit" description="This is used for security" type="Boolean" assignTo="{!isEditable}"/>
+  <apex:attribute name="gateDocType" description="This is to provide the type of gate" type="String" assignTo="{!gateTypeTradeMark}"/>
+
+  
+         
+          <apex:outputPanel id="ren1" styleClass="gkTable">
+         
+          <table class="ipmTable table table-bordered otifTable">
+          <thead>
+              <tr>
+                  <th>
+                      <div>
+                         {!$Label.IPM_TRADEMARK_QUESTIONS}
+                      </div>
+                  </th>
+                  <th>
+                      <div>
+                         {!$Label.IPM_ANSWERS}
+                      </div>
+                  </th>
+              </tr>
+          </thead> 
+          <tbody>
+          
+         <apex:repeat value="{!quesList}" var="que"> 
+          <tr>   
+              <td>
+                  <apex:outputText value="{!que.IPM_Question__c}"/>
+              </td>
+              <td>  
+              <!--Below rendered condition is used to show the below output text-->
+                     <apex:outputText rendered="{!!isEditable}"><div class="gkcStatus {!IF(que.IPM_GK_Answers__c==$Label.IPM_NO_APPLICABLE,$Label.IPM_NO_APPLICABLE,que.IPM_GK_Answers__c)}">{!IF(que.IPM_GK_Answers__c==$Label.IPM_NO_APPLICABLE,$Label.IPM_NO_APPLICABLE,que.IPM_GK_Answers__c)}</div></apex:outputText>
+                     
+            </td>
+          </tr>
+          
+          </apex:repeat>
+         
+          
+         </tbody>
+                 </table>   
+
+</apex:outputPanel>
+    </apex:component>

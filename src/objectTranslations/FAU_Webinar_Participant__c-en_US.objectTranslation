@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Webinar Participant</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Webinar Participants</value>
+    </caseValues>
+    <fields>
+        <label><!-- Bio Fill Deadline --></label>
+        <name>FAU_Bio_Fill_Deadline__c</name>
+    </fields>
+    <fields>
+        <label><!-- End Time --></label>
+        <name>FAU_End_Time__c</name>
+    </fields>
+    <fields>
+        <help><!-- Denotes that the participant has accepted the webinar invitation. --></help>
+        <label><!-- Has Accepted --></label>
+        <name>FAU_Has_Accepted__c</name>
+    </fields>
+    <fields>
+        <label><!-- Name --></label>
+        <name>FAU_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Participant PA&apos;s Email --></label>
+        <name>FAU_Participant_PA_s_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Participant --></label>
+        <name>FAU_Participant__c</name>
+        <relationshipLabel><!-- Webinar Participant --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Participants Email --></label>
+        <name>FAU_Participants_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program (Participant) --></label>
+        <name>FAU_Program_Participant__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program (Webinar) --></label>
+        <name>FAU_Program_Webinar__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Time --></label>
+        <name>FAU_Start_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>FAU_Status__c</name>
+        <picklistValues>
+            <masterLabel>Invited</masterLabel>
+            <translation><!-- Invited --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New</masterLabel>
+            <translation><!-- New --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Title --></label>
+        <name>FAU_Title__c</name>
+    </fields>
+    <fields>
+        <label><!-- URL Text --></label>
+        <name>FAU_URL_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- URL --></label>
+        <name>FAU_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Webinar --></label>
+        <name>FAU_Webinar__c</name>
+        <relationshipLabel><!-- Webinar Participants --></relationshipLabel>
+    </fields>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Webinar and Participant must use the same Program.
+Please select a participant from the same program as the webinar. --></errorMessage>
+        <name>Webinar_and_Particpaut_use_same_Program</name>
+    </validationRules>
+</CustomObjectTranslation>

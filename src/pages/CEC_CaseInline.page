@@ -1,0 +1,222 @@
+<!--====================================================-->
+<!--Name:  CEC_CaseInline                               -->
+<!--Copyright notice: @ Unilever                        -->
+<!--====================================================-->
+<!--====================================================-->
+<!-- Purpose:This page is used to enter Product, Reason 
+ and Missing Information to new case or an existed case-->
+<!--====================================================-->
+<!--====================================================-->
+<!-- History                                            -->
+<!-- -------                                            -->
+<!-- VERSION  AUTHOR        DATE            DETAIL               RELEASE/CSR     -->
+<!-- 1.0 -    Koti        Jan-2015      INITIAL DEVELOPMENT       Sprint V       -->
+<!-- 2.0 -    Sathish     Feb-2015      UI Enhancement            Sprint VI      -->
+
+
+<apex:page id="page" standardController="case" showHeader="false" extensions="CEC_CaseInlineController">
+    <apex:stylesheet value="{!URLFOR($Resource.cec_TypeaheadStyles, 'cec_TypeaheadStyles.css')}"/>
+    <apex:includeScript value="/support/console/34.0/integration.js"/>    
+    <apex:pageMessages />
+    <apex:form id="form">
+        <apex:pageBlock id="pageBlock" mode="maindetail">      
+            <apex:inputHidden id="reasonId" value="{!reasonId}"/>
+            <apex:inputHidden id="productId" value="{!productId}"/>                
+            <apex:pageBlockSection columns="2" id="product">        
+                
+                <apex:pageBlockSectionItem id="productItem1_1" onDataclick="checkForValidProductCode();" rendered="{!IF(selectedCountryCode!=null, true, false)}"> 
+                    <apex:outputLabel value="{!$Label.CEC_Product}"/>            
+                    <c:Typeahead searchBoxId="productSearchBox" object="mdm_Case_Product__c" destinationForSelectedId="productId" placeholder="{!productName}" searchScope="All" filterClause="ISO_Country_Code__c=\'{!selectedCountryCode}\' AND Active_for_CEC__c=true" />
+                </apex:pageBlockSectionItem>
+                                
+                <apex:pageBlockSectionItem id="productItem1_2" onDataclick="checkForValidProductCode();" rendered="{!IF(selectedCountryCode==null, true, false)}"> 
+                    <apex:outputLabel value="{!$Label.CEC_Product}"/>
+                    <c:Typeahead searchBoxId="productSearchBox" object="mdm_Case_Product__c" destinationForSelectedId="productId" placeholder="{!productName}" searchScope="All" filterClause="Active_for_CEC__c=true"/>
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem id="productItem2">
+                    <apex:outputLabel value="{!$Label.CEC_Product_Hierarchy}"/>
+                    <apex:outputLabel id="ProductHierarchy" value="{!productHierarchy}">            
+                    </apex:outputLabel>
+                </apex:pageBlockSectionItem>
+
+            </apex:pageBlockSection>
+            <apex:pageBlockSection id="reason" columns="2">          
+                
+                <apex:pageBlockSectionItem id="reasonItem1_1" onDataclick="checkForValidReasonCode();" rendered="{!IF(selectedCountryCode!=null, true, false)}">
+                    <apex:outputLabel value="{!$Label.CEC_Reason}"/>
+                    <c:Typeahead searchBoxId="reasonSearchBox" object="mdm_Reason_Code__c" destinationForSelectedId="reasonId" placeholder="{!reasonName}" filterClause="ISO_Country__c=\'{!selectedCountryCode}\' AND Active__c=true"/>
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem id="reasonItem1_2" onDataclick="checkForValidReasonCode();" rendered="{!IF(selectedCountryCode==null, true, false)}">
+                    <apex:outputLabel value="{!$Label.CEC_Reason}"/>
+                    <c:Typeahead searchBoxId="reasonSearchBox" object="mdm_Reason_Code__c" destinationForSelectedId="reasonId" placeholder="{!reasonName}" filterClause="Active__c=true"/>
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem id="reasonItem2">
+                    <apex:outputLabel value="{!$Label.CEC_Reason_Hierarchy}"/>
+                    <apex:outputLabel id="ReasonHierarchy" value="{!reasonHierarchy }"/>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockSection columns="3">
+                <apex:pageBlockSectionItem >
+                    <apex:commandLink value="{!$Label.CEC_Missing_Information}" onclick="callCountryVerbatimValidation();" action="{!toggleMissingInfoDisplay}" reRender="MissingInfoSectionOuter"/>
+                </apex:pageBlockSectionItem> 
+                <apex:pageBlockSectionItem id="ProductButton">
+                    <!--<apex:image value="{!$Resource.CEC_Recommended_Products}" title="Recommended Products" height="25" width="25" onclick="return popitup('/apex/CEC_ProductRange?id={!$CurrentPage.parameters.id}')"/>-->
+                    <apex:commandLink value="{!$Label.CEC_RecommendedProducts}" onclick="return popitup('/apex/CEC_ProductRange?id={!$CurrentPage.parameters.id}')"/>
+                    <apex:outputLabel ></apex:outputLabel>
+                </apex:pageBlockSectionItem> 
+                <apex:pageBlockSectionItem id="ProductLocator">
+                    <apex:commandLink value="{!$Label.CEC_ProductLocator}" onclick="return popitup('/apex/CEC_IRIProductLocator?id={!$CurrentPage.parameters.id}')"/>
+                </apex:pageBlockSectionItem> 
+            </apex:pageBlockSection>
+
+            
+            <apex:outputPanel id="MissingInfoSectionOuter" layout="block" rendered="{!!isEmptyCountryVerbatimCheck}">
+                <apex:pageBlockSection id="MissingInfoSection" columns="2" rendered="{!missingInfoSectionDisplay}">
+                    <apex:outputLabel value="{!$Label.CEC_Detail_Request_Info}"/>          
+                    <apex:outputLabel value=""/>  
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="{!$Label.CEC_isPacksizeKnown}"/>
+                        <apex:actionRegion immediate="false">
+                            <apex:inputCheckbox selected="{!caseRecord.isPacksizeKnown__c}" label="PACK SIZE" value="{!caseRecord.isPacksizeKnown__c}">
+                                <apex:actionSupport event="onchange" action="{!updatePacksizeAvailabilityDetails}" reRender="ProductHierarchy"/>
+                            </apex:inputCheckbox>
+                        </apex:actionRegion>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="{!$Label.CEC_isFormKnown}"/>
+                        <apex:actionRegion immediate="false">
+                            <apex:inputCheckbox selected="{!caseRecord.isFormKnown__c}" label="FORM" value="{!caseRecord.isFormKnown__c}" >
+                                <apex:actionSupport event="onchange" action="{!updateFormAvailabilityDetails}" reRender="ProductHierarchy, MissingInfoSectionOuter"/>
+                            </apex:inputCheckbox>
+                        </apex:actionRegion>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="{!$Label.CEC_isVariantKnown}"/>
+                        <apex:actionRegion immediate="false">
+                            <apex:inputCheckbox selected="{!caseRecord.isVariantKnown__c}" label="VARIANT" value="{!caseRecord.isVariantKnown__c}" >
+                                <apex:actionSupport event="onchange" action="{!updateVariantAvailabilityDetails}" reRender="ProductHierarchy"/>
+                            </apex:inputCheckbox>
+                        </apex:actionRegion>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="{!$Label.CEC_Category}"/>
+                        <apex:actionRegion immediate="false" >
+                            <apex:selectList value="{!caseRecord.Case_product_category__c}" size="1"  disabled="{!(!isProductCategoryEnabled) }">
+                                <apex:selectOptions value="{!CategoryValues}"  /> 
+                                <apex:actionSupport event="onchange" action="{!updateProductCategory}" reRender="ProductHierarchy"/>
+                            </apex:selectList> 
+                        </apex:actionRegion>
+                    </apex:pageBlockSectionItem>
+                </apex:pageBlockSection> 
+            </apex:outputPanel>
+            <apex:pageBlockSection title="{!$Label.CEC_OtherDetailsSection}" id="OtherDetails">
+                <apex:pageBlockSectionItem id="OtherDetailsInner">
+                    <apex:outputlabel value="{!$ObjectType.case.Fields.Production_Code__c.label}"/>
+                    <apex:actionRegion immediate="false">
+                        <apex:inputField value="{!caseRecord.Production_Code__c}" styleClass="productionCodeInputBox" onclick="callCountryVerbatimValidation();">
+                            <apex:actionSupport event="onchange" action="{!processProductionCode}" status="displaystatus" immediate="false" reRender="DaycodeSection,DateOfPurchaseSection" oncomplete="checkAlertAction({!popupAlertCheck},{!questionnaireAlertCheck},'{!popupAlertMsg}')"/>
+                        </apex:inputField>
+                    </apex:actionRegion> 
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem id="otherDetailsSectionItem" rendered="false">
+                    <apex:outputlabel value="{!$ObjectType.case.Fields.DayCode__c.label}"/>
+                    <apex:outputField value="{!caseRecord.DayCode__c}" id="DaycodeSection"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem id="otherDetailsSectionItem1" rendered="false">
+                    <apex:outputlabel value="{!$ObjectType.case.Fields.Date_of_Manufacture_str__c.label}"/>
+                    <apex:outputField value="{!caseRecord.Date_of_Manufacture_str__c}" id="DateOfPurchaseSection"/>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>      
+            <apex:outputpanel layout="block" id="knowledgeArticlesOutputPanel">      
+                <apex:pageBlockSection title="Knowledge Articles" columns="1" id="KnowledgeArticles">
+                    <apex:pageBlockTable value="{!knowledgeWrapperList}" var="wrapperObj">
+                        <apex:column width="10%" headerValue="Action">
+                            <apex:commandLink action="{!mapArticleToCase}" value="Add" oncomplete="refreshPrimaryTab()">
+                                <apex:param name="selectedArticle" assignTo="{!selectedArticleId}" value="{!wrapperObj.knowledgeArticleId}"/>
+                            </apex:commandLink>
+                        </apex:column>
+                        <apex:column width="30%" value="{!wrapperObj.articleType }" headerValue="Type"/>
+                        <apex:column width="60%" headerValue="Subject">
+                            <apex:commandLink value="{!wrapperObj.subject}" onclick="openArticleinPrimarytab('{!wrapperObj.articleid}');return false;"/> 
+                        </apex:column>           
+                    </apex:pageBlockTable>
+                </apex:pageBlockSection>
+            </apex:outputpanel>
+        </apex:pageBlock>
+        <apex:actionFunction name="callProcessProdCode" action="{!processProductionCode}" />
+        <apex:actionFunction name="callUpdateReasonHierarchy" action="{!updateReasonHierarchy}" rerender="ReasonHierarchy,KnowledgeArticles" oncomplete="checkAlertAction({!popupAlertCheck},{!questionnaireAlertCheck},'{!popupAlertMsg}')"/>
+        <apex:actionFunction name="callUpdateProductHierarchy" action="{!updateProductHierarchy}" rerender="ProductHierarchy,KnowledgeArticles" oncomplete="checkAlertAction({!popupAlertCheck},{!questionnaireAlertCheck},'{!popupAlertMsg}')"/>
+    </apex:form>
+    <script src = "/soap/ajax/28.0/connection.js" type = "text/javascript"/>
+    <script language="javascript" type = "text/javascript" >
+        function refreshPrimaryTab() {
+            sforce.console.getFocusedPrimaryTabId(doRefresh);
+        }
+        var doRefresh = function doRefresh(result) {
+            sforce.console.refreshPrimaryTabById(result.id, true, refreshSuccess);
+        };
+        var refreshSuccess = function refreshSuccess(result) {
+            if (result.success != true) {
+                alert('{!$Label.CEC_NewCaseError_BeforeAddNewArticle}');
+            }
+        };
+        function checkForValidReasonCode() {
+            callCountryVerbatimValidation();
+            var reasonIdVal = document.getElementById("page:form:pageBlock:reasonId").value;
+            if (reasonIdVal != '' && reasonIdVal.length == 18) {
+                callUpdateReasonHierarchy();
+            }
+        }
+        function checkForValidProductCode() {
+            callCountryVerbatimValidation();
+            var productIdVal = document.getElementById("page:form:pageBlock:productId").value;
+            if (productIdVal != '' && productIdVal.length == 18) {
+                callUpdateProductHierarchy();
+            }
+        }
+        function checkUpdatePacksizeAvailabilityDetails(){
+            callCountryVerbatimValidation();
+            updatePacksizeAvailabilityDetails();
+        }
+        function callCountryVerbatimValidation() {
+            if({!isEmptyCountryVerbatimCheck}){
+                exceptionMsg = '{!$Label.CEC_CaseCountryVerbitimMessage}'; 
+                checkAlertAction(true, false, exceptionMsg);          
+            }
+        }
+        // Open Knowledge Article in primary tab
+        function openArticleinPrimarytab(articleIdentity) {
+            sforce.console.openPrimaryTab(null, '/' + articleIdentity, true);
+        }
+        function checkAlertAction(popupAlertCheck, questionnaireAlertCheck, popupAlertMsg){
+            if(popupAlertCheck){
+                alert(popupAlertMsg);
+            }
+            if(questionnaireAlertCheck) {
+                focusCaseActionTab();
+            }           
+        }
+        function focusCaseActionTab() {
+            sforce.console.focusSidebarComponent(JSON.stringify({componentType: 'VISUALFORCE', pageName: 'CEC_CaseActions'}),"",true);
+            sforce.console.getFocusedPrimaryTabId(doPrimaryTabRefresh);            
+        }
+        var doPrimaryTabRefresh = function doPrimaryTabRefresh(result) {
+            sforce.console.refreshPrimaryTabById(result.id, true, refreshPrimaryTabSuccess);
+        };
+        var refreshPrimaryTabSuccess = function refreshPrimaryTabSuccess(result) {
+            if (result.success != true) {
+                alert('{!$Label.CEC_CaseRefreshAlertError}');
+            }
+        };
+        //open the Product Range visualforce page in a popup.
+        function popitup(url) {
+            newwindow=window.open(url,'name','width=1000, height=600');
+            if (window.focus) {newwindow.focus()}
+            return false;
+        }
+       </script>
+</apex:page>

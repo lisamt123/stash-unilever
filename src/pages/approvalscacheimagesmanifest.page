@@ -1,0 +1,26 @@
+<apex:page showHeader="false" standardStylesheets="false" contentType="text/cache-manifest" cache="false">CACHE MANIFEST
+
+# Cache manifest version 0.0.6
+
+
+# If you change the version number in this comment, the cache manifest is no longer byte-for-byte identical.
+
+CACHE:
+
+#images
+{!URLFOR($Resource.MyApprovalsSR, 'img/Approvals_Logo.svg')}
+{!URLFOR($Resource.MyApprovalsSR, 'img/Approve.svg')}
+{!URLFOR($Resource.MyApprovalsSR, 'img/back.svg')}
+{!URLFOR($Resource.MyApprovalsSR, 'img/checked.png')}
+{!URLFOR($Resource.MyApprovalsSR, 'img/true.png')}
+{!URLFOR($Resource.MyApprovalsSR, 'img/false.png')}
+{!URLFOR($Resource.MyApprovalsSR, 'img/Comment.svg')}
+{!URLFOR($Resource.MyApprovalsSR, 'img/filter.svg')}
+{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}
+{!URLFOR($Resource.MyApprovalsSR, 'img/Return.svg')}
+{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}
+NETWORK:
+*
+
+
+</apex:page>

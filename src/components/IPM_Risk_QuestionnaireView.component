@@ -1,0 +1,107 @@
+<!--  
+*************************************************************************************************************************************************************
+*@Description:To display Risk questions and responses in Gate Document Page
+*@Author: Cognizant
+*@Created Date: 15/04/2015 
+*@Copyright © 2015  Unilever  
+*************************************************************************************************************************************************************
+-->                                
+<apex:component controller="IPM_GateRiskSection">
+   <apex:attribute name="riskedit" type="Boolean" AssignTo="{!IsEditable}" description="This is used for security"/>
+   <apex:attribute name="getProjectSectionId" description="Project Section Id " type="Id" required="true" assignTo="{!projDocSecId}" />
+   <apex:attribute name="getProjectId" description="Project Id " type="Id" required="true" assignTo="{!projectId}" />
+   <apex:attribute name="editSection" description="For displaying in gate document" type="Boolean" required="true" assignTo="{!edit}"/>
+   <apex:attribute name="gateType" description="Gate Document Type" type="String" required="false" assignTo="{!projDocType}"/>
+   <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Risk_QuestionnaireView.css')}"/>  
+   <!-- Render condition for checking RQS question list is empty or not -->
+   <apex:outputPanel rendered="{!AND(!edit,displayRQSQuestionsList!=null,displayRQSQuestionsList.size>0)}">
+                <div class="riskMainHead projectRiskLbl">{!$Label.IPM_A_PROJECT_RISK}</div>
+                <table class="ipmTable table table-bordered riskTablecolor gateKeeperlist tabletxtcenter">
+                <thead class="">
+                  <tr>
+                    <th class="width30P">
+                        <div class="risktabhead">
+                          <span><apex:outputText value="{!$Label.IPM_FACTOR}"/> </span>
+                        </div>
+                    </th>
+                    <th class="width15P">
+                       <div class="risktabhead">
+                          <span><apex:outputText value="{!$Label.IPM_ANCHORED_SCALE}"/> </span>
+                        </div>
+                    </th>       
+                    <th class="thriskcolumn width55P">
+                        <div class="risktabhead">
+                            <span>{!$Label.IPM_ACTION_PLAN}<span class="noBold">{!$Label.IPM_WH_QUESTIONS}</span></span>
+                        </div>
+                    </th>
+                    
+                  </tr>
+                </thead>
+                <apex:repeat value="{!riskCategories}" var="rc">
+                   
+                    <tr>
+                         <td class="riskCustBackground bgwhite" colspan="3">
+                             <apex:outputtext >{!rc}</apex:outputtext>
+                         </td>
+                    </tr>
+                    <apex:repeat value="{!displayRQSQuestionsList}" var="disp" >
+                    	<!-- Render condition for displaying questions for corresponding question type -->
+                        <apex:outputPanel rendered="{!rc==disp.IPM_RQS_Question_Type__c}">
+                            <tbody>
+                            <tr>
+                               <td class="bggray"><apex:outputText >{!disp.IPM_Question__c}</apex:outputText></td>
+                               <td class="bggray"><apex:outputText >{!IF(projDocType='Charter',disp.IPM_Charter_Score__c,IF(projDocType='Contract',disp.IPM_Contract_Score__c,IF(projDocType='Market Ready',disp.IPM_Market_Ready_Score__c,disp.IPM_Market_Deployment_Score__c)))}</apex:outputtext></td>
+                               <td class="bggray"><apex:outputText styleClass="riskCommentBox" value="{!IF(projDocType='Charter',disp.IPM_Charter_Comments__c,IF(projDocType='Contract',disp.IPM_Contract_Comments__c,IF(projDocType='Market Ready',disp.IPM_Market_Ready_Comments__c,disp.IPM_Market_Deployment_Comments__c)))}" /></td>
+                           </tr>  
+                            </tbody>      
+                       </apex:outputPanel>                   
+                   </apex:repeat>
+               </apex:repeat>
+               </table>
+</apex:outputPanel>
+<!---------Corporate Risk-->
+<!-- Condition for checking Corporate Risk question list is empty or not-->
+ <apex:outputPanel rendered="{!AND(!edit,displayCRQuestionsList!=null,displayCRQuestionsList.size>0)}">
+ <div class="riskMainHead projectRiskLbl">{!$Label.IPM_B_CORPORATE_RISK}</div>
+                <table class="ipmTable table table-bordered riskTablecolor gateKeeperlist tabletxtcenter">
+                <thead class="">
+                  <tr>
+                    <th class="width30P">
+                        <div class="risktabhead">
+                          <span><apex:outputText value="{!$Label.IPM_FACTOR}"/> </span>
+                        </div>
+                    </th>
+                    <th class="width15P">
+                       <div class="risktabhead">
+                          <span><apex:outputText value="{!$Label.IPM_ANCHORED_SCALE}"/> </span>
+                        </div>
+                    </th>       
+                    <th class="width55P">
+                        <div class="risktabhead">
+                            <span>{!$Label.IPM_ACTION_PLAN}<span class="noBold">{!$Label.IPM_WH_QUESTIONS}</span></span>
+                        </div>
+                    </th>
+                    
+                  </tr>
+                </thead>
+                <apex:repeat value="{!displayCRQuestionsList}" var="crq" >
+
+                <tbody>
+
+                <tr>
+                <td class="riskCustBackground"><apex:outputtext >{!crq.IPM_RQS_Question_Type__c}</apex:outputtext></td>
+                 <td class="riskCustBackground"></td>
+                <td class="riskCustBackground"></td>
+                </tr>
+                <tr>
+                         
+                           <td><apex:outputtext >{!crq.IPM_Question__c}</apex:outputtext></td>
+                           <td><apex:outputtext >{!IF(projDocType='Charter',crq.IPM_Charter_Score__c,IF(projDocType='Contract',crq.IPM_Contract_Score__c,IF(projDocType='Market Ready',crq.IPM_Market_Ready_Score__c,crq.IPM_Market_Deployment_Score__c)))}</apex:outputtext></td>
+                           <td><apex:outputText styleClass="riskCommentBox" value="{!IF(projDocType='Charter',crq.IPM_Charter_Comments__c,IF(projDocType='Contract',crq.IPM_Contract_Comments__c,IF(projDocType='Market Ready',crq.IPM_Market_Ready_Comments__c,crq.IPM_Market_Deployment_Comments__c)))}" /></td>
+                           </tr>  
+                </tbody>                    
+                           </apex:repeat>
+                           </table>
+ </apex:outputPanel>
+ <!---------Corporate Risk  -->  
+</apex:component>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Submit Response</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Submit Responses</value>
+    </caseValues>
+    <fields>
+        <label><!-- CR ID --></label>
+        <name>CR_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- HLE ID --></label>
+        <name>HLE_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- LOI ID --></label>
+        <name>LOI_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Queries --></label>
+        <name>LookupCPA_Queries__c</name>
+        <relationshipLabel><!-- Submit Responses --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- PWO ID --></label>
+        <name>PWO_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pworf ID --></label>
+        <name>Pworf_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Query Creator --></label>
+        <name>Query_Creator__c</name>
+        <relationshipLabel><!-- Submit Responses --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- It captures responses regarding any query regarding vendor contract management. --></help>
+        <label><!-- Response --></label>
+        <name>RTXTQuery_Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Responded By --></label>
+        <name>Responded_By__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- Submit_New_Response --></label>
+        <name>Submit_New_Response</name>
+    </webLinks>
+</CustomObjectTranslation>

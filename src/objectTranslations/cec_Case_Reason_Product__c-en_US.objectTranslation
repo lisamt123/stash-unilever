@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Case Reason Product</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Case Reason Products</value>
+    </caseValues>
+    <fields>
+        <label><!-- Case Product --></label>
+        <name>Case_Product__c</name>
+        <relationshipLabel><!-- Case Reason Products --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Reason Code --></label>
+        <name>Reason_Code__c</name>
+        <relationshipLabel><!-- Case Reason Products --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Unique ID --></label>
+        <name>Unique_ID__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

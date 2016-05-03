@@ -1,0 +1,89 @@
+<apex:page docType="html-5.0" standardStylesheets="false" showHeader="false" applyHtmlTag="false" applyBodyTag="false" controller="AR_AgencyMyProfileEditProjects" action="{!InitPage}">
+	
+	<apex:composition template="AR_Template">
+	
+		<apex:define name="content">
+		
+			<section role="main" id="content" class="form global-content">
+			
+				<apex:form styleClass="form-validate">
+				
+		            <header class="main-header">
+		                <h1>Projects</h1>
+		                <p>
+		               		Edit my projects
+		                </p>
+		                
+		            </header>
+		            
+		            <apex:outputPanel layout="block" id="mainContainer" styleClass="form-fields-wrapper">
+	                
+						<ul class="form-errors active">
+							<apex:messages />
+	                    </ul>
+
+	                    <div id="project-tabs">
+	                        <ul>
+								<li><a href="#tabs-1">Project 1</a></li>
+								<li><a href="#tabs-2">Project 2</a></li>
+								<li><a href="#tabs-3">Project 3</a></li>
+								<li><a href="#tabs-4">Project 4</a></li>
+	                        </ul>
+	                        <apex:variable value="{!1}" var="rowNum"/>
+	                        <apex:repeat value="{!ProjectObjectList}" var="project">
+		                        <div id="tabs-{!FLOOR(rowNum)}">
+			                    	<apex:repeat value="{!FieldSetMap['ar_Experience__c']['project']}" var="field">
+			                    		<div class="form-row {!CASE(field.Type,'string','text','url','text',field.Type)}-row clearfix">
+											<label class="form-row-label">
+					                            <apex:outputText value="{!field.label}" />
+					                        </label>
+					                        <div class="form-input">
+												<apex:inputField value="{!project.obj[field.fieldPath]}" />
+												<apex:outputText rendered="{!$ObjectType['ar_Experience__c'].fields[field.fieldPath].InlineHelpText != null}">
+						                        	<p class="helper">{!$ObjectType['ar_Experience__c'].fields[field.fieldPath].InlineHelpText}</p>
+						                        </apex:outputText>
+											</div>
+										</div>
+			                    	</apex:repeat>
+			                    	<div class="form-row file-row clearfix">
+										<label class="form-row-label">
+				                            Main image
+				                        </label>
+				                        <div class="form-input">
+											<c:AR_FileUpload fileNamePrefix="one" holder="{!project}" />
+										</div>
+									</div>
+									<div class="form-row file-row clearfix">
+										<label class="form-row-label">
+				                            Additional images (4 max, optional)
+				                        </label>
+				                       <div class="form-input">
+											<c:AR_FileUpload fileNamePrefix="two" holder="{!project}" />
+											<c:AR_FileUpload fileNamePrefix="three" holder="{!project}" />
+											<c:AR_FileUpload fileNamePrefix="four" holder="{!project}" />
+											<c:AR_FileUpload fileNamePrefix="five" holder="{!project}" />
+										</div>
+									</div>
+			                    </div>
+			                    <apex:variable var="rowNum" value="{!rowNum + 1}"/>
+			                </apex:repeat>
+
+	                    </div>
+	                    
+	                </apex:outputPanel>
+	                
+	                <footer class="form-footer">
+		                <ul>
+		                    <li><apex:commandButton styleClass="save" action="{!saveMyData}" /></li>
+		                    <li><a href="{!$Page.AR_AgencyMyProfileEdit}?id={!x_AccountID}" class="back"></a></li>
+		                </ul>
+		            </footer>
+		            
+		       </apex:form>
+		       
+			</section>
+		  
+		</apex:define>
+	
+	</apex:composition>
+</apex:page>

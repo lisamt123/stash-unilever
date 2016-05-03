@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Issue --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Issue --></value>
+    </caseValues>
+    <fields>
+        <label><!-- Brand --></label>
+        <name>Brand__c</name>
+    </fields>
+    <fields>
+        <label><!-- CEC_Product --></label>
+        <name>CEC_Product__c</name>
+        <relationshipLabel><!-- Issues --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Case --></label>
+        <name>Case__c</name>
+        <relationshipLabel><!-- Issues --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Date of Manufacture --></label>
+        <name>Date_of_Manufacture__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date of Manufacture --></label>
+        <name>Date_of_Manufacture_str__c</name>
+    </fields>
+    <fields>
+        <label><!-- DayCode --></label>
+        <name>DayCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Expiry Date --></label>
+        <name>Expiry_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- L0_Product_Category --></label>
+        <name>L0_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- L1_Product_Category --></label>
+        <name>L1_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- L2_Product_Category --></label>
+        <name>L2_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- L3_Product_Category --></label>
+        <name>L3_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- L4_Product_Category --></label>
+        <name>L4_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- L5_Product_Category --></label>
+        <name>L5_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- L6_Product_Category --></label>
+        <name>L6_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- L7_Product_Category --></label>
+        <name>L7_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- Market --></label>
+        <name>Market__c</name>
+        <picklistValues>
+            <masterLabel>India</masterLabel>
+            <translation><!-- India --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UK &amp; Ireland</masterLabel>
+            <translation><!-- UK &amp; Ireland --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- MyVerb --></label>
+        <name>MyVerb__c</name>
+    </fields>
+    <fields>
+        <label><!-- P0 Code --></label>
+        <name>P0_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- P1_Code --></label>
+        <name>P1_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- P2_Code --></label>
+        <name>P2_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- P3  Code --></label>
+        <name>P3_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- P4 Code --></label>
+        <name>P4_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- P5 Code --></label>
+        <name>P5_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- P6 Code --></label>
+        <name>P6_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- P7 Code --></label>
+        <name>P7_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product Rule level --></label>
+        <name>Product_Rule_level__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product UPC --></label>
+        <name>Product_UPC__c</name>
+    </fields>
+    <fields>
+        <label><!-- Production Code --></label>
+        <name>Production_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Purchase Date --></label>
+        <name>Purchase_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reason Code --></label>
+        <name>Reason_Code__c</name>
+        <relationshipLabel><!-- Issues --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Reason L0 Code --></label>
+        <name>Reason_L0_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reason_L0_desc --></label>
+        <name>Reason_L0_desc__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reason L1 Code --></label>
+        <name>Reason_L1_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reason_L1_desc --></label>
+        <name>Reason_L1_desc__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reason L2 Code --></label>
+        <name>Reason_L2_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reason_L2_desc --></label>
+        <name>Reason_L2_desc__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reason L3 Code --></label>
+        <name>Reason_L3_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reason_L3_desc --></label>
+        <name>Reason_L3_desc__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reason L4 Code --></label>
+        <name>Reason_L4_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reason_L4_desc --></label>
+        <name>Reason_L4_desc__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reason L5 Code --></label>
+        <name>Reason_L5_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reason_L5_Short_desc --></label>
+        <name>Reason_L5_Short_desc__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reason_L5_desc --></label>
+        <name>Reason_L5_desc__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reason_Rule_level --></label>
+        <name>Reason_Rule_level__c</name>
+    </fields>
+    <fields>
+        <label><!-- Store Location --></label>
+        <name>Store_Location__c</name>
+    </fields>
+    <fields>
+        <label><!-- Store --></label>
+        <name>Store__c</name>
+        <relationshipLabel><!-- Issues --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- UPC Code Detail --></label>
+        <name>UPC_Code_Detail__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unique ID --></label>
+        <name>Unique_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Verbatim --></label>
+        <name>Verbatim__c</name>
+    </fields>
+    <fields>
+        <label><!-- isFormKnown --></label>
+        <name>isFormKnown__c</name>
+    </fields>
+    <fields>
+        <label><!-- isPacksizeKnown --></label>
+        <name>isPacksizeKnown__c</name>
+    </fields>
+    <fields>
+        <label><!-- isVariantKnown --></label>
+        <name>isVariantKnown__c</name>
+    </fields>
+    <gender><!-- Masculine --></gender>
+    <nameFieldLabel><!-- Issue Number --></nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
+    <webLinks>
+        <label>Cosmetovigilance</label>
+        <name>Cosmetovigilence</name>
+    </webLinks>
+</CustomObjectTranslation>

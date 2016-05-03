@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>IPM MCO Short Names</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>IPM MCO Short Names</value>
+    </caseValues>
+    <fields>
+        <help><!-- It is Country Group Name that is mapped with the ID and used to get short Name for that Country at local level for project/Rollout/Financial creation. --></help>
+        <label><!-- Country Group --></label>
+        <name>Country_Group__c</name>
+    </fields>
+    <fields>
+        <help><!-- This short name is taken from Country group name that will be used in Rollout and financial naming convention at local Level. --></help>
+        <label><!-- Short Name --></label>
+        <name>Short_Name__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

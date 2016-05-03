@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>NavigationElement</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>NavigationElement</value>
+    </caseValues>
+    <fields>
+        <label><!-- Disabled --></label>
+        <name>Disabled__c</name>
+    </fields>
+    <fields>
+        <label><!-- DisplayOrder --></label>
+        <name>DisplayOrder__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>PageFilterUrl__c</name>
+    </fields>
+    <fields>
+        <label><!-- PageName --></label>
+        <name>PageName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Profile Access --></label>
+        <name>Profile_Access__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sprite XY - Hover --></label>
+        <name>Sprite_XY_Hover__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sprite XY - Pressed --></label>
+        <name>Sprite_XY_Pressed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sprite XY - Resting --></label>
+        <name>Sprite_XY_Resting__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Url --></label>
+        <name>Url__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

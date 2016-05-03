@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>BET__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Indicates if BET is applicable for the project type</description>
+        <externalId>false</externalId>
+        <label>BET</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_ApplicableCompanyCard__c</fullName>
+        <description>Applicable company card like for Global project it is global</description>
+        <externalId>false</externalId>
+        <label>Applicable Company Card</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_ApplicableGateKeepingModels__c</fullName>
+        <description>Gate Keeping Model Applicable for the project</description>
+        <externalId>false</externalId>
+        <label>Applicable GateKeeping Models</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Applicable_Phases__c</fullName>
+        <description>All phases which are applicable for the project i.e. Ideas,Feasibility,Capability,Market Ready,PLE</description>
+        <externalId>false</externalId>
+        <label>Applicable Phases</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Charter_Question_Applicable__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Indicate if charter question are applicable or not</description>
+        <externalId>false</externalId>
+        <label>Charter Question Applicable</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Charter_Question_HelpText__c</fullName>
+        <description>Charter question help text.</description>
+        <externalId>false</externalId>
+        <label>Charter Question HelpText</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_DefaultCharterQuestionAnswer__c</fullName>
+        <description>Default charter questions answers</description>
+        <externalId>false</externalId>
+        <label>Default Charter Question Answer</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_DefaultComplexity__c</fullName>
+        <description>Default complexity for any project type i.e. Full, Lite</description>
+        <externalId>false</externalId>
+        <label>Default Complexity</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_DefaultPhase__c</fullName>
+        <description>default phase for Project i.e. ideas</description>
+        <externalId>false</externalId>
+        <label>Default Phase</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Default_GateKeeping_Model__c</fullName>
+        <description>Default Gate Keeping Model for project</description>
+        <externalId>false</externalId>
+        <label>Default GateKeeping Model</label>
+        <length>200</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_FastTrackApplicable__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Indicate where project is fast track or not</description>
+        <externalId>false</externalId>
+        <label>Fast Track Applicable</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_GateKeepingHelpText__c</fullName>
+        <description>Gate Keeping Help Text</description>
+        <externalId>false</externalId>
+        <label>GateKeeping HelpText</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_GatekeepingModelsApplicable__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Gatekeeping Models Applicable</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_MadatoryFields__c</fullName>
+        <description>Mandatory field for project i.e. IPM_Project_Type__c,IPM_ProjectSubType__c,IPM_Company_Card__c,IPM_Brand_Positioning__c,IPM_Project_Name__c,IPM_Category_Text__c,IPM_Target_Launch_Dates__c</description>
+        <externalId>false</externalId>
+        <label>Madatory Fields</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_MultipleBrandPosApplicable__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Indicate whether multiple brand positioning is applicable or not</description>
+        <externalId>false</externalId>
+        <label>Multiple BrandPos Applicable</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_ProjectSubType__c</fullName>
+        <description>Sub type for each project i.e. Original Or Operational</description>
+        <externalId>false</externalId>
+        <label>Project SubType</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Project_Span__c</fullName>
+        <description>Project Span for each project type i.e. for Regional Project  span will be regional</description>
+        <externalId>false</externalId>
+        <label>Project Span</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Project_Type__c</fullName>
+        <description>Project type i.e. Operational or Original</description>
+        <externalId>false</externalId>
+        <label>Project Type</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_SubProjectHelpText__c</fullName>
+        <description>Help Text for Sub Project</description>
+        <externalId>false</externalId>
+        <label>Sub Project Help Text</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_TargetLaunchDateDuration__c</fullName>
+        <description>Target Launch Date Duration for a project</description>
+        <externalId>false</externalId>
+        <label>Target Launch Date Duration</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_WhiteSpaceApplicable__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>white space applicable for a project</description>
+        <externalId>false</externalId>
+        <label>White Space Applicable</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>IPM Project MetaData</label>
+    <visibility>Public</visibility>
+</CustomObject>

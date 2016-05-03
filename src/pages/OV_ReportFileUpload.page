@@ -1,0 +1,92 @@
+<!--
+   TODO - HEADER
+-->
+<apex:page showHeader="true" 
+    sidebar="true" 
+    controller="OV_ReportFileUploadController"
+    title="Upload {!deviceTypeName} Report file for Report {!reportName}"
+    tabStyle="OV_Report__c">
+
+    <style>
+        .staticArea, .dynamicArea{
+            display: none;
+        }
+    </style>
+
+    <apex:includeScript value="{!$Resource.jQuery191}"/>
+
+    <script>
+        var changeStaticDynamic = function(value){
+            if(value == 1){
+                $('.dynamicArea').hide();
+                $('.staticArea').show();
+                debugger;
+            }else if(value ==2){
+                $('.staticArea').hide();
+                $('.dynamicArea').show();
+            }
+            changeStaticDynamicMethod(value);
+        };
+    </script>
+
+    <apex:outputText value="Upload {!deviceTypeName} File for {!reportName}"
+        style="font-style:bold;font-size:18px" />
+
+    <br/>
+    <br/>
+
+    <apex:form >
+        <apex:pageMessages ></apex:pageMessages>
+
+
+        <apex:pageBlock title="File or URL" mode="read">
+            <apex:actionRegion >     
+                <apex:actionFunction name="changeStaticDynamicMethod" rerender="staticDynamicArea" >
+                    <apex:param name="firstParam" assignTo="{!staticOrDynamic}" value="" />
+                </apex:actionFunction>
+
+                <apex:outputlabel value="Report Type " style="width: 200px;"/>
+                <apex:selectList size="1" value="{!staticOrDynamic}" onchange="changeStaticDynamic(this.value)" style="width: 200px;"> 
+                    <apex:selectOption itemValue="0" itemLabel="Select type"/>
+                    <apex:selectOption itemValue="1" itemLabel="Static"/>
+                    <apex:selectOption itemValue="2" itemLabel="Dynamic"/>
+                </apex:selectList>
+                <br /><br />
+            </apex:actionRegion>
+
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Upload"
+                    action="{!upload}"
+                    title="Upload the file related to the report"
+                    alt="upload" />
+
+                <apex:commandButton value="Cancel"
+                    action="{!cancel}" 
+                    title="Cancel this upload"
+                    alt="cancel" />
+            </apex:pageBlockButtons>
+
+            <apex:outputPanel >
+                <apex:outputPanel styleClass="staticArea" >
+                    <apex:inputFile value="{!file.versionData}" fileName="{!file.pathOnClient}" />
+
+                    <apex:selectList value="{!selectedLibrary}" multiselect="false" required="true" label="Library" title="Library" size="1">
+                        <apex:selectOptions value="{!libraryList}"/>
+                    </apex:selectList>
+                </apex:outputPanel>
+
+                <apex:outputPanel styleClass="dynamicArea">
+                    <apex:outputlabel value="URL: " style="width: 200px;"/>
+                    <apex:inputText value="{!url}" />
+
+                    <apex:outputlabel value="Library: " style="width: 200px;"/>
+                    <apex:selectList value="{!selectedLibrary}" multiselect="false" required="true" label="Library" title="Library" size="1">
+                        <apex:selectOptions value="{!libraryList}"/>
+                    </apex:selectList>
+                </apex:outputPanel>
+            </apex:outputPanel>
+        </apex:pageBlock>
+    </apex:form>
+
+
+</apex:page>

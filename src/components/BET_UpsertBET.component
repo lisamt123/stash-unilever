@@ -1,0 +1,145 @@
+<apex:component allowDML="true" controller="BET_UpsertBETController">
+
+    <apex:attribute name="ProjectId" type="Id" required="false" 
+                    description="IPM project ID" assignTo="{!projectIdentifier}"/>
+    <apex:attribute name="Project_name" type="String" required="false" 
+                    description="Project name" assignTo="{!projectName}"/>
+    <apex:attribute name="Category_name" type="Id" required="false" 
+                    description="Category name from master data" assignTo="{!categoryName}"/>
+    <apex:attribute name="Category" type="Id" required="false" 
+                    description="Category from master data" assignTo="{!cat}"/>
+    <apex:attribute name="Brand_Position" type="Id" required="false" 
+                    description="Brand Position from master data" assignTo="{!brandPosition}"/>
+    <apex:attribute name="OwnerId" type="Id" required="false" 
+                    description="Project lead user Id" assignTo="{!owner}"/>
+    <apex:attribute name="TLD" type="Date" required="false" 
+                    description="Target Launch Date" assignTo="{!targetLaunchDate}"/>
+    <apex:attribute name="Description" type="String" required="false" 
+                    description="Description of project" assignTo="{!projectDescription}"/>
+    <apex:attribute name="Callback" type="String" required="false" 
+                    description="URL to which page will be redirected after record creation" assignTo="{!cback}"/>
+    <apex:attribute name="CallbackSkip" type="String" required="false" 
+                    description="URL to which page will be redirected after record creation is skipped" assignTo="{!cbackskipped}"/>
+    <!--- 27.09 changes -->
+    <apex:attribute name="betObj" type="uw_BET__c" required="false"  description="Bet object"/>
+    <apex:attribute name="componentData" type="BET_CategoryComponentData" required="false" description="Bet object"/>
+    <!-- 27.09 changes -->
+
+    <apex:pageMessages id="theMSgs" rendered="{!ProjectId != null}"/>
+
+    <!--- 27.09 changes -->
+    <apex:outputPanel rendered="{!ProjectId == null}">
+        <c:BET_NewBetComponent betobj="{!betObj}" cdata="{!componentData}"/>
+    </apex:outputPanel>
+    <!--- 27.09 changes -->
+    <!--- 27.09 changes -->
+    <apex:outputPanel rendered="{!ProjectId != null}">
+        <div class="form-item">
+            <div class="item-label">
+                <apex:outputLabel >{!$Label.BET_BET_Name}</apex:outputLabel>
+            </div>
+            <div class="item-input">
+                <apex:inputText value="{!betobject.name}"/>
+            </div>
+        </div>             
+
+        <div class="form-item">
+            <div class="item-label">
+                <apex:outputLabel >{!$Label.BET_Owner}</apex:outputLabel>
+            </div>
+            <div class="item-input">
+                <apex:inputfield styleClass="hideOwner" value="{!betobject.ownerId}"/>
+            </div>
+        </div>             
+
+        <div class="form-item">
+            <div class="item-label">
+                <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.Category_Group__c.Label}</apex:outputLabel>
+            </div>
+            <div class="item-input">
+                <apex:inputText value="{!categoryGroupName}" disabled="true"/>
+            </div>
+        </div>
+
+        <div class="form-item">
+            <div class="item-label">
+                <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.Product_Category__c.Label}</apex:outputLabel>
+            </div>
+            <div class="item-input">
+                <apex:inputText value="{!catName}" disabled="true"/> 
+            </div>
+        </div>
+
+        <!-- FabricConditioner begin -->
+        <div class="form-item" style="{!IF(fabricConditionerCategory,'display:none;','display:none;')}">
+            <div class="item-label">
+                <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.Is_Fabric_Conditioners__c.Label}</apex:outputLabel>
+            </div>
+            <div class="item-input-checkbox">
+                <apex:outputField value="{!betobject.Is_Fabric_Conditioners__c}"/> 
+            </div>
+        </div>
+        <!-- FabricConditioner end -->
+
+        <div class="form-item">
+            <div class="item-label">
+                <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.Brand_Position__c.Label}</apex:outputLabel>
+            </div>
+            <div class="item-input">
+                <apex:inputText value="{!brandPositionName}" disabled="true"/> 
+            </div>
+        </div>
+
+        <div class="form-item">
+            <div class="item-label">
+                <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.Product_Brand__c.Label}</apex:outputLabel>
+            </div>
+            <div class="item-input">
+                <apex:selectList value="{!selectedBrand}" size="1" multiselect="false">
+                    <apex:selectOptions value="{!brands}" />
+                </apex:selectList>
+            </div>
+        </div>
+
+        <!-- FabricConditioner begin -->
+        <div class="form-item" style="{!IF(fabricConditionerCategory,'','')}">
+        <!-- FabricConditioner end -->
+            <div class="item-label">
+                <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.IPM_Project__c.Label}</apex:outputLabel>
+            </div>
+            <div class="item-input">
+                <apex:inputText value="{!projectName}" disabled="true"/>
+            </div>
+        </div>
+
+        <div class="form-item">
+            <div class="item-label">
+                <apex:outputLabel Title="{!$ObjectType.uw_BET__c.Fields.Description__c.InlineHelpText}">{!$ObjectType.uw_BET__c.Fields.Description__c.Label}</apex:outputLabel>
+                <span class="SecButtonSet infoMarTop">
+                <a class="icoButton info smalllinfo" title="{!$ObjectType.uw_BET__c.Fields.Description__c.InlineHelpText}"></a>
+                </span>
+            </div>
+            <div class="item-input-description">
+                <apex:inputTextarea rows="5" value="{!betobject.Description__c}" />
+            </div>
+        </div>
+
+        <div class="form-item">
+            <div class="item-label">
+                <apex:outputLabel >{!$Label.BET_TargetLaunchDate}</apex:outputLabel>
+            </div>
+            <div class="item-input-date">
+                <apex:inputField id="bettld" value="{!betobject.Launch_Date__c}"/>
+                <script>document.getElementById('{!$Component.bettld}').disabled = true</script>
+            </div>
+        </div>
+
+        <div class="betActionButtons">
+            <apex:commandButton value="{!$Label.BET_SkipForNow}" styleClass="btn-cancel" action="{!skipForNow}" />
+            <apex:commandButton value="{!$Label.BET_CreateNewBet}" styleClass="btn-create-bet" action="{!upsertBet}" 
+                                rerender="theMSgs"/>
+        </div>
+
+    </apex:outputPanel>
+
+</apex:component>

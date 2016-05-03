@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Risk Assessment and Mitigation</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Risk Assessment and Mitigation</value>
+    </caseValues>
+    <fields>
+        <label><!-- PWORF --></label>
+        <name>lkp_PWORF__c</name>
+        <relationshipLabel><!-- Risk Assessment and Mitigation --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Impact --></label>
+        <name>ltxta_Impact__c</name>
+    </fields>
+    <fields>
+        <label><!-- Mitigation Action --></label>
+        <name>ltxta_Mitigation_Action__c</name>
+    </fields>
+    <fields>
+        <label><!-- Probability --></label>
+        <name>ltxta_Probability__c</name>
+    </fields>
+    <fields>
+        <help><!-- Please mention brief details of the risks. --></help>
+        <label><!-- Risk description --></label>
+        <name>ltxta_Risk_description__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

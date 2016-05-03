@@ -1,0 +1,57 @@
+<!--  
+*******************************************************************************
+*@Description:This component is used for Assortment strategy for the local MDG
+*@Author: Cognizant
+*@Created Date: 24/02/2015 
+*@Copyright Â© 2015  Unilever  
+*******************************************************************************
+-->
+<apex:component controller="IPM_AssortmentStrategy" allowDML="true">
+<apex:attribute name="ProSecID" assignTo="{!ProdocSecId}" type="string"  description="Get section id"/>
+ <div class="row mainCmiTable">
+    <div class="table-responsive gateCMITable"> 
+    <div class="col-sm-12 noPadleft">
+    <!--Below rendered condition is used to show IPM_Distribution_Type__c field from the lstAssortStrategy list if it is not null-->
+        <span class="viewDistribType">{!$Label.IPM_Assort_Distribution_Type}</span> <apex:outputField value="{!lstAssortStrategy[0].IPM_Distribution_Type__c}" rendered="{!AND(lstAssortStrategy!=null,lstAssortStrategy.size>0)}"/>
+    </div>
+    <div class="col-sm-12 noPadleft">
+       <!--Below two rendered conditions is used to show IPM_AssortmentStrategy_From__c and IPM_AssortmentStrategy_To__c fields from the lstAssortStrategy list if it is not null -->
+        <span class="viewDataPeriod">{!$Label.IPM_Data_period}</span> <apex:outputField value="{!lstAssortStrategy[0].IPM_AssortmentStrategy_From__c}" rendered="{!AND(lstAssortStrategy!=null,lstAssortStrategy.size>0)}"/> - <apex:outputField value="{!lstAssortStrategy[0].IPM_AssortmentStrategy_To__c}" rendered="{!AND(lstAssortStrategy!=null,lstAssortStrategy.size>0)}"/> 
+    </div>                       
+        <table with="100%" border="0" cellpadding="0" cellspacing="0" class="table table-bordered ipmTable cmiGateSectionTable">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        {!$Label.IPM_CU_Priority}
+                    </th>
+                    <th scope="col"> 
+                        {!$Label.IPM_CU_s}
+                    </th>
+                    <th scope="col" colspan="5">
+                        {!$Label.IPM_Top_5_Customer_Channels}
+                    </th>
+                </tr>           
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="2"></td>
+                    <apex:repeat value="{!channelNameSet}" var="channel">
+                        <td><span class="viewassortpriority">{!channel}</span> {!$Label.IPM_Priority_Dist_target}</td>
+                    </apex:repeat>
+                </tr>
+                <apex:repeat value="{!setAssortStrategy}" var="assort">
+                    <tr>
+                        <td>{!assortPriorityMap[assort]}</td>
+                        <td>{!assort}</td>
+                        <apex:repeat value="{!assotmentMap[assort]}" var="strategy">
+                            <!--Below rendered condition is used to show the below text-->
+                            <td>{!strategy.IPM_Assortment_Strategy_Priority__c}<apex:outputText value=" | " rendered="{!AND(strategy.IPM_Assortment_Strategy_Priority__c!='',strategy.IPM_Assortment_strategy_Target__c!='')}"/> {!strategy.IPM_Assortment_strategy_Target__c}</td>
+                        </apex:repeat>
+                    </tr>
+                </apex:repeat>
+            </tbody>
+        </table>
+    </div>
+</div>          
+                
+</apex:component>

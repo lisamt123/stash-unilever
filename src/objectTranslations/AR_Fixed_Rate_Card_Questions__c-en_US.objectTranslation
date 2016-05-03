@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>AR_Fixed Rate Card Questions</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>AR_Fixed Rate Card Questions</value>
+    </caseValues>
+    <fields>
+        <label><!-- Definition --></label>
+        <name>Definition__c</name>
+    </fields>
+    <fields>
+        <label><!-- Discipline --></label>
+        <name>Discipline__c</name>
+    </fields>
+    <fields>
+        <label><!-- Material Costs Included? --></label>
+        <name>Material_Costs_Included__c</name>
+    </fields>
+    <fields>
+        <label><!-- Order --></label>
+        <name>Order__c</name>
+    </fields>
+    <fields>
+        <label><!-- Per Item --></label>
+        <name>Per_Item__c</name>
+    </fields>
+    <fields>
+        <label><!-- Subject to Annual Rebate Scheme? --></label>
+        <name>Subject_to_Annual_Rebate_Scheme__c</name>
+    </fields>
+    <fields>
+        <label><!-- Task Group --></label>
+        <name>Task_Group__c</name>
+    </fields>
+    <fields>
+        <label><!-- Task_Group_short --></label>
+        <name>Task_Group_short__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

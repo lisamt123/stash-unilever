@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Brand Logo --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Brand Logo --></value>
+    </caseValues>
+    <fields>
+        <label>Paese</label>
+        <name>Country__c</name>
+        <relationshipLabel>Brand Marchio</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Marchio</label>
+        <name>Logo__c</name>
+    </fields>
+    <gender><!-- Masculine --></gender>
+    <nameFieldLabel><!-- Brand Logo Name --></nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
+</CustomObjectTranslation>

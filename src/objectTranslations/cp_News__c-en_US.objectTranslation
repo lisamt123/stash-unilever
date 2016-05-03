@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>News</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>News</value>
+    </caseValues>
+    <fields>
+        <help><!-- Please enter a date you would like the news item to stop appearing --></help>
+        <label><!-- Expiry Date --></label>
+        <name>Expiry_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Full Story URL --></label>
+        <name>Full_Story_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- News Type --></label>
+        <name>News_Type__c</name>
+        <picklistValues>
+            <masterLabel>At a Glance</masterLabel>
+            <translation><!-- At a Glance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hot Topics</masterLabel>
+            <translation><!-- Hot Topics --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Referenced URL --></label>
+        <name>Referenced_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Short Description --></label>
+        <name>Short_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Active</masterLabel>
+            <translation><!-- Active --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inactive</masterLabel>
+            <translation><!-- Inactive --></translation>
+        </picklistValues>
+    </fields>
+    <startsWith>Vowel</startsWith>
+</CustomObjectTranslation>

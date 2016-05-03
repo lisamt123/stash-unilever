@@ -1,0 +1,723 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>SWOP Calculator</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>SWOP Calculator</value>
+    </caseValues>
+    <fields>
+        <label><!-- Agency Department --></label>
+        <name>Agency_Department__c</name>
+        <picklistValues>
+            <masterLabel>Account Management</masterLabel>
+            <translation><!-- Account Management --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Creative</masterLabel>
+            <translation><!-- Creative --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Account Management</masterLabel>
+            <translation><!-- Digital Account Management --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Creative</masterLabel>
+            <translation><!-- Digital Creative --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Production</masterLabel>
+            <translation><!-- Digital Production --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Strategic Planning</masterLabel>
+            <translation><!-- Digital Strategic Planning --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Technology</masterLabel>
+            <translation><!-- Digital Technology --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Production</masterLabel>
+            <translation><!-- Production --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Strategic Planning</masterLabel>
+            <translation><!-- Strategic Planning --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Box 10 --></label>
+        <name>Box_10__c</name>
+    </fields>
+    <fields>
+        <label><!-- Box 11 --></label>
+        <name>Box_11__c</name>
+    </fields>
+    <fields>
+        <label><!-- Box 12 --></label>
+        <name>Box_12__c</name>
+    </fields>
+    <fields>
+        <label><!-- Box 13 --></label>
+        <name>Box_13__c</name>
+    </fields>
+    <fields>
+        <label><!-- Box 14 --></label>
+        <name>Box_14__c</name>
+    </fields>
+    <fields>
+        <label><!-- Box 15 --></label>
+        <name>Box_15__c</name>
+    </fields>
+    <fields>
+        <label><!-- Box 16 --></label>
+        <name>Box_16__c</name>
+    </fields>
+    <fields>
+        <label><!-- Box 17 --></label>
+        <name>Box_17__c</name>
+    </fields>
+    <fields>
+        <label><!-- Box 18 --></label>
+        <name>Box_18__c</name>
+    </fields>
+    <fields>
+        <label><!-- Box 19 --></label>
+        <name>Box_19__c</name>
+    </fields>
+    <fields>
+        <label><!-- Box 1 --></label>
+        <name>Box_1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Box 20 --></label>
+        <name>Box_20__c</name>
+    </fields>
+    <fields>
+        <label><!-- Box 2 --></label>
+        <name>Box_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Box 3 --></label>
+        <name>Box_3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Box 4 --></label>
+        <name>Box_4__c</name>
+    </fields>
+    <fields>
+        <label><!-- Box 5 --></label>
+        <name>Box_5__c</name>
+    </fields>
+    <fields>
+        <label><!-- Box 6 --></label>
+        <name>Box_6__c</name>
+    </fields>
+    <fields>
+        <label><!-- Box 7 --></label>
+        <name>Box_7__c</name>
+    </fields>
+    <fields>
+        <label><!-- Box 8 --></label>
+        <name>Box_8__c</name>
+    </fields>
+    <fields>
+        <label><!-- Box 9 --></label>
+        <name>Box_9__c</name>
+    </fields>
+    <fields>
+        <label><!-- Box Range --></label>
+        <name>Box_Range__c</name>
+    </fields>
+    <fields>
+        <label><!-- FTE Rate (EUR) --></label>
+        <name>FTE__c</name>
+    </fields>
+    <fields>
+        <label><!-- Financial Year --></label>
+        <name>Financial_Year__c</name>
+        <picklistValues>
+            <masterLabel>FY2015</masterLabel>
+            <translation><!-- FY2015 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FY2016</masterLabel>
+            <translation><!-- FY2016 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FY2017</masterLabel>
+            <translation><!-- FY2017 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FY2018</masterLabel>
+            <translation><!-- FY2018 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FY2019</masterLabel>
+            <translation><!-- FY2019 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FY2020</masterLabel>
+            <translation><!-- FY2020 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FY2021</masterLabel>
+            <translation><!-- FY2021 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FY2022</masterLabel>
+            <translation><!-- FY2022 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FY2023</masterLabel>
+            <translation><!-- FY2023 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FY2024</masterLabel>
+            <translation><!-- FY2024 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FY2025</masterLabel>
+            <translation><!-- FY2025 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Job Description --></label>
+        <name>Job_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Country --></label>
+        <name>OblixCountry__c</name>
+        <relationshipLabel><!-- SWOP Calculator --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Agency --></label>
+        <name>Oblix_Agency__c</name>
+        <relationshipLabel><!-- SWOP Calculator --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Points High --></label>
+        <name>Points_High__c</name>
+    </fields>
+    <fields>
+        <label><!-- Points Low --></label>
+        <name>Points_Low__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the hourly rate for the Role selected for the Agency selected, for the country selected. --></help>
+        <label><!-- Role Hourly Rate (EUR) --></label>
+        <name>Role_Daily_Rate_EUR__c</name>
+    </fields>
+    <fields>
+        <label><!-- Role Title --></label>
+        <name>Role_Title__c</name>
+        <picklistValues>
+            <masterLabel>Account Coordinator</masterLabel>
+            <translation><!-- Account Coordinator --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Account Director</masterLabel>
+            <translation><!-- Account Director --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Account Executive</masterLabel>
+            <translation><!-- Account Executive --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Account Manager</masterLabel>
+            <translation><!-- Account Manager --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Account Supervisor</masterLabel>
+            <translation><!-- Account Supervisor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Analyst</masterLabel>
+            <translation><!-- Analyst --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Architect</masterLabel>
+            <translation><!-- Architect --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Art Buyer</masterLabel>
+            <translation><!-- Art Buyer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Art Director</masterLabel>
+            <translation><!-- Art Director --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Assistant Account Executive</masterLabel>
+            <translation><!-- Assistant Account Executive --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Assistant Business Manager</masterLabel>
+            <translation><!-- Assistant Business Manager --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Assistant Producer</masterLabel>
+            <translation><!-- Assistant Producer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Assistant Production Manager</masterLabel>
+            <translation><!-- Assistant Production Manager --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Assistant Traffic Manager</masterLabel>
+            <translation><!-- Assistant Traffic Manager --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Associate Account Director</masterLabel>
+            <translation><!-- Associate Account Director --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Associate Creative Director</masterLabel>
+            <translation><!-- Associate Creative Director --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Associate Planning Director</masterLabel>
+            <translation><!-- Associate Planning Director --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Associate Research Director</masterLabel>
+            <translation><!-- Associate Research Director --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Broadcast Editor</masterLabel>
+            <translation><!-- Broadcast Editor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Business Manager</masterLabel>
+            <translation><!-- Business Manager --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Copywriter</masterLabel>
+            <translation><!-- Copywriter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Creative Coordinator</masterLabel>
+            <translation><!-- Creative Coordinator --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Creative Director</masterLabel>
+            <translation><!-- Creative Director --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Designer</masterLabel>
+            <translation><!-- Designer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Account Coordinator</masterLabel>
+            <translation><!-- Digital Account Coordinator --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Account Director</masterLabel>
+            <translation><!-- Digital Account Director --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Account Supervisor</masterLabel>
+            <translation><!-- Digital Account Supervisor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Analyst</masterLabel>
+            <translation><!-- Digital Analyst --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Art Director</masterLabel>
+            <translation><!-- Digital Art Director --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Associate Creative Director</masterLabel>
+            <translation><!-- Digital Associate Creative Director --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Copywriter</masterLabel>
+            <translation><!-- Digital Copywriter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Creative Coordinator</masterLabel>
+            <translation><!-- Digital Creative Coordinator --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Creative Director</masterLabel>
+            <translation><!-- Digital Creative Director --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Designer</masterLabel>
+            <translation><!-- Digital Designer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Director of Client Services</masterLabel>
+            <translation><!-- Digital Director of Client Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Flash Designer</masterLabel>
+            <translation><!-- Digital Flash Designer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Junior Account Manager</masterLabel>
+            <translation><!-- Digital Junior Account Manager --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Junior Analyst</masterLabel>
+            <translation><!-- Digital Junior Analyst --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Junior Art Director</masterLabel>
+            <translation><!-- Digital Junior Art Director --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Junior Copywriter</masterLabel>
+            <translation><!-- Digital Junior Copywriter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Junior Designer</masterLabel>
+            <translation><!-- Digital Junior Designer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Junior Planner</masterLabel>
+            <translation><!-- Digital Junior Planner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Junior Producer</masterLabel>
+            <translation><!-- Digital Junior Producer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Junior Web Designer</masterLabel>
+            <translation><!-- Digital Junior Web Designer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Planner</masterLabel>
+            <translation><!-- Digital Planner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Planning Coordinator</masterLabel>
+            <translation><!-- Digital Planning Coordinator --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Planning Director</masterLabel>
+            <translation><!-- Digital Planning Director --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Producer</masterLabel>
+            <translation><!-- Digital Producer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Project Manager</masterLabel>
+            <translation><!-- Digital Project Manager --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Senior Analyst</masterLabel>
+            <translation><!-- Digital Senior Analyst --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Senior Art Director</masterLabel>
+            <translation><!-- Digital Senior Art Director --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Senior Copywriter</masterLabel>
+            <translation><!-- Digital Senior Copywriter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Senior Designer</masterLabel>
+            <translation><!-- Digital Senior Designer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Senior Planner</masterLabel>
+            <translation><!-- Digital Senior Planner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Senior Producer</masterLabel>
+            <translation><!-- Digital Senior Producer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Senior Project Manager</masterLabel>
+            <translation><!-- Digital Senior Project Manager --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Senior Web Designer</masterLabel>
+            <translation><!-- Digital Senior Web Designer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Web Designer</masterLabel>
+            <translation><!-- Digital Web Designer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Director of Technology</masterLabel>
+            <translation><!-- Director of Technology --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Engineer</masterLabel>
+            <translation><!-- Engineer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Executive Creative Director</masterLabel>
+            <translation><!-- Executive Creative Director --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Executive Producer</masterLabel>
+            <translation><!-- Executive Producer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Global Account Head</masterLabel>
+            <translation><!-- Global Account Head --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Global Chief Creative Officer</masterLabel>
+            <translation><!-- Global Chief Creative Officer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Group Account Director</masterLabel>
+            <translation><!-- Group Account Director --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Group Creative Director</masterLabel>
+            <translation><!-- Group Creative Director --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Group Planning Director</masterLabel>
+            <translation><!-- Group Planning Director --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Group Research Director</masterLabel>
+            <translation><!-- Group Research Director --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Head of Account Management</masterLabel>
+            <translation><!-- Head of Account Management --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Head of Broadcast Production</masterLabel>
+            <translation><!-- Head of Broadcast Production --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Head of Business Affairs</masterLabel>
+            <translation><!-- Head of Business Affairs --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Head of Creative Services</masterLabel>
+            <translation><!-- Head of Creative Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Head of Digital</masterLabel>
+            <translation><!-- Head of Digital --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Head of Digital Production</masterLabel>
+            <translation><!-- Head of Digital Production --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Head of Print Production</masterLabel>
+            <translation><!-- Head of Print Production --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Head of Research</masterLabel>
+            <translation><!-- Head of Research --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Head of Strategic Planning</masterLabel>
+            <translation><!-- Head of Strategic Planning --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Head of Strategic Planning/Research</masterLabel>
+            <translation><!-- Head of Strategic Planning/Research --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Head of Traffic</masterLabel>
+            <translation><!-- Head of Traffic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Junior Account Manager</masterLabel>
+            <translation><!-- Junior Account Manager --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Junior Analyst</masterLabel>
+            <translation><!-- Junior Analyst --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Junior Architect</masterLabel>
+            <translation><!-- Junior Architect --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Junior Art Buyer</masterLabel>
+            <translation><!-- Junior Art Buyer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Junior Art Director</masterLabel>
+            <translation><!-- Junior Art Director --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Junior Broadcast Editor</masterLabel>
+            <translation><!-- Junior Broadcast Editor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Junior Copywriter</masterLabel>
+            <translation><!-- Junior Copywriter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Junior Designer</masterLabel>
+            <translation><!-- Junior Designer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Junior Engineer</masterLabel>
+            <translation><!-- Junior Engineer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Junior Planner</masterLabel>
+            <translation><!-- Junior Planner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Junior Print Producer</masterLabel>
+            <translation><!-- Junior Print Producer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Junior Proofreader</masterLabel>
+            <translation><!-- Junior Proofreader --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Librarian</masterLabel>
+            <translation><!-- Librarian --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Planner</masterLabel>
+            <translation><!-- Planner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Planning Director</masterLabel>
+            <translation><!-- Planning Director --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Print Producer</masterLabel>
+            <translation><!-- Print Producer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Producer</masterLabel>
+            <translation><!-- Producer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Production Assistant</masterLabel>
+            <translation><!-- Production Assistant --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Production Coordinator</masterLabel>
+            <translation><!-- Production Coordinator --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Production Manager</masterLabel>
+            <translation><!-- Production Manager --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Proofreader</masterLabel>
+            <translation><!-- Proofreader --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Research Director</masterLabel>
+            <translation><!-- Research Director --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Senior Account Director</masterLabel>
+            <translation><!-- Senior Account Director --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Senior Account Executive</masterLabel>
+            <translation><!-- Senior Account Executive --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Senior Account Manager</masterLabel>
+            <translation><!-- Senior Account Manager --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Senior Analyst</masterLabel>
+            <translation><!-- Senior Analyst --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Senior Architect</masterLabel>
+            <translation><!-- Senior Architect --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Senior Art Buyer</masterLabel>
+            <translation><!-- Senior Art Buyer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Senior Art Director</masterLabel>
+            <translation><!-- Senior Art Director --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Senior Broadcast Editor</masterLabel>
+            <translation><!-- Senior Broadcast Editor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Senior Buisiness Manager</masterLabel>
+            <translation><!-- Senior Buisiness Manager --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Senior Copywriter</masterLabel>
+            <translation><!-- Senior Copywriter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Senior Designer</masterLabel>
+            <translation><!-- Senior Designer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Senior Engineer</masterLabel>
+            <translation><!-- Senior Engineer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Senior Planner</masterLabel>
+            <translation><!-- Senior Planner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Senior Print Producer</masterLabel>
+            <translation><!-- Senior Print Producer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Senior Producer</masterLabel>
+            <translation><!-- Senior Producer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Senior Production Manager</masterLabel>
+            <translation><!-- Senior Production Manager --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Senior Proofreader</masterLabel>
+            <translation><!-- Senior Proofreader --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Senior Traffic Manager</masterLabel>
+            <translation><!-- Senior Traffic Manager --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Studio Artist</masterLabel>
+            <translation><!-- Studio Artist --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Studio Manager</masterLabel>
+            <translation><!-- Studio Manager --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Traffic Manager</masterLabel>
+            <translation><!-- Traffic Manager --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Traffic Supervisor</masterLabel>
+            <translation><!-- Traffic Supervisor --></translation>
+        </picklistValues>
+    </fields>
+    <recordTypes>
+        <label><!-- Box Range --></label>
+        <name>Box_Range</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Country Box Number --></label>
+        <name>Country_Box_Number</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Role Rate --></label>
+        <name>Role_Rate</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

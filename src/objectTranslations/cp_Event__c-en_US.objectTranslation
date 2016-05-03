@@ -1,0 +1,1225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Planner Event</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Planner Events</value>
+    </caseValues>
+    <fields>
+        <label><!-- Activate Event --></label>
+        <name>Activate_Event__c</name>
+    </fields>
+    <fields>
+        <help><!-- What are you essentially doing? Are you hosting a conference or sending out a press release?  You can select more than one option --></help>
+        <label><!-- Activity description external --></label>
+        <name>ActivityDescriptionExternal__c</name>
+        <picklistValues>
+            <masterLabel>Announcement</masterLabel>
+            <translation><!-- Announcement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Award programme</masterLabel>
+            <translation><!-- Award programme --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brand engagement</masterLabel>
+            <translation><!-- Brand engagement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Business communication</masterLabel>
+            <translation><!-- Business communication --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Conference</masterLabel>
+            <translation><!-- Conference --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Consumer engagement</masterLabel>
+            <translation><!-- Consumer engagement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Email</masterLabel>
+            <translation><!-- Email --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Focus group</masterLabel>
+            <translation><!-- Focus group --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Foundation activity</masterLabel>
+            <translation><!-- Foundation activity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Issue management</masterLabel>
+            <translation><!-- Issue management --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KOF engagement</masterLabel>
+            <translation><!-- KOF engagement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Media engagement</masterLabel>
+            <translation><!-- Media engagement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Newsletter</masterLabel>
+            <translation><!-- Newsletter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Partnership/collaboration</masterLabel>
+            <translation><!-- Partnership/collaboration --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Press release</masterLabel>
+            <translation><!-- Press release --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product launch</masterLabel>
+            <translation><!-- Product launch --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Project Sunlight</masterLabel>
+            <translation><!-- Project Sunlight --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Public holiday</masterLabel>
+            <translation><!-- Public holiday --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Social media/mobile</masterLabel>
+            <translation><!-- Social media/mobile --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Speaking opportunity</masterLabel>
+            <translation><!-- Speaking opportunity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Survey/research</masterLabel>
+            <translation><!-- Survey/research --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>USLP activity</masterLabel>
+            <translation><!-- USLP activity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unilever external website</masterLabel>
+            <translation><!-- Unilever external website --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Volunteering/community work</masterLabel>
+            <translation><!-- Volunteering/community work --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- What are you essentially doing? Are you hosting a webcast or publishing a story on inside.unilever? You can select more than one option --></help>
+        <label><!-- Activity description internal --></label>
+        <name>ActivityDescriptionInternal__c</name>
+        <picklistValues>
+            <masterLabel>#brightfuture activity</masterLabel>
+            <translation><!-- #brightfuture activity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Announcement</masterLabel>
+            <translation><!-- Announcement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Award programme</masterLabel>
+            <translation><!-- Award programme --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brand engagement /Brands in our hands</masterLabel>
+            <translation><!-- Brand engagement /Brands in our hands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Business communication</masterLabel>
+            <translation><!-- Business communication --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Capability/development</masterLabel>
+            <translation><!-- Capability/development --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Conference</masterLabel>
+            <translation><!-- Conference --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country visit</masterLabel>
+            <translation><!-- Country visit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Email</masterLabel>
+            <translation><!-- Email --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Essentials</masterLabel>
+            <translation><!-- Essentials --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Expert/external speaker</masterLabel>
+            <translation><!-- Expert/external speaker --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Factory communication</masterLabel>
+            <translation><!-- Factory communication --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Focus group</masterLabel>
+            <translation><!-- Focus group --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Foundation activity</masterLabel>
+            <translation><!-- Foundation activity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Issue management</masterLabel>
+            <translation><!-- Issue management --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Line manager briefing</masterLabel>
+            <translation><!-- Line manager briefing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Magazine on/off line</masterLabel>
+            <translation><!-- Magazine on/off line --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Medical/occupational health activity</masterLabel>
+            <translation><!-- Medical/occupational health activity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Meeting/live meeting/workshop</masterLabel>
+            <translation><!-- Meeting/live meeting/workshop --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>News centre story</masterLabel>
+            <translation><!-- News centre story --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Newsletter on/off line</masterLabel>
+            <translation><!-- Newsletter on/off line --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Open day/site visit</masterLabel>
+            <translation><!-- Open day/site visit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Project/ programme management</masterLabel>
+            <translation><!-- Project/ programme management --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Site communication</masterLabel>
+            <translation><!-- Site communication --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Social media/mobile (including Chatter)</masterLabel>
+            <translation><!-- Social media/mobile (including Chatter) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Speaking opportunity</masterLabel>
+            <translation><!-- Speaking opportunity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Survey/research</masterLabel>
+            <translation><!-- Survey/research --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Team building/social event</masterLabel>
+            <translation><!-- Team building/social event --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toolkit</masterLabel>
+            <translation><!-- Toolkit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Town Hall</masterLabel>
+            <translation><!-- Town Hall --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Training</masterLabel>
+            <translation><!-- Training --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>USLP activity</masterLabel>
+            <translation><!-- USLP activity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Volunteering/community work</masterLabel>
+            <translation><!-- Volunteering/community work --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Webcast</masterLabel>
+            <translation><!-- Webcast --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>inside.unilever</masterLabel>
+            <translation><!-- inside.unilever --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- If Other, please specify here --></label>
+        <name>ActivityDescriptionOther__c</name>
+    </fields>
+    <fields>
+        <label><!-- Activity Type --></label>
+        <name>ActivityType__c</name>
+        <picklistValues>
+            <masterLabel>External</masterLabel>
+            <translation><!-- External --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Internal</masterLabel>
+            <translation><!-- Internal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Internal &amp; external</masterLabel>
+            <translation><!-- Internal &amp; external --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Activity Code --></label>
+        <name>Activity_Code__c</name>
+    </fields>
+    <fields>
+        <help><!-- What are you essentially doing? Are you hosting a conference, webcast, publishing a story on inside.unilever or leading a speaking opportunity? You can select more than one option. --></help>
+        <label><!-- Activity Description --></label>
+        <name>Activity_Description__c</name>
+        <picklistValues>
+            <masterLabel>Announcement</masterLabel>
+            <translation><!-- Announcement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Award ceremony</masterLabel>
+            <translation><!-- Award ceremony --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brand engagement /Brands in our hands</masterLabel>
+            <translation><!-- Brand engagement /Brands in our hands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Business Communications</masterLabel>
+            <translation><!-- Business Communications --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Conference/KOF event</masterLabel>
+            <translation><!-- Conference/KOF event --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Email</masterLabel>
+            <translation><!-- Email --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Email newsletter</masterLabel>
+            <translation><!-- Email newsletter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Essentials</masterLabel>
+            <translation><!-- Essentials --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Factory communication</masterLabel>
+            <translation><!-- Factory communication --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Line manager briefing</masterLabel>
+            <translation><!-- Line manager briefing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Magazine on/off line</masterLabel>
+            <translation><!-- Magazine on/off line --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Media interview</masterLabel>
+            <translation><!-- Media interview --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Media visit</masterLabel>
+            <translation><!-- Media visit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Meeting/live meeting/workshop</masterLabel>
+            <translation><!-- Meeting/live meeting/workshop --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>News centre story</masterLabel>
+            <translation><!-- News centre story --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Press release</masterLabel>
+            <translation><!-- Press release --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product launch</masterLabel>
+            <translation><!-- Product launch --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Promotional Pulses</masterLabel>
+            <translation><!-- Promotional Pulses --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Public holiday</masterLabel>
+            <translation><!-- Public holiday --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Site communication</masterLabel>
+            <translation><!-- Site communication --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Social media activation</masterLabel>
+            <translation><!-- Social media activation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Speaking opportunity</masterLabel>
+            <translation><!-- Speaking opportunity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Survey</masterLabel>
+            <translation><!-- Survey --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toolkit</masterLabel>
+            <translation><!-- Toolkit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Town Hall</masterLabel>
+            <translation><!-- Town Hall --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Training</masterLabel>
+            <translation><!-- Training --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unilever external website</masterLabel>
+            <translation><!-- Unilever external website --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Webcast</masterLabel>
+            <translation><!-- Webcast --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>inside.unilever</masterLabel>
+            <translation><!-- inside.unilever --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Submission Status --></label>
+        <name>Activity_Status__c</name>
+        <picklistValues>
+            <masterLabel>Confirmed</masterLabel>
+            <translation><!-- Confirmed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Draft</masterLabel>
+            <translation><!-- Draft --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Offline</masterLabel>
+            <translation><!-- Offline --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tentative</masterLabel>
+            <translation><!-- Tentative --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Does this event need to sit on your Plan on a Page? If so select the relevant row. If you are unfamiliar with Plan on the Page layout, SAVE this entry before referring to the ‘Plan on a Page’ tab at the top of this screen --></help>
+        <label><!-- Plan on a Page Layout --></label>
+        <name>Activity_Type__c</name>
+        <picklistValues>
+            <masterLabel>Enabler - Capability Building</masterLabel>
+            <translation><!-- Enabler - Capability Building --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Enabler - Operational Activity</masterLabel>
+            <translation><!-- Enabler - Operational Activity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>I do not want this event on my Plan on a Page</masterLabel>
+            <translation><!-- I do not want this event on my Plan on a Page --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tier 1 - Big Moment</masterLabel>
+            <translation><!-- Tier 1 - Big Moment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tier 1 - External</masterLabel>
+            <translation><!-- Tier 1 - External --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tier 1 - Internal</masterLabel>
+            <translation><!-- Tier 1 - Internal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tier 2 - External</masterLabel>
+            <translation><!-- Tier 2 - External --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tier 2 - Integrated (external &amp; internal)</masterLabel>
+            <translation><!-- Tier 2 - Integrated (external &amp; internal) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tier 2 - Internal</masterLabel>
+            <translation><!-- Tier 2 - Internal --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Agency Cost --></label>
+        <name>Agency_Cost__c</name>
+    </fields>
+    <fields>
+        <label><!-- Allocate Budget Against --></label>
+        <name>Allocate_Budget_Against__c</name>
+        <picklistValues>
+            <masterLabel>Brought in Cost (e.g. Agency)</masterLabel>
+            <translation><!-- Brought in Cost (e.g. Agency) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Total Budget</masterLabel>
+            <translation><!-- Total Budget --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Training and Entertainment</masterLabel>
+            <translation><!-- Training and Entertainment --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Approval History Thread --></label>
+        <name>Approval_History_Thread__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approval History Toggle --></label>
+        <name>Approval_History_Toggle__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approvers --></label>
+        <name>Approvers_Formula__c</name>
+    </fields>
+    <fields>
+        <help><!-- Are these dates set in stone? --></help>
+        <label><!-- Are the dates confirmed? --></label>
+        <name>Are_Dates_Guarenteed__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Basics e.g. printing, translations etc. --></label>
+        <name>Budget_Brilliant_Basics__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tier 1 --></label>
+        <name>Budget_Brilliant_Big_Moments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Professionalising our function --></label>
+        <name>Budget_Building_our_Comms_Community__c</name>
+    </fields>
+    <fields>
+        <label><!-- External platforms for ULE --></label>
+        <name>Budget_External_platforms_for_ULE__c</name>
+    </fields>
+    <fields>
+        <label><!-- Issues &amp; Advocacy --></label>
+        <name>Budget_Issues_Advocacy__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pulse activities-Employee Engagement --></label>
+        <name>Budget_Pulse_activities_EE__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tier 2 --></label>
+        <name>Budget_Top3_Local_Business_Priorities__c</name>
+    </fields>
+    <fields>
+        <help><!-- Please allocate planned event spend against the agreed Communications function’s strategic funding priorities. Refer to #plannerhintsandtips on Chatter to find out more. Don’t forget to SAVE this event entry before you go to the Chatter tab --></help>
+        <label><!-- How is this event funded? --></label>
+        <name>Budget_Tracker__c</name>
+        <picklistValues>
+            <masterLabel>Funded by Business</masterLabel>
+            <translation><!-- Funded by Business --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Funded by Comms</masterLabel>
+            <translation><!-- Funded by Comms --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Funded by Comms and Business</masterLabel>
+            <translation><!-- Funded by Comms and Business --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No Cost</masterLabel>
+            <translation><!-- No Cost --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Bypass Approval --></label>
+        <name>Bypass_Approval__c</name>
+    </fields>
+    <fields>
+        <label><!-- Channel --></label>
+        <name>Channel__c</name>
+        <picklistValues>
+            <masterLabel>External (Unilever.com)</masterLabel>
+            <translation><!-- External (Unilever.com) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Internal</masterLabel>
+            <translation><!-- Internal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>None</masterLabel>
+            <translation><!-- None --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Confidential Level --></label>
+        <name>Confidential_Level__c</name>
+        <picklistValues>
+            <masterLabel>Personal</masterLabel>
+            <translation><!-- Personal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Public</masterLabel>
+            <translation><!-- Public --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Restricted</masterLabel>
+            <translation><!-- Restricted --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Secret</masterLabel>
+            <translation><!-- Secret --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Do you have additional supporting information stored on the content hub? Copy and paste the link here --></help>
+        <label><!-- Link to Content Hub --></label>
+        <name>Content_Hub__c</name>
+    </fields>
+    <fields>
+        <help><!-- Content hub URL --></help>
+        <label><!-- Relevant Content Link --></label>
+        <name>Content_URL__c</name>
+    </fields>
+    <fields>
+        <help><!-- Link to Currency Exchange rates --></help>
+        <label><!-- External Currency Conversion --></label>
+        <name>Currency_Exchange__c</name>
+    </fields>
+    <fields>
+        <label><!-- DateTimeField --></label>
+        <name>DateTimeField__c</name>
+    </fields>
+    <fields>
+        <help><!-- Why is this event at ‘red’ status? For example, it is behind schedule or I have resource issues. --></help>
+        <label><!-- Status details --></label>
+        <name>Delivery_Status_Details__c</name>
+    </fields>
+    <fields>
+        <label><!-- Delivery Status --></label>
+        <name>Delivery_Status_Image__c</name>
+    </fields>
+    <fields>
+        <label><!-- DurationOfEvent --></label>
+        <name>DurationOfEvent__c</name>
+    </fields>
+    <fields>
+        <label><!-- Proposed End Date --></label>
+        <name>EndDate__c</name>
+    </fields>
+    <fields>
+        <help><!-- Is this event on track for successful delivery? --></help>
+        <label><!-- What is the status of this event? --></label>
+        <name>Event_Delivery_Status__c</name>
+        <picklistValues>
+            <masterLabel>Amber = on track</masterLabel>
+            <translation><!-- Amber = on track --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Green = completed</masterLabel>
+            <translation><!-- Green = completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not yet started</masterLabel>
+            <translation><!-- Not yet started --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Red = issues arisen</masterLabel>
+            <translation><!-- Red = issues arisen --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Would you like to include this event in the weekly One Team alert? Is this event relevant or of interest to the majority of the Global Communications function? --></help>
+        <label><!-- Include in ONE TEAM Weekly Alert --></label>
+        <name>Flag_in_ONE_TEAM_Weekly_Alert__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Push to Global --></label>
+        <name>Global_Events__c</name>
+    </fields>
+    <fields>
+        <label><!-- Event Created By --></label>
+        <name>HostPlanner__c</name>
+        <relationshipLabel><!-- Planner Events --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Important Events --></label>
+        <name>Important_Events__c</name>
+    </fields>
+    <fields>
+        <help><!-- Who is this event targeting? Who will be on the receiving end? You can select more than one option --></help>
+        <label><!-- Key audience external --></label>
+        <name>KeyAudienceExternal__c</name>
+        <picklistValues>
+            <masterLabel>Academics</masterLabel>
+            <translation><!-- Academics --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Agencies/suppliers</masterLabel>
+            <translation><!-- Agencies/suppliers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Charity/community</masterLabel>
+            <translation><!-- Charity/community --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Companies/industry</masterLabel>
+            <translation><!-- Companies/industry --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Consumers</masterLabel>
+            <translation><!-- Consumers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Customers</masterLabel>
+            <translation><!-- Customers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Employee family/friends</masterLabel>
+            <translation><!-- Employee family/friends --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Foundation partners</masterLabel>
+            <translation><!-- Foundation partners --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Government</masterLabel>
+            <translation><!-- Government --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Investors</masterLabel>
+            <translation><!-- Investors --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KOFs</masterLabel>
+            <translation><!-- KOFs --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Media</masterLabel>
+            <translation><!-- Media --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NGOs</masterLabel>
+            <translation><!-- NGOs --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Partners</masterLabel>
+            <translation><!-- Partners --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pensioners/alumni</masterLabel>
+            <translation><!-- Pensioners/alumni --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shareholders</masterLabel>
+            <translation><!-- Shareholders --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Social entrepreneurs/bloggers</masterLabel>
+            <translation><!-- Social entrepreneurs/bloggers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Students</masterLabel>
+            <translation><!-- Students --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Who is this event targeting? Who will be on the receiving end? You can select more than one option --></help>
+        <label><!-- Key audience internal --></label>
+        <name>KeyAudienceInternal__c</name>
+        <picklistValues>
+            <masterLabel>ALL employees</masterLabel>
+            <translation><!-- ALL employees --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>All WL2+ employees</masterLabel>
+            <translation><!-- All WL2+ employees --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>All WL3+ employees</masterLabel>
+            <translation><!-- All WL3+ employees --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Category employees</masterLabel>
+            <translation><!-- Category employees --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Category leadership team</masterLabel>
+            <translation><!-- Category leadership team --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cluster employees</masterLabel>
+            <translation><!-- Cluster employees --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cluster leadership team</masterLabel>
+            <translation><!-- Cluster leadership team --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Factory site employees</masterLabel>
+            <translation><!-- Factory site employees --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Foundation network</masterLabel>
+            <translation><!-- Foundation network --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Function employees</masterLabel>
+            <translation><!-- Function employees --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Function leadership team</masterLabel>
+            <translation><!-- Function leadership team --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Global Communications</masterLabel>
+            <translation><!-- Global Communications --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Line managers</masterLabel>
+            <translation><!-- Line managers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MCO/Country employees</masterLabel>
+            <translation><!-- MCO/Country employees --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MCO/Country leadership team</masterLabel>
+            <translation><!-- MCO/Country leadership team --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New starters</masterLabel>
+            <translation><!-- New starters --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Office site employees</masterLabel>
+            <translation><!-- Office site employees --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Steering group/project/ programme team</masterLabel>
+            <translation><!-- Steering group/project/ programme team --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ULE/EVP/SVP</masterLabel>
+            <translation><!-- ULE/EVP/SVP --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Key Audience (Other) --></label>
+        <name>Key_Audience_Other__c</name>
+    </fields>
+    <fields>
+        <help><!-- Who is this event targeting? Who will be on the receiving end of this event? You can select more than one option. --></help>
+        <label><!-- Key Audience --></label>
+        <name>Key_Audience__c</name>
+        <picklistValues>
+            <masterLabel>ALL employees</masterLabel>
+            <translation><!-- ALL employees --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>All WL2+ employees</masterLabel>
+            <translation><!-- All WL2+ employees --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>All WL3+ employees</masterLabel>
+            <translation><!-- All WL3+ employees --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Business leaders</masterLabel>
+            <translation><!-- Business leaders --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Consumers</masterLabel>
+            <translation><!-- Consumers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Customers</masterLabel>
+            <translation><!-- Customers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Government</masterLabel>
+            <translation><!-- Government --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Investors</masterLabel>
+            <translation><!-- Investors --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KOFs</masterLabel>
+            <translation><!-- KOFs --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Media</masterLabel>
+            <translation><!-- Media --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NGOs</masterLabel>
+            <translation><!-- NGOs --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Students</masterLabel>
+            <translation><!-- Students --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Link to Content Hub (2) --></label>
+        <name>Link_to_Content_Hub_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Link to SharePoint (2) --></label>
+        <name>Link_to_SharePoint_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Link to other Website (2) --></label>
+        <name>Link_to_other_Website_2__c</name>
+    </fields>
+    <fields>
+        <help><!-- Does someone specific within Communications need to approve this event entry before it is uploaded on to the Planner? Your line manager, project lead or a colleague maybe. If not, simply find yourself and self approve. --></help>
+        <label><!-- Who needs to approve this event? --></label>
+        <name>Local_Approver__c</name>
+        <relationshipLabel><!-- Planner Events (Who needs to approve this event?) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Local Events --></label>
+        <name>Local_Events__c</name>
+    </fields>
+    <fields>
+        <help><!-- By selecting Local this event is only focusing on your local business priorities. By selecting Global this is a global priority which we are doing together everywhere or we are doing it where we can make the biggest business impact. --></help>
+        <label><!-- Is this a Local or Global Event --></label>
+        <name>Local_or_Global__c</name>
+        <picklistValues>
+            <masterLabel>Global</masterLabel>
+            <translation><!-- Global --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Local</masterLabel>
+            <translation><!-- Local --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- What’s the primary strategic approach you are taking ie: ‘the how’?Non Unilever events refers to events which Unilever is not directly involved however it is useful for us to be aware for planning purposes. Eg public/religious holidays, national elections --></help>
+        <label><!-- MAP --></label>
+        <name>MAP__c</name>
+        <picklistValues>
+            <masterLabel>Advocate</masterLabel>
+            <translation><!-- Advocate --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Motivate</masterLabel>
+            <translation><!-- Motivate --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Non Unilever event</masterLabel>
+            <translation><!-- Non Unilever event --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Protect</masterLabel>
+            <translation><!-- Protect --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- What theme does this event support? 
+Non Unilever events refers to events which Unilever is not directly involved however it is useful for us to be aware for planning purposes. Eg public/ religious holidays, national elections. --></help>
+        <label><!-- Narrative --></label>
+        <name>Narrative__c</name>
+        <picklistValues>
+            <masterLabel>Functional Activity</masterLabel>
+            <translation><!-- Functional Activity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Non Unilever event</masterLabel>
+            <translation><!-- Non Unilever event --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Our Brands</masterLabel>
+            <translation><!-- Our Brands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Our Operations</masterLabel>
+            <translation><!-- Our Operations --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Our People</masterLabel>
+            <translation><!-- Our People --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sustainable Growth</masterLabel>
+            <translation><!-- Sustainable Growth --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Does someone specific within Communications need to approve this event entry before it is uploaded on to the Planner? Your line manager, project lead or a colleague maybe. If not, simply find yourself and self approve. --></help>
+        <label><!-- Does someone need to approve this event? --></label>
+        <name>NeedReApproval__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Number of Events --></label>
+        <name>Number_of_Events__c</name>
+    </fields>
+    <fields>
+        <help><!-- What would you like to flag? A call for action, #stealwithpride, #speechwriting or just something interesting you are doing. Someone from the central Planning team will be in contact nearer to the time to make sure we get it right! --></help>
+        <label><!-- Copy for weekly One Team Alert --></label>
+        <name>One_Team_Alert_Reason__c</name>
+    </fields>
+    <fields>
+        <help><!-- Link to other relevant websites. Copy and paste the link here --></help>
+        <label><!-- Link to other Website --></label>
+        <name>Other_Website__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parent Event --></label>
+        <name>Parent_Event__c</name>
+        <relationshipLabel><!-- Planner Events --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Project Lead Preference --></label>
+        <name>ProjectLeadPreference__c</name>
+        <relationshipLabel><!-- Planner Events --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Who is the day to day contact within Communications for this event? --></help>
+        <label><!-- Project Lead --></label>
+        <name>Project_Lead__c</name>
+        <relationshipLabel><!-- Planner Events (Project Lead) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Re-Approval required --></label>
+        <name>ReApprovalRequired__c</name>
+    </fields>
+    <fields>
+        <label><!-- Recalled --></label>
+        <name>Recalled__c</name>
+    </fields>
+    <fields>
+        <label><!-- Requires My Approval --></label>
+        <name>Requires_My_Approval__c</name>
+    </fields>
+    <fields>
+        <label><!-- Please Ignore --></label>
+        <name>Self_Reference__c</name>
+    </fields>
+    <fields>
+        <help><!-- Do you have additional supporting information stored on SharePoint? Copy and paste the link here --></help>
+        <label><!-- Link to SharePoint --></label>
+        <name>Sharepoint_link__c</name>
+    </fields>
+    <fields>
+        <label><!-- SpokesPersonRecordType --></label>
+        <name>SpokesPersonRecordType__c</name>
+        <picklistValues>
+            <masterLabel>Contacts</masterLabel>
+            <translation><!-- Contacts --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stakeholder</masterLabel>
+            <translation><!-- Stakeholder --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unilever Leadership Executive</masterLabel>
+            <translation><!-- Unilever Leadership Executive --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Proposed Start Date --></label>
+        <name>StartDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Stat: Life Span --></label>
+        <name>Stat_Life_Span__c</name>
+    </fields>
+    <fields>
+        <help><!-- Aggregate total of budget fields --></help>
+        <label><!-- Total Budget --></label>
+        <name>Total_Budget__c</name>
+    </fields>
+    <fields>
+        <label><!-- Categories who need to activate --></label>
+        <name>Track_Categories__c</name>
+    </fields>
+    <fields>
+        <label><!-- Clusters who need to activate --></label>
+        <name>Track_Cluster__c</name>
+    </fields>
+    <fields>
+        <label><!-- Countries who need to activate --></label>
+        <name>Track_Country__c</name>
+    </fields>
+    <fields>
+        <label><!-- Expertises who need to activate --></label>
+        <name>Track_Expertise__c</name>
+    </fields>
+    <fields>
+        <label><!-- Functions who need to activate --></label>
+        <name>Track_Functions__c</name>
+    </fields>
+    <fields>
+        <label><!-- MCOs who need to activate --></label>
+        <name>Track_MCO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Selected ULE representatives --></label>
+        <name>Track_ULE__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unconfirmed Events --></label>
+        <name>Unconfirmed_Events__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unilever Speaker/Representative --></label>
+        <name>Unilever_Speaker_Representative__c</name>
+    </fields>
+    <fields>
+        <help><!-- Has this event been approved? --></help>
+        <label><!-- Was Approved --></label>
+        <name>Was_Approved__c</name>
+    </fields>
+    <recordTypes>
+        <label><!-- Event Approved --></label>
+        <name>EventApproved</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Event Draft --></label>
+        <name>EventDraft</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Event Pending --></label>
+        <name>EventPending</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Event Cloning --></label>
+        <name>Event_Cloning</name>
+    </recordTypes>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
+        <errorMessage><!-- Please specify how you are activating this event. --></errorMessage>
+        <name>Activity_Description_Other_not_Included</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Why is this event on red status? --></errorMessage>
+        <name>Additional_Status_Details</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- End date must be after start date. --></errorMessage>
+        <name>End_Date_cannot_be_before_Start_Date</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You do not need a Local Approver for a Global Event, this will default to Emma &amp; Leena. --></errorMessage>
+        <name>GlobalEvent_NoLocalApproverNeeded</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please specify ‘other’ key audience. --></errorMessage>
+        <name>Key_Audience_Other_Not_Entered</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You need to specify a &quot;Local Approver&quot; for a local event --></errorMessage>
+        <name>LocalEvent_NeedsLocalApprover</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You need to specify a Market for Local Events --></errorMessage>
+        <name>No_markets_selected_on_Local_Event</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Oops…
+You can’t switch your event from Local to Global (or vice versa). Please get in contact with the Planning team via the Chatter group @Communications Planner Help. --></errorMessage>
+        <name>Stop_changes_on_Approved_Event</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You haven&apos;t selected a Function, Category or Expertise --></errorMessage>
+        <name>You_Must_Select_a_Market_Func_Cat_Exp</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Activate --></label>
+        <name>Activate</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- CustomClone --></label>
+        <name>CustomClone</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- GLOBAL_save_and_submit --></label>
+        <name>GLOBAL_save_and_submit</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- LOCAL_save_and_exit --></label>
+        <name>LOCAL_save_and_exit</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Opt_Out --></label>
+        <name>Opt_Out</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- POC_Clone --></label>
+        <name>POC_Clone</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Submit_for_Approval --></label>
+        <name>Submit_for_Approval</name>
+    </webLinks>
+</CustomObjectTranslation>

@@ -1,0 +1,969 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Master Warehouse</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Master Warehouses</value>
+    </caseValues>
+    <fields>
+        <label><!-- Address --></label>
+        <name>WU_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approval Status --></label>
+        <name>WU_Approval_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Average Pallet Utilization/Month (%) --></label>
+        <name>WU_AverageUtilization__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sum Avg Current Month Pallet Utilization --></label>
+        <name>WU_Average_Current_Month_Utilization__c</name>
+    </fields>
+    <fields>
+        <label><!-- Average Utilization % --></label>
+        <name>WU_Average_Current_Utilization__c</name>
+    </fields>
+    <fields>
+        <label><!-- Average Pallet Utilization Count --></label>
+        <name>WU_Average_Pallet_Utilization_Count__c</name>
+    </fields>
+    <fields>
+        <label><!-- Average Pallet Utilization/Day % --></label>
+        <name>WU_Average_Pallet_Utilization_Day__c</name>
+    </fields>
+    <fields>
+        <label><!-- Average Pallet Utilization/Month % --></label>
+        <name>WU_Average_Pallet_Utilization_Month__c</name>
+    </fields>
+    <fields>
+        <label><!-- Average Pallet Utilization/Week % --></label>
+        <name>WU_Average_Pallet_Utilization_Week__c</name>
+    </fields>
+    <fields>
+        <label><!-- Average Pallet Utilization % --></label>
+        <name>WU_Average_Pallet_Utilization__c</name>
+    </fields>
+    <fields>
+        <label><!-- Average Total Utilization % --></label>
+        <name>WU_Average_Utilization__c</name>
+    </fields>
+    <fields>
+        <label><!-- Benchmarking --></label>
+        <name>WU_Benchmarking__c</name>
+        <picklistValues>
+            <masterLabel>DC Bench</masterLabel>
+            <translation><!-- DC Bench --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SU Bench</masterLabel>
+            <translation><!-- SU Bench --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Building ContractType --></label>
+        <name>WU_Building_ContractType__c</name>
+        <picklistValues>
+            <masterLabel>C</masterLabel>
+            <translation><!-- C --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lease</masterLabel>
+            <translation><!-- Lease --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unilever</masterLabel>
+            <translation><!-- Unilever --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- City --></label>
+        <name>WU_CityName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cluster Procurement Manager --></label>
+        <name>WU_Cluster_Procurement_Manager__c</name>
+    </fields>
+    <fields>
+        <label><!-- Committed/Max Pallet Utilization --></label>
+        <name>WU_Committed_Max_PalletStorage__c</name>
+    </fields>
+    <fields>
+        <label><!-- Count Avg Current Month Utilization --></label>
+        <name>WU_Count_Avg_Current_Month_Utilization__c</name>
+    </fields>
+    <fields>
+        <label><!-- Country --></label>
+        <name>WU_Country__c</name>
+        <picklistValues>
+            <masterLabel>Algeria</masterLabel>
+            <translation><!-- Algeria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Argentina, GBA</masterLabel>
+            <translation><!-- Argentina, GBA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Australia</masterLabel>
+            <translation><!-- Australia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Austria</masterLabel>
+            <translation><!-- Austria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bahrain</masterLabel>
+            <translation><!-- Bahrain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bangladesh</masterLabel>
+            <translation><!-- Bangladesh --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Belgium</masterLabel>
+            <translation><!-- Belgium --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bolivia</masterLabel>
+            <translation><!-- Bolivia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brazil, Bahia</masterLabel>
+            <translation><!-- Brazil, Bahia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brazil, Goiais</masterLabel>
+            <translation><!-- Brazil, Goiais --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brazil, Minas Gerais</masterLabel>
+            <translation><!-- Brazil, Minas Gerais --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brazil, Pernambuco</masterLabel>
+            <translation><!-- Brazil, Pernambuco --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brazil, Rio Grande do Sul</masterLabel>
+            <translation><!-- Brazil, Rio Grande do Sul --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brazil, São Paulo</masterLabel>
+            <translation><!-- Brazil, São Paulo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cambodia</masterLabel>
+            <translation><!-- Cambodia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Canada</masterLabel>
+            <translation><!-- Canada --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chile</masterLabel>
+            <translation><!-- Chile --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>China</masterLabel>
+            <translation><!-- China --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>China, Beijing</masterLabel>
+            <translation><!-- China, Beijing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>China, Guangdong</masterLabel>
+            <translation><!-- China, Guangdong --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>China, Shanghai</masterLabel>
+            <translation><!-- China, Shanghai --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Colombia</masterLabel>
+            <translation><!-- Colombia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Costa Rica</masterLabel>
+            <translation><!-- Costa Rica --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Czech Republic</masterLabel>
+            <translation><!-- Czech Republic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Denmark</masterLabel>
+            <translation><!-- Denmark --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dominican Republic</masterLabel>
+            <translation><!-- Dominican Republic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ecuador</masterLabel>
+            <translation><!-- Ecuador --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Egypt</masterLabel>
+            <translation><!-- Egypt --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>El Salvador</masterLabel>
+            <translation><!-- El Salvador --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Finland</masterLabel>
+            <translation><!-- Finland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>France</masterLabel>
+            <translation><!-- France --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Germany</masterLabel>
+            <translation><!-- Germany --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ghana</masterLabel>
+            <translation><!-- Ghana --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Greece</masterLabel>
+            <translation><!-- Greece --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Guatemala</masterLabel>
+            <translation><!-- Guatemala --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Honduras</masterLabel>
+            <translation><!-- Honduras --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hong Kong</masterLabel>
+            <translation><!-- Hong Kong --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hungary</masterLabel>
+            <translation><!-- Hungary --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>India</masterLabel>
+            <translation><!-- India --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Indonesia</masterLabel>
+            <translation><!-- Indonesia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Iran</masterLabel>
+            <translation><!-- Iran --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Israel</masterLabel>
+            <translation><!-- Israel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Italy</masterLabel>
+            <translation><!-- Italy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ivory Coast</masterLabel>
+            <translation><!-- Ivory Coast --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Japan</masterLabel>
+            <translation><!-- Japan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kenya</masterLabel>
+            <translation><!-- Kenya --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Korea</masterLabel>
+            <translation><!-- Korea --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kuwait</masterLabel>
+            <translation><!-- Kuwait --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Malawi</masterLabel>
+            <translation><!-- Malawi --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Malaysia</masterLabel>
+            <translation><!-- Malaysia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mexico</masterLabel>
+            <translation><!-- Mexico --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Morocco</masterLabel>
+            <translation><!-- Morocco --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mozambique</masterLabel>
+            <translation><!-- Mozambique --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Myanmar</masterLabel>
+            <translation><!-- Myanmar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Netherlands</masterLabel>
+            <translation><!-- Netherlands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New Zealand</masterLabel>
+            <translation><!-- New Zealand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nicaragua</masterLabel>
+            <translation><!-- Nicaragua --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nigeria</masterLabel>
+            <translation><!-- Nigeria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Oman</masterLabel>
+            <translation><!-- Oman --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pakistan</masterLabel>
+            <translation><!-- Pakistan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Paraguay</masterLabel>
+            <translation><!-- Paraguay --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Perú</masterLabel>
+            <translation><!-- Perú --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Philippines</masterLabel>
+            <translation><!-- Philippines --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Poland</masterLabel>
+            <translation><!-- Poland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Portugal</masterLabel>
+            <translation><!-- Portugal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Qatar</masterLabel>
+            <translation><!-- Qatar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Romania</masterLabel>
+            <translation><!-- Romania --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Russia</masterLabel>
+            <translation><!-- Russia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Saudi Arabia</masterLabel>
+            <translation><!-- Saudi Arabia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Singapore</masterLabel>
+            <translation><!-- Singapore --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Slovakia</masterLabel>
+            <translation><!-- Slovakia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>South Africa</masterLabel>
+            <translation><!-- South Africa --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Spain</masterLabel>
+            <translation><!-- Spain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sri Lanka</masterLabel>
+            <translation><!-- Sri Lanka --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sweden</masterLabel>
+            <translation><!-- Sweden --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Switzerland</masterLabel>
+            <translation><!-- Switzerland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Taiwan</masterLabel>
+            <translation><!-- Taiwan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tanzania</masterLabel>
+            <translation><!-- Tanzania --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Thailand</masterLabel>
+            <translation><!-- Thailand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trinidad &amp; Tobago</masterLabel>
+            <translation><!-- Trinidad &amp; Tobago --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tunisia</masterLabel>
+            <translation><!-- Tunisia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Turkey</masterLabel>
+            <translation><!-- Turkey --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UAE</masterLabel>
+            <translation><!-- UAE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UK</masterLabel>
+            <translation><!-- UK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UL China Mainland</masterLabel>
+            <translation><!-- UL China Mainland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>US, North Central</masterLabel>
+            <translation><!-- US, North Central --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>US, Northeast</masterLabel>
+            <translation><!-- US, Northeast --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>US, South Central</masterLabel>
+            <translation><!-- US, South Central --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>US, Southeast</masterLabel>
+            <translation><!-- US, Southeast --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>US, West Coast</masterLabel>
+            <translation><!-- US, West Coast --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Uganda</masterLabel>
+            <translation><!-- Uganda --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ukraine</masterLabel>
+            <translation><!-- Ukraine --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Uruguay</masterLabel>
+            <translation><!-- Uruguay --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Venezuela</masterLabel>
+            <translation><!-- Venezuela --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vietnam</masterLabel>
+            <translation><!-- Vietnam --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Zambia</masterLabel>
+            <translation><!-- Zambia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Zimbabwe</masterLabel>
+            <translation><!-- Zimbabwe --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Cross-Category Network --></label>
+        <name>WU_Cross_Category_Network__c</name>
+        <picklistValues>
+            <masterLabel>Foods</masterLabel>
+            <translation><!-- Foods --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Foods Chill</masterLabel>
+            <translation><!-- Foods Chill --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Foods Ultra</masterLabel>
+            <translation><!-- Foods Ultra --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HPC</masterLabel>
+            <translation><!-- HPC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IC</masterLabel>
+            <translation><!-- IC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Overflow</masterLabel>
+            <translation><!-- Overflow --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Current Month Utilization Type --></label>
+        <name>WU_Current_Month_Utilization_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Current Pallet Utilization Count --></label>
+        <name>WU_Current_Utilization__c</name>
+    </fields>
+    <fields>
+        <label><!-- Utilization Start Date --></label>
+        <name>WU_FromDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- FG --></label>
+        <name>WU_HandlingIn_FG__c</name>
+    </fields>
+    <fields>
+        <label><!-- RM/PM/SF/NPI --></label>
+        <name>WU_HandlingIn_RM_PM_SF_NPI__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total --></label>
+        <name>WU_HandlingIn_Total__c</name>
+    </fields>
+    <fields>
+        <label><!-- Land Owner --></label>
+        <name>WU_LandOwner__c</name>
+    </fields>
+    <fields>
+        <label><!-- Latest Committed Pallet --></label>
+        <name>WU_Latest_Committed_Pallet__c</name>
+    </fields>
+    <fields>
+        <label><!-- Location Code --></label>
+        <name>WU_LocationCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Location Name --></label>
+        <name>WU_LocationName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Logistics MainActivity --></label>
+        <name>WU_Logistics_MainActivity__c</name>
+        <picklistValues>
+            <masterLabel>Copack</masterLabel>
+            <translation><!-- Copack --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Copack DC</masterLabel>
+            <translation><!-- Copack DC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Copack Dir Cust</masterLabel>
+            <translation><!-- Copack Dir Cust --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cust DC</masterLabel>
+            <translation><!-- Cust DC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ext FG Buffer</masterLabel>
+            <translation><!-- Ext FG Buffer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ext RM/PM</masterLabel>
+            <translation><!-- Ext RM/PM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ext Repack</masterLabel>
+            <translation><!-- Ext Repack --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ext TM/NPI</masterLabel>
+            <translation><!-- Ext TM/NPI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ext Tank/Silo</masterLabel>
+            <translation><!-- Ext Tank/Silo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ext XB-MSO</masterLabel>
+            <translation><!-- Ext XB-MSO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NDC</masterLabel>
+            <translation><!-- NDC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RDC</masterLabel>
+            <translation><!-- RDC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SU</masterLabel>
+            <translation><!-- SU --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SU Dir Cust</masterLabel>
+            <translation><!-- SU Dir Cust --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trans</masterLabel>
+            <translation><!-- Trans --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Logistics ServiceProvider --></label>
+        <name>WU_Logistics_ServiceProvider__c</name>
+    </fields>
+    <fields>
+        <label><!-- MCO/SU UsingSite --></label>
+        <name>WU_MCO_SU_UsingSite__c</name>
+    </fields>
+    <fields>
+        <label><!-- MCO --></label>
+        <name>WU_MCO__c</name>
+        <picklistValues>
+            <masterLabel>Africa</masterLabel>
+            <translation><!-- Africa --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Benelux</masterLabel>
+            <translation><!-- Benelux --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brazil</masterLabel>
+            <translation><!-- Brazil --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CEE</masterLabel>
+            <translation><!-- CEE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Caribbean</masterLabel>
+            <translation><!-- Caribbean --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DACH</masterLabel>
+            <translation><!-- DACH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>France</masterLabel>
+            <translation><!-- France --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Greece</masterLabel>
+            <translation><!-- Greece --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Italy</masterLabel>
+            <translation><!-- Italy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MA</masterLabel>
+            <translation><!-- MA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mexico</masterLabel>
+            <translation><!-- Mexico --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NAMETRUB</masterLabel>
+            <translation><!-- NAMETRUB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nordics</masterLabel>
+            <translation><!-- Nordics --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>North Asia</masterLabel>
+            <translation><!-- North Asia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Portugal</masterLabel>
+            <translation><!-- Portugal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SEAA</masterLabel>
+            <translation><!-- SEAA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SoCo</masterLabel>
+            <translation><!-- SoCo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>South Asia</masterLabel>
+            <translation><!-- South Asia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Spain</masterLabel>
+            <translation><!-- Spain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UK&amp;IE</masterLabel>
+            <translation><!-- UK&amp;IE --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Multi-User Facility --></label>
+        <name>WU_MultiUser_Facility__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Network --></label>
+        <name>WU_Network__c</name>
+        <picklistValues>
+            <masterLabel>Cross-Category</masterLabel>
+            <translation><!-- Cross-Category --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Foods</masterLabel>
+            <translation><!-- Foods --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Foods Chill</masterLabel>
+            <translation><!-- Foods Chill --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Foods Ultra</masterLabel>
+            <translation><!-- Foods Ultra --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HPC</masterLabel>
+            <translation><!-- HPC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IC</masterLabel>
+            <translation><!-- IC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Overflow</masterLabel>
+            <translation><!-- Overflow --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Operations ContractType --></label>
+        <name>WU_Operations_ContractType__c</name>
+        <picklistValues>
+            <masterLabel>ABC</masterLabel>
+            <translation><!-- ABC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>C (Activity)</masterLabel>
+            <translation><!-- C (Activity) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>C (Fixed)</masterLabel>
+            <translation><!-- C (Fixed) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>C (Weight)</masterLabel>
+            <translation><!-- C (Weight) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>O</masterLabel>
+            <translation><!-- O --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unilever</masterLabel>
+            <translation><!-- Unilever --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Previous Month --></label>
+        <name>WU_Previous_Month__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prior CommittedPalletStorage --></label>
+        <name>WU_Prior_CommittedPalletStorage__c</name>
+    </fields>
+    <fields>
+        <label><!-- Procurement Manager --></label>
+        <name>WU_Procurement_Manager__c</name>
+        <relationshipLabel><!-- Master Warehouses --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Region --></label>
+        <name>WU_Region__c</name>
+        <picklistValues>
+            <masterLabel>AAR</masterLabel>
+            <translation><!-- AAR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AMS</masterLabel>
+            <translation><!-- AMS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Europe</masterLabel>
+            <translation><!-- Europe --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- SAP Code(s) --></label>
+        <name>WU_SAPCode_s__c</name>
+    </fields>
+    <fields>
+        <label><!-- SAP Name(s) --></label>
+        <name>WU_SAPName_s__c</name>
+    </fields>
+    <fields>
+        <label><!-- Site Location --></label>
+        <name>WU_SiteLocation__c</name>
+        <picklistValues>
+            <masterLabel>COPACK</masterLabel>
+            <translation><!-- COPACK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SU</masterLabel>
+            <translation><!-- SU --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Storage FG --></label>
+        <name>WU_Storage_FG__c</name>
+    </fields>
+    <fields>
+        <label><!-- Storage RM/PM/SF/NPI --></label>
+        <name>WU_Storage_RM_PM_SF_NPI__c</name>
+    </fields>
+    <fields>
+        <label><!-- Storage Total --></label>
+        <name>WU_Storage_Total__c</name>
+    </fields>
+    <fields>
+        <label><!-- Utilization End Date --></label>
+        <name>WU_ToDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Current Month Pallet Utilization --></label>
+        <name>WU_Total_Current_Month_Utilisation__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Pallet Utilization/Month --></label>
+        <name>WU_Total_Utilization__c</name>
+    </fields>
+    <fields>
+        <label><!-- Utilization Type --></label>
+        <name>WU_Utilization_Type__c</name>
+        <picklistValues>
+            <masterLabel>Daily</masterLabel>
+            <translation><!-- Daily --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Monthly</masterLabel>
+            <translation><!-- Monthly --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Weekly</masterLabel>
+            <translation><!-- Weekly --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- WCI --></label>
+        <name>WU_WCI__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Partly Yes</masterLabel>
+            <translation><!-- Partly Yes --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UL WMS system, interfaced to UL ERP.</masterLabel>
+            <translation><!-- UL WMS system, interfaced to UL ERP. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unilever WMS (Cubic) | Interfaced to Unilever ERP.</masterLabel>
+            <translation><!-- Unilever WMS (Cubic) | Interfaced to Unilever ERP. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>YES</masterLabel>
+            <translation><!-- YES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes CBA, No SC</masterLabel>
+            <translation><!-- Yes CBA, No SC --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- WMS Owner --></label>
+        <name>WU_WMSOwner__c</name>
+    </fields>
+    <fields>
+        <label><!-- WMSType --></label>
+        <name>WU_WMSType__c</name>
+    </fields>
+    <fields>
+        <label><!-- WMS/IT Spend (€k/year) --></label>
+        <name>WU_WMS_IT_Spend__c</name>
+    </fields>
+    <fields>
+        <label><!-- Procurement Manager Email --></label>
+        <name>WU_WarehouseManager_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Warehouse POC Email --></label>
+        <name>WU_WarehousePOC_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Warehouse BuildingOwner --></label>
+        <name>WU_Warehouse_BuildingOwner__c</name>
+    </fields>
+    <fields>
+        <label><!-- Current Pallet Utilization (%) --></label>
+        <name>WU_Warehouse_Capacity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Year --></label>
+        <name>WU_Year__c</name>
+    </fields>
+    <fields>
+        <label><!-- Zip Code --></label>
+        <name>WU_ZipCode__c</name>
+    </fields>
+    <recordTypes>
+        <label><!-- Edit Warehouse Capacity --></label>
+        <name>Edit_Warehouse_Capacity</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- New Warehouse Capacity --></label>
+        <name>New_Warehouse_Capacity</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Utilization Start Date and Utilization End Date must be same if Utilization Type has been chosen as Daily. --></errorMessage>
+        <name>DateValidationForDailyUtilizationType</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Utilization Start Date and Utilization End Date should be for same month (with start date  1st day  and end date as last day of the Month)  for Utilization Type has been chosen as Monthly. --></errorMessage>
+        <name>DateValidationForMonthlyUtilizationType</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Weekly Utilization should be entered  from Sunday to Saturday. Please Re- Enter the Utilization Start Date as Sunday and End Date as Saturday. --></errorMessage>
+        <name>DateValidationForWeeklyUtilizationType</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Utilization Start  Date should not be greater than Utilization End Date. --></errorMessage>
+        <name>StartDate_NotGreaterThan_Enddate</name>
+    </validationRules>
+</CustomObjectTranslation>

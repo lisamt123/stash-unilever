@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Milestone</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Milestones</value>
+    </caseValues>
+    <fields>
+        <label><!-- 1st Reminder --></label>
+        <name>FAU_1st_Reminder__c</name>
+    </fields>
+    <fields>
+        <label><!-- 2nd_Reminder --></label>
+        <name>FAU_2nd_Reminder__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>FAU_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Due Date --></label>
+        <name>FAU_Due_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Information Link --></label>
+        <name>FAU_Information_Link__c</name>
+    </fields>
+    <fields>
+        <help><!-- This a link to a website to help the  participant complete this milestone --></help>
+        <label><!-- Information to Complete --></label>
+        <name>FAU_Information_to_Complete__c</name>
+    </fields>
+    <fields>
+        <label><!-- Milestone Completion --></label>
+        <name>FAU_Milestone_Completition__c</name>
+        <picklistValues>
+            <masterLabel>Administrator Update</masterLabel>
+            <translation><!-- Administrator Update --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>File Needed</masterLabel>
+            <translation><!-- File Needed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Information Needed</masterLabel>
+            <translation><!-- Information Needed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Participant Update</masterLabel>
+            <translation><!-- Participant Update --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Number Milestone Participants Completed --></label>
+        <name>FAU_No_Milestone_Participants_Completed__c</name>
+    </fields>
+    <fields>
+        <label><!-- No Milestone Participants --></label>
+        <name>FAU_No_Milestone_Participants__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program --></label>
+        <name>FAU_Program_Wave__c</name>
+        <relationshipLabel><!-- Milestones --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Send Reminder at Due Date --></label>
+        <name>FAU_Send_Reminder_at_Due_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>FAU_Type__c</name>
+        <picklistValues>
+            <masterLabel>Alumni</masterLabel>
+            <translation><!-- Alumni --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Regular</masterLabel>
+            <translation><!-- Regular --></translation>
+        </picklistValues>
+    </fields>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- You can&apos;t change a milestone completion when a participant completes a milestone.
+Delete the milestone and create a new one if needed. --></errorMessage>
+        <name>FAU_Cannot_Change_Completion</name>
+    </validationRules>
+</CustomObjectTranslation>

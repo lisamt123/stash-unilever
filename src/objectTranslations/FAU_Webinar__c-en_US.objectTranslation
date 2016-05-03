@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Webinar</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Webinars</value>
+    </caseValues>
+    <fields>
+        <label><!-- Description --></label>
+        <name>FAU_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- End Time --></label>
+        <name>FAU_End_Time__c</name>
+    </fields>
+    <fields>
+        <help><!-- The Program Wave the Webinar is for --></help>
+        <label><!-- Program --></label>
+        <name>FAU_Program_Wave__c</name>
+        <relationshipLabel><!-- Webinars --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Recordtype Developer Name --></label>
+        <name>FAU_Recordtype_Developer_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Time --></label>
+        <name>FAU_Start_Time__c</name>
+    </fields>
+    <fields>
+        <help><!-- New - Default
+Invites - Invitations sent
+Completed - End Date/Time is past --></help>
+        <label><!-- Status --></label>
+        <name>FAU_Status__c</name>
+        <picklistValues>
+            <masterLabel>Completed</masterLabel>
+            <translation><!-- Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Invited</masterLabel>
+            <translation><!-- Invited --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New</masterLabel>
+            <translation><!-- New --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Title --></label>
+        <name>FAU_Title__c</name>
+    </fields>
+    <fields>
+        <label><!-- URL --></label>
+        <name>FAU_URL__c</name>
+    </fields>
+    <recordTypes>
+        <label><!-- Normal --></label>
+        <name>FAU_Normal</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Registration --></label>
+        <name>FAU_Registration</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- End Date must not before Start Date --></errorMessage>
+        <name>FAU_End_Date_must_not_before_Start_Date</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Url and Description is mandatory for Registration Webinars --></errorMessage>
+        <name>FAU_URL_And_Descr_Mandatory_On_Create</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Url and Description is mandatory for Invited Webinars --></errorMessage>
+        <name>FAU_URL_And_Description_Mandatory</name>
+    </validationRules>
+</CustomObjectTranslation>

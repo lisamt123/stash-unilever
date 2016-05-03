@@ -1,0 +1,1059 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>IPM Project</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>IPM Projects</value>
+    </caseValues>
+    <fields>
+        <label><!-- BET Archive Status --></label>
+        <name>BET_Archive_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- BET Archived BET Text --></label>
+        <name>BET_Archived_BET_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- BET Archived BET --></label>
+        <name>BET_Archived_BET__c</name>
+        <relationshipLabel><!-- IPM Projects (Archived BET) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- BET Archived Date --></label>
+        <name>BET_Archived_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- BET Denied BET Link --></label>
+        <name>BET_Denied_BET_Link__c</name>
+    </fields>
+    <fields>
+        <label><!-- BET Final Release Missed --></label>
+        <name>BET_Final_Release_Missed__c</name>
+    </fields>
+    <fields>
+        <label><!-- BET First Release Chatter Post --></label>
+        <name>BET_First_Release_Chatter_Post__c</name>
+    </fields>
+    <fields>
+        <label><!-- BET First Release Missed --></label>
+        <name>BET_First_Release_Missed__c</name>
+    </fields>
+    <fields>
+        <label><!-- BET First Release Previous Value --></label>
+        <name>BET_First_Release_Previous_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last BET --></label>
+        <name>BET_Last_BET__c</name>
+    </fields>
+    <fields>
+        <label><!-- BET Link Requested --></label>
+        <name>BET_Link_Requested__c</name>
+    </fields>
+    <fields>
+        <label><!-- BET Link Requested on Date --></label>
+        <name>BET_Link_Requested_on_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- BET MS Final Release Date --></label>
+        <name>BET_MS_Final_Release_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- BET MS First Release Date --></label>
+        <name>BET_MS_First_Release_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- BET TLD Final Release Date --></label>
+        <name>BET_TLD_Final_Release_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- BET TLD First Release Date --></label>
+        <name>BET_TLD_First_Release_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- BET Update --></label>
+        <name>BET_Update__c</name>
+    </fields>
+    <fields>
+        <label><!-- BET --></label>
+        <name>BET__c</name>
+        <relationshipLabel><!-- IPM Projects --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- BI --></label>
+        <name>BI__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bulk BET Member Request --></label>
+        <name>Bulk_BET_Member_Request__c</name>
+    </fields>
+    <fields>
+        <label><!-- Created in error --></label>
+        <name>Created_in_error__c</name>
+    </fields>
+    <fields>
+        <label><!-- Deputy Project Leader --></label>
+        <name>Deputy_Project_Leader__c</name>
+        <relationshipLabel><!-- IPM Projects (Deputy Project Leader) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- EcoDesign Sync Error --></label>
+        <name>EcoDesign_Sync_Error__c</name>
+    </fields>
+    <fields>
+        <label><!-- EcoDesign Sync Status --></label>
+        <name>EcoDesign_Sync_Status__c</name>
+        <picklistValues>
+            <masterLabel>Error</masterLabel>
+            <translation><!-- Error --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ready</masterLabel>
+            <translation><!-- Ready --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Success</masterLabel>
+            <translation><!-- Success --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Exempt from Threshold --></label>
+        <name>Exempt_from_Threshold__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fetch Timestamp Mulesoft --></label>
+        <name>Fetch_Timestamp_Mulesoft__c</name>
+    </fields>
+    <fields>
+        <label><!-- First Sync To EcoDesign --></label>
+        <name>First_Sync_To_EcoDesign__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company --></label>
+        <name>IPMCompany__c</name>
+        <picklistValues>
+            <masterLabel>GIC HHC</masterLabel>
+            <translation><!-- GIC HHC --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Platform --></label>
+        <name>IPMPlatform__c</name>
+        <picklistValues>
+            <masterLabel>--None--</masterLabel>
+            <translation><!-- - - None- -  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sample 1</masterLabel>
+            <translation><!-- Sample 1 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Project Base URL --></label>
+        <name>IPMProjectBaseURL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Span --></label>
+        <name>IPMProject_Span__c</name>
+        <picklistValues>
+            <masterLabel>Global</masterLabel>
+            <translation><!-- Global --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Local</masterLabel>
+            <translation><!-- Local --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Regional</masterLabel>
+            <translation><!-- Regional --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Project Type (OLD) --></label>
+        <name>IPMProject_Type__c</name>
+        <picklistValues>
+            <masterLabel>Original</masterLabel>
+            <translation><!-- Original --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Region --></label>
+        <name>IPMRegion__c</name>
+        <picklistValues>
+            <masterLabel>Europe</masterLabel>
+            <translation><!-- Europe --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Actual Launch Date --></label>
+        <name>IPM_Actual_Launch_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Actual Launch Month --></label>
+        <name>IPM_Actual_Launch_Month__c</name>
+    </fields>
+    <fields>
+        <label><!-- Actual Launch Year --></label>
+        <name>IPM_Actual_Launch_Year__c</name>
+    </fields>
+    <fields>
+        <label><!-- Market Place Activity --></label>
+        <name>IPM_Answer_of_Q1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Consumer Value Perception --></label>
+        <name>IPM_Answer_of_Q2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Enabling Technology --></label>
+        <name>IPM_Answer_of_Q3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approver of Charter --></label>
+        <name>IPM_Approver_of_Charter__c</name>
+        <picklistValues>
+            <masterLabel>GCLT</masterLabel>
+            <translation><!-- GCLT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RCLT</masterLabel>
+            <translation><!-- RCLT --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Approver of Contract &amp; Market Ready --></label>
+        <name>IPM_Approver_of_Contract_Market_Ready__c</name>
+        <picklistValues>
+            <masterLabel>GCLT &amp; RCLT</masterLabel>
+            <translation><!-- GCLT &amp; RCLT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RCLT</masterLabel>
+            <translation><!-- RCLT --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IPM BET Toolkit --></label>
+        <name>IPM_BET_Toolkit__c</name>
+        <picklistValues>
+            <masterLabel>Create new BET</masterLabel>
+            <translation><!-- Create new BET --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Link to existing BET</masterLabel>
+            <translation><!-- Link to existing BET --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No BET</masterLabel>
+            <translation><!-- No BET --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IPM Batch Initiate --></label>
+        <name>IPM_Batch_Initiate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bosscard Status --></label>
+        <name>IPM_Bosscard_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bosscard --></label>
+        <name>IPM_Bosscard__c</name>
+        <relationshipLabel><!-- IPM Projects --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Brand Positioning --></label>
+        <name>IPM_Brand_Positioning__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM_Brand --></label>
+        <name>IPM_Brand__c</name>
+    </fields>
+    <fields>
+        <label><!-- Business Partner User Name --></label>
+        <name>IPM_Business_Partner_User_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- CPP Change Reason --></label>
+        <name>IPM_CPP_Change_Reason__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Project Priority --></label>
+        <name>IPM_CPP__c</name>
+        <picklistValues>
+            <masterLabel>Bronze</masterLabel>
+            <translation><!-- Bronze --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gold</masterLabel>
+            <translation><!-- Gold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Silver</masterLabel>
+            <translation><!-- Silver --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Category Group --></label>
+        <name>IPM_Category_Group__c</name>
+        <picklistValues>
+            <masterLabel>Home Care</masterLabel>
+            <translation><!-- Home Care --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IPM Category Icon --></label>
+        <name>IPM_Category_Icon__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Category --></label>
+        <name>IPM_Category_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM_Category --></label>
+        <name>IPM_Category__c</name>
+        <relationshipLabel><!-- IPM Projects --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- IPM Child Complexity --></label>
+        <name>IPM_Child_Complexity__c</name>
+        <picklistValues>
+            <masterLabel>Full</masterLabel>
+            <translation><!-- Full --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lite</masterLabel>
+            <translation><!-- Lite --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IPM Child Fast Track Project --></label>
+        <name>IPM_Child_Fast_Track_Project__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Project Cluster --></label>
+        <name>IPM_Cluster__c</name>
+        <relationshipLabel><!-- IPM Projects --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Clustering --></label>
+        <name>IPM_Clustering__c</name>
+        <relationshipLabel><!-- IPM Projects (Clustering) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- IPM Project Clusters --></label>
+        <name>IPM_Clusters__c</name>
+    </fields>
+    <fields>
+        <label><!-- Source Company Card --></label>
+        <name>IPM_CompanyCardText__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Company Card --></label>
+        <name>IPM_Company_Card__c</name>
+        <relationshipLabel><!-- IPM Projects --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Complexity --></label>
+        <name>IPM_Complexity__c</name>
+        <picklistValues>
+            <masterLabel>Full</masterLabel>
+            <translation><!-- Full --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lite</masterLabel>
+            <translation><!-- Lite --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Confidential --></label>
+        <name>IPM_Confidential__c</name>
+    </fields>
+    <fields>
+        <label><!-- Target Launch Period --></label>
+        <name>IPM_Copy_Target_Launch_Period__c</name>
+    </fields>
+    <fields>
+        <label><!-- Core Parameters --></label>
+        <name>IPM_Core_Parameters__c</name>
+    </fields>
+    <fields>
+        <label><!-- Current Document Status --></label>
+        <name>IPM_Current_Document_Status__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Approved with Edits</masterLabel>
+            <translation><!-- Approved with Edits --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Started</masterLabel>
+            <translation><!-- Not Started --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Postponed</masterLabel>
+            <translation><!-- Postponed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Proposed</masterLabel>
+            <translation><!-- Proposed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stopped</masterLabel>
+            <translation><!-- Stopped --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IPM Current Gate Name --></label>
+        <name>IPM_Current_Gate_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Data Migrated Gate --></label>
+        <name>IPM_Data_Migrated_Gate__c</name>
+        <picklistValues>
+            <masterLabel>Contract</masterLabel>
+            <translation><!-- Contract --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Market Ready</masterLabel>
+            <translation><!-- Market Ready --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Document Update Comments --></label>
+        <name>IPM_Document_Update_Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Document Update Date --></label>
+        <name>IPM_Document_Update_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Exists At Least One Assmnt Per EICountry --></label>
+        <name>IPM_Exists_AtLeast_OneAssmntPerEICountry__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Fast Track Project --></label>
+        <name>IPM_Fast_Track_Project__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM FilledIn Percentage --></label>
+        <name>IPM_FilledIn_Percentage__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Finance Lead --></label>
+        <name>IPM_Finance_Lead__c</name>
+        <relationshipLabel><!-- IPM Projects (IPM Finance Lead) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Finance Member --></label>
+        <name>IPM_Finance_Member__c</name>
+        <relationshipLabel><!-- IPM Projects (Finance Member) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- IPM GateKeepingModel --></label>
+        <name>IPM_GateKeepingModel__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM GateKeeping Model --></label>
+        <name>IPM_GateKeeping_Model__c</name>
+        <picklistValues>
+            <masterLabel>GCLT &amp; RCLT</masterLabel>
+            <translation><!-- GCLT &amp; RCLT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RCLT</masterLabel>
+            <translation><!-- RCLT --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Gate Keeping Module --></label>
+        <name>IPM_Gate_Keeping_Module__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Global OR Regional --></label>
+        <name>IPM_Global_OR_Regional__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Global ProjectId --></label>
+        <name>IPM_Global_ProjectId__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Global Project Id --></label>
+        <name>IPM_Global_Project_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Golbal Project OwnerId --></label>
+        <name>IPM_Golbal_Project_OwnerId__c</name>
+    </fields>
+    <fields>
+        <label><!-- IsCompleted --></label>
+        <name>IPM_IsCompleted__c</name>
+    </fields>
+    <fields>
+        <label><!-- IsSaved --></label>
+        <name>IPM_IsSaved__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Is Finance Member Null --></label>
+        <name>IPM_Is_Finance_Member_Null__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Last Modified Date Time --></label>
+        <name>IPM_Last_Modified_Date_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Local Project Type --></label>
+        <name>IPM_Local_Project_Type__c</name>
+        <picklistValues>
+            <masterLabel>Country</masterLabel>
+            <translation><!-- Country --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MCO</masterLabel>
+            <translation><!-- MCO --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IPM MCO Name --></label>
+        <name>IPM_MCO_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Market Type --></label>
+        <name>IPM_Market_Type__c</name>
+        <picklistValues>
+            <masterLabel>Developed</masterLabel>
+            <translation><!-- Developed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Developing &amp; Emerging</masterLabel>
+            <translation><!-- Developing &amp; Emerging --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Market --></label>
+        <name>IPM_Market__c</name>
+        <picklistValues>
+            <masterLabel>Dishwash</masterLabel>
+            <translation><!-- Dishwash --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Household Cleaning</masterLabel>
+            <translation><!-- Household Cleaning --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IPM_AutoAligned --></label>
+        <name>IPM_Misalligned__c</name>
+    </fields>
+    <fields>
+        <label><!-- No of Country Rollouts --></label>
+        <name>IPM_No_of_Country_Rollouts__c</name>
+    </fields>
+    <fields>
+        <label><!-- Org Base URL --></label>
+        <name>IPM_Org_Base_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- PM Approach --></label>
+        <name>IPM_PM_Approach__c</name>
+        <picklistValues>
+            <masterLabel>External</masterLabel>
+            <translation><!-- External --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Internal</masterLabel>
+            <translation><!-- Internal --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IPM Parent Project --></label>
+        <name>IPM_Parent_Project__c</name>
+        <relationshipLabel><!-- IPM Projects --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Phase Change Queue Job Id --></label>
+        <name>IPM_PhaseChangeQueueJobId__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM_Phase --></label>
+        <name>IPM_Phase__c</name>
+        <picklistValues>
+            <masterLabel>Capability</masterLabel>
+            <translation><!-- Capability --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Feasibility</masterLabel>
+            <translation><!-- Feasibility --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ideas</masterLabel>
+            <translation><!-- Ideas --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Market Deployment</masterLabel>
+            <translation><!-- Market Deployment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Market Ready</masterLabel>
+            <translation><!-- Market Ready --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PLE</masterLabel>
+            <translation><!-- PLE --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Project Job Type --></label>
+        <name>IPM_ProjectJobType__c</name>
+        <picklistValues>
+            <masterLabel>Phase Change</masterLabel>
+            <translation><!-- Phase Change --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Project Creation</masterLabel>
+            <translation><!-- Project Creation --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Project Sub Type --></label>
+        <name>IPM_ProjectSubType__c</name>
+        <picklistValues>
+            <masterLabel>Brand Led Growth(BLG)</masterLabel>
+            <translation><!-- Brand Led Growth(BLG) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Innovation/Renovation</masterLabel>
+            <translation><!-- Innovation/Renovation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Operational</masterLabel>
+            <translation><!-- Operational --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Project Description --></label>
+        <name>IPM_Project_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Gate --></label>
+        <name>IPM_Project_Gate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Gatekeeper --></label>
+        <name>IPM_Project_Gatekeeper__c</name>
+        <relationshipLabel><!-- IPM Projects (Project Gatekeeper) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Project Job Status --></label>
+        <name>IPM_Project_Job_Status__c</name>
+        <picklistValues>
+            <masterLabel>Completed</masterLabel>
+            <translation><!-- Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Eligible For Processing</masterLabel>
+            <translation><!-- Eligible For Processing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Failed</masterLabel>
+            <translation><!-- Failed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Applicable</masterLabel>
+            <translation><!-- Not Applicable --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Processing</masterLabel>
+            <translation><!-- Processing --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Project Leader --></label>
+        <name>IPM_Project_Leader__c</name>
+        <relationshipLabel><!-- IPM Projects (Project Leader) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- IPM Project Logo Id --></label>
+        <name>IPM_Project_Logo_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Logo --></label>
+        <name>IPM_Project_Logo__c</name>
+    </fields>
+    <fields>
+        <help><!-- Project Name is mandatory --></help>
+        <label><!-- Project Name --></label>
+        <name>IPM_Project_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Navigate --></label>
+        <name>IPM_Project_Navigate__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Source Rollout --></label>
+        <name>IPM_Project_Rollout__c</name>
+        <relationshipLabel><!-- IPM Projects --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Project Start Date --></label>
+        <name>IPM_Project_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Stopped By --></label>
+        <name>IPM_Project_Stopped_By__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Project Template --></label>
+        <name>IPM_Project_Template__c</name>
+        <relationshipLabel><!-- IPM Projects --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Project Type --></label>
+        <name>IPM_Project_Type__c</name>
+        <picklistValues>
+            <masterLabel>Operational</masterLabel>
+            <translation><!-- Operational --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Original</masterLabel>
+            <translation><!-- Original --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rollout</masterLabel>
+            <translation><!-- Rollout --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Quit Project Tab --></label>
+        <name>IPM_Quit_Project_Tab__c</name>
+    </fields>
+    <fields>
+        <label><!-- Region --></label>
+        <name>IPM_Region_Shr__c</name>
+    </fields>
+    <fields>
+        <label><!-- Region --></label>
+        <name>IPM_Region__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM_RolloutStatus --></label>
+        <name>IPM_RolloutStatus__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM_Rollout_Added_at_Stage --></label>
+        <name>IPM_Rollout_Added_at_Stage__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rollout Status --></label>
+        <name>IPM_Rollout_Status__c</name>
+        <picklistValues>
+            <masterLabel>Follower</masterLabel>
+            <translation><!-- Follower --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Leader</masterLabel>
+            <translation><!-- Leader --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- STOP --></label>
+        <name>IPM_STOP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sector --></label>
+        <name>IPM_Sector__c</name>
+        <picklistValues>
+            <masterLabel>Cleaning Tools</masterLabel>
+            <translation><!-- Cleaning Tools --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Disinfectants</masterLabel>
+            <translation><!-- Disinfectants --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hand Dishwash</masterLabel>
+            <translation><!-- Hand Dishwash --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hard Surface Cleaners</masterLabel>
+            <translation><!-- Hard Surface Cleaners --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Machine Dishwash</masterLabel>
+            <translation><!-- Machine Dishwash --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Specialist Cleaners</masterLabel>
+            <translation><!-- Specialist Cleaners --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Selected Project Type --></label>
+        <name>IPM_Selected_Project_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Source Project Type --></label>
+        <name>IPM_SourceProjectType__c</name>
+        <picklistValues>
+            <masterLabel>Operational</masterLabel>
+            <translation><!-- Operational --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Original</masterLabel>
+            <translation><!-- Original --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Stopped By --></label>
+        <name>IPM_Stopped_By__c</name>
+        <relationshipLabel><!-- IPM Projects (Stopped By) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- IPM Stopped Comments --></label>
+        <name>IPM_Stopped_Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Stopped Date/Time --></label>
+        <name>IPM_Stopped_Date_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Stopped Phase --></label>
+        <name>IPM_Stopped_Phase__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Strategic Intent --></label>
+        <name>IPM_Strategic_Intent__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sub Category --></label>
+        <name>IPM_Sub_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sub sector --></label>
+        <name>IPM_Sub_sector__c</name>
+        <picklistValues>
+            <masterLabel>None</masterLabel>
+            <translation><!-- None --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Target Launch Date --></label>
+        <name>IPM_Target_Launch_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Target Launch Date --></label>
+        <name>IPM_Target_Launch_Dates__c</name>
+    </fields>
+    <fields>
+        <label><!-- Target Launch Month --></label>
+        <name>IPM_Target_Launch_Month__c</name>
+    </fields>
+    <fields>
+        <label><!-- Target Launch Period --></label>
+        <name>IPM_Target_Launch_Period__c</name>
+    </fields>
+    <fields>
+        <label><!-- Target Launch Year --></label>
+        <name>IPM_Target_Launch_Year__c</name>
+    </fields>
+    <fields>
+        <label><!-- Technical Project Leader --></label>
+        <name>IPM_Technical_Project_Leader__c</name>
+        <relationshipLabel><!-- IPM Projects (Technical Project Leader) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Temporary Phase --></label>
+        <name>IPM_Temporary_Phase__c</name>
+        <picklistValues>
+            <masterLabel>Capability</masterLabel>
+            <translation><!-- Capability --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Feasibility</masterLabel>
+            <translation><!-- Feasibility --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ideas</masterLabel>
+            <translation><!-- Ideas --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Market Deployment</masterLabel>
+            <translation><!-- Market Deployment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Market Ready</masterLabel>
+            <translation><!-- Market Ready --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PLE</masterLabel>
+            <translation><!-- PLE --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Threshold Value --></label>
+        <name>IPM_Threshold_Value__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Trigger Time 05 --></label>
+        <name>IPM_Trigger_Time_05__c</name>
+    </fields>
+    <fields>
+        <label><!-- Category --></label>
+        <name>IPM_UserCategory__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM White Space Project --></label>
+        <name>IPM_White_Space_Project__c</name>
+    </fields>
+    <fields>
+        <label><!-- IsFinanceMemberNull --></label>
+        <name>IsFinanceMemberNull__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Archived --></label>
+        <name>Is_Archieved__c</name>
+    </fields>
+    <fields>
+        <label><!-- ManualCheck --></label>
+        <name>ManualCheck__c</name>
+    </fields>
+    <fields>
+        <label><!-- Market Cluster Name --></label>
+        <name>Market_Cluster_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Market Cluster --></label>
+        <name>Market_Cluster__c</name>
+    </fields>
+    <fields>
+        <label><!-- MisAligned Confirmed By Finance Leader --></label>
+        <name>MisAligned_Confirmed_By_Finance_Leader__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parent Planned Global Contract Date --></label>
+        <name>Parent_Planned_Global_Contract_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Planned Global Contract Date --></label>
+        <name>Planned_Global_Contract_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Previous Target Launch Date --></label>
+        <name>Previous_Target_Launch_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Countries --></label>
+        <name>Project_Countries__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project External ID --></label>
+        <name>Project_External_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Members --></label>
+        <name>Project_Members__c</name>
+    </fields>
+    <fields>
+        <label><!-- Regional Project Leader Name --></label>
+        <name>Regional_Project_Leader_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rollout Plan Target Launch Date --></label>
+        <name>Rollout_Plan_Target_Launch_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ship to Trade Milestone Due Date --></label>
+        <name>Ship_to_Trade_Milestone_Due_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Success Timestamp EcoDesign --></label>
+        <name>Success_Timestamp_EcoDesign__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sustainability Period Changed --></label>
+        <name>Sustainability_Period_Changed__c</name>
+    </fields>
+    <fields>
+        <help><!-- Defines the number of Innovation years for the project --></help>
+        <label><!-- Sustainability Period --></label>
+        <name>Sustainability_Period__c</name>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Upcoming Milestone Due Date --></label>
+        <name>Upcoming_Milestone_Due_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Update BET --></label>
+        <name>Update_BET__c</name>
+    </fields>
+    <fields>
+        <label><!-- update on change of ms first release dat --></label>
+        <name>update_on_change_of_ms_first_release_dat__c</name>
+    </fields>
+    <recordTypes>
+        <label><!-- Clustering --></label>
+        <name>Clustering</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- IPM Cluster Layout --></label>
+        <name>IPM_Cluster_Layout</name>
+    </recordTypes>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
+        <errorMessage><!-- IPM Project Cluster not allowed  to edit when Project type is Rollout --></errorMessage>
+        <name>IPM_Cluster_not_allowed_Rollout_Projects</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Operational Projects cannot be added to IPM Project Clusters --></errorMessage>
+        <name>IPM_Cluster_not_allowed_for_Operational</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Global Original Project must begin with Ideas Phase --></errorMessage>
+        <name>Ideas_create_Global_Original_Projects</name>
+    </validationRules>
+</CustomObjectTranslation>

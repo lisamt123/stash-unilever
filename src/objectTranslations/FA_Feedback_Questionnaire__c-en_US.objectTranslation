@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Feedback Questionnaire</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Feedback Questionnaire</value>
+    </caseValues>
+    <fields>
+        <label><!-- Comments --></label>
+        <name>FA_Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Feedback --></label>
+        <name>FA_Feedback__c</name>
+        <relationshipLabel><!-- Feedback Questionnaire --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- QuestionType --></label>
+        <name>FA_QuestionType__c</name>
+        <picklistValues>
+            <masterLabel>Feedback on Alumini</masterLabel>
+            <translation><!-- Feedback on Alumini --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Feedback on Business Faculty</masterLabel>
+            <translation><!-- Feedback on Business Faculty --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Feedback on Coach</masterLabel>
+            <translation><!-- Feedback on Coach --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Feedback on Instructor</masterLabel>
+            <translation><!-- Feedback on Instructor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>General</masterLabel>
+            <translation><!-- General --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pre-Work and Preparation sub Object</masterLabel>
+            <translation><!-- Pre-Work and Preparation sub Object --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Question --></label>
+        <name>FA_Question__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rating --></label>
+        <name>FA_Rating__c</name>
+        <picklistValues>
+            <masterLabel>Entirely</masterLabel>
+            <translation><!-- Entirely --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Exceeded</masterLabel>
+            <translation><!-- Exceeded --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mostly</masterLabel>
+            <translation><!-- Mostly --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not at All</masterLabel>
+            <translation><!-- Not at All --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Partially</masterLabel>
+            <translation><!-- Partially --></translation>
+        </picklistValues>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

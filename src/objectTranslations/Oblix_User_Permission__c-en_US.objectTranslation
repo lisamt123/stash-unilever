@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>SWOP User Permission</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>SWOP User Permission</value>
+    </caseValues>
+    <fields>
+        <label><!-- Agency ID --></label>
+        <name>Agency_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Agency Name --></label>
+        <name>Agency_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Brand Name --></label>
+        <name>Brand_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- CategoryBrand --></label>
+        <name>CategoryBrand_id__c</name>
+        <relationshipLabel><!-- SWOP User Permission --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Category Name --></label>
+        <name>Category_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Level of Access --></label>
+        <name>Level_of_Access__c</name>
+        <picklistValues>
+            <masterLabel>Access &amp; Edit</masterLabel>
+            <translation><!-- Access &amp; Edit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Approver</masterLabel>
+            <translation><!-- Approver --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Read Only</masterLabel>
+            <translation><!-- Read Only --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Superuser</masterLabel>
+            <translation><!-- Superuser --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- User Email --></label>
+        <name>User_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- User --></label>
+        <name>User_id__c</name>
+        <relationshipLabel><!-- SWOP User Permission --></relationshipLabel>
+    </fields>
+    <recordTypes>
+        <label><!-- Agency User --></label>
+        <name>Oblix_Agency_User</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Unilever User --></label>
+        <name>Oblix_Unilever_User</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,2 @@
+<apex:page standardController="Category__c" extensions="WinatPOSCategoryViewController" action="{!doAction}" >
+</apex:page>

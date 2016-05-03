@@ -1,0 +1,3001 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Project Oblix scoring Calculator</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>Agency_Department__c</fullName>
+        <externalId>false</externalId>
+        <label>Agency Department</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Account Management</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Creative</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Account Management</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Creative</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Production</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Strategic Planning</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Technology</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Production</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Strategic Planning</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Box_10__c</fullName>
+        <externalId>false</externalId>
+        <label>Box 10</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Box_11__c</fullName>
+        <externalId>false</externalId>
+        <label>Box 11</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Box_12__c</fullName>
+        <externalId>false</externalId>
+        <label>Box 12</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Box_13__c</fullName>
+        <externalId>false</externalId>
+        <label>Box 13</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Box_14__c</fullName>
+        <externalId>false</externalId>
+        <label>Box 14</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Box_15__c</fullName>
+        <externalId>false</externalId>
+        <label>Box 15</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Box_16__c</fullName>
+        <externalId>false</externalId>
+        <label>Box 16</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Box_17__c</fullName>
+        <externalId>false</externalId>
+        <label>Box 17</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Box_18__c</fullName>
+        <externalId>false</externalId>
+        <label>Box 18</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Box_19__c</fullName>
+        <externalId>false</externalId>
+        <label>Box 19</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Box_1__c</fullName>
+        <description>Project Oblix Calculator</description>
+        <externalId>false</externalId>
+        <label>Box 1</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Box_20__c</fullName>
+        <externalId>false</externalId>
+        <label>Box 20</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Box_2__c</fullName>
+        <description>Oblix Calculator</description>
+        <externalId>false</externalId>
+        <label>Box 2</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Box_3__c</fullName>
+        <description>Project Oblix</description>
+        <externalId>false</externalId>
+        <label>Box 3</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Box_4__c</fullName>
+        <externalId>false</externalId>
+        <label>Box 4</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Box_5__c</fullName>
+        <externalId>false</externalId>
+        <label>Box 5</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Box_6__c</fullName>
+        <externalId>false</externalId>
+        <label>Box 6</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Box_7__c</fullName>
+        <externalId>false</externalId>
+        <label>Box 7</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Box_8__c</fullName>
+        <externalId>false</externalId>
+        <label>Box 8</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Box_9__c</fullName>
+        <externalId>false</externalId>
+        <label>Box 9</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Box_Range__c</fullName>
+        <externalId>false</externalId>
+        <label>Box Range</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FTE__c</fullName>
+        <description>Used to calculate the Rate</description>
+        <externalId>false</externalId>
+        <label>FTE Rate (EUR)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Financial_Year__c</fullName>
+        <description>Oblix Calculator Financial year</description>
+        <externalId>false</externalId>
+        <label>Financial Year</label>
+        <picklist>
+            <picklistValues>
+                <fullName>FY2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FY2016</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FY2017</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FY2018</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FY2019</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FY2020</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FY2021</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FY2022</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FY2023</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FY2024</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FY2025</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Job_Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Job Description</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>OblixCountry__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Country</label>
+        <referenceTo>MDO_Geography__c</referenceTo>
+        <relationshipLabel>SWOP Calculator</relationshipLabel>
+        <relationshipName>SWOP_Calculator</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Oblix_Agency__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Agency</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>SWOP Calculator</relationshipLabel>
+        <relationshipName>SWOP_Calculator</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Points_High__c</fullName>
+        <externalId>false</externalId>
+        <label>Points High</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Points_Low__c</fullName>
+        <externalId>false</externalId>
+        <label>Points Low</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Role_Daily_Rate_EUR__c</fullName>
+        <description>This is the hourly rate for the Role selected for the Agency selected, for the country selected.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the hourly rate for the Role selected for the Agency selected, for the country selected.</inlineHelpText>
+        <label>Role Hourly Rate (EUR)</label>
+        <precision>8</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Role_Title__c</fullName>
+        <externalId>false</externalId>
+        <label>Role Title</label>
+        <picklist>
+            <controllingField>Agency_Department__c</controllingField>
+            <picklistValues>
+                <fullName>Global Account Head</fullName>
+                <controllingFieldValues>Account Management</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Head of Account Management</fullName>
+                <controllingFieldValues>Account Management</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Group Account Director</fullName>
+                <controllingFieldValues>Account Management</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Senior Account Director</fullName>
+                <controllingFieldValues>Account Management</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Account Director</fullName>
+                <controllingFieldValues>Account Management</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Associate Account Director</fullName>
+                <controllingFieldValues>Account Management</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Account Supervisor</fullName>
+                <controllingFieldValues>Account Management</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Senior Account Manager</fullName>
+                <controllingFieldValues>Account Management</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Account Manager</fullName>
+                <controllingFieldValues>Account Management</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Junior Account Manager</fullName>
+                <controllingFieldValues>Account Management</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Senior Account Executive</fullName>
+                <controllingFieldValues>Account Management</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Account Executive</fullName>
+                <controllingFieldValues>Account Management</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Assistant Account Executive</fullName>
+                <controllingFieldValues>Account Management</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Account Coordinator</fullName>
+                <controllingFieldValues>Account Management</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Global Chief Creative Officer</fullName>
+                <controllingFieldValues>Creative</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Executive Creative Director</fullName>
+                <controllingFieldValues>Creative</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Group Creative Director</fullName>
+                <controllingFieldValues>Creative</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Creative Director</fullName>
+                <controllingFieldValues>Creative</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Associate Creative Director</fullName>
+                <controllingFieldValues>Creative</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Senior Art Director</fullName>
+                <controllingFieldValues>Creative</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Senior Copywriter</fullName>
+                <controllingFieldValues>Creative</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Art Director</fullName>
+                <controllingFieldValues>Creative</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Copywriter</fullName>
+                <controllingFieldValues>Creative</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Junior Art Director</fullName>
+                <controllingFieldValues>Creative</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Junior Copywriter</fullName>
+                <controllingFieldValues>Creative</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Senior Designer</fullName>
+                <controllingFieldValues>Creative</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Designer</fullName>
+                <controllingFieldValues>Creative</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Junior Designer</fullName>
+                <controllingFieldValues>Creative</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Studio Manager</fullName>
+                <controllingFieldValues>Creative</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Studio Artist</fullName>
+                <controllingFieldValues>Creative</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Creative Coordinator</fullName>
+                <controllingFieldValues>Creative</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Head of Creative Services</fullName>
+                <controllingFieldValues>Production</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Head of Broadcast Production</fullName>
+                <controllingFieldValues>Production</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Executive Producer</fullName>
+                <controllingFieldValues>Production</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Senior Producer</fullName>
+                <controllingFieldValues>Production</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Producer</fullName>
+                <controllingFieldValues>Production</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Assistant Producer</fullName>
+                <controllingFieldValues>Production</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Senior Broadcast Editor</fullName>
+                <controllingFieldValues>Production</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Broadcast Editor</fullName>
+                <controllingFieldValues>Production</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Junior Broadcast Editor</fullName>
+                <controllingFieldValues>Production</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Head of Print Production</fullName>
+                <controllingFieldValues>Production</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Senior Production Manager</fullName>
+                <controllingFieldValues>Production</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Production Manager</fullName>
+                <controllingFieldValues>Production</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Assistant Production Manager</fullName>
+                <controllingFieldValues>Production</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Senior Print Producer</fullName>
+                <controllingFieldValues>Production</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Print Producer</fullName>
+                <controllingFieldValues>Production</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Junior Print Producer</fullName>
+                <controllingFieldValues>Production</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Head of Traffic</fullName>
+                <controllingFieldValues>Production</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Traffic Supervisor</fullName>
+                <controllingFieldValues>Production</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Senior Traffic Manager</fullName>
+                <controllingFieldValues>Production</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Traffic Manager</fullName>
+                <controllingFieldValues>Production</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Assistant Traffic Manager</fullName>
+                <controllingFieldValues>Production</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Head of Business Affairs</fullName>
+                <controllingFieldValues>Production</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Senior Buisiness Manager</fullName>
+                <controllingFieldValues>Production</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Business Manager</fullName>
+                <controllingFieldValues>Production</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Assistant Business Manager</fullName>
+                <controllingFieldValues>Production</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Senior Art Buyer</fullName>
+                <controllingFieldValues>Production</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Art Buyer</fullName>
+                <controllingFieldValues>Production</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Junior Art Buyer</fullName>
+                <controllingFieldValues>Production</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Senior Proofreader</fullName>
+                <controllingFieldValues>Production</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Proofreader</fullName>
+                <controllingFieldValues>Production</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Junior Proofreader</fullName>
+                <controllingFieldValues>Production</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Production Assistant</fullName>
+                <controllingFieldValues>Production</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Production Coordinator</fullName>
+                <controllingFieldValues>Production</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Head of Strategic Planning/Research</fullName>
+                <controllingFieldValues>Strategic Planning</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Head of Strategic Planning</fullName>
+                <controllingFieldValues>Strategic Planning</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Group Planning Director</fullName>
+                <controllingFieldValues>Strategic Planning</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Planning Director</fullName>
+                <controllingFieldValues>Strategic Planning</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Associate Planning Director</fullName>
+                <controllingFieldValues>Strategic Planning</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Senior Planner</fullName>
+                <controllingFieldValues>Strategic Planning</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Planner</fullName>
+                <controllingFieldValues>Strategic Planning</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Junior Planner</fullName>
+                <controllingFieldValues>Strategic Planning</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Head of Research</fullName>
+                <controllingFieldValues>Strategic Planning</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Group Research Director</fullName>
+                <controllingFieldValues>Strategic Planning</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Research Director</fullName>
+                <controllingFieldValues>Strategic Planning</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Associate Research Director</fullName>
+                <controllingFieldValues>Strategic Planning</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Senior Analyst</fullName>
+                <controllingFieldValues>Strategic Planning</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Analyst</fullName>
+                <controllingFieldValues>Strategic Planning</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Junior Analyst</fullName>
+                <controllingFieldValues>Strategic Planning</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Librarian</fullName>
+                <controllingFieldValues>Strategic Planning</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Head of Digital</fullName>
+                <controllingFieldValues>Digital Account Management</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Director of Client Services</fullName>
+                <controllingFieldValues>Digital Account Management</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Account Director</fullName>
+                <controllingFieldValues>Digital Account Management</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Account Supervisor</fullName>
+                <controllingFieldValues>Digital Account Management</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Senior Project Manager</fullName>
+                <controllingFieldValues>Digital Account Management</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Project Manager</fullName>
+                <controllingFieldValues>Digital Account Management</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Junior Account Manager</fullName>
+                <controllingFieldValues>Digital Account Management</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Account Coordinator</fullName>
+                <controllingFieldValues>Digital Account Management</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Creative Director</fullName>
+                <controllingFieldValues>Digital Creative</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Associate Creative Director</fullName>
+                <controllingFieldValues>Digital Creative</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Senior Art Director</fullName>
+                <controllingFieldValues>Digital Creative</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Senior Copywriter</fullName>
+                <controllingFieldValues>Digital Creative</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Art Director</fullName>
+                <controllingFieldValues>Digital Creative</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Copywriter</fullName>
+                <controllingFieldValues>Digital Creative</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Junior Art Director</fullName>
+                <controllingFieldValues>Digital Creative</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Junior Copywriter</fullName>
+                <controllingFieldValues>Digital Creative</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Senior Web Designer</fullName>
+                <controllingFieldValues>Digital Creative</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Web Designer</fullName>
+                <controllingFieldValues>Digital Creative</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Junior Web Designer</fullName>
+                <controllingFieldValues>Digital Creative</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Flash Designer</fullName>
+                <controllingFieldValues>Digital Creative</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Senior Designer</fullName>
+                <controllingFieldValues>Digital Creative</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Designer</fullName>
+                <controllingFieldValues>Digital Creative</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Junior Designer</fullName>
+                <controllingFieldValues>Digital Creative</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Creative Coordinator</fullName>
+                <controllingFieldValues>Digital Creative</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Head of Digital Production</fullName>
+                <controllingFieldValues>Digital Production</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Senior Producer</fullName>
+                <controllingFieldValues>Digital Production</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Producer</fullName>
+                <controllingFieldValues>Digital Production</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Junior Producer</fullName>
+                <controllingFieldValues>Digital Production</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Planning Director</fullName>
+                <controllingFieldValues>Digital Strategic Planning</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Senior Planner</fullName>
+                <controllingFieldValues>Digital Strategic Planning</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Planner</fullName>
+                <controllingFieldValues>Digital Strategic Planning</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Junior Planner</fullName>
+                <controllingFieldValues>Digital Strategic Planning</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Senior Analyst</fullName>
+                <controllingFieldValues>Digital Strategic Planning</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Analyst</fullName>
+                <controllingFieldValues>Digital Strategic Planning</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Junior Analyst</fullName>
+                <controllingFieldValues>Digital Strategic Planning</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Planning Coordinator</fullName>
+                <controllingFieldValues>Digital Strategic Planning</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Director of Technology</fullName>
+                <controllingFieldValues>Digital Technology</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Senior Engineer</fullName>
+                <controllingFieldValues>Digital Technology</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Engineer</fullName>
+                <controllingFieldValues>Digital Technology</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Senior Architect</fullName>
+                <controllingFieldValues>Digital Technology</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Architect</fullName>
+                <controllingFieldValues>Digital Technology</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Junior Engineer</fullName>
+                <controllingFieldValues>Digital Technology</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Junior Architect</fullName>
+                <controllingFieldValues>Digital Technology</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <label>SWOP Calculator</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>RECORDTYPE</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>NAME</columns>
+        <columns>Financial_Year__c</columns>
+        <columns>Oblix_Agency__c</columns>
+        <columns>OblixCountry__c</columns>
+        <columns>Job_Description__c</columns>
+        <columns>Agency_Department__c</columns>
+        <columns>Role_Title__c</columns>
+        <columns>FTE__c</columns>
+        <columns>Role_Daily_Rate_EUR__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>BoxRange</fullName>
+        <columns>OBJECT_ID</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>NAME</columns>
+        <columns>Box_Range__c</columns>
+        <columns>Points_Low__c</columns>
+        <columns>Points_High__c</columns>
+        <columns>Financial_Year__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>NAME</field>
+            <operation>equals</operation>
+            <value>Box Range</value>
+        </filters>
+        <label>Box Range</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Box_Range_DS</fullName>
+        <columns>OBJECT_ID</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>NAME</columns>
+        <columns>Box_Range__c</columns>
+        <columns>Points_Low__c</columns>
+        <columns>Points_High__c</columns>
+        <columns>Financial_Year__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Oblix_Calculator__c.Box_Range</value>
+        </filters>
+        <label>Box Range DS</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>CountryBoxInfo</fullName>
+        <columns>OBJECT_ID</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>NAME</columns>
+        <columns>Financial_Year__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Oblix_Calculator__c.Country_Box_Number</value>
+        </filters>
+        <label>Country Box Info</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Role_Rate</fullName>
+        <columns>RECORDTYPE</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>NAME</columns>
+        <columns>Financial_Year__c</columns>
+        <columns>Oblix_Agency__c</columns>
+        <columns>OblixCountry__c</columns>
+        <columns>Job_Description__c</columns>
+        <columns>Agency_Department__c</columns>
+        <columns>Role_Title__c</columns>
+        <columns>FTE__c</columns>
+        <columns>Role_Daily_Rate_EUR__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Oblix_Calculator__c.Role_Rate</value>
+        </filters>
+        <label>Role Rate</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>SWOP Calculator</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Box_Range</fullName>
+        <active>true</active>
+        <description>Box Range</description>
+        <label>Box Range</label>
+        <picklistValues>
+            <picklist>Agency_Department__c</picklist>
+            <values>
+                <fullName>Account Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Creative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Account Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Creative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Production</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Strategic Planning</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Technology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Production</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategic Planning</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Financial_Year__c</picklist>
+            <values>
+                <fullName>FY2015</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FY2016</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FY2017</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FY2018</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FY2019</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FY2020</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FY2021</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FY2022</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FY2023</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FY2024</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FY2025</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Role_Title__c</picklist>
+            <values>
+                <fullName>Account Coordinator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Account Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Account Executive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Account Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Account Supervisor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Analyst</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Art Buyer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Art Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Assistant Account Executive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Assistant Business Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Assistant Producer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Assistant Production Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Assistant Traffic Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Associate Account Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Associate Creative Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Associate Planning Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Associate Research Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Broadcast Editor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Business Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Copywriter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Creative Coordinator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Creative Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Account Coordinator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Account Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Account Supervisor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Analyst</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Art Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Associate Creative Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Copywriter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Creative Coordinator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Creative Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Director of Client Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Flash Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Junior Account Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Junior Analyst</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Junior Art Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Junior Copywriter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Junior Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Junior Planner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Junior Producer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Junior Web Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Planner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Planning Coordinator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Planning Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Producer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Project Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Senior Analyst</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Senior Art Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Senior Copywriter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Senior Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Senior Planner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Senior Producer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Senior Project Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Senior Web Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Web Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Director of Technology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Executive Creative Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Executive Producer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global Account Head</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global Chief Creative Officer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Group Account Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Group Creative Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Group Planning Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Group Research Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head of Account Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head of Broadcast Production</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head of Business Affairs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head of Creative Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head of Digital</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head of Digital Production</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head of Print Production</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head of Research</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head of Strategic Planning</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head of Strategic Planning%2FResearch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head of Traffic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Junior Account Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Junior Analyst</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Junior Architect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Junior Art Buyer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Junior Art Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Junior Broadcast Editor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Junior Copywriter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Junior Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Junior Engineer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Junior Planner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Junior Print Producer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Junior Proofreader</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Librarian</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Planner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Planning Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Print Producer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Producer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Production Assistant</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Production Coordinator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Production Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Proofreader</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Research Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Account Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Account Executive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Account Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Analyst</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Architect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Art Buyer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Art Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Broadcast Editor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Buisiness Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Copywriter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Engineer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Planner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Print Producer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Producer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Production Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Proofreader</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Traffic Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Studio Artist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Studio Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Traffic Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Traffic Supervisor</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Country_Box_Number</fullName>
+        <active>true</active>
+        <description>Score for countries box number</description>
+        <label>Country Box Number</label>
+        <picklistValues>
+            <picklist>Agency_Department__c</picklist>
+            <values>
+                <fullName>Account Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Creative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Account Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Creative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Production</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Strategic Planning</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Technology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Production</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategic Planning</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Financial_Year__c</picklist>
+            <values>
+                <fullName>FY2015</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FY2016</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FY2017</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FY2018</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FY2019</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FY2020</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FY2021</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FY2022</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FY2023</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FY2024</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FY2025</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Role_Title__c</picklist>
+            <values>
+                <fullName>Account Coordinator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Account Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Account Executive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Account Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Account Supervisor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Analyst</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Art Buyer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Art Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Assistant Account Executive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Assistant Business Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Assistant Producer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Assistant Production Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Assistant Traffic Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Associate Account Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Associate Creative Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Associate Planning Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Associate Research Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Broadcast Editor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Business Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Copywriter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Creative Coordinator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Creative Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Account Coordinator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Account Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Account Supervisor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Analyst</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Art Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Associate Creative Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Copywriter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Creative Coordinator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Creative Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Director of Client Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Flash Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Junior Account Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Junior Analyst</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Junior Art Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Junior Copywriter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Junior Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Junior Planner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Junior Producer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Junior Web Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Planner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Planning Coordinator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Planning Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Producer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Project Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Senior Analyst</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Senior Art Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Senior Copywriter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Senior Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Senior Planner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Senior Producer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Senior Project Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Senior Web Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Web Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Director of Technology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Executive Creative Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Executive Producer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global Account Head</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global Chief Creative Officer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Group Account Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Group Creative Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Group Planning Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Group Research Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head of Account Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head of Broadcast Production</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head of Business Affairs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head of Creative Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head of Digital</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head of Digital Production</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head of Print Production</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head of Research</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head of Strategic Planning</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head of Strategic Planning%2FResearch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head of Traffic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Junior Account Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Junior Analyst</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Junior Architect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Junior Art Buyer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Junior Art Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Junior Broadcast Editor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Junior Copywriter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Junior Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Junior Engineer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Junior Planner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Junior Print Producer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Junior Proofreader</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Librarian</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Planner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Planning Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Print Producer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Producer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Production Assistant</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Production Coordinator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Production Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Proofreader</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Research Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Account Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Account Executive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Account Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Analyst</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Architect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Art Buyer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Art Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Broadcast Editor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Buisiness Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Copywriter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Engineer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Planner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Print Producer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Producer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Production Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Proofreader</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Traffic Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Studio Artist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Studio Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Traffic Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Traffic Supervisor</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Role_Rate</fullName>
+        <active>true</active>
+        <description>Resource Rate cards for the country in EURO</description>
+        <label>Role Rate</label>
+        <picklistValues>
+            <picklist>Agency_Department__c</picklist>
+            <values>
+                <fullName>Account Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Creative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Account Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Creative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Production</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Strategic Planning</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Technology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Production</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategic Planning</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Financial_Year__c</picklist>
+            <values>
+                <fullName>FY2015</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FY2016</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FY2017</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FY2018</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FY2019</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FY2020</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FY2021</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FY2022</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FY2023</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FY2024</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FY2025</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Role_Title__c</picklist>
+            <values>
+                <fullName>Account Coordinator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Account Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Account Executive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Account Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Account Supervisor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Analyst</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Art Buyer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Art Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Assistant Account Executive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Assistant Business Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Assistant Producer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Assistant Production Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Assistant Traffic Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Associate Account Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Associate Creative Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Associate Planning Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Associate Research Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Broadcast Editor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Business Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Copywriter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Creative Coordinator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Creative Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Account Coordinator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Account Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Account Supervisor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Analyst</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Art Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Associate Creative Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Copywriter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Creative Coordinator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Creative Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Director of Client Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Flash Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Junior Account Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Junior Analyst</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Junior Art Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Junior Copywriter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Junior Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Junior Planner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Junior Producer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Junior Web Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Planner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Planning Coordinator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Planning Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Producer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Project Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Senior Analyst</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Senior Art Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Senior Copywriter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Senior Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Senior Planner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Senior Producer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Senior Project Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Senior Web Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Web Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Director of Technology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Executive Creative Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Executive Producer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global Account Head</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global Chief Creative Officer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Group Account Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Group Creative Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Group Planning Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Group Research Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head of Account Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head of Broadcast Production</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head of Business Affairs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head of Creative Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head of Digital</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head of Digital Production</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head of Print Production</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head of Research</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head of Strategic Planning</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head of Strategic Planning%2FResearch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head of Traffic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Junior Account Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Junior Analyst</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Junior Architect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Junior Art Buyer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Junior Art Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Junior Broadcast Editor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Junior Copywriter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Junior Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Junior Engineer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Junior Planner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Junior Print Producer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Junior Proofreader</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Librarian</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Planner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Planning Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Print Producer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Producer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Production Assistant</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Production Coordinator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Production Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Proofreader</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Research Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Account Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Account Executive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Account Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Analyst</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Architect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Art Buyer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Art Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Broadcast Editor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Buisiness Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Copywriter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Engineer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Planner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Print Producer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Producer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Production Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Proofreader</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senior Traffic Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Studio Artist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Studio Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Traffic Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Traffic Supervisor</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>Private</sharingModel>
+</CustomObject>

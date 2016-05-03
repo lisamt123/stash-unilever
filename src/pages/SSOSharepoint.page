@@ -1,0 +1,19 @@
+<apex:page showHeader="false" sidebar="false" controller="SSOSharepointController" action="{!simplifiedsignin}"> 
+
+    Please wait while your credentials are checked...
+<!--
+        {!errorstr}
+        Token email : {!subject}
+        Token date : {!tokendate}
+        -->
+        <form id="postme" action="{!action}" method="POST">
+            <input type="hidden" name="RelayState" value="{!relayState}" /><br/>
+            <input type="hidden" name="SAMLResponse" value="{!result}" /><br/>
+<!--
+            <input type="submit" value="Log me in (replace with auto-post for real implementation)"/>
+-->
+        </form>
+    <script>
+        document.getElementById('postme').submit();
+    </script>
+</apex:page>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Everyday Activity</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Everyday Actions</value>
+    </caseValues>
+    <fields>
+        <label><!-- Active --></label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Activity Points --></label>
+        <name>Activity_Points__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Minutes to Complete Action --></label>
+        <name>Minutes_to_Complete_Action__c</name>
+    </fields>
+    <fields>
+        <label><!-- Participants Required --></label>
+        <name>Participants_Required__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rating --></label>
+        <name>Rating__c</name>
+    </fields>
+    <fields>
+        <label><!-- Top Tip --></label>
+        <name>Top_Tip__c</name>
+    </fields>
+    <recordTypes>
+        <label><!-- Boosting Wellbeing --></label>
+        <name>Boosting_Wellbeing</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Building Inclusion --></label>
+        <name>Building_Inclusion</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- People Champion --></label>
+        <name>People_Champion</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Working Effectively --></label>
+        <name>Working_Effectively</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

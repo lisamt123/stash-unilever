@@ -1,0 +1,1023 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Will represent the out of pocket expense estimation agreed upon between Unilever and an agency for a particular brand</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>AF_Adaptation__c</fullName>
+        <description>Store the Adapation figure</description>
+        <externalId>false</externalId>
+        <label>Adaptation</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Adjusted_estimate_1__c</fullName>
+        <description>Calculate the value for qtr based on which qtr we are in and total value</description>
+        <externalId>false</externalId>
+        <formula>IF(INCLUDES(AF_OOPS_Actual__r.Quarter__c, &quot;Q4&quot;), 1,
+	IF(INCLUDES(AF_OOPS_Actual__r.Quarter__c, &quot;Q3&quot;), 0.75,
+		IF(INCLUDES(AF_OOPS_Actual__r.Quarter__c, &quot;Q2&quot;), 0.5,
+			IF(INCLUDES(AF_OOPS_Actual__r.Quarter__c, &quot;Q1&quot;), 0.25, 0))))
+* AF_Estimate__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Adjusted estimate 1</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Adjusted_estimate_2__c</fullName>
+        <description>Calculate value based on previous value and current value</description>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK( AF_Previous_Quarter_Estimate__c),null, AF_Adjusted_estimate_1__c -  AF_Previous_Quarter_Estimate__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Adjusted estimate 2</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Agency_Account__c</fullName>
+        <description>Stores the Agency Account Name</description>
+        <externalId>false</externalId>
+        <formula>AF_Agency_Entity__r.AF_Agency__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Agency Account</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Agency_Entity_Column_Name__c</fullName>
+        <description>AgencyFee#GLOBAL#To store the Agency entity column name</description>
+        <externalId>false</externalId>
+        <label>Agency Entity Column Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Agency_Entity__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>AgencyFee#GLOBAL#To Store the Agency Entity Associated to Entity</description>
+        <externalId>false</externalId>
+        <label>Agency Entity</label>
+        <referenceTo>AF_Entity__c</referenceTo>
+        <relationshipLabel>OOPS Estimates</relationshipLabel>
+        <relationshipName>OOPS_Estimates</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>AF_Agency_ExchangeRateTemp__c</fullName>
+        <externalId>false</externalId>
+        <label>Agency ExchangeRateTemp</label>
+        <precision>15</precision>
+        <required>false</required>
+        <scale>5</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Agency_Exchange_Rate__c</fullName>
+        <description>AgencyFee#GLOBAL#To store Agency exchange rate values</description>
+        <externalId>false</externalId>
+        <label>Agency Exchange Rate</label>
+        <precision>15</precision>
+        <required>false</required>
+        <scale>5</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Agency_Spot_Rate__c</fullName>
+        <description>AgencyFee#GLOBAL#To store the Agency Spot Rate values</description>
+        <externalId>false</externalId>
+        <label>Agency Spot Rate</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Agreed_Base_Fee_is_0__c</fullName>
+        <description>Used for a roll up summary on OOPS Actual which counts number of blank or 0 Agreed Base Fee OOPS Estimates</description>
+        <externalId>false</externalId>
+        <formula>IF(
+	OR(
+		AF_Agreed_Base_Fees__c = 0,
+		ISBLANK(AF_Agreed_Base_Fees__c)
+	),
+	1,
+	0
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Agreed Base Fee is 0</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Agreed_Base_Fees__c</fullName>
+        <description>AgencyFee#GLOBAL#To store the Agreed base fees</description>
+        <externalId>false</externalId>
+        <label>Agreed Base Fees</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Archived__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>AgencyFee#GLOBAL#To check whether the OOPS Estimate is Archived or not</description>
+        <externalId>false</externalId>
+        <label>Archived</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>AF_Brand_Estimate__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>AgencyFee#GLOBAL#To relate OOPs Estimate to brand estimates</description>
+        <externalId>false</externalId>
+        <label>Brand Estimate</label>
+        <referenceTo>AF_Brand_Estimate__c</referenceTo>
+        <relationshipLabel>OOPS Estimates</relationshipLabel>
+        <relationshipName>OOPS_Estimates</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>AF_Brand__c</fullName>
+        <externalId>false</externalId>
+        <formula>AF_OOPS_Actual__r.AF_Brand__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Brand</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Compound_key__c</fullName>
+        <description>Composite Key used for quickly fiding all OOPS estimate records for the purpose of calculating total (yearly) PO value.</description>
+        <externalId>false</externalId>
+        <formula>AF_OOPS_Actual__r.AF_Fiscal_year__c +&apos;|&apos;+CASESAFEID (AF_Agency_Entity__r.AF_Agency__c)+&apos;|&apos;+CASESAFEID (AF_OOPS_Actual__r.AF_Brand__c)+&apos;|&apos;+Agency_Entity_Name__c+&apos;|&apos;+Unilever_Entity_Name__c</formula>
+        <inlineHelpText>Composite Key used for quickly fiding all OOPS estimate records for the purpose of calculating total (yearly) PO value.</inlineHelpText>
+        <label>Compound key</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_CountNoQuarters__c</fullName>
+        <externalId>false</externalId>
+        <formula>case(AF_JustQuarters__c ,
+&quot;Q1&quot;,1,
+&quot;Q1Q2&quot;,2,
+&quot;Q1Q3&quot;,3,
+&quot;Q1Q4&quot;,4,
+&quot;Q2&quot;,1,
+&quot;Q2Q3&quot;,2,
+&quot;Q2Q4&quot;,3,
+&quot;Q3&quot;,1,
+&quot;Q3Q4&quot;,2,
+&quot;Q4&quot;,1,1)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>CountNoQuarters</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Digital__c</fullName>
+        <description>Stores the Digital Value</description>
+        <externalId>false</externalId>
+        <label>Digital</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_EstimateLocal__c</fullName>
+        <description>Formula to work out estimate local value based on status</description>
+        <externalId>false</externalId>
+        <formula>if( text(AF_Status__c) =&quot;Ready for PO&quot; &amp;&amp; not(isnull(AF_Ready_For_PO_Exchange_Rate__c)),
+ AF_OOPS_Estimate_Local__c,
+AF_Estimate__c  *  AF_Agency_Exchange_Rate__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Estimate Local</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Estimate_Local_Old__c</fullName>
+        <description>Not used</description>
+        <externalId>false</externalId>
+        <label>Estimate Local Old</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>4</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Estimate_Local__c</fullName>
+        <description>AgencyFee#GLOBAL#To store the local Estimates for OOPs Estimates</description>
+        <externalId>false</externalId>
+        <label>Estimate Local</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Estimate_Overall__c</fullName>
+        <description>Calculate the Totals OOPS based on base fees and overall %</description>
+        <externalId>false</externalId>
+        <formula>AF_Agreed_Base_Fees__c *   AF_OOPS_Actual__r.Overall__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Estimate Overall</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Estimate__c</fullName>
+        <description>AgencyFee#GLOBAL#To Store the Estimated values for OOPs Estimate</description>
+        <externalId>false</externalId>
+        <label>Estimate</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Fiscal_Year_FF__c</fullName>
+        <externalId>false</externalId>
+        <formula>AF_OOPS_Actual__r.AF_Fiscal_year__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Fiscal Year FF</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Fiscal_Year__c</fullName>
+        <description>AgencyFee#GLOBAL#To store the fiscal year related values</description>
+        <externalId>false</externalId>
+        <label>Fiscal Year</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_IsCrossBorderImage__c</fullName>
+        <description>Formula to show red box if this is a cross border</description>
+        <externalId>false</externalId>
+        <formula>if( AF_IsCrossBorder__c , IMAGE($Label.AF_AgencyUrlLink+&quot;/resource/AF_isTax&quot;, &quot;CrossBorder&quot; ,15,15) ,&quot;&quot;)</formula>
+        <label>IsCrossBorderImage</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_IsCrossBorder__c</fullName>
+        <description>Checks to see if Agency and unilever countries are different - if so marks as cross border</description>
+        <externalId>false</externalId>
+        <formula>IF(AND( TEXT(AF_Unilever_Entity__r.AF_Country__c) != TEXT(AF_Agency_Entity__r.AF_Country__c), AF_Estimate__c !=0.00)  , true, false)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>IsCrossBorder</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>AF_Is_Crossborder_Wk__c</fullName>
+        <description>This will be autopopulated by workflow.</description>
+        <externalId>false</externalId>
+        <label>Is Crossborder</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_JustQuarters__c</fullName>
+        <externalId>false</externalId>
+        <formula>SUBSTITUTE( 
+SUBSTITUTE( 
+SUBSTITUTE( 
+SUBSTITUTE( 
+SUBSTITUTE(AF_OOPS_Actual__r.Name,AF_OOPS_Actual__r.AF_Brand__r.Name, &quot;&quot;),AF_Agency_Account__c ,&quot;&quot;), AF_Fiscal_Year__c ,&quot;&quot;),&quot;-&quot;,&quot;&quot;),&quot; &quot;,&quot;&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>JustQuarters</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Locked__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>AgencyFee#GLOBAL#To check the status for OOPs Estimate</description>
+        <externalId>false</externalId>
+        <label>Locked</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>AF_MatrixCodeTemp__c</fullName>
+        <externalId>false</externalId>
+        <label>MatrixCodeTemp</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Max_Quarter__c</fullName>
+        <description>Calculates the max qtr</description>
+        <externalId>false</externalId>
+        <formula>IF(INCLUDES(AF_OOPS_Actual__r.Quarter__c, &quot;Q4&quot;), &quot;Q4&quot;,
+	IF(INCLUDES(AF_OOPS_Actual__r.Quarter__c, &quot;Q3&quot;), &quot;Q3&quot;,
+		IF(INCLUDES(AF_OOPS_Actual__r.Quarter__c, &quot;Q2&quot;), &quot;Q2&quot;,
+			IF(INCLUDES(AF_OOPS_Actual__r.Quarter__c, &quot;Q1&quot;), &quot;Q1&quot;, null))))</formula>
+        <label>Max Quarter</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Mean_Quarter__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(INCLUDES(AF_OOPS_Actual__r.Quarter__c, &quot;Q1&quot;), &quot;Q0&quot;, 
+IF(INCLUDES(AF_OOPS_Actual__r.Quarter__c, &quot;Q2&quot;), &quot;Q1&quot;, 
+IF(INCLUDES(AF_OOPS_Actual__r.Quarter__c, &quot;Q3&quot;), &quot;Q2&quot;, 
+IF(INCLUDES(AF_OOPS_Actual__r.Quarter__c, &quot;Q4&quot;), &quot;Q3&quot;, null))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Mean Quarter</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_No_of_Quaters__c</fullName>
+        <description>Calculates no of quarters</description>
+        <externalId>false</externalId>
+        <formula>if( AF_OOPS_Actual__r.AF_Q1__c &gt;0,1,0) + if( AF_OOPS_Actual__r.AF_Q2__c &gt;0,1,0)+if( AF_OOPS_Actual__r.AF_Q3__c &gt;0,1,0)+if( AF_OOPS_Actual__r.AF_Q4__c &gt;0,1,0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>No of Quaters</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_OOPS_Actual__c</fullName>
+        <description>Parent record of oops estimate</description>
+        <externalId>false</externalId>
+        <label>OOPS Actual</label>
+        <referenceTo>AF_OOPS_Actual__c</referenceTo>
+        <relationshipLabel>OOPS Estimates</relationshipLabel>
+        <relationshipName>OOPS_Estimates</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>AF_OOPS_Code__c</fullName>
+        <defaultValue>&quot;EUR&quot;</defaultValue>
+        <description>Default currency code</description>
+        <externalId>false</externalId>
+        <label>OOPS Code</label>
+        <length>8</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_OOPS_Estimate_Local__c</fullName>
+        <description>show the local value of estimate</description>
+        <externalId>false</externalId>
+        <label>OOPS Estimate Local</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_OOPS_Matrix_Currency_Code__c</fullName>
+        <description>Currency code that is used before ready for po</description>
+        <externalId>false</externalId>
+        <label>OOPS Matrix Currency Code</label>
+        <length>8</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Overall_OOPS__c</fullName>
+        <description>AgencyFee#GLOBAL#To store the values for overall OOPs</description>
+        <externalId>false</externalId>
+        <label>Overall OOPS %</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_OverridePO_Adaptation_LC__c</fullName>
+        <description>This field is used to override the PO Adaptation value for the PO report of OOPSEstimate</description>
+        <externalId>false</externalId>
+        <label>Override PO Adaptation – LC</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_OverridePO_Digital_LC__c</fullName>
+        <externalId>false</externalId>
+        <label>Override PO Digital – LC</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Override_Estimate_Local__c</fullName>
+        <externalId>false</externalId>
+        <label>Override Estimate Local</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_PO_Number__c</fullName>
+        <description>Stores PO number from ariba</description>
+        <externalId>false</externalId>
+        <label>PO Number</label>
+        <length>25</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_PO_Report_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>&quot;OOPS&quot;</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>PO Report Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_PO_Value_LC_2014__c</fullName>
+        <externalId>false</externalId>
+        <formula>AF_EstimateLocal__c *0.25</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>PO Value - LC 2014</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_PO_value_euro2014__c</fullName>
+        <externalId>false</externalId>
+        <formula>AF_Estimate__c *0.25</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>PO Value - Euro 2014</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Previous_PO_Value__c</fullName>
+        <description>Stores previous po value</description>
+        <externalId>false</externalId>
+        <label>Previous PO Value</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Previous_Quarter_Estimate__c</fullName>
+        <description>Not used</description>
+        <externalId>false</externalId>
+        <label>Prev Q Adjusted Estimate 1</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>8</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Previous_Quarter_Value__c</fullName>
+        <description>Stores the value of previous quarters value</description>
+        <externalId>false</externalId>
+        <label>Previous Quarter Value</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Previous_Quarters_Done__c</fullName>
+        <description>Stores no of previous quarters</description>
+        <externalId>false</externalId>
+        <label>Previous Quarters Done</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Quarter_PO_Raised__c</fullName>
+        <description>Calculates the PO Value</description>
+        <externalId>false</externalId>
+        <formula>CASE(AF_Previous_Quarters_Done__c, 
+0, AF_Estimate__c / If(AF_No_of_Quaters__c&gt;0,AF_No_of_Quaters__c,1) , 
+1, (AF_Estimate__c / If(AF_No_of_Quaters__c&gt;0,AF_No_of_Quaters__c,1))*0.25- AF_Previous_PO_Value__c , 
+2, (AF_Estimate__c / If(AF_No_of_Quaters__c&gt;0,AF_No_of_Quaters__c,1))*0.5- AF_Previous_PO_Value__c , 
+3, (AF_Estimate__c / If(AF_No_of_Quaters__c&gt;0,AF_No_of_Quaters__c,1))*0.75- AF_Previous_PO_Value__c , 
+0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Quarter PO Raised</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Quarter__c</fullName>
+        <description>AgencyFee#GLOBAL#To store the related values for Quarter</description>
+        <externalId>false</externalId>
+        <label>Quarter</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_QuatersAlreadyDone__c</fullName>
+        <externalId>false</externalId>
+        <formula>case( SUBSTITUTE(SUBSTITUTE(AF_JustQuarters__c, &quot; &quot;, &quot;&quot;),&quot;-&quot;,&quot;&quot;) , 
+&quot;Q1&quot;,0, 
+&quot;Q1Q2&quot;,0, 
+&quot;Q1Q3&quot;,0, 
+&quot;Q1Q4&quot;,0, 
+&quot;Q2&quot;,1, 
+&quot;Q2Q3&quot;,1, 
+&quot;Q2Q4&quot;,1, 
+&quot;Q3&quot;,2, 
+&quot;Q3Q4&quot;,2, 
+&quot;Q4&quot;,3,1)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>QuatersAlreadyDone</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Rate_Currency__c</fullName>
+        <description>AgencyFee#GLOBAL#To store the currency rate</description>
+        <externalId>false</externalId>
+        <label>Rate Currency</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Rate_Type__c</fullName>
+        <description>AgencyFee#GLOBAL#To Store the values for Rate type</description>
+        <externalId>false</externalId>
+        <label>Rate Type</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Ready_For_PO_Entry_Currency__c</fullName>
+        <description>Stores the ready for PO Currency</description>
+        <externalId>false</externalId>
+        <label>Ready For PO Entry Currency</label>
+        <length>8</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Ready_For_PO_Exchange_Rate__c</fullName>
+        <description>Stores the ready for PO Currency exchange rate</description>
+        <externalId>false</externalId>
+        <label>Ready For PO Exchange Rate</label>
+        <precision>15</precision>
+        <required>false</required>
+        <scale>5</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_ReadyforPOExchangeRateTemp__c</fullName>
+        <externalId>false</externalId>
+        <label>ReadyforPOExchangeRateTemp</label>
+        <precision>15</precision>
+        <required>false</required>
+        <scale>5</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_ReadyforPoCodeTemp__c</fullName>
+        <externalId>false</externalId>
+        <label>ReadyforPoCodeTemp</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Status__c</fullName>
+        <description>AgencyFee#GLOBAL#To store the Status for OOPS Estimate</description>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>None</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>with agency (draft)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>with category finance</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>with agency</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>with CMCO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ready for PO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>AF_Total__c</fullName>
+        <externalId>false</externalId>
+        <formula>AF_Adaptation__c +  AF_Digital__c +  AF_Traditional__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Traditional__c</fullName>
+        <description>Stores the Tradition value</description>
+        <externalId>false</externalId>
+        <label>Traditional</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Unilever_Entity_Column_Name__c</fullName>
+        <description>AgencyFee#GLOBAL#To store column names for Unilever entity.</description>
+        <externalId>false</externalId>
+        <label>Unilever Entity Column Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Unilever_Entity__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>AgencyFee#GLOBAL#To store Unilever Entity values associated to Entity</description>
+        <externalId>false</externalId>
+        <label>Unilever Entity</label>
+        <referenceTo>AF_Entity__c</referenceTo>
+        <relationshipLabel>OOPS Estimates (Unilever entity)</relationshipLabel>
+        <relationshipName>OOPS_Estimates1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>AF_isCommentImage__c</fullName>
+        <description>Formula to show blue box is there is a comment</description>
+        <externalId>false</externalId>
+        <formula>if( AF_isComment__c , IMAGE( $Label.AF_AgencyUrlLink+&quot;/resource/AF_isComment&quot;, &quot;Comment&quot; ,15,15) ,&quot; &quot;)</formula>
+        <label>isCommentImage</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_isComment__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Tracks whether a comment has been created against the record</description>
+        <externalId>false</externalId>
+        <label>isComment</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Agency_Entity_Name__c</fullName>
+        <description>Stores the entity name</description>
+        <externalId>false</externalId>
+        <formula>AF_Agency_Entity__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Agency Entity Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IDfromPilot__c</fullName>
+        <caseSensitive>true</caseSensitive>
+        <externalId>true</externalId>
+        <label>IDfromPilot</label>
+        <length>18</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>IsUpdate__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Tracks to see if cell has been changed</description>
+        <externalId>false</externalId>
+        <label>IsUpdate</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Unilever_Entity_Name__c</fullName>
+        <description>Stores the Unilever Entity Name</description>
+        <externalId>false</externalId>
+        <formula>AF_Unilever_Entity__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Unilever Entity Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>OOPS Estimate</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>AF_OOPS_Actual__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>OOPS Estimate Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>OOPS Estimates</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

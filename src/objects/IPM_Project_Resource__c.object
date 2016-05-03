@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>To store the IPM Project Team Members</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fieldSets>
+        <fullName>IPM_Project_Resource_Field_Set_EcoDesign</fullName>
+        <description>IPM Project Resource Field Set For Ecodesign. It contains fields which when updated neeed to be synced to EcoDesign System.</description>
+        <displayedFields>
+            <field>IPM_User__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IPM_Role__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IPM_Member_Email__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IPM_Project__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>IPM Project Resource Field Set EcoDesign</label>
+    </fieldSets>
+    <fields>
+        <fullName>IPM_Category__c</fullName>
+        <description>displaying from user record</description>
+        <externalId>false</externalId>
+        <formula>$User.IPM_Category__c</formula>
+        <label>Category</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Company_Card__c</fullName>
+        <externalId>false</externalId>
+        <formula>IPM_Project__r.IPM_Company_Card__c</formula>
+        <label>Company Card</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Docmnt_Sec_FunctionalorSummary_Inpt__c</fullName>
+        <externalId>false</externalId>
+        <formula>IPM_Project_Document_Section__r.IPM_Functional_Input_or_Summary__c</formula>
+        <label>IPM Docmnt Sec FunctionalorSummary Inpt</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Locale_Time__c</fullName>
+        <externalId>false</externalId>
+        <formula>IPM_Project_Document_Section__r.IPM_Locale_Time__c</formula>
+        <label>IPM Locale Time</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Member_Email__c</fullName>
+        <description>for send an email to this email address</description>
+        <externalId>false</externalId>
+        <label>IPM Member Email</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Project_Document_Section_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>IPM_Project_Document_Section__r.IPM_Section_Name__c</formula>
+        <label>IPM Project Document Section Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Project_Document_Section__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>IPM Project Document Section</label>
+        <referenceTo>IPM_Project_Document_Section__c</referenceTo>
+        <relationshipLabel>IPM Project Resources</relationshipLabel>
+        <relationshipName>IPM_Project_Resources</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Project_Role_Owner__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>to capture the owner of role in team member</description>
+        <externalId>false</externalId>
+        <label>Owner</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Project__c</fullName>
+        <description>lookup for IPM project</description>
+        <externalId>false</externalId>
+        <label>IPM Project</label>
+        <referenceTo>IPM_Project__c</referenceTo>
+        <relationshipLabel>IPM Project Resources</relationshipLabel>
+        <relationshipName>IPM_Project_Resources</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>IPM_Res_Email__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM_Res_Email</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Role_Type__c</fullName>
+        <description>Store role type</description>
+        <externalId>false</externalId>
+        <label>IPM Role Type</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Role__c</fullName>
+        <description>Displaying from user record</description>
+        <externalId>false</externalId>
+        <formula>(text(IPM_User__r.IPM_Role__c))</formula>
+        <label>Role</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Unique_Resource__c</fullName>
+        <description>To have a Unique project resource id</description>
+        <externalId>false</externalId>
+        <label>IPM Unique Resource</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_User__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Lookup to IPM User</description>
+        <externalId>false</externalId>
+        <label>User</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>IPM_Project_Resources</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>IPM_copyEmail__c</fullName>
+        <externalId>false</externalId>
+        <formula>IPM_User__r.Email</formula>
+        <label>IPM copyEmail</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_send_an_email__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>IPM send an email</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Project_Leader__c</fullName>
+        <externalId>false</externalId>
+        <formula>IPM_Project__r.IPM_Project_Leader__r.Profile.Name</formula>
+        <label>Project Leader</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>IPM Project Resource</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Project_Leader__c</columns>
+        <columns>IPM_Project__c</columns>
+        <columns>IPM_Project_Document_Section__c</columns>
+        <columns>IPM_Role_Type__c</columns>
+        <columns>IPM_Project_Role_Owner__c</columns>
+        <columns>IPM_Role__c</columns>
+        <columns>IPM_User__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>PR-{0000}</displayFormat>
+        <label>Project Resource Id</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>IPM Project Resources</pluralLabel>
+    <searchLayouts>
+        <lookupDialogsAdditionalFields>IPM_Company_Card__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>IPM_Res_Email__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>IPM_Member_Email__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>IPM_Project_Document_Section__c</lookupDialogsAdditionalFields>
+        <searchResultsAdditionalFields>IPM_Project__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>IPM_Role__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>IPM_User__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>IPM_Member_Email__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

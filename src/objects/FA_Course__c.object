@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>FA_Course_Code__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>false</externalId>
+        <label>Course Code</label>
+        <length>5</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>FA_Course_Logo__c</fullName>
+        <externalId>false</externalId>
+        <label>Course Logo</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>FA_Course_Objective__c</fullName>
+        <externalId>false</externalId>
+        <label>Course Objective</label>
+        <length>3000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FA_Course_Overview__c</fullName>
+        <externalId>false</externalId>
+        <label>Course Overview</label>
+        <length>3000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FA_Status__c</fullName>
+        <description>To capture the status of the Course like,active ,inactive,draft etc.</description>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Active</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <label>Course</label>
+    <nameField>
+        <label>Course Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Courses</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>FA_Course_Code__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>FA_Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>FA_Course_Overview__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>FA_Course_Code__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>FA_Status__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>FA_Course_Overview__c</lookupDialogsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Private</sharingModel>
+    <sharingReasons>
+        <fullName>FA_Facilitator_Access__c</fullName>
+        <label>Facilitator Access</label>
+    </sharingReasons>
+    <sharingReasons>
+        <fullName>FA_Member_Access__c</fullName>
+        <label>Member Access</label>
+    </sharingReasons>
+    <validationRules>
+        <fullName>FA_CourseName_Instructor</fullName>
+        <active>false</active>
+        <description>Instructor should not be able to edit the course name.</description>
+        <errorConditionFormula>IF($Profile.Name=&apos;FA - Instructor&apos;,  ISCHANGED( Name ) ,  false)</errorConditionFormula>
+        <errorMessage>Instructor cannot edit the Course Name.</errorMessage>
+    </validationRules>
+</CustomObject>

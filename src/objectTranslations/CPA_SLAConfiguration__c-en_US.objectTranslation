@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>CPA_SLA Configuration</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>CPA_SLA Configuration</value>
+    </caseValues>
+    <fields>
+        <label><!-- DBTD SLA1 --></label>
+        <name>DBTD_SLA1__c</name>
+    </fields>
+    <fields>
+        <label><!-- DBTD SLA2 --></label>
+        <name>DBTD_SLA2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Others SLA1 --></label>
+        <name>Others_SLA1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Others SLA2 --></label>
+        <name>Others_SLA2__c</name>
+    </fields>
+    <fields>
+        <label><!-- PADBTD SLA1 --></label>
+        <name>PADBTD_SLA1__c</name>
+    </fields>
+    <fields>
+        <label><!-- PADBTD SLA2 --></label>
+        <name>PADBTD_SLA2__c</name>
+    </fields>
+    <fields>
+        <label><!-- PA SLA1 --></label>
+        <name>PA_SLA1__c</name>
+    </fields>
+    <fields>
+        <label><!-- PA SLA2 --></label>
+        <name>PA_SLA2__c</name>
+    </fields>
+    <fields>
+        <label><!-- RA SLA1 --></label>
+        <name>RA_SLA1__c</name>
+    </fields>
+    <fields>
+        <label><!-- RA SLA2 --></label>
+        <name>RA_SLA2__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

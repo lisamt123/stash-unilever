@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Training Venue --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Training Venue --></value>
+    </caseValues>
+    <fields>
+        <label><!-- Address Line 1 --></label>
+        <name>FA_Address_Line_1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Address Line 2 --></label>
+        <name>FA_Address_Line_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Address Line 3 --></label>
+        <name>FA_Address_Line_3__c</name>
+    </fields>
+    <fields>
+        <label>Land</label>
+        <name>FA_Country__c</name>
+        <picklistValues>
+            <masterLabel>Singapore</masterLabel>
+            <translation><!-- Singapore --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>United Kingdom</masterLabel>
+            <translation><!-- United Kingdom --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Image URL --></label>
+        <name>FA_Image_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Local Facilities --></label>
+        <name>FA_Local_facilities__c</name>
+    </fields>
+    <fields>
+        <label><!-- Overview --></label>
+        <name>FA_Overview__c</name>
+    </fields>
+    <fields>
+        <label><!-- Postcode --></label>
+        <name>FA_Postcode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Things To Do --></label>
+        <name>FA_Things_to_do__c</name>
+    </fields>
+    <fields>
+        <label><!-- Town City --></label>
+        <name>FA_Town_City__c</name>
+    </fields>
+    <fields>
+        <label><!-- Travel Information --></label>
+        <name>FA_Travel_Information__c</name>
+    </fields>
+    <fields>
+        <label><!-- Venue Image --></label>
+        <name>FA_Venue_Image__c</name>
+    </fields>
+    <gender><!-- Neuter --></gender>
+    <nameFieldLabel><!-- Name --></nameFieldLabel>
+    <validationRules>
+        <errorMessage><!-- Already a record exists with this name.Please enter a different name --></errorMessage>
+        <name>FA_cannotCreateVenuewithExistingName</name>
+    </validationRules>
+</CustomObjectTranslation>

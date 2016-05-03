@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Pre Work Task</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Pre Work Tasks</value>
+    </caseValues>
+    <fields>
+        <label><!-- Due Date Passed --></label>
+        <name>Due_Date_Passed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Due Date --></label>
+        <name>FA_Due_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- External ID --></label>
+        <name>FA_External_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Completed --></label>
+        <name>FA_Mark_Completed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Occurence Member --></label>
+        <name>FA_OccMember__c</name>
+        <relationshipLabel><!-- Pre Work Tasks --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Course Occurence --></label>
+        <name>FA_OccurenceOM__c</name>
+        <relationshipLabel><!-- Pre Work Tasks --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Occurence Task --></label>
+        <name>FA_Occurence_Task__c</name>
+        <relationshipLabel><!-- Pre Work Tasks --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>FA_Status__c</name>
+        <picklistValues>
+            <masterLabel>Completed</masterLabel>
+            <translation><!-- Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Completed</masterLabel>
+            <translation><!-- Not Completed --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Task Description --></label>
+        <name>FA_Task_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Task Name --></label>
+        <name>FA_Task_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- WFR_Number --></label>
+        <name>FA_WFR_Number__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

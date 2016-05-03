@@ -1,0 +1,96 @@
+<!--  
+*************************************************************************
+*@Description:This component is used <…..>
+*@Author: Cognizant
+*@Created Date: 26/12/2014
+*@Copyright © 2015  Unilever  
+*************************************************************************
+-->
+
+<apex:component controller="IPM_ObjectHistoryComponentController">
+<!-- Attribute Definition -->
+<apex:attribute name="myObjectName" description="Object we wish to view the history of" type="SObject" required="true" assignTo="{!myObject}" />
+<apex:attribute name="recordLimitCount" description="Number of lines of history to display" type="Integer" required="false" assignTo="{!recordLimit}" />
+<div class="col-xs-12" id="ipmSecHistoryTab">
+<div class="row">
+   <div class="panel-group">                               
+   <ul class="ipmTabs">
+       <li class="summary tabOdd"><span>Summary</span></li>
+       <li class="outcome tabEven"><span>Functional Input</span></li>
+   </ul>                               
+   </div>
+   </div>
+<div class="ipmTabContent" id="summary"> 
+<!-- Object History Related List -->
+<div class="col-xs-12 secUsersHistory">
+<div class="tlCircle"></div>
+<div>
+<div class="panel-group">
+<apex:repeat value="{!ObjectHistory}" var="History">
+<!-- Below rendered is used to show image -->
+<apex:outputPanel rendered="{!IF(History.FieldName='Gate Document Summary',True,False)}">
+<div class="row ">
+    <div class="col-xs-2">
+    <apex:Image styleClass="circular ipmImage" url="{!History.whoImage}" /> 
+    </div>
+    <div class="col-xs-10 listHistory">
+    <div class="col-xs-12">
+     <div class="row date">
+        <apex:outputText value="{!History.thedate}" />
+     </div>
+    </div>
+    <div class="col-xs-12">
+     <div class="row action">
+        <apex:outputText value="{!History.who}" />&nbsp;<apex:outputText value="{!History.action}"/>
+
+    </div>
+    </div>
+    </div> 
+    </div>  
+    </apex:outputPanel>
+</apex:repeat>  
+
+</div>
+</div>
+<div class="tlCircle"></div>
+</div>
+</div>
+
+<div class="ipmTabContent" id="outcome"> 
+<!-- Object History Related List -->
+<div class="col-xs-12 secUsersHistory">
+<div class="tlCircle"></div>
+<div>
+<div class="panel-group">
+<apex:repeat value="{!ObjectHistory}" var="History2">
+<!-- Below rendered is used to show image -->
+<apex:outputPanel rendered="{!IF(History2.FieldName='PDP Document Summary',True,False)}">
+<div class="row ">
+    <div class="col-xs-2">
+    <apex:Image styleClass="circular ipmImage" url="{!History2.whoImage}" /> 
+    </div>
+    <div class="col-xs-10 listHistory">
+    <div class="col-xs-12">
+     <div class="row date">
+        <apex:outputText value="{!History2.thedate}" />
+     </div>
+    </div>
+    <div class="col-xs-12">
+     <div class="row action">
+     
+        <apex:outputText value="{!History2.who}" />&nbsp;<apex:outputText value="{!History2.action}"/>
+
+    </div>
+    </div>
+    </div> 
+    </div>  
+    </apex:outputPanel>
+</apex:repeat>  
+
+</div>
+</div>
+<div class="tlCircle"></div>
+</div>
+</div>
+</div>
+</apex:component>

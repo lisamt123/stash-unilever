@@ -1,0 +1,158 @@
+<apex:page controller="CoreNTImportCtl">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css"></link>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css"></link>
+
+    <apex:stylesheet value="{!URLFOR($Resource.CoreNTResources, 'css/Update.css')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.CoreNTResources, 'Javascript/update.js')}"/>
+    
+    <apex:form >
+        <apex:pageBlock mode="maindetail">
+
+            <apex:panelGrid columns="2">
+                <apex:image value="{!URLFOR($Resource.CoreNTResources, 'images/Success.jpg')}" width="20" height="20" />
+                <apex:outputText value="The Xml has been imported successfully" style="font-weight:bold" />
+            </apex:panelGrid>
+
+            <apex:outputText style="color:red;font-weight:bold" rendered="{!IF(showPrjError || showTaskError || showResError || showAssignError || showAssignWarnSec || showInfoResSec,true,false)}" />
+
+            <div class="toggle-box">
+                <apex:outputPanel rendered="{!IF(showPrjError || showTaskError || showResError || showAssignError ,true,false)}">
+                    <div class="toggle-title">
+                        <img src="{!URLFOR($Resource.CoreNTResources, 'images/CriticalErrors.png')}" style="width:24px; margin-right:20px; height:20px; margin-left:20px;padding-top:2px;" />
+                        <span style="font-family:Verdana;font-size:12px;font-weight:bold;letter-spacing:2px">Critical</span>
+                    </div>
+                    <div class="toggle-content">
+                        <apex:outputPanel rendered="{!IF(showPrjError || showTaskError || showResError || showAssignError ,true,false)}">
+                            <apex:pageBlock rendered="{!IF(showPrjError || showTaskError || showResError || showAssignError ,true,false)}">
+                                <apex:pageBlockSection title="Projects" collapsible="true" rendered="{!showPrjError}">
+                                    <apex:pageBlockTable value="{!errorList}" var="err">
+                                        <apex:column headerClass="hidden" value="{!err}" />
+                                    </apex:pageBlockTable>
+                                </apex:pageBlockSection>
+                                <apex:pageBlockSection title="Tasks" collapsible="true" rendered="{!showTaskError}">
+                                    <apex:pageBlockTable value="{!taskErrorList}" var="err" rendered="{!showTaskError}">
+                                        <apex:column headerClass="hidden" value="{!err}" />
+                                    </apex:pageBlockTable>
+                                </apex:pageBlockSection>
+                                <apex:pageBlockSection title="Resource" collapsible="true" rendered="{!showResError}">
+                                    <apex:pageBlockTable value="{!resourceErrorList}" var="err" rendered="{!showResError}">
+                                        <apex:column headerClass="hidden" value="{!err}" />
+                                    </apex:pageBlockTable>
+                                </apex:pageBlockSection>
+                                <apex:pageBlockSection title="Assignments" collapsible="true" rendered="{!showAssignError}">
+                                    <apex:pageBlockTable value="{!assignmentErrorList}" var="err" rendered="{!showAssignError}">
+                                        <apex:column headerClass="hidden" value="{!err}" />
+                                    </apex:pageBlockTable>
+                                </apex:pageBlockSection>
+                            </apex:pageBlock>
+                        </apex:outputPanel>
+                    </div>
+                </apex:outputPanel>
+            </div>
+
+            <div class="toggle-box">
+                <apex:outputPanel rendered="{!showAssignWarnSec}">
+                    <div class="toggle-title">
+                        <img src="{!URLFOR($Resource.CoreNTResources, 'images/Warning.png')}" style="width:24px; margin-right:20px; height:20px; margin-left:20px;padding-top:2px;" />
+                        <span style="font-family:Verdana;font-size:12px;font-weight:bold;letter-spacing:2px">Warnings</span>
+                    </div>
+                    <div class="toggle-content">
+                        <apex:outputPanel rendered="{!showAssignWarnSec}">
+                            <apex:pageBlock rendered="{!showAssignWarnSec}">
+                                <apex:pageBlockSection title="Resource Assignment" collapsible="true" rendered="{!showAssignWarnSec}">
+                                    <apex:pageBlockTable value="{!warnAssignmentList}" var="err">
+                                        <apex:column headerClass="hidden" value="{!err}" />
+                                    </apex:pageBlockTable>
+                                </apex:pageBlockSection>
+                            </apex:pageBlock>
+                        </apex:outputPanel>
+                    </div>
+                </apex:outputPanel>
+            </div>
+
+            <div class="toggle-box">
+                <apex:outputPanel rendered="{!showInfoTaskSec}">
+                    <div class="toggle-title">
+                        <img src="{!URLFOR($Resource.CoreNTResources, 'images/Information.png')}" style="width:24px; margin-right:20px; height:20px; margin-left:20px;padding-top:2px;" />
+                        <span style="font-family:Verdana;font-size:12px;font-weight:bold;letter-spacing:2px">Information</span>
+                    </div>
+                    <div class="toggle-content">
+                        <apex:outputPanel rendered="{!showInfoTaskSec}">
+                            <apex:pageBlock rendered="{!showInfoTaskSec}">
+                                <apex:pageBlockSection title="Task" collapsible="true" rendered="{!showInfoTaskSec}">
+                                    <apex:pageBlockTable value="{!infoTaskList}" var="err" rendered="{!showInfoTaskSec}">
+                                        <apex:column headerClass="hidden" value="{!err}" />
+                                    </apex:pageBlockTable>
+                                </apex:pageBlockSection>
+                                <apex:pageBlockSection title="Resource" collapsible="true" rendered="{!showInfoResSec}">
+                                    <apex:pageBlockTable value="{!infoResourceList}" var="err" rendered="{!showInfoResSec}">
+                                        <apex:column headerClass="hidden" value="{!err}" />
+                                    </apex:pageBlockTable>
+                                </apex:pageBlockSection>
+                            </apex:pageBlock>
+                        </apex:outputPanel>
+                    </div>
+                </apex:outputPanel>
+            </div>
+            <br/>
+            <strong>  <apex:outputText value="Please enter below details for analytics purpose : "/> </strong>
+            <br/>
+            <apex:actionstatus id="Loading">
+                <apex:facet name="start">
+                    <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb; height: 100%; opacity: 0.65; width: 100%;">
+                        <div class="waitingHolder" style="center: 0px; width: 91px;">
+                            <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." />
+                            <span class="waitingDescription">Loading...</span>
+                        </div>
+                    </div>
+                </apex:facet>
+            </apex:actionstatus>
+
+            <apex:panelGrid columns="2" style="width:30%;">
+                <apex:outputLabel style="font-weight:bold;color:#015ba7;">Project Type :</apex:outputLabel>
+                <apex:inputField value="{!project.Project_Type__c}" required="true" style="width:150px;" />
+
+                <apex:outputLabel style="font-weight:bold;color:#015ba7;">Project Scope :</apex:outputLabel>
+                <apex:inputField value="{!project.Project_Scope__c}" required="true" style="width:150px;" />
+
+                <apex:outputLabel id="clusterLabel" style="font-weight:bold;color:#015ba7;">Cluster :</apex:outputLabel>
+                <apex:inputField value="{!project.Cluster__c}" required="true" style="width:150px;" />
+                
+                
+                <apex:outputLabel style="font-weight:bold;color:#015ba7;">Category Name</apex:outputLabel>
+                <apex:selectList id="selected_list" value="{!category}" required="false" size="1" style="width:150px;">
+                    <apex:selectOptions value="{!categoryitems}" />
+                    <apex:actionSupport event="onchange" status="Loading" reRender="selected_Subcategory" />
+                </apex:selectList>
+                
+                <apex:outputLabel style="font-weight:bold;color:#015ba7;">Subcategory Name</apex:outputLabel>
+                <apex:selectList id="selected_Subcategory" value="{!subcategory}" required="false" size="1" style="width:150px;">
+                    <apex:selectOptions value="{!subcategoryitems}" />
+                    <apex:actionSupport event="onchange" status="Loading" />
+                </apex:selectList>
+                
+                <apex:outputLabel style="font-weight:bold;color:#015ba7;">Brand Name</apex:outputLabel>
+                <apex:selectList id="selected_BrandName" value="{!brandName}" required="false" size="1" style="width:150px;">
+                    <apex:selectOptions value="{!branditems}" />
+                    <apex:actionSupport event="onchange" status="Loading" reRender="selected_list" />
+                </apex:selectList>
+                
+                <apex:outputLabel id="IPMProject" style="font-weight:bold;color:#015ba7;">IPM Project :</apex:outputLabel>
+                <apex:inputField value="{!project.IPM_Project__c}" style="width:150px;" />
+               
+               <apex:outputLabel id="ITO" style="font-weight:bold;color:#015ba7;">ITO (K euro's) :</apex:outputLabel>
+               <apex:inputField value="{!project.ITO__c}" style="width:150px;" />
+               
+            </apex:panelGrid>
+            <apex:pageMessages ></apex:pageMessages>
+            <apex:panelGrid columns="6">
+                <apex:commandButton value="Update" id="btnUpdate" onClick="UpdateOnClick(this);" />
+                <apex:actionFunction name="doUpdate" action="{!updateProject}" />
+            
+                <apex:commandButton value="Cancel" action="{!cancelAction}" onclick="if(!confirm('Please update all custom fields. If not, you may miss some details for filters and dashboards. Are you sure you want to Cancel ?'))return false;" />
+            </apex:panelGrid>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

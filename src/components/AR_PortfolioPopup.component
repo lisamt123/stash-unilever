@@ -1,0 +1,86 @@
+<apex:component controller="AR_PortfolioPopup">
+
+	<apex:attribute type="string" name="agencyId" description="The id of the agency" required="true" assignTo="{!theAgencyId}" />
+	
+	<style>
+		h1,h2,h3,p {font-family: 'Din', sans-serif !important;}
+		.play-video {
+			word-wrap: break-word;
+			color: #ec008a;
+			font-size: 15px;
+			text-decoration: none;
+			text-transform: uppercase;
+		}
+	</style>
+	
+	<script>
+		
+	</script>
+
+	<div class="popup-holder popup-portfolio" style="font-family: 'Din' !important;">
+	    <div class="popup-background"></div>
+	    <section class="popup-content">            
+	        <a href="#" class="close"></a>
+	        <h1>Recent Work</h1>
+	        <a href="#" class="previous-project">Previous<br/>Project</a>
+	        <a href="#" class="next-project">Next<br/>Project</a>
+	        <ul class="ellipses">
+	        	<apex:repeat value="{!projects}" var="project">
+	            <li></li>
+	            </apex:repeat>
+	        </ul>
+	        <apex:repeat value="{!projects}" var="project">
+	        	<article class="popup-article">
+			        <h2>
+			        	<span><apex:outputText value="{!project.Brand_Competitor__c}" /></span>
+			        	<apex:outputText value="{!project.Project_Title__c}" />
+			        </h2>
+			        <div class="popup-image-container resizer-container">
+			            <apex:repeat value="{!project.Attachments}" var="att">
+			            	<apex:image value="/servlet/servlet.FileDownload?file={!att.Id}" rendered="{!LEFT(att.Name,4) == 'one_'}" />
+			        	</apex:repeat>
+			        </div>
+			        <aside class="popup-aside">
+			        	<apex:outputText rendered="{!project.Featured_Quote__c != null}">
+				            <div class="quote">
+				                <p>
+				                	<apex:outputText value="{!project.Featured_Quote__c}" />
+				                </p>
+				                <span class="quote-bottom"></span>
+				            </div>
+			            </apex:outputText>
+			            <apex:outputText rendered="{!project.Links__c != null}">
+				            <ul class="popup-links">
+				                <h3>Links</h3>
+				                <li><apex:outputField value="{!project.Links__c}" /></li>
+				            </ul>
+			            </apex:outputText>
+			            <apex:outputText rendered="{!project.Video_Link__c != null}">
+				            <ul class="popup-links" style="margin-top:20px;">
+				            	<h3>Project Video</h3>
+				            	<br/>
+				            	<li>
+				            		<span class="play-video fancybox-media" href="{!project.Video_Link__c}" onclick="$('.popup-holder').fadeOut();" style="cursor:pointer;font-weight:bold;">Watch {!project.Project_Title__c} Video</span>
+				            	</li>
+				            </ul>
+				        </apex:outputText>
+			        </aside>
+			        <ul class="popup-thumb-container">
+			        	<apex:variable value="{!1}" var="rowNum" />
+			        	<apex:repeat value="{!project.Attachments}" var="att">
+			            	<li class="resizer-container {!IF(rowNum==1,'selected','')}">
+			            		<apex:image value="/servlet/servlet.FileDownload?file={!att.Id}" />
+			            	</li>         
+			        		<apex:variable var="rowNum" value="{!rowNum + 1}"/>
+			        	</apex:repeat>
+			        </ul>
+			        <div class="popup-article-text">
+			            <h3>Project Outline</h3>
+			            <p>{!project.Outline_of_Project__c}</p>
+			        </div>
+			    </article>
+		    </apex:repeat>
+	    </section>
+	</div>
+
+</apex:component>

@@ -1,0 +1,488 @@
+<apex:component >
+    <apex:attribute name="ipmFinancial" type="IPM_Financial__c" required="true" description="IPM Financial object record"/>
+    <apex:attribute name="fieldSuffix" type="String" required="true" description="Field Suffix - Global/Regional/Local"/>
+    <apex:attribute name="isEditMode" type="Boolean" default="false" description="Edit Mode"/>
+    <apex:attribute name="showMisalignment" type="Boolean" default="false" description="showMisalignment"/>
+    <apex:attribute name="exRate" type="Decimal" description="test"/>
+
+    <!-- Variables -->
+    <apex:variable value="{!IF(CONTAINS(ipmFinancial.Financial_External_ID__c, '_CONSOLIDATED'), TRUE, FALSE)}" var="isConsolidated"/>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <table class="fintable table table-bordered finSumTbl" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="30%" class="finproject fintleblubg">{!$Label.ipmFinSummaryNPV}</td>
+                    <td width="30%" class="fintleblubg"> &#39;000</td>
+                    <td width="30%" class="blueBorder {!IF(AND(showMisalignment, (ipmFinancial.NPV_Difference__c != NULL), ipmFinancial.NPV_Difference__c > 0), 'misaligned', '')}">
+                        <!-- Global Values -->
+                        <!-- For only Global the following section will be rendered -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
+                            <!-- This section will be rendered when the following conditions are met 
+                                1. If there is any misalignment in business case between global/regional/local
+                                2. If NPV difference is greater than '0'
+                                3. If its not edit mode
+                            -->
+                            <apex:outputText rendered="{!AND(showMisalignment, (ipmFinancial.NPV_Difference__c != NULL), ipmFinancial.NPV_Difference__c>0, OR(NOT(isEditMode), isConsolidated))}">
+                                <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryNPV} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.NPV_Regional__c}<br/>
+                                                                     {!$Label.ipmFinSummaryNPV} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.NPV_Local__c}">
+                                    <apex:outputText value="{0, number, ###,###,###.##}">
+                                        <apex:param value="{!ipmFinancial.NPV_Global__c*exrate}" />
+                                    </apex:outputText>
+                                </a>
+                            </apex:outputText>
+                            <!-- This section will be rendered when the following conditions are met 
+                                1. If there is no misalignment in business case between global/regional/local or If NPV difference is '0'
+                                2. If its not edit mode
+                            -->
+                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.NPV_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
+                                <apex:param value="{!ipmFinancial.NPV_Global__c*exrate}" />
+                            </apex:outputText>
+                            <!-- This section will be rendered if its edit mode -->
+                            <apex:inputText value="{!ipmFinancial.NPV_Global__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
+                        </apex:outputPanel>
+
+                        <!-- Regional Values -->
+                        <!-- For only Regional the following section will be rendered -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
+                            <!-- This section will be rendered when the following conditions are met 
+                                1. If there is any misalignment in business case between global/regional/local
+                                2. If NPV difference is greater than '0'
+                                3. If its not edit mode
+                            -->
+                            <apex:outputText rendered="{!AND(showMisalignment, (ipmFinancial.NPV_Difference__c != NULL), ipmFinancial.NPV_Difference__c>0, OR(NOT(isEditMode), isConsolidated))}">
+                                <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryNPV} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.NPV_Regional__c}<br/>
+                                                                     {!$Label.ipmFinSummaryNPV} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.NPV_Local__c}">
+                                    <apex:outputText value="{0, number, ###,###,###.##}">
+                                        <apex:param value="{!ipmFinancial.NPV_Regional__c*exrate}" />
+                                    </apex:outputText>
+                                </a>
+                            </apex:outputText>
+                            <!-- This section will be rendered when the following conditions are met 
+                                1. If there is no misalignment in business case between global/regional/local or If NPV difference is '0'
+                                2. If its not edit mode
+                            -->
+                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.NPV_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
+                                <apex:param value="{!ipmFinancial.NPV_Regional__c*exrate}" />
+                            </apex:outputText>
+                            <!-- This section will be rendered if its edit mode -->
+                            <apex:inputText value="{!ipmFinancial.NPV_Regional__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
+                        </apex:outputPanel>
+
+                        <!-- Local Values -->
+                        <!-- For only Regional the following section will be rendered -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
+                            <!-- This section will be rendered when the following conditions are met 
+                                1. If there is any misalignment in business case between global/regional/local
+                                2. If NPV difference is greater than '0'
+                                3. If its not edit mode
+                            -->
+                            <apex:outputText rendered="{!AND(showMisalignment, (ipmFinancial.NPV_Difference__c != NULL), ipmFinancial.NPV_Difference__c>0, OR(NOT(isEditMode), isConsolidated))}">
+                                <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryNPV} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.NPV_Regional__c}<br/>
+                                                                     {!$Label.ipmFinSummaryNPV} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.NPV_Local__c}">
+                                    <apex:outputText value="{0, number, ###,###,###.##}">
+                                        <apex:param value="{!ipmFinancial.NPV_Local__c*exrate}" />
+                                    </apex:outputText>
+                                </a>
+                            </apex:outputText>
+                            <!-- This section will be rendered when the following conditions are met 
+                                1. If there is no misalignment in business case between global/regional/local or If NPV difference is '0'
+                                2. If its not edit mode
+                            -->
+                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.NPV_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
+                                <apex:param value="{!ipmFinancial.NPV_Local__c*exrate}" />
+                            </apex:outputText>
+                            <!-- This section will be rendered if its edit mode -->
+                            <apex:inputText value="{!ipmFinancial.NPV_Local__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="40%" class="finproject fintleblubg">{!$Label.ipmFinSummaryIRR}</td>
+                    <td width="30%" class="fintleblubg">%</td>
+                    <td width="30%" class="blueBorder {!IF(AND(showMisalignment, (ipmFinancial.IRR_Difference__c != NULL), ipmFinancial.IRR_Difference__c > 0), 'misaligned', '')}">
+                        <!-- Global Values -->
+                        <!-- For only Global the following section will be rendered -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
+                            <!-- This section will be rendered when the following conditions are met 
+                                1. If there is any misalignment in business case between global/regional/local
+                                2. If IRR difference is greater than '0'
+                                3. If its not edit mode
+                            -->
+                            <apex:outputText rendered="{!AND(showMisalignment, (ipmFinancial.IRR_Difference__c != NULL), ipmFinancial.IRR_Difference__c>0, OR(NOT(isEditMode), isConsolidated))}">
+                                <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryIRR} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.IRR_Regional__c}<br/>
+                                                                     {!$Label.ipmFinSummaryIRR} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.IRR_Local__c}">
+                                    {!ipmFinancial.IRR_Global__c}
+                                </a>
+                            </apex:outputText>
+                            <!-- This section will be rendered when the following conditions are met 
+                                1. If there is no misalignment in business case between global/regional/local or If IRR difference is '0'
+                                2. If its not edit mode
+                            -->
+                            <apex:outputText value="{!ipmFinancial.IRR_Global__c}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.IRR_Difference__c==0), NOT(isEditMode))}"/>
+                            <!-- This section will be rendered if its edit mode -->
+                            <apex:inputText value="{!ipmFinancial.IRR_Global__c}" size="3" rendered="{!isEditMode}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
+                        </apex:outputPanel>
+
+                        <!-- Regional Values -->
+                        <!-- For only Regional the following section will be rendered -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
+                            <!-- This section will be rendered when the following conditions are met 
+                                1. If there is any misalignment in business case between global/regional/local
+                                2. If IRR difference is greater than '0'
+                                3. If its not edit mode
+                            -->
+                            <apex:outputText rendered="{!AND(showMisalignment, (ipmFinancial.IRR_Difference__c != NULL), ipmFinancial.IRR_Difference__c>0, OR(NOT(isEditMode), isConsolidated))}">
+                                <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryIRR} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.IRR_Regional__c}<br/>
+                                                                     {!$Label.ipmFinSummaryIRR} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.IRR_Local__c}">
+                                    {!ipmFinancial.IRR_Regional__c}
+                                </a>
+                            </apex:outputText>
+                            <!-- This section will be rendered when the following conditions are met 
+                                1. If there is no misalignment in business case between global/regional/local or If IRR difference is '0'
+                                2. If its not edit mode
+                            -->
+                            <apex:outputText value="{!ipmFinancial.IRR_Regional__c}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.IRR_Difference__c==0), NOT(isEditMode))}"/>
+                            <!-- This section will be rendered if its edit mode -->
+                            <apex:inputText value="{!ipmFinancial.IRR_Regional__c}" size="3" rendered="{!isEditMode}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
+                        </apex:outputPanel>
+
+                        <!-- Local Values -->
+                        <!-- For only Regional the following section will be rendered -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
+                            <!-- This section will be rendered when the following conditions are met 
+                                1. If there is any misalignment in business case between global/regional/local
+                                2. If IRR difference is greater than '0'
+                                3. If its not edit mode
+                            -->
+                            <apex:outputText rendered="{!AND(showMisalignment, (ipmFinancial.IRR_Difference__c != NULL), ipmFinancial.IRR_Difference__c>0, OR(NOT(isEditMode), isConsolidated))}">
+                                <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryIRR} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.IRR_Regional__c}<br/>
+                                                                     {!$Label.ipmFinSummaryIRR} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.IRR_Local__c}">
+                                    {!ipmFinancial.IRR_Local__c}
+                                </a>
+                            </apex:outputText>
+                            <!-- This section will be rendered when the following conditions are met 
+                                1. If there is no misalignment in business case between global/regional/local or If IRR difference is '0'
+                                2. If its not edit mode
+                            -->
+                            <apex:outputText value="{!ipmFinancial.IRR_Local__c}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.IRR_Difference__c==0), NOT(isEditMode))}"/>
+                            <!-- This section will be rendered if its edit mode -->
+                            <apex:inputText value="{!ipmFinancial.IRR_Local__c}" size="3" rendered="{!isEditMode}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="40%" class="finproject fintleblubg">{!$Label.ipmFinSummaryPayback}</td>
+                    <td width="30%" class="fintleblubg">Years</td>
+                    <td width="30%" class="blueBorder {!IF(AND(showMisalignment, (ipmFinancial.Payback_Difference__c != NULL), ipmFinancial.Payback_Difference__c > 0), 'misaligned', '')}">
+                        <!-- Global Values -->
+                        <!-- For only Global the following section will be rendered -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
+                            <!-- This section will be rendered when the following conditions are met 
+                                1. If there is any misalignment in business case between global/regional/local
+                                2. If Payback difference is greater than '0'
+                                3. If its not edit mode
+                            -->
+                            <apex:outputText rendered="{!AND(showMisalignment, (ipmFinancial.Payback_Difference__c != NULL), ipmFinancial.Payback_Difference__c>0, OR(NOT(isEditMode), isConsolidated))}">
+                                <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryPayback} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.Payback_Regional__c}<br/>
+                                                                     {!$Label.ipmFinSummaryPayback} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.Payback_Local__c}">
+                                    <apex:outputText value="{0, number, ###,###,###.##}">
+                                        <apex:param value="{!ipmFinancial.Payback_Global__c}" />
+                                    </apex:outputText>
+                                </a>
+                            </apex:outputText>
+                            <!-- This section will be rendered when the following conditions are met 
+                                1. If there is no misalignment in business case between global/regional/local or If Payback difference is '0'
+                                2. If its not edit mode
+                            -->
+                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.Payback_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
+                                <apex:param value="{!ipmFinancial.Payback_Global__c}" />
+                            </apex:outputText>
+                            <!-- This section will be rendered if its edit mode -->
+                            <apex:inputText value="{!ipmFinancial.Payback_Global__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
+                        </apex:outputPanel>
+
+                        <!-- Regional Values -->
+                        <!-- For only Regional the following section will be rendered -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
+                            <!-- This section will be rendered when the following conditions are met 
+                                1. If there is any misalignment in business case between global/regional/local
+                                2. If Payback difference is greater than '0'
+                                3. If its not edit mode
+                            -->
+                            <apex:outputText rendered="{!AND(showMisalignment, (ipmFinancial.Payback_Difference__c != NULL), ipmFinancial.Payback_Difference__c>0, OR(NOT(isEditMode), isConsolidated))}">
+                                <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryPayback} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.Payback_Regional__c}<br/>
+                                                                     {!$Label.ipmFinSummaryPayback} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.Payback_Local__c}">
+                                    <apex:outputText value="{0, number, ###,###,###.##}">
+                                        <apex:param value="{!ipmFinancial.Payback_Regional__c}" />
+                                    </apex:outputText>
+                                </a>
+                            </apex:outputText>
+                            <!-- This section will be rendered when the following conditions are met 
+                                1. If there is no misalignment in business case between global/regional/local or If Payback difference is '0'
+                                2. If its not edit mode
+                            -->
+                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.Payback_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
+                                <apex:param value="{!ipmFinancial.Payback_Regional__c}" />
+                            </apex:outputText>
+                            <!-- This section will be rendered if its edit mode -->
+                            <apex:inputText value="{!ipmFinancial.Payback_Regional__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
+                        </apex:outputPanel>
+
+                        <!-- Local Values -->
+                        <!-- For only Regional the following section will be rendered -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
+                            <!-- This section will be rendered when the following conditions are met 
+                                1. If there is any misalignment in business case between global/regional/local
+                                2. If Payback difference is greater than '0'
+                                3. If its not edit mode
+                            -->
+                            <apex:outputText rendered="{!AND(showMisalignment, (ipmFinancial.Payback_Difference__c != NULL), ipmFinancial.Payback_Difference__c>0, OR(NOT(isEditMode), isConsolidated))}">
+                                <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryPayback} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.Payback_Regional__c}<br/>
+                                                                     {!$Label.ipmFinSummaryPayback} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.Payback_Local__c}">
+                                    <apex:outputText value="{0, number, ###,###,###.##}">
+                                        <apex:param value="{!ipmFinancial.Payback_Local__c}" />
+                                    </apex:outputText>
+                                </a>
+                            </apex:outputText>
+                            <!-- This section will be rendered when the following conditions are met 
+                                1. If there is no misalignment in business case between global/regional/local or If Payback difference is '0'
+                                2. If its not edit mode
+                            -->
+                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.Payback_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
+                                <apex:param value="{!ipmFinancial.Payback_Local__c}" />
+                            </apex:outputText>
+                            <!-- This section will be rendered if its edit mode -->
+                            <apex:inputText value="{!ipmFinancial.Payback_Local__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-sm-4">
+            <table class="fintable table table-bordered finSumTbl" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="40%" class="finproject fintleblubg">{!$Label.ipmFinSummaryCAPEX}</td>
+                    <td width="30%" class="fintleblubg">&#39;000</td>
+                    <td width="30%" class="blueBorder {!IF(AND(showMisalignment, (ipmFinancial.CAPEX_Difference__c != NULL), ipmFinancial.CAPEX_Difference__c > 0), 'misaligned', '')}">
+                        <!-- Global Values -->
+                        <!-- For only Global the following section will be rendered -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
+                            <!-- This section will be rendered when the following conditions are met 
+                                1. If there is any misalignment in business case between global/regional/local
+                                2. If CAPEX difference is greater than '0'
+                                3. If its not edit mode
+                            -->
+                            <apex:outputText rendered="{!AND(showMisalignment, (ipmFinancial.CAPEX_Difference__c != NULL), ipmFinancial.CAPEX_Difference__c>0, OR(NOT(isEditMode), isConsolidated))}">
+                                <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryCAPEX} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.CAPEX_Regional__c}<br/>
+                                                                     {!$Label.ipmFinSummaryCAPEX} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.CAPEX_Local__c}">
+                                    <apex:outputText value="{0, number, ###,###,###.##}">
+                                        <apex:param value="{!ipmFinancial.CAPEX_Global__c*exrate}" />
+                                    </apex:outputText>
+                                </a>
+                            </apex:outputText>
+                            <!-- This section will be rendered when the following conditions are met 
+                                1. If there is no misalignment in business case between global/regional/local or If CAPEX difference is '0'
+                                2. If its not edit mode or consolidated 
+                            -->
+                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.CAPEX_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
+                                <apex:param value="{!ipmFinancial.CAPEX_Global__c*exrate}" />
+                            </apex:outputText>
+                            <!-- This section will be rendered if its edit mode or not consolidated-->
+                            <apex:inputText value="{!ipmFinancial.CAPEX_Global__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
+                        </apex:outputPanel>
+
+                        <!-- Regional Values -->
+                        <!-- For only Regional the following section will be rendered -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
+                            <!-- This section will be rendered when the following conditions are met 
+                                1. If there is any misalignment in business case between global/regional/local
+                                2. If CAPEX difference is greater than '0'
+                                3. If its not edit mode
+                            -->
+                            <apex:outputText rendered="{!AND(showMisalignment, (ipmFinancial.CAPEX_Difference__c != NULL), ipmFinancial.CAPEX_Difference__c>0, OR(NOT(isEditMode), isConsolidated))}">
+                                <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryCAPEX} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.CAPEX_Regional__c}<br/>
+                                                                     {!$Label.ipmFinSummaryCAPEX} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.CAPEX_Local__c}">
+                                    <apex:outputText value="{0, number, ###,###,###.##}">
+                                        <apex:param value="{!ipmFinancial.CAPEX_Regional__c*exrate}" />
+                                    </apex:outputText>
+                                </a>
+                            </apex:outputText>
+                            <!-- This section will be rendered when the following conditions are met 
+                                1. If there is no misalignment in business case between global/regional/local or If CAPEX difference is '0'
+                                2. If its not edit mode or consolidated 
+                            -->
+                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.CAPEX_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
+                                <apex:param value="{!ipmFinancial.CAPEX_Regional__c*exrate}" />
+                            </apex:outputText>
+                            <!-- This section will be rendered if its edit mode or not consolidated-->
+                            <apex:inputText value="{!ipmFinancial.CAPEX_Regional__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
+                        </apex:outputPanel>
+
+                        <!-- Local Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
+                            <apex:outputText rendered="{!AND(showMisalignment, (ipmFinancial.CAPEX_Difference__c != NULL), ipmFinancial.CAPEX_Difference__c>0, OR(NOT(isEditMode), isConsolidated))}">
+                                <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryCAPEX} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.CAPEX_Regional__c}<br/>
+                                                                     {!$Label.ipmFinSummaryCAPEX} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.CAPEX_Local__c}">
+                                    <apex:outputText value="{0, number, ###,###,###.##}">
+                                        <apex:param value="{!ipmFinancial.CAPEX_Local__c*exrate}" />
+                                    </apex:outputText>
+                                </a>
+                            </apex:outputText>
+                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.CAPEX_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
+                                <apex:param value="{!ipmFinancial.CAPEX_Local__c*exrate}" />
+                            </apex:outputText>
+                            <apex:inputText value="{!ipmFinancial.CAPEX_Local__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
+                        </apex:outputPanel> 
+                    </td>
+                </tr>
+                <tr>
+                    <td width="40%" class="finproject fintleblubg">{!$Label.ipmFinSummaryBIC}</td>
+                    <td width="30%" class="fintleblubg">&#39;000</td>
+                    <td width="30%" class="blueBorder {!IF(AND(showMisalignment, (ipmFinancial.BIC_Difference__c != NULL), ipmFinancial.BIC_Difference__c > 0), 'misaligned', '')}">
+                        <!-- Global Values -->
+                        <!-- For only Local the following section will be rendered -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
+                            <!-- This section will be rendered when the following conditions are met 
+                                1. If there is any misalignment in business case between global/regional/local
+                                2. If BIC difference is greater than '0'
+                                3. If its not edit mode
+                            -->
+                            <apex:outputText rendered="{!AND(showMisalignment, (ipmFinancial.BIC_Difference__c != NULL), ipmFinancial.BIC_Difference__c>0, OR(NOT(isEditMode), isConsolidated))}">
+                                <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryBIC} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.BIC_Regional__c}<br/>
+                                                                     {!$Label.ipmFinSummaryBIC} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.BIC_Local__c*exrate}">
+                                    <apex:outputText value="{0, number, ###,###,###.##}">{!exrate}
+                                        <apex:param value="{!ipmFinancial.BIC_Global__c*exrate}" />
+                                    </apex:outputText>
+                                </a>
+                            </apex:outputText>
+                            <!-- This section will be rendered when the following conditions are met 
+                                1. If there is no misalignment in business case between global/regional/local or If BIC difference is '0'
+                                2. If its not edit mode or consolidated 
+                            -->
+                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), (ipmFinancial.BIC_Difference__c != NULL), ipmFinancial.BIC_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
+                                <apex:param value="{!ipmFinancial.BIC_Global__c*exrate}" />
+                            </apex:outputText>
+                            <!-- This section will be rendered if its edit mode or not consolidated-->
+                            <apex:inputText value="{!ipmFinancial.BIC_Global__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
+                        </apex:outputPanel>
+
+                        <!-- Regional Values -->
+                        <!-- For only Regional the following section will be rendered -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
+                            <!-- This section will be rendered when the following conditions are met 
+                                1. If there is any misalignment in business case between global/regional/local
+                                2. If BIC difference is greater than '0'
+                                3. If its not edit mode
+                            -->
+                            <apex:outputText rendered="{!AND(showMisalignment, (ipmFinancial.BIC_Difference__c != NULL), ipmFinancial.BIC_Difference__c>0, OR(NOT(isEditMode), isConsolidated))}">
+                                <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryBIC} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.BIC_Regional__c}<br/>
+                                                                     {!$Label.ipmFinSummaryBIC} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.BIC_Local__c}">
+                                    <apex:outputText value="{0, number, ###,###,###.##}">
+                                        <apex:param value="{!ipmFinancial.BIC_Regional__c*exrate}" />
+                                    </apex:outputText>
+                                </a>
+                            </apex:outputText>
+                            <!-- This section will be rendered when the following conditions are met 
+                                1. If there is no misalignment in business case between global/regional/local or If BIC difference is '0'
+                                2. If its not edit mode or consolidated 
+                            -->
+                            <apex:outputText value="{0, number, ###,###,###.##}*2" rendered="{!AND(OR(NOT(showMisalignment), (ipmFinancial.BIC_Difference__c != NULL), ipmFinancial.BIC_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
+                                <apex:param value="{!ipmFinancial.BIC_Regional__c*exrate}" />
+                            </apex:outputText>
+                            <!-- This section will be rendered if its edit mode or not consolidated-->
+                            <apex:inputText value="{!ipmFinancial.BIC_Regional__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
+                        </apex:outputPanel>
+
+                        <!-- Local Values -->
+                        <!-- For only Local the following section will be rendered -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
+                            <!-- This section will be rendered when the following conditions are met 
+                                1. If there is any misalignment in business case between global/regional/local
+                                2. If BIC difference is greater than '0'
+                                3. If its not edit mode
+                            -->
+                            <apex:outputText rendered="{!AND(showMisalignment, (ipmFinancial.BIC_Difference__c != NULL), ipmFinancial.BIC_Difference__c>0, OR(NOT(isEditMode), isConsolidated))}">
+                                <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryBIC} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.BIC_Regional__c}<br/>
+                                                                     {!$Label.ipmFinSummaryBIC} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.BIC_Local__c}">
+                                    <apex:outputText value="{0, number, ###,###,###.##}">
+                                        <apex:param value="{!ipmFinancial.BIC_Local__c*exrate}" />
+                                    </apex:outputText>
+                                </a>
+                            </apex:outputText>
+                            <!-- This section will be rendered when the following conditions are met 
+                                1. If there is no misalignment in business case between global/regional/local or If BIC difference is '0'
+                                2. If its not edit mode or consolidated 
+                            -->
+                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.BIC_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
+                                <apex:param value="{!ipmFinancial.BIC_Local__c*exrate}" />
+                            </apex:outputText>
+                            <!-- This section will be rendered if its edit mode or not consolidated-->
+                            <apex:inputText value="{!ipmFinancial.BIC_Local__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-sm-4">
+            <table class="fintable table table-bordered finSumTbl" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="70%" class="finproject fintleblubg">{!$Label.ipmFinSummaryGMbps}</td>
+                    <td width="30%" class="blueBorder">
+                        <!-- Global Values -->
+                        <!-- For only Global the following section will be rendered -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!ipmFinancial.GM_Y1_bps_vs_DNDS_Global__c*exrate}" />
+                            </apex:outputText>
+                        </apex:outputPanel>
+
+                        <!-- Regional Values -->
+                        <!-- For only Regional the following section will be rendered -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!ipmFinancial.GM_Y1_bps_vs_DNDS_Regional__c*exrate}" />
+                            </apex:outputText>
+                        </apex:outputPanel>
+
+                        <!-- Local Values -->
+                        <!-- For only Local the following section will be rendered -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!ipmFinancial.GM_Y1_bps_vs_DNDS_Local__c*exrate}" />
+                            </apex:outputText>
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" class="finproject fintleblubg">{!$Label.ipmFinSummaryPBObps}</td>
+                    <td width="50%" class="blueBorder">
+                        <!-- Global Values -->
+                        <!-- For only Global the following section will be rendered -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!ipmFinancial.PBO_Y1_bps_vs_DNDS_Global__c*exrate}" />
+                            </apex:outputText>
+                        </apex:outputPanel>
+
+                        <!-- Regional Values -->
+                        <!-- For only Regional the following section will be rendered -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!ipmFinancial.PBO_Y1_bps_vs_DNDS_Regional__c*exrate}" />
+                            </apex:outputText>
+                        </apex:outputPanel>
+
+                        <!-- Local Values -->
+                        <!-- For only Local the following section will be rendered -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!ipmFinancial.PBO_Y1_bps_vs_DNDS_Local__c*exrate}" />
+                            </apex:outputText>
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+            </table>
+        </div>                                                        
+    </div>
+</apex:component>

@@ -1,0 +1,40 @@
+<!-- -----------------------------------------------------------------------------------------------------------------------
+   Name:        BC_uploadImage_Attachments.cls 
+   Description: 1) visualforce page to upload an preview image of the articles
+                
+   Date         Version       Author           Summary of Changes 
+   -----------  -------   -----------------    ------------------------------------------------------------------------
+   November 2013     1.0    Vanessa Barros        Initial Release 
+  ------------------------------------------------------------------------------------------------------------------------ -->
+
+<apex:page standardController="Brand_Centre_Content__c" extensions="BC_UploadImage_attachments" >
+
+   <apex:form id="form" >
+   <apex:outputPanel id="refresh" rendered="true">
+        <apex:outputPanel id="refresh1" rendered="{!refreshPage}">
+            <script>
+                window.top.location='/{!Brand_Centre_Content__c.id}';
+            </script>
+        </apex:outputPanel>
+   </apex:outputPanel>
+
+   <div style="display:{!if(checkImageRequired,"block","none")};">
+         <apex:pageBlock > <p><b>Upload an image to use as a preview image in the Brand Centre Landing Page.</b></p><br></br>
+                 <apex:outputText value="{!ErrorMessage}"  style="color:red;" />
+                       <apex:pageBlockSection >
+                                   <apex:pageblockSectionItem >
+                                             <apex:Outputlabel value="Browse" for="files"/>
+                                                       <apex:inputFile value="{!picture.body}" filename="{!picture.name}"   filesize="{!picture.BodyLength}" />  
+                                  
+                                   </apex:pageblockSectionItem>
+       
+                     </apex:pageBlockSection>
+                     <apex:pageblockButtons location="Bottom" >
+                                   <apex:commandButton value="Save Preview Image" action="{!Attach}" />
+                      </apex:pageblockButtons>
+                      <p> <apex:image url="{!$Resource.AlertIconBrandCentre}" height="30" width="30"/>
+         <b>The name of the image must have less then 80 characters and the image must be PNG, JPG or GIF format and size '400x300' pixels </b></p>
+          </apex:pageBlock>
+     </div>     
+       </apex:form>
+</apex:page>

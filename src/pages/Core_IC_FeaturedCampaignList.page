@@ -1,0 +1,89 @@
+<!-- 
+   Page Name :  Core_IC_FeaturedCampaignList
+   Author : Mindtree
+   Date : 22/6/15
+   Requirement/Project Name: Ideation App
+   Description: List page for Campaigns used for Ideation                 
+ --> 
+<apex:page docType="html-5.0" showHeader="false" standardStylesheets="false" sidebar="false">
+<meta http-equiv="content-type" content="text/html; charset=UTF8" />
+<!--<meta name="viewport" content="width=device-width, height=device-height"/>-->
+    <div class="container">
+
+    <div class="row iPhoneScreenHeight">
+        <div class="pageBottomSpace">  
+            <div class="headerBarBackground borderRadius">
+                <table class="headerBarWidth"> 
+                    <tr>                    
+                        <td class="headerBarSmallRowAlign"> <img src="{!URLFOR($Resource.Core_IC_IdeationApp, 'img/back.svg')}" ng-click='gotoHomePage()' class="backImageStyle"/> </td>                                       
+                    </tr>
+                </table>
+            </div>
+            <div class="headerBarWidth smallPadding">
+                <span class="homePageSectionTitle" id="paddingLeft">{{'LBL_ALL_CAMPAIGNS' | translate}}</span>
+            </div>
+            <div class="borderRadius" ng-repeat="featuredCampaignItem in featuredCampaignListItem=((featuredCampaignList.FeaturedCampaigns | filter:{StatusType: filterSelected} | orderBy:sortSelectedField:sortSelectedFieldOrder) | limitTo: listLimitCount)">
+                <table class="homePageSection borderRadius" >                
+                    <tr id="bottomSpace" >
+                        <td colspan="2" id="paddingBottom">
+                            <div>
+                                <div class="featuredCampaignHomePageMainDiv" ng-click="gotoFeaturedCampaignDetailPage(featuredCampaignItem.IdeaThemeId,featuredCampaignItem.CampaignTitle,featuredCampaignItem.Categories)">
+                                    <div class="featuredCampaignHomePageLeftDiv">
+                                        <div class="ideationCampaignImageBlock">
+                                            <img src="{{featuredCampaignItem.Banner}}" class="featureCampaignsBanner"></img>
+                                            <span class="ideationCampaignImageBlockLabel">
+                                                <label class="ideationCampaignImageBlockSubText defaultTopSpace paddingRight" id="paddingLeft">{{featuredCampaignItem.EndDate}}&nbsp;&nbsp;</label><br />
+                                                <div class="ideationCampaignImageBlockCampaignTitle" id="paddingLeft" >{{featuredCampaignItem.CampaignTitle}}</div>
+                                            </span>                                
+                                        </div>
+                                    </div>
+                                    <div  class="ideationCampaignDetailBlock" id="featuredCampaignHomePageRichTextFormate">
+                                        <div class="bodyText">{{featuredCampaignItem.Description}}</div>
+                                    </div>
+                                </div>
+                                <div class="ideationCampaignDetailBlock" ng-show="(!submitIdeaPageLink)">
+                                    <hr class="featuredCampaignHomePageBottomBorder"/>
+                                    <span class="subText" ng-show="(featuredCampaignItem.StatusType=='Active'?true:false)" ng-click="gotoSubmitIdea(featuredCampaignItem.IdeaThemeId,featuredCampaignItem.CampaignTitle,featuredCampaignItem.Categories)">
+                                        <img src="{!URLFOR($Resource.Core_IC_IdeationApp, 'img/Idea_grey.svg')}" class="imageIconStyle"/>&nbsp;
+                                        {{'LBL_SUBMIT_AN_IDEA' | translate}}
+                                    </span>
+                                    <span class="subText" id="alignRight">{{featuredCampaignItem.IdeaCount}}&nbsp;
+                                        <span ng-show="(featuredCampaignItem.IdeaCount==1? true : false)">{{'LBL_IDEA' | translate}}</span>
+                                        <span ng-show="(featuredCampaignItem.IdeaCount!=1? true : false)">{{'LBL_IDEAS' | translate}}</span>
+                                    </span>
+                                </div>  
+                            </div>
+                        </td>
+                    </tr>
+                </table><br/>
+            </div>  
+            <div class="headerBarBackground">
+                <label ng-if="featuredCampaignListItem.length == 0 && filterSelected == 'Active' " class="notificationMessageForMyUpdates">No Active Campaigns are there</label>
+                <label ng-if="featuredCampaignListItem.length == 0 && filterSelected == 'Closed' " class="notificationMessageForMyUpdates">No Closed Campaigns are there</label>
+            </div>          
+            <div id="showmore" class="showMoreDiv borderRadius" ng-click='loadMore()' ng-show="((featuredCampaignListItem.length == 0 || (featuredCampaignList.FeaturedCampaigns | filter:{StatusType: filterSelected} | orderBy:sortSelectedField:sortSelectedFieldOrder).length < listLimitCount)?false:true)">
+                <span class="bodyText"> Show More </span>
+            </div>
+        </div>
+        
+        <!-- Fixed APPROVE / REJECT / COMMENT Bar -->
+        <nav class="fixed-nav-bar">        
+            <div id="alignCenter" class="fixed-nav-bar-padding fixed-nav-bar-spacing">
+                <table  class="homePageMenuWidth">
+                    <tr id="alignCenter">                    
+                        <td id="alignCenter">
+                            <img  class="fixedbar-icon-style" ng-show="(!submitIdeaPageLink)" ng-click="gotoFilterPage()" src="{!URLFOR($Resource.Core_IC_IdeationApp, 'img/ActionBar_Filter.svg')}"/>
+                        </td>
+                        <td id="alignCenter">
+                            <img  class="fixedbar-icon-style" ng-click='gotoSortPage()' src="{!URLFOR($Resource.Core_IC_IdeationApp, 'img/ActionBar_Sort.svg')}"/>
+                        </td>
+                        <td id="alignCenter" ng-show="featuredCampaignList.ActiveStatus">
+                            <img  class="fixedbar-icon-style" ng-show="(!submitIdeaPageLink)" ng-click="gotoSubmitIdea(null,null,null)" src="{!URLFOR($Resource.Core_IC_IdeationApp, 'img/ActionBar_Idea.svg')}"/>
+                        </td>
+                    </tr>
+                </table>                    
+            </div> 
+        </nav>       
+    </div>    
+    </div>
+</apex:page>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>IPM Project Resource</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>IPM Project Resources</value>
+    </caseValues>
+    <fields>
+        <label><!-- Category --></label>
+        <name>IPM_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Card --></label>
+        <name>IPM_Company_Card__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Docmnt Sec FunctionalorSummary Inpt --></label>
+        <name>IPM_Docmnt_Sec_FunctionalorSummary_Inpt__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Locale Time --></label>
+        <name>IPM_Locale_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Member Email --></label>
+        <name>IPM_Member_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Project Document Section Name --></label>
+        <name>IPM_Project_Document_Section_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Project Document Section --></label>
+        <name>IPM_Project_Document_Section__c</name>
+        <relationshipLabel><!-- IPM Project Resources --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Owner --></label>
+        <name>IPM_Project_Role_Owner__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Project --></label>
+        <name>IPM_Project__c</name>
+        <relationshipLabel><!-- IPM Project Resources --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- IPM_Res_Email --></label>
+        <name>IPM_Res_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Role Type --></label>
+        <name>IPM_Role_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Role --></label>
+        <name>IPM_Role__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Unique Resource --></label>
+        <name>IPM_Unique_Resource__c</name>
+    </fields>
+    <fields>
+        <label><!-- User --></label>
+        <name>IPM_User__c</name>
+        <relationshipLabel><!-- IPM Project Resources --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- IPM copyEmail --></label>
+        <name>IPM_copyEmail__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM send an email --></label>
+        <name>IPM_send_an_email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Leader --></label>
+        <name>Project_Leader__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

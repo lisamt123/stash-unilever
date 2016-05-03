@@ -1,0 +1,17 @@
+<apex:page standardController="Asset__c" extensions="WINatPOSDropDownController">
+  <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script>
+      $( document ).ready(function() {
+        var isEditable = $("[id$='theHiddenInput']" ).val();
+        if(isEditable !== 'true'){
+            try{
+                $( "input[name='edit']").hide();
+            }catch(ex){}
+        }
+  	  });
+  </script>    
+  <apex:form >
+       <apex:inputHidden value="{!isRecordEditable}" id="theHiddenInput"/>
+  </apex:form>    
+  <apex:detail subject="{!Asset__c.id}" relatedList="true" relatedListHover="true" title="true" showChatter="true" />
+</apex:page>

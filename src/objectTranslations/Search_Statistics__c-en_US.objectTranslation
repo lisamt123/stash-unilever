@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>WINatPOS Search Statistics</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>WINatPOS Search Statistics</value>
+    </caseValues>
+    <fields>
+        <label><!-- Asset Type --></label>
+        <name>Asset_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Brand --></label>
+        <name>Brand__c</name>
+    </fields>
+    <fields>
+        <label><!-- Category --></label>
+        <name>Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- Channels --></label>
+        <name>Channels__c</name>
+    </fields>
+    <fields>
+        <label><!-- Clusters --></label>
+        <name>Clusters__c</name>
+    </fields>
+    <fields>
+        <label><!-- Country --></label>
+        <name>Country__c</name>
+    </fields>
+    <fields>
+        <label><!-- Keyword --></label>
+        <name>Keyword__c</name>
+    </fields>
+    <fields>
+        <label><!-- Placement --></label>
+        <name>Placement__c</name>
+    </fields>
+    <fields>
+        <label><!-- Searched By --></label>
+        <name>Searched_By__c</name>
+        <relationshipLabel><!-- WINatPOS Search Statistics --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Searched in Country --></label>
+        <name>Searched_in_Country__c</name>
+    </fields>
+    <fields>
+        <label><!-- Timestamp --></label>
+        <name>Timestamp__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Combined</masterLabel>
+            <translation><!-- Combined --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Keyword</masterLabel>
+            <translation><!-- Keyword --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Search Filter</masterLabel>
+            <translation><!-- Search Filter --></translation>
+        </picklistValues>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

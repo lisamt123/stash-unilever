@@ -1,0 +1,276 @@
+<!-- 
+************************************************************************************
+*@Description: To manage and display the financials  associated with the IPM project 
+*@Author: Cognizant
+*@Created Date: 13/05/2015             
+*@Copyright © 2015  Unilever  
+************************************************************************************
+-->
+<apex:page controller="IPM_FinancialController" sidebar="false" showHeader="false" standardStylesheets="false" >   
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Filter.css')}"/>  
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Financial.css')}"/>
+    <apex:composition template="IPM_TemplateRevamp">
+        <apex:define name="body">
+            <apex:form > 
+                <apex:pageMessages /> 
+                <!--------------------------------------------- Page Head & Toolbar ----------------------------------------------->
+                <div class="row finwrapper"> 
+                   
+                </div>
+                <!-------------------------------------------------/ Page Head & Toolbar ------------------------------------------------>
+                <apex:outputPanel id="errorPanel" rendered="{!AND(project.IPM_Project_Type__c != 'Operational',project.IPMProject_Span__c != 'Local' ,(isError))}">
+                    <div class="finGreyBG">
+                        <apex:outputText value="{!errorMessage}"/>
+                        
+                    </div>
+                    <apex:outputPanel rendered="{!isRolloutError}">
+                        <div class="finErrMsg">
+                            {!$Label.IPM_PLEASE_NAVIGATE_TO} <a href="{!URLFOR($Page.IPM_RolloutPlans,null,[id=project.Id])}">{!$Label.IPM_ROLLOUTS}</a> {!$Label.IPM_START_ADD_ROLLOUT}
+                        </div>                        
+                    </apex:outputPanel>
+                </apex:outputPanel>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel-group pageContent clearfix">
+                            <!-------------------------------------- SIDE PANEL ----------------------------->
+                         <apex:outputPanel id="rolloutPanel" rendered="{!AND(project.IPM_Project_Type__c != 'Operational' ,NOT(isError))}" layout="block" styleClass="col-sm-2 pull-left leftSideBar noPadleft noPadright">     
+
+                            <div class="finFilter">
+                                <apex:outputText rendered="{!AND(project.IPM_Project_Type__c != 'Operational' ,NOT(isError))}">
+                                    <div class="finArrow"><span class="fa fa-angle-left"></span></div>
+                                </apex:outputText>
+                                   <div class="ipmAccordion">
+                                      <div class="projectContainer">   
+                                         <apex:outputPanel layout="block" styleClass="pHead" rendered="{!AND(project.IPMProject_Span__c == 'Global',renderMapGlobal)}">
+                                              <div class="filterTitle {!IF(currentFinancialId == mapConsolidatedFinancials['Global'].Id, 'selected', '')}" >  
+                                                    <span class='expico fa fa-minus'></span>
+                                                    <apex:commandLink value="Global" action="{!refreshFinancials}" reRender="rolloutPanel,tabContentPanel" rendered="{!AND(project.IPMProject_Span__c == 'Global')}" status="loadingStatus" oncomplete="finScriptCallBack()">
+                                                        <apex:param name="currentFinancialId" value="{!mapConsolidatedFinancials['Global'].Id}" assignTo="{!currentFinancialId}"/>
+                                                    </apex:commandLink>
+                                                </div> 
+                                             </apex:outputPanel>
+                                            <div class="ipmAcrdnExpand"> 
+                                               <ul class="docFilter accordionFilters">
+                                                   <apex:repeat value="{!lstRolloutWrappers}" var="rolloutWrapper">
+                                                   <li>
+                                                       <div class="projectContainer">
+                                                            <div class="pHead accrHead filterSubTitle {!IF(currentFinancialId == mapConsolidatedFinancials[rolloutWrapper.regionName].Id, 'selected', '')}">
+                                                            <apex:outputText rendered="{!project.IPMProject_Span__c != 'Local'}" >
+                                                                <span class='expico-square fa fa-minus'></span>
+                                                                    <apex:commandLink value="{!rolloutWrapper.regionName}" action="{!refreshFinancials}" reRender="rolloutPanel,tabContentPanel" rendered="{!if(project.IPMProject_Span__c != 'Local',true,false)}" status="loadingStatus" oncomplete="finScriptCallBack()">
+                                                                        <apex:param name="currentFinancialId" value="{!mapConsolidatedFinancials[rolloutWrapper.regionName].Id}" assignTo="{!currentFinancialId}"/>
+                                                                    </apex:commandLink>
+                                                             </apex:outputText>        
+                                                            </div> 
+                                                            <div class="ipmAcrdnExpand"> 
+                                                             <ul class="docFilter accordionFilters">
+                                                                    <apex:repeat value="{!rolloutWrapper.lstFinancials}" var="financial">  
+                                                                        <li class="{!IF(financial.Status__c == $Label.IPM_SUBMITTED, $Label.IPM_SUBMIT_CODE, IF(financial.Status__c == $Label.IPM_IN_PROGRESS, $Label.IPM_PROGRESS_CODE, $Label.IPM_NOT_STARTED_CODE))} {!IF(currentFinancialId == financial.Id, $Label.IPM_Selected, '')} finRecord">
+                                                                            <div class="incHeight" id="flagID">              
+                                                                                <span class="key wordwrap">
+                                                                                    <apex:image styleClass="wid26" value="{!URLFOR($Resource.IPM_Resource, 'images/flag.svg')}" rendered="{!IF(AND(NOT(CONTAINS(financial.Financial_External_ID__c, '_NONKEY')), currentTab == 'myview', project.IPM_Phase__c <> 'Ideas'), TRUE, FALSE)}"/>
+                                                                                </span>
+                                                                            
+                                                                            <apex:commandLink value="{!financial.Financial_External_ID__c}" action="{!refreshFinancials}" reRender="rolloutPanel,tabContentPanel,flagID" status="loadingStatus" oncomplete="finScriptCallBack()">
+                                                                                <apex:param name="currentFinancialId" value="{!financial.Id}" assignTo="{!currentFinancialId}"/>
+                                                                            </apex:commandLink>
+                                                                            </div>
+                                                                        </li>           
+                                                                   </apex:repeat>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    </apex:repeat>
+                                                </ul>
+                                            </div>   
+                                        </div>
+                                    </div>
+                                    <div class="finLegends">
+                                        <p><i class="fa fa-minus progresstatus"></i> {!$Label.IPM_IN_PROGRESS}</p>
+                                        <p><i class="fa fa-minus notstarted"></i> {!$Label.IPM_NOT_STARTED}</p>
+                                        <p><i class="flag"></i> Key Country</p>                                        
+                                    </div>
+                                
+                            </div>
+                            </apex:outputPanel>
+                            <!----------------------------------------------------- MAIN PANEL ------------------------------------------->
+                            <div class="{!IF(project.IPM_Project_Type__c != 'Operational','col-sm-10','col-sm-12')} pull-right tempWrapper finTableData">                               
+                               
+                                <div class="row">                                                           
+                                    <div class="col-sm-12 noPadright">                    
+                                        <div class="panel">
+                                            <div role="tabpanel" class="tab-panel">
+                                                 
+                                                <!-------------------------------------------- Nav tabs ------------------------------------>
+                                                <apex:outputText rendered="{!NOT(isError)}">
+                                                <div class="clearfix ipmFinancialNavbarDiv">
+                                                <div class="col-xs-9 noPadright noPadleft">
+                                                
+                                                    <nav class="navbar navbar-default" role="navigation">
+                                                        <div class="collapse navbar-collapse ipmFinancialNavbar">
+                                                            <ul class="nav navbar-nav finNavTab" role="tablist">
+                                                                <li role="presentation" class="tabOdd active">
+                                                                    <a href="#myView" aria-controls="myView" role="tab" data-toggle="tab" onclick="changeTabs('myview');"><span>{!tabLabelMyView}</span></a>
+                                                                </li>
+                                                                <apex:outputText rendered="{!showTopDownTab}">
+                                                                    <li role="presentation" class="tabEven">
+                                                                        <a href="#topDown" aria-controls="topDown" role="tab" data-toggle="tab" onclick="changeTabs('topdown');"><span>{!tabLabelTopDown}</span></a>
+                                                                    </li>
+                                                                </apex:outputText>
+                                                                <apex:outputText rendered="{!showRollupTab}">
+                                                                    <li role="presentation" class="tabOdd">
+                                                                        <a href="#rollup" aria-controls="rollup" role="tab" data-toggle="tab" onclick="changeTabs('rollup');"><span>{!tabLabelRollup}</span></a>
+                                                                    </li> 
+                                                                </apex:outputText>
+                                                            </ul>
+                                                        </div>
+                                                    </nav>
+                                                </div>
+                                                    
+                                                    
+                                                <div class="col-xs-3 finDropdown noPadright noPadleft pull-right">
+                                                    <div class="inputField blockPos">
+                                                        <apex:outputText rendered="{!NOT(isError)}"> 
+                                                            <div class="requiredInput">
+                                                                <div class="requiredBlock"></div>
+                                                               
+                                                            </div>     
+                                                        </apex:outputText>
+                                                    </div> 
+                                                </div>
+                                                </div>
+                                                </apex:outputText>
+                                                <apex:actionFunction name="changeTabs" action="{!changeTabs}" reRender="rolloutPanel,tabContentPanel,headerPanel" status="loadingStatus" oncomplete="finScriptCallBack()">
+                                                    <apex:param name="currentTab" value="" assignTo="{!currentTab}"/>
+                                                </apex:actionFunction>
+                                               
+                                                <!------------------------------------------------- Tab Content ------------------------------------------->
+                                               
+                                                <!-- Currency work starts -->
+                                                <div id="dvCurrency marginT10P">
+                                                    <apex:panelGrid columns="3" columnClasses="col1Curr,col2Curr,col3Curr" border="0" cellpadding="5" cellspacing="5">
+                                                        <apex:outputPanel >
+                                                        <apex:outputLabel styleClass="selCur" value="Please select currency: "/> 
+                                                            <apex:selectList styleClass="selCur" id="slst" size="1" value="{!selectedCurrency}"> 
+                                                                  <apex:actionSupport status="confLoading" event="onchange" action="{!applyRate}" rerender="otl,tabContentPanel"/> 
+                                                                  <apex:selectOptions value="{!items}"/>
+                                                            </apex:selectList>                                                           
+                                                            <apex:actionStatus onstart="progressDots()" onstop="stopDots()" startText="" stopText="" id="confLoading" startStyleClass="proInit"/>
+                                                            <span id="wait" class="waitCurr"></span>
+                                                        </apex:outputPanel>
+                                                        <apex:outputPanel >
+                                                            <apex:outputText id="otl" styleClass="otlCurr" value="Currency: {!selectedCurrency}: {!exrate}"/>
+                                                        </apex:outputPanel>
+                                                        <apex:outputPanel styleClass="SecButtonSet marginT10P">
+                                                            <apex:commandLink action="{!URLFOR('/apex/IPM_Financial?id=' +project.id)}" title="{!$Label.IPM_Currency_back_button}" >
+                                                                <i class="fa ipmButton primary">{!$Label.IPM_Currency_back_button}</i>
+                                                            </apex:commandLink>
+                                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                                            <apex:commandLink styleClass="icoButton print download printIconAlign pull-right marginT5P"   title="{!$Label.IPM_Currency_print_button}" onclick="window.print();" >
+                                                            <i class="fa"></i>
+                                                            </apex:commandLink>
+                                                        </apex:outputPanel>    
+                                                    </apex:panelGrid>
+                                                    
+                                                    
+                                                </div>
+                                                
+                                                <!-- Currency work ends -->
+                                                
+                                                <apex:outputPanel layout="block" id="tabContentPanel" rendered="{!NOT(isError)}">
+                                                    <div class="tab-content">
+                                                        <!-- My View Tab -->
+                                                        <div role="tabpanel" class="tab-pane {!IF(currentTab == 'myview', 'active', '')}" id="myView">
+                                                            <!-- Project Name Header -->
+                                                            <div class="row">
+                                                            <div class="col-sm-6">
+                                                                <div class="ipmfinHeading1">Financial Business Case - {!currentFinancial.Display_Name__c}</div>                                                                                                                             
+                                                            </div> 
+                                                            </div> 
+                                                             
+                                                                
+                                                                <c:IPM_FinancialTable_Currency ipmFinancial="{!currentFinancial}"
+                                                                    finWrapper="{!financialsInnovation}"
+                                                                    colSpan="{!colSpan}"
+                                                                    sustainabilityPeriod="{!sustainabilityPeriod}"
+                                                                    isInnovation="TRUE"
+                                                                    isEditMode="{!isEditMode}"
+                                                                    showMisalignment="{!showMisalignment}"
+                                                                    fieldSuffix="{!fieldSuffix}"                                                                    
+                                                                    isy0TurnoverInvalid="{!isy0TurnoverInvalid}"
+                                                                    isValidationError="{!isValidationError}"
+                                                                    validationErrorMessage="{!validationErrorMessage}"
+                                                                    isy0GrossProfitInvalid="{!isy0GrossProfitInvalid}"
+                                                                    isy0ProfitInvalid="{!isy0ProfitInvalid}"
+                                                                    
+                                                                />
+                                                        
+                                                                <c:IPM_FinancialSummaryTable_Currency ipmFinancial="{!currentFinancial}"
+                                                                    fieldSuffix="{!fieldSuffix}"
+                                                                    isEditMode="{!isEditMode}"
+                                                                    showMisalignment="{!showMisalignment}"
+                                                                    exRate="{!exRate}"                                  
+                                                                />
+                                                        
+                                                                <c:IPM_FinancialTable_Currency ipmFinancial="{!currentFinancial}"
+                                                                    finWrapper="{!financialsCalendar}"
+                                                                    colSpan="{!colSpan}"
+                                                                    sustainabilityPeriod="{!sustainabilityPeriod}"
+                                                                    isInnovation="FALSE"
+                                                                    isEditMode="{!isEditMode}"
+                                                                    showMisalignment="{!showMisalignment}"
+                                                                    fieldSuffix="{!fieldSuffix}"                                                                    
+                                                                    isy0TurnoverInvalid="{!isy0TurnoverInvalid}"
+                                                                    isValidationError="{!isValidationError}"
+                                                                    validationErrorMessage="{!validationErrorMessage}"
+                                                                    isy0GrossProfitInvalid="{!isy0GrossProfitInvalid}"
+                                                                    isy0ProfitInvalid="{!isy0ProfitInvalid}"
+                                                                />
+                                                        </div>
+
+                                                        <!-- Top Down Summary Tab -->
+                                                        <div role="tabpanel" class="tab-pane {!IF(currentTab == 'topdown', 'active', '')}" id="topDown">
+                                                            <c:IPM_FinancialTabContent ipmFinancial="{!currentFinancial}"
+                                                                financialsInnovation="{!financialsInnovation}"
+                                                                financialsCalendar="{!financialsCalendar}"
+                                                                colSpan="{!colSpan}"
+                                                                sustainabilityPeriod="{!sustainabilityPeriod}"
+                                                                fieldSuffix="{!fieldSuffix}"
+                                                            />
+                                                         
+                                                        </div>
+    
+                                                        <!-- Rollup Summary Tab -->
+                                                        <div role="tabpanel" class="tab-pane {!IF(currentTab == 'rollup', 'active', '')}" id="rollup">
+                                                            <c:IPM_FinancialTabContent ipmFinancial="{!currentFinancial}"
+                                                                financialsInnovation="{!financialsInnovation}"
+                                                                financialsCalendar="{!financialsCalendar}"
+                                                                colSpan="{!colSpan}"
+                                                                sustainabilityPeriod="{!sustainabilityPeriod}"
+                                                                fieldSuffix="{!fieldSuffix}"
+                                                            />
+                                                        </div>                            
+                                                    </div>
+                                                </apex:outputPanel>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div> 
+                <script>
+                var IPMApp = {compSlst:'{!$Component.slst}', compOtl:'{!$Component.otl}'};
+                </script> 
+            </apex:form>
+            <div id="ipmConfirmModalDiv">
+                <c:IPM_ConfirmModal />
+            </div>     
+        </apex:define>
+    </apex:composition>    
+    <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Accordion.js')}" type="text/javascript"></script>
+    <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Financial.js')}" type="text/javascript"></script> 
+</apex:page>

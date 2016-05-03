@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>One View KPI Dimension NA Brand</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>One View KPI Dimension NA Brands</value>
+    </caseValues>
+    <fields>
+        <help><!-- OV Hierarchical Dimension --></help>
+        <label><!-- Code --></label>
+        <name>Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Level --></label>
+        <name>Level__c</name>
+    </fields>
+    <fields>
+        <label><!-- One View KPI Dimension NA Brand --></label>
+        <name>Parent_Id__c</name>
+        <relationshipLabel><!-- One View KPI Dimension NA Brands --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Parent Level --></label>
+        <name>Parent_Level__c</name>
+    </fields>
+    <startsWith>Vowel</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Agent App Brand</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Agent App Brands</value>
+    </caseValues>
+    <fields>
+        <label><!-- Agent Competitor --></label>
+        <name>Competitor__c</name>
+        <relationshipLabel><!-- Agent App Brands --></relationshipLabel>
+    </fields>
+    <recordTypes>
+        <label><!-- Competitor Brand --></label>
+        <name>Competitor_Brand</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Unilever Brand --></label>
+        <name>Unilever_Brand</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

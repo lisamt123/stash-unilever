@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Bonus Summary</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Bonus Summaries</value>
+    </caseValues>
+    <fields>
+        <label><!-- Agency --></label>
+        <name>AF_Agency__c</name>
+        <relationshipLabel><!-- Bonus Summaries --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Bonus Value --></label>
+        <name>AF_Bonus_Matrix_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Brand Agency Uq Combination --></label>
+        <name>AF_Brand_Agency_Uq_Combination__c</name>
+    </fields>
+    <fields>
+        <label><!-- Brand --></label>
+        <name>AF_Brand__c</name>
+        <relationshipLabel><!-- Bonus Summaries --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Category View --></label>
+        <name>AF_Category_View__c</name>
+    </fields>
+    <fields>
+        <label><!-- Category --></label>
+        <name>AF_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fiscal Year Difference --></label>
+        <name>AF_Fiscal_Year_Difference__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fiscal Year --></label>
+        <name>AF_Fiscal_Year__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Pilot Model? --></label>
+        <name>AF_Is_Pilot_Model__c</name>
+    </fields>
+    <fields>
+        <label><!-- No Of CrossBorders --></label>
+        <name>AF_No_Of_CrossBorders__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>AF_Status__c</name>
+        <picklistValues>
+            <masterLabel>Ready For PO</masterLabel>
+            <translation><!-- Ready For PO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>W/Cat Finance</masterLabel>
+            <translation><!-- W/Cat Finance --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Agency Name --></label>
+        <name>Agency_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bonus Summary --></label>
+        <name>Bonus_Summary__c</name>
+    </fields>
+    <fields>
+        <label><!-- Brand Name --></label>
+        <name>Brand_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- No of Matrix Cells --></label>
+        <name>No_of_Matrix_Cells__c</name>
+    </fields>
+    <fields>
+        <label><!-- VisbleToAgency --></label>
+        <name>VisbleToAgency__c</name>
+    </fields>
+    <fields>
+        <label><!-- key --></label>
+        <name>key__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

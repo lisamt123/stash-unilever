@@ -1,0 +1,520 @@
+<apex:page controller="ChatterUIController" action="{!initPref}" docType="html-5.0" standardStylesheets="false" sidebar="false" showHeader="false">
+<style>
+<!--@font-face {
+    font-family: "DINProFont";
+    src: url('{!URLFOR($Resource.DINProFont)}');    
+}-->
+
+@font-face
+{
+font-family:"DINProFont";
+src: url('{!URLFOR($Resource.TestDINProFontEOT,'FF_DIN_Regular/FF_DIN_Regular.eot')}'); 
+src: local('☺'), url('{!URLFOR($Resource.TestDINProFontEOT,'FF_DIN_Regular/FF_DIN_Regular.woff')}') format('woff'), url('{!URLFOR($Resource.TestDINProFontEOT,'FF_DIN_Regular/FF_DIN_Regular.ttf')}') format('truetype');
+}
+
+h1
+{
+font-family:'DINProFont'; 
+
+}
+.ui-btn-text {
+ font-family:DINProFont;
+ margin-top:-5px;
+}
+.ui-btn-inner{
+ 
+}
+div.ui-input-text{
+width:90%;
+}
+.date-ui-link{
+font-weight:normal;
+font-size:0.7em;
+{
+
+</style>
+
+    <apex:composition template="Template">
+        <apex:define name="pageTitle">Programme Logistics</apex:define>
+
+        <apex:define name="headSection">
+        
+                <link rel="stylesheet" type="text/css" href="{! URLFOR($Resource.css_app_chatterui)}"/>
+                <link rel="stylesheet" type="text/css" href="{! URLFOR($Resource.css_app_chatterui_profile)}"/>
+                <link rel="stylesheet" type="text/css" href="{! URLFOR($Resource.css_app_chatterui_people)}"/>
+                <link rel="stylesheet" type="text/css" href="{! URLFOR($Resource.css_app_chatterui_groups)}"/>
+                <link rel="stylesheet" type="text/css" href="{! URLFOR($Resource.jqminlinetabsmincss)}" />
+                
+               
+
+                <script src="{! URLFOR($Resource.js_plugins_jqueryHashChange_min)}"></script>
+                <script src="{! URLFOR($Resource.js_app_chatterui)}"></script>
+                <script src="{! URLFOR($Resource.js_app_chatterui_templates)}"></script>
+                <script src="{! URLFOR($Resource.js_app_chatterui_profile_templates)}"></script>
+                <script src="{! URLFOR($Resource.js_app_chatterui_groups_templates)}"></script>
+                <script src="{! URLFOR($Resource.js_app_chatterui_people_templates)}"></script>
+                <script src="{! URLFOR($Resource.js_app_chatterui_chatterpage)}"></script>
+                <script src="{! URLFOR($Resource.js_app_chatterui_filemanager)}"></script>
+                <script src="{! URLFOR($Resource.js_app_chatterui_profilebuilder)}"></script>
+                <script src="{! URLFOR($Resource.js_app_chatterui_feedbuilder)}"></script>
+                <script src="{! URLFOR($Resource.js_app_chatterui_feeditembuilder)}"></script>
+                <script src="{! URLFOR($Resource.js_app_chatterui_postbuilder)}"></script>
+                <script src="{! URLFOR($Resource.js_app_chatterui_peoplelistbuilder)}"></script>
+                <script src="{! URLFOR($Resource.js_app_chatterui_searchmanager)}"></script>
+                <script src="{! URLFOR($Resource.js_app_chatterui_groupbuilder)}"></script>
+                <script src="{! URLFOR($Resource.js_app_chatterui_service)}"></script>
+                
+               
+               
+                
+             <!--Section add to include the JQuery Mobile Resources -->
+              
+               <meta name="viewport" content="width=device-width, initial-scale=1"> </meta>
+               <script src="{! URLFOR($Resource.JQuery_Mobile,'/jquery-ui.js')}" />
+               <link rel="stylesheet" href="{!URLFOR($Resource.JQuery_Mobile,'/jquery-ui.css')}" />
+               <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.JQuery_Mobile,'/jquery.mobile-1.3.0.min.css')}"/>            
+               <script src="{! URLFOR($Resource.JQuery_Mobile,'/jquery.mobile-1.3.0.min.js')}" />        
+               
+ 
+                 
+                <!-- <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
+                 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+                 <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script> -->
+                 
+              <!--   <link rel="stylesheet" type="text/css" href="{! URLFOR($Resource.jquerymobile131mincss)}" />
+                 <!--<script src="{! URLFOR($Resource.jquery191min)}"></script>
+                 <script src="{! URLFOR($Resource.jquerymobile131minjs)}"></script> -->
+                 
+                 
+                 <script src="{! URLFOR($Resource.jqminlinetabsmin)}"> </script>
+                 
+               
+                 <script>
+                   $(document).ready(function() {                        
+                        $=$.noConflict(); 
+                    $('div.sidebar').css("display","none");
+                         }) ;
+                 </script>
+             
+          
+                
+        </apex:define>     
+        <apex:define name="sidebar">
+            <c:Sidebar />
+        </apex:define>
+        
+        <apex:define name="panels">
+            <div class="panels" id="panels">
+                
+                   <div class="uiScroller forceScroller" id="panelScroller" data-scroller='{"enableRefresh":"true"}'>
+                   
+                 <!--  <div id="pullDown">
+                      <span class="pullDownIcon"></span>
+                      <span class="pullDownLabel">{!$Label.pull_to_refresh_text}</span> 
+                    </div> -->
+                    
+              
+                <div data-role="page" id="Programme Logistics" style="background:#ffffff;">
+                  
+                                <div data-role="header" id="ProgrammeLogisticsHeader">
+                                        <a data-theme="a" data-role="button" href="#" onclick="window.history.back();" target="_self" data-icon="back">Back</a>
+                                     
+                                        <h1 style="font-family:DINProFont;">Programme Logistics Details</h1>  
+                                                                      
+                                </div><!-- /header --> 
+                                
+                        <style type="text/css">
+                          [id*=myId] { font-weight: bold;font-size:15px;color:#FF0000; }
+                        </style> 
+
+
+                                    
+                                    <div data-role="content" style="padding:40px;background-color: #ffffff;font-family:DINProFont;border-radius: 9px 9px 9px 9px;border-style:solid;border-width:2px;border-color: #006699;margin-top: 40px;margin-left: 40px;margin-right: 40px;margin-bottom: 40px;"> 
+                                      <apex:form id="formProgrammeLogistics">                                       
+                                                <apex:outputPanel layout="block" id="oPanel">
+                                                <p style="font-family:DINProFont;font-size: 14px;" > <b>Please Provide Travel and Personal details for : {!selectedCourseOccurence.FA_Course_Occ_Name__c}</b></p> <br/>
+                                                </apex:outputPanel>   
+                                    
+                               
+                                                
+                                            <div data-role="inlinetabs" > 
+                                            
+                                                <ul style="background:#3399CC;">
+                                                <li data-tab="1" > <p style="font-family:DINProFont;">Travel Information</p></li>
+                                                <li data-tab="2" > <p style="font-family:DINProFont;">Dietary Requirements</p></li>
+                                                <li data-tab="3" > <p style="font-family:DINProFont;">Charge back information</p></li>
+                                                </ul>
+                                  
+                                                <div data-tab="3">
+                                                <p style="font-family:DINProFont;font-size: 14px;" > <b>Charge back information:</b></p>   
+                                                            <div class="ui-grid-b"> 
+                                                                   <div class="ui-block-a" data-mini="true"> 
+                                                                                                                          
+                                                                   <apex:outputLabel value="Role:" for="Role" style="font-family:DINProFont;font-size:14px;"/>
+                                                                   <apex:inputTextarea id="Role" value="{!wrapObj.tempUserPref.FA_Role__c}" style="font-family:DINProFont;font-size:14px;height:50px;width:90%;"/> 
+                                                                   
+                                                                   <apex:outputLabel value="Personal Details:" for="Personal" style="font-family:DINProFont;font-size:14px;"/>
+                                                                   <apex:inputTextarea id="Personal" value="{!wrapObj.tempUserPref.FA_Personal__c}" style="font-family:DINProFont;font-size:14px;height:50px;width:90%;"/> 
+                                                                   
+                                                                 <!--  <apex:outputLabel value="Education:" for="Education" style="font-family:DINProFont;font-size:14px;"/>
+                                                                   <apex:inputTextarea id="Education" value="{!wrapObj.tempUserPref.FA_Education__c}" style="font-family:DINProFont;font-size:14px;height:50px;width:90%;"/> -->
+                                                                 
+                                                                   
+                                                                   </div>
+                                                                   
+                                                                  
+                                                            
+                                                                   <div class="ui-block-b" data-mini="true">  
+                                                                    
+                                                                   <apex:outputLabel value="Company Code:" for="CompanyCode" style="font-family:DINProFont;font-size:14px;"/>
+                                                                   <apex:inputField id="CompanyCode" value="{!wrapObj.tempUserPref.FA_Company_code__c}" style="font-family:DINProFont;font-size:14px;height:50px;width:90%;"/>
+                                                                    
+                                                                                
+                                                                   <apex:outputLabel value="Secretary Name:" for="secretaryname" style="font-family:DINProFont;font-size:14px;"/>
+                                                                   <apex:inputTextarea value="{!wrapObj.tempUserPref.FA_Secretary_Name__c}" id="secretaryname" style="font-family:DINProFont;font-size:14px;height:50px;width:90%;"/>                                              
+                                                             
+                                                                <!--     <apex:outputLabel value="Prior Career:" for="PriorCareer" style="font-family:DINProFont;font-size:14px;width:90%;"/>
+                                                                   <apex:inputTextarea id="PriorCareer" value="{!wrapObj.tempUserPref.FA_Prior_Career__c}" style="font-family:DINProFont;font-size:14px;width:90%;height:50px;"/> -->
+                                                                   
+                                                                   </div>
+                                                            
+                                                                   <div class="ui-block-c" data-mini="true"> 
+                                                                   <apex:outputLabel value="Cost Centre nr:" for="CostCentrenr" style="font-family:DINProFont;font-size:14px;"/>
+                                                                   <apex:inputField id="CostCentrenr" value="{!wrapObj.tempUserPref.FA_Cost_Centre_nr__c}" style="font-family:DINProFont;font-size:14px;height:50px;width:90%;"/> 
+                                                                  
+                                                                 
+                                                                   <apex:outputLabel value="Secretary Phone No:" for="secPhNo" style="font-family:DINProFont;font-size:14px;"/>
+                                                                   <apex:inputTextarea value="{!wrapObj.tempUserPref.FA_Secretary_PhoneNumber__c}" id="secPhNo" style="font-family:DINProFont;font-size:14px;width:90%;height:50px;"/>
+                                                                      
+                                                                     
+                                                              <!--       <apex:outputLabel value="Unilever Career:" for="UnileverCareer" style="font-family:DINProFont;font-size:14px;"/>
+                                                                   <apex:inputTextarea id="UnileverCareer" value="{!wrapObj.tempUserPref.FA_Unilever_Career__c}" style="font-family:DINProFont;font-size:14px;height:50px;width:90%;"/> -->
+                                                                                                                            
+                                                                   </div>                                                         
+                                                            </div>
+                                                </div>
+                                                <div data-tab="1">
+                                                <p style="font-family:DINProFont;font-size: 14px;" > <b>Travel Information:</b></p>                          
+                                                           
+                                                            <div class="ui-grid-c">
+                                                            
+                                                            <div class="ui-block-a" data-mini="true"> 
+                                                                   <div class="date-ui-link">                                                                  
+                                                                   <apex:outputLabel value="Arrival Date:" for="datepickerArrival" style="font-family:DINProFont;font-size:14px;"/>
+                                                                   <input type="text" id="datepickerArrival" value="{!wrapObj.dateArrival}" style="font-family:DINProFont;" /> 
+                                                                   <apex:inputHidden id="hiddenArrival" value="{!wrapObj.dateArrival}"  />
+                                                                    </div>  
+                                                 
+                                                                    <apex:outputLabel value="Arrival Flight Number:" for="ArrivalFlightNumber" style="font-family:DINProFont;font-size:14px;"/> 
+                                                                    <apex:inputTextarea id="ArrivalFlightNumber"  value="{!wrapObj.tempUserPref.FA_Arrival_Flight_Number__c}" style="font-family:DINProFont;width:90%;font-size:14px;"/>
+                                                                                                                                      
+                                                </div>
+                                                            <div class="ui-block-b" data-mini="true">
+                                                                    <div class="ui-select" style="width:45%;" data-mini="true">
+                                                                    <apex:outputLabel value="Arrival_TimeHrs" for="ArrivalTimeHrs" style="font-family:DINProFont;font-size:14px;"/>
+                                                                    <apex:selectList id="ArrivalTimeHrs" value="{!wrapObj.arrivalTimeHrs}" title="Select Hrs" size="1" style="font-family:DINProFont;font-size:14px;">
+                                                                    <apex:selectOption itemValue="Hrs" itemLabel="Hrs"/>
+                                                                    <apex:selectOptions value="{!hourTimeValues}"/>
+                                                                    </apex:selectList>                                                                   
+                                                                    </div> 
+                                                             <apex:outputLabel value="Arrival Carrier:" for="ArrivalCarrier" style="font-family:DINProFont;font-size:14px;"/> 
+                                                                    <apex:inputTextarea id="ArrivalCarrier"  value="{!wrapObj.tempUserPref.FA_Arrival_Carrier__c}" style="font-family:DINProFont;width:90%;font-size:14px;width:90%;"/>
+                                                                                                                                     
+                                                                    
+                                                            </div>
+                                                            <div class="ui-block-c" data-mini="true"> 
+                                                                    <div class="ui-select" style="width:45%;margin-left:-55%;" >
+                                                                    <apex:outputLabel value="Mins" for="ArrivalTimeHrs" style="font-family:DINProFont;font-size:14px;margin-left:8px"/>                                                                                                                                        
+                                                                    <apex:selectList id="ArrivalTimeMins" value="{!wrapObj.arrivalTimeMins}" title="Select Minutes" size="1" style="font-family:DINProFont;font-size:14px;">
+                                                                    <apex:selectOption itemValue="Minutes" itemLabel="Minutes"/>
+                                                                    <apex:selectOptions value="{!minuteTimeValues}"/>
+                                                                    </apex:selectList>
+                                                                    </div>
+                                                                    
+                                                                    <apex:outputLabel value="Arrival Terminal:" for="ArrivalTerminal" style="font-family:DINProFont;font-size:14px;margin-left:5px"/> 
+                                                                    <apex:inputTextarea id="ArrivalTerminal"  value="{!wrapObj.tempUserPref.FA_Arrival_Terminal__c}" style="font-family:DINProFont;width:90%;font-size:14px;width:90%;"/>
+                                                                   
+                                                                    
+                                                            </div>
+                                                            <div class="ui-block-d" data-mini="true">
+                                                                    <div class="ui-select" style="width:45%;margin-left:-100%;" >
+                                                                    <apex:outputLabel value="AM/PM" for="ArrivalTimeHrs" style="font-family:DINProFont;font-size:14px;margin-left:5px"/>
+                                                                    <apex:selectList id="ArrivalTimeAMPM" value="{!wrapObj.arrivalTimeAMPM}" size="1" style="font-family:DINProFont;font-size:14px;">
+                                                                    <apex:selectOption itemValue="AM" itemLabel="AM"/>
+                                                                    <apex:selectOption itemValue="PM" itemLabel="PM"/>
+                                                                    </apex:selectList>                                                                 
+                                                                    </div> 
+                                                                                                                                        
+                                                                    <div class="ui-select" style="width:90%;">
+                                                                    <apex:outputLabel value="Arrival Information:" for="ArrivalInformation" style="font-family:DINProFont;font-size:14px;margin-left:5px"/> 
+                                                                    <apex:selectList id="ArrivalInformation"  value="{!wrapObj.tempOcc.FA_Arrival_Information__c}" size="1" style="font-family:DINProFont;font-size:14px;">
+                                                                    <apex:selectOptions value="{!CheckInItems}" />
+                                                                    </apex:selectList>
+                                                                    </div>                                                                    
+                                                                     
+                                                            </div>
+                                                            
+                                                            </div>
+                                                            
+                                                            <div class="ui-grid-c">
+                                                            
+                                                                    <div class="ui-block-a" data-mini="true">
+                                                                        <div class="date-ui-link">                                                                    
+                                                                        <apex:outputLabel value="Departure Date:" for="datepickerDepart" style="font-family:DINProFont;font-size:14px;"/>
+                                                                        <input type="text" id="datepickerDepart" value="{!wrapObj.dateDepart}" style="font-family:DINProFont;" /> 
+                                                                        <apex:inputHidden id="hiddenDepart" value="{!wrapObj.dateDepart}" />                                                                                                                                 
+                                                                        </div>
+                                                                        
+                                                                        <apex:outputLabel value="Departure Flight Number:" for="DepartureFlightNumber" style="font-family:DINProFont;font-size:14px;"/> 
+                                                                        <apex:inputTextarea id="DepartureFlightNumber"  value="{!wrapObj.tempUserPref.FA_Departure_Flight_Number__c}" style="font-family:DINProFont;font-size:14px;width:90%;"/>
+                                                                        
+                                                                        <apex:outputLabel value="Other Accomodation Needs:" for="OtherAccomodationNeeds" style="font-family:DINProFont;font-size:14px;"/>
+                                                                        <apex:inputTextarea id="OtherAccomodationNeeds" value="{!wrapObj.tempOcc.FA_Other_Accomodation_Needs__c}" style="font-family:DINProFont;font-size:14px;height:50px;width:90%;"/> 
+                                                                   
+                                                                    </div>
+                                                                    
+                                                                    <div class="ui-block-b" data-mini="true">
+                                                                        <div class="ui-select" style="width:45%;" data-mini="true">
+                                                                        <apex:outputLabel value="Departure_TimeHrs" for="DepartureTimeHrs" style="font-family:DINProFont;font-size:14px;"/>
+                                                                        <apex:selectList id="DepartureTimeHrs" value="{!wrapObj.departureTimeHrs}" title="Select Hrs" size="1" style="font-family:DINProFont;font-size:14px;">
+                                                                        <apex:selectOption itemValue="Hrs" itemLabel="Hrs"/>
+                                                                        <apex:selectOptions value="{!hourTimeValues}"/>
+                                                                        </apex:selectList>
+                                                                        </div>
+                                                                                                                                          
+                                                                        <apex:outputLabel value="Departure Carrier:" for="DepartureCarrier" style="font-family:DINProFont;font-size:14px;"/> 
+                                                                        <apex:inputTextarea id="DepartureCarrier"  value="{!wrapObj.tempUserPref.FA_Departure_Carrier__c}" style="font-family:DINProFont;width:90%;font-size:14px;width:90%;"/>
+                                                                        
+                                                                        <apex:outputLabel value="Other Travel Arrangements:" for="OtherTravelArrangements" style="font-family:DINProFont;font-size:14px;"/>
+                                                                        <apex:inputTextarea id="OtherTravelArrangements" value="{!wrapObj.tempOcc.FA_Other_Travel_Arrangements__c}" style="font-family:DINProFont;font-size:14px;height:50px;width:90%;"/> 
+                                                                        
+                                                                    </div>
+                                                                    
+                                                                    <div class="ui-block-c" data-mini="true">
+                                                                        <div class="ui-select" style="width:45%;margin-left:-55%;" >
+                                                                        <apex:outputLabel value="Mins" for="DepartureTimeMins" style="font-family:DINProFont;font-size:14px;margin-left:8px"/>
+                                                                        <apex:selectList id="DepartureTimeMins" value="{!wrapObj.departureTimeMins}" title="Select Minutes" size="1" style="font-family:DINProFont;font-size:14px;">
+                                                                        <apex:selectOption itemValue="Minutes" itemLabel="Minutes"/>
+                                                                        <apex:selectOptions value="{!minuteTimeValues}"/>
+                                                                        </apex:selectList>  
+                                                                        </div>
+                                                                        
+                                                                        <apex:outputLabel value="Departure Terminal:" for="DepartureTerminal" style="font-family:DINProFont;font-size:14px;margin-left:5px"/> 
+                                                                        <apex:inputTextarea id="DepartureTerminal"  value="{!wrapObj.tempUserPref.FA_Departure_Terminal__c}" style="font-family:DINProFont;font-size:14px;width:90%;"/>
+                                                                       
+                                                                    </div>
+                                                                    
+                                                                    <div class="ui-block-d" data-mini="true">
+                                                                        <div class="ui-select" style="width:45%;margin-left:-100%;" > 
+                                                                        <apex:outputLabel value="AM/PM" for="DepartureTimeAMPM" style="font-family:DINProFont;font-size:14px;margin-left:5px"/>
+                                                                        <apex:selectList id="DepartureTimeAMPM" value="{!wrapObj.departureTimeAMPM}" size="1" style="font-family:DINProFont;font-size:14px;">
+                                                                        <apex:selectOption itemValue="AM" itemLabel="AM"/>
+                                                                        <apex:selectOption itemValue="PM" itemLabel="PM"/>
+                                                                        </apex:selectList>                                                                  
+                                                                        </div>
+                                                                        
+                                                                        <div class="ui-select" style="width:90%;">
+                                                                        <apex:outputLabel value="Departure Information:" for="DepartureInformation" style="font-family:DINProFont;font-size:14px;margin-left:5px"/>                                                      
+                                                                        <apex:selectList id="DepartureInformation" value="{!wrapObj.tempOcc.FA_Departure_Information__c}" size="1" style="font-family:DINProFont;font-size:14px;">
+                                                                        <apex:selectOptions value="{!CheckOutItems}" />
+                                                                        </apex:selectList>   
+                                                                        </div> 
+                                                                    </div>
+                                                            </div>                                                              
+                                               </div>     
+                                                <div data-tab="2">
+                                                <p style="font-family:DINProFont;font-size: 14px;" > <b>Dietary Requirements:</b></p>                                              
+                                                            <div class="ui-grid-a">    
+                                                                    <div class="ui-block-a" >
+                                                                    <apex:outputLabel value="Dietary Preference:" style="font-family:DINProFont;font-size:14px;" />                                                                  
+                                                                                                                                                                               
+                                                                    <apex:selectCheckboxes value="{!checkOptions}" id="checkboxes" layout="pageDirection">                                                                         
+                                                                    <apex:selectOptions value="{!DietItems}" />                                                                           
+                                                                    </apex:selectCheckboxes>
+                                                                    
+                                                                    <apex:outputLabel value="Other dietary requirements:" for="Otherdietreq" style="font-family:DINProFont;font-size:14px;"/>
+                                                                    <apex:inputTextarea value="{!wrapObj.tempUserPref.FA_Other_dietary_requirements__c}" id="Otherdietreq" style="font-family:DINProFont;font-size:14px;width:70%;"/>
+                                                                      
+                                                                    </div>
+                                                                    <div class="ui-block-b" >                                                        
+                                                                    </div>                                                            
+                                                            </div>   
+                                                </div>
+                                            </div>
+                                            
+                                         <br/><br/>
+                              
+                                 
+                                              <b><p style="font-family:DINProFont;font-size:16px;">Terms:</p></b>
+                                              <apex:outputLabel for="terms" value="By providing the cost center and company code, I agree on the charge based on the fee indicated. Additional charges for special requests from the event organizers and incurred during the stay, will be applied to the final cross charge amount" style="font-family:DINProFont;font-size:14px;height:70px"/> 
+                                              <apex:inputcheckbox id="terms" value="{!wrapObj.tempUserPref.FA_Terms__c}" required="true"/>
+                                  
+                                                      
+                                      <apex:pageBlock id="Error">     
+                                           <apex:pagemessages id="myId" />  
+                                      </apex:pageBlock>
+                                      
+                                      <br/>
+                                      
+                                            <div data-role="content" style="width:50%;margin-left:auto;margin-right:auto;background:white;font-family:DINProFont;" data-theme="a">
+                                               <div class="ui-grid-a">    
+                                                 
+                                                 <div class="ui-block-a" >
+                                                  <apex:commandbutton value="Update" id="update" Action="{!updatePrefDetail}" rerender="Error" /> 
+                                                </div>
+                                                
+                                                <div class="ui-block-b" >
+                                                  <apex:commandbutton value="Back to Programmes" id="ok" Action="{!detailsOk}" /> 
+                                                </div>
+                                              </div>  
+                                                
+                                           </div> 
+                                                
+                                               
+                                                
+                                                
+                                       
+                                     </apex:form><!-- end of Form tag--> 
+                                </div><!-- /content -->
+                               <br/><br/><br/><br/>
+                          
+                 
+        
+                          </div><!-- page -->
+                                  
+                      
+                          
+                    
+                  <!--  <script>
+                        $(function func() {
+                        $( "#tabs" ).tabs();
+                        });
+                     </script> -->
+                     
+
+                   <!--   
+                        $('#outer').mouseover(function() {
+                        $('#log').text('Please enter time in HH:MM AM/PM format only');
+                        });
+                        
+                        $('#departTime').mouseover(function() {
+                        $('#hideDepart').text('Please enter time in HH:MM AM/PM format only');
+                        });
+                    -->
+                        
+                        
+                    
+                  <script type="text/javascript">
+                            ChatterUI.UserContext = {
+                            userId: '{!$User.Id}',
+                            sessionId: '{!GETSESSIONID()}',
+                            usingMobile:'{!usingMobile}',
+                            userObjectPrefix: '{!userObjectPrefix}',
+                            feedObjectPrefix: '{!feedObjectPrefix}'
+                        }  
+                            
+                             $('input[id$=update]').attr('data-theme','a');                            
+                             var pickerArrival=$( "#datepickerArrival" ).datepicker({ dateFormat: 'dd/mm/yy',
+                                                                                      changeMonth: true,
+                                                                                      changeYear: true
+                                                                                    });
+                                    pickerArrival.change(function () {
+                                     var dateArrival=$(this).val();
+                                    document.getElementById("{!$Component.formProgrammeLogistics.hiddenArrival}").value=dateArrival;                               
+                                    
+                              });
+                              
+                              var pickerDepart=$( "#datepickerDepart" ).datepicker({ dateFormat: 'dd/mm/yy',
+                                                                                      changeMonth: true,
+                                                                                      changeYear: true
+                                                                                    });
+                                     pickerDepart.change(function () {
+                                     var dateDepart=$(this).val();
+                                    document.getElementById("{!$Component.formProgrammeLogistics.hiddenDepart}").value=dateDepart;                                                                       
+                              });                            
+                                  
+                    </script>
+                    
+                    <script>
+                    
+                    <!--pickerArrival.change(function () {
+                                     var dateArrival=$(this).val();
+                                    document.getElementById("{!$Component.formProgrammeLogistics.hiddenArrival}").value=dateArrival;                               
+                                    
+                              });-->
+                              
+                    var departureDateTime=document.getElementById("{!$Component.formProgrammeLogistics.departureDateTime}").value; 
+                    
+                    callUpdateDeparture(){
+                   
+                    var datetimeDepart=$(this).val();
+                    alert('datetimeDepart');
+                    document.getElementById("{!$Component.formProgrammeLogistics.hiddenDepartDateTime}").value=datetimeDepart;                                                                       
+                             
+                    }       
+                    </script>
+      
+                                          
+                    <!--<script>    
+                        function redirectBack()
+                                           { 
+                                             var retURL='';
+                                             var params = window.location.search.slice(1).split("&");
+                                                for (var i = 0; i < params.length; i++)
+                                                     {
+                                                        
+                                                         var tmp = params[i].split("=");
+                                                         if(tmp[0] =='retURL')
+                                                          retURL = unescape(tmp[1]);
+                                                          
+                                                         if(retURL.indexOf('@')!=-1) 
+                                                            retURL.replace('@','#');
+                                                     }                               
+                                              
+                                              if(retURL=='')
+                                                 retURL='/apex/Programme';                                                 
+                                              window.location.href=retURL;                                            
+                                           }
+
+
+                    </script>-->  
+                    <script type="text/javascript">
+                                    window.onload = init;
+                                     
+                                    function init() {
+                                       tables = document.getElementsByTagName('table');
+                                       for (i = 0; i < tables.length; i++) {
+                                          table = tables[i];
+                                          if (table.className == 'makeRows') {
+                                             makeRows(table, 4);
+                                          } 
+                                       } 
+                                    }
+                                
+                                    function makeRows(table, columnCount) {
+                                       cells = table.rows[0].cells;
+                                       cellCount = cells.length;
+                                       rowCount = Math.ceil(cellCount / columnCount);
+                                      
+                                       for (i = 0; i < rowCount; i++) {
+                                          table.insertRow(0);
+                                       }
+                                       for (i = 0; i < cellCount; i++) {
+                                          row = Math.floor(i / columnCount);
+                                          table.rows[row].appendChild(cells[i].cloneNode(true));
+                                       }
+                                       table.deleteRow(rowCount);
+                                    } 
+                                    
+                         </script>
+                             
+                    </div> <!-- end .uiScroller -->                              
+            </div>
+        </apex:define>
+
+        <apex:define name="overlayContent">
+            <div id="overlayContent"></div>
+        </apex:define>
+    </apex:composition>
+    
+</apex:page>

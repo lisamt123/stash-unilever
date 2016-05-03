@@ -1,0 +1,16 @@
+<!--  
+*************************************************************************************************************************************************************
+*@Description:Used for Color coding of Task List
+*@Author: Cognizant
+*@Created Date: 26/12/2014 
+*@Copyright © 2015  Unilever  
+*************************************************************************************************************************************************************
+-->
+<apex:component layout="none">
+    <apex:attribute name="colorClass" type="String" required="true" description="TODO"/>
+    <apex:attribute name="kpiValue" type="String" required="true" description="TODO"/>
+    <apex:attribute name="kpi" type="String" required="true" description="TODO"/>
+    
+    <div class="pull-left statisticsBox {!colorClass}">{!kpiValue}</div>
+    <div class="pull-left staticLabel">{!kpi}</div>
+</apex:component>

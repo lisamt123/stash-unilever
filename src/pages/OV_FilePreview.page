@@ -1,0 +1,164 @@
+<apex:page controller="OV_FilePreviewController" showHeader="false" sidebar="false">
+
+    <!-- CONTENT PREVIEW SWF -->
+    <apex:outputPanel id="viewer">
+        <style type="text/css">
+            body{
+              height   : 100%;
+              width    : 100%;
+              position : absolute;
+              margin   : 0;
+            }
+
+            .clearfix:after,
+            .clearfix:before {
+                display : table;
+                content : "";
+                clear   : both;
+            }
+
+            @font-face {
+              font-family : 'sf1-icons-custom';
+              src         : url('{!URLFOR($Resource.OV_stylesMerged, "fonts/sf1-icons-custom.eot?9f5ulw")}');
+              src         : url('{!URLFOR($Resource.OV_stylesMerged, "fonts/sf1-icons-custom.eot?#iefix9f5ulw")}') format('embedded-opentype'),
+                            url('{!URLFOR($Resource.OV_stylesMerged, "fonts/sf1-icons-custom.ttf?9f5ulw")}') format('truetype'),
+                            url('{!URLFOR($Resource.OV_stylesMerged, "fonts/sf1-icons-custom.woff?9f5ulw")}') format('woff'),
+                            url('{!URLFOR($Resource.OV_stylesMerged, "fonts/sf1-icons-custom.svg?9f5ulw#sf1-icons-custom")}') format('svg');
+              font-weight : normal;
+              font-style  : normal;
+            }
+
+            [class^="SF1-custom-icon-"], [class*=" SF1-custom-icon-"] {
+              font-family              : 'sf1-icons-custom';
+              speak                    : none;
+              font-style               : normal;
+              font-weight              : normal;
+              font-variant             : normal;
+              text-transform           : none;
+              line-height              : 1;
+              /* Better Font Rendering =========== */
+              -webkit-font-smoothing   : antialiased;
+              -moz-osx-font-smoothing  : grayscale;
+            }
+
+            .SF1-custom-icon-download:before {
+                content: "\e666";
+            }
+            span.SF1-custom-icon-download {
+                font-size   : 30px;
+                font-weight : bold;
+                color       : rgb(112, 47, 138);
+                display     : inline-block;
+                line-height : 22.8571434020996px;
+                position    : relative;
+                top         : 8px;
+            }
+            a, a:visited, a:hover, a:active, a:focus {
+                text-decoration: none;
+            }
+        </style>
+        <script>
+        respondToMessage = function(e) {
+            e.source.postMessage(this.currentVersionId, e.origin);
+        };
+
+        window.addEventListener('message', respondToMessage, false);
+
+        var changeVersionJS = function(value){
+            this.currentVersionId = value;
+            changeVersionApex(value);
+        };
+
+
+        this.currentVersionId = "{!currentContentVersionId}";
+        </script>
+        <div style="width:100%; height:100%" class="clearfix">
+            <apex:form >
+                <apex:actionRegion >
+                    <apex:actionFunction name="changeVersionApex" action="{!changeVersion}" rerender="viewer, currentVerDownloadLink">
+                        <apex:param name="firstParam" assignTo="{!currentContentVersionId}" value="" />
+                    </apex:actionFunction>
+                    <apex:actionFunction name="downloadJS" action="{!logDownload}" rerender="currentVerDownloadLink">
+                    </apex:actionFunction>
+
+                    <apex:outputPanel layout="block" rendered="{!showDownloadLink}" style="float: right; padding-top:10px; padding-bottom: 10px;">
+                        <apex:outputlabel value="Version " />
+
+                        <apex:selectList size="1" value="{!currentContentVersionId}" onchange="changeVersionJS(this.value)" style="width: 200px;">
+                            <apex:selectOptions value="{!optns}" />
+                        </apex:selectList>
+
+                        <apex:outputLink onclick="downloadJS()" value="/sfc/servlet.shepherd/version/download/{!currentContentVersionId}" style="padding-left:5px;padding-right:5px;" id="currentVerDownloadLink">
+                            <span class="SF1-custom-icon-download"></span>
+                        </apex:outputLink>
+                    </apex:outputPanel>
+                </apex:actionRegion>
+            </apex:form>
+
+            <embed class= "preview-embed" src="/_swf/196001/sfc/flex/DocViewer.swf" flashvars="shepherd_prefix=/sfc/servlet.shepherd&v={!currentContentVersionId}&mode=chatterfilepreview&in_tests=false"
+                   width="100%" height="{!IF(showDownloadLink, '85%', '100%')}" align="middle" id="renditionLarge" quality="high" bgcolor="#fff" name="renditionLarge"
+                   allowscriptaccess="sameDomain" allowfullscreen="true"
+                   pluginspage="http://www.adobe.com/go/getflashplayer" wmode="opaque" type="application/x-shockwave-flash"/>
+            <noembed><p>Flash file preview</p></noembed>
+        </div>
+    </apex:outputPanel>
+
+     <!-- ALTERNATIVE CONTENT VERSION LIST -->
+     <!--
+    <div style="overflow:scroll">
+    <apex:repeat value="{!contentVersionsList}" var="contentVersion">
+        <div>
+            <apex:form >
+                    <apex:commandLink action="{!changeVersion}" value="{!contentVersion.VersionNumber}" reRender="viewer">
+                        <apex:param name="cvid" assignTo="{!currentContentVersionId}" value="{!contentVersion.Id}"/>
+                </apex:commandLink>
+            </apex:form>
+        </div>
+         <div>
+            {!contentVersion.Title}
+        </div>
+         <div>
+            <apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+                <apex:param value="{!contentVersion.LastModifiedDate}" />
+             </apex:outputText>
+        </div>
+
+    </apex:repeat>
+    </div>
+    -->
+
+
+    <!-- CONTENT VERSION LIST -->
+
+   <!--  <apex:outputPanel layout="block" style="overflow:scroll; padding-left: 10px;">
+        <apex:dataTable value="{!contentVersionsList}" var="contentVersion">
+            <apex:Column >
+                <apex:form >
+                    <apex:commandLink action="{!changeVersion}" value="{!contentVersion.VersionNumber}" reRender="viewer">
+                        <apex:param name="cvid" assignTo="{!currentContentVersionId}" value="{!contentVersion.Id}"/>
+                </apex:commandLink>
+            </apex:form>
+            </apex:Column>
+            <apex:Column >
+            &nbsp;
+            </apex:Column>
+            <apex:Column >
+            {!contentVersion.Title}
+            </apex:Column>
+            <apex:Column >
+            &nbsp;
+            </apex:Column>
+            <apex:Column >
+                <apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+                    <apex:param value="{!contentVersion.LastModifiedDate}" />
+                </apex:outputText>
+            </apex:Column>
+            <apex:Column >
+            &nbsp;
+            </apex:Column>
+            <apex:Column >
+                <a href="/{!contentVersion.Id}">Download</a>
+            </apex:Column>
+        </apex:dataTable>
+    </apex:outputPanel> -->
+</apex:page>

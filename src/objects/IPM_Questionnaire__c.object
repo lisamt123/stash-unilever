@@ -1,0 +1,1576 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Object to store all questions related to POS and RQS</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>External_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>true</externalId>
+        <label>External Id</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Active_RQS__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Based on the POS score capture which RQS question to be active for a Project</description>
+        <externalId>false</externalId>
+        <label>IPM Active RQS</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Charter_Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Charter Comments</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>IPM_Charter_Score__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Charter Score</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Comments__c</fullName>
+        <description>To capture teh comments agains each question</description>
+        <externalId>false</externalId>
+        <label>IPM Comments</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>IPM_Contract_Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Contract Comments</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>IPM_Contract_Score__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Contract Score</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_GK_Answers__c</fullName>
+        <description>To capture the gatekeeping answers</description>
+        <externalId>false</externalId>
+        <label>IPM GK Answers</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Partly</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not Applicable</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>IPM_HelpText_Five__c</fullName>
+        <description>Hold helptext for RQS 5th option</description>
+        <externalId>false</externalId>
+        <label>IPM HelpText Five</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>IPM_HelpText_No__c</fullName>
+        <description>To capture Help Text For No</description>
+        <externalId>false</externalId>
+        <label>IPM HelpText No</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>IPM_HelpText_Partly__c</fullName>
+        <description>To Capture Help Text for Partly</description>
+        <externalId>false</externalId>
+        <label>IPM HelpText Partly</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>IPM_HelpText_Yes__c</fullName>
+        <description>To capture Help Text For Yes</description>
+        <externalId>false</externalId>
+        <label>IPM HelpText Yes</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>IPM_Is_Added_Question__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>IPM Is Added Question</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Market_Deployment_Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Market Deployment Comments</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>IPM_Market_Deployment_Score__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Market Deployment Score</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Market_Ready_Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Market Ready Comments</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>IPM_Market_Ready_Score__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Market Ready Score</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_POS_Question_Type__c</fullName>
+        <description>The question types for Probability of Success (POS)</description>
+        <externalId>false</externalId>
+        <label>IPM POS Question Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Consumers</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Brand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Competitors</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Technology</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Customers</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Supply Chain</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Project_Document_Section__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>To capture the corresponding section name for the Risk and OTIF based questions</description>
+        <externalId>false</externalId>
+        <label>IPM Project Document Section</label>
+        <referenceTo>IPM_Project_Document_Section__c</referenceTo>
+        <relationshipLabel>IPM Questionnaires</relationshipLabel>
+        <relationshipName>IPM_Questionnaires</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Project__c</fullName>
+        <description>Detail to to the related Project</description>
+        <externalId>false</externalId>
+        <label>IPM Project</label>
+        <referenceTo>IPM_Project__c</referenceTo>
+        <relationshipLabel>IPM Questionnaires</relationshipLabel>
+        <relationshipName>IPM_Questionnaires</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>true</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>IPM_Question_Help_Text__c</fullName>
+        <description>To capture the helptext for each question</description>
+        <externalId>false</externalId>
+        <label>IPM Question Help Text</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>IPM_Question__c</fullName>
+        <description>The name of the Question</description>
+        <externalId>false</externalId>
+        <label>IPM Question</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>IPM_Questionnaire_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Questionnaire Type</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_RQS_Gate_Type__c</fullName>
+        <description>To choose the gate type for the questions. Will be used in mapping the active questions from the custom settings</description>
+        <externalId>false</externalId>
+        <label>IPM RQS Gate Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Charter</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Contract</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Market Deployment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Market Ready</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>IPM_RQS_Question_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM RQS Question Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Consumer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Claim Support</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Brand Building</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Competitors and Intellectual Property</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Technology</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Trade Customer &amp; Distribution Channels</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Supply Chain</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Product Quality Challenges</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Clearance for Market</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Project Management</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Environmental Impact</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Score__c</fullName>
+        <description>To capture the score against each question for both POS and RQS</description>
+        <externalId>false</externalId>
+        <label>IPM Score</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Section_External_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Section External Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Section_Sequence_Number__c</fullName>
+        <description>To capture a gate keeping question belongs to which section</description>
+        <externalId>false</externalId>
+        <label>IPM Section Sequence Number</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Sequence_Number__c</fullName>
+        <description>To capture the sequence Number of a Question</description>
+        <externalId>false</externalId>
+        <label>IPM Sequence Number</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Show_Create_Link__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This is added to render the create mitigation plan link on the Risk component</description>
+        <externalId>false</externalId>
+        <label>IPM Show Create Link</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_Master__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>To capture if the Questions are master</description>
+        <externalId>false</externalId>
+        <label>Is Master</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>IPM Questionnaire</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Is_Master__c</columns>
+        <columns>IPM_Question__c</columns>
+        <columns>IPM_Sequence_Number__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>IPM_RQS_Question_Type__c</columns>
+        <columns>IPM_Project__c</columns>
+        <columns>IPM_RQS_Gate_Type__c</columns>
+        <columns>IPM_POS_Question_Type__c</columns>
+        <columns>IPM_Score__c</columns>
+        <columns>IPM_Active_RQS__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OBJECT_ID</field>
+            <operation>notEqual</operation>
+        </filters>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>All1</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>Corporate_Risk</fullName>
+        <columns>NAME</columns>
+        <columns>Is_Master__c</columns>
+        <columns>IPM_Question__c</columns>
+        <columns>IPM_Score__c</columns>
+        <columns>IPM_Question_Help_Text__c</columns>
+        <columns>IPM_HelpText_Yes__c</columns>
+        <columns>IPM_HelpText_No__c</columns>
+        <columns>IPM_HelpText_Partly__c</columns>
+        <columns>IPM_HelpText_Five__c</columns>
+        <columns>IPM_Project__c</columns>
+        <columns>IPM_Project_Document_Section__c</columns>
+        <columns>IPM_Comments__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>IPM_Questionnaire__c.Corporate_Risk</value>
+        </filters>
+        <label>Corporate Risk</label>
+    </listViews>
+    <listViews>
+        <fullName>Gate_Keeping_Questions</fullName>
+        <columns>NAME</columns>
+        <columns>IPM_Project__c</columns>
+        <columns>IPM_RQS_Gate_Type__c</columns>
+        <columns>Is_Master__c</columns>
+        <columns>IPM_Sequence_Number__c</columns>
+        <columns>IPM_Question__c</columns>
+        <columns>IPM_Section_Sequence_Number__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>IPM_Question_Help_Text__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>IPM_Questionnaire__c.GateKeeperChecklist</value>
+        </filters>
+        <filters>
+            <field>IPM_RQS_Gate_Type__c</field>
+            <operation>equals</operation>
+            <value>Charter,Contract,Market Deployment,Market Ready</value>
+        </filters>
+        <filters>
+            <field>IPM_Project__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>Is_Master__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>Gate Keeping Questions</label>
+    </listViews>
+    <listViews>
+        <fullName>Master</fullName>
+        <columns>NAME</columns>
+        <columns>IPM_Project__c</columns>
+        <columns>IPM_Question__c</columns>
+        <columns>IPM_RQS_Gate_Type__c</columns>
+        <columns>Is_Master__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>IPM_RQS_Question_Type__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Is_Master__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>Master</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>POS_RQS_Questions</fullName>
+        <booleanFilter>(1 OR 2) AND 3</booleanFilter>
+        <columns>NAME</columns>
+        <columns>IPM_Sequence_Number__c</columns>
+        <columns>IPM_POS_Question_Type__c</columns>
+        <columns>IPM_Question__c</columns>
+        <columns>IPM_Project__c</columns>
+        <columns>IPM_HelpText_Yes__c</columns>
+        <columns>IPM_HelpText_No__c</columns>
+        <columns>IPM_HelpText_Partly__c</columns>
+        <columns>IPM_Question_Help_Text__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>IPM_Score__c</columns>
+        <columns>IPM_RQS_Gate_Type__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>IPM_Questionnaire__c.POS_Questionnaire</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>IPM_Questionnaire__c.RQS_Questionnaire</value>
+        </filters>
+        <filters>
+            <field>IPM_Project__c</field>
+            <operation>equals</operation>
+        </filters>
+        <label>POS RQS Questions</label>
+    </listViews>
+    <listViews>
+        <fullName>RND_Questions</fullName>
+        <columns>NAME</columns>
+        <columns>IPM_Question__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>IPM_GK_Answers__c</columns>
+        <columns>IPM_Project__c</columns>
+        <columns>Is_Master__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>IPM_Questionnaire__c.RNDQuestion</value>
+        </filters>
+        <label>RND Questions</label>
+    </listViews>
+    <listViews>
+        <fullName>RQS_Questions</fullName>
+        <columns>NAME</columns>
+        <columns>IPM_Sequence_Number__c</columns>
+        <columns>IPM_Project__c</columns>
+        <columns>IPM_Question__c</columns>
+        <columns>IPM_Question_Help_Text__c</columns>
+        <columns>IPM_HelpText_Yes__c</columns>
+        <columns>IPM_HelpText_No__c</columns>
+        <columns>IPM_HelpText_Partly__c</columns>
+        <columns>IPM_HelpText_Five__c</columns>
+        <columns>IPM_RQS_Question_Type__c</columns>
+        <columns>RECORDTYPE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>IPM_Questionnaire__c.RQS_Questionnaire</value>
+        </filters>
+        <filters>
+            <field>Is_Master__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>RQS Questions</label>
+    </listViews>
+    <nameField>
+        <displayFormat>IQ-{0000}</displayFormat>
+        <label>IPM Questionnaire Id</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>IPM Questionnaires</pluralLabel>
+    <recordTypes>
+        <fullName>Corporate_Risk</fullName>
+        <active>true</active>
+        <label>Corporate Risk</label>
+        <picklistValues>
+            <picklist>IPM_GK_Answers__c</picklist>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_POS_Question_Type__c</picklist>
+            <values>
+                <fullName>Brand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Competitors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consumers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supply Chain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technology</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_RQS_Gate_Type__c</picklist>
+            <values>
+                <fullName>Charter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Market Deployment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Market Ready</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_RQS_Question_Type__c</picklist>
+            <values>
+                <fullName>Brand Building</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Claim Support</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clearance for Market</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Competitors and Intellectual Property</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consumer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Environmental Impact</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product Quality Challenges</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Project Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supply Chain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Customer %26 Distribution Channels</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>GateKeeperChecklist</fullName>
+        <active>true</active>
+        <description>To capture all the Gatekeeping Cheklist Questions</description>
+        <label>GateKeeperChecklist</label>
+        <picklistValues>
+            <picklist>IPM_GK_Answers__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Applicable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_POS_Question_Type__c</picklist>
+            <values>
+                <fullName>Brand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Competitors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consumers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supply Chain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technology</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_RQS_Gate_Type__c</picklist>
+            <values>
+                <fullName>Charter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Market Deployment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Market Ready</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_RQS_Question_Type__c</picklist>
+            <values>
+                <fullName>Brand Building</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Claim Support</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clearance for Market</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Competitors and Intellectual Property</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consumer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Environmental Impact</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product Quality Challenges</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Project Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supply Chain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Customer %26 Distribution Channels</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>POS_Questionnaire</fullName>
+        <active>true</active>
+        <description>To categorise the POS questions</description>
+        <label>POS Questionnaire</label>
+        <picklistValues>
+            <picklist>IPM_GK_Answers__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Applicable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_POS_Question_Type__c</picklist>
+            <values>
+                <fullName>Brand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Competitors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consumers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supply Chain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technology</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_RQS_Gate_Type__c</picklist>
+            <values>
+                <fullName>Charter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Contract</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_RQS_Question_Type__c</picklist>
+            <values>
+                <fullName>Brand Building</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Claim Support</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clearance for Market</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Competitors and Intellectual Property</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consumer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Environmental Impact</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product Quality Challenges</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Project Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supply Chain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Customer %26 Distribution Channels</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>RNDQuestion</fullName>
+        <active>true</active>
+        <description>TO capture the RND questions</description>
+        <label>RNDQuestion</label>
+        <picklistValues>
+            <picklist>IPM_GK_Answers__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Applicable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_POS_Question_Type__c</picklist>
+            <values>
+                <fullName>Brand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Competitors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consumers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supply Chain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technology</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_RQS_Gate_Type__c</picklist>
+            <values>
+                <fullName>Charter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Market Deployment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Market Ready</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_RQS_Question_Type__c</picklist>
+            <values>
+                <fullName>Brand Building</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Claim Support</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clearance for Market</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Competitors and Intellectual Property</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consumer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Environmental Impact</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product Quality Challenges</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Project Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supply Chain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Customer %26 Distribution Channels</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>RQS_Questionnaire</fullName>
+        <active>true</active>
+        <description>To categorise the RQS questions</description>
+        <label>RQS Questionnaire</label>
+        <picklistValues>
+            <picklist>IPM_GK_Answers__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Applicable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_POS_Question_Type__c</picklist>
+            <values>
+                <fullName>Brand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Competitors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consumers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supply Chain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technology</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_RQS_Gate_Type__c</picklist>
+            <values>
+                <fullName>Charter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Contract</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_RQS_Question_Type__c</picklist>
+            <values>
+                <fullName>Brand Building</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Claim Support</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clearance for Market</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Competitors and Intellectual Property</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consumer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Environmental Impact</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product Quality Challenges</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Project Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supply Chain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Customer %26 Distribution Channels</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>R_D_Feasibility</fullName>
+        <active>true</active>
+        <label>R&amp;D Feasibility</label>
+        <picklistValues>
+            <picklist>IPM_GK_Answers__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Applicable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_POS_Question_Type__c</picklist>
+            <values>
+                <fullName>Brand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Competitors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consumers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supply Chain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technology</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_RQS_Gate_Type__c</picklist>
+            <values>
+                <fullName>Charter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Market Deployment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Market Ready</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_RQS_Question_Type__c</picklist>
+            <values>
+                <fullName>Brand Building</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Claim Support</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clearance for Market</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Competitors and Intellectual Property</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consumer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Environmental Impact</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product Quality Challenges</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Project Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supply Chain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Customer %26 Distribution Channels</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Supply_Chain_Feasibility</fullName>
+        <active>true</active>
+        <label>Supply Chain Feasibility</label>
+        <picklistValues>
+            <picklist>IPM_GK_Answers__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Applicable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_POS_Question_Type__c</picklist>
+            <values>
+                <fullName>Brand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Competitors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consumers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supply Chain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technology</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_RQS_Gate_Type__c</picklist>
+            <values>
+                <fullName>Charter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Market Deployment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Market Ready</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_RQS_Question_Type__c</picklist>
+            <values>
+                <fullName>Brand Building</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Claim Support</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clearance for Market</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Competitors and Intellectual Property</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consumer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Environmental Impact</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product Quality Challenges</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Project Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supply Chain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Customer %26 Distribution Channels</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>TradeMark</fullName>
+        <active>true</active>
+        <description>TO capture the trademark questions</description>
+        <label>TradeMark</label>
+        <picklistValues>
+            <picklist>IPM_GK_Answers__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Applicable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_POS_Question_Type__c</picklist>
+            <values>
+                <fullName>Brand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Competitors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consumers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supply Chain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technology</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_RQS_Gate_Type__c</picklist>
+            <values>
+                <fullName>Charter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Market Deployment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Market Ready</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_RQS_Question_Type__c</picklist>
+            <values>
+                <fullName>Brand Building</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Claim Support</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clearance for Market</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Competitors and Intellectual Property</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consumer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Environmental Impact</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product Quality Challenges</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Project Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supply Chain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Customer %26 Distribution Channels</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <searchResultsAdditionalFields>IPM_Project__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>IPM_Question__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>IPM_Section_Sequence_Number__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

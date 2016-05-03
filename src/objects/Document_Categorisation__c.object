@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>To remove hard coding for the categorisation maps in uw_Constants</description>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>level_1__c</fullName>
+        <description>Bucket_Fields__c</description>
+        <externalId>false</externalId>
+        <label>level 1</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>level_2__c</fullName>
+        <description>Categorisation_2__c</description>
+        <externalId>false</externalId>
+        <label>level 2</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>level_3__c</fullName>
+        <description>Categorisation_3__c</description>
+        <externalId>false</externalId>
+        <label>level 3</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <label>Document Categorisation</label>
+    <visibility>Public</visibility>
+</CustomObject>

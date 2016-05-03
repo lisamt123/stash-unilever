@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Agency Portal CMS</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Agency Portal CMS</value>
+    </caseValues>
+    <fields>
+        <label><!-- Body --></label>
+        <name>Body__c</name>
+    </fields>
+    <fields>
+        <label><!-- Order --></label>
+        <name>Order__c</name>
+    </fields>
+    <fields>
+        <label><!-- Published --></label>
+        <name>Published__c</name>
+    </fields>
+    <fields>
+        <label><!-- Title --></label>
+        <name>Title__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Accessibility</masterLabel>
+            <translation><!-- Accessibility --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Agency List</masterLabel>
+            <translation><!-- Agency List --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FAQ</masterLabel>
+            <translation><!-- FAQ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Landing Page</masterLabel>
+            <translation><!-- Landing Page --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Privacy</masterLabel>
+            <translation><!-- Privacy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rate Card Description</masterLabel>
+            <translation><!-- Rate Card Description --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Supplier Code</masterLabel>
+            <translation><!-- Supplier Code --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T&amp;C</masterLabel>
+            <translation><!-- T&amp;C --></translation>
+        </picklistValues>
+    </fields>
+    <startsWith>Vowel</startsWith>
+</CustomObjectTranslation>

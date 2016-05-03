@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>IPM Document Template</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>IPM Document Templates</value>
+    </caseValues>
+    <fields>
+        <label><!-- IPM Document Order --></label>
+        <name>IPM_Document_Order__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Document Template Name --></label>
+        <name>IPM_Document_Template_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Document Type --></label>
+        <name>IPM_Document_Type__c</name>
+        <picklistValues>
+            <masterLabel>Charter</masterLabel>
+            <translation><!-- Charter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Contract</masterLabel>
+            <translation><!-- Contract --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Market Deployment</masterLabel>
+            <translation><!-- Market Deployment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Market Ready</masterLabel>
+            <translation><!-- Market Ready --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IPM Project Template --></label>
+        <name>IPM_Project_Template__c</name>
+        <relationshipLabel><!-- IPM Document Templates --></relationshipLabel>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,122 @@
+<apex:page html-class="noBgImage" controller="PBS_LibraryController_CC" readOnly="true" docType="html-5.0" sidebar="false" showHeader="false" standardStylesheets="false">
+   
+    <!-- javascript -->
+    <apex:includeScript value="{!URLFOR($Resource.PCResources, '/js/jquery-1.12.0.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.PCResources, '/js/bootstrap.min.js')}" />
+
+    <!-- sylesheets -->
+    <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/bootstrap.min.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/PCContainer.css')}" />
+
+   <apex:composition template="almond__LMS_Template">  
+        
+   <apex:define name="body">
+                     
+    <div class="wrapper">
+        <!--<div class="row topRow">
+            <div class="col-md-12 col-lg-12">
+                <a href="{!$Page.PC_Forum}" title="Go back to Forum Page">&laquo; Go Back to Forum Page</a>
+            </div>
+        </div>-->
+        
+        <div class="row topRow">
+            <div class="col-md-12 col-lg-12">
+                <div class="heading">
+                    <apex:image width="100" Height="100" title="Library" value="{!URLFOR($Resource.PCResources, 'img/Library.ico')}" /> Library
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <apex:form >
+                <div class="row">
+                    <div class="col-md-3 col-lg-3">
+                        <div class="box">
+                            <div class="headerBox">
+                                Filters
+                            </div>
+                            <div class="form-group">
+                                <label for="{!$Component.filterArticleType}">Article Type:</label>
+                                <apex:selectList id="filterArticleType" value="{!filterArticleType}" multiselect="false" styleClass="form-control" size="1">
+                                    <apex:selectOptions value="{!ArticleTypeFilterOptions}"/>
+                                </apex:selectList>
+                            </div>
+                            <apex:commandLink action="{!sortData}" styleClass="btn btn-primary">Apply Filters</apex:commandLink>
+                        </div>
+                    </div>
+                    <div class="col-md-9 col-lg-9">
+                        <apex:dataTable value="{!PbsArticleList}" var="article" styleClass="table table-bordered table-striped table-hover">
+                            <apex:column >
+                                <apex:facet name="header">
+                                    <apex:commandLink action="{!sortData}">
+                                        Title&nbsp;
+                                        <apex:outputPanel styleClass="glyphicon glyphicon-triangle-top" rendered="{!IF(AND(sortField == 'Title', sortDir == 'ASC'), true, false)}" />
+                                        <apex:outputPanel styleClass="glyphicon glyphicon-triangle-bottom" rendered="{!IF(AND(sortField == 'Title', sortDir == 'DESC'), true, false)}" />
+                                        <apex:param assignTo="{!sortField}" name="field" value="Title" />
+                                        <apex:param assignTo="{!sortDir}" name="dir" value="{!IF(sortDir == 'ASC', 'DESC', 'ASC')}" />
+                                    </apex:commandlink>
+                                </apex:facet>
+                                <a href="/articles/en_US/{!SUBSTITUTE(article.ArticleType,'__kav','')}/{!article.UrlName}" target="_self" title=""><apex:outputField value="{!article.title}"/></a>
+                            </apex:column>
+                            <apex:column >
+                                <apex:facet name="header">
+                                    <apex:commandLink action="{!sortData}">
+                                        Summary&nbsp;
+                                        <apex:outputPanel styleClass="glyphicon glyphicon-triangle-top" rendered="{!IF(AND(sortField == 'Summary', sortDir == 'ASC'), true, false)}" />
+                                        <apex:outputPanel styleClass="glyphicon glyphicon-triangle-bottom" rendered="{!IF(AND(sortField == 'Summary', sortDir == 'DESC'), true, false)}" />
+                                        <apex:param assignTo="{!sortField}" name="field" value="Summary" />
+                                        <apex:param assignTo="{!sortDir}" name="dir" value="{!IF(sortDir == 'ASC', 'DESC', 'ASC')}" />
+                                    </apex:commandlink>
+                                </apex:facet>
+                                <apex:outputField value="{!article.Summary}"/>
+                            </apex:column>
+                            <apex:column styleClass="typeCol">
+                                <apex:facet name="header">Type</apex:facet>
+                                <apex:outputField value="{!article.ArticleType}"/>
+                            </apex:column>
+                            <apex:column styleClass="dateCol">
+                                <apex:facet name="header">
+                                    <apex:commandLink action="{!sortData}">
+                                        Last Published Date&nbsp;
+                                        <apex:outputPanel styleClass="glyphicon glyphicon-triangle-top" rendered="{!IF(AND(sortField == 'lastPublishedDate', sortDir == 'ASC'), true, false)}" />
+                                        <apex:outputPanel styleClass="glyphicon glyphicon-triangle-bottom" rendered="{!IF(AND(sortField == 'lastPublishedDate', sortDir == 'DESC'), true, false)}" />
+                                        <apex:param assignTo="{!sortField}" name="field" value="lastPublishedDate" />
+                                        <apex:param assignTo="{!sortDir}" name="dir" value="{!IF(sortDir == 'ASC', 'DESC', 'ASC')}" />
+                                    </apex:commandlink>
+                                </apex:facet>
+                                <apex:outputField value="{!article.lastPublishedDate}"/>
+                            </apex:column>
+                            <apex:column styleClass="statsCol">
+                                <apex:facet name="header">AVG Rating</apex:facet>
+                                <div class="rating" data-toggle="wiki-tooltip" title="{!ROUND(ranking[article.KnowledgeArticleId],2)}">
+                                    <span class="glyphicon {!IF(ranking[article.KnowledgeArticleId] >= 1, 'glyphicon glyphicon-star', 'glyphicon glyphicon-star-empty')}" aria-hidden="true"></span>
+                                    <span class="glyphicon {!IF(ranking[article.KnowledgeArticleId] >= 2, 'glyphicon glyphicon-star', 'glyphicon glyphicon-star-empty')}" aria-hidden="true"></span>
+                                    <span class="glyphicon {!IF(ranking[article.KnowledgeArticleId] >= 3, 'glyphicon glyphicon-star', 'glyphicon glyphicon-star-empty')}" aria-hidden="true"></span>
+                                    <span class="glyphicon {!IF(ranking[article.KnowledgeArticleId] >= 4, 'glyphicon glyphicon-star', 'glyphicon glyphicon-star-empty')}" aria-hidden="true"></span>
+                                    <span class="glyphicon {!IF(ranking[article.KnowledgeArticleId] >= 5, 'glyphicon glyphicon-star', 'glyphicon glyphicon-star-empty')}" aria-hidden="true"></span>
+                                </div>
+                            </apex:column>
+                        </apex:dataTable>
+
+                        <nav>
+                            <ul class="pager">
+                                <li><apex:commandLink action="{!previous}" rendered="{!hasPrevious}"><span aria-hidden="true">&laquo; Previous</span></apex:commandlink></li>
+                                <li><span>Page {!CurrentPageNumber} of {!NumberOfPages}</span></li>
+                                <li><apex:commandLink action="{!next}" rendered="{!hasNext}"><span aria-hidden="true">Next &raquo;</span></apex:commandlink></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+            </apex:form>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function(){
+            jQuery('[data-toggle="wiki-tooltip"]').tooltip();
+        });
+    </script>
+       </apex:define>
+    </apex:composition>
+</apex:page>

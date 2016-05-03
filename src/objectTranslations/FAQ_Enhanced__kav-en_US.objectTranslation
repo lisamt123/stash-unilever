@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>FAQ Enhanced</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>FAQ Enhanced</value>
+    </caseValues>
+    <fields>
+        <label><!-- Additional Information --></label>
+        <name>Additional_Information__c</name>
+    </fields>
+    <fields>
+        <label><!-- Additional Sensitive Information --></label>
+        <name>Additional_Sensitive_Information__c</name>
+    </fields>
+    <fields>
+        <label><!-- Answer --></label>
+        <name>Answer__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approved by Legal --></label>
+        <name>Approved_by_Legal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Brand --></label>
+        <name>Brand__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legacy Text --></label>
+        <name>Legacy_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Question --></label>
+        <name>Question__c</name>
+    </fields>
+    <fields>
+        <label><!-- Related PDF --></label>
+        <name>Related_PDF__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sensitive Text --></label>
+        <name>Sensitive_Text__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

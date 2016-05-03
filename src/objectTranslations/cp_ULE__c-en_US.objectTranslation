@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>ULE Event Rep</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>ULE Event Reps</value>
+    </caseValues>
+    <fields>
+        <label><!-- Event --></label>
+        <name>Event__c</name>
+        <relationshipLabel><!-- ULE Spokesperson / Representative --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Unilever.com Bio --></label>
+        <name>UnileverBio__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unilever Leadership Executive --></label>
+        <lookupFilter>
+            <errorMessage><!-- The specified ULE Member does not exist or does not match the filter criteria. Please consult your system administrator to ensure the speaker is active and available --></errorMessage>
+        </lookupFilter>
+        <name>UnileverLeadershipExecutive__c</name>
+        <relationshipLabel><!-- Events as Spokesperson/Representative --></relationshipLabel>
+    </fields>
+    <startsWith>Vowel</startsWith>
+</CustomObjectTranslation>
