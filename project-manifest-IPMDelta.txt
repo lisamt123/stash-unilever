@@ -1,4 +1,15 @@
 src
 src/classes
+<<<<<<< HEAD
 src/classes/IPM_CMIGateSectionController.cls
 src/classes/IPM_CMIGateSectionController.cls-meta.xml
+=======
+src/classes/IPM_ChangProjectDocumentStatusController.cls
+src/classes/IPM_ChangProjectDocumentStatusController.cls-meta.xml
+src/classes/IPM_FinancialController.cls
+src/classes/IPM_FinancialController.cls-meta.xml
+src/classes/IPM_FinancialController_Test.cls
+src/classes/IPM_FinancialController_Test.cls-meta.xml
+src/classes/IPM_OTIF_Report_Batch.cls
+src/classes/IPM_OTIF_Report_Batch.cls-meta.xml
+>>>>>>> 2f4a0fa283b411c58bb9f5d3288a6420dc795fd7
