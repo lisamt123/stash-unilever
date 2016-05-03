@@ -6,7 +6,7 @@ public static void ExecuteFollowUnFollow(List<aa_Agent_App_User_Preference__c> U
 	  String BatchUserID = BatchUserIDList.get('Follow Batch User ID').Value__c; 
 
   
-        List<aa_Cluster__c> ClusterIdName= [SELECT Id,Name FROM aa_Cluster__c]; 
+        List<aa_Cluster__c> ClusterIdName= [SELECT Id,Name FROM aa_Cluster__c limit 15]; 
         Map<String,ID> clusterNameIdMap=new  Map<String,ID>(); 
         Set<ID> clustIdSet=new Set<ID>();
         
@@ -23,7 +23,7 @@ public static void ExecuteFollowUnFollow(List<aa_Agent_App_User_Preference__c> U
         }
         
         //Creat map of cluster id & name
-        List<aa_Country__c> CountryIds= [SELECT Id,Cluster_Id__c  FROM aa_Country__c];
+        List<aa_Country__c> CountryIds= [SELECT Id,Cluster_Id__c  FROM aa_Country__c limit 150];
         Map<Id,Id> ClusterId= new Map<Id,Id>();
         for(aa_Country__c obj:CountryIds){
            ClusterId.put(obj.Id,obj.Cluster_Id__c);
@@ -111,7 +111,7 @@ public static void ExecuteFollowUnFollow(List<aa_Agent_App_User_Preference__c> U
         
         
           
-        List<aa_Country__c> CountryIds1= [SELECT Id,Cluster_Id__c,Cluster_Id__r.Name,Name FROM aa_Country__c];
+        List<aa_Country__c> CountryIds1= [SELECT Id,Cluster_Id__c,Cluster_Id__r.Name,Name FROM aa_Country__c limit 150];
         List<EntitySubscription> UnfollowList = new List<EntitySubscription>();
         
              
