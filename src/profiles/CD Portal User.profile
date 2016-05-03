@@ -287,10 +287,7 @@
         <apexClass>AF_AfterUpdateBonusResHandler</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>AF_AgencyEstimate</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
+       
     <classAccesses>
         <apexClass>AF_AgencyEstimateController</apexClass>
         <enabled>false</enabled>
@@ -4799,10 +4796,7 @@
         <apexClass>WinatPOSCategoryViewController_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>af_SendCurrencyReminder</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
+     
     <classAccesses>
         <apexClass>af_usersearch</apexClass>
         <enabled>false</enabled>

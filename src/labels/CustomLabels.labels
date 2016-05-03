@@ -3013,6 +3013,7 @@ This means that they will not have editing rights. You can manage member &lt;br/
     <labels>
         <fullName>CEC_PhoneSearchValidationError</fullName>
         <categories>CEC:Case_Error</categories>
+<<<<<<< HEAD
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CEC_PhoneSearchValidationError</shortDescription>
@@ -3165,6 +3166,160 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <fullName>Core_NT_App_Url</fullName>
         <language>en_US</language>
         <protected>false</protected>
+=======
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_PhoneSearchValidationError</shortDescription>
+        <value>The Phone Search should be 6 Character length</value>
+    </labels>
+    <labels>
+        <fullName>CEC_PostCode</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_PostCode</shortDescription>
+        <value>Postcode</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Product</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Product</shortDescription>
+        <value>Product</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Product_Hierarchy</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Product_Hierarchy</shortDescription>
+        <value>Product Hierarchy</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Quick_Code_Change_Error</fullName>
+        <categories>VF:CEC_QuickCode</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC Quick Code Change Error</shortDescription>
+        <value>Please Enter Country code before changing Quick Code!</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Reason</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Reason</shortDescription>
+        <value>Reason</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ReasonCode</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ReasonCode</shortDescription>
+        <value>Reason Code</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Reason_Hierarchy</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Reason_Hierarchy</shortDescription>
+        <value>Reason Hierarchy</value>
+    </labels>
+    <labels>
+        <fullName>CEC_RelatedCases</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_RelatedCases</shortDescription>
+        <value>Related Cases</value>
+    </labels>
+    <labels>
+        <fullName>CEC_SearchValidationError</fullName>
+        <categories>CEC:Case_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_SearchValidationError</shortDescription>
+        <value>Validation Error : Please fill at least one field in the search form</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Search_Button</fullName>
+        <categories>Visualforce Page :CEC_NewAccountContact</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Search_Button</shortDescription>
+        <value>Search</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Specify_Details_in_Missing_Info</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Specify Details in Missing Info</shortDescription>
+        <value>Please Specify which details are known</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Status</fullName>
+        <categories>VF page :CEC_NewAccountCase</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>To display Case Status as required message</shortDescription>
+        <value>Status: Validation Error: Value is required.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Street</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Street</shortDescription>
+        <value>Street</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Title</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Title</shortDescription>
+        <value>Title</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ValidEmailTemplate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ValidEmailTemplate</shortDescription>
+        <value>Please enter a valid Email Template Name.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_isFormKnown</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_isFormKnown</shortDescription>
+        <value>Is Form Known?</value>
+    </labels>
+    <labels>
+        <fullName>CEC_isPacksizeKnown</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_isPacksizeKnown</shortDescription>
+        <value>Is Pack Size Known?</value>
+    </labels>
+    <labels>
+        <fullName>CEC_isVariantKnown</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_isVariantKnown</shortDescription>
+        <value>Is Variant Known?</value>
+    </labels>
+    <labels>
+        <fullName>Core_NT_App_Url</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+>>>>>>> 4777094791912b7a069e5955ef915c3ee32096f3
         <shortDescription>Core NT App Url</shortDescription>
         <value>https://unilever.my.salesforce.com/home/home.jsp?tsid=02uE00000001sfc</value>
     </labels>
@@ -14982,6 +15137,81 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
         <protected>false</protected>
         <shortDescription>UW_PINNOVATE_LAUNCHED</shortDescription>
         <value>has launched the pinnovate wall. See the Link in the information section.</value>
+<<<<<<< HEAD
+=======
+    </labels>
+    <labels>
+        <fullName>UW_SET_BACKGROUND_CMD</fullName>
+        <categories>Pinnovate</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_SET_BACKGROUND_CMD</shortDescription>
+        <value>#setbackground</value>
+    </labels>
+    <labels>
+        <fullName>UW_SET_HEADER_CMD</fullName>
+        <categories>Pinnovate</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_SET_HEADER_CMD</shortDescription>
+        <value>#setheader</value>
+    </labels>
+	<labels>
+        <fullName>VEP_Access_Err</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VEP_Access_Err</shortDescription>
+        <value>You do not have sufficient access to the record</value>
+    </labels>
+    <labels>
+        <fullName>VEP_Approve_Reject_Status_Error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VEP Approve/Reject Status Error</shortDescription>
+        <value>Please click on the Approve/Reject link that you have received in Email</value>
+    </labels>
+    <labels>
+        <fullName>VEP_ApproverAccess_Err</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VEP_ApproverAccess_Err</shortDescription>
+        <value>You cannot be the approver for your request</value>
+    </labels>
+    <labels>
+        <fullName>VEP_Factory_Name_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VEP Factory Name Id</shortDescription>
+        <value>00Nc0000001NXD0</value>
+    </labels>
+    <labels>
+        <fullName>VEP_Quiz_Correcturl_Err</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VEP Quiz Correcturl Err</shortDescription>
+        <value>Please click on the correct Url of Safety Quiz</value>
+    </labels>
+    <labels>
+        <fullName>VEP_Quiz_Pass_Err</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VEP Quiz Pass Err</shortDescription>
+        <value>Visitor Pass has already been generated for this request</value>
+    </labels>
+    <labels>
+        <fullName>VEP_Status_ERR</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VEP_Status_ERR</shortDescription>
+        <value>Please click on the correct URL that you have received</value>
+    </labels>
+    <labels>
+        <fullName>VEP_Visitor_Contact_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VEP Visitor Contact Id</shortDescription>
+        <value>00Nc0000001NXDo</value>
+>>>>>>> 4777094791912b7a069e5955ef915c3ee32096f3
     </labels>
     <labels>
         <fullName>UW_SET_BACKGROUND_CMD</fullName>
@@ -15774,4 +16004,8 @@ Which Communications team do you represent? You must be associated to one Planne
         <shortDescription>User doesn&apos;t enter any value for &apos;Inoplan Project Name&apos;</shortDescription>
         <value>Please enter your Inoplan project name. If you do not have an Inoplan project please select No Inoplan Project</value>
     </labels>
+<<<<<<< HEAD
 </CustomLabels>
+=======
+</CustomLabels>
+>>>>>>> 4777094791912b7a069e5955ef915c3ee32096f3
