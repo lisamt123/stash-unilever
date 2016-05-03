@@ -1091,6 +1091,7 @@ public with sharing class IPM_ProjectCountryDetails{
   
   List<IPM_Project_Rollout__c>rolloutList=new List<IPM_Project_Rollout__c>();
   IPM_Project_Rollout__c newRollout;
+  Set<id> rolloutIdSet=new Set<id>();
 
 
     
@@ -1109,14 +1110,16 @@ public with sharing class IPM_ProjectCountryDetails{
           
       
       {
-        rolloutList=new List<IPM_Project_Rollout__c>();
+      	if(!rolloutIdSet.contains(country.Local_Rollout__c)){
+       
         newRollout=new IPM_Project_Rollout__c();
         
         
         newRollout.IPM_Company_Card__c=companyCard.Id; //assigning company card to rollout
         newRollout.id=country.Local_Rollout__c; 
         rolloutList.add(newRollout);
-        
+        rolloutIdSet.add(newRollout.id);
+      	} 
       }
       
     }
