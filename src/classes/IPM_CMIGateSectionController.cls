@@ -117,10 +117,16 @@ public with sharing Class IPM_CMIGateSectionController{
                 }
                 contentCount.put(cmi.Id,count);
             }
-            
-            countryList=[SELECT Id,Country_Name__c,Country_Code__c,IPM_Project__c,IPM_Regional_Project__c FROM IPM_Country__c
-                         WHERE IPM_Project__c=:project.Id OR IPM_Regional_Project__c=:project.Id OR IPM_Local_Project__c=:project.Id];  
-            
+            String query='SELECT Id,Country_Name__c,Country_Code__c,IPM_Project__c,IPM_Regional_Project__c FROM IPM_Country__c';
+            string projectId=string.escapeSingleQuotes(project.Id);//exception of unused local varaibale of Sonar. Used in below query
+            if(gateType==IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE){
+            	string parentProjectId=string.escapeSingleQuotes(project.IPM_Parent_Project__c);//exception of unused local varaibale of Sonar. Used in below query
+            	countryList=Database.Query(query+' WHERE IPM_Regional_Project__c=:parentProjectId');
+            }
+            else{
+            	countryList=Database.Query(query+' WHERE IPM_Project__c=:projectId OR IPM_Regional_Project__c=:projectId');
+            }
+
             if(countryList != null && !countryList.isEmpty()){
                 for(IPM_Country__c c:countryList){
                     mapCountryNameWithCode.put(c.Country_Code__c,c.Country_Name__c);
