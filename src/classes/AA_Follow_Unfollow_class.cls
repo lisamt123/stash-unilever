@@ -1,44 +1,50 @@
 public with sharing class AA_Follow_Unfollow_class {
 public static void ExecuteFollowUnFollow(List<aa_Agent_App_User_Preference__c> UserSet){
-        
+	
+	  Map<string,aa_agent_app_custom_setting__c> BatchUserIDList = aa_agent_app_custom_setting__c.getAll();
+	  String lastbatchtime = BatchUserIDList.get('Follow Batch Last Run Time').Value__c;
+	  String BatchUserID = BatchUserIDList.get('Follow Batch User ID').Value__c; 
+
+  
         List<aa_Cluster__c> ClusterIdName= [SELECT Id,Name FROM aa_Cluster__c]; 
         Map<String,ID> clusterNameIdMap=new  Map<String,ID>(); 
         Set<ID> clustIdSet=new Set<ID>();
+        
         //create cluser name & id map
         for(aa_Cluster__c clustone:ClusterIdName)
         {
             clusterNameIdMap.put(clustone.Name,clustone.Id);
             clustIdSet.add(clustone.Id);
         }
- 
+        // Create userId set
         Set<Id> userIds = new Set<Id>();
         for(aa_Agent_App_User_Preference__c obj:UserSet){
          userIds.add(obj.UserId__c);
         }
         
+        //Creat map of cluster id & name
         List<aa_Country__c> CountryIds= [SELECT Id,Cluster_Id__c  FROM aa_Country__c];
         Map<Id,Id> ClusterId= new Map<Id,Id>();
         for(aa_Country__c obj:CountryIds){
            ClusterId.put(obj.Id,obj.Cluster_Id__c);
         }
                     
-        List<EntitySubscription> lstEntitySub= [SELECT CreatedById,CreatedDate,Id,IsDeleted,NetworkId,ParentId,SubscriberId FROM EntitySubscription where SubscriberId in:UserIds and ParentId In:CountryIds ];
+        //fetch entires from entity subscribtion table for Agent User & countries & createdate >= lastjobRun              
+        List<EntitySubscription> lstEntitySub= [SELECT CreatedById,CreatedDate,Id,IsDeleted,NetworkId,ParentId,SubscriberId FROM EntitySubscription where SubscriberId in:UserIds and ParentId In:CountryIds and CreatedDate >=:
+        datetime.valueOf(lastbatchtime) ];
+        
         List<EntitySubscription> lstUpsertSub= new List<EntitySubscription>();
         
         Map<ID,string> globaluserid=new Map<ID, String>();
-        
+
         for(EntitySubscription obj:lstEntitySub){
         
-         for(EntitySubscription addlist:lstUpsertSub)
-         {  
-             if(addlist.SubscriberId!=obj.SubscriberId && addlist.ParentId!=ClusterId.get(obj.ParentId))
-             {
-             EntitySubscription objTemp = new EntitySubscription();
-             objTemp.SubscriberId = obj.SubscriberId;
-             objTemp.ParentId = ClusterId.get(obj.ParentId);
-             lstUpsertSub.add(objTemp);
-             } 
-         }
+	             EntitySubscription objTemp = new EntitySubscription();
+	             objTemp.SubscriberId = obj.SubscriberId;
+	             objTemp.ParentId = ClusterId.get(obj.ParentId);
+	                         
+	             lstUpsertSub.add(objTemp);
+        
              //collect userid to be set for global cluster follow
              if (!globaluserid.containskey(obj.SubscriberId))
              {
@@ -47,22 +53,34 @@ public static void ExecuteFollowUnFollow(List<aa_Agent_App_User_Preference__c> U
         }
         //get global cluster id 
         aa_Cluster__c GlobalclusterID = [SELECT Id FROM aa_Cluster__c where name='Global' Limit 1];
-        System.debug('GlobalClusterid===>'+GlobalclusterID.Id);
         
+        List<EntitySubscription> lstEntitySubCluster= [SELECT CreatedById,CreatedDate,Id,IsDeleted,NetworkId,ParentId,SubscriberId FROM EntitySubscription where SubscriberId in:UserIds and ParentId  In:clustIdSet ];
+         //if user is following any cluster it should follow global
+        for(EntitySubscription oneclust:lstEntitySubCluster)
+        {  
+        	for(aa_Agent_App_User_Preference__c userid1:UserSet)
+           {
+           	  if(oneclust.SubscriberId==userid1.UserId__c && oneclust.ParentId!=GlobalclusterID.Id)
+             {  
+             	 globaluserid.put(oneclust.SubscriberId,'Global');
+             }
+           }        
+        }
+        //add global id & user id to final follow objectlist 
         for(ID userIDforclust:globaluserid.keyset())
         {
-         //clustUserMap.add(userIDforclust,GlobalclusterID.Id);
+        
          EntitySubscription objTemp = new EntitySubscription();
          objTemp.SubscriberId = userIDforclust;
          objTemp.ParentId = GlobalclusterID.Id;
          lstUpsertSub.add(objTemp); 
         }
              
-        List<EntitySubscription> lstEntitySubCluster= [SELECT CreatedById,CreatedDate,Id,IsDeleted,NetworkId,ParentId,SubscriberId FROM EntitySubscription where SubscriberId in:UserIds and ParentId  In:clustIdSet ];
-        
+       
+        //remove objects if already present in the database 
         for(EntitySubscription singleclust:lstEntitySubCluster)
         {
-            //for(EntitySubscription insertlist :lstUpsertSub)
+            
             if(lstUpsertSub.size()>0){
             for (Integer  i=0; i<lstUpsertSub.size(); i++)
             {  
@@ -74,9 +92,11 @@ public static void ExecuteFollowUnFollow(List<aa_Agent_App_User_Preference__c> U
             }
         }
               
-        if(lstUpsertSub.size()>0 || lstUpsertSub!=null){
+       //  system.debug('Final insert follow=========>'+lstUpsertSub);     
+        if(lstUpsertSub.size()>0){
         insert lstUpsertSub;
         }
+      
       
         //Unfollow starts here
         
@@ -94,8 +114,7 @@ public static void ExecuteFollowUnFollow(List<aa_Agent_App_User_Preference__c> U
         List<aa_Country__c> CountryIds1= [SELECT Id,Cluster_Id__c,Cluster_Id__r.Name,Name FROM aa_Country__c];
         List<EntitySubscription> UnfollowList = new List<EntitySubscription>();
         
-               
-        
+             
         for(aa_Country__c country: CountryIds1)
         {
             if(country.Cluster_Id__r.name=='Africa')
@@ -224,55 +243,65 @@ public static void ExecuteFollowUnFollow(List<aa_Agent_App_User_Preference__c> U
              }              
             
                       
-        }//end outer for 
-    //for global Unfollow
+        }//end outer for        
+        
     
     
-    List<EntitySubscription> lstEntitySubCluster1= [SELECT CreatedById,CreatedDate,Id,IsDeleted,NetworkId,ParentId,SubscriberId FROM EntitySubscription where SubscriberId in:UserIds and ParentId In:clustIdSet];
+    //delete UnFollowList for clusters
+        String wherecondi= ' Where ';
+        for(EntitySubscription unfollow:UnFollowList)
+        {
+            whereCondi=wherecondi+'( SubscriberId =\''+unfollow.SubscriberId+'\' and ParentId=\''+unfollow.ParentId+'\' and CreatedById =\''+BatchUserID+'\' ) OR';
+            
+        }
+        whereCondi=whereCondi.substringBeforeLast('OR');
+        String Unfollowquery='Select ID from EntitySubscription'+whereCondi;
+            
+        List<EntitySubscription> finaldeleteList=Database.query(Unfollowquery);
+     
+        delete finaldeleteList;
+        
+        
+     // global unfollow       
+    
+    List<EntitySubscription> GlobalUnfollowList = new List<EntitySubscription>();
+    List<EntitySubscription> lstEntitySubCluster1= [SELECT CreatedById,CreatedDate,Id,IsDeleted,NetworkId,ParentId,SubscriberId FROM EntitySubscription where SubscriberId in:UserIds and ParentId In:clustIdSet and ParentId !=:clusterNameIdMap.get('Global')];
      
      for(aa_Agent_App_User_Preference__c userid:UserSet)
      { 
          Boolean AllClusterFlag=false;
       for(EntitySubscription entity1 :lstEntitySubCluster1)
       {
-             //system.debug('===>user condi global'+entity1.SubscriberId+'=='+userid.UserId__c);
              if(entity1.SubscriberId==userid.UserId__c)
              {
-                
-                if(clustIdSet.contains(entity1.ParentId) && entity1.ParentId!=clusterNameIdMap.get('Global') )
-                {
-                   system.debug('in global cluster flag true partenID='+entity1.ParentId+' User id '+entity1.SubscriberId);
-                   AllClusterFlag=true;
-
-                }
-               
+                 AllClusterFlag=true;
+                 system.debug('keep global follow for user :'+userid.UserId__c);
              }
-          }
+       }
            if(AllClusterFlag==false)
              {
-                   EntitySubscription objTemp = new EntitySubscription();
+             	   EntitySubscription objTemp = new EntitySubscription();
                    objTemp.SubscriberId = userid.UserId__c;
                    objTemp.ParentId = clusterNameIdMap.get('Global');
-                   UnfollowList.add(objTemp);
+                   GlobalUnfollowList.add(objTemp);
+                   system.debug('Unfollow global for user :'+userid.UserId__c);
                     
                 }
         }
    
-        //delete UnFollowList
-        String wherecondi= ' Where ';
-        for(EntitySubscription unfollow:UnFollowList)
+        //delete UnFollowList for global 
+        String Globalwherecondi= ' Where ';
+        for(EntitySubscription unfollow:GlobalUnfollowList)
         {
-            whereCondi=wherecondi+'( SubscriberId =\''+unfollow.SubscriberId+'\' and ParentId=\''+unfollow.ParentId+'\' )OR';
+            Globalwherecondi=Globalwherecondi+'( SubscriberId =\''+unfollow.SubscriberId+'\' and ParentId=\''+unfollow.ParentId+'\' and CreatedById =\''+BatchUserID+'\' ) OR';
             
         }
-        whereCondi=whereCondi.substringBeforeLast('OR');
-        String Unfollowquery='Select ID from EntitySubscription'+whereCondi;
-        system.debug('Final query unfollow =============>'+Unfollowquery);
-        List<EntitySubscription> finaldeleteList=Database.query(Unfollowquery);
-        system.debug('Delete object list'+Unfollowquery);
-        delete finaldeleteList;
-        
-       
+        Globalwherecondi=Globalwherecondi.substringBeforeLast('OR');
+        String GlobalUnfollowquery='Select ID from EntitySubscription'+Globalwherecondi;
+            
+        List<EntitySubscription> GlobalfinaldeleteList=Database.query(GlobalUnfollowquery);
+     
+        delete GlobalfinaldeleteList;      
         
         }
          

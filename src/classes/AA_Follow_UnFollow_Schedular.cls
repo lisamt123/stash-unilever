@@ -1,4 +1,4 @@
-global class AA_Follow_UnFollow_Schedular implements Schedulable {
+global  with sharing class AA_Follow_UnFollow_Schedular implements Schedulable {
    global void execute(SchedulableContext sc) {
       AA_Follow_Unfollow_batch b = new AA_Follow_Unfollow_batch(); 
       database.executebatch(b);
