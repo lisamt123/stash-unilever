@@ -43,63 +43,63 @@ public with sharing class OpportunityHelper {
         insert listOppLineItem;
     }
     /*******************For update trigger to update Opp with Opp Line Item Value *********************/
-    public static void UpdateWithOppProdValue(List<Opportunity> listNewTrigger){ 
-    
-        List<Id> listOppId = new List<Id>();
-        List<String> listPriceBook= new List<String>();
-        List<OpportunityLineItem> OppLineItem = new List<OpportunityLineItem>();
-        List<Opportunity> oppToUpdate = new List<Opportunity>();
-        Map<Id,Integer> mapOppIdGP= new Map<Id,Integer>();
-        Map<Id,Integer> mapOppIdMT= new Map<Id,Integer>();
-        Integer GrossProfit = 0;
-        Integer MarketTarget = 0;
-        Integer count = 0;
-        Integer averageGrossProfit =0;
-        Integer averageMarketTarget =0;
-        
-        for(Opportunity opp : listNewTrigger){
-            listPriceBook.add(opp.pricebook2id);
-            listOppId.add(opp.Id);
-        }
-        
-        if(!listOppId.isEmpty()){    
-            OppLineItem = [select Id, GPPercent__c, Market_Target__c, opportunityId from OpportunityLineItem where opportunityId in :listOppId];
-            
-        }
-        For(Opportunity opp : listNewTrigger){
-            For(OpportunityLineItem oli: OppLineItem ){
-                if(opp.id == oli.opportunityId){
-                    if(oli.GPPercent__c != null){
-                        GrossProfit = GrossProfit + Integer.valueOf(oli.GPPercent__c);
-                    } 
-                    if(oli.Market_Target__c != null){   
-                        MarketTarget = MarketTarget + Integer.valueOf(oli.Market_Target__c);
-                    }    
-                    count = count + 1;
-                }
-            }
-            if(count>0){
-                averageGrossProfit = GrossProfit/count;
-                averageMarketTarget = MarketTarget/count;
-                mapOppIdGP.put(opp.Id,averageGrossProfit);
-                mapOppIdMT.put(opp.Id,averageMarketTarget);
-                count = 0;
-                GrossProfit = 0;
-                MarketTarget= 0;
-            }         
-        }
-        
-        for(Opportunity opp : listNewTrigger){
-            if(mapOppIdGP.get(opp.Id)!=null){
-                opp.Average_Gross_Profit__c = mapOppIdGP.get(opp.Id);
-                opp.Market_Target__c = mapOppIdMT.get(opp.Id);
-                oppToUpdate.add(opp);
-            }    
-        }
-        //if(!oppToUpdate.isEmpty())
-            //update oppToUpdate;
+    public static void UpdateOppField(List<Opportunity> listNewTrigger){ 
+    	if(NAFS_Utility.runOnce()){
+	        List<Id> listOppId = new List<Id>();
+	        List<String> listPriceBook= new List<String>();
+	        List<OpportunityLineItem> OppLineItem = new List<OpportunityLineItem>();
+	        List<Opportunity> oppToUpdate = new List<Opportunity>();
+	        Map<Id,Integer> mapOppIdGP= new Map<Id,Integer>();
+	        Map<Id,Integer> mapOppIdMT= new Map<Id,Integer>();
+	        Integer GrossProfit = 0;
+	        Integer MarketTarget = 0;
+	        Integer count = 0;
+	        Integer averageGrossProfit =0;
+	        Integer averageMarketTarget =0;
+	        
+	        for(Opportunity opp : listNewTrigger){
+	            listPriceBook.add(opp.pricebook2id);
+	            listOppId.add(opp.Id);
+	        }
+	        
+	        if(!listOppId.isEmpty()){    
+	            OppLineItem = [select Id, NAFS_GPPercent__c, NAFS_MarketTarget__c, opportunityId from OpportunityLineItem where opportunityId in :listOppId];
+	            
+	        }
+	        For(Opportunity opp : listNewTrigger){
+	            For(OpportunityLineItem oli: OppLineItem ){
+	                if(opp.id == oli.opportunityId){
+	                    if(oli.NAFS_GPPercent__c != null){
+	                        GrossProfit = GrossProfit + Integer.valueOf(oli.NAFS_GPPercent__c);
+	                    } 
+	                    if(oli.NAFS_MarketTarget__c != null){   
+	                        MarketTarget = MarketTarget + Integer.valueOf(oli.NAFS_MarketTarget__c);
+	                    }    
+	                    count = count + 1;
+	                }
+	            }
+	            if(count>0){
+	                averageGrossProfit = GrossProfit/count;
+	                averageMarketTarget = MarketTarget/count;
+	                mapOppIdGP.put(opp.Id,averageGrossProfit);
+	                mapOppIdMT.put(opp.Id,averageMarketTarget);
+	                count = 0;
+	                GrossProfit = 0;
+	                MarketTarget= 0;
+	            }         
+	        }
+	        List<Opportunity> oppList = [Select Id, NAFS_AverageGrossProfit__c, NAFS_MarketTarget__c from Opportunity where Id in :listOppId];
+	        for(Opportunity opp : oppList){
+	            if(mapOppIdGP.get(opp.Id)!=null){
+	                opp.NAFS_AverageGrossProfit__c = mapOppIdGP.get(opp.Id);
+	                opp.NAFS_MarketTarget__c = mapOppIdMT.get(opp.Id);
+	                oppToUpdate.add(opp);
+	            }    
+	        }
+	        if(!oppToUpdate.isEmpty())
+	            update oppToUpdate;
+	    }
     }
-    
     /******************* For after insert trigger ***************************/
     public static void OppInsert(List<Opportunity> listNewTrigger){ 
     
@@ -117,7 +117,7 @@ public with sharing class OpportunityHelper {
         
         List<Product2> listProd = [select id, name, package__c from Product2 where package__c =: listPackageName];
         
-        //Need a pricebook,
+        //Need a pricebook, to be update
         Pricebook2 pb = [select id, name from Pricebook2 where name LIKE 'Standard%' and isActive = true limit 1];
                 
         listNewPbe = [select id, product2.Package__c, unitPrice from priceBookEntry where product2.Package__c =: listPackageName and priceBook2Id =: pb.Id]; 
