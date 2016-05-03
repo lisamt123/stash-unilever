@@ -651,6 +651,8 @@ public with sharing class IPM_ProjectOverviewCtrl {
             stoppedMsg += project.IPM_Stopped_Date_Time__c.Date() + SPACE + Label.IPM_During + SPACE + project.IPM_Phase__c +  SPACE + Label.IPM_Phase_Label + SPACE;
         }
         
+        if(project.IPM_Target_Launch_Dates__c!=null)
+        {
         //Alert for BET First Release is due on X
         Datetime targetLaunchDate=datetime.newInstance(project.IPM_Target_Launch_Dates__c.year(),project.IPM_Target_Launch_Dates__c.month(),project.IPM_Target_Launch_Dates__c.day());
        
@@ -675,7 +677,8 @@ public with sharing class IPM_ProjectOverviewCtrl {
                 betMsgFinalReleaseDueDate =project.IPM_Project_Name__c +IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR1 + targetLaunchDate.format(DATEFORMAT) + IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR2+ betFinalReleaseDate.format(DATEFORMAT); 
                 ++noOfNotifications;
             }       
-        } 
+        }
+    } 
         
         //Process for associated project sections
         List<IPM_Project_Document_Section__c> projectSectionsList = new List<IPM_Project_Document_Section__c>(); 
