@@ -74,6 +74,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 	public Set<string>userRolesSet; //For getting User Role Types
 	public list<IPM_Project__c>lstofuser; //For getting list of users
 	public Integer CountProuser;//Count of Users
+	public boolean isGlobalActionStandards{get;set;}
 	
 	/****************************************************************************************************************************************************************
 	* @description Fetching the Page parameters and Retrieving Project,Projerct Document and Projerct Document Section
@@ -92,6 +93,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 		markTaskAccess =  false;
 		isTaskViewable =  true;
 		isCUandComplexity=false;
+		isGlobalActionStandards=false;
 		remainingChar=0;
 		isChecked='';
 		attachId='';
@@ -383,6 +385,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 			{
 				IsEditableSumm=true;
 				IsEditableOutC=true;
+				isGlobalActionStandards=true;
 			}
 			if(IPM_ConstantUtils.MONITONING_PER_EXTERNAL_ID.equals(projDocSec.IPM_Section__r.External_ID__c)){
 				isEditMarketPerformance=true;
@@ -483,6 +486,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 				isCreateTask=true;
 				isEcodesignEdit=true;
 				isEditMarketPerformance=true;
+				isGlobalActionStandards=true;
 			}
 			
 			else if(lstofuser[0].IPM_Technical_Project_Leader__c!=null && lstofuser[0].IPM_Technical_Project_Leader__c==userinfo.getuserid()){
@@ -513,6 +517,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 					(lstofuser[0].Deputy_Project_Leader__c!=null && lstofuser[0].Deputy_Project_Leader__c==userinfo.getuserid())){
 				IsEditableSumm=true;
 				isEditMarketPerformance=true;
+				isGlobalActionStandards=true;
 				if(CountProuser==0){
 					IsEditableOutC=true;
 					isEditGateCMI=true;
@@ -531,7 +536,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 		isBPUser=cpr.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
 		if(isCentralTeam || isBPUser){
 			IsEditableOutC=true;isEditGateCMI=true;IsCRRTEditable=true;isAssortEdit=true;isEcodesignEdit=true;isTaskeditable=true;   
-			IsEditableSumm=true;markTaskAccess=true;isCreateTask=true;isEditMarketPerformance=true;
+			IsEditableSumm=true;markTaskAccess=true;isCreateTask=true;isEditMarketPerformance=true;isGlobalActionStandards=true;
 			
 		}
 	}
