@@ -14,5 +14,13 @@ src/pages/WWP_LossTreeUpdate_VF.page-meta.xml
 src/permissionsets/WWP_User_Permissions.permissionset
 src/permissionsets/WWP_Admin_Permissions.permissionset
 src/tabs/WWP_Loss_Tree__c.tab
+src/staticresources/WWP_bootstrap.resource
+src/staticresources/WWP_bootstrap.resource-meta.xml
+src/staticresources/WWP_dataTables.resource
+src/staticresources/WWP_dataTables.resource-meta.xml
+src/staticresources/WWP_Jquery1.resource
+src/staticresources/WWP_Jquery1.resource-meta.xml
+src/staticresources/WWP_ResetImage.resource
+src/staticresources/WWP_ResetImage.resource-meta.xml
 src/labels/CustomLabels.labels
 
