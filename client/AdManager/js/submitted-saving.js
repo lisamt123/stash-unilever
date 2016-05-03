@@ -553,7 +553,7 @@ $j(function(){
 	if( $j('.noOfMastersMain').length ) {
 		loadMasterProcess();
 		noOfmasterdurationkeypress();
-		remove_master_durationrows();
+		removeMasterDurationRows();
 		addMasterDurationrowsCall();
 		$j('.show-on-edit').show();
 	}

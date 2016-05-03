@@ -201,7 +201,14 @@ function currencyPopup() {
     });
 
 
-    $j('.commonCurrencyRelatedCA').on('change', function() {
+    currencyCAAmount();
+
+
+}
+
+function currencyCAAmount(){
+
+	$j('.commonCurrencyRelatedCA').on('change', function() {
 
         var a = $j(this).val();
         var data_id = $j(this).attr('data-id');
@@ -258,7 +265,7 @@ function currencyPopup() {
 
 }
 
-function remove_master_durationrows() {
+function removeMasterDurationRows() {
                 	
 	        	$j('.remove_master_durationrows').click(function(){
 	        		if($j('.row1Main').length > 1 ) {        	
@@ -347,7 +354,7 @@ function remove_master_durationrows() {
         		var dataToAppend = $j('.row1Main').html();
         		$j('.row1MainParent').append('<div class="row1Main">'+dataToAppend+'</div>');
                 		
-        		remove_master_durationrows();
+        		removeMasterDurationRows();
         		noOfmasterdurationkeypress();        		
         	});
         }
