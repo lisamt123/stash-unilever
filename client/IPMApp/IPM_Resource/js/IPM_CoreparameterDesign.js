@@ -16,7 +16,8 @@ jq(document).ready(function() {
 
 /* Below function performs a page reload. It removes a attribute from the url when this function is called. */
 function updateAdditional() {
-	var pageURL = window.parent.location.href.replace('&BETOptions=1','');
+	var pageURL = window.parent.location.href;     // Getting the current location
+	pageURL = pageURL.replace('&BETOptions=1',''); //Removing attribute
 	window.parent.location.href = pageURL;
 }
 /* Below function performs a page reload. It reloads the page when reset is clicked for first question. */
@@ -37,7 +38,8 @@ function resetqthree() {
 /* Below function performs a page reload. If the condition is true it removes a attribute from the url. */
 function checkCoreParam() {
     if (IPMProAppCP.coreParameter === 'true') {
-        var pageURL = window.parent.location.href.replace('&BETOptions=1','');
+        var pageURL = window.parent.location.href;     // Getting the current location
+		pageURL = pageURL.replace('&BETOptions=1',''); //Removing attribute
 		window.parent.location.href = pageURL;
     }
 }
@@ -125,7 +127,6 @@ function unloadPage()
 } 
 
 if(window.parent.location.href.indexOf("Milestoneid") > -1) {
-	//Check if the URL has the word Milestoneid
  }else{
 window.onbeforeunload = unloadPage;
  }

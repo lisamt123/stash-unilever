@@ -1,4 +1,4 @@
-/***********************************************************************
+﻿/***********************************************************************
  *@Description:This script is used for bosscard page specific interaction
  *@Author: Cognizant
  *@Created Date: 28/05/2015 
@@ -123,7 +123,7 @@ function checkValidation() {
     }
 }
 /* Below script works on click event. When user clicks on close button of a modal, it closes the modal and reloads the BOSSCARD page. */
-jq("#ipmModal .close").click(function() {
+jq(".upimgModal .close").click(function() {
     parent.location.assign(IPMApp.bossurl + '?Id=' + IPMApp.bosscardId);
 });
 
@@ -164,6 +164,7 @@ function upldImage(){
         jq('#ipmModal .modal-dialog').width('525px');
         jq('#ipmModal .modal-dialog').height('220px');
         jq('#ipmModal .modal-dialog').css('margin-top', '15%');
+		jq("#ipmModal .modal-header").addClass("upimgModal");
     } else {
         jq('#ipmModal').modal('hide');
     }
@@ -220,15 +221,19 @@ jq(function(){
    jq(":input").change(function() {
 		mainPageUnsaved = true;
 	});
-	for (var i in CKEDITOR.instances) {		
-      	defineOnchange(CKEDITOR.instances, i);		
-      }		
-  		
-  	function defineOnchange(CKEDITORObj, index){		
-	    CKEDITORObj[index].on("change", function() {		
-	      mainPageUnsaved = true		
-	    });		
-  	}
+	editorObj = CKEDITOR.instances;
+	 
+	for (prop in editorObj) {
+		if(editorObj.hasOwnProperty(prop)){
+      		defineOnchange(CKEDITOR.instances, prop);
+		}
+     }
+  
+  	function defineOnchange(CKEDITORObj, index){
+	    CKEDITORObj[index].on("change", function() {
+	      mainPageUnsaved = true
+	    });
+  	}
 });
 
  function changeAlert(){
