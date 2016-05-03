@@ -15844,6 +15844,7 @@ Which Communications team do you represent? You must be associated to one Planne
         <shortDescription>User doesn&apos;t enter any value for &apos;Inoplan Project Name&apos;</shortDescription>
         <value>Please enter your Inoplan project name. If you do not have an Inoplan project please select No Inoplan Project</value>
     </labels>
+<<<<<<< HEAD
     <labels>
         <fullName>Amr_AD_ID</fullName>
         <language>en_US</language>
@@ -18707,4 +18708,6 @@ Which Communications team do you represent? You must be associated to one Planne
         <shortDescription>Amr tab</shortDescription>
         <value>tab</value>
     </labels>	
+=======
+>>>>>>> 87a9f85c2a47751684de9fea382fc026c35bde08
 </CustomLabels>
