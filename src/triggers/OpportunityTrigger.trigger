@@ -9,6 +9,7 @@ trigger OpportunityTrigger on Opportunity (after insert, after update, before in
     else if(trigger.isUpdate && trigger.isAfter){
         OpportunityHelper.OppUpdate(trigger.new, trigger.oldMap);
         OpportunityHelper.UpdateOppField(trigger.new);
+        OpportunityHelper.UpdateParentField(trigger.new, trigger.oldMap);
     }
     else if(trigger.isUpdate && trigger.isBefore){
         //OpportunityHelper.UpdateWithOppProdValue(trigger.new);

@@ -1,6 +1,6 @@
 public with sharing class OpportunityHelper {
 
-    /******************* For after update trigger **************************/
+    /******************* For after update trigger (Opp Package handling)**************************/
     public static void OppUpdate(List<Opportunity> listNewTrigger, Map<Id,Opportunity> mapOld){ 
     
         List<String> listPackageName= new List<String>();
@@ -42,7 +42,57 @@ public with sharing class OpportunityHelper {
     
         insert listOppLineItem;
     }
-    /*******************For update trigger to update Opp with Opp Line Item Value *********************/
+    
+    /******************* For after insert trigger (Opp Package handling)***************************/
+    public static void OppInsert(List<Opportunity> listNewTrigger){ 
+    
+        List<String> listPackageName= new List<String>();
+        List<String> listPriceBook= new List<String>();
+        List<OpportunityLineItem> listOppLineItem = new List<OpportunityLineItem>();
+        List<priceBookEntry> listNewPbe = new List<priceBookEntry>();
+        Map<opportunity, List<priceBookEntry>> mapOppPbe = new Map<opportunity,List<priceBookEntry>>(); 
+        
+        for(Opportunity opp:listNewTrigger){
+            if(opp.package__c != null){
+                listPackageName.add(opp.package__c);
+            }
+        }
+        
+        List<Product2> listProd = [select id, name, package__c from Product2 where package__c =: listPackageName];
+        
+        //Need a pricebook, to be update
+        Pricebook2 pb = [select id, name from Pricebook2 where name LIKE 'Standard%' and isActive = true limit 1];
+                
+        listNewPbe = [select id, product2.Package__c, unitPrice from priceBookEntry where product2.Package__c =: listPackageName and priceBook2Id =: pb.Id]; 
+        
+        // If priceBookEntry is not available then insert priceBookEntry 
+        if(listNewPbe.isEmpty()){
+            for(Opportunity opp1 : listNewTrigger){
+                for(Product2 prod: listProd){
+                    if(prod.package__c == opp1.package__c){
+                        priceBookEntry newPbe = new priceBookEntry ( Product2Id = prod.id, pricebook2id = pb.id, unitPrice = 0, IsActive = true);
+                        listNewPbe.add(newPbe);
+                    }    
+                }
+                mapOppPbe.put(opp1, listNewPbe);
+            }
+            Insert listNewPbe;
+        }
+        
+        //Insert OpportunityLineItem
+        for(Opportunity opp2 : listNewTrigger){
+            for(priceBookEntry pbook : listNewPbe){ 
+                if(opp2.package__c == pbook.product2.Package__c){
+                    OpportunityLineItem oppLineItem = new OpportunityLineItem(OpportunityId = opp2.id, PricebookentryId = pbook.Id, quantity=1, totalPrice=pbook.unitPrice);
+                    listOppLineItem.add(oppLineItem);
+                }    
+            }
+        }
+        If(!listOppLineItem.isEmpty())
+            Insert listOppLineItem;
+    }
+    
+    /*******************For update trigger to update Opp with Opp Line Item Value (MABE process)*********************/
     public static void UpdateOppField(List<Opportunity> listNewTrigger){ 
     	if(NAFS_Utility.runOnce()){
 	        List<Id> listOppId = new List<Id>();
@@ -100,52 +150,105 @@ public with sharing class OpportunityHelper {
 	            update oppToUpdate;
 	    }
     }
-    /******************* For after insert trigger ***************************/
-    public static void OppInsert(List<Opportunity> listNewTrigger){ 
     
-        List<String> listPackageName= new List<String>();
-        List<String> listPriceBook= new List<String>();
-        List<OpportunityLineItem> listOppLineItem = new List<OpportunityLineItem>();
-        List<priceBookEntry> listNewPbe = new List<priceBookEntry>();
-        Map<opportunity, List<priceBookEntry>> mapOppPbe = new Map<opportunity,List<priceBookEntry>>(); 
-        
-        for(Opportunity opp:listNewTrigger){
-            if(opp.package__c != null){
-                listPackageName.add(opp.package__c);
-            }
-        }
-        
-        List<Product2> listProd = [select id, name, package__c from Product2 where package__c =: listPackageName];
-        
-        //Need a pricebook, to be update
-        Pricebook2 pb = [select id, name from Pricebook2 where name LIKE 'Standard%' and isActive = true limit 1];
-                
-        listNewPbe = [select id, product2.Package__c, unitPrice from priceBookEntry where product2.Package__c =: listPackageName and priceBook2Id =: pb.Id]; 
-        
-        // If priceBookEntry is not available then insert priceBookEntry 
-        if(listNewPbe.isEmpty()){
-            for(Opportunity opp1 : listNewTrigger){
-                for(Product2 prod: listProd){
-                    if(prod.package__c == opp1.package__c){
-                        priceBookEntry newPbe = new priceBookEntry ( Product2Id = prod.id, pricebook2id = pb.id, unitPrice = 0, IsActive = true);
-                        listNewPbe.add(newPbe);
-                    }    
-                }
-                mapOppPbe.put(opp1, listNewPbe);
-            }
-            Insert listNewPbe;
-        }
-        
-        //Insert OpportunityLineItem
-        for(Opportunity opp2 : listNewTrigger){
-            for(priceBookEntry pbook : listNewPbe){ 
-                if(opp2.package__c == pbook.product2.Package__c){
-                    OpportunityLineItem oppLineItem = new OpportunityLineItem(OpportunityId = opp2.id, PricebookentryId = pbook.Id, quantity=1, totalPrice=pbook.unitPrice);
-                    listOppLineItem.add(oppLineItem);
-                }    
-            }
-        }
-        If(!listOppLineItem.isEmpty())
-            Insert listOppLineItem;
-    }
+    /************************** Update parent opportunity (LEAF process)****************************/
+     public static void UpdateParentField(List<Opportunity> listNewTrigger, Map<Id,Opportunity> mapOld){ 
+    	if(NAFS_Utility.runOnce1()){
+	        List<Id> listOppId = new List<Id>();
+	        List<Id> listParentOppId= new List<Id>();
+	        //Map<Id,Integer> mapParentNSV = new Map<Id,Integer>();
+	        Map<Opportunity,List<Opportunity>> parentChild = new Map<Opportunity,List<Opportunity>>();
+	        List<Opportunity> listChildOpp = new List<Opportunity>();
+	        List<Opportunity> listOppToUpdate = new List<Opportunity>();
+	        Integer totalNSV = 0;
+	        Integer totalTMI = 0;
+	        Integer totalCase = 0;
+	        Integer totalLocation = 0;
+	        Integer totalMarketSpend = 0;
+	        Integer totalInstall = 0;
+	        Integer totalServiceCost = 0;
+	        Integer totalDepriciation = 0;
+	        Integer totalDistributorTMI = 0;
+	        Integer totalTurnover = 0;
+	        Integer totalGrossProfit = 0;
+	        Integer totalProfitBeforeIndirect = 0;
+	        Integer totalProfitBeforeIndirectPercentage = 0;
+	        for(Opportunity opp : listNewTrigger){
+	        	if(opp.Parent_Opportunity__c != null){
+	        		listParentOppId.add(opp.Parent_Opportunity__c);
+	        		listOppId.add(opp.Id);
+	        	}
+	        }
+	        List<Opportunity> childOpp = [select Id, Parent_Opportunity__c, NFS_TotalNSV__c, NFS_TotalOpportunityTMI__c, NFS_SumofCases__c, NFS_SumofLocations__c, NFS_MarketingSpend__c, NFS_TotalInstallation__c, NFS_TotalServiceCost__c, NFS_TotalEquipmentDepreciation__c, NFS_DistributorTMI__c, NFS_Turnover__c, NFS_GrossProfitLEAF__c, NFS_ProfitBeforeIndirect__c,NFS_ProfitBeforeIndirectPercentage__c from Opportunity where id in : listOppId];
+	        List<Opportunity> parentOpp = [select Id, NFS_NSVOfChildOpportunities__c,NFS_TradeMarketingInvestment__c, NFS_NumberOfCasesInChild__c,  NSV_NumberOfLocationsChild__c , NFS_MarketingSpendOfChild__c, NFS_TotalInstallationChild__c, NFS_ServiceCostChild__c, NFS_EquipmentDepreciationChild__c, NFS_DistributorTradeMarketingInvestment__c,NFS_TurnoverForchildOpportunity__c, NFS_GrossProfitforchildOpportunity__c, NFS_ProfitbeforeIndirectforchildOpp__c, NFS_ProfitbeforeIndirectpercentageChild__c from Opportunity where id in : listParentOppId];
+	        
+	        
+	        
+	        For(Opportunity pOpp : parentOpp){
+	            for(Opportunity cOpp : childOpp){
+	            	if(cOpp.Parent_Opportunity__c == pOpp.Id){
+	            		listChildOpp.add(cOpp);
+	            	}
+	            }
+	            parentChild.put(pOpp, listChildOpp);
+	            //need to empty listChildOpp
+	        }
+	        
+	        For(Opportunity pOpp : parentOpp){
+	        	for(Opportunity cOpp : parentChild.get(pOpp)){
+	        		if (cOpp.NFS_TotalNSV__c != null)
+	        		totalNSV = totalNSV + Integer.valueOf(cOpp.NFS_TotalNSV__c);
+	        		if (cOpp.NFS_TotalOpportunityTMI__c != null)
+	        		totalTMI = totalTMI + Integer.valueOf(cOpp.NFS_TotalOpportunityTMI__c);
+	        		if (cOpp.NFS_SumofCases__c != null)
+	        		totalCase = totalCase + Integer.valueOf(cOpp.NFS_SumofCases__c);
+	        		if (cOpp.NFS_SumofLocations__c != null)
+	        		totalLocation = totalLocation + Integer.valueOf(cOpp.NFS_SumofLocations__c);
+	        		if (cOpp.NFS_MarketingSpend__c != null)
+	        		totalMarketSpend = totalMarketSpend + Integer.valueOf(cOpp.NFS_MarketingSpend__c);
+	        		if (cOpp.NFS_TotalInstallation__c != null)
+	        		totalInstall = totalInstall + Integer.valueOf(cOpp.NFS_TotalInstallation__c);
+	        		if (cOpp.NFS_TotalServiceCost__c != null)
+	        		totalServiceCost = totalServiceCost + Integer.valueOf(cOpp.NFS_TotalServiceCost__c);
+	        		if (cOpp.NFS_TotalEquipmentDepreciation__c != null)
+	        		totalDepriciation = totalDepriciation + Integer.valueOf(cOpp.NFS_TotalEquipmentDepreciation__c);
+	        		if (cOpp.NFS_DistributorTMI__c != null)
+	        		totalDistributorTMI = totalDistributorTMI + Integer.valueOf(cOpp.NFS_DistributorTMI__c);
+	        		if (cOpp.NFS_Turnover__c != null)
+	        		totalTurnover = totalTurnover + Integer.valueOf(cOpp.NFS_Turnover__c);
+	        		if (cOpp.NFS_GrossProfitLEAF__c != null)
+	        		totalGrossProfit = totalGrossProfit + Integer.valueOf(cOpp.NFS_GrossProfitLEAF__c);
+	        		if (cOpp.NFS_ProfitBeforeIndirect__c != null)
+	        		totalProfitBeforeIndirect = totalProfitBeforeIndirect + Integer.valueOf(cOpp.NFS_ProfitBeforeIndirect__c);
+	        		if (cOpp.NFS_ProfitBeforeIndirectPercentage__c != null)
+	        		totalProfitBeforeIndirectPercentage = totalProfitBeforeIndirectPercentage + Integer.valueOf(cOpp.NFS_ProfitBeforeIndirectPercentage__c);
+	        		
+	        	}
+	        	pOpp.NFS_NSVOfChildOpportunities__c = totalNSV;
+	        	pOpp.NFS_TradeMarketingInvestment__c = totalTMI;
+	        	pOpp.NFS_NumberOfCasesInChild__c = totalCase;
+	        	pOpp.NSV_NumberOfLocationsChild__c = totalLocation;
+	        	pOpp.NFS_MarketingSpendOfChild__c = totalMarketSpend;
+	        	pOpp.NFS_TotalInstallationChild__c = totalInstall;
+	        	pOpp.NFS_ServiceCostChild__c = totalServiceCost;
+	        	pOpp.NFS_EquipmentDepreciationChild__c = totalDepriciation;
+	        	pOpp.NFS_DistributorTradeMarketingInvestment__c = totalDistributorTMI;
+	        	pOpp.NFS_TurnoverForchildOpportunity__c = totalTurnover;
+	        	pOpp.NFS_GrossProfitforchildOpportunity__c = totalGrossProfit;
+	        	pOpp.NFS_ProfitbeforeIndirectforchildOpp__c = totalProfitBeforeIndirect;
+	        	pOpp.NFS_ProfitbeforeIndirectpercentageChild__c = totalProfitBeforeIndirectPercentage;
+	        	listOppToUpdate.add(pOpp);
+	        	//mapParentNSV.put(pOpp,totalNSV);
+	        	totalNSV = 0; totalTMI=0; totalCase=0; totalLocation=0; totalMarketSpend=0; totalInstall=0; totalServiceCost=0; totalDepriciation=0; totalDistributorTMI=0;totalTurnover=0;totalGrossProfit=0;totalProfitBeforeIndirect = 0;totalProfitBeforeIndirectPercentage = 0;
+	        }
+	        
+	        /*For(Opportunity pOpp : parentOpp){
+	        	pOpp.NFS_NSVOfChildOpportunities__c = mapParentNSV.get(pOpp)
+	        }*/
+	        
+	        if(!listOppToUpdate.isEmpty()){    
+	            update listOppToUpdate;
+	        }
+    	}	
+     }    	        
 }
