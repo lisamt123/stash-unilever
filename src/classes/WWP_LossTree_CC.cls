@@ -65,7 +65,7 @@ public with sharing class WWP_LossTree_CC{
         if(lossTree.Loss_Type__c!=null && lossTree.Plant_Code__c!=null){
         
             listLossTree = [select id,name,Loss_Type__c,Planned_Production__c,Actual_Production__c,PO__c,SKU__c,Plant_Code__c,Loss_Name__c,Loss_Sub_Family__c,
-                             Loss_Description__c,Week__c,Planned_Receipt__c,actual_Receipt__c,Planned_dispatch__c,Actual_dispatch__c,PR__c,STO_So__c  from WWP_Loss_Tree__c where Loss_Type__c=: lossTree.Loss_Type__c and Plant_Code__c=:lossTree.Plant_Code__c and Loss_Type__c!=null];
+                             Loss_Description__c,Week__c,Planned_Receipt__c,actual_Receipt__c,Planned_dispatch__c,Actual_dispatch__c,PR__c,STO_So__c,SKU_description__c  from WWP_Loss_Tree__c where Loss_Type__c=: lossTree.Loss_Type__c and Plant_Code__c=:lossTree.Plant_Code__c and Loss_Type__c!=null];
             
           if(listLossTree.isEmpty()){
               message = label.WWP_Norecords_Err;
@@ -433,11 +433,20 @@ public with sharing class WWP_LossTree_CC{
                     if(lw.selectbox1!=valueNone){
                     wt.Loss_Name__c = lw.selectbox1;
                     }
+                    else{
+                        wt.Loss_Name__c = valueNull ;
+                    }
                     if(lw.selectbox2!=valueNone){
                     wt.Loss_Sub_Family__c= lw.selectbox2;
                     }
+                    else{
+                        wt.Loss_Sub_Family__c= valueNull ;
+                    }
                     if(lw.selectbox3!=valueNone){
                     wt.Loss_Description__c = lw.selectbox3;
+                    }
+                    else{
+                        wt.Loss_Description__c = valueNull ;
                     }
                     updateLTW.add(wt);
                     count++;
