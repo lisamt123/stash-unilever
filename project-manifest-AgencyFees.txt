@@ -298,6 +298,8 @@ src/classes/AF_ViewAllController.cls
 src/classes/AF_ViewAllController.cls-meta.xml
 src/classes/AF_ViewAllController_Test.cls
 src/classes/AF_ViewAllController_Test.cls-meta.xml
+src/classes/VEP_Visitor_TriggerHandler.cls
+src/classes/VEP_Visitor_TriggerHandler.cls-meta.xml
 src/classes/TriggerFactory.cls
 src/classes/TriggerFactory.cls-meta.xml
 src/components
