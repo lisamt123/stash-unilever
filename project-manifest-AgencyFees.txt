@@ -386,6 +386,8 @@ src/staticresources/AF_JavascriptFiles.resource
 src/staticresources/AF_JavascriptFiles.resource-meta.xml
 src/staticresources/AF_UL_Resources.resource
 src/staticresources/AF_UL_Resources.resource-meta.xml
+src/objects
+src/objects/VEP_FactoryVisit__c.object
 src/triggers
 src/triggers/AF_Agency_EstimateTrigger.trigger
 src/triggers/AF_Agency_EstimateTrigger.trigger-meta.xml
@@ -407,3 +409,4 @@ src/triggers/AF_PO_ReportTrigger.trigger
 src/triggers/AF_PO_ReportTrigger.trigger-meta.xml
 src/triggers/AF_Sub_ResultTrigger.trigger
 src/triggers/AF_Sub_ResultTrigger.trigger-meta.xml
+src
