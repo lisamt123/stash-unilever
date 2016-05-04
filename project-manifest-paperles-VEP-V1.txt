@@ -24,8 +24,6 @@ src/classes/VEP_VisitorStatus_CC.cls
 src/classes/VEP_VisitorStatus_CC.cls-meta.xml
 src/classes/VEP_VisitorStatus_Test.cls
 src/classes/VEP_VisitorStatus_Test.cls-meta.xml
-src/classes/TriggerFactory.cls
-src/classes/TriggerFactory.cls-meta.xml
 src/components
 src/components/VEP_AutoComplete.component
 src/components/VEP_AutoComplete.component-meta.xml

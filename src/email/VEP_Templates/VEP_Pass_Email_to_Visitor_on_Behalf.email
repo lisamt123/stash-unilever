@@ -36,7 +36,7 @@ Factory Visit Request Pass Number: <c:VEP_VisitorPass_OnBehalf VisitorValue="{!r
         Person to Meet:
     </td>
     <td>
-        {!relatedTo.Person_to_Meet__c}
+        {!relatedTo.Person_to_Meet__r.name}
     </td>
     </tr>
     <tr>

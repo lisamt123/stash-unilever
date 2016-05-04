@@ -100,10 +100,11 @@ select
                         <tr> 
                             <th></th> 
                             <th>SKU</th>  
+                            <th>SKU Description</th>
                             <th>Plant Code</th>  
-                            <th class="col-sm-2">Week</th>  
+                            <th>Week</th>  
                             <th>Planned Production</th>
-                            <th style="width:10px">Actual Production</th>
+                            <th>Actual Production</th>
                             
                             <th class="col-md-2">Loss Name</th>
                             <th class="col-md-2">Loss Sub-Family</th>
@@ -117,6 +118,7 @@ select
                                     
                                     <td><apex:inputCheckbox value="{!w.checkbox1}"/>  </td>
                                     <td>{!w.wlt.SKU__c}</td>
+                                    <td>{!w.wlt.SKU_Description__c}</td>
                                     <td>{!w.wlt.Plant_Code__c}</td>
                                     <td>{!w.wlt.Week__c}</td>
                                     <td>{!w.wlt.Planned_Production__c}</td>
@@ -143,7 +145,8 @@ select
                         <tr> 
                             <th></th> 
                             <th>PR</th>  
-                            <th>SKU</th>  
+                            <th>SKU</th> 
+                            <th>SKU Description</th> 
                             <th>Plant Code</th>  
                             <th>Week</th>  
                             <th>Planned Recipt</th>
@@ -162,6 +165,7 @@ select
                                     <td><apex:inputCheckbox value="{!w.checkbox1}"/>  </td>
                                     <td>{!w.wlt.PR__c}</td>
                                     <td>{!w.wlt.SKU__c}</td>
+                                    <td>{!w.wlt.SKU_Description__c}</td>
                                     <td>{!w.wlt.Plant_Code__c}</td>
                                     <td>{!w.wlt.Week__c}</td>
                                     <td>{!w.wlt.Planned_Receipt__c}</td>
@@ -188,6 +192,7 @@ select
                         <tr>
                             <th></th>  
                             <th>SKU</th>  
+                            <th>SKU Description</th>
                             <th>Plant Code</th>  
                             <th>Week</th>  
                             <th>Planned Dispatch</th>
@@ -204,6 +209,7 @@ select
                                 <tr>
                                     <td><apex:inputCheckbox value="{!w.checkbox1}"/>  </td>
                                     <td>{!w.wlt.SKU__c}</td>
+                                    <td>{!w.wlt.SKU_Description__c}</td>
                                     <td>{!w.wlt.Plant_Code__c}</td>
                                     <td>{!w.wlt.Week__c}</td>
                                     <td>{!w.wlt.Planned_Dispatch__c}</td>
@@ -309,8 +315,8 @@ var losstype = j$('[id$="lossT"]').val();
         "bFilter": false,        
         "bSearchable":false,
         "bLengthChange": false,
-        "order": [[ 4, "desc"]],
-        "columnDefs": [ { "orderable": false, "targets": [0,7,8,9]}]          
+        "order": [[ 5, "desc"]],
+        "columnDefs": [ { "orderable": false, "targets": [0,8,9,10]}]          
      });     
      }    
      if(losstype == 'Output Reliability' || losstype == 'Dispatch Compliance'){
@@ -321,8 +327,8 @@ var losstype = j$('[id$="lossT"]').val();
         "bFilter": false,
         "bSearchable":false,
         "bLengthChange": false,
-        "order": [[ 3, "desc"]],
-        "columnDefs": [ { "orderable": false, "targets": [0,6,7,8,9]} ]           
+        "order": [[ 4, "desc"]],
+        "columnDefs": [ { "orderable": false, "targets": [0,7,8,9,10]} ]           
      });     
      }
 }

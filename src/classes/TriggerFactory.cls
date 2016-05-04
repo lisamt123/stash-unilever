@@ -136,7 +136,7 @@ public with sharing class TriggerFactory
             return new Oblix_UserPermissionHandler();
             
         }
-		
+        
         if (soType == FAU_Webinar_Participant__c.sObjectType)
         {
             return new FAU_Webinar_ParticipantHandler();
@@ -195,17 +195,19 @@ public with sharing class TriggerFactory
         if (soType == IPM_Assessment__c.sObjectType){
             return new IPM_AssesmentHandler();
         }
-		if (soType == Core_Approval_Details__c.sObjectType){
+        if (soType == Core_Approval_Details__c.sObjectType){
             return new Core_CA_LineItem_Handler();
         }
-		 if (soType == CFC_Attendee__c.sObjectType){
+         if (soType == CFC_Attendee__c.sObjectType){
             return new CFC_Attendee_Handler();
         } 
          if (soType == VEP_Visitor__c.sObjectType)
         {
             return new VEP_Visitor_TriggerHandler();
         }
+                
         return null;
+
     }
 
 }
