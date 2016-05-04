@@ -205,59 +205,7 @@ public with sharing class TriggerFactory
         {
             return new VEP_Visitor_TriggerHandler();
         }
-                // Agencies Trigger Handlers start
-        
-        if (soType == AF_Agency_Estimate__c.sObjectType)
-        {
-            return new AF_Agency_EstimateHandler();
-        }
-        
-        if (soType == AF_Bonus_Results__c.sObjectType)
-        {
-            return new AF_Bonus_ResultsHandler();
-        }
-        
-        if (soType == AF_Bonus_Threshold__c.sObjectType)
-        {
-            return new AF_Bonus_ThresholdHandler();
-        }
-        
-        if (soType == AF_Brand_Estimate__c.sObjectType)
-        {
-            return new AF_Brand_EstimateHandler();
-        }
-        
-        if (soType == AF_Currency__c.sObjectType)
-        {
-            return new AF_CurrencyHandler();
-        }
-        
-        if (soType == AF_OOPS_Actual__c.sObjectType)
-        {
-            return new AF_OOPSActualHandler();
-        }
-        
-        if (soType == AF_OOPS_Estimate__c.sObjectType)
-        {
-           return new AF_OOPSEstimateHandler();
-        }
-        
-        if (soType == AF_Sub_Result__c.sObjectType)
-        {
-            return new AF_SubResultHandler();
-        }
-        
-        if (soType == AF_Bonus_Matrix__c.sObjectType)
-        {
-            return new AF_Bonus_MatrixHandler();
-        }
-        
-        if (soType == AF_PO_Report__c.sObjectType)
-        {
-            return new AF_PO_ReportHandler();
-        }
-        
-        // Agencies Trigger Handlers ends        
+                
         return null;
 
     }
