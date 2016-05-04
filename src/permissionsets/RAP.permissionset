@@ -2038,11 +2038,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Amr_Saving__c.Job_Details__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>Amr_Saving__c.Monthly_Submitted__c</field>
         <readable>true</readable>

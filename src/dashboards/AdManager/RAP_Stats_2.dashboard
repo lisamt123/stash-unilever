@@ -3,163 +3,80 @@
     <backgroundEndColor>#FFFFFF</backgroundEndColor>
     <backgroundFadeDirection>Diagonal</backgroundFadeDirection>
     <backgroundStartColor>#FFFFFF</backgroundStartColor>
-    <dashboardType>SpecifiedUser</dashboardType>
     <leftSection>
         <columnSize>Wide</columnSize>
         <components>
-            <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
             <componentType>Table</componentType>
-            <dashboardTableColumn>
-                <column>Amr_Job_Allocation__c.User__c</column>
-                <sortBy>RowLabelAscending</sortBy>
-            </dashboardTableColumn>
-            <dashboardTableColumn>
-                <column>FORMULA1</column>
-                <showTotal>false</showTotal>
-            </dashboardTableColumn>
             <displayUnits>Auto</displayUnits>
-            <drillEnabled>false</drillEnabled>
-            <drillToDetailEnabled>false</drillToDetailEnabled>
             <header>Number of AdManager Numbers allocated</header>
             <indicatorHighColor>#54C254</indicatorHighColor>
             <indicatorLowColor>#C25454</indicatorLowColor>
             <indicatorMiddleColor>#C2C254</indicatorMiddleColor>
             <maxValuesDisplayed>5</maxValuesDisplayed>
             <report>AdManager_RAP_Stats_Reports/RAP_Stats_No_of_AdManager_Num_allocated</report>
-            <showPicturesOnTables>true</showPicturesOnTables>
+            <sortBy>RowLabelAscending</sortBy>
         </components>
         <components>
-            <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
             <chartAxisRange>Auto</chartAxisRange>
-            <chartSummary>
-                <axisBinding>y</axisBinding>
-                <column>FORMULA1</column>
-            </chartSummary>
             <componentType>Column</componentType>
             <displayUnits>Auto</displayUnits>
-            <drillEnabled>false</drillEnabled>
-            <drillToDetailEnabled>false</drillToDetailEnabled>
-            <enableHover>false</enableHover>
-            <expandOthers>false</expandOthers>
-            <groupingColumn>Amr_Job_Allocation__c.User__c</groupingColumn>
             <header>Number of AdManager Numbers allocated</header>
             <legendPosition>Bottom</legendPosition>
             <report>AdManager_RAP_Stats_Reports/RAP_Stats_No_of_AdManager_Num_allocated</report>
-            <showPercentage>false</showPercentage>
-            <showValues>false</showValues>
             <sortBy>RowLabelAscending</sortBy>
-            <useReportChart>false</useReportChart>
         </components>
     </leftSection>
     <middleSection>
         <columnSize>Wide</columnSize>
         <components>
-            <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
             <componentType>Table</componentType>
-            <dashboardTableColumn>
-                <column>Amr_Job_Allocation__c.User__c</column>
-                <sortBy>RowLabelAscending</sortBy>
-            </dashboardTableColumn>
-            <dashboardTableColumn>
-                <column>FK_$Amr_Job_Details__c.Brand_Final__c</column>
-                <showTotal>false</showTotal>
-            </dashboardTableColumn>
-            <dashboardTableColumn>
-                <column>FORMULA1</column>
-                <showTotal>false</showTotal>
-            </dashboardTableColumn>
             <displayUnits>Auto</displayUnits>
-            <drillEnabled>false</drillEnabled>
-            <drillToDetailEnabled>false</drillToDetailEnabled>
             <header>Number of brands supported (from allocated jobs)</header>
             <indicatorHighColor>#54C254</indicatorHighColor>
             <indicatorLowColor>#C25454</indicatorLowColor>
             <indicatorMiddleColor>#C2C254</indicatorMiddleColor>
             <maxValuesDisplayed>5</maxValuesDisplayed>
             <report>AdManager_RAP_Stats_Reports/RAPStatsNo_of_brands_supported_Allo</report>
-            <showPicturesOnTables>true</showPicturesOnTables>
+            <sortBy>RowLabelAscending</sortBy>
             <title>% Share (RAP vs. All RAPs)</title>
         </components>
         <components>
-            <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
             <chartAxisRange>Auto</chartAxisRange>
-            <chartSummary>
-                <axisBinding>y</axisBinding>
-                <column>FORMULA1</column>
-            </chartSummary>
             <componentType>ColumnGrouped</componentType>
             <displayUnits>Auto</displayUnits>
-            <drillEnabled>false</drillEnabled>
-            <drillToDetailEnabled>false</drillToDetailEnabled>
-            <enableHover>false</enableHover>
-            <expandOthers>false</expandOthers>
-            <groupingColumn>FK_$Amr_Job_Details__c.Brand_Final__c</groupingColumn>
-            <groupingColumn>Amr_Job_Allocation__c.User__c</groupingColumn>
             <header>Number of brands supported (from allocated jobs)</header>
             <legendPosition>Bottom</legendPosition>
             <report>AdManager_RAP_Stats_Reports/RAPStatsNo_of_brands_supported_Allo</report>
-            <showPercentage>false</showPercentage>
-            <showValues>false</showValues>
             <sortBy>RowLabelAscending</sortBy>
             <title>% Share (RAP vs. All RAPs)</title>
-            <useReportChart>false</useReportChart>
         </components>
     </middleSection>
     <rightSection>
         <columnSize>Wide</columnSize>
         <components>
-            <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
             <componentType>Table</componentType>
-            <dashboardTableColumn>
-                <column>Amr_Job_Details__c.Brand_Final__c</column>
-                <sortBy>RowLabelAscending</sortBy>
-            </dashboardTableColumn>
-            <dashboardTableColumn>
-                <column>CUST_NAME</column>
-                <showTotal>false</showTotal>
-            </dashboardTableColumn>
-            <dashboardTableColumn>
-                <column>RowCount</column>
-                <showTotal>false</showTotal>
-            </dashboardTableColumn>
             <displayUnits>Auto</displayUnits>
-            <drillEnabled>false</drillEnabled>
-            <drillToDetailEnabled>false</drillToDetailEnabled>
             <header>Number of brands supported</header>
             <indicatorHighColor>#54C254</indicatorHighColor>
             <indicatorLowColor>#C25454</indicatorLowColor>
             <indicatorMiddleColor>#C2C254</indicatorMiddleColor>
             <maxValuesDisplayed>5</maxValuesDisplayed>
             <report>AdManager_RAP_Stats_Reports/RAP_Stats_No_of_brands_supported_Saving</report>
-            <showPicturesOnTables>true</showPicturesOnTables>
+            <sortBy>RowLabelAscending</sortBy>
             <title>(from savings)</title>
         </components>
         <components>
-            <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
             <chartAxisRange>Auto</chartAxisRange>
-            <chartSummary>
-                <axisBinding>y</axisBinding>
-                <column>RowCount</column>
-            </chartSummary>
             <componentType>ColumnGrouped</componentType>
             <displayUnits>Auto</displayUnits>
-            <drillEnabled>false</drillEnabled>
-            <drillToDetailEnabled>false</drillToDetailEnabled>
-            <enableHover>false</enableHover>
-            <expandOthers>false</expandOthers>
-            <groupingColumn>Amr_Job_Details__c.Brand_Final__c</groupingColumn>
-            <groupingColumn>CUST_NAME</groupingColumn>
             <header>Number of brands supported</header>
             <legendPosition>Bottom</legendPosition>
             <report>AdManager_RAP_Stats_Reports/RAP_Stats_No_of_brands_supported_Saving</report>
-            <showPercentage>false</showPercentage>
-            <showValues>false</showValues>
             <sortBy>RowLabelAscending</sortBy>
             <title>(from savings)</title>
-            <useReportChart>false</useReportChart>
         </components>
     </rightSection>
-    <runningUser>vaibhav.vora@unilever.com</runningUser>
+    <runningUser>anusha.sanagaram@mindtree.com.chazwa</runningUser>
     <textColor>#000000</textColor>
     <title>RAP Stats 2</title>
     <titleColor>#000000</titleColor>

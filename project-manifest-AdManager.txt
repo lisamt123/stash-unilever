@@ -126,7 +126,6 @@ src/permissionsets/RAP.permissionset
 src
 src/dashboards
 src/dashboards/AdManager
-src/dashboards/AdManager/RAP_Stats_1.dashboard
 src/dashboards/AdManager/RAP_Stats_2.dashboard
 src/dashboards/AdManager/RAP_Stats_3.dashboard
 src/dashboards/AdManager/RAP_Stats_4.dashboard
@@ -149,7 +148,6 @@ src/reports/AdManager_RAP_Stats_Reports/RAP_Stats_No_of_brands_supported_Saving.
 src/reports/AdManager_RAP_Stats_Reports/RAP_Stats_Number_of_master_activities.report
 src/reports/AdManager_RAP_Stats_Reports/RAP_Stats_Ratio_of_Master_Vs_Admanager.report
 src/reports/AdManager_RAP_Stats_Reports/RAP_Stats_Ratio_of_Master_Vs_Total_Num.report
-src/reports/AdManager_RAP_Stats_Reports/RAP_Stats_Savings_Accepted_Quote_Per_J.report
 src/reports/AdManager_RAP_Stats_Reports/RAP_Stats_Total_number_of_activities.report
 src/reports/AdManager_RAP_Stats_Reports/RAP_Stat_share_RAP_vs_All_Raps.report
 src/reports/AdManager_RAP_Stats_Reports-meta.xml
@@ -188,7 +186,6 @@ src/workflows/Amr_Logging_Form_Setting__c.workflow
 src/workflows/Amr_Production_Type__c.workflow
 src/workflows/Amr_Project_Details__c.workflow
 src/workflows/Amr_Quote__c.workflow
-src/workflows/Amr_Saving__c.workflow
 src/workflows/Amr_Summary_Plan__c.workflow
 src/workflows/Amr_Trigger_Pattern__c.workflow
 src
