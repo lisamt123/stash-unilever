@@ -185,12 +185,12 @@
         </sections>
     </reportTypes>
     <reportTypes>
-        <description><!-- Agent App User Details --></description>
-        <label><!-- Agent App User Details --></label>
-        <name>Agent_App_User_Details</name>
+        <description><!-- Agent App User details --></description>
+        <label><!-- Agent App User details --></label>
+        <name>Agent_App_User_details</name>
         <sections>
-            <label><!-- Agent App User Preferences (Last Modified By) --></label>
-            <name>Agent App User Preferences (Last Modified By)</name>
+            <label><!-- Agent App User Preferences (Owner) --></label>
+            <name>Agent App User Preferences (Owner)</name>
         </sections>
         <sections>
             <label><!-- Users --></label>
@@ -559,6 +559,19 @@
             </columns>
             <label><!-- IPM Analytics --></label>
             <name>IPM Analytics</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- BET Inoplan --></description>
+        <label><!-- BET Inoplan --></label>
+        <name>BET_Inoplan</name>
+        <sections>
+            <label><!-- Brand Experience --></label>
+            <name>Brand Experience</name>
+        </sections>
+        <sections>
+            <label><!-- Inoplans --></label>
+            <name>Inoplans</name>
         </sections>
     </reportTypes>
     <reportTypes>
@@ -979,6 +992,19 @@
         </sections>
     </reportTypes>
     <reportTypes>
+        <description><!-- PWORF with PWORF aging --></description>
+        <label><!-- PWORF with PWORF aging --></label>
+        <name>CPA_PWORF_with_PWORF_aging</name>
+        <sections>
+            <label><!-- CPA PWORF Ageing --></label>
+            <name>CPA PWORF Ageing</name>
+        </sections>
+        <sections>
+            <label><!-- PWORF --></label>
+            <name>PWORF</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
         <description><!-- Cases With/Without Activities --></description>
         <label><!-- Cases With/Without Activities --></label>
         <name>Cases_With_Without_Activities</name>
@@ -1198,6 +1224,15 @@
         </sections>
     </reportTypes>
     <reportTypes>
+        <description><!-- Custom Order Report Type --></description>
+        <label><!-- Custom Order Report Type --></label>
+        <name>Custom_Order_Report_Type</name>
+        <sections>
+            <label><!-- Orders --></label>
+            <name>Orders</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
         <description><!-- Dashboards --></description>
         <label><!-- Dashboards --></label>
         <name>Dashboards</name>
@@ -1343,6 +1378,19 @@
         <sections>
             <label><!-- Ideas --></label>
             <name>Ideas</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Inoplan with or without BET --></description>
+        <label><!-- Inoplan with or without BET --></label>
+        <name>Inoplan_with_or_without_BET</name>
+        <sections>
+            <label><!-- Brand Experience --></label>
+            <name>Brand Experience</name>
+        </sections>
+        <sections>
+            <label><!-- Inoplans --></label>
+            <name>Inoplans</name>
         </sections>
     </reportTypes>
     <reportTypes>
@@ -1730,6 +1778,92 @@
         </sections>
     </reportTypes>
     <reportTypes>
+        <description><!-- PWORF Aging Report --></description>
+        <label><!-- PWORF Aging Report --></label>
+        <name>PWORF_With_User_Defined_Attribute</name>
+        <sections>
+            <label><!-- PWORF --></label>
+            <name>PWORF</name>
+        </sections>
+        <sections>
+            <label><!-- User Defined Attributes --></label>
+            <name>User Defined Attributes</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Summary Status of PWO, CR, CNF &amp; TNF --></description>
+        <label><!-- Summary Status of PWO, CR, CNF &amp; TNF --></label>
+        <name>PWORF_with_CPA_Project_Work_Order</name>
+        <sections>
+            <label><!-- CRs --></label>
+            <name>CRs</name>
+        </sections>
+        <sections>
+            <label><!-- PWORF --></label>
+            <name>PWORF</name>
+        </sections>
+        <sections>
+            <label><!-- Project Work Order --></label>
+            <name>Project Work Order</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- PWORF with CR --></description>
+        <label><!-- PWORF with CR --></label>
+        <name>PWORF_with_CR</name>
+        <sections>
+            <label><!-- PWORF --></label>
+            <name>PWORF</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- PWORF with LOI --></description>
+        <label><!-- PWORF with LOI --></label>
+        <name>PWORF_with_LOI</name>
+        <sections>
+            <label><!-- LOI --></label>
+            <name>LOI</name>
+        </sections>
+        <sections>
+            <label><!-- PWORF --></label>
+            <name>PWORF</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- PWORF Aging --></description>
+        <label><!-- PWORF Aging --></label>
+        <name>PWORF_with_PWORF_Ageing</name>
+        <sections>
+            <columns>
+                <label><!-- Final PWORF Age --></label>
+                <name>Final PWORF Age</name>
+            </columns>
+            <label><!-- CPA PWORF Ageing --></label>
+            <name>CPA PWORF Ageing</name>
+        </sections>
+        <sections>
+            <label><!-- PWORF --></label>
+            <name>PWORF</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- PWO TAT --></description>
+        <label><!-- PWO TAT --></label>
+        <name>PWO_TAT</name>
+        <sections>
+            <label><!-- CPA TATs --></label>
+            <name>CPA TATs</name>
+        </sections>
+        <sections>
+            <label><!-- PWORF --></label>
+            <name>PWORF</name>
+        </sections>
+        <sections>
+            <label><!-- Project Work Orders --></label>
+            <name>Project Work Orders</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
         <description><!-- Planner Events with Planners --></description>
         <label><!-- Planner Events with Planners --></label>
         <name>Planner_Events_with_Planners</name>
@@ -1826,6 +1960,36 @@
         <sections>
             <label><!-- Webinars --></label>
             <name>Webinars</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Project Work Order CR Commercials --></description>
+        <label><!-- Project Work Order CR Commercials --></label>
+        <name>Project_Work_Order_with_CR_Commercials</name>
+        <sections>
+            <label><!-- CRs --></label>
+            <name>CRs</name>
+        </sections>
+        <sections>
+            <label><!-- Commercial Details --></label>
+            <name>Commercial Details</name>
+        </sections>
+        <sections>
+            <label><!-- Project Work Orders --></label>
+            <name>Project Work Orders</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Project Work Order Commercials --></description>
+        <label><!-- Project Work Order Commercials --></label>
+        <name>Project_Work_Order_with_Commercials</name>
+        <sections>
+            <label><!-- Commercial Details --></label>
+            <name>Commercial Details</name>
+        </sections>
+        <sections>
+            <label><!-- Project Work Orders --></label>
+            <name>Project Work Orders</name>
         </sections>
     </reportTypes>
     <reportTypes>
@@ -1981,6 +2145,19 @@
         </sections>
     </reportTypes>
     <reportTypes>
+        <description><!-- UID Order with Order Product2 --></description>
+        <label><!-- UID Order with Order Product2 --></label>
+        <name>UID_Order_with_Order_Product2</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Orders --></label>
+            <name>Orders</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
         <description><!-- UID Sales Report --></description>
         <label><!-- UID Sales Report --></label>
         <name>UID_Sales_Report</name>
@@ -1991,6 +2168,19 @@
         <sections>
             <label><!-- Order Products --></label>
             <name>Order Products</name>
+        </sections>
+        <sections>
+            <label><!-- Orders --></label>
+            <name>Orders</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- UID Sales Report 2 --></description>
+        <label><!-- UID Sales Report 2 --></label>
+        <name>UID_Sales_Report_2</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
         </sections>
         <sections>
             <label><!-- Orders --></label>
@@ -2012,6 +2202,27 @@
         <sections>
             <label><!-- Stocked Products --></label>
             <name>Stocked Products</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- User Activity of PWO CR CNF TNF --></description>
+        <label><!-- User Activity of PWO CR CNF TNF --></label>
+        <name>User_Activity_of_PWO_CR_CNF_TNF</name>
+        <sections>
+            <label><!-- CR --></label>
+            <name>CR</name>
+        </sections>
+        <sections>
+            <label><!-- PWORF (Created By) --></label>
+            <name>PWORF (Created By)</name>
+        </sections>
+        <sections>
+            <label><!-- Project Work Order --></label>
+            <name>Project Work Order</name>
+        </sections>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
         </sections>
     </reportTypes>
     <reportTypes>
@@ -2064,6 +2275,75 @@
         <sections>
             <label><!-- Followers --></label>
             <name>Followers</name>
+        </sections>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- User Activity of HLE --></description>
+        <label><!-- User Activity of HLE --></label>
+        <name>Users_with_HLE</name>
+        <sections>
+            <label><!-- HLE --></label>
+            <name>HLE</name>
+        </sections>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- User Activity of LOI --></description>
+        <label><!-- User Activity of LOI --></label>
+        <name>Users_with_PWORF_LOI</name>
+        <sections>
+            <label><!-- LOI --></label>
+            <name>LOI</name>
+        </sections>
+        <sections>
+            <label><!-- PWORF --></label>
+            <name>PWORF</name>
+        </sections>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Users with PWORF-PWO-CNF --></description>
+        <label><!-- Users with PWORF-PWO-CNF --></label>
+        <name>Users_with_PWORF_PWO_CNF</name>
+        <sections>
+            <label><!-- PWORF (Owner) --></label>
+            <name>PWORF (Owner)</name>
+        </sections>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Users with PWORF-PWO-CR --></description>
+        <label><!-- Users with PWORF-PWO-CR --></label>
+        <name>Users_with_PWORF_PWO_CR</name>
+        <sections>
+            <label><!-- PWORF (Owner) --></label>
+            <name>PWORF (Owner)</name>
+        </sections>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Users with PWORF-PWO-TNF --></description>
+        <label><!-- Users with PWORF-PWO-TNF --></label>
+        <name>Users_with_PWORF_PWO_TNF</name>
+        <sections>
+            <label><!-- PWORF (Owner) --></label>
+            <name>PWORF (Owner)</name>
         </sections>
         <sections>
             <label><!-- Users --></label>

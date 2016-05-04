@@ -180,6 +180,13 @@
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
+        <excludeButtons>New</excludeButtons>
+        <fields>NAME</fields>
+        <fields>Product__c</fields>
+        <fields>Product_Quantity__c</fields>
+        <relatedList>CEC_Fulfilment_Product__c.Retrieval_Id__c</relatedList>
+    </relatedLists>
+    <relatedLists>
         <relatedList>RelatedEntityHistoryList</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>

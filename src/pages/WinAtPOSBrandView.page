@@ -1,3 +1,0 @@
-<apex:page standardController="Brand_Master__c">
-  <apex:detail subject="{!Brand_Master__c.id}" inlineEdit="true" relatedList="true" relatedListHover="true" title="true" showChatter="true" />
-</apex:page>

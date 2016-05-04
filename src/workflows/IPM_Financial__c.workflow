@@ -791,6 +791,106 @@
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
+        <fullName>Financial Charter Approved</fullName>
+        <actions>
+            <name>Financial_Charter_Copy_BIC</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Charter_Copy_CAPEX</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Charter_Copy_GM_Y1</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Charter_Copy_IRR</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Charter_Copy_NPV</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Charter_Copy_PBO_Y1</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Charter_Copy_Payback</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Charter_Copy_Volume_Unit</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Charter_Copy_Year_3_iTO</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Charter_Locked</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>IPM_Financial__c.Charter_Approved__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Financial Contract Approved</fullName>
+        <actions>
+            <name>Financial_Contract_Copy_BIC</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Contract_Copy_CAPEX</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Contract_Copy_GM_Y1</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Contract_Copy_IRR</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Contract_Copy_NPV</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Contract_Copy_PBO_Y1</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Contract_Copy_Payback</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Contract_Copy_Volume_Unit</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Contract_Copy_Year_3_iTO</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Contract_Locked</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>IPM_Financial__c.Contract_Approved__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
         <fullName>Financial Copy G2L Volume Unit %27000 Unit</fullName>
         <actions>
             <name>Financial_Copy_G2L_Volume_Unit_000_Unit</name>
@@ -806,6 +906,25 @@
             <field>IPM_Financial__c.Volume_Unit_Global__c</field>
             <operation>equals</operation>
             <value>Total &apos;000 Units</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Financial Copy G2L Volume Unit Tons</fullName>
+        <actions>
+            <name>Financial_Copy_G2L_Volume_Unit_Tons</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>IPM_Financial__c.Copy_Global_to_Local__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>IPM_Financial__c.Volume_Unit_Global__c</field>
+            <operation>equals</operation>
+            <value>Total Tons</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
@@ -829,6 +948,93 @@
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
+        <fullName>Financial Copy G2R Volume Unit Tons</fullName>
+        <actions>
+            <name>Financial_Copy_G2R_Volume_Unit_Tons</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>IPM_Financial__c.Copy_Global_to_Regional__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>IPM_Financial__c.Volume_Unit_Global__c</field>
+            <operation>equals</operation>
+            <value>Total Tons</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Financial Copy Global to Local</fullName>
+        <actions>
+            <name>Financial_Copy_G2L_BIC</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Copy_G2L_CAPEX</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Copy_G2L_IRR</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Copy_G2L_NPV</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Copy_G2L_Payback</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Set_Copy_G2L_FALSE</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>IPM_Financial__c.Copy_Global_to_Local__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Financial Copy Global to Regional</fullName>
+        <actions>
+            <name>Financial_Copy_G2R_BIC</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Copy_G2R_CAPEX</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Copy_G2R_IRR</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Copy_G2R_NPV</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Copy_G2R_Payback</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Set_Copy_G2R_FALSE</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>IPM_Financial__c.Copy_Global_to_Regional__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
         <fullName>Financial Copy L2R Volume Unit %27000 Unit</fullName>
         <actions>
             <name>Financial_Copy_L2R_Volume_Unit_000_Unit</name>
@@ -848,6 +1054,59 @@
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
+        <fullName>Financial Copy L2R Volume Unit Tons</fullName>
+        <actions>
+            <name>Financial_Copy_L2R_Volume_Unit_Tons</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>IPM_Financial__c.Copy_Local_to_Regional__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>IPM_Financial__c.Volume_Unit_Local__c</field>
+            <operation>equals</operation>
+            <value>Total Tons</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Financial Copy Local to Regional</fullName>
+        <actions>
+            <name>Financial_Copy_L2R_BIC</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Copy_L2R_CAPEX</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Copy_L2R_IRR</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Copy_L2R_NPV</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Copy_L2R_Payback</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Set_Copy_L2R_FALSE</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>IPM_Financial__c.Copy_Local_to_Regional__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
         <fullName>Financial Copy R2L Volume Unit %27000 Unit</fullName>
         <actions>
             <name>Financial_Copy_R2L_Volume_Unit_000_Unit</name>
@@ -863,6 +1122,159 @@
             <field>IPM_Financial__c.Volume_Unit_Regional__c</field>
             <operation>equals</operation>
             <value>Total &apos;000 Units</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Financial Copy R2L Volume Unit Tons</fullName>
+        <actions>
+            <name>Financial_Copy_R2L_Volume_Unit_Tons</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>IPM_Financial__c.Copy_Regional_to_Local__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>IPM_Financial__c.Volume_Unit_Regional__c</field>
+            <operation>equals</operation>
+            <value>Total Tons</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Financial Copy Regional to Local</fullName>
+        <actions>
+            <name>Financial_Copy_R2L_BIC</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Copy_R2L_CAPEX</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Copy_R2L_IRR</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Copy_R2L_NPV</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Copy_R2L_Payback</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_Set_Copy_R2L_FALSE</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>IPM_Financial__c.Copy_Regional_to_Local__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Financial MD Approved</fullName>
+        <actions>
+            <name>Financial_MD_Copy_BIC</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_MD_Copy_CAPEX</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_MD_Copy_GM_Y1</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_MD_Copy_IRR</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_MD_Copy_NPV</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_MD_Copy_PBO_Y1</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_MD_Copy_Payback</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_MD_Copy_Volume_Unit</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_MD_Copy_Year_3_iTO</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_MD_Locked</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>IPM_Financial__c.MD_Approved__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Financial MR Approved</fullName>
+        <actions>
+            <name>Financial_MR_Copy_BIC</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_MR_Copy_CAPEX</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_MR_Copy_GM_Y1</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_MR_Copy_IRR</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_MR_Copy_NPV</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_MR_Copy_PBO_Y1</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_MR_Copy_Payback</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_MR_Copy_Volume_Unit</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_MR_Copy_Year_3_iTO</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Financial_MR_Locked</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>IPM_Financial__c.MR_Approved__c</field>
+            <operation>equals</operation>
+            <value>True</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
@@ -923,5 +1335,15 @@
         <active>true</active>
         <formula>IF(AND( Misaligned__c,  ISCHANGED( Misaligned__c )),  true, false)</formula>
         <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Misalignment</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>IPM_Financial__c.Misaligned__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
 </Workflow>

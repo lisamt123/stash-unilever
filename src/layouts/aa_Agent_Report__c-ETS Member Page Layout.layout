@@ -74,6 +74,10 @@
                 <behavior>Edit</behavior>
                 <field>Approve_Reject__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

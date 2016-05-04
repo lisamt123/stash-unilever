@@ -113,6 +113,18 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Account-Account Layout</layout>
+        <recordType>Account.OOH_Distributor</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Account-Account Layout</layout>
+        <recordType>Account.OOH_Point_of_Sale_Outlet</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Account-Account Layout</layout>
+        <recordType>Account.OOH_Sale_Terminal</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Account-Account Layout</layout>
         <recordType>Account.Standard</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -146,6 +158,14 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Asset-Asset Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Asset-Asset Layout</layout>
+        <recordType>Asset.Assets</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Asset-Asset Layout</layout>
+        <recordType>Asset.OOH_Assets</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Asset_Group__c-WP Asset Group Layout</layout>
@@ -258,7 +278,7 @@
         <recordType>CEC_Retrieval_Request__c.Default</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CEC_Retrieval_Request__c-Retrieval Request Layout%28Read Only%29</layout>
+        <layout>CEC_Retrieval_Request__c-Retrieval Request Layout</layout>
         <recordType>CEC_Retrieval_Request__c.Read_Only</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -383,6 +403,17 @@
         <recordType>CPA_HLE_Request__c.HLE_request_Cancelled</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>CPA_HLE__c-CAP_Ball Park Estimate Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CPA_HLE__c-CAP_Ball Park Estimate Layout</layout>
+        <recordType>CPA_HLE__c.High_Level_Estimate</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CPA_HLE__c-CAP_Ball Park Estimate Layout</layout>
+        <recordType>CPA_HLE__c.rt_Ball_Park_Estimate</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>CPA_Key_Contacts__c-Key Contact Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -441,7 +472,27 @@
         <layout>CPA_TAT__c-CPA TAT Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>CPA_User_Defined_Attribute__c-User Defined Attribute CR</layout>
+        <recordType>CPA_User_Defined_Attribute__c.CPA_CR</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CPA_User_Defined_Attribute__c-User Defined Attribute HLE Request</layout>
+        <recordType>CPA_User_Defined_Attribute__c.CPA_HLE_Request</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CPA_User_Defined_Attribute__c-User Defined Attribute LOI</layout>
+        <recordType>CPA_User_Defined_Attribute__c.CPA_LOI</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>CPA_User_Defined_Attribute__c-User Defined Attribute Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CPA_User_Defined_Attribute__c-User Defined Attribute PWO</layout>
+        <recordType>CPA_User_Defined_Attribute__c.CPA_PWO</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CPA_User_Defined_Attribute__c-User Defined Attribute PWORF</layout>
+        <recordType>CPA_User_Defined_Attribute__c.CPA_PWORF</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>CPA_project_work_order__c-CPA Project Work Order CNF Layout</layout>
@@ -1123,6 +1174,9 @@
         <layout>News_Article__c-News Article Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>OOH_SellOutData__c-Sell Out Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>OV_Brand__c-One View Brand Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -1374,7 +1428,13 @@
         <layout>Project__c-Project Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Question-Question Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>QuickText-Quick Text Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Reply-Reply Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Search_Statistics__c-WINatPOS Search Statistics Layout</layout>
@@ -1440,18 +1500,48 @@
         <layout>Users_Category__c-Users Category Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>WU_Master_Warehouse__c-ADMIN  Warehouse Capacity CustomLayout</layout>
+        <layout>Vep_Answer__c-Answer Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>WU_Master_Warehouse__c-ADMIN  Warehouse Capacity CustomLayout</layout>
-        <recordType>WU_Master_Warehouse__c.Edit_Warehouse_Capacity</recordType>
+        <layout>Vep_Factory__c-Factory Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>WU_Master_Warehouse__c-ADMIN  Warehouse Capacity CustomLayout</layout>
+        <layout>Vep_Question__c-Question Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Vep_Visitor_Pass__c-Vep Visitor Pass Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Vep_Visitor__c-ROB Visitor layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Vep_Visitor__c-ROB Visitor layout</layout>
+        <recordType>Vep_Visitor__c.Request</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Vep_Visitor__c-ROB Visitor layout</layout>
+        <recordType>Vep_Visitor__c.Request_Readonly</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Vep_Visitor__c-ROB Visitor layout</layout>
+        <recordType>Vep_Visitor__c.Request_on_Behalf</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>WU_Master_Warehouse__c-New Warehouse Capacity Layout</layout>
         <recordType>WU_Master_Warehouse__c.New_Warehouse_Capacity</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>WU_Master_Warehouse__c-Warehouse Capacity CustomLayout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>WU_Master_Warehouse__c-Warehouse Capacity CustomLayout</layout>
+        <recordType>WU_Master_Warehouse__c.Edit_Warehouse_Capacity</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>WU_Warehouse_Capacity_Detail__c-Custom Warehouse Capacity Utilizaion Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>WWP_Loss_Tree__c-Loss Tree Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>WorkAccess-Access Layout</layout>
@@ -1766,6 +1856,10 @@
         <layout>mdm_Product_Category__c-Product Category Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>mdm_Product_Category__c-Product Category Layout</layout>
+        <recordType>mdm_Product_Category__c.UL_Products</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>mdm_Reason_Code__c-Reason Code Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -1855,6 +1949,21 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+        <recordType>Account.OOH_Distributor</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Account.OOH_Point_of_Sale_Outlet</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Account.OOH_Sale_Terminal</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
         <recordType>Account.Pitch_Agency</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
@@ -1881,6 +1990,16 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Article__c.Home_Page_Article</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Asset.Assets</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Asset.OOH_Assets</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
@@ -2035,6 +2154,16 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+        <recordType>CPA_HLE__c.High_Level_Estimate</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>CPA_HLE__c.rt_Ball_Park_Estimate</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
         <recordType>CPA_LOI__c.LOI_Accepted</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
@@ -2066,6 +2195,31 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>CPA_PWORF__c.RA</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>CPA_User_Defined_Attribute__c.CPA_CR</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>CPA_User_Defined_Attribute__c.CPA_HLE_Request</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>CPA_User_Defined_Attribute__c.CPA_LOI</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>CPA_User_Defined_Attribute__c.CPA_PWO</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>CPA_User_Defined_Attribute__c.CPA_PWORF</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
@@ -2529,14 +2683,15 @@
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <default>false</default>
+        <default>true</default>
+        <personAccountDefault>true</personAccountDefault>
         <recordType>Order.UID_Primary_Sales</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Order.UID_Secondary_Sales</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
@@ -2546,6 +2701,21 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>PersonAccount.Pitch_Expert</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Vep_Visitor__c.Request</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Vep_Visitor__c.Request_Readonly</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Vep_Visitor__c.Request_on_Behalf</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

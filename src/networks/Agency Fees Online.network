@@ -3,7 +3,6 @@
     <allowMembersToFlag>false</allowMembersToFlag>
     <branding>
         <loginFooterText>Unilever</loginFooterText>
-        <loginLogo>Communities_Shared_Document_Folder/CommunitiesLogo_jpg.jpg</loginLogo>
         <primaryColor>#61A631</primaryColor>
         <primaryComplementColor>#222222</primaryComplementColor>
         <quaternaryColor>#B1BAC1</quaternaryColor>
@@ -27,6 +26,7 @@
     <forgotPasswordTemplate>unfiled$public/CommunityForgotPasswordEmailTemplate</forgotPasswordTemplate>
     <networkMemberGroups>
         <profile>AF - Agency Portal User</profile>
+        <profile>Admin</profile>
     </networkMemberGroups>
     <newSenderAddress>Agency.Fees@unilever.com</newSenderAddress>
     <picassoSite>Agency_Fees_Online1</picassoSite>

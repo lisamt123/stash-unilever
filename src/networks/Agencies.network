@@ -3,7 +3,6 @@
     <allowMembersToFlag>false</allowMembersToFlag>
     <branding>
         <loginFooterText>Unilever Ratings and Reviews</loginFooterText>
-        <loginLogo>Communities_Shared_Document_Folder/servlet_jpg.jpg</loginLogo>
         <primaryColor>#022072</primaryColor>
         <primaryComplementColor>#FFFFFF</primaryComplementColor>
         <quaternaryColor>#C3DFFC</quaternaryColor>
@@ -30,6 +29,8 @@
         <profile>AR - Agency Portal User</profile>
         <profile>Admin</profile>
         <profile>Community Profile</profile>
+        <profile>Partner Community Login User</profile>
+        <profile>Partner Community User</profile>
     </networkMemberGroups>
     <picassoSite>Agencies1</picassoSite>
     <selfRegistration>false</selfRegistration>
@@ -40,7 +41,10 @@
         <customTab>SWOP</customTab>
         <defaultTab>home</defaultTab>
         <standardTab>home</standardTab>
-        <standardTab>Product2</standardTab>
+        <standardTab>Account</standardTab>
+        <standardTab>report</standardTab>
+        <standardTab>Dashboard</standardTab>
+        <standardTab>Order</standardTab>
     </tabs>
     <urlPathPrefix>agency</urlPathPrefix>
     <welcomeTemplate>unfiled$public/CommunityWelcomeEmailTemplate</welcomeTemplate>

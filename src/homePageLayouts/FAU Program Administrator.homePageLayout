@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <HomePageLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <narrowComponents>success__SuMo</narrowComponents>
+    <narrowComponents>success__SuMo  Promotions</narrowComponents>
     <narrowComponents>standard-RecentItems</narrowComponents>
     <narrowComponents>standard-CreateNew</narrowComponents>
     <narrowComponents>standard-Tags</narrowComponents>
+    <wideComponents>success__SuMo Performance History</wideComponents>
     <wideComponents>Welcome to Unilever Chatter Old</wideComponents>
     <wideComponents>standard-Calendar</wideComponents>
     <wideComponents>standard-Tasks</wideComponents>

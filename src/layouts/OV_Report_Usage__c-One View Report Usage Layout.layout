@@ -103,6 +103,10 @@
                 <behavior>Edit</behavior>
                 <field>File_Version_Uploaded_By_Name__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

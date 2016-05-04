@@ -11,6 +11,28 @@
         <senderType>DefaultWorkflowUser</senderType>
         <template>IPM_Emails/IPM_PL_Email2</template>
     </alerts>
+    <alerts>
+        <fullName>IPM_Send_Email_PL_OnUpdate</fullName>
+        <description>IPM_Send_Email_PL_OnUpdate</description>
+        <protected>false</protected>
+        <recipients>
+            <field>IPM_Project_L_eader_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>IPM_Emails/IPM_section_notification1</template>
+    </alerts>
+    <alerts>
+        <fullName>IPM_send_Email_PL_EmailAlert</fullName>
+        <description>IPM send Email PL EmailAlert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>IPM_Project_L_eader_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>IPM_Emails/IPM_section_notification1</template>
+    </alerts>
     <fieldUpdates>
         <fullName>IPM_Field_Update_Negotiable</fullName>
         <field>IPM_Negotiable__c</field>
@@ -94,6 +116,10 @@
     <rules>
         <fullName>IPM Notify PL</fullName>
         <actions>
+            <name>IPM_send_Email_PL_EmailAlert</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
             <name>IPM_update_notify</name>
             <type>FieldUpdate</type>
         </actions>
@@ -121,6 +147,10 @@
     </rules>
     <rules>
         <fullName>IPM_Send_Mail_PL</fullName>
+        <actions>
+            <name>IPM_Send_Email_PL_OnUpdate</name>
+            <type>Alert</type>
+        </actions>
         <actions>
             <name>IPM_Update_Notify_PL</name>
             <type>FieldUpdate</type>

@@ -62,7 +62,7 @@
             <table>aa_Agent_Report__c</table>
         </columns>
         <columns>
-            <checkedByDefault>true</checkedByDefault>
+            <checkedByDefault>false</checkedByDefault>
             <field>Country__c</field>
             <table>aa_Agent_Report__c</table>
         </columns>

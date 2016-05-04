@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PostTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
-    <default>true</default>
+    <default>false</default>
     <description>approval post template for chatter</description>
     <fields>Name</fields>
     <fields>SOW_Status__c</fields>

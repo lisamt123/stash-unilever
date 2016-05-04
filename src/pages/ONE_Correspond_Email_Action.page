@@ -1,5 +1,0 @@
-<apex:page standardController="Case">
-
-<TH1:GLOBAL_PublisherAction ObjectId="{!Case.Id}" />
-
-</apex:page>

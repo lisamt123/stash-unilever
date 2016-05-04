@@ -30,7 +30,7 @@
     <outboundMessages>
         <fullName>Core_CA_IP_Clarity_OutboundMessage</fullName>
         <apiVersion>36.0</apiVersion>
-        <endpointUrl>https://sbi.clarity.cloudhub.unileverservices.com:8082/ClaritySalesforceResponseService</endpointUrl>
+        <endpointUrl>http://52.19.91.215:8081/ClaritySalesforceResponseService</endpointUrl>
         <fields>Comments__c</fields>
         <fields>CurrentDateTime__c</fields>
         <fields>Employee_No__c</fields>
@@ -40,7 +40,7 @@
         <fields>Role__c</fields>
         <fields>Status__c</fields>
         <includeSessionId>false</includeSessionId>
-        <integrationUser>clarity.system@unilever.com.prod</integrationUser>
+        <integrationUser>clarity.system@unilever.com</integrationUser>
         <name>Core CA IP Clarity OutboundMessage</name>
         <protected>false</protected>
         <useDeadLetterQueue>false</useDeadLetterQueue>

@@ -68,6 +68,10 @@
                 <behavior>Edit</behavior>
                 <field>Reimbursable__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

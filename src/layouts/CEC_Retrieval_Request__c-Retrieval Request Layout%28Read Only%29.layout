@@ -32,7 +32,7 @@
                 <field>Textile_Factory__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>Product_Factory__c</field>
             </layoutItems>
             <layoutItems>
@@ -79,7 +79,7 @@
                 <field>Case_Product__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Readonly</behavior>
                 <field>Retrieval_Quantity__c</field>
             </layoutItems>
         </layoutColumns>
@@ -89,7 +89,7 @@
                 <field>Case__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>Case_Country_Name__c</field>
             </layoutItems>
         </layoutColumns>
@@ -182,6 +182,13 @@
         <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
+    <relatedLists>
+        <excludeButtons>New</excludeButtons>
+        <fields>NAME</fields>
+        <fields>Product__c</fields>
+        <fields>Product_Quantity__c</fields>
+        <relatedList>CEC_Fulfilment_Product__c.Retrieval_Id__c</relatedList>
+    </relatedLists>
     <relatedLists>
         <relatedList>RelatedEntityHistoryList</relatedList>
     </relatedLists>

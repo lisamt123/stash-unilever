@@ -2,8 +2,6 @@
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
         <fullName>CPA_CR_Acceptance_Notification</fullName>
-        <ccEmails>ramani.kannan@unilever.com</ccEmails>
-        <ccEmails>harshada.naik@mindtree.com</ccEmails>
         <description>CR Acceptance Notification</description>
         <protected>false</protected>
         <recipients>
@@ -187,6 +185,7 @@
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>CPA_CR_SMT_Send_for_Signature</fullName>
@@ -209,6 +208,23 @@
         <operation>LookupValue</operation>
         <protected>false</protected>
         <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_CR_Sent_for_signature_date</fullName>
+        <field>dat_Sent_for_Signature_Date__c</field>
+        <formula>TODAY()</formula>
+        <name>CPA CR Sent for signature date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_CR_Sent_for_signature_date_null</fullName>
+        <field>dat_Sent_for_Signature_Date__c</field>
+        <name>CPA CR Sent for signature date null</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>CPA_CR_Standalone_CR</fullName>
@@ -409,6 +425,20 @@
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
+        <fullName>CPA CR Sent for signature</fullName>
+        <actions>
+            <name>CPA_CR_Sent_for_signature_date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>CPA_CR__c.pkl_Status__c</field>
+            <operation>equals</operation>
+            <value>Sent for Signature</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
         <fullName>CPA CR Signed</fullName>
         <actions>
             <name>CPA_CR_Delivered_Record_type</name>
@@ -439,6 +469,34 @@
             <value>Standalone CR</value>
         </criteriaItems>
         <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>CPA CR Submitted%2C Resubmitted</fullName>
+        <actions>
+            <name>CPA_CR_Raised_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CPA_CR_SMT_Send_for_Signature</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CPA_CR_Submitted</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>CPA_CR__c.pkl_Status__c</field>
+            <operation>equals</operation>
+            <value>Submitted</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>CPA_CR__c.pkl_Status__c</field>
+            <operation>equals</operation>
+            <value>Resubmitted</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
         <fullName>CPA Delivered%2CCancel</fullName>

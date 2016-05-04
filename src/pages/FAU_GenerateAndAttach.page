@@ -1,3 +1,0 @@
-<apex:page standardcontroller="FAU_Program__c" extensions="FAU_GenrateAndAttachPDFController" action="{!attach}">
-
-</apex:page>

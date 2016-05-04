@@ -200,6 +200,31 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>CPA_PWO_CNF_Send_for_signature_date</fullName>
+        <field>dat_CNF_Sent_for_Signature_Date__c</field>
+        <formula>TODAY()</formula>
+        <name>CPA PWO CNF Send for signature date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_PWO_CNF_Send_for_signature_null</fullName>
+        <field>dat_CNF_Sent_for_Signature_Date__c</field>
+        <name>CPA PWO CNF Send for signature null</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_PWO_CNF_Status_blank</fullName>
+        <field>CNF_Status__c</field>
+        <name>CPA PWO CNF Status blank</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CPA_PWO_CNF_status_saved</fullName>
         <field>CNF_Status__c</field>
         <literalValue>Saved</literalValue>
@@ -225,6 +250,48 @@
         <name>CPA PWO Previous Status value</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_PWO_Send_for_signature</fullName>
+        <field>dat_Sent_for_Signature_Date__c</field>
+        <formula>TODAY()</formula>
+        <name>CPA PWO Send for signature</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_PWO_Send_for_signature_null</fullName>
+        <field>dat_Sent_for_Signature_Date__c</field>
+        <name>CPA PWO Send for signature null</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_PWO_TNF_Send_for_signature_date</fullName>
+        <field>dat_TNF_Sent_for_Signature__c</field>
+        <formula>TODAY()</formula>
+        <name>CPA PWO TNF Send for signature date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_PWO_TNF_Send_for_signature_null</fullName>
+        <field>dat_TNF_Sent_for_Signature__c</field>
+        <name>CPA PWO TNF Send for signature null</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_PWO_TNF_status_blank</fullName>
+        <field>TNF_Status__c</field>
+        <name>CPA PWO TNF status blank</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
@@ -589,11 +656,15 @@
             <name>CPA_Closure_Notification_Form_Cancel_Sta</name>
             <type>FieldUpdate</type>
         </actions>
+        <actions>
+            <name>CPA_PWO_CNF_Status_blank</name>
+            <type>FieldUpdate</type>
+        </actions>
         <active>true</active>
         <criteriaItems>
-            <field>CPA_project_work_order__c.CNF_Status__c</field>
+            <field>CPA_project_work_order__c.chk_isCNFcancelled__c</field>
             <operation>equals</operation>
-            <value>Cancelled</value>
+            <value>True</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
@@ -616,6 +687,20 @@
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
+        <fullName>CPA PWO CNF Send for signature</fullName>
+        <actions>
+            <name>CPA_PWO_CNF_Send_for_signature_date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>CPA_project_work_order__c.CNF_Status__c</field>
+            <operation>equals</operation>
+            <value>Sent for Signature</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
         <fullName>CPA PWO Reocrd type PWO CNF</fullName>
         <actions>
             <name>CPA_PWO_CNF_status_saved</name>
@@ -626,6 +711,10 @@
             <field>CPA_project_work_order__c.RecordTypeId</field>
             <operation>equals</operation>
             <value>PWO CNF</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>CPA_project_work_order__c.CNF_Status__c</field>
+            <operation>equals</operation>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
@@ -645,15 +734,28 @@
             <field>CPA_project_work_order__c.TNF_Status__c</field>
             <operation>equals</operation>
         </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>CPA PWO TNF Send for signature</fullName>
+        <actions>
+            <name>CPA_PWO_TNF_Send_for_signature_date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
         <criteriaItems>
-            <field>CPA_project_work_order__c.chk_isCNFcancelled__c</field>
+            <field>CPA_project_work_order__c.TNF_Status__c</field>
             <operation>equals</operation>
-            <value>False</value>
+            <value>Sent for Signature</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
         <fullName>CPA PWO TNF cancel at Accepted</fullName>
+        <actions>
+            <name>CPA_PWO_TNF_status_blank</name>
+            <type>FieldUpdate</type>
+        </actions>
         <actions>
             <name>CPA_Project_Work_Order_Accepted</name>
             <type>FieldUpdate</type>
@@ -682,6 +784,10 @@
     <rules>
         <fullName>CPA PWO TNF cancel at Send for signature</fullName>
         <actions>
+            <name>CPA_PWO_TNF_status_blank</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
             <name>CPA_Project_Work_Order_send_for_Signatur</name>
             <type>FieldUpdate</type>
         </actions>
@@ -707,9 +813,27 @@
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
+        <fullName>CPA PWO TNF returned</fullName>
+        <actions>
+            <name>CPA_Record_type_CPA_TNF</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>CPA_project_work_order__c.TNF_Status__c</field>
+            <operation>equals</operation>
+            <value>Returned</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
         <fullName>CPA PWO send for Signature</fullName>
         <actions>
             <name>CPA_PWO_Previous_Status_value</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CPA_PWO_Send_for_signature</name>
             <type>FieldUpdate</type>
         </actions>
         <actions>
@@ -950,6 +1074,20 @@
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
+        <fullName>CPA Termination Notification Form Return</fullName>
+        <actions>
+            <name>CPA_Record_type_CPA_TNF</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>CPA_project_work_order__c.TNF_Status__c</field>
+            <operation>equals</operation>
+            <value>Returned</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
         <fullName>CPA Termination Notification Form Signed</fullName>
         <actions>
             <name>CPA_Project_Work_Order_Terminated</name>
@@ -993,6 +1131,10 @@
     </rules>
     <rules>
         <fullName>CPA Termination Notification Form cancel</fullName>
+        <actions>
+            <name>CPA_PWO_TNF_status_blank</name>
+            <type>FieldUpdate</type>
+        </actions>
         <actions>
             <name>CPA_Project_Work_Order_Signed</name>
             <type>FieldUpdate</type>

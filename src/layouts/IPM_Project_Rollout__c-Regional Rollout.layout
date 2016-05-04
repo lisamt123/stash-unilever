@@ -83,6 +83,10 @@
                 <behavior>Readonly</behavior>
                 <field>IPM_Regional_Original_Project__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

@@ -13,7 +13,7 @@
         <zeronaryComplementColor>#FFFFFF</zeronaryComplementColor>
     </branding>
     <changePasswordTemplate>unfiled$public/CommunityChangePasswordEmailTemplate</changePasswordTemplate>
-    <emailSenderAddress>blessy.voola@accenture.com</emailSenderAddress>
+    <emailSenderAddress>joed.n.barcenas@accenture.com</emailSenderAddress>
     <emailSenderName>Unilever International Distributor</emailSenderName>
     <enableGuestChatter>false</enableGuestChatter>
     <enableInvitation>false</enableInvitation>
@@ -25,6 +25,7 @@
     <networkMemberGroups>
         <permissionSet>UID_Partner_Community_User_Permission_Set</permissionSet>
         <profile>Admin</profile>
+        <profile>Partner Community Login User</profile>
         <profile>CD Partner Community User</profile>
     </networkMemberGroups>
     <picassoSite>Unilever_International_Distributor1</picassoSite>
@@ -37,8 +38,8 @@
         <standardTab>home</standardTab>
         <standardTab>Account</standardTab>
         <standardTab>Order</standardTab>
-        <standardTab>report</standardTab>
         <standardTab>Dashboard</standardTab>
+        <standardTab>report</standardTab>
     </tabs>
     <urlPathPrefix>UID</urlPathPrefix>
     <welcomeTemplate>unfiled$public/CommunityWelcomeEmailTemplate</welcomeTemplate>

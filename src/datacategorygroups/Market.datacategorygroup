@@ -24,21 +24,13 @@
                     <label>Argentina</label>
                     <name>Argentina</name>
                 </dataCategory>
-                <dataCategory>
-                    <label>Chile</label>
-                    <name>Chile</name>
-                </dataCategory>
                 <label>Southern Cone</label>
                 <name>Southern_Cone</name>
             </dataCategory>
             <dataCategory>
                 <dataCategory>
-                    <label>Colombia</label>
-                    <name>Colombia</name>
-                </dataCategory>
-                <dataCategory>
-                    <label>Venezuela</label>
-                    <name>Venezuela</name>
+                    <label>Venezula</label>
+                    <name>Venezula</name>
                 </dataCategory>
                 <dataCategory>
                     <label>Ecuador</label>
@@ -67,6 +59,10 @@
                 <dataCategory>
                     <label>El Salvador</label>
                     <name>El_Salvador</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>Colombia</label>
+                    <name>Colombia</name>
                 </dataCategory>
                 <label>Middle Americas</label>
                 <name>Middle_Americas</name>

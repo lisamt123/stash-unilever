@@ -47,6 +47,10 @@
                 <behavior>Edit</behavior>
                 <field>Gross_Margin_Multiplier__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

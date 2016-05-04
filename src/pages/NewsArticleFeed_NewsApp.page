@@ -1,8 +1,0 @@
-<apex:page standardStylesheets="true" showHeader="false"  sidebar="false" controller="NewsArticleFeedController_NewsApp">
-    <style>
-        input#richTextPlaceholderInput {
-            width: 90% !important;
-        }
-    </style>
-  <chatter:feed entityId="{!articleId}"  showPublisher="true"/>
-</apex:page>

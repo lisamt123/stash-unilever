@@ -28,6 +28,24 @@
         <protected>false</protected>
     </fieldUpdates>
     <rules>
+        <fullName>DEL_UID_UpdateStockedProductFlag</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>UID_Stocked_Product__c.UID_Stock_Cover_Calculation_Flag__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>UID_UpdateStockedProductFlagField</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <timeLength>0</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
         <fullName>UID_UpdateStockedProductExternal</fullName>
         <actions>
             <name>UID_UpdateStockedProductExternalField</name>
@@ -46,7 +64,7 @@
     </rules>
     <rules>
         <fullName>UID_UpdateStockedProductFlag</fullName>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>UID_Stocked_Product__c.UID_Stock_Cover_Calculation_Flag__c</field>
             <operation>equals</operation>

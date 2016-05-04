@@ -8,7 +8,7 @@
             </value>
         </processMetadataValues>
         <name>myRule_1_A1</name>
-        <label>When project leader added to plan</label>
+        <label>Post chatter when regional rollout project added to plan</label>
         <locationX>100</locationX>
         <locationY>200</locationY>
         <actionName>IPM_ChatterFeedHelper</actionName>

@@ -39,6 +39,14 @@
                 <behavior>Edit</behavior>
                 <field>Oblix_tec_Unique_Name_c__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Asset_Deliverables__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -131,10 +139,6 @@
                 <behavior>Edit</behavior>
                 <field>Agency_Percentage_of_Fees_to_this_FY__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Total_Project_Score__c</field>
-            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
@@ -221,7 +225,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>OblixClonedFromParentProject__c</field>
+                <field>ProjectTotalAssetscore__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -229,7 +233,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>ProjectTotalAssetscore__c</field>
+                <field>Oblix_ProjectBoxNumber__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Total_Project_Score__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>OblixClonedFromParentProject__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -240,10 +252,6 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>LastModifiedById</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Oblix_ProjectBoxNumber__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -272,8 +280,9 @@
         <fields>Channels__c</fields>
         <fields>Location__c</fields>
         <fields>Quantity__c</fields>
-        <fields>Asset_Total_Score__c</fields>
         <fields>Asset_Scoring_Number__c</fields>
+        <fields>Asset_Score__c</fields>
+        <fields>Asset_Line_Item_Score__c</fields>
         <relatedList>Oblix_Project_Assets__c.Agency_Projects__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -285,7 +294,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hM0000000KYL1</masterLabel>
+        <masterLabel>00hE000000SCi8U</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

@@ -50,6 +50,10 @@
                 <behavior>Edit</behavior>
                 <field>Sent_to_Email_Address__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

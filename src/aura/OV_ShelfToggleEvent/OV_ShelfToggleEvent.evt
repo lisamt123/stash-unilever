@@ -1,3 +1,0 @@
-<aura:event type="APPLICATION">
-    <aura:attribute name="shelfTileId" type="String" />
-</aura:event>
