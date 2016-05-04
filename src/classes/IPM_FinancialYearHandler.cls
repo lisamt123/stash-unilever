@@ -74,7 +74,15 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger
         {
             upsert upsertconsolidatedFinancialYearMap.values() External_Id__c;
         }
-        
+        //Financials Hard Validations: Get all Financial External ID
+        set<string> setFinExtId = new set<string>();
+        for(IPM_Financial_Year__c finYear: (list<IPM_Financial_Year__c>)Trigger.New){
+            setFinExtId.add(finYear.Financial_External_ID__c);          
+        }
+        if(!setFinExtId.isEmpty() && !IPM_FinancialYearHelper.checkValidaitonrecursion){
+            IPM_FinancialYearHelper.checkValidaitonrecursion  = true;
+            IPM_FinancialYearHelper.validateDefaultFinancial(setFinExtId);
+        }
     }
     /**
     * @description:beforeInsert
