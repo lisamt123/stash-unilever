@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>Agent App - This button is used to  reassign the approval process from ETS to CI manager group</description>
-    <height>250</height>
-    <label>Reassign</label>
-    <page>Reassign_Approval</page>
-    <type>VisualforcePage</type>
-    <width>-100</width>
-</QuickAction>
