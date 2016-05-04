@@ -17,7 +17,7 @@ public static void ExecuteFollow(List<aa_Agent_App_User_Preference__c> UserSet){
         {
             clusterNameIdMap.put(clustone.Name,clustone.Id);
             clustIdSet.add(clustone.Id);
-            if(clustone.Name=='Global'){  GlobalclusterID =clustone.Id;}
+            if(clustone.Name==AA_Constants.GlobalString){  GlobalclusterID =clustone.Id;}
         }
         
         // Create userId set
@@ -51,7 +51,7 @@ public static void ExecuteFollow(List<aa_Agent_App_User_Preference__c> UserSet){
             //collect userid to be set for global cluster follow
             if (!globaluserid.containskey(obj.SubscriberId))
             {
-                globaluserid.put(obj.SubscriberId,'Global');
+                globaluserid.put(obj.SubscriberId,AA_Constants.GlobalString);
             }  
          }
        
@@ -116,7 +116,7 @@ public static void ExecuteFollow(List<aa_Agent_App_User_Preference__c> UserSet){
         {
             clusterNameIdMap.put(clustone.Name,clustone.Id);
             clustIdSet.add(clustone.Id);
-            if(clustone.Name=='Global'){  GlobalclusterID =clustone.Id;}
+            if(clustone.Name==AA_Constants.GlobalString){  GlobalclusterID =clustone.Id;}
         }
  	  
  	   // Create userId set
@@ -144,7 +144,8 @@ public static void ExecuteFollow(List<aa_Agent_App_User_Preference__c> UserSet){
         Map<ID,String> NorthAmericaCountryMap=new Map<ID,String>();
         Map<ID,String> SouthAsiaCountryMap=new Map<ID,String>();
         Map<ID,String> NorthAsiaCountryMap=new Map<ID,String>();
-        Map<ID,String> SEAACountryMap=new Map<ID,String>();        
+        Map<ID,String> SEAACountryMap=new Map<ID,String>();
+        
         
           
         List<aa_Country__c> CountryIds1= [SELECT Id,Cluster_Id__c,Cluster_Id__r.Name,Name FROM aa_Country__c limit 150];
@@ -279,7 +280,8 @@ public static void ExecuteFollow(List<aa_Agent_App_User_Preference__c> UserSet){
              }              
             
                       
-        }//end outer for              
+        }//end outer for        
+        
     
     
     //delete UnFollowList for clusters
@@ -300,11 +302,11 @@ public static void ExecuteFollow(List<aa_Agent_App_User_Preference__c> UserSet){
      // global unfollow       
     
     List<EntitySubscription> GlobalUnfollowList = new List<EntitySubscription>();
-    List<EntitySubscription> lstEntitySubCluster1= [SELECT CreatedById,CreatedDate,Id,IsDeleted,NetworkId,ParentId,SubscriberId FROM EntitySubscription where SubscriberId in:UserIds and ParentId In:clustIdSet and ParentId !=:clusterNameIdMap.get('Global')];
+    List<EntitySubscription> lstEntitySubCluster1= [SELECT CreatedById,CreatedDate,Id,IsDeleted,NetworkId,ParentId,SubscriberId FROM EntitySubscription where SubscriberId in:UserIds and ParentId In:clustIdSet and ParentId !=:clusterNameIdMap.get(AA_Constants.GlobalString)];
      
      for(aa_Agent_App_User_Preference__c userid:UserSet)
      { 
-      Boolean AllClusterFlag=false;
+         Boolean AllClusterFlag=false;
       for(EntitySubscription entity1 :lstEntitySubCluster1)
       {
              if(entity1.SubscriberId==userid.UserId__c)
@@ -317,9 +319,9 @@ public static void ExecuteFollow(List<aa_Agent_App_User_Preference__c> UserSet){
              {
              	   EntitySubscription objTemp = new EntitySubscription();
                    objTemp.SubscriberId = userid.UserId__c;
-                   objTemp.ParentId = clusterNameIdMap.get('Global');
+                   objTemp.ParentId = clusterNameIdMap.get(AA_Constants.GlobalString);
                    GlobalUnfollowList.add(objTemp);
-                   system.debug('Unfollow global for user :'+userid.UserId__c);
+                   
                     
                 }
         }
