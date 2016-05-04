@@ -39,7 +39,11 @@
 
    			<apex:insert name="body_content"/>
    		</div>
-
+        <div class="container">
+            
+            <apex:insert name="history_content"/>
+                    
+        </div>
     <!-- 
 	*************************************************************************************************************************
 		Adding required scripts for the page

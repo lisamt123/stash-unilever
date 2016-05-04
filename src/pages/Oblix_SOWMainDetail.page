@@ -1,5 +1,19 @@
 <apex:page sidebar="false" controller="Oblix_SOWMainDetailController" docType="html-5.0" showHeader="false" standardStylesheets="true" action="{!checkUserHasPermissionToSOW}">
 
+<style type="text/css">
+    /*.oblix_chart{
+        position:absolute !important;
+        left:690px;
+        top:230px;
+    }*/
+    .oblix_chart .analyticsEmbeddedReportChart .outerbound{
+        border-width:0px;
+    }
+    .oblix_chart .asOfDate, .auraErrorMessage{
+        display: none;
+    }
+</style>
+
     <apex:composition template="Oblix_OuterPageTemplate">
 
         <apex:define name="top_breadcrumb">
@@ -88,29 +102,32 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h1 class="modal_window_title" id="gridSystemModalLabel">Submit for approval</h1>
                         </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <apex:outputText rendered="{!sow_approvers_defined == true}"><p>Once you submit ( {!selected_sow.Name} ) for approval it will be locked for changes.</p></apex:outputText>
-                                    <!-- <apex:outputText rendered="{!sow_approvers_defined == true && is_sole_editor == false}"><p class="text-danger">There are other users in the system with edit access to this same SOW. Make sure that there isn't anyone else working on the same SOW before submitting.</p></apex:outputText> -->
-                                    <apex:outputText rendered="{!sow_approvers_defined == false}"><p class="text-danger">Warning : This SOW can not be submitted<br/>No approver has been identified for ( {!selected_sow.Name}) please contact the <a class="text-danger" href="mailto:liliya.ivanova@unilever.com?Subject=No%20approver%20has%20been%20identified%20for%20(%20{!selected_sow.Name}%20)" target="_top">administrator</a> for assistance</p></apex:outputText>
-                                    <apex:outputText rendered="{!sow_approvers_defined}">
-                                        <p><strong>Comments:</strong></p>
-                                        <apex:inputTextarea rows="4" styleClass="approval_modal_comment_box" value="{!sowSubmitComments}"/>
-                                    </apex:outputText>
+                        <apex:actionRegion >
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <apex:outputText rendered="{!sow_approvers_defined == true}"><p>Once you submit ( {!selected_sow.Name} ) for approval it will be locked for changes.</p></apex:outputText>
+                                        <!-- <apex:outputText rendered="{!sow_approvers_defined == true && is_sole_editor == false}"><p class="text-danger">There are other users in the system with edit access to this same SOW. Make sure that there isn't anyone else working on the same SOW before submitting.</p></apex:outputText> -->
+                                        <apex:outputText rendered="{!sow_approvers_defined == false}"><p class="text-danger">Warning : This SOW can not be submitted<br/>No approver has been identified for ( {!selected_sow.Name}) please contact the <a class="text-danger" href="mailto:liliya.ivanova@unilever.com?Subject=No%20approver%20has%20been%20identified%20for%20(%20{!selected_sow.Name}%20)" target="_top">administrator</a> for assistance</p></apex:outputText>
+                                        <apex:outputText rendered="{!sow_approvers_defined}">
+                                            <p><strong>Comments:</strong></p>
+                                            <apex:inputTextarea rows="4" styleClass="approval_modal_comment_box" value="{!sowSubmitComments}"/>
+                                        </apex:outputText>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <div class="modal_button_align">
-                                <button type="button" class="btn btn_cross btn_cancel" data-dismiss="modal">CANCEL</button>
-                                <apex:commandButton action="{!submitForApproval}" id="confirmApprove" styleClass="btn btn-danger btn_check btn_yes_submit" value="YES, SUBMIT FOR APPROVAL" reRender="top_right_panel,sow_details" disabled="{!sow_approvers_defined == false}" html-data-dismiss="modal" onclick="blockme()" oncomplete="$.unblockUI()"/>
+                            <div class="modal-footer">
+                                <div class="modal_button_align">
+                                    <button type="button" class="btn btn_cross btn_cancel" data-dismiss="modal">CANCEL</button>
+                                    <apex:commandButton action="{!submitForApproval}" id="confirmApprove" styleClass="btn btn-danger btn_check btn_yes_submit" value="YES, SUBMIT FOR APPROVAL" reRender="top_right_panel,sow_details" disabled="{!sow_approvers_defined == false}" html-data-dismiss="modal" onclick="blockme()" oncomplete="$.unblockUI()"/>
+                                </div>
                             </div>
-                        </div>
+                        </apex:actionRegion>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
             <!--            send sow back modal-->
+            
             <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="sendBack" id="sendBack">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content submit_for_approval_modal">
@@ -118,23 +135,26 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h1 class="modal_window_title" id="gridSystemModalLabel">Return ( {!selected_sow.Name} )</h1>
                         </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <p>Comments:*</p>
-                                    <apex:inputTextarea id="rejectComments" value="{!sowRejectComments}" rows="4" styleClass="approval_modal_comment_box" onkeyup="$('#rejectButton').prop('disabled', this.value == '' ? true : false);"/>
-                                </div>   
+                        <apex:actionRegion >
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <p>Comments:*</p>
+                                        <apex:inputTextarea id="rejectComments" value="{!sowRejectComments}" rows="4" styleClass="approval_modal_comment_box" onkeyup="$('#rejectButton').prop('disabled', this.value == '' ? true : false);"/>
+                                    </div>   
+                                </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <div class="modal_button_align">
-                                <button type="button" class="btn btn_cross btn_cancel" data-dismiss="modal">CANCEL</button>
-                                <apex:commandButton action="{!rejectSOW}" id="rejectButton" reRender="top_right_panel,sow_details" styleClass="btn btn-danger btn-xs btn_return btn_send_back" value="RETURN SOW" html-data-dismiss="modal" onclick="blockme()" oncomplete="$.unblockUI()"/>
+                            <div class="modal-footer">
+                                <div class="modal_button_align">
+                                    <button type="button" class="btn btn_cross btn_cancel" data-dismiss="modal">CANCEL</button>
+                                    <apex:commandButton action="{!rejectSOW}" id="rejectButton" reRender="top_right_panel,sow_details" styleClass="btn btn-danger btn-xs btn_return btn_send_back" value="RETURN SOW" html-data-dismiss="modal" onclick="blockme()" oncomplete="$.unblockUI()"/>
+                                </div>
                             </div>
-                        </div>
+                        </apex:actionRegion>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
+            
             <!--            approve sow modal-->
             <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="sowApprove" id="sowApprove">
                 <div class="modal-dialog" role="document">
@@ -143,20 +163,47 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h1 class="modal_window_title" id="gridSystemModalLabel">Approve ( {!selected_sow.Name} )?</h1>
                         </div>
+                        <apex:actionRegion >
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <!-- <p>You've approved [sow name].</p> -->
+                                        <p><strong>Comments:</strong></p>
+                                        <apex:inputTextarea rows="4" styleClass="approval_modal_comment_box" value="{!sowApproveComments}"/>
+                                    </div>   
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="modal_button_align">
+                                    <button type="button" class="btn btn_cross btn_cancel" data-dismiss="modal">CANCEL</button>
+                                        <apex:commandButton rendered="{!isAgencyApproval}" action="{!approveSOW}" onclick="blockme();" styleClass="btn btn-danger btn_check btn_yes_submit" value="YES, APPROVE" reRender="top_right_panel,sow_details" html-data-dismiss="modal" oncomplete="$.unblockUI();alert('{!selected_sow.Name} has been approved successfully by Unilever and Agency.\nAn \'open for updates\' version will be available shortly to allow Unilever reflect any changes during the year.');window.location.href='{!URLFOR($Page.Oblix_SOWMain)}';"/>
+                                        <apex:commandButton rendered="{!!isAgencyApproval}" action="{!approveSOW}" reRender="top_right_panel,sow_details,page_message_id" styleClass="btn btn-danger btn_check btn_yes_approve" value="YES, APPROVE" html-data-dismiss="modal"  onclick="blockme()" oncomplete="$.unblockUI()"/>
+                                </div>
+                            </div>
+                        </apex:actionRegion>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="attDelete" id="attDelete">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content submit_for_approval_modal">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h1 class="modal_window_title" id="gridSystemModalLabel">Delete Attachment?</h1>
+                        </div>
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <!-- <p>You've approved [sow name].</p> -->
-                                    <p><strong>Comments:</strong></p>
-                                    <apex:inputTextarea rows="4" styleClass="approval_modal_comment_box" value="{!sowApproveComments}"/>
+                                    This Attachment will be deleted. Are you sure?
                                 </div>   
                             </div>
                         </div>
+                        <apex:actionFunction action="{!deleteAtt}" name="delAtt"/>
+                        <apex:actionFunction reRender="top_right_panel,sow_details" name="rerenAtt"/>
                         <div class="modal-footer">
                             <div class="modal_button_align">
                                 <button type="button" class="btn btn_cross btn_cancel" data-dismiss="modal">CANCEL</button>
-                                <apex:commandButton rendered="{!isAgencyApproval}" action="{!approveSOW}" onclick="blockme();" styleClass="btn btn-danger btn_check btn_yes_submit" value="YES, APPROVE" reRender="top_right_panel,sow_details" html-data-dismiss="modal" oncomplete="$.unblockUI();alert('{!selected_sow.Name} has been approved successfully by Unilever and Agency.\nAn \'open for updates\' version will be available shortly to allow Unilever reflect any changes during the year.');window.location.href='{!URLFOR($Page.Oblix_SOWMain)}';"/>
-                                <apex:commandButton rendered="{!!isAgencyApproval}" action="{!approveSOW}" reRender="top_right_panel,sow_details" styleClass="btn btn-danger btn_check btn_yes_approve" value="YES, APPROVE" html-data-dismiss="modal"  onclick="blockme()" oncomplete="$.unblockUI()"/>
+                                <button type="button" class="btn btn-danger btn_check btn_yes_delete" html-data-dismiss="modal" onclick="blockme();delAtt();" oncomplete="$.unblockUI();rerenAtt();" >YES, DELETE</button>
                             </div>
                         </div>
                     </div><!-- /.modal-content -->
@@ -178,9 +225,7 @@
                         </tr>
                         <tr>
                             <td class="SOW_name_status_info_titles">Last updated</td>
-                            <td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
-                                     <apex:param value="{!selected_sow.lastmodifiedDate}" /> 
-                                </apex:outputText> by {!selected_sow.LastModifiedBy.Name}</td>
+                            <td><apex:outputText value="{!last_updated}" />  by {!selected_sow.LastModifiedBy.Name}</td>
                             <td class="SOW_name_status_info_margin SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.OblixBrand__c.label}</td>
                             <td>{!selected_sow.OblixBrand__r.Name}</td>
                         </tr>
@@ -203,8 +248,11 @@
                             <td>{!selected_sow.Financial_Year__c}</td>
                         </tr>
                     </table>
+                    <div class="form-group sow_main_attachments oblix_chart" id="charts">
+                        <analytics:reportChart developerName="{!reportDeveloperName}" filter="{!reportFilter}" size="tiny" showRefreshButton="false"/>
+                    </div>
                 </apex:outputPanel>
-                <div class="form-group sow_main_attachments " id="UnileverAttachment">
+                <!--<div class="form-group sow_main_attachments " id="UnileverAttachment">
                     <p>Attachment</p>
                      <apex:actionRegion >
                         <apex:outputPanel id="attachmentsBlock">
@@ -220,37 +268,39 @@
                                 </apex:repeat>
                             </apex:outputPanel>
                      </apex:actionRegion>
-                </div>
+                </div>-->
             <!-- Related list of campaigns and non-campaigns: -->
             <div class="row">
                 <ul id="tabs" class="sow_tab_style nav nav-tabs sow_tab_align " data-tabs="tabs">
-                    <li class="active"><a href="#red" data-toggle="tab">Related SOW items</a></li>
+                    <li class="{!IF(uploadedAtt=='true','', 'active')}"><a href="#red" data-toggle="tab">Related SOW items</a></li>
                     <li><a href="#orange" data-toggle="tab">Related SOW Conversation</a></li>
                     <li><a href="#yellow" data-toggle="tab">Campaign Timeline</a></li>
+                    <li class="{!IF(uploadedAtt=='true','active', '')}"><a href="#blue" data-toggle="tab">Attachments</a></li>
                     <apex:outputPanel rendered="{!can_manage_campaign}"><a class="btn btn-primary btn-xs pull-right btn_plus btn_add_campaign" href="{!$Page.Oblix_CampaignCreate + '?sowId=' + selected_sow.Id}">ADD CAMPAIGN</a></apex:outputPanel>
                     <apex:outputPanel rendered="{!can_manage_campaign}"><a class="btn btn-primary btn-xs pull-right btn_plus btn_add_non_campaign" href="{!$Page.Oblix_SOWNonCampaignCreate + '?sowId=' + selected_sow.Id}">ADD NON-CAMPAIGN</a></apex:outputPanel>
                 </ul>
             </div>
             <!--            Welcome message to start building SOW -->
-            <apex:outputPanel id="newSOW" rendered="{!IF(li_campaign_and_non_campaign_items.size == 0,true,false)}">
+<!--             <apex:outputPanel id="newSOW" rendered="{!IF(li_campaign_and_non_campaign_items.size == 0,true,false)}">
                 <div class="row SOW_homepage_welcome_message" >
                     <div class="col-lg-7 col-lg-offset-3">
                         <h1>Click either button to start building your SOW</h1>
                         <img alt="Add to SOW" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/arrow-green-up-right.png')}" width="96" height="77"/>
                     </div>
                 </div>
-            </apex:outputPanel>
+            </apex:outputPanel> -->
             <!--            Related list  -->
-            <apex:outputPanel id="relatedItems" rendered="{!IF(li_campaign_and_non_campaign_items.size > 0,true,false)}">
+            <!-- rendered="{!IF(li_campaign_and_non_campaign_items.size > 0,true,false)} -->
+            <apex:outputPanel id="relatedItems" >
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
                         <div id="my-tab-content" class="tab-content">
-                            <div class="tab-pane active" id="red">
+                            <div class="{!IF(uploadedAtt=='true', 'tab-pane','tab-pane active')}" id="red">
                                 <div class="pull-right SOW_homepage_find">
                                     <label>Find a specific Campaign</label>
                                     <input type="text" name="findSOW" id="searchBox" />
                                 </div>
-                                <table class="table table-striped" id="sowListTable">
+                                <table class="table table-striped sowListTable" id="sowListTable">
                                     <thead>
                                         <tr>
                                             <th style="display:none;width:0px !important">{!$Label.Oblix_lbl_UIUX_Project_Id}</th>
@@ -343,17 +393,17 @@
                                                 </tr>
                                             </apex:outputPanel>
                                             <apex:outputPanel rendered="{!campaign_and_non_campaign.s_object_type == 'Non Campaign'}">
-                                                <tr data-href="{!$Page.oblix_sownoncampaigncreate}?preSelectedName={!campaign_and_non_campaign.dynamic_object['Name']}&sowId={!selected_sow.Id}">
-                                                    <td style="display:none;width:0px !important">{!campaign_and_non_campaign.dynamic_object['Id']}</td>
-                                                    <td>{!campaign_and_non_campaign.dynamic_object['Name']}</td>
+                                                <tr data-href="{!$Page.oblix_sownoncampaigncreate}?preSelectedSection={!campaign_and_non_campaign.sectionKey}&sowId={!selected_sow.Id}">
+                                                    <td style="display:none;width:0px !important"></td>
+                                                    <td>{!campaign_and_non_campaign.name}</td>
                                                     <td>{!campaign_and_non_campaign.s_object_type}</td>
                                                     <td></td>
-                                                    <td>{!campaign_and_non_campaign.dynamic_object['OblixCountry__r.Name']}</td>
+                                                    <td></td>
                                                     <td></td>
                                                     <td></td>
                                                     <td>
                                                         <apex:outputText value="€ {0, number,###,###,##0}" rendered="{!can_see_financial_fields}">
-                                                            <apex:param value="{!campaign_and_non_campaign.dynamic_object['OblixOtherItemFee__c']}" />
+                                                            <apex:param value="{!campaign_and_non_campaign.cost}" />
                                                         </apex:outputText>
                                                         <apex:outputText value=" --- " rendered="{!can_see_financial_fields == false}"/>
                                                     </td>
@@ -367,8 +417,9 @@
                             <div class="tab-pane" id="orange">
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12">
-                                        <chatter:feedWithFollowers entityId="{!selected_sow.Id}">
-                                        </chatter:feedWithFollowers>
+                                        <!--<chatter:feedWithFollowers entityId="{!selected_sow.Id}">
+                                        </chatter:feedWithFollowers>-->
+                                        <apex:iframe src="{!$Page.Oblix_SOWChatterFeedWrapper}?Id={!selected_sow.Id}" scrolling="true" />
                                     </div>
                                 </div>
                             </div>
@@ -376,12 +427,88 @@
                                 <h1>Coming Soon</h1>
                                 <p></p>
                             </div>
+                            <div class="{!IF(uploadedAtt=='true', 'tab-pane active','tab-pane')}" id="blue">
+                                <apex:outputPanel >
+                                    <apex:actionRegion >
+                                        <apex:inputFile value="{!pageAttachment.body}" filename="{!pageAttachment.name}" id="file" styleclass="v3 add_attachment_input" />
+                                    </apex:actionRegion>
+                                        <apex:actionRegion >
+                                        <apex:commandButton styleClass="btn btn-primary btn_plus btn_asset_add" action="{!uploadAttachment}" value="ADD" rerender="" rendered="{!IF(can_add_attachment,true,false)}"></apex:commandButton>
+                                        <br/>
+                                        Description (Optional)
+                                        &nbsp;
+                                        <apex:inputField value="{!pageAttachment.Description}" id="attDesc" styleclass="form-control multi_line_form_style" style="width:350px"/>
+                                    </apex:actionRegion>
+                                </apex:outputPanel>
+                                <div class="pull-right SOW_homepage_find">
+                                    <label>Find a specific Attachment</label>
+                                    <input type="text" name="findAtt" id="searchBoxAtt" />
+                                </div>
+                                 <table class="table table-striped attachmentListTable" id="attachmentTable">
+                                    <thead>
+                                        <tr style="height:5px !important">
+                                            <th style="display:none;width:0px !important">{!$Label.Oblix_lbl_UIUX_Project_Id}</th>
+                                            <th></th>
+                                            <th>Date</th>
+                                            <th>Attachment name</th>
+                                            <th>Description</th>
+                                            <th>User</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <apex:actionRegion >
+                                        <apex:actionFunction name="assignP" oncomplete=""><apex:param name="attId" value="{!deleteAttachmentId}" assignTo="{!deleteAttachmentId}"/></apex:actionFunction>
+                                    </apex:actionRegion>
+                                    <br/>
+                                        <apex:outputPanel id="attPanel">
+                                            <apex:repeat value="{!liso_attachments}" var="eachAttachment">
+                                                <div id="attachmentContainer">
+                                                    <tr>
+                                                        <td style="display: none;"></td>
+                                                        <td>
+                                                            <apex:actionRegion >
+                                                                <apex:outputPanel rendered="{!IF(can_delete_attachment,true,false)}">
+                                                                    <apex:outputLink onclick="assignP('{!eachAttachment.Id}');" value="#" styleClass="attachment_item"  html-data-toggle="modal"  html-data-target="#attDelete">&nbsp;
+                                                                        
+                                                                    </apex:outputLink>
+                                                                    <!-- <a href="#" class="attachment_item"  data-toggle="modal"  data-target="#attDelete" /> -->
+                                                                </apex:outputPanel>
+                                                            </apex:actionRegion>
+                                                        </td>
+                                                        <td>
+                                                            <apex:outputText value="{!map_att_locale[eachAttachment.Id]}" /> 
+                                                        </td>
+                                                        <td>
+                                                           <a href="/servlet/servlet.FileDownload?file={!eachAttachment.Id}" target="_blank"> {!eachAttachment.Name}</a>
+                                                        </td>
+                                                        <td>{!eachAttachment.Description}</td>
+                                                        <td>{!eachAttachment.CreatedBy.Name}</td>
+                                                    </tr>
+                                                </div>
+                                            </apex:repeat>
+                                        </apex:outputPanel>
+                                    </tbody>
+                                </table>  
+                            </div>
                         </div>
                     </div>
                 </div>
             </apex:outputPanel>
             <apex:actionFunction name="deleteSOW" action="{!DeleteAction}" oncomplete="unblockUI();"/>
+
         </apex:define>
+
+        <!--apex:define name="history_content">
+
+            <div class="row history_table">
+                <div class="col-lg-12 history_gradient_background">
+                    <p class="history_table_title">History of Changes</p>
+                        <c:Oblix_CmpAuditTracking recordId="{!selected_sow.Id}" objApiName="Marketing_SOW__c"/>
+                </div>
+            </div>
+        </apex:define-->
+                    
 
         <apex:define name="page_scripts">
             <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/Oblix_SOWMainDetail.js')}"/>

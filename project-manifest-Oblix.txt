@@ -176,6 +176,10 @@ src/classes/Oblix_SWOPredirectController.cls
 src/classes/Oblix_SWOPredirectController.cls-meta.xml
 src/classes/TestDataFactory.cls
 src/classes/TestDataFactory.cls-meta.xml
+src/classes/Oblix_DashboardsController.cls
+src/classes/Oblix_DashboardsController.cls-meta.xml
+src/classes/Oblix_SOWNonCampaignPageHelper.cls
+src/classes/Oblix_SOWNonCampaignPageHelper.cls-meta.xml
 src/pages
 src/pages/Oblix_CampaignAddAsset.page
 src/pages/Oblix_CampaignAddAsset.page-meta.xml
@@ -217,6 +221,7 @@ src/pages/Oblix_VF08_ProjectEdit.page
 src/pages/Oblix_VF08_ProjectEdit.page-meta.xml
 src/pages/Oblix_VF09_nonCampaignEdit.page
 src/pages/Oblix_VF09_nonCampaignEdit.page-meta.xml
+src/pages/Oblix_SOWChatterFeedWrapper.pagesrc/pages/Oblix_SOWChatterFeedWrapper.page-meta.xml
 src/reportTypes
 src/reportTypes/Oblix_Assets.reportType
 src/reportTypes/Oblix_Marketing_SOW.reportType

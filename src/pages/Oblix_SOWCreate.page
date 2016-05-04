@@ -82,7 +82,7 @@
                             <apex:inputField value="{!selected_sow.Unilever_Lead__c}"  styleClass=""/>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <!--<div class="form-group">
                     	<p>Attachment&nbsp;<span class="form_bracket_text">(Optional)</span></p>
                     	<apex:inputFile value="{!pageAttachment.body}" filename="{!pageAttachment.name}" id="file" styleclass="v3 add_attachment_input" rendered="{!IF(can_add_attachment,true,false)}" />
                         <apex:commandButton styleClass="btn btn-primary btn_plus btn_asset_add" action="{!uploadAttachment}" value="ADD" onclick="return validateFormEntries();" rendered="{!IF(can_add_attachment,true,false)}"/>
@@ -105,7 +105,7 @@
                         <apex:outputPanel id="attachment_createmode" rendered="{!isEdit == false && selected_sow.Id == null}">
                     		<div class="alert alert-info" role="alert">SOW will be automatically saved when you upload an attachment</div>
                     	</apex:outputPanel>
-                    </div>
+                    </div>-->
                     <div class="SOW_create_buttons">
                         <apex:commandButton value="SAVE SOW" action="{!saveAndClose}" title="{!$Label.Oblix_lbl_UIUX_Save_Sow}" onclick="return validateFormEntries();" styleClass="btn btn-primary btn-sm pull-right btn_check btn_save_sow" immediate="false" rendered="{!IF(can_edit,true,false)}"/>
                         <apex:commandButton value="CANCEL" action="{!cancelAction}" title="Cancel" styleClass="btn btn-sm pull-right btn_cross btn_cancel" immediate="true" html-formnovalidate="formnovalidate"/>

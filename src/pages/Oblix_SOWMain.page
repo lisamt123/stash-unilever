@@ -1,15 +1,18 @@
-<apex:page showHeader="false" sidebar="false" standardStylesheets="false" readonly="true" controller="Oblix_SowMainController">
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" readonly="false" controller="Oblix_SowMainController">
 
     <apex:composition template="Oblix_OuterPageTemplate">
 
         <apex:define name="top_breadcrumb"/>
         <apex:define name="header_text">
             SOW List
+            <br/>
+            <apex:outputText value="{!FXMessage}" rendered="{!showFXMessage}" style="color:red;font-size: 14px"/>
         </apex:define>
 
         <apex:define name="top_option_links"/>
 
         <apex:define name="top_right_panel">
+            
             <apex:commandButton value="CREATE SOW" action="{!CreateSOWAction}" styleClass="btn btn-primary btn-xs pull-right btn_plus btn_create_sow" onclick="blockme()" rendered="{!IF(can_create_sow,true,false)}" reRender="jqueryId,jqueryId2" />
         </apex:define>
 
@@ -87,8 +90,13 @@
                                                 <td>{!sowWrapper.sow.SmallProductCategory__r.Name}</td>
                                                 <td width="15%">{!sowWrapper.sow.Agency_Name__c}</td>
                                                 <td>
-                                                    <apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
-                                                        <apex:param value="{!sowWrapper.sow.LastModifiedDate}" /></apex:outputText>
+                                                    <span style="display: none;">
+                                                    <!-- Needed for locale-independent DataTables sorting -->
+                                                        <apex:outputText value="{0, date, yyyy/MM/dd-HH:mm:ss}">
+                                                            <apex:param value="{!sowWrapper.sow.LastModifiedDate}" /> 
+                                                        </apex:outputText>
+                                                    </span>
+                                                    <apex:outputText value="{!sowWrapper.localeDate}" />
                                                 </td>
                                                 <td>{!sowWrapper.sow.SOW_Status__c}</td>
                                                 <td>
@@ -119,7 +127,8 @@
                     $.unblockUI();
                     var table = $('#sowListTable').DataTable({
                         "dom": 'lrtip',
-                        'pagingType': 'full_numbers'
+                        'pagingType': 'full_numbers',
+                        'order': [[ 5, "desc" ]]
                     });
                     $('#searchBox').on('keyup', function() {
                         table.search(this.value).draw();
