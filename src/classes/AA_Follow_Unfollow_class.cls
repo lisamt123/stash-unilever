@@ -105,7 +105,7 @@ public static void ExecuteFollow(List<aa_Agent_App_User_Preference__c> UserSet){
  	    Map<string,aa_agent_app_custom_setting__c> BatchUserIDList = aa_agent_app_custom_setting__c.getAll();
         String lastbatchtime = BatchUserIDList.get('Follow Batch Last Run Time').Value__c;
         String BatchUserID = BatchUserIDList.get('Follow Batch User ID').Value__c; 
-        Id GlobalclusterID;
+      
  	
  	    List<aa_Cluster__c> ClusterIdName= [SELECT Id,Name FROM aa_Cluster__c limit 15]; 
         Map<String,ID> clusterNameIdMap=new  Map<String,ID>(); 
@@ -116,7 +116,7 @@ public static void ExecuteFollow(List<aa_Agent_App_User_Preference__c> UserSet){
         {
             clusterNameIdMap.put(clustone.Name,clustone.Id);
             clustIdSet.add(clustone.Id);
-            if(clustone.Name==AA_Constants.GlobalString){  GlobalclusterID =clustone.Id;}
+           
         }
  	  
  	   // Create userId set
