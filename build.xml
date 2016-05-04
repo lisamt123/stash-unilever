@@ -7,6 +7,8 @@
     <property file="${basedir}/build.properties"/>
     <property environment="env"/>
 
+    <target name="retrieve" depends="retrieve1,retrieve2" description="Recreate the deployment directory and retrieve all metadata from your org"/>
+
     <target name="retrieve1" description="Recreate the deployment directory and retrieve part 1 all metadata from your org">
         <echo level="info">Performing a retrieve</echo>     
         <mkdir dir="${basedir}/${sfdc.retrieveTarget}"/>
@@ -18,10 +20,11 @@
                      pollWaitMillis="${sfdc.pollWaitMillis}"
                      maxPoll="${sfdc.maxPoll}"/>
         <delete includeemptydirs="true">
-            <fileset dir="src" includes="**/*" excludes="package.xml,package2.xml"/>
+            <fileset dir="src" includes="**/*" excludes="package2.xml"/>
         </delete>                     
         <move file="${basedir}/${sfdc.retrieveTarget}" tofile="src"/>
     </target>
+
  <target name="retrieve2" description="Recreate the deployment directory and retrieve part 2 all metadata from your org">
         <echo level="info">Performing a retrieve</echo>     
         <mkdir dir="${basedir}/${sfdc.retrieveTarget}"/>
@@ -32,9 +35,9 @@
                      unpackaged="src/package2.xml"
                      pollWaitMillis="${sfdc.pollWaitMillis}"
                      maxPoll="${sfdc.maxPoll}"/>
-         <fileset dir="src" includes="**/*" excludes="package.xml"/>
         <move file="${basedir}/${sfdc.retrieveTarget}" tofile="src"/>
     </target>
+
     <target name="deploy"> 
       <echo level="info">Performing the deploy</echo>     
       <sf:deploy username="${sf.username}" 
