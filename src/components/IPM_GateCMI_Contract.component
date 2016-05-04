@@ -133,8 +133,8 @@
                                                         <apex:outputPanel layout="block" styleClass="dropdown-menu pull-right ipmDropDownList CMICountryList">
                                                             <apex:dataList value="{!countries}" var="cou" id="CMICountryList" styleClass="cccmiList">                                                               
                                                                         <div class="col-xs-1 ipmCheckbox">
-                                                                            <input class="countrycListbox" type="checkbox" value="{!cou.Label}" id="{!cou.Label}" />
-                                                                            <label for="{!cou.Label}"></label>
+                                                                            <input class="countrycListbox" type="checkbox" value="{!cou.Label}" id="{!cmi.Id}{!cou.Label}" />
+                                                                            <label for="{!cmi.Id}{!cou.Label}"></label>
                                                                         </div>
                                                                         <div class="col-xs-10 noPadleft cmiLabel">{!cou.value}</div>
                                                                    

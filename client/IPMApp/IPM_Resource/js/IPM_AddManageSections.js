@@ -17,7 +17,7 @@ jq(document).ready(function() {
     jq("span.ipmAcrdnExpand:first span.aHead").find("span.expico").removeClass("fa-plus");
     jq("span.aHead:first").find("span.expico").addClass("fa-minus");
     jq("span.ipmAcrdnExpand:first span.aHead").find("span.expico").addClass("fa-minus");
-	
+    
 /* Below script expands all the tabs in accordion when clicked on the Expand all button and replaces '+' with '-' sign */
     jq(".expandTool").on("click", ".expandAll", function() {
         var accordion = jq(".ipmAccordian");
@@ -25,7 +25,7 @@ jq(document).ready(function() {
         accordion.find(".aHead .expico").removeClass("fa-plus");
         accordion.find(".aHead .expico").addClass("fa-minus");
     });
-	
+  
 /* Below script collapses all the tabs in accordion when clicked on the Collapse all button and replaces '-' with '+' sign */
     jq(".expandTool").on("click", ".collapseAll", function() {
         var accordion = jq(".ipmAccordian");
@@ -33,7 +33,7 @@ jq(document).ready(function() {
         accordion.find(".aHead .expico").addClass("fa-plus");
         accordion.find(".aHead .expico").removeClass("fa-minus");
     });
-	
+  
 /* Below script checks the child checkboxes. If all the child checkboxes are checked parent checkbox i.e 'All' checkbox will be checked else it will be not be checked */
     jq(".ipmAccordian").on("click", ".checkSub", function() {
         var $this = jq(this);
@@ -46,7 +46,7 @@ jq(document).ready(function() {
             $this.parents(".checkContainer").find(".subSecDiv .checkAll").prop("checked", true);
         }
     });
-	
+  
 /* Below script is called upon click event where it expands the tab and replaces '+' with '-' or collapses a opened tab and replaces '-' with '+' */
     jq(".ipmAccordian").on("click", "span.expico", function() {
         var $this = jq(this);
@@ -70,7 +70,7 @@ function goToParentPage() {
 
 var unsaved = false;
 jq(function(){  
-	jq(":input").change(function() {
+  jq(":input").change(function() {
            unsaved = true;
        });
       var frame = parent.document.getElementById("ipmModalDiv");

@@ -31,16 +31,16 @@ jq(document).ready(function() {
         var currentIndex = jq('.item.active').index();
         var nextIndex = jq('#slideStrategicIntent').index();
         var ptype = IPMProAppCP.prosubtype;
-        if (currentIndex == 1 && ptype == IPMProAppCP.oprtnLabel) {
+        if (currentIndex === 1 && ptype === IPMProAppCP.oprtnLabel) {
             jq('#myCarousel').carousel(2);
         }
-        if (currentIndex == 1 && ptype == IPMProAppCP.blgLabel) {
+        if (currentIndex === 1 && ptype === IPMProAppCP.blgLabel) {
             jq('#myCarousel').carousel(1);
         }
-        if (currentIndex == 2 && ptype == IPMProAppCP.blgLabel) {
+        if (currentIndex === 2 && ptype === IPMProAppCP.blgLabel) {
             jq('#myCarousel').carousel(3);
         }
-        if (currentIndex == 1) {
+        if (currentIndex === 1) {
             jq(".hlPointer").remove();
             jq("#helpTextDiv2 .helpContent").append("<div class='hlPointer'></div>");
             setTimeout(function() {
@@ -49,10 +49,10 @@ jq(document).ready(function() {
         }
         var radioChecked2 = jq("#slideBar2 .sliderTrack input[type=radio]:checked").length;
         var radioChecked3 = jq("#slideBar3 .sliderTrack span input[type=radio]:checked").length;
-        if (radioChecked2 == 0) {
+        if (radioChecked2 === 0) {
             jq("#helpTextDiv2 .hlPointer").remove();
         }
-        if (radioChecked3 == 0) {
+        if (radioChecked3 === 0) {
             jq("#helpTextDiv3 .hlPointer").remove();
         }
     });
@@ -96,13 +96,13 @@ jq(document).ready(function() {
         jq('#slideBar' + slideNum + ' label').removeClass('active');
         var labelWidth = jq(labelClicked).innerWidth() / 2;
         jq(labelClicked).addClass('active');
-        if (slideNum == 1) {
+        if (slideNum === 1) {
             Ans_parameter1(val, name);
             var pos = jq(labelClicked).position().left;
-        } else if (slideNum == 2) {
+        } else if (slideNum === 2) {
             Ans_parameter2(val, name);
             var pos = jq(labelClicked).position().left;
-        } else if (slideNum == 3) {
+        } else if (slideNum === 3) {
             Ans_parameter3(val, name);
             var pos = jq(labelClicked).position().left;
         }
@@ -135,29 +135,29 @@ jq(document).ready(function() {
         jq('.mainMenu').removeClass('active')
         jq('.subMenuLabel').removeClass('selected');
         var currentIndex = jq('.item.active').index() + 1;
-        if (currentIndex == 4 || currentIndex == 5) {
+        if (currentIndex === 4 || currentIndex === 5) {
             jq('#subMenu1').hide();
         } else {
             jq('#item1').addClass('active');
             jq('#subMenu1').show();
         }
-        if (currentIndex == 1) {
+        if (currentIndex === 1) {
             jq('#subMenuLabel1').addClass('selected');
             displayHelpText(currentIndex);
         }
-        if (currentIndex == 2) {
+        if (currentIndex === 2) {
             jq('#subMenuLabel2').addClass('selected');
             displayHelpText(currentIndex);
         }
-        if (currentIndex == 3) {
+        if (currentIndex === 3) {
             jq('#subMenuLabel3').addClass('selected');
             displayHelpText(currentIndex);
         }
-        if (currentIndex == 4) {
+        if (currentIndex === 4) {
             jq('#item4').addClass('active');
             jq('.description').hide();
         }
-        if (currentIndex == 5) {
+        if (currentIndex === 5) {
             jq('#item5').addClass('active');
             jq('.description').hide();
         }
@@ -169,15 +169,15 @@ jq(document).ready(function() {
     function setPointer() {
         var currentIndex = jq('.item.active').index() + 1;
         var ptype = IPMProAppCP.prosubtype;
-        if (currentIndex == 4 && ptype == IPMProAppCP.blgLabel) {
+        if (currentIndex === 4 && ptype === IPMProAppCP.blgLabel) {
             jq('#myCarousel').carousel(1);
-        } else if (currentIndex == 4 && ptype == IPMProAppCP.oprtnLabel) {
+        } else if (currentIndex === 4 && ptype === IPMProAppCP.oprtnLabel) {
             jq('#myCarousel').carousel(2);
-        } else if (currentIndex == 2 && ptype == IPMProAppCP.oprtnLabel) {
+        } else if (currentIndex === 2 && ptype === IPMProAppCP.oprtnLabel) {
             jq('#myCarousel').carousel(0);
-        } else if (currentIndex == 5) {
+        } else if (currentIndex === 5) {
             jq('#myCarousel').carousel('prev');
-        } else if (currentIndex == 2) {
+        } else if (currentIndex === 2) {
             jq('#myCarousel').carousel(1);
         } else {
             jq('#myCarousel').carousel('prev');
@@ -239,7 +239,7 @@ function slideClick(){
 jq(window).load(function() {
     var currentIndex = jq('.item.active').index();
     var ptype = IPMProAppCP.prosubtype;
-    if (currentIndex == 0 && ptype == IPMProAppCP.blgLabel) {
+    if (currentIndex === 0 && ptype === IPMProAppCP.blgLabel) {
         jq("#nextControl").trigger('click');
     }
 });
@@ -252,19 +252,19 @@ function setSlider(currentIndex) {
         var element = selectedRadioBtn.prev();
         var pos = element.position().left;
         var ewidth = selectedRadioBtn.prev().innerWidth() / 2;
-        if (currentIndex == 1) {
+        if (currentIndex === 1) {
             if (pos > '1') {
                 jq('.qnumone .fstchild').addClass('greyOut');
             }
             jq('#slideBar1 label').removeClass('active');
         }
-        if (currentIndex == 2) {
+        if (currentIndex === 2) {
             if (pos > '1') {
                 jq('.qnumtwo .fstchild').addClass('greyOut');
             }
             jq('#slideBar2 label').removeClass('active');
         }
-        if (currentIndex == 3) {
+        if (currentIndex === 3) {
             if (pos > '1') {
                 jq('.qnumthree .fstchild').addClass('greyOut');
             }
@@ -283,11 +283,11 @@ function setSlider(currentIndex) {
 
 /* Below function is to get the selected radio button */
 function getselectedRadioBtnBtn(currentIndex) {
-    if (currentIndex == 1) {
+    if (currentIndex === 1) {
         selectedRadioBtn = jq('input[name=Question1][title=checked]', '.item');
-    } else if (currentIndex == 2) {
+    } else if (currentIndex === 2) {
         selectedRadioBtn = jq('input[name=Question2][title=checked]', '.item');
-    } else if (currentIndex == 3) {
+    } else if (currentIndex === 3) {
         selectedRadioBtn = jq('input[name=Question3][title=checked]', '.item');
     }
     return selectedRadioBtn;

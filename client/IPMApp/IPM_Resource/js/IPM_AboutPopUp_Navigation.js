@@ -39,13 +39,13 @@ $.fn.extend({
     this.each(function() {
       var el = $(this);
       if(el.is(":text") || el.is("textarea") || el.is(":file")){
-        flag = (el.data("initialValue") != el.val());
+        flag = (el.data("initialValue") !== el.val());
       }
       else if(el.is(":checkbox") || el.is(":radio")){
-        flag = (el.data("initialValue") != el[0].checked);
+        flag = (el.data("initialValue") !== el[0].checked);
       }
       else if(el.is("select")){
-        flag = (el.data("initialValue") != el.val());
+        flag = (el.data("initialValue") !== el.val());
       }
       if(flag) {return false;}
     })
