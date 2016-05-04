@@ -59,6 +59,11 @@
                 <default>false</default>
                 <reverseRole>Vendor</reverseRole>
             </picklistValues>
+            <picklistValues>
+                <fullName>Point of Sale Outlet</fullName>
+                <default>false</default>
+                <reverseRole>Distributor</reverseRole>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <type>Picklist</type>
