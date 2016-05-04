@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Network xmlns="http://soap.sforce.com/2006/04/metadata">
+    <allowMembersToFlag>false</allowMembersToFlag>
+    <branding>
+        <loginFooterText>Unilever</loginFooterText>
+        <loginLogo>Communities_Shared_Document_Folder/CommunitiesLogo_jpg.jpg</loginLogo>
+        <primaryColor>#61A631</primaryColor>
+        <primaryComplementColor>#222222</primaryComplementColor>
+        <quaternaryColor>#B1BAC1</quaternaryColor>
+        <quaternaryComplementColor>#222222</quaternaryComplementColor>
+        <secondaryColor>#65B068</secondaryColor>
+        <tertiaryColor>#BBDABC</tertiaryColor>
+        <tertiaryComplementColor>#222222</tertiaryComplementColor>
+        <zeronaryColor>#AAD087</zeronaryColor>
+        <zeronaryComplementColor>#222222</zeronaryComplementColor>
+    </branding>
+    <changePasswordTemplate>unfiled$public/CommunityChangePasswordEmailTemplate</changePasswordTemplate>
+    <description>Communities to access AgencyFees by agency users</description>
+    <emailSenderAddress>b.singh.saluja@accenture.com</emailSenderAddress>
+    <emailSenderName>Unilever - Agency Fees</emailSenderName>
+    <enableGuestChatter>false</enableGuestChatter>
+    <enableInvitation>false</enableInvitation>
+    <enableKnowledgeable>false</enableKnowledgeable>
+    <enableNicknameDisplay>false</enableNicknameDisplay>
+    <enablePrivateMessages>false</enablePrivateMessages>
+    <enableReputation>false</enableReputation>
+    <forgotPasswordTemplate>unfiled$public/CommunityForgotPasswordEmailTemplate</forgotPasswordTemplate>
+    <networkMemberGroups>
+        <profile>AF - Agency Portal User</profile>
+    </networkMemberGroups>
+    <newSenderAddress>Agency.Fees@unilever.com</newSenderAddress>
+    <picassoSite>Agency_Fees_Online1</picassoSite>
+    <selfRegistration>false</selfRegistration>
+    <sendWelcomeEmail>true</sendWelcomeEmail>
+    <site>Agency_Fees_Online</site>
+    <status>Live</status>
+    <tabs>
+        <customTab>Agency_Fees</customTab>
+        <defaultTab>01rE00000001wh9</defaultTab>
+    </tabs>
+    <urlPathPrefix>AgencyFees</urlPathPrefix>
+    <welcomeTemplate>unfiled$public/AF_Communities_New_Member_Welcome_Email_New</welcomeTemplate>
+</Network>

@@ -1,0 +1,2147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Translations xmlns="http://soap.sforce.com/2006/04/metadata">
+    <quickActions>
+        <label><!-- Approve --></label>
+        <name>Approve</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- LogACall --></label>
+        <name>LogACall</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewAccount --></label>
+        <name>NewAccount</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewCase --></label>
+        <name>NewCase</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewContact --></label>
+        <name>NewContact</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewEvent --></label>
+        <name>NewEvent</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewGroup --></label>
+        <name>NewGroup</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewLead --></label>
+        <name>NewLead</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewNote --></label>
+        <name>NewNote</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewOpportunity --></label>
+        <name>NewOpportunity</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewTask --></label>
+        <name>NewTask</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- BET File Upload --></label>
+        <name>Publisher_Action</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Reassign --></label>
+        <name>Reassign</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Reject --></label>
+        <name>Reject</name>
+    </quickActions>
+    <reportTypes>
+        <description><!-- Agency Estimates --></description>
+        <label><!-- Agency Estimates --></label>
+        <name>AF_Agency_Estimates</name>
+        <sections>
+            <columns>
+                <label><!-- Agency --></label>
+                <name>Agency</name>
+            </columns>
+            <columns>
+                <label><!-- Brand --></label>
+                <name>Brand</name>
+            </columns>
+            <columns>
+                <label><!-- Brand --></label>
+                <name>Brand</name>
+            </columns>
+            <columns>
+                <label><!-- Category --></label>
+                <name>Category</name>
+            </columns>
+            <columns>
+                <label><!-- Status --></label>
+                <name>Status</name>
+            </columns>
+            <columns>
+                <label><!-- Unilever Entity --></label>
+                <name>Unilever Entity</name>
+            </columns>
+            <label><!-- Agency Estimates --></label>
+            <name>Agency Estimates</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Base Fee Estimates --></description>
+        <label><!-- Base Fee Estimates --></label>
+        <name>AF_Base_Fee_Estimates</name>
+        <sections>
+            <label><!-- Brand Estimates --></label>
+            <name>Brand Estimates</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Bonus Matriix --></description>
+        <label><!-- Bonus Matriix --></label>
+        <name>AF_Bonus_Matriix</name>
+        <sections>
+            <columns>
+                <label><!-- Agency --></label>
+                <name>Agency</name>
+            </columns>
+            <columns>
+                <label><!-- Big Category --></label>
+                <name>Big Category</name>
+            </columns>
+            <columns>
+                <label><!-- Big Category --></label>
+                <name>Big Category</name>
+            </columns>
+            <columns>
+                <label><!-- Brand --></label>
+                <name>Brand</name>
+            </columns>
+            <label><!-- Bonus Matrix --></label>
+            <name>Bonus Matrix</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Brand Estimates with or Without Reviews --></description>
+        <label><!-- Brand Estimates with or Without Reviews --></label>
+        <name>AF_Brand_Estimates_with_or_Without_Reviews</name>
+        <sections>
+            <label><!-- Brand Estimates --></label>
+            <name>Brand Estimates</name>
+        </sections>
+        <sections>
+            <label><!-- Controller Reviews --></label>
+            <name>Controller Reviews</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- AF_Comments --></description>
+        <label><!-- AF_Comments --></label>
+        <name>AF_Comments</name>
+        <sections>
+            <label><!-- Comments --></label>
+            <name>Comments</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Activity --></description>
+        <label><!-- Activity --></label>
+        <name>Activity</name>
+        <sections>
+            <label><!-- Chatter Activity (Parent) --></label>
+            <name>Chatter Activity (Parent)</name>
+        </sections>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Agency Entities with or Without Estimates --></description>
+        <label><!-- Agency Entities with or Without Estimates --></label>
+        <name>Agency_Entities_with_or_Without_Estimates</name>
+        <sections>
+            <label><!-- Agency Estimates (Agency Entity) --></label>
+            <name>Agency Estimates (Agency Entity)</name>
+        </sections>
+        <sections>
+            <label><!-- Entity --></label>
+            <name>Entity</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Agency Estimate with Country Breakdown --></description>
+        <label><!-- Agency Estimate with Country Breakdown --></label>
+        <name>Agency_Estimate_with_Country_Breakdown</name>
+        <sections>
+            <label><!-- Agency Estimates --></label>
+            <name>Agency Estimates</name>
+        </sections>
+        <sections>
+            <label><!-- Entity Exceptions --></label>
+            <name>Entity Exceptions</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Agent App User Details --></description>
+        <label><!-- Agent App User Details --></label>
+        <name>Agent_App_User_Details</name>
+        <sections>
+            <label><!-- Agent App User Preferences (Last Modified By) --></label>
+            <name>Agent App User Preferences (Last Modified By)</name>
+        </sections>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Agent Report Custom --></description>
+        <label><!-- Agent Report Custom --></label>
+        <name>Agent_Report_Custom</name>
+        <sections>
+            <label><!-- Agent Reports --></label>
+            <name>Agent Reports</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Alert Extracts with Alert Details --></description>
+        <label><!-- Alert Extracts with Alert Details --></label>
+        <name>Alert_Extracts_with_Alert_Details</name>
+        <sections>
+            <label><!-- Alert Extracts --></label>
+            <name>Alert Extracts</name>
+        </sections>
+        <sections>
+            <label><!-- Predictive Service Alerts --></label>
+            <name>Predictive Service Alerts</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- All BETs with members --></description>
+        <label><!-- All BETs with members --></label>
+        <name>All_BETs_with_members</name>
+        <sections>
+            <label><!-- BET Team Members --></label>
+            <name>BET Team Members</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- BB BD Report --></description>
+        <label><!-- BB BD Report --></label>
+        <name>BB_BD_Report</name>
+        <sections>
+            <columns>
+                <label><!--  Market Ready Approved  --></label>
+                <name> Market Ready Approved </name>
+            </columns>
+            <columns>
+                <label><!-- 1st Full Year Gross TO (BD) --></label>
+                <name>1st Full Year Gross TO (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- 1st Full Year iGP (BD) --></label>
+                <name>1st Full Year iGP (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- 1st Full Year iTO (BD) --></label>
+                <name>1st Full Year iTO (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- Actual Launch Date --></label>
+                <name>Actual Launch Date</name>
+            </columns>
+            <columns>
+                <label><!-- Actual Launch Month --></label>
+                <name>Actual Launch Month</name>
+            </columns>
+            <columns>
+                <label><!-- Actual Launch Year --></label>
+                <name>Actual Launch Year</name>
+            </columns>
+            <columns>
+                <label><!-- Auto Aligned Fin &amp; TLD --></label>
+                <name>Auto Aligned Fin &amp; TLD</name>
+            </columns>
+            <columns>
+                <label><!-- Brand Positioning --></label>
+                <name>Brand Positioning</name>
+            </columns>
+            <columns>
+                <label><!-- Business Impact (BD) --></label>
+                <name>Business Impact (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- Category --></label>
+                <name>Category</name>
+            </columns>
+            <columns>
+                <label><!-- Category Group --></label>
+                <name>Category Group</name>
+            </columns>
+            <columns>
+                <label><!-- Charter Approved   --></label>
+                <name>Charter Approved  </name>
+            </columns>
+            <columns>
+                <label><!-- Charter Proposed   --></label>
+                <name>Charter Proposed  </name>
+            </columns>
+            <columns>
+                <label><!-- Cluster Project --></label>
+                <name>Cluster Project</name>
+            </columns>
+            <columns>
+                <label><!-- Company --></label>
+                <name>Company</name>
+            </columns>
+            <columns>
+                <label><!-- Consumer Value Perception --></label>
+                <name>Consumer Value Perception</name>
+            </columns>
+            <columns>
+                <label><!-- Contract Approved Date --></label>
+                <name>Contract Approved Date</name>
+            </columns>
+            <columns>
+                <label><!-- Contract Proposed Date --></label>
+                <name>Contract Proposed Date</name>
+            </columns>
+            <columns>
+                <label><!-- Deputy Project Leader --></label>
+                <name>Deputy Project Leader</name>
+            </columns>
+            <columns>
+                <label><!-- Enabling Technology --></label>
+                <name>Enabling Technology</name>
+            </columns>
+            <columns>
+                <label><!-- Exempt from Threshold --></label>
+                <name>Exempt from Threshold</name>
+            </columns>
+            <columns>
+                <label><!-- Exempt from Threshold --></label>
+                <name>Exempt from Threshold</name>
+            </columns>
+            <columns>
+                <label><!-- Expected Charter Approval  --></label>
+                <name>Expected Charter Approval </name>
+            </columns>
+            <columns>
+                <label><!-- Expected Contract Approval --></label>
+                <name>Expected Contract Approval</name>
+            </columns>
+            <columns>
+                <label><!-- Expected Market Deployment Approval --></label>
+                <name>Expected Market Deployment Approval</name>
+            </columns>
+            <columns>
+                <label><!-- Expected Market Ready Approval --></label>
+                <name>Expected Market Ready Approval</name>
+            </columns>
+            <columns>
+                <label><!-- Finance Member --></label>
+                <name>Finance Member</name>
+            </columns>
+            <columns>
+                <label><!-- Geography --></label>
+                <name>Geography</name>
+            </columns>
+            <columns>
+                <label><!-- Gross TO 2013 (BD) --></label>
+                <name>Gross TO 2013 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- Gross TO 2014 (BD) --></label>
+                <name>Gross TO 2014 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- Gross TO 2015 (BD) --></label>
+                <name>Gross TO 2015 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- Gross TO 2016 (BD) --></label>
+                <name>Gross TO 2016 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- Gross TO 2017 (BD) --></label>
+                <name>Gross TO 2017 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- Gross TO 2018 (BD) --></label>
+                <name>Gross TO 2018 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- Gross TO 2019 (BD) --></label>
+                <name>Gross TO 2019 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- Gross TO 2020 (BD) --></label>
+                <name>Gross TO 2020 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- Gross TO 2021 (BD) --></label>
+                <name>Gross TO 2021 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- IC / NBU --></label>
+                <name>IC / NBU</name>
+            </columns>
+            <columns>
+                <label><!-- Market Cluster --></label>
+                <name>Market Cluster</name>
+            </columns>
+            <columns>
+                <label><!-- Market Deployment Approved --></label>
+                <name>Market Deployment Approved</name>
+            </columns>
+            <columns>
+                <label><!-- Market Deployment Proposed --></label>
+                <name>Market Deployment Proposed</name>
+            </columns>
+            <columns>
+                <label><!-- Market Place Activity --></label>
+                <name>Market Place Activity</name>
+            </columns>
+            <columns>
+                <label><!-- Market Ready Proposed --></label>
+                <name>Market Ready Proposed</name>
+            </columns>
+            <columns>
+                <label><!-- Parent Project Name --></label>
+                <name>Parent Project Name</name>
+            </columns>
+            <columns>
+                <label><!-- Phase --></label>
+                <name>Phase</name>
+            </columns>
+            <columns>
+                <label><!-- Platform --></label>
+                <name>Platform</name>
+            </columns>
+            <columns>
+                <label><!-- Project Description --></label>
+                <name>Project Description</name>
+            </columns>
+            <columns>
+                <label><!-- Project Id --></label>
+                <name>Project Id</name>
+            </columns>
+            <columns>
+                <label><!-- Project Leader --></label>
+                <name>Project Leader</name>
+            </columns>
+            <columns>
+                <label><!-- Project Name --></label>
+                <name>Project Name</name>
+            </columns>
+            <columns>
+                <label><!-- Project Span --></label>
+                <name>Project Span</name>
+            </columns>
+            <columns>
+                <label><!-- Project Start Date --></label>
+                <name>Project Start Date</name>
+            </columns>
+            <columns>
+                <label><!-- Project Type --></label>
+                <name>Project Type</name>
+            </columns>
+            <columns>
+                <label><!-- Status --></label>
+                <name>Status</name>
+            </columns>
+            <columns>
+                <label><!-- Strategic Intent --></label>
+                <name>Strategic Intent</name>
+            </columns>
+            <columns>
+                <label><!-- Target Launch Month (BB) --></label>
+                <name>Target Launch Month (BB)</name>
+            </columns>
+            <columns>
+                <label><!-- Target Launch Month (BD) --></label>
+                <name>Target Launch Month (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- Target Launch Year (BB) --></label>
+                <name>Target Launch Year (BB)</name>
+            </columns>
+            <columns>
+                <label><!-- Target Launch Year (BD) --></label>
+                <name>Target Launch Year (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- Technical Project Leader --></label>
+                <name>Technical Project Leader</name>
+            </columns>
+            <columns>
+                <label><!-- Y3 gTO(BD) --></label>
+                <name>Y3 gTO(BD)</name>
+            </columns>
+            <columns>
+                <label><!-- Y3 iTO(BD) --></label>
+                <name>Y3 iTO(BD)</name>
+            </columns>
+            <columns>
+                <label><!-- iGP 2013 (BD) --></label>
+                <name>iGP 2013 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- iGP 2014 (BD) --></label>
+                <name>iGP 2014 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- iGP 2015 (BD) --></label>
+                <name>iGP 2015 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- iGP 2016 (BD) --></label>
+                <name>iGP 2016 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- iGP 2017 (BD) --></label>
+                <name>iGP 2017 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- iGP 2018 (BD) --></label>
+                <name>iGP 2018 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- iGP 2019 (BD) --></label>
+                <name>iGP 2019 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- iGP 2020 (BD) --></label>
+                <name>iGP 2020 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- iGP 2021 (BD) --></label>
+                <name>iGP 2021 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- iTO 2013 (BD) --></label>
+                <name>iTO 2013 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- iTO 2014 (BD) --></label>
+                <name>iTO 2014 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- iTO 2015 (BD) --></label>
+                <name>iTO 2015 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- iTO 2016 (BD) --></label>
+                <name>iTO 2016 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- iTO 2017 (BD) --></label>
+                <name>iTO 2017 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- iTO 2018 (BD) --></label>
+                <name>iTO 2018 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- iTO 2019 (BD) --></label>
+                <name>iTO 2019 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- iTO 2020 (BD) --></label>
+                <name>iTO 2020 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- iTO 2021 (BD) --></label>
+                <name>iTO 2021 (BD)</name>
+            </columns>
+            <label><!-- IPM Analytics --></label>
+            <name>IPM Analytics</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- BETs with lead IPM --></description>
+        <label><!-- BETs with lead IPM --></label>
+        <name>BETs_with_Lead_IPM</name>
+        <sections>
+            <label><!-- Brand Experience List --></label>
+            <name>Brand Experience List</name>
+        </sections>
+        <sections>
+            <label><!-- IPM Projects --></label>
+            <name>IPM Projects</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Base Fee Brand Status --></description>
+        <label><!-- Base Fee Brand Status --></label>
+        <name>Base_Fee_Brand_Status</name>
+        <sections>
+            <label><!-- Agency Estimates --></label>
+            <name>Agency Estimates</name>
+        </sections>
+        <sections>
+            <label><!-- Brand Estimates --></label>
+            <name>Brand Estimates</name>
+        </sections>
+        <sections>
+            <label><!-- Category-Brands --></label>
+            <name>Category-Brands</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Base Fee Estimates for PO Report --></description>
+        <label><!-- Base Fee Estimates for PO Report --></label>
+        <name>Base_Fee_Estimates</name>
+        <sections>
+            <label><!-- Agency Estimates --></label>
+            <name>Agency Estimates</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Bonus Results --></description>
+        <label><!-- Bonus Results --></label>
+        <name>Bonus_Results</name>
+        <sections>
+            <columns>
+                <label><!-- Agency Name --></label>
+                <name>Agency Name</name>
+            </columns>
+            <columns>
+                <label><!-- Bonus Measure --></label>
+                <name>Bonus Measure</name>
+            </columns>
+            <columns>
+                <label><!-- Bonus Threshold --></label>
+                <name>Bonus Threshold</name>
+            </columns>
+            <columns>
+                <label><!-- Bonusable Fee --></label>
+                <name>Bonusable Fee</name>
+            </columns>
+            <columns>
+                <label><!-- Brand --></label>
+                <name>Brand</name>
+            </columns>
+            <columns>
+                <label><!-- Country --></label>
+                <name>Country</name>
+            </columns>
+            <columns>
+                <label><!-- Digital --></label>
+                <name>Digital</name>
+            </columns>
+            <columns>
+                <label><!-- Minimum --></label>
+                <name>Minimum</name>
+            </columns>
+            <columns>
+                <label><!-- Outstanding --></label>
+                <name>Outstanding</name>
+            </columns>
+            <columns>
+                <label><!-- Pilot Model --></label>
+                <name>Pilot Model</name>
+            </columns>
+            <columns>
+                <label><!-- Quant Result --></label>
+                <name>Quant Result</name>
+            </columns>
+            <columns>
+                <label><!-- Stretching --></label>
+                <name>Stretching</name>
+            </columns>
+            <columns>
+                <label><!-- Traditional --></label>
+                <name>Traditional</name>
+            </columns>
+            <columns>
+                <label><!-- Year --></label>
+                <name>Year</name>
+            </columns>
+            <label><!-- Bonus Results --></label>
+            <name>Bonus Results</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Bonus Summary with Matrix --></description>
+        <label><!-- Bonus Summary with Matrix --></label>
+        <name>Bonus_Summary_with_Matrix</name>
+        <sections>
+            <columns>
+                <label><!-- Bonus - LC --></label>
+                <name>Bonus - LC</name>
+            </columns>
+            <columns>
+                <label><!-- Currency --></label>
+                <name>Currency</name>
+            </columns>
+            <columns>
+                <label><!-- Currency @ Ready for PO --></label>
+                <name>Currency @ Ready for PO</name>
+            </columns>
+            <columns>
+                <label><!-- Currency @ReadyforPO --></label>
+                <name>Currency @ReadyforPO</name>
+            </columns>
+            <columns>
+                <label><!-- Exchange Rate --></label>
+                <name>Exchange Rate</name>
+            </columns>
+            <columns>
+                <label><!-- Exchange Rate@PO --></label>
+                <name>Exchange Rate@PO</name>
+            </columns>
+            <columns>
+                <label><!-- Exchange Rate@ReadyforPO --></label>
+                <name>Exchange Rate@ReadyforPO</name>
+            </columns>
+            <columns>
+                <label><!-- Legal Entity Name --></label>
+                <name>Legal Entity Name</name>
+            </columns>
+            <columns>
+                <label><!-- Unilever Entity --></label>
+                <name>Unilever Entity</name>
+            </columns>
+            <label><!-- Bonus Matrix --></label>
+            <name>Bonus Matrix</name>
+        </sections>
+        <sections>
+            <columns>
+                <label><!-- Agency --></label>
+                <name>Agency</name>
+            </columns>
+            <columns>
+                <label><!-- Big category --></label>
+                <name>Big category</name>
+            </columns>
+            <columns>
+                <label><!-- Brand --></label>
+                <name>Brand</name>
+            </columns>
+            <label><!-- Bonus Summaries --></label>
+            <name>Bonus Summaries</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Bonus Thresholds with Sub Results --></description>
+        <label><!-- Bonus Thresholds with Sub Results --></label>
+        <name>Bonus_Thresholds_with_Sub_Results</name>
+        <sections>
+            <columns>
+                <label><!-- Big Category --></label>
+                <name>Big Category</name>
+            </columns>
+            <columns>
+                <label><!-- Brand --></label>
+                <name>Brand</name>
+            </columns>
+            <columns>
+                <label><!-- Category Name --></label>
+                <name>Category Name</name>
+            </columns>
+            <label><!-- Bonus Thresholds --></label>
+            <name>Bonus Thresholds</name>
+        </sections>
+        <sections>
+            <columns>
+                <label><!-- Qual-Result --></label>
+                <name>Qual-Result</name>
+            </columns>
+            <columns>
+                <label><!-- Quant-Result --></label>
+                <name>Quant-Result</name>
+            </columns>
+            <label><!-- Sub Result --></label>
+            <name>Sub Result</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Bonus Thresholds with or without Results --></description>
+        <label><!-- Bonus Thresholds with or without Results --></label>
+        <name>Bonus_Thresholds_with_or_without_Results</name>
+        <sections>
+            <label><!-- Bonus Results --></label>
+            <name>Bonus Results</name>
+        </sections>
+        <sections>
+            <label><!-- Bonus Thresholds --></label>
+            <name>Bonus Thresholds</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Bonus Threshols without Results --></description>
+        <label><!-- Bonus Threshols without Results --></label>
+        <name>Bonus_Threshols_without_Results</name>
+        <sections>
+            <label><!-- Bonus Thresholds --></label>
+            <name>Bonus Thresholds</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Brand Estimate with Agency Estimates --></description>
+        <label><!-- Brand Estimate with Agency Estimates --></label>
+        <name>Brand_Estimate_with_Agency_Estimates</name>
+        <sections>
+            <columns>
+                <label><!--  Exchange Rate --></label>
+                <name> Exchange Rate</name>
+            </columns>
+            <columns>
+                <label><!--  Exchange Rate --></label>
+                <name> Exchange Rate</name>
+            </columns>
+            <columns>
+                <label><!-- Currency --></label>
+                <name>Currency</name>
+            </columns>
+            <columns>
+                <label><!-- Currency --></label>
+                <name>Currency</name>
+            </columns>
+            <columns>
+                <label><!-- Currency @ Ready for PO --></label>
+                <name>Currency @ Ready for PO</name>
+            </columns>
+            <columns>
+                <label><!-- Exchange Rate PO --></label>
+                <name>Exchange Rate PO</name>
+            </columns>
+            <columns>
+                <label><!-- LC @ Ready for PO --></label>
+                <name>LC @ Ready for PO</name>
+            </columns>
+            <columns>
+                <label><!-- Total FY Fee - EUR --></label>
+                <name>Total FY Fee - EUR</name>
+            </columns>
+            <columns>
+                <label><!-- Total FY Fee - LC --></label>
+                <name>Total FY Fee - LC</name>
+            </columns>
+            <label><!-- Agency Estimates --></label>
+            <name>Agency Estimates</name>
+        </sections>
+        <sections>
+            <columns>
+                <label><!-- Big Category --></label>
+                <name>Big Category</name>
+            </columns>
+            <columns>
+                <label><!-- Status --></label>
+                <name>Status</name>
+            </columns>
+            <label><!-- Brand Estimates --></label>
+            <name>Brand Estimates</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Brand Estimates Approvers --></description>
+        <label><!-- Brand Estimates Approvers --></label>
+        <name>Brand_Estimates_Approevrs</name>
+        <sections>
+            <label><!-- Brand Estimates --></label>
+            <name>Brand Estimates</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- CEC Account, Case &amp; Fulfilment Info --></description>
+        <label><!-- CEC Account, Case &amp; Fulfilment Info --></label>
+        <name>CEC_Account_Case_Fulfilment_Info</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Cases --></label>
+            <name>Cases</name>
+        </sections>
+        <sections>
+            <label><!-- Fulfilment --></label>
+            <name>Fulfilment</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- CEC Approval Process --></description>
+        <label><!-- CEC Approval Process --></label>
+        <name>CEC_Approval_Process</name>
+        <sections>
+            <label><!-- Process Instance --></label>
+            <name>Process Instance</name>
+        </sections>
+        <sections>
+            <label><!-- Process Instance Node --></label>
+            <name>Process Instance Node</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- CEC Case Cluster Report --></description>
+        <label><!-- CEC Case Cluster Report --></label>
+        <name>CEC_Case_Cluster_Report</name>
+        <sections>
+            <label><!-- Case Market Mappings --></label>
+            <name>Case Market Mappings</name>
+        </sections>
+        <sections>
+            <label><!-- Cases --></label>
+            <name>Cases</name>
+        </sections>
+        <sections>
+            <label><!-- Unilever Geographies --></label>
+            <name>Unilever Geographies</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- CEC Case Product &amp; Cases --></description>
+        <label><!-- CEC Case Product &amp; Cases --></label>
+        <name>CEC_Case_Product_Cases</name>
+        <sections>
+            <label><!-- Case Products --></label>
+            <name>Case Products</name>
+        </sections>
+        <sections>
+            <label><!-- Cases --></label>
+            <name>Cases</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- CEC Case Product &amp; Product Category --></description>
+        <label><!-- CEC Case Product &amp; Product Category --></label>
+        <name>CEC_Case_Product_Product_Category</name>
+        <sections>
+            <label><!-- Case Products --></label>
+            <name>Case Products</name>
+        </sections>
+        <sections>
+            <columns>
+                <label><!-- Global CPG Code --></label>
+                <name>Global CPG Code</name>
+            </columns>
+            <columns>
+                <label><!-- L0 Product Category  --></label>
+                <name>L0 Product Category </name>
+            </columns>
+            <columns>
+                <label><!-- L1 Product Category --></label>
+                <name>L1 Product Category</name>
+            </columns>
+            <columns>
+                <label><!-- L2 Product Category --></label>
+                <name>L2 Product Category</name>
+            </columns>
+            <columns>
+                <label><!-- L3 Product Category --></label>
+                <name>L3 Product Category</name>
+            </columns>
+            <columns>
+                <label><!-- L4 Product Category --></label>
+                <name>L4 Product Category</name>
+            </columns>
+            <columns>
+                <label><!-- L5 Product Category --></label>
+                <name>L5 Product Category</name>
+            </columns>
+            <columns>
+                <label><!-- L6 Product Category --></label>
+                <name>L6 Product Category</name>
+            </columns>
+            <columns>
+                <label><!-- L7 Product Category --></label>
+                <name>L7 Product Category</name>
+            </columns>
+            <label><!-- Product Categories --></label>
+            <name>Product Categories</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- CEC_Enclosures --></description>
+        <label><!-- CEC_Enclosures --></label>
+        <name>CEC_Enclosures</name>
+        <sections>
+            <label><!-- Enclosures --></label>
+            <name>Enclosures</name>
+        </sections>
+        <sections>
+            <label><!-- Fulfilment Enclosures --></label>
+            <name>Fulfilment Enclosures</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- CEC Fulfillment &amp; Enclosure --></description>
+        <label><!-- CEC Fulfillment &amp; Enclosure --></label>
+        <name>CEC_Fulfillment_Enclosure</name>
+        <sections>
+            <label><!-- Fulfilment --></label>
+            <name>Fulfilment</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Cases With/Without Activities --></description>
+        <label><!-- Cases With/Without Activities --></label>
+        <name>Cases_With_Without_Activities</name>
+        <sections>
+            <label><!-- Activities --></label>
+            <name>Activities</name>
+        </sections>
+        <sections>
+            <label><!-- Cases --></label>
+            <name>Cases</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Cases with AdditionalCaseInfo --></description>
+        <label><!-- Cases with AdditionalCaseInfo --></label>
+        <name>Cases_with_AdditionalCaseInfo</name>
+        <sections>
+            <label><!-- Additional Case Informations --></label>
+            <name>Additional Case Informations</name>
+        </sections>
+        <sections>
+            <label><!-- Cases --></label>
+            <name>Cases</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Categories with PSAR Alert and Details --></description>
+        <label><!-- Categories with PSAR Alert and Details --></label>
+        <name>Categories_with_PSAR_Alert_and_Details</name>
+        <sections>
+            <label><!-- PSAR Alerts --></label>
+            <name>PSAR Alerts</name>
+        </sections>
+        <sections>
+            <label><!-- PSAR Alerts Details --></label>
+            <name>PSAR Alerts Details</name>
+        </sections>
+        <sections>
+            <label><!-- PSAR Categories --></label>
+            <name>PSAR Categories</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Chatter Groups with Group Feed --></description>
+        <label><!-- Chatter Groups with Group Feed --></label>
+        <name>Chatter_Groups_with_Group_Feed</name>
+        <sections>
+            <label><!-- Chatter Group Feed --></label>
+            <name>Chatter Group Feed</name>
+        </sections>
+        <sections>
+            <label><!-- Chatter Groups --></label>
+            <name>Chatter Groups</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Chatter Groups with Group Feed and Comments --></description>
+        <label><!-- Chatter Groups with Group Feed and Comments --></label>
+        <name>Chatter_Groups_with_Group_Feed_and_Comments</name>
+        <sections>
+            <label><!-- Chatter Group Feed --></label>
+            <name>Chatter Group Feed</name>
+        </sections>
+        <sections>
+            <label><!-- Chatter Groups --></label>
+            <name>Chatter Groups</name>
+        </sections>
+        <sections>
+            <label><!-- Comments --></label>
+            <name>Comments</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Chatter Groups with Group Members --></description>
+        <label><!-- Chatter Groups with Group Members --></label>
+        <name>Chatter_Groups_with_Group_Members</name>
+        <sections>
+            <label><!-- Chatter Group Members --></label>
+            <name>Chatter Group Members</name>
+        </sections>
+        <sections>
+            <label><!-- Chatter Groups --></label>
+            <name>Chatter Groups</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Chatter Groups with Users --></description>
+        <label><!-- Chatter Groups with Users --></label>
+        <name>Chatter_Groups_with_Users</name>
+        <sections>
+            <label><!-- Chatter Group Members --></label>
+            <name>Chatter Group Members</name>
+        </sections>
+        <sections>
+            <label><!-- Chatter Groups --></label>
+            <name>Chatter Groups</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Chatter Topics --></description>
+        <label><!-- Chatter Topics --></label>
+        <name>Chatter_Topics</name>
+        <sections>
+            <label><!-- Topics --></label>
+            <name>Topics</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Chatter activity --></description>
+        <label><!-- Chatter activity --></label>
+        <name>Chatter_activity</name>
+        <sections>
+            <label><!-- Chatter Activity --></label>
+            <name>Chatter Activity</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Chatter activity + user + post body --></description>
+        <label><!-- Chatter activity + user + post body --></label>
+        <name>Chatter_activity_user_post_body</name>
+        <sections>
+            <label><!-- Group Feed --></label>
+            <name>Group Feed</name>
+        </sections>
+        <sections>
+            <label><!-- Groups (Last Modified By) --></label>
+            <name>Groups (Last Modified By)</name>
+        </sections>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Connected Application Custom Report Types --></description>
+        <label><!-- Connected Application Custom Report Types --></label>
+        <name>Connected_Application_Custom_Report_Types</name>
+        <sections>
+            <label><!-- Custom Fields --></label>
+            <name>Custom Fields</name>
+        </sections>
+        <sections>
+            <columns>
+                <label><!-- Application --></label>
+                <name>Application</name>
+            </columns>
+            <label><!-- Identity Event Logs (User) --></label>
+            <name>Identity Event Logs (User)</name>
+        </sections>
+        <sections>
+            <columns>
+                <label><!-- Profile Name --></label>
+                <name>Profile Name</name>
+            </columns>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Core Tasks Report Type --></description>
+        <label><!-- Core Tasks Report Type --></label>
+        <name>Core_Tasks_Report_Type</name>
+        <sections>
+            <label><!-- Core Tasks --></label>
+            <name>Core Tasks</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Course with Course Occurence and Occurence Member --></description>
+        <label><!-- Course with Course Occurence and Occurence Member --></label>
+        <name>Course_with_Course_Occurence_and_Occurence_Member</name>
+        <sections>
+            <label><!-- Course Occurence --></label>
+            <name>Course Occurence</name>
+        </sections>
+        <sections>
+            <label><!-- Courses --></label>
+            <name>Courses</name>
+        </sections>
+        <sections>
+            <label><!-- Occurence Member --></label>
+            <name>Occurence Member</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Courses with Course Occurence with Feedback with Feedback Questionnaire --></description>
+        <label><!-- Courses with Course Occurence with Feedback with Feedback Questionnaire --></label>
+        <name>Courses_with_Course_Occurence_with_Feedback_with_Feedback_Questionnaire</name>
+        <sections>
+            <label><!-- Course Occurence --></label>
+            <name>Course Occurence</name>
+        </sections>
+        <sections>
+            <label><!-- Courses --></label>
+            <name>Courses</name>
+        </sections>
+        <sections>
+            <label><!-- Feedback --></label>
+            <name>Feedback</name>
+        </sections>
+        <sections>
+            <label><!-- Feedback Questionnaire --></label>
+            <name>Feedback Questionnaire</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Custom Objects Usage --></description>
+        <label><!-- Custom Objects Usage --></label>
+        <name>Custom_Objects_Usage</name>
+        <sections>
+            <label><!-- Custom Object Usage By User License Metrics --></label>
+            <name>Custom Object Usage By User License Metrics</name>
+        </sections>
+        <sections>
+            <label><!-- User Licenses --></label>
+            <name>User Licenses</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Dashboards --></description>
+        <label><!-- Dashboards --></label>
+        <name>Dashboards</name>
+        <sections>
+            <label><!-- Dashboards --></label>
+            <name>Dashboards</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Detailed Report of Course Occurrence --></description>
+        <label><!-- Detailed Report of Course Occurrence --></label>
+        <name>Detailed_Report_of_Course_Occurrence</name>
+        <sections>
+            <label><!-- Course Occurence --></label>
+            <name>Course Occurence</name>
+        </sections>
+        <sections>
+            <label><!-- Occurence Member --></label>
+            <name>Occurence Member</name>
+        </sections>
+        <sections>
+            <label><!-- User Preferences --></label>
+            <name>User Preferences</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Detailed Report of Occurence Member Tasks --></description>
+        <label><!-- Detailed Report of Occurence Member Tasks --></label>
+        <name>Detailed_Report_of_Occurence_Member_Tasks</name>
+        <sections>
+            <label><!-- Course Occurence --></label>
+            <name>Course Occurence</name>
+        </sections>
+        <sections>
+            <label><!-- Occurence Member --></label>
+            <name>Occurence Member</name>
+        </sections>
+        <sections>
+            <label><!-- Pre Work Tasks --></label>
+            <name>Pre Work Tasks</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Events with ULE --></description>
+        <label><!-- Events with ULE --></label>
+        <name>Events_with_ULE</name>
+        <sections>
+            <label><!-- Events --></label>
+            <name>Events</name>
+        </sections>
+        <sections>
+            <label><!-- ULE Spokesperson / Representative --></label>
+            <name>ULE Spokesperson / Representative</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Events with/without Locations --></description>
+        <label><!-- Events with/without Locations --></label>
+        <name>Events_with_without_Locations</name>
+        <sections>
+            <label><!-- Planner Events --></label>
+            <name>Planner Events</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Everyday Activities with Feed --></description>
+        <label><!-- Everyday Activities with Feed --></label>
+        <name>Everyday_Activities_with_Feed</name>
+        <sections>
+            <label><!-- Everyday Actions --></label>
+            <name>Everyday Actions</name>
+        </sections>
+        <sections>
+            <label><!-- Feed: Everyday Activity --></label>
+            <name>Feed: Everyday Activity</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Everyday Activities with User --></description>
+        <label><!-- Everyday Activities with User --></label>
+        <name>Everyday_Activities_with_User</name>
+        <sections>
+            <label><!-- Everyday Activities --></label>
+            <name>Everyday Activities</name>
+        </sections>
+        <sections>
+            <label><!-- Team Members --></label>
+            <name>Team Members</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Forex Issues Base Fee --></description>
+        <label><!-- Forex Issues Base Fee --></label>
+        <name>Forex_Issues_Base_Fee</name>
+        <sections>
+            <label><!-- Agency Estimates --></label>
+            <name>Agency Estimates</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Hashtag Definitions --></description>
+        <label><!-- Hashtag Definitions --></label>
+        <name>Hashtag_Definitions</name>
+        <sections>
+            <label><!-- Hashtag Definitions --></label>
+            <name>Hashtag Definitions</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- IPM Projects with IPM Project Documents with IPM Project Document Sections --></description>
+        <label><!-- IPM Projects with IPM Project Documents with IPM Project Document Sections --></label>
+        <name>IPM_Projects_with_IPM_Project_Documents_with_IPM_Project_Document_Sections</name>
+        <sections>
+            <label><!-- IPM Project Document Sections --></label>
+            <name>IPM Project Document Sections</name>
+        </sections>
+        <sections>
+            <label><!-- IPM Project Documents --></label>
+            <name>IPM Project Documents</name>
+        </sections>
+        <sections>
+            <label><!-- IPM Projects --></label>
+            <name>IPM Projects</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- IPM with BET --></description>
+        <label><!-- IPM with BET --></label>
+        <name>IPM_with_BET</name>
+        <sections>
+            <label><!-- BET --></label>
+            <name>BET</name>
+        </sections>
+        <sections>
+            <label><!-- IPM Projects --></label>
+            <name>IPM Projects</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Ideas --></description>
+        <label><!-- Ideas --></label>
+        <name>Ideas</name>
+        <sections>
+            <label><!-- Ideas --></label>
+            <name>Ideas</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- JLodge Reports --></description>
+        <label><!-- JLodge Reports --></label>
+        <name>JLodge_Reports</name>
+        <sections>
+            <columns>
+                <label><!--  Brand --></label>
+                <name> Brand</name>
+            </columns>
+            <columns>
+                <label><!-- Case Creator --></label>
+                <name>Case Creator</name>
+            </columns>
+            <columns>
+                <label><!-- Case No --></label>
+                <name>Case No</name>
+            </columns>
+            <columns>
+                <label><!-- Case owner manager --></label>
+                <name>Case owner manager</name>
+            </columns>
+            <columns>
+                <label><!-- Country --></label>
+                <name>Country</name>
+            </columns>
+            <columns>
+                <label><!-- Created Date --></label>
+                <name>Created Date</name>
+            </columns>
+            <columns>
+                <label><!-- Parent Case No. --></label>
+                <name>Parent Case No.</name>
+            </columns>
+            <columns>
+                <label><!-- Product Description inc. pack size --></label>
+                <name>Product Description inc. pack size</name>
+            </columns>
+            <columns>
+                <label><!-- Product UPC Code --></label>
+                <name>Product UPC Code</name>
+            </columns>
+            <columns>
+                <label><!-- Reason short code --></label>
+                <name>Reason short code</name>
+            </columns>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Last Password Report Type --></description>
+        <label><!-- Last Password Report Type --></label>
+        <name>Last_Password_Report_Type</name>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Live Agent Session --></description>
+        <label><!-- Live Agent Session --></label>
+        <name>Live_Agent_Session</name>
+        <sections>
+            <label><!-- Live Agent Sessions --></label>
+            <name>Live Agent Sessions</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Live Chat Transcripts --></description>
+        <label><!-- Live Chat Transcripts --></label>
+        <name>Live_Chat_Transcripts</name>
+        <sections>
+            <label><!-- Live Chat Transcripts --></label>
+            <name>Live Chat Transcripts</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Locations with PSAR Alerts and Details --></description>
+        <label><!-- Locations with PSAR Alerts and Details --></label>
+        <name>Locations_with_PSAR_Alerts_and_Details</name>
+        <sections>
+            <label><!-- PSAR Alerts --></label>
+            <name>PSAR Alerts</name>
+        </sections>
+        <sections>
+            <label><!-- PSAR Alerts Details --></label>
+            <name>PSAR Alerts Details</name>
+        </sections>
+        <sections>
+            <label><!-- PSAR Locations --></label>
+            <name>PSAR Locations</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- MC Mobile Usage --></description>
+        <label><!-- MC Mobile Usage --></label>
+        <name>MC_Mobile_Usage</name>
+        <sections>
+            <label><!-- Mobile Session --></label>
+            <name>Mobile Session</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Mobile Users --></description>
+        <label><!-- Mobile Users --></label>
+        <name>Mobile_Users</name>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- OOPS --></description>
+        <label><!-- OOPS --></label>
+        <name>OOPS</name>
+        <sections>
+            <label><!-- OOPS Actuals --></label>
+            <name>OOPS Actuals</name>
+        </sections>
+        <sections>
+            <label><!-- OOPS Estimates --></label>
+            <name>OOPS Estimates</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- OOPS Actuals --></description>
+        <label><!-- OOPS Actuals --></label>
+        <name>OOPS_Actuals</name>
+        <sections>
+            <columns>
+                <label><!-- Status --></label>
+                <name>Status</name>
+            </columns>
+            <label><!-- OOPS Actuals --></label>
+            <name>OOPS Actuals</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- OOPS Actuals with Estimates --></description>
+        <label><!-- OOPS Actuals with Estimates --></label>
+        <name>OOPS_Actuals_with_Estimates</name>
+        <sections>
+            <label><!-- OOPS Actuals --></label>
+            <name>OOPS Actuals</name>
+        </sections>
+        <sections>
+            <columns>
+                <label><!-- PO Value - Euro --></label>
+                <name>PO Value - Euro</name>
+            </columns>
+            <columns>
+                <label><!-- PO Value - LC --></label>
+                <name>PO Value - LC</name>
+            </columns>
+            <label><!-- OOPS Estimates --></label>
+            <name>OOPS Estimates</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- OOPS Estimate --></description>
+        <label><!-- OOPS Estimate --></label>
+        <name>OOPS_Estimate</name>
+        <sections>
+            <columns>
+                <label><!-- Big Category --></label>
+                <name>Big Category</name>
+            </columns>
+            <columns>
+                <label><!-- Big Category --></label>
+                <name>Big Category</name>
+            </columns>
+            <columns>
+                <label><!-- Brand --></label>
+                <name>Brand</name>
+            </columns>
+            <columns>
+                <label><!-- Brand --></label>
+                <name>Brand</name>
+            </columns>
+            <columns>
+                <label><!-- Category --></label>
+                <name>Category</name>
+            </columns>
+            <label><!-- OOPS Estimates --></label>
+            <name>OOPS Estimates</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- OOPs PO Report --></description>
+        <label><!-- OOPs PO Report --></label>
+        <name>OOPs_PO_Report</name>
+        <sections>
+            <columns>
+                <label><!-- FY OOPS - Euro --></label>
+                <name>FY OOPS - Euro</name>
+            </columns>
+            <columns>
+                <label><!-- FY Year OOPs - LC --></label>
+                <name>FY Year OOPs - LC</name>
+            </columns>
+            <columns>
+                <label><!-- Override PO Estimate --></label>
+                <name>Override PO Estimate</name>
+            </columns>
+            <columns>
+                <label><!-- PO Override Estimate --></label>
+                <name>PO Override Estimate</name>
+            </columns>
+            <columns>
+                <label><!-- PO Value - Euro --></label>
+                <name>PO Value - Euro</name>
+            </columns>
+            <columns>
+                <label><!-- PO Value – LC --></label>
+                <name>PO Value – LC</name>
+            </columns>
+            <label><!-- PO Report --></label>
+            <name>PO Report</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- OTIF Report --></description>
+        <label><!-- OTIF Report --></label>
+        <name>OTIF_Report</name>
+        <sections>
+            <columns>
+                <label><!-- IC / NBU --></label>
+                <name>IC / NBU</name>
+            </columns>
+            <label><!-- IPM Analytics OTIFs --></label>
+            <name>IPM Analytics OTIFs</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- SWOP Asset Scoring --></description>
+        <label><!-- SWOP Asset Scoring --></label>
+        <name>Oblix_Assets</name>
+        <sections>
+            <label><!-- SWOP Asset  Scoring --></label>
+            <name>SWOP Asset  Scoring</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- SWOP SOW, Campaign and Asset --></description>
+        <label><!-- SWOP SOW, Campaign and Asset --></label>
+        <name>Oblix_Marketing_SOW</name>
+        <sections>
+            <label><!-- Marketing SOW --></label>
+            <name>Marketing SOW</name>
+        </sections>
+        <sections>
+            <label><!-- Marketing SOW Copies --></label>
+            <name>Marketing SOW Copies</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- SWOP Calculator --></description>
+        <label><!-- SWOP Calculator --></label>
+        <name>Oblix_SWOP_Calculator</name>
+        <sections>
+            <label><!-- SWOP Calculator --></label>
+            <name>SWOP Calculator</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- SWOP - SOW Campaigns and Assets --></description>
+        <label><!-- SWOP - SOW Campaigns and Assets --></label>
+        <name>Oblix_SWOP_SOW</name>
+        <sections>
+            <label><!-- SWOP --></label>
+            <name>SWOP</name>
+        </sections>
+        <sections>
+            <label><!-- SWOP Project Assets --></label>
+            <name>SWOP Project Assets</name>
+        </sections>
+        <sections>
+            <label><!-- SWOP Projects --></label>
+            <name>SWOP Projects</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- One View Report Usage --></description>
+        <label><!-- One View Report Usage --></label>
+        <name>One_View_Report_Usage</name>
+        <sections>
+            <label><!-- One View Report Usage --></label>
+            <name>One View Report Usage</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Opps Actuals with Estimates --></description>
+        <label><!-- Opps Actuals with Estimates --></label>
+        <name>Opps_Actuals_with_Estimates</name>
+        <sections>
+            <columns>
+                <label><!-- Big Category --></label>
+                <name>Big Category</name>
+            </columns>
+            <columns>
+                <label><!-- Big Category --></label>
+                <name>Big Category</name>
+            </columns>
+            <columns>
+                <label><!-- Status --></label>
+                <name>Status</name>
+            </columns>
+            <label><!-- OOPS Actuals --></label>
+            <name>OOPS Actuals</name>
+        </sections>
+        <sections>
+            <columns>
+                <label><!-- Currency --></label>
+                <name>Currency</name>
+            </columns>
+            <columns>
+                <label><!-- Currency --></label>
+                <name>Currency</name>
+            </columns>
+            <columns>
+                <label><!-- Currency @Ready for PO --></label>
+                <name>Currency @Ready for PO</name>
+            </columns>
+            <columns>
+                <label><!-- Exchange Rate --></label>
+                <name>Exchange Rate</name>
+            </columns>
+            <columns>
+                <label><!-- ExchangeRate@ReadyforPO --></label>
+                <name>ExchangeRate@ReadyforPO</name>
+            </columns>
+            <columns>
+                <label><!-- FY OOPS - Euro --></label>
+                <name>FY OOPS - Euro</name>
+            </columns>
+            <columns>
+                <label><!-- FY Year OOPs - LC --></label>
+                <name>FY Year OOPs - LC</name>
+            </columns>
+            <columns>
+                <label><!-- FY Year OOPs - LC --></label>
+                <name>FY Year OOPs - LC</name>
+            </columns>
+            <columns>
+                <label><!-- FY Year OOPs - LC --></label>
+                <name>FY Year OOPs - LC</name>
+            </columns>
+            <columns>
+                <label><!-- Legal Entity Name --></label>
+                <name>Legal Entity Name</name>
+            </columns>
+            <columns>
+                <label><!-- PO Value - Euro --></label>
+                <name>PO Value - Euro</name>
+            </columns>
+            <columns>
+                <label><!-- PO Value - LC --></label>
+                <name>PO Value - LC</name>
+            </columns>
+            <columns>
+                <label><!-- Unilever Entity --></label>
+                <name>Unilever Entity</name>
+            </columns>
+            <columns>
+                <label><!-- Unilever Entity --></label>
+                <name>Unilever Entity</name>
+            </columns>
+            <label><!-- OOPS Estimates --></label>
+            <name>OOPS Estimates</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- PO Report --></description>
+        <label><!-- PO Report --></label>
+        <name>PO_Report</name>
+        <sections>
+            <columns>
+                <label><!-- Adaptation Local Currency --></label>
+                <name>Adaptation Local Currency</name>
+            </columns>
+            <label><!-- PO Report --></label>
+            <name>PO Report</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Planner Events with Planners --></description>
+        <label><!-- Planner Events with Planners --></label>
+        <name>Planner_Events_with_Planners</name>
+        <sections>
+            <label><!-- Planner Events --></label>
+            <name>Planner Events</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Planner Events with ULE with Planners --></description>
+        <label><!-- Planner Events with ULE with Planners --></label>
+        <name>Planner_Events_with_ULE_with_Planners</name>
+        <sections>
+            <label><!-- Planner Events --></label>
+            <name>Planner Events</name>
+        </sections>
+        <sections>
+            <label><!-- ULE Spokesperson / Representative --></label>
+            <name>ULE Spokesperson / Representative</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Planner Preferences with Profiles --></description>
+        <label><!-- Planner Preferences with Profiles --></label>
+        <name>Planner_Preferences_with_Profiles</name>
+        <sections>
+            <label><!-- Planner Preferences --></label>
+            <name>Planner Preferences</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Programs with FAU Participants with Module Participants --></description>
+        <label><!-- Programs with FAU Participants with Module Participants --></label>
+        <name>Programs_with_FAU_Participants_with_Module_Participants</name>
+        <sections>
+            <label><!-- Programs --></label>
+            <name>Programs</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Programs with Milestones with Milestone Participants --></description>
+        <label><!-- Programs with Milestones with Milestone Participants --></label>
+        <name>Programs_with_Milestones_with_Milestone_Participants</name>
+        <sections>
+            <label><!-- Milestone Participants --></label>
+            <name>Milestone Participants</name>
+        </sections>
+        <sections>
+            <label><!-- Milestones --></label>
+            <name>Milestones</name>
+        </sections>
+        <sections>
+            <label><!-- Participant --></label>
+            <name>Participant</name>
+        </sections>
+        <sections>
+            <label><!-- Programs --></label>
+            <name>Programs</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Programs with Modules with Module Participants --></description>
+        <label><!-- Programs with Modules with Module Participants --></label>
+        <name>Programs_with_Modules_with_Module_Participants</name>
+        <sections>
+            <label><!-- Module Participants --></label>
+            <name>Module Participants</name>
+        </sections>
+        <sections>
+            <label><!-- Modules --></label>
+            <name>Modules</name>
+        </sections>
+        <sections>
+            <label><!-- Participant --></label>
+            <name>Participant</name>
+        </sections>
+        <sections>
+            <label><!-- Programs --></label>
+            <name>Programs</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Programs with Webinars with Webinar Participants --></description>
+        <label><!-- Programs with Webinars with Webinar Participants --></label>
+        <name>Programs_with_Webinars_with_Webinar_Participants</name>
+        <sections>
+            <label><!-- Programs --></label>
+            <name>Programs</name>
+        </sections>
+        <sections>
+            <label><!-- Webinar Participants --></label>
+            <name>Webinar Participants</name>
+        </sections>
+        <sections>
+            <label><!-- Webinars --></label>
+            <name>Webinars</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Reports --></description>
+        <label><!-- Reports --></label>
+        <name>Reports</name>
+        <sections>
+            <label><!-- Reports --></label>
+            <name>Reports</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Reports_and_Dashboards --></description>
+        <label><!-- Reports_and_Dashboards --></label>
+        <name>Reports_and_Dashboards</name>
+        <sections>
+            <label><!-- Dashboard Components --></label>
+            <name>Dashboard Components</name>
+        </sections>
+        <sections>
+            <label><!-- Reports --></label>
+            <name>Reports</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- SWOP Campaigns --></description>
+        <label><!-- SWOP Campaigns --></label>
+        <name>SWOP_Campaigns</name>
+        <sections>
+            <label><!-- Asset --></label>
+            <name>Asset</name>
+        </sections>
+        <sections>
+            <label><!-- SOW --></label>
+            <name>SOW</name>
+        </sections>
+        <sections>
+            <label><!-- SWOP Campaigns --></label>
+            <name>SWOP Campaigns</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- SWOP - SOW and Campaigns --></description>
+        <label><!-- SWOP - SOW and Campaigns --></label>
+        <name>SWOP_SOW</name>
+        <sections>
+            <label><!-- SWOP --></label>
+            <name>SWOP</name>
+        </sections>
+        <sections>
+            <label><!-- SWOP Campaigns --></label>
+            <name>SWOP Campaigns</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- SWOP SOW --></description>
+        <label><!-- SWOP SOW --></label>
+        <name>SWOP_SOW_ONLY</name>
+        <sections>
+            <label><!-- SWOP --></label>
+            <name>SWOP</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- SWOP SOW campaigns splits --></description>
+        <label><!-- SWOP SOW campaigns splits --></label>
+        <name>SWOP_SOW_campaigns_splits</name>
+        <sections>
+            <label><!-- SWOP --></label>
+            <name>SWOP</name>
+        </sections>
+        <sections>
+            <label><!-- SWOP Campaign Splits --></label>
+            <name>SWOP Campaign Splits</name>
+        </sections>
+        <sections>
+            <label><!-- SWOP Campaigns --></label>
+            <name>SWOP Campaigns</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- SWOP with SWOP Campaigns with SWOP Campaign Splits --></description>
+        <label><!-- SWOP with SWOP Campaigns with SWOP Campaign Splits --></label>
+        <name>SWOP_with_SWOP_Campaigns_with_SWOP_Campaign_Splits</name>
+        <sections>
+            <label><!-- SWOP --></label>
+            <name>SWOP</name>
+        </sections>
+        <sections>
+            <label><!-- SWOP Campaign Splits --></label>
+            <name>SWOP Campaign Splits</name>
+        </sections>
+        <sections>
+            <label><!-- SWOP Campaigns --></label>
+            <name>SWOP Campaigns</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Thanks given by users --></description>
+        <label><!-- Thanks given by users --></label>
+        <name>Thanks_given_by_users</name>
+        <sections>
+            <label><!-- Badges --></label>
+            <name>Badges</name>
+        </sections>
+        <sections>
+            <label><!-- Thanks --></label>
+            <name>Thanks</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Topic Assignment --></description>
+        <label><!-- Topic Assignment --></label>
+        <name>Topic_Assignment</name>
+        <sections>
+            <label><!-- Topic Assignments --></label>
+            <name>Topic Assignments</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Topics Report --></description>
+        <label><!-- Topics Report --></label>
+        <name>Topics_Report</name>
+        <sections>
+            <label><!-- Topics --></label>
+            <name>Topics</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Topics User --></description>
+        <label><!-- Topics User --></label>
+        <name>Topics_User_Report</name>
+        <sections>
+            <label><!-- Topics --></label>
+            <name>Topics</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- UID Order with Order Product --></description>
+        <label><!-- UID Order with Order Product --></label>
+        <name>UID_Order_with_Order_Product</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Orders --></label>
+            <name>Orders</name>
+        </sections>
+        <sections>
+            <label><!-- UID Order Products --></label>
+            <name>UID Order Products</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- UID Sales Report --></description>
+        <label><!-- UID Sales Report --></label>
+        <name>UID_Sales_Report</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Order Products --></label>
+            <name>Order Products</name>
+        </sections>
+        <sections>
+            <label><!-- Orders --></label>
+            <name>Orders</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- UID Stocked Product Reports --></description>
+        <label><!-- UID Stocked Product Reports --></label>
+        <name>UID_Stocked_Product_Reports</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Stocked Product Summary --></label>
+            <name>Stocked Product Summary</name>
+        </sections>
+        <sections>
+            <label><!-- Stocked Products --></label>
+            <name>Stocked Products</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- User &amp; Chatter Activity --></description>
+        <label><!-- User &amp; Chatter Activity --></label>
+        <name>User_Chatter_Activity</name>
+        <sections>
+            <label><!-- Chatter Activity (Parent) --></label>
+            <name>Chatter Activity (Parent)</name>
+        </sections>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Users Chatter Groups and Feeds and Comment --></description>
+        <label><!-- Users Chatter Groups and Feeds and Comment --></label>
+        <name>Users_Chatter_Groups_and_Feeds_and_Comment</name>
+        <sections>
+            <label><!-- Chatter Group Feed --></label>
+            <name>Chatter Group Feed</name>
+        </sections>
+        <sections>
+            <label><!-- Chatter Groups (Last Modified By) --></label>
+            <name>Chatter Groups (Last Modified By)</name>
+        </sections>
+        <sections>
+            <label><!-- Comments --></label>
+            <name>Comments</name>
+        </sections>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Users Test --></description>
+        <label><!-- Users Test --></label>
+        <name>Users_Test</name>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Users with Followers --></description>
+        <label><!-- Users with Followers --></label>
+        <name>Users_with_Followers</name>
+        <sections>
+            <label><!-- Followers --></label>
+            <name>Followers</name>
+        </sections>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Users with User Feed --></description>
+        <label><!-- Users with User Feed --></label>
+        <name>Users_with_User_Feed</name>
+        <sections>
+            <label><!-- User Feed --></label>
+            <name>User Feed</name>
+        </sections>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Users with User Feed and Comments --></description>
+        <label><!-- Users with User Feed and Comments --></label>
+        <name>Users_with_User_Feed_and_Comments</name>
+        <sections>
+            <label><!-- Comments --></label>
+            <name>Comments</name>
+        </sections>
+        <sections>
+            <label><!-- User Feed --></label>
+            <name>User Feed</name>
+        </sections>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- WU Warehouse Capacity Detail --></description>
+        <label><!-- WU Warehouse Capacity Detail --></label>
+        <name>WU_Warehouse_Capacity_Detail</name>
+        <sections>
+            <label><!-- Warehouse Capacity Detail --></label>
+            <name>Warehouse Capacity Detail</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Warehouse Utilization --></description>
+        <label><!-- Warehouse Utilization --></label>
+        <name>Warehouse_Utilization</name>
+        <sections>
+            <label><!-- Warehouse Capacitys --></label>
+            <name>Warehouse Capacitys</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Win@POS Upload Stats --></description>
+        <label><!-- Win@POS Upload Stats --></label>
+        <name>Win_POS_Upload_Stats</name>
+        <sections>
+            <label><!-- Assets --></label>
+            <name>Assets</name>
+        </sections>
+        <sections>
+            <label><!-- Files --></label>
+            <name>Files</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- win@POS Download Statistics --></description>
+        <label><!-- win@POS Download Statistics --></label>
+        <name>win_POS_Download_Statistics</name>
+        <sections>
+            <label><!-- Files --></label>
+            <name>Files</name>
+        </sections>
+        <sections>
+            <label><!-- WINatPOS Download Statistics --></label>
+            <name>WINatPOS Download Statistics</name>
+        </sections>
+    </reportTypes>
+</Translations>
