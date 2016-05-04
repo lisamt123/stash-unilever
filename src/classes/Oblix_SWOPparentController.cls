@@ -108,6 +108,8 @@ public with sharing virtual class Oblix_SWOPparentController {
         }
         catch(Exception ex){
                 return null;
+                ApexPages.addMessage(new ApexPages.message(ApexPages.SEVERITY.ERROR, ex.getMessage()));
+
         }
 
         return sow;
@@ -140,6 +142,8 @@ public with sharing virtual class Oblix_SWOPparentController {
         }
         catch(Exception ex){
             return null;
+                            ApexPages.addMessage(new ApexPages.message(ApexPages.SEVERITY.ERROR, ex.getMessage()));
+
             //ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,'Invalid Id or you do not have permission to view this record!'));
         }
         return sow_project;

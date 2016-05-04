@@ -330,7 +330,7 @@ public with sharing class Oblix_CampaignCreateHelper extends Oblix_SWOPparentCon
         if (projectId != null) {
             selectedProject = [SELECT ID, Name, Brand_Led_Growth__c, Innovation_Projects__c, Financial_Year__r.Financial_Year__c, Financial_Year__r.Name, Campaign_Idea__c,
                 OblixRegion__c, Campaign_Countries__c, Selected_Countries__c, First_3_selected_countries__c, Project_Scale_1__c, Project_Scale_2__c, Project_Priority__c,
-                Project_Start_Date__c, Stage_Projected_CFY__c, Stage_Completed_CFY__c, Value_To_BePaid_Manual_Override__c,
+                Project_Start_Date__c, Stage_Projected_CFY__c, Stage_Completed_CFY__c, Projected_Stage_PFY__c, Completed_Stage_PFY__c, Value_To_BePaid_Manual_Override__c,
                 First_Air_Date__c, Preview_Date__c, Project_Completion_Date__c, BET_first_release__c, Value_to_be_paid_in_Current_FY__c,
                 Final_release__c, Campaign_Total_Fees__c, Description__c, Platform__c, Jobs_to_be_Done__c, Percentage_of_Fee_for_this_FY__c, Campaign_Status__c FROM Oblix_SOW_Projects__c WHERE ID = : projectId
             ];

@@ -136,7 +136,7 @@ Renamed to Other SOW items in reviews</description>
                 <fullName>Category Leadership</fullName>
                 <default>false</default>
             </picklistValues>
-            <sorted>true</sorted>
+            <sorted>false</sorted>
         </picklist>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -335,9 +335,9 @@ ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;))
         <externalId>false</externalId>
         <inlineHelpText>Enter the number or hours this activity is estimated to take.</inlineHelpText>
         <label>No of Hours Required</label>
-        <precision>4</precision>
+        <precision>6</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -1665,10 +1665,6 @@ Oblix_FTE_Real_Price__c)</formula>
             <picklist>Activities__c</picklist>
             <values>
                 <fullName>Brand Book</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other</fullName>
                 <default>false</default>
             </values>
             <values>

@@ -21,30 +21,7 @@ public with sharing class Oblix_SowMainController extends Oblix_SWOPparentContro
             return FX_TEXT_MESSAGE;
         }set;}
 
-    public Boolean showFXMessage {
-        get{
-            String FXDate = Oblix_Utils.getOblixSettingValueByName('FX_UPDATED_DATE');
-            Oblix_FX_Change__c fxChange = [SELECT Id, FX_Date__c, Acknowledged__c FROM Oblix_FX_Change__c WHERE SetupOwnerId =: UserInfo.getUserId()];
-            system.debug('fxChange ' + fxChange);
-            if(FXDate != fxChange.FX_Date__c && 
-                (Oblix_PermissionHandler.hasUL1permissionSet() || Oblix_PermissionHandler.hasUL2permissionSet() 
-                        || Oblix_PermissionHandler.hasSuperUserpermissionSet() || Oblix_PermissionHandler.isSystemAdmin())){
-                
-                fxChange.FX_Date__c = Oblix_Utils.getOblixSettingValueByName('FX_UPDATED_DATE');
-                fxChange.Acknowledged__c = true;
-                database.SaveResult results = Database.update(fxChange);
-                if(results.isSuccess())
-                    fxChange = [SELECT Id, FX_Date__c, Acknowledged__c FROM Oblix_FX_Change__c WHERE SetupOwnerId =: UserInfo.getUserId()];
-                    IF(fxChange.FX_Date__c == FXDate)
-                    return true;
-                else {
-                    return false;
-                }
-            }else{
-                return false;
-            }
-
-        } set;}
+    public Boolean showFXMessage {get; set;}
 
     public Boolean can_create_sow {
         get{
@@ -112,10 +89,29 @@ public with sharing class Oblix_SowMainController extends Oblix_SWOPparentContro
 
     }
 
-
-
     public Oblix_SowMainController(){
         
+    }
+
+    public void updateFX(){
+        String FXDate = Oblix_Utils.getOblixSettingValueByName('FX_UPDATED_DATE');
+        Oblix_FX_Change__c fxChange = Oblix_FX_Change__c.getInstance(UserInfo.getUserId());
+        if(null == fxChange){
+
+        }
+        if(FXDate != fxChange.FX_Date__c && 
+            (Oblix_PermissionHandler.hasUL1permissionSet() || Oblix_PermissionHandler.hasUL2permissionSet() 
+                    || Oblix_PermissionHandler.hasSuperUserpermissionSet() || Oblix_PermissionHandler.isSystemAdmin())){
+            
+            fxChange.FX_Date__c = Oblix_Utils.getOblixSettingValueByName('FX_UPDATED_DATE');
+            fxChange.Acknowledged__c = true;
+            //update fxChange;
+            showFXMessage = true;
+            
+        }else{
+            showFXMessage = false;
+        }
+
     }
 
     public class SOWWrapper {

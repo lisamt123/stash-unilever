@@ -338,8 +338,9 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
             //if (stage_identifier_pop_up.cancelCampaignManualPercent != stage_identifier_pop_up.cancelCampaignManualPercent.intValue()) {
             //    throw new TypeException('Please enter a round number rather than decimal');
             //}
-            
+            System.debug('### Percentage_of_Fee_for_this_FY__c' + selected_project.Percentage_of_Fee_for_this_FY__c);
             selected_project.Percentage_of_Fee_for_this_FY__c = stage_identifier_pop_up.cancelCampaignManualPercent;
+            System.debug('### Percentage_of_Fee_for_this_FY__c' + selected_project.Percentage_of_Fee_for_this_FY__c);
             selected_project.Campaign_Status__c = Oblix_Utils.CAMPAIGN_STATUS_CANCELLED;
             selected_project.Name += '(' + Oblix_Utils.CAMPAIGN_STATUS_CANCELLED + ')';
             update selected_project;

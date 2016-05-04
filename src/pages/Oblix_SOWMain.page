@@ -1,4 +1,4 @@
-<apex:page showHeader="false" sidebar="false" standardStylesheets="false" readonly="false" controller="Oblix_SowMainController">
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" readonly="false" controller="Oblix_SowMainController" action="{!updateFX}">
 
     <apex:composition template="Oblix_OuterPageTemplate">
 

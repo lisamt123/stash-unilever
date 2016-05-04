@@ -225,8 +225,10 @@ public class Oblix_SyncBatchJob implements Database.Batchable<JobComponent>, Dat
         //#################################################
         number_of_chunks = getNumberOfChuncks(total_campaigns,Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT);
 
-        addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_CAMPAIGN_SET_STATUS, Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT
-        	, Oblix_Utils.JOB_STATUS_SYNC_REQUESTED, Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS,OBJECT_CAMPAIGN, NULL, NULL);
+        // because we are updating the original campaigns as well as the cloned campaigns, devide rows_per_context by 2
+        // to make sure we are not running out of DML rows
+        addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_CAMPAIGN_SET_STATUS, Integer.valueOf(Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT / 2)
+        	, Oblix_Utils.JOB_STATUS_SYNC_REQUESTED, Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS,OBJECT_CAMPAIGN, CAMPAIGN_PFY , NULL);
 
 
         //#################################################
@@ -252,7 +254,7 @@ public class Oblix_SyncBatchJob implements Database.Batchable<JobComponent>, Dat
         number_of_chunks = getNumberOfChuncks(total_campaigns,Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT);
 
         addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_CAMPAIGN_SET_STATUS, Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT
-        	, Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS, Oblix_Utils.JOB_STATUS_SYNC_COMPLETED,OBJECT_CAMPAIGN, NULL, NULL);
+        	, Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS, Oblix_Utils.JOB_STATUS_SYNC_COMPLETED,OBJECT_CAMPAIGN, CAMPAIGN_PFY, NULL);
 	}
 
 	public static void buildJobComponentsForCloning(Integer sow_size){
