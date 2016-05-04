@@ -726,6 +726,17 @@
         <label>All</label>
         <language>en_US</language>
     </listViews>
+    <listViews>
+        <fullName>My_Visits</fullName>
+        <columns>NAME</columns>
+        <columns>Date_From__c</columns>
+        <columns>Date_To__c</columns>
+        <columns>Person_to_Meet__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Mine</filterScope>
+        <label>My Visits</label>
+        <language>en_US</language>
+    </listViews>
     <nameField>
         <label>Visitor Name</label>
         <type>Text</type>
