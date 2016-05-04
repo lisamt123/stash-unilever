@@ -755,6 +755,24 @@ public with sharing class Oblix_Utils {
 
     }
 
+    /*******************************************************************************
+    * @author       Ignacio Llorca
+    * @date         2016-04-27
+    * @description  new implementation for retreiving locale format date
+    ********************************************************************************/
+
+    public static String toLocaleDate(Datetime originalDate){
+        String localeDate ='';
+        localeDate = date.valueof(originalDate).format();
+        return localeDate;
+    }
+
+    public static String toLocaleDate(Date originalDate){
+        String localeDate ='';
+        localeDate = originalDate.format();
+        return localeDate;
+    }
+
     /********************************************************************************
     *                                                                               *
     *                                  CUSTOM SETTINGS                              *
@@ -824,6 +842,18 @@ public with sharing class Oblix_Utils {
     }
 
 
+    public static String getOblixSettingValueByName(String setting_name){
+        
+        if (!oblix_settings.containsKey(setting_name) || 
+            (oblix_settings.containsKey(setting_name) && NULL == oblix_settings.get(setting_name))){
+            
+            throw new MissingCustomSettingException('NO_CUSTOM_SETTING_SPECIFIED for setting_name: ' + setting_name);
+            return null;
+        }
+        return oblix_settings.get(setting_name).Value__c;
+    }
+
+
     public static String getOblixSettingAttribute1ByValue(String label_value){
         
         if (!map_string_settings.containsKey(label_value) || 
@@ -888,12 +918,57 @@ public with sharing class Oblix_Utils {
 
     public static final String CAMPAIGN_STATUS_CANCELLED = 'Cancelled';
     public static final String SWOP_REPORT_FOLDER = 'SWOP Reporting';
+    public static final String SWOP_DASHBOARD_REPORT_SPEND_SHARE = 'Spend_by_Investment_Priority';
+    public static final String SWOP_DASHBOARD_REPORT_SPEND_FEE = 'Spend_by_Investment_Priority_Fee';
+    public static final String SWOP_DASHBOARD_REPORT_NON_CAMPAIGN_FEES_CFY = 'Non_campaign_fees';
+    public static final String SWOP_DASHBOARD_REPORT_CAMPAIGNS_PER_BOX = 'Box_Slavko';
+    public static final String SWOP_DASHBOARD_REPORT_ASSET_MIX_PER_CATEGORY = 'Asset_mix_per_Category';
+
+    public static final Integer MAX_SOWS_PER_CONTEXT = 1000;
+    public static final Integer MAX_CAMPAIGNS_PER_CONTEXT = 200;
+    public static final Integer MAX_ASSETS_PER_CONTEXT = 200;
+    public static final Integer MAX_ATTACHMENTS_PER_CONTEXT = 10;
+
+    public static final String JOB_PROCESS_SET_STATUS = 'Set Job Status';
+    public static final String JOB_PROCESS_CLONE_SOW = 'Clone SOW';
+    public static final String JOB_PROCESS_CLONE_CAMPAIGN = 'Clone Campaigns';
+    public static final String JOB_PROCESS_CLONE_ATTACHMENTS = 'Clone Attachments';
+    public static final String JOB_PROCESS_CLONE_ASSETS = 'Clone Assets';
+
+    public static final String JOB_PROCESS_SYNC_SOW = 'Sync SOW';
+    public static final String JOB_PROCESS_SYNC_CAMPAIGN = 'Sync Campaigns';
+    public static final String JOB_PROCESS_SYNC_ADJUST_CAMPAIGN = 'Sync Adjust Campaigns';
+    public static final String JOB_PROCESS_SYNC_ATTACHMENTS = 'Sync Attachments';
+    public static final String JOB_PROCESS_SYNC_ASSETS = 'Sync Assets';
+    public static final String JOB_PROCESS_SYNC_ADJUST_ASSETS = 'Sync Adjust Assets';
+        
+
+    public static final String JOB_STATUS_SYNC_REQUIRED = 'Sync Required';
+    public static final String JOB_STATUS_SYNC_REQUESTED = 'Sync Requested';
+    public static final String JOB_STATUS_SYNC_IN_PROGRESS = 'Sync In Progress';
+    public static final String JOB_STATUS_SYNC_COMPLETED = 'Sync Completed';
+    public static final String JOB_PROCESS_CAMPAIGN_SET_STATUS = 'Set Job Status';
+
+    public static final String JOB_STATUS_CLONE_REQUESTED = 'Clone Requested';
+    public static final String JOB_STATUS_CLONE_COMPLETED = 'Clone Completed';
+    public static final String JOB_STATUS_CLONE_IN_PROGRESS = 'Clone In Progress';
+
+    
+    /*------------------------------RECORD TYPE DEVELOPER NAMES---------------------------------*/
+    public static final String RT_NON_CAMPAIGN_ACTIVITY_DEV_NAME = getRecordType('Activity', 'Marketing_Basics__c').DeveloperName;
+    public static final String RT_NON_CAMPAIGN_RESOURCE_DEV_NAME = getRecordType('Resource', 'Marketing_Basics__c').DeveloperName;
 
 
     /*------------------------------RECORD TYPE IDs---------------------------------*/
     public static final Id RT_SOW_PARENT = getRecordTypeId('ParentSowMarketing', 'Marketing_SOW__c');
     public static final Id RT_USER_PERMISSION_UNILEVER_USER = getRecordTypeId('Oblix_Unilever_User', 'Oblix_User_Permission__c');
     public static final Id RT_USER_PERMISSION_AGENCY_USER = getRecordTypeId('Oblix_Agency_User', 'Oblix_User_Permission__c');
+    public static final Id RT_NON_CAMPAIGN_ACTIVITY_ID = getRecordTypeId(RT_NON_CAMPAIGN_ACTIVITY_DEV_NAME, 'Marketing_Basics__c');
+    public static final Id RT_NON_CAMPAIGN_RESOURCE_ID = getRecordTypeId(RT_NON_CAMPAIGN_RESOURCE_DEV_NAME, 'Marketing_Basics__c');
+    public static final Id RT_CALCULATOR_ROLE_RATE_ID = getRecordTypeId('Role_Rate', 'Oblix_Calculator__c');
+    
+    
+
 
 
 

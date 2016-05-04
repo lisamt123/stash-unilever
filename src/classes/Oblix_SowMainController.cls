@@ -14,6 +14,38 @@ public with sharing class Oblix_SowMainController extends Oblix_SWOPparentContro
 
     public String selectedSowId {get; set;}
 
+    public String FXMessage {
+        get{
+            String TEXT_MESSAGE = Oblix_Utils.getOblixSettingValueByName('FX_TEXT_MESSAGE');
+            String FX_TEXT_MESSAGE = TEXT_MESSAGE.replace('%date%', Oblix_Utils.getOblixSettingValueByName('FX_UPDATED_DATE'));
+            return FX_TEXT_MESSAGE;
+        }set;}
+
+    public Boolean showFXMessage {
+        get{
+            String FXDate = Oblix_Utils.getOblixSettingValueByName('FX_UPDATED_DATE');
+            Oblix_FX_Change__c fxChange = [SELECT Id, FX_Date__c, Acknowledged__c FROM Oblix_FX_Change__c WHERE SetupOwnerId =: UserInfo.getUserId()];
+            system.debug('fxChange ' + fxChange);
+            if(FXDate != fxChange.FX_Date__c && 
+                (Oblix_PermissionHandler.hasUL1permissionSet() || Oblix_PermissionHandler.hasUL2permissionSet() 
+                        || Oblix_PermissionHandler.hasSuperUserpermissionSet() || Oblix_PermissionHandler.isSystemAdmin())){
+                
+                fxChange.FX_Date__c = Oblix_Utils.getOblixSettingValueByName('FX_UPDATED_DATE');
+                fxChange.Acknowledged__c = true;
+                database.SaveResult results = Database.update(fxChange);
+                if(results.isSuccess())
+                    fxChange = [SELECT Id, FX_Date__c, Acknowledged__c FROM Oblix_FX_Change__c WHERE SetupOwnerId =: UserInfo.getUserId()];
+                    IF(fxChange.FX_Date__c == FXDate)
+                    return true;
+                else {
+                    return false;
+                }
+            }else{
+                return false;
+            }
+
+        } set;}
+
     public Boolean can_create_sow {
         get{
             return Oblix_PermissionHandler.canCreateSOW();
@@ -70,7 +102,7 @@ public with sharing class Oblix_SowMainController extends Oblix_SWOPparentContro
             //sowLists.add(sowList);
             List<SOWWrapper> sowWrapperList = new List<SOWWrapper>();
             for(Marketing_SOW__c sow : sowList){
-                SOWWrapper w = new SOWWrapper(sow, Oblix_PermissionHandler.canSeeFinancialField(sow.SOW_Status__c, sow.Approved_version__c));
+                SOWWrapper w = new SOWWrapper(sow, Oblix_PermissionHandler.canSeeFinancialField(sow.SOW_Status__c, sow.Approved_version__c), Oblix_Utils.toLocaleDate(sow.LastModifiedDate));
                 sowWrapperList.add(w);
             }
             sowLists.add(sowWrapperList);
@@ -80,13 +112,21 @@ public with sharing class Oblix_SowMainController extends Oblix_SWOPparentContro
 
     }
 
+
+
+    public Oblix_SowMainController(){
+        
+    }
+
     public class SOWWrapper {
         public Marketing_SOW__c sow {get; set;}
         public Boolean disaplyFinancialData {get; set;}
+        public String localeDate {get; set;}
 
-        SOWWrapper(Marketing_SOW__c pSow, Boolean pDisplayFinancialData){
+        SOWWrapper(Marketing_SOW__c pSow, Boolean pDisplayFinancialData, String plocaleDate){
             sow = pSow;
             disaplyFinancialData = pDisplayFinancialData;
+            localeDate = plocaleDate;
         }
     }
 }

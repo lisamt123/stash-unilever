@@ -265,12 +265,14 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
     }
 
     public void setInvestmentPriority() {
+        
         if (campaignHelper.selectedBrandInnovation != null) {
-            campaignHelper.selectedProject.Innovation_Projects__c = Label.Oblix_Lbl_Innovation_Projects_Innovation;
+            campaignHelper.selectedProject.Innovation_Projects__c = Oblix_Utils.getOblixSettingValueByName('INNOVATION_LABEL');
         } else {
-            campaignHelper.selectedProject.Innovation_Projects__c = Label.Oblix_Lbl_Innovation_Projects_BrandLedGrowth;
+            campaignHelper.selectedProject.Innovation_Projects__c = Oblix_Utils.getOblixSettingValueByName('BRAND_LED_GROWTH_LABEL');
         }
-        if (campaignHelper.selectedProject.Innovation_Projects__c == Label.Oblix_Lbl_Innovation_Projects_Innovation) {
+
+        if (campaignHelper.selectedProject.Innovation_Projects__c == Oblix_Utils.getOblixSettingValueByName('INNOVATION_LABEL')) {
             campaignHelper.selectedProject.Brand_Led_Growth__c = campaignHelper.selectedBrandInnovation;
         } else {
             campaignHelper.selectedProject.Brand_Led_Growth__c = campaignHelper.selectedBrandBrand;

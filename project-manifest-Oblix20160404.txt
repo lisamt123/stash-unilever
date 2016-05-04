@@ -164,8 +164,7 @@ src/classes/Oblix_UserPermissionHandlerTest.cls
 src/classes/Oblix_UserPermissionHandlerTest.cls-meta.xml
 src/classes/Oblix_VersionControl.cls
 src/classes/Oblix_VersionControl.cls-meta.xml
-src/classes/Oblix_SyncBatchJob.clssrc/classes/Oblix_SyncBatchJob.cls-meta.xml
-src/classes/Oblix_SOWRollOverLogic_Test.clssrc/classes/Oblix_SOWRollOverLogic_Test.cls-meta.xmlsrc/classes/Oblix_SOWRollOverLogic.clssrc/classes/Oblix_SOWRollOverLogic.cls-meta.xml
+
 src/classes/Oblix_Utils.cls
 src/classes/Oblix_Utils.cls-meta.xml
 src/classes/Oblix_Utils_Test.cls

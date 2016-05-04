@@ -245,8 +245,9 @@ public with sharing class Oblix_SOWHandlerLogic {
                 }
                 // to be uncommented if more than one user will be able to approve:
                 // if(unileverApprovers.iterator().hasNext()) sow.Unilever_SOW_Approver_Name_2__c = unileverApprovers.iterator().next();
-            } else {
+            } else if(sow.Unilever_SOW_Approver_Name__c != null){
                 // if no approvers are defined, clear the current approver value
+                isChanged = true;
                 sow.Unilever_SOW_Approver_Name__c = null;
             }
 
@@ -260,8 +261,9 @@ public with sharing class Oblix_SOWHandlerLogic {
                 }
                 // to be uncommented if more than one user will be able to approve:
                 // if(agencyApprovers.iterator().hasNext()) sow.Agency_SOW_Approver_Name_2__c = agencyApprovers.iterator().next();
-            } else {
+            } else if(sow.Agency_SOW_Approver_Name__c != null){
                 // if no approvers are defined, clear the current approver value
+                isChanged = true;
                 sow.Agency_SOW_Approver_Name__c = null;
             }
 

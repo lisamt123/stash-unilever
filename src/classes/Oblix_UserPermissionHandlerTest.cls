@@ -19,7 +19,7 @@ private class Oblix_UserPermissionHandlerTest {
         System.assertNotEquals(NULL, ul3, 'expecting ul3 user to exist!');
     }
 
-	@isTest static void testabortRelatedApprovals() {
+	/*@isTest static void testabortRelatedApprovals() {
 
 		initTestUsers();
 
@@ -77,7 +77,7 @@ private class Oblix_UserPermissionHandlerTest {
 
 		System.assertEquals(0, workItems.size());
 
-	}
+	}*/
 	
 	@isTest static void testTrigger() {
 

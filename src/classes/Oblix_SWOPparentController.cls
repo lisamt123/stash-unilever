@@ -51,7 +51,11 @@ public with sharing virtual class Oblix_SWOPparentController {
 
     public Boolean can_see_financial_fields {
         get{
-            return Oblix_PermissionHandler.canSeeFinancialField(selected_sow.SOW_Status__c, selected_sow.Approved_version__c);
+            if(NULL == selected_sow){
+                return false;
+            } else{
+                return Oblix_PermissionHandler.canSeeFinancialField(selected_sow.SOW_Status__c, selected_sow.Approved_version__c);
+            }
         }
     }
 
@@ -147,7 +151,7 @@ public with sharing virtual class Oblix_SWOPparentController {
     * @description  retrieves attachments attached to this SOW
     ********************************************************************************/
     public List<Attachment> getSOWAttachments(Id sowId){
-        return [SELECT Name, ParentId, Parent.Name, CreatedBy.Name, CreatedDate FROM Attachment WHERE ParentId = :sowId];
+        return [SELECT Name, ParentId, Parent.Name, CreatedBy.Name, CreatedDate, Description FROM Attachment WHERE ParentId = :sowId order by CreatedDate DESC];
     }
 
     /*******************************************************************************
@@ -156,12 +160,13 @@ public with sharing virtual class Oblix_SWOPparentController {
     * @description  deletes a single attachment attached to this SOW
     ********************************************************************************/
     public void deleteAttachment(){
+        system.debug('$$$ ' + deleteAttachmentId);
         if(deleteAttachmentId != null){
             try{
                 delete new Attachment(Id = deleteAttachmentId);
                 liso_attachments = getSOWAttachments(selected_sow.Id);
             } catch (DmlException e){
-                ApexPages.addMessage(new ApexPages.message(ApexPages.SEVERITY.ERROR, 'Error deleting attachment: ' + e.getMessage()));
+                ApexPages.addMessage(new ApexPages.message(ApexPages.SEVERITY.ERROR, 'You do not have permission to delete this attachment'));
             }
         }
     }

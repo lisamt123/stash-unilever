@@ -66,6 +66,10 @@ private class Oblix_SowMainController_Test {
         Oblix_SowMainController controller = new Oblix_SowMainController();
         controller.selectedSowId = sowDove.Id;
 
+        String FXMessage = controller.FXMessage;
+
+        Boolean ShowFX = controller.showFXMessage;
+
         Test.startTest();
 
         PageReference prefSowDetail = controller.redirectToSOWDetailPage();
@@ -179,6 +183,8 @@ private class Oblix_SowMainController_Test {
         MDO_Brand__c bAmbrosia = Oblix_TestUtils.createBrand(BRAND_AMBROSIA);
         MDO_Brand__c bCiff = Oblix_TestUtils.createBrand(BRAND_CIFF);
         insert new List<MDO_Brand__c>{bDove, bKnorr, bAmbrosia, bCiff};
+
+        insert Oblix_TestUtils.createOblixCustomSettings();
 
         // insert categories MDO data
         MDO_Category__c scPC = Oblix_TestUtils.createProductCategory(SMALL_CAT_PC);

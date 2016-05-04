@@ -9,6 +9,8 @@ public with sharing class Oblix_CampaignStageLogic{
 
     public static final String CAMPIGN_PROJECTED_STAGE_CFY_FIELD_NAME = 'Stage_Projected_CFY__c';
     public static final String CAMPIGN_COMPLETED_STAGE_CFY_FIELD_NAME = 'Stage_Completed_CFY__c';
+    public static final String CAMPIGN_PROJECTED_STAGE_PFY_FIELD_NAME = 'Projected_Stage_PFY__c';
+    public static final String CAMPIGN_COMPLETED_STAGE_PFY_FIELD_NAME = 'Completed_Stage_PFY__c';
 
     // final strings used for stage identifier CSS styling
     public static final String CSS_COMPLETED_GREY = 'chevron_not_started';
@@ -58,9 +60,9 @@ public with sharing class Oblix_CampaignStageLogic{
     }
     
 
-    public Integer i_percentage_of_fee_this_year {get;set;}
-    public Integer i_agency_Percentage_of_fees_this_year {get;set;}
-    public Integer cancelCampaignManualPercent {get;set;}
+    public Decimal i_percentage_of_fee_this_year {get;set;}
+    public Decimal i_agency_Percentage_of_fees_this_year {get;set;}
+    public Decimal cancelCampaignManualPercent {get;set;}
     public Boolean b_is_projection_selectable {get;set;}
     public Boolean b_is_completion_selectable {get;set;}
     public Boolean b_manual_override_on {
@@ -137,7 +139,7 @@ public with sharing class Oblix_CampaignStageLogic{
     }
     
     
-     public Oblix_CampaignStageLogic(Oblix_SOW_Projects__c sow_project, Integer percentageValue, boolean is_projection_selectable, boolean is_completeion_selectable){
+     public Oblix_CampaignStageLogic(Oblix_SOW_Projects__c sow_project, Decimal percentageValue, boolean is_projection_selectable, boolean is_completeion_selectable){
         
 
         sow_project_in_scope = sow_project;
@@ -190,8 +192,8 @@ public with sharing class Oblix_CampaignStageLogic{
     public Oblix_CampaignStageLogic(Id sow_project_id, boolean is_projection_selectable, boolean is_completeion_selectable){
 
         // retrieve campaign by Id passed in - to create override constructor
-        List<Oblix_SOW_Projects__c> liso_projects_for_sow = [SELECT Name, Project_Finish_Date__c, Campaign_Status__c, Platform__c, Project_Stage__c, Stage_Projected_CFY__c, Stage_Completed_CFY__c
-            , CreatedById, Total_Fees_for_Project__c, Value_to_be_paid_in_Current_FY__c, Project_Start_Date__c, CreatedDate, OblixRegion__c, Project_Priority__c, Campaign_Total_Fees__c
+        List<Oblix_SOW_Projects__c> liso_projects_for_sow = [SELECT Name, Project_Finish_Date__c, Campaign_Status__c, Platform__c, Project_Stage__c, Stage_Projected_CFY__c, Stage_Completed_CFY__c, 
+            Projected_Stage_PFY__c, Completed_Stage_PFY__c, CreatedById, Total_Fees_for_Project__c, Value_to_be_paid_in_Current_FY__c, Project_Start_Date__c, CreatedDate, OblixRegion__c, Project_Priority__c, Campaign_Total_Fees__c
             , Percentage_of_Fee_for_this_FY__c, Project_Completion_Date__c, Description__c, Campaign_Countries__c, First_Air_Date__c, Production_Completion_Date__c, Financial_Year__c, Value_To_BePaid_Manual_Override__c 
             FROM Oblix_SOW_Projects__c WHERE Id = : sow_project_id ];
 
@@ -240,8 +242,15 @@ public with sharing class Oblix_CampaignStageLogic{
         List<String> completedValueList = currentCompletedValue.split(';');
         Set<String> completedValueSet = new Set<String>(completedValueList);
 
-        Set<String> pastFYProjectedValueSet = new Set<String>();
-        Set<String> pastFYCompletedValueSet = new Set<String>();
+        String pastFYProjectedValue = (String)sow_project_in_scope.get(CAMPIGN_PROJECTED_STAGE_PFY_FIELD_NAME);
+        pastFYProjectedValue = (pastFYProjectedValue == null) ? '' : pastFYProjectedValue;
+        List<String> pastFYprojectedValueList = pastFYProjectedValue.split(';');
+        Set<String> pastFYProjectedValueSet = new Set<String>(pastFYprojectedValueList);
+        
+        String pastFYCompletedValue = (String)sow_project_in_scope.get(CAMPIGN_COMPLETED_STAGE_PFY_FIELD_NAME);
+        pastFYCompletedValue = (pastFYCompletedValue == null) ? '' : pastFYCompletedValue;
+        List<String> pastFYCompletedValueList = pastFYCompletedValue.split(';');
+        Set<String> pastFYCompletedValueSet = new Set<String>(pastFYCompletedValueList);
 
         for (Integer i : projected_stages.keySet()) {
             Stage projectedStage = projected_stages.get(i);
@@ -253,7 +262,7 @@ public with sharing class Oblix_CampaignStageLogic{
         }
 
         if (b_manual_override_on) {
-            i_percentage_of_fee_this_year = sow_project_in_scope.Percentage_of_Fee_for_this_FY__c.intValue();
+            i_percentage_of_fee_this_year = sow_project_in_scope.Percentage_of_Fee_for_this_FY__c;
             cancelCampaignManualPercent = i_percentage_of_fee_this_year;
         } else {
             cancelCampaignManualPercent = i_agency_Percentage_of_fees_this_year;
@@ -314,13 +323,15 @@ public with sharing class Oblix_CampaignStageLogic{
                                      Set<String> pastFYProjectedValueSet, 
                                      Set<String> pastFYCompletedValueSet) {
         //Completed INIT
-        if (pastFYProjectedValueSet.contains(completedStage.name) || !projectedValueSet.contains(completedStage.name)) {
+        //if (pastFYProjectedValueSet.contains(completedStage.name) || !projectedValueSet.contains(completedStage.name)) {
+        if (pastFYCompletedValueSet.contains(completedStage.name) || !projectedValueSet.contains(completedStage.name)) {
             completedStage.disabled = true;
         }
 
         //PARAMETERS affecting selectability: b_is_completion_selectable, projectedValueSet and pastFYProjectedValueSet
         //DEFAULT from completed_stages getter - true
-        if (!b_is_completion_selectable || !projectedValueSet.contains(completedStage.name) || pastFYProjectedValueSet.contains(completedStage.name) || b_cancelled_campaign) {
+        //if (!b_is_completion_selectable || !projectedValueSet.contains(completedStage.name) || pastFYProjectedValueSet.contains(completedStage.name) || b_cancelled_campaign) {
+        if (!b_is_completion_selectable || !projectedValueSet.contains(completedStage.name) || pastFYCompletedValueSet.contains(completedStage.name) || b_cancelled_campaign) {
             completedStage.selectable = false;
         }
 

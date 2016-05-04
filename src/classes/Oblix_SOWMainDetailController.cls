@@ -4,6 +4,10 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
     public String sowSubmitComments {get; set;}
     public String sowApproveComments {get; set;}
     public String sowRejectComments {get; set;}
+    public String uploadedAtt {get; set;}
+    public String last_updated {get; set;}
+    public Attachment pageAttachment {get; set;}
+    public Map <Id, String> map_att_locale {get; set;}
 
     private static final String FIELD_SET_SOW_MAIN_DETAIL = 'oblix_sow_main_detail';
     private static final String OBJECT_SOW_TO_QUERY = 'marketing_sow__c';
@@ -43,7 +47,8 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
     public Boolean sow_approvers_defined{
         get{
             // until the agency users are live, agency approvers aren't mandatory
-            return selected_sow.Unilever_SOW_Approver_Name__c != null;// && selected_sow.Agency_SOW_Approver_Name__c != null;
+            return selected_sow.Unilever_SOW_Approver_Name__c != null || Oblix_PermissionHandler.isSystemAdmin() || Oblix_PermissionHandler.hasSuperUserpermissionSet();// && selected_sow.Agency_SOW_Approver_Name__c != null;
+            //Blank Unilever approver is taken care of inside submitForApproval() method so can proceed if SystemAdmin or SuperUser
         }
     }
 
@@ -89,6 +94,21 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
         }
     }
 
+    public String reportDeveloperName{
+        get{
+            return Oblix_Utils.SWOP_DASHBOARD_REPORT_CAMPAIGNS_PER_BOX;
+        }
+    }
+
+    public String reportFilter{
+        get{
+            Oblix_DashboardsController.ColumnFilter cfSelectedSOW = new Oblix_DashboardsController.ColumnFilter('Marketing_SOW__c.Name', 'equals', selected_sow.Name);
+            return JSON.serialize(cfSelectedSOW);
+        }
+    }
+
+
+
 
     //public static PageReference reportFolderURL {
     //    get{
@@ -107,8 +127,13 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
 
         String sow_id = ApexPAges.currentPage().getParameters().get('sowId');
         selected_sow = getSOW(sow_id, Oblix_Utils.getAllFieldsInFieldsSet(OBJECT_SOW_TO_QUERY, FIELD_SET_SOW_MAIN_DETAIL), null);
+        pageAttachment = new Attachment();
+        map_att_locale = new Map <Id, String>();
+        last_updated = '';
+        uploadedAtt = ApexPAges.currentPage().getParameters().get('att');
         if (selected_sow != null && selected_sow.Id != null) {
-
+            liso_attachments = getSOWAttachments(selected_sow.Id);
+            
             li_campaign_and_non_campaign_items = new List<CampaignNonCampaignItems>();
 
             // get campaigns
@@ -118,8 +143,13 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
             }
 
             // get non-campaigns
-            for(Marketing_Basics__c nonCampaign : [SELECT Id, Name, OblixCountry__r.Name, OblixOtherItemFee__c FROM Marketing_Basics__c WHERE Oblix_SOWMarketing__c = : selected_sow.Id LIMIT 500]){
+            /*for(Marketing_Basics__c nonCampaign : [SELECT Id, Name, OblixCountry__r.Name, OblixOtherItemFee__c FROM Marketing_Basics__c WHERE Oblix_SOWMarketing__c = : selected_sow.Id LIMIT 500]){
                 li_campaign_and_non_campaign_items.add(new CampaignNonCampaignItems('Non Campaign', nonCampaign, can_edit));
+            }*/
+
+            Map<String, Oblix_SOWNonCampaignPageHelper.BasketSectionWrapper> nonCampItemSections = Oblix_SOWNonCampaignPageHelper.initBasketSections(selected_sow.Id);
+            for (Oblix_SOWNonCampaignPageHelper.BasketSectionWrapper sectionWrapper : nonCampItemSections.values()) {
+                li_campaign_and_non_campaign_items.add(new CampaignNonCampaignItems('Non Campaign', sectionWrapper));
             }
 
             // get attachments
@@ -131,6 +161,14 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
             if(selected_sow.Marked_for_cloning__c) {
                 ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Info, 'Open for Updates version is being created.'));
             }
+
+            if(!liso_attachments.isEmpty()){
+                for(Attachment att:liso_attachments){
+                    map_att_locale.put(att.Id, date.valueof(att.CreatedDate).format());
+                }
+            }
+
+            last_updated = Oblix_Utils.toLocaleDate(selected_sow.LastModifiedDate);
 
         }
         
@@ -164,6 +202,9 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
         public SObject dynamic_object {get;set;}
         public String s_object_type {get;set;}
         public Oblix_CampaignStageLogic stage_identifier {get;set;}
+        public String sectionKey {get;set;}
+        public String name {get;set;}
+        public Decimal cost {get;set;}
 
         public CampaignNonCampaignItems(String object_type, SObject campaign_non_campaign, Boolean can_edit) {
             
@@ -175,6 +216,16 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
                 //system.debug('##campaign_non_campaign: ' + campaign_non_campaign);
                 stage_identifier = new Oblix_CampaignStageLogic((Oblix_SOW_Projects__c) campaign_non_campaign, can_edit,can_edit);
             }
+        }
+
+        public CampaignNonCampaignItems(String object_type, Oblix_SOWNonCampaignPageHelper.BasketSectionWrapper nonCampaignSectionWrapper) {
+            
+            s_object_type = object_type;
+
+            sectionKey = nonCampaignSectionWrapper.key;
+            name = nonCampaignSectionWrapper.name;
+            cost = nonCampaignSectionWrapper.totalValue;
+
         }
     }
 
@@ -188,6 +239,10 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
 
         Id submitterId = UserInfo.getUserId();
 
+        Savepoint sp;
+
+        sp = Database.setSavepoint();
+
         // skip unilever approval if creator is approver
         if(submitterId == selected_sow.Unilever_SOW_Approver_Name__c){
             selected_sow.SOW_Creator_is_Approver__c = true;
@@ -200,6 +255,15 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
         selected_sow.OwnerId = submitterId;
         selected_sow.Approval_Submitter__c = submitterId;
 
+        // 21/04 DE351: For SysAdmin and SU set them as designated Unilever approvers if no Unilever approver was previously assigned to prevent error message
+        //              All other users won't be able to submit SOW for approval if no Unilever approver is assigned (handled by try-catch bellow)
+        if ((Oblix_PermissionHandler.hasSuperUserpermissionSet() || Oblix_PermissionHandler.isSystemAdmin()) &&
+                selected_sow.Unilever_SOW_Approver_Name__c == null) {
+
+            selected_sow.Unilever_SOW_Approver_Name__c = UserInfo.getUserId();
+            update selected_sow;
+        }
+
         //update selected_sow;
         update selected_sow;
 
@@ -210,27 +274,45 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
                 Approval.lock(new List<Marketing_SOW__c>{selected_sow});
             } catch (Exception e){
                 system.debug(e);
+                Database.rollback(sp);
+                ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'An undexpected error occured. Please contact your administrator.'));
+                return null;
             }
 
         } else {
 
-            // Create an approval request for the SOW
-            Approval.ProcessSubmitRequest req1 = new Approval.ProcessSubmitRequest();
-            req1.setComments(sowSubmitComments);
-            req1.setObjectId(selected_sow.Id);
+            try {
+                // Create an approval request for the SOW
+                Approval.ProcessSubmitRequest req1 = new Approval.ProcessSubmitRequest();
+                req1.setComments(sowSubmitComments);
+                req1.setObjectId(selected_sow.Id);
 
-            // Submit on behalf of a specific submitter
-            req1.setSubmitterId(submitterId);
+                // Submit on behalf of a specific submitter
+                req1.setSubmitterId(submitterId);
 
-            // Submit the record to specific process and skip the criteria evaluation
-            req1.setProcessDefinitionNameOrId(Oblix_Utils.APPROVAL_PROCESS_NAME);
-            //req1.setSkipEntryCriteria(true);
+                // Submit the record to specific process and skip the criteria evaluation
+                req1.setProcessDefinitionNameOrId(Oblix_Utils.APPROVAL_PROCESS_NAME);
+                //req1.setSkipEntryCriteria(true);
 
-            // Submit the approval request for the account
-            Approval.ProcessResult result = Approval.process(req1);
+                // Submit the approval request for the account
+                Approval.ProcessResult result = Approval.process(req1);
 
-            // Verify the result
-            //System.assert(result.isSuccess());
+                // Verify the result
+                //System.assert(result.isSuccess());
+            } catch (Exception e) {
+
+                // 21/04 DE351
+                Database.rollback(sp);
+
+                if (e.getMessage().contains('MANAGER_NOT_DEFINED')) {
+                    ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'No Unilever approver defined. Please contact your administrator.'));
+                } else {
+                    ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'An undexpected error occured. Please contact your administrator.'));
+                }
+
+                System.debug('### Exception during the approval process: ' + e.getMessage());
+                return null;
+            }
 
         }
 
@@ -292,9 +374,21 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
         sp = Database.setSavepoint();
 
         // get sow approval record - there can be only one (?)
+        // UPDATE: 21/04 IR - 
+        // no, there can be more than one ProcessInstanceWorkitem record - one per user/group that can approve current step independently (first approval wins)
         List<ProcessInstanceWorkitem> workItems = [Select p.Id from ProcessInstanceWorkitem p where p.ProcessInstance.TargetObjectId = :selected_sow.Id];
         // S.M 20160209 adding checks and removing else to fix sonar issue
         if(NULL != workItems && workItems.size() == 1){
+
+            // 21/04 DE351: For SysAdmin and SU set them as designated Agency approvers if no Agency approver was previously assigned to prevent error message
+            //              All other users won't be able to complete Unilever Approval if no Agency approver is assigned (handled by try-catch bellow)
+            if (selected_sow.SOW_Status__c == Oblix_Utils.SOW_STATUS_AWAITING_UNILEVER_APPROVAL &&
+                    (Oblix_PermissionHandler.hasSuperUserpermissionSet() || Oblix_PermissionHandler.isSystemAdmin()) &&
+                    selected_sow.Agency_SOW_Approver_Name__c == null) {
+
+                selected_sow.Agency_SOW_Approver_Name__c = UserInfo.getUserId();
+                update selected_sow;
+            }
 
             if(selected_sow.SOW_Status__c == Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL){
 
@@ -307,27 +401,39 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
 
             }
 
-            ProcessInstanceWorkitem wi = workItems[0];
+            try {
+                ProcessInstanceWorkitem wi = workItems[0];
 
-            Approval.ProcessWorkitemRequest pwr = new Approval.ProcessWorkitemRequest();
-            pwr.setComments(sowApproveComments);
-            pwr.setAction('Approve');
-            pwr.setWorkitemId(wi.Id);
-            Approval.ProcessResult result =  Approval.process(pwr);
+                Approval.ProcessWorkitemRequest pwr = new Approval.ProcessWorkitemRequest();
+                pwr.setComments(sowApproveComments);
+                pwr.setAction('Approve');
+                pwr.setWorkitemId(wi.Id);
+                Approval.ProcessResult result =  Approval.process(pwr);
 
-            System.debug('Approval successfull');
+                System.debug('Approval successfull');
 
-            if(!result.isSuccess()){
-                
+                if(!result.isSuccess()){
+                    
+                    Database.rollback(sp);
+                    ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'An undexpected error occured. Please contact your administrator.'));
+
+                } else {
+
+                    if(!isAgencyApproval){
+                        ref = new PageReference('/apex/oblix_sowmain');
+                    }
+                }
+            } catch (Exception e) {
                 Database.rollback(sp);
-                ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'An undexpected error occured. Please contact your administrator.'));
 
-            } else {
-
-                if(!isAgencyApproval){
-                    ref = new PageReference('/apex/oblix_sowmain');
+                // 21/04 DE351
+                if (e.getMessage().contains('MANAGER_NOT_DEFINED')) {
+                    ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'No agency approver defined. Please contact your administrator.'));
+                } else {
+                    ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'An undexpected error occured. Please contact your administrator.'));
                 }
 
+                System.debug('### Exception during the approval process: ' + e.getMessage());
             }
 
         }
@@ -335,6 +441,76 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
         return ref;
 
     }
+
+    /*******************************************************************************
+    * @author       Ignacio Llorca
+    * @date         2016-04-25
+    * @description  Slavko's method to attach a file to an existing SOW. If the page is in create mode,
+    *               inserts a SOW first (on cancel it will be deleted). Migrated to Main Detail page.
+    ********************************************************************************/
+    public PageReference uploadAttachment(){
+
+        PageReference uploadedAtt = new PageReference('/apex/oblix_sowmaindetail?sowId=' + selected_sow.Id + '&att=true');
+        uploadedAtt.setRedirect(true);
+
+        if(pageAttachment.body == null){
+
+            ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR, 'No file selected. Select a file you would like to attach to this SOW.'));
+            return null;
+        } else {
+
+            pageAttachment.OwnerId = UserInfo.getUserId();
+            pageAttachment.ParentId = selected_sow.id;
+            //IR - Comented out as far of DE330 defect fix
+            //pageAttachment.IsPrivate = true;
+
+            try{
+
+                insert pageAttachment;
+                //ApexPages.addMessage(new ApexPages.message(ApexPages.severity.INFO, 'Attachment uploaded successfully'));
+                // clear blob data from viewstate
+                pageAttachment.body = null;
+                List<Attachment> insertedAtt = [SELECT Id, Name, CreatedDate, Createdby.Name, Description 
+                                                FROM Attachment WHERE Id =: pageAttachment.Id limit 1];
+                if(!insertedAtt.isEmpty())
+                    liso_attachments.add(insertedAtt[0]);
+                // create new attachemnt instance for page upload
+                map_att_locale = new Map<Id, String>();
+                for(Attachment att:liso_attachments){
+                    map_att_locale.put(att.Id, date.valueof(att.CreatedDate).format());
+                }
+                pageAttachment = new Attachment();
+                return uploadedAtt;
+            } catch(DmlException e){
+                ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR, 'There was an error while uploading the attachment ' + e.getMessage()));
+                return null;
+            }
+        }
+
+    }
+
+    /*******************************************************************************
+    * @author       Ignacio Llorca
+    * @date         2016-02-26
+    * @description  deletes a single attachment attached to this SOW
+    ********************************************************************************/
+    public PageReference deleteAtt(){
+        PageReference uploadedAtt = new PageReference('/apex/oblix_sowmaindetail?sowId=' + selected_sow.Id + '&att=true');
+        uploadedAtt.setRedirect(true);
+
+        if(deleteAttachmentId != null){
+            try{
+                delete new Attachment(Id = deleteAttachmentId);
+                liso_attachments = getSOWAttachments(selected_sow.Id);
+                return uploadedAtt;
+            } catch (DmlException e){
+                ApexPages.addMessage(new ApexPages.message(ApexPages.SEVERITY.ERROR, 'You do not have permission to delete this attachment'));
+                return null;
+            }
+        }
+        return uploadedAtt;
+    }
+
 
     ///*******************************************************************************
     //* @author       Slavko Skular

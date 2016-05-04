@@ -89,7 +89,13 @@ private class Oblix_SOWMainDetailController_Test {
         ApexPAges.currentPage().getParameters().put('sowId', mSow.Id);
         Oblix_SowMainDetailController controllerInstance = new Oblix_SowMainDetailController();
 
+        controllerInstance.pageAttachment.Name='Unit Test Attachment';
+        controllerInstance.pageAttachment.Body=Blob.valueOf('Unit Test Attachment Body');
+
         Test.startTest();
+
+        controllerInstance.uploadAttachment();
+        controllerInstance.deleteAtt();
 
         PageReference deleteAction = controllerInstance.deleteAction();
             

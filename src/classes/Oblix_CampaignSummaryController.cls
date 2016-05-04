@@ -13,7 +13,16 @@
 public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPparentController {
     
     public Oblix_CampaignStageLogic stage_identifier{get;set;}
-    public Oblix_CampaignStageLogic stage_identifier_pop_up {get;set;}
+    public Oblix_CampaignStageLogic stage_identifier_pop_up {
+        get{
+            if (NULL != selected_project && NULL!= selected_sow){
+                // get related stage identifier for the given selected project Id
+                stage_identifier_pop_up = new Oblix_CampaignStageLogic(selected_project,can_edit_campaign, can_edit_campaign);
+            }
+            return stage_identifier_pop_up;
+        }
+        set;
+    }
     public Map<String, String> mapTurnoverToSize;
 
     public String turn_over_size{
@@ -39,11 +48,37 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
         }
     }
 
+    public String reportDeveloperName{
+        get{
+            return Oblix_Utils.SWOP_DASHBOARD_REPORT_ASSET_MIX_PER_CATEGORY;
+        }
+    }
+
+    public String reportFilter{
+        get{
+            Oblix_DashboardsController.ColumnFilter cfSelectedSOW = new Oblix_DashboardsController.ColumnFilter('Oblix_SOW_Projects__c.Name', 'equals', selected_project.Name);
+            return JSON.serialize(cfSelectedSOW);
+        }
+    }
+
 
     public String project_id{get;set;}
     public Oblix_SOW_Projects__c selected_project {get;set;}
     public List<Attachment> liso_attachments {get;set;}
     public List<Oblix_Project_Assets__c> liso_assets;
+
+    public String last_updated {get; set;}
+    public String p_start_date {get; set;}
+    public String p_completion_date {get; set;}
+    public String first_air_date {get; set;}
+    public String prod_completion_date {get; set;}
+    public String bet_first_release {get; set;}
+    public String preview_date {get; set;}
+    public String date_assets_bet {get; set;}
+    public String start_tv_prod {get; set;}
+    public String final_release {get; set;}
+    public String live_date {get; set;}
+    public String live_date_asset {get; set;}
 
     public String selected_asset_id {get;set;}
     public Decimal PercentToAdjust {get;set;}
@@ -55,6 +90,19 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
     ********************************************************************************/
     public Oblix_CampaignSummaryController() {
         is_enable_Adjust = false;
+
+        last_updated ='';
+        p_start_date ='';
+        p_completion_date ='';
+        first_air_date ='';
+        prod_completion_date ='';
+        bet_first_release ='';
+        preview_date ='';
+        date_assets_bet ='';
+        start_tv_prod ='';
+        final_release ='';
+        live_date ='';
+        live_date_asset ='';
         
         // get SOW and Campaign IDs from page parameters
         project_id = ApexPAges.currentPage().getParameters().get('projectId');
@@ -72,9 +120,58 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
             stage_identifier = new Oblix_CampaignStageLogic(selected_project,can_edit_campaign, can_edit_campaign);
         }
 
-        if (NULL != selected_project && NULL!= selected_sow){
-            // get related stage identifier for the given selected project Id
-            stage_identifier_pop_up = new Oblix_CampaignStageLogic(selected_project,can_edit_campaign, can_edit_campaign);
+        //if (NULL != selected_project && NULL!= selected_sow){
+        //    // get related stage identifier for the given selected project Id
+        //    stage_identifier_pop_up = new Oblix_CampaignStageLogic(selected_project,can_edit_campaign, can_edit_campaign);
+        //}
+        if(NULL != selected_project){
+            if (NULL != selected_project.LastModifiedDate){
+                last_updated = Oblix_Utils.toLocaleDate(selected_project.LastModifiedDate);
+            }
+
+            if (NULL != selected_project.Project_Start_Date__c){
+                p_start_date = Oblix_Utils.toLocaleDate(selected_project.Project_Start_Date__c);
+            }
+
+            if (NULL != selected_project.Project_Completion_Date__c){
+                p_completion_date = Oblix_Utils.toLocaleDate(selected_project.Project_Completion_Date__c);
+            }
+
+            if (NULL != selected_project.First_Air_Date__c){
+                first_air_date = Oblix_Utils.toLocaleDate(selected_project.First_Air_Date__c);
+            }
+
+            if (NULL != selected_project.Production_Completion_Date__c){
+                prod_completion_date = Oblix_Utils.toLocaleDate(selected_project.Production_Completion_Date__c);
+            }
+
+            if (NULL != selected_project.BET_first_release__c){
+                bet_first_release = Oblix_Utils.toLocaleDate(selected_project.BET_first_release__c);
+            }
+
+            if (NULL != selected_project.Date_for_Assets_to_be_in_BET__c){
+                date_assets_bet = Oblix_Utils.toLocaleDate(selected_project.Date_for_Assets_to_be_in_BET__c);
+            }
+
+            if (NULL != selected_project.Preview_Date__c){
+                preview_date = Oblix_Utils.toLocaleDate(selected_project.Preview_Date__c);
+            }
+
+            if (NULL != selected_project.Start_of_TV_production__c){
+                start_tv_prod = Oblix_Utils.toLocaleDate(selected_project.Start_of_TV_production__c);
+            }
+
+            if (NULL != selected_project.Final_release__c){
+                final_release = Oblix_Utils.toLocaleDate(selected_project.Final_release__c);
+            }
+
+            if (NULL != selected_project.Live_Date__c){
+                live_date = Oblix_Utils.toLocaleDate(selected_project.Live_Date__c);
+            }
+
+            if (NULL != selected_project.Live_date_Asset_delivery__c){
+                live_date_asset = Oblix_Utils.toLocaleDate(selected_project.Live_date_Asset_delivery__c);
+            }
         }
 
     }
@@ -236,14 +333,25 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
                 selected_project.Value_To_BePaid_Manual_Override__c = true;
             }
 
+            //US412 - allow decimals
+            ////Cancellation % validation - must be natural number
+            //if (stage_identifier_pop_up.cancelCampaignManualPercent != stage_identifier_pop_up.cancelCampaignManualPercent.intValue()) {
+            //    throw new TypeException('Please enter a round number rather than decimal');
+            //}
+            
             selected_project.Percentage_of_Fee_for_this_FY__c = stage_identifier_pop_up.cancelCampaignManualPercent;
             selected_project.Campaign_Status__c = Oblix_Utils.CAMPAIGN_STATUS_CANCELLED;
-
+            selected_project.Name += '(' + Oblix_Utils.CAMPAIGN_STATUS_CANCELLED + ')';
             update selected_project;
 
             PageReference nextPage = Page.oblix_sowmaindetail;
             nextPage.getParameters().put('sowId', selected_project.Financial_Year__c);
             return nextPage;
+
+        } catch (TypeException te) {
+
+            ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR, te.getMessage()));
+            return null;
 
         } catch (Exception e){
 

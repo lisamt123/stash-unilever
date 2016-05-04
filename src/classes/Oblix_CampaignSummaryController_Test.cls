@@ -15,6 +15,21 @@ private class Oblix_CampaignSummaryController_Test {
 			MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
 			Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_NAME, mSow.id);
+
+            project.Project_Start_Date__c = date.today();
+            project.Project_Completion_Date__c = date.today();
+            project.First_Air_Date__c = date.today();
+            project.Production_Completion_Date__c = date.today();
+            project.BET_first_release__c = date.today();
+            project.Date_for_Assets_to_be_in_BET__c = date.today();
+            project.Preview_Date__c = date.today();
+            project.Start_of_TV_production__c = date.today();
+            project.Final_release__c = date.today();
+            project.Live_Date__c = date.today();
+            project.Live_date_Asset_delivery__c = date.today();
+
+            update project;
+
 			Oblix_Project_Assets__c asset = Oblix_TestUtils.createProjectAssets(project.Id);
 			
 			Oblix_CampaignSummaryController ctrl_noParams = new Oblix_CampaignSummaryController();
