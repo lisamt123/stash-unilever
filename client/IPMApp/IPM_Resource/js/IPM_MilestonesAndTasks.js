@@ -79,7 +79,7 @@ jq(document).ready(function() {
         displayTasksChkBox.prop('checked', false);
         displayTasksChkBox.next().removeClass('selected');
     }
-	 hilightTaskScript();
+     hilightTaskScript();
 
 });
 /* Below function performs the toggling of time line view and list view. */
@@ -119,12 +119,12 @@ checkBoxScript();
 
 /* Below function contains the script which has the tooltip functionality. This function is called when the rerendering happens and the script will run again */
 function hilightTaskScript(){
-	jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});
-	jq(".deleteChannel").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});	
-	jq(".arrow-left").tooltip({ position: { my: 'left top', at: 'center bottom+10' },tooltipClass:'ui-lefttip'}); 
-	jq(".aTabs").find("input[type=checkbox]:checked").closest(".aTabs").addClass("active");
+    jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});
+    jq(".deleteChannel").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});    
+    jq(".arrow-left").tooltip({ position: { my: 'left top', at: 'center bottom+10' },tooltipClass:'ui-lefttip'}); 
+    jq(".aTabs").find("input[type=checkbox]:checked").closest(".aTabs").addClass("active");
 }
-	ipmModal('#addMilestone', 'Add Milestone', '60%', '80%', '2%');
+    ipmModal('#addMilestone', 'Add Milestone', '60%', '80%', '2%');
     ipmModal('#addTask', 'Add To-do', '38%', '560px', '2%');
     ipmModal('#editMilestone', 'Edit Milestone', '30%', '72%', '2%');
     ipmModal('#editTask', 'Edit To-do\'s', '38%', '580px', '2%');

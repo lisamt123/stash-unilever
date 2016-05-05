@@ -43,7 +43,7 @@
 	
 /* ===LEFT FILTER STYLES=== */
 	.leftSideBar {margin-top:10px;}
-	.leftSideBar .h4 {color:#253b78; font-size:1.1em; font-weight:bold;display:block; background:#F1F6DF; color:#253b78; margin-bottom:0; border-bottom:1px solid #C0D3BF; border-top:1px solid #d7e0e0; padding:10px 7px;}
+	.leftSideBar .h4 {color:#253b78; font-size:1.1em; font-weight:bold;display:block; background:#F1F6DF;margin-bottom:0; border-bottom:1px solid #C0D3BF; border-top:1px solid #d7e0e0; padding:10px 7px;}
 	.leftSideBar ul.docFilter {padding:0; margin:0 0 10px; list-style:none;}
 	.leftSideBar ul.docFilter li {margin-left:0; display:block; background:#F1F6DF; color:#253b78; border-bottom:1px solid #C0D3BF; padding:7px;}
 	.leftSideBar ul.docFilter li > input[type=checkbox]{position:relative; margin-right:5px; top:2px;}
@@ -430,7 +430,7 @@ input.misalignedField{border:2px solid red;}
 .glbsubHeadM{float:left;width:20%;padding-top: 10px;text-align: center;border-right: 1px solid #ddd;min-height: 72px;font-size: 11px;}
 .glbsubHeadM2{float:left;width:33%;padding-top: 10px;text-align: center;border-right: 1px solid #ddd;min-height: 72px;font-size: 11px;}
 .glbHeadtop1{border-right: 1px solid #ddd;}
-.glbsubHead8,.glbValM2.glbVal8{border-right:0px;}
+.glbsubHead8,.glbValM2.glbVal8{border-right:0;}
 .glbValLeft{min-height: 42px;min-width: 20%;float: left;display: block;border: 1px solid #ddd;text-align:center;padding-top: 5px;}
 .glbValRight{width:80%;float: left;min-height: 33px;border: 1px solid #ddd;}
 .glbValSubLeft,.glbValSubRight{width:50%;float:left;}

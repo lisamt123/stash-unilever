@@ -1,7 +1,7 @@
 .projectContainer{margin-top: 10px;float: left;  width: 100%;}
 .leftSideBar ul.docFilter {padding:0; margin:0;clear:both; list-style:none;}
 .leftSideBar ul.docFilter li > input[type=checkbox]{position:relative; margin-right:5px; top:2px;}
-.leftSideBar .filterTitle{display: block;background: #F0F7DF;color: #3b516d;margin-bottom: 0;border-top: 1px solid #c0d3bf;border-bottom: 1px solid #c0d3bf;padding: 10px 7px;font-weight: bold; font-weight: bold;font-size: 1.087em;}
+.leftSideBar .filterTitle{display: block;background: #F0F7DF;color: #3b516d;margin-bottom: 0;border-top: 1px solid #c0d3bf;border-bottom: 1px solid #c0d3bf;padding: 10px 7px;font-weight: bold;font-size: 1.087em;}
 
 .expandTool span {display:inline-block;text-decoration:none; color:#0f81bb; cursor:pointer;text-align:right;}
 .expandTool .expandAll{padding: 1px 10px 2px 0;border-right: 2px #ddd solid;}

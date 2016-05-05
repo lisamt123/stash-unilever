@@ -58,7 +58,7 @@ jq(document).ready(function() {
 /* Below script works on page load. First it hides all the tabs. Then it opens only the first tab. */
     jq(".ipmAcrdnExpand").hide();
     jq(".ipmAcrdnExpand:first").not(':empty').show();
-	
+    
 /* Below script is called upon click event where it expands the tab and replaces '+' with '-' or collapses a opened tab and replaces '-' with '+' */
     jq(document).on("click", ".ipmAccordian .expico", function() {
         if (jq(this).closest(".aHead").next(".ipmAcrdnExpand").is(":visible") && jq(this).closest(".aHead").next(".ipmAcrdnExpand").not(':empty')) {
@@ -71,14 +71,14 @@ jq(document).ready(function() {
             jq(this).addClass("fa-minus");
         }
     });
-	
+    
 /* Below script works on page load. It adds the + mark for the collapsed one's and adds - for the expanded one */
     jq(".ipmAccordianDiv").find(".aHead span.expico").removeClass("fa-minus");
     jq(".ipmAccordianDiv").find(".aHead span.expico").addClass("fa-plus");
-	jq(".CMIGateDoc .ipmAccordianDiv:first").find(".aHead:first span.expico").removeClass("fa-plus");
+    jq(".CMIGateDoc .ipmAccordianDiv:first").find(".aHead:first span.expico").removeClass("fa-plus");
     jq(".CMIGateDoc .ipmAccordianDiv:first").find(".aHead:first span.expico").addClass("fa-minus");
-	jq(".cmiListcont .subCmi").find(".aHead span.expico").removeClass("fa-minus");
-	jq(".cmiListcont .subCmi").find(".aHead span.expico").addClass("fa-plus");
+    jq(".cmiListcont .subCmi").find(".aHead span.expico").removeClass("fa-minus");
+    jq(".cmiListcont .subCmi").find(".aHead span.expico").addClass("fa-plus");
     skipTestrender();
 });
 /* Below function gets the value from the checked checkboxes. Then the values will be passed to another function 'selectTest'. */
@@ -141,22 +141,22 @@ function deleteCountry(str1, str2) {
     jq(".confirmCountry").addClass("removeCountry");
 }
 function skipTestrender() {
-	conceptcheck();
+    conceptcheck();
     /* Below script works on click event. When clicked on remove button it deletes the cmi by calling 'deletCMI' function and hides the modal. */
     jq(document).on('click', '#ipmCMIModalDelete .removeCMI', function() {
         var questionId = jq(this).attr('data-result');
         deletCMI(questionId);
         jq("#ipmCMIModalDelete").modal('hide');
     });
-	
-	/* Below script works on click event. When clicked on remove button it deletes the country by calling 'deleteContry' function and hides the modal. */
+    
+    /* Below script works on click event. When clicked on remove button it deletes the country by calling 'deleteContry' function and hides the modal. */
     jq(document).on('click', '#ipmCountryModalDelete .removeCountry', function() {
         var questionId1 = jq(this).attr('data-result1');
         var questionId2 = jq(this).attr('data-result2');
         deleteContry(questionId1, questionId2);
         jq("#ipmCountryModalDelete").modal('hide');
     });
-	
+    
     /* Below script works on click event. It displays the CMI list and also hides the CMI countries list. */
     jq(document).on('show.bs.dropdown', '.cmiTestList', function() {
         jq(".CMIList").hide();
@@ -164,8 +164,8 @@ function skipTestrender() {
         jq(".CMICountryList").hide();
         conceptcheck();
     });
-	
-	/* Below function checks the checkboxes value with the backend values. If the values match the checkboxes will be checked and disables the checkbox. */
+    
+    /* Below function checks the checkboxes value with the backend values. If the values match the checkboxes will be checked and disables the checkbox. */
     jq(document).on('show.bs.dropdown', '.cmiCountrySelector', function() {
         jq(".CMICountryList").hide();
         jq(this).find('.CMICountryList').show();
@@ -187,16 +187,16 @@ function skipTestrender() {
             });
         }
     });
-	
-	/* Below function checks the checkboxes value. If the condition is true the checkboxes will be checked. */
+    
+    /* Below function checks the checkboxes value. If the condition is true the checkboxes will be checked. */
     jq('.ccListbox').each(function() {
         if (jq(this).val() === 'true') {
             jq(this).attr('checked', 'checked');
             jq(this).next().addClass('selected');
         }
     });
-	
-	/* Below script works on click event. It checks whether the checkbox is checked or not. If it is checked it sets the status to 'True' else 'False' */
+    
+    /* Below script works on click event. It checks whether the checkbox is checked or not. If it is checked it sets the status to 'True' else 'False' */
     jq(".ccListbox").click(function() {
         var status;
         var list;
@@ -209,7 +209,7 @@ function skipTestrender() {
         }
         skipTestScript(list, status);
     });
-	
+    
     /* Below script works on click event. If the condition is true it unchecks the checkboxes. */
     jq(document).on('click', '.clickCmiList', function() {
         var $this = jq(this);
@@ -224,8 +224,8 @@ function skipTestrender() {
             }
         });
     });
-	
-	/* Below script works on click event. If the condition is true it checks the checkboxes and adds a class. */
+    
+    /* Below script works on click event. If the condition is true it checks the checkboxes and adds a class. */
     jq(document).on('click', '.clickDrop', function() {
         var $this = jq(this);
         var listValues = jq(this).attr("data-list");

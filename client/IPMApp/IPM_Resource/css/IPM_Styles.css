@@ -15,11 +15,11 @@ td.noSidebarCell { padding: 0; }
 	background:#fff url(../images/img_header_repeted.png) repeat-x 0 0;
 }
 .ipmContainer{
-	background: #fff;
+	background-color: #fff;
+	background: url(../images/img_header_left.png) no-repeat 0 0;
 	margin-left: 100px ;
 	min-height: 500px;
     padding: 0 ;
-	background: url(../images/img_header_left.png) no-repeat 0 0;
 }
 .ipmContainer:before {
 	content:" ";

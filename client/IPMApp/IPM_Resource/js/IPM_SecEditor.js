@@ -1,4 +1,4 @@
-﻿/*  
+/*  
  ***************************************************************************************************
  *@Description:This script is used to develop Gate Document Section Editor page specific interaction 
  *@Author: Cognizant
@@ -7,28 +7,28 @@
  */
 var jq = jQuery.noConflict();
 jq(document).ready(function() {
-	jq(".cust-overlay").delay(1500).fadeOut();
+    jq(".cust-overlay").delay(1500).fadeOut();
 /* Below code is related to comments box */
     if (navigator.appVersion.match(/MSIE [\d.]+/)) {
         var placeholderText = 'Enter your action plan';
         jq('#riskCommentBox').val(placeholderText);
-		
-		/* Below script works on blur event. The risk comments box place holder will be hidden when the user starts typing in the box */
+        
+        /* Below script works on blur event. The risk comments box place holder will be hidden when the user starts typing in the box */
         jq('#riskCommentBox').blur(function() {
             var $this = jq(this);
             $this.val() === '' ? $this.val(placeholderText) : false;
         });
-		/* Below script works on focus event. The risk comments box place holder will be hidden when the user focuses on the box */
+        /* Below script works on focus event. The risk comments box place holder will be hidden when the user focuses on the box */
         jq('#riskCommentBox').focus(function() {
             $this.val() === placeholderText ? $this.val('') : false;
         });
     }
 /* Below script works on click event. It redirects to a Gate document section editor page after closing the modal */
-	jq("#ipmModal .close").on("click", function() {
-		if (jq("#ipmModal .modal-title").text().indexOf("Comment") !== -1 && window.top.location.href.indexOf(IPMAppSE.SectionEditorPageRef) > -1) {
-			gotoPage();
-		}
-	});
+    jq("#ipmModal .close").on("click", function() {
+        if (jq("#ipmModal .modal-title").text().indexOf("Comment") !== -1 && window.top.location.href.indexOf(IPMAppSE.SectionEditorPageRef) > -1) {
+            gotoPage();
+        }
+    });
     jq("#riskCommentBox").attr("placeholder", "Enter your action plan");
     jq("[data-toggle=tooltip]").tooltip();
     jq('#ipmSecEditorTab .ipmTabContent').hide();
@@ -41,46 +41,46 @@ jq(document).ready(function() {
         jq('#ipmSecEditorTab .ipmTabs li:first').addClass('active');
         jq('#ipmSecEditorTab .ipmTabContent:first').show();
     }
-	
+    
 /* Below script is related to accordion functionality */
-	jq(".contenWrapper .ipmAcrdnExpand").hide();
-	if(window.location.href.indexOf("IPM_GateDocument") > -1){
-		jq(".contenWrapper").find(".contenWrapper").find(".ecoDesignTable").find(".ipmAcrdnExpand").show();
-	}
-	/* Below script works on page load. First it hides all the tabs. Then it opens only the first tab. */
-	jq(".contenWrapper").find(".ipmAcrdnExpand").find(".aHead:last").css("border","none");
-	jq(".contenWrapper .ipmAcrdnExpand:first").not(':empty').show();    
-	
-	/* Below script is called upon click event where it expands the tab and replaces '+' with '-' or collapses a opened tab and replaces '-' with '+' */
-	jq(".contenWrapper").on("click", ".ipmAccordian .expico", function(){ 
-			if (jq(this).closest(".aHead").next(".ipmAcrdnExpand").is(":visible")) {        
-				jq(this).closest(".aHead").next(".ipmAcrdnExpand").slideUp("fast");
-				jq(this).closest(".aHead").siblings(".aHead").find(".expico").removeClass("fa-minus");
-				jq(this).closest(".aHead").siblings(".aHead").find(".expico").addClass("fa-plus");      
-				jq(this).removeClass("fa-minus");
-				jq(this).addClass("fa-plus");                                
-			} else {							
-				jq(this).closest(".aHead").siblings(".ipmAcrdnExpand").slideUp("fast");
-				jq(this).closest(".aHead").siblings(".aHead").find(".expico").removeClass("fa-minus");
-				jq(this).closest(".aHead").siblings(".aHead").find(".expico").addClass("fa-plus");
-				jq(this).closest(".col-sm-12").siblings(".col-sm-12").find(".ipmAccordian>.ipmAcrdnExpand").slideUp("fast");
-				jq(this).closest(".col-sm-12").siblings(".col-sm-12").find(".ipmAccordian>.aHead").find(">.expico").removeClass("fa-minus");
-				jq(this).closest(".col-sm-12").siblings(".col-sm-12").find(".ipmAccordian>.aHead").find(">.expico").addClass("fa-plus");
-				jq(this).closest(".aHead").next(".ipmAcrdnExpand").slideDown("fast");
-				jq(this).removeClass("fa-plus");
-				jq(this).addClass("fa-minus");	
-			}
-	});
-	/* Below script works on page load. It adds the + mark for the collapsed one's and adds - for the expanded one */
-	jq(".removebutton input").removeClass('btn');
-		jq(".contenWrapper").find(".ipmAccordian .aHead .expico").removeClass("fa-minus");
-		jq(".contenWrapper").find(".ipmAccordian .aHead .expico").addClass("fa-plus");
-		jq(".contenWrapper").find(".ipmAccordian .aHead:first .expico").removeClass("fa-plus");
-		jq(".contenWrapper").find(".ipmAccordian .aHead:first .expico").addClass("fa-minus");
-		jq(".contenWrapper").find(".ipmAccordian .ipmAcrdnExpand:first .aHead .expico").removeClass("fa-minus");
-		jq(".contenWrapper").find(".ipmAccordian .ipmAcrdnExpand:first .aHead .expico").addClass("fa-plus");
+    jq(".contenWrapper .ipmAcrdnExpand").hide();
+    if(window.location.href.indexOf("IPM_GateDocument") > -1){
+        jq(".contenWrapper").find(".contenWrapper").find(".ecoDesignTable").find(".ipmAcrdnExpand").show();
+    }
+    /* Below script works on page load. First it hides all the tabs. Then it opens only the first tab. */
+    jq(".contenWrapper").find(".ipmAcrdnExpand").find(".aHead:last").css("border","none");
+    jq(".contenWrapper .ipmAcrdnExpand:first").not(':empty').show();    
+    
+    /* Below script is called upon click event where it expands the tab and replaces '+' with '-' or collapses a opened tab and replaces '-' with '+' */
+    jq(".contenWrapper").on("click", ".ipmAccordian .expico", function(){ 
+            if (jq(this).closest(".aHead").next(".ipmAcrdnExpand").is(":visible")) {        
+                jq(this).closest(".aHead").next(".ipmAcrdnExpand").slideUp("fast");
+                jq(this).closest(".aHead").siblings(".aHead").find(".expico").removeClass("fa-minus");
+                jq(this).closest(".aHead").siblings(".aHead").find(".expico").addClass("fa-plus");      
+                jq(this).removeClass("fa-minus");
+                jq(this).addClass("fa-plus");                                
+            } else {                            
+                jq(this).closest(".aHead").siblings(".ipmAcrdnExpand").slideUp("fast");
+                jq(this).closest(".aHead").siblings(".aHead").find(".expico").removeClass("fa-minus");
+                jq(this).closest(".aHead").siblings(".aHead").find(".expico").addClass("fa-plus");
+                jq(this).closest(".col-sm-12").siblings(".col-sm-12").find(".ipmAccordian>.ipmAcrdnExpand").slideUp("fast");
+                jq(this).closest(".col-sm-12").siblings(".col-sm-12").find(".ipmAccordian>.aHead").find(">.expico").removeClass("fa-minus");
+                jq(this).closest(".col-sm-12").siblings(".col-sm-12").find(".ipmAccordian>.aHead").find(">.expico").addClass("fa-plus");
+                jq(this).closest(".aHead").next(".ipmAcrdnExpand").slideDown("fast");
+                jq(this).removeClass("fa-plus");
+                jq(this).addClass("fa-minus");  
+            }
+    });
+    /* Below script works on page load. It adds the + mark for the collapsed one's and adds - for the expanded one */
+    jq(".removebutton input").removeClass('btn');
+        jq(".contenWrapper").find(".ipmAccordian .aHead .expico").removeClass("fa-minus");
+        jq(".contenWrapper").find(".ipmAccordian .aHead .expico").addClass("fa-plus");
+        jq(".contenWrapper").find(".ipmAccordian .aHead:first .expico").removeClass("fa-plus");
+        jq(".contenWrapper").find(".ipmAccordian .aHead:first .expico").addClass("fa-minus");
+        jq(".contenWrapper").find(".ipmAccordian .ipmAcrdnExpand:first .aHead .expico").removeClass("fa-minus");
+        jq(".contenWrapper").find(".ipmAccordian .ipmAcrdnExpand:first .aHead .expico").addClass("fa-plus");
 
-		/* Below script is for the Tab functionality on click event. Based on the clicked li the tab is highlighted and the content related the clicked tab is displayed. Also it hides the previous opened content */
+        /* Below script is for the Tab functionality on click event. Based on the clicked li the tab is highlighted and the content related the clicked tab is displayed. Also it hides the previous opened content */
     jq('#ipmSecEditorTab .ipmTabs li').on('click', function(e) {
         e.preventDefault();
         jq('#ipmSecEditorTab .ipmTabs li').removeClass('active');
@@ -90,20 +90,20 @@ jq(document).ready(function() {
         $this.addClass('active');
         jq('#' + getId).fadeIn("fast");
     });
-	
-	/* Below script works on click event. It calls the accordion function. */
+    
+    /* Below script works on click event. It calls the accordion function. */
     jq(document).on("click", ".ipmAccordion .evidenceHead span.expico", function() {
         accordion(this);
     });
-	chkAllfun();
-	modalWin();
+    chkAllfun();
+    modalWin();
     custCheckSub();
-	proRadio();	
-	hilightTaskScript();
+    proRadio(); 
+    hilightTaskScript();
 });
 
 function chkAllfun(){
-		/* Below script works on click event. If the check all checkbox is checked it checks the other child checkboxes */
+        /* Below script works on click event. If the check all checkbox is checked it checks the other child checkboxes */
     jq(".ipmSectionEditor .checkAll").each(function() {
         var $this = jq(this);
         $this.on("click", function() {
@@ -116,7 +116,7 @@ function chkAllfun(){
             }
         });
     });
-	/* Below script works on click event. If the check all checkbox is checked it checks the other child checkboxes */
+    /* Below script works on click event. If the check all checkbox is checked it checks the other child checkboxes */
     jq(".ipmSectionEditor .checkAll1").each(function() {
         var $this = jq(this);
         $this.on("click", function() {
@@ -132,10 +132,10 @@ function chkAllfun(){
 }
 
 function modalWin(){
-	ipmModal('#addTask', 'Add To-do', '38%', '560px', '2%');
+    ipmModal('#addTask', 'Add To-do', '38%', '560px', '2%');
     ipmModal('#uploadImage', 'Click to Upload Image', '400px', '200px', '15%');
-	ipmModal('#consumerImage', 'Click to Upload Image', '400px', '200px', '15%');
-	
+    ipmModal('#consumerImage', 'Click to Upload Image', '400px', '200px', '15%');
+    
 /* Below script is to open comments and history modal */
     jq(".comments,.history").each(function() {
         var $this = jq(this);
@@ -145,7 +145,7 @@ function modalWin(){
         ipmModal("#" + id, title, '50%', '90%', '2%');
 
     });
-	
+    
 /* Below script is to open attach files modal */
     jq(".attachFiles").each(function() {
         var $this = jq(this);
@@ -158,8 +158,8 @@ function modalWin(){
 }
 
 function proRadio(){
-	/* ***CRRT Section*** */
-	/* Below script check if the condition is true. If it is true it checks the radio button. */
+    /* ***CRRT Section*** */
+    /* Below script check if the condition is true. If it is true it checks the radio button. */
     jq(".projectRadioButton input[type=radio]").each(function() {
         var $this = jq(this);
         var statCRRT = $this.attr("data-checked");
@@ -170,7 +170,7 @@ function proRadio(){
         }
     });
 
-	/* Below script check if the condition is true. If it is true it disables the radio button. */
+    /* Below script check if the condition is true. If it is true it disables the radio button. */
     jq(".projectRadioButton input[type=radio]").each(function() {
         var $this = jq(this);
         var statCRRT = jq(this).attr("data-disabled");
@@ -180,16 +180,16 @@ function proRadio(){
             $this.removeAttr("disabled");
         }
     });
-	/* Below script works on click. When clicked on remove button it calls a function which deletes the task */
+    /* Below script works on click. When clicked on remove button it calls a function which deletes the task */
     jq(document).on('click', '#ipmDeleteModal .removeTask', function() {
         deleteTaskJs(this);
     });
 }
 
 function custCheckSub(){
-	/**** Customer Channel ****/
-	
-	/* Below script works on click event. It checks if the condition is true. If it is true it adds a class else removes the class. */
+    /**** Customer Channel ****/
+    
+    /* Below script works on click event. It checks if the condition is true. If it is true it adds a class else removes the class. */
     jq('.infoCheck .checkSub').click(function() {
         var $this = jq(this);
         if (jq(this).is(":checked")) {
@@ -199,7 +199,7 @@ function custCheckSub(){
         }
     });
 
-	/* Below script check if the condition is true. If it is true it adds a class else removes the class. */
+    /* Below script check if the condition is true. If it is true it adds a class else removes the class. */
     jq('.checkSub').each(function() {
         var $this = jq(this);
         if ($this.is(":checked")) {
@@ -232,10 +232,10 @@ function getParameterByName(name) {
 }
 /* Below function contains the script which has the tooltip functionality. This function is called when the rerendering happens and the script will run again */
 function hilightTaskScript(){
-	jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});
-	jq(".deleteChannel").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});	
-	jq(".arrow-left").tooltip({ position: { my: 'left top', at: 'center bottom+10' },tooltipClass:'ui-lefttip'}); 
-	jq(".aTabs").find("input[type=checkbox]:checked").closest(".aTabs").addClass("active");
+    jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});
+    jq(".deleteChannel").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});    
+    jq(".arrow-left").tooltip({ position: { my: 'left top', at: 'center bottom+10' },tooltipClass:'ui-lefttip'}); 
+    jq(".aTabs").find("input[type=checkbox]:checked").closest(".aTabs").addClass("active");
 }
 
 /* Below function calls another function */
@@ -246,7 +246,7 @@ function callAttachDelete(attid) {
 /* \\** CRRT Section*** */
 
 /* Below function performs a validation to display the error message inside the modal based on the condition. It also changes 
-					the modal title, modal body's content as per the condition. */
+                    the modal title, modal body's content as per the condition. */
 function ipmTaskDel(str, isLst, gateName, secName) {
     var errMsg = ''
     if (isLst === 1) {
@@ -255,7 +255,7 @@ function ipmTaskDel(str, isLst, gateName, secName) {
         errMsg = IPMAppSE.deleteTaskMsg;
     }
     jq('#ipmDeleteModal .modal-title').html(IPMAppSE.RemoveTask);
-    jq('#ipmDeleteModal .confirmMsg').html(errMsg);	
+    jq('#ipmDeleteModal .confirmMsg').html(errMsg); 
     jq('#ipmDeleteModal .modal-body').css({"height":"120px","margin-right":"15px"});
     jq('#ipmDeleteModal .confirmAction').attr('value', str);
     jq(".confirmAction").addClass("removeTask");
@@ -263,7 +263,7 @@ function ipmTaskDel(str, isLst, gateName, secName) {
 
 /* Below function performs a page reload of Gate document section editor page. */
 function gotoPage() {
-	window.top.location.href = IPMAppSE.SectionEditorPageRef+'?id='+IPMAppSE.projectId+'&projDocSecId='+IPMAppSE.projDocSecId;
+    window.top.location.href = IPMAppSE.SectionEditorPageRef+'?id='+IPMAppSE.projectId+'&projDocSecId='+IPMAppSE.projDocSecId;
 }
 
 /* Below script is related to performance breakdown */
@@ -291,9 +291,9 @@ function isNumber(e,ele) {
 
         if ((charCode !== 44) && (charCode !== 46 || element.indexOf('.') !== -1) &&
             (charCode < 48 || charCode > 57))
-			{
+            {
             return false;
-			}
+            }
         return true;
     }
     function paste(e,obj) {
@@ -312,7 +312,7 @@ function isNumber(e,ele) {
             
             return false;
         }
-		
+        
 var unsaved = false;
 var ckedited = false;
 var inputchanged = false;
@@ -329,13 +329,13 @@ jq(function(){
             unsaved = true;            
         }
     });
-	
-	editorObj = CKEDITOR.instances;
-	 
+    
+    editorObj = CKEDITOR.instances;
+     
      for (prop in editorObj) {
-		if(editorObj.hasOwnProperty(prop)){
-      		defineOnchange(CKEDITOR.instances, prop);
-		}
+        if(editorObj.hasOwnProperty(prop)){
+            defineOnchange(CKEDITOR.instances, prop);
+        }
      }
   
     function defineOnchange(CKEDITORObj, index){
@@ -372,7 +372,7 @@ jq('#ipmModal').on('show.bs.modal', function (e) {
     if(unsaved){
         errorMsg = IPMAppSE.wmessage + "\n\nAre you sure you want to leave this page?";
         if (confirm(errorMsg)) {
-			unsaved = false;
+            unsaved = false;
         } else {
             e.preventDefault();
             e.stopPropagation();

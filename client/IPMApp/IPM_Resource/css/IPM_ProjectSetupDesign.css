@@ -292,7 +292,6 @@ ul.progress-bar li.bosscard {
     right: 10px;
 }
 .ipmModalGetStarted .modal-header {
-    border-bottom: 1px solid #7fa19e;
     height: 80px;
     padding: 10px 0 0;
     border-bottom: 0;
@@ -455,7 +454,6 @@ ul.progress-bar li.bosscard {
     transform: rotate(-45deg);
 }
 .TldErrMsg {
-    position: relative;
     color: #d74c3b;
     width: 100%;
     display: block;

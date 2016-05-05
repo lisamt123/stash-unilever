@@ -12,7 +12,7 @@
         jq(".ipmAcrdnExpand:first, .ipmAcrdnExpand:first .ipmAcrdnExpand").not(':empty').show();  
 /* Below script is called upon click event where it expands the tab and replaces '+' with '-' or collapses a opened tab and replaces '-' with '+' */
         jq(document).on("click", ".pHead .expico", function(){  
-			var $this = jq(this);
+            var $this = jq(this);
             if($this.closest(".pHead").next(".ipmAcrdnExpand").is(":visible") && jq(this).closest(".pHead").next(".ipmAcrdnExpand").not(':empty')){
                 $this.closest(".pHead").next(".ipmAcrdnExpand").slideUp("fast");
                 $this.removeClass("fa-minus");

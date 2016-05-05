@@ -69,7 +69,7 @@
                     <apex:outputPanel styleClass="popup" layout="block" rendered="{!displayPopUp}">
                         <div class="buttonMarginRight marginTop ipmButtonGroup pull-right">
                             <span class="buttonMarginRight">{!$Label.IPM_DO_WE_NEED_TO_UPDATE_TASKS}</span>
-                            <apex:commandLink value="{!$Label.IPM_CONFIRM_MODAL_NO}" styleClass="ipmButton buttonmarRight" action="{!saveMilestones}" rerender="displaymessage" oncomplete="{!if(validateSuccess,'pageclose();','')}" />
+                            <apex:commandLink value="{!$Label.IPM_CONFIRM_MODAL_NO}" styleClass="ipmButton buttonmarRight" action="{!saveMilestones}" rerender="displaymessage" onclick="skipValidation();" oncomplete="{!if(validateSuccess,'pageclose();','')}" />
                             <apex:commandLink value="{!$Label.IPM_CONFIRM_MODAL_YES}" styleClass="ipmButton green" action="{!saveMilestoneAndTasks}" rerender="displaymessage" onclick="skipValidation();" oncomplete="{!if(validateSuccess,'pageclose();','')}" />
                         </div> 
                         <div class="ipmButtonGroup pull-center"></div>

@@ -6,7 +6,7 @@
 /* Below script works on different key events. Based on the number of keys entered it shows the remaining characters and also once the user
 enters the total number of characters matching the limit, it stops the user to enter furthermore characters. */
 (function ( $ ) {
-	$.fn.extend({
+    $.fn.extend({
         limiter: function(limit, remaining, total) {
             $("#charCountRemainingText").show();
             var $this = $(this);

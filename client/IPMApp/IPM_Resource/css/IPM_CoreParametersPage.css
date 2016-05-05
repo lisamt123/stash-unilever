@@ -144,7 +144,7 @@
     .ipmSelect{width:100%;}
     .ipmSelect.tlp{width:50%;}
     .ipmSelect select{-webkit-appearance: none;-ms-appearance: none;appearance: none;background: transparent;}
-    .ipmSelect:after{display: block;font-family: FontAwesome;content: "\f107";font-size: 1.4em;position: absolute;top: 3px;right: 4px;top: 1px\9;right: 1px\9;z-index: -1;width: 20px;height: 20px;text-align: center;background: #fff;color: #000;}
+    .ipmSelect:after{display: block;font-family: FontAwesome;content: "\f107";font-size: 1.4em;position: absolute;top: 3px;right: 4px;z-index: -1;width: 20px;height: 20px;text-align: center;background: #fff;color: #000;}
     .ipmContainer div.container-fluid{padding-top:0 ;}
     .modal-dialog {margin-left:auto;margin-right:auto;}
 	  

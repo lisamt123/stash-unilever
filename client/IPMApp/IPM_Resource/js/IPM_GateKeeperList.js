@@ -34,10 +34,10 @@ function initSliderGk() {
                 jq('#s' + itemsGK.indexOf(answerGK) + 1).prop('checked', true);
                 score = itemsGK[pointer];
             },
-			slide: function( event, ui ) {
-				jq(this).find(".legendSld.gateKeeperSlider label").css({color: "#555", fontWeight: "normal"}).eq(ui.value -1).css({color: "#E98824", fontWeight: "bold"});
-				jq(this).find(".legendSld.gateKeeperSlider label").eq(ui.value -1).click();
-			}
+            slide: function( event, ui ) {
+                jq(this).find(".legendSld.gateKeeperSlider label").css({color: "#555", fontWeight: "normal"}).eq(ui.value -1).css({color: "#E98824", fontWeight: "bold"});
+                jq(this).find(".legendSld.gateKeeperSlider label").eq(ui.value -1).click();
+            }
         });
         if (answerGK === IPMAppGKC.yes) {
             jq(this).find("label[for=s1]").css({
@@ -63,15 +63,15 @@ function initSliderGk() {
                 'font-weight': 'bold'
             });
         }
-		else {
-			jq(this).find("label[for=s0]").css({
+        else {
+            jq(this).find("label[for=s0]").css({
                 'color': '#e98824',
                 'font-weight': 'bold'
-            });		
-		}
+            });     
+        }
 
     });
-	
+    
 /* Below works on click event. It highlights the selected option with a different color and different font style. Also it moves the help text pointer to selected option. */
     jq(".legendSld label").on("click", function() {
         var lpos = jq(".legendSld label").offset().left;

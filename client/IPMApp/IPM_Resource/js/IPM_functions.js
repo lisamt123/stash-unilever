@@ -24,7 +24,7 @@ function ipmModal(el, title, width, height, margintop, zindex) {
             'z-index': zindex
         });
     });
-	
+    
 /* Below script works on key down event. When the user press enter it triggers a click event. */
     jq(document).on('keydown', el, function() {
         var keyCode = (event.keyCode ? event.keyCode : event.which);
@@ -71,14 +71,14 @@ jq.fn.preload = function() {
 jq(document).ready(function(){
 
 /* Below script works on click event. It is used to select Table Row and change the row color if the checkbox is checked. */
-	jq(document).on('click', '.ipmCheckbox input[type="checkbox"]:not(:disabled)', function() {
-		var chkInput = jq(this);
-		if (chkInput.is(':checked')) {
-			chkInput.next('label').addClass('selected');
-			chkInput.closest("tr").addClass("selected");
-		} else {
-			chkInput.next('label').removeClass('selected');
-			chkInput.closest("tr").removeClass("selected");
-		}
-	});
+    jq(document).on('click', '.ipmCheckbox input[type="checkbox"]:not(:disabled)', function() {
+        var chkInput = jq(this);
+        if (chkInput.is(':checked')) {
+            chkInput.next('label').addClass('selected');
+            chkInput.closest("tr").addClass("selected");
+        } else {
+            chkInput.next('label').removeClass('selected');
+            chkInput.closest("tr").removeClass("selected");
+        }
+    });
 });

@@ -1,4 +1,4 @@
 .ipmProjectDetails .panel-title {line-height:2em;} 
 .ipmProjectDetails .uploadImg {overflow:hidden;padding:0;margin:0;} 
 .ipmProjectDetails .panel {background:transparent;margin-bottom:0;box-shadow:none;}
-.ipmProjectDetails .SecButtonSet .icoButton {display: inline-block;width: 30px;margin: 0 5px;height: 30px;border: 1px solid #1568b6;border-radius: 50%; -webkit-border-radius: 50%;-moz-border-radius: 50%; display: inline-block;position: relative;}
+.ipmProjectDetails .SecButtonSet .icoButton {width: 30px;margin: 0 5px;height: 30px;border: 1px solid #1568b6;border-radius: 50%; -webkit-border-radius: 50%;-moz-border-radius: 50%; display: inline-block;position: relative;}

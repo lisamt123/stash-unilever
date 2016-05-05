@@ -36,15 +36,11 @@ jq(document).ready(function() {
     ipmAccordion.find(".pHead span.expico").removeClass("fa-minus");
     ipmAccordion.find(".pHead span.expico").addClass("fa-plus");
     //(Comded by 260202)- For CollapseAll- On load
-    /*ipmAccordion.find(".pHead:first span.expico").removeClass("fa-plus");
-    ipmAccordion.find(".pHead:first span.expico").addClass("fa-minus");*/
     ipmAccordion.find(".ipmAcrdnExpand:first .pHead span.expico").removeClass("fa-plus");
     ipmAccordion.find(".ipmAcrdnExpand:first .pHead span.expico").addClass("fa-minus");
     ipmAccordion.find(".pHead .recCount").removeClass("expanded");
     ipmAccordion.find(".pHead .recCount").addClass("collapsed");
     //Comded by (260202) - For CollapseAll- On load
-    /*ipmAccordion.find(".pHead:first .recCount").removeClass("collapsed");
-    ipmAccordion.find(".pHead:first .recCount").addClass("expanded");*/
 });
 /* Below function is called above upon click event where it expands the tab and replaces '+' with '-' or collapses a opened tab and replaces '-' with '+' */
 function accordion(elem) {

@@ -23,27 +23,27 @@
      var s = jq(".sliderRND");
      var score;
      var PointerT = 100 / (itemsRnd.length - 1);
-	 
+     
 jq(s).each(function() {
 
-	var RnD = jq(this).find("input[name=RnD]").val();
+    var RnD = jq(this).find("input[name=RnD]").val();
      jq(this).slider({
          min: 1,
          max: itemsRnd.length,
          animate: 'slow',
-		 value:itemsRnd.indexOf(RnD)+1,
+         value:itemsRnd.indexOf(RnD)+1,
          stop: function(event, ui) {
              var pointer = ui.value - 1;
              jq('#s' + itemsRnd.indexOf(RnD)+1).prop('checked', true);
              score = itemsRnd[pointer];
          },
-		 slide: function( event, ui ) {
-			jq(this).find(".legendSld label").css({color: "#555", fontWeight: "normal"}).eq(ui.value -1).css({color: "#E98824", fontWeight: "bold"});
-			jq(this).find(".legendSld label").eq(ui.value -1).click();
-		}
+         slide: function( event, ui ) {
+            jq(this).find(".legendSld label").css({color: "#555", fontWeight: "normal"}).eq(ui.value -1).css({color: "#E98824", fontWeight: "bold"});
+            jq(this).find(".legendSld label").eq(ui.value -1).click();
+        }
      });
-	 
-	 if (RnD === IPMAppRNDfq.yes) {             
+     
+     if (RnD === IPMAppRNDfq.yes) {             
              jq(this).find(".sld4 label[for=s1]").css({
                  'color': '#e98824',
                  'font-weight': 'bold'
@@ -68,15 +68,15 @@ jq(s).each(function() {
 
 /* Below works on click event. It highlights the selected option with a different color and different font style. Also it moves the help text pointer to selected option. */
 jq(".legendSld label").on("click", function() {
-	 var lpos = jq(".legendSld label").offset().left;
-	 jq(this).parent().find('label').css({
-		 'color': '#222222'
-	 });
-	 jq(this).css({
-		 'color': '#e98824'
-	 });
-	 jq("toolTipMsg:before").css("left", lpos + "px");
-	});
-	jq("input[type=radio][id^='s']").hide();
+     var lpos = jq(".legendSld label").offset().left;
+     jq(this).parent().find('label').css({
+         'color': '#222222'
+     });
+     jq(this).css({
+         'color': '#e98824'
+     });
+     jq("toolTipMsg:before").css("left", lpos + "px");
+    });
+    jq("input[type=radio][id^='s']").hide();
 
  }

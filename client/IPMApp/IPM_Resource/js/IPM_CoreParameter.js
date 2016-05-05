@@ -9,7 +9,7 @@ jq(document).ready(function() {
     var skipSlide3 = false;
     var ptype = IPMProAppCP.prosubtype;
     var hlPointer = jq(".hlPointer");
-	slideClick();
+    slideClick();
     var slide = getParameterByName('slide');
     var selectedRadioBtn = getselectedRadioBtnBtn(1);
     if (slide === 'ProjectSpan') {
@@ -20,12 +20,12 @@ jq(document).ready(function() {
         setSlider(1);
         displayHelpText(1);
     }
-	
+    
 /* Below script calls a function 'setCarousel' */
     jq(document).on('slid.bs.carousel', '#myCarousel', function() {
         setCarousel();
     });
-	
+    
 /* Below script works on click event. Based on the conditions if the condition is true it navigates to the carousel mentioned in the condition. */
     jq(document).on('click', '#nextControl', function() {
         var currentIndex = jq('.item.active').index();
@@ -62,12 +62,12 @@ jq(document).ready(function() {
             setSlider(1);
         }, 500);
     });
-	
+    
 /* Below script works on click event. It is to set the pointer while navigating to the previous question. */
     jq(document).on('click', '#prevControl', function() {
         setPointer();
     });
-	
+    
 /* Below script works on screen resize. It is to set the slider when the screen resizing happens. */
     jq(document).on('resize', '.modal-content', function() {
         setSlider();
@@ -164,7 +164,7 @@ jq(document).ready(function() {
         checkRadioBtn(currentIndex);
         setSlider(currentIndex);
     }
-	
+    
 /* Below function handles the complete functionality of setting the pointer. When user clicks on any one of the option of a question the pointer ball navigates to the selected option. This happens for all the three questions. */
     function setPointer() {
         var currentIndex = jq('.item.active').index() + 1;
@@ -185,7 +185,7 @@ jq(document).ready(function() {
     }
 
 function slideClick(){
-	/* Below script works on click event. This is for the first slide bar. When user clicks on any one of the option the pointer of the help text points to the selected option. */
+    /* Below script works on click event. This is for the first slide bar. When user clicks on any one of the option the pointer of the help text points to the selected option. */
     jq('#slideBar1 label:not(".fstchild")').click(function() {
         var $this = jq(this);
         var labelWidth = $this.innerWidth() / 2;
@@ -195,7 +195,7 @@ function slideClick(){
         jq(".helpContent").find(".hlPointer").css("left", posPointer + labelWidth - 14 + "px");
         jq('.qnumone .fstchild').addClass('greyOut');
     });
-	
+    
 /* Below script works on click event. This is for the second slide bar. When user clicks on any one of the option the pointer of the help text points to the selected option. */
     jq(document).on("click", "#slideBar2 label:not('.fstchild')", function() {
         var $this = jq(this);
@@ -206,7 +206,7 @@ function slideClick(){
         jq(".helpContent").find(".hlPointer").css("left", posPointer + labelWidth - 14 + "px");
         jq('.qnumtwo .fstchild').addClass('greyOut');
     });
-	
+    
 /* Below script works on click event. This is for the third slide bar. When user clicks on any one of the option the pointer of the help text points to the selected option. */
     jq(document).on("click", "#slideBar3 label:not('.fstchild')", function() {
         var $this = jq(this);
@@ -216,19 +216,19 @@ function slideClick(){
         var posPointer = $this.position().left;
         jq(".helpContent").find(".hlPointer").css("left", posPointer + labelWidth - 14 + "px");
         jq('.qnumthree .fstchild').addClass('greyOut');
-    });	
-	/* Below script works on click event. This is for the first slide bar. This is to select the option based on the selected label */
+    }); 
+    /* Below script works on click event. This is for the first slide bar. This is to select the option based on the selected label */
     jq(document).on('click', '#slideBar1 label:not(".fstchild")', function() {
         var $this = jq(this);
         var answerOne = $this.next('input[type=radio]').val();
         selectOption(this, 1);
     });
-	
+    
 /* Below script works on click event. This is for the second slide bar. This is to select the option based on the selected label */
     jq(document).on('click', '#slideBar2 label:not(".fstchild")', function() {
         selectOption(this, 2);
     });
-	
+    
 /* Below script works on click event. This is for the third slide bar. This is to select the option based on the selected label */
     jq(document).on('click', '#slideBar3 label:not(".fstchild")', function() {
         selectOption(this, 3);
@@ -248,7 +248,7 @@ jq(window).load(function() {
 function setSlider(currentIndex) {
     var selectedRadioBtn = getselectedRadioBtnBtn(currentIndex);
     var selectedVal = selectedRadioBtn.val();
-    if (selectedVal != '' && selectedVal != undefined) {
+    if (selectedVal !== '' && selectedVal !== undefined) {
         var element = selectedRadioBtn.prev();
         var pos = element.position().left;
         var ewidth = selectedRadioBtn.prev().innerWidth() / 2;

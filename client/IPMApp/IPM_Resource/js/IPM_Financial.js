@@ -5,8 +5,8 @@
  *******************************************************************/
 var jq = jQuery.noConflict();
 function finScriptCallBack() {
-	jq('[data-toggle="tooltip"]').tooltip();
-	hilightTaskScript();
+    jq('[data-toggle="tooltip"]').tooltip();
+    hilightTaskScript();
 /* Below script works on click event. If the condition is true it shows the Left side menu. Also it removes '+' and replaces it with '-' which indicates the menu expansion */
     jq(".initAccordian").on("click", function() {
         var $this = jq(this);
@@ -20,18 +20,18 @@ function finScriptCallBack() {
             $this.addClass("fa-plus-square");
         }
     });
-	
+    
 /* Below function performs the page redirection. It redirects to Financial currency page */
     function loadCurrencyPage() {
         window.location = '/apex/IPM_Financial_Currency?id=' + IPMFINAPP.projectid;
     }
-	
+    
 /* Below script works on click event. When clicked on confirm button it hides the opened modal and calls a function 'refreshFromLocal' */
     jq(document).on('click', '#ipmDeleteModal .confirmAction.refreshFromLocal', function() {
         jq('#ipmDeleteModal').modal('hide');
         refreshFromLocal();
     });
-	
+    
 /* Below script works on click event. When clicked on confirm button it hides the opened modal and calls a function 'refreshFromRegional' */
     jq(document).on('click', '#ipmDeleteModal .confirmAction.refreshFromRegional', function() {
         jq('#ipmDeleteModal').modal('hide');
@@ -51,7 +51,7 @@ jq(document).ready(function() {
         var $this = jq(this);
         $this.find('td.iPLBorderGay:first').addClass('finTabletr');
     });
-	hilightTaskScript();
+    hilightTaskScript();
 /* Below script works on click event. If the condition is true it hides the Financial Filter. Also it removes angle left class and replaces it with angle right css class. */
     jq(document).on('click', '.finArrow', function() {
         var $this = jq(this);
@@ -112,10 +112,10 @@ function progressDots() {
         var wait = document.getElementById("wait");
         if (wait.innerHTML.length > 3){
             wait.innerHTML = "";
-			}
+            }
         else{
             wait.innerHTML += ".";
-			}
+            }
     }, 500);
 }
 function stopDots() {
@@ -144,7 +144,7 @@ jq(document).ready(function() {
     jq(document).on("click", ".ipmAccordion .pHead span.expico, .ipmAccordion .pHead span.expico-square", function() {
         accordion(this);
     });
-	
+    
 /* Below script expands all the tabs in accordion when clicked on the Expand all button and replaces '+' with '-' sign */
     jq(document).on("click", ".expandTool .expandAll", function() {
         ipmAccordion.find(".ipmAcrdnExpand").not(':empty').slideDown("fast");
@@ -153,7 +153,7 @@ jq(document).ready(function() {
         ipmAccordion.find(".pHead .expico-square").removeClass("fa-plus");
         ipmAccordion.find(".pHead .expico-square").addClass("fa-minus");
     });
-	
+    
 /* Below script collapses all the tabs in accordion when clicked on the Collapse all button and replaces '-' with '+' sign */
     jq(document).on("click", ".expandTool .collapseAll", function() {
         ipmAccordion.find(".ipmAcrdnExpand ").slideUp("fast");
@@ -162,7 +162,7 @@ jq(document).ready(function() {
         ipmAccordion.find(".pHead .expico-square").addClass("fa-plus");
         ipmAccordion.find(".pHead .expico-square").removeClass("fa-minus");
     });
-	
+    
 /* Below script works on page load. First it hides all the tabs. Then it opens only the first tab. It also adds the + mark for the collapsed one's and adds - for the expanded one */
     jq(".ipmAcrdnExpand").hide();
     jq(".ipmAcrdnExpand:first, .ipmAcrdnExpand:first .ipmAcrdnExpand").not(':empty').show();
@@ -191,16 +191,16 @@ function accordion(elem) {
 }
 
 function hilightTaskScript(){
-	jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' },tooltipClass:'info_tip'});
-	jq(".smalllinfo").tooltip({ position: { my: 'center top', at: 'center bottom+10'},tooltipClass:'normal_tip'});
+    jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' },tooltipClass:'info_tip'});
+    jq(".smalllinfo").tooltip({ position: { my: 'center top', at: 'center bottom+10'},tooltipClass:'normal_tip'});
 }
 
 function isNumber(evt, finval) {
-	evt = (evt) ? evt : window.event;
-	var charCode = (evt.which) ? evt.which : evt.keyCode;
-	if((finval.length==0 && charCode == 45) || (finval.indexOf('.')==-1 && charCode == 46))
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if((finval.length===0 && charCode === 45) || (finval.indexOf('.')===-1 && charCode === 46))
     {
-		return true;
+        return true;
     }
     if (charCode > 31 && (charCode < 48 || charCode > 57)) {
         return false;

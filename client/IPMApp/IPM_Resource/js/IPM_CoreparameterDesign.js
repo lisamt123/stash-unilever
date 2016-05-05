@@ -79,7 +79,7 @@ function cpredirect() {
 function invalidChar(key)
  {
    var keycode = (key.which) ? key.which : key.keyCode; 
-   if(keycode==95){
+   if(keycode===95){
       return false;
    }else{
       return true;

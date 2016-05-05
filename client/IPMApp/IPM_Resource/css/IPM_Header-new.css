@@ -58,7 +58,7 @@
 .tabOdd.dropdown .dropdown-menu{min-width:176px ;}
 .tabEven.dropdown .dropdown-menu{min-width:173px ;}
 ul.dropdown-menu li{margin-left:0 ;}
-.ipmNavMenuDiv .navbar-nav>li>.dropdown-menu a:hover{color: #fff;text-decoration:none;color: #4B7A1E ;background-color: #F5F9EB ;border-top: 1px solid #7ea09f;border-bottom: 1px solid #7ea09f;padding-left:10px ;display:block;}
+.ipmNavMenuDiv .navbar-nav>li>.dropdown-menu a:hover{text-decoration:none;color: #4B7A1E ;background-color: #F5F9EB ;border-top: 1px solid #7ea09f;border-bottom: 1px solid #7ea09f;padding-left:10px ;display:block;}
 .ipmNavMenuDiv .navbar-nav>li>.dropdown-menu a {color: #666 ;padding-left: 10px ;border-top: 1px solid transparent;border-bottom: 1px solid transparent;display:block;}
 .dropdown-menu > .active > a{color: #666 ;background-color: #fff;}
 .headerSecondRow{font-size: 0.9em;float: left;  width: 100%;}
