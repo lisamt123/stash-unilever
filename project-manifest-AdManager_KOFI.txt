@@ -247,6 +247,8 @@ src/email/AdManager-meta.xml
 src
 src/groups
 src/groups/AdManager_Report_Group.group
+src/labels
+src/labels/CustomLabels.labels
 
 
 
