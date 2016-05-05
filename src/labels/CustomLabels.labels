@@ -35,3 +35,4 @@
         <shortDescription>WWP_selectRecord_Err</shortDescription>
         <value>Please select atleast one record</value>
     </labels>    
+	</CustomLabels>
