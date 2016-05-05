@@ -635,7 +635,7 @@
                 <!-- GROSS -->
                 <apex:repeat value="{!finWrapper.lstGrossPLTurnover}" var="valueWrapper">
                     
-                    <apex:variable value="{!AND(OR (showMisalignment,  valueWrapper.difference > 0))}" var="GrossTurnoverMisAligned" />    
+                    <apex:variable value="{!AND(showMisalignment,valueWrapper.difference > 0)}" var="GrossTurnoverMisAligned" />    
                 
                     <apex:variable value="{!OR( NOT(showMisalignment), valueWrapper.difference==0 )}" var="GrossTurnoverAligned" />
                 
