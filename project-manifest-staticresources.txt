@@ -1,48 +1,48 @@
-AF_Bootstrap.resource
-File AF_Bootstrap.resource-meta.xml
-File AF_JavascriptFiles.resource
-File AF_JavascriptFiles.resource-meta.xml
-File AF_UL_Resources.resource
-File AF_UL_Resources.resource-meta.xml
-File jqPlugin.resource
-File jqPlugin.resource-meta.xml
-File jQuery.resource
-File jQuery.resource-meta.xml
-File select2.resource
-File select2.resource-meta.xml
-File VEP_Bootstrap.resource
-File VEP_Bootstrap.resource-meta.xml
-File VEP_csstemplate.resource
-File VEP_csstemplate.resource-meta.xml
-File VEP_FactoryImages.resource
-File VEP_FactoryImages.resource-meta.xml
-File VEP_Gallery.resource
-File VEP_Gallery.resource-meta.xml
-File VEP_googleMapFactory.resource
-File VEP_googleMapFactory.resource-meta.xml
-File VEP_jquery_1_11_2.resource
-File VEP_jquery_1_11_2.resource-meta.xml
-File VEP_JqueryValidate.resource
-File VEP_JqueryValidate.resource-meta.xml
-File VEP_MAP1.resource
-File VEP_MAP1.resource-meta.xml
-File VEP_Progressbar_css.resource
-File VEP_Progressbar_css.resource-meta.xml
-File VEP_ProgressBar.resource
-File VEP_ProgressBar.resource-meta.xml
-File VEP_ProgressBarImages.resource
-File VEP_ProgressBarImages.resource-meta.xml
-File VEP_ProhibiteditemsImage.resource
-File VEP_ProhibiteditemsImage.resource-meta.xml
-File VEP_SWIPE.resource
-File VEP_SWIPE.resource-meta.xml
-File VEP_UnileverLogo.resource
-File VEP_UnileverLogo.resource-meta.xml
-File WWP_bootstrap.resource
-File WWP_bootstrap.resource-meta.xml
-File WWP_dataTables.resource
-File WWP_dataTables.resource-meta.xml
-File WWP_Jquery1.resource
-File WWP_Jquery1.resource-meta.xml
-File WWP_ResetImage.resource
-File WWP_ResetImage.resource-meta.xml
+src/staticresources/AF_Bootstrap.resource
+src/staticresources/AF_Bootstrap.resource-meta.xml
+src/staticresources/AF_JavascriptFiles.resource
+src/staticresources/AF_JavascriptFiles.resource-meta.xml
+src/staticresources/AF_UL_Resources.resource
+src/staticresources/AF_UL_Resources.resource-meta.xml
+src/staticresources/jqPlugin.resource
+src/staticresources/jqPlugin.resource-meta.xml
+src/staticresources/jQuery.resource
+src/staticresources/jQuery.resource-meta.xml
+src/staticresources/select2.resource
+src/staticresources/select2.resource-meta.xml
+src/staticresources/VEP_Bootstrap.resource
+src/staticresources/VEP_Bootstrap.resource-meta.xml
+src/staticresources/VEP_csstemplate.resource
+src/staticresources/VEP_csstemplate.resource-meta.xml
+src/staticresources/VEP_FactoryImages.resource
+src/staticresources/VEP_FactoryImages.resource-meta.xml
+src/staticresources/VEP_Gallery.resource
+src/staticresources/VEP_Gallery.resource-meta.xml
+src/staticresources/VEP_googleMapFactory.resource
+src/staticresources/VEP_googleMapFactory.resource-meta.xml
+src/staticresources/VEP_jquery_1_11_2.resource
+src/staticresources/VEP_jquery_1_11_2.resource-meta.xml
+src/staticresources/VEP_JqueryValidate.resource
+src/staticresources/VEP_JqueryValidate.resource-meta.xml
+src/staticresources/VEP_MAP1.resource
+src/staticresources/VEP_MAP1.resource-meta.xml
+src/staticresources/VEP_Progressbar_css.resource
+src/staticresources/VEP_Progressbar_css.resource-meta.xml
+src/staticresources/VEP_ProgressBar.resource
+src/staticresources/VEP_ProgressBar.resource-meta.xml
+src/staticresources/VEP_ProgressBarImages.resource
+src/staticresources/VEP_ProgressBarImages.resource-meta.xml
+src/staticresources/VEP_ProhibiteditemsImage.resource
+src/staticresources/VEP_ProhibiteditemsImage.resource-meta.xml
+src/staticresources/VEP_SWIPE.resource
+src/staticresources/VEP_SWIPE.resource-meta.xml
+src/staticresources/VEP_UnileverLogo.resource
+src/staticresources/VEP_UnileverLogo.resource-meta.xml
+src/staticresources/WWP_bootstrap.resource
+src/staticresources/WWP_bootstrap.resource-meta.xml
+src/staticresources/WWP_dataTables.resource
+src/staticresources/WWP_dataTables.resource-meta.xml
+src/staticresources/WWP_Jquery1.resource
+src/staticresources/WWP_Jquery1.resource-meta.xml
+src/staticresources/WWP_ResetImage.resource
+src/staticresources/WWP_ResetImage.resource-meta.xml
