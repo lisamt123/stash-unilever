@@ -285,6 +285,9 @@ public with sharing class IPM_ProjectDocumentHelper
                                         projDocSect.IPM_Section__c = section.Id;
                                         projDocSect.IPM_Section_Sequence_Number__c = section.IPM_Section_Sequence__c;
                                         projDocSect.IPM_FunctionalRole__c = section.IPM_FunctionalRole__c;
+										if(IPM_ConstantUtils.PROJECT_SPAN_LOCAL.Equals(project.IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL.Equals(project.IPM_Project_Type__c) && IPM_ConstantUtils.FUNCTIONAL_ROLE_BD.Equals(section.IPM_FunctionalRole__c)){
+											projDocSect.IPM_FunctionalRole__c = IPM_ConstantUtils.FUNCTIONAL_ROLE_PL;
+										}
                                         projDocSect.IPM_Section_Help_Text_Long__c = section.IPM_Section_Help_Text__c;
                                         projDocSect.IPM_Negotiable__c = section.IPM_Negotiable__c;
 										projDocSect.IPM_Default_Section__c=section.IPM_IS_Default_Section__c;
