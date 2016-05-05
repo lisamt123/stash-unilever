@@ -1,18 +1,16 @@
 @isTest
 public class Amr_JobSheetController_Test{
-    
-   
+       
    static testMethod void methodToGetRecords(){
         
-
-        Profile p = [SELECT Id FROM Profile WHERE Name='AMR']; 
+        Profile p = [SELECT Id FROM Profile WHERE Name='Standard User']; 
         User u = new User(Alias = Amr_ConstantForAdManager.TESTALIAS, Email=Amr_ConstantForAdManager.EMAIL, 
-            EmailEncodingKey=Amr_ConstantForAdManager.ENCODINGTYPE, LastName='Testing21', LanguageLocaleKey=Amr_ConstantForAdManager.LOCALSIDEKEY, 
-            LocaleSidKey=Amr_ConstantForAdManager.LOCALSIDEKEY, ProfileId = p.Id, 
+            EmailEncodingKey= Amr_ConstantForAdManager.ENCODINGTYPE, LastName='Testing21',LanguageLocaleKey=Amr_ConstantForAdManager.LOCALSIDEKEY, 
+            LocaleSidKey= Amr_ConstantForAdManager.LOCALSIDEKEY, ProfileId = p.Id, 
             TimeZoneSidKey=Amr_ConstantForAdManager.ZONEKEY, UserName='standuser@org.com');
         
         User selectedUser = new User(Alias = Amr_ConstantForAdManager.TESTALIAS, Email=Amr_ConstantForAdManager.EMAIL, 
-            EmailEncodingKey=Amr_ConstantForAdManager.ENCODINGTYPE, LastName=Amr_ConstantForAdManager.TESTLASTNAME , LanguageLocaleKey=Amr_ConstantForAdManager.LOCALSIDEKEY, 
+            EmailEncodingKey= Amr_ConstantForAdManager.ENCODINGTYPE, LastName=Amr_ConstantForAdManager.TESTLASTNAME , LanguageLocaleKey=Amr_ConstantForAdManager.LOCALSIDEKEY, 
             LocaleSidKey=Amr_ConstantForAdManager.LOCALSIDEKEY, ProfileId = p.Id, 
             TimeZoneSidKey=Amr_ConstantForAdManager.ZONEKEY, UserName=Amr_ConstantForAdManager.TESTUSERNAME);
         
@@ -162,7 +160,7 @@ public class Amr_JobSheetController_Test{
     
     static testMethod void methodToGetRecords2(){
 
-         Profile p = [SELECT Id FROM Profile WHERE Name='AMR']; 
+         Profile p = [SELECT Id FROM Profile WHERE Name='Standard User']; 
             User u = new User(Alias = 'newtest1', Email='newcanceluser21@testorg.com', 
             EmailEncodingKey=Amr_ConstantForAdManager.ENCODINGTYPE, LastName='cancelTest', LanguageLocaleKey=Amr_ConstantForAdManager.LOCALSIDEKEY, 
             LocaleSidKey=Amr_ConstantForAdManager.LOCALSIDEKEY, ProfileId = p.Id, 
@@ -219,7 +217,7 @@ public class Amr_JobSheetController_Test{
     static testMethod void methodToGetRecords3(){
         
 
-         Profile p = [SELECT Id FROM Profile WHERE Name='AMR']; 
+         Profile p = [SELECT Id FROM Profile WHERE Name='Standard User']; 
             User u = new User(Alias = 'ntest1', Email='capcanceluser21@testorg.com', 
             EmailEncodingKey=Amr_ConstantForAdManager.ENCODINGTYPE, LastName='capcancelTest', LanguageLocaleKey=Amr_ConstantForAdManager.LOCALSIDEKEY, 
             LocaleSidKey=Amr_ConstantForAdManager.LOCALSIDEKEY, ProfileId = p.Id, 
@@ -276,7 +274,7 @@ public class Amr_JobSheetController_Test{
      static testMethod void methodToGetRecords4(){
      
 
-         Profile p = [SELECT Id FROM Profile WHERE Name='AMR']; 
+         Profile p = [SELECT Id FROM Profile WHERE Name='Standard User']; 
             User u = new User(Alias = 'relest1', Email='relocanceluser21@testorg.com', 
             EmailEncodingKey=Amr_ConstantForAdManager.ENCODINGTYPE, LastName='capcancelTest', LanguageLocaleKey=Amr_ConstantForAdManager.LOCALSIDEKEY, 
             LocaleSidKey=Amr_ConstantForAdManager.LOCALSIDEKEY, ProfileId = p.Id, 
@@ -348,7 +346,7 @@ public class Amr_JobSheetController_Test{
      static testMethod void methodToGetRecords5(){
         
 
-         Profile p = [SELECT Id FROM Profile WHERE Name='AMR']; 
+         Profile p = [SELECT Id FROM Profile WHERE Name='Standard User']; 
             User u = new User(Alias = 'relest2', Email='relocancelrapuser21@testorg.com', 
             EmailEncodingKey=Amr_ConstantForAdManager.ENCODINGTYPE, LastName='rapcancelTest', LanguageLocaleKey=Amr_ConstantForAdManager.LOCALSIDEKEY, 
             LocaleSidKey=Amr_ConstantForAdManager.LOCALSIDEKEY, ProfileId = p.Id, 
@@ -415,7 +413,7 @@ public class Amr_JobSheetController_Test{
    
 
           List<Amr_Job_Allocation__c> listOptionsAlloc = new List<Amr_Job_Allocation__c>();
-         Profile p = [SELECT Id FROM Profile WHERE Name='AMR']; 
+         Profile p = [SELECT Id FROM Profile WHERE Name='Standard User']; 
          User u = new User(Alias = 'stan321', Email='standuser321@testorg.com', 
             EmailEncodingKey=Amr_ConstantForAdManager.ENCODINGTYPE, LastName='Testing321', LanguageLocaleKey=Amr_ConstantForAdManager.LOCALSIDEKEY, 
             LocaleSidKey=Amr_ConstantForAdManager.LOCALSIDEKEY, ProfileId = p.Id, 
