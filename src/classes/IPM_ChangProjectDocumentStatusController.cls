@@ -882,7 +882,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
             finList=new List<IPM_Financial__c>();
             finList=[SELECT IPM_Business_Case_Confirmed__c,Is_BC_Confirmed_Capability__c,Local_Project__r.IPM_Phase__c,Local_Project__r.Is_Archieved__c,Misaligned__c,Local_Project__r.Rollout_Plan_Target_Launch_Date__c,
             Local_Project__r.IPM_Target_Launch_Dates__c,Local_Project__r.IPM_Parent_Project__r.IPM_Target_Launch_Dates__c,
-            Local_Project__r.IPM_Project_Name__c,Local_Project__c FROM IPM_Financial__c WHERE 
+            Local_Project__r.IPM_Project_Name__c,Local_Project__c FROM IPM_Financial__c WHERE isActive__c=true AND 
             Local_Project__r.IPM_Parent_Project__c=:projectId AND RecordType.Name=:IPM_ConstantUtils.DEFAULT_FINANCIAL_RT LIMIT 1000];
             if(!finList.isEmpty()){
                 for(IPM_Financial__c fin:finList){

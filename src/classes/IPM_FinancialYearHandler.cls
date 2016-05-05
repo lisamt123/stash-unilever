@@ -76,7 +76,14 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger
         }
         //Financials Hard Validations: Get all Financial External ID
         set<string> setFinExtId = new set<string>();
-        for(IPM_Financial_Year__c finYear: (list<IPM_Financial_Year__c>)Trigger.New){
+        list<IPM_Financial_Year__c> lstFinYr = new list<IPM_Financial_Year__c>();
+        if(Trigger.isInsert || Trigger.isUpdate){
+            lstFinYr = (list<IPM_Financial_Year__c>)Trigger.New;
+        }
+        else{
+            lstFinYr = (list<IPM_Financial_Year__c>)Trigger.Old;    
+        }
+        for(IPM_Financial_Year__c finYear: lstFinYr){
             setFinExtId.add(finYear.Financial_External_ID__c);          
         }
         if(!setFinExtId.isEmpty() && !IPM_FinancialYearHelper.checkValidaitonrecursion){
