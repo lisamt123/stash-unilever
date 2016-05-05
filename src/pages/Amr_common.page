@@ -1,0 +1,104 @@
+<apex:page >
+	<apex:stylesheet value="{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/css/common.css')}" />
+    <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/jquery.min.js')}"/>
+    <script type="text/javascript">
+        $j = jQuery.noConflict();       
+    </script>
+    <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/menu-shift.js')}"/>    
+    <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/common.js')}"/>      
+    <style type="text/css">
+        /*Overall*/        
+        .foldclass {
+        background-image: url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/Ico_ExpandArrow.png')}");                       
+        }           
+        .openclass {
+        background-image: url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/Ico_CollapseArrow.png')}");        
+        }       
+               
+        /*table related*/
+        
+        .rich-tab-inactive {                
+            border-image-source: url("/resource/1458112864000/Amr_static_resources/Amr-static-resource/images/Img_TabBlue.png");        
+        }
+        .rich-tab-active {                
+        border-image-source: url("{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/Img_TabWhite.png')}");        
+        }
+        
+        /*Rare*/
+        
+        .Before_briefing_the_agency {
+        background-image: url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/number-1s.png')}");
+        }
+        /*lightgreen*/
+        .Before_getting_a_response_to_the_brief_eg_storyboard {
+        background-image: url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/number-2s.png')}");
+        }
+        /*yellow*/               
+        .Before_getting_quotations {
+        background-image: url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/number-3s.png')}");
+        }
+        .Before_final_selection_of_the_supplierproduction_company {
+        background-image: url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/number-4s.png')}");
+        }
+        .Before_physical_production_eg_shoot_contract {
+        background-image: url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/number-5s.png')}");
+        }
+        /*red*/
+        .After_completion {
+        background-image: url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/number-6s.png')}");
+        }
+        
+        .changeColor{            
+            background-image : url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/Ico_RatingStarSelect_14px.png')}") !important;             
+        }
+        .changeColorHover{            
+            background-image : url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/Ico_RatingStarSelect_14px.png')}") !important;             
+        }
+        
+        .pc-time-cat{            
+            background-image : url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/Ico_RatingStarSelected_14px.png')}");             
+        }
+        .pc-cost-cat{            
+             background-image : url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/Ico_RatingStarSelected_14px.png')}");             
+        }
+        .pc-process-cat{            
+             background-image : url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/Ico_RatingStarSelected_14px.png')}");             
+        }
+        .pc-output-cat{            
+             background-image : url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/Ico_RatingStarSelected_14px.png')}");             
+        }
+        .ppc-time-cat{            
+            background-image : url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/Ico_RatingStarSelected_14px.png')}");             
+        }
+        .ppc-cost-cat{            
+             background-image : url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/Ico_RatingStarSelected_14px.png')}");             
+        }
+        .ppc-process-cat{            
+             background-image : url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/Ico_RatingStarSelected_14px.png')}");             
+        }
+        .ppc-output-cat{            
+             background-image : url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/Ico_RatingStarSelected_14px.png')}");             
+        }
+        
+        .ca-time-cat{            
+            background-image : url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/Ico_RatingStarSelected_14px.png')}");             
+        }
+        .ca-cost-cat{            
+             background-image : url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/Ico_RatingStarSelected_14px.png')}");             
+        }
+        .ca-process-cat{            
+             background-image : url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/Ico_RatingStarSelected_14px.png')}");             
+        }
+        .ca-output-cat{            
+             background-image : url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/Ico_RatingStarSelected_14px.png')}"); 
+            
+        }
+        
+        .bell-text {
+             background-image: url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/Ico_alert.png')}");                     
+         }
+         .add-quotes td {
+         	vertical-align:middle !important;
+         }
+    </style>
+</apex:page>
