@@ -5,12 +5,12 @@ public class Amr_JobSheetController_Test{
         
         Profile p = [SELECT Id FROM Profile WHERE Name='Standard User']; 
         User u = new User(Alias = Amr_ConstantForAdManager.TESTALIAS, Email=Amr_ConstantForAdManager.EMAIL, 
-            EmailEncodingKey= Amr_ConstantForAdManager.ENCODINGTYPE, LastName='Testing21', LanguageLocaleKey=Amr_ConstantForAdManager.LOCALSIDEKEY, 
-            LocaleSidKey=Amr_ConstantForAdManager.LOCALSIDEKEY, ProfileId = p.Id, 
+            EmailEncodingKey= Amr_ConstantForAdManager.ENCODINGTYPE, LastName='Testing21',LanguageLocaleKey=Amr_ConstantForAdManager.LOCALSIDEKEY, 
+            LocaleSidKey= Amr_ConstantForAdManager.LOCALSIDEKEY, ProfileId = p.Id, 
             TimeZoneSidKey=Amr_ConstantForAdManager.ZONEKEY, UserName='standuser@org.com');
         
         User selectedUser = new User(Alias = Amr_ConstantForAdManager.TESTALIAS, Email=Amr_ConstantForAdManager.EMAIL, 
-            EmailEncodingKey=Amr_ConstantForAdManager.ENCODINGTYPE, LastName=Amr_ConstantForAdManager.TESTLASTNAME , LanguageLocaleKey=Amr_ConstantForAdManager.LOCALSIDEKEY, 
+            EmailEncodingKey= Amr_ConstantForAdManager.ENCODINGTYPE, LastName=Amr_ConstantForAdManager.TESTLASTNAME , LanguageLocaleKey=Amr_ConstantForAdManager.LOCALSIDEKEY, 
             LocaleSidKey=Amr_ConstantForAdManager.LOCALSIDEKEY, ProfileId = p.Id, 
             TimeZoneSidKey=Amr_ConstantForAdManager.ZONEKEY, UserName=Amr_ConstantForAdManager.TESTUSERNAME);
         
