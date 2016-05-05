@@ -92,6 +92,10 @@ src/classes/Amr_TriggerFactory_Test.cls
 src/classes/Amr_TriggerFactory_Test.cls-meta.xml
 src/classes/Amr_UtilityClass.cls
 src/classes/Amr_UtilityClass.cls-meta.xml
+src/classes/im_IssueTriggerHandlerTest.cls
+src/classes/im_IssueTriggerHandlerTest.cls-meta.xml
+src/classes/im_IssuesLPControllerTest.cls
+src/classes/im_IssuesLPControllerTest.cls-meta.xml
 src
 src/pages
 src/pages/Amr_AdManager.page
@@ -243,34 +247,6 @@ src/email/AdManager-meta.xml
 src
 src/groups
 src/groups/AdManager_Report_Group.group
-src
-src/labels
-src/labels/CustomLabels.labels
-src/applications/Win_With_Planning.app
-src/tabs/Loss_Tree.tab
-src/workflows/WWP_Loss_Tree__c.workflow
-src/classes/WWP_LossTree_CC.cls
-src/classes/WWP_LossTree_CC.cls-meta.xml
-src/classes/WWP_LossTree_Test.cls
-src/classes/WWP_LossTree_Test.cls-meta.xml
-src/layouts/WWP_Loss_Tree__c-Loss Tree Layout.layout
-src/objects/WWP_Loss_Tree__c.object
-src/objects/WWP_LossTree__c.object
-src/objects/WWP_PlantCode_User_Mapping__c.object
-src/pages/WWP_LossTreeUpdate_VF.page
-src/pages/WWP_LossTreeUpdate_VF.page-meta.xml
-src/permissionsets/WWP_User_Permissions.permissionset
-src/permissionsets/WWP_Admin_Permissions.permissionset
-src/tabs/WWP_Loss_Tree__c.tab
-src/staticresources/WWP_bootstrap.resource
-src/staticresources/WWP_bootstrap.resource-meta.xml
-src/staticresources/WWP_dataTables.resource
-src/staticresources/WWP_dataTables.resource-meta.xml
-src/staticresources/WWP_Jquery1.resource
-src/staticresources/WWP_Jquery1.resource-meta.xml
-src/staticresources/WWP_ResetImage.resource
-src/staticresources/WWP_ResetImage.resource-meta.xml
-
 
 
 
