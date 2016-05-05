@@ -87,7 +87,7 @@ public with sharing class VEP_Visitor_TriggerHandler implements ITrigger{
                     
                     Vep_Visitor__Share vshare = new Vep_Visitor__Share();
                     vshare.UserOrGroupId = v.Person_to_meet__c;
-                    vshare.AccessLevel = 'Read';
+                    vshare.AccessLevel = 'Edit';
                     vshare.ParentId = v.id;
                     vshare.RowCause =Schema.Vep_Visitor__Share.RowCause.Manual;
                     listvshare.add(vshare);
@@ -183,15 +183,15 @@ public with sharing class VEP_Visitor_TriggerHandler implements ITrigger{
            // recordVisibilityExt(mapuser,listVisitors);   
          List<Vep_Visitor__Share> listvshare1 = new List<Vep_Visitor__Share>();
         for(Vep_Visitor__c  v: listVisitors){
-                if(v.travel_desk_email__c!=null && v.travel__c){
+                if(v.travel_desk_email__c!=null && v.travel__c && v.person_to_meet__c != mapUser.get(v.travel_desk_email__c).id){
                     Vep_Visitor__Share vshare1 = new Vep_Visitor__Share();
                     vshare1.UserOrGroupId = mapUser.get(v.travel_desk_email__c).id;
                     vshare1.AccessLevel = 'Edit';
                     vshare1.ParentId = v.id;
                     vshare1.RowCause =Schema.Vep_Visitor__Share.RowCause.Manual;
-                    listvshare1.add(vshare1);
+                    listvshare1.add(vshare1);                    
                 }
-                if(v.lodging_desk_email__c!=null && v.lodging__c){
+                if(v.lodging_desk_email__c!=null && v.lodging__c && v.person_to_meet__c != mapUser.get(v.lodging_desk_email__c).id){
                     Vep_Visitor__Share vshare2 = new Vep_Visitor__Share();
                     vshare2.UserOrGroupId = mapUser.get(v.lodging_desk_email__c).id;
                     vshare2.AccessLevel = 'Edit';
