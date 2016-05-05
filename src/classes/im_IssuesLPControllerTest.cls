@@ -33,14 +33,15 @@ private class im_IssuesLPControllerTest {
     }
 
     private static testMethod void testAttributeInit() {
-    initData();	      
+    initData();       
         im_IssuesLPController controller = new im_IssuesLPController();
         
         Test.startTest();
         string testgetIntroduction = controller.Introduction;
         string testgetDashboardId = controller.DashboardId;  
         Test.stopTest();
-    }
+        system.assert(testgetIntroduction.contains('To Report an Issue, please use Search to check if the issue already exists.'));
+       }
 
     private static testMethod void testOpenLinkExternal() {
         initData();       
