@@ -22,7 +22,13 @@ public with sharing class VEP_MapFactory_CC{
     public boolean showRequests{get; set;}
     public boolean showROB{get; set;}
     public String ListViewId{get; set;}
+    public String reqRecordTypeId {get; set;}
+    public String robRecordTypeId {get; set;}
+    
+    
+    
     User loggedinuser = new User();
+    
     
         
     public VEP_MapFactory_CC(){  
@@ -32,6 +38,8 @@ public with sharing class VEP_MapFactory_CC{
         loggedinuser = [select id,name,email,MobilePhone,Phone,Department from user where id=:userinfo.getuserid()];
         factoryList = new List<Vep_Factory__c>();        
         factoryList = [select id,name,Factory_Details__c,Factory_Image_Code__c,Latitude__c,Longitude__c from Vep_Factory__c limit 200];
+        reqRecordTypeId = Schema.SObjectType.VEP_Visitor__c.getRecordTypeInfosByName().get('Request').getRecordTypeId();
+        robRecordTypeId = Schema.SObjectType.VEP_Visitor__c.getRecordTypeInfosByName().get('Request on Behalf').getRecordTypeId();
         AggregateResult[] listCount = [select count(id) sCount, status__c status from Vep_Visitor__c where (status__c='Approved' OR Status__c='Rejected' OR Status__c='Pending Approval' OR Status__c='Pending Visit') Group By Status__c];     
         approvedCount = 0;
         rejectedCount = 0;
@@ -110,7 +118,7 @@ public with sharing class VEP_MapFactory_CC{
     public pagereference gotoVFORM(){
         Schema.DescribeSObjectResult r = VEP_Visitor__c.sObjectType.getDescribe();
         String keyPrefix = r.getKeyPrefix();
-        Id reqRecordTypeId = Schema.SObjectType.VEP_Visitor__c.getRecordTypeInfosByName().get('Request').getRecordTypeId();
+
         PageReference redirectPage = new Pagereference('/'+keyPrefix+'/e');
         redirectPage.setRedirect(true);
         redirectPage.getParameters().put('RecordType',reqRecordTypeId);
@@ -130,7 +138,7 @@ public with sharing class VEP_MapFactory_CC{
     public pagereference gotoVFORMROB(){
         Schema.DescribeSObjectResult r = VEP_Visitor__c.sObjectType.getDescribe();
         String keyPrefix = r.getKeyPrefix();
-        Id robRecordTypeId = Schema.SObjectType.VEP_Visitor__c.getRecordTypeInfosByName().get('Request on Behalf').getRecordTypeId();
+        
         PageReference redirectPage = new Pagereference('/'+keyPrefix+'/e');
         redirectPage.setRedirect(true);
         redirectPage.getParameters().put('RecordType',robRecordTypeId);
