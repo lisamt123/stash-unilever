@@ -24,13 +24,7 @@ public with sharing class Oblix_Utils {
     private static final String EXPERIENTIAL = 'Experiential';
     private static final String STATIC_IMAGERY = 'Static_Imagery';
     private static Map<String, List<String>> ms_lis_fields_in_fieldset = new  Map<String, List<String>>();
-    private static Map<String, Map<String, Schema.SObjectField>> fieldsByObject = new Map<String, Map<String, Schema.SObjectField>>();
 
-
-
-    public static Map<String, Oblix_AssetOfferingWrapper.AssetWrapper> map_of_mdm_id_to_asset;
-    public static Oblix_AssetOfferingWrapper asset_offering;
-    public static Id wrapper_campaign_id;
 
     //Used to Wrap RecordType By Object
     public static Map<string, ID> MapRecordType(String ObjectName) {
@@ -93,53 +87,6 @@ public with sharing class Oblix_Utils {
         return ms_lis_fields_in_fieldset.get(obj_api_name+fieldset_name);
     }
 
-
-    /********************************************************************
-    * @author       Execloud ©
-    * @date         2016-02-20
-    * @description  map of field name and SObjectField for a given SObject       
-    *********************************************************************/
-    public static Map<String, Schema.SObjectField> fetchAllFieldsForObject(String objectType) { 
-        System.debug('MARKER: '+objectType);
-        sObject instance = (sObject)((Type.forName(objectType)).newInstance());
-        Map<String, Schema.SObjectField> fields = instance.getSObjectType().getDescribe().fields.getMap();
-        
-        fieldsByObject.put(objectType, fields);
-        return fields;
-    }
-   
-    /********************************************************************
-    * @author       Execloud ©
-    * @date         2016-02-20
-    * @description  Function to get object fields by Object name.
-                    Looks up the results in cache before fetching them.        
-    *********************************************************************/
-    public static Map<String, Schema.SObjectField> getFieldsMapByObject(String objectType) {
-        String objectTypeUpperCase = objectType.toUpperCase();
-    
-        if (!fieldsByObject.keySet().contains(objectTypeUpperCase)) {
-            return fetchAllFieldsForObject(objectTypeUpperCase);
-        }
-        
-        return fieldsByObject.get(objectTypeUpperCase);
-    }
-    /********************************************************************
-    * @author       Execloud ©
-    * @date         2016-02-20
-    * @description  Function to get object fields by Object name.
-    *********************************************************************/
-    public static List<String> getfieldsByObject(String objectType) {
-        List<String> lis_fields = new List<String>();
-        Map<String, Schema.SObjectField> mapFields = new Map<String, Schema.SObjectField>();
-
-        mapFields = getFieldsMapByObject(objectType);
-
-        for (String fieldName : mapFields.keySet())
-                lis_fields.add(fieldName);
-        
-        
-        return lis_fields;
-    }
 
     // Added by AES to get the list of subcategories related to recType 
     public static list<string> lstSubCatPerRecT(string recType) {
@@ -658,8 +605,6 @@ public with sharing class Oblix_Utils {
     }
 
     public class CustomException extends Exception {}
-    public class MissingCustomSettingException extends Exception {}
-
 
     public class AssetDetailWrapper {
         public String assetId;
@@ -761,113 +706,7 @@ public with sharing class Oblix_Utils {
     *                                                                               *
     ********************************************************************************/
 
-    /********************************************************************
-    * @author       Execloud ©
-    * @date         2016-02-18
-    * @description  Retrieve all the custom settings value for Oblix_Settings__c
-    *********************************************************************/
-    public static Map<String,Oblix_Settings__c> oblix_settings{
-        get{            
-                if(NULL == oblix_settings){          
-                    oblix_settings = new Map<String,Oblix_Settings__c>();
-                    oblix_settings = Oblix_Settings__c.getAll();
-                    System.debug(LoggingLevel.INFO, '@@ Oblix_Settings__c Custom Settings '+ oblix_settings);                                                
-                }                   
-            return oblix_settings;
-        }
-        set;       
-    }
 
-    // build a map of custom setting description and custom setting - used for mapping picklist values with value__c in the CS
-    public static Map<String,Oblix_Settings__c> map_string_settings{
-        get{
-            if(NULL == map_string_settings){
-                if (NULL == oblix_settings || (NULL != oblix_settings && oblix_settings.isEmpty())){
-                    throw new MissingCustomSettingException('NO_CUSTOM_SETTING_SPECIFIED for oblix_settings');
-                    return null;
-                }
-                map_string_settings = new Map<String,Oblix_Settings__c>();
-                for (Oblix_Settings__c oblix_setting: oblix_settings.values()){
-                    map_string_settings.put(oblix_setting.Label__c, oblix_setting);
-                }
-            }
-
-        return map_string_settings;
-        }
-    }
-
-    public static Decimal getOblixSettingValue(String label_value){
-        Decimal d_result_value = 0;
-        
-        if (!map_string_settings.containsKey(label_value) || 
-            (map_string_settings.containsKey(label_value) && NULL == map_string_settings.get(label_value))){
-            
-            throw new MissingCustomSettingException('NO_CUSTOM_SETTING_SPECIFIED for description: ' + label_value);
-            return null;
-        }
-
-
-        d_result_value = Decimal.valueOf(map_string_settings.get(label_value).value__c);
-        system.debug('## getting setting value: ' + label_value + ' value is: ' + d_result_value);
-        return d_result_value;
-    }
-
-    public static String getOblixSettingLabel(String setting_name){
-        
-        if (!oblix_settings.containsKey(setting_name) || 
-            (oblix_settings.containsKey(setting_name) && NULL == oblix_settings.get(setting_name))){
-            
-            throw new MissingCustomSettingException('NO_CUSTOM_SETTING_SPECIFIED for setting_name: ' + setting_name);
-            return null;
-        }
-        return oblix_settings.get(setting_name).Label__c;
-    }
-
-
-    public static String getOblixSettingAttribute1ByValue(String label_value){
-        
-        if (!map_string_settings.containsKey(label_value) || 
-            (map_string_settings.containsKey(label_value) && NULL == map_string_settings.get(label_value))){
-            
-            throw new MissingCustomSettingException('NO_CUSTOM_SETTING_SPECIFIED for description: ' + label_value);
-            return null;
-        }
-
-
-        return map_string_settings.get(label_value).Attribute_1__c;
-    }
-
-
-    public static List<Oblix_Settings__c> getOblixSettingsListNameStartsWith(String setting_name_prefix){
-        
-        List<Oblix_Settings__c> matchingValues = new List<Oblix_Settings__c>();
-        for (String settingName : oblix_settings.keySet()) {
-            if (settingName.startsWith(setting_name_prefix)) {
-                matchingValues.add(oblix_settings.get(settingName));
-            }
-        }
-        if (matchingValues.size() == 0) {
-            throw new MissingCustomSettingException('NO_CUSTOM_SETTING_SPECIFIED for setting_name_prefix: ' + setting_name_prefix);
-            return null;
-        }
-        return matchingValues;
-    }
-
-
-    public static Map<String, Oblix_Settings__c> getOblixSettingsMapNameStartsWith(String setting_name_prefix){
-        
-        Map<String, Oblix_Settings__c> matchingValues = new Map<String, Oblix_Settings__c>();
-        for (String settingName : oblix_settings.keySet()) {
-            if (settingName.startsWith(setting_name_prefix)) {
-                matchingValues.put(settingName, oblix_settings.get(settingName));
-            }
-        }
-        if (matchingValues.keySet().size() == 0) {
-            throw new MissingCustomSettingException('NO_CUSTOM_SETTING_SPECIFIED for setting_name_prefix: ' + setting_name_prefix);
-            return null;
-        }
-        return matchingValues;
-    }
 
     /********************************************************************************
     *                                                                               *
@@ -875,8 +714,9 @@ public with sharing class Oblix_Utils {
     *                                                                               *
     ********************************************************************************/
 
-    public static final String APPROVAL_PROCESS_NAME = 'Oblix_SOW_Approval_Process_v6';
+    public static final String APPROVAL_PROCESS_NAME = 'Oblix_SOW_Approval_Process_v5';
 
+    public static final String SOW_STATUS_APPROVED_BY_UNILEVER = 'Awaiting Agency Approval';
     public static final String SOW_STATUS_APPROVED_BY_AGENCY = 'Approved';
     public static final String SOW_STATUS_AWAITING_UNILEVER_APPROVAL = 'Awaiting Unilever Approval';
     public static final String SOW_STATUS_AWAITING_AGENCY_APPROVAL = 'Awaiting Agency Approval';
@@ -884,10 +724,6 @@ public with sharing class Oblix_Utils {
     public static final String SOW_STATUS_REJECTED_BY_UNILEVER = 'Returned by Approver';
     public static final String SOW_STATUS_REJECTED_BY_AGENCY = 'Returned by Agency';
     public static final String SOW_STATUS_DRAFT_WITH_UNILEVER = 'Draft - with Unilever';
-    public static final String SOW_STATUS_OPEN_FOR_UPDATES = 'Open for Updates';
-
-    public static final String CAMPAIGN_STATUS_CANCELLED = 'Cancelled';
-    public static final String SWOP_REPORT_FOLDER = 'SWOP Reporting';
 
 
     /*------------------------------RECORD TYPE IDs---------------------------------*/
@@ -902,14 +738,5 @@ public with sharing class Oblix_Utils {
     public static final String USER_PERMISSION_READ_ONLY = 'Read Only';
     public static final String USER_PERMISSION_ACCESS_EDIT = 'Access & Edit';
     public static final String USER_PERMISSION_SUPERUSER = 'Superuser';
-
-    /*------------------------------PERMISSION SET NAMES-----------------------------*/
-    public static final String PERMISSIONSETNAME_UL1 = 'Oblix_SWOP_UL_1_V1';
-    public static final String PERMISSIONSETNAME_UL2 = 'Oblix_SWOP_UL_2_V1';
-    public static final String PERMISSIONSETNAME_UL3 = 'Oblix_SWOP_UL3_4_V1';
-    public static final String PERMISSIONSETNAME_SUPERUSER = 'Oblix_SWOP_Super_User_V1';
-
-    /*------------------------------CUSTOM LABELS------------------------------------*/
-    public static final String OTHER_ASSET_LABEL = 'Other';
 
 }

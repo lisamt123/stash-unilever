@@ -209,17 +209,14 @@ public with sharing class IPM_RolloutPlanTLDSync {
     * @return       NONE
     */
     public void updatedMilestoneTLD( List<IPM_Project__c> projects) {    
-		Map<Id,IPM_Project__c> projIdProjectMap = new Map<Id,IPM_Project__c> {};
+		// removed exception handling as any exceptions/Messages  would be handled at controller 
+        Map<Id,IPM_Project__c> projIdProjectMap = new Map<Id,IPM_Project__c> {};
         for(IPM_Project__c project :projects){
             projIdProjectMap.put(project.id, project);
         }
         List<IPM_Milestone__c> updatedMilestoneList = new List<IPM_Milestone__c> {};
-        for(IPM_Milestone__c ipmMileStone :[Select Id, IPM_Name__c, IPM_Due_Date__c, IPM_Planned_Date__c, IPM_Project__c from IPM_Milestone__c where IPM_Project__c =: projIdProjectMap.keyset()]){
-            IPM_Project__c ipmProject = projIdProjectMap.get(ipmMileStone.IPM_Project__c);
-            ipmMileStone.IPM_Project_Launch_Date__c = ipmProject.IPM_Target_Launch_Dates__c;
-            if(IPM_Utils.TargetLaunchDateShiptoTrade.equals(ipmMileStone.IPM_Name__c) || IPM_ConstantUtils.SHIPTO_TRADE_TLD.equals(ipmMileStone.IPM_Name__c)) {
-            	ipmMileStone.IPM_Planned_Date__c = ipmProject.IPM_Target_Launch_Dates__c;
-            }
+        for(IPM_Milestone__c ipmMileStone :[Select Id, IPM_Due_Date__c, IPM_Planned_Date__c, IPM_Project__c from IPM_Milestone__c where IPM_Project__c =: projIdProjectMap.keyset() and (IPM_Name__c = :IPM_Utils.TargetLaunchDateShiptoTrade or IPM_Name__c = :IPM_ConstantUtils.SHIPTO_TRADE_TLD)]){
+            ipmMileStone.IPM_Planned_Date__c =projIdProjectMap.get(ipmMileStone.IPM_Project__c).IPM_Target_Launch_Dates__c;
             updatedMilestoneList.add(ipmMileStone);
         }
         if(!updatedMilestoneList.isEmpty()){
@@ -259,23 +256,4 @@ public with sharing class IPM_RolloutPlanTLDSync {
             insert emailOut;
         }
     }
-    /*******************************************************************************************************
-    * @description  Method to notify Project Leader that Finance leader has confirmed the TLD date changes in Ideas phase
-    * @param        Map projectId,projectRollout
-    * @return       NONE
-    */    
-    public void notifyProjectFinanceAboutFinanceLeaderConfirmation(Map<Id, IPM_Project_Rollout__c> projIdRollout ){
-        Map<Id,IPM_Project__c> projDetails = new Map<Id,IPM_Project__c>([Select Id, IPM_Project_Leader__r.Email from IPM_Project__c where Id in : projIdRollout.keySet() and IPM_Phase__c = :IPM_ConstantUtils.PHASE_IDEAS and IPM_Project_Type__c = :IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL  limit 50000]);
-            List<IPM_EmailOut_Notification__c> emailOut = new List<IPM_EmailOut_Notification__c>{};
-            for(Id projId : projDetails.keySet()){
-                IPM_EmailOut_Notification__c emailOutNotification = new IPM_EmailOut_Notification__c();    
-                emailOutNotification.To_Address__c = projDetails.get(projId).IPM_Project_Leader__r.Email;
-                emailOutNotification.Project_Name__c = projIdRollout.get(projId).Name;
-                emailOutNotification.MCO_Country_Name__c =  projIdRollout.get(projId).MCO_Name__c;
-                emailOut.add(emailOutNotification);                     
-            }
-            if(!emailOut.isEmpty()){
-                insert emailOut;
-            }               
-    }   
 }

@@ -42,7 +42,7 @@ public with sharing class FAU_ProgramHandler
     Map<String, Id> mRecordTypes = new Map<String, Id> ();
 */
 
-	List<FAU_Participant__c> relatedCompletedParticipants = new List<FAU_Participant__c>();
+    List<FAU_Participant__c> relatedCompletedParticipants = new List<FAU_Participant__c>();
     List<FAU_Participant__c> relatedUpdateParticipants = new List<FAU_Participant__c>();
     
     // Class to implement Chatter Services
@@ -75,16 +75,16 @@ public with sharing class FAU_ProgramHandler
     
     public void bulkAfter()
     {
-    	if(triggerShouldExecute){
+        if(triggerShouldExecute){
             if(Trigger.isUpdate) {
-            	List<FAU_Program__c> completedPrograms = new List<FAU_Program__c>();
-            	for(sObject p : Trigger.new){
-            		FAU_Program__c program = (FAU_Program__c)p;
-            		if(program.FAU_Status__c == 'Completed' && ((FAU_Program__c)Trigger.oldMap.get(program.id)).FAU_Status__c != 'Completed'){
-            			completedPrograms.add(program);
-            		}
-            	}
-            	relatedCompletedParticipants = FAU_ProgramClsSC.getAndCompleteProgramsRelatedParticipants(completedPrograms);
+                List<FAU_Program__c> completedPrograms = new List<FAU_Program__c>();
+                for(sObject p : Trigger.new){
+                    FAU_Program__c program = (FAU_Program__c)p;
+                    if(program.FAU_Status__c == 'Completed' && ((FAU_Program__c)Trigger.oldMap.get(program.id)).FAU_Status__c != 'Completed'){
+                        completedPrograms.add(program);
+                    }
+                }
+                relatedCompletedParticipants = FAU_ProgramClsSC.getAndCompleteProgramsRelatedParticipants(completedPrograms);
 
                 List<FAU_Program__c> updatedParticipantPrograms = new List<FAU_Program__c>();
                 for(sObject p : Trigger.new){
@@ -98,7 +98,7 @@ public with sharing class FAU_ProgramHandler
 
 
             }
-    	}
+        }
     }
         
     public void beforeInsert(SObject so)
@@ -114,46 +114,50 @@ public with sharing class FAU_ProgramHandler
     
     public void beforeUpdate(SObject oldSo, SObject so)
     {
-    	/*System.debug('Entering FAU_ProgramHandler.beforeUpdate'); 
+        /*System.debug('Entering FAU_ProgramHandler.beforeUpdate'); 
         FAU_Program__c oProgramInsert = null;
         if (so.get('FAU_Make_Template__c') == true){
-	        if (so.get('FAU_Status__c') =='Draft'){
-	            oProgramInsert = FAU_ProgramClsSC.createProgramObjects(true, mRecordTypes,
-	                                    			(FAU_Program__c) so, 
-	                                                lModules,  lModulesInsert,
-	                                                lWebinars, lWebinarsInsert,
-	                                                lMilestones, lMilestonesInsert);
+            if (so.get('FAU_Status__c') =='Draft'){
+                oProgramInsert = FAU_ProgramClsSC.createProgramObjects(true, mRecordTypes,
+                                                    (FAU_Program__c) so, 
+                                                    lModules,  lModulesInsert,
+                                                    lWebinars, lWebinarsInsert,
+                                                    lMilestones, lMilestonesInsert);
 
-	    	}else if(so.get('FAU_Status__c') <> 'Draft'){
-	    		oProgramInsert = FAU_ProgramClsSC.createProgramObjects(false,  mRecordTypes,
-	                                    			(FAU_Program__c) so, 
-	                                                lModules,  lModulesInsert,
-	                                                lWebinars, lWebinarsInsert,
-	                                                lMilestones, lMilestonesInsert);
-	    	}
+            }else if(so.get('FAU_Status__c') <> 'Draft'){
+                oProgramInsert = FAU_ProgramClsSC.createProgramObjects(false,  mRecordTypes,
+                                                    (FAU_Program__c) so, 
+                                                    lModules,  lModulesInsert,
+                                                    lWebinars, lWebinarsInsert,
+                                                    lMilestones, lMilestonesInsert);
+            }
 
-	    	System.debug('Entering FAU_ProgramHandler.oProgramInsert:' + oProgramInsert);
-		    if (oProgramInsert <> null){
-		        lProgramInsert.add(oProgramInsert);
-		    }
-	    }*/
+            System.debug('Entering FAU_ProgramHandler.oProgramInsert:' + oProgramInsert);
+            if (oProgramInsert <> null){
+                lProgramInsert.add(oProgramInsert);
+            }
+        }*/
     }
      
+// This Class is implementing ITrigger, So can't remove this Function
 
     public void beforeDelete(SObject so)
     {   
     }
+// This Class is implementing ITrigger, So can't remove this Function
     
     public void afterInsert(SObject so) 
     {
-        if(triggerShouldExecute){
+       /* if(triggerShouldExecute){
             //1.2 lModules.addAll(FAU_ProgramClsSC.addProgramModule((FAU_Program__c)so)); 
-        }
+        }*/
     }
+    // This Class is implementing ITrigger, So can't remove this Function
     
     public void afterUpdate(SObject oldSo, SObject so)
     {
     }
+    // This Class is implementing ITrigger, So can't remove this Function
     
     public void afterDelete(SObject so)
     {
@@ -172,30 +176,30 @@ public with sharing class FAU_ProgramHandler
             
             System.debug('#### FAU_ProgramHandler.andFinally chatterGroups' + chatterGroups.size());
             if(!Trigger.isDelete){
-            	service.commitChatterGroups(chatterGroups, trigger.new);
+                service.commitChatterGroups(chatterGroups, trigger.new);
             }
             
             if(Trigger.isUpdate){
-            	update relatedCompletedParticipants;
+                update relatedCompletedParticipants;
                 update relatedUpdateParticipants;
-            	delete FAU_ProgramClsSC.getChatterGroupMembersForParticipants(relatedCompletedParticipants);
+                delete FAU_ProgramClsSC.getChatterGroupMembersForParticipants(relatedCompletedParticipants);
             }
             /*
             System.debug('Entering FAU_ProgramHandler.lProgramInsert:' + lProgramInsert);
             insert lProgramInsert;
 
             if (lProgramInsert.size()>0){
-            	trigger.new[0].FAU_Program_Template__c = lProgramInsert[0].Id;
+                trigger.new[0].FAU_Program_Template__c = lProgramInsert[0].Id;
             }
 
             for(FAU_Module__c oModulesInsert:lModulesInsert){
-            	oModulesInsert.FAU_Program__c = lProgramInsert[0].Id;
+                oModulesInsert.FAU_Program__c = lProgramInsert[0].Id;
             }
             for(FAU_Webinar__c oWebinarsInsert:lWebinarsInsert){
-            	oWebinarsInsert.FAU_Program_Wave__c = lProgramInsert[0].Id;
+                oWebinarsInsert.FAU_Program_Wave__c = lProgramInsert[0].Id;
             }
             for(FAU_Milestone__c oMilestonesInsert:lMilestonesInsert){
-            	oMilestonesInsert.FAU_Program_Wave__c = lProgramInsert[0].Id;
+                oMilestonesInsert.FAU_Program_Wave__c = lProgramInsert[0].Id;
             }
 
             System.debug('Entering FAU_ProgramHandler.lModulesInsert:' + lModulesInsert);

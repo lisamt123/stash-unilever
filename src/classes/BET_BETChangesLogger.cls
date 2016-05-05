@@ -47,7 +47,7 @@ public class BET_BETChangesLogger {
     Returns: -
     Throws: -
   *************************************************************/
-  public void logChanges(){	
+  public void logChanges(){ 
     Map<Id, List<String>> feedsMap = fillFeeds();
     if(!feedsMap.isEmpty()){
       BET_BETHandlerClsHelper.insertFeeds(feedsMap);
@@ -107,13 +107,13 @@ public class BET_BETChangesLogger {
   *************************************************************/
   private List<String> addDifferences(uw_BET__c oldRecord,uw_BET__c newRecord ){
     List<String> diffs = new List<String>();
-	  addBETDifferences(oldRecord,newRecord,diffs);
-	  addCategoryBrandDifferences(oldRecord,newRecord,diffs);
+      addBETDifferences(oldRecord,newRecord,diffs);
+      addCategoryBrandDifferences(oldRecord,newRecord,diffs);
     return diffs;
   }
   
   private void addBETDifferences(uw_BET__c oldRecord,uw_BET__c newRecord,List<String> diffs){
-  	if(oldRecord.Status__c != newRecord.Status__c){
+    if(oldRecord.Status__c != newRecord.Status__c){
       diffs.add(BET_STATUS_CHANGED+oldRecord.Status__c+BET_TO+newRecord.Status__c);
     }
 
@@ -149,7 +149,7 @@ public class BET_BETChangesLogger {
   }
   
   private void addCategoryBrandDifferences(uw_BET__c oldRecord,uw_BET__c newRecord,List<String> diffs){
-  	if(oldRecord.Category_Group__c != newRecord.Category_Group__c){
+    if(oldRecord.Category_Group__c != newRecord.Category_Group__c){
       diffs.add(BET_CATEGORY_GROUP_CHANGED+categoryGroupsMap.get(oldRecord.Category_Group__c)+BET_TO+categoryGroupsMap.get(newRecord.Category_Group__c));
     }
 

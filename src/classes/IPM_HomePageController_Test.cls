@@ -12,14 +12,13 @@ public class IPM_HomePageController_Test{
     private static final String LOCAL_PROJECTNAME = 'Test Local';
     private static final String REGIONAL_PROJECTNAME = 'Test Regional';
     private static List<IPM_Project__c> lstLocalProjects;
+    private static List<IPM_Project_Document__c> currDocuments;
     private static List<IPM_Project_Document__c> updatedDocument;
-    private static final String PROJ_CREATED='Projects are not created';
+    private static final String PROJ_CREATED='Projects are created';
     private static final String PLANNED_STR='The planned';
     private static Set<Id> iDs ;
-    private static final String FINANCIALS_MISALIGNED = 'Financials are not misaligned';
-    private static final String MILESTONE_CREATED='Milestone is not created';
-    private static final String GLOBAL_PL_USER = 'GLOBAL_PL';
-    private static final String REGIONAL_PL_USER = 'REGIONAL_PL';
+    private static final String FINANCIALS_MISALIGNED = 'Financials misaligned';
+    private static final String MILESTONE_CREATED='Milestone is created';
     /***********************************
     * @Description: Test Data Creation
     * *********************************/
@@ -43,13 +42,12 @@ public class IPM_HomePageController_Test{
             User regionalProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
             
             // Update LastNames to match functionalRoles
-            globalProjectLeader.lastname = GLOBAL_PL_USER;
-            regionalProjectLeader.lastname = REGIONAL_PL_USER;
+            globalProjectLeader.lastname = 'GLOBAL_PL';
+            regionalProjectLeader.lastname = 'REGIONAL_PL';
             
             List<User> userList = new List<User>{globalProjectLeader,regionalProjectLeader};
             update userList;
-            System.assertEquals(2 , [Select count() from User where Id IN (:globalProjectLeader.Id, :regionalProjectLeader.Id) limit 100] , 'Users are not updated successfully.');
-            
+         
             // Create Company Card information(Master Data)
             IPM_Company_Card__c globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
             IPM_Company_Card__c regionalCompanyCard = IPM_TestFactory_Helper.createRegionalCompanyCard(false);
@@ -57,9 +55,9 @@ public class IPM_HomePageController_Test{
             List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard};
             insert companyCardList;
             for(IPM_Company_Card__c eachCompanyCard : companyCardList) {
-              iDs.add(eachCompanyCard.Id);
-            }
-            System.assertEquals(2, [Select count() from IPM_Company_Card__c where id in:iDs],'Company Cards are not created');
+          	  iDs.add(eachCompanyCard.Id);
+         	}
+         	System.assertEquals(2, [Select count() from IPM_Company_Card__c where id in:iDs],'Company Cards are created');
           
             
             // Inserting Master Data whose OWD are set to readOnly/View All    
@@ -89,7 +87,7 @@ public class IPM_HomePageController_Test{
         *  Used for Testing home page alerts
         *  @name projectSetUp
      */
-     private static testmethod void testHomePageAlerts()
+     public static testmethod void testHomePageAlerts()
      {
         iDs = new Set<ID>();
         // Get the newly created Projects from Database. 
@@ -101,18 +99,18 @@ public class IPM_HomePageController_Test{
         User regionalProjectLeader = null;
         
         // Get the list of user's for project leaders.
-        List<User> userList = [Select Id,Name,lastName from User where LastName in(:GLOBAL_PL_USER,:REGIONAL_PL_USER)];
+        List<User> userList = [Select Id,Name,lastName from User where LastName in('GLOBAL_PL','REGIONAL_PL')];
         
         // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
         IPM_TestFactory_Helper.shareMasterProject(userList); 
         
         for(User lUser  :userList)
         {
-            if(lUser.lastName == GLOBAL_PL_USER)
+            if(lUser.lastName == 'GLOBAL_PL')
             {
                 globalProjectLeader = lUser;
             }
-            if(lUser.lastName == REGIONAL_PL_USER)
+            if(lUser.lastName == 'REGIONAL_PL')
             {
                 regionalProjectLeader = lUser;
             }
@@ -136,7 +134,7 @@ public class IPM_HomePageController_Test{
             for(IPM_Project_Rollout__c eachRollout : regionalRolloutList) {
              iDs.add(eachRollout.Id);
             }
-            System.assertEquals(6, [Select count() from IPM_Project_Rollout__c where id in:iDs],'Regional Rollouts are not created');
+            System.assertEquals(6, [Select count() from IPM_Project_Rollout__c where id in:iDs],'Regional Rollouts created');
             
             
             Map<Id,List<IPM_Project_Rollout__c>> projectToRolloutMap = new Map<Id,List<IPM_Project_Rollout__c>>();
@@ -167,28 +165,18 @@ public class IPM_HomePageController_Test{
                 globalProjectIdList.add(project.Id);    
             }
             
-            for(IPM_Project__c project : [Select Id, IPM_GateKeeping_Model__c from IPM_Project__c where Id IN : globalProjectIdList limit 100])
-            {
-                System.assertEquals(IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT , project.IPM_GateKeeping_Model__c, 'Gatekeeping model is not updated properly.');
-            }
-            
             // Initiate Phase Change would result in Rollout Project Creation.
             List<IPM_Project__c> projectListPhaseChange = IPM_TestFactory_Helper.initiateProjectPhaseChange(globalProjectIdList,globalProjectLeader); 
             
             update projectListPhaseChange;
+            
             Test.stopTest();
-            iDs.clear();
-            
-            for(IPM_Project__c project : projectListPhaseChange){
-                iDs.add(project.Id);
-            }
-            for(IPM_Project__c project : [Select Id, IPM_Phase__c from IPM_Project__c where Id In : iDs limit 100])
-                System.assertEquals( IPM_ConstantUtils.PHASE_FEASIBILITY,  project.IPM_Phase__c , 'Project phase has not been updated.');
-            
             
             updatedDocument = new List<IPM_Project_Document__c>();
+            currDocuments= [Select IPM_GateDocuments__c,IPM_Document_Status__c from IPM_Project_Document__c limit 1000];
+            system.equals(currDocuments.size(),4);
         
-            for(IPM_Project_Document__c currDoc:[Select IPM_GateDocuments__c,IPM_Document_Status__c from IPM_Project_Document__c limit 1000])
+            for(IPM_Project_Document__c currDoc:currDocuments)
             {
                 if(currDoc.IPM_GateDocuments__c == IPM_ConstantUtils.CHARTER_GATE){
                 currDoc.IPM_Document_Status__c =IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS;
@@ -196,7 +184,7 @@ public class IPM_HomePageController_Test{
             updatedDocument.add(currDoc);
             }
             update updatedDocument;
-            System.assertEquals(IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS , [Select Id, IPM_Document_Status__c from IPM_Project_Document__c limit 1000][0].IPM_Document_Status__c, 'Project Document Status has not been changed' );
+            System.assertEquals(IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS , [Select Id, IPM_Document_Status__c from IPM_Project_Document__c limit 1000][0].IPM_Document_Status__c, 'Project Document Status changed' );
             
             List<IPM_Project__c> dBRegionalProjects = [Select Id,Name,IPM_Phase__c,IPM_Parent_Project__c from IPM_Project__c where IPMProject_Span__c = 'Regional'];  
             
@@ -222,14 +210,6 @@ public class IPM_HomePageController_Test{
              }  
                 
             update updateMilestoneList;
-            iDs.clear();
-            for(IPM_Milestone__c milestone : updateMilestoneList)
-            {
-                iDs.add(milestone.Id);
-            }
-            for(IPM_Milestone__c milestone : [Select Id, IPM_Due_Date__c from IPM_Milestone__c where Id IN : iDs limit 100])
-                System.assertEquals(System.today()+5 , milestone.IPM_Due_Date__c , 'Milestone due dates are not updated properly.');
-            
             
             IPM_Milestone__c dueDateTodayMilestone = IPM_TestFactory_Helper.createIPMMilestone(dBRegionalProjects[0].Id, false);
             dueDateTodayMilestone.RecordTypeId = recordtypeid;    
@@ -272,30 +252,30 @@ public class IPM_HomePageController_Test{
           
             for(String values:iHp.betMsgFirstReleaseDueDate)
             {
-                system.assert(values.contains(IPM_ConstantUtils.BET_FIRST_RELEASE_MESSAGE_STR1),'Alert is not shown as BET First release date is due in 15 days. ');
+                system.assert(values.contains(IPM_ConstantUtils.BET_FIRST_RELEASE_MESSAGE_STR1),'Alert is shown as BET First release date is due in 15 days. ');
             }
                 
             for(String values:iHp.betMsgFinalReleaseDueDate)
             {
-               system.assert(values.contains(IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR1),'Alert is not shown as BET Final release date is due in 15 days. ');
+               system.assert(values.contains(IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR1),'Alert is shown as BET Final release date is due in 15 days. ');
             }
             
             for(String values:iHp.alertMessageDueDatePast.values())
             {
-               system.assert(values.contains(System.Label.IPM_DUE_DATE_FOR),'Alert is not shown for milestone due date in the past.');
+               system.assert(values.contains(System.Label.IPM_DUE_DATE_FOR),'Alert is shown for milestone due date in the past.');
             }   
                 
             for(String values:iHp.alertMessageDueDateApproaching.values())
             {
-               system.assert(values.contains(IPM_Utils.dueIN),'Alert is not shown for milestone due date is approaching in 21 days.');
+               system.assert(values.contains(IPM_Utils.dueIN),'Alert is shown for milestone due date is approaching in 21 days.');
             }   
                  
             for(String values:iHp.alertMessageDueDateToday.values())
             {
-                system.assert(values.contains(PLANNED_STR),'Alert is not shown for milestone due date is today.');
+                system.assert(values.contains(PLANNED_STR),'Alert is shown for milestone due date is today.');
             }
             
-            System.assert(Integer.valueOf(iHp.getTaskcountValue()) > 0, 'Tasks are not assigned to logged-in user.');
+            System.assert(Integer.valueOf(iHp.getTaskcountValue()) > 0);
        }
      }      
     /**
@@ -304,7 +284,7 @@ public class IPM_HomePageController_Test{
     *  @param : nil
     *  @return : nil 
     */   
-    private static testmethod void testTLDMisalignedBusinessCaseSavedAlerts(){
+    public static testmethod void testTLDMisalignedBusinessCaseSavedAlerts(){
         iDs = new Set<ID>();
         //Creation test user
         platformUser =IPM_TestFactory_Helper.returnPlatformUser();
@@ -332,7 +312,7 @@ public class IPM_HomePageController_Test{
         for(IPM_Project__c eachProj : regionalProjs) {
             iDs.add(eachProj.Id);
         }
-        System.assertEquals(5, [Select count() from IPM_Project__c where id in:iDs],'Regional projects are not created');
+        System.assertEquals(5, [Select count() from IPM_Project__c where id in:iDs],'Regional projects are created');
         
         lstLocalProjects = new List<IPM_Project__c>();
         //Create local projects
@@ -352,12 +332,12 @@ public class IPM_HomePageController_Test{
         for(IPM_Project__c eachProj : lstLocalProjects) {
             iDs.add(eachProj.Id);
         }
-        System.assertEquals(5, [Select count() from IPM_Project__c where id in:iDs],'Local projects are not created');
+        System.assertEquals(5, [Select count() from IPM_Project__c where id in:iDs],'Local projects are created');
         
         Id recordtypeid = null;
-        if(Schema.Sobjecttype.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectMilestones).getRecordTypeId() != null){
-               recordtypeid=Schema.Sobjecttype.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectMilestones).getRecordTypeId();
-        }
+	    if(Schema.Sobjecttype.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectMilestones).getRecordTypeId() != null){
+	           recordtypeid=Schema.Sobjecttype.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectMilestones).getRecordTypeId();
+	    }
         
         IPM_Milestone__c testMilestone = IPM_TestFactory_Helper.createIPMMilestone(regionalProjs[0].Id, false);
         testMilestone.IPM_Due_Date__c =  System.today()+9;
@@ -372,7 +352,7 @@ public class IPM_HomePageController_Test{
         rollout.RecordTypeId = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId();
         rollout.Regional_Project__c =  regionalProjs[0].id;
         insert rollout;
-        System.assertEquals(1, [Select count() from IPM_Project_Rollout__c where id =: rollout.id],'Rollout is not created');
+        System.assertEquals(1, [Select count() from IPM_Project_Rollout__c where id =: rollout.id],'Rollout is created');
         
         Id  financeMasterRecordType = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT).getRecordTypeId();
         IPM_Financial__c testIPMFinancialConsolidated = IPM_TestFactory_Helper.createIPMFinancial(false);
@@ -383,14 +363,14 @@ public class IPM_HomePageController_Test{
         testIPMFinancialConsolidated.RecordTypeId = financeMasterRecordType;
         testIPMFinancialConsolidated.Local_Project__c= lstLocalProjects[0].id;
         insert testIPMFinancialConsolidated;  
-        System.assertEquals(1, [Select count() from IPM_Financial__c where id =: testIPMFinancialConsolidated.id], 'Financial is not created.');
+        System.assertEquals(1, [Select count() from IPM_Financial__c where id =: testIPMFinancialConsolidated.id]);
        
         //Create Financial Year
         IPM_Financial_Year__c testFinancialYear = IPM_TestFactory_Helper.createIPMFinancialYear(false);
-        testFinancialYear.IPM_Financial__c = testIPMFinancialConsolidated.Id;
+		testFinancialYear.IPM_Financial__c = testIPMFinancialConsolidated.Id;
         testFinancialYear.Gross_Profit_Regional__c = 0;
         insert testFinancialYear;
-        System.assertEquals(1, [Select count() from IPM_Financial_Year__c where id =: testFinancialYear.id],'Financial Year is not created');
+        System.assertEquals(1, [Select count() from IPM_Financial_Year__c where id =: testFinancialYear.id],'Financial Year is created');
         
         IPM_HomePageController iHp = new IPM_HomePageController();
         
@@ -415,7 +395,7 @@ public class IPM_HomePageController_Test{
     *  @param : nil
     *  @return : nil
     */  
-    private static testmethod void testUserProfileLeader(){
+    public static testmethod void testUserProfileLeader(){
         
         //Creation test user
         platformUser =IPM_TestFactory_Helper.returnPlatformUser();
@@ -426,8 +406,11 @@ public class IPM_HomePageController_Test{
         userPLProfile.IPM_User__c = userinfo.getuserid();
         userPLProfile.IPM_User_Function__c= IPM_ConstantUtils.TEAM_PROJECT_LEADER;
         insert userPLProfile;
-        System.assertEquals(1, [Select count() from IPM_User_Profile__c where id =: userPLProfile.id],'PL user profile has not been set.');
+        System.assertEquals(1, [Select count() from IPM_User_Profile__c where id =: userPLProfile.id],'PL user profile has been set.');
         
+        IPM_HomePageController iHp = new IPM_HomePageController();
+        iHp.project(); 
+        iHp.bosscard();
         
         }
         test.stopTest();

@@ -1,28 +1,22 @@
-/******************************************** 
-@Author: Cognizant
-@name: IPM_BETHelper_Test
-@CreateDate: 01/06/2015
-@Description: Test class to test IPM_BETHelper  Class.
-@Version: 1.0
-@reference: 
-*********************************************/
 @istest
 class IPM_BETHelper_Test {
-    private final static String Feasibility = IPM_ConstantUtils.PHASE_FEASIBILITY;
-    private final static String Rollout = IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
-    private final static String Local = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
-    private final static String GlobalCompanyCard = IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_GLOBAL;
-    private final static String Completed = IPM_ConstantUtils.JOB_STATUS_COMPLETED;
-    private final static String Regional = IPM_ConstantUtils.COMPANY_CARD_REGIONAL;
-    private final static String FirstRelease = 'First release';
-    private final static String Unreleased = IPM_ConstantUtils.BET_UNRELEASED; 
-    private final static String IPM_ProjectType = 'IPM_ProjectType';
-    private final static String IPM_BET_Search_Test = 'IPM_BET_Search_Test';
-    private final static String FinalRelease = 'Final Release';
-    private final static String MANAGER_ACCESS = IPM_ConstantUtils.BET_MANAGER_ACCESS;
-    private final static String USER_LAST_NAME = 'PLATFORM_USER';
-    private final static String BLANK_STRING = IPM_ConstantUtils.BLANK;
-    private final static String BET_MS_FINAL_RELEASE = IPM_ConstantUtils.BET_MS_FINAL_RELEASE;
+    Static String Feasibility = IPM_ConstantUtils.PHASE_FEASIBILITY;
+    Static String Rollout = IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
+    Static String RCLT = IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT;
+    Static String Local = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
+    Static String MarketReady = IPM_ConstantUtils.PHASE_MARKET_READY;
+    Static String GlobalCompanyCard = IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_GLOBAL;
+    Static String Completed = IPM_ConstantUtils.JOB_STATUS_COMPLETED;
+    Static String Regional = IPM_ConstantUtils.COMPANY_CARD_REGIONAL;
+    Static String FirstRelease = IPM_ConstantUtils.BET_FIRST_RELEASE;
+    Static String Unreleased = IPM_ConstantUtils.BET_UNRELEASED; 
+    Static String BET_MS_FINAL_RELEASE = IPM_ConstantUtils.BET_MS_FINAL_RELEASE;
+    Static String IPM_ProjectType = 'IPM_ProjectType';
+    Static String IPM_BET_Search_Test = 'IPM_BET_Search_Test';
+    Static String FinalRelease = 'Final Release';
+    Static String MANAGER_ACCESS = IPM_ConstantUtils.BET_MANAGER_ACCESS;
+    Static String USER_LAST_NAME = 'PLATFORM_USER';
+    Static String BLANK_STRING = IPM_ConstantUtils.BLANK;
     private final static string TEST_PROJECT00 = 'TestResourcePrj1';
     private final static string TEST_PROJECT01 = 'TestResourcePrj2';
     private final static string TEST_PROJECT02 = 'TestResourcePrj3';
@@ -84,8 +78,6 @@ class IPM_BETHelper_Test {
         insert new List < uw_BET__c > {
             betRecord1, betRecord2
         };
-        
-        System.assertEquals(2,[Select count() from uw_BET__c where Id =:betRecord1.Id OR  Id =:betRecord2.Id ],'Failed to insert BET records!') ;
 
 
         IPM_Project__c parentProj = projectList[0];
@@ -94,9 +86,6 @@ class IPM_BETHelper_Test {
         parentProj.IPM_Project_Name__c = 'testParentProj1';
         parentProj.BET__c = betRecord1.Id;
         insert parentProj;
-        
-        System.assertEquals(1,[Select count() from IPM_Project__c where Id =:parentProj.Id ],'Failed to insert project  record!') ;
-        
 
         list < BET_BETWrapper.MemberRequest > lstMemberRequests = new list < BET_BETWrapper.MemberRequest > ();
 
@@ -136,13 +125,6 @@ class IPM_BETHelper_Test {
             insert new List < IPM_Project__c > {
                 projectList[1], projectList[2], projectList[3], projectList[4]
             };
-            
-            set < Id > projectIds = new set < Id > {
-                projectList[1].Id, projectList[2].Id , projectList[3].Id , projectList[4].Id
-             };
-       
-            
-            System.assertEquals(4 ,[Select count() from IPM_Project__c where Id IN : projectIds ],'Failed to insert project  records!') ;
 
             IPM_Project_Resource__c PrjctResrc1 = IPM_TestFactory_Helper.createIPMProjectResource(projectList[2].id, false);
             IPM_Project_Resource__c PrjctResrc2 = IPM_TestFactory_Helper.createIPMProjectResource(projectList[2].id, false);
@@ -161,13 +143,6 @@ class IPM_BETHelper_Test {
             insert new List < IPM_Project_Resource__c > {
                 PrjctResrc1, PrjctResrc2, PrjctResrc3
             };
-            
-            set < Id > resourceIds = new set < Id > {
-                PrjctResrc1.Id, PrjctResrc2.Id , PrjctResrc3.Id 
-             };
-            
-            System.assertEquals(3 ,[Select count() from IPM_Project_Resource__c where Id IN : resourceIds ],'Failed to insert Projectresource  records!') ;
-            
 
             projectList[5].IPM_Project_Name__c = TEST_PROJECT02;
             projectList[5].IPM_Parent_Project__c = projectList[2].id;
@@ -193,12 +168,6 @@ class IPM_BETHelper_Test {
             insert new List < IPM_Project__c > {
                 projectList[5], projectList[6], projectList[7]
             };
-            
-            set < Id > projectIdsSet = new set < Id > {
-                projectList[5].Id, projectList[6].Id , projectList[7].Id 
-             };
-            
-            System.assertEquals(3 ,[Select count() from IPM_Project__c  where Id IN : projectIdsSet ],'Failed to insert Project   records!') ;
 
         }
         Test.stoptest();
@@ -244,21 +213,17 @@ class IPM_BETHelper_Test {
         }
 
         insert betRecordList;
-        
-        
-        set < Id > betRecordListIds = new set < Id > {
-                betRecordList[0].Id, betRecordList[1].Id , betRecordList[2].Id
-             };
-            
-            System.assertEquals(3 ,[Select count() from uw_BET__c where Id IN : betRecordListIds ],'Failed to insert BET  records!') ;
-        
-        set < String > betNames = new set < String > {
-               TEST_BET02, TEST_BET03, TEST_BET04 
-             };
-             
-        List<uw_BET__c> betRecords =[Select id from uw_BET__c where name IN : betNames order by Name ASC];
-       
-        List < BET_BETWrapper.MemberRequest > lstMemberRequests = new list < BET_BETWrapper.MemberRequest > ();
+
+        uw_BET__c betRecord0 = [Select id from uw_BET__c where name = : TEST_BET02
+        limit 1];
+
+        uw_BET__c betRecord1 = [Select id from uw_BET__c where name = : TEST_BET03
+        limit 1];
+
+        uw_BET__c betRecord2 = [Select id from uw_BET__c where name = : TEST_BET04
+        limit 1];
+
+        list < BET_BETWrapper.MemberRequest > lstMemberRequests = new list < BET_BETWrapper.MemberRequest > ();
 
         IPM_Project__c parentProj = projectList[0];
         parentProj.ownerId = stdUserForBET.id;
@@ -266,35 +231,35 @@ class IPM_BETHelper_Test {
         parentProj.IPM_Project_Name__c = 'testParentProj2';
         insert parentProj;
 
-        System.assertEquals(parentProj.IPM_Project_Name__c , [Select IPM_Project_Name__c from IPM_Project__c where Id=:parentProj.id ].IPM_Project_Name__c, 'Failed to insert Parent Project with correct name .');
+        System.assert(parentProj.id != null, 'Failed to insert Parent Project');
 
-        BET_BETWrapper.MemberRequest member = new BET_BETWrapper.MemberRequest(); 
+        BET_BETWrapper.MemberRequest member = new BET_BETWrapper.MemberRequest();
         member.UserId = stdUserForBET.Id;
         member.AccessLevel = MANAGER_ACCESS;
         lstMemberRequests.add(member);
 
-        BET_AccessService.RequestAccess(lstMemberRequests, betRecords[0].Id, parentProj.Id);
-        BET_AccessService.RequestAccess(lstMemberRequests, betRecords[1].Id, parentProj.Id);
-        BET_AccessService.RequestAccess(lstMemberRequests, betRecords[2].Id, parentProj.Id);
+        BET_AccessService.RequestAccess(lstMemberRequests, betRecord0.Id, parentProj.Id);
+        BET_AccessService.RequestAccess(lstMemberRequests, betRecord1.Id, parentProj.Id);
 
-        System.assertEquals(3,[select count() FROM BET_Member_Request__c where   Project_Id__c = : parentProj.Id  AND ( Brand_Experience_Toolkit__c = : betRecords[0].Id OR  Brand_Experience_Toolkit__c =: betRecords[1].Id  OR Brand_Experience_Toolkit__c =: betRecords[2].Id) ] );
-        
+
+        BET_AccessService.RequestAccess(lstMemberRequests, betRecord2.Id, parentProj.Id);
+
         System.runAs(stdUserForBET) {
-            projectList[1].BET__c = betRecords[1].Id;
+            projectList[1].BET__c = betRecord1.Id;
             projectList[1].IPM_Project_Type__c = Rollout;
             projectList[1].IPMProject_Span__c = Regional;
             projectList[1].IPM_Project_Job_Status__c = Completed;
             projectList[1].IPM_Project_Name__c = TEST_PROJECT06;
             projectList[1].IPM_Parent_Project__c = parentProj.id;
 
-            projectList[2].BET__c = betRecords[2].Id;
+            projectList[2].BET__c = betRecord2.Id;
             projectList[2].IPM_Project_Type__c = Rollout;
             projectList[2].IPMProject_Span__c = Regional;
             projectList[2].IPM_Project_Job_Status__c = Completed;
             projectList[2].IPM_Project_Name__c = TEST_PROJECT07;
             projectList[2].IPM_Parent_Project__c = parentProj.id;
 
-            projectList[3].BET__c = betRecords[0].Id;
+            projectList[3].BET__c = betRecord0.Id;
             projectList[3].IPM_Project_Type__c = Rollout;
             projectList[3].IPMProject_Span__c = Regional;
             projectList[3].IPM_Project_Job_Status__c = Completed;
@@ -304,15 +269,8 @@ class IPM_BETHelper_Test {
             insert new List < IPM_Project__c > {
                 projectList[1], projectList[2], projectList[3]
             };
-			
-			set < Id > projIdSet = new set < Id > {
-                projectList[1].Id, projectList[2].Id , projectList[3].Id
-             };
-            
-            
-            System.assertEquals(3 ,[Select count() from IPM_Project__c where Id IN : projIdSet ],'Failed to insert project  records.') ;
 
-            projectList[4].BET__c = betRecords[1].Id;
+            projectList[4].BET__c = betRecord1.Id;
             projectList[4].IPM_Project_Name__c = TEST_PROJECT09;
             projectList[4].IPMProject_Span__c = Regional;
             projectList[4].IPM_Parent_Project__c = projectList[1].id;
@@ -323,7 +281,7 @@ class IPM_BETHelper_Test {
 
             insert projectList[4];
 
-            Test.stoptest();
+            test.stoptest();
 
         }
 
@@ -348,8 +306,6 @@ class IPM_BETHelper_Test {
 
             proj1.BET__c = null;
             update proj1;
-            
-            System.assertEquals(null, [Select BET__c from  IPM_Project__c where Id =:proj1.Id].BET__c , 'Failed to clear BET on project record');
 
             Map < string, ipm_project__c > mapProjBET = new Map < string, ipm_project__c > ();
 
@@ -390,9 +346,6 @@ class IPM_BETHelper_Test {
         update new List < IPM_Project__c > {
             proj0, proj1
         };
-		
-		System.assertEquals(2,[Select count() from IPM_Project__c  where ( ( Id =:proj0.Id AND BET__c =:betRecord1.Id ) OR ( Id =:proj1.Id AND BET__c =:betRecord2.Id)) ],'Failed to update project records.') ;
-
 
         System.runAs(testRunningUser) {
 
@@ -444,8 +397,6 @@ class IPM_BETHelper_Test {
         limit 1];
         betRecord2.Status__c = FirstRelease;
         update betRecord2;
-        
-        System.assertEquals(FirstRelease , [Select Status__c from  uw_BET__c where  Id=: betRecord2.Id ].Status__c, 'Failed to update BET status') ;
 
         system.runAs(testRunningUser) {
 
@@ -508,19 +459,19 @@ class IPM_BETHelper_Test {
         User testRunningUser = [Select Id, LastName from User where LastName = : USER_LAST_NAME
         limit 1];
 
-        uw_BET__c betRecord1 = [Select id, name, Status__c, FinalReleaseDate__c, Final_Release_Due_Date__c, FirstReleaseDate__c, First_Release_Due_Date__c, Is_Archived__c, OwnerId, Category_Group__c, Product_Category__c, Brand_Position__c, Product_Brand__c from uw_BET__c where name = : TEST_BET01
+        uw_BET__c betRecord1 = [Select id, name, Status__c, FinalReleaseDate__c, Final_Release_Due_Date__c, FirstReleaseDate__c, First_Release_Due_Date__c, Is_Archived__c, OwnerId, Category_Group__c, Product_Category__c, Brand_Position__c, Product_Brand__c from uw_BET__c where name = : TEST_BET00
         limit 1];
-        
+        uw_BET__c betRecord2 = [Select id, name, Status__c, FinalReleaseDate__c, Final_Release_Due_Date__c, FirstReleaseDate__c, First_Release_Due_Date__c, Is_Archived__c, OwnerId, Category_Group__c, Product_Category__c, Brand_Position__c, Product_Brand__c from uw_BET__c where name = : TEST_BET01
+        limit 1];
         IPM_Project_Resource__c PrjctResrc1 = [select IPM_User__c from IPM_Project_Resource__c where IPM_Role_Type__c = :IPM_Role_BD
         LIMIT 1];
-        
-        System.runAs(testRunningUser) { 
+        System.runAs(testRunningUser) {
 
             Test.StartTest();
-            IPM_BETHelper.sendBETAccessRequestonFirstRelease(betRecord1.Id);  
+            IPM_BETHelper.sendBETAccessRequestonFirstRelease(betRecord2.Id);
             Test.StopTest();
 
-            System.assertEquals([Select UserId__c from BET_Member_Request__c where Brand_Experience_Toolkit__c = : betRecord1.Id limit 1].UserId__c, PrjctResrc1.IPM_User__c, 'Failed to send Regional/Local Rollout Leader Access Request to BET');
+            System.assertEquals([Select UserId__c from BET_Member_Request__c where Brand_Experience_Toolkit__c = : betRecord2.Id limit 1].UserId__c, PrjctResrc1.IPM_User__c, 'Failed to send Regional/Local Rollout Leader Access Request to BET');
         }
     }
 
@@ -547,7 +498,6 @@ class IPM_BETHelper_Test {
             Test.StopTest();
         }
         BET_Member_Request__c betMember = [Select Project_Id__c, Bet_owner__c from BET_Member_Request__c where Project_Id__c = : proj0.Id limit 1];
-        
         system.assertEquals(betMember.Project_Id__c, proj0.Id, 'Failed to update project Id on BET Member');
 
         system.assertEquals(betMember.Bet_owner__c, BET_BETService.getBet(betRecord1.Id).BetOwner, 'Failed to update BET owner');
@@ -614,12 +564,6 @@ class IPM_BETHelper_Test {
             insert new List < IPM_Project_Resource__c > {
                 PrjctResrc1, PrjctResrc2, PrjctResrc3, PrjctResrc4, PrjctResrc5, PrjctResrc6
             };
-			
-			set < Id > resourceId = new set < Id > {
-             PrjctResrc1.Id , PrjctResrc2.Id , PrjctResrc3.Id , PrjctResrc4.Id , PrjctResrc5.Id , PrjctResrc6.Id 
-            };
-			
-			System.assertEquals(6,[Select count() from IPM_Project_Resource__c  where Id IN : resourceId] ,'Failed to insert project resources.');
 
 
             mapProjResources.put(mapProjId.get(TEST_PROJECT09), new Set < IPM_Project_Resource__c > {
@@ -669,8 +613,6 @@ class IPM_BETHelper_Test {
         limit 1];
         betRecord1.Status__c = 'Unreleased';
         update betRecord1;
-		
-		System.assertEquals( betRecord1.Status__c ,[Select Status__c from uw_BET__c where Id =: betRecord1.Id ].Status__c,'Failed to update BET record');
 
         system.runAs(testRunningUser) {
 
@@ -690,7 +632,6 @@ class IPM_BETHelper_Test {
             IPM_BETHelper.updatePhaseBETMSFinalRelease(betRecord1.Id);
 
             System.assertEquals([Select IPM_Phase__c from IPM_Milestone__c where Id = : IPMsam1[0].id OR Id = : IPMsam1[1].id limit 1].IPM_Phase__c, proj0.IPM_Phase__c, 'Failed to update milestone phase');
-            
             Test.StopTest();
         }
     }
@@ -720,8 +661,6 @@ class IPM_BETHelper_Test {
 
         betRecord1.IPM_Project__c = proj0.id;
         update betRecord1;
-		
-		System.assertEquals(proj0.id ,[Select  IPM_Project__c from uw_BET__c where  Id =:betRecord1.Id].IPM_Project__c ,'Failed to update BET ');
 
         System.runAs(testRunningUser) {
 
@@ -744,31 +683,8 @@ class IPM_BETHelper_Test {
             });
 
             Test.StopTest();
-            
-			System.assertEquals(2,[Select  count()  from IPM_Project__c where  BET__c =:betRecord1.Id AND (Id=:proj0.Id OR Id=:proj1.Id)] , 'Failed to update project records . ');
-            
+
             System.assertEquals(BET_BETService.getBet(proj0.BET__c).targetLaunchDate, proj0.IPM_Target_Launch_Dates__c, 'Failed to send updates to BET on Project update in IPM');
         }
     }
-    
-    //test Method to  test updation of  bet on project after phase change 
-    static testMethod void testupdateBETlinktoProject() {
-    	
-        User testRunningUser = [Select Id, LastName from User where LastName = : USER_LAST_NAME  limit 1];
-
-        uw_BET__c betRecord1 = [Select Id from uw_BET__c where name = : TEST_BET02  limit 1];
-        
-        IPM_Project__c proj1 = [Select Id, BET__c from IPM_Project__c where IPM_Project_Name__c = : TEST_PROJECT06  limit 1];   
-            
-             System.runAs(testRunningUser) {
-             Test.StartTest();
-             IPM_BETHelper.updateBETlinktoProject(betRecord1.Id,proj1.Id);  
-             Test.StopTest();
-             }
-             
-        System.assertEquals([Select BET__c from IPM_Project__c where Id =:proj1.Id ].BET__c,betRecord1.id,'Failed to update BET on project' ); 
-      
-    }
-    
-    
 }

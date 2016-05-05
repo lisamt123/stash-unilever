@@ -6,13 +6,17 @@
 @isTest
 private class IPM_ProjectSetUpController_Test {
     //*@Description: Object Variable decleration 
-    private static Map<Id,IPM_Company_Card__c> companyCardMap;
-    private static List<IPM_User_Profile__c> userProfileList;
+    public static Map<Id,IPM_Company_Card__c> companyCardMap;
+    public static List<IPM_User_Profile__c> userProfileList;
+    //public static List<IPM_Project_Resource__c> ipmProjectResourcex;
+    public static List<IPM_ProjectMetadata__c> projectMetadata;
     public static List<IPM_Project__c> projectDependents;
     public static IPM_Project__c projectWithOutBoss;
+    public static IPM_Bosscard__c bosscard;
     public static MDO_BrandPositions__c mdoBrandPositions;
     public static User userInitialize; 
     public static IPM_Market_Cluster_Short_Names__c marketClusterName;
+    //public static IPM_Project_Rollout__c childProject;
     public static IPM_ProjectSetUpController  sic;
     /**************************************************
     * @description : Master data 
@@ -27,10 +31,11 @@ private class IPM_ProjectSetUpController_Test {
         List<User>plUserList=new List<User>();
         plUserList.add(userInitialize);
         //initializing the lists
+        projectMetadata = new List<IPM_ProjectMetadata__c>();
         companyCardMap = new Map<Id,IPM_Company_Card__c>();
         userProfileList = new List<IPM_User_Profile__c>();
         //Insert Custom Setting of Project Metadata
-        IPM_TestFactory_Helper.createIPMProjectMetadata();
+        projectMetadata = IPM_TestFactory_Helper.createIPMProjectMetadata();
         //insert custom setting of IPM_Market_Cluster_Short_Names__c
         marketClusterName=IPM_TestFactory_Helper.createMarketshortName(false);
         insert marketClusterName;
@@ -180,12 +185,7 @@ private class IPM_ProjectSetUpController_Test {
             sic.projectMetadata.IPM_FastTrackApplicable__c=false;
             sic.projectMetadata.IPM_WhiteSpaceApplicable__c=false;
             System.assertEquals(sic.project.IPM_White_Space_Project__c,false);    
-            System.assertEquals(sic.project.IPM_Fast_Track_Project__c,false);  
-            
-            if(sic.project.IPM_GateKeepingModel__c.equals(IPM_Utils.GATE_KEEPING_MODEL_1) || sic.project.IPM_GateKeepingModel__c.equals(IPM_Utils.GATE_KEEPING_MODEL_2))
-            	{
-            		System.assertEquals(sic.project.IPM_Approver_of_Charter__c, sic.projectMetadata.IPM_DefaultCharterQuestionAnswer__c);
-            	} 
+            System.assertEquals(sic.project.IPM_Fast_Track_Project__c,false);    
 			sic.processProjectSave();
         }
         

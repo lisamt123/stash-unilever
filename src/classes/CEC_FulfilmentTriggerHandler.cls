@@ -45,8 +45,11 @@ This method is entry point for the actions to be executed before a cec_Fulfilmen
         //fulfilmentHelper.refundApprovalCheck(fulfilmentList,fulfilmentOldMap);
         fulfilmentHelper.deleteFulfilmentEnclosure(fulfilmentList,fulfilmentOldMap);
         fulfilmentHelper.upsertFulfilmentEnclosure(fulfilmentList,fulfilmentOldMap);
+        fulfilmentHelper.convertRefundValueToWords(fulfilmentList,fulfilmentOldMap);
         
-    }     
+    }   
+   
+    
     public void afterInsert(List<cec_Fulfilment__c> fulfilmentList){
         
         

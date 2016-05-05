@@ -18,7 +18,7 @@
         </head>
 
 
-        <apex:actionFunction oncomplete="$.unblockUI()" name="refreshActivitySelection" reRender="agencyDepartment,dedicatedAgencyDepartment,selectedRole,rate,RoundedRate,errMsg,other_pane,addUpdateButton,addResourceUpdateButton,dedicatedSelectedRole,dedicatedRate,hours" action="{!refreshActivitySelection}" >
+        <apex:actionFunction oncomplete="$.unblockUI()" name="refreshActivitySelection" reRender="agencyDepartment,dedicatedAgencyDepartment,selectedRole,rate,errMsg,other_pane,addUpdateButton,addResourceUpdateButton,dedicatedSelectedRole,dedicatedRate,hours" action="{!refreshActivitySelection}" >
         
             <apex:param name="selectedTab" assignTo="{!selectedTab}" value="" />
         </apex:actionFunction>  
@@ -75,7 +75,7 @@
                 <div class="header_divider_vertical"></div>
                 <div class="header_panel_text">
                     <h2>Hi  {!$User.FirstName} {!$User.LastName }, Welcome to SWOP the Scope of Work Online Planner</h2>
-                    <p><a href="{!URLFOR($Page.oblix_sowmain)}">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="{!URLFOR($Page.oblix_sowmaindetail)}?sowId={!marketing_SOW.Id}">{!marketing_SOW.Name}</a>&nbsp;<span>&#9658;</span>&nbsp;Add non-campaign items
+                    <p><a href="/apex/oblix_sowmain">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="/apex/oblix_sowmaindetail?sowId={!marketing_SOW.Id}">{!marketing_SOW.Name}</a>&nbsp;<span>&#9658;</span>&nbsp;Add non-campaign items
                     </p>
                 </div>
                 <apex:commandButton styleClass="btn btn-xs pull-right btn_cross btn_exit_swop" action="{!exitSwop}" value="DONE FOR TODAY? EXIT SWOP">
@@ -174,12 +174,10 @@
                                 </div>
                                 <div class="col-lg-8 non-campaign_hourly_rate_section">
                                     <p>Hourly rate €
-                                        <apex:outputText value="{0, number,###,###,##0}" id="RoundedRate">
+                                        <apex:outputText value="{0, number,###,###,##0}" id="rate">
                                             <apex:param value="{!VALUE(activity.hourlyRate)}"/>
                                         </apex:outputText>
-                                        <apex:outputText value="{!activity.hourlyRate}" id="rate" style="display:none;"/>
-                                        <!-- <div id="rate" style="display:none;">{!VALUE(activity.hourlyRate)}</div> -->
-                                        <apex:input type="number" styleClass="hourly_rate_box" html-min="0" html-step="1" value="{!activity.hoursSelected}"  disabled="{!IF(activity.valVisible==false,false,false)}" id="hoursSelected" onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);" onkeypress="return event.charCode >= 48 && event.charCode <= 57"/>
+                                        <apex:input type="number" styleClass="hourly_rate_box" html-min="0" value="{!activity.hoursSelected}" onchange="if(!isNaN(parseInt($('.rateclass').text()))){ $('.rslt').text(Math.round(($(this).val()*parseFloat($('.rateclass').text()))+' '));formatNumber ($('.rslt'));}" disabled="{!IF(activity.valVisible==false,false,false)}" id="hoursSelected" onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);" />
                                         <!--input type="number" class="hourly_rate_box" name="hourlyRate" /-->hours
                                         <!--button class="btn btn-primary btn_plus btn_asset_add" onclick="addToActivitySelectionMap();">ADD</button-->
                                         <apex:outputPanel id="addUpdateButton">
@@ -212,13 +210,13 @@
                                                 <tr >
                                                     <th style="display:none;" id="idColumn_{!activitySelectionMap[eachActivity].key}" >{!activitySelectionMap[eachActivity].key}</th>
                                                     <th style="display:none;" id="idColumn_{!activitySelectionMap[eachActivity].activityId}">{!activitySelectionMap[eachActivity].activityId}</th>
-                                                    <td onclick="setActivityInputFieldsForSelectedItem('{!activitySelectionMap[eachActivity].selectedActivity}', '{!activitySelectionMap[eachActivity].selectedCountryname}', '{!activitySelectionMap[eachActivity].selectedAgencyDepartment}', '{!activitySelectionMap[eachActivity].name}' ,'{!activitySelectionMap[eachActivity].selectedRole}', {!activitySelectionMap[eachActivity].hoursSelected}, {!activitySelectionMap[eachActivity].hourlyRate});">{!activitySelectionMap[eachActivity].selectedActivity}</td>
-                                                    <td onclick="setActivityInputFieldsForSelectedItem('{!activitySelectionMap[eachActivity].selectedActivity}', '{!activitySelectionMap[eachActivity].selectedCountryname}', '{!activitySelectionMap[eachActivity].selectedAgencyDepartment}', '{!activitySelectionMap[eachActivity].name}' ,'{!activitySelectionMap[eachActivity].selectedRole}', {!activitySelectionMap[eachActivity].hoursSelected}, {!activitySelectionMap[eachActivity].hourlyRate});">{!activitySelectionMap[eachActivity].selectedCountryname}</td>
-                                                    <td onclick="setActivityInputFieldsForSelectedItem('{!activitySelectionMap[eachActivity].selectedActivity}', '{!activitySelectionMap[eachActivity].selectedCountryname}', '{!activitySelectionMap[eachActivity].selectedAgencyDepartment}', '{!activitySelectionMap[eachActivity].name}' ,'{!activitySelectionMap[eachActivity].selectedRole}', {!activitySelectionMap[eachActivity].hoursSelected}, {!activitySelectionMap[eachActivity].hourlyRate});">{!activitySelectionMap[eachActivity].selectedAgencyDepartment}</td>
-                                                    <td onclick="setActivityInputFieldsForSelectedItem('{!activitySelectionMap[eachActivity].selectedActivity}', '{!activitySelectionMap[eachActivity].selectedCountryname}', '{!activitySelectionMap[eachActivity].selectedAgencyDepartment}', '{!activitySelectionMap[eachActivity].name}' ,'{!activitySelectionMap[eachActivity].selectedRole}', {!activitySelectionMap[eachActivity].hoursSelected}, {!activitySelectionMap[eachActivity].hourlyRate});">{!activitySelectionMap[eachActivity].selectedRole}</td>
-                                                    <td onclick="setActivityInputFieldsForSelectedItem('{!activitySelectionMap[eachActivity].selectedActivity}', '{!activitySelectionMap[eachActivity].selectedCountryname}', '{!activitySelectionMap[eachActivity].selectedAgencyDepartment}', '{!activitySelectionMap[eachActivity].name}' ,'{!activitySelectionMap[eachActivity].selectedRole}', {!activitySelectionMap[eachActivity].hoursSelected}, {!activitySelectionMap[eachActivity].hourlyRate});">{!activitySelectionMap[eachActivity].roundedRate}</td>
-                                                    <td onclick="setActivityInputFieldsForSelectedItem('{!activitySelectionMap[eachActivity].selectedActivity}', '{!activitySelectionMap[eachActivity].selectedCountryname}', '{!activitySelectionMap[eachActivity].selectedAgencyDepartment}', '{!activitySelectionMap[eachActivity].name}' ,'{!activitySelectionMap[eachActivity].selectedRole}', {!activitySelectionMap[eachActivity].hoursSelected}, {!activitySelectionMap[eachActivity].hourlyRate});">{!activitySelectionMap[eachActivity].hoursSelected}</td>
-                                                    <td onclick="setActivityInputFieldsForSelectedItem('{!activitySelectionMap[eachActivity].selectedActivity}', '{!activitySelectionMap[eachActivity].selectedCountryname}', '{!activitySelectionMap[eachActivity].selectedAgencyDepartment}', '{!activitySelectionMap[eachActivity].name}' ,'{!activitySelectionMap[eachActivity].selectedRole}', {!activitySelectionMap[eachActivity].hoursSelected}, {!activitySelectionMap[eachActivity].hourlyRate});">
+                                                    <td onclick="setActivityInputFieldsForSelectedItem('{!activitySelectionMap[eachActivity].selectedActivity}', '{!activitySelectionMap[eachActivity].selectedCountryname}', '{!activitySelectionMap[eachActivity].selectedAgencyDepartment}', '' ,'{!activitySelectionMap[eachActivity].selectedRole}', {!activitySelectionMap[eachActivity].hoursSelected}, {!activitySelectionMap[eachActivity].hourlyRate});">{!activitySelectionMap[eachActivity].selectedActivity}</td>
+                                                    <td onclick="setActivityInputFieldsForSelectedItem('{!activitySelectionMap[eachActivity].selectedActivity}', '{!activitySelectionMap[eachActivity].selectedCountryname}', '{!activitySelectionMap[eachActivity].selectedAgencyDepartment}', '' ,'{!activitySelectionMap[eachActivity].selectedRole}', {!activitySelectionMap[eachActivity].hoursSelected}, {!activitySelectionMap[eachActivity].hourlyRate});">{!activitySelectionMap[eachActivity].selectedCountryname}</td>
+                                                    <td onclick="setActivityInputFieldsForSelectedItem('{!activitySelectionMap[eachActivity].selectedActivity}', '{!activitySelectionMap[eachActivity].selectedCountryname}', '{!activitySelectionMap[eachActivity].selectedAgencyDepartment}', '' ,'{!activitySelectionMap[eachActivity].selectedRole}', {!activitySelectionMap[eachActivity].hoursSelected}, {!activitySelectionMap[eachActivity].hourlyRate});">{!activitySelectionMap[eachActivity].selectedAgencyDepartment}</td>
+                                                    <td onclick="setActivityInputFieldsForSelectedItem('{!activitySelectionMap[eachActivity].selectedActivity}', '{!activitySelectionMap[eachActivity].selectedCountryname}', '{!activitySelectionMap[eachActivity].selectedAgencyDepartment}', '' ,'{!activitySelectionMap[eachActivity].selectedRole}', {!activitySelectionMap[eachActivity].hoursSelected}, {!activitySelectionMap[eachActivity].hourlyRate});">{!activitySelectionMap[eachActivity].selectedRole}</td>
+                                                    <td onclick="setActivityInputFieldsForSelectedItem('{!activitySelectionMap[eachActivity].selectedActivity}', '{!activitySelectionMap[eachActivity].selectedCountryname}', '{!activitySelectionMap[eachActivity].selectedAgencyDepartment}', '' ,'{!activitySelectionMap[eachActivity].selectedRole}', {!activitySelectionMap[eachActivity].hoursSelected}, {!activitySelectionMap[eachActivity].hourlyRate});">{!activitySelectionMap[eachActivity].hourlyRate}</td>
+                                                    <td onclick="setActivityInputFieldsForSelectedItem('{!activitySelectionMap[eachActivity].selectedActivity}', '{!activitySelectionMap[eachActivity].selectedCountryname}', '{!activitySelectionMap[eachActivity].selectedAgencyDepartment}', '' ,'{!activitySelectionMap[eachActivity].selectedRole}', {!activitySelectionMap[eachActivity].hoursSelected}, {!activitySelectionMap[eachActivity].hourlyRate});">{!activitySelectionMap[eachActivity].hoursSelected}</td>
+                                                    <td onclick="setActivityInputFieldsForSelectedItem('{!activitySelectionMap[eachActivity].selectedActivity}', '{!activitySelectionMap[eachActivity].selectedCountryname}', '{!activitySelectionMap[eachActivity].selectedAgencyDepartment}', '' ,'{!activitySelectionMap[eachActivity].selectedRole}', {!activitySelectionMap[eachActivity].hoursSelected}, {!activitySelectionMap[eachActivity].hourlyRate});">
                                                         <apex:outputText value="{0, number,###,###,##0}"> 
                                                             <apex:param value="{!activitySelectionMap[eachActivity].totalAmount}"/>
                                                         </apex:outputText>
@@ -273,7 +271,7 @@
                                                 <apex:param value="{!VALUE(resource.hourlyRate)}" />
                                             </apex:outputText>
                                             <!--apex:input type="number" styleClass="hourly_rate_box" html-min="0" value="{!resource.hoursSelected}" onchange="if(!isNaN(parseInt($('.rateclass').text()))){ $('.rslt').text(Math.round(($(this).val()*parseFloat($('.rateclass').text()))+' '));formatNumber ($('.rslt'));}" disabled="{!IF(resource.valVisible==false,false,false)}" id="dedicatedHoursSelected" onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);" /-->&nbsp;&nbsp;
-                                            <apex:input type="number" styleclass="prcentt input_init" html-min="0" html-max="100" html-step="1" value="{!resource.hoursSelected}"  style="width:40px;" id="prcent"   onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);  if($(this).val()>100)  $(this).val(100);  " onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+                                            <apex:input type="number" styleclass="prcentt input_init" html-min="0" html-max="100" value="{!resource.hoursSelected}"  style="width:40px;" onchange="if(!isNaN(parseInt($('.rateclass1').text()))){ $('.rslt1').text(Math.round($(this).val()/100*parseFloat($('.rateclass1').text()).toFixed(2))); formatNumber ($('.rslt1'));}" id="prcent"   onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);  if($(this).val()>100)  $(this).val(100);  " />
                                             <!--input type="number" class="hourly_rate_box" name="hourlyRate" /-->%
                                             
                                             <!--button class="btn btn-primary btn_plus btn_asset_add" onclick="addToActivitySelectionMap();">ADD</button-->
@@ -329,6 +327,7 @@
                     </apex:outputPanel>
                 </div>
             </div>
+
         </div>
     </apex:form>
 </apex:page>

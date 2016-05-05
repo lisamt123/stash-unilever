@@ -1,7 +1,7 @@
 <apex:page showHeader="false" docType="html-5.0" sidebar="false" controller="Oblix_CampaignSummaryController" standardStylesheets="true" action="{!checkUserHasPermissionToSOW}">
     <apex:composition template="Oblix_OuterPageTemplate">
         <apex:define name="top_breadcrumb">
-            <a href="{!URLFOR($Page.oblix_sowmain)}">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="{!URLFOR($Page.oblix_sowmaindetail)}?sowId={!selected_sow.Id}">{!selected_sow.Name}</a>&nbsp;<span>&#9658;</span>&nbsp;{!selected_project.Name}
+            <a href="/apex/oblix_sowmain">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="/apex/oblix_sowmaindetail?sowId={!selected_sow.Id}">{!selected_sow.Name}</a>&nbsp;<span>&#9658;</span>&nbsp;{!selected_project.Name}
         </apex:define>
 
         <apex:define name="header_text">
@@ -10,177 +10,50 @@
 
         <apex:define name="top_option_links">
             <apex:outputPanel rendered="{!IF(can_edit_campaign,true,false)}">
-                <apex:outputLink value="/apex/Oblix_CampaignCreate?projectId={!selected_project.Id}">Edit Campaign</apex:outputLink>&nbsp;&nbsp;|&nbsp;&nbsp;
+                <apex:outputLink value="/apex/Oblix_CampaignCreate?projectId={!selected_project.Id}" >Edit Campaign</apex:outputLink>&nbsp;&nbsp;|&nbsp;&nbsp;
             </apex:outputPanel>
             <apex:outputPanel rendered="{!IF(can_edit_campaign,true,false)}">
-                <!-- <button class="btn btn-danger btn-xs create_SOW_button btn_check btn_submit_approval" data-toggle="modal" data-target="#cancelCampaign">Clone Campaign</button>&nbsp;&nbsp;|&nbsp;&nbsp; -->
-                <apex:outputLink value="/apex/Oblix_CampaignCreate?projectId={!selected_project.Id}&clone=true">Clone Campaign</apex:outputLink>&nbsp;&nbsp;|&nbsp;&nbsp;
+                <a href="">Clone Campaign</a>&nbsp;&nbsp;|&nbsp;&nbsp;
             </apex:outputPanel>
             <apex:outputPanel rendered="{!IF(can_edit_campaign,true,false)}">
-                <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#cancelCampaign">Cancel Campaign</button> -->
-                <a href="#" data-toggle="modal" data-target="#cancelCampaignModal" onClick="refreshPopUpStageIdentifier();">Cancel Campaign</a>
-                <!-- <a href="#" onclick="if (confirm('are you sure you want to delete this campaign?')){deleteCampaign();blockme();}">Cancel Campaign</a> -->
+                <a href="#" onclick="if (confirm('are you sure you want to delete this campaign?')){deleteCampaign();blockme();}">Delete Campaign</a>
             </apex:outputPanel>
-            <apex:actionFunction action="{!refreshPopUpStageIdentifier}" name="refreshPopUpStageIdentifier" rerender="cancel_campaign_campaign_stage_component, campaign_stage_component_adjust_fee, calculatedFeePanel, adjustmentFeePanel"></apex:actionFunction>
         </apex:define>
+
         <apex:define name="top_right_panel">
                     <table class="SOW_header_value_summary">
                         <tr>
                             <td rowspan="2">
                                 <apex:outputPanel rendered="{!can_adjust_fee}">  
-                                    <button type="button" class="btn btn-danger btn-xs create_SOW_button btn_chevron btn_adjust" data-toggle="modal" data-target="#adjustFeeModal"  onClick="refreshPopUpStageIdentifier();">ADJUST %</button>
+                                    <button type="button" class="btn btn-danger btn-xs create_SOW_button btn_chevron btn_adjust" data-toggle="modal" data-target="#adjustFeeModal">ADJUST %</button>  
                                 </apex:outputPanel>  
                             </td>
                             <td class="SOW_header_value_title">Campaign Fees Total</td>
                             <td class="SOW_header_value">
-                                <h2>
-                                    <apex:outputText value="€ {0, number,###,###,##0}" rendered="{!can_see_financial_fields}">
+                                <h2>€
+                                    <apex:outputText value="{0, number,###,###,##0}">
                                         <apex:param value="{!stage_identifier.sow_project_in_scope.Campaign_Fees_Total__c}" />
                                     </apex:outputText>
-                                    <apex:outputText value=" --- " rendered="{!can_see_financial_fields == false}"/>
                                 </h2>
                             </td>
                         </tr>
                         <tr>
                             <td class="SOW_header_value_subtitle">Fees to be Paid in Current FY</td>
                             <td class="SOW_header_value_subvalue">
-                                    <apex:outputText value="€ {0, number,###,###,##0}" rendered="{!can_see_financial_fields}">
+                                    €<apex:outputText value="{0, number,###,###,##0}">
                                         <apex:param value="{!stage_identifier.i_fees_for_this_financial_year}" />
                                     </apex:outputText>
-                                    <apex:outputText value=" --- " rendered="{!can_see_financial_fields == false}"/>
                             </td>
                         </tr>
                     </table>
         </apex:define>
 
         <apex:define name="body_content">
-  <!--            Cancel campaign modal-->
-            <div class="modal fade cancel_campaign_modal" tabindex="-1" role="dialog" aria-labelledby="cancelCampaign" id="cancelCampaignModal">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h1 class="modal_window_title" id="gridSystemModalLabel">Cancel Campaign</h1>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-lg-12 confirm_assets_accordion">
-                                    <div class="status_completion_chevron_bar_main_styling add_asset_chevron_styling">
-                                        <p class="cancel_campaign_modal_note"><strong>The % to be paid at cancelation is automatically set to the planned to be delivered stages.</strong></p>
-                                         <div class="chevron_width_control">
-
-                                            <!-- ************************************************************ -->
-                                            <!-- S.M. 2016-04-09 COMMENTING OUT TO RESOLVE DEPLOYMENT ISSUE -->
-                                            <!-- ************************************************************ -->
-                                            <div class="campaign_chevron_title campaign_summary_information_titles">Stages planned to be delivered:</div>
-                                            <!-- <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier_pop_up}" AutoSave="false" Id="cancel_campaign_campaign_stage_component_projected" rerenderIds="calculatedFeePanel, cancel_campaign_campaign_stage_component_completed" displayMode="3" projectedStageLabel="Stages planned to be delivered:" showTotalPercentage="true"/> --> 
-                                            <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier_pop_up}" AutoSave="false" Id="cancel_campaign_campaign_stage_component_projected" rerenderIds="calculatedFeePanel, cancel_campaign_campaign_stage_component_completed, cancel_campaign_FY_adjust" displayMode="3"/> 
-                                                <apex:outputPanel id="cancel_campaign_FY_adjust">
-                                                    <apex:outputText >
-                                                        <div class="add_assets_chevron_percentage_values">
-                                                            <p class="campaign_create_agency_hub_split_table_subtitle">Total campaign fee to be paid this FY</p>
-                                                            <h1 class="campaign_fee_percentage">{!stage_identifier_pop_up.i_percentage_of_fee_this_year}%</h1> <br/>
-                                                            <apex:outputText rendered="{!stage_identifier_pop_up.b_manual_override_on}">
-                                                                <p class="red_text"><strong>Fee adjusted</strong></p>
-                                                            </apex:outputText>
-                                                        </div>
-                                                    </apex:outputText>
-                                                </apex:outputPanel>
-                                        </div> 
-                                    </div>
-                                </div>   
-                            </div>
-                            <div class="row"  style="padding-top:10px;">
-                                <div class="col-lg-12">
-                                    <p class="cancel_campaign_modal_note"><strong>If your campaign did not fully complete any of the planned stages, adjust the % to what was delivered.</strong></p>
-                                </div>   
-                            </div>
-                            <div class="row cancel_campaign_totals">
-                                <div class="col-lg-6">
-                                    <p class="campaign_fees_total">Campaign Fees Total</p>
-                                    <p class="percentage_paid">Percentage to be paid at cancellation<br/>
-                                        <a id="stagesPopover" class="text-info" href="#" rel="popover" data-placement="right" data-title="Select Stage Percentage Values" data-html="true" data-content="<b>Briefing</b> - 10%<br/><b>Strategy & Planning</b> - 20%<br/><b>Creative Ideation</b> - 30%<br/><b>Creative Execution</b> - 25%<br/><b>Production</b> - 15%<br/>" data-trigger="hover focus" data-toggle="popover" >See recommended %</a>
-                                    </p>
-                                    <p class="bold_font value_cancellation">Value to be paid on cancellation</p>
-                                </div>
-                                <div class="col-lg-3 cancel_campaign_values_align">
-                                    <div>
-                                        <p class="cancel_campaign_values">
-                                            <apex:outputText value="€ {0, number,###,###,##0}">
-                                                <apex:param value="{!stage_identifier_pop_up.sow_project_in_scope.Campaign_Fees_Total__c}" />
-                                            </apex:outputText>
-                                        </p>
-                                        <apex:outputPanel id="calculatedFeePanel">
-                                            <apex:inputText onkeyup="calculateFee();" id="manualPercentage" html-data-fullfee="{!stage_identifier_pop_up.sow_project_in_scope.Campaign_Fees_Total__c}" value="{!stage_identifier_pop_up.cancelCampaignManualPercent}"/>
-                                            <p class="bold_font cancel_campaign_values" id="calculatedFee" html-data-calculatedfee="{!stage_identifier_pop_up.sow_project_in_scope.Campaign_Fees_Total__c * stage_identifier_pop_up.cancelCampaignManualPercent / 100.0 }">
-                                                <apex:outputText value="€ {0, number,###,###,##0}">
-                                                    <apex:param value="{!stage_identifier_pop_up.sow_project_in_scope.Campaign_Fees_Total__c * stage_identifier_pop_up.cancelCampaignManualPercent / 100.0 }" />
-                                                </apex:outputText>
-                                            </p>
-                                            <!--<apex:inputText onkeyup="calculateFee();" id="manualPercentage" html-data-fullfee="{!stage_identifier_pop_up.sow_project_in_scope.Campaign_Fees_Total__c}" value="{!stage_identifier_pop_up.i_agency_Percentage_of_fees_this_year}"/>
-                                            <p class="bold_font cancel_campaign_values" id="calculatedFee" html-data-calculatedfee="{!stage_identifier_pop_up.sow_project_in_scope.Campaign_Fees_Total__c * stage_identifier_pop_up.i_agency_Percentage_of_fees_this_year / 100.0 }">
-                                                <apex:outputText value="€ {0, number,###,###,##0}">
-                                                    <apex:param value="{!stage_identifier_pop_up.sow_project_in_scope.Campaign_Fees_Total__c * stage_identifier_pop_up.i_agency_Percentage_of_fees_this_year / 100.0 }" />
-                                                </apex:outputText>
-                                            </p>-->
-                                        </apex:outputPanel>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 gbvp_adjustment">
-                                    <!--<p>% (Override % if required)</p>-->
-                                </div>
-                            </div>
-                            <div class="row"  style="padding-top:20px;">
-                                 <div class="col-lg-12 chevron_width_control">
-
-                                    <!-- ************************************************************ -->
-                                    <!-- S.M. 2016-04-09 COMMENTING OUT TO RESOLVE DEPLOYMENT ISSUE -->
-                                    <!-- ************************************************************ -->
-                                    <div class="campaign_chevron_title campaign_summary_information_titles">Before canceling this campaign please select the stages where work commenced</div>
-                                    <!-- <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier_pop_up}" AutoSave="false" Id="cancel_campaign_campaign_stage_component_completed" rerenderIds="calculatedFeePanel"  displayMode="4" completedStageLabel="Before canceling this campaign please select the stages where work commenced" showTotalPercentage="false"/>  -->
-                                    <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier_pop_up}" AutoSave="false" Id="cancel_campaign_campaign_stage_component_completed" rerenderIds="calculatedFeePanel"  displayMode="4"/> 
-                                </div> 
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <div class="modal_button_align">
-                                <button type="button" class="btn btn_cross btn_exit" data-dismiss="modal">EXIT</button>
-                                <button type="button" class="btn btn-primary btn_check btn_confirm" data-toggle="modal" data-target="#cancelCampaignModalConfirm" id="confirm_cancel_campaign">CONFIRM</button>
-                            </div>
-                        </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
-<!--            Cancel campaign modal finish-->
-            <div class="modal fade cancel_campaign_modal" tabindex="-1" role="dialog" aria-labelledby="cancelCampaign" id="cancelCampaignModalConfirm">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h1 class="modal_window_title" id="gridSystemModalLabel">Confirm Cancel Campaign</h1>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-lg-12 confirm_assets_accordion">
-                                    <div class="status_completion_chevron_bar_main_styling add_asset_chevron_styling">
-                                        <p class="cancel_campaign_modal_note">Are you sure you want to cancel this Campaign?</p>
-                                    </div>
-                                </div>   
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <div class="modal_button_align">
-                                <button type="button" class="btn btn_cross btn_exit" data-dismiss="modal">EXIT</button>
-                                <apex:commandButton styleClass="btn btn-danger btn_check btn_confirm" action="{!cancelCampaign}" value="CONFIRM" rerender="jqueryId" html-data-dismiss="modal" onComplete="$('.modal-backdrop').remove();"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-<!--            Adjust fee modal-->
+  
+   <!--            Adjust fee modal-->
            <apex:outputPanel Id="adjustFeeModalId">
             <div class="modal fade adjust_fee_modal" tabindex="-1" role="dialog" aria-labelledby="adjustFee" id="adjustFeeModal">
-                <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -188,39 +61,25 @@
                         </div>
                         <div class="modal-body">
                             <div class="row">
-                                <div class="col-lg-11 col-lg-offset-1">
+                                <div class="col-lg-8 col-lg-offset-2">
                                     <div class="row">
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-8">
                                             <p class="modal_current_text green_text">Current % allocation of total<br/>campaign fee to be paid this FY</p>
                                         </div>
-                                        <div class="col-lg-4">
-                                            <apex:outputPanel id="adjustmentFeePanel">
-                                                <h1 class="green_text">
-                                                        <apex:outputText value="{!stage_identifier_pop_up.i_percentage_of_fee_this_year}" ></apex:outputText> 
-                                                        <apex:outputLabel rendered="{!stage_identifier_pop_up.i_percentage_of_fee_this_year <> null}"> %</apex:outputLabel>       
-                                                 </h1>
-                                            </apex:outputPanel>
-                                        </div>
+                                        <h1 class="green_text">
+                                                <apex:outputText value="{!stage_identifier.i_percentage_of_fee_this_year}" ></apex:outputText> 
+                                                <apex:outputLabel rendered="{!stage_identifier.i_percentage_of_fee_this_year <> null}"> %</apex:outputLabel>       
+                                         </h1>
                                     </div>
                                     <div class="row">
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-7">
                                             <p class="modal_adjust_text">Adjust % allocation for this FY to</p>
                                         </div>
-                                        <div class="col-lg-4">
-                                            <h1>
-                                            <apex:input type="number" id="AdjustPercentage" styleClass="adjust_allocation_box"  value="{!PercentToAdjust}"/>
-                                            
-                                            %</h1>
-                                        </div>
+                                        <h1>
+                                        <apex:input type="number" id="AdjustPercentage" styleClass="adjust_allocation_box"  value="{!PercentToAdjust}"/>
+                                        
+                                        %</h1>
                                     </div>
-                                </div>
-                                <div class="col-lg-11 col-lg-offset-1">
-                                    <!-- ************************************************************ -->
-                                    <!-- S.M. 2016-04-09 COMMENTING OUT TO RESOLVE DEPLOYMENT ISSUE -->
-                                    <!-- ************************************************************ -->
-                                    <div class="campaign_chevron_title campaign_summary_information_titles">Please indicate which stages will now be delivered given the adjusted fee:</div>
-                                    <!-- <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier_pop_up}" AutoSave="false" Id="campaign_stage_component_adjust_fee" displayMode="3" projectedStageLabel="Please indicate which stages will now be delivered given the adjusted fee:" showTotalPercentage="false"/> -->
-                                    <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier_pop_up}" AutoSave="false" Id="campaign_stage_component_adjust_fee" displayMode="3" />
                                 </div>
                             </div>
                         </div>
@@ -237,216 +96,150 @@
           </apex:outputPanel>
 <!--            Adjust fee modal finish-->
 
-
              <hr class="divider" />    
             <div class="row">
                 <div class="col-lg-9 confirm_assets_accordion">
-                    <div class="chevron_width_control {!if(selected_project.Campaign_Status__c == 'Cancelled', 'project_cancelled','')}">
-                        <apex:outputText rendered="{!selected_project.Campaign_Status__c == 'Cancelled'}">
-                            <p class="red_text {!if(selected_project.Campaign_Status__c == 'Cancelled', 'project_cancelled_text', '')}">
-                                Campaign Cancelled.
-                            </p>
-                        </apex:outputText>
-                        <div class="campaign_chevron_title campaign_summary_information_titles">Stages to deliver:</div>
-                        <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier}" AutoSave="true" Id="campaign_stage_component" displayMode="2"/> 
-                                                    <apex:outputText >
-                                                        <div class="add_assets_chevron_percentage_values">
-                                                            <p class="campaign_create_agency_hub_split_table_subtitle">Total campaign fee to be paid this FY</p>
-                                                            <h1 class="campaign_fee_percentage">{!stage_identifier.i_percentage_of_fee_this_year}%</h1> <br/>
-                                                            <apex:outputText rendered="{!stage_identifier.b_manual_override_on}">
-                                                                <p class="red_text"><strong>Fee adjusted</strong></p>
-                                                            </apex:outputText>
-                                                        </div>
-                                                    </apex:outputText>
-                    </div>
+                    <div class="chevron_width_control">
+                        <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier}" AutoSave="true" Id="campaign_stage_component" /> 
+                    </div>             
+                        <div class="campaign_summary_info_table">
+                            <table class="campaign_summary_information camp_sum_table_left_width">
+                                <tr>
+                                    <td class="campaign_summary_information_titles">Last Updated</td>
+                                    <td colspan="2">
+                                        <apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+                                            <apex:param value="{!selected_project.LastModifiedDate}" /> 
+                                        </apex:outputText> by {!selected_project.LastModifiedBy.Name}</td>
+                                
+                                </tr>
+                                <tr>
+                                    <td class="campaign_summary_information_titles cell_text_top_align">Agency Hub Split</td>
+                                    <td>
+                                        <apex:repeat value="{!selected_project.Marketing_SOW_Project_Splits__r}" var="hub_splits" >
+                                            {!hub_splits.OblixCountry__r.Name}<br/>
+                                        </apex:repeat>
+                                    </td>
+                                    <td>    
+                                        <apex:repeat value="{!selected_project.Marketing_SOW_Project_Splits__r}" var="hub_splits" >
+                                            {!hub_splits.Percentage__c}%<br/>
+                                        </apex:repeat>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="campaign_summary_information_titles">Clusters / Countries</td>
+                                    <td colspan="2" class="expandMore campaign_summary_countries_cell_width">{!selected_project.Selected_Countries__c}</td>
+                                </tr>
+                                <tr>
+                                    <td class="campaign_summary_information_titles">Investment Priority</td>
+                                    <td colspan="2">{!selected_project.Innovation_Projects__c} &nbsp;&nbsp;&nbsp; <apex:outputText value="{!mapTurnoverToSize[selected_project.Brand_Led_Growth__c]}" rendered="{!selected_project.Brand_Led_Growth__c <> null}"></apex:outputText></td>
+                                </tr>
+                                <tr>
+                                    <td class="campaign_summary_information_titles">Campaign idea</td>
+                                    <td colspan="2">{!selected_project.Campaign_Idea__c}</td>
+                                </tr>
+                                <tr>
+                                    <td class="campaign_summary_information_titles">Geographic scale</td>
+                                    <td colspan="2">{!selected_project.Project_Scale_1__c}</td>
+                                </tr>
+                                <tr>
+                                    <td class="campaign_summary_information_titles">Agency hubs</td>
+                                    <td colspan="2">{!selected_project.Project_Scale_2__c}</td>
+                                </tr>
+                            </table>
+                            <table class="campaign_summary_information camp_sum_table_right_width" id="assets_list">
+                                <tr>
+                                    <td class="campaign_summary_information_titles camp_sum_table_title__width">Platform</td>
+                                    <td colspan="2">{!selected_project.Platform__c}</td>
+                                </tr>
+                                <tr>
+                                    <td class="campaign_summary_information_titles camp_sum_table_title__width">Campaign priority</td>
+                                    <td colspan="2">{!selected_project.Project_Priority__c}</td>
+                                </tr>
+                                <tr>
+                                    <td class="campaign_summary_information_titles cell_text_top_align camp_sum_table_title__width">Timeline dates</td>
+                                    <td>
+                                        <apex:outputText value="Campaign start" rendered="{!NULL<>selected_project.Project_Start_Date__c}"><br/></apex:outputText>
+                                        <apex:outputText value="Campaign completion" rendered="{!NULL<>selected_project.Project_Completion_Date__c}"><br/></apex:outputText>
+                                        <apex:outputText value="First air date" rendered="{!NULL<>selected_project.First_Air_Date__c}"><br/></apex:outputText>
+                                        <apex:outputText value="Production completion " rendered="{!NULL<>selected_project.Production_Completion_Date__c}"><br/></apex:outputText>
+                                        <apex:outputText value="BET first release" rendered="{!NULL<>selected_project.BET_first_release__c}"><br/></apex:outputText>
+                                        <apex:outputText value="Date for assets in BET" rendered="{!NULL<>selected_project.Date_for_Assets_to_be_in_BET__c}"><br/></apex:outputText>
+                                        <apex:outputText value="Preview Date" rendered="{!NULL<>selected_project.Preview_Date__c}"><br/></apex:outputText>
+                                        <apex:outputText value="Start of TV production" rendered="{!NULL<>selected_project.Start_of_TV_production__c}"><br/></apex:outputText>
+                                        <apex:outputText value="Final release" rendered="{!NULL<>selected_project.Final_release__c}"><br/></apex:outputText>
+                                        <apex:outputText value="Live date" rendered="{!NULL<>selected_project.Live_Date__c}"><br/></apex:outputText>
+                                        <apex:outputText value="Live date/asset delivery" rendered="{!NULL<>selected_project.Live_date_Asset_delivery__c}"><br/></apex:outputText>
+
+                                    </td>
+                                    <td>
+
+                                        <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Project_Start_Date__c}">
+                                            <apex:param value="{!selected_project.Project_Start_Date__c}" /> <br/>
+                                        </apex:outputText>
+
+
+                                        <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Project_Completion_Date__c}">
+                                            <apex:param value="{!selected_project.Project_Completion_Date__c}" /> <br/>
+                                        </apex:outputText>
+
+
+                                        <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.First_Air_Date__c}">
+                                            <apex:param value="{!selected_project.First_Air_Date__c}" /> <br/>
+                                        </apex:outputText>
+
+                                        <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Production_Completion_Date__c}">
+                                            <apex:param value="{!selected_project.Production_Completion_Date__c}" /> <br/>
+                                        </apex:outputText>
+
+                                        <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.BET_first_release__c}">
+                                            <apex:param value="{!selected_project.BET_first_release__c}" /> <br/>
+                                        </apex:outputText>
+
+                                        <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Date_for_Assets_to_be_in_BET__c}">
+                                            <apex:param value="{!selected_project.Date_for_Assets_to_be_in_BET__c}" /> <br/>
+                                        </apex:outputText>
+
+                                        <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Preview_Date__c}">
+                                            <apex:param value="{!selected_project.Preview_Date__c}" /> <br/>
+                                        </apex:outputText>
+
+                                        <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Start_of_TV_production__c}">
+                                            <apex:param value="{!selected_project.Start_of_TV_production__c}" /> <br/>
+                                        </apex:outputText>
+
+                                        <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Final_release__c}">
+                                            <apex:param value="{!selected_project.Final_release__c}" /> <br/>
+                                        </apex:outputText>
+
+                                        <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Live_Date__c}">
+                                            <apex:param value="{!selected_project.Live_Date__c}" /> <br/>
+                                        </apex:outputText>
+
+                                        <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Live_date_Asset_delivery__c}">
+                                            <apex:param value="{!selected_project.Live_date_Asset_delivery__c}" /> <br/>
+                                        </apex:outputText>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"><span class="campaign_summary_information_titles" >Description</span><br/>
+                                    <div class="expandMore">{!selected_project.Description__c}</div><!-- <a href="">more</a> --></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"><span class="campaign_summary_information_titles" >Jobs to be done</span><br/>
+                                    <div class="expandMore">{!selected_project.Jobs_to_be_Done__c}</div><!-- <a href="">more</a> --></td>
+                                </tr>
+                            </table>
+                        </div>    
+                    </div>   
                 </div>
-            </div>             
-            <div class="row">
-                <div class="col-lg-9">
-                    <div class="campaign_summary_info_table">
-                        <table class="campaign_summary_information camp_sum_table_left_width">
-                            <tr>
-                                <td class="campaign_summary_information_titles">Last Updated</td>
-                                <td colspan="2">
-                                    <apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
-                                        <apex:param value="{!selected_project.LastModifiedDate}" /> 
-                                    </apex:outputText> by {!selected_project.LastModifiedBy.Name}</td>
-                            
-                            </tr>
-                            <tr>
-                                <td class="campaign_summary_information_titles cell_text_top_align">Agency Hub Split</td>
-                                <td>
-                                    <apex:repeat value="{!selected_project.Marketing_SOW_Project_Splits__r}" var="hub_splits" >
-                                        {!hub_splits.OblixCountry__r.Name}<br/>
-                                    </apex:repeat>
-                                </td>
-                                <td>    
-                                    <apex:repeat value="{!selected_project.Marketing_SOW_Project_Splits__r}" var="hub_splits" >
-                                        {!hub_splits.Percentage__c}%<br/>
-                                    </apex:repeat>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="campaign_summary_information_titles">Clusters / Countries</td>
-                                <td colspan="2" class="campaign_summary_countries_cell_width">
-                                    <apex:outputPanel styleClass="expandMoreCountries" rendered="{!selected_project.First_3_selected_countries__c <> selected_project.Selected_Countries__c}">
-                                        <div id="countryPreview">
-                                            <div>{!selected_project.First_3_selected_countries__c}</div>
-                                            <a href="#">Read more</a>
-                                        </div>
-                                        <div id="countryFullList" class="hidden">
-                                            <div>{!selected_project.Selected_Countries__c}</div>
-                                            <a href="#">Close</a>
-                                        </div>
-                                    </apex:outputPanel>
-                                    <apex:outputPanel rendered="{!selected_project.First_3_selected_countries__c == selected_project.Selected_Countries__c}">
-                                        {!selected_project.Selected_Countries__c}
-                                    </apex:outputPanel>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="campaign_summary_information_titles">Investment Priority</td>
-                                <td colspan="2">{!selected_project.Innovation_Projects__c} &nbsp;&nbsp;&nbsp; <apex:outputText value="{!turn_over_size}" rendered="{!selected_project.Brand_Led_Growth__c <> null}"></apex:outputText></td>
-                            </tr>
-                            <tr>
-                                <td class="campaign_summary_information_titles">Campaign idea</td>
-                                <td colspan="2">{!selected_project.Campaign_Idea__c}</td>
-                            </tr>
-                            <tr>
-                                <td class="campaign_summary_information_titles">Geographic scale</td>
-                                <td colspan="2">{!selected_project.Project_Scale_1__c}</td>
-                            </tr>
-                            <tr>
-                                <td class="campaign_summary_information_titles">Agency hubs</td>
-                                <td colspan="2">{!selected_project.Project_Scale_2__c}</td>
-                            </tr>
-                        </table>
-                        <table class="campaign_summary_information camp_sum_table_right_width" id="assets_list">
-                            <tr>
-                                <td class="campaign_summary_information_titles camp_sum_table_title__width">Platform</td>
-                                <td colspan="2">{!selected_project.Platform__c}</td>
-                            </tr>
-                            <tr>
-                                <td class="campaign_summary_information_titles camp_sum_table_title__width">Campaign priority</td>
-                                <td colspan="2">{!selected_project.Project_Priority__c}</td>
-                            </tr>
-                            <tr>
-                                <td class="campaign_summary_information_titles cell_text_top_align camp_sum_table_title__width">Timeline dates</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td colspan="2">
-                                    <table class="campaign_summary_timeline_dates">
-                                        <tr>
-                                            <td><apex:outputText value="Campaign start" rendered="{!NULL<>selected_project.Project_Start_Date__c}"></apex:outputText></td>
-                                            <td>
-                                                <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Project_Start_Date__c}">
-                                                    <apex:param value="{!selected_project.Project_Start_Date__c}" /> 
-                                                </apex:outputText>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><apex:outputText value="Campaign completion" rendered="{!NULL<>selected_project.Project_Completion_Date__c}"></apex:outputText></td>
-                                            <td>
-                                                <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Project_Completion_Date__c}">
-                                                    <apex:param value="{!selected_project.Project_Completion_Date__c}" /> 
-                                                </apex:outputText>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><apex:outputText value="First air date" rendered="{!NULL<>selected_project.First_Air_Date__c}"></apex:outputText></td>
-                                            <td>
-                                                <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.First_Air_Date__c}">
-                                                    <apex:param value="{!selected_project.First_Air_Date__c}" /> 
-                                                </apex:outputText>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><apex:outputText value="Production completion " rendered="{!NULL<>selected_project.Production_Completion_Date__c}"></apex:outputText></td>
-                                            <td>
-                                                <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Production_Completion_Date__c}">
-                                                    <apex:param value="{!selected_project.Production_Completion_Date__c}" /> 
-                                                </apex:outputText>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><apex:outputText value="BET first release" rendered="{!NULL<>selected_project.BET_first_release__c}"></apex:outputText></td>
-                                            <td>
-                                                <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.BET_first_release__c}">
-                                                    <apex:param value="{!selected_project.BET_first_release__c}" /> 
-                                                </apex:outputText>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><apex:outputText value="Date for assets in BET" rendered="{!NULL<>selected_project.Date_for_Assets_to_be_in_BET__c}"></apex:outputText></td>
-                                            <td>
-                                                <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Date_for_Assets_to_be_in_BET__c}">
-                                                    <apex:param value="{!selected_project.Date_for_Assets_to_be_in_BET__c}" /> 
-                                                </apex:outputText>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><apex:outputText value="Preview date" rendered="{!NULL<>selected_project.Preview_Date__c}"></apex:outputText></td>
-                                            <td>
-                                                <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Preview_Date__c}">
-                                                    <apex:param value="{!selected_project.Preview_Date__c}" /> 
-                                                </apex:outputText>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><apex:outputText value="Start of TV production" rendered="{!NULL<>selected_project.Start_of_TV_production__c}"></apex:outputText></td>
-                                            <td>
-                                                <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Start_of_TV_production__c}">
-                                                    <apex:param value="{!selected_project.Start_of_TV_production__c}" /> 
-                                                </apex:outputText>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><apex:outputText value="BET final release" rendered="{!NULL<>selected_project.Final_release__c}"></apex:outputText></td>
-                                            <td>
-                                                <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Final_release__c}">
-                                                    <apex:param value="{!selected_project.Final_release__c}" /> 
-                                                </apex:outputText>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><apex:outputText value="Live date" rendered="{!NULL<>selected_project.Live_Date__c}"></apex:outputText></td>
-                                            <td>
-                                                <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Live_Date__c}">
-                                                    <apex:param value="{!selected_project.Live_Date__c}" /> 
-                                                </apex:outputText>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><apex:outputText value="Live date/asset delivery" rendered="{!NULL<>selected_project.Live_date_Asset_delivery__c}"></apex:outputText></td>
-                                            <td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Live_date_Asset_delivery__c}">
-                                                    <apex:param value="{!selected_project.Live_date_Asset_delivery__c}" /> 
-                                                </apex:outputText></td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="3"><span class="campaign_summary_information_titles" >Description</span><br/>
-                                <div class="expandMore">{!selected_project.Description__c}</div><!-- <a href="">more</a> --></td>
-                            </tr>
-                            <tr>
-                                <td colspan="3"><span class="campaign_summary_information_titles" >Jobs to be done</span><br/>
-                                <div class="expandMore">{!selected_project.Jobs_to_be_Done__c}</div><!-- <a href="">more</a> --></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="campaign_chevron_title campaign_summary_information_titles">Stages completed:</div>
-                    <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier}" AutoSave="true" Id="campaign_stage_component_bottom" displayMode="4" /> 
-                </div>   
-            </div>
-            <hr class="divider" />
+                <hr class="divider" />
             <apex:outputPanel id="assets_panel" >
             <div class="row">
                 <div class="col-lg-12 ">
                     <p class="page_bold_subheading">Campaign Assets</p>
                     <apex:outputPanel id="addAssetButtonPanel">
-                        <apex:commandButton rendered="{!can_edit_campaign}" value="{!If(can_manage_asset,'ADD ASSET','VIEW BASKET')}" action="{!addAssetAction}" styleClass="btn btn-primary btn-xs pull-right  btn_plus btn_campaign_add_asset" onclick="blockme()" />
+                        <apex:commandButton rendered="{!can_edit}" value="{!If(can_manage_asset,'ADD ASSET','VIEW BASKET')}" action="{!addAssetAction}" styleClass="btn btn-primary btn-xs pull-right  btn_plus btn_campaign_add_asset" onclick="blockme()" />
                     </apex:outputPanel>
                         <div class="Oblix_table" id="Oblix_DashId">
                                 <table class="table table-striped" id="sowListTable">
@@ -471,7 +264,7 @@
                                             <tr>
                                                 <apex:repeat value="{!$ObjectType.Oblix_Project_Assets__c.FieldSets.Oblix_Campaign_Summary}" var="field_name">
                                                     <!-- <td style="{!IF(field_name.Label == 'Record ID','display:none;','')}" onclick="viewAssetFunction('{!asset_id}'); blockme();"> -->
-                                                    <td style="{!IF(field_name.Label == 'Record ID','display:none;','')}" class="redirect_td">
+                                                    <td style="{!IF(field_name.Label == 'Record ID','display:none;','')}">
                                                         <apex:outputText value="{0, number, ###,###.##}" rendered="{!(asset[field_name] != null && field_name.Type =='double')}">
                                                             <apex:param value="{!asset[field_name]}" />
                                                         </apex:outputText> 
@@ -482,17 +275,17 @@
 
                                                         <!-- <apex:outputText value="{!asset[field_name]}" rendered="{!(asset[field_name] != null && field_name.Type !='date' && field_name.Type !='double' && !contains(field_name.Label,'Name'))}" style="tableRow" styleClass="asset_description" /> -->
                                                         
-                                                        <!-- <apex:outputLink value="{!$Page.Oblix_CampaignAddAsset}?projectId={!project_id}&assetId={!asset['Id']}" rendered="{!(asset[field_name] != null && field_name.Type !='date' && field_name.Type !='double' && contains(field_name.Label,'Name')&& (can_edit))}" style="tableRow" target="_self" >{!asset[field_name]}  </apex:outputLink> -->
-                                                        <!--apex:outputPanel rendered="{!IF(can_edit == false,false,true)}">
+                                                        <!-- <apex:outputLink value="{!$Page.Oblix_CampaignAddAsset}?projectId={!project_id}&assetId={!asset['Id']}" rendered="{!(asset[field_name] != null && field_name.Type !='date' && field_name.Type !='double' && contains(field_name.Label,'Name')&& (hasEditAccess))}" style="tableRow" target="_self" >{!asset[field_name]}  </apex:outputLink> -->
+                                                        <!--apex:outputPanel rendered="{!IF(hasEditAccess == false,false,true)}">
                                                             
                                                         </apex:outputPanel-->
-                                                        <apex:outputText value="{! IF(field_name == 'Asset_Type__c', LEFT(asset[field_name], FIND(' - ', asset[field_name])) ,asset[field_name]) }" rendered="{!(asset[field_name] != null && field_name.Type !='date' && field_name.Type !='double')}" style="tableRow" styleclass="expandMore">  </apex:outputText>
+                                                        <apex:outputText value="{!asset[field_name]}" rendered="{!(asset[field_name] != null && field_name.Type !='date' && field_name.Type !='double')}" style="tableRow" styleclass="expandMore">  </apex:outputText>
                                                     </td>
                                                 </apex:repeat>
                                                 <apex:outputPanel id="deleteTableDefinition" rendered="{!IF(can_manage_asset,true,false)}">
                                                     <td>
                                                         
-                                                            <a href="#" id="delete_button" onclick="if (confirm('are you sure you want to delete this asset?')){removeAsset('{!asset.Id}');blockme();}else{return false;}"> <apex:image onclick="" url="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/redcross.png')}" width="12" height="12" alt="Delete"/>
+                                                            <a href="#" id="delete_button" onclick="if (confirm('are you sure you want to delete this asset?')){removeAsset('{!asset.Id}');blockme();}"> <apex:image onclick="" url="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/redcross.png')}" width="12" height="12" alt="Delete"/>
                                                         </a>
 
                                                     </td>
@@ -505,25 +298,25 @@
                         </div>                  
                 </div>
             </div>
-        </apex:outputPanel>
-        <apex:actionFunction name="deleteCampaign" action="{!deleteCampaign}" oncomplete="unblockUI();"/>
+            </apex:outputPanel>
+            <apex:actionFunction name="deleteCampaign" action="{!deleteCampaign}" oncomplete="unblockUI();"/>
 
-        <apex:actionFunction action="{!removeAsset}" name="removeAsset" rerender="assets_panel,swop_top_panel,addAssetButtonPanel,deleteTableDefinition,deleteTableHeader" oncomplete="$.unblockUI();$('#sowListTable').DataTable({
-                    'dom': 'lrtip',
-                    'pagingType': 'full_numbers'
-                });location.reload();">
-            <apex:param name="selected_asset_id" assignTo="{!selected_asset_id}" value="" />
-        </apex:actionFunction>
+            <apex:actionFunction action="{!removeAsset}" name="removeAsset" rerender="assets_panel,swop_top_panel,addAssetButtonPanel,deleteTableDefinition,deleteTableHeader" oncomplete="$.unblockUI();$('#sowListTable').DataTable({
+                        'dom': 'lrtip',
+                        'pagingType': 'full_numbers'
+                    });location.reload();">
+                <apex:param name="selected_asset_id" assignTo="{!selected_asset_id}" value="" />
+            </apex:actionFunction>
 
-        <apex:actionFunction rendered="{!can_edit_campaign}" name="viewAssetFunction" action="{!viewAsset}" rerender="assets_panel">
-            <apex:param value="" assignTo="{!selected_asset_id}" name="ids" />
-        </apex:actionFunction>
+            <apex:actionFunction rendered="{!can_edit}" name="viewAssetFunction" action="{!viewAsset}" rerender="assets_panel">
+                <apex:param value="" assignTo="{!selected_asset_id}" name="ids" />
+            </apex:actionFunction>
 
         </apex:define>
         <apex:define name="page_scripts">
             <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/Oblix_CampaignSummary.js')}"/>
             <script type="text/javascript">
-
+                
             </script>
             <!--<script>
                 $(document).ready(function() {

@@ -99,8 +99,8 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
         reRenderSOW();
         getSelectedKeys();
         getSelectedActivitiesByName(preSelectedName);
-        
-
+  
+    
     
 	}
 
@@ -161,7 +161,6 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
             selectedNonCampaignWrapper.selectedAgencyDepartment = eachMarketingBasicRecord.Agency_Department__c;
             selectedNonCampaignWrapper.selectedRole = eachMarketingBasicRecord.Role_Title__c;
             selectedNonCampaignWrapper.hourlyRate = String.valueOf(eachMarketingBasicRecord.Oblix_Hourly_Rate__c);
-            selectedNonCampaignWrapper.roundedRate = String.valueOf(Math.round(Decimal.valueOf(selectedNonCampaignWrapper.hourlyRate)));
             selectedNonCampaignWrapper.hoursSelected = Integer.valueOf(eachMarketingBasicRecord.No_of_Hours_Required__c);
             selectedNonCampaignWrapper.totalAmount = eachMarketingBasicRecord.OblixOtherItemFee__c;
             selectedNonCampaignWrapper.key = marketing_SOW.Id + selectedNonCampaignWrapper.selectedActivity + selectedNonCampaignWrapper.selectedCountryname + selectedNonCampaignWrapper.selectedAgencyDepartment + selectedNonCampaignWrapper.selectedRole;
@@ -225,11 +224,27 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
         
         System.DEBUG('Selected Activity : ' + seletedActivity);
         NonCampaignJSONWrapper activityJSONWrapper = new NonCampaignJSONWrapper();
+        Oblix_NonCampaignWrapper selectedNonCampaignWrapper = new Oblix_NonCampaignWrapper();
         activityJSONWrapper = (NonCampaignJSONWrapper) JSON.deserialize(seletedActivity, NonCampaignJSONWrapper.class);
         System.DEBUG('activityJSONWrapper :  ' + activityJSONWrapper);
-        
+        selectedNonCampaignWrapper.selectedActivity = activityJSONWrapper.selectedActivity;
+        selectedNonCampaignWrapper.selectedCountryname = activityJSONWrapper.selectedCountry;
+        List<Oblix_Calculator__c> calc = [select OblixCountry__c from Oblix_Calculator__c where RecordTypeId = : rtCountry and Financial_Year__c = : fYear and Oblix_Agency__c = : agency and OblixCountry__r.name =:  activityJSONWrapper.selectedCountry];
+        if(!calc.isEmpty()){
+        	selectedNonCampaignWrapper.selectedCountry = calc[0].OblixCountry__c;
+        }
+        if(NULL != activityJSONWrapper && NULL != activityJSONWrapper.otherName && !activityJSONWrapper.otherName.equalsIgnoreCase('')){
+            selectedNonCampaignWrapper.name = activityJSONWrapper.otherName;
+        }
+        selectedNonCampaignWrapper.nonCampaignItem = new Marketing_Basics__c();
+        selectedNonCampaignWrapper.selectedAgencyDepartment = activityJSONWrapper.selectedAgencyDepartment;
+        selectedNonCampaignWrapper.selectedRole = activityJSONWrapper.selectedRole;
+        selectedNonCampaignWrapper.hourlyRate = activityJSONWrapper.hourlyRate;
+        selectedNonCampaignWrapper.hoursSelected = activityJSONWrapper.hoursSelected != null ? Integer.valueOf(activityJSONWrapper.hoursSelected) : 0;
+        selectedNonCampaignWrapper.totalAmount = activityJSONWrapper.totalAmount != null ? Math.round(Decimal.valueof(activityJSONWrapper.totalAmount)) : 0;
+        selectedNonCampaignWrapper.key = activityJSONWrapper.key;
+        selectedNonCampaignWrapper.activityId = activityJSONWrapper.activityId;
 
-        Oblix_NonCampaignWrapper selectedNonCampaignWrapper = populateNonCampaignWrapper(activityJSONWrapper);
 
         //if(activitySelectionMap != null && activitySelectionMap.get(selectedNonCampaignWrapper.key) == null){
             activitySelectionMap.put(selectedNonCampaignWrapper.key,selectedNonCampaignWrapper);
@@ -253,31 +268,6 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
         setActivityAttributes(null , null, null, null, null, null, false);   
         resource.hoursSelected = null;
 
-    }
-
-    private Oblix_NonCampaignWrapper populateNonCampaignWrapper(NonCampaignJSONWrapper activityJSONWrapper){
-        Oblix_NonCampaignWrapper selectedNonCampaignWrapper = new Oblix_NonCampaignWrapper();
-
-        selectedNonCampaignWrapper.selectedActivity = activityJSONWrapper.selectedActivity;
-        selectedNonCampaignWrapper.selectedCountryname = activityJSONWrapper.selectedCountry;
-        List<Oblix_Calculator__c> calc = [select OblixCountry__c from Oblix_Calculator__c where RecordTypeId = : rtCountry and Financial_Year__c = : fYear and Oblix_Agency__c = : agency and OblixCountry__r.name =:  activityJSONWrapper.selectedCountry];
-        if(!calc.isEmpty()){
-            selectedNonCampaignWrapper.selectedCountry = calc[0].OblixCountry__c;
-        }
-        if(NULL != activityJSONWrapper && NULL != activityJSONWrapper.otherName && !activityJSONWrapper.otherName.equalsIgnoreCase('')){
-            selectedNonCampaignWrapper.name = activityJSONWrapper.otherName;
-        }
-        selectedNonCampaignWrapper.nonCampaignItem = new Marketing_Basics__c();
-        selectedNonCampaignWrapper.selectedAgencyDepartment = activityJSONWrapper.selectedAgencyDepartment;
-        selectedNonCampaignWrapper.selectedRole = activityJSONWrapper.selectedRole;
-        selectedNonCampaignWrapper.hourlyRate = activityJSONWrapper.hourlyRate;
-        selectedNonCampaignWrapper.roundedRate = activityJSONWrapper.hourlyRate;//
-        selectedNonCampaignWrapper.hoursSelected = activityJSONWrapper.hoursSelected != null ? Integer.valueOf(activityJSONWrapper.hoursSelected) : 0;
-        selectedNonCampaignWrapper.totalAmount = activityJSONWrapper.totalAmount != null ? Math.round(Decimal.valueof(activityJSONWrapper.totalAmount)) : 0;
-        selectedNonCampaignWrapper.key = activityJSONWrapper.key;
-        selectedNonCampaignWrapper.activityId = activityJSONWrapper.activityId;
-
-        return selectedNonCampaignWrapper;
     }
 
     public void removeFromSelectionMap(){
@@ -539,10 +529,10 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
         if (Rates.size() >= 1) {
             if(selectedTab.equalsIgnoreCase(campaignType)){
                 activity.hourlyRate = String.valueOf((Rates[0].Role_Daily_Rate_EUR__c));//Math.round
-                activity.roundedRate = activity.hourlyRate != null ? String.valueOf(Math.round(Decimal.valueOf(activity.hourlyRate))) : '0';//
+                activity.roundedRate = String.valueOf(Math.round(Rates[0].Role_Daily_Rate_EUR__c));//
             }else{
                 resource.hourlyRate = String.valueOf((Rates[0].FTE__c));
-                resource.roundedRate = resource.hourlyRate != null ? String.valueOf(Math.round(Decimal.valueOf(resource.hourlyRate))) : '0';//
+                resource.roundedRate = String.valueOf(Math.round(Rates[0].FTE__c));//
                 //this.setResourceUpdateButton = false;
             }
         }

@@ -43,17 +43,6 @@
                  background-position: 20px 40px;
              }
         }
-        *
-        {
-           font-size:10px !important;
-        }
-        table tr th, 
-        table tr td, 
-        table thead tr th,
-        table tbody tr th,
-        {
-           font-size:10px !important
-        }
          body, table{font-family:Arial Unicode MS; font-size:14px;color: rgb(102, 102, 102);border-collapse:collapse}
          table td {text-align:left; vertical-align:top;}
          .bold {font-weight: bold; font-family: sans-serif;}
@@ -449,11 +438,8 @@
         .cmiTimeContainer1{display:table-cell;}
         .cpart1{display:table-cell;}
         .cmiRes1Container .cmiChrtrLeftValue:first-child,.cmiRes2Container .cmiChrtrRightValue:first-child{border-bottom:0.5pt solid #ccc;}
-
-        .ipmFintableAlign .finproject,.ipmFintableAlign tr.fintleblubg div,.ipmFintableAlign tr td.fintleblubg div{font-size:10px !important;}
-        .ipmFintableAlign tr td.fintleblubg div{padding-left:10px;}
-        
-        td.bggray:first-child 
+               
+         td.bggray:first-child 
         {
            width:27.5%
         } 
@@ -618,20 +604,27 @@
                         {!$Label.IPM_BusinessImpact}{!$Label.IPM_COLON}
                     </td> 
                   
-                    <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Global','true','false')}">     
+                            <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Global','true','false')}">     
                     <td>
-                        <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.IPM_Business_Impact_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.IPM_Business_Impact_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.IPM_Business_Impact_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' && projectDoc.IPM_Document_Status__c=='Approved'),fin.IPM_Business_Impact_MD__c,globalbusinessImpactStr))))}"/>
+                        <apex:outputText value="{!globalbusinessImpactStr}"/>
                     </td>
                     </apex:outputText>
-                    <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Local','true','false')}">     
-	                   <td>
-							<apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),finLocal.IPM_Business_Impact_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),finLocal.IPM_Business_Impact_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),finLocal.IPM_Business_Impact_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' && projectDoc.IPM_Document_Status__c=='Approved'),finLocal.IPM_Business_Impact_MD__c,globalbusinessImpactStr))))}"/>	
-					   </td>
+                 
+                    
+                    
+                            <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Local','true','false')}">     
+                    <td>
+                        <apex:outputText value="{!globalbusinessImpactStr}"/>
+                    </td>
                     </apex:outputText>
-                    <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Regional','true','false')}">     
-	                    <td>
-	                        <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),finRegional.IPM_Business_Impact_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),finRegional.IPM_Business_Impact_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),finRegional.IPM_Business_Impact_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' && projectDoc.IPM_Document_Status__c=='Approved'),finRegional.IPM_Business_Impact_MD__c,globalbusinessImpactStr))))}"/>
-	                    </td>
+                    
+                    
+ 
+                            <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Regional','true','false')}">     
+                    <td>
+                        <apex:outputText value="{!globalbusinessImpactStr}"/>
+                    </td>
+                 
                     </apex:outputText>
                     
                 </tr>
@@ -641,7 +634,7 @@
                         {!$Label.IPM_Market_Place_Activity}{!$Label.IPM_COLON}
                     </td>      
                     <td>                   
-                        <apex:outputText value="{!project.IPM_ProjectSubType__c}"/>
+                        <apex:outputText value="{!project.IPM_Answer_of_Q1__c}"/>
                     </td>
                     <td class="label">
                         {!$Label.IPM_PROJECT_ROUTE_COLON}
@@ -654,22 +647,23 @@
                     </td>
                     
                     
-                     <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Global','true','false')}">
+                            <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Global','true','false')}">
                     <td>
-                        <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' && projectDoc.IPM_Document_Status__c=='Approved'),fin.Year_3_iTO_MD__c,fin.Year_3_iTO_Global__c))))}"/><apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
+                        <apex:outputText value="{!fin.Year_3_iTO_Global__c}"/><apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
                     </td>
                     </apex:outputText>
                       
-                       <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Local','true','false')}">
+                            <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Local','true','false')}">
                     <td>
-                    
-                        <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved'),fin.Year_3_iTO_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_MD__c,fin.Year_3_iTO_Local__c))))}"/><apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
+                        <apex:outputText value="{!finProjectPriority.Year_3_iTO_Local__c}"/><apex:outputText rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
                     </td>
                     </apex:outputText>
+                  
+                    
                    
-                    <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Regional','true','false')}">
+                            <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Regional','true','false')}">
                     <td>
-                        <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c='Approved' ),fin.Year_3_iTO_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' , projectDoc.IPM_Document_Status__c=='Approved'),fin.Year_3_iTO_MD__c,fin.Year_3_iTO_Regional__c))))}"/><apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
+                        <apex:outputText value="{!fin.Year_3_iTO_Regional__c}"/><apex:outputText rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
                     </td>
                     </apex:outputText>
                    
@@ -722,20 +716,8 @@
                         </td>
                         <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Global','true','false')}">
                             <td>
-                              <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' && projectDoc.IPM_Document_Status__c=='Approved'),fin.Year_3_iTO_MD__c,fin.Year_3_iTO_Global__c))))}"/><apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
+                                <apex:outputText value="{!fin.Year_3_iTO_Global__c}"/>
                             </td>
-                        </apex:outputText>
-                         <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Local','true','false')}">
-                            <td>
-                               
-                                <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved'),fin.Year_3_iTO_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_MD__c,fin.Year_3_iTO_Local__c))))}"/><apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
-                                
-                            </td>
-                        </apex:outputText>
-                        <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Regional','true','false')}">
-                            <td>
-                                <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c='Approved' ),fin.Year_3_iTO_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' , projectDoc.IPM_Document_Status__c=='Approved'),fin.Year_3_iTO_MD__c,fin.Year_3_iTO_Regional__c))))}"/><apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
-                            </td>      
                         </apex:outputText>
                     </tr>
                     <tr>     
@@ -757,14 +739,23 @@
                         <td>                    
                             <apex:outputText value="{!project.IPM_Complexity__c}"/>
                         </td>
-                       
+                        <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Local','true','false')}">
+                            <td>
+                                <apex:outputText value="{!fin.Year_3_iTO_Local__c}"/>
+                            </td>
+                        </apex:outputText>
+                        <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Regional','true','false')}">
+                            <td>
+                                <apex:outputText value="{!fin.Year_3_iTO_Regional__c}"/>
+                            </td>      
+                        </apex:outputText>
                     </tr>
                     <tr class="lastchild" >    
                         <td class="label" >
                             {!$Label.IPM_Market_Place_Activity}{!$Label.IPM_COLON}
                         </td>      
                         <td >                   
-                            <apex:outputText value="{!project.IPM_ProjectSubType__c}"/>
+                            <apex:outputText value="{!project.IPM_Answer_of_Q1__c}"/>
                         </td>  
                         <td class="label" width="20%">
                           {!$Label.IPM_BRAND_POSITIONING}{!$Label.IPM_COLON}
@@ -786,32 +777,26 @@
                 <apex:outputText value="(guidance not due until contract)" rendered="{!IF(pds.IPM_Section_Name__c='Deployment',True,False)}"  styleClass="bdText"> </apex:outputText>
                 
             </apex:outputPanel>
-            <!-- below panel is rendered when document section sectioType is "sub-header" and default section is true -->
             <apex:outputPanel rendered="{!IF(AND(pds.IPM_Section__r.IPM_Section_Type__c='Sub Header',pds.IPM_Default_Section__c=true),true,false)}">   
                 <apex:outputText value="{!pds.IPM_Section_Sequence__c} {!pds.IPM_Section_Name__c}"  styleClass="heading3 bold" rendered="{!!pds.IPM_Has_Appendix__c}" /> 
                
                 <apex:outputField value="{!pds.IPM_Gate_Document_Summary__c}"  styleClass="bdText" />
             </apex:outputPanel>
-            <!-- below panel is rendered when  -->
-            <!-- 1. SectionType of section associated with project document section is any of the "Text/Checklist/Static Table/Dynamic Complex Table/Dynamic Simple Table" -->
-            <!-- 2. SectionType of section associated with project document section external id is not "Appendix" -->
-            <!-- 3. Projectsubtype associated with prject of document section is not "BLG" and sectionSequence of document section is not "5.3" -->
-           <apex:outputPanel rendered="{!IF(AND(OR(pds.IPM_Section__r.IPM_Section_Type__c='Text',pds.IPM_Section__r.IPM_Section_Type__c='Checklist',pds.IPM_Section__r.IPM_Section_Type__c='Static Table',pds.IPM_Section__r.IPM_Section_Type__c='Dynamic Complex Table',pds.IPM_Section__r.IPM_Section_Type__c='Dynamic Simple Table'),pds.IPM_Section__r.IPM_Parent_Section__r.External_ID__c!='Appendix',pds.IPM_Default_Section__c=true,IF(AND(pds.IPM_Project_Document__r.IPM_Project__r.IPM_ProjectSubType__c = 'BLG',pds.IPM_Section__r.IPM_Section_Sequence__c='5.3'),FALSE,TRUE)),true,false)}"> 
+           <apex:outputPanel rendered="{!IF(AND(OR(pds.IPM_Section__r.IPM_Section_Type__c='Text',pds.IPM_Section__r.IPM_Section_Type__c='Checklist',pds.IPM_Section__r.IPM_Section_Type__c='Static Table',pds.IPM_Section__r.IPM_Section_Type__c='Dynamic Complex Table',pds.IPM_Section__r.IPM_Section_Type__c='Dynamic Simple Table'),pds.IPM_Section__r.IPM_Parent_Section__r.External_ID__c!='Appendix',pds.IPM_Default_Section__c=true,IF(AND(pds.IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c = 'BLG',pds.IPM_Section__r.IPM_Section_Sequence__c='5.3'),FALSE,TRUE)),true,false)}"> 
                 <apex:outputText value="{!pds.IPM_Section_Sequence__c} {!pds.IPM_Section_Name__c} [{!pds.IPM_FunctionalRole__c}]"  styleClass="heading4 bold" />
           <!--- Components To BE Displayed within Sections--->
-
-                <c:IPM_Financial_ActionStandards gate="{!projectDoc.IPM_GateDocuments__c}" isEditable="false" projId="{!projectId}" secId="{!pds.Id}" rendered="{!AND(pds.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards',projectDoc.IPM_GateDocuments__c!='Market Deployment')}" > </c:IPM_Financial_ActionStandards>
-                <!-- below component renders while it meet one of the criteria -->
-                <!-- 1. sub header section master section external id is "Initial_Estimate_of_Opportunity" -->
-                <!-- 2. sub header section master section external id is "Business_Case_Action_Standards" and project Document gate is "Market Deployment"-->                                                    
-                <c:IPM_FinGate projId="{!projectId}" rendered="{!OR(pds.IPM_Master_Section_External_Id__c='Initial_Estimate_of_Opportunity',AND(pds.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards',projectDoc.IPM_GateDocuments__c=='Market Deployment'))}" ></c:IPM_FinGate>
+ 
+ 
+                <!--<c:IPM_Financial_ActionStandards isEditable="false" projId="{!projectId}" secId="{!pds.Id}" rendered="{!pds.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards'}" > </c:IPM_Financial_ActionStandards>-->
+                <c:IPM_FinGate projId="{!projectId}" rendered="{!pds.IPM_Master_Section_External_Id__c='Initial_Estimate_of_Opportunity'}" ></c:IPM_FinGate>
                 <c:IPM_RND_QuestionsView rendered="{!if(OR(pds.IPM_Section_Name__c=='R&D Initial Outline (Product/Pack)',pds.IPM_Section_Name__c=='R&D Technical Readiness'),true,false)}" gateDocType="{!projectDoc.IPM_GateDocuments__c}" RNDEdit="False"></c:IPM_RND_QuestionsView>
                 <c:IPM_SC_Feasibility_QuestionsView rendered="{!if(OR(pds.IPM_Section_Name__c=='Supply Chain Feasibility',pds.IPM_Section_Name__c=='Supply Chain Technical Readiness'),true,false)}" gateDocType="{!projectDoc.IPM_GateDocuments__c}"></c:IPM_SC_Feasibility_QuestionsView>
                 <c:IPM_RND_Feasibility_QuestionsView rendered="{!if(pds.IPM_Section_Name__c=='R&D Feasibility',true,false)}" RNDEdit="False" gateDocType="{!projectDoc.IPM_GateDocuments__c}"> </c:IPM_RND_Feasibility_QuestionsView>    
-                <!-- below component will render when child od sub header section master external id is "CUs n Complexity" and project span is "Regional" or "Local" and phase is "Ideas" -->
                <c:IPM_CU_Complexity gateType="{!projectDoc.IPM_GateDocuments__c}" getSectionId="{!pds.Id}" proModel="{project.IPM_GateKeeping_Model__c}" ProSpan="{project.IPMProject_Span__c}" phaseName="{!project.IPM_Phase__c}"  isEdit="false" rendered="{!AND(pds.IPM_Master_Section_External_Id__c='CU_And_Complexity',OR(project.IPMProject_Span__c='Regional',project.IPMProject_Span__c='Local',project.IPM_Phase__c='Ideas'))}"></c:IPM_CU_Complexity>
                <c:IPM_CU_Complexity_Consolidated getGateType="{!projectDoc.IPM_GateDocuments__c}" isGateDoc="true" getProjId="{!project.Id}" rendered="{!AND(project.IPMProject_Span__c='Global',pds.IPM_Master_Section_External_Id__c='CU_And_Complexity')}" /> 
-               <c:IPM_TradeMark_QuestionsView rendered="{!if(pds.IPM_Master_Section_External_Id__c=='Trademarks',true,false)}"  gateDocType="{!projectDoc.IPM_GateDocuments__c}"> </c:IPM_TradeMark_QuestionsView>    
+                                                                             
+                
+                <c:IPM_TradeMark_QuestionsView rendered="{!if(pds.IPM_Master_Section_External_Id__c=='Trademarks',true,false)}"  gateDocType="{!projectDoc.IPM_GateDocuments__c}"> </c:IPM_TradeMark_QuestionsView>    
                 <c:IPM_OTIFStatusTableView otfType="Table" isEdtable="false" getSectionId="{!pds.Id}" rendered="{!IF(pds.IPM_Master_Section_External_Id__c=='OTIF_Status',true,false)}"></c:IPM_OTIFStatusTableView>
                 <c:IPM_GateKeeperListView setEdit="false" getDocType="{!projectDoc.IPM_GateDocuments__c}" rendered="{!IF(pds.IPM_Master_Section_External_Id__c=='Gate_Keeper_Checklist',true,false)}"></c:IPM_GateKeeperListView> 
            
@@ -819,11 +804,11 @@
            <!---Components To BE Displayed within Sections END-->
            <apex:outputField value="{!pds.IPM_Gate_Document_Summary__c}" styleClass="bdText" />
             </apex:outputPanel>
-
-
-
+ 
+ 
+ 
            
-
+ 
        
         </apex:repeat>
         
@@ -836,26 +821,26 @@
                 
             </apex:outputPanel>
                 <apex:outputText value="{!apxSec.IPM_Section_Name__c} [{!apxSec.IPM_FunctionalRole__c}]"  styleClass="heading4 bold" />
-                    <c:IPM_FinInitialEstOfOppCharter projId="{!projectId}" rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c='Initial_Estimate_of_Opportunity',project.IPM_Project_Type__c!='Operational')}"></c:IPM_FinInitialEstOfOppCharter>
+                    <c:IPM_FinInitialEstOfOppCharter projId="{!projectId}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Initial_Estimate_of_Opportunity'}"></c:IPM_FinInitialEstOfOppCharter>
                     <c:IPM_Consumer_Evidence gate="{!projectDoc.IPM_GateDocuments__c}" getProjectId="{!projectId}" Editable="false" getSecid="{!apxSec.Id}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Consumer_Evidence_Concept'}"></c:IPM_Consumer_Evidence>
                     <c:IPM_EcoDesignSection displayOnlyTables="true" getSectionId="{!apxSec.Id}"  rendered="{!apxSec.IPM_Master_Section_External_Id__c=='Environmental_Impact'}" />
                     <c:IPM_Customer_Channels gdpage="true" getProjectID="{!projectId}" getSecid="{!apxSec.Id}" CCEdit="false" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Customers_Channels'}"></c:IPM_Customer_Channels>
                     <c:IPM_Risk_QuestionnaireView getProjectId="{!projectId}" getProjectSectionId="{!apxSec.Id}" editSection="false" gateType="{!projectDoc.IPM_GateDocuments__c}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Risk'}"></c:IPM_Risk_QuestionnaireView>
-                    <c:IPM_Gate_RollOuts span="{!project.IPMProject_Span__c}" projId="{!projectId}" rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c='Rollout_Plans',project.IPM_Project_Type__c!='Operational')}"></c:IPM_Gate_RollOuts>
+                    <c:IPM_Gate_RollOuts span="{!project.IPMProject_Span__c}" projId="{!projectId}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Rollout_Plans'}"></c:IPM_Gate_RollOuts>
                     <c:IPM_MilestoneList_PDF pId="{!projectId}" gateDocType="{!projectDoc.IPM_GateDocuments__c}" gateDocStatus="{!projectDoc.IPM_Document_Status__c}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Milestones'}"></c:IPM_MilestoneList_PDF>
                     <c:IPM_Country_Feedback rendered="{!apxSec.IPM_Master_Section_External_Id__c='Country_Feedback_Requirements'}" > </c:IPM_Country_Feedback> 
                     <c:IPM_CMIGateSectionPDF projId="{!projectId}"  gate="{!projectDoc.IPM_GateDocuments__c}" secId="{!apxSec.Id}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Mix_Qualification_Plan_and_Action_Standards'}"></c:IPM_CMIGateSectionPDF>
-                    <c:IPM_BCC_Consolidate gateType="{!projectDoc.IPM_GateDocuments__c}" projSpan="{!project.IPMProject_Span__c}" projectId="{!project.Id}" rendered="{!apxSec.IPM_Master_Section_External_Id__c=='BD/BB_Alignment'}"></c:IPM_BCC_Consolidate>
+                    <c:IPM_BCC_Consolidate projSpan="{!project.IPMProject_Span__c}" projectId="{!project.Id}" rendered="{!apxSec.IPM_Master_Section_External_Id__c=='BD/BB_Alignment'}"></c:IPM_BCC_Consolidate>
                     <c:IPM_Assumptions projId="{!projectId}" gateType="{!projectDoc.IPM_GateDocuments__c}" getSectionId="{!apxSec.Id}" rendered="{!if(apxSec.IPM_Master_Section_External_Id__c=='Assumptions',true,false)}" isEditable="false"></c:IPM_Assumptions>
-                     <c:IPM_ViewAssortmentStrategy ProSecID="{!apxSec.Id}" rendered="{!apxSec.IPM_Master_Section_External_Id__c=='Assortment_Strategy'}"></c:IPM_ViewAssortmentStrategy> 
-        </apex:repeat> 
+                     <c:IPM_ViewAssortmentStrategy ProSecID="{!apxSec.Id}" rendered="{!apxSec.IPM_Master_Section_External_Id__c=='Assortment_Strategy'}"></c:IPM_ViewAssortmentStrategy>
+        </apex:repeat>
     
-
+ 
         </div>
     </div>
     <!--/ Content End -->  
      </apex:form>  
 </body>
-
+ 
 </html> 
 </apex:page>

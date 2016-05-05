@@ -53,7 +53,6 @@ global with sharing class Core_CA_WrapperUtility {
         public String ApproverId;
         public String RequestId;
         public String Action;
-        public string ProjectBug;
     }
     /**** wrapper classes for MyApproval Home page ends **** /
     
@@ -97,25 +96,7 @@ global with sharing class Core_CA_WrapperUtility {
         public Boolean isRecalled; 
         public Boolean hasPermSet;
         //public Boolean isinvalid; 
-        //Clarity wrapper data 
-        public string ApprovalType;       
-        public string StrategicInt;
-        public String Capex;
-        public String AmountToCompany;
-        public string Currentyear1;
-        public string Toatl2;
-        public string ProjectBug;
-        public String Cop;
-        public String Metric;
-        public String RequestedByLang;
-        public Decimal ApproverCnt;
-        public Decimal EndorserCnt;
-        public String ProjectName; 
-        public String YearAllOther;
-        public String AppType;
-        //Invoice wrapper data      
-        public String InvoiceType; 
-        public String CompanyCode; 
+        
     } 
     
     global class ExpenseDetailsDataRequest{
@@ -135,16 +116,13 @@ global with sharing class Core_CA_WrapperUtility {
         public String ApproverName;
         public String ApproverAction;
         public String AribaRole;
-        Public String ApprovedDate;    
-        Public String Comment;
-        Public String Role;
     }
     
     public class PreTripDetails{
         public String Id;
         public String PassengerInfo;
         public String LocationDetails;
-    } 
+    }
     /**** wrapper classes for Request detail page ends **** /
     
     
@@ -177,20 +155,6 @@ global with sharing class Core_CA_WrapperUtility {
         public String Comments;
         public String Attendees;
         public Boolean IsPerDiem;
-    }
-    
-    /*************************************************************************
-    * Wrapper class for LineItemDetail Response for Invoice
-    **************************************************************************/
-    global class LineItemDetailResponseInvoice extends Core_CA_BaseApplicationWrapper{
-        public string RequestName;
-        public string IntOrder;
-        public string GLAccount;
-        public Decimal NetAmnt;
-        public string CstCntr;
-        public string ProfitCntr;
-        public string Description;
-        public string Currencies;
     }
     
     public class PricingSuplierDetails{

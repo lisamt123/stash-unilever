@@ -1605,9 +1605,7 @@ public with sharing class IPM_ProjectHelper
             }
             List<IPM_Project__c> projList=[Select Id From IPM_Project__c where Id in:projectIdSetToBeDeleted Limit 5000];
             if(projList != null && !projList.isEmpty())
-            {
                 delete projList;
-            }
         } 
     }
 
@@ -1621,7 +1619,7 @@ public with sharing class IPM_ProjectHelper
             updateAsyncJobIdProjectMap.put(projectId,project);
         }
         
-        if(!updateAsyncJobIdProjectMap.isEmpty())
+        if(updateAsyncJobIdProjectMap.size() > 0)
         {
             SKIP_TRIGGER_EXECUTION = true;
             update updateAsyncJobIdProjectMap.values();

@@ -101,7 +101,7 @@ private class FAU_ParticipantControllerExtensionTest
         ApexPages.StandardController standardController
              = new ApexPages.StandardController(participantRecord);
 
-        FAU_ParticipantControllerExtension controller;
+      FAU_ParticipantControllerExtension controller;
 
         Test.startTest(); 
 
@@ -194,7 +194,7 @@ private class FAU_ParticipantControllerExtensionTest
         FAU_Participant__c participantRecord
              = createParticipantFixture(user, startDateFixture, locationFixture, inviteStateFixture);
 
-		participantRecord.FAU_Decline_Reason__c = 'Other';
+        participantRecord.FAU_Decline_Reason__c = 'Other';
 
         PageReference pageReference = Page.FAU_Participant_Register;
         Test.setCurrentPage(pageReference);

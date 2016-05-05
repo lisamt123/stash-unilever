@@ -340,10 +340,7 @@ public with sharing class IPM_ProjectDocumentHelper
                                         }
                                         
                                        if(!String.isBlank(section.ProjectSpan__c) && !String.isBlank(project.IPMProject_Span__c) && section.ProjectSpan__c.contains(project.IPMProject_Span__c)){
-											if(!(project.IPM_ProjectSubType__c == IPM_ConstantUtils.IPM_BLG && section.IPM_Section_Sequence__c == '5.3'))
-											{
                                             projectDocumentSectionList.add(projDocSect);
-											}                                     
                                        }
                                     }
                                 }

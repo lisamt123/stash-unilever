@@ -19,7 +19,7 @@
         
         <!-- To place the help symbol in the top right hand corner of page -->
         <apex:outputPanel layout="block" styleClass="SecButtonSet delete pull-right" >
-            <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question  marginT5" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
+            <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
         </apex:outputPanel>
         
         <!-- To display the text area to input the comments and a button to add the comments -->
@@ -40,20 +40,16 @@
                                     <apex:repeat value="{!projSubSectionList}" var="sub">
                                         <div class="checkContainer"> 
                                             <apex:outputPanel styleClass="col-xs-12 subSecDiv">
-                                                <!--Below rendered condition is used to show input check box-->
                                                 <apex:inputCheckbox styleClass="col-xs-1 checkBox checkAll" value="{!sub.IPM_Default_Section__c}" rendered="{!IF(psl.IPM_Section__r.Id=sub.IPM_Section__r.IPM_Parent_Section__c,True,False)}" disabled="{!sub.IPM_Section__r.IPM_Negotiable__c=false}" title="{!IF(sub.IPM_Negotiable__c=false,'Non-Negotiable','')}">
                                                 </apex:inputCheckbox>
-                                               <!--Below rendered condition is used to show section sequence-->
                                                 <apex:outputText styleClass="aHead col-xs-10"  value="{!sub.IPM_Section__r.IPM_Section_Sequence__c} {!sub.IPM_Section__r.IPM_Section_Name__c}" rendered="{!IF(psl.IPM_Section__r.Id=sub.IPM_Section__r.IPM_Parent_Section__c,True,False)}" />  
                                             </apex:outputPanel>
-                                            <!--Below rendered condition is used to show to default sections-->
                                             <apex:outputPanel styleClass="ipmAcrdnExpand" rendered="{!IF(psl.IPM_Section__r.Id=sub.IPM_Section__r.IPM_Parent_Section__c,True,False)}">
                                                 <apex:repeat value="{!projSubSectionList}" var="sub1">
                                                     <apex:outputPanel styleClass="col-xs-12 cHead">
-                                                       <!--Below rendered condition is used to show to input checkbox-->
                                                         <apex:inputCheckbox styleClass="col-xs-1 checkSub checkBox" value="{!sub1.IPM_Default_Section__c}" rendered="{!IF(sub.IPM_Section__r.Id=sub1.IPM_Section__r.IPM_Parent_Section__c,True,False)}" disabled="{!sub1.IPM_Section__r.IPM_Negotiable__c=false}">
                                                         </apex:inputCheckbox>
-                                                        <!--Below rendered condition is used to show to the section sequence-->
+                                                        
                                                         <apex:outputText styleClass="aHead col-xs-10" value="{!sub1.IPM_Section__r.IPM_Section_Sequence__c} {!sub1.IPM_Section__r.IPM_Section_Name__c}" rendered="{!IF(sub.IPM_Section__r.Id=sub1.IPM_Section__r.IPM_Parent_Section__c,True,False)}"/>
                                                     </apex:outputPanel>
                                                     

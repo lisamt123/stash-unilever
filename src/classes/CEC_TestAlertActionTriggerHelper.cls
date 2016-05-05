@@ -52,7 +52,10 @@ public static User insertUser()
         mdm_Product_Category__c pCategory = new mdm_Product_Category__c(name='ProductCategory', L0_Product_Category__c='Foods Category');
         insert pCategory;
         
-         mdm_Global_Listening_Tree__c gListingTree = new mdm_Global_Listening_Tree__c(L5_Desc__c = 'L4 Desc');
+        mdm_Global_Listening_Tree__c gListingTree = new mdm_Global_Listening_Tree__c(L1_Desc__c='Complaint', 
+                                                                L2_Desc__c = 'Product', L3_Desc__c = 'Foreign matter',
+                                                                L4_Desc__c = 'Unidentifiable Foreign Matter', 
+                                                                L5_Desc__c = 'Foreign matter - unidentifiable');
         insert gListingTree;
 
         mdm_Reason_Code__c reasonObj = new mdm_Reason_Code__c(name='Test Reason1', L5_Code__c='T5261',Global_Listening_Tree__c = gListingTree.Id);
@@ -88,7 +91,10 @@ public static User insertUser()
         mdm_Product_Category__c pCategory = new mdm_Product_Category__c(name='ProductCategory', L0_Product_Category__c='Foods Category');
         insert pCategory;
         
-         mdm_Global_Listening_Tree__c gListingTree = new mdm_Global_Listening_Tree__c(L5_Desc__c = 'L4 Desc');
+        mdm_Global_Listening_Tree__c gListingTree = new mdm_Global_Listening_Tree__c(L1_Desc__c='Complaint', 
+                                                                L2_Desc__c = 'Product', L3_Desc__c = 'Foreign matter',
+                                                                L4_Desc__c = 'Unidentifiable Foreign Matter', 
+                                                                L5_Desc__c = 'Foreign matter - unidentifiable');
         insert gListingTree;
 
         mdm_Reason_Code__c reasonObj = new mdm_Reason_Code__c(name='Test Reason1', L5_Code__c='T5261',Global_Listening_Tree__c = gListingTree.Id);

@@ -191,7 +191,7 @@ public with sharing class IPM_ProjectResourceTriggerHandler
   
     //List of all Project records which have been previously synced to EcoDesign
     prevSyncedProjList = [SELECT Id,First_Sync_To_EcoDesign__c,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,
-                             IPM_Phase__c,IPM_ProjectSubType__c, IPM_Answer_of_Q1__c, IPM_CompanyCardText__c,Project_Countries__c FROM IPM_Project__c WHERE Id IN :projIdsSet LIMIT 50000];
+                             IPM_Phase__c,IPM_Answer_of_Q1__c,IPM_CompanyCardText__c,Project_Countries__c FROM IPM_Project__c WHERE Id IN :projIdsSet LIMIT 50000];
     
     projMembersMap = IPM_ProjectCountryDetails.getProjectIdMembersListMap(projIdsSet,OPTION_ALL);
     
@@ -241,7 +241,7 @@ public with sharing class IPM_ProjectResourceTriggerHandler
             projIdsSet.add(projResource.IPM_Project__c);
         }
         prevSyncedProjList = [SELECT Id,First_Sync_To_EcoDesign__c,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,
-                             IPM_Phase__c,IPM_ProjectSubType__c, IPM_Answer_of_Q1__c, IPM_CompanyCardText__c, Project_Countries__c FROM IPM_Project__c WHERE Id IN :projIdsSet LIMIT 50000];
+                             IPM_Phase__c,IPM_Answer_of_Q1__c,IPM_CompanyCardText__c, Project_Countries__c FROM IPM_Project__c WHERE Id IN :projIdsSet LIMIT 50000];
     
         projMembersMap = IPM_ProjectCountryDetails.getProjectIdMembersListMap(projIdsSet,OPTION_ALL);
     
@@ -293,9 +293,9 @@ public with sharing class IPM_ProjectResourceTriggerHandler
              projidset.add(projres.IPM_Project__c);
            }
        } //FOR END       
-       if(projidset != null && !projidset.isEmpty()){
+       if(projidset != null && projidset.size()>0){
          projectmap = new Map<id,IPM_Project__c>([SELECT id,IPM_Parent_Project__r.IPM_Parent_Project__c,IPM_Global_Project_Id__c,IPM_Parent_Project__c FROM IPM_Project__c WHERE id IN:projidset or IPM_Parent_Project__c IN:projidset or IPM_Parent_Project__r.IPM_Parent_Project__c IN:projidset LIMIT 1000]);
-         if(projectmap != null && !projectmap.isEmpty()){ 
+         if(projectmap != null && projectmap.size()>0){ 
            for(IPM_Project__c proj:projectmap.values()){
              projglobalidset.add(proj.IPM_Global_Project_Id__c); 
              projglobalidset.add(proj.id);
@@ -306,11 +306,11 @@ public with sharing class IPM_ProjectResourceTriggerHandler
                 projglobalidset.add(proj.IPM_Parent_Project__r.IPM_Parent_Project__c);   
              }
            }
-           if(projglobalidset != null && !projglobalidset.isEmpty()){
+           if(projglobalidset != null && projglobalidset.size()>0){
              projectGlobalmap = new Map<id,IPM_Project__c>([select id from IPM_Project__c where id IN: projglobalidset]);  
            }      
          }
-         if(projectGlobalmap != null && !projectGlobalmap.isEmpty()){  
+         if(projectGlobalmap != null && projectGlobalmap.size()>0){  
               IPM_GroupManagement.groupmemberupdate(projectGlobalmap.keySet());  
          }
         }        

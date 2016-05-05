@@ -9,7 +9,7 @@ global with sharing class IPM_DueDateNotificationScheduler implements Schedulabl
     private static final string PREPARINGSTATUS  = 'Preparing';
         
    global void execute(SchedulableContext sc) {
-        string APEXJOBNAME  = 'Milestone Due DateNotification Job'; 
+        string APEXJOBNAME  = 'MatrixRetry';
         string dateTimeString = String.valueOf(Datetime.now());
         IPM_DueDateNotificationScheduler schedular = new IPM_DueDateNotificationScheduler();
         //check if there are 5 active batch jobs

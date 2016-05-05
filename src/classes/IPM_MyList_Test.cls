@@ -6,7 +6,7 @@
 
 
 @istest
-private class IPM_MyList_Test{
+public class IPM_MyList_Test{
     
     private static User platformUser;
     private static User BDUser;
@@ -21,12 +21,8 @@ private class IPM_MyList_Test{
     private static Boolean message;
     private static Boolean exceptn;
     private static final String projectToSearch = 'TestComments1';
-    private static final String sAssertionMsgForTaskBeingUpdated = '8 tasks are not being updated';
-    private static final String sAssertionMsgForTaskBeingCreated  = 'tasks are not inserted';
-    private static final String sProjectToBeSearched  = 'abc';
-    private static final String sProjectToBeSearchedIn  = 'abcd';
     /*
-    @description:  This method is used for Initializing the test data
+    @description For Initializing the data
     */ 
      @testSetup static void projectSetUpData() 
      {
@@ -40,7 +36,6 @@ private class IPM_MyList_Test{
              
             List<User> userList = new List<User>{platformUser,BDUser};
             update userList;
-            System.assertEquals(2, [Select count() from User where lastname IN (:GLOBAL_PL, :GLOBAL_BD) limit 100], 'User information is not updated properly.');
         }
         // Create Company Card information 
         IPM_Company_Card__c globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
@@ -49,31 +44,24 @@ private class IPM_MyList_Test{
         
         List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
         insert companyCardList;
-        System.assertEquals(3, [Select count() from IPM_Company_Card__c limit 100], '3 Company cards are not inserted.');
+        
          IPM_TestFactory_Helper.getProjectMasterData();
          
          // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
          IPM_TestFactory_Helper.shareMasterProject(new List<User>{platformUser}); 
          
          projectList = IPM_TestFactory_Helper.projectSetUp(8,platformUser);
+         System.debug('platformUser==>'+platformUser.Id);
          System.runAs(platformUser)
          {
            insert projectList;
-         }
-         List<IPM_Project__c> projectDBList = [Select id from IPM_Project__c limit 1000];
-           
-         system.assertEquals(9 , projectDBList.size(),'Projects are not created');
+         }  
+         system.assertEquals(9 , [Select id from IPM_Project__c limit 1000].size(),'Projects are created');
       }
       
-      /*
-     @description:  This method is used to get all the tasks associated with the test projects created so far.
-    */ 
-    /**Sonar Issue Comment:- Please note this is not a testmethod, so Test.startTest/Test.stopTest and System.runAs() is not used in this method.
-    Test.startTest/Test.stopTest and System.runAs() is used in testmethods from where this method is called.
-    */
+      
       private static list<IPM_Task__c> getTaskList()
-      {
-      	
+     {
         list<IPM_Task__c> taskList;
         projIdSet =  new Set<Id>();
         projResourceList = new list<IPM_Project_Resource__c>();
@@ -82,7 +70,8 @@ private class IPM_MyList_Test{
             Set<String> projectNameSet = new Set<String>{projectToSearch,'TestComments2','TestComments3','TestComments4','TestComments5','TestComments6','TestComments7','TestComments8','TestComments9','TestComments10'};
             projectDetailList = [Select Id,IPM_Phase__c,Name,IPM_PM_Approach__c,IPM_Complexity__c,(Select Id from Project_Documents__r),(Select Id from IPM_Financials_Consolidated__r ),
                     (Select Id,Name,IPM_Assignee__c,IPM_Due_Date1__c,IPM_Completed__c,IPM_Project__r.Is_Archieved__c,IPM_Task_Complexity__c,IPM_Project__c,IPM_Project_Document_Section__c,IPM_Function__c,IPM_Section__c, IPM_Type_of_Gate__c from Tasks__r),(Select Id,Name from IPM_Milestones__r)
-                    from IPM_Project__c where Name in:projectNameSet limit 100];
+                    from IPM_Project__c where Name in:projectNameSet];
+            System.debug('projectDetailList==>'+projectDetailList);        
             for(IPM_Project__c project: projectDetailList){
                 projIdSet.add(project.id);
             }
@@ -92,7 +81,7 @@ private class IPM_MyList_Test{
             {
                 for(IPM_Task__c task : project.Tasks__r)
                 {
-                    system.assertEquals(task.IPM_Task_Complexity__c,project.IPM_Complexity__c,'task complexity does not match with project complexity'); 
+                    system.assertEquals(task.IPM_Task_Complexity__c,project.IPM_Complexity__c,'task complexity matches with project complexity'); 
                     taskList.add(task);       
                 }
                 
@@ -103,20 +92,15 @@ private class IPM_MyList_Test{
             }
             insert projResourceList;
             
-            system.assertEquals(8, taskList.size(),sAssertionMsgForTaskBeingCreated);
+            system.assertEquals(8, taskList.size(),'task created');
         
         return taskList;
      }
-     
-     /*
-     @description:  This testmethod is used to test overall positive functionality of IPM_MyList
+    /*
+    * @description For Running Test Script
     */ 
      private static testmethod void myListTest(){
         Test.startTest();
-        final String sTestProjName = 'test proj';
-        final String sCategory = 'cat1';
-        final String sBrand = 'br1';
-        final String sSampleUser = 'Sample';
         User globalUser = [Select Id,LastName from User where LastName=:GLOBAL_PL limit 1];
         
         // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
@@ -137,30 +121,31 @@ private class IPM_MyList_Test{
             taskListTest.deleteTask();
             taskListTest.setTaskId(string.valueof(ipmTask.id));
             taskListTest.markComplete();
+            taskListTest.project();
             taskListTest.setUser(globalUser.Id);
             
-            taskListTest.setprojectName(sTestProjName);
+            taskListTest.setprojectName('test proj');
             String prName=taskListTest.getprojectName();
-            System.Assert(prName == sTestProjName,IPM_ConstantUtils.MSG_SHOULD_BE_SAME);
+            System.Assert(prName == 'test proj',IPM_ConstantUtils.MSG_SHOULD_BE_SAME);
             
-            taskListTest.setcategoryName(sCategory);
+            taskListTest.setcategoryName('cat1');
             String catName=taskListTest.getcategoryName();
-            System.Assert(catName == sCategory,IPM_ConstantUtils.MSG_SHOULD_BE_SAME);
+            System.Assert(catName == 'cat1',IPM_ConstantUtils.MSG_SHOULD_BE_SAME);
             
-            taskListTest.setbrandName(sBrand);
+            taskListTest.setbrandName('br1');
             String bName=taskListTest.getbrandName();
-            System.Assert(bName == sBrand,IPM_ConstantUtils.MSG_SHOULD_BE_SAME);
+            System.Assert(bName == 'br1',IPM_ConstantUtils.MSG_SHOULD_BE_SAME);
             
-            taskListTest.setPhase(IPM_ConstantUtils.PHASE_IDEAS);
+            taskListTest.setPhase('test');
             String pValue=taskListTest.getPhase();
-            System.Assert(pValue  == IPM_ConstantUtils.PHASE_IDEAS,IPM_ConstantUtils.MSG_SHOULD_BE_SAME);
+            System.Assert(pValue  == 'test',IPM_ConstantUtils.MSG_SHOULD_BE_SAME);
             
-            taskListTest.setUser(sSampleUser);
+            taskListTest.setUser('Sample');
             String uName=taskListTest.getUser();
-            System.Assert(uName == sSampleUser,IPM_ConstantUtils.MSG_SHOULD_BE_SAME);
+            System.Assert(uName == 'Sample',IPM_ConstantUtils.MSG_SHOULD_BE_SAME);
             
             String taskcount = taskListTest.getTaskcountValue();
-            System.Assert(Integer.valueOf(taskcount) > 0 ,'Task count should not be 0.');
+            System.Assert(taskcount != null,IPM_ConstantUtils.MSG_SHOULD_BE_SAME);
             
             taskListTest.toggleSortSections();
             taskListTest.toggleSortTasks();
@@ -172,16 +157,14 @@ private class IPM_MyList_Test{
             taskListTest.filteredProjectReset();
             taskListTest.filterCompleteTasksReset();
             
-            taskListTest.setTaskId(sProjectToBeSearched);
+            taskListTest.setTaskId('abc');
             taskListTest.deleteTask();
             
         }
         Test.stopTest();
     }
     
-     /*
-     @description:  This testmethod is used to test overdue,todays and next 7 days tasks assigned to logged-in user.
-    */ 
+    /*test cases for open task*/
      private static testmethod void myTaskOpenTest(){
         Test.startTest();
             list<IPM_Task__c> overdueTask;
@@ -219,9 +202,9 @@ private class IPM_MyList_Test{
             update updatedTaskTest;
             
             
-            list<IPM_Task__c> taskList = [select id,Name,IPM_Task_Complexity__c,IPM_Project__c,IPM_Due_Date1__c,IPM_Completed__c from IPM_Task__c where IPM_Due_Date1__c!= null and IPM_Project__c IN:projIdSet limit 100];
+            list<IPM_Task__c> taskList = [select id,Name,IPM_Task_Complexity__c,IPM_Project__c,IPM_Due_Date1__c,IPM_Completed__c from IPM_Task__c where IPM_Due_Date1__c!= null and IPM_Project__c IN:projIdSet];
             for(IPM_Task__c task :taskList){
-                system.assertEquals(task.IPM_Due_Date1__c!= null,true,'Due dates should not be null');
+                system.assertEquals(task.IPM_Due_Date1__c!= null,true,'Due dates are not null');
             }
             taskListTest = new IPM_MyList();
             overdueTask = taskListTest.getOverduetasksSample();
@@ -234,28 +217,25 @@ private class IPM_MyList_Test{
             taskListTest.showAllNextSevenDays();
             taskListTest.showAllLaterTasks();
             
-            overdueTaskQuery = [SELECT Id,IPM_Due_Date1__c,IPM_Project__c FROM IPM_Task__c WHERE IPM_Due_Date1__c < :system.Today() AND IPM_Completed__c = false AND IPM_Project__c in:projIdSet limit 1000];
-            system.assertEquals(overdueTask[0].IPM_Due_Date1__c,overdueTaskQuery[0].IPM_Due_Date1__c,'overdue tasks due dates are not matched');
-            system.assertEquals(overdueTask.size(),overdueTaskQuery.size(),'Overdue tasks count is not matched with actual created data');
+            overdueTaskQuery = [SELECT Id,IPM_Due_Date1__c,IPM_Project__c FROM IPM_Task__c WHERE IPM_Due_Date1__c < :system.Today() AND IPM_Completed__c = false AND IPM_Project__c in:projIdSet];
+            system.assertEquals(overdueTask[0].IPM_Due_Date1__c,overdueTaskQuery[0].IPM_Due_Date1__c,'overdue tasks due dates matched');
+            system.assertEquals(overdueTask.size(),overdueTaskQuery.size(),'Overdue tasks count matched with actual created data');
             
-            todayTaskQuery = [SELECT Id,IPM_Due_Date1__c,IPM_Project__c FROM IPM_Task__c WHERE IPM_Due_Date1__c = :system.Today() AND IPM_Completed__c = false AND  IPM_Project__c in:projIdSet limit 1000];
-            system.assertEquals(todayTask[0].IPM_Due_Date1__c,todayTaskQuery[0].IPM_Due_Date1__c,'todays tasks due dates are not matched');
-            system.assertEquals(todayTask.size(),todayTaskQuery.size(),'today tasks count is not matched with actual created data');
-            String sAssertMsg = 'seven days tasks count is not matched with actual created data';
-            sevenDaysQry = [SELECT Id,IPM_Due_Date1__c,IPM_Project__c FROM IPM_Task__c WHERE IPM_Due_Date1__c > :system.Today() AND IPM_Due_Date1__c < :system.Today().addDays(7) AND IPM_Completed__c = false AND  IPM_Project__c in:projIdSet limit 1000];
-            system.assertEquals(sevendaysTask[0].IPM_Due_Date1__c,sevenDaysQry[0].IPM_Due_Date1__c,'seven days tasks due dates are not matched');
-            system.assertEquals(2,sevenDaysQry.size(),sAssertMsg);
+            todayTaskQuery = [SELECT Id,IPM_Due_Date1__c,IPM_Project__c FROM IPM_Task__c WHERE IPM_Due_Date1__c = :system.Today() AND IPM_Completed__c = false AND  IPM_Project__c in:projIdSet];
+            system.assertEquals(todayTask[0].IPM_Due_Date1__c,todayTaskQuery[0].IPM_Due_Date1__c,'todays tasks due dates matched');
+            system.assertEquals(todayTask.size(),todayTaskQuery.size(),'today tasks count matched with actual created data');
             
-            system.assertEquals(2,laterTask.size(),sAssertMsg);
-            system.assertEquals(0,completedTask.size(),sAssertMsg);
+            sevenDaysQry = [SELECT Id,IPM_Due_Date1__c,IPM_Project__c FROM IPM_Task__c WHERE IPM_Due_Date1__c > :system.Today() AND IPM_Due_Date1__c < :system.Today().addDays(7) AND IPM_Completed__c = false AND  IPM_Project__c in:projIdSet];
+            system.assertEquals(sevendaysTask[0].IPM_Due_Date1__c,sevenDaysQry[0].IPM_Due_Date1__c,'seven days tasks due dates matched');
+            system.assertEquals(2,sevenDaysQry.size(),'seven days tasks count matched with actual created data');
+            
+            system.assertEquals(2,laterTask.size(),'seven days tasks count matched with actual created data');
+            system.assertEquals(0,completedTask.size(),'seven days tasks count matched with actual created data');
        }
         Test.stopTest();
         
     }
-    
-	 /*
-     @description:  This testmethod is used to test completed tasks count which are assigned to logged-in user.
-    */ 
+    /*test cases for completed task*/
      private static testmethod void myTaskCompletedTest(){
         Test.startTest();
             list<IPM_Task__c> completedTask;
@@ -279,7 +259,7 @@ private class IPM_MyList_Test{
                     updatedTaskTest.add(ipmTask);
                 }
                 update updatedTaskTest;
-                system.assertEquals(4, [Select count() from IPM_Task__c where IPM_Completed__c = true and IPM_Project__c in:projIdSet limit 1000] , 'tasks are not updated');
+                system.assertEquals(updatedTaskTest.size(),4,'tasks updated');
                 
                 taskListTest = new IPM_MyList();
                 taskListTest.getOverduetasksSample();
@@ -288,15 +268,12 @@ private class IPM_MyList_Test{
                 taskListTest.getLaterTasks();
                 completedTask = taskListTest.getcompletedTasks();
                 taskListTest.showCompletedTasks();
-                system.assertEquals(completedTask.size(),4,'4 tasks are not marked as completed');
+                system.assertEquals(completedTask.size(),4,'4 tasks are marked as completed');
              }   
         Test.stopTest();
     }
-    
-    /*
-     @description:  This testmethod is used to test whether logged in user can view task where he is the owner.
-    */ 
-    private static testmethod void taskVisibilityPositiveTest(){
+    /*logged in user can view task where he is the owner*/
+    public static testmethod void taskVisibilityPositiveTest(){
         
          
             list<IPM_Task__c> insertTask = new list<IPM_Task__c> ();
@@ -306,29 +283,31 @@ private class IPM_MyList_Test{
             
             // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
             IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalUser}); 
+        	System.debug('globalUser==>'+globalUser.id+'==>');
             system.RunAs(globalUser)
             { 
                 insertTask = getTaskList();
                 
-                system.assertEquals(!insertTask.isEmpty(),true,sAssertionMsgForTaskBeingCreated);
+                system.assertEquals(insertTask.size()>0,true,'tasks inserted');
          		
          			
                 list<IPM_Project_Document_Section__c> sectionList = [SELECT id,IPM_Gate_Document__c,IPM_FunctionalRole__c,IPM_Section__c,IPM_Project_ID__c 
-                                        FROM IPM_Project_Document_Section__c where IPM_Project_Document__r.IPM_Project__c in:projIdSet limit 1000];
+                                        FROM IPM_Project_Document_Section__c where IPM_Project_Document__r.IPM_Project__c in:projIdSet];
                 for(IPM_Task__c task: insertTask ){
                     for(IPM_Project_Document_Section__c section :sectionList ){
                         if(task.IPM_Project__c ==section.IPM_Project_ID__c && task.IPM_Type_of_Gate__c ==section.IPM_Gate_Document__c && task.IPM_Function__c ==section.IPM_FunctionalRole__c ){
                             task.IPM_Project_Document_Section__c =section.id;
                             task.IPM_Section__c =section.IPM_Section__c;
                              task.IPM_Due_Date1__c =System.today()+10;
+                             System.debug('task.IPM_Assignee__c before ==>'+task.IPM_Assignee__c);
                              task.IPM_Assignee__c = UserInfo.getUserId() ;
+                             System.debug('task.IPM_Assignee__c after ==>'+task.IPM_Assignee__c);
                              updatedTaskMap.put(task.Id, task);
                         }
                     }
         
                 }
                 update updatedTaskMap.values();
-                //Please note assertion is not required here after DML, as it is test data updation to test another business functionality in next part of testmethod.
                 IPM_MyList tskList = new IPM_MyList();
                 tskList.searchedProject = projectToSearch;
                  tskList.isCompleteTasks = IPM_Utils.f;
@@ -336,8 +315,8 @@ private class IPM_MyList_Test{
                 tskList.HasPrevious=true;
                 tskList.HasNext=true;
                 tskList.projectsSet=new set<string>();
-                tskList.projectsSet.add(sProjectToBeSearchedIn);
-                tskList.searchedProject=sProjectToBeSearched;
+                tskList.projectsSet.add('abcd');
+                tskList.searchedProject='abc';
                 tskList.filterProject();
             
              }
@@ -356,21 +335,17 @@ private class IPM_MyList_Test{
                 ApexPages.StandardSetController ssc = new ApexPages.StandardSetController(insertTask);
                 list<IPM_Task__c>updatedTaskTest = ssc.getRecords();
                 
-                system.assertEquals(updatedTaskTest.size(),8,sAssertionMsgForTaskBeingUpdated); 
+                system.assertEquals(updatedTaskTest.size(),8,'8 tasks are being updated'); 
             }
         Test.stopTest();
     }   
     
-     /*
-     @description:  This testmethod is used to test tasks having project approch as external
-    */ 
+    /* task with project approch is external */
      private static testmethod void projectWithExternalApprochTest(){ 
         Test.startTest();
             message = false; 
            	exceptn = false;   
            	Exception ex = null;
-           	final String sAssertionMsgForPageMessage = 'page messages are not added properly.';
-            final String sTestclassString = 'test class';
             User globalUser = [Select Id,LastName from User where LastName=:GLOBAL_PL limit 1];
             
             // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
@@ -381,11 +356,10 @@ private class IPM_MyList_Test{
                 taskListTest = new IPM_MyList();
                 list<IPM_Task__c>  taskList = getTaskList();
                 
-                list<IPM_Project__c> projList = [SELECT Id,IPM_PM_Approach__c,Name FROM IPM_Project__c WHERE Id =: taskList[0].IPM_Project__c limit 1000];
-                projList[0].IPM_PM_Approach__c = IPM_ConstantUtils.IPM_APPROACH_EXTERNAL ;
+                list<IPM_Project__c> projList = [SELECT Id,IPM_PM_Approach__c,Name FROM IPM_Project__c WHERE Id =: taskList[0].IPM_Project__c];
+                projList[0].IPM_PM_Approach__c = 'External' ;
                 update projList[0];
                 
-                System.assertEquals(IPM_ConstantUtils.IPM_APPROACH_EXTERNAL, [Select Id, IPM_PM_Approach__c from IPM_Project__c WHERE Id =: taskList[0].IPM_Project__c limit 1000][0].IPM_PM_Approach__c, 'Project approach is not updated to External');
                 IPM_MyList ipm = new IPM_MyList();
                 ipm.showCompletedTasks();
                 List<Apexpages.Message> msgs = ApexPages.getMessages();
@@ -393,24 +367,21 @@ private class IPM_MyList_Test{
                 for(Apexpages.Message msg : msgs){
                     message  = true;
                 }
-                
-                system.assertEquals(message  ,true, sAssertionMsgForPageMessage);
+                system.assertEquals(message  ,true,'page messages are added');
                 
                 
                  try{
-                    ipm.catchBlockContent(sTestclassString ,ex);
+                    ipm.catchBlockContent('test class',ex);
                  }catch(Exception exp){
-                    ipm.catchBlockContent(sTestclassString ,exp);
+                    ipm.catchBlockContent('test class',exp);
                     exceptn =true;
                  }
-                 system.assertEquals(exceptn ,true,sAssertionMsgForPageMessage);
+                 system.assertEquals(exceptn ,true,'page messages are added');
              }
         Test.stopTest();
      }
      
-     /*
-     @description:  This testmethod is used to test filtering of the tasks which are in next 7 days and completed.
-    */ 
+     /*test cases for completed task*/
      private static testmethod void taskCatchTest(){
          
             list<IPM_Task__c> insertTask = new list<IPM_Task__c> ();
@@ -424,10 +395,10 @@ private class IPM_MyList_Test{
             { 
                 insertTask = getTaskList();
                 
-                system.assertEquals(!insertTask.isEmpty(),true,sAssertionMsgForTaskBeingCreated);
+                system.assertEquals(insertTask.size()>0,true,'tasks inserted');
          		
                 list<IPM_Project_Document_Section__c> sectionList = [SELECT id,IPM_Gate_Document__c,IPM_FunctionalRole__c,IPM_Section__c,IPM_Project_ID__c 
-                                        FROM IPM_Project_Document_Section__c where IPM_Project_Document__r.IPM_Project__c in:projIdSet limit 1000];
+                                        FROM IPM_Project_Document_Section__c where IPM_Project_Document__r.IPM_Project__c in:projIdSet];
                 for(IPM_Task__c task: insertTask ){
                     for(IPM_Project_Document_Section__c section :sectionList ){
                         if(task.IPM_Project__c ==section.IPM_Project_ID__c && task.IPM_Type_of_Gate__c ==section.IPM_Gate_Document__c && task.IPM_Function__c ==section.IPM_FunctionalRole__c ){
@@ -441,10 +412,9 @@ private class IPM_MyList_Test{
         
                 }
                 update updatedTaskMap.values();
-                //Please note assertion is not required here after DML, as it is test data updation to test business functionality in next part of testmethod.
                 IPM_MyList tskList = new IPM_MyList();
                 tskList.toggleTask = IPM_Utils.truevalue;
-                tskList.setPhase(IPM_ConstantUtils.PHASE_IDEAS);
+                tskList.setPhase('Idea');
                 tskList.setUser(GLOBAL_PL);
                 tskList.toggleRole = IPM_Utils.truevalue;
                 tskList.isCompleteTasks = IPM_Utils.t;
@@ -453,8 +423,8 @@ private class IPM_MyList_Test{
                 tskList.HasPrevious=true;
                 tskList.HasNext=true;
                 tskList.projectsSet=new set<string>();
-                tskList.projectsSet.add(sProjectToBeSearchedIn);
-                tskList.searchedProject=sProjectToBeSearched;
+                tskList.projectsSet.add('abcd');
+                tskList.searchedProject='abc';
                 tskList.filterProject();
              	tskList.loadTasks();
              }
@@ -473,15 +443,13 @@ private class IPM_MyList_Test{
                 ApexPages.StandardSetController ssc = new ApexPages.StandardSetController(insertTask);
                 list<IPM_Task__c>updatedTaskTest = ssc.getRecords();
                 
-                system.assertEquals(updatedTaskTest.size(),8,sAssertionMsgForTaskBeingUpdated); 
+                system.assertEquals(updatedTaskTest.size(),8,'8 tasks are being updated'); 
             }
         Test.stopTest();
      
      }
      
-     /*
-     @description:  This testmethod is used to test filtering of the tasks which are in next 7 days and are not completed
-    */
+     
      private static testmethod void taskTestNegative(){
          
             list<IPM_Task__c> insertTask = new list<IPM_Task__c> ();
@@ -495,10 +463,10 @@ private class IPM_MyList_Test{
             { 
                 insertTask = getTaskList();
                 
-                system.assertEquals(!insertTask.isEmpty(),true,sAssertionMsgForTaskBeingCreated);
+                system.assertEquals(insertTask.size()>0,true,'tasks inserted');
          		
                 list<IPM_Project_Document_Section__c> sectionList = [SELECT id,IPM_Gate_Document__c,IPM_FunctionalRole__c,IPM_Section__c,IPM_Project_ID__c 
-                                        FROM IPM_Project_Document_Section__c where IPM_Project_Document__r.IPM_Project__c in:projIdSet limit 1000];
+                                        FROM IPM_Project_Document_Section__c where IPM_Project_Document__r.IPM_Project__c in:projIdSet];
                 for(IPM_Task__c task: insertTask ){
                     for(IPM_Project_Document_Section__c section :sectionList ){
                         if(task.IPM_Project__c ==section.IPM_Project_ID__c && task.IPM_Type_of_Gate__c ==section.IPM_Gate_Document__c && task.IPM_Function__c ==section.IPM_FunctionalRole__c ){
@@ -512,10 +480,9 @@ private class IPM_MyList_Test{
         
                 }
                 update updatedTaskMap.values();
-                //Please note assertion is not required here after DML, as it is test data updation to test another business functionality in next part of testmethod.
                 IPM_MyList tskList = new IPM_MyList();
                 tskList.toggleTask = IPM_Utils.truevalue;
-                tskList.setPhase(IPM_ConstantUtils.PHASE_IDEAS);
+                tskList.setPhase('Idea');
                 tskList.setUser(GLOBAL_PL);
                 tskList.toggleRole = IPM_Utils.truevalue;
                 tskList.isCompleteTasks = IPM_Utils.f;
@@ -525,12 +492,12 @@ private class IPM_MyList_Test{
                 tskList.HasPrevious=true;
                 tskList.HasNext=true;
                 tskList.projectsSet=new set<string>();
-                tskList.projectsSet.add(sProjectToBeSearchedIn);
+                tskList.projectsSet.add('abcd');
                 tskList.filterProject();
              	tskList.loadTasks();
              }
              
-        	Test.startTest();  
+        Test.startTest();  
         
             User globalBDUser = [Select Id,LastName from User where LastName=:GLOBAL_BD limit 1];   
             // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
@@ -544,9 +511,9 @@ private class IPM_MyList_Test{
                 ApexPages.StandardSetController ssc = new ApexPages.StandardSetController(insertTask);
                 list<IPM_Task__c>updatedTaskTest = ssc.getRecords();
                 
-                system.assertEquals(updatedTaskTest.size(),8,sAssertionMsgForTaskBeingUpdated); 
+                system.assertEquals(updatedTaskTest.size(),8,'8 tasks are being updated'); 
             }
-        	Test.stopTest();
+        Test.stopTest();
     
      	
      

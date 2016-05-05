@@ -370,6 +370,10 @@ public with sharing class IPM_MyList{
     *********************************************************************************/
     public Boolean isBosscard {get; set;}
     
+    public PageReference project()
+    {
+        return new PageReference(IPM_Utils.apexipmproject_1);
+    }
     
     public Integer size{get;set;}
     public Integer overduesize{get;set;}   

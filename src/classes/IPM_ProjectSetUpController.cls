@@ -26,7 +26,6 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     public Boolean isContainSpecialChars {get;set;}     
     public boolean isDupProjectname{get;set;}
     public boolean isTLDLessThnSixMnth{get;set;}
-    public boolean isTLDBeforeGates{get;set;}
     public boolean isTLDLessThnToday{get;set;}
     public boolean saveSuccess{get;set;}
     public Boolean skipValidation{get;set;}
@@ -115,7 +114,6 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
         isContainSpecialChars  = false;
         isDupProjectname = false;
         isTLDLessThnSixMnth = false;
-        isTLDBeforeGates = false;
         saveSuccess = false;
         skipValidation = false;
         isCreateTask=false;
@@ -677,7 +675,6 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
         isDupProjectname = false;
         isMaxBrandPosition=false;
         isTLDLessThnSixMnth = false;
-        isTLDBeforeGates = false;
         isTLDLessThnToday=false;
         saveSuccess = false;
         businessErrorField = IPM_ConstantUtils.BLANK;
@@ -745,12 +742,9 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
             {
                 isTLDLessThnSixMnth = true;
             }
-            if(project!=null && IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL.equals(project.IPM_Project_Type__c) && project.IPM_Target_Launch_Dates__c!=null) {
-     			isTLDBeforeGates = isProjectTLDBeforeMilestoneGates(project.IPM_Target_Launch_Dates__c);
-            }
         }
         
-        if(!isBusinessError && !isContainSpecialChars && !isTLDLessThnSixMnth && !isTLDBeforeGates && !isTLDLessThnToday && !isDupProjectname && !isMaxBrandPosition)
+        if(!isBusinessError && !isContainSpecialChars && !isTLDLessThnSixMnth && !isTLDLessThnToday && !isDupProjectname && !isMaxBrandPosition)
         
         {
             processProjectSave();
@@ -794,9 +788,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
 	            if(lstGatekeeper!=null && !lstGatekeeper.isEmpty()){
 	            	project.IPM_Project_Gatekeeper__c=lstGatekeeper[0].IPM_User__c;	
 	            } 
-            }	
-            
-                           
+            }	               
             update project;
             
             if(!skipValidation)
@@ -1150,23 +1142,6 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     *********************************************************************************/
     public void hideProjectSuggetion(){
         isProjectNameBlank=true;
-    }
-    /*******************************************************************************************************
-    * @description  Method to get a date prior to any of mandatory project Milestones (except PLE and Target Launch Date).
-    * @param        NONE
-    * @return       Date
-    */
-    private Boolean isProjectTLDBeforeMilestoneGates( Date tld ){
-        Boolean result = false;
-        List<String> milestoneNames = new List<String>{IPM_ConstantUtils.CHARTER_GATE_APPROVAL_MILESTONE,IPM_ConstantUtils.CONTRACT_GATE_APPROVAL_MILESTONE,IPM_ConstantUtils.MARKET_READY_GATE_APPROVAL_MILESTONE};
-        List<IPM_Milestone__c> milestones = [Select IPM_Due_Date__c from IPM_Milestone__c where IPM_Project__c =: project.Id and IPM_Active__c = true and IPM_Name__c in: milestoneNames limit 1000];
-        for(IPM_Milestone__c milestone : milestones) {
-        	if(milestone.IPM_Due_Date__c != null && tld<milestone.IPM_Due_Date__c) {
-        		result = true;
-        		break;
-        	}
-        }
-        return result;
-    }        
+    }  
     
 }

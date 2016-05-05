@@ -5,15 +5,14 @@
  * *****************************************************/
 
 @isTest
-private class IPM_Gate_RollOuts_Controller_Test{
+public class IPM_Gate_RollOuts_Controller_Test{
 
-    private static User platformUser;
-    private static List<IPM_Project__c> globalProjectList;
-    private static List<IPM_Project_Rollout__c> regionalRolloutList;
-    private static List<IPM_Project_Rollout__c> localRolloutList;
-    private static final String PROJ_CREATED='Projects are created';
-    private static final String REGIONAL_ROLLOUT_NAME_FAIL = 'Regional Rollout project name is not as per given';
-    private static Set<Id> iDs ;
+	private static User platformUser;
+	private static List<IPM_Project__c> globalProjectList;
+	private static List<IPM_Project_Rollout__c> regionalRolloutList;
+	private static List<IPM_Project_Rollout__c> localRolloutList;
+	private static final String PROJ_CREATED='Projects are created';
+	private static Set<Id> iDs ;
     public static list<IPM_Country__c> countryList;
     
     /*******************************************************
@@ -36,28 +35,28 @@ private class IPM_Gate_RollOuts_Controller_Test{
          for(IPM_Company_Card__c eachCompanyCard : companyCardList) {
             iDs.add(eachCompanyCard.Id);
          }
-         System.assertEquals(3, [Select count() from IPM_Company_Card__c where id in:iDs],'company cards insertion fails');
+     	 System.assertEquals(3, [Select count() from IPM_Company_Card__c where id in:iDs],'company cards are created');
           
          IPM_TestFactory_Helper.getProjectMasterData();
          
          globalProjectList = IPM_TestFactory_Helper.projectSetUp(1,platformUser);
          System.runAs(platformUser)
          {
-            insert globalProjectList;
-            iDs.clear();
-            for(IPM_Project__c eachProj : globalProjectList) {
+         	insert globalProjectList;
+         	iDs.clear();
+       	 	for(IPM_Project__c eachProj : globalProjectList) {
              iDs.add(eachProj.Id);
-            }
-            System.assertEquals(1, [Select count() from IPM_Project__c where id in:iDs],PROJ_CREATED);
+         	}
+     	 	System.assertEquals(1, [Select count() from IPM_Project__c where id in:iDs],PROJ_CREATED);
          
             // Create Regional Rollouts for Created Global project.
             regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,globalProjectList,new List<User>{platformUser,platformUser,platformUser});
             insert regionalRolloutList;
             iDs.clear();
-            for(IPM_Project_Rollout__c eachRollout : regionalRolloutList) {
+       	 	for(IPM_Project_Rollout__c eachRollout : regionalRolloutList) {
              iDs.add(eachRollout.Id);
-            }
-            System.assertEquals(2, [Select count() from IPM_Project_Rollout__c where id in:iDs],'Regional Rollouts insertion fails');
+         	}
+     	 	System.assertEquals(2, [Select count() from IPM_Project_Rollout__c where id in:iDs],'Regional Rollouts created');
             
             Map<Id,List<IPM_Project_Rollout__c>> projectToRolloutMap = new Map<Id,List<IPM_Project_Rollout__c>>();
             for(IPM_Project_Rollout__c projectRollout : regionalRolloutList)
@@ -77,10 +76,10 @@ private class IPM_Gate_RollOuts_Controller_Test{
             insert localRolloutList;
              
             iDs.clear();
-            for(IPM_Project_Rollout__c eachRollout : localRolloutList) {
+       	 	for(IPM_Project_Rollout__c eachRollout : localRolloutList) {
              iDs.add(eachRollout.Id);
-            }
-            System.assertEquals(2, [Select count() from IPM_Project_Rollout__c where id in:iDs],'Local rollouts insertion fails');
+         	}
+     	 	System.assertEquals(2, [Select count() from IPM_Project_Rollout__c where id in:iDs],'Local rollouts created');
            
             // Create Country specific information.
             countryList= new List<IPM_Country__c>();
@@ -106,10 +105,10 @@ private class IPM_Gate_RollOuts_Controller_Test{
             
             insert countryList;
             iDs.clear();
-            for(IPM_Country__c eachCountry : countryList) {
+       	 	for(IPM_Country__c eachCountry : countryList) {
              iDs.add(eachCountry.Id);
-            }
-            System.assertEquals(2, [Select count() from IPM_Country__c where id in:iDs],'Countries insertion fails');
+         	}
+     	 	System.assertEquals(2, [Select count() from IPM_Country__c where id in:iDs],'Countries added');
           
             List<IPM_Gate_RollOuts_Controller.LocalRolloutWrapper> lstLocalWrapper = new List<IPM_Gate_RollOuts_Controller.LocalRolloutWrapper>();
             IPM_Gate_RollOuts_Controller.LocalRolloutWrapper localRolloutWrapper = new IPM_Gate_RollOuts_Controller.LocalRolloutWrapper(localRolloutList[0],countryList);
@@ -117,29 +116,10 @@ private class IPM_Gate_RollOuts_Controller_Test{
             IPM_Gate_RollOuts_Controller.RegionalRollOutWrapper regionalRolloutWrapper = new IPM_Gate_RollOuts_Controller.RegionalRollOutWrapper(regionalRolloutList[0].Name,lstLocalWrapper); // NO SONAR used to cover the test coverage of constructor  
             IPM_Gate_RollOuts_Controller gateController = new IPM_Gate_RollOuts_Controller(); 
             gateController.proId = globalProjectList[0].Id;     
-
+        
+        
         }
         
-     } 
-     
-     public static testmethod void initiate()
-     {
-         
-	         Test.startTest();
-	         List<IPM_Project__c> projectList = [Select Id from IPM_Project__c where Name = 'TestComments1'];
-	         IPM_Project__c project = null;
-	         
-	         
-	         IPM_Gate_RollOuts_Controller gateController = new IPM_Gate_RollOuts_Controller();
-	         gateController.proId = projectList[0].Id;
-	         gateController.prepareIPMLocalToCountryWrapper();
-	         
-	         System.assertEquals(gateController.regionalRollOutWrapperList.size(),2, 'Regional Rollouts list result size is more or leass than 2 records');
-	         
-	         System.assertEquals(gateController.regionalRollOutWrapperList[0].regionalRollOutName,'TestComments1_AFR', REGIONAL_ROLLOUT_NAME_FAIL);
-	         System.assertEquals(gateController.regionalRollOutWrapperList[1].regionalRollOutName,'TestComments1_LA', REGIONAL_ROLLOUT_NAME_FAIL);
-	         Test.stopTest();
-      
      } 
      
     }

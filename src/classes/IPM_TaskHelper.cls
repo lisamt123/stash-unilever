@@ -294,7 +294,7 @@ public with sharing class IPM_TaskHelper {
                                           masterTask.IPM_Master_Section_Sequence__c != IPM_ConstantUtils.ENVIRONMENTAL_IMPACT_SEQUENCE || 
                                           (
                                             masterTask.IPM_Master_Section_Sequence__c.equalsIgnoreCase(IPM_ConstantUtils.ENVIRONMENTAL_IMPACT_SEQUENCE) &&
-                                            project.IPM_ProjectSubType__c !=IPM_ConstantUtils.IPM_BLG
+                                            project.IPM_Answer_of_Q1__c !=IPM_ConstantUtils.BLG
                                           )
                                         ))
                                     {

@@ -167,20 +167,12 @@ public with sharing class IPM_GateRiskSection{
     */
     public void setRenderValues(){
         if(projDocType.Equals(IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE))
-        {
             isMarketDeployment=true;
-        }
         if(projDocType.Equals(IPM_ConstantUtils.MARKET_READY_GATE)) 
-        { 
             isMarketReady=true;
-        }
         if(projDocType.Equals(IPM_ConstantUtils.CHARTER_GATE))
-        {
             isCharter=true;
-        }
         if(projDocType.Equals(IPM_ConstantUtils.CONTRACT_GATE))
-        {
             isContract=true;
-        }    
     }
 }

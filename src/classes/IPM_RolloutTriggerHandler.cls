@@ -65,7 +65,7 @@ public with sharing class IPM_RolloutTriggerHandler
         {
             if(projectRollout.IPM_CharterApproved__c)
             {
-               projectRollout.addError(Label.IPM_Cannot_Delete_CharterApproved); 
+               projectRollout.addError('Cannot Delete Charter Approved Rollouts'); 
             }    
         }
          
@@ -373,7 +373,7 @@ public with sharing class IPM_RolloutTriggerHandler
             }
         }
            
-        if(!updatedRollouts.isEmpty()) 
+        if(updatedRollouts.size()>0) 
         {
             IPM_SyncFinanceTableTLD syncFinanceTableTLD = new IPM_SyncFinanceTableTLD();
             syncFinanceTableTLD.syncProjectRolloutFinancialTLD(updatedRollouts);
@@ -409,7 +409,7 @@ public with sharing class IPM_RolloutTriggerHandler
             }
         }
         
-        if(projectidset != null && !projectidset.isEmpty())
+        if(projectidset != null && projectidset.size()>0)
         {
             for(IPM_Project__c proj: [select id, ownerid, IPM_Category_Text__c from IPM_Project__c where id IN:projectidset])
             {
@@ -449,7 +449,7 @@ public with sharing class IPM_RolloutTriggerHandler
             updateAsyncJobIdRolloutMap.put(rolloutId,projectRollout);
         }
         
-        if(!updateAsyncJobIdRolloutMap.isEmpty())
+        if(updateAsyncJobIdRolloutMap.size() > 0)
         {
             SKIP_TRIGGER_EXECUTION = true;
             update updateAsyncJobIdRolloutMap.values();

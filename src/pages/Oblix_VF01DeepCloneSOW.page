@@ -1,14 +1,7 @@
-<!-- 
-//******************************************************************************************************
-//      THE CONTENT OF THIS PAGE HAS BEEN COMMENT OUT AS THIS PAGE IS NO LONGER USED
-//      AS PART OF CODE REFACTORING, NEW PAGES HAVE REPLACED THESE - DESTRUCTIVE CHANGES SHOULD REMOVE THIS
-//      S.M. 2016-03-30
-//****************************************************************************************************** 
--->
-<apex:page controller="Oblix_Ctrl001DeepCloneSOW_CC">
-<!--      
 <apex:page controller="Oblix_Ctrl001DeepCloneSOW_CC" action="{!init}">
-<title>{!$Label.Oblix_Lbl_SOW_Marketing_Clone_Procedure}</title>
+     <title>{!$Label.Oblix_Lbl_SOW_Marketing_Clone_Procedure}</title>
+   <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>  -->
+   <!--  <apex:stylesheet value="{!URLFOR($Resource.jqueryUiCss, 'jquery-ui.css')}"/>  -->
      <apex:stylesheet value="{!URLFOR($Resource.Oblix_jqueryUiCss)}"/>
     
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
@@ -72,5 +65,5 @@
         </div>
         <apex:actionFunction name="CloneSOWParent" action="{!CloneSowParent}"></apex:actionFunction>
     </apex:form>
-     -->
+    
 </apex:page>

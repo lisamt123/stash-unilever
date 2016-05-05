@@ -87,25 +87,6 @@ public class IPM_ConstantUtils {
     public static final String OTIF_STATUS_RED='Red';
     public static final String OTIF_STATUS_AMBER='Amber';
     
-    //to store OTIF report related values
-    public static final String OTIF_SCOPING_COMPLETE='Scoping Complete';
-    public static final String OTIF_TECHNICAL_ACTION_STANDARDS_ACHIEVED_BY_LEAD_REGION='Technical Action Standards Achieved by Lead Region';
-    public static final String OTIF_MATERIALS_SOURCING_STRATEGIES_AGREED='Materials Sourcing Strategies Agreed';
-    public static final String OTIF_ATTRACTIVE_BUSINESS_CASE='Attractive Business Case';
-    public static final String OTIF_TECHNICAL_FEASIBILITY='Technical Feasibility';
-    public static final String OTIF_CAPEX_APPROVED='Capex Approved';
-    public static final String OTIF_CUSTOMER_APPEAL='Customer Appeal';
-    public static final String OTIF_BASES_I='Bases I';
-    public static final String OTIF_BASES_II='Bases II';
-    public static final String OTIF_BASES_III='Bases III';
-    public static final String OTIF_SPEC_BILLS_OF_MATERIALS_IN_INTERSPEC='Spec/Bills of Materials in Interspec';
-    public static final String OTIF_TECHNICAL_AND_PRODUCTION_CAPABILITY_CONFIRMED='Technical and Production Capability Confirmed';
-    public static final String OTIF_COMMUNICATION_BET_FINAL_RELEASE_AVAILABILITY='Communication: BET Final Release Availability';
-    public static final String OTIF_COMMUNICATION_FULL_THINK_BIG_PACK_AVAILABLE='Communication: Full Think Big Pack Available';    
-    public static final String OTIF_CONCEPT_TEST='Concept Test';    
-    public static final String OTIF_FIRST_PROD_CONF_SPEC_FINALISED='First Production Confirmed and Specifications Finalised';        
-    public static final String OTIF_TECH_PROD_CAPABILITY_CONF_MAIN_PLANT='Technical and Production Capability Confirmed at Main Plant';    
-    
      //for gate Document
     public static final String INTRODUCTION_HEADER_SEQUENCE='1';
     public static final String EXTERNAL_HEADER_SEQUENCE='2';
@@ -938,7 +919,7 @@ public class IPM_ConstantUtils {
    public static final String NullString = null;
    public static final Integer fileSize = 25000000;
    public static final String FINANCIAL_CONTROLLER_STR = '/apex/IPM_FinancialCopyPasteGrid?id=';
-   public static final String BI = 'Bi';
+   
    // Phase Change Job Status 
     public static final String JOB_STATUS_NA = 'Not Applicable';
     public static final String JOB_STATUS_PROCESSING = 'Processing';
@@ -1195,5 +1176,4 @@ public class IPM_ConstantUtils {
    public static final String CONTRACT_GATE_APPROVAL_MILESTONE = 'Contract Gate Approval';
    public static final String MARKET_READY_GATE_APPROVAL_MILESTONE = 'Market Ready Gate Approval';
    public static finaL String SHIPTO_TRADE_TLD='Ship To Trade (Target Launch Date)';
-   public static final Integer KB_TO_BYTES = 1024;
 }

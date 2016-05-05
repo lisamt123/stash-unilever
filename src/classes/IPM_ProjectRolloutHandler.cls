@@ -21,7 +21,6 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
     
     private Map<Id,IPM_Project_Rollout__c> rolloutProjectTLDChanged = new Map<Id,IPM_Project_Rollout__c> {};
     private Map<Id,IPM_Project_Rollout__c> globalProjIdRollout = new Map<Id,IPM_Project_Rollout__c> {};     
-    private Map<Id,IPM_Project_Rollout__c> misAlignedConfirmedRollout = new Map<Id,IPM_Project_Rollout__c> {};      
     
     /**
     * @description:bulkBefore
@@ -187,14 +186,7 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
                     globalProjIdRollout.put(newRollout.IPM_Project__c,newRollout); 
                 }
             }            
-        }  
-        if( oldRollout.MisAligned_Confirmed_By_Finance_Leader__c != newRollout.MisAligned_Confirmed_By_Finance_Leader__c &&  newRollout.MisAligned_Confirmed_By_Finance_Leader__c ){
-            if(newRollout.Regional_Project__c != null){
-                misAlignedConfirmedRollout.put(newRollout.Regional_Project__c,newRollout);
-            } else {
-                misAlignedConfirmedRollout.put(newRollout.IPM_Project__c,newRollout);           
-            }
-        }
+        }        
 
     }
     /**
@@ -232,10 +224,6 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
             IPM_RolloutPlanTLDSync rolloutPlanTLDSync = new IPM_RolloutPlanTLDSync();
             rolloutPlanTLDSync.syncTLDDates(null,rolloutProjectTLDChanged);
             rolloutPlanTLDSync.notifyGlobalProjectFinanceLeader(globalProjIdRollout);                      
-        }
-        if(!misAlignedConfirmedRollout.isEmpty()){
-            IPM_RolloutPlanTLDSync rolloutPlanTLDSync = new IPM_RolloutPlanTLDSync();
-            rolloutPlanTLDSync.notifyProjectFinanceAboutFinanceLeaderConfirmation(misAlignedConfirmedRollout);      
         }
         ExceptionLoggingHelper.insertLogRecordList();
     }

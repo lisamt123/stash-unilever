@@ -5,7 +5,7 @@
 *               in the gate document
 */
 public with sharing class IPM_FinGateController {
- 
+
     public IPM_Project__c project {get; set;} //The project record for which the financial business cases are being viewed
     public Id projectId; //Project Id of te current project
     public ID getprojectId(){ return projectId; }

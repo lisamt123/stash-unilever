@@ -3,7 +3,7 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
 
     static Marketing_Basics__c globalAct; 
 
-    @isTest private static void createMaketingSow (){
+ private static  id createMaketingSow (){
       
          Account myAccount = new Account();
              myAccount.Name = 'AgencyAccount';
@@ -74,16 +74,19 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
             basicParentActivity1.name = 'preselected';
             insert basicParentActivity1;
             globalAct = basicParentActivity1;
-            //return marketingSow.id; 
-
-
-            User u = Oblix_TestUtils.createTestUser(); 
+            return marketingSow.id; 
+        
+    }
+ 
+    static testMethod void CampaignEdit_Test() {
+        
+        User u = Oblix_TestUtils.createTestUser(); 
          
         System.runAs(u){
    
             Test.startTest();
             ApexPages.currentPage().getParameters().put('preSelectedName', 'preselected' );
-            ApexPages.currentPage().getParameters().put('sowId', marketingSow.id);
+            ApexPages.currentPage().getParameters().put('sowId', createMaketingSow() );
             Oblix_SOWNonCampaignCreateController controller = new Oblix_SOWNonCampaignCreateController();
                  
             controller.seletedActivity = JSON.serialize(globalAct);
@@ -93,7 +96,6 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
             controller.activity.selectedCountryname ='France' ;
             controller.fillAgencyDepartment();
             controller.activity.selectedAgencyDepartment= 'Account Management';
-            controller.activity.hourlyRate = '100';
             controller.fillRoleTitle();
             controller.fillRate();
 
@@ -113,32 +115,8 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
             List<SelectOption> result = controller.populateRoleTitleList(roleTitlesNameMap);
             System.assert(result != null);
             System.assert(controller.exitSwop() != null);
-
-
-            System.assertNotEquals(null, controller.activity.nonCampaignItem);
-            System.assertEquals(null, controller.activity.selectedCountry);
-            System.assertEquals(null, controller.activity.selectedCountryname);
-            System.assertEquals(null, controller.activity.selectedActivity);
-            System.assertEquals(null, controller.activity.selectedCountryActivity);
-            System.assertEquals(null, controller.activity.selectedAgencyDepartment);
-            System.assertEquals(null, controller.activity.selectedRole);
-            System.assertEquals(null, controller.activity.hourlyRate);
-            System.assertEquals(null, controller.activity.roundedRate);
-            System.assertEquals(null, controller.activity.hoursSelected);
-            System.assertEquals(null, controller.activity.result);
-            System.assertEquals(null, controller.activity.name);
-            System.assertEquals(null, controller.activity.totalAmount);
-            System.assertEquals(null, controller.activity.key);
-            System.assertEquals(null, controller.activity.activityId);
-            System.assertEquals(null, controller.activity.agencyVisible);
-            System.assertEquals(null, controller.activity.roleVisible);
-            System.assertEquals(null, controller.activity.valVisible);
-
-
             Test.stopTest();
                
          }
-        
     }
- 
 }

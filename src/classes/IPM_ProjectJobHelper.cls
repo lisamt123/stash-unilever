@@ -430,20 +430,7 @@ public without sharing class IPM_ProjectJobHelper
         
         if(!processingProjectMap.isEmpty())
         {
-        	List<IPM_Project__c> projectUpdateList = new List<IPM_Project__c>();
-        	for(IPM_Project__c incomingProjectDetail : processingProjectMap.values())
-        	{
-				IPM_Project__c tempIncomingProjectDetail = new IPM_Project__c(IPM_Phase__c = incomingProjectDetail.IPM_Phase__c,IPM_Complexity__c = incomingProjectDetail.IPM_Complexity__c,
-				IPM_Child_Complexity__c = incomingProjectDetail.IPM_Child_Complexity__c,IPM_Temporary_Phase__c = incomingProjectDetail.IPM_Temporary_Phase__c,
-				IPM_Current_Document_Status__c = incomingProjectDetail.IPM_Current_Document_Status__c,
-				IPM_ProjectJobType__c = incomingProjectDetail.IPM_ProjectJobType__c,IPM_PhaseChangeQueueJobId__c = incomingProjectDetail.IPM_PhaseChangeQueueJobId__c,
-				IPM_Project_Job_Status__c = incomingProjectDetail.IPM_Project_Job_Status__c);
-        		projectUpdateList.add(incomingProjectDetail);
-        	}
-        	if(!projectUpdateList.isEmpty())
-        	{	
-            	update projectUpdateList;
-        	}
+            update processingProjectMap.values();
         }
     } 
     

@@ -7,7 +7,6 @@
 *************************************************************************
 -->
 <apex:page standardController="IPM_Milestone__c" extensions="IPM_Milestone,IPM_GetHelpDoc"  sidebar="false" standardStylesheets="true" showHeader="false">      
-    <!--------------- CSS related to this page in Static Resources  -------------------------->
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/bootstrap.css')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Buttons.css')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'assets/font-awesome/css/font-awesome.min.css')}"/>
@@ -21,21 +20,14 @@
         <apex:outputPanel layout="block" styleClass="SecButtonSet delete pull-right" >
             <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
         </apex:outputPanel> 
-    	<!-- ------- Tabs to created new Mini and Adhoc Milestones----------->
+    
         <ul class="ipmMilestoneTabs">
             <li class="selectList tabOdd"><span>{!$Label.IPM_SELECT_FROM_LIST}</span></li>
             <li class="newMstone tabEven"><span>{!$Label.IPM_CREATE_NEW}</span></li>
         </ul> 
                 
         <div class="ipmMilestoneContent" id="selectList">
-            <apex:form id="form1">
-            	<!-------------- action function has been used to auto select the mini milestone checkbox on select of Due date value --------------->
-            	<apex:actionFunction name="selectMiniMilestones" action="{!selectMiniMs}" rerender="tskPanel" oncomplete="applySelectedRowClass();">
-            		<apex:param name="minMsId" value="" /> 
-            	</apex:actionFunction> 
-            	<!----------- Error Message if user has not selected any mini milestone ------------>
-            	<apex:pageMessage summary="{!$Label.IPM_MiniMilestone_Msg}" severity="error" id="messages" strength="0" rendered="{!showError}"/>
-                <!----------------------- Table to display the list of Mini milestones which can be selected ------------------------->
+            <apex:form >
                 <apex:dataTable value="{!milestones}" var="p" id="tskPanel" styleClass="ipmTable table table-bordered table-fixed-header addMilestoneList">
                     <apex:column styleClass="col-xs-1">
                         <div class="additionalMstone">
@@ -49,18 +41,17 @@
                         <apex:outputfield value="{!p.mile.IPM_Phase__c}" />
                     </apex:column>
                     <apex:column headerValue="{!$Label.IPM_DUE_DATE}" styleClass="col-xs-3">
-                        <apex:inputField value="{!p.mile.IPM_Due_Date__c}" styleClass="dateInputBox calendar" onchange="selectMiniMs('{!p.mile.Id}');">
+                        <apex:inputField value="{!p.mile.IPM_Due_Date__c}" styleClass="dateInputBox calendar">
                         <apex:pageMessage summary="{!$Label.IPM_Milestone_Due_Date_Error}" severity="error" id="messages" strength="0" rendered="{!p.errorRecord}"/> 
                         </apex:inputField>
                     </apex:column>                         
                 </apex:dataTable>
-                <!----- Add button to create mini milestones ------>
                 <div class="ipmButtonGroup pull-right">
-                    <apex:commandLink action="{!createMileStones}" value="{!$Label.IPM_ADD}" styleClass="ipmButton green" rerender="form1" onComplete="{!if(validateSuccess,'pagecloseProSetUp()','')};" />   
+                    <apex:commandLink action="{!createMileStones}" value="{!$Label.IPM_ADD}" styleClass="ipmButton green" rerender="tskPanel" onComplete="{!if(validateSuccess,'pagecloseProSetUp()','')};" />   
                 </div>
             </apex:form>
         </div>
-        <!-- Create new adhoc milestone code starts here  -->
+        
         <div class="ipmMilestoneContent" id="newMstone"> 
             <div class="row" id="EditTask">
                 <apex:form id="form">
@@ -78,7 +69,6 @@
                             </apex:outputPanel>
                         </apex:facet>
                         <apex:facet name="stop"> 
-                        	<!-- Below is the code to show table to create new Adhoc milestone -->
                             <apex:outputPanel styleClass="tableContainer" layout="block">   
                                 <div class="col-xs-12 marginTop">
                                     <div class=""><apex:outputLabel value="{!$Label.IPM_MILESTONE}" styleClass="fieldLabel fieldFont" /></div>
@@ -100,7 +90,6 @@
                                         </div>
                                     </div>
                                 </apex:outputPanel>
-                                <!-- Button related code to created new Adhoc Milestones ------>
                                 <div class="marginTop buttonmarRight ipmButtonGroup pull-right">
                                     <apex:commandLink action="{!saveMilestones}" value="{!$Label.IPM_ADD}" styleClass="ipmButton green" rendered="{!if(milestoneId == null,true,false)}" reRender="form" onComplete="{!if(validateSuccess,'pagecloseProSetUp()','')};"/>                      
                                     <apex:commandLink action="{!saveMilestones}" value="{!$Label.IPM_Save_button}" styleClass="ipmButton green" rendered="{!if(milestoneId != null,true,false)}" onComplete="pagecloseProSetUp();"/>
@@ -110,7 +99,6 @@
                     </apex:actionStatus>    
                 </apex:form> 
                 <apex:form >
-                	<!-- Pop up to update task when current phase standard milestone is updated ------>
                     <apex:outputPanel id="popup">
                         <apex:outputPanel styleClass="popupBg" layout="block" rendered="{!displayPopUp}"/>
                         <apex:outputPanel styleClass="popup" layout="block" rendered="{!displayPopUp}">
@@ -122,13 +110,12 @@
                 </apex:form>
             </div>
         </div>
-    	<!-- Create new adhoc milestone code ends here  -->
     </div>    
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery.js')}" type="text/javascript"></script>
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/bootstrap.js')}" type="text/javascript"></script>
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/bootstrap-datepicker.js')}" type="text/javascript"></script>
         <script type="text/javascript">
-          	var IPMAppComp = { projectId:'{!projectId}', ProjectWizard:'{!JSINHTMLENCODE(ProjectWizard)}', pageRefProSetupView:'{!$Label.IPM_ProjectSetUpViewPageRef}', pageRefTask:'{!$Label.IPM_TasklistPageRef}' };    
+          var IPMAppComp = { projectId:'{!projectId}', ProjectWizard:'{!JSINHTMLENCODE(ProjectWizard)}', pageRefProSetupView:'{!$Label.IPM_ProjectSetUpViewPageRef}', pageRefTask:'{!$Label.IPM_TasklistPageRef}' };    
         </script>    
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_AddMilestone.js')}" type="text/javascript"></script>
 </apex:page>

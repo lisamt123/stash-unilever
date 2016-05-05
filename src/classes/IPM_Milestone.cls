@@ -33,7 +33,6 @@ public with sharing class IPM_Milestone {
     public boolean stndMilestoneFlag{get; set;} // Boolean to check Miestone type
     public boolean adhocMilestoneFlag{get; set;} // Boolean to check Miestone type
     public boolean miniMilestoneFlag{get; set;} // Boolean to check Miestone type
-    public boolean showError{get; set;} // Boolean flag to show error if no MINI Ms is selected
         
     public date duedateValue; // To initialize the due date 
     
@@ -43,7 +42,6 @@ public with sharing class IPM_Milestone {
     
     public static final String CREATE_MILESTONES = 'createMileStones';
     public static final String STR_ERROR = 'Error';
-    public static final String SELECTED_MS = 'minMsId';
     
     /***************************************************************
     *@Description :Constructor to fetch the details of the Milestones and Project
@@ -58,7 +56,7 @@ public with sharing class IPM_Milestone {
         IsDateEdit=ApexPages.currentPage().getParameters().get(IPM_Utils.isDateEdit);
         ProjectWizard=ApexPages.currentPage().getParameters().get(IPM_Utils.Wizard);
         milestoneObj = (IPM_Milestone__c)controller.getRecord();
-        showError = false;
+        
         
         if(String.IsNotBlank(ApexPages.currentPage().getParameters().get(IPM_Utils.IPM_NewTaskprojectId)))
         {
@@ -123,30 +121,6 @@ public with sharing class IPM_Milestone {
         getCategories();
         renderCondition();
     }
-
-    // To auto select Mini Milestone on change of Due date
-    public void selectMiniMs()
-    {
-    	Map<String,String> requestMap = Apexpages.currentPage().getParameters();
-    	if(requestMap.containsKey(SELECTED_MS) && requestMap.get(SELECTED_MS)!=null)
-    	{
-    		String miniMSId = requestMap.get(SELECTED_MS);	
-         for(MilestoneWrapper miniMSObj :  milestones)
-         {
-            if(miniMSObj.mile.Id == miniMSId)
-            {
-                if(miniMSObj.mile.IPM_Due_Date__c != null)
-                {
-                    miniMSObj.checked = true;   
-                }
-                else
-                {
-                    miniMSObj.checked = false;
-                }
-            }
-         }
-    	}
-    }    
     
     /********************************************************************************
     *@Description : .
@@ -275,10 +249,7 @@ public with sharing class IPM_Milestone {
                         msObj.IPM_Active__c            = true;
                         lstmiles.add(msObj);
                     }
-                }
-                showError = false;
-            }else{
-                showError = true;
+                } 
             }
             
             if(!lstmiles.isEmpty())
@@ -334,9 +305,9 @@ public with sharing class IPM_Milestone {
             {
                 Id mileStoneRecordType = Schema.SObjectType.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.IPMMilestones).getRecordTypeId(); 
                 con = new ApexPages.StandardSetController(Database.getQueryLocator([SELECT Id,IPM_Project__c,IPM_Due_Date__c,IPM_Name__c,IPM_Category__c,IPM_Planned_Date__c,
-                        IPM_Completed_On__c,IPM_Milestone__c,IPM_Phase__c,IPM_BET__c,IPM_Type_of_gate__c,IPM_Type_of_Milestone__c,IPM_Phase_Order__c FROM IPM_Milestone__c 
+                        IPM_Completed_On__c,IPM_Milestone__c,IPM_Phase__c,IPM_BET__c,IPM_Type_of_gate__c,IPM_Type_of_Milestone__c FROM IPM_Milestone__c 
                         WHERE IPM_Name__c != null And RecordTypeId= : mileStoneRecordType AND IPM_Type_of_Milestone__c=: IPM_ConstantUtils.MINI 
-                        AND IPM_Project_Type__c =: sourceProjectType order by IPM_Phase_Order__c, IPM_Name__c])); 
+                        AND IPM_Project_Type__c =: sourceProjectType]));
                 
                 // sets the number of records in each page set
                 con.setPageSize(20);
@@ -449,7 +420,7 @@ public with sharing class IPM_Milestone {
                             
                 List<IPM_Milestone__c> projectSpecificMilestoneList = [SELECT Id,IPM_Due_Date__c,IPM_Project__c,IPM_Project__r.IPM_Target_Launch_Dates__c,IPM_Category__c,
                 IPM_Completed_On__c,IPM_Milestone__c,IPM_Phase__c,IPM_Type_of_gate__c,IPM_Type_of_Milestone__c FROM IPM_Milestone__c  
-                WHERE  IPM_Type_of_Milestone__c =:stndMileStoneString AND IPM_Project__c =:projectId AND IPM_Active__c =: true];
+                WHERE  IPM_Type_of_Milestone__c =:stndMileStoneString AND IPM_Project__c =:projectId ];
                 
                 
                  

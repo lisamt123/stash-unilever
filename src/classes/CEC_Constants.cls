@@ -28,7 +28,10 @@ public with sharing class CEC_Constants {
     public static final String VALUE_TWENTY = '20';
     public static final String VALUE_THIRTY = '30';
     public static final String VALUE_FOURTY = '40';
-    public static final String VALUE_FIFTY= '50';
+    public static final String VALUE_FIFTY = '50';
+    public static final String VALUE_ZERO = '0';
+    public static final String VALUE_TWO = '2';
+    public static final String VALUE_FOUR = '4';
     
     //Constants for CEC_TH1_DraftTrigger
     public static final string DRAFT_STATUS ='Approved';

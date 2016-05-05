@@ -16,11 +16,9 @@ public with sharing virtual class Oblix_SWOPparentController {
     public Marketing_SOW__c selected_sow {get; set;}
     public Oblix_SOW_Projects__c selected_project {get;set;}
     public Oblix_CampaignStageLogic stage_identifier {get;set;}
-    public List<Attachment> liso_attachments {get; set;}
-    public Id deleteAttachmentId {get; set;}
-
-    public Boolean can_edit { 
-        get{ 
+    
+    public Boolean hasEditAccess { 
+        get{
             if(NULL == selected_sow){
                 return Oblix_PermissionHandler.hasEditAccess(null);
             } else{
@@ -29,29 +27,13 @@ public with sharing virtual class Oblix_SWOPparentController {
         }
     }
 
-    public Boolean can_add_attachment{
-        get{
+    public Boolean can_edit { 
+        get{ 
             if(NULL == selected_sow){
-                return false;
-            } else {
-                return Oblix_PermissionHandler.canAddNewAttachment(selected_sow.SOW_Status__c);
-            }
-        }
-    }
-
-    public Boolean can_delete_attachment{
-        get{
-            if(NULL == selected_sow){
-                return false;
+                return Oblix_PermissionHandler.hasEditAccess(null);
             } else{
-                return Oblix_PermissionHandler.canDeleteAttachment(selected_sow.SOW_Status__c);
+                return Oblix_PermissionHandler.hasEditAccess(selected_sow.Id);
             }
-        }
-    }
-
-    public Boolean can_see_financial_fields {
-        get{
-            return Oblix_PermissionHandler.canSeeFinancialField(selected_sow.SOW_Status__c, selected_sow.Approved_version__c);
         }
     }
 
@@ -142,37 +124,12 @@ public with sharing virtual class Oblix_SWOPparentController {
     }
 
     /*******************************************************************************
-    * @author       Slavko Skular
-    * @date         2016-02-26
-    * @description  retrieves attachments attached to this SOW
-    ********************************************************************************/
-    public List<Attachment> getSOWAttachments(Id sowId){
-        return [SELECT Name, ParentId, Parent.Name, CreatedBy.Name, CreatedDate FROM Attachment WHERE ParentId = :sowId];
-    }
-
-    /*******************************************************************************
-    * @author       Slavko Skular
-    * @date         2016-02-26
-    * @description  deletes a single attachment attached to this SOW
-    ********************************************************************************/
-    public void deleteAttachment(){
-        if(deleteAttachmentId != null){
-            try{
-                delete new Attachment(Id = deleteAttachmentId);
-                liso_attachments = getSOWAttachments(selected_sow.Id);
-            } catch (DmlException e){
-                ApexPages.addMessage(new ApexPages.message(ApexPages.SEVERITY.ERROR, 'Error deleting attachment: ' + e.getMessage()));
-            }
-        }
-    }
-
-    /*******************************************************************************
     * @author       Shahin Movahedi
     * @date         2016-01-17
     * @description  Check if the current context user does not have access to record
                     and redirect to permission denied page
     ********************************************************************************/
-    public virtual PageReference checkUserHasPermissionToSOW(){
+    public PageReference checkUserHasPermissionToSOW(){
 
         if (NULl == selected_sow){
             Pagereference permission_denied_page = Page.Oblix_PermissionDenied;

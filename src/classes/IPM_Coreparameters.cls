@@ -136,9 +136,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
     Public List<IPM_BET_BETWrapper> searchresultBet{
         get{
             if(searchresultBet==null)
-            {
                 searchresultBet=new List<IPM_BET_BETWrapper>();
-            }
                 return searchresultBet;
         } 
         set;    
@@ -499,7 +497,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
             market_STR=IPM_Coreparameter.IPM_Market__c;
             subSector_STR=IPM_Coreparameter.IPM_Sub_sector__c;
             betValue_STR=IPM_Coreparameter.IPM_BET_Toolkit__c;
-            if(IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equals(IPM_Coreparameter.IPM_Project_Type__c) ){
+            if(IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equals(IPM_Coreparameter.IPM_Project_Type__c)){
                 isOriginal=true;
             }
             

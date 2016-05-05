@@ -1,7 +1,7 @@
 @isTest
 private class Oblix_Utils_Test {
 
-	//@isTest(seeAllData=true) 
+	@isTest(seeAllData=true) 
 	static void shouldMapRecordType(){
 		User u = Oblix_TestUtils.createTestUser();
         System.runAs(u) {

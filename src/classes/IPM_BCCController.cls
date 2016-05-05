@@ -31,7 +31,7 @@ public with sharing class IPM_BCCController extends IPM_ProjectIntermediateContr
         isEditable=false;
         isFinanceUpdate=false;
         if (projectId != NULL){          
-            if(project.Rollout_Plan_Target_Launch_Date__c==project.IPM_Target_Launch_Dates__c && project.IPM_Target_Launch_Dates__c==project.IPM_Parent_Project__r.IPM_Target_Launch_Dates__c){
+            if(project.IPM_Target_Launch_Dates__c==project.IPM_Parent_Project__r.IPM_Target_Launch_Dates__c){
                 tldAlignment=true;
             }
             

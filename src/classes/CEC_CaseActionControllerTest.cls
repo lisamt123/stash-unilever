@@ -81,7 +81,8 @@ public class CEC_CaseActionControllerTest{
             insert productObj;          
             
             //Test data creation for 'Global Listening Tree'
-            mdm_Global_Listening_Tree__c gListingTree = new mdm_Global_Listening_Tree__c(Name = 'Test Listening Tree', L5_Desc__c = 'L4 Desc');
+            mdm_Global_Listening_Tree__c gListingTree = new mdm_Global_Listening_Tree__c(L1_Desc__c='Complaint', L2_Desc__c = 'Product',
+                                                                L3_Desc__c = 'Foreign matter',L4_Desc__c = 'Unidentifiable Foreign Matter', L5_Desc__c = 'Foreign matter - unidentifiable');
             insert gListingTree;
             
             //Test data creation for 'Reason Code'

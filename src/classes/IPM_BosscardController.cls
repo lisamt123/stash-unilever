@@ -553,11 +553,8 @@ Global with sharing class IPM_BosscardController {
         bosscard.IPM_Region_Shr__c=geoScope_STR;
         
         if(String.isNotBlank(BossCUrl_ID))
-        {
             bosscard.id=BossCUrl_ID;
-        }
-        if(String.isNotBlank(bosscard.id))
-        {
+        if(String.isNotBlank(bosscard.id)){
             Bossupdatedlst.add(bossCard);
             try{
                 update bossCard;

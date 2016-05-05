@@ -18,9 +18,8 @@
                 <apex:param name="countries" assignTo="{!campaignHelper.selectedProject.Campaign_Countries__c}" value="" />
             </apex:actionFunction>
 
-            <apex:actionFunction name="setAgencyHubAndSavePage" action="{!setAgencyHubSplit}" rerender="jqueryId">
-                <apex:param name="splitId" assignTo="{!agencyHubSplitWrapperListJSONString}" value=""/>
-                <apex:param name="cloneName" assignTo="{!cloneName}" value=""/>
+            <apex:actionFunction name="setAgencyHubAndSavePage" action="{!setAgencyHubSplit}" rerender="page_message_id">
+                <apex:param name="splitId" assignTo="{!agencyHubSplitWrapperListJSONString}" value="" />
             </apex:actionFunction>
 
             <apex:actionFunction name="setCampaignScale" action="{!setCampaignScale}" reRender="agencyScale" immediate="true">
@@ -31,30 +30,20 @@
             
             </apex:actionFunction>
 
-            <!-- <apex:actionFunction name="setInfoDrivers" action="{!setInfoDrivers}" reRender="false">
+            <apex:actionFunction name="setInfoDrivers" action="{!setInfoDrivers}" reRender="false">
                 <apex:param name="innovation" assignTo="{!campaignHelper.selectedProject.Innovation_Projects__c}" value="" />
                 <apex:param name="innov" assignTo="{!campaignHelper.selectedBrandInnovation}" value="{!campaignHelper.selectedBrandInnovation}" />
                 <apex:param name="brand" assignTo="{!campaignHelper.selectedBrandBrand}" value="{!campaignHelper.selectedBrandBrand}" />
                 <apex:param name="idea" assignTo="{!campaignHelper.selectedProject.Campaign_Idea__c}" value="" />
                 <apex:param name="scale1" assignTo="{!campaignHelper.selectedProject.Project_Scale_1__c}" value="" />
                 <apex:param name="scale2" assignTo="{!campaignHelper.selectedProject.Project_Scale_2__c}" value="" />
-            </apex:actionFunction> -->
+            </apex:actionFunction>
 
-            <apex:outputPanel rendered="{!campaignHelper.doClone}">
-                <div class="row">
-                    <div class="col-lg-8 col-md-8">
-                        <div class="alert alert-info" role="alert">
-                            To clone this campaign please enter a new unique name and check all campaign set up fields below e.g Value Drivers, Hub Splits, Countries etc
-                        </div>
-                    </div>
-                </div>
-            </apex:outputPanel>
 
             <div class="row">
                 <div class="col-lg-6 col-md-6">
-                    <apex:outputText rendered="{!campaignHelper.isEdit && !campaignHelper.doClone}"><h1 class="SOW_header_title">Edit {!campaignHelper.selectedProject.Name}</h1></apex:outputText>
-                    <apex:outputText rendered="{!campaignHelper.isEdit && campaignHelper.doClone}"><h1 class="SOW_header_title">Clone {!campaignHelper.selectedProject.Name}</h1></apex:outputText>
-                    <apex:outputText rendered="{!!campaignHelper.isEdit}"><h1 class="SOW_header_title">Add campaign to {!campaignHelper.selectedSow.Name}</h1></apex:outputText>
+
+                    <h1 class="SOW_header_title">{!IF(campaignHelper.isEdit, 'Edit '+ campaignHelper.selectedProject.Name,'Add campaign to '+ campaignHelper.selectedSow.Name)}</h1>
                 </div>
 
             </div>
@@ -64,8 +53,7 @@
                     <div>
                         <div class="form-group" id="campaignNameLabel">
                             <label for="SOWName" class="create_SOW_form_titles">Campaign Name*</label>
-                            <apex:inputField styleClass="form-control" id="CampaignName" value="{!campaignHelper.selectedProject.Name}" rendered="{!!campaignHelper.doClone}"/>
-                            <apex:inputText styleClass="form-control" id="CloneName" value="{!cloneName}" rendered="{!campaignHelper.doClone}"/>
+                            <apex:inputField styleClass="form-control" id="CampaignName" value="{!campaignHelper.selectedProject.Name}" />
                         </div>
                         <div class="form-group">
                             <p>Description&nbsp;<span class="form_bracket_text">(Optional)</span>
@@ -127,40 +115,6 @@
             </div>
             <div class="row">
                 <div class="col-lg-8 status_completion_chevron_bar campaign_create_chevron">
-                    <!-- ************************************************************ -->
-                    <!--  S.M. 2016-04-09 COMMENTING OUT TO RESOLVE DEPLOYMENT ISSUE -->
-                    <!-- ************************************************************ -->
-                    <!-- I.R. 2016-04-15 Work around start -->
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="status_completion_chevron_bar_main_styling">
-                                <p class="create_SOW_form_titles" id="stagesLabel">Choose stages for this FY*</p>
-                                <p class="campaign_create_agency_hub_split_table_subtitle">Confirm which stages of the project will be completed in the current year.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-12">
-                        <div class="campaign_chevron_title campaign_summary_information_titles">Stages to deliver:</div>
-                        <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier}" AutoSave="false" Id="cancel_campaign_campaign_stage_component_projected" rerenderIds="campaign_create_stage_component_delivered, total_value_to_be_paid_CFY, calculatedFeePanel, cancel_campaign_campaign_stage_component_completed" displayMode="3"/> 
-                        <apex:outputPanel id="total_value_to_be_paid_CFY">
-                            <apex:outputText >
-                                <div class="add_assets_chevron_percentage_values">
-                                    <p class="campaign_create_agency_hub_split_table_subtitle">Total campaign fee to be paid this FY</p>
-                                    <h1 class="campaign_fee_percentage">{!stage_identifier.i_percentage_of_fee_this_year}%</h1> <br/>
-                                    <apex:outputText rendered="{!stage_identifier.b_manual_override_on}">
-                                        <p class="red_text"><strong>Fee adjusted</strong></p>
-                                    </apex:outputText>
-                                </div>
-                            </apex:outputText>
-                        </apex:outputPanel> 
-                        <div class="campaign_chevron_title campaign_summary_information_titles">Stages completed:</div>
-                        <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier}" AutoSave="false" Id="campaign_stage_component_bottom" displayMode="4" id="campaign_create_stage_component_delivered" rerenderIds="total_value_to_be_paid_CFY"/> 
-                        </div>
-                    </div>
-                    <!-- I.R Work around end -->
-
-                    <!-- OLD SOLUTION
                     <div class="chevron_width_control">
                         <div class="status_completion_chevron_bar_main_styling">
                             <p class="create_SOW_form_titles" id="stagesLabel">Choose stages for this FY*</p>
@@ -168,7 +122,6 @@
                         </div>
                         <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier}" AutoSave="false" />
                     </div>
-                     -->
                 </div>
             </div>
             <div class="row">

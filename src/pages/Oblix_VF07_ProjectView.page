@@ -1,14 +1,7 @@
-<!-- 
-//******************************************************************************************************
-//      THE CONTENT OF THIS PAGE HAS BEEN COMMENT OUT AS THIS PAGE IS NO LONGER USED
-//      AS PART OF CODE REFACTORING, NEW PAGES HAVE REPLACED THESE - DESTRUCTIVE CHANGES SHOULD REMOVE THIS
-//      S.M. 2016-03-30
-//****************************************************************************************************** 
 <apex:page sidebar="false" controller="Oblix_Ctrl07ProjectView_CC" docType="html-5.0" action="{!init}">
--->
-<apex:page sidebar="false">
 
-<!--   <apex:form id="jqueryId">
+  <apex:form id="jqueryId">
+   <!-- Stage popUp Start-->
     <div id="dialogCancel" title="{!$Label.Oblix_lbl_UIUX_Cancel_Campaign}" style="display:none">   
        <div style="margin-left:5%;">
        <table width="80%">  
@@ -60,9 +53,13 @@
       </table>
       </div>
    </div>
+  <!-- Stage End -->
+ 
+   <!-- Start container  -->
    <div class="Oblix_Container">
     <div class="cnter">
    <div class="Oblix_header">
+   <!-- 3 levels Oblix_header_activeArrow=inactive level user is on,  Oblix_header_Arrow=first button from the left, Oblix_header_previousArrow=second button-->
        <div style="postion: relative; top:-200px; background: transparent;width: 95%;margin-left: auto;margin-right: auto;">
          <table width="95%" height="100%">
             <tr>
@@ -205,9 +202,9 @@
                                    <table width="100%"> 
                                        
                                        <tr>
-                                          <apex:outputPanel rendered="{!SelectedProject.Campaign_Countries__c != null}"> <td style="vertical-align: top;" ><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Campaign_Countries__c.label} : </strong><br/>{!SelectedProject.Campaign_Countries__c}</td></apex:outputPanel>
-                                          <apex:outputPanel rendered="{!SelectedProject.Campaign_Countries__c == null && SelectedProject.OblixRegion__c != 'World'}"> <td style="vertical-align: top;" ><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.OblixRegion__c.label} : </strong><br/>{!SelectedProject.OblixRegion__c}</td></apex:outputPanel>
-                                          <apex:outputPanel rendered="{!SelectedProject.Campaign_Countries__c == null && SelectedProject.OblixRegion__c == 'World'}"> <td style="vertical-align: top;" ><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.OblixRegion__c.label} : </strong> Global (countries > 15)</td> </apex:outputPanel>   
+                                          <apex:outputPanel rendered="{!SelectedProject.OblixCountries__c != null}"> <td style="vertical-align: top;" ><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.OblixCountries__c.label} : </strong><br/>{!SelectedProject.OblixCountries__c}</td></apex:outputPanel>
+                                          <apex:outputPanel rendered="{!SelectedProject.OblixCountries__c == null && SelectedProject.OblixRegion__c != 'World'}"> <td style="vertical-align: top;" ><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.OblixRegion__c.label} : </strong><br/>{!SelectedProject.OblixRegion__c}</td></apex:outputPanel>
+                                          <apex:outputPanel rendered="{!SelectedProject.OblixCountries__c == null && SelectedProject.OblixRegion__c == 'World'}"> <td style="vertical-align: top;" ><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.OblixRegion__c.label} : </strong> Global (countries > 15)</td> </apex:outputPanel>      <!--<apex:image url="{!$Resource.Oblix_Icon_Globe}" width="32" height="32" style="vertical-align:middle;"/>-->
                                        </tr>
                                        <tr><td colspan="2">&nbsp;</td></tr>
                                        <tr>
@@ -228,9 +225,17 @@
                                             <td> <apex:outputField value="{!SelectedProject.Innovation_Projects__c}" rendered="{!SelectedProject.Innovation_Projects__c <> null}"/></td>                             
                                             <td> 
                                                 <apex:outputText value="{!mapTurnoverToSize[SelectedProject.Brand_Led_Growth__c]}" rendered="{!SelectedProject.Brand_Led_Growth__c <> null}"></apex:outputText>
+                                           <!--  <apex:outputField value="{!SelectedProject.Brand_Led_Growth__c}" rendered="{!SelectedProject.Brand_Led_Growth__c <> null}"/> -->
                                             </td>
                                        </tr> 
-                                       
+                                       <!--                                   
+                                        <tr>
+                                            <td colspan="2"> <apex:outputField value="{!SelectedProject.Project_Scale_1__c}" rendered="{!SelectedProject.Project_Scale_1__c <> null}"/></td>
+                                       </tr>
+                                        <tr>
+                                            <td colspan="2"> <apex:outputField value="{!SelectedProject.Project_Scale_2__c}" rendered="{!SelectedProject.Project_Scale_2__c<> null}"/></td>
+                                       </tr>
+                                        -->
                                         <tr><td colspan="2"><br/><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Campaign_Idea__c.label}</strong><br/> {!SelectedProject.Campaign_Idea__c}</td></tr> 
                                          
                                                       
@@ -278,7 +283,7 @@
                                <apex:outputPanel id="buttonList">
                                  <div class="cnter">
                                      <br/> <br/>
-                                     <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Back_to_SOW}" action="{!BackToSow}" styleClass="Oblix_projects_btn"/><br/><br/>
+                                     <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Back_to_SOW}" action="{!BackToSow}" styleClass="Oblix_projects_btn"/><br/><br/><!-- EditAction -->
                                      <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Clone_Campaign}" disabled="{!isLocked}" styleClass="Oblix_projects_btn" action="{!CloneCampaign}"/><br/><br/>
                                       <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Cancel_Campaign}" disabled="{!isLocked}" styleClass="Oblix_projects_btn" onclick="PopupdialogCancelCampaign();return false"/><br/><br/>
                                       <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Edit_Add_Items}" disabled="{!isLocked}" action="{!EditAddItems}" styleClass="Oblix_projects_btn"/><br/><br/><br/>
@@ -291,16 +296,28 @@
                            </table>
                            
                            <div class="Oblix_recordType">
-
+                           <!--
+                           <apex:outputPanel rendered="{!lstAssets.size != 0}"> 
+                               <table width="100%" class="Oblix_accordiHeader">
+                                   <tr>
+                                       <td width="30%">{!$Label.Oblix_lbl_UIUX_items_big} </td>
+                                       <td width="60%"><span style="Color:grey">{!$Label.Oblix_lbl_UIUX_Cost_estimate}</span></td>
+                                       <td width="5%">{!$Label.Oblix_lbl_UIUX_Cost}</td>
+                                       <td width="5%">{!SelectedProject.ProjectTotalAssetscore__c} </td>
+                                   </tr>
+                               </table>
+                           </apex:outputPanel>  
+                           -->
                              
                              <table width="100%">
                              
+                               <!--  Audio Visual -->
                                <apex:outputPanel rendered="{!mapNumberItem['Audio Visual'] != 0}" >
                                 <tr class="Oblix_recordTypeth styleTH1">
                                     <th>
                                     <table width="100%">
                                         <tr>
-                                           <td width="25%"><strong>{!$Label.Oblix_Lbl_UIUX_AudioVisuel}</strong> </td>     
+                                           <td width="25%"><strong>{!$Label.Oblix_Lbl_UIUX_AudioVisuel}</strong> - {!$Label.Oblix_Lbl_UIUX_AudioVisuel_Description}</td>     
                                            <td width="15%">{!$ObjectType.Oblix_Project_Assets__c.fields.Asset_Picklist__c.label}</td>              
                                            <td width="15%">{!$ObjectType.Oblix_Project_Assets__c.fields.Sub_Category__c.label}</td>                                           
                                            <td width="15%"><strong>Please describe</strong></td>                                    
@@ -344,15 +361,18 @@
                                              <hr/>                   
                                             </apex:outputPanel>                                 
                                        </apex:repeat>
+                                      <!-- Add Script for Go to Edit -->
                                     </td>  
                                 </tr>  
                                </apex:outputPanel>                             
+                               <!--  End Audio Visual -->
+                               <!--  Experiential -->
                                 <apex:outputPanel rendered="{!mapNumberItem['Experiential'] != 0}">
                                 <tr class="Oblix_recordTypeth styleTH1">
                                     <th>
                                     <table width="100%">
                                         <tr>
-                                           <td width="25%"><strong>{!$Label.Oblix_Lbl_UIUX_Experiential}</strong> </td>                   
+                                           <td width="25%"><strong>{!$Label.Oblix_Lbl_UIUX_Experiential}</strong> - {!$Label.Oblix_Lbl_UIUX_Experiential_Decription}</td>                   
                                            <td width="15%">{!$ObjectType.Oblix_Project_Assets__c.fields.Asset_Picklist__c.label}</td>
                                            <td width="15%">{!$ObjectType.Oblix_Project_Assets__c.fields.Sub_Category__c.label}</td>
                                            <td width="15%"><strong>Please describe</strong></td>                                    
@@ -400,13 +420,15 @@
                                        
                                     </td>  
                                 </tr>      
-                               </apex:outputPanel>        
+                               </apex:outputPanel>                         
+                               <!--  End Experiential -->
+                               <!--  Digital -->
                                <apex:outputPanel rendered="{!mapNumberItem['Digital'] != 0}">
                                 <tr class="Oblix_recordTypeth styleTH1">
                                     <th>
                                     <table width="100%">
                                         <tr>
-                                           <td width="25%"><strong>{!$Label.Oblix_Lbl_UIUX_Digital}</strong> </td>                                                           
+                                           <td width="25%"><strong>{!$Label.Oblix_Lbl_UIUX_Digital}</strong> - {!$Label.Oblix_Lbl_UIUX_Digital_Description}</td>                                                           
                                            <td width="15%">{!$ObjectType.Oblix_Project_Assets__c.fields.Asset_Picklist__c.label}</td>
                                            <td width="15%">{!$ObjectType.Oblix_Project_Assets__c.fields.Sub_Category__c.label}</td>
                                            <td width="15%"><strong>Please describe</strong></td>                                    
@@ -454,12 +476,14 @@
                                     </td>  
                                 </tr>        
                                </apex:outputPanel>                       
+                               <!--  End Digital -->
+                               <!--  Static Imagery -->
                                <apex:outputPanel rendered="{!mapNumberItem['Static Imagery'] != 0}">
                                 <tr class="Oblix_recordTypeth styleTH1">
                                     <th>
                                     <table width="100%">
                                         <tr>
-                                           <td width="25%"><strong>{!$Label.Oblix_Lbl_UIUX_Static_Img}</strong> </td>                
+                                           <td width="25%"><strong>{!$Label.Oblix_Lbl_UIUX_Static_Img}</strong> - {!$Label.Oblix_Lbl_UIUX_Static_Img_Description}</td>                
                                            
                                            <td width="15%">{!$ObjectType.Oblix_Project_Assets__c.fields.Asset_Picklist__c.label}</td>
                                            <td width="15%">{!$ObjectType.Oblix_Project_Assets__c.fields.Sub_Category__c.label}</td>
@@ -508,6 +532,9 @@
                                     </td>  
                                 </tr>        
                                </apex:outputPanel>                       
+                               <!--  End Static Imagery -->
+                               
+                                <!-- Stimulus Materials - Research requirements -->
                                 <apex:outputPanel rendered="{!mapNumberItem['Stimulus Materials - Research requirements'] != 0}">
                                 <tr class="Oblix_recordTypeth styleTH1" >
                                     <th>
@@ -561,6 +588,7 @@
                                     </td>  
                                 </tr>  
                                </apex:outputPanel>                             
+                               <!--  End Stimulus Materials - Research requirements -->
                                                        
         
                             </table>
@@ -573,10 +601,11 @@
      
     </div>
  </div>
- </div>
+ </div><!--  End Container -->
 </apex:form>
 <apex:form id="jsId">
      
+  <!-- Action function to update the current fee -->
    <apex:actionFunction name="CancelCampaign" action="{!CancelCampaign}" oncomplete="!$.unblockUI()"  reRender="totalCampaign,CampaignStatus,buttonList,editBtnAV,editBtnSM,editBtnD,editBtnE,editBtnSI,deleteBtnAV,deleteBtnSM,deleteBtnD,deleteBtnE,deleteBtnSI">  
       <apex:param name="percentage" assignTo="{!SelectedProject.Percentage_of_Fee_for_this_FY__c}" value="" /> 
       <apex:param name="feeCancellation" assignTo="{!SelectedProject.Value_to_be_paid_in_Current_FY__c}" value="" />  
@@ -586,8 +615,154 @@
     <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
-    
+    <script src="{!URLFOR($Resource.Oblix_JQueryBlockUI)}" ></script>
+    <script src="{!URLFOR($Resource.OblixUIUXVF07ProjViewCss)}" ></script>
+    <apex:stylesheet value="{!URLFOR($Resource.Oblix_jqueryUiCss)}"/>
+    <script src="{!URLFOR($Resource.Oblix_viewProjectJS)}" ></script>
+    <apex:stylesheet value="{!URLFOR($Resource.OblixUIUXVF07ProjViewCss)}"/>
+      <script>
+                                       var moveToEditPage = function (assetId){
+                                        var projectId = window.location.search.split('&')[0].split('=')[1];
+                                        window.location = '/apex/Oblix_VF08_ProjectEdit?projectId=' + projectId + '&assetId=' + assetId;
+                                       }
+                                       </script>
+     <style>
+         .center{
+             margin: auto; text-align: center;
+         }    
+         input.btn,.Oblix_large_btn, .Oblix_btn  {
+            background: #6BA539;
+            background-image: none;
+            color: #fff;
+            padding: 4px 10px 3px 10px  !important;
+            height: 30px;
+
+        }
+        input.btn:active, input.btn:hover, button:hover, .Oblix_large_btn:hover, .Oblix_btn:hover {
+             background: #44883E;
+             color: #fff;
+        }
+        
+        .Oblix_Container{
+            background-image : url("{!URLFOR($Resource.Oblix_assetUI,'bg_pattern_2.png')}");
+            background-repeat: no-repeat;
+            position:relative;
+            top: -11px;
+        }
+        .Oblix_header_activeArrow{ 
+        background-color: transparent;      
+            background-image : url("{!URLFOR($Resource.Oblix_assetUI,'currentlevel_arrow_down.png')}");
+            background-repeat: no-repeat;
+             font-family: DIN, Arial;
+            color:white;
+            padding-left: 10px;
+            width:160px;
+           height: 90px;
+            text-align: center;
+            position: absolute;
+           
+
+        }
+        
+          .Oblix_header_Arrow{ 
+          background-color: transparent;      
+            background-image : url("{!URLFOR($Resource.Oblix_assetUI,'currentlevel_arrow.png')}");
+            background-repeat: no-repeat;
+            font-family: DIN, Arial;
+            color:white;
+            padding-left: 10px;
+            width:160px;
+            height: 90px;
+            text-align: center;
+            position: absolute;
+        }
+          .Oblix_header_Arrow:active, .Oblix_header_Arrow:hover {
+          background-color: transparent;
+            background-image : url("{!URLFOR($Resource.Oblix_assetUI,'arrow_hover.png')}");
+            background-repeat: no-repeat;
+
+          }
+           .Oblix_header_previousArrow{ 
+           background-color: transparent;      
+            background-image : url("{!URLFOR($Resource.Oblix_assetUI,'previouslevel_arrow.png')}");
+            background-repeat: no-repeat;
+            font-family: DIN, Arial;
+            color:white;
+            padding-left: 10px;
+            width:160px;
+             height: 90px;
+            text-align: center;
+            position: absolute;
+        }
+       .Oblix_header_previousArrow:active, .Oblix_header_previousArrow:hover {
+            background-image : url("{!URLFOR($Resource.Oblix_assetUI,'arrow_hover.png')}");
+            background-repeat: no-repeat;
+
+          }
+         
+        .Oblix_header{
+            background-image : url("{!URLFOR($Resource.Oblix_assetUI,'header_panel.png')}");
+            background-size: 100% 100%;
+            background-position: center bottom;
+            background-repeat: no-repeat;
+            height: 90px;
+            position: relative;
+            /* line-height: 65%; */
+            width:95%;
+            letter-spacing: 1px;
+            margin-left: auto;
+            margin-right: auto;         
+        }
+         .Oblix_header a{
+            text-decoration:none;
+            cursor:pointer; 
+            color:white;            
+        }
+        .Oblix_header a:hover{
+            text-decoration:none;
+            cursor:pointer; 
+            color:white;          
+        }
+        .line{
+            width: 80%;
+            height: 10px;
+            border-bottom: 1.5px solid #B7AFAF;
+            margin-bottom: 10px;
+         }   
+         .Oblix_recordTypeth th, .Oblix_recordTypeth_title th{
+            cursor:pointer;
+         }
+         table > tbody > tr > td{
+             word-break: normal;
+         }
+    </style>
+ <script>
+   $(document).ready(function(){
+        $('.cancelValue').text('€ '+parseInt((parseInt($('.perOfFee').val())/100)*parseInt({!SelectedProject.Campaign_Fees_Total__c})));
+        $('span.dateFormat').remove();
+      
+        if('{!lstIdCSSSelected}' != ''){
+         var selectedId = ('{!lstIdCSSSelected}').split(',');
+         
+         for (var i = 0; i < selectedId.length; i++) {
+                    $( "."+selectedId[i]).prop( "checked", true);
+         } 
+        }       
+   });
+</script>
+<script>
+  function ModifyFee(val){    
+       var values = [];
+        $("input:checkbox[name='checkbxDelivered']:checked").each(function(){
+                                values.push($(this).val());                   
+       });            
+       var max = values[values.length - 1];       
+       $('.perOfFee').attr('value', max); 
+       $('.cancelValue').text('€ '+parseInt((parseInt(max)/100)*parseInt({!SelectedProject.Campaign_Fees_Total__c})));
+       values = [];
+   }   
+</script>
 
    
-</apex:form> -->
+</apex:form>
 </apex:page>

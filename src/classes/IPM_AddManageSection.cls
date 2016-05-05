@@ -47,6 +47,7 @@ public with sharing class IPM_AddManageSection extends IPM_ProjectIntermediateCo
     public void getProjectDocumentSection(){
         
         ID procjectDocId=projectDoc.ID;
+        string enviromentalImpact=IPM_ConstantUtils.IPM_ENVIRONMENTAL_IMPACT;
         string queryProjSectionList='SELECT Id,IPM_Section__c,IPM_Negotiable__c ,IPM_Default_Section__c,IPM_Section__r.IPM_Section_Type__c,IPM_Section__r.IPM_Section_Label_Type__c,IPM_Section__r.Id,IPM_Section__r.IPM_Section_Name__c,Name,LastModifiedBy.Name,LastModifiedDate,IPM_Section__r.IPM_Parent_Section__c,IPM_Project_Document__c,IPM_Section_Status__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Gate_Document_Summary__c,IPM_Count_of_Comments__c,IPM_Section__r.IPM_Negotiable__c FROM IPM_Project_Document_Section__c WHERE IPM_Project_Document__c=:procjectDocId and IPM_Section__r.IPM_Parent_Section__c=null';
         queryProjSectionList=queryProjSectionList+' ORDER BY IPM_Section__r.IPM_Section_Sequence__c asc LIMIT 1000';               
         projSectionList=Database.query(queryProjSectionList);
@@ -63,8 +64,13 @@ public with sharing class IPM_AddManageSection extends IPM_ProjectIntermediateCo
         } 
         
         ID procjectDocId=projectDoc.ID;
+        string enviromentalImpact=IPM_ConstantUtils.IPM_ENVIRONMENTAL_IMPACT;
         string queryProjSubSectionList='SELECT Id,IPM_GateHistory__c,IPM_GateHistory_Date__c,IPM_Section__c,IPM_Negotiable__c ,IPM_Default_Section__c,IPM_Section__r.IPM_Section_Type__c,IPM_Section__r.IPM_Section_Label_Type__c,IPM_Section__r.IPM_Section_Name__c,Name,LastModifiedBy.Name,LastModifiedDate,IPM_Section__r.IPM_Parent_Section__c,IPM_Project_Document__c,IPM_Section_Status__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Gate_Document_Summary__c,IPM_Count_of_Comments__c,IPM_Section__r.External_ID__c,IPM_FunctionalRole__c,IPM_Section__r.IPM_Negotiable__c FROM IPM_Project_Document_Section__c WHERE IPM_Project_Document__c=:procjectDocId AND IPM_Section__r.IPM_Parent_Section__c !=null';
                              
+       if(project.IPM_ProjectSubType__c==IPM_ConstantUtils.IPM_BLG)
+        {
+            queryProjSubSectionList=queryProjSubSectionList+' AND IPM_Master_Section_External_Id__c !=:enviromentalImpact';
+        }
         
         queryProjSubSectionList=queryProjSubSectionList+' ORDER BY IPM_Section__r.IPM_Section_Sequence__c asc LIMIT 1000';   
         

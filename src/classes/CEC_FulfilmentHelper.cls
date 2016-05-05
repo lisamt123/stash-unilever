@@ -72,20 +72,20 @@ System.debug('Exception in CEC_FulfilmentHelper.qualityCheck() -> Exception :'  
         
     }
     // Commented for CSC - 3135 
-   /* public void refundApprovalCheck(List<cec_Fulfilment__c> fulfilmentList, Map<Id, cec_fulfilment__C> fulfilmentOldMap){
-        
-        User loggedinuser = [select Max_Refund_Amount__c from User where id = :UserInfo.getUserId()];
-        Double qualityMaxRefund = loggedinuser.Max_Refund_Amount__c;
-        
-        for (cec_Fulfilment__c fulfilmentObj : fulfilmentList){
-            Double oldRefundVal = fulfilmentOldMap.get(fulfilmentObj.Id).Refund_Value__c;
-            if(fulfilmentObj.Refund_Value__c != oldRefundVal ){
-                if((fulfilmentObj.Refund_Value__c!= null && fulfilmentObj.Refund_Value__c > qualityMaxRefund) || (fulfilmentObj.Refund_Value__c!= null && qualityMaxRefund == null)){
-                    fulfilmentObj.QA_flag__c = true;
-                }
-            }
-        } 
-    } */
+    /* public void refundApprovalCheck(List<cec_Fulfilment__c> fulfilmentList, Map<Id, cec_fulfilment__C> fulfilmentOldMap){
+
+User loggedinuser = [select Max_Refund_Amount__c from User where id = :UserInfo.getUserId()];
+Double qualityMaxRefund = loggedinuser.Max_Refund_Amount__c;
+
+for (cec_Fulfilment__c fulfilmentObj : fulfilmentList){
+Double oldRefundVal = fulfilmentOldMap.get(fulfilmentObj.Id).Refund_Value__c;
+if(fulfilmentObj.Refund_Value__c != oldRefundVal ){
+if((fulfilmentObj.Refund_Value__c!= null && fulfilmentObj.Refund_Value__c > qualityMaxRefund) || (fulfilmentObj.Refund_Value__c!= null && qualityMaxRefund == null)){
+fulfilmentObj.QA_flag__c = true;
+}
+}
+} 
+} */
     
     /* Start Changes for : CSC - 2765 - US-009 Letter/Enclosure auto population */    
     /**
@@ -188,8 +188,9 @@ This method is being called from CEC_ChequeProcess class which is called from "A
                 //integer newChequeNumber = Integer.valueOf(chequeBookQuery[0].Last_Cheque_Number__c )+ Integer.valueOf(chequeBookQuery[0].Increment_Number__c);
                 chequeBookQuery[0].Last_Cheque_Number__c = chequeBookQuery[0].Last_Cheque_Number__c + chequeBookQuery[0].Increment_Number__c;
                 update chequeBookQuery;                
-                fulfilment.Cheque_Number__c   = string.valueof(chequeBookQuery[0].Last_Cheque_Number__c);  
+                fulfilment.Cheque_Number__c   = string.valueof(chequeBookQuery[0].Last_Cheque_Number__c); 
                 fulfilment.Refund_Currency__c = chequeBookQuery[0].Currency__c;
+                fulfilment.ChequeBook__c = chequeBookQuery[0].id;
                 update fulfilment;                
                 result.status = 'S';
                 result.message = 'Success';                
@@ -415,8 +416,39 @@ This method is used to delete records in FulfillmentEnclosure object based on En
                 System.debug(e.getMessage());
                 throw e;
             }           
-                 
+            
         }  
         
     }                    
+
+    /**
+This method is used to convert Refund Value on Fulfilment Object  in words.
+*/
+    public void convertRefundValueToWords(List<cec_Fulfilment__c> fulfilmentList, Map<Id, cec_fulfilment__C> fulfilmentOldMap){
+        system.debug(' In convertRefundValueToWords Method');
+
+        if (!fulfilmentList.isEmpty()){
+            try{
+                for (cec_Fulfilment__c fulfilmentObj : fulfilmentList){
+                    if ((fulfilmentObj.Refund_Value__c != fulfilmentOldMap.get(fulfilmentObj.Id).Refund_Value__c) || 
+                        (fulfilmentObj.ChequeBook__c   != fulfilmentOldMap.get(fulfilmentObj.Id).ChequeBook__c) ){
+                            if (fulfilmentObj.Refund_Value__c == null || fulfilmentObj.ChequeBook__c == null){
+                                fulfilmentObj.Refund_Value_in_Words__c = '';
+                            }
+                            else {
+                                string result=CEC_Util.convertAllDigitsToWord(fulfilmentObj.Refund_Value__c,fulfilmentObj.Currency_Text__c,fulfilmentObj.Currency_Decimal_Text__c);
+                                System.debug('Final result is  ' + result );
+                                fulfilmentObj.Refund_Value_in_Words__c = result;                        
+                            }
+                    }
+                }
+            } catch(Exception e) {
+                System.debug(e.getMessage()); 
+                throw e;
+            }           
+        }
+            
+
+    } 
+    
 }

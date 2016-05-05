@@ -9,15 +9,21 @@ private class IPM_Utils_Test {
     private static list<MDO_Geography__c> geographyList;
     private static list<MDO_Geography__c> geographyDetailList;
     private static list<String> countryNameList =  new list<String>{'Chile','New Zealand'};
+    private static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
     private static List<IPM_Financial__c> finList=new List<IPM_Financial__c>();
     private static List<IPM_Project__c>projectListObj=new List<IPM_Project__c>();
+    private static IPM_Project_Rollout__c projRoll;
     private static List<IPM_Country__c> countryTest = new List<IPM_Country__c>();
     private static User stdUserForAssort;
+    private static List<IPM_Project_Document_Section__c>projectDocSecListObj=new List<IPM_Project_Document_Section__c>();
     private static IPM_Financial_Year__c finYear=new IPM_Financial_Year__c();
     private static final string TEST_COMMENTS_STR='TestComments1';
+    private static string LOCAL_STR='Local';
     private static string REGIONAL_STR='Regional';
     private static List<IPM_Project__c>projectList=new list<IPM_Project__c>();
-    private static User globalUser;    
+    private static User globalUser;
+    private static IPM_Project_Document_Section_Content__c projDocSecCon;
+    private static String CONSOLIDATED_FINANCIAL_RECORDTYPE;
     private static IPM_Company_Card__c globalCompanyCard=new IPM_Company_Card__c();
     private static Map<Id,IPM_Project__c> childProjMap=new Map<Id,IPM_Project__c>();
     private static Map<Id,Map<Id,IPM_Project__c>> projectToChildMap=new Map<Id,Map<Id,IPM_Project__c>>();
@@ -75,6 +81,7 @@ private class IPM_Utils_Test {
             insert regionalRolloutList;
             List<IPM_Project_Rollout__c> proRegListObj=[SELECT IPM_Rollout_Span__c from IPM_Project_Rollout__c WHERE ID =:regionalRolloutList[0].ID LIMIT 1];
             System.assertEquals(proRegListObj[0].IPM_Rollout_Span__c,REGIONAL_STR,'regional rollout created');//positive test
+            projRoll=regionalRolloutList[0];
             
       
             
@@ -94,8 +101,7 @@ private class IPM_Utils_Test {
                                     IPM_Answer_of_Q1__c,IPM_Company_Card__c,IPM_CompanyCardText__c, (Select Id,IPM_GateDocuments__c from Project_Documents__r),(Select Id from IPM_Financials_Consolidated__r )
             from IPM_Project__c where Name in:projectNameSet];
             project=projectListObj[0];
-          //update project;
-            IPM_Project__c childProj=new IPM_Project__c();
+           IPM_Project__c childProj=new IPM_Project__c();
             childProj.IPM_Parent_Project__c=project.id;
             childProj.IPM_Project_Name__c=project.Name+'_Name';
             childProj.IPMProject_Span__c=IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
@@ -112,7 +118,16 @@ private class IPM_Utils_Test {
             
             
             geographyDetailList = [SELECT id,Name FROM MDO_Geography__c WHERE Name IN: countryNameList];
-          system.assertEquals(geographyDetailList.size(),2); 
+          system.assertEquals(geographyDetailList.size(),2);
+          
+            for(IPM_Project__c projectObj : projectListObj) {
+                projDocList = projectObj.Project_Documents__r;
+                //System.assertEquals(projDocList[0].IPM_GateDocuments__c,IPM_ConstantUtils.CHARTER_GATE,PROJECT_DOC_CREATED_STR);
+            }
+            
+            //projectDocSecListObj = [Select Id,IPM_Section_Name__c,IPM_Section_Sequence__c,IPM_Project_Document__c from IPM_Project_Document_Section__c 
+            //where IPM_Project_Document__c=:projDocList[0].Id];
+            //system.assertEquals(projectDocSecListObj[0].IPM_Project_Document__c,projDocList[0].Id);
             
             //create country test data
           for(integer i=0 ;i<10 ;i++){
@@ -137,9 +152,10 @@ private class IPM_Utils_Test {
           
           for(IPM_Project__c projectObj : projectListObj) {
                 finList = projectObj.IPM_Financials_Consolidated__r;
-                //System.assertEquals(finList[0].IPM_GateDocuments__c,IPM_ConstantUtils.CHARTER_GATE,PROJECT_DOC_CREATED_STR);
-            }
+          }
             
+          String strRecordTypeId1=[Select Id From RecordType Where SobjectType='IPM_Financial__c' and Name='Consolidated'].Id;
+          CONSOLIDATED_FINANCIAL_RECORDTYPE=strRecordTypeId1;
           finYear = IPM_TestFactory_Helper.createIPMFinancialYear(FALSE);
           finYear.IPM_Financial__c=finList[0].Id;
           finYear.Charter_Approved__c=true;

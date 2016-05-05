@@ -237,7 +237,7 @@ public with sharing class IPM_TaskCompCtrl extends AbstractStandardSetExtension{
         } 
         else 
         {
-            soql += ' ORDER BY IPM_Completed__c,IPM_Phase__c,IPM_Due_Date1__c,IPM_Project_Document_Section__r.IPM_Section_Sequence__c,IPM_Task_Name__c ASC NULLS LAST';
+            soql += ' ORDER BY ' + currentSort.get(IPM_ConstantUtils.THIS_FIELD) + ' ASC NULLS LAST';
         }
         soql += ' limit 1000'; 
         return soql;  

@@ -286,8 +286,19 @@ public with sharing class IPM_HomePageController
         String taskcountValue =String.valueOf(taskcount);
         return taskcountValue;
     }
+    // On click on project name , Navigate to its Project Page
+    public PageReference project()
+    {
+        return new PageReference(IPM_Utils.apexipmproject_1);
+    }
     
+    // On click on Boasscard name , Navigate to its boasscard page
     
+    public PageReference bosscard()
+    {
+        isBosscard=true;
+        return new PageReference(IPM_Utils.apexipmbosscard);
+    } 
     
     // Getting  usertype 
     public void getusertype(){

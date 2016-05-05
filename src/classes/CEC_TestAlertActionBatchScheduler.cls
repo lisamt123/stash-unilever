@@ -116,7 +116,7 @@ private class CEC_TestAlertActionBatchScheduler {
             Test.stopTest();
             
             cec_Alert_Tracker__c finalAlertTracker = [SELECT Trigger_Batch__c FROM cec_Alert_Tracker__c WHERE Product_No_Size__c = 'ABCD Knorr 100% soup XYZ' AND DayCode__c = '2121'];
-            //System.assertEquals(finalAlertTracker.Trigger_Batch__c,false);
+            System.assertEquals(finalAlertTracker.Trigger_Batch__c,false);
 
             // Assert Chatter Alert Action : Check the Group id is populated in Alert Action record
             cec_Alert_Action__c resultChatterAlertAction = [SELECT Country_Chatter_Group_Id__c, Category_Chatter_Group_Id__c
@@ -133,8 +133,7 @@ private class CEC_TestAlertActionBatchScheduler {
             // Check two feeds are created for the chatter groups.
             List<FeedItem> feedItemList = [SELECT ParentId, Id FROM FeedItem 
                                     WHERE ParentId IN (:countryGroupId, :categoryGroupId)];
-            // FAILING ASSERT
-            //System.assertEquals(feedItemList.size(), 2);
+            System.assertEquals(feedItemList.size(), 2);
         }
     }
     
