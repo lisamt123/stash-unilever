@@ -32,6 +32,12 @@ src/classes/IPM_RolloutPlanTLDSync.cls
 src/classes/IPM_RolloutPlanTLDSync.cls-meta.xml
 src/classes/IPM_ValidationHelper_Test.cls
 src/classes/IPM_ValidationHelper_Test.cls-meta.xml
+src/classes/IPM_ConsumerImageUploadController.cls
+src/classes/IPM_ConsumerImageUploadController.cls-meta.xml
+src/classes/IPM_MyList.cls
+src/classes/IPM_MyList.cls-meta.xml
+src/classes/IPM_MyList_Test.cls
+src/classes/IPM_MyList_Test.cls-meta.xml
 src/components
 src/components/IPM_FinancialTable.component
 src/components/IPM_FinancialTable.component-meta.xml
