@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>VPM_PurchasingRequests__c.VPM_WhatAreYouBuying__c</field>
+    </columns>
+    <columns>
+        <field>VPM_PurchasingRequests__c.VPM_Spend__c</field>
+    </columns>
+    <columns>
+        <field>VPM_PurchasingRequests__c.VPM_Status__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Average</aggregateTypes>
+        <field>VPM_PurchasingRequests__c.VPM_DayswithProcurement__c</field>
+    </columns>
+    <description>VPM - Report on the average time in days a create request is being worked on by the Procurement team on a per country basis.</description>
+    <filter>
+        <criteriaItems>
+            <column>VPM_PurchasingRequests__c.VPM_DayswithFLS__c</column>
+            <operator>greaterThan</operator>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>CUST_RECORDTYPE</column>
+            <operator>equals</operator>
+            <value>VPM_PurchasingRequests__c.VPM_VendorReq,VPM_PurchasingRequests__c.VPM_VendorReqCreate,VPM_PurchasingRequests__c.VPM_PurRequis,VPM_PurchasingRequests__c.VPM_PurRequisVendorCreate</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <name>VPM AvgDays With Procurement Per Country</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$VPM_PurchasingRequests__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>VPM_PurchasingRequests__c.VPM_RequestGroupTime__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

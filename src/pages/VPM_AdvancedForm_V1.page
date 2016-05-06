@@ -1,0 +1,352 @@
+<apex:page standardController="VPM_PurchasingRequests__c">  
+    <apex:includeScript value="/soap/ajax/15.0/connection.js"/>
+    <apex:stylesheet value="{!URLFOR($Resource.vpmadvancedformcss)}" />
+    <apex:includeScript value="{!$Resource.vpmjqueryresources}"/>
+    <apex:includeScript value="{!URLFOR($Resource.vpmjqueryresources, 'vpmjqueryresources/jquery-1.12.2.min.js')}"/>
+    <!--apex:stylesheet value="{!URLFOR($Resource.VPMstyle)}"/-->
+    <apex:stylesheet value="{!URLFOR($Resource.vpmjqueryresources, 'vpmjqueryresources/jquery-ui.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.vpmstyles, 'vpmstyles.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.vpmbootstrapresources, 'vpmbootstrapresources/bootstrap.css')}" />
+    <!--style>
+        body .bPageBlock label {
+            line-height: 1em !important;
+            font-size: 12px !important;
+            display: inline;
+            padding-left: 5px;
+        }
+        .bPageBlock button{
+            font-family: sans-serif;
+            font-size: 11px;
+        }
+        input, button, select, textarea {
+            line-height: 1em !important;
+        }
+        body{
+            font-size: 0.8rem !important;
+            line-height: 1 !important;
+        }
+        h2{
+            font-size: 0.9rem;
+        }
+        body .bPageBlock .btn-primary{
+            color: #fff !important;
+            background-color: #0275d8 !important;
+            border-color: #0275d8 !important;
+            background: !important;
+            background-image : none !important;
+            padding: 8px !important;
+        }
+        .FlowPageBlockBtns{
+            text-align: center !important;
+            text-indent: -70px !important
+        }
+        body .bPageBlock label {
+            line-height: 1em !important;
+            font-size: 13px !important;
+            display: inline;
+            padding-left: 5px;
+        }
+         .bPageBlock .detailList .dataCol {
+               width: 34%
+        }
+        body .bPageBlock input[type="text"]{
+            border-radius: 5px;
+            border-style: ridge;
+            height: 1.9em;
+            width: 63%;
+        }
+        .bPageBlock button{
+            font-family: sans-serif;
+            font-size: 11px;
+        }
+        .Custom17Tab .brdPalette{
+                border-top-color: #0275D8;
+        }
+        .Custom17Tab .secondaryPalette, .individualPalette .Custom17Block .secondaryPalette{
+             border-color: #0275D8;
+        }
+        .emphasizeHeader{
+             text-transform: uppercase;
+            font-size: 16px;
+            text-decoration: underline;
+        }
+        .statusAlignment{
+            float: left;
+            position: relative;
+            left:-2.5em;
+        }
+        .typeAlignment{
+            position: relative;
+            left: -1em;
+        }
+    </style-->
+    <style>
+        .customGrid h6{
+            font-weight:bold;
+            text-decoration: underline;
+            text-indent: 11% !important;
+        }
+    </style>
+    <script type = "text/javascript">
+     $(document).ready(function(){
+        var criteria1 = "{!VPM_PurchasingRequests__c.VPM_Status__c}"; 
+        var Islock = "{!VPM_PurchasingRequests__c.VPM_IsLock__c}";
+         //alert(section);
+         // alert(subsection);
+         /*if(criteria1!="FLS Approved" && criteria1!="Draft Request"){
+            $('link[href*="vpmadvancedformcss"]').remove();
+            $('link[href*="bootstrap"]').remove();
+            $('link[href*="vpmstyles"]').remove();
+         }*/
+        if(criteria1=="FLS Review") {
+            alert("Please Approve / Reject the Request before completing the Advanced Form");
+        }
+        else if (!Islock)
+        {
+            alert('Record is in Approval...');
+            //return false;
+        }
+         // else if(criteria1=='FLS Approved' || criteria1 =='Draft Request') {  
+        //navigateToUrl('flow/VPM_PurchasingRequestAdvancedForm?VPM_PurchasingRequestID={!VPM_PurchasingRequests__c.Id}'); 
+        //window.location = 'apex/VPM_AdvancedForm';
+               domManipulations();
+         //}
+    });
+    function domManipulations(){
+        var el = $('tr>td.pbTitle');
+        var savedRow = '';
+        var numberOfTextFields = $('.detailList input[type="text"]').length;
+        var spanToAlign = $('span[id*="VPM_MaintainTypeInfo"]');
+        var maintainRadioBtns =$('span[id*="VPM_MaintainTypeInfo"]').length>0 ? $('span[id*="VPM_MaintainTypeInfo"]') : $('span[id*="VPM_Maintain2TypeInfo"]');
+        var vendorDetailHeader = $('span[id*="VPM_CreateVendorDetailInfo"]');
+        var maintainVendorHeader= $('span[id*="VPM_Maintain1VendorDetailsScreenInfo"]');
+        var purchasingTab = $('#tabBar>li[class*="VPM_PurchasingRequests"]');
+        
+        $('span[id*="VendorSearchInstr"],span[id*="VPM_MaintainExtendInstr"]').find('i').css("font-style","normal");
+        $(purchasingTab).css("background-color","#0275D8");
+        var sectionHeadings = [
+                            {"name":"Vendor Details",
+                             "keyname":"VD",
+                             "subsections":
+                                    [{"keyname":"CMD","name":"Creation/Maintenance Details"},
+                                     {"keyname":"CCD","name":"Company Code Details"},
+                                     {"keyname":"POD","name":"Purchasing Organization Details"},
+                                     {"keyname":"RSD","name":"Required Supporting Documents"},
+                                     {"keyname":"SD","name":"Supplier Details"}
+                                    ]
+                            },
+                            {"name":"Bank Details",
+                             "keyname":"BD",
+                             "subsections":
+                                    [{"keyname":"BD","name":"Bank Details"}]
+                             },
+                            {"name":"Financially Sensitive Fields",
+                             "keyname":"FSF",
+                             "subsections":
+                                    [{"keyname":"CCD","name":"Company Code Details"},
+                                     {"keyname":"POD","name":"Purchasing Organization Details"}]
+                             },
+                            {"name":"Bank Details",
+                             "keyname":"BD",    
+                             "subsections":
+                                    [{"keyname":"CMD","name":"Creation/Maintenance Details"},
+                                     {"keyname":"CCD","name":"Company Code Details"}]
+                            }
+                      ];
+        
+        $('span[id*="VendorSearchInstr"],span[id*="VPM_MaintainExtendInstr"]').find('i').css("font-style","normal");
+        $('input[type="button"],input[type="submit"],button').addClass("btn-primary");
+        $(vendorDetailHeader).find("b").addClass('emphasizeHeader');
+        $(maintainVendorHeader).find("b").addClass('emphasizeHeader');
+        $(".FlowPageBlockBtns").siblings().remove();
+        /*  to align status and type side by side instead of one stacking both one above the other  */
+        $(spanToAlign).css("float","left");
+        var allDivs =$(spanToAlign).find('div');
+        if($(allDivs[2]).find('font').text().indexOf('Status')!=-1)
+            $(allDivs[2]).css({"float":"left"},{"margin-left":"6em"});
+         
+         if($(".interviewDisplayTextRow b").text().indexOf("Type") > -1){
+             savedRow = $(".interviewDisplayTextRow")[1];
+             $(".interviewDisplayTextRow")[1].remove();
+             $(savedRow).insertBefore($(".interviewDisplayTextRow")[0]);
+             $($(".interviewDisplayTextRow")[0]).css("display","table-cell");
+            
+             }
+         if($(maintainRadioBtns).find("span").text().indexOf("Maintain") > -1){
+            savedRow = $(maintainRadioBtns).find("span");
+            if($(maintainRadioBtns).find("div").text().indexOf("Status") > -1){
+                $(savedRow).insertBefore($(maintainRadioBtns).find("div:last-child"));
+            }
+            $(maintainRadioBtns).find("div:nth-child(3)").addClass("statusAlignment");
+            $(maintainRadioBtns).find("span").addClass("typeAlignment");
+              if($(".interviewDisplayTextRow font").text().indexOf("Extend") > -1){
+                    $($(".interviewDisplayTextRow")[1]).css({"float": "right",
+                                                             "position": "relative",
+                                                             "right": "22.5em"});
+             }
+            else{
+                 $(maintainRadioBtns).find("span").css({"left":"12em","top":"-1em"});
+            }
+        }
+        
+        /*  *****  */
+        /* to divide fields into 2 columns */
+        if(numberOfTextFields > 10){
+            var remainingRows = [];
+            var allLabels = [];
+            var allInputs = [];
+            var toRemove ='';
+            /*for(var i=(Math.round(numberOfTextFields/2));i<numberOfTextFields;i++){
+                toRemove = $('.detailList input[type="text"]')[i]; 
+                remainingRows.push($(toRemove).parent().parent());
+            }
+
+            for(var j=0,i=2;j<remainingRows.length,i<$('.detailList tr').length;j++,i++){
+                 var row = ($('.detailList tr')[i]);
+                 $(row).find(".labelCol.last.empty").remove();
+                 $(row).find(".dataCol.last.empty").remove();
+                 if(remainingRows[j] && remainingRows[j].children()){
+                    $(row).append(remainingRows[j].children());
+                 }
+            }*/
+            allInputs=$(".detailList tr input");
+            for(var i=1;i<numberOfTextFields;i++){
+                $(".detailList tr .labelCol label").attr("customid",i);
+                $(".detailList tr input").attr("customidinput",i)
+                allLabels.push($(".detailList tr .labelCol").not(".last.empty")[i]);
+            }
+            var div = $('<div class="customGrid"></div>');
+            $(div).insertBefore($(".detailList"));
+            $("table.detailList").remove();      
+            console.log(allLabels);
+            console.log(allInputs);
+            var actualRow = '';
+            /*
+            //Logic for dividing fields into sections
+                for(var i=0;i<allInputs.length;i++){
+                    for(var j=0;j<sectionHeadings.length;j++){
+                        var temp =allInputs[i].attr("id").text();
+                        if(temp.indexOf(sectionHeadings[j].name) > -1){
+                            for(var k=0;k<sectionHeadings[j].subsections.length;k++){
+                                if(temp.indexOf(sectionHeadings[j].subsections[k].name)>-1){
+                                    var html='<div class="col-lg-12"><h7>'+ sectionHeadings[j].name +'</h7></div>'
+                                            +'<div class="col-lg-6"><h7>'+ sectionHeadings[j].subsections[k].name +'</h7></div>'
+                                            +'<div class="col-lg-3">'+allLabels[i].innerHTML+'</div>';
+                                            +'<div class="col-lg-3">'+allInputs[i].outerHTML+'</div>';
+                                     $(".customGrid").append(html);       
+                                }
+                            }
+                        }
+                  } 
+               }
+            */
+            
+            for(var i=0,j=5;i<5,j<11;i++,j++){
+                actualRow+= '<div class="row">'
+                            +'<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">'+allLabels[i].innerHTML+'</div>'
+                            +'<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">'+allInputs[i].outerHTML+'</div>'
+                            +'<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">'+allLabels[j].innerHTML+'</div>'
+                            +'<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">'+allInputs[j].outerHTML+'</div>'
+                            +'</div>';    
+            }
+            $(".customGrid").append('<br><h6 class="col-lg-6 col-md-6 col-sm-12 col-xs-12">VENDOR ADDRESS</h6>'
+                                   +'<h6 class="col-lg-6 col-md-6 col-sm-12 col-xs-12">VENDOR CONTACT</h6>'
+                                   +actualRow);
+            for(var i=11,j=15;i<15,j<21;i++,j++){
+                actualRow+= '<div class="row">'
+                            +'<div class="col-lg-3 col-md-3">'+allLabels[i].innerHTML+'</div>'
+                            +'<div class="col-lg-3 col-md-3">'+allInputs[i].outerHTML+'</div>'
+                            +'<div class="col-lg-3 col-md-3">'+allLabels[j].innerHTML+'</div>'
+                            +'<div class="col-lg-3 col-md-3">'+allInputs[j].outerHTML+'</div>'
+                            +'</div>';    
+            }
+            $(".customGrid").append('<br><hr><h6 class="col-lg-6">TAX DETAILS</h6>'
+                                   +'<h6 class="col-lg-6">VENDOR INFORMATION</h6>'
+                                   +actualRow);
+            for(var i=21,j=25;i<25,j<31;i++,j++){
+                actualRow+= '<div class="row">'
+                            +'<div class="col-lg-3 col-md-3">'+allLabels[i].innerHTML+'</div>'
+                            +'<div class="col-lg-3 col-md-3">'+allInputs[i].outerHTML+'</div>'
+                            +'<div class="col-lg-3 col-md-3">'+allLabels[j].innerHTML+'</div>'
+                            +'<div class="col-lg-3 col-md-3">'+allInputs[j].outerHTML+'</div>'
+                            +'</div>';    
+            }
+            $(".customGrid").append('<br><hr><h6 class="col-lg-6">SAMPLE CATEGORY1</h6>'
+                                   +'<h6 class="col-lg-6">SAMPLE CATEGORY2</h6>'
+                                   +actualRow);
+             for(var i=31,j=35;i<35,j<41;i++,j++){
+                actualRow+= '<div class="row">'
+                            +'<div class="col-lg-3 col-md-3">'+allLabels[i].innerHTML+'</div>'
+                            +'<div class="col-lg-3 col-md-3">'+allInputs[i].outerHTML+'</div>'
+                            +'<div class="col-lg-3 col-md-3">'+allLabels[j].innerHTML+'</div>'
+                            +'<div class="col-lg-3 col-md-3">'+allInputs[j].outerHTML+'</div>'
+                            +'</div>';    
+            }
+            $(".customGrid").append('<br><hr><h6 class="col-lg-6">SAMPLE CATEGORY3</h6>'
+                                   +'<h6 class="col-lg-6">SAMPLE CATEGORY4</h6>'
+                                   +actualRow);
+             for(var i=41,j=50;i<50,j<51;i++,j++){
+                actualRow+= '<div class="row">'
+                            +'<div class="col-lg-3 col-md-3">'+allLabels[i].innerHTML+'</div>'
+                            +'<div class="col-lg-3 col-md-3">'+allInputs[i].outerHTML+'</div>'
+                            +'<div class="col-lg-3 col-md-3">'+allLabels[j].innerHTML+'</div>'
+                            +'<div class="col-lg-3 col-md-3">'+allInputs[j].outerHTML+'</div>'
+                            +'</div>';    
+            }
+            $(".customGrid").append('<br><hr><h6 class="col-lg-6">SAMPLE CATEGORY5</h6>'
+                                   +'<h6 class="col-lg-6">SAMPLE CATEGORY6</h6>'
+                                   +actualRow);
+            for(var i=51,j=70;i<70,j<71;i++,j++){
+                actualRow+= '<div class="row">'
+                            +'<div class="col-lg-3 col-md-3">'+allLabels[i].innerHTML+'</div>'
+                            +'<div class="col-lg-3 col-md-3">'+allInputs[i].outerHTML+'</div>'
+                            +'<div class="col-lg-3 col-md-3">'+allLabels[j].innerHTML+'</div>'
+                            +'<div class="col-lg-3 col-md-3">'+allInputs[j].outerHTML+'</div>'
+                            +'</div>';    
+            }
+            $(".customGrid").append('<br><hr><h6 class="col-lg-6">SAMPLE CATEGORY7</h6>'
+                                   +'<h6 class="col-lg-6">SAMPLE CATEGORY8</h6>'
+                                   +actualRow);
+            for(var i=71,j=91;i<91,j<102;i++,j++){
+                actualRow+= '<div class="row">'
+                            +'<div class="col-lg-3 col-md-3">'+allLabels[i].innerHTML+'</div>'
+                            +'<div class="col-lg-3 col-md-3">'+allInputs[i].outerHTML+'</div>'
+                            +'<div class="col-lg-3 col-md-3">'+allLabels[j].innerHTML+'</div>'
+                            +'<div class="col-lg-3 col-md-3">'+allInputs[j].outerHTML+'</div>'
+                            +'</div>';    
+            }
+            $(".customGrid").append('<br><hr><h6 class="col-lg-6">SAMPLE CATEGORY9</h6>'
+                                   +'<h6 class="col-lg-6">SAMPLE CATEGORY10</h6>'
+                                   +actualRow);
+        }
+        /*  *****  */
+         /*  Change text of 'Previous Button'   */
+         var buttonLength = $('input[type="submit"],input[type="button"],button').length;
+         for(var i=0;i<buttonLength;i++){
+            if($('input[type="submit"],input[type="button"],button')[i].value == 'Previous')
+                $('input[type="submit"],input[type="button"],button')[i].value = 'Menu/Previous';                
+         }
+        /*  *****  */
+    }
+    function openPopup(page){
+        window.open('/apex/VPM_AttachmentSectionPopUp','Table','toolbar=yes, scrollbars=no, toolbar=no, menubar=no, height=500,width=1230, top=70, left=70');
+        return false;
+    }
+    </script>
+   
+    <flow:interview name="VPM_PurchasingRequestAdvancedForm" finishLocation="/{!VPM_PurchasingRequests__c.Id}" rendered="{!VPM_PurchasingRequests__c.VPM_Status__c != 'FLS Review'}" >    
+        <apex:param name="VPM_PurchasingRequestID" value="{!VPM_PurchasingRequests__c.Id}"/>    
+    </flow:interview>
+
+    <div>
+    <apex:outputLink onclick="openPopup('{!$Page.VPM_AttachmentSectionPopUp}');return false;">Help for uploading documents</apex:outputLink>
+    </div>
+    <apex:relatedList subject="{!VPM_PurchasingRequests__c}" list="CombinedAttachments" rendered="{!VPM_PurchasingRequests__c.VPM_Status__c != 'FLS Review'}">
+    <!--apex:facet name="footer">
+        <apex:outputLink onclick="openPopup('{!$Page.VPM_AttachmentSectionPopUp}');return false;">Help for uploading documents</apex:outputLink>
+    </apex:facet-->
+    </apex:relatedList>
+    
+    
+    <apex:detail subject="{!VPM_PurchasingRequests__c.Id}" rendered="{!VPM_PurchasingRequests__c.VPM_Status__c == 'FLS Review'}" showChatter="true"/>
+</apex:page>

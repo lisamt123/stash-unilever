@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>VPM - Used to Notified the Business Requester that request is revert back for rework</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>VPM_BlankLetter</letterhead>
+    <name>VPM - Request Rework Notification</name>
+    <style>freeForm</style>
+    <subject>Purchase Requisition : {!VPM_PurchasingRequests__c.00N19000000bw7w} Rework Notification</subject>
+    <type>html</type>
+</EmailTemplate>

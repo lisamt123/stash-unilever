@@ -1,0 +1,16 @@
+<apex:page standardController="VPM_PurchasingRequests__c" standardStylesheets="true" sidebar="false">
+    <script src="/soap/ajax/28.0/connection.js" type="text/javascript"></script>
+    <script src="/soap/ajax/28.0/apex.js" type="text/javascript"></script>
+    <script>
+    function openPopup(page){
+        window.open('/apex/VPM_AttachmentSectionPopUp','PopUp','toolbar=yes, scrollbars=no, toolbar=no, menubar=no, height=500,width=1230, top=70, left=70');
+        return false;
+    }
+    </script>
+    <apex:sectionHeader title="Supporting Documents"/>
+    <apex:relatedList subject="{!VPM_PurchasingRequests__c}" list="CombinedAttachments">
+        <apex:facet name="footer">
+            <apex:outputLink onclick="openPopup('{!$Page.VPM_AttachmentSectionPopUp}');return false;">Help for uploading documents</apex:outputLink>
+        </apex:facet>
+    </apex:relatedList>
+</apex:page>

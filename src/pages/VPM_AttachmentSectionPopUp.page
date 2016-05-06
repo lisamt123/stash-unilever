@@ -1,0 +1,342 @@
+<apex:page showHeader="false" sidebar="false">
+    <apex:stylesheet value="{!URLFOR($Resource.vpmbootstrapresources, 'vpmbootstrapresources/bootstrap.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.vpmstyles, 'vpmstyles.css')}" /> 
+    <style>
+     .table ul>li,.table ol>li{
+    		margin-left: -2em !important;
+    	}
+    	.table>tbody>tr:nth-child(1) td{
+    		font-weight:bold;
+    		color:crimson;
+    	}
+         .table-bordered td,.table-bordered th {
+            border: 1px solid #000 !important;
+        }
+         .table thead th {
+            border-bottom: 2px solid #000 !important;
+        }
+    </style>
+    <!-- Modal>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body"-->
+          <table id="popupContent" class="table table-responsive table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>REGION</th>
+                <th>MCO</th>
+                <th>COUNTRY</th>
+                <th>CREATE VENDOR DOMESTIC</th>
+                <th>CREATE VENDOR FOREIGN</th>
+                <th>EXTEND VENDOR</th>
+                <th>BANK DETAILS CHANGE</th>
+                <th>GENERAL CHANGES</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-danger">
+                <th scope="row">1</th>
+                <td><!--strong-->ALL ( Standard applicable for all countries)<!--/strong--></td>
+                <td><!--strong-->ALL<!--/strong--></td>
+                <td><!--strong-->ALL<!--/strong--></td>
+                <td><!--strong-->Letterhead supplier in non-editable 
+format ( Jpeg/ Pdf/TiF). 
+                    Letterhead should contain: Supplier name, address, complete bank details, Tax or VAT code (if applicable)<!--/strong--></td>
+                <td><!--strong-->Letterhead supplier in non-editable 
+format ( Jpeg/ Pdf/TiF). 
+                    Letterhead should contain: Supplier name, address, complete bank details, Tax or VAT code (if applicable)<!--/strong--></td>
+                <td><!--strong-->Letterhead supplier or invoice with bank details/
+                    address/ Tax or Vat code / vendor name ( if applicable) in non-editable format ( JPEG/TiF/PdF)<!--/strong--></td>
+                <td>For Bank details change (account number or adding of a new bank account: an invoice with or supplier letterhead in non-editable format (PDF/JPEG/TIF) that contains the new bank details
+For bank detail changes (Changes to existing Swift / BIC code): document by and from beneficiary bank are accepted, confirming the Swift / BIC code and stsating the reason of the change in non-editable format (PDF/JPEG/TIF)</td>
+				<td>Name, Address, VAT/Tax changes - Official Letterhead or Pro-Forma invoice in non-editable format (PDF/JPEG/TIF)</td>
+            </tr>		
+             <tr>
+                <th scope="row">2</th>
+                <td>North America (on top of standard) </td>
+                <td>US </td>
+                <td>US </td>
+                <td>W9 form </td>
+                <td>
+                    <ul>
+                 		<li>If the non-US vendor is a corporation, please provide Form W-8BEN-E. </li>   
+                        <li> If the non-US vendor is a Partnership, Disregarded Entity or Intermediary, please provide Form W-8IMY. </li>
+                        <li>Non-US  service vendor should provide  a brief “sourcing” statement, incorporated in the body of the invoice, whether service is provided in US or outside of US </li>
+                    </ul>
+                 </td>
+                <td>
+                	 <ul>
+                 		<li>If the non-US vendor is a corporation, please provide Form W-8BEN-E. </li>   
+                        <li>If the non-US vendor is a Partnership, Disregarded Entity or Intermediary, please provide Form W-8IMY. </li>
+                        <li>Non-US  service vendor should provide  a brief “sourcing” statement, incorporated in the body of the invoice, whether service is provided in US or outside of US </li>
+                    </ul>
+                </td>
+                 <td></td>
+                 <td></td>
+            </tr>	
+             <tr>
+                <th scope="row">3</th>
+                <td>South East Asia &amp; Australia (on top of standard) </td>
+                <td>Indonesia</td>
+                <td>Indonesia</td>
+                <td>Tax ID (NPWP) or enterprise ID (SPPKP) on letterhead </td>
+                <td>None</td>
+                <td>If vendor is domestic: enterprise ID (SPPKP) or (NPWP) </td>
+                <td></td>
+                <td></td>
+            </tr>	
+             <tr>
+                <th scope="row">4</th>
+                 <td>South East Asia &amp; Australia (on top of standard) </td>
+                <td>ANZ</td>
+                 <td>Australia 	&amp; New Zealand </td>
+                <td>
+                    <strong>Austraila domestic: </strong>
+					<div>
+                        ABN. (Australian Business Number) 
+                    </div>
+					<strong>New Zealand domestic:</strong>
+                    <div>GST ( Goods and Services Tax number)</div>
+                </td>
+                <td>None</td>
+                 <td>
+                    <strong>Austraila domestic: </strong>
+					<div>
+                        ABN. (Australian Business Number) 
+                    </div>
+					<strong>New Zealand domestic:</strong>
+                    <div>GST ( Goods and Services Tax number)</div>
+                </td>
+                 <td></td>
+                 <td></td>
+            </tr>	
+             <tr>
+                <th scope="row">5</th>
+                <td>North Africa Middle East &amp; Russia Belarus</td>
+                <td>RUB </td>
+                <td>Russian Federation </td>
+                <td>LOCAL contract (also applicable for suppliers which have Global contract with Unilever). If LOCAL contract not presented for vendor or customer, we cannot have any business with them (cannot supply, sell, pay). Contract is Usually between Russian Unilever's legal entity  and Supplier's legal Entity</td>
+                <td>LOCAL contract (also applicable for suppliers which have Global contract with Unilever). If LOCAL contract not presented for vendor or customer, we cannot have any business with them (cannot supply, sell, pay). Contract is Usually between Russian Unilever's legal entity  and Supplier's legal Entity</td>
+                <td>LOCAL contract (also applicable for suppliers which have Global contract with Unilever). If LOCAL contract not presented for vendor or customer, we cannot have any business with them (cannot supply, sell, pay). Contract is Usually between Russian Unilever's legal entity  and Supplier's legal Entity</td>
+                <td></td>
+                <td></td>
+            </tr>	
+             <tr>
+                <th scope="row">6</th>
+                <td>North Africa Midle East &amp; Russia Belarus(on top of standard)</td>
+                <td>NAMET</td>
+                <td>Egypt </td>
+                <td> tax card</td>
+                <td></td>
+                <td>Donmestic:  tax card </td>
+                <td></td>
+                <td></td>
+            </tr>	
+             <tr>
+                <th scope="row">7</th>
+                <td>South East Asia &amp; Australia (on top of standard) </td>
+                <td>Philippines </td>
+                <td>Philippines</td>
+                <td><strong>BIR 2303 </strong>(business registration form from Bureau of Internal Revenue)</td>
+                <td>None</td>
+                <td>Domestic:<strong> BIR 2303</strong> (business registration form from Bureau of Internal Revenue)</td>
+                <td></td>
+                <td></td>
+            </tr>	
+             <tr>
+                <th scope="row">8</th>
+                <td>South Asia (on top of standard) </td>
+                <td>Bangladesh </td>
+                <td>Bangladesh 	</td>
+                <td>VAT registration Certificate</td>
+                <td>None</td>
+                <td>Domestic: VAT registration Certificate</td>
+                <td></td>
+                <td></td>
+            </tr>	
+             <tr>
+                <th scope="row">9</th>
+                <td>Nort East Asia (on top of standard) </td>
+                <td>China </td>
+                <td>China </td>
+                <td>
+                	<ol>
+                       <li>Tax Registration Certificate</li>
+                       <li>Business Licence</li>
+                       <li>Bank Account opening permit</li>
+                       <li>Special nationwide invoice stamp.</li>
+                    </ol>
+                </td>
+                <td>None</td>
+                 <td>
+                	<ol>
+                       <li>Tax Registration Certificate</li>
+                       <li>Business Licence</li>
+                       <li>Bank Account opening permit</li>
+                       <li>Special nationwide invoice stamp.</li>
+                    </ol>
+                </td>
+                <td></td>
+                <td></td>
+            </tr>	
+             <tr>
+                <th scope="row">10</th>
+                <td>South Asia (on top of standard) </td>
+                <td>India</td>
+                <td>India</td>
+                <td>
+                    <div>
+                        <strong>A PAN number</strong>
+                         is a unique identification number
+(Permanent account number (PAN) is the identifier of Indian income tax payers in the form of AAAPL1234C. It is unique, 10-character alpha-numeric identifier, issued to all juristic entities identifiable under the Indian Income Tax Act 1961. It is issued by the Indian Income Tax Department under the supervision of the Central Board for Direct Taxes (CBDT) and it also serves as an important proof of identification (only applicable for India domestic vendors and will be mentioned in the support doc requirements) 
+                    </div>
+					<div>
+                        <strong>A TIN number</strong>
+                        is the Indian TAX number ( Global MDM field ) 
+(TIN stands for Tax-Payer Identification Number, is unique number allotted by Commercial tax department of respective State. It’s an eleven digit number to be mentioned in all VAT transactions and correspondence.) Only applicable for India Domestic vendors 
+                    </div>
+ 				</td>
+                <td></td>
+                <td>
+                    <div>
+                        <strong>A PAN number</strong>
+                         is a unique identification number
+(Permanent account number (PAN) is the identifier of Indian income tax payers in the form of AAAPL1234C. It is unique, 10-character alpha-numeric identifier, issued to all juristic entities identifiable under the Indian Income Tax Act 1961. It is issued by the Indian Income Tax Department under the supervision of the Central Board for Direct Taxes (CBDT) and it also serves as an important proof of identification (only applicable for India domestic vendors and will be mentioned in the support doc requirements) 
+                    </div>
+					<div>
+                        <strong>A TIN number</strong>
+                        is the Indian TAX number ( Global MDM field ) 
+(TIN stands for Tax-Payer Identification Number, is unique number allotted by Commercial tax department of respective State. It’s an eleven digit number to be mentioned in all VAT transactions and correspondence.) Only applicable for India Domestic vendors 
+                    </div>
+ 				</td>
+                <td></td>
+                <td></td>
+            </tr>	
+             <tr>
+                <th scope="row">11</th>
+                <td>TUII (on top of standard) </td>
+                <td>Israel </td>
+                <td>Israel </td>
+                <td>VAT registration Certificate</td>
+                <td>None</td>
+                <td>VAT registration Certificate if the vendor is domestic </td>
+                <td></td>
+                <td></td>
+            </tr>	
+             <tr>
+                <th scope="row">12</th>
+                <td>Latin America</td>
+                <td>Mexico &amp; Greater Car</td>
+                <td>Dominican Republic Trinidad &amp; Tobago</td>
+                <td>
+                	<ol>
+                        <li>VAT certificate (only applicable if the business
+ generates gross value of over $360,000 over a twelve month period) </li>
+                        <li>Certificate of Incorporation – Official registration
+ document of the business. (This may not be applicable for unique services like Spanish teachers, or small cab drivers) </li>
+                    </ol>
+                </td>
+                <td>None</td>
+                <td>
+                    For domestic: 
+                	<ol>
+                        <li>VAT certificate (only applicable if the business
+ generates gross value of over $360,000 over a twelve month period) </li>
+                        <li>Certificate of Incorporation – Official registration
+ document of the business. (This may not be applicable for unique services like Spanish teachers, or small cab drivers) </li>
+                    </ol>
+                </td>
+                <td></td>
+                <td></td>
+            </tr>	
+             <tr>
+                <th scope="row">13</th>
+                <td>Latin America (on top of standard) </td>
+                <td>Mexico &amp; Greater Car</td>
+                <td>Dominican Republic Trinidad &amp; Tobago</td>
+                <td>
+                	<ol>
+                        <li>. VAT certificate (only applicable if the business
+ generates gross value of over $360,000 over a twelve month period) </li>
+                        <li> Certificate of Incorporation – Official registration
+ document of the business. (This may not be applicable for unique services like Spanish teachers, or small cab drivers) </li>
+                    </ol>
+                </td>
+                <td>None</td>
+                <td>
+                     For domestic: 
+                	<ol>
+                        <li>VAT certificate (only applicable if the business
+ generates gross value of over $360,000 over a twelve month period) </li>
+                        <li>Certificate of Incorporation – Official registration
+ document of the business. (This may not be applicable for unique services like Spanish teachers, or small cab drivers) </li>
+                    </ol>
+                </td>
+                <td></td>
+                <td></td>
+            </tr>	
+             <tr>
+                <th scope="row">14</th>
+                <td>Latin America (on top of standard) </td>
+                <td>Mexico &amp; Greater Car</td>
+                <td>Dominican Republic </td>
+                <td>
+                	<ol>
+                        <li>the RNC (registro nacional contribuyente) which is the company tax id</li>
+                        <li> the NCF (Nota Credito Fiscal) which is a government number assignment for each invoice to be valid. </li>
+                    </ol>
+                </td>
+                <td>None</td>
+                <td>
+                     For domestic: 
+                	<ol>
+                        <li>the RNC (registro nacional contribuyente) which is the company tax id</li>
+                        <li> the NCF (Nota Credito Fiscal) which is a government number assignment for each invoice to be valid. </li>
+                    </ol>
+                </td>
+                <td></td>
+                <td></td>
+            </tr>	
+             <tr>
+                <th scope="row">15</th>
+                <td>Latin America (on top of standard) </td>
+                <td>SOCO </td>
+                <td>Peru </td>
+                <td>Copy of the fiscal ID of the vendor issued by the
+ local Tax office administration</td>
+               <td>None</td>
+                <td>For domestic: Copy of the fiscal ID of the vendor issued by the
+ local Tax office administration</td>
+                <td></td>
+                <td></td>
+            </tr>	
+             <tr>
+                <th scope="row">16</th>
+                <td>Latin America (on top of standard) </td>
+                <td>Brazil </td>
+                <td>Brazil </td>
+                <td>1.Social Contract( is the proof that the vendor
+ is according to the Brazilian government rules) </td>
+                <td>None</td>
+                <td>For domestic: 1.Social Contract( is the proof that the vendor
+ is according to the Brazilian government rules) </td>
+                <td></td>
+                <td></td>
+            </tr>	
+        </tbody>
+    </table>
+      <!--/div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div-->
+</apex:page>
