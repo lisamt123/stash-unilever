@@ -104,5 +104,3 @@ src/tabs/UID_Switch_User_CurrencyTab.tab
 src
 src/classes/UID_Switch_User_Currency.cls
 src/classes/UID_Switch_User_Currency.cls-meta.xml
-src/classes/UID_Switch_User_Currency_Test.cls
-src/classes/UID_Switch_User_Currency_Test.cls-meta.xml
