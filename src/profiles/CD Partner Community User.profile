@@ -33325,11 +33325,11 @@
         <recordType>Account.Standard</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Account-Primary Account</layout>
+        <layout>Account-Account Layout</layout>
         <recordType>Account.UID_Primary_Account</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Account-Secondary Account</layout>
+        <layout>Account-Account Layout</layout>
         <recordType>Account.UID_Secondary_Account</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -34300,16 +34300,6 @@
     <layoutAssignments>
         <layout>Order-Order Layout</layout>
     </layoutAssignments>
-    
-    <layoutAssignments>
-        <layout>Order-Primary Sales</layout>
-        <recordType>Order.UID_Primary_Sales</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Order-Secondary Sales</layout>
-        <recordType>Order.UID_Secondary_Sales</recordType>
-    </layoutAssignments>
-    
     <layoutAssignments>
         <layout>OrderItem-Order Product Layout</layout>
     </layoutAssignments>

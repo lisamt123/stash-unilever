@@ -3,7 +3,7 @@
     <aggregates>
         <calculatedFormula>(PREVGROUPVAL(UID_Order_Product__c.UID_Distributor_Value__c:SUM,Order.EffectiveDate, 0 ) - 
 PREVGROUPVAL(UID_Order_Product__c.UID_Distributor_Value__c:SUM, Order.EffectiveDate, 12 ))/
-IF(PREVGROUPVAL(UID_Order_Product__c.UID_Distributor_Value__c:SUM, Order.EffectiveDate, 12 ) == 0, 1, PREVGROUPVAL(UID_Order_Product__c.UID_Distributor_Value__c:SUM, Order.EffectiveDate, 12 ))</calculatedFormula>
+PREVGROUPVAL(UID_Order_Product__c.UID_Distributor_Value__c:SUM, Order.EffectiveDate, 12 )</calculatedFormula>
         <datatype>percent</datatype>
         <developerName>FORMULA1</developerName>
         <downGroupingContext>Account.Orders__r$EffectiveDate</downGroupingContext>
@@ -40,10 +40,6 @@ IF(PREVGROUPVAL(UID_Order_Product__c.UID_Distributor_Value__c:SUM, Order.Effecti
         <aggregateTypes>Sum</aggregateTypes>
         <field>Account.Orders__r.Order_Products__r$UID_Distributor_Value__c</field>
     </columns>
-    <columns>
-        <aggregateTypes>Sum</aggregateTypes>
-        <field>Account.Orders__r.Order_Products__r$UID_Distributor_Value__c.CONVERT</field>
-    </columns>
     <filter>
         <criteriaItems>
             <column>Account.Orders__r$UID_Order_RecordType__c</column>
@@ -65,7 +61,7 @@ IF(PREVGROUPVAL(UID_Order_Product__c.UID_Distributor_Value__c:SUM, Order.Effecti
     </params>
     <reportType>UID_Order_with_Order_Product__c</reportType>
     <scope>organization</scope>
-    <showDetails>false</showDetails>
+    <showDetails>true</showDetails>
     <sortColumn>Account.Orders__r.Order_Products__r$UID_Distributor_Value__c</sortColumn>
     <sortOrder>Asc</sortOrder>
     <timeFrameFilter>

@@ -39,10 +39,6 @@
         <aggregateTypes>Sum</aggregateTypes>
         <field>Account.Orders__r.Order_Products__r$UID_Distributor_Value__c</field>
     </columns>
-    <columns>
-        <aggregateTypes>Sum</aggregateTypes>
-        <field>Account.Orders__r.Order_Products__r$UID_Distributor_Value__c.CONVERT</field>
-    </columns>
     <filter>
         <criteriaItems>
             <column>Account.Orders__r$UID_Order_RecordType__c</column>
@@ -62,7 +58,7 @@
         <field>Account.Orders__r.Order_Products__r$UID_Material_Name__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>Brand-wise Primary Sales Value</name>
+    <name>Brand-wise Primary Sales Value (USD)</name>
     <params>
         <name>co</name>
         <value>1</value>

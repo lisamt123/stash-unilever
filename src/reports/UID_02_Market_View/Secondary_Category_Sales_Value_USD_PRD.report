@@ -2,7 +2,7 @@
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
     <aggregates>
         <calculatedFormula>ROUND(UID_Order_Product__c.UID_Distributor_Value__c:SUM,0)</calculatedFormula>
-        <datatype>currency</datatype>
+        <datatype>number</datatype>
         <developerName>FORMULA1</developerName>
         <isActive>true</isActive>
         <isCrossBlock>false</isCrossBlock>
@@ -14,8 +14,9 @@
         <backgroundColor2>#FFFFFF</backgroundColor2>
         <backgroundFadeDir>Diagonal</backgroundFadeDir>
         <chartSummaries>
+            <aggregate>Sum</aggregate>
             <axisBinding>y</axisBinding>
-            <column>FORMULA1</column>
+            <column>Account.Orders__r.Order_Products__r$UID_Distributor_Value__c</column>
         </chartSummaries>
         <chartType>Pie</chartType>
         <enableHoverLabels>true</enableHoverLabels>
@@ -45,7 +46,7 @@
     </columns>
     <columns>
         <aggregateTypes>Sum</aggregateTypes>
-        <field>Account.Orders__r.Order_Products__r$UID_Distributor_Value__c.CONVERT</field>
+        <field>Account.Orders__r.Order_Products__r$UID_Distributor_Value__c</field>
     </columns>
     <filter>
         <criteriaItems>
@@ -71,7 +72,7 @@
         <field>Account.Orders__r.Order_Products__r$UID_Material_Name__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>Secondary Category Sales Value</name>
+    <name>Secondary Category Sales Value (USD)</name>
     <params>
         <name>co</name>
         <value>1</value>

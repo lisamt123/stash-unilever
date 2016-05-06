@@ -43,10 +43,6 @@
         <aggregateTypes>Sum</aggregateTypes>
         <field>Account.Orders__r.Order_Products__r$UID_Distributor_Value__c</field>
     </columns>
-    <columns>
-        <aggregateTypes>Sum</aggregateTypes>
-        <field>Account.Orders__r.Order_Products__r$UID_Distributor_Value__c.CONVERT</field>
-    </columns>
     <filter>
         <criteriaItems>
             <column>Account.Orders__r$UID_Order_RecordType__c</column>
@@ -62,7 +58,7 @@
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <groupingsDown>
-        <dateGranularity>MonthInYear</dateGranularity>
+        <dateGranularity>Month</dateGranularity>
         <field>Account.Orders__r$EffectiveDate</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
