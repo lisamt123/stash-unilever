@@ -33325,11 +33325,11 @@
         <recordType>Account.Standard</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Account-Primary Layout</layout>
+        <layout>Account-Primary Account</layout>
         <recordType>Account.UID_Primary_Account</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Account-Secondary Layout</layout>
+        <layout>Account-Secondary Account</layout>
         <recordType>Account.UID_Secondary_Account</recordType>
     </layoutAssignments>
     <layoutAssignments>
