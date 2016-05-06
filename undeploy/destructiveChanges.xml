@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
 		<members>Test_AFBrandEstimateStCtrlExtSummary</members>
@@ -74,77 +73,7 @@
 		<members>Test_AgencyHomePageController</members>
 		<members>Test_BrandEstimateCatApproverValues</members>
 		<members>Test_SchedulableToBrandEstimatesBatch</members>
-		<members>checkRecursive</members>
-		<members>checkRecursiveBonusQuarterly</members>
-		<members>checkRecursivePOReport</members>
-		<members>AF_AgencyEstimate </members>
-		<members>AF_Assign_Category_Brand</members>
-		<members>AF_Assigncategories</members>
-		<members>AF_BonusThresholdHelper</members>
-		<members>AF_Bonusthresholds</members>
-		<members>AF_BrandEstimateHelper</members>
-		<members>AF_OopsActualHelper</members>
-		<members>AF_UpdateAgencyEstimatesValues</members>
-		<members>UpdateBrandEstimateCatApproverValues</members>
-		<members>Brand_Controller_Review</members>
-		<members>Category_Brands</members>
-		<members>AF_Category_Brands</members>
-		<members>SchedulableToBrandEstimatesBatch</members>
-		<members>AFCallingSchedulable_BrandEstimates</members>
-		<members>SchedulableTo_Statuschange</members>
-		<members>AF_sechedule_statuschange</members>
-		<members>AF_BrandEstimate_Statuschange</members>
-		<members>AF_Currency</members>
-		<members>AF_schedule_sendemail</members>
-		<members>AF_sendemail</members>
-		<members>Brand_Controller_Review</members>
-		<members>af_usersearch</members>
-		<members>af_SendCurrencyReminder</members>
-		<members>AFBrandEstimateStCtrlExtSummary</members>
 		<name>ApexClass</name>
-    </types>
-	<types>
-		<members>AF_AfterInsertUpdateOOPSEstimate</members>
-		<members>AF_AgencyEstimateBonus</members>
-		<members>AF_UpdateAgencyEstimate</members>
-		<members>AF_Agency_POReport</members>
-		<members>AF_BaseFeeMatrix</members>
-		<members>AF_UpdateBonusMatrix</members>
-		<members>AF_PreventQual</members>
-		<members>AF_AfterUpdateBonusResult</members>
-		<members>AF_CreateBonusResultTrigger</members>
-		<members>Af_AfterInsertBonusThresholdShare</members>
-		<members>AF_Brand_Controller_Review</members>
-		<members>AF_POreport_Delete</members>
-		<members>UpdateCatFinanceApprover</members>
-		<members>Af_locking</members>
-		<members>Af_AfterInsertBrandEstShare</members>
-		<members>AF_lockPreviousYear</members>
-		<members>AF_AfterUpdateOOPSActual</members>
-		<members>AF_UpdateCatFinanceApprover</members>
-		<members>AF_OopsPOreport_Delete</members>
-		<members>Af_AfterInsertOopsActualShare</members>
-		<members>AF_OOPsBaseFeeMatrix</members>
-		<members>AF_Oops_POReport</members>
-		<members>AF_UpdateOopsEstimate</members>
-		<members>AF_Populate_Po_Report_Trigger</members>
-		<members>validationOnAmounts</members>
-		<members>UpdateQuantBonus</members>
-		<members>AF_updateBonusThreshold</members>
-        <name>ApexTrigger</name>
-    </types>
-	<types>
-        <members>AF_Assign_Category_Brand</members>
-		<members>AF_Assigncategories</members>
-		<members>AF_Bonusthresholds</members>
-		<members>AF_Category_Brands</members>
-		<members>Category_Brands</members>
-		<members>category</members>
-		<name>ApexPage</name>
-    </types>
-	<types>  
-        <members>Assign_Category</members>  
-        <name>CustomTab</name>  
     </types>
 	
 </Package>
