@@ -4,8 +4,13 @@ Name:  Amr_JobSheetController_CC ()  Copyright © 2015  Salesforce
 ====================================================== 
 Purpose:                                                           
 -------    This class deals with various job releated funtionality like job accept, job sharing, job update etc.                                                         
+<<<<<<< HEAD
  ====================================================== 
  ====================================================== 
+=======
+ =======================================================
+ =======================================================
+>>>>>>> develop
  History                                                             
  -------                                                             
  VERSION   AUTHOR                        DATE              DETAIL                    Description    

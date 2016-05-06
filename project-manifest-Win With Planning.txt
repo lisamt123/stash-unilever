@@ -22,4 +22,9 @@ src/staticresources/WWP_Jquery1.resource
 src/staticresources/WWP_Jquery1.resource-meta.xml
 src/staticresources/WWP_ResetImage.resource
 src/staticresources/WWP_ResetImage.resource-meta.xml
+<<<<<<< HEAD
+=======
+src/labels
+src/labels/CustomLabels.labels
+>>>>>>> develop
 
