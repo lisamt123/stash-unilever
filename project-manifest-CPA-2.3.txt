@@ -129,8 +129,6 @@ src/classes/CPA_ConstantsForPworfAging.cls
 src/classes/CPA_ConstantsForPworfAging.cls-meta.xml
 src/classes/CPA_PWORFAgeing.cls
 src/classes/CPA_PWORFAgeing.cls-meta.xml
-src/classes/CPA_PWORFInformationController.cls
-src/classes/CPA_PWORFTrigger_Handler.cls
 src/classes/CPA_PWORF_Aging_Schedular_Test.cls
 src/classes/CPA_PWORF_Aging_Schedular_Test.cls-meta.xml
 src/classes/CPA_ScheduleBatchProrfAgeUpdate.cls
