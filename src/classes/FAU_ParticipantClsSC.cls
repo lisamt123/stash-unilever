@@ -262,7 +262,7 @@ public with sharing class FAU_ParticipantClsSC {
                                         FAU_Program__Share[] lProgramShares){   
 
         if (((newParticipant.FAU_User__c <> oldParticipant.FAU_User__c && newParticipant.FAU_User__c <> null)
-                || (oldParticipant.FAU_Is_Participant_Shared__c == false && newParticipant.FAU_Is_Participant_Shared__c))
+                || (!oldParticipant.FAU_Is_Participant_Shared__c && newParticipant.FAU_Is_Participant_Shared__c))
                 && newParticipant.FAU_User__c <> newParticipant.OwnerId){
             lParticipantShares.add(addParticipantSharing(newParticipant, 'User'));
             lProgramShares.add(addProgramSharing(newParticipant, 'User'));
@@ -270,7 +270,7 @@ public with sharing class FAU_ParticipantClsSC {
      
 
         if (((newParticipant.FAU_Personal_Assistant__c <> oldParticipant.FAU_Personal_Assistant__c)
-            || (oldParticipant.FAU_Is_Participant_Shared__c == false && newParticipant.FAU_Is_Participant_Shared__c))
+            || (!oldParticipant.FAU_Is_Participant_Shared__c && newParticipant.FAU_Is_Participant_Shared__c))
             && newParticipant.FAU_Personal_Assistant__c <> newParticipant.OwnerId && newParticipant.FAU_Personal_Assistant__c <> null){
                 
             lParticipantShares.add(addParticipantSharing(newParticipant, 'PA'));
@@ -316,14 +316,14 @@ public with sharing class FAU_ParticipantClsSC {
                                         FAU_Program__Share[] lRemoveProgramShares){ 
 
         if (((newParticipant.FAU_User__c <> oldParticipant.FAU_User__c && oldParticipant.FAU_User__c <> null)
-            || (newParticipant.FAU_Is_Participant_Shared__c == false && oldParticipant.FAU_Is_Participant_Shared__c))
+            || (!newParticipant.FAU_Is_Participant_Shared__c && oldParticipant.FAU_Is_Participant_Shared__c))
             && oldParticipant.FAU_User__c <> newParticipant.OwnerId){
             lRemoveParticipantShares.addAll(removeParticipantSharing(oldParticipant, lParticipantShares, 'User')); 
             lRemoveProgramShares.addAll(removeProgramSharing(oldParticipant, lProgramShares, 'User'));   
         }
 
         if (((newParticipant.FAU_Personal_Assistant__c <> oldParticipant.FAU_Personal_Assistant__c)
-            || (newParticipant.FAU_Is_Participant_Shared__c == false && oldParticipant.FAU_Is_Participant_Shared__c))
+            || (!newParticipant.FAU_Is_Participant_Shared__c && oldParticipant.FAU_Is_Participant_Shared__c))
             && oldParticipant.FAU_Personal_Assistant__c <> newParticipant.OwnerId && oldParticipant.FAU_Personal_Assistant__c <> null){
             lRemoveParticipantShares.addAll(removeParticipantSharing(oldParticipant, lParticipantShares, 'PA'));  
             lRemoveProgramShares.addAll(removeProgramSharing(oldParticipant, lProgramShares, 'PA'));   
