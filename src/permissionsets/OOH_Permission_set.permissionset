@@ -49,10 +49,6 @@
         <visible>false</visible>
     </applicationVisibilities>
     <applicationVisibilities>
-        <application>OOH_Portal</application>
-        <visible>false</visible>
-    </applicationVisibilities>
-    <applicationVisibilities>
         <application>OOH_Wave</application>
         <visible>true</visible>
     </applicationVisibilities>
