@@ -38,7 +38,7 @@
                                             <!-- If project is editable and Phase is NOT PLE-->
 	                                       <apex:outputPanel rendered="{!AND(isEditable,project.IPM_Phase__c <> 'PLE')}">
                                                 <!-- IF Object type us IPM Financial and object has update rights for loggedin user, and span is Global and Phase is NOT Ideas, and not any rollouterror occured.-->
-	                                            <apex:outputPanel layout="block" styleClass="copyFBC" rendered="{!IF($ObjectType.IPM_Financial__c.updateable, IF(AND(isEditable,project.IPMProject_Span__c == 'Global', project.IPM_Phase__c <> 'Ideas'), false, AND(NOT(isEditMode),NOT(isRolloutError))), false)}">
+	                                            <apex:outputPanel layout="block" styleClass="copyFBC" rendered="{!IF($ObjectType.IPM_Financial__c.updateable, IF(AND(isEditable,project.IPMProject_Span__c == 'Global',project.IPM_Project_Type__c == 'Original', project.IPM_Phase__c <> 'Ideas'), false, AND(NOT(isEditMode),NOT(isRolloutError))), false)}">
 	                                                <apex:outputPanel id="opCurr" styleClass="selCur">
                                                          <!--Rendered if it is NOT edit mode -->
 	                                                     <apex:commandButton rendered="{!NOT(isEditMode)}" action="{!loadCurrencyPage}" value="Local Currency View" styleClass="ipmButton primary currButton" alt="{!$Label.IPM_currency_button_hover}" title="{!$Label.IPM_currency_button_hover}"/>
