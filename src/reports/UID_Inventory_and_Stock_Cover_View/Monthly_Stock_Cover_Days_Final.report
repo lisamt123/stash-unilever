@@ -4,7 +4,7 @@
         <calculatedFormula>FLOOR(UID_Stocked_Product_Summary__c.UID_Stock_Cover__c:AVG)</calculatedFormula>
         <datatype>number</datatype>
         <developerName>FORMULA1</developerName>
-        <downGroupingContext>Account.Stocked_Products__r$UID_Start_Date__c</downGroupingContext>
+        <downGroupingContext>Account.Stocked_Products__r$UID_End_Date__c</downGroupingContext>
         <isActive>true</isActive>
         <isCrossBlock>false</isCrossBlock>
         <masterLabel>Stock Cover(Days)</masterLabel>
@@ -38,14 +38,6 @@
     <colorRanges>
         <aggregate>Average</aggregate>
         <columnName>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Stock_Cover__c</columnName>
-        <highBreakpoint>100.0</highBreakpoint>
-        <highColor>#54C254</highColor>
-        <lowBreakpoint>30.0</lowBreakpoint>
-        <lowColor>#C25454</lowColor>
-        <midColor>#C2C254</midColor>
-    </colorRanges>
-    <colorRanges>
-        <columnName>FORMULA1</columnName>
         <highBreakpoint>100.0</highBreakpoint>
         <highColor>#54C254</highColor>
         <lowBreakpoint>30.0</lowBreakpoint>

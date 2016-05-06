@@ -8,6 +8,7 @@ src/dashboards/UID_Unilever_Dashboard/X02_Market_View_PRD.dashboard
 src/dashboards/UID_Unilever_Dashboard/X03_Category_Trend_Primary_Secondary_Sales_PRD.dashboard
 src/dashboards/UID_Unilever_Dashboard/X04_Inventory_and_Stock_Cover_View.dashboard
 src/layouts
+src/layouts/Order-Primary Sales.layout
 src/layouts/UID_Order_Product__c-Order Product Layout.layout
 src/layouts/UID_Performance_Line_Item__c-IOP Detail Layout.layout
 src/layouts/UID_Performance__c-IOP Layout.layout
@@ -20,7 +21,6 @@ src/objects/UID_Performance__c.object
 src/objects/UID_Stocked_Product_Summary__c.object
 src/permissionsets
 src/permissionsets/UID_Distributor_Manager_Permission_Set.permissionset
-src/permissionsets/UID_Distributor_User_Permission_Set.permissionset
 src/permissionsets/UID_Partner_Community_User_Permission_Set.permissionset
 src/permissionsets/UID_Uploader_Permission_Set.permissionset
 src/profiles
@@ -63,6 +63,7 @@ src/reports/UID_Inventory_and_Stock_Cover_View/Market_Growth_Inventory_Sales_M_Q
 src/reports/UID_Inventory_and_Stock_Cover_View/Market_Growth_Inventory_Sales_M_V_2_Final.report
 src/reports/UID_Inventory_and_Stock_Cover_View/Market_Growth_Inventory_Sales_Q_Q_2Final.report
 src/reports/UID_Inventory_and_Stock_Cover_View/Market_Growth_Inventory_Sales_Q_V_2_Final.report
+src/reports/UID_Inventory_and_Stock_Cover_View/Monthly_Stock_Cover_Days_Final.report
 src/reports/UID_Inventory_and_Stock_Cover_View/Top_Secondary_Sales_with_Stock_Cover.report
 src/reports/UID_Inventory_and_Stock_Cover_View/Trend_Report_Inventory_M_Q_2_Final.report
 src/reports/UID_Inventory_and_Stock_Cover_View/Trend_Report_Inventory_M_V_3_Final.report
