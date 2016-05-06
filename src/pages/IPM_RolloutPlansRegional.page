@@ -189,7 +189,7 @@
                     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_RolloutPlansRegional.js')}" type="text/javascript"></script>
                     <apex:outputPanel id="scriptPanel">
                         <script>
-                          var IPMregionalApp = {completed: '{!isCompleted}',wmessage:'{!$Label.IPM_Unsaved_Alert}',url:'{!URLFOR($Page.IPM_RolloutPlans)}',proid:'{!projectId}',warningTitle:'{!$Label.IPM_RemoveCountryFromMCO}',warningMsg:'{!$Label.IPM_RemoveCountryMsg}',cancelBtnText:'{!$Label.IPM_CancelCountryRemoval}',acceptBtnText:'{!$Label.IPM_AgreeCountryRemoval}',baseUrl:'{!URLFOR($Page.IPM_RolloutPlansRegional)}'};
+                          var IPMregionalApp = {completed: '{!isCompleted}',wmessage:'{!$Label.IPM_Unsaved_Alert}',url:'{!URLFOR($Page.IPM_RolloutPlans)}',proid:'{!projectId}',warningTitle:'{!$Label.IPM_RemoveCountryFromMCO}',removeCountryWarningMsg:'{!$Label.IPM_RemoveCountryMsg}',removeAllCountriesWarningMsg:'{!$Label.IPM_RemoveAllCountriesMsg}',cancelBtnText:'{!$Label.IPM_CancelCountryRemoval}',acceptBtnText:'{!$Label.IPM_AgreeCountryRemoval}',baseUrl:'{!URLFOR($Page.IPM_RolloutPlansRegional)}'};
                         </script>
                     </apex:outputPanel>
             </apex:form>
