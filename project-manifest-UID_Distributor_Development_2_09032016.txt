@@ -101,3 +101,6 @@ src/roles/UI_DMS_IT.role
 src/tabs
 src/tabs/UID_Switch_User_Currency.tab
 src/tabs/UID_Switch_User_CurrencyTab.tab
+src
+src/classes/UID_Switch_User_Currency.cls
+src/classes/UID_Switch_User_Currency.cls-meta.xml
