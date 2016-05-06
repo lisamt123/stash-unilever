@@ -76,7 +76,7 @@
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -86,9 +86,9 @@
         <defaultValue>false</defaultValue>
         <description>Indicates whether the News Article is Archived. Comments are not aggregated for Archived News Articles.</description>
         <externalId>false</externalId>
-        <label>Archived</label>
+        <label>Deleted</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -102,7 +102,7 @@
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -134,6 +134,16 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Hidden__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Hidden</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Image_URL__c</fullName>
@@ -187,7 +197,7 @@
         <label>News Article Topics</label>
         <length>10000</length>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
@@ -198,7 +208,7 @@
         <label>News Body</label>
         <length>131072</length>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Html</type>
         <visibleLines>25</visibleLines>
@@ -209,7 +219,7 @@
         <label>News Publish Date</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>DateTime</type>
     </fields>
@@ -235,7 +245,7 @@
         <inlineHelpText>Socialise this News Article to Chatter Groups</inlineHelpText>
         <label>Post to NewsCentre</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -245,7 +255,7 @@
         <label>Related Links</label>
         <length>10000</length>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
@@ -257,7 +267,7 @@
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -281,7 +291,7 @@
         <label>Sharepoint URL</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Url</type>
     </fields>
@@ -294,7 +304,7 @@
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -308,7 +318,7 @@
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -321,7 +331,7 @@
         <inlineHelpText>Shares Likes and Post Activity on the Article to the User&apos;s Feed</inlineHelpText>
         <label>Socialise Activity</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -332,7 +342,7 @@
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -343,7 +353,7 @@
         <label>Summary</label>
         <length>32768</length>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
@@ -355,10 +365,20 @@
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Video_Article__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Video Article</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>View_Count__c</fullName>
@@ -395,19 +415,23 @@
     </listViews>
     <listViews>
         <fullName>All</fullName>
-        <columns>News_Publish_Date__c</columns>
         <columns>CREATED_DATE</columns>
         <columns>OBJECT_ID</columns>
-        <columns>Site_Name__c</columns>
-        <columns>Site_Type__c</columns>
         <columns>NAME</columns>
         <columns>Title__c</columns>
         <columns>News_Article_Topics__c</columns>
+        <columns>Like_Count_RSF__c</columns>
+        <columns>Comment_Count__c</columns>
+        <columns>Sharepoint_URL__c</columns>
+        <columns>Socialise_Activity__c</columns>
+        <columns>Comment_GA_URL__c</columns>
+        <columns>Like_GA_URL__c</columns>
         <columns>Chatter_Groups__c</columns>
         <columns>Admin_Chatter_Group__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>UPDATEDBY_USER</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
-        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>Bangladesh</fullName>
@@ -1162,12 +1186,6 @@
         <columns>CREATEDBY_USER</columns>
         <columns>CREATED_DATE</columns>
         <columns>UPDATEDBY_USER</columns>
-        <columns>Image_URL__c</columns>
-        <columns>Like_GA_URL__c</columns>
-        <columns>News_Article_Topics__c</columns>
-        <columns>News_Body__c</columns>
-        <columns>News_Publish_Date__c</columns>
-        <columns>Related_Links__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Site_Name__c</field>
@@ -1271,6 +1289,13 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>News Articles</pluralLabel>
+    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Core_Create</fullName>
+        <active>true</active>
+        <label>Core_Create</label>
+    </recordTypes>
     <searchLayouts>
         <lookupDialogsAdditionalFields>Title__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>Sharepoint_URL__c</lookupDialogsAdditionalFields>

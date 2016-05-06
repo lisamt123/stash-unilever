@@ -13,9 +13,11 @@
         	if (state === "SUCCESS") {
                 if(response.getReturnValue()!==''){
         			component.set("v.newsArticle", response.getReturnValue());
-                    var richtextBody=response.getReturnValue().NewsBody;                    
-                    var richtextBodyTemp = richtextBody.replace(/height:/g, "height");
-                    richtextBody = richtextBodyTemp.replace(/width:/g, "width");  
+                    var richtextBody=response.getReturnValue().NewsBody;     
+                    if(richtextBody!='' && richtextBody!=null){
+                    	var richtextBodyTemp = richtextBody.replace(/height:/g, "height");
+                    	richtextBody = richtextBodyTemp.replace(/width:/g, "width"); 
+                    } 
                     component.set("v.NewsRichText",richtextBody);
                     component.set("v.LikeValue",response.getReturnValue().Liked);
                     component.set("v.defaultImage",!(response.getReturnValue().DefaultImage));
