@@ -264,11 +264,6 @@
         <name>Scontrol</name>
     </types>  
     <types>
-        <members>BET</members>
-        <members>BETApp</members>
-        <name>StaticResource</name>
-    </types>
-    <types>
         <members>*</members>
         <name>SharingReason</name>
     </types>
