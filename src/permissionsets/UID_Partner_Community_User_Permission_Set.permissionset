@@ -12,15 +12,6 @@
     <classAccesses>
         <apexClass>UID_StockCoverTriggerHelper_Test</apexClass>
         <enabled>false</enabled>
-    </classAccesses>	
-
-	<classAccesses>
-        <apexClass>UID_Switch_User_Currency</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>UID_Switch_User_Currency_Test</apexClass>
-        <enabled>true</enabled>
     </classAccesses>
     
     <externalDataSourceAccesses>
@@ -825,11 +816,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>UID_Order_Product__c.UID_ISO_Currency__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>UID_Performance_Line_Item__c.UID_IOP_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -846,11 +832,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>UID_Performance_Line_Item__c.UID_Product__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-	<fieldPermissions>
-        <editable>false</editable>
-        <field>UID_Performance_Line_Item__c.UID_ISO_Currency__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1196,22 +1177,7 @@
         <recordType>Order.UID_Secondary_Sales</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
-	<pageAccesses>
-        <apexPage>UID_Switch_User_Currency</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>UID_Switch_User_CurrencyTab</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-	<tabSettings>
-        <tab>UID_Switch_User_Currency</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>UID_Switch_User_CurrencyTab</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>        
+        
     <userLicense>Partner Community</userLicense>
     <userPermissions>
         <enabled>true</enabled>

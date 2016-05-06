@@ -157,9 +157,9 @@
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
-            <groupingColumn>Account.Stocked_Products__r$UID_End_Date__c</groupingColumn>
-            <groupingColumn>Account.Stocked_Products__r$UID_End_Date__c</groupingColumn>
-            <header>Monthly Inventory Value Trend</header>
+            <groupingColumn>Account.Stocked_Products__r$UID_Start_Date__c</groupingColumn>
+            <groupingColumn>Account.Stocked_Products__r$UID_Start_Date__c</groupingColumn>
+            <header>Monthly Inventory Value Trend (USD)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Inventory_and_Stock_Cover_View/Trend_Report_Inventory_YTD_V_2_Final</report>
             <showPercentage>false</showPercentage>
@@ -188,7 +188,7 @@
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Quarter__c</groupingColumn>
             <groupingColumn>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Quarter__c</groupingColumn>
-            <header>Quarterly Inventory Value Trend</header>
+            <header>Quarterly Inventory Value Trend (USD)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Inventory_and_Stock_Cover_View/Trend_Report_Inventory_Q_V_2_Final</report>
             <showPercentage>false</showPercentage>
@@ -216,8 +216,8 @@
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
-            <groupingColumn>Account.Stocked_Products__r$UID_End_Date__c</groupingColumn>
-            <groupingColumn>Account.Stocked_Products__r$UID_End_Date__c</groupingColumn>
+            <groupingColumn>Account.Stocked_Products__r$UID_Start_Date__c</groupingColumn>
+            <groupingColumn>Account.Stocked_Products__r$UID_Start_Date__c</groupingColumn>
             <header>Monthly Inventory Volume Trend (Cases)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Inventory_and_Stock_Cover_View/Trend_Report_Inventory_YTD_Q_2_Final</report>
@@ -274,7 +274,7 @@
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
-            <groupingColumn>Account.Stocked_Products__r$UID_End_Date__c</groupingColumn>
+            <groupingColumn>Account.Stocked_Products__r$UID_Start_Date__c</groupingColumn>
             <header>Monthly Stock Cover (Days)</header>
             <legendPosition>Bottom</legendPosition>
             <maxValuesDisplayed>12</maxValuesDisplayed>
@@ -337,9 +337,9 @@
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
-            <groupingColumn>Account.Stocked_Products__r$UID_End_Date__c</groupingColumn>
+            <groupingColumn>Account.Stocked_Products__r$UID_Start_Date__c</groupingColumn>
             <groupingColumn>Account.Stocked_Products__r$UID_Report_Date__c</groupingColumn>
-            <header>Monthly Inventory Value</header>
+            <header>Monthly Inventory Value (USD)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Inventory_and_Stock_Cover_View/Trend_Report_Inventory_M_V_3_Final</report>
             <showPercentage>false</showPercentage>
@@ -368,7 +368,7 @@
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Quarter__c</groupingColumn>
             <groupingColumn>Account.Stocked_Products__r$UID_Report_Date__c</groupingColumn>
-            <header>Quarterly Inventory Value</header>
+            <header>Quarterly Inventory Value (USD)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Inventory_and_Stock_Cover_View/Trend_Report_Inventory_Q_V_3_Final</report>
             <showPercentage>false</showPercentage>
@@ -396,8 +396,8 @@
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
-            <groupingColumn>Account.Stocked_Products__r$UID_End_Date__c</groupingColumn>
-            <groupingColumn>Account.Stocked_Products__r$UID_End_Date__c</groupingColumn>
+            <groupingColumn>Account.Stocked_Products__r$UID_Start_Date__c</groupingColumn>
+            <groupingColumn>Account.Stocked_Products__r$UID_Start_Date__c</groupingColumn>
             <header>Monthly Inventory Volume (Cases)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Inventory_and_Stock_Cover_View/Trend_Report_Inventory_M_Q_2_Final</report>
@@ -516,7 +516,7 @@
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
-            <groupingColumn>Account.Stocked_Products__r$UID_End_Date__c</groupingColumn>
+            <groupingColumn>Account.Stocked_Products__r$UID_Start_Date__c</groupingColumn>
             <header>Monthly Inventory Value Growth%</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Inventory_and_Stock_Cover_View/Market_Growth_Inventory_Sales_M_V_2_Final</report>
@@ -544,7 +544,7 @@
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
-            <groupingColumn>Account.Stocked_Products__r$UID_End_Date__c</groupingColumn>
+            <groupingColumn>Account.Stocked_Products__r$UID_Start_Date__c</groupingColumn>
             <header>Quarterly Inventory Value Growth%</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Inventory_and_Stock_Cover_View/Market_Growth_Inventory_Sales_Q_V_2_Final</report>
@@ -572,7 +572,7 @@
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
-            <groupingColumn>Account.Stocked_Products__r$UID_End_Date__c</groupingColumn>
+            <groupingColumn>Account.Stocked_Products__r$UID_Start_Date__c</groupingColumn>
             <header>Monthly Inventory Volume Growth%</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Inventory_and_Stock_Cover_View/Market_Growth_Inventory_Sales_M_Q_2_Final</report>
@@ -600,7 +600,7 @@
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
-            <groupingColumn>Account.Stocked_Products__r$UID_End_Date__c</groupingColumn>
+            <groupingColumn>Account.Stocked_Products__r$UID_Start_Date__c</groupingColumn>
             <header>Quarterly Inventory Volume Growth%</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Inventory_and_Stock_Cover_View/Market_Growth_Inventory_Sales_Q_Q_2Final</report>

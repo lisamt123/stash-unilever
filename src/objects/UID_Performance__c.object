@@ -60,7 +60,7 @@
         <fullName>UID_Apr_IOP__c</fullName>
         <externalId>false</externalId>
         <label>Apr JBP</label>
-        <summarizedField>UID_Performance_Line_Item__c.UID_IOP_Value_Curr__c</summarizedField>
+        <summarizedField>UID_Performance_Line_Item__c.UID_IOP_Value__c</summarizedField>
         <summaryFilterItems>
             <field>UID_Performance_Line_Item__c.UID_IOP_Month__c</field>
             <operation>equals</operation>
@@ -75,7 +75,7 @@
         <fullName>UID_Aug_IOP__c</fullName>
         <externalId>false</externalId>
         <label>Aug JBP</label>
-        <summarizedField>UID_Performance_Line_Item__c.UID_IOP_Value_Curr__c</summarizedField>
+        <summarizedField>UID_Performance_Line_Item__c.UID_IOP_Value__c</summarizedField>
         <summaryFilterItems>
             <field>UID_Performance_Line_Item__c.UID_IOP_Month__c</field>
             <operation>equals</operation>
@@ -90,7 +90,7 @@
         <fullName>UID_Dec_IOP__c</fullName>
         <externalId>false</externalId>
         <label>Dec JBP</label>
-        <summarizedField>UID_Performance_Line_Item__c.UID_IOP_Value_Curr__c</summarizedField>
+        <summarizedField>UID_Performance_Line_Item__c.UID_IOP_Value__c</summarizedField>
         <summaryFilterItems>
             <field>UID_Performance_Line_Item__c.UID_IOP_Month__c</field>
             <operation>equals</operation>
@@ -117,7 +117,7 @@
         <fullName>UID_Feb_IOP__c</fullName>
         <externalId>false</externalId>
         <label>Feb JBP</label>
-        <summarizedField>UID_Performance_Line_Item__c.UID_IOP_Value_Curr__c</summarizedField>
+        <summarizedField>UID_Performance_Line_Item__c.UID_IOP_Value__c</summarizedField>
         <summaryFilterItems>
             <field>UID_Performance_Line_Item__c.UID_IOP_Month__c</field>
             <operation>equals</operation>
@@ -143,7 +143,7 @@
         <fullName>UID_Jan_IOP__c</fullName>
         <externalId>false</externalId>
         <label>Jan JBP</label>
-        <summarizedField>UID_Performance_Line_Item__c.UID_IOP_Value_Curr__c</summarizedField>
+        <summarizedField>UID_Performance_Line_Item__c.UID_IOP_Value__c</summarizedField>
         <summaryFilterItems>
             <field>UID_Performance_Line_Item__c.UID_IOP_Month__c</field>
             <operation>equals</operation>
@@ -158,7 +158,7 @@
         <fullName>UID_Jul_IOP__c</fullName>
         <externalId>false</externalId>
         <label>Jul JBP</label>
-        <summarizedField>UID_Performance_Line_Item__c.UID_IOP_Value_Curr__c</summarizedField>
+        <summarizedField>UID_Performance_Line_Item__c.UID_IOP_Value__c</summarizedField>
         <summaryFilterItems>
             <field>UID_Performance_Line_Item__c.UID_IOP_Month__c</field>
             <operation>equals</operation>
@@ -173,7 +173,7 @@
         <fullName>UID_Jun_IOP__c</fullName>
         <externalId>false</externalId>
         <label>Jun JBP</label>
-        <summarizedField>UID_Performance_Line_Item__c.UID_IOP_Value_Curr__c</summarizedField>
+        <summarizedField>UID_Performance_Line_Item__c.UID_IOP_Value__c</summarizedField>
         <summaryFilterItems>
             <field>UID_Performance_Line_Item__c.UID_IOP_Month__c</field>
             <operation>equals</operation>
@@ -188,7 +188,7 @@
         <fullName>UID_Mar_IOP__c</fullName>
         <externalId>false</externalId>
         <label>Mar JBP</label>
-        <summarizedField>UID_Performance_Line_Item__c.UID_IOP_Value_Curr__c</summarizedField>
+        <summarizedField>UID_Performance_Line_Item__c.UID_IOP_Value__c</summarizedField>
         <summaryFilterItems>
             <field>UID_Performance_Line_Item__c.UID_IOP_Month__c</field>
             <operation>equals</operation>
@@ -203,7 +203,7 @@
         <fullName>UID_May_IOP__c</fullName>
         <externalId>false</externalId>
         <label>May JBP</label>
-        <summarizedField>UID_Performance_Line_Item__c.UID_IOP_Value_Curr__c</summarizedField>
+        <summarizedField>UID_Performance_Line_Item__c.UID_IOP_Value__c</summarizedField>
         <summaryFilterItems>
             <field>UID_Performance_Line_Item__c.UID_IOP_Month__c</field>
             <operation>equals</operation>
@@ -218,7 +218,7 @@
         <fullName>UID_Nov_IOP__c</fullName>
         <externalId>false</externalId>
         <label>Nov JBP</label>
-        <summarizedField>UID_Performance_Line_Item__c.UID_IOP_Value_Curr__c</summarizedField>
+        <summarizedField>UID_Performance_Line_Item__c.UID_IOP_Value__c</summarizedField>
         <summaryFilterItems>
             <field>UID_Performance_Line_Item__c.UID_IOP_Month__c</field>
             <operation>equals</operation>
@@ -233,7 +233,7 @@
         <fullName>UID_Oct_IOP__c</fullName>
         <externalId>false</externalId>
         <label>Oct JBP</label>
-        <summarizedField>UID_Performance_Line_Item__c.UID_IOP_Value_Curr__c</summarizedField>
+        <summarizedField>UID_Performance_Line_Item__c.UID_IOP_Value__c</summarizedField>
         <summaryFilterItems>
             <field>UID_Performance_Line_Item__c.UID_IOP_Month__c</field>
             <operation>equals</operation>
@@ -258,7 +258,7 @@
         <fullName>UID_Sep_IOP__c</fullName>
         <externalId>false</externalId>
         <label>Sep JBP</label>
-        <summarizedField>UID_Performance_Line_Item__c.UID_IOP_Value_Curr__c</summarizedField>
+        <summarizedField>UID_Performance_Line_Item__c.UID_IOP_Value__c</summarizedField>
         <summaryFilterItems>
             <field>UID_Performance_Line_Item__c.UID_IOP_Month__c</field>
             <operation>equals</operation>

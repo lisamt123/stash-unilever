@@ -108,7 +108,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$EffectiveDate</groupingColumn>
-            <header>Monthly Primary Sales Value vs JBP (Mil)</header>
+            <header>Monthly Primary Sales Value vs JBP (USD,Mil)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_01_Home_View/MonthlyPrimarySalesValuevsJBPUSD_Mil_PRD</report>
             <showPercentage>false</showPercentage>
@@ -137,7 +137,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$EffectiveDate</groupingColumn>
-            <header>Monthly Secondary Sales Value vs JBP (Mil)</header>
+            <header>Monthly Secondary Sales Value vs JBP (USD,Mil)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_01_Home_View/Monthly_Secondary_Sales_Value_USDMil_PRD</report>
             <showPercentage>false</showPercentage>
@@ -163,7 +163,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r.Order_Products__r$UID_Brand__c</groupingColumn>
-            <header>Brand-wise Primary Sales Value</header>
+            <header>Brand-wise Primary Sales Value (USD)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_01_Home_View/Brand_wise_Primary_Sales_Value_USD_PRD</report>
             <showPercentage>true</showPercentage>
@@ -190,7 +190,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r.Order_Products__r$UID_Category__c</groupingColumn>
-            <header>Category-wise Secondary Sales Value</header>
+            <header>Category-wise Secondary Sales Value (USD)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_01_Home_View/Category_wise_SecondarySalesValueUSD_PRD</report>
             <showPercentage>true</showPercentage>
@@ -245,7 +245,7 @@
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$EffectiveDate</groupingColumn>
             <groupingColumn>Account.Orders__r$UID_Report_Date__c</groupingColumn>
-            <header>Monthly Primary Sales vs Last Year Value (Mil)</header>
+            <header>Monthly Primary Sales vs Last Year Value (USD,Mil)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_01_Home_View/MonthlyPrimarySalesvsLast_Year_Value_PRD</report>
             <showPercentage>false</showPercentage>
@@ -272,7 +272,7 @@
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$EffectiveDate</groupingColumn>
             <groupingColumn>Account.Orders__r$EffectiveDate</groupingColumn>
-            <header>Monthly Secondary Sales vs Last Year Value (Mil)</header>
+            <header>Monthly Secondary Sales vs Last Year Value (USD,Mil)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_01_Home_View/Monthly_Secondary_SalesvsLastYearVal_PRD</report>
             <showPercentage>false</showPercentage>
@@ -298,7 +298,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r.Order_Products__r$UID_Brand__c</groupingColumn>
-            <header>Brand-wise Secondary Sales Value</header>
+            <header>Brand-wise Secondary Sales Value (USD)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_01_Home_View/Brand_wise_Secondary_Sales_Value_USD_PRD</report>
             <showPercentage>true</showPercentage>
@@ -325,7 +325,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$UID_Channel__c</groupingColumn>
-            <header>Channel-wise Secondary Sales Value</header>
+            <header>Channel-wise Secondary Sales Value (USD)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_01_Home_View/Channel_wise_SecondarySalesValueUSD_PRD</report>
             <showPercentage>true</showPercentage>
