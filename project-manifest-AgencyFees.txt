@@ -529,6 +529,7 @@ src/tabs/Vep_Question__c.tab
 src/tabs/Vep_Visitor__c.tab
 src/tabs/Vep_Visitor_Pass__c.tab
 src/tabs/Visitor_Entry_Portal.tab
+src/tabs/Visitor_Dashboard.tab
 src/applications
 src/applications/ScPaperles.app
 src
