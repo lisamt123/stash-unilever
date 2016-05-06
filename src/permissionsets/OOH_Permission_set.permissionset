@@ -57,10 +57,6 @@
         <visible>false</visible>
     </applicationVisibilities>
     <applicationVisibilities>
-        <application>SaaS_Delivery_Toolkit</application>
-        <visible>false</visible>
-    </applicationVisibilities>
-    <applicationVisibilities>
         <application>Stakeholder_Database</application>
         <visible>false</visible>
     </applicationVisibilities>
