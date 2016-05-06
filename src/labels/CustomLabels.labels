@@ -11019,6 +11019,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Remove</value>
     </labels>
     <labels>
+        <fullName>IPM_RemoveAllCountriesMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_RemoveAllCountriesMsg</shortDescription>
+        <value>You have chosen to mark all the countries in this MCO as \&apos;No Rollout\&apos;. This will delete the associated Local rollout project if it exists and any Gate Documents created. Additionally any associated financials at the Regional level will be lost.</value>
+    </labels>
+    <labels>
         <fullName>IPM_RemoveCountryFromMCO</fullName>
         <language>en_US</language>
         <protected>false</protected>
