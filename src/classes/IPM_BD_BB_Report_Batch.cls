@@ -300,7 +300,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                                                                                             WHERE IPM_Project_Rollout__c IN: regionalRolloutset Limit 50000]);
                                                 
             for(IPM_Financial__c fir:projRolloutFinList){
-            	
+              
                 if(!rolloutFinancialmap.containskey(fir.IPM_Project_Rollout__r.Id)){
                     rolloutFinancialmap.put(fir.IPM_Project_Rollout__r.Id, new List<IPM_Financial__c>{fir});  
                 }else{
@@ -568,11 +568,11 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                     analyticObj = setRolloutProjectdetails(analyticObj, pr, parent);
                     
                     if(pr.RecordTypeId == REGIONAL_ROLLOUT_RECTYPE){
-			            regionalrolloutid = pr.Id;                                     
-			        }else if(pr.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE ){
-			            regionalrolloutid=pr.Regional_Project__c == null?pr.Regional_Rollout__r.id:pr.Id;
-			        } 
-			        
+                  regionalrolloutid = pr.Id;                                     
+              }else if(pr.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE ){
+                  regionalrolloutid=pr.Regional_Project__c == null?pr.Regional_Rollout__r.id:pr.Id;
+              } 
+              
                     string finExtId = '';
                     if(regionalrolloutid != null && rolloutFinancialmap.containskey(regionalrolloutid)){ 
                         for(IPM_Financial__c fir:rolloutFinancialmap.get(regionalrolloutid)){
@@ -596,7 +596,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
      * @return: IPM_Analytics__c Analytic object record  
      *********************************************************************************************************************/    
     public IPM_Analytics__c setRolloutProjectdetails(IPM_Analytics__c analyticObj, IPM_Project_Rollout__c pr, IPM_Analytics__c parent){
-    	//copy Values from rollout record
+      //copy Values from rollout record
         analyticObj.IPM_Project_Name__c = pr.name;
         analyticObj.IPM_Company__c = pr.IPM_Company_Card__r.Name; // as per the update it will be populated by Unilever report tool
         analyticObj.IPM_Target_Launch_Month_BD__c = pr.Target_LaunchMonth__c;
@@ -644,7 +644,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
             
         } 
         
-    	return analyticObj;
+      return analyticObj;
     }
     
     /*********************************************************************************************************************
@@ -654,7 +654,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
      *********************************************************************************************************************/     
     public IPM_Analytics__c setRolloutFinancialdetails(IPM_Analytics__c analyticObj, String finExtId, IPM_Project_Rollout__c pr){
         if(String.isNotBlank(finExtId) && rolloutFinancialYearmap.containskey(finExtId)){
-    		Boolean globalORregionalValues = pr.IPM_Global_OR_Regional__c; 
+        Boolean globalORregionalValues = pr.IPM_Global_OR_Regional__c; 
             for(IPM_Financial_Year__c fr : rolloutFinancialYearmap.get(finExtId)){
                 // Populating 1st Full Year Gross TO (BD)
                 if(String.isNotBlank(fr.Year_Type__c) && String.isNotBlank(fr.PL_Type__c) && fr.Name.equalsignorecase(IPM_Utils.Y1) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Innovation) && fr.PL_Type__c.equalsignorecase(IPM_Utils.Gross)){
@@ -719,9 +719,9 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                     }
         
                 }
-        	}   
+          }   
         return analyticObj;       
-	}
+  }
     
         
     /*********************************************************************************************************************
