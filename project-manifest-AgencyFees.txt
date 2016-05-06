@@ -424,11 +424,8 @@ src/pages/VEP_Visitorpass_VF.page
 src/pages/VEP_Visitorpass_VF.page-meta.xml
 src/pages/VEP_VisitorStatus_VF.page
 src/pages/VEP_VisitorStatus_VF.page-meta.xml
-<<<<<<< HEAD
-=======
 src/pages/VEP_VisitorPass_Dashboard.page
 src/pages/VEP_VisitorPass_Dashboard.page-meta.xml
->>>>>>> develop
 src/staticresources
 src/staticresources/AF_Bootstrap.resource
 src/staticresources/AF_Bootstrap.resource-meta.xml
@@ -534,10 +531,7 @@ src/tabs/Vep_Question__c.tab
 src/tabs/Vep_Visitor__c.tab
 src/tabs/Vep_Visitor_Pass__c.tab
 src/tabs/Visitor_Entry_Portal.tab
-<<<<<<< HEAD
-=======
 src/tabs/Visitor_Dashboard.tab
->>>>>>> develop
 src/applications
 src/applications/ScPaperles.app
 src
