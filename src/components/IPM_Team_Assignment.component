@@ -233,7 +233,7 @@
                             <div class="skipButtoncontainer1 txtAlignright pull-right">
                                 <apex:outputPanel rendered="{!isCoreMemEditable}">
                                 <div class="buttonmarRight noPadright pull-left">                                
-                                <apex:commandLink action="{!SaveTeamMembers}" value="{!$Label.IPM_Skip_for_now}" styleClass="milestones ipmButton" onComplete="closepopupteam();" reRender="gotomiles,PLShow,DPLShow,TPLShow,GateKShow" rendered="{!isCoreMemEditable}" />
+                                <apex:commandLink action="{!SaveTeamMembers}" value="{!$Label.IPM_Skip_for_now}" styleClass="milestones ipmButton" onClick="skipValidation();" onComplete="closepopupteam();" reRender="gotomiles,PLShow,DPLShow,TPLShow,GateKShow" rendered="{!isCoreMemEditable}" />
                             </div>
                         </apex:outputPanel> 
                         <div class="buttonmarRight backButton pull-left">

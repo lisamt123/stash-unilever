@@ -1058,6 +1058,7 @@
     jq(document).on('click', '.uploadImage', function(e) { 
         e.preventDefault ? e.preventDefault() : e.returnValue = false; 
         var url = jq(this).attr('value'); 
+		cppageunsaved = false;
         jq('#ipmUploadImage .modal-title').html('Upload Image');
         jq("#ipmUploadImage .modal-body").html('<iframe frameborder="0" height="100%" width="100%" marginheight="0" marginwidth="0" allowtransparency="true" src= "'+url+'"></iframe>');  
         jq('#ipmUploadImage .modal-dialog').addClass('uploadImages');     

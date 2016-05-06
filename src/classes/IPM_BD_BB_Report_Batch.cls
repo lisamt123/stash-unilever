@@ -12,7 +12,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     global final String query;  
     global map<id,IPM_Project__c> projectIdMap = new map<id,IPM_Project__c>(); 
     global list<IPM_Project__c> scopeProjectList = new list<IPM_Project__c>();   
-    global set<id> projectNameSet = new set<id>();
+    global set<id> projectIdSet = new set<id>();
     global set<id> rolloutprojectIdSet = new set<id>();
     global map<Id,list<IPM_Project_Rollout__c>> projRolloutMap;
     global map<string,list<IPM_Financial_Year__c>> rolloutFinancialYearmap;  
@@ -58,7 +58,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     global void execute(Database.BatchableContext BC,  list<IPM_Project__c> Scope){  
 
         for(IPM_Project__c p:Scope){
-            projectNameSet.add(p.IPM_Project_Name__c);
+            projectIdSet.add(p.Id);
 
             if(p.IPM_Project_Type__c != IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
                 scopeProjectList.add(p);
@@ -68,8 +68,8 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
         
         //Delete existing analytics records so that the changes made to the existing projects will be recorded again
         try{  
-        List<IPM_Analytics__c> analyticsRecDelList = new list<IPM_Analytics__c>([SELECT id, IPM_Project_Name__c
-                                                                                 FROM IPM_Analytics__c WHERE IPM_Project_Name__c IN:projectNameSet Limit 10000]);
+        List<IPM_Analytics__c> analyticsRecDelList = new list<IPM_Analytics__c>([SELECT id
+                                                                                 FROM IPM_Analytics__c WHERE IPM_Project_Id__c IN:projectIdSet Limit 10000]);
             if(!analyticsRecDelList.isEmpty()){
                 delete analyticsRecDelList;
             }
@@ -248,6 +248,8 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                                                                                                     IPM_Global_OR_Regional__c,
                                                                                                     IPM_Parent_Project_Name__c,
                                                                                                     IPM_Regional_PL__r.Name,
+                                                                                                    Regional_Project__r.IPM_Phase__c,
+                                                                                                    IPM_Project__R.IPM_Phase__c,
                                                                                                     Regional_Project__r.IPM_SourceProjectType__c,
                                                                                                     Regional_Project__r.Id                                                                    
                                                                                                     FROM IPM_Project_Rollout__c 
@@ -292,7 +294,8 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                                                                                             name,
                                                                                             RecordTypeId,  
                                                                                             Financial_External_ID__c,
-                                                                                            IPM_Project_Rollout__r.Id
+                                                                                            IPM_Project_Rollout__r.Id,
+                                                                                            IPM_Project_Rollout__r.Name
                                                                                             FROM IPM_Financial__c 
                                                                                             WHERE IPM_Project_Rollout__c IN: regionalRolloutset Limit 50000]);
                                                 

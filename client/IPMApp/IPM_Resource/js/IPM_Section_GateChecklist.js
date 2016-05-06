@@ -119,7 +119,7 @@ function initSliderSecLabelGk(sliderObj, divId, valArray) {
 
 function setSliderValBgcolor(){
  var selectedSliderVal = jq(".gkcStatus");
- var sliderValArray = ['Partly', 'No', 'Yes', 'Not Applicable'];
+ var sliderValArray = ['Partly', 'No', 'Yes', 'Not Applicable','Green','Red','Amber']; 
  
 for(var i = 0; i < selectedSliderVal.length; i++){
   if(sliderValArray !== undefined){

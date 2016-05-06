@@ -133,8 +133,8 @@ function chkAllfun(){
 
 function modalWin(){
     ipmModal('#addTask', 'Add To-do', '38%', '560px', '2%');
-    ipmModal('#uploadImage', 'Click to Upload Image', '400px', '200px', '15%');
-    ipmModal('#consumerImage', 'Click to Upload Image', '400px', '200px', '15%');
+    ipmModal('#uploadImage', 'Click to Upload Image', '400px', '200px', '15%','','upimgModal');
+    ipmModal('#consumerImage', 'Click to Upload Image', '400px', '200px', '15%','','upimgModal');
     
 /* Below script is to open comments and history modal */
     jq(".comments,.history").each(function() {
@@ -313,20 +313,20 @@ function isNumber(e,ele) {
             return false;
         }
         
-var unsaved = false;
+var editorunsaved = false;
 var ckedited = false;
 var inputchanged = false;
 
 jq(function(){
-    unsaved = false;
+    editorunsaved = false;
     jq('.ipmSectionEditor :input').change(function(){
-        unsaved = true;
+        editorunsaved = true;
         inputchanged = true;
     });
     
     jq('.secEditorNavList :input').change(function(){
         if(ckedited === true|| inputchanged === true){
-            unsaved = true;            
+            editorunsaved = true;            
         }
     });
     
@@ -341,7 +341,7 @@ jq(function(){
     function defineOnchange(CKEDITORObj, index){
         CKEDITORObj[index].on("change", function() {
           ckedited = true;
-          unsaved = true;
+          editorunsaved = true;
         });
     }
 });
@@ -350,29 +350,29 @@ function unloadPage()
 { 
 if(ckedited === true|| inputchanged === true)
 {
-    if(unsaved){
+    if(editorunsaved){
         return IPMAppSE.wmessage;            
     }
 }
 } 
 
 function saveChanges(){
-unsaved = false;
+editorunsaved = false;
 }
 
 window.onbeforeunload = unloadPage;
 
 /* Below code is to redirect to a page on cancel*/
 function gotoPageNew() {
-unsaved = false;
+editorunsaved = false;
 window.top.location.href = IPMAppSE.SectionEditorPageRef+'?id='+IPMAppSE.projectId+'&projDocSecId='+IPMAppSE.projDocSecId;
 }    
 
 jq('#ipmModal').on('show.bs.modal', function (e) {
-    if(unsaved){
+    if(editorunsaved){
         errorMsg = IPMAppSE.wmessage + "\n\nAre you sure you want to leave this page?";
         if (confirm(errorMsg)) {
-            unsaved = false;
+            editorunsaved = false;
         } else {
             e.preventDefault();
             e.stopPropagation();

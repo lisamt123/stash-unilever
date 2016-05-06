@@ -86,7 +86,7 @@ function invalidChar(key)
    }   
 }
 
-var unsaved = false;
+var cppageunsaved = false;
 var OldBosscardNameVal = "";
 var NewBosscardNameVal = "";
 var oldInputval = "";
@@ -95,47 +95,46 @@ var newInputval = "";
 jq(function(){ /* DOM ready */
    OldBosscardNameVal = jq(".BosscardNameInputBox ").val();
    jq(":input").change(function() {
-        unsaved = true;
+        cppageunsaved = true;
     });             
-                                
-    
+     
 });
 
 function changeAlertBosscardName(){
     CurrentBosscardNameVal = jq(".BosscardNameInputBox ").val();
      jq(":input").change(function() {
-        unsaved = true;
+        cppageunsaved = true;
     });
      if( OldBosscardNameVal !== CurrentBosscardNameVal){
-        unsaved = true;
+        cppageunsaved = true;
       
-    }else if(unsaved){
+    }else if(cppageunsaved){
         unloadPage();            
     }
     else{
-    unsaved = false;
+    cppageunsaved = false;
         OldBosscardNameVal = CurrentBosscardNameVal;
     }
     
 }
 
 function changeAlert(){
-    unsaved = true;
+    cppageunsaved = true;
  }
 
 function unloadPage()
 { 
-    if(unsaved){
+    if(cppageunsaved){
         return IPMAppPS.wmessage;            
     }
 } 
 
-if(window.parent.location.href.indexOf("Milestoneid") > -1) {
- }else{
-window.onbeforeunload = unloadPage;
- }
+if(window.parent.location.href.indexOf("Milestoneid") === -1) {
+     window.onbeforeunload = unloadPage;
+}
+
 
 /* Below code is to skip the unsaved changes*/
 function skipValidation() {
-    unsaved = false;
+    cppageunsaved = false;
 }

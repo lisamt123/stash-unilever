@@ -45,7 +45,7 @@
                                 <div class="panel-body imageBorder">
                                     <apex:actionFunction name="deleteProjectImage" action="{!removeProjectLogo}" reRender="imgpn"/>                                                            
                                     <apex:actionFunction name="callsave" action="{!saveProceed}" reRender="isID,formMessage">
-                                        <apex:param assignTo="{!skipValidation}" value="true" />
+                                        <apex:param name="skipValidationParam" assignTo="{!skipValidation}" value="true" />
                                     </apex:actionFunction> 
                                     <apex:outputPanel id="imgpn">                                                           
                                         <apex:outputPanel id="isID" > 
@@ -63,8 +63,8 @@
                                                     <div class="imgHbuttonContainer">
                                                        <span value="{!$Page.IPM_ImageUploadCoreParam}?id={!project.id}&isProject=true&isEdit=true" title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}" class="uploadImage" data-target="#ipmUploadImage" data-toggle="modal" data-keyboard="false" data-backdrop="static">
                                                            <!-- To display below commandLink when IPM_Project_Logo__c field value is not null or empty   -->
-                                                           <apex:commandLink value="Update" styleClass="imgUpdateButton" action="{!save}" reRender="none" rendered="{!project.IPM_Project_Logo__c!=null}">
-                                                                
+                                                           <apex:commandLink value="Update" styleClass="imgUpdateButton" action="{!saveProceed}" reRender="none" rendered="{!project.IPM_Project_Logo__c!=null}">
+                                                               <apex:param name="skipValidationParams" assignTo="{!skipValidation}" value="true" /> 
                                                            </apex:commandLink>
                                                        </span>
                                                        <span class="imgDelButton" data-target="#deleteImgPop" data-toggle="modal" data-keyboard="false" data-backdrop="static">Delete</span>
@@ -410,7 +410,7 @@
                 <div class="pull-right renderBtnset txtAlignright">
                     <apex:actionStatus startText="" id="Loading" startStyleClass="proInit"/>
                     <!-- To display below commandLink when current user has edit access on page and phase is not empty    -->
-                    <apex:commandLink value="{!$Label.IPM_Update}"  action="{!saveProceed}" rendered="{!AND(isEditable,project.IPM_Phase__c!=null)}" styleClass="coreparameters custMarginbottom ipmButton primary"  reRender="CompanyCardPanel,ProjectNamePanel,Container5, refreshquit,miles,selectNextTabScript,categoryPanel,ProjectSubTypePanel,gateKeepingPanel,questionCharter,WhiteSpaceFastTrackPanel,CompanyCardPanel,BrandPositionPanel,TargetDatePanel,formMessage,editProjectAction" oncomplete="skipValidation();closepopup();">
+                    <apex:commandLink value="{!$Label.IPM_Update}"  action="{!saveProceed}" rendered="{!AND(isEditable,project.IPM_Phase__c!=null)}" styleClass="coreparameters custMarginbottom ipmButton primary"  reRender="CompanyCardPanel,ProjectNamePanel,Container5, refreshquit,miles,selectNextTabScript,categoryPanel,ProjectSubTypePanel,gateKeepingPanel,questionCharter,WhiteSpaceFastTrackPanel,CompanyCardPanel,BrandPositionPanel,TargetDatePanel,formMessage,editProjectAction" onClick="skipValidation();" oncomplete="closepopup();">
                     </apex:commandLink>
                 </div>
                 <div class="proSetupButton pull-right">

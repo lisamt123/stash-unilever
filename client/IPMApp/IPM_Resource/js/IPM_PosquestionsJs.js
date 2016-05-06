@@ -218,3 +218,59 @@ function changeScore(id,score)
             deleteQuestion(questionId);
             jq("#ipmDeleteModal").modal('hide');
         });
+
+var unsaved = false;
+var oldTextareaval = "";
+var newTextareaval = "";
+var initialValue = true;
+jq(function(){  
+      var frame = parent.document.getElementById("ipmModalDiv");
+       jq(frame).find('.close').click(function(){
+           if(unsaved){
+               jq(this).removeAttr( "data-dismiss" );
+               unloadIframe();
+           }
+           else{
+               jq(this).attr("data-dismiss","modal");
+           }
+       });
+        if(initialValue !== false){
+            oldTextareaval = jq(".txtArea ").val();
+        }
+   });   
+   
+   function unloadIframe(){
+       window.parent.location.href=IPMApp.pageName + '?id=' + IPMApp.projectId + '&projDocSecId=' + IPMApp.projDocSecId;
+   }
+
+   function selectchk(){
+    unsaved = true;
+   }
+   
+   function checktextval(){
+   inputTextArea = jq(".ipmQuestTextarea ");
+    inputTextArea.bind('input propertychange', function() {
+            newTextareaval = jq(".ipmQuestTextarea ").val();
+            initialValue = false;
+            if( oldTextareaval !== newTextareaval ){
+              unsaved = true;
+            }else{
+              unsaved = false;
+            }
+            oldTextareaval = newTextareaval;
+         });
+     }
+  
+  function unloadPage()
+  { 
+      if(unsaved){
+          return IPMApp.wmessage;
+      }
+  } 
+ 
+  window.onbeforeunload = unloadPage;
+  
+  /* Below code is to skip the unsaved changes*/
+  function skipValidation() {  
+    unsaved = false;
+  }

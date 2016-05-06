@@ -211,7 +211,12 @@ var jq=jQuery.noConflict();
         {
             jq('#ipmDeleteModal').modal('show');
             jq('#ipmDeleteModal .modal-title').text(IPMregionalApp.warningTitle);
-            jq('#ipmDeleteModal .confirmMsg').text(IPMregionalApp.warningMsg);
+            if(jq(':radio[name ^=grp]').length/3 === selectedNoRollouts.length) {
+                jq('#ipmDeleteModal .confirmMsg').text(IPMregionalApp.removeAllCountriesWarningMsg); 
+            }
+            else{
+                jq('#ipmDeleteModal .confirmMsg').text(IPMregionalApp.removeCountryWarningMsg);
+            }
             jq('#ipmDeleteModal .cancelAction').text(IPMregionalApp.cancelBtnText);
             jq('#ipmDeleteModal .confirmAction').text(IPMregionalApp.acceptBtnText);
             

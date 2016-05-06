@@ -10,9 +10,11 @@ var jq= jQuery.noConflict();
 jq(document).on('click', '.uploadImage', function(e) { 
   e.preventDefault ? e.preventDefault() : e.returnValue = false; 
   var url = jq(this).attr('value'); 
+  jq("body").data("isSkipNavigationConfirm", true);
   jq('#ipmUploadImage .modal-title').html('Upload Image');
   jq("#ipmUploadImage .modal-body").html('<iframe frameborder="0" height="100%" width="100%" marginheight="0" marginwidth="0" allowtransparency="true" src= "'+url+'"></iframe>');  
-  jq('#ipmUploadImage .modal-dialog').addClass('uploadImages');     
+  jq('#ipmUploadImage .modal-dialog').addClass('uploadImages');  
+  jq('#ipmUploadImage .modal-dialog').addClass('upimgModal');   
 });
 
 /* Below script works on hover event. It is used to show the hover container while updating or deleting the image. */

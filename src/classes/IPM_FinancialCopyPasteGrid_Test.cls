@@ -189,6 +189,7 @@ public class IPM_FinancialCopyPasteGrid_Test {
             rowcol = input2;
             IPM_FinancialCopyPasteGrid.getFinancialyear(rowcol,lstFinancial[0].Id,Global_STR,projectList[0].IPM_Project_Type__c);
             system.assertNotEquals(IPM_ConstantUtils.STATUS_IN_PROGRESS, lstFinancial[0].status__c , getFinancial_MSG );
+            ipmFinCon5.projectId = projectList[0].Id;
             PageReference gobck = ipmFinCon5.goBack();
             system.assertEquals(string.valueOf(PageRef), string.valueOf(gobck) ,GoBack_MSG);
             
@@ -214,6 +215,7 @@ public class IPM_FinancialCopyPasteGrid_Test {
             rowcol = input3;
             IPM_FinancialCopyPasteGrid.getFinancialyear(rowcol,lstFinancial[0].Id,Global_STR,projectList[0].IPM_Project_Type__c);
             
+            ipmFinConGlobal3.projectId = projectList[0].Id;
             PageReference gobckglb3 = ipmFinConGlobal3.goBack();
             system.assertEquals(string.valueOf(PageRef), string.valueOf(gobckglb3) ,GoBack_MSG);
             
@@ -236,6 +238,8 @@ public class IPM_FinancialCopyPasteGrid_Test {
             rowcol = '';
             IPM_FinancialCopyPasteGrid.getFinancialyear(rowcol,lstFinancial[0].Id,Global_STR,projectList[0].IPM_Project_Type__c);
             system.assertNotEquals(IPM_ConstantUtils.STATUS_IN_PROGRESS, lstFinancial[0].status__c , getFinancial_MSG );
+            
+            ipmFinConGlobal2.projectId = projectList[0].Id;
             PageReference gobckglb2 = ipmFinConGlobal2.goBack();
             system.assertEquals(String.valueOf(PageRef), String.valueOf(gobckglb2) ,GoBack_MSG);
             

@@ -9,7 +9,7 @@
 var jq = jQuery.noConflict();
 
 /* Below script is the main modal functionality which is used to open the modal and called across the application. */
-function ipmModal(el, title, width, height, margintop, zindex) {
+function ipmModal(el, title, width, height, margintop, zindex,cscls) {
     var mTitle = jq('#ipmModal .modal-title');
     var domEl = jq('#ipmModal .modal-dialog');
     jq(document).on('click', el, function(e) {
@@ -23,6 +23,7 @@ function ipmModal(el, title, width, height, margintop, zindex) {
             'margin-top': margintop,
             'z-index': zindex
         });
+        domEl.addClass(cscls);
     });
     
 /* Below script works on key down event. When the user press enter it triggers a click event. */
