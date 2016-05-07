@@ -86,4 +86,8 @@ src/classes/UID_Switch_User_Currency.cls-meta.xml
 src/layouts
 src/layouts/Order-Primary Sales.layout
 src/layouts/Order-Secondary Sales.layout
+<<<<<<< HEAD
 >>>>>>> develop
+=======
+>>>>>>> develop
+>>>>>>> 9b6a47dc32f05b57bae08c7629b5d71ca092338a

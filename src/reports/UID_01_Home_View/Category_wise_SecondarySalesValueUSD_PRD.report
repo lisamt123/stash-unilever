@@ -30,18 +30,14 @@
         <field>Account.Orders__r.Order_Products__r$UID_Material_ID__c</field>
     </columns>
     <columns>
-        <field>Account.Orders__r$Account</field>
+        <field>Account.Orders__r.Order_Products__r$UID_Invoice_Value__c</field>
     </columns>
     <columns>
-        <field>Account.Orders__r$UID_Invoice_Number__c</field>
+        <field>Account.Orders__r$Account</field>
     </columns>
     <columns>
         <aggregateTypes>Sum</aggregateTypes>
         <field>Account.Orders__r.Order_Products__r$UID_Distributor_Value__c</field>
-    </columns>
-    <columns>
-        <aggregateTypes>Sum</aggregateTypes>
-        <field>Account.Orders__r.Order_Products__r$UID_Distributor_Value__c.CONVERT</field>
     </columns>
     <filter>
         <criteriaItems>
@@ -62,7 +58,7 @@
         <field>Account.Orders__r.Order_Products__r$UID_Material_Name__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>Category-wise Secondary Sales Value</name>
+    <name>Category-wise Secondary Sales Value (USD</name>
     <params>
         <name>co</name>
         <value>1</value>
