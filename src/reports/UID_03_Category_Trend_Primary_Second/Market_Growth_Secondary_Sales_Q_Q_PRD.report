@@ -3,7 +3,7 @@
     <aggregates>
         <calculatedFormula>(PREVGROUPVAL(UID_Order_Product__c.UID_Order_Quantity__c:SUM, Order.EffectiveDate,0) - 
 PREVGROUPVAL(UID_Order_Product__c.UID_Order_Quantity__c:SUM, Order.EffectiveDate,4))/
-PREVGROUPVAL(UID_Order_Product__c.UID_Order_Quantity__c:SUM, Order.EffectiveDate,4)</calculatedFormula>
+IF(PREVGROUPVAL(UID_Order_Product__c.UID_Order_Quantity__c:SUM, Order.EffectiveDate,4) == 0, 1, PREVGROUPVAL(UID_Order_Product__c.UID_Order_Quantity__c:SUM, Order.EffectiveDate,4))</calculatedFormula>
         <datatype>percent</datatype>
         <developerName>FORMULA1</developerName>
         <downGroupingContext>Account.Orders__r$EffectiveDate</downGroupingContext>

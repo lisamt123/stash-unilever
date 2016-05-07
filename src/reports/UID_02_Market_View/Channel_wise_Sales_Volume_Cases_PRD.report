@@ -7,15 +7,16 @@
         <chartSummaries>
             <aggregate>Sum</aggregate>
             <axisBinding>y</axisBinding>
-            <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Avail_Quantity__c</column>
+            <column>Account.Orders__r.Order_Products__r$UID_Order_Quantity__c</column>
         </chartSummaries>
-        <chartType>HorizontalBar</chartType>
+        <chartType>Pie</chartType>
         <enableHoverLabels>true</enableHoverLabels>
         <expandOthers>true</expandOthers>
-        <groupingColumn>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material_Category__c</groupingColumn>
+        <groupingColumn>Account.Orders__r.Order_Products__r$UID_Category__c</groupingColumn>
+        <legendPosition>Right</legendPosition>
         <location>CHART_TOP</location>
         <showAxisLabels>true</showAxisLabels>
-        <showPercentage>false</showPercentage>
+        <showPercentage>true</showPercentage>
         <showTotal>false</showTotal>
         <showValues>true</showValues>
         <size>Large</size>
@@ -26,44 +27,52 @@
         <titleSize>18</titleSize>
     </chart>
     <columns>
-        <field>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material_Id__c</field>
+        <field>Account.Orders__r.Order_Products__r$UID_Material_ID__c</field>
     </columns>
     <columns>
-        <field>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c</field>
+        <field>Account.Orders__r$Account</field>
     </columns>
     <columns>
-        <field>Account$Name</field>
+        <field>Account.Orders__r$UID_Invoice_Number__c</field>
     </columns>
     <columns>
         <aggregateTypes>Sum</aggregateTypes>
-        <field>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Avail_Quantity__c</field>
+        <field>Account.Orders__r.Order_Products__r$UID_Order_Quantity__c</field>
     </columns>
+    <filter>
+        <criteriaItems>
+            <column>Account.Orders__r$UID_Order_RecordType__c</column>
+            <operator>equals</operator>
+            <value>Secondary Sales</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
     <format>Summary</format>
     <groupingsDown>
-        <dateGranularity>FiscalYear</dateGranularity>
-        <field>Account.Stocked_Products__r$UID_Report_Date__c</field>
-        <sortOrder>Asc</sortOrder>
-    </groupingsDown>
-    <groupingsDown>
-        <dateGranularity>MonthInYear</dateGranularity>
-        <field>Account.Stocked_Products__r$UID_End_Date__c</field>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account.Orders__r$UID_Channel__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material_Category__c</field>
+        <field>Account.Orders__r.Order_Products__r$UID_Category__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>Trend Report - Inventory (M) (Q)2</name>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account.Orders__r.Order_Products__r$UID_Material_Name__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Channel-wise Sales Volume (Cases)</name>
     <params>
         <name>co</name>
         <value>1</value>
     </params>
-    <reportType>UID_Stocked_Product_Reports__c</reportType>
+    <reportType>UID_Order_with_Order_Product__c</reportType>
     <scope>organization</scope>
     <showDetails>true</showDetails>
     <timeFrameFilter>
-        <dateColumn>Account.Stocked_Products__r$UID_End_Date__c</dateColumn>
-        <interval>INTERVAL_PREVCURY</interval>
+        <dateColumn>Account.Orders__r$EffectiveDate</dateColumn>
+        <interval>INTERVAL_PREVCURFY</interval>
     </timeFrameFilter>
 </Report>

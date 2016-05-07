@@ -63,7 +63,7 @@
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Month</dateGranularity>
-        <field>Account.Stocked_Products__r$UID_Start_Date__c</field>
+        <field>Account.Stocked_Products__r$UID_End_Date__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <groupingsDown>
