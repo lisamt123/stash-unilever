@@ -1,4 +1,8 @@
 src
+src/objects
+src/objects/News_Article__c.object
+src/layouts
+src/layouts/News_Article__c-News Article Layout.layout
 src/classes
 src/classes/Core_NC_NewArticleLikeHandler.cls
 src/classes/Core_NC_NewArticleLikeHandler.cls-meta.xml
@@ -74,3 +78,6 @@ src/aura/CORE_NC_SwitchingBase.cmp-meta.xml
 src/aura/CORE_NC_SwitchingBase.css
 src/aura/CORE_NC_SwitchingBaseController.js
 src/aura/CORE_NC_SwitchingBaseHelper.js
+src/permissionsets
+src/permissionsets/News_Centre_Admin.permissionset
+src/permissionsets/News_Centre_User.permissionset
