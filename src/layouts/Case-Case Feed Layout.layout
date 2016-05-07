@@ -434,9 +434,6 @@
     </miniLayout>
     <quickActionList>
         <quickActionListItems>
-            <quickActionName>Case.Email</quickActionName>
-        </quickActionListItems>
-        <quickActionListItems>
             <quickActionName>Case.ONE_Correspond_Email</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
