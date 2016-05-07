@@ -1,10 +1,40 @@
 src
+src/applications
+src/applications/Unilever_International_Distributor.app
+src/dashboards
+src/dashboards/UID_Unilever_Dashboard
+src/dashboards/UID_Unilever_Dashboard/X01_Home_View_PRD.dashboard
+src/dashboards/UID_Unilever_Dashboard/X02_Market_View_PRD.dashboard
+src/dashboards/UID_Unilever_Dashboard/X03_Category_Trend_Primary_Secondary_Sales_PRD.dashboard
+src/dashboards/UID_Unilever_Dashboard/X04_Inventory_and_Stock_Cover_View.dashboard
+src/layouts
+src/layouts/Order-Primary Sales.layout
+src/layouts/UID_Order_Product__c-Order Product Layout.layout
+src/layouts/UID_Performance_Line_Item__c-IOP Detail Layout.layout
+src/layouts/UID_Performance__c-IOP Layout.layout
+src/layouts/UID_Stocked_Product_Summary__c-Stocked Product Summary Layout.layout
+src/objects
+src/objects/Order.object
+src/objects/UID_Order_Product__c.object
+src/objects/UID_Performance_Line_Item__c.object
+src/objects/UID_Performance__c.object
+src/objects/UID_Stocked_Product_Summary__c.object
 src/permissionsets
 src/permissionsets/UID_Distributor_Manager_Permission_Set.permissionset
-src/dashboards
-src/dashboards/UID_Unilever_Dashboard/X04_Inventory_and_Stock_Cover_View.dashboard
+src/permissionsets/UID_Partner_Community_User_Permission_Set.permissionset
+src/permissionsets/UID_Uploader_Permission_Set.permissionset
+src/profiles
+src/profiles/CD Partner Community User.profile
 src/reports
 src/reports/UID_01_Home_View
+src/reports/UID_01_Home_View/Channel_wise_SecondarySalesValueUSD_PRD.report
+src/reports/UID_01_Home_View/Brand_wise_Primary_Sales_Value_USD_PRD.report
+src/reports/UID_01_Home_View/Brand_wise_Secondary_Sales_Value_USD_PRD.report
+src/reports/UID_01_Home_View/Category_wise_SecondarySalesValueUSD_PRD.report
+src/reports/UID_01_Home_View/MonthlyPrimarySalesValuevsJBPUSD_Mil_PRD.report
+src/reports/UID_01_Home_View/MonthlyPrimarySalesvsLast_Year_Value_PRD.report
+src/reports/UID_01_Home_View/Monthly_Primary_Sales_Value_Growth_PRD.report
+src/reports/UID_01_Home_View/Monthly_Secondary_Sales_Value_Growth_PRD.report
 src/reports/UID_01_Home_View/Monthly_Secondary_Sales_Value_USDMil_PRD.report
 src/reports/UID_01_Home_View/Monthly_Secondary_SalesvsLastYearVal_PRD.report
 src/reports/UID_02_Market_View
@@ -33,6 +63,7 @@ src/reports/UID_Inventory_and_Stock_Cover_View/Market_Growth_Inventory_Sales_M_Q
 src/reports/UID_Inventory_and_Stock_Cover_View/Market_Growth_Inventory_Sales_M_V_2_Final.report
 src/reports/UID_Inventory_and_Stock_Cover_View/Market_Growth_Inventory_Sales_Q_Q_2Final.report
 src/reports/UID_Inventory_and_Stock_Cover_View/Market_Growth_Inventory_Sales_Q_V_2_Final.report
+src/reports/UID_Inventory_and_Stock_Cover_View/Monthly_Stock_Cover_Days_Final.report
 src/reports/UID_Inventory_and_Stock_Cover_View/Top_Secondary_Sales_with_Stock_Cover.report
 src/reports/UID_Inventory_and_Stock_Cover_View/Trend_Report_Inventory_M_Q_2_Final.report
 src/reports/UID_Inventory_and_Stock_Cover_View/Trend_Report_Inventory_M_V_3_Final.report
@@ -73,21 +104,6 @@ src/tabs/UID_Switch_User_Currency.tab
 src/tabs/UID_Switch_User_CurrencyTab.tab
 src
 src/classes/UID_Switch_User_Currency.cls
-<<<<<<< HEAD
-<<<<<<< HEAD
 src/classes/UID_Switch_User_Currency.cls-meta.xml
 src/classes/UID_Switch_User_Currency_Test.cls
 src/classes/UID_Switch_User_Currency_Test.cls-meta.xml
-=======
-src/classes/UID_Switch_User_Currency.cls-meta.xml
->>>>>>> develop
-=======
-src/classes/UID_Switch_User_Currency.cls-meta.xml
-src/layouts
-src/layouts/Order-Primary Sales.layout
-src/layouts/Order-Secondary Sales.layout
-<<<<<<< HEAD
->>>>>>> develop
-=======
->>>>>>> develop
->>>>>>> 9b6a47dc32f05b57bae08c7629b5d71ca092338a
