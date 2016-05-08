@@ -26,8 +26,16 @@
                 <behavior>Edit</behavior>
                 <field>ReplyToId</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ReviewedStatus</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>MessageType</field>
+            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Provider</field>
@@ -43,6 +51,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Handle</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IsOutbound</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
