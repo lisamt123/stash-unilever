@@ -25,8 +25,18 @@ public with sharing class Oblix_SOWNonCampaignPageHelper {
 
     public Boolean isUpdateActivity {
         get {
-            if (workList != null && workList.items != null) {
-                return workList.items.containsKey(currentActivity.key);
+            if (    workList != null && 
+                    workList.containsKey(currentTab) && 
+                    workList.get(currentTab).items != null &&
+                    workList.get(currentTab).items.containsKey(currentActivity.key)) {
+                //Check if item with this key exists in workList
+                return true;
+            } else if (basket != null && 
+                       basket.containsKey(currentActivity.getBasketSectionKey()) && 
+                       basket.get(currentActivity.getBasketSectionKey()).items != null &&
+                       basket.get(currentActivity.getBasketSectionKey()).items.containsKey(currentActivity.key)) { 
+                //Check if item with this key exists in basket
+                return true;
             } else {
                 return false;                
             }
@@ -36,8 +46,18 @@ public with sharing class Oblix_SOWNonCampaignPageHelper {
 
     public Boolean isUpdateResource {
         get { 
-            if (workList != null && workList.items != null) {
-                return workList.items.containsKey(currentResource.key);
+            if (    workList != null && 
+                    workList.containsKey(currentTab) && 
+                    workList.get(currentTab).items != null && 
+                    workList.get(currentTab).items.containsKey(currentResource.key)) {
+                //Check if item with this key exists in workList
+                return true;
+            } else if (basket != null && 
+                       basket.containsKey(currentResource.getBasketSectionKey()) && 
+                       basket.get(currentResource.getBasketSectionKey()).items != null &&
+                       basket.get(currentResource.getBasketSectionKey()).items.containsKey(currentResource.key)) { 
+                //Check if item with this key exists in basket
+                return true;
             } else {
                 return false;                
             }
@@ -46,7 +66,7 @@ public with sharing class Oblix_SOWNonCampaignPageHelper {
     }
 
     public String currentSection { //Either equals RESOURCE_DEV_NAME for dedicated resources or an uppercase value of activity name
-        get {
+        get {                      //Always returns UPPERCASE value
             if (currentSection == null) {
                 return null;
             }
@@ -60,25 +80,39 @@ public with sharing class Oblix_SOWNonCampaignPageHelper {
             }
         }
     }
+    public String currentTab { //Always returns UPPERCASE value
+        get {
+            if (currentTab == null) {
+                return null;
+            }
+            return currentTab.toUpperCase();
+        } 
+        set {
+            if (value == null) {
+                currentTab = null;
+            } else {
+                currentTab = value.toUpperCase();
+            }
+        }
+    }
     public Integer currentSectionItemCount {
         get {
-            if (workList != null && workList.items != null) {
-                return workList.items.keySet().size();    
+            if (workList != null && workList.containsKey(currentTab) && workList.get(currentTab).items != null) {
+                return workList.get(currentTab).items.keySet().size();    
             } else {
                 return 0;
             }
-            
         }
     }
 
     public Marketing_SOW__c sow { get; set; }
     public Map<String, BasketSectionWrapper> basket {get; set; } //Container for items commited to DB
-    public BasketSectionWrapper workList {get; set; } //Container for items commited to DB + new items
+    public Map<String, BasketSectionWrapper> workList {get; set; } //Container for items commited to DB + new items
 
 
 
     public String preSelectedSection {get;set;}
-    public String currentTab {get;set;}
+    //public String currentTab {get;set;}
     public String currentItemKey {get;set;}
     public Oblix_NonCampaignWrapper currentActivity {get; set;}
     public Oblix_NonCampaignWrapper currentResource {get; set;}
@@ -95,6 +129,8 @@ public with sharing class Oblix_SOWNonCampaignPageHelper {
 
     public Integer totalBasketSize {get; set;}
     public Double totalBasketValue {get; set;}
+
+    public static final String TBC = 'TBC';
 
 
     public  String ACTIVITY_DEV_NAME { 
@@ -149,10 +185,13 @@ public with sharing class Oblix_SOWNonCampaignPageHelper {
 
         updateBasketStats();
 
-        if (currentSection != null && basket.containsKey(currentSection)) {
-            workList = basket.get(currentSection);    
-        } else {
-            workList = new BasketSectionWrapper(sow.Id, 'TBC', 'TBC', 'TBC');
+        workList = new Map<String, BasketSectionWrapper>();
+        workList.put(ACTIVITY_DEV_NAME.toUpperCase(), new BasketSectionWrapper(sow.Id, ACTIVITY_DEV_NAME.toUpperCase(), ACTIVITY_DEV_NAME, TBC));
+        workList.put(RESOURCE_DEV_NAME.toUpperCase(), new BasketSectionWrapper(sow.Id, RESOURCE_DEV_NAME.toUpperCase(), RESOURCE_DEV_NAME, TBC));
+
+        if (basket.containsKey(currentSection)) {
+            BasketSectionWrapper workListSection = basket.get(currentSection).getCopy();
+            workList.put(currentTab, workListSection);
         }
 
         return basket;
@@ -239,10 +278,10 @@ public with sharing class Oblix_SOWNonCampaignPageHelper {
         Oblix_NonCampaignWrapper item;// = basket.get(currentTab).get(jsonItem.key);
 
 
-        if (workList.items.containsKey(jsonItem.key)) {
-            item = workList.items.get(jsonItem.key);
+        if (workList.get(currentTab).items.containsKey(jsonItem.key)) {
+            item = workList.get(currentTab).items.get(jsonItem.key);
             item.updateFields(jsonItem);
-            workList.items.put(jsonItem.key, item); //Update existing
+            workList.get(currentTab).updateItem(item); //Update existing
         } else {
             if (activityTabSelected) {
                 item = currentActivity;
@@ -250,7 +289,7 @@ public with sharing class Oblix_SOWNonCampaignPageHelper {
                 item = currentResource;
             }
             item.updateFields(jsonItem);
-            workList.add(item); //Add New
+            workList.get(currentTab).add(item); //Add New
         }   
 
         if (activityTabSelected) {
@@ -265,11 +304,11 @@ public with sharing class Oblix_SOWNonCampaignPageHelper {
     public void saveWorkList() {
 
         if (!String.isBlank(currentSection)) {
-            //BasketSectionWrapper workListSection = workList.get(currentSection);
-            BasketSectionWrapper basketSection = basket.get(currentSection);
+            BasketSectionWrapper workListSection = workList.get(currentTab);
+            //BasketSectionWrapper basketSection = basket.get(currentSection);
 
             List<Marketing_Basics__c> sobjects = new List<Marketing_Basics__c>();
-            for (Oblix_NonCampaignWrapper wrapper : workList.items.values()) {
+            for (Oblix_NonCampaignWrapper wrapper : workListSection.items.values()) {
 
                 ////If item with such key already exists in the basket
                 //if (basket.containsKey(wrapper.getBasketSectionKey()) && 
@@ -284,7 +323,7 @@ public with sharing class Oblix_SOWNonCampaignPageHelper {
             upsert sobjects Non_Campaign_Key__c;
 
             basket = initBasketSections(sow.Id);
-            workList = new BasketSectionWrapper(sow.Id, 'TBC', 'TBC', 'TBC');
+            workList.put(currentTab, new BasketSectionWrapper(sow.Id, currentTab, currentTab, TBC));
             updateBasketStats();
         }
     }
@@ -295,13 +334,28 @@ public with sharing class Oblix_SOWNonCampaignPageHelper {
             currentItemKey = null;
         }
 
-        Oblix_NonCampaignWrapper item = workList.items.get(itemToRemove);
+        Oblix_NonCampaignWrapper item;
+
+        if (workList.get(ACTIVITY_DEV_NAME.toUpperCase()).items.containsKey(itemToRemove)) {
+            item = workList.get(ACTIVITY_DEV_NAME.toUpperCase()).items.get(itemToRemove);
+        } else if (workList.get(RESOURCE_DEV_NAME.toUpperCase()).items.containsKey(itemToRemove)) {
+            item = workList.get(RESOURCE_DEV_NAME.toUpperCase()).items.get(itemToRemove);
+        } else if (basket.containsKey(currentSection) && basket.get(currentSection).items.containsKey(itemToRemove)) {
+            //If deleting the whole section - use currentSection to find corresponding basket section
+            item = basket.get(currentSection).items.get(itemToRemove);
+        }
+
+
         if (item.nonCampaignItem.Id != null) {
             delete item.nonCampaignItem;
         }
-
-        workList.remove(itemToRemove);
-        basket.get(currentSection).remove(itemToRemove);
+        if (workList.containsKey(item.getWorklistTabKey())) {
+            workList.get(item.getWorklistTabKey()).remove(itemToRemove);    
+        }
+        if (basket.containsKey(item.getBasketSectionKey())) {
+            basket.get(item.getBasketSectionKey()).remove(itemToRemove);    
+        }
+        
 
         if (activityTabSelected) {
             currentActivity = new Oblix_NonCampaignWrapper(sow.Id, true);    
@@ -315,19 +369,22 @@ public with sharing class Oblix_SOWNonCampaignPageHelper {
 
     public void removeSection() {
         String bckpCurrentSection = currentSection;
+        String bckpCurrentTab = currentTab;
         if (currentSection != sectionToRemove) {
             currentSection = sectionToRemove;
         } else {
             bckpCurrentSection = null; //
         }
-        for (String key : workList.items.keySet()) {
-            itemToRemove = key;
+        for (Oblix_NonCampaignWrapper item : basket.get(sectionToRemove).items.values()) {
+            itemToRemove = item.key;
+            currentTab = item.getWorklistTabKey();
             removeItem(); 
         }
 
         basket.remove(sectionToRemove);
 
         currentSection = bckpCurrentSection;
+        currentTab = bckpCurrentTab;
     }
 
 
@@ -335,14 +392,14 @@ public with sharing class Oblix_SOWNonCampaignPageHelper {
 
         System.debug('### currentSection: ' + currentSection);
         System.debug('### currentItemKey: ' + currentItemKey);
-        System.debug('### workList.items.keySet(): ' + workList.items.keySet());
+        System.debug('### workList.get(currentTab).items.keySet(): ' + workList.get(currentTab).items.keySet());
 
         if (isActivity) {
-            currentActivity = workList.items.get(currentItemKey).clone();
+            currentActivity = workList.get(currentTab).items.get(currentItemKey).clone();
             currentActivity.replaceSObjectWithClone();
             refreshSelectionPicklists();
         } else {
-            currentResource = workList.items.get(currentItemKey).clone();
+            currentResource = workList.get(currentTab).items.get(currentItemKey).clone();
             currentResource.replaceSObjectWithClone();
             refreshSelectionPicklists();
         }
@@ -355,18 +412,18 @@ public with sharing class Oblix_SOWNonCampaignPageHelper {
         } else {
             currentTab = ACTIVITY_DEV_NAME;
         }
-        workList = basket.get(currentSection).clone();
+        workList.put(currentTab, basket.get(currentSection).getCopy());
     }
 
 
     public void openTab() {
         if (resourceTabSelected) {
             currentSection = RESOURCE_DEV_NAME;
-            workList = basket.get(currentSection).clone();
+            //workList.put(currentTab, basket.get(currentSection).deepClone()());
         } else {
             if (currentSection == RESOURCE_DEV_NAME) {
                 currentSection = null;
-                workList = new BasketSectionWrapper(sow.Id, 'TBC', 'TBC', 'TBC');
+                //workList.put( = new BasketSectionWrapper(sow.Id, TBC, TBC, TBC);
             }
         }
     }
@@ -426,8 +483,23 @@ public with sharing class Oblix_SOWNonCampaignPageHelper {
                 totalValue += item.totalAmount;
         }
 
+        public void updateItem(Oblix_NonCampaignWrapper item) {
+            Oblix_NonCampaignWrapper oldItem = items.get(item.key);
+
+            if(oldItem.totalAmount != null)
+                totalValue -= oldItem.totalAmount;
+
+            items.put(item.key, item);
+            itemCount = items.keySet().size();
+
+            if(item.totalAmount != null)
+                totalValue += item.totalAmount;
+        }
+
         public Oblix_NonCampaignWrapper remove(String key) {
+            System.debug('### remove - key = ' + key);
             Oblix_NonCampaignWrapper item = items.remove(key);
+            System.debug('### remove - item = ' + item);
             itemCount = items.keySet().size();
             if (item != null) {
                 totalValue -= item.totalAmount;    
@@ -489,6 +561,15 @@ public with sharing class Oblix_SOWNonCampaignPageHelper {
                 this.add(nonCampaignWrapper);
             }
         }
+
+        public BasketSectionWrapper getCopy() {
+            BasketSectionWrapper wrapper = this.clone();
+            wrapper.items = items.clone();
+            for (String key : wrapper.items.keySet()) {
+                wrapper.items.put(key, wrapper.items.get(key).clone());
+            }
+            return wrapper;
+        }
     }
 
 
@@ -540,8 +621,11 @@ public with sharing class Oblix_SOWNonCampaignPageHelper {
             currentActivity.recalculateKey();
             
             //If new select picklist configuration matches existing item from worklist, set it as current and preserve hours (UPDATE button will appear)
-            if (workList.items.containsKey(currentActivity.key)) {
-                currentActivity = createNewWrapperFromExisting(workList.items.get(currentActivity.key), false);
+            if (workList.get(currentTab).items.containsKey(currentActivity.key)) {
+                currentActivity = createNewWrapperFromExisting(workList.get(currentTab).items.get(currentActivity.key), false);
+            } else if (basket.containsKey(currentActivity.getBasketSectionKey()) && 
+                        basket.get(currentActivity.getBasketSectionKey()).items.containsKey(currentActivity.key)) {
+                currentActivity = createNewWrapperFromExisting(basket.get(currentActivity.getBasketSectionKey()).items.get(currentActivity.key), false);
             }
         } else {
             if (currentResource.name != currentResource.nonCampaignItem.Name) {
@@ -551,8 +635,11 @@ public with sharing class Oblix_SOWNonCampaignPageHelper {
             currentResource.recalculateKey();
 
             //If new select picklist configuration matches existing item from worklist, set it as current and preserve hours (UPDATE button will appear)
-            if (workList.items.containsKey(currentResource.key)) {
-                currentResource = createNewWrapperFromExisting(workList.items.get(currentResource.key), false);
+            if (workList.get(currentTab).items.containsKey(currentResource.key)) {
+                currentResource = createNewWrapperFromExisting(workList.get(currentTab).items.get(currentResource.key), false);
+            } else if (basket.containsKey(currentResource.getBasketSectionKey()) && 
+                        basket.get(currentResource.getBasketSectionKey()).items.containsKey(currentResource.key)) {
+                currentResource = createNewWrapperFromExisting(basket.get(currentResource.getBasketSectionKey()).items.get(currentResource.key), false);
             }
         }
     }

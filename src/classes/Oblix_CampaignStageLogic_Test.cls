@@ -44,7 +44,7 @@ private class Oblix_CampaignStageLogic_Test {
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
             Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_NAME, mSow.id);
-            project.Stage_Projected_CFY__c = BRIEFING_AND_PRODUCTION;
+            project.Projected_Stage_CFY__c = BRIEFING_AND_PRODUCTION;
             project.Stage_Completed_CFY__c = BRIEFING;
             update project;
 
@@ -67,7 +67,7 @@ private class Oblix_CampaignStageLogic_Test {
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
             Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_NAME, mSow.id);
-            project.Stage_Projected_CFY__c = BRIEFING_AND_PRODUCTION;
+            project.Projected_Stage_CFY__c = BRIEFING_AND_PRODUCTION;
             project.Stage_Completed_CFY__c = BRIEFING;
             update project;
 
@@ -114,7 +114,7 @@ private class Oblix_CampaignStageLogic_Test {
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
             Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_NAME, mSow.id);
-            project.Stage_Projected_CFY__c = BRIEFING_AND_PRODUCTION;
+            project.Projected_Stage_CFY__c = BRIEFING_AND_PRODUCTION;
             project.Stage_Completed_CFY__c = BRIEFING;
             update project;
 
@@ -167,7 +167,7 @@ private class Oblix_CampaignStageLogic_Test {
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
             Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_NAME, mSow.id);
-            project.Stage_Projected_CFY__c = BRIEFING_AND_PRODUCTION;
+            project.Projected_Stage_CFY__c = BRIEFING_AND_PRODUCTION;
             project.Stage_Completed_CFY__c = BRIEFING;
             update project;
 
@@ -234,7 +234,7 @@ private class Oblix_CampaignStageLogic_Test {
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
             Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_NAME, mSow.id);
-            project.Stage_Projected_CFY__c = BRIEFING_AND_PRODUCTION;
+            project.Projected_Stage_CFY__c = BRIEFING_AND_PRODUCTION;
             project.Stage_Completed_CFY__c = BRIEFING;
             update project;
 

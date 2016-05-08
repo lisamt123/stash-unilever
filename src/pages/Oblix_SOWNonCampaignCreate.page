@@ -13,9 +13,6 @@
         <apex:actionFunction oncomplete="$.unblockUI()" name="refreshActivitySelection" reRender="other_pane, activity_resource_input_field_panel" action="{!helper.refreshActivitySelection}" >
         </apex:actionFunction>  
 
-        <!--<apex:actionFunction oncomplete="$.unblockUI()" name="activityUpdate" reRender="other_pane, activity_resource_input_field_panel" >
-        </apex:actionFunction>-->
-
         <apex:actionFunction action="{!addToWorkList}" oncomplete="$.unblockUI()" name="addToWorkList" reRender="activitySelectionTable, resourceSelectionTable,activity_resource_input_field_panel">
             <apex:param name="campaignItem" assignTo="{!nonCampaignItemToAddJSON}" value="" />
         </apex:actionFunction>
@@ -39,9 +36,7 @@
         <apex:actionFunction action="{!removeSection}" oncomplete="$.unblockUI()" name="removeSectionAction" reRender="shoppingBasketPanel,campaignTotalPanel,shoppingBasketPanel,activity_resource_input_field_panel">
             <apex:param name="basketItemToRemove" assignTo="{!helper.sectionToRemove}" value="" />
         </apex:actionFunction>
-<!--        
-        <apex:actionFunction action="{!upsertSelectedResourceAndRefreshBasket}" oncomplete="$.unblockUI()" name="insertSelectedResource" reRender="shoppingBasketPanel,activitySelectionTable, resourceSelectionTable,campaignTotalPanel,shoppingBasketPanel, activity_resource_input_field_panel" />    
--->
+
         <apex:actionFunction action="{!openActivityForUpdate}" oncomplete="$.unblockUI()" name="openActivityForUpdate" reRender="activity_resource_input_field_panel">
             <apex:param name="selected_activity" assignTo="{!helper.currentItemKey}" value="" />
         </apex:actionFunction>
@@ -49,6 +44,7 @@
         <apex:actionFunction action="{!openResourceForUpdate}" oncomplete="$.unblockUI()" name="openResourceForUpdate" reRender="activity_resource_input_field_panel">
             <apex:param name="selected_activity" assignTo="{!helper.currentItemKey}" value="" />
         </apex:actionFunction>
+        
 
         <div class="Oblix_header_bkgd">
             <header class="Oblix_header_panel">
@@ -122,12 +118,6 @@
                             <li role="presentation" class="non_camp_tab_line_align {!if(helper.resourceTabSelected,'active','')}"><a href="#resource" data-toggle="tab" onClick="openTab('{!helper.RESOURCE_DEV_NAME}');blockme();">Add dedicated resource</a>
                             </li>
                         </ul> 
-                        <!--ul class="sow_tab_style nav nav-tabs sow_tab_align" data-tabs="tabs">
-                            <li role="presentation" class="non_camp_tab_line_align active"><a href="#activity" data-toggle="tab">Add activity</a>
-                            </li>
-                            <li role="presentation" class="non_camp_tab_line_align"><a href="#resource" data-toggle="tab">Add dedicated resource</a>
-                            </li>
-                        </ul-->
                     </div>
                     </apex:outputPanel>
 
@@ -139,7 +129,6 @@
                                         <div class="col-lg-4">
                                             <p class="create_SOW_form_titles">Activity*</p>
                                             <apex:inputField value="{!helper.currentActivity.nonCampaignItem.Activities__c}" styleclass="investment_project_dropdowns_right" id="activityId" onchange="refreshActivitySelection();blockme();" />
-                                            <!-- <apex:inputField value="{!activity.nonCampaignItem.Activities__c}" styleclass="investment_project_dropdowns_right" id="activityId" onchange="if ($(this).val()=='Other'){ $('.otherr').prop('disabled', false);}else{ $('.otherr').prop('disabled', true);}" /> -->
                                         </div>
                                         <div class="col-lg-4">
                                             <p class="create_SOW_form_titles">Country*</p>
@@ -179,28 +168,37 @@
                                                 <apex:outputText value=" --- " rendered="{!can_see_financial_fields == false}"/>
                                                 <apex:outputText value="{!helper.currentActivity.hourlyRate}" id="rate" style="display:none;" rendered="{!can_see_financial_fields}"/>
                                                 <apex:outputText value="{!helper.currentActivity.hourlyRate}" id="hiddenRate" style="display:none;" rendered="{!can_see_financial_fields}"/>
-                                                <!-- <div id="rate" style="display:none;">{!VALUE(activity.hourlyRate)}</div> -->
-                                                <apex:input type="number" styleClass="hourly_rate_box" html-min="0" html-step="0.01" value="{!helper.currentActivity.hoursSelected}"  disabled="{!IF(helper.currentActivity.valVisible==false,false,false)}" id="hoursSelected" onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);" onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.keyCode == 46"/>
-                                                <!--input type="number" class="hourly_rate_box" name="hourlyRate" /-->hours
-                                                <!--button class="btn btn-primary btn_plus btn_asset_add" onclick="addToActivitySelectionMap();">ADD</button-->                                
+                                                
+                                                <!--<apex:input type="number" styleClass="hourly_rate_box" html-min="0" html-step="0.01" value="{!helper.currentActivity.hoursSelected}"  disabled="{!IF(helper.currentActivity.valVisible==false,false,false)}" id="hoursSelected" onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);" onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.keyCode == 46"/>-->
+                                                <apex:input type="number" styleClass="hourly_rate_box" html-min="0" html-step="0.01" value="{!helper.currentActivity.hoursSelected}"  disabled="{!IF(helper.currentActivity.valVisible==false,false,false)}" id="hoursSelected"  onkeyup="var isDigitOrDot = event.charCode >= 48 && event.charCode <= 57 || event.keyCode == 46;
+var parts = $(this).val().split(/[.,]/);
+if (parts.length == 1) {
+    console.log('a');
+    return isDigitOrDot;
+} else if (parts.length == 2) {
+    console.log('b');
+    return isDigitOrDot && parts[1].length < 2;    
+}
+console.log('c');
+return true;"/>
+                                                hours                                
                                             </p>
                                         </div>
                                         <div class="col-lg-4 non_camp_description_spacing">
-                                            <p class="create_SOW_form_titles">Other info</p>
-                                            <apex:inputField id="activityDescription" value="{!helper.currentActivity.nonCampaignItem.Description__c}" html-cols="35"/>
+                                            <p class="create_SOW_form_titles">Other info (optional)</p>
+                                            <apex:inputField id="activityDescription" value="{!helper.currentActivity.nonCampaignItem.Description__c}" html-rows="3" html-cols="35"/>
                                         </div>
                                     </div>
-                                    <apex:outputPanel id="addUpdateButton">
-                                        <apex:outputPanel rendered="{!IF(can_manage_non_campaign,true,false)}">
-                                            <apex:commandButton value="{!(IF(helper.isUpdateActivity,'UPDATE','ADD'))}" styleClass="btn btn-primary btn_plus {!(IF(helper.isUpdateActivity,'btn_update','btn_asset_add'))}" onclick="blockme();addToActivitySelection(true);return false;" /> 
-                                        </apex:outputPanel> 
-                                    </apex:outputPanel>  
-                                    <!--<div class="row">
-                                        <div class="col-lg-4">
-                                            <p class="create_SOW_form_titles">Description</p>
-                                            <apex:inputField value="{!helper.currentActivity.nonCampaignItem.Description__c}"/>
+                                    <div class="row">
+                                        <div class="col-lg-offset-10 col-lg-2">
+                                            <apex:outputPanel id="addUpdateButton">
+                                                <apex:outputPanel rendered="{!IF(can_manage_non_campaign,true,false)}">
+                                                    <apex:commandButton value="{!(IF(helper.isUpdateActivity,'UPDATE','ADD'))}" styleClass="pull-right btn btn-primary btn_plus {!(IF(helper.isUpdateActivity,'btn_update','btn_asset_add'))}" onclick="blockme();addToActivitySelection(true);return false;" /> 
+                                                </apex:outputPanel> 
+                                            </apex:outputPanel>  
                                         </div>
-                                    </div>-->
+                                    </div>    
+
                                 </apex:outputPanel>
                                 <apex:outputPanel id="activitySelectionTable" >
                                     <script>
@@ -225,8 +223,8 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <apex:repeat value="{!helper.workList.items}" var="activityKey">
-                                                    <apex:variable var="item" value="{!helper.workList.items[activityKey]}" />
+                                                <apex:repeat value="{!helper.workList[helper.currentTab].items}" var="activityKey">
+                                                    <apex:variable var="item" value="{!helper.workList[helper.currentTab].items[activityKey]}" />
                                                     <tr >
                                                         <th style="display:none;" id="idColumn_{!item.key}" >{!item.key}</th>
                                                         <th style="display:none;" id="idColumn_{!item.activityId}">{!item.activityId}</th>
@@ -298,34 +296,31 @@
                                             </div>
                                             <div class="col-lg-4 non-campaign_hourly_rate_section yearly_rate_form_align">
                                                 <p>FTE €&nbsp;&nbsp;
-                                                    <!--apex:outputLabel value="{!resource.hourlyRate}" id="dedicatedRate" /-->
                                                     <apex:outputText value="{0, number,###,###,##0}" id="dedicatedRate" rendered="{!can_see_financial_fields}">
                                                         <apex:param value="{!VALUE(helper.currentResource.hourlyRate)}" />
                                                     </apex:outputText>
                                                     <apex:outputText value=" --- " rendered="{!can_see_financial_fields == false}"/>
                                                     <apex:outputText value="{!helper.currentResource.hourlyRate}" id="hiddenDedicatedRate" style="display:none;" rendered="{!can_see_financial_fields}"/>
-                                                    <!--apex:input type="number" styleClass="hourly_rate_box" html-min="0" value="{!resource.hoursSelected}" onchange="if(!isNaN(parseInt($('.rateclass').text()))){ $('.rslt').text(Math.round(($(this).val()*parseFloat($('.rateclass').text()))+' '));formatNumber ($('.rslt'));}" disabled="{!IF(resource.valVisible==false,false,false)}" id="dedicatedHoursSelected" onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);" /-->&nbsp;&nbsp;
-                                                    <apex:input type="number" styleclass="prcentt input_init" html-min="0" html-max="100" html-step="0.01" value="{!helper.currentResource.hoursSelected}"  style="width:60px;" id="prcent"   onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);  if($(this).val()>100)  $(this).val(100);  " onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.keyCode == 46" />
-                                                    <!--input type="number" class="hourly_rate_box" name="hourlyRate" /-->%
+                                                    &nbsp;&nbsp;
                                                     
-                                                    <!--button class="btn btn-primary btn_plus btn_asset_add" onclick="addToActivitySelectionMap();">ADD</button-->
-                                                    <!--<apex:outputPanel id="addResourceUpdateButton">
-                                                        <apex:outputPanel rendered="{!IF(can_manage_non_campaign,true,false)}">
-                                                        <apex:commandButton value="{!(IF(setResourceUpdateButton,'UPDATE','ADD'))}" styleClass="btn btn-primary btn_plus {!(IF(setResourceUpdateButton,'btn_update','btn_asset_add'))} " onclick="validateResourceSelection(); return false;" />
-                                                        </apex:outputPanel>
-                                                    </apex:outputPanel>-->
+                                                    <apex:input type="number" styleclass="prcentt input_init" html-min="0" html-max="100" html-step="0.01" value="{!helper.currentResource.hoursSelected}"  style="width:60px;" id="prcent"   onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);  if($(this).val()>100)  $(this).val(100);  " onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.keyCode == 46" />
+                                                    
                                                 </p>
                                             </div>
                                             <div class="col-lg-4 non_camp_description_spacing">
-                                                <p class="create_SOW_form_titles">Other info</p>
-                                                <apex:inputField id="resourceDescription" value="{!helper.currentResource.nonCampaignItem.Description__c}" html-cols="35"/>
+                                                <p class="create_SOW_form_titles">Other info (optional)</p>
+                                                <apex:inputField id="resourceDescription" value="{!helper.currentResource.nonCampaignItem.Description__c}" html-rows="3" html-cols="35"/>
                                             </div>
                                         </div>
-                                        <apex:outputPanel id="addResourceUpdateButton">
-                                            <apex:outputPanel rendered="{!IF(can_manage_non_campaign,true,false)}">
-                                                <apex:commandButton value="{!(IF(helper.isUpdateResource,'UPDATE','ADD'))}" styleClass="btn btn-primary btn_plus {!(IF(helper.isUpdateResource,'btn_update','btn_asset_add'))}" onclick="blockme();addToActivitySelection(false); return false;" /> 
-                                            </apex:outputPanel> 
-                                        </apex:outputPanel> 
+                                        <div class="row">
+                                            <div class="col-lg-offset-10 col-lg-2">
+                                                <apex:outputPanel id="addResourceUpdateButton">
+                                                    <apex:outputPanel rendered="{!IF(can_manage_non_campaign,true,false)}">
+                                                        <apex:commandButton value="{!(IF(helper.isUpdateResource,'UPDATE','ADD'))}" styleClass="pull-right btn btn-primary btn_plus {!(IF(helper.isUpdateResource,'btn_update','btn_asset_add'))}" onclick="blockme();addToActivitySelection(false); return false;" /> 
+                                                    </apex:outputPanel> 
+                                                </apex:outputPanel> 
+                                            </div>
+                                        </div>
                                     </apex:outputPanel>
                                     <apex:outputPanel id="resourceSelectionTable"  >
                                         <apex:outputPanel rendered="{!IF(helper.currentSectionItemCount > 0, true, false)}">
@@ -345,8 +340,8 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <apex:repeat value="{!helper.workList.items}" var="resourceKey">
-                                                        <apex:variable var="item" value="{!helper.workList.items[resourceKey]}" />
+                                                    <apex:repeat value="{!helper.workList[helper.currentTab].items}" var="resourceKey">
+                                                        <apex:variable var="item" value="{!helper.workList[helper.currentTab].items[resourceKey]}" />
                                                         <tr >
                                                             <th style="display:none;" id="idColumn_{!item.key}" >{!item.key}</th>
                                                             <th style="display:none;" id="idColumn_{!item.activityId}">{!item.activityId}</th>
@@ -398,7 +393,6 @@
                         <div class="asset_shopping_basket">
                             <div class="asset_shopping_basket_title_bar">
                                 <h2>Non Campaign Basket ({!helper.totalBasketSize})</h2>
-                                <!--<h2 class="basket_quantity">({!helper.totalBasketSize})</h2>-->
                             </div>
                                 
                             <apex:repeat value="{!helper.basket}" var="basketSectionKey">
@@ -413,7 +407,7 @@
                                                         <a href="#" id="basketRemoveRow_{!basketSection.key}" value="{!basketSection.name}" onclick="removeSection('{!basketSection.key}'); return false;"><img alt="Remove" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/redcross.png')}" class="attachement_redcross" height="12" width="12" /></a>
                                                     </apex:outputPanel>
                                                 </div>
-                                                <div class="col-sm-9">
+                                                <div class="col-sm-10">
                                                     <a href="#" id="basketItem_{!basketSection.key}" onclick="openBasketSection('{!JSENCODE(basketSection.key)}');blockme();">{!basketSection.name}<apex:outputText rendered="{!can_see_financial_fields}"> - €<apex:outputText value="{0, number,###,###,##0}"> <apex:param value="{!basketSection.totalValue}"/></apex:outputText></apex:outputText>
                                                     </a>
                                                 </div>

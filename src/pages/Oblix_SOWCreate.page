@@ -23,7 +23,7 @@
             	<div class="col-lg-4 col-md-4">
                     <div class="form-group" id="SOWName">
                         <label for="SOWName" class="create_SOW_form_titles">SOW Name*</label>
-                        <apex:inputField value="{!selected_sow.Name}"  styleClass="form-control" required="true" id="sowName"/>
+                        <apex:inputField value="{!selected_sow.Name_Prefix__c}"  styleClass="form-control" required="true" id="sowName"/>
                     </div>
                     <apex:actionRegion >
 	                    <div class="form-group " id="Brand">

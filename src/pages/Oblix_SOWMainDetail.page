@@ -29,7 +29,20 @@
                 <a href="{!$Page.Oblix_SowCreate + '?sowId=' + selected_sow.Id}">Edit SOW</a>&nbsp;&nbsp;|
             </apex:outputPanel>
             <apex:outputPanel rendered="{!IF(can_delete_sow,true,false)}">
-                <a href="#" data-toggle="modal" data-target="#sowDelete">Delete SOW</a>
+                <a href="#" data-toggle="modal" data-target="#sowDelete">Delete SOW</a>&nbsp;&nbsp;| &nbsp;
+            </apex:outputPanel>
+            <apex:outputPanel id="initiateRollOverLink" >
+                <apex:actionRegion >
+                    <apex:outputPanel rendered="{!IF(can_edit,true,false)}">
+                        <apex:outputLink value="#" onclick="blockme();initiateRollOver();" disabled="{!NOT(ISBLANK(selected_sow.Sync_Status__c))}" >{!IF(ISBLANK(selected_sow.Sync_Status__c),'Initiate Rollover','Rollover Initiated')}</apex:outputLink>&nbsp;&nbsp;
+                    </apex:outputPanel>
+                    <apex:actionFunction name="initiateRollOver" action="{!initiateRollOver}"  oncomplete="$.unblockUI();" reRender="initiateRollOverLink"/>
+                </apex:actionRegion>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!IF(selected_sow.Sync_Status__c == 'Sync In Progress',true,false)}">
+                <br/>
+                <br/>
+                <apex:outputText styleClass="label-danger" value="Sync in Progress. This SOW is READ ONLY. No updates allowed"/>
             </apex:outputPanel>
             <!--            confirm delete sow modal-->
             <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="sowDelete" id="sowDelete">
@@ -209,6 +222,52 @@
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
+            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="syncAllCampaigns" id="syncAllCampaigns">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content submit_for_approval_modal">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h1 class="modal_window_title" id="gridSystemModalLabel">Sync All Related Campaign?</h1>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    All related campaigns will be synced. Are you sure?
+                                </div>   
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="modal_button_align">
+                                <button type="button" class="btn btn_cross btn_cancel" data-dismiss="modal">CANCEL</button>
+                                <button type="button" class="btn btn-danger btn_check btn_yes_delete" html-data-dismiss="modal" onclick="blockme();syncCampaigns();" oncomplete="$.unblockUI();" >SYNC</button>
+                            </div>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="syncSingleCampaign" id="syncSingleCampaign">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content submit_for_approval_modal">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h1 class="modal_window_title" id="gridSystemModalLabel">Sync Selected Campaign?</h1>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    Selected campaign will be synced. Are you sure?
+                                </div>   
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="modal_button_align">
+                                <button type="button" class="btn btn_cross btn_cancel" data-dismiss="modal">CANCEL</button>
+                                <button type="button" class="btn btn-danger btn_check btn_yes_delete" html-data-dismiss="modal" onclick="blockme();syncCampaigns();" oncomplete="$.unblockUI();" >SYNC</button>
+                            </div>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
         </apex:define>
 
 
@@ -249,7 +308,8 @@
                         </tr>
                     </table>
                     <div class="form-group sow_main_attachments oblix_chart" id="charts">
-                        <analytics:reportChart developerName="{!reportDeveloperName}" filter="{!reportFilter}" size="tiny" showRefreshButton="false"/>
+                        <!-- <analytics:reportChart developerName="{!reportDeveloperName}" filter="{!reportFilter}" size="tiny" showRefreshButton="false"/> -->
+                        <div id="chart_div" data-chart-data="{!scoresDashboard.graphData}"></div>
                     </div>
                 </apex:outputPanel>
                 <!--<div class="form-group sow_main_attachments " id="UnileverAttachment">
@@ -274,10 +334,21 @@
                 <ul id="tabs" class="sow_tab_style nav nav-tabs sow_tab_align " data-tabs="tabs">
                     <li class="{!IF(uploadedAtt=='true','', 'active')}"><a href="#red" data-toggle="tab">Related SOW items</a></li>
                     <li><a href="#orange" data-toggle="tab">Related SOW Conversation</a></li>
-                    <li><a href="#yellow" data-toggle="tab">Campaign Timeline</a></li>
+                    <!--li><a href="#yellow" data-toggle="tab">Campaign Timeline</a></li-->
                     <li class="{!IF(uploadedAtt=='true','active', '')}"><a href="#blue" data-toggle="tab">Attachments</a></li>
+                    
+                    
+                    <!--a class="btn btn-danger btn-xs btn_check pull-right btn_sync_campaign" href="#">Sync All Campaigns</a-->
                     <apex:outputPanel rendered="{!can_manage_campaign}"><a class="btn btn-primary btn-xs pull-right btn_plus btn_add_campaign" href="{!$Page.Oblix_CampaignCreate + '?sowId=' + selected_sow.Id}">ADD CAMPAIGN</a></apex:outputPanel>
                     <apex:outputPanel rendered="{!can_manage_campaign}"><a class="btn btn-primary btn-xs pull-right btn_plus btn_add_non_campaign" href="{!$Page.Oblix_SOWNonCampaignCreate + '?sowId=' + selected_sow.Id}">ADD NON-CAMPAIGN</a></apex:outputPanel>
+                    <apex:actionRegion >
+                        <apex:outputPanel rendered="{!IF(can_edit && selected_sow.Sync_Status__c = 'Campaign Sync Required',true,false)}">
+                            <apex:outputLink value="#" styleClass="btn btn-danger btn-xs btn_sync pull-right btn_sync_campaign" onclick="" html-data-toggle="modal"  html-data-target="#syncAllCampaigns">Sync All Campaigns</apex:outputLink>
+                            <apex:actionFunction name="syncCampaigns" action="{!syncCampaigns}" oncomplete="$.unblockUI();location.reload();" reRender="relatedItems">
+                            </apex:actionFunction>
+                            <apex:actionFunction name="assignCampaignId" oncomplete="$.unblockUI();"><apex:param id="campaignIDSync" name="campaignIDSync" assignTo="{!campaignIDSync}" value="{!campaignIDSync}"/></apex:actionFunction>
+                        </apex:outputPanel>
+                    </apex:actionRegion>
                 </ul>
             </div>
             <!--            Welcome message to start building SOW -->
@@ -318,7 +389,11 @@
                                             <apex:outputPanel rendered="{!campaign_and_non_campaign.s_object_type == 'Campaign'}">
                                                 <tr class="{!if(campaign_and_non_campaign.dynamic_object['Campaign_Status__c'] == 'Cancelled', 'project_cancelled',IF(campaign_and_non_campaign.dynamic_object['Value_To_BePaid_Manual_Override__c'],'project_fee_adjusted',''))} camp" data-href="{!$Page.Oblix_CampaignSummary}?projectId={!campaign_and_non_campaign.dynamic_object['Id']}">
                                                     <td style="display:none;width:0px !important">{!campaign_and_non_campaign.dynamic_object['Id']}</td>
-                                                    <td>{!campaign_and_non_campaign.dynamic_object['Name']}</td>
+                                                    <td>
+                                                    
+                                                        <apex:outputLink title="Sync this Campaign with Previous FY Campaign" value="#" styleClass="btn btn-xs ind_btn_sync_static pull-right" onclick="blockme();assignCampaignId({!campaign_and_non_campaign.dynamic_object['Campaign_PFY__c']});" rendered="{!campaign_and_non_campaign.dynamic_object['Sync_Required_NFY__c'] == 'Sync Required'}" html-data-toggle="modal"  html-data-target="#syncSingleCampaign"></apex:outputLink>
+                                                    
+                                                    {!campaign_and_non_campaign.dynamic_object['Name']}</td>
                                                     <td>{!campaign_and_non_campaign.s_object_type}</td>
                                                     <td>{!campaign_and_non_campaign.dynamic_object['OblixRegion__c']}</td>
                                                     <td>
@@ -423,10 +498,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane" id="yellow">
+                            <!--div class="tab-pane" id="yellow">
                                 <h1>Coming Soon</h1>
                                 <p></p>
-                            </div>
+                            </div-->
                             <div class="{!IF(uploadedAtt=='true', 'tab-pane active','tab-pane')}" id="blue">
                                 <apex:outputPanel >
                                     <apex:actionRegion >
@@ -496,7 +571,8 @@
                 </div>
             </apex:outputPanel>
             <apex:actionFunction name="deleteSOW" action="{!DeleteAction}" oncomplete="unblockUI();"/>
-
+            
+            
         </apex:define>
 
         <!--apex:define name="history_content">
@@ -512,6 +588,7 @@
 
         <apex:define name="page_scripts">
             <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/Oblix_SOWMainDetail.js')}"/>
+            <!-- <script type="text/javascript" src="https://www.google.com/jsapi"></script> -->
 
             <script>
             // Tooltip
@@ -521,7 +598,83 @@
             // if disabled in markup, will not call web service - disable on load
             $(document).ready(function() {
                 $('[id$="rejectButton"]').attr('disabled', 'disabled');
+
+                //google.load("visualization", "1", {packages:["corechart"]});
+                //google.setOnLoadCallback(drawChart);
+
             });
+
+            </script>
+
+            <script>
+
+            google.charts.load('current', {packages: ['corechart', 'bar']});
+            google.charts.setOnLoadCallback(drawRightY);
+
+            function drawRightY() {
+                // var data = google.visualization.arrayToDataTable([
+                //     [{label: '', type: 'string'},
+                //     {label: 'Record Share', type: 'number'},
+                //     {label: 'Value Share', type: 'number'},
+                //     {type: 'string', role: 'annotation'}],
+                //     ['Box 1-5', 79, 90, 'Annotated'],
+                //     ['Box 6-10', 48, 13, 'Annotated'],
+                //     ['Box 11-15', 50, 55, 'Annotated']
+                // ]);
+
+                var data = google.visualization.arrayToDataTable($('#chart_div').data('chart-data'));
+
+                console.log(JSON.stringify(data));
+
+                var options = {
+                    hAxis: {
+                        title: 'Total Population',
+                        minValue: 0,
+                        maxValue: 100
+                    },
+                    bars: 'horizontal',
+                    axes: {
+                        y: {
+                            0: {side: 'left'}
+                        }
+                    },
+                    legend: {position : 'none'},
+                    series: {
+                        0: { color: '#04B388'},
+                        1: { color: '#e56DB1'}
+                    },
+                    height: 120,
+                    width: 600,
+                    tooltip: {ignoreBounds: true, isHTML: true}
+                };
+                var material = new google.charts.Bar(document.getElementById('chart_div'));
+                material.draw(data, options);
+            }
+
+
+                // google.load("visualization", "1", {packages:["corechart"]});
+                // google.setOnLoadCallback(drawChart);
+                // function drawChart() {
+                //     var data = google.visualization.arrayToDataTable([
+                //         ['Task', 'Hours per Day'],
+                //         ['Audio / Visual',     11],
+                //         ['Digital',      2],
+                //         ['Experiental',  2],
+                //         ['Static Imagery', 2],
+                //         ['Stimulus Materials',    7]
+                //     ]);
+
+                //     var options = {
+                //         pieHole: 0.5,
+                //         colors: ['#B187B8', '#CEDC02', '#E46CB0', '#05B1A9', '#FFC62C'],
+                //         legend: {position : 'none', alignment: 'start'},
+                //         chartArea: {width: '90%', height: '90%'},
+                //         fontSize: 16
+                //     };
+
+                //     var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+                //     chart.draw(data, options);
+                // }
 
             </script>
         </apex:define>

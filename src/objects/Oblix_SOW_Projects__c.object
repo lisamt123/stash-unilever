@@ -20,9 +20,7 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Edit</actionName>
-        <content>Oblix_VF04OverrideProjectNew</content>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Visualforce</type>
+        <type>Default</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Follow</actionName>
@@ -336,6 +334,36 @@
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
+        <displayedFields>
+            <field>Projected_Stage_CFY__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Completed_Stage_CFY__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Sync_Status__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Sync_Required_NFY__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Campaign_PFY__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Campaign_NFY__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
         <label>Oblix_Campaign_Summary</label>
     </fieldSets>
     <fieldSets>
@@ -461,53 +489,53 @@
             <controllingField>Innovation_Projects__c</controllingField>
             <picklistValues>
                 <fullName>Total turnover &lt;€100m</fullName>
-                <controllingFieldValues>Brand Led Growth</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Brand Led Growth</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Total turnover €100-€200m</fullName>
-                <controllingFieldValues>Brand Led Growth</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Brand Led Growth</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Total turnover €200-€300m</fullName>
-                <controllingFieldValues>Brand Led Growth</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Brand Led Growth</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Total turnover €300-€400m</fullName>
-                <controllingFieldValues>Brand Led Growth</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Brand Led Growth</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Total turnover &gt;€400m</fullName>
-                <controllingFieldValues>Brand Led Growth</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Brand Led Growth</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Incremental turnover &lt;10M</fullName>
-                <controllingFieldValues>Innovation</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Innovation</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Incremental turnover 10M - 20M</fullName>
-                <controllingFieldValues>Innovation</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Innovation</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Incremental turnover 20M - 30M</fullName>
-                <controllingFieldValues>Innovation</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Innovation</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Incremental turnover 30M - 40M</fullName>
-                <controllingFieldValues>Innovation</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Innovation</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Incremental turnover &gt;40M</fullName>
-                <controllingFieldValues>Innovation</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Innovation</controllingFieldValues>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -776,36 +804,49 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Cloned_SOW__c</fullName>
+        <externalId>false</externalId>
+        <formula>Financial_Year__r.Cloned_SOW__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Cloned SOW</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Completed_Stage_CFY__c</fullName>
         <description>For use in the rollover process</description>
         <externalId>false</externalId>
         <label>Completed Stage CFY</label>
         <picklist>
             <picklistValues>
-                <fullName>Completed Briefing</fullName>
+                <fullName>Briefing</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Completed Strategy &amp; Planning</fullName>
+                <fullName>Strategy &amp; Planning</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Completed Creative Ideation</fullName>
+                <fullName>Creative Ideation</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Completed Creative Execution</fullName>
+                <fullName>Creative Execution</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Completed Production</fullName>
+                <fullName>Production</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Picklist</type>
+        <type>MultiselectPicklist</type>
+        <visibleLines>5</visibleLines>
     </fields>
     <fields>
         <fullName>Completed_Stage_PFY__c</fullName>
@@ -814,30 +855,31 @@
         <label>Completed Stage PFY</label>
         <picklist>
             <picklistValues>
-                <fullName>Completed Briefing</fullName>
+                <fullName>Briefing</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Completed Strategy &amp; Planning</fullName>
+                <fullName>Strategy &amp; Planning</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Completed Creative Ideation</fullName>
+                <fullName>Creative Ideation</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Completed Creative Execution</fullName>
+                <fullName>Creative Execution</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Completed Production</fullName>
+                <fullName>Production</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Picklist</type>
+        <type>MultiselectPicklist</type>
+        <visibleLines>5</visibleLines>
     </fields>
     <fields>
         <fullName>Completed_Stage__c</fullName>
@@ -1130,6 +1172,44 @@ ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Returned by Agency&quot;)
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>Name_Prefix__c</fullName>
+        <description>This field is editable and visible to UL user via Oblix application. A trigger will combine this field + suffix and copies over to Name field value</description>
+        <externalId>false</externalId>
+        <label>Name Prefix</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Name_Suffix_Cycle_Number__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>holds the number of times a campaign is rolled-over (brought forward) as part of rollover process</description>
+        <externalId>false</externalId>
+        <label>Name Suffix Cycle Number</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Name_Suffix__c</fullName>
+        <description>This suffix is programatically generated as part of the trigger and combined with name prefix to make up the Name field value</description>
+        <externalId>false</externalId>
+        <label>Name Suffix</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Number_of_Agency_Hub_Splits__c</fullName>
         <description>Total number related child agency hub split records</description>
         <externalId>false</externalId>
@@ -1233,6 +1313,18 @@ ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Returned by Agency&quot;)
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Original_SOW__c</fullName>
+        <externalId>false</externalId>
+        <formula>Financial_Year__r.Original_SOW__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Original SOW</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Other_Kinds_of_Research__c</fullName>
@@ -1526,30 +1618,31 @@ ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Returned by Agency&quot;)
         <label>Projected Stage CFY</label>
         <picklist>
             <picklistValues>
-                <fullName>Projected Briefing</fullName>
+                <fullName>Briefing</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Projected Strategy &amp; Planning</fullName>
+                <fullName>Strategy &amp; Planning</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Projected Creative Ideation</fullName>
+                <fullName>Creative Ideation</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Projected Creative Execution</fullName>
+                <fullName>Creative Execution</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Projected Production</fullName>
+                <fullName>Production</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Picklist</type>
+        <type>MultiselectPicklist</type>
+        <visibleLines>5</visibleLines>
     </fields>
     <fields>
         <fullName>Projected_Stage_PFY__c</fullName>
@@ -1558,30 +1651,31 @@ ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Returned by Agency&quot;)
         <label>Projected Stage PFY</label>
         <picklist>
             <picklistValues>
-                <fullName>Projected Briefing</fullName>
+                <fullName>Briefing</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Projected Strategy &amp; Planning</fullName>
+                <fullName>Strategy &amp; Planning</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Projected Creative Ideation</fullName>
+                <fullName>Creative Ideation</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Projected Creative Execution</fullName>
+                <fullName>Creative Execution</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Projected Production</fullName>
+                <fullName>Production</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Picklist</type>
+        <type>MultiselectPicklist</type>
+        <visibleLines>5</visibleLines>
     </fields>
     <fields>
         <fullName>Projected_Stage__c</fullName>
@@ -1681,6 +1775,30 @@ ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Returned by Agency&quot;)
         <formula>TEXT(Financial_Year__r.Financial_Year__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>SOW FY</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SOW_NFY__c</fullName>
+        <externalId>false</externalId>
+        <formula>Financial_Year__r.SOW_NFY__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>SOW NFY</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SOW_PFY__c</fullName>
+        <externalId>false</externalId>
+        <formula>Financial_Year__r.SOW_PFY__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>SOW PFY</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1805,6 +1923,18 @@ ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Returned by Agency&quot;)
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
         <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Sync_Required_NFY__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Campaign_PFY__r.Sync_Status__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Sync Required NFY</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Sync_Status__c</fullName>
@@ -1995,6 +2125,13 @@ Was originally Percentage_of_Fee_for_this_FY__c * Campaign_Total_Fees__c but ame
     <pluralLabel>SWOP Campaigns</pluralLabel>
     <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Lock_Campaign_Record_if_Campaign_Sync</fullName>
+        <active>true</active>
+        <description>Lock Campaign Record if Campaign Sync  in Progress.</description>
+        <errorConditionFormula>IF( $Profile.Name &lt;&gt; &apos;System Administrator&apos; &amp;&amp; (TEXT( Sync_Status__c ) == &apos;Sync In Progress&apos; ||  Sync_Required_NFY__c  == &apos;Sync In Progress&apos;),true,false)</errorConditionFormula>
+        <errorMessage>Sync in Progress. Record Locked</errorMessage>
+    </validationRules>
     <validationRules>
         <fullName>Oblix_Campaign_Splits_Should_Add_To_100</fullName>
         <active>false</active>

@@ -13,16 +13,7 @@
 public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPparentController {
     
     public Oblix_CampaignStageLogic stage_identifier{get;set;}
-    public Oblix_CampaignStageLogic stage_identifier_pop_up {
-        get{
-            if (NULL != selected_project && NULL!= selected_sow){
-                // get related stage identifier for the given selected project Id
-                stage_identifier_pop_up = new Oblix_CampaignStageLogic(selected_project,can_edit_campaign, can_edit_campaign);
-            }
-            return stage_identifier_pop_up;
-        }
-        set;
-    }
+    public Oblix_CampaignStageLogic stage_identifier_pop_up {get;set;}
     public Map<String, String> mapTurnoverToSize;
 
     public String turn_over_size{
@@ -118,12 +109,11 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
         if (NULL != selected_project && NULL!= selected_sow){
             // get related stage identifier for the given selected project Id
             stage_identifier = new Oblix_CampaignStageLogic(selected_project,can_edit_campaign, can_edit_campaign);
+            //IR - do not move into getter!
+            stage_identifier_pop_up = new Oblix_CampaignStageLogic(selected_project,can_edit_campaign, can_edit_campaign);
         }
 
-        //if (NULL != selected_project && NULL!= selected_sow){
-        //    // get related stage identifier for the given selected project Id
-        //    stage_identifier_pop_up = new Oblix_CampaignStageLogic(selected_project,can_edit_campaign, can_edit_campaign);
-        //}
+
         if(NULL != selected_project){
             if (NULL != selected_project.LastModifiedDate){
                 last_updated = Oblix_Utils.toLocaleDate(selected_project.LastModifiedDate);
@@ -294,8 +284,8 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
         selected_project.Percentage_of_Fee_for_this_FY__c = PercentToAdjust;
         selected_project.Value_To_BePaid_Manual_Override__c = true;
 
-        selected_project.Stage_Completed_CFY__c = stage_identifier_pop_up.s_selected_completed_stage;
-        selected_project.Stage_Projected_CFY__c = stage_identifier_pop_up.s_selected_projected_stage;
+        selected_project.Completed_Stage_CFY__c = stage_identifier_pop_up.s_selected_completed_stage;
+        selected_project.Projected_Stage_CFY__c = stage_identifier_pop_up.s_selected_projected_stage;
 
         system.debug('###PercentToAdjust : '+PercentToAdjust);
         system.debug('###selected_project.Percentage_of_Fee_for_this_FY__c : '+selected_project.Percentage_of_Fee_for_this_FY__c);
@@ -324,8 +314,8 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
 
         try{
 
-            selected_project.Stage_Completed_CFY__c = stage_identifier_pop_up.s_selected_completed_stage;
-            selected_project.Stage_Projected_CFY__c = stage_identifier_pop_up.s_selected_projected_stage;
+            selected_project.Completed_Stage_CFY__c = stage_identifier_pop_up.s_selected_completed_stage;
+            selected_project.Projected_Stage_CFY__c = stage_identifier_pop_up.s_selected_projected_stage;
 
             if ((stage_identifier_pop_up.b_manual_override_on && stage_identifier_pop_up.cancelCampaignManualPercent != selected_project.Percentage_of_Fee_for_this_FY__c) || 
                 (!stage_identifier_pop_up.b_manual_override_on && stage_identifier_pop_up.cancelCampaignManualPercent != stage_identifier_pop_up.i_agency_Percentage_of_fees_this_year)) {
@@ -338,6 +328,9 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
             //if (stage_identifier_pop_up.cancelCampaignManualPercent != stage_identifier_pop_up.cancelCampaignManualPercent.intValue()) {
             //    throw new TypeException('Please enter a round number rather than decimal');
             //}
+            System.debug('### stage_identifier_pop_up.cancelCampaignManualPercent' + stage_identifier_pop_up.cancelCampaignManualPercent);
+            System.debug('### stage_identifier_pop_up.b_manual_override_on' + stage_identifier_pop_up.b_manual_override_on);
+            System.debug('### stage_identifier_pop_up.i_agency_Percentage_of_fees_this_year' + stage_identifier_pop_up.i_agency_Percentage_of_fees_this_year);
             System.debug('### Percentage_of_Fee_for_this_FY__c' + selected_project.Percentage_of_Fee_for_this_FY__c);
             selected_project.Percentage_of_Fee_for_this_FY__c = stage_identifier_pop_up.cancelCampaignManualPercent;
             System.debug('### Percentage_of_Fee_for_this_FY__c' + selected_project.Percentage_of_Fee_for_this_FY__c);
@@ -362,9 +355,28 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
         }
     }
 
+     /******************************************************************************************
+    * @author       makepositive
+    * @date         2016-05-05
+    * @description  Update Previous year campaign to sync required 
+    *******************************************************************************************/
+    public PageReference syncCampaign(){
+        System.DEBUG('In Here');
+        try{
+            Oblix_SOW_Projects__c campaignToUpdate = new Oblix_SOW_Projects__c();
+            campaignToUpdate = [SELECT ID, Sync_Status__c FROM Oblix_SOW_Projects__c WHERE Id =:selected_project.Campaign_PFY__c LIMIT 1];
+            campaignToUpdate.Sync_Status__c = Oblix_Utils.JOB_STATUS_SYNC_REQUESTED;
+            update campaignToUpdate;
+        }catch (DmlException e){
+            ApexPages.addMessage(new ApexPages.message(ApexPages.SEVERITY.ERROR, 'Could not sync Campaign'));
+            return null;
+        }
+        return null;
+    }
+
     public PageReference refreshPopUpStageIdentifier() {
-        stage_identifier_pop_up.sow_project_in_scope.Stage_Projected_CFY__c = stage_identifier.sow_project_in_scope.Stage_Projected_CFY__c;
-        stage_identifier_pop_up.sow_project_in_scope.Stage_Completed_CFY__c = stage_identifier.sow_project_in_scope.Stage_Completed_CFY__c;
+        stage_identifier_pop_up.sow_project_in_scope.Projected_Stage_CFY__c = stage_identifier.sow_project_in_scope.Projected_Stage_CFY__c;
+        stage_identifier_pop_up.sow_project_in_scope.Completed_Stage_CFY__c = stage_identifier.sow_project_in_scope.Completed_Stage_CFY__c;
         stage_identifier_pop_up.initStages();
         return null;
     }

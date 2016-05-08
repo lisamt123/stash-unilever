@@ -8,11 +8,14 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
     public String last_updated {get; set;}
     public Attachment pageAttachment {get; set;}
     public Map <Id, String> map_att_locale {get; set;}
+    public Oblix_DashboardsHandler scoresDashboard {get; set;}
 
     private static final String FIELD_SET_SOW_MAIN_DETAIL = 'oblix_sow_main_detail';
     private static final String OBJECT_SOW_TO_QUERY = 'marketing_sow__c';
 
     public List<CampaignNonCampaignItems> li_campaign_and_non_campaign_items {get; set;}
+
+    public Id campaignIDSync { get; set; }
 
     public Boolean can_delete_sow{
         get{
@@ -138,7 +141,10 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
 
             // get campaigns
             for(Oblix_SOW_Projects__c campaign : [SELECT Id, Name, OblixRegion__c, Selected_Countries__c, First_3_selected_countries__c, Campaign_Status__c, Total_Fees_for_Project__c, Value_to_be_paid_in_Current_FY__c, 
-                Stage_Projected_CFY__c, Stage_Completed_CFY__c, Projected_Stage_PFY__c, Completed_Stage_PFY__c, Value_To_BePaid_Manual_Override__c, Campaign_Total_Fees__c, Percentage_of_Fee_for_this_FY__c  FROM Oblix_SOW_Projects__c WHERE Financial_Year__c = :selected_sow.Id LIMIT 500]){
+                Projected_Stage_CFY__c, Completed_Stage_CFY__c, Projected_Stage_PFY__c, Completed_Stage_PFY__c, Value_To_BePaid_Manual_Override__c, Campaign_Total_Fees__c, Percentage_of_Fee_for_this_FY__c, 
+                Sync_Required_NFY__c, Stage_Projected_CFY__c, Stage_Completed_CFY__c, Campaign_PFY__c  
+                FROM Oblix_SOW_Projects__c 
+                WHERE Financial_Year__c = :selected_sow.Id LIMIT 500]){
                 li_campaign_and_non_campaign_items.add(new CampaignNonCampaignItems('Campaign', campaign, can_edit));
             }
 
@@ -151,7 +157,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
             for (Oblix_SOWNonCampaignPageHelper.BasketSectionWrapper sectionWrapper : nonCampItemSections.values()) {
                 li_campaign_and_non_campaign_items.add(new CampaignNonCampaignItems('Non Campaign', sectionWrapper));
             }
-
+            
             // get attachments
             liso_attachments = getSOWAttachments(selected_sow.Id);
 
@@ -170,9 +176,12 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
 
             last_updated = Oblix_Utils.toLocaleDate(selected_sow.LastModifiedDate);
 
+            scoresDashboard = new Oblix_DashboardsHandler(Oblix_DashboardsHandler.Type.SOW_SCORES, selected_sow.Id);
+
         }
         
     }
+
 
     public PageReference deleteAction(){
 
@@ -379,15 +388,16 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
         List<ProcessInstanceWorkitem> workItems = [Select p.Id from ProcessInstanceWorkitem p where p.ProcessInstance.TargetObjectId = :selected_sow.Id];
         // S.M 20160209 adding checks and removing else to fix sonar issue
         if(NULL != workItems && workItems.size() == 1){
+            //Once it's already approved by Unilever skip the step if it's rejected by agencies
 
             // 21/04 DE351: For SysAdmin and SU set them as designated Agency approvers if no Agency approver was previously assigned to prevent error message
             //              All other users won't be able to complete Unilever Approval if no Agency approver is assigned (handled by try-catch bellow)
             if (selected_sow.SOW_Status__c == Oblix_Utils.SOW_STATUS_AWAITING_UNILEVER_APPROVAL &&
                     (Oblix_PermissionHandler.hasSuperUserpermissionSet() || Oblix_PermissionHandler.isSystemAdmin()) &&
-                    selected_sow.Agency_SOW_Approver_Name__c == null) {
-
-                selected_sow.Agency_SOW_Approver_Name__c = UserInfo.getUserId();
-                update selected_sow;
+                    selected_sow.Agency_SOW_Approver_Name__c == null ) {
+                    
+                    selected_sow.Agency_SOW_Approver_Name__c = UserInfo.getUserId();
+                    update selected_sow;
             }
 
             if(selected_sow.SOW_Status__c == Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL){
@@ -395,7 +405,10 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
                 // reload SOW to get new sow status
                 selected_sow = getSOW(selected_sow.Id, Oblix_Utils.getAllFieldsInFieldsSet(OBJECT_SOW_TO_QUERY, FIELD_SET_SOW_MAIN_DETAIL) , null);
  
-                selected_sow.Marked_for_cloning__c = true;
+                //selected_sow.Marked_for_cloning__c = true;
+                // set the sync status to clone requested to allow batch job to process it
+                updateSyncStatusAndNameSuffix();
+                
                 update selected_sow;
                 ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Info, 'SOW will be cloned shortly. Please refresh SOW list in a few minutes.'));
 
@@ -442,6 +455,24 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
 
     }
 
+    /*******************************************************************************
+    * @author       Execloud ©
+    * @date         2016-05-07
+    * @description  Depending on the type of approval update the name suffix 
+                    or set the sync status to a value to be picked up by the job
+    ********************************************************************************/
+    private void updateSyncStatusAndNameSuffix(){
+
+        // is it Initial Approval or EOY approval?
+        if (selected_sow.Initial_Approval_Complete__c){
+            selected_sow.Name_Suffix__c = Oblix_Utils.NAME_SUFFIX_FINALISED;
+        }else{
+            // mark as clone requested to let the batch job pick this up 
+            selected_sow.Sync_Status__c = Oblix_Utils.JOB_STATUS_CLONE_REQUESTED;
+        }
+
+
+    }
     /*******************************************************************************
     * @author       Ignacio Llorca
     * @date         2016-04-25
@@ -511,161 +542,61 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
         return uploadedAtt;
     }
 
-
-    ///*******************************************************************************
-    //* @author       Slavko Skular
-    //* @date         2016-04-06
-    //* @description  create a copy of the approvd SOW. This can be made a future
-    //                method if required (depending on number of campaigns, assets
-    //                and non-campaign items)
-    //********************************************************************************/
-    /*public Id copySOW(Id sowId){
-
-        // clone SOW
-
-        Marketing_SOW__c sowClone;
-        Savepoint sp;
-
+    /*******************************************************************************
+    * @author       makepositive
+    * @date         2016-05-05
+    * @description  sets  SOW.Sync_Status__c to "Sync Requested"
+    ********************************************************************************/
+    public PageReference initiateRollOver(){
+        System.DEBUG('In Here');
+        selected_sow.Sync_Status__c = Oblix_Utils.JOB_STATUS_SYNC_REQUESTED;
         try{
-
-            sp = Database.setSavepoint();
-
-            Marketing_SOW__c sow = [SELECT Id, Active__c,Agency_Contact__c,Agency_Name__c,Agency_SOW_Approver_Name__c,Approval_Submitter__c,BB_or_BD__c,
-                                            BigOblixProductCategory__c,Brand_Name__c,Currency__c,Financial_Year__c,MarketingSOWParent__c,Name,OblixBrand__c,
-                                            OblixSOWOverallTotal__c,OblixTotalCampaignCalculatedTotalFee__c,OblixTotalNumberofbasics__c,OblixTotalNumberofprojects__c,
-                                            OblixTotalOtherItemsFees__c,Oblix_AgencyEstimate__c,Oblix_Current_FY_Total__c,Oblix_TotalCampaignAdjustment__c,
-                                            OwnerId,Percentage_of_Total_Fee_Campaign_Fees__c,Percentage_of_Total_Fee_Non_Campaign__c,RecordTypeId,SmallProductCategory__c
-                                            ,SOW_Creator_is_Approver__c,SOW_Status__c,Total_Campaigns_This_FY__c,Total_Campaign_Fee_Agency__c,Total_Campaign_Fee__c,
-                                            Type_of_SOW__c,Unilever_Lead__c,Unilever_SOW_Approver_Name__c 
-                                    FROM Marketing_SOW__c WHERE Id =: sowId];
-
-            sowClone = sow.clone(false, true, false, false);
-            //sowClone.OwnerId = sow.OwnerId;
-            sowClone.OwnerId = UserInfo.getUserId();
-            sowClone.SOW_Status__c = Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER;
-            sowClone.Approved_version__c = sowId;
-            sowClone.Name += CLONE_SUFFIX;
-
-            insert sowClone;
-
-
-
-
-            // clone campaigns
-
-            List<Oblix_SOW_Projects__c> master_campaigns = [SELECT Id,Agency_Percentage_of_Fees_to_this_FY__c,Asset_Deliverables__c,BET_first_release__c,Brand_Led_Growth__c,Budget_Burnt_to_date__c,Campaign_Countries__c,Campaign_Fees_Total__c
-                    ,Campaign_Hub_Summary__c,Campaign_Idea__c,Campaign_Points__c,Campaign_Score__c,Campaign_Splits_Total__c,Campaign_Status__c,Campaign_Total_Adjustment__c,Campaign_Total_Fees__c
-                    ,Completed_Stage__c,Date_for_Assets_to_be_in_BET__c,Description__c,Enforce_Trigger_Update__c,Fees_To_Be_Paid_Next_Financial_Year__c,Final_release__c,Financial_Year__c,First_Air_Date__c
-                    ,Innovation_Projects__c,IsDeleted,Is_this_High_Risk__c,Is_type_of_item_usually_poduced_by_this__c,Jobs_to_be_Done__c,List_Preview_Markets__c,Live_date_Asset_delivery__c,Live_Date__c
-                    ,Name,Number_of_Agency_Hub_Splits__c,Number_of_Markets_for_Preview__c,Number_of_Previews__c,OblixClonedFromParentProject__c,OblixProjectSplitPercentage_Comment__c,OblixRegion__c
-                    ,Oblix_ProjectBoxNumber__c,Other_Kinds_of_Research__c,Overall_Project_Complete__c,Percentage_of_Fee_for_Next_FY__c,Percentage_of_Fee_for_this_FY__c,Platform__c,Preview_Date__c
-                    ,Production_Completion_Date__c,Projected_Stage__c,ProjectTotalAssetscore__c,Project_Completion_Date__c,Project_Finish_Date__c,Project_Priority__c,Project_Scale_1__c,Project_Scale_2__c
-                    ,Project_Stage__c,Project_Start_Date__c,Region__c,Selected_Countries__c,Should_legal_review_this_project__c,Start_of_TV_production__c,Stimulus_Requirements__c,Timescale_Notes__c
-                    ,Total_Adapt_Fees__c,Total_Asset_Deliverables__c,Total_Digital_Fee__c,Total_Fees_for_Project__c,Total_Locations__c,Total_Project_Score__c,Total_Value_Driver__c,Value_To_BePaid_Manual_Override__c
-                    ,Value_to_be_paid_in_Current_FY__c, (SELECT Actual_Delivery_Date__c,Additional_Description__c,Agency_Projects__c,Asset_Description__c,Asset_name__c,Asset_Picklist__c,Asset_Scoring_Number__c
-                    ,Asset_Title__c,Asset_Total_Score__c,Asset_Type__c,Calculator_Question__c,Category__c,Channels__c,FULL_Description__c,Location__c,Name,OblixClonedFromParentAsset__c,Option_Name__c,Quantity__c
-                    ,RecordTypeId,Sub_Category__c,SystemModstamp,Target_Delivery_Date__c,MDM_id__c,Asset_Score__c FROM Agency_Project_Assets__r)
-                    , (SELECT Enforce_Trigger_Update__c,Name,OblixCountry__c,Percentage__c,Project_Splits__c FROM Marketing_SOW_Project_Splits__r) 
-                    FROM Oblix_SOW_Projects__c WHERE Financial_Year__c = : sowId];
-
-            Map<Id, Oblix_SOW_Projects__c> map_master_cloned_campaigns = new Map<Id, Oblix_SOW_Projects__c>();
-
-            List<Oblix_SOW_Projects__c> liso_cloned_campaigns = new List<Oblix_SOW_Projects__c>();
-            for(Oblix_SOW_Projects__c master_campaign : master_campaigns){
-                Oblix_SOW_Projects__c cloned_project = master_campaign.clone(false,true,false,false);
-                cloned_project.Name +=  clone_suffix;
-                cloned_project.Financial_Year__c = sowClone.Id;
-                map_master_cloned_campaigns.put(master_campaign.Id, cloned_project);
-            }
-
-            insert map_master_cloned_campaigns.values();
-
-
-
-
-            // clone campaign assets
-
-            List<Oblix_Project_Assets__c> li_clone_assets_to_insert = new List<Oblix_Project_Assets__c>();
-
-            for(Oblix_SOW_Projects__c master_campaign : master_campaigns){
-                for(Oblix_Project_Assets__c master_asset : master_campaign.Agency_Project_Assets__r){
-                    Oblix_Project_Assets__c cloned_asset = master_asset.clone(false,true,false,false);
-                    cloned_asset.Agency_Projects__c = map_master_cloned_campaigns.get(master_campaign.Id).Id;
-                    li_clone_assets_to_insert.add(cloned_asset);
-                }
-            }
-
-            insert li_clone_assets_to_insert;
-
-
-
-
-            // clone hub splits
-
-            List<Oblix_Marketing_SOW_Project_Splits__c> li_cloned_hubs_to_insert = new List<Oblix_Marketing_SOW_Project_Splits__c>();
-
-            for(Oblix_SOW_Projects__c master_campaign : master_campaigns){
-                for (Oblix_Marketing_SOW_Project_Splits__c master_hub : master_campaign.Marketing_SOW_Project_Splits__r){
-                    Oblix_Marketing_SOW_Project_Splits__c cloned_hub = master_hub.clone(false,true,false,false);
-                    cloned_hub.Project_Splits__c = map_master_cloned_campaigns.get(master_campaign.Id).Id;
-                    li_cloned_hubs_to_insert.add(cloned_hub);
-                }
-            }
-
-            insert li_cloned_hubs_to_insert;
-
-
-
-
-            // clone non-campaign items
-
-            List<Marketing_Basics__c> li_clone_non_campaigns_to_insert = new List<Marketing_Basics__c>();
-
-            List<Marketing_Basics__c> master_non_campaigns = [SELECT Activities__c,Activity_Fee_Agency__c,Agency_Department__c,Agency__c,Description__c,Financial_Year_old__c,
-                                                Financial_Year__c,FTE__c,Hourly_Rate_Agency__c,Id,Name,Non_Campaign_Key__c,Non_campaign_title__c,
-                                                No_of_Hours_Required__c,OblixCountry__c,OblixOtherItemFee__c,Oblix_FTE_Real_Price__c,Oblix_Hourly_Rate__c,
-                                                Oblix_SOWMarketing__c,Order__c,Other_Activities__c,RecordTypeId,Resource_Fee_Agency__c,Role_Title__c 
-                                            FROM Marketing_Basics__c WHERE Oblix_SOWMarketing__c =: sowId];
-
-            for(Marketing_Basics__c master_non_campaign : master_non_campaigns){
-                Marketing_Basics__c cloned_non_campaign = master_non_campaign.clone(false,true,false,false);
-                cloned_non_campaign.Oblix_SOWMarketing__c = sowClone.Id;
-                cloned_non_campaign.Non_Campaign_Key__c = master_non_campaign.Non_Campaign_Key__c.replace(sow.Id, sowClone.Id);
-                li_clone_non_campaigns_to_insert.add(cloned_non_campaign);
-            }
-
-            insert li_clone_non_campaigns_to_insert;
-
-
-            // clone attachments
-
-            List<Attachment> master_attachments = [SELECT Id FROM Attachment WHERE ParentId =: sowId];
-
-            for(Attachment master_attachment : master_attachments){
-                cloneAttachment(master_attachment.Id, sowClone.Id);
-            }
-
-        } catch (Exception e){
-            // on any error, roll back all changes so no loose SOWs are left in the system
-            Database.rollback(sp);
-
+            update selected_sow;
+        }catch (DmlException e){
+            ApexPages.addMessage(new ApexPages.message(ApexPages.SEVERITY.ERROR, 'Could not initiate roll over'));
+            return null;
         }
-
-        return sowClone == null ? null : sowClone.Id;
-
+        return null;
     }
 
-    @future
-    private static void cloneAttachment(Id attachmentId, Id newParentId){
-
-        Attachment master_attachment = [SELECT Body,ContentType,Description,Id,IsPrivate,Name,OwnerId,ParentId FROM Attachment WHERE Id =: attachmentId];
-
-        Attachment clone_attachment = master_attachment.clone(false, true, false, false);
-        clone_attachment.ParentId = newParentId;
-
-        insert clone_attachment;
-
-    }*/
+    /******************************************************************************************
+    * @author       makepositive
+    * @date         2016-05-05
+    * @description  If no campaign Id is passed in - syncs all the child campaigns that have "Sync Required" to "Sync Reqeusted"
+    *               If campaign Id is passed in - only that single campaign is set to sync required 
+    *******************************************************************************************/
+    public PageReference syncCampaigns(){
+        System.DEBUG('In Here');
+        System.DEBUG(campaignIDSync);
+        List<Oblix_SOW_Projects__c> campaignsToUpdate = new List<Oblix_SOW_Projects__c>();
+        if(campaignIDSync == null){
+            for(Oblix_SOW_Projects__c eachCampaign : [SELECT Id, Sync_Status__c 
+                                                        FROM Oblix_SOW_Projects__c 
+                                                        WHERE Financial_Year__c =:selected_sow.Id 
+                                                        AND Sync_Status__c = :Oblix_Utils.JOB_STATUS_SYNC_REQUIRED
+                                                        LIMIT 1000]){
+                eachCampaign.Sync_Status__c = Oblix_Utils.JOB_STATUS_SYNC_REQUESTED;
+                campaignsToUpdate.add(eachCampaign);
+            }
+        }else{
+            for(Oblix_SOW_Projects__c eachCampaign : [SELECT Id, Sync_Status__c 
+                                                    FROM Oblix_SOW_Projects__c 
+                                                    WHERE Id =:campaignIDSync 
+                                                    AND Sync_Status__c = :Oblix_Utils.JOB_STATUS_SYNC_REQUIRED
+                                                    LIMIT 1]){
+                eachCampaign.Sync_Status__c = Oblix_Utils.JOB_STATUS_SYNC_REQUESTED;
+                campaignsToUpdate.add(eachCampaign);
+            }            
+        }
+        try{
+            update campaignsToUpdate;
+            campaignIDSync = null;
+        }catch (DmlException e){
+            ApexPages.addMessage(new ApexPages.message(ApexPages.SEVERITY.ERROR, 'Could not update related Campaigns'));
+            return null;
+        }
+        return null;
+    }
 
     
 }

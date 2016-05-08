@@ -97,7 +97,15 @@ Renamed to Other SOW items in reviews</description>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Category Leadership</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Competitive Reviews</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Global Leadership</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -106,6 +114,10 @@ Renamed to Other SOW items in reviews</description>
             </picklistValues>
             <picklistValues>
                 <fullName>Network Co-ordination (other agencies)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Regional Leadership</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -122,18 +134,6 @@ Renamed to Other SOW items in reviews</description>
             </picklistValues>
             <picklistValues>
                 <fullName>Other</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Global Leadership</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Regional Leadership</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Category Leadership</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>

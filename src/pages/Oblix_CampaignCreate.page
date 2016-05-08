@@ -64,9 +64,14 @@
                     <div>
                         <div class="form-group" id="campaignNameLabel">
                             <label for="SOWName" class="create_SOW_form_titles">Campaign Name*</label>
-                            <apex:inputField styleClass="form-control" id="CampaignName" value="{!campaignHelper.selectedProject.Name}" rendered="{!!campaignHelper.doClone}"/>
+                            <apex:inputField styleClass="form-control" id="CampaignName" value="{!campaignHelper.selectedProject.Name_Prefix__c}" rendered="{!!campaignHelper.doClone}"/>
                             <apex:inputText styleClass="form-control" id="CloneName" value="{!cloneName}" rendered="{!campaignHelper.doClone}"/>
                         </div>
+                        <!-- <div class="form-group" id="campaignNameLabel">
+                            <label for="SOWName" class="create_SOW_form_titles">Campaign Name*</label>
+                            <apex:outputText styleClass="form-control" id="CampaignName" value="{!campaignHelper.selectedProject.Name}" rendered="{!!campaignHelper.doClone}"/>
+                            <apex:inputText styleClass="form-control" id="CloneName" value="{!cloneName}" rendered="{!campaignHelper.doClone}"/>
+                        </div> -->
                         <div class="form-group">
                             <p>Description&nbsp;<span class="form_bracket_text">(Optional)</span>
                             </p>

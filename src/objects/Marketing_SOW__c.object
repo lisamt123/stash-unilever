@@ -105,6 +105,26 @@
         <fullName>Oblix_SOW_Main_Detail</fullName>
         <description>SOW Main Detail Create</description>
         <displayedFields>
+            <field>Initial_Approval_Complete__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Name_Prefix__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Name_Suffix__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Sync_Status__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
             <field>LastModifiedDate</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -613,6 +633,17 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Initial_Approval_Complete__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Determines if the SOW has already been through the initial approval. This field is used in Apex logic to determine state between Initial Approval / EOY approval</description>
+        <externalId>false</externalId>
+        <label>Initial Approval Complete</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Marked_for_cloning__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Field to indicate that record needs to be processed by schedulable class. Work around for Community users not being able to see internal users.</description>
@@ -670,6 +701,32 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Name_Prefix__c</fullName>
+        <description>This field is visible and editable by user via front page of Oblix - the field is used to build the name</description>
+        <externalId>false</externalId>
+        <label>Name Prefix</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Name_Suffix__c</fullName>
+        <description>This suffix is programatically generated as part of the trigger and combined with name prefix to make up the Name field value</description>
+        <externalId>false</externalId>
+        <label>Name Suffix</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>OblixBrand__c</fullName>
@@ -823,7 +880,6 @@
     </fields>
     <fields>
         <fullName>Oblix_tec_Unique_Name__c</fullName>
-        <caseSensitive>false</caseSensitive>
         <description>This is a technical field used for having Unique Record by Name</description>
         <externalId>false</externalId>
         <label>Unique Name</label>
@@ -833,7 +889,7 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>true</unique>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Original_SOW__c</fullName>
@@ -977,6 +1033,10 @@ ISPICKVAL(SOW_Status__c , &quot;Returned by Agency&quot;)
                 <fullName>Open for Updates</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Finalised</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
@@ -1035,6 +1095,10 @@ ISPICKVAL(SOW_Status__c , &quot;Returned by Agency&quot;)
             </picklistValues>
             <picklistValues>
                 <fullName>Sync Requested</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Campaign Sync Required</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -1252,15 +1316,6 @@ OblixTotalOtherItemsFees__c)</formula>
         <label>All</label>
         <language>en_US</language>
     </listViews>
-    <listViews>
-        <fullName>SWOP_Super_User_Marketing_SOW</fullName>
-        <filterScope>Queue</filterScope>
-        <label>SWOP Super User</label>
-        <queue>SWOP_Super_User</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
     <nameField>
         <label>SOW Name</label>
         <trackFeedHistory>true</trackFeedHistory>
@@ -1365,6 +1420,10 @@ OblixTotalOtherItemsFees__c)</formula>
                 <default>true</default>
             </values>
             <values>
+                <fullName>Finalised</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Open for Updates</fullName>
                 <default>false</default>
             </values>
@@ -1383,6 +1442,10 @@ OblixTotalOtherItemsFees__c)</formula>
         </picklistValues>
         <picklistValues>
             <picklist>Sync_Status__c</picklist>
+            <values>
+                <fullName>Campaign Sync Required</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Clone In Progress</fullName>
                 <default>false</default>
@@ -1528,6 +1591,10 @@ OblixTotalOtherItemsFees__c)</formula>
                 <default>true</default>
             </values>
             <values>
+                <fullName>Finalised</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Open for Updates</fullName>
                 <default>false</default>
             </values>
@@ -1605,4 +1672,12 @@ OblixTotalOtherItemsFees__c)</formula>
         <fullName>SOW_sharing_by_brand__c</fullName>
         <label>SOW sharing by brand</label>
     </sharingReasons>
+    <validationRules>
+        <fullName>Lock_Record_if_Sync_in_Progress</fullName>
+        <active>true</active>
+        <description>Lock the SWOP record if a roll over sync is in progress</description>
+        <errorConditionFormula>IF(  $Profile.Name &lt;&gt; &apos;System Administrator&apos; &amp;&amp; TEXT( Sync_Status__c ) == &apos;Sync In Progress&apos;,true,false)</errorConditionFormula>
+        <errorDisplayField>Sync_Status__c</errorDisplayField>
+        <errorMessage>Sync in Progress. Record Locked</errorMessage>
+    </validationRules>
 </CustomObject>

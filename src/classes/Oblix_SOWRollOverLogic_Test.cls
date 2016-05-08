@@ -71,26 +71,27 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
 
 		Oblix_SyncBatchJob job_process_batch = new Oblix_SyncBatchJob(sow_requested_clone_size,sow_requested_sync_size,campaign_requested_sync_size);
     	
-        system.assertEquals(11, Oblix_SyncBatchJob.list_job_components.size(), 'Expecing 11 job components actual was ' + Oblix_SyncBatchJob.list_job_components.size());
+        system.assertEquals(11, job_process_batch.list_job_components.size(), 'Expecing 11 job components actual was ' + job_process_batch.list_job_components.size());
 
 
     	//Database.executeBatch(job_process_batch,1);
 
-		Oblix_SyncBatchJob.addEvent('******************************STARTED EXECUTING STEPS******************************',NULL);
+		Oblix_SyncBatchJob.addEvent('******************************STARTED EXECUTING SOW SYNC STEPS******************************',NULL);
 
-    	for (Oblix_SyncBatchJob.jobComponent job_component : Oblix_SyncBatchJob.list_job_components){
+    	for (Oblix_SyncBatchJob.jobComponent job_component : job_process_batch.list_job_components){
         	system.assertNotEquals(job_component.process_name, NULL, 'process name cannot be null! ');
         	if (Oblix_SyncBatchJob.sync_job.job_has_error){
 
 				Oblix_SyncBatchJob.addEvent('ERROR OCCURED ABORTING JOB!',NULL);
 			}
 			else{
-				Oblix_SOWRolloverLogic.processStep(job_component);
 				Oblix_SyncBatchJob.addEvent('EXECUTING PROCESS: ' + job_component.process_name + ' - CHUNK#: ' + job_component.chunk_number 
-					+ ' - ATTRIB1: ' + job_component.attrib_1 + ' - ATTRIB2: ' + job_component.attrib_2 + ' - ATTRIB3: ' + job_component.attrib_3 ,NULL);
+					+ ' - ATTRIB1: ' + job_component.attrib_1 + ' - ATTRIB2: ' + job_component.attrib_2 + ' - ATTRIB3: ' + job_component.attrib_3
+					+ ' - ATTRIB4: ' + job_component.attrib_4 + ' - ATTRIB5: ' + job_component.attrib_5,NULL);
+				Oblix_SOWRolloverLogic.processStep(job_component);
 			}
     	}
-		Oblix_SyncBatchJob.addEvent('******************************COMPLETED EXECUTING STEPS******************************',NULL);
+		Oblix_SyncBatchJob.addEvent('******************************COMPLETED EXECUTING SOW SYNC STEPS******************************',NULL);
 
         system.debug(Oblix_SyncBatchJob.sync_job.process_result);
 
@@ -150,7 +151,7 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
 
 
 
-    private static testMethod void testCampaignsSync(){
+    private static void testCampaignsSync(){
 
     	initialiseTestClass();
 
@@ -205,44 +206,32 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
 
 		Oblix_SyncBatchJob job_process_batch = new Oblix_SyncBatchJob(sow_requested_clone_size,sow_requested_sync_size,campaign_requested_sync_size);
     	
-        system.assertEquals(4, Oblix_SyncBatchJob.list_job_components.size(), 'Expecing 4 job components actual was ' + Oblix_SyncBatchJob.list_job_components.size());
+        system.assertEquals(4, job_process_batch.list_job_components.size(), 'Expecing 4 job components actual was ' + job_process_batch.list_job_components.size());
 
 
     	//Database.executeBatch(job_process_batch,1);
 
-		Oblix_SyncBatchJob.addEvent('******************************STARTED EXECUTING STEPS******************************',NULL);
+		Oblix_SyncBatchJob.addEvent('******************************STARTED EXECUTING CAMPAIGN SYNC STEPS******************************',NULL);
 
-    	for (Oblix_SyncBatchJob.jobComponent job_component : Oblix_SyncBatchJob.list_job_components){
+    	for (Oblix_SyncBatchJob.jobComponent job_component : job_process_batch.list_job_components){
         	system.assertNotEquals(job_component.process_name, NULL, 'process name cannot be null! ');
         	if (Oblix_SyncBatchJob.sync_job.job_has_error){
 
 				Oblix_SyncBatchJob.addEvent('ERROR OCCURED ABORTING JOB!',NULL);
 			}
 			else{
-				Oblix_SOWRolloverLogic.processStep(job_component);
 				Oblix_SyncBatchJob.addEvent('EXECUTING PROCESS: ' + job_component.process_name + ' - CHUNK#: ' + job_component.chunk_number 
-					+ ' - ATTRIB1: ' + job_component.attrib_1 + ' - ATTRIB2: ' + job_component.attrib_2 + ' - ATTRIB3: ' + job_component.attrib_3 ,NULL);
+					+ ' - ATTRIB1: ' + job_component.attrib_1 + ' - ATTRIB2: ' + job_component.attrib_2 + ' - ATTRIB3: ' + job_component.attrib_3
+					+ ' - ATTRIB4: ' + job_component.attrib_4 + ' - ATTRIB5: ' + job_component.attrib_5,NULL);
+				Oblix_SOWRolloverLogic.processStep(job_component);
 			}
     	}
-		Oblix_SyncBatchJob.addEvent('******************************COMPLETED EXECUTING STEPS******************************',NULL);
+		Oblix_SyncBatchJob.addEvent('******************************COMPLETED EXECUTING CAMPAIGN SYNC STEPS******************************',NULL);
 
         system.debug(Oblix_SyncBatchJob.sync_job.process_result);
 
-    	// check SOW cloned
+    	// check SOW
     	Marketing_SOW__c sow_original = [SELECT Name, Original_SOW__c, Cloned_SOW__c, SOW_PFY__c, SOW_NFY__c FROM Marketing_SOW__c WHERE Name =: Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME ];
-    	Marketing_SOW__c sow_cloned = [SELECT Name, Original_SOW__c, Cloned_SOW__c, SOW_PFY__c, SOW_NFY__c FROM Marketing_SOW__c WHERE Name =: Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME + 'CLONED'];
-
-
-    	system.assertEquals(sow_cloned.Id, sow_original.Cloned_SOW__c, 'Expecing cloned SOW Id to be populated');
-    	system.assertEquals(sow_original.Id, sow_cloned.Original_SOW__c, 'Expecing original SOW Id to be populated');
-
-    	// check SOW cloned
-    	List<Attachment> list_orignal_attachments = [SELECT Name FROM Attachment WHERE ParentId =: sow_original.Id ];
-    	List<Attachment> list_cloned_attachments = [SELECT Name FROM Attachment WHERE ParentId =: sow_cloned.Id ];
-
-    	system.assertEquals(20, list_orignal_attachments.size(), 'Expecing #of original attachments to be 20 actual: ' + list_orignal_attachments.size());
-    	system.assertEquals(20, list_cloned_attachments.size(), 'Expecing #of cloned attachments to be 20 actual: ' + list_cloned_attachments.size());
-
 
     	List<String> list_original_campaign_names = new List<String>();
     	List<String> list_cloned_campaign_names = new List<String>();
@@ -281,8 +270,27 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
 
     }
 
+    private static void processJobComponents(List<Oblix_SyncBatchJob.jobComponent> job_components){
 
-    private static void testSOWClone(){
+		Oblix_SyncBatchJob.addEvent('******************************STARTED EXECUTING JOB STEPS STEPS******************************',NULL);
+
+    	for (Oblix_SyncBatchJob.jobComponent job_component : job_components){
+        	system.assertNotEquals(job_component.process_name, NULL, 'process name cannot be null! ');
+        	if (Oblix_SyncBatchJob.sync_job.job_has_error){
+
+				Oblix_SyncBatchJob.addEvent('ERROR OCCURED ABORTING JOB!',NULL);
+			}
+			else{
+				Oblix_SyncBatchJob.addEvent('EXECUTING PROCESS: ' + job_component.process_name + ' - CHUNK#: ' + job_component.chunk_number + ' - QUERY LIMIT: ' + job_component.query_limit
+					+ ' - ATTRIB1: ' + job_component.attrib_1 + ' - ATTRIB2: ' + job_component.attrib_2 + ' - ATTRIB3: ' + job_component.attrib_3
+					+ ' - ATTRIB4: ' + job_component.attrib_4 + ' - ATTRIB5: ' + job_component.attrib_5 + ' - ATTRIB6: ' + job_component.attrib_6,NULL);
+				Oblix_SOWRolloverLogic.processStep(job_component);
+			}
+    	}
+		Oblix_SyncBatchJob.addEvent('******************************COMPLETED EXECUTING JOB STEPS******************************',NULL);
+    }
+
+    private static testMethod void testSOWClone(){
 
     	initialiseTestClass();
 
@@ -295,20 +303,19 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
 
 		Map<Id, Oblix_SOW_Projects__c> map_campaigns_to_test = Oblix_TestUtils.insertCampaignsWithRelatedRecords(3,20,5,mSow.Id,'Total turnover >€400m', 'Global campaign (all market clusters)', 'Up to 4 locations', 'New – Multi channel');
 
+		// insert attachment
+		insert Oblix_TestUtils.createAttachment(mSow.Id, 20);
+
+
+		// insert non-campaign
+		insert Oblix_TestUtils.createMarketingBasics(mSow.Id, 50);
+
+		// request cloning for this SOW
 		mSow.Sync_Status__c = Oblix_Utils.JOB_STATUS_CLONE_REQUESTED;
 		update mSow;
 
-
-		// insert attachment
-
-		List<Attachment> list_attach = new List<Attachment>();   	
-		for (Integer i=0; i < 20; i++){
-			list_attach.add(new Attachment(Name = 'Unite Test Attachment '+i, Body = Blob.valueOf('Unit Test Attachment Body'), ParentId = mSow.Id ));
-		}
-        insert list_attach;
-
-		List<Oblix_Project_Assets__c> list_assets_in_basket = new List<Oblix_Project_Assets__c>();
-		Oblix_SOW_Projects__c project;
+		mSow = [SELECT Sync_Status__c FROM Marketing_SOW__c WHERE Id =: mSow.Id];
+        system.debug('### mSow.Sync_Status__c: ' + mSow.Sync_Status__c);
 
         // how many SOWs require Cloning? 
         Integer sow_requested_clone_size = [SELECT count() FROM Marketing_SOW__c WHERE Sync_Status__c =: Oblix_Utils.JOB_STATUS_CLONE_REQUESTED];
@@ -325,42 +332,40 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
         system.debug('### total sow_requested_clone_size: ' + sow_requested_clone_size + ' - sow_requested_sync_size: '
             + sow_requested_sync_size + ' - campaign_requested_sync_size' + campaign_requested_sync_size + ' - assets_requested_sync_size: ' + assets_requested_sync_size);
 
-        system.assertEquals(3, campaign_requested_sync_size, 'Expecing 3 campaigns actual was ' + campaign_requested_sync_size);
+        system.assertEquals(1, sow_requested_clone_size, 'Expecing 1 clone sow actual was ' + sow_requested_clone_size);
+        system.assertEquals(0, sow_requested_sync_size, 'Expecing 0 sync sow actual was ' + sow_requested_sync_size);
+        system.assertEquals(0, campaign_requested_sync_size, 'Expecing 0 campaigns actual was ' + campaign_requested_sync_size);
+        system.assertEquals(60, assets_requested_sync_size, 'Expecing 60 campaigns actual was ' + assets_requested_sync_size);
+		
 
 		Oblix_SyncBatchJob job_process_batch = new Oblix_SyncBatchJob(sow_requested_clone_size,sow_requested_sync_size,campaign_requested_sync_size);
     	
-        system.assertEquals(11, Oblix_SyncBatchJob.list_job_components.size(), 'Expecing 11 job components actual was ' + Oblix_SyncBatchJob.list_job_components.size());
+        system.assertEquals(8, job_process_batch.list_job_components.size(), 'Expecing 8 job components actual was ' + job_process_batch.list_job_components.size());
 
 
-    	//Database.executeBatch(job_process_batch,1);
+    	//***** EXECUTE JOB COMPONENTS
+    	processJobComponents(job_process_batch.list_job_components);
 
-		Oblix_SyncBatchJob.addEvent('******************************STARTED EXECUTING STEPS******************************',NULL);
-
-    	for (Oblix_SyncBatchJob.jobComponent job_component : Oblix_SyncBatchJob.list_job_components){
-        	system.assertNotEquals(job_component.process_name, NULL, 'process name cannot be null! ');
-        	if (Oblix_SyncBatchJob.sync_job.job_has_error){
-
-				Oblix_SyncBatchJob.addEvent('ERROR OCCURED ABORTING JOB!',NULL);
-			}
-			else{
-				Oblix_SOWRolloverLogic.processStep(job_component);
-				Oblix_SyncBatchJob.addEvent('EXECUTING PROCESS: ' + job_component.process_name + ' - CHUNK#: ' + job_component.chunk_number 
-					+ ' - ATTRIB1: ' + job_component.attrib_1 + ' - ATTRIB2: ' + job_component.attrib_2 + ' - ATTRIB3: ' + job_component.attrib_3 ,NULL);
-			}
-    	}
-		Oblix_SyncBatchJob.addEvent('******************************COMPLETED EXECUTING STEPS******************************',NULL);
 
         system.debug(Oblix_SyncBatchJob.sync_job.process_result);
 
     	// check SOW cloned
-    	Marketing_SOW__c sow_original = [SELECT Name, Original_SOW__c, Cloned_SOW__c, SOW_PFY__c, SOW_NFY__c FROM Marketing_SOW__c WHERE Name =: Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME ];
-    	Marketing_SOW__c sow_cloned = [SELECT Name, Original_SOW__c, Cloned_SOW__c, SOW_PFY__c, SOW_NFY__c FROM Marketing_SOW__c WHERE Name =: Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME + 'CLONED'];
+    	Marketing_SOW__c sow_original = [SELECT Name, Original_SOW__c, Cloned_SOW__c, SOW_PFY__c, SOW_NFY__c FROM Marketing_SOW__c WHERE Name_Prefix__c =: Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME AND Name_Suffix__c =: Oblix_Utils.NAME_SUFFIX_APPROVED ];
+    	Marketing_SOW__c sow_cloned = [SELECT Name, Original_SOW__c, Cloned_SOW__c, SOW_PFY__c, SOW_NFY__c FROM Marketing_SOW__c WHERE Name_Prefix__c =: Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME AND Name_Suffix__c =:  Oblix_Utils.NAME_SUFFIX_LIVE];
 
 
     	system.assertEquals(sow_cloned.Id, sow_original.Cloned_SOW__c, 'Expecing cloned SOW Id to be populated');
     	system.assertEquals(sow_original.Id, sow_cloned.Original_SOW__c, 'Expecing original SOW Id to be populated');
 
-    	// check SOW cloned
+
+    	// check non-campaigns cloned
+    	List<Marketing_Basics__c> list_orignal_non_campaigns = [SELECT Name FROM Marketing_Basics__c WHERE Oblix_SOWMarketing__c =: sow_original.Id ];
+    	List<Marketing_Basics__c> list_cloned_non_campaigns = [SELECT Name FROM Marketing_Basics__c WHERE Oblix_SOWMarketing__c =: sow_cloned.Id ];
+
+    	system.assertEquals(50, list_orignal_non_campaigns.size(), 'Expecing #of original non-campaigns to be 50 actual: ' + list_orignal_non_campaigns.size());
+    	system.assertEquals(50, list_cloned_non_campaigns.size(), 'Expecing #of cloned non-campaigns to be 50 actual: ' + list_cloned_non_campaigns.size());
+
+    	// check attachments cloned
     	List<Attachment> list_orignal_attachments = [SELECT Name FROM Attachment WHERE ParentId =: sow_original.Id ];
     	List<Attachment> list_cloned_attachments = [SELECT Name FROM Attachment WHERE ParentId =: sow_cloned.Id ];
 
@@ -368,20 +373,18 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
     	system.assertEquals(20, list_cloned_attachments.size(), 'Expecing #of cloned attachments to be 20 actual: ' + list_cloned_attachments.size());
 
 
-    	List<String> list_original_campaign_names = new List<String>();
-    	List<String> list_cloned_campaign_names = new List<String>();
-    	for (Integer i=1; i<=3; i++){
-    		list_original_campaign_names.add('TEST_CAMPAIGN_' + Datetime.now().format('M/d/yyyy') + '_' +i);
-    		list_cloned_campaign_names.add('TEST_CAMPAIGN_' + Datetime.now().format('M/d/yyyy') + '_' +i+'CLONED');
-    	}
-
-    	system.debug('#### TESTING: ' + JSON.serialize([SELECT Name FROM Oblix_SOW_Projects__c]));
-    	system.debug('#### TESTING: ' + JSON.serialize(list_original_campaign_names));
-
     	// check campaigns cloned
-    	List<Oblix_SOW_Projects__c> list_campaign_original = [SELECT Name, Original_Campaign__c, Cloned_Campaign__c, Campaign_PFY__c, Campaign_NFY__c, (SELECT Name FROM Marketing_SOW_Project_Splits__r) FROM Oblix_SOW_Projects__c WHERE Name in: list_original_campaign_names ];
-    	List<Oblix_SOW_Projects__c> list_campaign_cloned = [SELECT Name, Original_Campaign__c, Cloned_Campaign__c, Campaign_PFY__c, Campaign_NFY__c, (SELECT Name FROM Marketing_SOW_Project_Splits__r) FROM Oblix_SOW_Projects__c WHERE Name in: list_cloned_campaign_names];
+    	List<Oblix_SOW_Projects__c> list_campaign_original = [SELECT Name, Original_Campaign__c, Cloned_Campaign__c, Campaign_PFY__c, Campaign_NFY__c
+    		, Financial_Year__c, Financial_Year__r.Name, Financial_Year__r.Sync_Status__c
+    		, (SELECT Name FROM Marketing_SOW_Project_Splits__r) FROM Oblix_SOW_Projects__c WHERE Financial_Year__r.Sync_Status__c =: Oblix_Utils.JOB_STATUS_CLONE_COMPLETED ];
+    	
+    	List<Oblix_SOW_Projects__c> list_campaign_cloned = [SELECT Name, Original_Campaign__c, Cloned_Campaign__c, Campaign_PFY__c, Campaign_NFY__c
+    		, Financial_Year__c, Financial_Year__r.Name, Financial_Year__r.Sync_Status__c
+    		, (SELECT Name FROM Marketing_SOW_Project_Splits__r) FROM Oblix_SOW_Projects__c WHERE Financial_Year__r.Sync_Status__c = NULL ];
 
+
+    	system.debug('##### CAMPAIGNS ORIGINAL: ' + JSON.serialize(list_campaign_original));
+    	system.debug('##### CAMPAIGNS CLONED: ' + JSON.serialize(list_campaign_cloned));
 
     	system.assertEquals(3, list_campaign_original.size(), 'Expecing #of original campaign to be 3 actual: ' + list_campaign_original.size());
     	system.assertEquals(3, list_campaign_cloned.size(), 'Expecing #of cloned campaign to be 3 actual: ' + list_campaign_cloned.size());
@@ -396,8 +399,8 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
 
 
     	// check assets cloned
-    	List<Oblix_Project_Assets__c> list_assets_original = [SELECT Name, Original_Asset__c, Cloned_Asset__c, Asset_PFY__c, Asset_NFY__c FROM Oblix_Project_Assets__c WHERE Agency_Projects__r.Name in: list_original_campaign_names];
-    	List<Oblix_Project_Assets__c> list_assets_cloned = [SELECT Name, Original_Asset__c, Cloned_Asset__c, Asset_PFY__c, Asset_NFY__c FROM Oblix_Project_Assets__c WHERE Agency_Projects__r.Name in: list_cloned_campaign_names];
+    	List<Oblix_Project_Assets__c> list_assets_original = [SELECT Name, Original_Asset__c, Cloned_Asset__c, Asset_PFY__c, Asset_NFY__c FROM Oblix_Project_Assets__c WHERE Agency_Projects__r.Financial_Year__r.Sync_Status__c =: Oblix_Utils.JOB_STATUS_CLONE_COMPLETED ];
+    	List<Oblix_Project_Assets__c> list_assets_cloned = [SELECT Name, Original_Asset__c, Cloned_Asset__c, Asset_PFY__c, Asset_NFY__c FROM Oblix_Project_Assets__c WHERE Agency_Projects__r.Financial_Year__r.Sync_Status__c = NULL ];
 
 
     	system.assertEquals(60, list_assets_original.size(), 'Expecing #of original assets to be 60 actual: ' + list_assets_original.size());

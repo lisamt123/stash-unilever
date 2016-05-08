@@ -14,15 +14,6 @@ public with sharing class Oblix_SowMainController extends Oblix_SWOPparentContro
 
     public String selectedSowId {get; set;}
 
-    public String FXMessage {
-        get{
-            String TEXT_MESSAGE = Oblix_Utils.getOblixSettingValueByName('FX_TEXT_MESSAGE');
-            String FX_TEXT_MESSAGE = TEXT_MESSAGE.replace('%date%', Oblix_Utils.getOblixSettingValueByName('FX_UPDATED_DATE'));
-            return FX_TEXT_MESSAGE;
-        }set;}
-
-    public Boolean showFXMessage {get; set;}
-
     public Boolean can_create_sow {
         get{
             return Oblix_PermissionHandler.canCreateSOW();
@@ -93,26 +84,7 @@ public with sharing class Oblix_SowMainController extends Oblix_SWOPparentContro
         
     }
 
-    public void updateFX(){
-        String FXDate = Oblix_Utils.getOblixSettingValueByName('FX_UPDATED_DATE');
-        Oblix_FX_Change__c fxChange = Oblix_FX_Change__c.getInstance(UserInfo.getUserId());
-        if(null == fxChange){
-
-        }
-        if(FXDate != fxChange.FX_Date__c && 
-            (Oblix_PermissionHandler.hasUL1permissionSet() || Oblix_PermissionHandler.hasUL2permissionSet() 
-                    || Oblix_PermissionHandler.hasSuperUserpermissionSet() || Oblix_PermissionHandler.isSystemAdmin())){
-            
-            fxChange.FX_Date__c = Oblix_Utils.getOblixSettingValueByName('FX_UPDATED_DATE');
-            fxChange.Acknowledged__c = true;
-            //update fxChange;
-            showFXMessage = true;
-            
-        }else{
-            showFXMessage = false;
-        }
-
-    }
+    
 
     public class SOWWrapper {
         public Marketing_SOW__c sow {get; set;}

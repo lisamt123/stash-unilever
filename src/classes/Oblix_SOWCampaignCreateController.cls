@@ -258,8 +258,8 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
     }
 
     public void setCampaignStages() {
-        campaignHelper.selectedProject.Stage_Completed_CFY__c = stage_identifier.s_selected_completed_stage;
-        campaignHelper.selectedProject.Stage_Projected_CFY__c = stage_identifier.s_selected_projected_stage;
+        campaignHelper.selectedProject.Completed_Stage_CFY__c = stage_identifier.s_selected_completed_stage;
+        campaignHelper.selectedProject.Projected_Stage_CFY__c = stage_identifier.s_selected_projected_stage;
         campaignHelper.selectedProject.Percentage_of_Fee_for_this_FY__c = stage_identifier.sow_project_in_scope.Percentage_of_Fee_for_this_FY__c;
 
     }

@@ -66,10 +66,6 @@ private class Oblix_SowMainController_Test {
         Oblix_SowMainController controller = new Oblix_SowMainController();
         controller.selectedSowId = sowDove.Id;
 
-        String FXMessage = controller.FXMessage;
-
-        Boolean ShowFX = controller.showFXMessage;
-
         Test.startTest();
 
         PageReference prefSowDetail = controller.redirectToSOWDetailPage();

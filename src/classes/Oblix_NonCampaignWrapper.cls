@@ -36,8 +36,8 @@ public with sharing class Oblix_NonCampaignWrapper {
 	public Id sowId;
  
 
-	private String ActivityName= System.Label.Oblix_Lbl_Activity;
-	private String marKObjName = System.Label.Oblix_Lbl_Marketing_Basics_c;
+	//private String ActivityName= System.Label.Oblix_Lbl_Activity;
+	//private String marKObjName = System.Label.Oblix_Lbl_Marketing_Basics_c;
 
     //public Oblix_NonCampaignWrapper() {
     //    nonCampaignItem = new Marketing_Basics__c ();
@@ -98,12 +98,34 @@ public with sharing class Oblix_NonCampaignWrapper {
         if (nonCampaignItem.RecordTypeId == Oblix_Utils.RT_NON_CAMPAIGN_RESOURCE_ID) {
             basketSectionKey = Oblix_Utils.RT_NON_CAMPAIGN_RESOURCE_DEV_NAME.toUpperCase();
         } else if (nonCampaignItem.RecordTypeId == Oblix_Utils.RT_NON_CAMPAIGN_ACTIVITY_ID && nonCampaignItem.Activities__c != 'Other') {
-            basketSectionKey = nonCampaignItem.Activities__c.toUpperCase();
+            if (nonCampaignItem.Activities__c == null) {
+                return null;
+            } else {
+                basketSectionKey = nonCampaignItem.Activities__c.toUpperCase();
+            }
         } else {
-            basketSectionKey = nonCampaignItem.Activities__c.toUpperCase() + nonCampaignItem.Name.toUpperCase();
+            if (nonCampaignItem.Name == null) {
+                return nonCampaignItem.Activities__c.toUpperCase();
+            } else {
+                basketSectionKey = nonCampaignItem.Activities__c.toUpperCase() + nonCampaignItem.Name.toUpperCase();
+            }
         }
 
-        return basketSectionKey.toUpperCase();
+        return basketSectionKey == null ? null : basketSectionKey.toUpperCase();
+    }
+
+
+    public String getWorklistTabKey() {
+
+        String basketTabKey;
+
+        if (nonCampaignItem.RecordTypeId == Oblix_Utils.RT_NON_CAMPAIGN_RESOURCE_ID) {
+            basketTabKey = Oblix_Utils.RT_NON_CAMPAIGN_RESOURCE_DEV_NAME.toUpperCase();
+        } else {
+            basketTabKey = Oblix_Utils.RT_NON_CAMPAIGN_ACTIVITY_DEV_NAME.toUpperCase();
+        }
+
+        return basketTabKey.toUpperCase();
     }
 
 

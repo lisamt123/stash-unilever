@@ -6,6 +6,11 @@ public with sharing class Oblix_TestUtils {
     public static final String BRAND_STATUS_ACTIVE = 'active';
     public static final String DEFAULT_SMALL_PROD_CAT_NAME = 'testsmallproductcategory';
     public static final String DEFAULT_BIG_PROD_CAT_NAME = 'testbigproductcategory';
+
+
+    public static final String JOB_STATUS_SYNC_COMPLETED = 'Sync Completed';
+    public static final String JOB_STATUS_SYNC_REQUESTED = 'Sync Requested';
+    public static final String JOB_STATUS_SYNC_REQUIRED = 'Sync Required';
     
     private static final String EN_US  = 'en_us';
     private Oblix_TestUtils(){}
@@ -59,7 +64,7 @@ public with sharing class Oblix_TestUtils {
     public static Marketing_SOW__c createTestMarketingSow(String name, String status, Id brandId, Id smallCategoryId, Id bigCategoryId, Id accountId){
         Marketing_SOW__c marketingSow = new Marketing_SOW__c();
         marketingSow.Active__c = true;
-        marketingSow.Name = name == null ? DEFAULT_MARKETING_SOW_NAME : name;
+        marketingSow.Name_Prefix__c = name == null ? DEFAULT_MARKETING_SOW_NAME : name;
         marketingSow.SOW_Status__c = status == null ? SOW_STATUS_OPEN : status;
         marketingSow.OblixBrand__c = brandId;
         marketingSow.SmallProductCategory__c = smallCategoryId;
@@ -123,6 +128,17 @@ public with sharing class Oblix_TestUtils {
     }
 
 
+    public static List<Marketing_Basics__c> createMarketingBasics(Id sow_id, Integer records_to_create){
+        List<Marketing_Basics__c> list_records_to_return = new List<Marketing_Basics__c>();
+
+        for (Integer i =0; i<records_to_create; i++){
+            list_records_to_return.add(new Marketing_Basics__c(Name = 'TEST_NON_CAMPAIGN_' + i, Oblix_SOWMarketing__c = sow_id ));
+        }
+
+        return list_records_to_return;
+    }
+
+
     public static Oblix_Project_Assets__c createProjectAssets(Id projectId){
         Asset_Scoring__c assetScoring = new Asset_Scoring__c();
         assetScoring.Name = 'Score 2';
@@ -151,6 +167,19 @@ public with sharing class Oblix_TestUtils {
         insert attach;
         return attach; 
     }
+
+
+    public static List<Attachment> createAttachment(Id parent_Id, Integer records_to_create ){
+        
+        List<Attachment> list_attachments = new List<Attachment>();
+
+        for (Integer i = 0 ; i < records_to_create; i++){
+            list_attachments.add(new Attachment(Name = 'Unite_Test_Attachment_'+i, Body = Blob.valueOf('Unit Test Attachment Body'), ParentId = parent_Id ));
+        }
+        
+        return list_attachments;
+    }
+
 
     public static Account createAccount(){
         Account acc = new Account();
@@ -248,7 +277,7 @@ public with sharing class Oblix_TestUtils {
             project = new Oblix_SOW_Projects__c();
 
             // make sure it is a unique name
-            project.Name = 'TEST_CAMPAIGN_' + date.today().format() + '_' +cam_num; 
+            project.Name_Prefix__c = 'TEST_CAMPAIGN_' + date.today().format() + '_' +cam_num; 
             project.Financial_Year__c = sow_id;
             project.Campaign_Countries__c = 'France, UK, Germany';
 

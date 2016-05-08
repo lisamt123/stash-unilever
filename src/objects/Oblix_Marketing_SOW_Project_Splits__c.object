@@ -124,4 +124,11 @@
     <pluralLabel>SWOP Campaign Splits</pluralLabel>
     <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Lock_Record_if_Sync_in_Progress</fullName>
+        <active>true</active>
+        <description>If a roll over Sync in Progress. Record Locked</description>
+        <errorConditionFormula>IF( $Profile.Name &lt;&gt; &apos;System Administrator&apos; &amp;&amp; TEXT( Project_Splits__r.Sync_Status__c  ) == &apos;Sync In Progress&apos; || Project_Splits__r.Sync_Required_NFY__c == &apos;Sync In Progress&apos;,true,false)</errorConditionFormula>
+        <errorMessage>Sync in Progress. Record Locked</errorMessage>
+    </validationRules>
 </CustomObject>
