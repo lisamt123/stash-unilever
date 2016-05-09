@@ -1,8 +1,5 @@
 $ = jQuery.noConflict();
-$('.read_more').click(function() {
-    alert( "Handler for .click() called." );
-    return false;
-});
+
 $(document).ready(function() {
     // force a user to write comments when rejecting SOW approval
     $('[id$="rejectComments"]').keyup(function(){
@@ -56,10 +53,11 @@ $(document).ready(function() {
         }
     });
 
-    var table = $('#sowListTable').DataTable({
+    var sowTable = $('#sowListTable').DataTable({
         "dom": 'lrtip',
         "pagingType": "full_numbers",
         "bAutoWidth": false,
+        "order": [[ 2, "asc" ],[ 7, "desc" ]],
         "aoColumns": [
           { "sWidth": "0%" },
           { "sWidth": "100px" },
@@ -72,7 +70,15 @@ $(document).ready(function() {
        ]
     });
     $('#searchBox').on('keyup', function() {
-        table.search(this.value).draw();
+        sowTable.search(this.value).draw();
+
+    });
+
+    var attachmentTable = $('#attachmentTable').DataTable({
+        "dom": 'lrtip'
+    });
+    $('#searchBoxAtt').on('keyup', function() {
+        attachmentTable.search(this.value).draw();
 
     });
 
