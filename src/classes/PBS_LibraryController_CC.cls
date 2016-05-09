@@ -6,6 +6,10 @@
     public with sharing class PBS_LibraryController_CC
     {
         public String searchstring { get; set; }
+        
+        private static final string STR_AND = ' AND ';
+        private static final string STR_TITLE = 'Title';
+        
     
         /**
          * Holds user language
@@ -36,8 +40,8 @@
             set {
                 sortField = value;
                 // make sure that value provided is valid
-                if ( sortField != 'Title' && sortField != 'Summary' && sortField != 'lastPublishedDate' ) {
-                    sortField = 'Title';
+                if ( sortField != STR_TITLE && sortField != 'Summary' && sortField != 'lastPublishedDate' ) {
+                    sortField = STR_TITLE;
                 }
             }
         }
@@ -67,7 +71,7 @@
          * Class constructor
          */
         public PBS_LibraryController_CC() {
-            sortField = 'Title';
+            sortField = STR_TITLE;
             sortDir   = 'ASC';
             language  = UserInfo.getLanguage();
             ranking   = new Map<String, Decimal>();
@@ -113,11 +117,11 @@
     return null;
 } 
  
-            String query ;
+          
 
                                           
             String searchQuery = 'FIND \'' + searchstring + '\' IN ALL FIELDS RETURNING PBS_Wiki__kav(Id,KnowledgeArticleId WHERE PublishStatus=\'Online\' AND Language=\'en_US\'';
-            searchQuery += ' ORDER BY ' + sortField + ' ' + sortDir + (sortField != 'Title' ? ', Title ASC' : '');
+            searchQuery += ' ORDER BY ' + sortField + ' ' + sortDir + (sortField != STR_TITLE ? ', Title ASC' : '');
             searchQuery += ' LIMIT ' + this.rowsPerPage;
             searchQuery += ' OFFSET ' + ((this.currentPage - 1) * this.rowsPerPage) + ')';
            
@@ -179,13 +183,13 @@
                 query += ' KnowledgeArticleVersion ';
             query += ' WHERE ';
                 query += ' language = \'' + language + '\'';
-            query += ' AND ';
+            query += STR_AND;
                 query += ' PublishStatus = \'Online\' ';
-            query += ' AND ';
+            query += STR_AND;
                 query += ' ArticleType IN (\'PBS_Wiki__kav\') ';
             
             if(!setKnowledgeId.isEmpty())  {  
-            query += ' AND ';
+            query += STR_AND;
                 query += ' KnowledgeArticleId IN '+idString;
                 }
                 

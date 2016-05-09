@@ -1,4 +1,4 @@
-public class PBS_WikiController_CC{
+public with sharing  class PBS_WikiController_CC{
 public PBS_Wiki__kav objpbs {get;set;}
 public string recordId {get;set;}
 public PBS_WikiController_CC() 

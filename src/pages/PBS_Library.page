@@ -64,7 +64,7 @@
    
    <apex:actionStatus id="actStatusId" >
                 <apex:facet name="start" >
-                  <img src="/img/loading.gif" />                    
+                  <img src="/img/loading.gif" alt="loading"/>                    
                 </apex:facet>
             </apex:actionStatus>
             
