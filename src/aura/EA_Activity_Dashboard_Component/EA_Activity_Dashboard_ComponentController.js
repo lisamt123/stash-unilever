@@ -1,7 +1,7 @@
 ({
 	gotoDetail : function(component, event, helper) {
         console.log("cancel");
-         helper.scrollToLocation(component, "top"); 
+        //helper.scrollToLocation(component, "top"); 
        var actvity=component.get("v.activity");
         var page='MyAction';
         var id=actvity.acivityId; ;
@@ -29,14 +29,14 @@
     },
     
     gotoInvitation :function(cmp, event, helper) {
-        helper.scrollToLocation(cmp, "top"); 
+       //helper.scrollToLocation(cmp, "top"); 
         var member=cmp.get("v.activity");       
         var feedbackevent=$A.get("e.c:EA_Accept_Event");
         feedbackevent.setParams({"activityId":member.acivityId,"teamId":member.member_Id});
         feedbackevent.fire();
     },
     gotofeedback : function(component, event, helper) {
-        helper.scrollToLocation(component, "top"); 
+       // helper.scrollToLocation(component, "top"); 
         console.log("feedback");
         var member=component.get("v.activity");
         var feedbackevent=$A.get("e.c:EA_Feedback_Event");

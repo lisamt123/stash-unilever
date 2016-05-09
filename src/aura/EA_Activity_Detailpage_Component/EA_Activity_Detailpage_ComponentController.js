@@ -109,7 +109,7 @@
         cmp.set("v.EAactivityid",id);
     },
     commentspage2 :function(cmp, event, helper) {
-         helper.scrollToLocation(cmp, "top"); 
+         //helper.scrollToLocation(cmp, "top"); 
         var activity = cmp.get("v.activity");
         var pagename=cmp.get("v.pagename");
         if(pagename ==='swipe'){
@@ -123,7 +123,7 @@
          
     },
     callfeedback:function(cmp,event,helper){
-          helper.scrollToLocation(cmp, "top");  
+         // helper.scrollToLocation(cmp, "top");  
         var activity = cmp.get("v.activity");
         var feedbacevent=$A.get("e.c:EA_Feedback_Event");
         var pagename=cmp.get("v.pagename");
@@ -136,7 +136,7 @@
         feedbacevent.fire();
     },
     calltodoactivity:function(cmp,event,helper){
-         helper.scrollToLocation(cmp, "top");
+         //helper.scrollToLocation(cmp, "top");
         var pagename=cmp.get("v.pagename");
         if(pagename ==='swipe'){
             pagename=pagename+'Detailcard';
