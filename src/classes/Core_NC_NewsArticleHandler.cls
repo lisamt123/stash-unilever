@@ -18,7 +18,7 @@ public with sharing class Core_NC_NewsArticleHandler{
                 
                 // Validate the Chatter Group id and check whether it exist in Sandbox.
                 //private boolean executeCode = ((newsArticle.Archived__c==false && newsArticle.Hidden__c==false && newsArticle.Video_Article__c==false)?true:false);
-               boolean executeCode = (!newsArticle.Archived__c && !newsArticle.Hidden__c&& !newsArticle.Video_Article__c?false:true);
+               boolean executeCode = (!newsArticle.Archived__c && !newsArticle.Hidden__c && !newsArticle.Video_Article__c?true:false);
                 if(newsArticle.Post_to_NewsCentre__c && newsArticle.Chatter_Groups__c!=null && newsArticle.Chatter_Groups__c!='' && executeCode ){
                     for(String strGrp:newsArticle.Chatter_Groups__c.split(',')) {
                         if(strGrp != '' && strGrp != null){
