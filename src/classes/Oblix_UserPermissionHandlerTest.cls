@@ -1,9 +1,9 @@
 @isTest
 private class Oblix_UserPermissionHandlerTest {
 
-	private static User ul1;
-    private static User ul2;
-    private static User ul3;
+	//private static User ul1;
+ //   private static User ul2;
+ //   private static User ul3;
     //private static User superuser;
 
     /*private static void initTestUsers(){

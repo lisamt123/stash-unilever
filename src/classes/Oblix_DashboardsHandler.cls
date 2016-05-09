@@ -8,8 +8,17 @@ public with sharing class Oblix_DashboardsHandler {
 	public final String SCORE_ML = 'M/L';
 	public final String SCORE_L = 'L';
 	public final String SCORE_TOTAL = 'TOTAL';
-
-	public Decimal totalAssets { get; set; }
+	public final String TOTAL_ASSETS = 'TotalAssets';
+	
+	public Integer totalAssets { 
+		get{
+			if(totalAssets == null){
+				totalAssets = getAssetTotal();
+			} 
+			return totalAssets;
+		}
+			set; 
+		}
 
 	public String graphData {
 		get{
@@ -28,7 +37,6 @@ public with sharing class Oblix_DashboardsHandler {
 
 		this.instanceType = pInstanceType;
 		this.recordId = pRecordId;
-
 	}
 
 	private List<List<Object>> generateGraphData(){
@@ -126,23 +134,32 @@ public with sharing class Oblix_DashboardsHandler {
 		System.DEBUG(assetTypes);
 		Map<String, Integer> assetCountToAddMap = new Map<String, Integer>();
 		//
-		for(AggregateResult ar : [SELECT count(id) num, Asset_Type__c assetType FROM Oblix_Project_Assets__c 
+		for(AggregateResult ar : [SELECT sum(Quantity__c) num, Asset_Type__c assetType FROM Oblix_Project_Assets__c 
 									WHERE Agency_Projects__c =: recordId
 		                          	GROUP BY Asset_Type__c ORDER BY Asset_Type__c ASC]){
 		                              if(ar.get('assetType') != null && !String.valueOf(ar.get('assetType')).equalsIgnoreCase('null')){
-		                              	assetCountToAddMap.put(removeStringValuesAfterHyphen((String)ar.get('assetType')),(Integer)ar.get('num'));
+		                              	assetCountToAddMap.put(removeStringValuesAfterHyphen((String)ar.get('assetType')),Integer.valueOf(ar.get('num')));
 		                              }
 		}
-		Decimal totalAssets = 0;
 		for(String assetType : assetCountToAddMap.keyset()){
 			retval.add(new List<String>{assetType,String.valueOf(assetCountToAddMap.get(assetType))});
-			totalAssets += (Decimal) assetCountToAddMap.get(assetType);
+			//this.totalAssets += (Decimal) assetCountToAddMap.get(assetType);
 		}
-
+		//retval.add(new List<String>{TOTAL_ASSETS,String.valueOf(totalAssets)});
 		System.DEBUG(JSON.serializePretty(retVal));
-		System.DEBUG(totalAssets);
+		//System.DEBUG(this.totalAssets);
 		return retval;
 		
+	}
+
+	private Integer getAssetTotal(){
+		Integer total = 0;
+		for(AggregateResult ar : [SELECT Sum(Quantity__c) sumValue, Asset_Type__c assetType FROM Oblix_Project_Assets__c 
+									WHERE Agency_Projects__c =: recordId
+		                          	GROUP BY Asset_Type__c]){
+			total += Integer.valueOf(ar.get('sumValue'));
+		}
+		return total;
 	}
 
 	private String removeStringValuesAfterHyphen(String valueToBeRemoved){

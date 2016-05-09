@@ -16,7 +16,7 @@ public with sharing class Oblix_TestUtils {
     private Oblix_TestUtils(){}
     
     public static User createTestUser(){
-        Profile profile = [Select Id from Profile where Name='System Administrator' or Name='Système Administrateur'];       
+        Profile profile = [Select Id from Profile where Name='System Administrator'];       
      
         User user = new User(Alias = 'test123', Email = 'standarduser@unilever.com', 
           EmailEncodingKey = 'UTF-8', LastName = 'af test', LanguageLocaleKey = EN_US, 
@@ -44,7 +44,40 @@ public with sharing class Oblix_TestUtils {
 
         return user;
     }
+    
+    public static User createSuperUser(){
+        Profile profile = [Select Id from Profile where Name='Marketing User'];       
+        PermissionSet permission_set = [SELECT Id FROM PermissionSet WHERE Name = 'Oblix_SWOP_Super_User_V1'];
+     
+        User user = new User(Alias = 'S_User', Email = 'Super_User_Test@unilever.com.superuser', 
+        EmailEncodingKey = 'UTF-8', LastName = 'Super_User_Test test', LanguageLocaleKey = EN_US, 
+        LocaleSidKey = EN_US, ProfileId = profile.Id,firstname = 'Super_User_Test', 
+        TimeZoneSidKey = 'Europe/London',AF_Agency_Fees_User_Type__c = 'Category Finance',isActive = true, 
+        UserName = 'Super_User_Test@Super_User_Test123.com');
+        insert user; 
 
+        PermissionSetAssignment pa = new PermissionSetAssignment(permissionSetId = permission_set.Id, AssigneeId = user.Id);
+        insert pa;
+
+        return user;
+    }
+    
+    public static User createAdminSuperUser(){
+        Profile profile = [Select Id from Profile where Name='System Administrator'];       
+        PermissionSet permission_set = [SELECT Id FROM PermissionSet WHERE Name = 'Oblix_SWOP_Super_User_V1'];
+     
+        User user = new User(Alias = 'S_Admin', Email = 'Admin_Super_User_Test@unilever.com.superuser', 
+        EmailEncodingKey = 'UTF-8', LastName = 'Admin_Super_User_Test test', LanguageLocaleKey = EN_US, 
+        LocaleSidKey = EN_US, ProfileId = profile.Id,firstname = 'Admin_Super_User_Test', 
+        TimeZoneSidKey = 'Europe/London',AF_Agency_Fees_User_Type__c = 'Category Finance',isActive = true, 
+        UserName = 'Admin_Super_User_Test@Admin_Super_User_Test123.com');
+        insert user; 
+
+        PermissionSetAssignment pa = new PermissionSetAssignment(permissionSetId = permission_set.Id, AssigneeId = user.Id);
+        insert pa;
+
+        return user;
+    }
 
     public static MDO_Brand__c createBrand(String name, String status){
         MDO_Brand__c brand = new MDO_Brand__c(Name = name,status__c = status);

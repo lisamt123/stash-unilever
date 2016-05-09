@@ -132,8 +132,8 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
                 li_campaign_and_non_campaign_items.add(new CampaignNonCampaignItems('Non Campaign', nonCampaign, can_edit));
             }*/
 
-            Map<String, Oblix_SOWNonCampaignHelperEXT.BasketSectionWrapper> nonCampItemSections = Oblix_SOWNonCampaignHelperEXT.initBasketSections(selected_sow.Id);
-            for (Oblix_SOWNonCampaignHelperEXT.BasketSectionWrapper sectionWrapper : nonCampItemSections.values()) {
+            Map<String, Oblix_BasketSectionWrapper> nonCampItemSections = Oblix_SOWNonCampaignPageHelperEXT1.initBasketSections(selected_sow.Id);
+            for (Oblix_BasketSectionWrapper sectionWrapper : nonCampItemSections.values()) {
                 li_campaign_and_non_campaign_items.add(new CampaignNonCampaignItems('Non Campaign', sectionWrapper));
             }
             
@@ -211,7 +211,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
             }
         }
 
-        public CampaignNonCampaignItems(String object_type, Oblix_SOWNonCampaignHelperEXT.BasketSectionWrapper nonCampaignSectionWrapper) {
+        public CampaignNonCampaignItems(String object_type, Oblix_BasketSectionWrapper nonCampaignSectionWrapper) {
             
             s_object_type = object_type;
 

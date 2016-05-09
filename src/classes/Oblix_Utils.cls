@@ -907,6 +907,8 @@ public with sharing class Oblix_Utils {
     public static final String FY_PREFIX = 'FY';
     public static final String FY_SEPARATOR = '__';
 
+    public static final String CAMPAIGN_STAGES_ALL = 'Briefing;Strategy & Planning;Creative Ideation;Creative Execution;Production';
+
     public static final String APPROVAL_PROCESS_NAME = 'Oblix_SOW_Approval_Process_v6';
 
     public static final String SOW_STATUS_APPROVED_BY_AGENCY = 'Approved';

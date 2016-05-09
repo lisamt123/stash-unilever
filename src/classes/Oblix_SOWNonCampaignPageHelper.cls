@@ -1,4 +1,4 @@
-public with sharing class Oblix_SOWNonCampaignPageHelper extends Oblix_SOWNonCampaignHelperEXT{
+public with sharing class Oblix_SOWNonCampaignPageHelper extends Oblix_SOWNonCampaignPageHelperParent{
 	
 
     
@@ -18,7 +18,7 @@ public with sharing class Oblix_SOWNonCampaignPageHelper extends Oblix_SOWNonCam
 	}
 
 
-    public Map<String, Oblix_SOWNonCampaignHelperEXT.BasketSectionWrapper> initBasket() {
+    public Map<String, Oblix_BasketSectionWrapper> initBasket() {
 
         if (preSelectedSection == RESOURCE_DEV_NAME) {
             currentTab = RESOURCE_DEV_NAME;
@@ -31,12 +31,12 @@ public with sharing class Oblix_SOWNonCampaignPageHelper extends Oblix_SOWNonCam
 
         updateBasketStats();
 
-        workList = new Map<String, Oblix_SOWNonCampaignHelperEXT.BasketSectionWrapper>();
-        workList.put(ACTIVITY_DEV_NAME.toUpperCase(), new Oblix_SOWNonCampaignHelperEXT.BasketSectionWrapper(sow.Id, ACTIVITY_DEV_NAME.toUpperCase(), ACTIVITY_DEV_NAME, 'TBC'));
-        workList.put(RESOURCE_DEV_NAME.toUpperCase(), new Oblix_SOWNonCampaignHelperEXT.BasketSectionWrapper(sow.Id, RESOURCE_DEV_NAME.toUpperCase(), RESOURCE_DEV_NAME, 'TBC'));
+        workList = new Map<String, Oblix_BasketSectionWrapper>();
+        workList.put(ACTIVITY_DEV_NAME.toUpperCase(), new Oblix_BasketSectionWrapper(sow.Id, ACTIVITY_DEV_NAME.toUpperCase(), ACTIVITY_DEV_NAME, 'TBC'));
+        workList.put(RESOURCE_DEV_NAME.toUpperCase(), new Oblix_BasketSectionWrapper(sow.Id, RESOURCE_DEV_NAME.toUpperCase(), RESOURCE_DEV_NAME, 'TBC'));
 
         if (basket.containsKey(currentSection)) {
-            Oblix_SOWNonCampaignHelperEXT.BasketSectionWrapper workListSection = basket.get(currentSection).getCopy();
+            Oblix_BasketSectionWrapper workListSection = basket.get(currentSection).getCopy();
             workList.put(currentTab, workListSection);
         }
 
@@ -45,9 +45,9 @@ public with sharing class Oblix_SOWNonCampaignPageHelper extends Oblix_SOWNonCam
     }
 
 
-    public static Map<String, Oblix_SOWNonCampaignHelperEXT.BasketSectionWrapper> initBasketSections(Id sowId) {
+    public static Map<String, Oblix_BasketSectionWrapper> initBasketSections(Id sowId) {
 
-        Map<String, Oblix_SOWNonCampaignHelperEXT.BasketSectionWrapper> basket = new Map<String, Oblix_SOWNonCampaignHelperEXT.BasketSectionWrapper>();
+        Map<String, Oblix_BasketSectionWrapper> basket = new Map<String, Oblix_BasketSectionWrapper>();
 
         List<Marketing_Basics__c> existingNonCampaigns = [SELECT   Id, Activities__c, Name, No_of_Hours_Required__c, 
                                                                     OblixCountry__c, OblixCountry__r.Name , Role_Title__c, 
@@ -65,19 +65,19 @@ public with sharing class Oblix_SOWNonCampaignPageHelper extends Oblix_SOWNonCam
 
             if (nonCampaignSObject.RecordTypeId == Oblix_Utils.RT_NON_CAMPAIGN_RESOURCE_ID) {
                 if (!basket.containsKey(basketSectionKey)) {
-                    Oblix_SOWNonCampaignHelperEXT.BasketSectionWrapper sectionWrapper = new Oblix_SOWNonCampaignHelperEXT.BasketSectionWrapper(sowId, basketSectionKey, 'Dedicated Resources', Oblix_Utils.RT_NON_CAMPAIGN_RESOURCE_DEV_NAME);
+                    Oblix_BasketSectionWrapper sectionWrapper = new Oblix_BasketSectionWrapper(sowId, basketSectionKey, 'Dedicated Resources', Oblix_Utils.RT_NON_CAMPAIGN_RESOURCE_DEV_NAME);
                     basket.put(basketSectionKey, sectionWrapper);
                 }
 
             } else if (nonCampaignSObject.RecordTypeId == Oblix_Utils.RT_NON_CAMPAIGN_ACTIVITY_ID && nonCampaignSObject.Activities__c != 'Other') {
                 if (!basket.containsKey(basketSectionKey)) {
-                    Oblix_SOWNonCampaignHelperEXT.BasketSectionWrapper sectionWrapper = new Oblix_SOWNonCampaignHelperEXT.BasketSectionWrapper(sowId, basketSectionKey, nonCampaignSObject.Activities__c, Oblix_Utils.RT_NON_CAMPAIGN_ACTIVITY_DEV_NAME, nonCampaignSObject.Activities__c);
+                    Oblix_BasketSectionWrapper sectionWrapper = new Oblix_BasketSectionWrapper(sowId, basketSectionKey, nonCampaignSObject.Activities__c, Oblix_Utils.RT_NON_CAMPAIGN_ACTIVITY_DEV_NAME, nonCampaignSObject.Activities__c);
                     basket.put(basketSectionKey, sectionWrapper);
                 }
 
             } else {
                 if (!basket.containsKey(basketSectionKey)) {
-                    Oblix_SOWNonCampaignHelperEXT.BasketSectionWrapper sectionWrapper = new Oblix_SOWNonCampaignHelperEXT.BasketSectionWrapper(sowId, basketSectionKey, nonCampaignSObject.Name, Oblix_Utils.RT_NON_CAMPAIGN_ACTIVITY_DEV_NAME, nonCampaignSObject.Activities__c, nonCampaignSObject.Name);
+                    Oblix_BasketSectionWrapper sectionWrapper = new Oblix_BasketSectionWrapper(sowId, basketSectionKey, nonCampaignSObject.Name, Oblix_Utils.RT_NON_CAMPAIGN_ACTIVITY_DEV_NAME, nonCampaignSObject.Activities__c, nonCampaignSObject.Name);
                     basket.put(basketSectionKey, sectionWrapper);
                 }
             }
@@ -150,8 +150,8 @@ public with sharing class Oblix_SOWNonCampaignPageHelper extends Oblix_SOWNonCam
     public void saveWorkList() {
 
         if (!String.isBlank(currentSection)) {
-            Oblix_SOWNonCampaignHelperEXT.BasketSectionWrapper workListSection = workList.get(currentTab);
-            //Oblix_SOWNonCampaignHelperEXT.BasketSectionWrapper basketSection = basket.get(currentSection);
+            Oblix_BasketSectionWrapper workListSection = workList.get(currentTab);
+            //Oblix_SOWNonCampaignPageHelperParent.BasketSectionWrapper basketSection = basket.get(currentSection);
 
             List<Marketing_Basics__c> sobjects = new List<Marketing_Basics__c>();
             for (Oblix_NonCampaignWrapper wrapper : workListSection.items.values()) {
@@ -169,7 +169,7 @@ public with sharing class Oblix_SOWNonCampaignPageHelper extends Oblix_SOWNonCam
             upsert sobjects Non_Campaign_Key__c;
 
             basket = initBasketSections(sow.Id);
-            workList.put(currentTab, new Oblix_SOWNonCampaignHelperEXT.BasketSectionWrapper(sow.Id, currentTab, currentTab, 'TBC'));
+            workList.put(currentTab, new Oblix_BasketSectionWrapper(sow.Id, currentTab, currentTab, 'TBC'));
             updateBasketStats();
         }
     }
@@ -180,7 +180,7 @@ public with sharing class Oblix_SOWNonCampaignPageHelper extends Oblix_SOWNonCam
             currentItemKey = null;
         }
 
-        Oblix_NonCampaignWrapper item;
+        Oblix_NonCampaignWrapper item = null;
 
         if (workList.get(ACTIVITY_DEV_NAME.toUpperCase()).items.containsKey(itemToRemove)) {
             item = workList.get(ACTIVITY_DEV_NAME.toUpperCase()).items.get(itemToRemove);
@@ -269,7 +269,7 @@ public with sharing class Oblix_SOWNonCampaignPageHelper extends Oblix_SOWNonCam
         } else {
             if (currentSection == RESOURCE_DEV_NAME) {
                 currentSection = null;
-                //workList.put( = new Oblix_SOWNonCampaignHelperEXT.BasketSectionWrapper(sow.Id, 'TBC', 'TBC', 'TBC');
+                //workList.put( = new Oblix_SOWNonCampaignPageHelperParent.BasketSectionWrapper(sow.Id, 'TBC', 'TBC', 'TBC');
             }
         }
     }

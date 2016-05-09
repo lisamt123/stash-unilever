@@ -17,6 +17,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Oblix_BasketSectionWrapper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Oblix_CalculatorLogic</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -137,11 +141,15 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>Oblix_SOWNonCampaignHelperEXT</apexClass>
+        <apexClass>Oblix_SOWNonCampaignPageHelper</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>Oblix_SOWNonCampaignPageHelper</apexClass>
+        <apexClass>Oblix_SOWNonCampaignPageHelperEXT1</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Oblix_SOWNonCampaignPageHelperParent</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
