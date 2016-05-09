@@ -325,7 +325,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                     finrList.add(fir);
                     rolloutFinancialmap.put(fir.Regional_Project__r.id,finrList);              
                 }
-                
+               
                 finIdSet.add(fir.id);
             }
             
@@ -501,8 +501,8 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
             //Global Project Business Impact Global will be copy to Global,Regional & Local project
             if(projFinmap.containskey(p.Id)){ 
                 a.IPM_Business_Impact_BD__c = projFinMap.get(p.id).Business_Impact_Global__c; 
-                a.IPM_Auto_Aligned_Fin_TLD_for_financial__c = projFinMap.get(p.id).Misaligned__c;
-                a.IPM_Company_Priority__c = projFinMap.get(p.id).IPM_CPP_Regional__c;
+                a.IPM_Auto_Aligned_Fin_TLD_for_financial__c = projFinMap.get(p.id).Misaligned__c;                  
+                a.IPM_Company_Priority__c = p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)?projFinMap.get(p.id).IPM_CPP_Regional__c:null;
             }  
             
             // Copying Milestone related fields 
@@ -590,6 +590,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
               		}else if(pr.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE){
               			
                  		 regionalrolloutid=pr.Regional_Project__c != null?pr.Regional_Project__r.id:pr.Regional_Rollout__r.id; 
+                 		 analyticObj = setRolloutFinancialdetails(analyticObj, regionalrolloutid); 
                  	} 
               
                     string finExtId = '';
@@ -601,10 +602,11 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                             }                       
                         }
                     }                                           
-                    // Financial related details to be copied
-                    analyticObj = setRolloutFinancialdetails(analyticObj, finExtId, pr); 
+                    // Financial related details to be copied 
+                     
                     analyticObj = setRolloutFinancialYeardetails(analyticObj, finExtId, pr); 
                     
+                                                            
                     returnList.add(analyticObj);              
                 }
             return returnList;    
@@ -748,16 +750,16 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
      * @param1: IPM_Analytics__c, String, IPM_Project_Rollout__c
      * @return: IPM_Analytics__c Analytic object record  
      *********************************************************************************************************************/     
-    public IPM_Analytics__c setRolloutFinancialdetails(IPM_Analytics__c analyticObj, String finExtId, IPM_Project_Rollout__c pr){
-  	  	if(pr.Id != null && rolloutFinancialmap.containsKey(pr.Id)){
-	  		for(IPM_Financial__c tempFin : rolloutFinancialmap.get(pr.Id)){
-	  			system.debug('FinancialsList'+ tempFin +'>>>CPP'+tempFin.IPM_CPP_Regional__c);
-	  			//if(finExtId == tempFin.Financial_External_ID__c){
-	  				analyticObj.IPM_Company_Priority__c = tempFin.IPM_CPP_Regional__c; 
-	  			//}
+    public IPM_Analytics__c setRolloutFinancialdetails(IPM_Analytics__c analyticObj,Id regionalrolloutid){
+    	
+  	  	if(regionalrolloutid != null && rolloutFinancialmap.containsKey(regionalrolloutid)){
+	  		for(IPM_Financial__c tempFin : rolloutFinancialmap.get(regionalrolloutid)){
+	  			analyticObj.IPM_Company_Priority__c = tempFin.IPM_CPP_Regional__c; 
+
 	  		}
 	  	} 
-  		return analyticObj; 
+  		return analyticObj;  
+   
   	}
     
         
