@@ -194,6 +194,10 @@ global class IPM_ProjectOwnerUpdate_Batch implements Database.Batchable<sObject>
     //finish Mehtod
     global void finish(Database.BatchableContext BC)
     {       
+       	List<IPM_Project__c> ipmProjectList = Database.query(query);
+       	IPM_ProjectTriggerHandler PThandler = new IPM_ProjectTriggerHandler();      
+       //@@Design Review - Data Sharing Change update the queue Members
+  		PThandler.onBeforeUpdate(ipmProjectList); 
        // Query the AsyncApexJob object to retrieve the current job's information.
        AsyncApexJob apexJob = [SELECT Id, Status, NumberOfErrors, JobItemsProcessed,TotalJobItems, CreatedBy.Email
                   			   FROM AsyncApexJob 

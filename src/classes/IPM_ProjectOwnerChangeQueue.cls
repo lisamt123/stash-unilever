@@ -96,9 +96,8 @@ public without sharing class IPM_ProjectOwnerChangeQueue implements Queueable
                     IPM_ProjectOwnerUpdatescheduler s = new IPM_ProjectOwnerUpdatescheduler(projectDetailMap.keyset(),projectsIdsToBeProcessed);  
                     System.schedule(IPM_ConstantUtils.IPM_JOBSTATED_AT + String.valueOf(Datetime.now()), IPM_ConstantUtils.IPM_NEXT_FIRE_TIME, s); 
                 }
-            IPM_ProjectTriggerHandler PThandler = new IPM_ProjectTriggerHandler();      
-            //@@Design Review - Data Sharing Change update the queue Members
-            PThandler.onBeforeUpdate(projectDetailMap.Values());    
+                
+                
            }
         }
     }

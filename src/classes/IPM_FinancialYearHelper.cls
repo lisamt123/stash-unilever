@@ -368,7 +368,6 @@ public with sharing class IPM_FinancialYearHelper
     * @param setFinExtId            set of Financial records to be validated
     * @return                       NONE
     ***********************************************************************************************************************************/
-    @future
     public static void validateDefaultFinancial(set<string> setFinExtId){
         try{
             string DEFAULT_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT).getRecordTypeId();
