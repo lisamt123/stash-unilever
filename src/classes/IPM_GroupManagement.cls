@@ -165,7 +165,6 @@ global without sharing class  IPM_GroupManagement {
     @Description : This method is used to update the name of the queue to inline it with project name
     **************************************************************************************************/
       
-      @future
       public static void groupNameUpdate(Set<Id> projectId)
       {
          Set<string> queuename = new Set<string>();
