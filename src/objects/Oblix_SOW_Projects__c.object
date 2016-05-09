@@ -1951,11 +1951,19 @@ ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Returned by Agency&quot;)
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Sync Complete</fullName>
+                <fullName>Sync Completed</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Sync Requested</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Clone In Progress</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Clone Completed</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>

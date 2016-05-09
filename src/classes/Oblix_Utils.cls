@@ -905,6 +905,7 @@ public with sharing class Oblix_Utils {
     *                                                                               *
     ********************************************************************************/
     public static final String FY_PREFIX = 'FY';
+    public static final String FY_SEPARATOR = '__';
 
     public static final String APPROVAL_PROCESS_NAME = 'Oblix_SOW_Approval_Process_v6';
 
@@ -951,7 +952,7 @@ public with sharing class Oblix_Utils {
     public static final String JOB_PROCESS_CLONE_ATTACHMENTS = 'Clone Attachments';
     public static final String JOB_PROCESS_CLONE_ASSETS = 'Clone Assets';
 
-    public static final String JOB_PROCESS_SYNC_SOW = 'Sync SOW';
+    //public static final String JOB_PROCESS_SYNC_SOW = 'Sync SOW';
     public static final String JOB_PROCESS_SYNC_ADJUST_CAMPAIGN = 'Sync Adjust Campaigns';
         
 

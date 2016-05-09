@@ -34,7 +34,7 @@
         <active>true</active>
         <description>set the status on individual campaigns to &quot;Sync Required&quot;  - 
 Condition - parent SOW has sync status &quot;Sync Complete&quot;</description>
-        <formula>TEXT(Financial_Year__r.Sync_Status__c) == &apos;Sync Complete&apos;</formula>
+        <formula>TEXT(Financial_Year__r.Sync_Status__c) == &apos;Sync Completed&apos;</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
 </Workflow>

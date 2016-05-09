@@ -45,13 +45,6 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
         }
     }
 
-    public String reportFilter{
-        get{
-            Oblix_DashboardsController.ColumnFilter cfSelectedSOW = new Oblix_DashboardsController.ColumnFilter('Oblix_SOW_Projects__c.Name', 'equals', selected_project.Name);
-            return JSON.serialize(cfSelectedSOW);
-        }
-    }
-
 
     public String project_id{get;set;}
     public Oblix_SOW_Projects__c selected_project {get;set;}
@@ -74,6 +67,8 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
     public String selected_asset_id {get;set;}
     public Decimal PercentToAdjust {get;set;}
     public Boolean is_enable_Adjust {get;set;}
+
+    public Oblix_DashboardsHandler scoresDashboard {get; set;}
     /*******************************************************************************
     * @author       Shahin Movahedi
     * @date         2016-01-09
@@ -163,6 +158,8 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
                 live_date_asset = Oblix_Utils.toLocaleDate(selected_project.Live_date_Asset_delivery__c);
             }
         }
+
+        scoresDashboard = new Oblix_DashboardsHandler(Oblix_DashboardsHandler.Type.CAMPAIGN_ASSET_TYPES, selected_project.Id);
 
     }
 

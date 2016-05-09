@@ -275,7 +275,7 @@
             <!-- SOW details: -->
             <apex:outputPanel id="sow_details">
                     <hr class="divider" />
-                    <table class="SOW_name_status_info">
+                    <table class="SOW_name_status_info" style="border-right:1px solid #BBB;">
                         <tr>
                             <td class="SOW_name_status_info_titles">Status</td>
                             <td>{!selected_sow.SOW_Status__c}</td>
@@ -307,9 +307,23 @@
                             <td>{!selected_sow.Financial_Year__c}</td>
                         </tr>
                     </table>
-                    <div class="form-group sow_main_attachments oblix_chart" id="charts">
+                    <div class="oblix_chart" id="charts" style="display:inline-block;float:right;width:500px;margin-top:-15px;">
+                        <!-- <div class="SOW_name_status_info_titles" style="padding-left:30px;">Spend by Outcome Priority</div> -->
                         <!-- <analytics:reportChart developerName="{!reportDeveloperName}" filter="{!reportFilter}" size="tiny" showRefreshButton="false"/> -->
-                        <div id="chart_div" data-chart-data="{!scoresDashboard.graphData}"></div>
+                        <!-- <apex:actionRegion> -->
+                        <!-- <apex:outputPanel id="chartPanel"> -->
+                        <div id="chart_div_fy_fee" class="chartHolder" data-chart-data="{!scoresFYFeeDashboard.graphData}"></div>
+                        <div id="chart_div_full_fee" class="chartHolder" data-chart-data="{!scoresFullFeeDashboard.graphData}" style="display:none"></div>
+                        <a href="#" onclick="$('.chartHolder').toggle();">Full Fee</a>&nbsp;|&nbsp;<a href="#" onclick="$('.chartHolder').toggle();">Full Fee</a>
+                        <!-- </apex:outputPanel> -->
+                        <!-- <apex:commandLink value="Full Fee" action="{!setFee}" reRender="chartPanel">
+                            <apex:param value="FULL_FEE" assignTo="{!scoresDashboard.instanceFeeType}"/>
+                        </apex:commandLink>
+                        &nbsp;|&nbsp;
+                        <apex:commandLink value="FY Fee" action="{!setFee}" reRender="chartPanel">
+                        <apex:param value="FY_FEE" assignTo="{!scoresDashboard.instanceFeeType}"/>
+                        </apex:commandLink>
+                        </apex:actionRegion> -->
                     </div>
                 </apex:outputPanel>
                 <!--<div class="form-group sow_main_attachments " id="UnileverAttachment">
@@ -342,7 +356,7 @@
                     <apex:outputPanel rendered="{!can_manage_campaign}"><a class="btn btn-primary btn-xs pull-right btn_plus btn_add_campaign" href="{!$Page.Oblix_CampaignCreate + '?sowId=' + selected_sow.Id}">ADD CAMPAIGN</a></apex:outputPanel>
                     <apex:outputPanel rendered="{!can_manage_campaign}"><a class="btn btn-primary btn-xs pull-right btn_plus btn_add_non_campaign" href="{!$Page.Oblix_SOWNonCampaignCreate + '?sowId=' + selected_sow.Id}">ADD NON-CAMPAIGN</a></apex:outputPanel>
                     <apex:actionRegion >
-                        <apex:outputPanel rendered="{!IF(can_edit && selected_sow.Sync_Status__c = 'Campaign Sync Required',true,false)}">
+                        <apex:outputPanel rendered="{!IF(can_edit && selected_sow.Sync_Required_NFY__c = 'Campaign Sync Required',true,false)}">
                             <apex:outputLink value="#" styleClass="btn btn-danger btn-xs btn_sync pull-right btn_sync_campaign" onclick="" html-data-toggle="modal"  html-data-target="#syncAllCampaigns">Sync All Campaigns</apex:outputLink>
                             <apex:actionFunction name="syncCampaigns" action="{!syncCampaigns}" oncomplete="$.unblockUI();location.reload();" reRender="relatedItems">
                             </apex:actionFunction>
@@ -391,7 +405,7 @@
                                                     <td style="display:none;width:0px !important">{!campaign_and_non_campaign.dynamic_object['Id']}</td>
                                                     <td>
                                                     
-                                                        <apex:outputLink title="Sync this Campaign with Previous FY Campaign" value="#" styleClass="btn btn-xs ind_btn_sync_static pull-right" onclick="blockme();assignCampaignId({!campaign_and_non_campaign.dynamic_object['Campaign_PFY__c']});" rendered="{!campaign_and_non_campaign.dynamic_object['Sync_Required_NFY__c'] == 'Sync Required'}" html-data-toggle="modal"  html-data-target="#syncSingleCampaign"></apex:outputLink>
+                                                        <apex:outputLink title="Sync this Campaign with Previous FY Campaign" value="#" styleClass="btn btn-xs ind_btn_sync_static pull-right" onclick="blockme();assignCampaignId('{!campaign_and_non_campaign.dynamic_object['Campaign_PFY__c']}');" rendered="{!campaign_and_non_campaign.dynamic_object['Sync_Required_NFY__c'] == 'Sync Required'}" html-data-toggle="modal"  html-data-target="#syncSingleCampaign"></apex:outputLink>
                                                     
                                                     {!campaign_and_non_campaign.dynamic_object['Name']}</td>
                                                     <td>{!campaign_and_non_campaign.s_object_type}</td>
@@ -622,35 +636,31 @@
                 //     ['Box 11-15', 50, 55, 'Annotated']
                 // ]);
 
-                var data = google.visualization.arrayToDataTable($('#chart_div').data('chart-data'));
-
-                console.log(JSON.stringify(data));
-
                 var options = {
+                    title: 'Spend by Outcome Priority',
+                    legend: {position: 'none'},
                     hAxis: {
-                        title: 'Total Population',
                         minValue: 0,
                         maxValue: 100
                     },
-                    bars: 'horizontal',
-                    axes: {
-                        y: {
-                            0: {side: 'left'}
-                        }
-                    },
-                    legend: {position : 'none'},
                     series: {
                         0: { color: '#04B388'},
                         1: { color: '#e56DB1'}
                     },
-                    height: 120,
-                    width: 600,
-                    tooltip: {ignoreBounds: true, isHTML: true}
+                    tooltip: {ignoreBounds: true, isHtml: true},
+                    height: 130,
+                    width: 500,
+                    chartArea: {width: '90%', height: '70%'}
                 };
-                var material = new google.charts.Bar(document.getElementById('chart_div'));
-                material.draw(data, options);
-            }
 
+                var dataFYFee = google.visualization.arrayToDataTable($('#chart_div_fy_fee').data('chart-data'));
+                var chartFYFee = new google.visualization.BarChart(document.getElementById('chart_div_fy_fee'));
+                chartFYFee.draw(dataFYFee, options);
+
+                var dataFullFee = google.visualization.arrayToDataTable($('#chart_div_full_fee').data('chart-data'));
+                var chartFullFee = new google.visualization.BarChart(document.getElementById('chart_div_full_fee'));
+                chartFullFee.draw(dataFullFee, options);
+            }
 
                 // google.load("visualization", "1", {packages:["corechart"]});
                 // google.setOnLoadCallback(drawChart);

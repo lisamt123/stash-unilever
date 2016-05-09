@@ -137,6 +137,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Oblix_SOWNonCampaignHelperEXT</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Oblix_SOWNonCampaignPageHelper</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -621,6 +625,11 @@
         <editable>false</editable>
         <field>Marketing_SOW__c.SmallProductCategory__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Marketing_SOW__c.Sync_Required_NFY__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>

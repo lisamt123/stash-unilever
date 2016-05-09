@@ -75,13 +75,33 @@ public with sharing class Oblix_SOWRollOverLogic {
         Boolean is_success = true;
         try{
 
+            // job component attribute list
+            // 		attrib_1: initial status
+            // 		attrib_2: status to be
+            // 		attrib_3: sObject type
+            // 		attrib_4: field to use for checking sync
+            // 		attrib_5: field to use for locking campaign of next FY
 
             //##########################################################################################
             //	query the correct records in scope, set the status of the sync, add to list and update
             //##########################################################################################
 
-            String query_string = 'SELECT Sync_Status__c FROM '+ job_component.attrib_3 +' WHERE Sync_Status__c =\'' + job_component.attrib_1 + '\' ORDER BY Id LIMIT ' + job_component.query_limit; 
+            // queries examples:
+            // 
+            // when at parent sow level and setting children campaign statuses
+            // 1) SELECT Sync_Status__c FROM Oblix_SOW_Projects__c WHERE Financial_Year__r.Sync_Status__c  = 'Sync In Prgoress' 
+            //		AND Sync_Status__c <> 'Sync In Prgoress'  ORDER BY Id LIMIT 1000
             
+            // when at individual campaign level
+            // 2) SELECT Sync_Status__c FROM Marketing_SOW__c WHERE Sync_Status__c  = 'Sync Requested'
+            //		AND Sync_Status__c <> 'Sync In Prgoress'  ORDER BY Id LIMIT 1000
+
+
+            String query_string = 'SELECT Sync_Status__c FROM '+ job_component.attrib_3 +' WHERE '+ job_component.attrib_4 +' =\'' + job_component.attrib_1; 
+        	query_string += '\' AND Sync_Status__c <> \'' + job_component.attrib_2 + '\' ORDER BY Id LIMIT ' + job_component.query_limit; 
+            
+
+
             Map<Id, SObject> map_objects_update = new Map<Id, SObject>();
             Set<Id> set_original_ids = new Set<Id>();
 
@@ -91,11 +111,13 @@ public with sharing class Oblix_SOWRollOverLogic {
                 set_original_ids.add(obj.Id);
             }
 
+            Oblix_SyncBatchJob.addEvent(' adjust status query: ' + query_string + '\nResult size: ' + map_objects_update.size(),NULL);
+
             // when sync is in progress, also make sure that the records being synced are "locked" by setting the status to "In Progress"
             
-            if (String.isNotBlank(job_component.attrib_4)){
+            if (String.isNotBlank(job_component.attrib_5)){
 	            String query_string2 = 'SELECT Sync_Status__c FROM '+ job_component.attrib_3 +' WHERE Sync_Status__c =\'' + job_component.attrib_1 
-	            	+ '\' AND '+ job_component.attrib_4 +' in : set_original_ids AND Id NOT in: set_original_ids ' 
+	            	+ '\' AND '+ job_component.attrib_5 +' in : set_original_ids AND Id NOT in: set_original_ids ' 
 	            	+ ' ORDER BY Id LIMIT ' + job_component.query_limit; 
 	            for (SObject obj: database.query(query_string)){
 	                obj.put('Sync_Status__c',job_component.attrib_2);
@@ -150,19 +172,21 @@ public with sharing class Oblix_SOWRollOverLogic {
 
 		if (Oblix_Utils.PROCESS_TYPE_INITIAL_APPROVAL == job_component.attrib_6){
 			
-			
+			// this must be initial approval
 			original_sow.Name_Suffix__c = Oblix_Utils.NAME_SUFFIX_APPROVED;
 			cloned_sow.Name_Suffix__c = Oblix_Utils.NAME_SUFFIX_LIVE;
-			
+			cloned_sow.Initial_Approval_Complete__c = true;
 		}
 		else{
-			// this must be initial approval
+			// this must be initial rollover process
 			Integer financial_year = Oblix_SOWHandlerLogic.getFinancialYear(original_sow);
 
 			// increment financial year by +1 year
 			financial_year ++;
 
 			cloned_sow.Financial_Year__c = Oblix_Utils.FY_PREFIX + financial_year;
+			cloned_sow.Initial_Approval_Complete__c = false;
+
 		}
 
 	} 
@@ -369,6 +393,7 @@ public with sharing class Oblix_SOWRollOverLogic {
             // 		attrib_1: SOW_PFY__c
             // 		attrib_2: SOW_NFY__c
             // 		attrib_3: JOB_STATUS_SYNC_IN_PROGRESS
+			//Oblix_SyncBatchJob.addEvent(' Campaign to clone size: ' + list_campaigns_to_clone.size(),NULL);
 
             String query_string = SELECT_SOQL;
             query_string += String.join(Oblix_Utils.getfieldsByObject('Marketing_SOW__c'),',');
@@ -377,9 +402,11 @@ public with sharing class Oblix_SOWRollOverLogic {
             List<Marketing_SOW__c> list_sows_to_clone = new List<Marketing_SOW__c>();
             Map<Id, Marketing_SOW__c> map_original_id_original_campaign = new Map<Id,Marketing_SOW__c>((List<Marketing_SOW__c>)database.query(query_string));
 
+            //Oblix_SyncBatchJob.addEvent('INFO IN cloneSOW(): ' + map_original_id_original_campaign.size(), NULL);
 
             for (Marketing_SOW__c sow: map_original_id_original_campaign.values()){
         		
+            	//Oblix_SyncBatchJob.addEvent('INFO IN looping sow(): ' + JSON.serialize(sow), NULL);
 
         		Marketing_SOW__c cloned_sow = sow.clone(false, true, false, false);
                 
@@ -388,11 +415,13 @@ public with sharing class Oblix_SOWRollOverLogic {
         		cloned_sow.put(job_component.attrib_1, sow.Id);
                 //cloned_sow.Original_SOW__c = sow.Id;
 
+
                 // only original SOW should have clone in progress
                 // the new record can be unlocked
                 cloned_sow.Sync_Status__c = NULL;
                 list_sows_to_clone.add(cloned_sow);
             }
+        	//Oblix_SyncBatchJob.addEvent('INFO IN list_sows_to_clone: ' + JSON.serialize(list_sows_to_clone), NULL);
 
             insert list_sows_to_clone;
 
@@ -623,13 +652,19 @@ public with sharing class Oblix_SOWRollOverLogic {
             //##########################################################################################
             //  query the correct records in scope, clone and add to list to insert
             //##########################################################################################
-
+			// initial sync:
+            // 		attrib_1: 
+            // 		attrib_2: SOW_PFY__c
+            // 		attrib_3: JOB_STATUS_SYNC_IN_PROGRESS
+            // 		attrib_4: 
+            // 		attrib_5: 
+            // 		attrib_6: Type of process
             String query_string = SELECT_SOQL;
             query_string += String.join(Oblix_Utils.getfieldsByObject('Oblix_SOW_Projects__c'),',');
             query_string += ', (SELECT Project_Splits__r.Campaign_NFY__c, ';
             query_string += String.join(Oblix_Utils.getfieldsByObject('Oblix_Marketing_SOW_Project_Splits__c'),',');
             query_string += ' FROM Marketing_SOW_Project_Splits__r)';
-            query_string += ' FROM  Oblix_SOW_Projects__c WHERE Sync_Status__c =\'' + job_component.attrib_1 + '\' ORDER BY Id LIMIT ' + job_component.query_limit; 
+            query_string += ' FROM  Oblix_SOW_Projects__c WHERE Sync_Status__c = \'' + job_component.attrib_3 + '\' ORDER BY Id LIMIT ' + job_component.query_limit; 
             
             // AND Campaign_NFY__c = NULL OR (Campaign_NFY__c != NULL AND Percentage_of_Fee_for_this_FY__c == 100.00) 
 
@@ -677,14 +712,11 @@ public with sharing class Oblix_SOWRollOverLogic {
 
 
             for (Oblix_SOW_Projects__c campaign: map_original_ids_to_original.values()){
-                //Remove all the campaigns that have been completed
                 if(!map_original_ids_to_cloned.containsKey(campaign.id)){
 	            	//	1- PFY campaign is newly created: create a clone of the for the NFY
                     
                     Oblix_SOW_Projects__c cloned_campaign = campaign.clone(false, true, false, false);
-                    // TEMP SET THE CLONED NAME
-                    cloned_campaign.Name += 'CLONED';
-					
+                    
 					map_original_id_original_campaign.put(campaign.Id, campaign);
 
 					// copy over the financial related fields from current_campaign to next_financial_year PFY fields
@@ -692,6 +724,12 @@ public with sharing class Oblix_SOWRollOverLogic {
 
 					// manage the hub and splits
 					syncHubAndSplits(campaign, cloned_campaign, map_splits_to_delete, map_original_id_splits_to_clone);
+
+
+        			cloned_campaign.put(job_component.attrib_2,campaign.Id);
+
+		            // set campaign suffix
+		            setCampaignNameSuffix(campaign,cloned_campaign, job_component);
 
 					// need to insert these
 					list_campaigns_to_clone.add(cloned_campaign);
@@ -732,6 +770,9 @@ public with sharing class Oblix_SOWRollOverLogic {
 					// manage the hub and splits
 					syncHubAndSplits(campaign, cloned_campaign, map_splits_to_delete, map_original_id_splits_to_clone);
 
+		            // set campaign suffix
+		            setCampaignNameSuffix(campaign,cloned_campaign, job_component);
+
                     map_campaigns_to_update.put(cloned_campaign.Id, cloned_campaign);
         			
         			result_msg += '\n to update: ' + cloned_campaign.name;
@@ -741,7 +782,7 @@ public with sharing class Oblix_SOWRollOverLogic {
             }
 
 
-			Oblix_SyncBatchJob.addEvent('DEBUG IN initialSyncCampaign() - result_msg: ' + result_msg,NULL);
+			Oblix_SyncBatchJob.addEvent('DEBUG IN syncCampaignDuringTransitionPeriod() - result_msg: ' + result_msg,NULL);
 
 
             // insert new campaigns
@@ -786,15 +827,15 @@ public with sharing class Oblix_SOWRollOverLogic {
 
 
         }catch(QueryException queryEx){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN initialSyncCampaign() - ', queryEx.getMessage() + STACK_TRACE + queryEx.getStackTraceString());
+            Oblix_SyncBatchJob.addEvent('ERROR IN syncCampaignDuringTransitionPeriod() - ', queryEx.getMessage() + STACK_TRACE + queryEx.getStackTraceString());
             is_success = false;
         }
         catch(DmlException dmlEx){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN initialSyncCampaign() - ', dmlEx.getMessage() + STACK_TRACE + dmlEx.getStackTraceString());
+            Oblix_SyncBatchJob.addEvent('ERROR IN syncCampaignDuringTransitionPeriod() - ', dmlEx.getMessage() + STACK_TRACE + dmlEx.getStackTraceString());
             is_success = false;
         }
         catch(Exception ex){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN initialSyncCampaign() - ', ex.getMessage() + STACK_TRACE + ex.getStackTraceString());
+            Oblix_SyncBatchJob.addEvent('ERROR IN syncCampaignDuringTransitionPeriod() - ', ex.getMessage() + STACK_TRACE + ex.getStackTraceString());
             is_success = false;
         }
         return is_success;  
@@ -868,7 +909,7 @@ public with sharing class Oblix_SOWRollOverLogic {
 
             String query_string = SELECT_SOQL;
             query_string += String.join(Oblix_Utils.getfieldsByObject('Oblix_Project_Assets__c'),',');
-            query_string += ' FROM  Oblix_Project_Assets__c WHERE Agency_Projects__r.Financial_Year__r.Sync_Status__c =\'' + job_component.attrib_3 + '\' AND ' + job_component.attrib_4 + ' = NULL ORDER BY Id LIMIT ' + job_component.query_limit; 
+            query_string += ' FROM  Oblix_Project_Assets__c WHERE Agency_Projects__r.Sync_Status__c =\'' + job_component.attrib_3 + '\' AND ' + job_component.attrib_4 + ' = NULL ORDER BY Id LIMIT ' + job_component.query_limit; 
             
             List<Oblix_Project_Assets__c> list_assets_to_clone = new List<Oblix_Project_Assets__c>();
             Map<Id, Oblix_Project_Assets__c> map_original_id_original_campaign = new Map<Id,Oblix_Project_Assets__c>((List<Oblix_Project_Assets__c>)database.query(query_string));
@@ -984,6 +1025,17 @@ public with sharing class Oblix_SOWRollOverLogic {
 	//}
 
 
+	private Static String buildNewNonCampaignKey(Marketing_Basics__c non_camp_to_adjust){
+
+		String new_key = '';
+		// check the key make sure it has min 18 char then replace the first 18 chars with the id of the new parent
+		// e.g. <start>a6KM00000008RceMAE<end>Brand BookAustriaCreativeCopywriter
+		if (String.isNotEmpty(non_camp_to_adjust.Non_Campaign_Key__c) && non_camp_to_adjust.Non_Campaign_Key__c.length() > 18){
+
+			new_key =  String.valueOf(non_camp_to_adjust.Oblix_SOWMarketing__c) + non_camp_to_adjust.Non_Campaign_Key__c.substring(18);
+		}
+		return new_key;
+	}
 
 
     /*******************************************************************************
@@ -1034,6 +1086,8 @@ public with sharing class Oblix_SOWRollOverLogic {
         		Marketing_Basics__c cloned_non_camp = non_camp.clone(false, true, false, false);
         		cloned_non_camp.Oblix_SOWMarketing__c = map_original_to_cloned.get(non_camp.Oblix_SOWMarketing__c).Cloned_SOW__c;
 
+        		// set the new key for the non campaign
+        		cloned_non_camp.Non_Campaign_Key__c = buildNewNonCampaignKey(cloned_non_camp);
                 list_non_campaigns_to_clone.add(cloned_non_camp);
 
                 // add id to processed collection to avoid reprocessing
@@ -1073,6 +1127,15 @@ public with sharing class Oblix_SOWRollOverLogic {
 		Boolean is_success = true;
         try{
 
+            // clone sow:
+            // 		attrib_1: Original_SOW__c
+            // 		attrib_2: Cloned_SOW__c
+            // 		attrib_3: JOB_STATUS_CLONE_IN_PROGRESS
+
+			// initial sync:
+            // 		attrib_1: SOW_PFY__c
+            // 		attrib_2: SOW_NFY__c
+            // 		attrib_3: JOB_STATUS_SYNC_IN_PROGRESS
             //##########################################################################################
             //	query the correct records in scope, clone and add to list to insert
             //##########################################################################################
@@ -1083,7 +1146,7 @@ public with sharing class Oblix_SOWRollOverLogic {
 
             String query_string = SELECT_SOQL;
             query_string += String.join(Oblix_Utils.getfieldsByObject('Attachment'),',');
-            query_string += ' FROM  Attachment WHERE ParentId in (SELECT id from Marketing_SOW__c WHERE Sync_Status__c =\'' + job_component.attrib_1 + '\') AND Id NOT in: processed_ids ORDER BY ParentId LIMIT ' + job_component.query_limit; 
+            query_string += ' FROM  Attachment WHERE ParentId in (SELECT id from Marketing_SOW__c WHERE Sync_Status__c =\'' + job_component.attrib_3 + '\') AND Id NOT in: processed_ids ORDER BY ParentId LIMIT ' + job_component.query_limit; 
 
 
             Map<Id, Attachment> map_attachments_to_clone = new Map<Id, Attachment>();
@@ -1095,20 +1158,23 @@ public with sharing class Oblix_SOWRollOverLogic {
             }
 
 
-
+            String query_string2 = 'SELECT ' + job_component.attrib_1 + ', ' + job_component.attrib_2 + ' FROM Marketing_SOW__c WHERE Id in: set_cloned_parent_id ';
             Map<Id,Marketing_SOW__c> map_original_to_cloned = new Map<Id, Marketing_SOW__c>((List<Marketing_SOW__c>)
-            	([SELECT Original_SOW__c, Cloned_SOW__c FROM Marketing_SOW__c WHERE Id in: set_cloned_parent_id ]));
+            	(Database.query(query_string2)));
 
+            //Oblix_SyncBatchJob.addEvent('INFO IN cloneAttachments() - ' + map_original_to_cloned.size() + ' - map_original_to_cloned: ' + JSON.serialize(map_original_to_cloned),NULL);
 
             List<Attachment> list_attachments_to_clone = new List<Attachment>();
 
             for (Attachment attch: map_attachments_to_clone.values()){
         		
 
-        		Attachment cloned_attc = attch.clone(false, true, false, false);
-        		cloned_attc.ParentId = map_original_to_cloned.get(attch.ParentId).Cloned_SOW__c;
+        		Attachment cloned_attch = attch.clone(false, true, false, false);
+        		cloned_attch.ParentId = (Id) map_original_to_cloned.get(attch.ParentId).get(job_component.attrib_2);
+	
+	            //Oblix_SyncBatchJob.addEvent('INFO IN cloneAttachments() - RECALCULATE PARENT: ' + (String) map_original_to_cloned.get(attch.ParentId).get(job_component.attrib_2),NULL);
 
-                list_attachments_to_clone.add(cloned_attc);
+                list_attachments_to_clone.add(cloned_attch);
 
                 // add id to processed collection to avoid reprocessing
                 Oblix_SyncBatchJob.sync_job.processed_attachment_ids.add(attch.Id);

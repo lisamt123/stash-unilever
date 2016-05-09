@@ -11,6 +11,12 @@
         .oblix_chart .asOfDate {
             display: none;
         }
+        .oblix_chart .overlay {
+            position: absolute;
+            text-align: center;
+            top: 186px;
+            left: 239px;      
+        }
     </style>
     <apex:composition template="Oblix_OuterPageTemplate">
         <apex:define name="top_breadcrumb">
@@ -95,7 +101,7 @@
                             <div class="row">
                                 <div class="col-lg-12 confirm_assets_accordion">
                                     <div class="status_completion_chevron_bar_main_styling add_asset_chevron_styling">
-                                        <p class="cancel_campaign_modal_note"><strong>The % to be paid at cancelation is automatically set to the planned to be delivered stages.</strong>
+                                        <p class="cancel_campaign_modal_note"><strong>The % to be paid at cancellation is automatically set to the planned to be delivered stages.</strong>
                                         </p>
                                         <div class="chevron_width_control">
 
@@ -128,23 +134,12 @@
                                             </apex:outputText>
                                         </p>
                                         <apex:outputPanel id="calculatedFeePanel">
-                                            <apex:inputText html-type="number" html-step="0.01" onkeyup="if (validate('{!$Component.manualPercentage}')) {calculateFee();}" id="manualPercentage" html-data-fullfee="{!stage_identifier_pop_up.sow_project_in_scope.Campaign_Fees_Total__c}" value="{!stage_identifier_pop_up.cancelCampaignManualPercent}" />
+                                            <apex:inputText html-type="number" html-step="0.01" onkeyup="calculateFee();" html-onPaste="return false;" onkeypress="return onKeyPress_IsDigitAndDecimalValidation(event, this);" id="manualPercentage" html-data-fullfee="{!stage_identifier_pop_up.sow_project_in_scope.Campaign_Fees_Total__c}" value="{!stage_identifier_pop_up.cancelCampaignManualPercent}" />
                                             <p class="bold_font cancel_campaign_values" id="calculatedFee" html-data-calculatedfee="{!stage_identifier_pop_up.sow_project_in_scope.Campaign_Fees_Total__c * stage_identifier_pop_up.cancelCampaignManualPercent / 100.0 }">
                                                 <apex:outputText value="€ {0, number,###,###,##0}">
                                                     <apex:param value="{!stage_identifier_pop_up.sow_project_in_scope.Campaign_Fees_Total__c * stage_identifier_pop_up.cancelCampaignManualPercent / 100.0 }" />
                                                 </apex:outputText>
                                             </p>
-                                            <!-- Really bad thing to do but can't think of another way to reliably trigger JS for a dynamically re-rendered bit of DOM -->
-                                            <!--<script>
-                                                //Will fail on first page load but will get invoked every time calculatedFeePanel is re-rendered
-                                                stripTrailingZeroes('{!$Component.manualPercentage}');
-                                            </script>-->
-                                            <!--<apex:inputText onkeyup="calculateFee();" id="manualPercentage" html-data-fullfee="{!stage_identifier_pop_up.sow_project_in_scope.Campaign_Fees_Total__c}" value="{!stage_identifier_pop_up.i_agency_Percentage_of_fees_this_year}"/>
-                                            <p class="bold_font cancel_campaign_values" id="calculatedFee" html-data-calculatedfee="{!stage_identifier_pop_up.sow_project_in_scope.Campaign_Fees_Total__c * stage_identifier_pop_up.i_agency_Percentage_of_fees_this_year / 100.0 }">
-                                                <apex:outputText value="€ {0, number,###,###,##0}">
-                                                    <apex:param value="{!stage_identifier_pop_up.sow_project_in_scope.Campaign_Fees_Total__c * stage_identifier_pop_up.i_agency_Percentage_of_fees_this_year / 100.0 }" />
-                                                </apex:outputText>
-                                            </p>-->
                                         </apex:outputPanel>
                                     </div>
                                 </div>
@@ -155,7 +150,7 @@
                             <div class="row" style="padding-top:20px;">
                                 <div class="col-lg-12 chevron_width_control">
 
-                                    <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier_pop_up}" AutoSave="false" Id="cancel_campaign_campaign_stage_component_completed" rerenderIds="calculatedFeePanel" displayMode="4" completedStageLabel="Before canceling this campaign please select the stages where work commenced" showTotalPercentage="false" />
+                                    <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier_pop_up}" AutoSave="false" Id="cancel_campaign_campaign_stage_component_completed" rerenderIds="calculatedFeePanel" displayMode="4" completedStageLabel="Before cancelling this campaign please select the stages where work commenced" showTotalPercentage="false" />
 
                                 </div>
                             </div>
@@ -232,7 +227,7 @@
                                             </div>
                                             <div class="col-lg-8">
                                                 <h1>
-                                            <apex:input type="number" id="AdjustPercentage" styleClass="adjust_allocation_box"  value="{!PercentToAdjust}" html-step="0.01"/>
+                                            <apex:input type="number" id="AdjustPercentage" styleClass="adjust_allocation_box"  value="{!PercentToAdjust}" html-step="0.01" html-onPaste="return false;" onkeypress="return onKeyPress_IsDigitAndDecimalValidation(event, this);"/>
                                             
                                             %</h1>
                                             </div>
@@ -499,9 +494,10 @@
                     <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier}" AutoSave="true" Id="campaign_stage_component_bottom" displayMode="4" showTotalPercentage="false" reRenderIds="cancel_campaign_campaign_stage_component_completed,cancel_campaign_campaign_stage_component_projected" />
                 </div>
                 <div class="col-lg-4 oblix_chart">
-                    <div id="chart_div" style="width: 300px; height: 300px;"></div>
+                    <!--div id="chart_div" style="width: 300px; height: 300px;"></div-->
+                    <div id="chart_div" style="width: 500px; height: 450px;" data-chart-data="{!scoresDashboard.graphData}"></div>
                     <div class="overlay">
-                      <div style="color: #888888; font-family:'Arial'; font-size: 32px; margin-left:5px;">46</div>
+                      <div style="color: #888888; font-family:'Arial'; font-size: 32px; margin-left:5px;">{!scoresDashboard.totalAssets}</div>
                       <div style="color: #888888; font-family:'Arial'; font-size: 16px; margin-left:5px;">Assets</div>
                     </div>
                 </div>
@@ -597,42 +593,47 @@
             </div>
         </apex:define-->
         <apex:define name="page_scripts">
+            <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/swopJS.js')}" />
             <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/Oblix_CampaignSummary.js')}" />
             <script type="text/javascript">
-                function validate(inputId) {
-                    var element = $('[id=\"' + inputId + '\"]');
-                    var valid = element[0].checkValidity();
-                    if (!valid) {
-                        element.addClass('error-input-border');
-                    } else {
-                        element.removeClass('error-input-border');
-                    }
-                    return valid;
-                }
 
                 google.load("visualization", "1", {packages:["corechart"]});
                 google.setOnLoadCallback(drawChart);
+                
                 function drawChart() {
-                    var data = google.visualization.arrayToDataTable([
+                    /*var data = google.visualization.arrayToDataTable([
                     ['Task', 'Hours per Day'],
                     ['Audio / Visual',     11],
                     ['Digital',      2],
                     ['Experiental',  2],
                     ['Static Imagery', 2],
                     ['Stimulus Materials',    7]
-                ]);
+                ]);*/
+                    console.log($('#chart_div').data('chart-data'));
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('string', 'Asset');
+                    data.addColumn('number', 'Count of Items');
+                    var arrayCreated = $('#chart_div').data('chart-data');
+                    var newArray = [];
+                    for (var i=0; i < arrayCreated.length; i++){
+                        console.log(arrayCreated[i][0]);
+                        console.log(arrayCreated[i][1]);
+                        //data.addRow([i[0], parseInt(i[1])]); 
+                        newArray.push([arrayCreated[i][0], parseInt(arrayCreated[i][1])]);
+                    }
+                    data.addRows(newArray);
+                    console.log(JSON.stringify(data));
+                    var options = {
+                        pieHole: 0.5,
+                        colors: ['#B187B8', '#CEDC02', '#E46CB0', '#05B1A9', '#FFC62C'],
+                        legend: {position : 'none', alignment : 'center'},
+                        chartArea: {width: '75%', height: '75%'},
+                        fontSize: 15
+                    };
 
-                var options = {
-                    pieHole: 0.5,
-                    colors: ['#B187B8', '#CEDC02', '#E46CB0', '#05B1A9', '#FFC62C'],
-                    legend: {position : 'none', alignment: 'start'},
-                    chartArea: {width: '90%', height: '90%'},
-                    fontSize: 16
-                };
-
-                var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-                chart.draw(data, options);
-              }
+                    var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+                    chart.draw(data, options);
+                }
 
             </script>
             <!--<script>

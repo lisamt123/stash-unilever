@@ -1,12 +1,15 @@
 public with sharing class Oblix_DashboardsHandler {
 
-	public enum Type {SOW_SCORES, CAMPAIGN_ASSET_TYPES}
+	public enum Type {SOW_SCORES_FY_FEE, SOW_SCORES_FULL_FEE, CAMPAIGN_ASSET_TYPES}
+	public enum FeeType {FULL_FEE, FY_FEE}
 	public final String SCORE_S = 'S';
 	public final String SCORE_SM = 'S/M';
 	public final String SCORE_M = 'M';
 	public final String SCORE_ML = 'M/L';
 	public final String SCORE_L = 'L';
 	public final String SCORE_TOTAL = 'TOTAL';
+
+	public Decimal totalAssets { get; set; }
 
 	public String graphData {
 		get{
@@ -29,10 +32,10 @@ public with sharing class Oblix_DashboardsHandler {
 	}
 
 	private List<List<Object>> generateGraphData(){
-		if(instanceType != null && instanceType.equals(Type.SOW_SCORES)){
+		if(instanceType != null && (instanceType.equals(Type.SOW_SCORES_FY_FEE) || instanceType.equals(Type.SOW_SCORES_FULL_FEE))){
 			return generateSOWScoresGraphData();
 		} else if(instanceType != null && instanceType.equals(Type.CAMPAIGN_ASSET_TYPES)){
-			return null;//generateCampaignAssetTypesData();
+			return generateCampaignAssetTypesData();
 		} else {
 			return null;
 		}
@@ -51,7 +54,14 @@ public with sharing class Oblix_DashboardsHandler {
 
 		// calculate aggregates for actual data that will be displayed
 		List<AggregateResult> scoresDistribution = [SELECT count(Id) num, Brand_Led_Growth__c FROM Oblix_SOW_Projects__c WHERE Financial_Year__c =: recordId GROUP BY Brand_Led_Growth__c LIMIT 1000000];
-		List<AggregateResult> feeDistribution = [SELECT SUM(Value_to_be_paid_in_Current_FY__c) amount, Brand_Led_Growth__c FROM Oblix_SOW_Projects__c WHERE Financial_Year__c =: recordId GROUP BY Brand_Led_Growth__c LIMIT 1000000];
+		List<AggregateResult> feeDistribution;
+		if(instanceType.equals(Type.SOW_SCORES_FY_FEE)){
+			feeDistribution = [SELECT SUM(Value_to_be_paid_in_Current_FY__c) amount, Brand_Led_Growth__c FROM Oblix_SOW_Projects__c WHERE Financial_Year__c =: recordId GROUP BY Brand_Led_Growth__c LIMIT 1000000];
+		} else if(instanceType.equals(Type.SOW_SCORES_FULL_FEE)){
+			feeDistribution = [SELECT SUM(Campaign_Fees_Total__c) amount, Brand_Led_Growth__c FROM Oblix_SOW_Projects__c WHERE Financial_Year__c =: recordId GROUP BY Brand_Led_Growth__c LIMIT 1000000];
+		} else{
+			return null;
+		}
 
 		Map<String, Decimal> scoreCountMap = new Map<String, Decimal>();
 		Decimal total = 0;
@@ -108,6 +118,39 @@ public with sharing class Oblix_DashboardsHandler {
 		retVal.add(new List<String>{SCORE_L, String.valueOf(scoreCountMap.get(SCORE_L)), String.valueOf(scoreFeeMap.get(SCORE_L))});
 
 		return retVal;
+	}
+
+	private List<List<Object>> generateCampaignAssetTypesData(){
+		List<List<Object>> retVal = new List<List<Object>>();
+		List<AggregateResult> assetTypes = [select count(id) num, Asset_Type__c assetType from Oblix_Project_Assets__c group by Asset_Type__c order by Asset_Type__c asc];
+		System.DEBUG(assetTypes);
+		Map<String, Integer> assetCountToAddMap = new Map<String, Integer>();
+		//
+		for(AggregateResult ar : [SELECT count(id) num, Asset_Type__c assetType FROM Oblix_Project_Assets__c 
+									WHERE Agency_Projects__c =: recordId
+		                          	GROUP BY Asset_Type__c ORDER BY Asset_Type__c ASC]){
+		                              if(ar.get('assetType') != null && !String.valueOf(ar.get('assetType')).equalsIgnoreCase('null')){
+		                              	assetCountToAddMap.put(removeStringValuesAfterHyphen((String)ar.get('assetType')),(Integer)ar.get('num'));
+		                              }
+		}
+		Decimal totalAssets = 0;
+		for(String assetType : assetCountToAddMap.keyset()){
+			retval.add(new List<String>{assetType,String.valueOf(assetCountToAddMap.get(assetType))});
+			totalAssets += (Decimal) assetCountToAddMap.get(assetType);
+		}
+
+		System.DEBUG(JSON.serializePretty(retVal));
+		System.DEBUG(totalAssets);
+		return retval;
+		
+	}
+
+	private String removeStringValuesAfterHyphen(String valueToBeRemoved){
+	    if(valueToBeRemoved!=null && valueToBeRemoved.contains('-')){
+	        return valueToBeRemoved.substring(0, valueToBeRemoved.indexOf('-')).trim();
+	    }else{
+	        return valueToBeRemoved;
+	    }
 	}
 
 	private Decimal getScoreTotal(Map<String, Decimal> distributionMap, String businessValue){

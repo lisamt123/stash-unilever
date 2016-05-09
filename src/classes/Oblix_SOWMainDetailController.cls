@@ -8,7 +8,8 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
     public String last_updated {get; set;}
     public Attachment pageAttachment {get; set;}
     public Map <Id, String> map_att_locale {get; set;}
-    public Oblix_DashboardsHandler scoresDashboard {get; set;}
+    public Oblix_DashboardsHandler scoresFYFeeDashboard {get; set;}
+    public Oblix_DashboardsHandler scoresFullFeeDashboard {get; set;}
 
     private static final String FIELD_SET_SOW_MAIN_DETAIL = 'oblix_sow_main_detail';
     private static final String OBJECT_SOW_TO_QUERY = 'marketing_sow__c';
@@ -103,28 +104,6 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
         }
     }
 
-    public String reportFilter{
-        get{
-            Oblix_DashboardsController.ColumnFilter cfSelectedSOW = new Oblix_DashboardsController.ColumnFilter('Marketing_SOW__c.Name', 'equals', selected_sow.Name);
-            return JSON.serialize(cfSelectedSOW);
-        }
-    }
-
-
-
-
-    //public static PageReference reportFolderURL {
-    //    get{
-    //        if(reportFolderURL == null){
-    //            List<Folder> reportFolderIdList = [SELECT Id FROM Folder WHERE Name =: Oblix_Constants.SWOPReportFolder];
-    //            if(!reportFolderIdList.isEmpty()){
-    //                reportFolderURL = new PageReference('/' + reportFolderIdList[0].Id);
-    //            }
-    //        }
-    //        return reportFolderURL;
-    //    } set;
-    //}
-
 
     public Oblix_SOWMainDetailController() {
 
@@ -153,8 +132,8 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
                 li_campaign_and_non_campaign_items.add(new CampaignNonCampaignItems('Non Campaign', nonCampaign, can_edit));
             }*/
 
-            Map<String, Oblix_SOWNonCampaignPageHelper.BasketSectionWrapper> nonCampItemSections = Oblix_SOWNonCampaignPageHelper.initBasketSections(selected_sow.Id);
-            for (Oblix_SOWNonCampaignPageHelper.BasketSectionWrapper sectionWrapper : nonCampItemSections.values()) {
+            Map<String, Oblix_SOWNonCampaignHelperEXT.BasketSectionWrapper> nonCampItemSections = Oblix_SOWNonCampaignHelperEXT.initBasketSections(selected_sow.Id);
+            for (Oblix_SOWNonCampaignHelperEXT.BasketSectionWrapper sectionWrapper : nonCampItemSections.values()) {
                 li_campaign_and_non_campaign_items.add(new CampaignNonCampaignItems('Non Campaign', sectionWrapper));
             }
             
@@ -176,10 +155,15 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
 
             last_updated = Oblix_Utils.toLocaleDate(selected_sow.LastModifiedDate);
 
-            scoresDashboard = new Oblix_DashboardsHandler(Oblix_DashboardsHandler.Type.SOW_SCORES, selected_sow.Id);
+            scoresFYFeeDashboard = new Oblix_DashboardsHandler(Oblix_DashboardsHandler.Type.SOW_SCORES_FY_FEE, selected_sow.Id);
+            scoresFullFeeDashboard = new Oblix_DashboardsHandler(Oblix_DashboardsHandler.Type.SOW_SCORES_FULL_FEE, selected_sow.Id);
 
         }
         
+    }
+
+    public void setFee(){
+        system.debug('fee set');
     }
 
 
@@ -227,7 +211,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
             }
         }
 
-        public CampaignNonCampaignItems(String object_type, Oblix_SOWNonCampaignPageHelper.BasketSectionWrapper nonCampaignSectionWrapper) {
+        public CampaignNonCampaignItems(String object_type, Oblix_SOWNonCampaignHelperEXT.BasketSectionWrapper nonCampaignSectionWrapper) {
             
             s_object_type = object_type;
 
@@ -572,7 +556,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
         if(campaignIDSync == null){
             for(Oblix_SOW_Projects__c eachCampaign : [SELECT Id, Sync_Status__c 
                                                         FROM Oblix_SOW_Projects__c 
-                                                        WHERE Financial_Year__c =:selected_sow.Id 
+                                                        WHERE Financial_Year__c =:selected_sow.SOW_PFY__c 
                                                         AND Sync_Status__c = :Oblix_Utils.JOB_STATUS_SYNC_REQUIRED
                                                         LIMIT 1000]){
                 eachCampaign.Sync_Status__c = Oblix_Utils.JOB_STATUS_SYNC_REQUESTED;

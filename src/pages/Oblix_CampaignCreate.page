@@ -102,7 +102,7 @@
                                                     </apex:selectList>
                                                 </td>
                                                 <td class="agency_hub_last_cell_spacing">
-                                                    <apex:inputText html-type="number" html-step="0.01" value="{!split.Percentage__c}" style="width:60px" styleClass="campaign_create_agency_hub_split_table_value percentage percentageSplit_{!display}" /> %</td>
+                                                    <apex:inputText html-type="number" html-step="0.01" value="{!split.Percentage__c}" style="width:60px" styleClass="campaign_create_agency_hub_split_table_value percentage percentageSplit_{!display}" html-onPaste="return false;" onkeypress="return onKeyPress_IsDigitAndDecimalValidation(event, this);"/> %</td>
                                             </tr>
                                             <apex:variable var="display" value="{!display + 1}" />
                                         </apex:repeat>

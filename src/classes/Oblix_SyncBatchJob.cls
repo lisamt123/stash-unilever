@@ -61,6 +61,10 @@ public with sharing class Oblix_SyncBatchJob implements Database.Batchable<JobCo
 	private static final String SOW_NFY = 'SOW_NFY__c';
 
 	// CAMPAIGN FIELDS
+	private static final String PARENT_SYNC_FIELD = 'Financial_Year__r.Sync_Status__c';
+	private static final String SYNC_FIELD = 'Sync_Status__c';
+	
+
 	private static final String ORIGINAL_CAMPAIGN = 'Original_Campaign__c';
 	private static final String CLONED_CAMPAIGN = 'Cloned_Campaign__c';
 	private static final String CAMPAIGN_PFY = 'Campaign_PFY__c';
@@ -118,185 +122,75 @@ public with sharing class Oblix_SyncBatchJob implements Database.Batchable<JobCo
 		system.debug(sync_job.process_result);
 
 	}
-	public static void buildJobComponentsForSync(Integer sow_size, Integer campaign_size){
+	
 
-        // how many attachments?
-        Integer total_attachments = [SELECT count() FROM Attachment WHERE ParentId in (SELECT id FROM Marketing_SOW__c 
-        	WHERE Sync_Status__c =: Oblix_Utils.JOB_STATUS_SYNC_REQUESTED OR Sync_Status__c =: Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS)];
-
-        // find out how many campaigns are in scope?
-        Integer total_campaigns = [SELECT count() FROM Oblix_SOW_Projects__c 
-        	WHERE Financial_Year__r.Sync_Status__c =: Oblix_Utils.JOB_STATUS_SYNC_REQUESTED OR Financial_Year__r.Sync_Status__c =: Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS];
-		
-        // find out how many assets are in scope?
-        Integer total_assets = [SELECT count() FROM Oblix_Project_Assets__c 
-        	WHERE Agency_Projects__r.Financial_Year__r.Sync_Status__c =: Oblix_Utils.JOB_STATUS_SYNC_REQUESTED OR Agency_Projects__r.Financial_Year__r.Sync_Status__c =: Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS];
-
-		addEvent('******************************************************************',NULL);
-		addEvent('started building job components to sync SOWs',NULL);
-		addEvent('\nsow_size: ' + sow_size + '\ntotal_attachments: ' + total_attachments + '\ntotal_campaigns: ' + total_campaigns + '\ntotal_assets: ' + total_assets,NULL);
-		addEvent('******************************************************************',NULL);
-
-
-		// depending on the number of the rows passed in calculate how many job components are required
-        Integer number_of_chunks = 0;
-
-        //#################################################
-        //	ADD JOB COMPONENT FOR SETTING THE STATUS TO IN PROGRESS
-        //#################################################
-        number_of_chunks = getNumberOfChuncks(sow_size,Oblix_Utils.MAX_SOWS_PER_CONTEXT);
-
-        addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_SET_STATUS, Oblix_Utils.MAX_SOWS_PER_CONTEXT
-        	, Oblix_Utils.JOB_STATUS_SYNC_REQUESTED, Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS, OBJECT_SOW, NULL, NULL, NULL);
-
-
-        //#################################################
-        //	ADD JOB COMPONENT TO SYNC SOW
-        //#################################################
-	    	// initial sync:
-	        // 		attrib_1: SOW_PFY__c
-	        // 		attrib_2: SOW_NFY__c
-	        // 		attrib_3: JOB_STATUS_SYNC_IN_PROGRESS
-        addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_SYNC_SOW, Oblix_Utils.MAX_SOWS_PER_CONTEXT
-        	, SOW_PFY,SOW_NFY,Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS, NULL, NULL, Oblix_Utils.PROCESS_TYPE_ROLLOVER);
-
-
-        number_of_chunks = getNumberOfChuncks(total_attachments,Oblix_Utils.MAX_ATTACHMENTS_PER_CONTEXT);
-        //#################################################
-        //	ADD JOB COMPONENT TO SYNC ATTACHMENTS
-        //#################################################
-        addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_CLONE_ATTACHMENTS, Oblix_Utils.MAX_ATTACHMENTS_PER_CONTEXT
-        	, Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS,NULL,NULL, NULL, NULL, NULL);
-
- 		number_of_chunks = getNumberOfChuncks(total_campaigns,Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT);
-        //#################################################
-        //	ADD JOB COMPONENT TO SYNC CAMPAIGNS
-        //#################################################
-			// initial sync:
-            // 		attrib_1: SOW_PFY__c
-            // 		attrib_2: SOW_NFY__c
-            // 		attrib_3: JOB_STATUS_SYNC_IN_PROGRESS
-            // 		attrib_4: Campaign_NFY__c
-            // 		attrib_5: Campaign_PFY__c
-        addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_CLONE_CAMPAIGN, Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT
-        	, SOW_PFY,SOW_NFY,Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS, CAMPAIGN_NFY, CAMPAIGN_PFY, Oblix_Utils.PROCESS_TYPE_ROLLOVER);
-
-
- 		number_of_chunks = getNumberOfChuncks(total_assets,Oblix_Utils.MAX_ASSETS_PER_CONTEXT);
-        //#################################################
-        //	ADD JOB COMPONENT TO SYNC ASSETS
-        //#################################################
-			// initial sync:
-            // 		attrib_1: Campaign_PFY__c
-            // 		attrib_2: Campaign_NFY__c
-            // 		attrib_3: JOB_STATUS_SYNC_IN_PROGRESS
-            // 		attrib_4: Asset_NFY__c
-            // 		attrib_5: Asset_PFY__c
-        addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_CLONE_ASSETS, Oblix_Utils.MAX_ASSETS_PER_CONTEXT
-        	, CAMPAIGN_PFY,CAMPAIGN_NFY,Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS,ASSET_NFY ,ASSET_PFY,NULL);
-
-
-        //#################################################
-        //	ADD JOB COMPONENT FOR SETTING THE STATUS TO SYNC COMPLETE
-        //#################################################
-        number_of_chunks = getNumberOfChuncks(sow_size,Oblix_Utils.MAX_SOWS_PER_CONTEXT);
-
-        addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_SET_STATUS, Oblix_Utils.MAX_SOWS_PER_CONTEXT
-        	, Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS, Oblix_Utils.JOB_STATUS_SYNC_COMPLETED,OBJECT_SOW, NULL, NULL,NULL);
-
-
-
-        // find out how many campaigns are in scope?
-        total_campaigns = [SELECT count() FROM Oblix_SOW_Projects__c WHERE Sync_Status__c =: Oblix_Utils.JOB_STATUS_SYNC_REQUESTED];
-		
-        // find out how many assets are in scope on sync campaign?
-        total_assets = [SELECT count() FROM Oblix_Project_Assets__c WHERE Agency_Projects__r.Sync_Status__c =: Oblix_Utils.JOB_STATUS_SYNC_REQUESTED];
-
-		addEvent('******************************************************************',NULL);
-		addEvent('started building job components to sync individual campaigns',NULL);
-		addEvent('total_campaigns: ' + total_campaigns + '\ntotal_assets: ' + total_assets,NULL);
-		addEvent('******************************************************************',NULL);
-
-        //#################################################
-        //	ADD JOB COMPONENT FOR SETTING THE STATUS TO IN PROGRESS
-        //  ON BOTH ORIGINAL AND CLONED(NFY) CAMPAIGNS
-        //#################################################
-        number_of_chunks = getNumberOfChuncks(total_campaigns,Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT);
-
-        // because we are updating the original campaigns as well as the cloned campaigns, devide rows_per_context by 2
-        // to make sure we are not running out of DML rows
-        addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_CAMPAIGN_SET_STATUS, Integer.valueOf(Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT / 2)
-        	, Oblix_Utils.JOB_STATUS_SYNC_REQUESTED, Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS,OBJECT_CAMPAIGN, CAMPAIGN_PFY , NULL,NULL);
-
-
-        //#################################################
-        //	ADD JOB COMPONENT TO SYNC CAMPAIGNS
-        //#################################################
-        addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_SYNC_ADJUST_CAMPAIGN, Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT
-        	, Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS,NULL,NULL, NULL, NULL,NULL);
-
-
- 		number_of_chunks = getNumberOfChuncks(total_assets,Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT);
-        //#################################################
-        //	ADD JOB COMPONENT TO SYNC ASSETS
-        //#################################################
-			// sync:
-            // 		attrib_1: Campaign_PFY__c
-            // 		attrib_2: Campaign_NFY__c
-            // 		attrib_3: JOB_STATUS_SYNC_IN_PROGRESS
-            // 		attrib_4: Asset_NFY__c
-            // 		attrib_5: Asset_PFY__c
-        addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_CLONE_ASSETS, Oblix_Utils.MAX_ASSETS_PER_CONTEXT
-        	, CAMPAIGN_PFY ,CAMPAIGN_NFY, Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS, ASSET_NFY, ASSET_PFY,NULL);
-
-
-        //#################################################
-        //	ADD JOB COMPONENT FOR SETTING THE STATUS FROM IN PROGRESS
-        //	TO SYNC COMPLETE
-        //  ON BOTH ORIGINAL AND CLONED(NFY) CAMPAIGNS
-        //#################################################
-        number_of_chunks = getNumberOfChuncks(total_campaigns,Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT);
-
-        // because we are updating the original campaigns as well as the cloned campaigns, devide rows_per_context by 2
-        // to make sure we are not running out of DML rows
-        addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_CAMPAIGN_SET_STATUS, Integer.valueOf(Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT / 2)
-        	, Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS, Oblix_Utils.JOB_STATUS_SYNC_COMPLETED,OBJECT_CAMPAIGN, CAMPAIGN_PFY, NULL,NULL);
-	}
-
+    /*******************************************************************************
+    * @author       Execloud ©
+    * @date         2016-04-27
+    * @description  Calculates the total number of chuncks needed to process all records
+                    for a cloning sows when triggered during initial approval
+    ********************************************************************************/
 	public static void buildJobComponentsForCloning(Integer sow_size){
 
-        // how many non campaigns?
-        Integer total_non_campaigns = [SELECT count() FROM Marketing_Basics__c 
-        	WHERE Oblix_SOWMarketing__r.Sync_Status__c =: Oblix_Utils.JOB_STATUS_CLONE_REQUESTED OR Oblix_SOWMarketing__r.Sync_Status__c =: Oblix_Utils.JOB_STATUS_CLONE_IN_PROGRESS];
-
-        // how many attachments?
-        Integer total_attachments = [SELECT count() FROM Attachment WHERE ParentId in (SELECT id from Marketing_SOW__c 
-        	WHERE Sync_Status__c =: Oblix_Utils.JOB_STATUS_CLONE_REQUESTED OR Sync_Status__c =: Oblix_Utils.JOB_STATUS_CLONE_IN_PROGRESS)];
-
-        // find out how many campaigns are in scope?
-        Integer total_campaigns = [SELECT count() FROM Oblix_SOW_Projects__c 
-        	WHERE Financial_Year__r.Sync_Status__c =: Oblix_Utils.JOB_STATUS_CLONE_REQUESTED OR Financial_Year__r.Sync_Status__c =: Oblix_Utils.JOB_STATUS_CLONE_IN_PROGRESS];
-		
-        // find out how many assets are in scope?
-        Integer total_assets = [SELECT count() FROM Oblix_Project_Assets__c 
-        	WHERE Agency_Projects__r.Financial_Year__r.Sync_Status__c =: Oblix_Utils.JOB_STATUS_CLONE_REQUESTED OR Agency_Projects__r.Financial_Year__r.Sync_Status__c =: Oblix_Utils.JOB_STATUS_CLONE_IN_PROGRESS];
 
 		addEvent('******************************************************************',NULL);
 		addEvent('started building job components to clone SOWs',NULL);
-		addEvent('sow_size: ' + sow_size + '\ntotal_non_campaigns: ' + total_non_campaigns + '\ntotal_attachments: ' + total_attachments + '\ntotal_campaigns: ' + total_campaigns + '\ntotal_assets: ' + total_assets,NULL);
-		addEvent('******************************************************************',NULL);
 
 
 		// depending on the number of the rows passed in calculate how many job components are required
         Integer number_of_chunks = 0;
 
         //#################################################
-        //	ADD JOB COMPONENT FOR SETTING THE STATUS TO IN PROGRESS
+        //	ADD JOB COMPONENT FOR SETTING THE SOW STATUS 
+        //	TO IN PROGRESS
         //#################################################
+
+            // job component attribute list
+            // 		attrib_1: initial status
+            // 		attrib_2: status to be
+            // 		attrib_3: sObject type
+            // 		attrib_4: field to use for checking sync
+            // 		attrib_5: field to use for locking campaign of next FY
+
+            // set sow status:
+	        // 		attrib_1: 'clone requested'
+	        // 		attrib_2: 'clone in progress'
+	        // 		attrib_3: SOW
+	        // 		attrib_4: Sync_Status__c
         number_of_chunks = getNumberOfChuncks(sow_size,Oblix_Utils.MAX_SOWS_PER_CONTEXT);
 
         addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_SET_STATUS, Oblix_Utils.MAX_SOWS_PER_CONTEXT
-        	, Oblix_Utils.JOB_STATUS_CLONE_REQUESTED, Oblix_Utils.JOB_STATUS_CLONE_IN_PROGRESS,OBJECT_SOW, NULL, NULL,NULL);
+        	, Oblix_Utils.JOB_STATUS_CLONE_REQUESTED, Oblix_Utils.JOB_STATUS_CLONE_IN_PROGRESS,OBJECT_SOW, SYNC_FIELD, NULL,NULL);
+
+
+
+        //#################################################
+        //	ADD JOB COMPONENT FOR SETTING THE CAMPAIGN STATUS 
+        //	TO IN PROGRESS
+        //#################################################
+        
+        // find out how many campaigns are in scope?
+        Integer total_campaigns = [SELECT count() FROM Oblix_SOW_Projects__c 
+        	WHERE Financial_Year__r.Sync_Status__c =: Oblix_Utils.JOB_STATUS_CLONE_IN_PROGRESS 
+        	OR Financial_Year__r.Sync_Status__c =: Oblix_Utils.JOB_STATUS_CLONE_REQUESTED];
+
+            // job component attribute list
+            // 		attrib_1: initial status
+            // 		attrib_2: status to be
+            // 		attrib_3: sObject type
+            // 		attrib_4: field to use for checking sync
+            // 		attrib_5: field to use for locking campaign of next FY
+
+            //	set campaign status - all campaigns below parent sow
+	        // 		attrib_1: 'clone in progress' - parent status
+	        // 		attrib_2: 'clone in progress' - set campaign status
+	        // 		attrib_3: SOW
+	        // 		attrib_4: parent SOW
+        number_of_chunks = getNumberOfChuncks(total_campaigns,Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT);
+
+        addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_SET_STATUS, Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT
+        	, Oblix_Utils.JOB_STATUS_CLONE_IN_PROGRESS, Oblix_Utils.JOB_STATUS_CLONE_IN_PROGRESS,OBJECT_CAMPAIGN, PARENT_SYNC_FIELD, NULL,NULL);
+
 
 
         //#################################################
@@ -311,39 +205,68 @@ public with sharing class Oblix_SyncBatchJob implements Database.Batchable<JobCo
         	, ORIGINAL_SOW, CLONED_SOW ,Oblix_Utils.JOB_STATUS_CLONE_IN_PROGRESS, NULL, NULL, Oblix_Utils.PROCESS_TYPE_INITIAL_APPROVAL);
 
 
-        number_of_chunks = getNumberOfChuncks(total_non_campaigns,Oblix_Utils.MAX_NON_CAMPAIGNS_PER_CONTEXT);
+
         //#################################################
         //	ADD JOB COMPONENT FOR CLONING NON-CAMPAIGNS
         //#################################################
+        // how many non campaigns?
+        Integer total_non_campaigns = [SELECT count() FROM Marketing_Basics__c 
+        	WHERE Oblix_SOWMarketing__r.Sync_Status__c =: Oblix_Utils.JOB_STATUS_CLONE_IN_PROGRESS
+    		OR Oblix_SOWMarketing__r.Sync_Status__c =: Oblix_Utils.JOB_STATUS_CLONE_REQUESTED];
+
+        number_of_chunks = getNumberOfChuncks(total_non_campaigns,Oblix_Utils.MAX_NON_CAMPAIGNS_PER_CONTEXT);
+
         addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_CLONE_NON_CAMPAIGN, Oblix_Utils.MAX_NON_CAMPAIGNS_PER_CONTEXT
         	, Oblix_Utils.JOB_STATUS_CLONE_IN_PROGRESS,NULL,NULL, NULL, NULL,NULL);
 
 
-        number_of_chunks = getNumberOfChuncks(total_attachments,Oblix_Utils.MAX_ATTACHMENTS_PER_CONTEXT);
         //#################################################
         //	ADD JOB COMPONENT FOR CLONING ATTACHMENTS
         //#################################################
-        addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_CLONE_ATTACHMENTS, Oblix_Utils.MAX_ATTACHMENTS_PER_CONTEXT
-        	, Oblix_Utils.JOB_STATUS_CLONE_IN_PROGRESS,NULL,NULL, NULL, NULL,NULL);
+        // how many attachments?
+        Integer total_attachments = [SELECT count() FROM Attachment WHERE ParentId in (SELECT id from Marketing_SOW__c 
+        	WHERE Sync_Status__c =: Oblix_Utils.JOB_STATUS_CLONE_IN_PROGRESS
+        	OR Sync_Status__c =: Oblix_Utils.JOB_STATUS_CLONE_REQUESTED)];
 
- 		number_of_chunks = getNumberOfChuncks(total_campaigns,Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT);
+        number_of_chunks = getNumberOfChuncks(total_attachments,Oblix_Utils.MAX_ATTACHMENTS_PER_CONTEXT);
+
+        addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_CLONE_ATTACHMENTS, Oblix_Utils.MAX_ATTACHMENTS_PER_CONTEXT
+        	, ORIGINAL_SOW ,CLONED_SOW,Oblix_Utils.JOB_STATUS_CLONE_IN_PROGRESS, NULL, NULL,NULL);
+
+
         //#################################################
         //	ADD JOB COMPONENT FOR CLONING CAMPAIGNS
         //#################################################
+
+        // find out how many campaigns are in scope - don't go via parent SOW to collect older/failed campaigns
+        total_campaigns = [SELECT count() FROM Oblix_SOW_Projects__c 
+        	WHERE Financial_Year__r.Sync_Status__c =: Oblix_Utils.JOB_STATUS_CLONE_IN_PROGRESS
+        	OR Financial_Year__r.Sync_Status__c =: Oblix_Utils.JOB_STATUS_CLONE_REQUESTED];
+
+ 		number_of_chunks = getNumberOfChuncks(total_campaigns,Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT);
+
             // clone campaign:
             // 		attrib_1: Original_SOW__c
             // 		attrib_2: Cloned_SOW__c
             // 		attrib_3: JOB_STATUS_CLONE_IN_PROGRESS
             // 		attrib_4: Cloned_Campaign__c
             // 		attrib_5: Original_Campaign__c
+            // 		attrib_6: process type (initial approval)
         addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_CLONE_CAMPAIGN, Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT
         	, ORIGINAL_SOW ,CLONED_SOW,Oblix_Utils.JOB_STATUS_CLONE_IN_PROGRESS, CLONED_CAMPAIGN, ORIGINAL_CAMPAIGN, Oblix_Utils.PROCESS_TYPE_INITIAL_APPROVAL);
 
 
- 		number_of_chunks = getNumberOfChuncks(total_assets,Oblix_Utils.MAX_ASSETS_PER_CONTEXT);
         //#################################################
         //	ADD JOB COMPONENT FOR CLONING ASSETS
         //#################################################
+
+        // find out how many assets are in scope?
+        Integer total_assets = [SELECT count() FROM Oblix_Project_Assets__c 
+        	WHERE Agency_Projects__r.Financial_Year__r.Sync_Status__c =: Oblix_Utils.JOB_STATUS_CLONE_IN_PROGRESS
+        	OR Agency_Projects__r.Financial_Year__r.Sync_Status__c =: Oblix_Utils.JOB_STATUS_CLONE_REQUESTED];
+	
+ 		number_of_chunks = getNumberOfChuncks(total_assets,Oblix_Utils.MAX_ASSETS_PER_CONTEXT);
+
             // clone assets:
             // 		attrib_1: Agency_Projects__r.Original_Campaign__c
             // 		attrib_2: Agency_Projects__r.Cloned_Campaign__c
@@ -356,15 +279,300 @@ public with sharing class Oblix_SyncBatchJob implements Database.Batchable<JobCo
 
 
         //#################################################
-        //	ADD JOB COMPONENT FOR SETTING THE STATUS TO COMPLETED
+        //	ADD JOB COMPONENT FOR SETTING THE CAMPAIGN STATUS 
+        //	TO CLONE COMPLETE
         //#################################################
+            // job component attribute list
+            // 		attrib_1: initial status
+            // 		attrib_2: status to be
+            // 		attrib_3: sObject type
+            // 		attrib_4: field to use for checking sync
+            // 		attrib_5: field to use for locking campaign of next FY
+
+            //	set campaign status - all campaigns below parent sow
+	        // 		attrib_1: 'clone in progress' - campaign status
+	        // 		attrib_2: 'clone complete' - campaign status
+	        // 		attrib_3: campaign
+	        // 		attrib_4: sync status
+
+        // find out how many campaigns are in scope - collect older/failed campaigns
+        total_campaigns = [SELECT count() FROM Oblix_SOW_Projects__c 
+        	WHERE Financial_Year__r.Sync_Status__c =: Oblix_Utils.JOB_STATUS_CLONE_IN_PROGRESS
+        	OR Financial_Year__r.Sync_Status__c =: Oblix_Utils.JOB_STATUS_CLONE_REQUESTED];
+        
+        number_of_chunks = getNumberOfChuncks(total_campaigns,Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT);
+
+
+        addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_SET_STATUS, Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT
+        	, Oblix_Utils.JOB_STATUS_CLONE_IN_PROGRESS, Oblix_Utils.JOB_STATUS_CLONE_COMPLETED,OBJECT_CAMPAIGN, SYNC_FIELD, NULL,NULL);
+
+        //#################################################
+        //	ADD JOB COMPONENT FOR SETTING THE SOW STATUS 
+        //	TO CLONE COMPLETE
+        //#################################################
+            // job component attribute list
+            // 		attrib_1: initial status
+            // 		attrib_2: status to be
+            // 		attrib_3: sObject type
+            // 		attrib_4: field to use for checking sync
+            // 		attrib_5: field to use for locking campaign of next FY
+
+            //	set sow status
+	        // 		attrib_1: 'clone in progress' - sow status
+	        // 		attrib_2: 'clone complete' - sow status
+	        // 		attrib_3: sow
+	        // 		attrib_4: sync status
+
         number_of_chunks = getNumberOfChuncks(sow_size,Oblix_Utils.MAX_SOWS_PER_CONTEXT);
 
         addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_SET_STATUS, Oblix_Utils.MAX_SOWS_PER_CONTEXT
-        	, Oblix_Utils.JOB_STATUS_CLONE_IN_PROGRESS, Oblix_Utils.JOB_STATUS_CLONE_COMPLETED,OBJECT_SOW,NULL, NULL,NULL);
+        	, Oblix_Utils.JOB_STATUS_CLONE_IN_PROGRESS, Oblix_Utils.JOB_STATUS_CLONE_COMPLETED,OBJECT_SOW,SYNC_FIELD, NULL,NULL);
 
+		addEvent('sow_size: ' + sow_size + '\ntotal_non_campaigns: ' + total_non_campaigns + '\ntotal_attachments: ' + total_attachments + '\ntotal_campaigns: ' + total_campaigns + '\ntotal_assets: ' + total_assets,NULL);
+		addEvent('******************************************************************',NULL);
 
 	}
+
+
+    /*******************************************************************************
+    * @author       Execloud ©
+    * @date         2016-04-27
+    * @description  Calculates the total number of chuncks needed to process all records
+                    for a syncing sows and campaigns during rollover transition
+    ********************************************************************************/
+	public static void buildJobComponentsForSync(Integer sow_size, Integer campaign_size){
+
+
+		addEvent('******************************************************************',NULL);
+		addEvent('started building job components to sync SOWs',NULL);
+
+
+		// depending on the number of the rows passed in calculate how many job components are required
+        Integer number_of_chunks = 0;
+
+
+        //#################################################
+        //	ADD JOB COMPONENT FOR SETTING THE SOW STATUS 
+        //	TO IN PROGRESS
+        //#################################################
+
+            // job component attribute list
+            // 		attrib_1: initial status
+            // 		attrib_2: status to be
+            // 		attrib_3: sObject type
+            // 		attrib_4: field to use for checking sync
+            // 		attrib_5: field to use for locking campaign of next FY
+
+            // set sow status:
+	        // 		attrib_1: 'sync requested'
+	        // 		attrib_2: 'sync in progress'
+	        // 		attrib_3: SOW
+	        // 		attrib_4: Sync_Status__c
+        number_of_chunks = getNumberOfChuncks(sow_size,Oblix_Utils.MAX_SOWS_PER_CONTEXT);
+
+        addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_SET_STATUS, Oblix_Utils.MAX_SOWS_PER_CONTEXT
+        	, Oblix_Utils.JOB_STATUS_SYNC_REQUESTED, Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS, OBJECT_SOW, SYNC_FIELD, NULL, NULL);
+
+
+
+        //#################################################
+        //	ADD JOB COMPONENT TO SYNC SOW
+        //#################################################
+	    	// initial sync:
+	        // 		attrib_1: SOW_PFY__c
+	        // 		attrib_2: SOW_NFY__c
+	        // 		attrib_3: JOB_STATUS_SYNC_IN_PROGRESS
+        addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_CLONE_SOW, Oblix_Utils.MAX_SOWS_PER_CONTEXT
+        	, SOW_PFY,SOW_NFY,Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS, NULL, NULL, Oblix_Utils.PROCESS_TYPE_ROLLOVER);
+
+
+        //#################################################
+        //	ADD JOB COMPONENT TO SYNC ATTACHMENTS
+        //#################################################
+        // how many attachments?
+        Integer total_attachments = [SELECT count() FROM Attachment WHERE ParentId in (SELECT id FROM Marketing_SOW__c 
+        	WHERE Sync_Status__c =: Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS
+        	OR Sync_Status__c =: Oblix_Utils.JOB_STATUS_SYNC_REQUESTED)];
+
+        number_of_chunks = getNumberOfChuncks(total_attachments,Oblix_Utils.MAX_ATTACHMENTS_PER_CONTEXT);
+
+        addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_CLONE_ATTACHMENTS, Oblix_Utils.MAX_ATTACHMENTS_PER_CONTEXT
+        	, SOW_PFY,SOW_NFY,Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS, NULL, NULL, NULL);
+
+
+
+        //#################################################
+        //	ADD JOB COMPONENT FOR SETTING THE CAMPAIGN STATUS 
+        //	TO SYNC IN PROGRESS - PARENT SOW HAS SYNC REQUESTED 
+        //	FIRST TIME THE USER CLICKS INITIATE ROLLOVER
+        //#################################################
+            // job component attribute list
+            // 		attrib_1: initial status
+            // 		attrib_2: status to be
+            // 		attrib_3: sObject type
+            // 		attrib_4: field to use for checking sync
+            // 		attrib_5: field to use for locking campaign of next FY
+
+            // set campaign status on children of sow in progress:
+	        // 		attrib_1: 'sync in progress'
+	        // 		attrib_2: 'sync in progress'
+	        // 		attrib_3: campaign
+	        // 		attrib_4: Sync_Status__c
+        // find out how many campaigns are in scope - collect older/failed campaigns
+        Integer total_campaigns = [SELECT count() FROM Oblix_SOW_Projects__c 
+        	WHERE Financial_Year__r.Sync_Status__c =: Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS
+        	OR  Financial_Year__r.Sync_Status__c =: Oblix_Utils.JOB_STATUS_SYNC_REQUESTED];
+        
+        number_of_chunks = getNumberOfChuncks(total_campaigns,Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT);
+
+        addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_SET_STATUS, Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT
+        	, Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS, Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS,OBJECT_CAMPAIGN, PARENT_SYNC_FIELD,NULL ,NULL);
+
+
+
+        //#################################################
+        //	ADD JOB COMPONENT FOR SETTING THE CAMPAIGN STATUS 
+        //	TO SYNC IN PROGRESS - INDIVIDUAL CAMPAIGNS ARE
+        //	MARKED AS SYNC REQUESTED
+        //#################################################
+            // job component attribute list
+            // 		attrib_1: initial status
+            // 		attrib_2: status to be
+            // 		attrib_3: sObject type
+            // 		attrib_4: field to use for checking sync
+            // 		attrib_5: field to use for locking campaign of next FY
+
+            //	set campaign status individual campaigns
+	        // 		attrib_1: 'sync requested' - campaign status
+	        // 		attrib_2: 'sync in progress' - campaign status
+	        // 		attrib_3: Campaign
+	        // 		attrib_4: sync status
+	        // 		attrib_5: pfy campaign
+
+        // find out how many campaigns are in scope - don't go via parent SOW to collect older/failed campaigns
+        total_campaigns = [SELECT count() FROM Oblix_SOW_Projects__c 
+        	WHERE Sync_Status__c =: Oblix_Utils.JOB_STATUS_SYNC_REQUESTED
+        	OR Sync_Status__c =: Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS];
+        
+        number_of_chunks = getNumberOfChuncks(total_campaigns,Oblix_Utils.MAX_SOWS_PER_CONTEXT);
+
+
+        // because we are updating the original campaigns as well as the cloned campaigns, devide rows_per_context by 2
+        // to make sure we are not running out of DML rows]
+        addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_SET_STATUS, Integer.valueOf(Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT / 2)
+        	, Oblix_Utils.JOB_STATUS_SYNC_REQUESTED, Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS,OBJECT_CAMPAIGN, PARENT_SYNC_FIELD,CAMPAIGN_PFY ,NULL);
+
+
+
+
+        //#################################################
+        //	ADD JOB COMPONENT TO SYNC CAMPAIGNS
+        //	THIS SHOULD PICK UP CAMPAIGNS INDIVIDUALLY 
+        // 	MARKED TO SYNC OR CAMPAIGNS MARKED AS SYNC AS A 
+        //	RESULT OF PARENT SOW MARKED AS SYNC
+        //#################################################
+			// initial sync:
+            // 		attrib_1: 
+            // 		attrib_2: SOW_PFY__c
+            // 		attrib_3: JOB_STATUS_SYNC_IN_PROGRESS
+            // 		attrib_4: 
+            // 		attrib_5: 
+            // 		attrib_6: Type of process
+
+        // find out how many campaigns are in scope?
+        total_campaigns = [SELECT count() FROM Oblix_SOW_Projects__c 
+        	WHERE Sync_Status__c =: Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS
+        	OR  Sync_Status__c =: Oblix_Utils.JOB_STATUS_SYNC_REQUESTED
+        	OR Financial_Year__r.Sync_Status__c =: Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS
+        	OR  Financial_Year__r.Sync_Status__c =: Oblix_Utils.JOB_STATUS_SYNC_REQUESTED];
+
+ 		number_of_chunks = getNumberOfChuncks(total_campaigns,Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT);
+
+
+        addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_SYNC_ADJUST_CAMPAIGN, Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT
+        	, NULL,CAMPAIGN_PFY,Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS, NULL, NULL,Oblix_Utils.PROCESS_TYPE_ROLLOVER);
+
+
+        //#################################################
+        //	ADD JOB COMPONENT TO SYNC ASSETS
+        //#################################################		
+			// initial sync:
+            // 		attrib_1: Campaign_PFY__c
+            // 		attrib_2: Campaign_NFY__c
+            // 		attrib_3: JOB_STATUS_SYNC_IN_PROGRESS
+            // 		attrib_4: Asset_NFY__c
+            // 		attrib_5: Asset_PFY__c
+        // find out how many assets are in scope?
+        Integer total_assets = [SELECT count() FROM Oblix_Project_Assets__c 
+        	WHERE Agency_Projects__r.Financial_Year__r.Sync_Status__c =: Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS
+        	OR Agency_Projects__r.Financial_Year__r.Sync_Status__c =: Oblix_Utils.JOB_STATUS_SYNC_REQUESTED
+        	OR Agency_Projects__r.Sync_Status__c =: Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS
+        	OR Agency_Projects__r.Sync_Status__c =: Oblix_Utils.JOB_STATUS_SYNC_REQUESTED];
+
+ 		number_of_chunks = getNumberOfChuncks(total_assets,Oblix_Utils.MAX_ASSETS_PER_CONTEXT);
+
+        addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_CLONE_ASSETS, Oblix_Utils.MAX_ASSETS_PER_CONTEXT
+        	, CAMPAIGN_PFY,CAMPAIGN_NFY,Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS,ASSET_NFY ,ASSET_PFY,NULL);
+
+
+
+        //#################################################
+        //	ADD JOB COMPONENT FOR SETTING THE CAMPAIGN STATUS 
+        //	TO SYNC COMPLETE
+        //#################################################
+            // job component attribute list
+            // 		attrib_1: initial status
+            // 		attrib_2: status to be
+            // 		attrib_3: sObject type
+            // 		attrib_4: field to use for checking sync
+            // 		attrib_5: field to use for locking campaign of next FY
+
+            //	set campaign status - all campaigns below parent sow
+	        // 		attrib_1: 'sync in progress' - campaign status
+	        // 		attrib_2: 'sync completed' - campaign status to be
+	        // 		attrib_3: Campaign
+	        // 		attrib_4: sync status
+        // find out how many campaigns are in scope - don't go via parent SOW to collect older/failed campaigns
+        total_campaigns = [SELECT count() FROM Oblix_SOW_Projects__c 
+        	WHERE Sync_Status__c =: Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS
+        	OR  Sync_Status__c =: Oblix_Utils.JOB_STATUS_SYNC_REQUESTED
+        	OR Financial_Year__r.Sync_Status__c =: Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS
+        	OR  Financial_Year__r.Sync_Status__c =: Oblix_Utils.JOB_STATUS_SYNC_REQUESTED];
+        	
+        
+        number_of_chunks = getNumberOfChuncks(total_campaigns,Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT);
+
+
+        addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_SET_STATUS, Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT
+        	, Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS, Oblix_Utils.JOB_STATUS_SYNC_COMPLETED,OBJECT_CAMPAIGN, SYNC_FIELD,NULL ,NULL);
+
+
+        //#################################################
+        //	ADD JOB COMPONENT FOR SETTING THE SOW STATUS 
+        //	TO SYNC COMPLETE
+        //#################################################
+            // job component attribute list
+            // 		attrib_1: initial status
+            // 		attrib_2: status to be
+            // 		attrib_3: sObject type
+            // 		attrib_4: field to use for checking sync
+            // 		attrib_5: field to use for locking campaign of next FY
+
+            // set sow status:
+	        // 		attrib_1: 'sync in progress'
+	        // 		attrib_2: 'sync requested'
+	        // 		attrib_3: SOW
+	        // 		attrib_4: Sync_Status__c
+        number_of_chunks = getNumberOfChuncks(sow_size,Oblix_Utils.MAX_SOWS_PER_CONTEXT);
+
+        addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_SET_STATUS, Oblix_Utils.MAX_SOWS_PER_CONTEXT
+        	, Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS, Oblix_Utils.JOB_STATUS_SYNC_COMPLETED,OBJECT_SOW, SYNC_FIELD, NULL,NULL);
+
+
+		addEvent('\nsow_size: ' + sow_size + '\ntotal_attachments: ' + total_attachments + '\ntotal_campaigns: ' + total_campaigns + '\ntotal_assets: ' + total_assets,NULL);
+		addEvent('******************************************************************',NULL);
+	}
+
 
 	public Iterable<JobComponent> start(Database.BatchableContext BC) {
 		

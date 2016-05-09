@@ -280,15 +280,14 @@ public with sharing class Oblix_SOWHandlerLogic {
     * @description  Build SOW name by combining the prefix and suffix of SOW name
     ********************************************************************************/
     public static void setSOWname(Marketing_SOW__c sow){
-        final String FY_SEPARATOR = '__';
               
         Integer financial_year = getFinancialYear(sow);
 
         if (String.isEmpty(sow.Name_Suffix__c)){
-            sow.Name = sow.Name_Prefix__c + FY_SEPARATOR + financial_year;
+            sow.Name = sow.Name_Prefix__c + Oblix_Utils.FY_SEPARATOR + financial_year;
         }
         else{
-            sow.Name = sow.Name_Prefix__c + FY_SEPARATOR + financial_year + ' (' + sow.Name_Suffix__c + ')';
+            sow.Name = sow.Name_Prefix__c + Oblix_Utils.FY_SEPARATOR + financial_year + ' (' + sow.Name_Suffix__c + ')';
         }  
     }
 
@@ -300,24 +299,5 @@ public with sharing class Oblix_SOWHandlerLogic {
         }
         return financial_year;
 
-    }
-
-    /*******************************************************************************
-    * @author       Execloud ©
-    * @date         2016-05-07
-    * @description  Build campaign name by combining prefix (provided by user)
-                    and suffix (programatically generated)
-    ********************************************************************************/
-    public static String buildCampaignName(String prefx, String suffix){
-        String campaign_name = '';
-
-        if  (String.isEmpty(suffix)){
-            campaign_name = prefx;
-        }
-        else{
-            campaign_name = prefx + ' (' + suffix + ')';
-        }
-
-        return campaign_name;
     }
 }
