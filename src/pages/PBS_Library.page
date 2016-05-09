@@ -7,7 +7,16 @@
     <!-- sylesheets -->
     <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/bootstrap.min.css')}" />
     <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/PCContainer.css')}" />
+<apex:pageMessages id="errorString" />
 
+<style>
+
+    div.filterText{
+    
+        text-indent: -10px;
+    
+    }
+</style>
    <apex:composition template="almond__LMS_Template">  
         
    <apex:define name="body">
@@ -32,7 +41,7 @@
                 <div class="row">
                     <div class="col-md-3 col-lg-3">
                         <div class="box">
-                            <div class="headerBox">
+                            <div class="headerBox" style="text-indent: -10px;">
                                 Filters
                             </div>
                             <div class="form-group">
@@ -41,11 +50,34 @@
                                     <apex:selectOptions value="{!ArticleTypeFilterOptions}"/>
                                 </apex:selectList>
                             </div>
-                            <apex:commandLink action="{!sortData}" styleClass="btn btn-primary">Apply Filters</apex:commandLink>
+                            <apex:commandLink action="{!sortData}" styleClass="btn btn-primary" >Apply Filters</apex:commandLink>
                         </div>
+                        <div class="headerBox">
+                                Filter
+                            </div>
+                            <div class="form-group">
+                                <label for="Search">Search Article:</label>
+                               <apex:inputText value="{!searchstring}" id="theSearchstring" maxlength="100" size="20"/> &nbsp;
+   <apex:commandButton value="Go" action="{!getPbsArticleSearchList}" id="submitButton" style="width:30" reRender="theSearchResults" status="actStatusId" />
+   
+   
+   
+   <apex:actionStatus id="actStatusId" >
+                <apex:facet name="start" >
+                  <img src="/img/loading.gif" />                    
+                </apex:facet>
+            </apex:actionStatus>
+            
+               
+                            </div>
+                        
+   
+   
                     </div>
                     <div class="col-md-9 col-lg-9">
-                        <apex:dataTable value="{!PbsArticleList}" var="article" styleClass="table table-bordered table-striped table-hover">
+                    
+                        <apex:dataTable value="{!PbsArticleList}" var="article" styleClass="table table-bordered table-striped table-hover" id="theSearchResults">
+                           
                             <apex:column >
                                 <apex:facet name="header">
                                     <apex:commandLink action="{!sortData}">
@@ -56,7 +88,10 @@
                                         <apex:param assignTo="{!sortDir}" name="dir" value="{!IF(sortDir == 'ASC', 'DESC', 'ASC')}" />
                                     </apex:commandlink>
                                 </apex:facet>
-                                <a href="/articles/en_US/{!SUBSTITUTE(article.ArticleType,'__kav','')}/{!article.UrlName}" target="_self" title=""><apex:outputField value="{!article.title}"/></a>
+                               
+                                
+                               <apex:outputPanel rendered="{!(article.ArticleType == 'PBS_Wiki__kav')}"> <a href="/apex/PBS_Wiki?ID={!article.id}" target="_self" title=""><apex:outputField value="{!article.title}"/></a></apex:outputPanel>
+                                <apex:outputPanel rendered="{!(article.ArticleType != 'PBS_Wiki__kav')}"><a href="/articles/en_US/{!SUBSTITUTE(article.ArticleType,'__kav','')}/{!article.UrlName}" target="_self" title=""><apex:outputField value="{!article.title}"/></a></apex:outputPanel>
                             </apex:column>
                             <apex:column >
                                 <apex:facet name="header">
@@ -96,8 +131,9 @@
                                     <span class="glyphicon {!IF(ranking[article.KnowledgeArticleId] >= 5, 'glyphicon glyphicon-star', 'glyphicon glyphicon-star-empty')}" aria-hidden="true"></span>
                                 </div>
                             </apex:column>
+                            
                         </apex:dataTable>
-
+                        
                         <nav>
                             <ul class="pager">
                                 <li><apex:commandLink action="{!previous}" rendered="{!hasPrevious}"><span aria-hidden="true">&laquo; Previous</span></apex:commandlink></li>
@@ -107,6 +143,11 @@
                         </nav>
                     </div>
                 </div>
+
+ 
+
+                
+                
 
             </apex:form>
         </div>

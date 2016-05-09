@@ -1,0 +1,131 @@
+<apex:page controller="PBS_WikiController_CC" docType="html-5.0" sidebar="false" showHeader="false" standardStylesheets="false">
+
+ 
+  <title>Wiki</title>
+  <meta charset="utf-8"></meta>
+  
+      <apex:stylesheet value="{!URLFOR($Resource.PCResources_MT, '/css/Wiki.css')}" />
+
+ 
+    
+      
+<body>
+      <!---Ad Main section---->
+    
+        <div class="container">
+        <div class="jobsportpolio_section">
+        <div class="main-nav">
+                                        <div class="subsection" id="idOfArticle">
+                                            <style>
+     h2.normal {
+    font-family: "Times New Roman";
+}
+
+     div.body{
+    font-family: "Helvetica Neue" !important;
+}
+     </style>
+   <knowledge:articleRendererToolBar canVote="true"  articleId="{!objpbs.KnowledgeArticleId}"
+
+    />
+                                                      </div>
+                                                      
+                                                      <div class="subsection2">
+                                                 
+                                                      </div>
+                                                      
+                                                      </div>
+                                                      <div class="left-section">
+                                                      <div class="static-model">
+                                                      <h1>{!objpbs.Title}</h1>
+                                                       <!-- 
+                                                          
+                                                      <ol type="1" class="box-width">
+  <a href= "#idOfArticle"><li>Definition</li></a>
+  <a href= "#idOfInfo"><li>Information</li></a>
+  
+  <a href= "#idOfRA"><li>Related Articles</li></a>
+</ol>   -->
+<div class="btmsection"></div>
+<div class="body" >
+<h4></h4>
+<apex:outputField value="{!objpbs.Wiki_Content__c}"/>
+
+<div class="imgpat">
+
+</div>
+<div class="btmsection"></div>
+<div class="related_group">
+<h4 >Related Files</h4>
+
+
+
+
+                <apex:outputLink value="{!URLFOR($Action.PBS_Wiki__kav.FileFieldDownload, objpbs.id,['field'=$ObjectType.PBS_Wiki__kav.fields.Related_Files__Body__s.name])}">{!objpbs.Related_Files__Name__s}</apex:outputLink>
+               <p> </p><apex:outputLink value="{!URLFOR($Action.PBS_Wiki__kav.FileFieldDownload, objpbs.id,['field'=$ObjectType.PBS_Wiki__kav.fields.Related_Files2__Body__s.name])}">{!objpbs.Related_Files2__Name__s}</apex:outputLink>
+               <p> </p> <apex:outputLink value="{!URLFOR($Action.PBS_Wiki__kav.FileFieldDownload, objpbs.id,['field'=$ObjectType.PBS_Wiki__kav.fields.Related_Files3__Body__s.name])}">{!objpbs.Related_Files3__Name__s}</apex:outputLink>
+               <p> </p> <apex:outputLink value="{!URLFOR($Action.PBS_Wiki__kav.FileFieldDownload, objpbs.id,['field'=$ObjectType.PBS_Wiki__kav.fields.Related_Files4__Body__s.name])}">{!objpbs.Related_Files4__Name__s}</apex:outputLink>
+               <p> </p> <apex:outputLink value="{!URLFOR($Action.PBS_Wiki__kav.FileFieldDownload, objpbs.id,['field'=$ObjectType.PBS_Wiki__kav.fields.Related_Files5__Body__s.name])}">{!objpbs.Related_Files5__Name__s}</apex:outputLink>
+</div>
+<div class="btmsection"></div>
+<div class="related_group">
+<h4 id="idOfRA">Related Articles
+</h4>
+<ul >
+
+<apex:outputField value="{!objpbs.Related_Articles__c}"/>
+
+
+</ul>
+
+
+
+</div>
+
+
+
+                                                      </div>
+                                                      </div>
+                                                        <div class="right_section">
+                                        <div class="middletext">
+                                        <h1>{!objpbs.Title}</h1>
+                                        <h3><p class="iftext" Id="idOfInfo">INFORMATION</P></h3>
+                                        <div class="totalsection">
+                                        <div class="article1">
+                                        <ul>
+                                        <li>Article number</li>
+                                        <li class="art0">Article Type</li>
+                                        <li class="art1">Created By</li>
+                                        <li class="art2">Last Modified Date</li>
+                                        <li class="art3">Owner</li>
+                                        <li class="art4">Group Name</li>
+                                        </ul>
+                                        </div>
+                                        
+                                        <div class="article2">
+                                        <ul>
+                                        <li class="rite0" style="left: 6px;">{!objpbs.articleNumber}</li>
+                                        <li class="rite0" style="left: 6px;">PBS Wiki</li>
+                                        <li class="rite0" style="left: 6px;">{!objpbs.CreatedBy.Name}</li>
+                                        
+                                        <li cclass="rite0" style="left: 6px;"><apex:outputText value="{0,date,dd-MM-yyyy hh:mm}">
+                   <apex:param value="{!objpbs.LastModifiedDate}" />
+         </apex:outputText></li>
+                                        <li class="rite0" style="left: 6px;">{!objpbs.Owner.Name}</li>
+                                        <li class="rite0" style="left: 6px;">{!objpbs.Group_Name__c}</li>
+                                        </ul>
+                                        </div>
+</div>              
+                                        
+                                            
+                                                    
+                                                    
+                                                    
+                                                    </div>
+                                                    </div>
+                                                    </div>
+                                                    </div>
+                                                    </div>
+                                                    </body>
+
+</apex:page>
