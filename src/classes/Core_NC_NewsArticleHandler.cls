@@ -17,7 +17,10 @@ public with sharing class Core_NC_NewsArticleHandler{
                 Id postedById = newsCentreAvatarId != null ? newsCentreAvatarId : newsArticle.OwnerId;                
                 
                 // Validate the Chatter Group id and check whether it exist in Sandbox.
-                if(newsArticle.Post_to_NewsCentre__c && newsArticle.Chatter_Groups__c!=null && newsArticle.Chatter_Groups__c!='' && newsArticle.Archived__c==false && newsArticle.Hidden__c==false && newsArticle.Video_Article__c==false){
+                //private boolean executeCode = ((newsArticle.Archived__c==false && newsArticle.Hidden__c==false && newsArticle.Video_Article__c==false)?true:false);
+                
+                boolean executeCode = (newsArticle.Archived__c==false && newsArticle.Hidden__c==false && newsArticle.Video_Article__c==false?true:false);
+                if(newsArticle.Post_to_NewsCentre__c && newsArticle.Chatter_Groups__c!=null && newsArticle.Chatter_Groups__c!='' && executeCode ){
                     for(String strGrp:newsArticle.Chatter_Groups__c.split(',')) {
                         if(strGrp != '' && strGrp != null){
                             //List<CollaborationGroup> lstColbGrp=[SELECT Id FROM CollaborationGroup WHERE Id =:strGrp];
