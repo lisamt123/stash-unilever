@@ -11,7 +11,6 @@ public with sharing class IPM_FinancialYearHelper
     private static final String UPDATE_FINANCIAL_ACTION_STANDARD_STR = 'updateFinancialActionStandard';
     private static final String CLASS_NAME = IPM_FinancialYearHelper.Class.getName(); //Class Name for Exception Logging
     private static Boolean IS_RECURSSIVE = false;
-    public static boolean checkValidaitonrecursion = false;
     // Field set used for consolidation  
     private static final Set<String> FIELDS_TO_CONSOLIDATE = new Set<String>{
             'Advertising_Promotions_Global__c','Advertising_Promotions_Local__c','Advertising_Promotions_Regional__c',

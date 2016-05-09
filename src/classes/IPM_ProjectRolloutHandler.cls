@@ -190,7 +190,7 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
         }
         if( oldRollout.Target_Launch_Date__c != newRollout.Target_Launch_Date__c ||  oldRollout.isActive__c != newRollout.isActive__c){
             rolloutProjectTLDChanged.put(oldRollout.Id,newRollout);
-            if(!globalProjIdRollout.containskey(newRollout.IPM_Project__c) && !globalProjIdRollout.containskey(newRollout.Regional_Project__c)){
+            if(!globalProjIdRollout.containskey(newRollout.IPM_Project__c) && !globalProjIdRollout.containskey(newRollout.Regional_Project__c)  && oldRollout.Target_Launch_Date__c != newRollout.Target_Launch_Date__c){
                 if(newRollout.Regional_Project__c != null){
                     globalProjIdRollout.put(newRollout.Regional_Project__c,newRollout);  
                 } else if(newRollout.IPM_Project__c != null){
