@@ -86,8 +86,7 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger
         for(IPM_Financial_Year__c finYear: lstFinYr){
             setFinExtId.add(finYear.Financial_External_ID__c);          
         }
-        if(!setFinExtId.isEmpty() && !IPM_FinancialYearHelper.checkValidaitonrecursion){
-            IPM_FinancialYearHelper.checkValidaitonrecursion  = true;
+        if(!setFinExtId.isEmpty()){
             IPM_FinancialYearHelper.validateDefaultFinancial(setFinExtId);
         }
     }
