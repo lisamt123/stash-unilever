@@ -28,6 +28,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 @isTest
 private class PBS_MyProfileController_Test {
+
 static testMethod void testWithNoAchievements(){
 
         //Create admin users
