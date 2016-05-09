@@ -149,6 +149,7 @@ public with sharing class IPM_MyList{
     public static final String ERROR_STR = 'Error';
     public static final String ISARCHIEVED_FALSE_STR =' AND IPM_Project__r.Is_Archieved__c = false AND IPM_Project__r.IPM_PM_Approach__c =  \'Internal\' ';
     public static final String QUERY_WHERE_ASSIGNEE_STR=' WHERE IPM_Assignee__c = ';
+    private static final String LIMIT_STR=' LIMIT 2000 ';
     public List<IPM_Task__c> lstTasks{get;set;}
     public String taskcountValue;
     private final Integer DAY_VALUE = 7;
@@ -400,7 +401,7 @@ public with sharing class IPM_MyList{
                 } else {
                     query += ORDERBY_STR + currentSort.get(IPM_ConstantUtils.THIS_FIELD) + ASCNULLSLAST_STR;
                 }
-                query += ' LIMIT 2000 ';
+                query += LIMIT_STR;
                 try{
                     setCon = new ApexPages.StandardSetController(DataBase.getqueryLocator(query));
                     if(isCompleteTasks != IPM_Utils.Yes){
@@ -469,7 +470,7 @@ public with sharing class IPM_MyList{
                     } else {
                         query += ORDERBY_STR + currentSort.get(IPM_ConstantUtils.THIS_FIELD) + ASCNULLSLAST_STR;
                     }
-                    query += ' LIMIT 2000 ';
+                    query += LIMIT_STR;
                     setControl = new ApexPages.StandardSetController(DataBase.getqueryLocator(query));
                     setControl.setPageSize(showtodaySize);
                     
@@ -534,7 +535,7 @@ public with sharing class IPM_MyList{
                     } else {
                         query += ORDERBY_STR + currentSort.get(IPM_ConstantUtils.THIS_FIELD) + ASCNULLSLAST_STR;
                     }
-                    query += ' LIMIT 2000 ';
+                    query += LIMIT_STR;
                     setCont = new ApexPages.StandardSetController(DataBase.getqueryLocator(query));
                     setCont.setPageSize(nextSevensize);
                     
@@ -604,7 +605,7 @@ public with sharing class IPM_MyList{
                     } else {
                         query += ORDERBY_STR + currentSort.get(IPM_ConstantUtils.THIS_FIELD) + ASCNULLSLAST_STR;
                     }
-                    query += ' LIMIT 2000 ';
+                    query += LIMIT_STR;
                     setContr = new ApexPages.StandardSetController(DataBase.getqueryLocator(query));
                     setContr.setPageSize(laterSize);
                     totallatertaskpages= Integer.valueof(math.ceil((double)setContr.getResultSize()/(double)setContr.getPageSize()));
@@ -667,7 +668,7 @@ public with sharing class IPM_MyList{
                     } else {
                         query += ORDERBY_STR + currentSort.get(IPM_ConstantUtils.THIS_FIELD) + ASCNULLSLAST_STR;
                     }
-                    query += ' LIMIT 2000 ';
+                    query += LIMIT_STR;
                     setController= new ApexPages.StandardSetController(DataBase.getqueryLocator(query));
                     setController.setPageSize(completedSize);
                     totalcompletedpages= Integer.valueof(math.ceil((double)setController.getResultSize()/(double)setController.getPageSize()));
