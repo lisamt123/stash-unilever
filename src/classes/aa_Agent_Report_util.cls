@@ -34,54 +34,42 @@ public with sharing class aa_Agent_Report_util {
                 else {              
                     AA_TheAgentSingleExecution.setAlreadyDone();
                     //go                
-                    if (report.Status__c == STATUS_VALUE_TO_POST_ON) {
+                    if (report.Status__c == STATUS_VALUE_TO_POST_ON) {                    	
                         // brand
-                        if (report.Competitor_Brand__c != NULL) {
+                        if (String.isNotEmpty(report.Competitor_Brand__c)) {
                            sendTochatterMap.put(report.Competitor_Brand__c,JSON.serialize(report));
-                        }                
-                        
+                        }                        
                        //competitor
-                        if (report.Competitor_Name__c != NULL) {                        
-                           
-                          sendTochatterMap.put(report.Competitor_Name__c,JSON.serialize(report));
-                        }
-                      
+                        if (String.isNotEmpty(report.Competitor_Name__c)) {                        
+                            sendTochatterMap.put(report.Competitor_Name__c,JSON.serialize(report));
+                        }                      
                         //retailer   
-                        if (report.Retailer__c != NULL) {
-                            
-                           sendTochatterMap.put(report.Retailer__c,JSON.serialize(report));
-                        }
-                        
+                        if (String.isNotEmpty(report.Retailer__c)) {
+                            sendTochatterMap.put(report.Retailer__c,JSON.serialize(report));
+                        }                        
                         //country
-                        if (report.Country__c != NULL) {
+                        if (String.isNotEmpty(report.Country__c)) {
                             sendTochatterMap.put(report.Country__c,JSON.serialize(report));
-                            
-                        }
-                        
+                        }                        
                         //Unilever_Brand__c
-                        if (report.Agent_App_Unilever_Brand__c != NULL) {
+                        if (String.isNotEmpty(report.Agent_App_Unilever_Brand__c)) {
                             sendTochatterMap.put(report.Agent_App_Unilever_Brand__c,JSON.serialize(report));
-                        }
-                        
+                        }                                                
                         //Category
-                        if (report.Category__c != NULL) {
+                        if (String.isNotEmpty(report.Category__c)) {
                            sendTochatterMap.put(report.Category__c,JSON.serialize(report));
-                        }
-                        
+                        }                                                
                         //Topic
-                        if (report.Topic__c != NULL) {
+                        if (String.isNotEmpty(report.Topic__c)) {
                             sendTochatterMap.put(report.Topic__c,JSON.serialize(report));                   
-                        }
-                        
-                        system.debug('In chatter posting trigger value for cluster '+report.ClusterId__c+'value for country'+report.Country__c);
+                        }                                             
                         //Cluster   
-                        if(report.ClusterId__c!=NULL && report.Country__c==NULL)
-                        {        
+                        if(String.isNotEmpty(report.ClusterId__c) && report.Country__c==NULL){
                             sendTochatterMap.put(report.ClusterId__c,JSON.serialize(report));                    
                         }                    
                         //User Name
                         String CaretedbyName=userInfo.getUserName();
-                        if (CaretedbyName != NULL) {
+                        if (String.isNotEmpty(CaretedbyName)) {
                             sendTochatterMap.put(userInfo.getUserId(),JSON.serialize(report));
                         }
               
