@@ -111,8 +111,8 @@
                 </div>
                 <div class="section"><br/>
                     <div style="margin-left:5px;">
-                        <p class="desc" ><ui:outputText value="{!v.ActivityDesc}"/></p>
-                         <span class="see_more" onclick="{!c.callShowDetailCard}" >See more...</span>
+                        <p class="desc slds-text-heading--small" ><ui:outputText value="{!v.ActivityDesc}"/></p>
+                        <span class="see_more" onclick="{!c.callShowDetailCard}" >See more...</span>
                     </div>
                     
                    

@@ -81,14 +81,13 @@
          margin-top: 50px;
         }
     .slds .slds-box {
-  padding: 16px;
+  padding:10px 0px;
   border-radius: 4px;
   background-clip: padding-box;
   border: 1px solid #d8dde6;
-  margin-left: 5%;
-  width: 90%;
-  height: 250px;
-  margin-top:20px;
+  width: 94%;
+  height: 230px;
+  margin:5px auto;
 }
     .slds-box .line{
     height:20px;
@@ -234,23 +233,23 @@ border-color:green;
        
        height: 62px;
        width:274px;
-       padding: 22px 13px;
+       padding: 22px 7px;
        margin: 0 auto;  
-        text-align:center;
+       text-align:center;
      }   
         .newbee0 span:last-child {
         	margin-right: 0;
     }
    .text-div span:nth-child(1){
-        margin-right:2.5rem;
+        margin-right:3rem;
     	font-size: 11px;
         }
            .text-div span:nth-child(2){
-		margin-right:3.7rem;
+		margin-right:4rem;
     	font-size: 11px;
         }
    .text-div span:nth-child(3){
-		margin-right:4.5rem;
+		margin-right:5.5rem;
     	font-size: 11px;
         }
            .text-div span:nth-child(4){
@@ -259,6 +258,7 @@ border-color:green;
         }
            .text-div{
         margin-top: 20px;
+        margin-left: -5px;
         }
         </style>
     <!-- style -->
@@ -271,12 +271,12 @@ border-color:green;
   
     <div class="slds-box">
     <aura:if isTrue="{!v.showpointsN}">
-       <span style="font-size:12px;padding-left: 12px;">
+       <div style="font-size:12px;padding-left: 12px;">
            
        <aura:if isTrue="{!v.ShowNextPointKey}">
         You are {!v.netpoints} points away from {!v.badgeTo}
         </aura:if>
-       </span>
+       </div>
     </aura:if>
             
             <br></br>
@@ -433,7 +433,7 @@ border-color:green;
     <div class="progress_line"></div> <div class="progress_line_gold"></div>
 
         </aura:if>
-    <div class="text-div">
+    <div class="text-div slds-text-heading--small">
       <span>Newbee</span>
       <span>Bronze</span>
       <span>Silver</span>

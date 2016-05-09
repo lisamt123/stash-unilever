@@ -5,7 +5,7 @@
         var label2=$A.get("$Label.c.EA_Chatter2"); 
         var label3=$A.get("$Label.c.EA_Chatter3");
         var label4=$A.get("$Label.c.EA_Chatter4");
-        
+       
         var body = label1+ ' \" ' + activity.Name+' \" '+ label2;
         var action=cmp.get("c.chatterfeeditem");
         action.setParams({"postbody" : body});

@@ -24,8 +24,9 @@
      <aura:attribute name="index" type="integer" ></aura:attribute>
     <aura:attribute name="pageIndex" type="integer" ></aura:attribute>
     <aura:attribute name="ShowDetailCard" type="boolean" default="false"></aura:attribute>
-    <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
-    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
+        <aura:attribute name="showspinner" type="boolean" default="false"/>
+   <!--  <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/> -->
     <style>
         .spacer-pull-to-load-more{
         height:100% !important;
@@ -60,7 +61,8 @@
   <div class="slds">
       <div>
          
-          <center><ui:spinner aura:id="spinner"/></center>
+<!-- <center><ui:spinner aura:id="spinner"/></center> -->
+          <aura:if isTrue="{!v.showspinner}"><center><img style="width:10%;position: absolute;top:50%;" src="/resource/EA_StaticResource/assets/images/spinners/slds_spinner.gif"></img></center></aura:if> 
           <aura:if isTrue="{!v.ShowDetailCard}">
               <span class="back_image_icon"><img class="back_image"  onclick="{!c.gotoPrevious}" src="/resource/EA_StaticResource/assets/images/Back_img.svg"></img></span>
                  <div class="container">  <div class="activity-sec" style="{!'background:'+ v.themecolor +';'}">

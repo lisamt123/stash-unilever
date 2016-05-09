@@ -21,17 +21,21 @@
          position:relative;
          }
 .slds .slds-fade-in-open {
-  background-color: black;
+  background-color: transparent;
   opacity: 0.5;
   visibility: visible;
   -webkit-transition: opacity 0.1s linear;
   transition: opacity 0.1s linear;
 
 }
+         .forceStyle .uiScroller .scroller.actionBarPlugin {
+    padding-bottom: 3.75rem;
+    background-color: grey;
+}
     </style>
     
     <div class="slds">
-      <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+      <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open" >
     <div class="slds-modal__container">
         <div class="chat_btn">
         <div>
@@ -40,8 +44,8 @@
             </div>
           <div class="divider"></div>
         <div><button  class="email" onclick="{!c.gotoDetail}">
-            <a  href="{!'mailto:?subject='+v.MailSubject+'&amp;body='+v.MailToBody1+'%20%22'+v.activityDetail.Name+'%22%20'+v.MailToBody2+'%20'+v.MailToBody4}" style="color: #344A5F" >
-                         <div class="anchor" >Email</div>
+            <a href="{!'mailto:?subject='+v.MailSubject+'&amp;body='+v.MailToBody1+'%20%22'+v.activityDetail.Name+'%22%20'+v.MailToBody2+'%20'+v.MailToBody4}" style="color: #344A5F;text-decoration: none;" >
+                         <div class="anchor" style="color: black;text-decoration: none;">Email</div>
                      </a></button></div>
           <div><button  onclick="{!c.cancelShare}" class="cancel">Cancel</button></div>  
         </div>

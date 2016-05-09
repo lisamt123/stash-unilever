@@ -28,7 +28,7 @@
         var aid=component.get("v.activity");
      /*start*/   var actual_para=aid.description;
          console.log("coming");
-        var max_len = 90;  
+        var max_len = 150;  
          
        	var trunc = actual_para;
 	  	if (trunc.length > max_len) {  
@@ -155,18 +155,22 @@
     },
     callShowDetailCard:function(cmp,event,helper){
         var actvity=cmp.get("v.activity");
-        var rating;
+        
         var id=actvity.activityId;
+        console.log("id-->"+id);
         var page='swipe';
-        var index = 0;
+       // var index = 0;
         // Get the current slide
 		var currentSlide = $('.carousel').slick('slickCurrentSlide');
         cmp.set("v.pageIndex",currentSlide);
         console.log("Current Slide Index:"+ currentSlide);
-       	var num=actvity.participant_rating;
-        var detailpageEvent=$A.get("e.c:EA_Detailpage_Event");
-        detailpageEvent.setParams({"actvityid":id,"pagename":page,"index":index,"navigatePageIndex":currentSlide});
-    	detailpageEvent.fire();
+        console.log("comin in detail");
+       	//var num=actvity.participant_rating;
+        var detailevent=cmp.get("v.activity");
+        var detailevent=$A.get("e.c:EA_Detailpage_Event");
+       
+       detailevent.setParams({"actvityid":id,"pagename":page,"navigatePageIndex":currentSlide});
+    	detailevent.fire();
     },
     showsummaryCard:function(cmp,event,helper){
         cmp.set("v.showcontent",false);
@@ -179,5 +183,6 @@
         var detailpageEvent=$A.get("e.c:EA_Detailpage_Event");
         detailpageEvent.setParams({"actvityid":id,"showcontent":true,"index":index});
     	detailpageEvent.fire();
+        
 	}
 })

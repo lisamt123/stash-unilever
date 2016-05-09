@@ -11,7 +11,19 @@
         if(a>=0 && a<30){
             points=30-a;
             badge="Bronze";
-            actualpointsNewbee=a;
+            if(a==0)
+            {
+                actualpointsNewbee="00";
+            }
+            else if(a==5)
+            {
+                actualpointsNewbee="05";
+            }
+            else
+            {
+                actualpointsNewbee=a;
+            }
+            
             actualpointsBronze=30;
             actualpointsSilver=70;
             actualpointsGold=120;

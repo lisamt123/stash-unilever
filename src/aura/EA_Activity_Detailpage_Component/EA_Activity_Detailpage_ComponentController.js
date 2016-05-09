@@ -12,7 +12,7 @@
  	},
    
     doInit: function(component, event, helper) {
-       
+       component.set("v.showspinner",true);
         var items=[];
         var aid=component.get("v.EAactivityid");
         var index=component.get("v.index");
@@ -25,7 +25,7 @@
             var state = response.getState();
             if (state === "SUCCESS" && response.getReturnValue()!== '') {
                  items = response.getReturnValue();
-               
+                  component.set("v.showspinner",false);
                  component.set("v.ShowDetailCard",true);
                  var ishomepage=component.get("v.pagename");
                  if(ishomepage === 'Myaction')                  

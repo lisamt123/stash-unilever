@@ -49,19 +49,16 @@ public with sharing class EA_ControllerClass {
             if(act.Id == item.Everyday_Activity__c && photourlsSet.size()<6)
             {
               photourlsSet.add(item.Participant_small_photourl__c);
-               system.debug('***'+item.Participant_small_photourl__c);
-               
+            
             }
-            system.debug('$$$'+ photourlsSet.size());
-            
-            
+           
           }
           
           recentuserMap.put(act.Id,photourlsSet);
             
             
         }
-    system.debug('@@@'+recentuserMap.values());
+   
         
         //List<string> photourlList=recentuserMap.addAll(recentuserMap.values());
         
@@ -90,7 +87,6 @@ public with sharing class EA_ControllerClass {
              distinctmemberList.add(newObj);
            }
         
-          system.debug('###'+ distinctmemberList[0].userPhotoUrl1);
         
        // distinctmemberList.addAll(recentuserMap.values());
         
@@ -123,18 +119,13 @@ public with sharing class EA_ControllerClass {
           
             if(act.Id == item.Everyday_Activity__c && photourlsSet.size()<6)
             {
-              photourlsSet.add(item.Participant_small_photourl__c);
-             
-               
+               photourlsSet.add(item.Participant_small_photourl__c);
             }
            
-            
-            
           }
           
           recentuserMap.put(act.Id,photourlsSet);
-            
-            
+          
         }
    
         
@@ -501,7 +492,7 @@ activities for current user.
                     lstUser.add(string.valueof(id) );
                 }
             } 
-            system.debug('List of invited user-->'+lstUser[0]+''+lstUser.size());                                
+                                         
             List<Everyday_Activity__c> acts = getactivitydetail(activityId);
             String actvityName = acts[0].Name;
             Decimal points = acts[0].Activity_Points__c;           

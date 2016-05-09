@@ -41,6 +41,7 @@
 .THIS .tilteTheme{
   font-weight: bold;
   font-family: inherit;
+   font-size: 1.4rem; 
 }
 .THIS li.active_class{
     box-sizing: border-box;
@@ -55,6 +56,7 @@
     height: 5rem;
 	font-weight: 600;
     border:1px #2E91CF solid;
+    font-size:1.4rem;
     
 }
 .THIS li.inactive_class{
@@ -69,7 +71,7 @@
     text-decoration: none;
    	background:#337ab7;
     height: 5rem;
-    
+    font-size:1.4rem;
 }
 .THIS .back_image{
     width:2rem;
@@ -81,4 +83,8 @@
     height:100%;
     display:none;
     
+}
+.THIS .forceStyle .uiScroller .scroller.actionBarPlugin {
+    padding-bottom: 3.75rem;
+    background-color: black;
 }

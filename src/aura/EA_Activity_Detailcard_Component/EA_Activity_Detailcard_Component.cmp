@@ -52,6 +52,7 @@
     display:none;
     
 }
+
         .filter-container {
         margin-top: 50px;
         margin-left: 20px;
@@ -127,17 +128,16 @@
             <aura:if isTrue="{!v.MyActions}">
                 <c:EA_MyAction_Component /> 
             </aura:if>
-           
-            <aura:if isTrue="{!v.showspinner}"><center><ui:spinner ></ui:spinner></center></aura:if>
+            <aura:if isTrue="{!v.showspinner}"><center><img style="width:10%;position: absolute;top:50%;" src="/resource/EA_StaticResource/assets/images/spinners/slds_spinner.gif"></img></center></aura:if>
                         
             <aura:if isTrue="{!v.showAllthemebutton}">
                 <div class="filter-container">
                     <div aura:id="themeFilter" class="theme_space" onclick="{!c.callFilterComponent}"  >
                         <span class="tilteTheme">{!v.selectedfilter}</span>&nbsp;
                         <aura:if isTrue="{!v.showdownarrow}">
-                            <img src="/resource/EA_StaticResource/images/down.svg" height="10" width="10"/></aura:if>
+                            <img src="/resource/EA_StaticResource/images/down_60.png" height="10" width="10"/></aura:if>
                         <aura:if isTrue="{!v.showuparrow}">
-                            <img src="/resource/EA_StaticResource/images/uparrow.svg" height="7" width="7"/> </aura:if>
+                            <img src="/resource/EA_StaticResource/images/up_60.png" height="7" width="7"/> </aura:if>
                     </div>
                 </div>  
             </aura:if>
@@ -186,7 +186,7 @@
         </aura:if>
         
         <aura:if isTrue="{!v.showLoading}">
-            <div class="slds-modal slds-fade-in-open" aria-hidden="false" role="dialog" data-aura-rendered-by="1191:c">
+            <div class="slds-modal slds-fade-in-open" style="height:736px;" aria-hidden="false" role="dialog" data-aura-rendered-by="1191:c">
                 <div class="slds-modal__container" data-aura-rendered-by="1192:c">
                     <div class="slds-spinner--small">
                         <img src="/resource/EA_StaticResource/assets/images/spinners/slds_spinner.gif" alt="Loading..." />

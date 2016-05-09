@@ -9,7 +9,7 @@
         var detailpageEvent=$A.get("e.c:EA_Detailpage_Event");
         var acceptdecline=$A.get("e.c:EA_AcceptDec_comp");
         detailpageEvent.setParams({"actvityid":id,"member_Id":actvity.member_Id,"participant_rating":num,"showcontent":true,"pagename":page});
-      detailpageEvent.fire();
+      	detailpageEvent.fire();
 	},
     doInit :function(component, event, helper) {
         var actvity=component.get("v.activity");

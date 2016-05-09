@@ -6,23 +6,25 @@
   font-weight: bold;
 }
 .THIS .act_space{
-    margin-top:6rem;
+    margin-top:4rem;
 }
 .THIS .actionTitle {
-  /*font-size: 1.5rem;*/
-  line-height: 1.25;
-  margin-left: 20px;
-  font-weight: bold;
-  margin-top: 20px;
-  padding-top: 10px;
+    line-height: 1.25;
+    margin-left: 20px;
+    font-weight: bold;
+    margin-top: 15px;
+    padding-top: 10px;
+    font-size: 1.4rem;
+    padding-bottom: 20px;
 }
 .THIS .dashTitle {
-  margin-left: 20px;
-  font-weight: bold;
-  margin-top: 80px;
-  padding-top: 50px;
-  text-transform: capitalize;
- /*   font-size:1.5rem;*/
+    margin-left: 20px;
+    font-weight: bold;
+    margin-top: 67px;
+    padding-top: 50px;
+    text-transform: capitalize;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
 }
 
 .THIS .dashboard{
@@ -72,16 +74,20 @@
 }
 
 .THIS  .main_badge_image_newbee_img_pos {
-    margin-left:0;    
+    margin-left:9%;   
+    margin-bottom: -15px;
 }
 .THIS  .main_badge_image_bronze_img_pos {
-    margin-left:23%; 
+    margin-left:27%; 
+    margin-bottom: -15px;
 }
 .THIS  .main_badge_image_silver_img_pos {
-    margin-left:48%; 
+    margin-left:45%; 
+    margin-bottom: -15px;
 }
 .THIS  .main_badge_image_gold_img_pos {
-    margin-left:72%; 
+    margin-left:66%; 
+    margin-bottom: -15px;
 }
 .THIS  .main_badge_image{
     width: 85px;
@@ -93,6 +99,7 @@
 }
 .THIS  img.user_badge-New {
     border-radius: 34px;
+        width: 75%;
 }    
 .THIS .prg_image{
     width:90%;
@@ -101,7 +108,6 @@
 .THIS .main_image_content{
     width: 100%;
   margin-right: 5%;
-    margin-top: 15px;
     
 }       
 .THIS ul li{list-style:none;}
