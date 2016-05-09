@@ -1,10 +1,12 @@
 public class VPM_PurchaseRequestsControllerExtension {
+    public boolean flsInCountryFlag{get; set;}
     
     public VPM_PurchaseRequestsControllerExtension (ApexPages.StandardController stdController) {
-        System.debug('-------inside constructor of extn-------');      
+        System.debug('-------inside constructor of extn-------'+stdController.getRecord().Id);
+        System.debug('-------value of flag passed is-------'+flsInCountryFlag);
     }
     
-    public Attachment attachment {
+    /*public Attachment attachment {
         get {
             if (attachment == null) {
                 System.debug('-----created object of Attachment----');
@@ -34,7 +36,7 @@ public class VPM_PurchaseRequestsControllerExtension {
         return null;
     }
     
-    /*public Flow.Interview.VPM_PurchasingRequestAdvancedForm myflow { get; set; }
+    public Flow.Interview.VPM_PurchasingRequestAdvancedForm myflow { get; set; }
 public String purReqNewId {get; set;}*/
     
     // Empty constructor, to allow use as a controller extension

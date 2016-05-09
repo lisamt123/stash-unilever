@@ -238,6 +238,2697 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Commodity Codes</pluralLabel>
+    <recordTypes>
+        <fullName>VPM_Activations_and_Promotions</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5820</description>
+        <label>Activations and Promotions</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Marketing Materials</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>58 - Marketing Promotional and Sales Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Ad_hoc_Research</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5702</description>
+        <label>Ad-hoc Research</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Marketing Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>57 - Market Research</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Adhesives_Sealants</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5019</description>
+        <label>Adhesives &amp; Sealants</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-CAPEX EU AM LATAM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>50 - Equipment %26 MRO</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>SCS - Supply Chain Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Advertising_Agency</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6001</description>
+        <label>Advertising Agency</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Marketing Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>60 - Marketing Agencies and Media</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Advertising_Production_Services</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6002</description>
+        <label>Advertising Production Services</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Marketing Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>60 - Marketing Agencies and Media</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Agile_Working</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6826</description>
+        <label>Agile Working</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Workplace %26 Travel</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Archiving_Records_Management_Services</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6815</description>
+        <label>Archiving &amp; Records Management Services</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Workplace %26 Travel</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Brand_Design</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6004</description>
+        <label>Brand Design</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Marketing Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>60 - Marketing Agencies and Media</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Broadcast_Advertising_Placement</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6201</description>
+        <label>Broadcast Advertising Placement</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Marketing Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>62 - Media %28Placement%29</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Building_Maintenance_Repairs_Services</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6801</description>
+        <label>Building Maintenance &amp; Repairs Services</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Workplace %26 Travel</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Business_Support_Services</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6816</description>
+        <label>Business Support Services</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Workplace %26 Travel</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Catering_Vending_Services</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6808</description>
+        <label>Catering &amp; Vending Services</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Workplace %26 Travel</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Cleaning_Janitorial</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6809</description>
+        <label>Cleaning &amp; Janitorial</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Workplace %26 Travel</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Co_op_marketing</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5812</description>
+        <label>Co-op marketing</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Marketing Materials</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>58 - Marketing Promotional and Sales Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Consumer_Care</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5703</description>
+        <label>Consumer Care</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Marketing Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>57 - Market Research</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Continuous_Research</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5701</description>
+        <label>Continuous Research</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Marketing Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>57 - Market Research</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Corporate_Insurance_Services</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6404</description>
+        <label>Corporate Insurance Services</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Innovation %26 Professional Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>64 - Professional Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Corporate_Public_Relations_Services</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6407</description>
+        <label>Corporate &amp; Public Relations Services</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Innovation %26 Professional Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>64 - Professional Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Courier_Mail_Services</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6810</description>
+        <label>Courier &amp; Mail Services</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Workplace %26 Travel</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Creative_Services</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6003</description>
+        <label>Creative Services</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Marketing Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>60 - Marketing Agencies and Media</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Customer_Care</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5817</description>
+        <label>Customer Care</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Marketing Materials</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>58 - Marketing Promotional and Sales Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Electrical</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5007</description>
+        <label>Electrical</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-CAPEX EU AM LATAM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>50 - Equipment %26 MRO</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>SCS - Supply Chain Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Electrical_innovation_device</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6301</description>
+        <label>Electrical innovation device</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Innovation %26 Professional Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>63 - Innovation Sourcing</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Electricity</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6824</description>
+        <label>Electricity</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Workplace %26 Travel</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Factory_Technical_Engineering_Services</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5022</description>
+        <label>Factory Technical &amp; Engineering Services</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-CAPEX EU AM LATAM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>50 - Equipment %26 MRO</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>SCS - Supply Chain Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Field_Sales</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5813</description>
+        <label>Field Sales</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Marketing Materials</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>58 - Marketing Promotional and Sales Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Financial_Services</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6405</description>
+        <label>Financial Services</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Innovation %26 Professional Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>64 - Professional Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Fleet_Company_Vehicles</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6821</description>
+        <label>Fleet &amp; Company Vehicles</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Workplace %26 Travel</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Food_and_Beverage_POS</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5020</description>
+        <label>Food and Beverage POS</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-CAPEX EU AM LATAM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>50 - Equipment %26 MRO</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>SCS - Supply Chain Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Furniture_Fixtures_Space_Planning_Office_Moves</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6802</description>
+        <label>Furniture, Fixtures, Space Planning &amp; Office Moves</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Workplace %26 Travel</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Global_Mobility_Personnel_Relocation</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6602</description>
+        <label>Global Mobility &amp; Personnel Relocation</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--HR</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>66 - Human Resources</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Goods_Transportation_Distribution</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5602</description>
+        <label>Goods Transportation &amp; Distribution</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>SCS-Logistics - SEAA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-Logistics AM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-Logistics Africa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-Logistics EU</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-Logistics NA %28North Asia%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-Logistics NAME</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-Logistics RUB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-Logistics SA %28South Asia%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-Logistics TUII</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>56 - Logistics</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>SCS - Supply Chain Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Grants_Subsidies</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6904</description>
+        <label>Grants &amp; Subsidies</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Other</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>69 - Out of Scope Procurement</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Grounds_Maintenance_Services</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6825</description>
+        <label>Grounds Maintenance Services</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Workplace %26 Travel</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_HR_Benefits_and_Reward</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6601</description>
+        <label>HR Benefits and Reward</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--HR</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>66 - Human Resources</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_HR_Services</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6611</description>
+        <label>HR Services</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--HR</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>66 - Human Resources</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Hardware</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5402</description>
+        <label>Hardware</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--IT</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>54 - IT %26 Telecom</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_IT_Services</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5403</description>
+        <label>IT Services</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--IT</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>54 - IT %26 Telecom</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Ice_Cream_POS</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5018</description>
+        <label>Ice Cream POS</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-CAPEX EU AM LATAM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>50 - Equipment %26 MRO</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>SCS - Supply Chain Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Industrial_Supplies</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5008</description>
+        <label>Industrial Supplies</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-CAPEX EU AM LATAM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>50 - Equipment %26 MRO</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>SCS - Supply Chain Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Instrumentation_Process_Control</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5003</description>
+        <label>Instrumentation &amp; Process Control</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-CAPEX EU AM LATAM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>50 - Equipment %26 MRO</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>SCS - Supply Chain Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Interactive_Advertising_Placement</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6202</description>
+        <label>Interactive Advertising Placement</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Marketing Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>62 - Media %28Placement%29</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Interactive_Digital</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6006</description>
+        <label>Interactive (Digital)</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Marketing Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>60 - Marketing Agencies and Media</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Intercompany_Charges</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6903</description>
+        <label>Intercompany Charges</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Other</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>69 - Out of Scope Procurement</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Laboratory_Support</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5010</description>
+        <label>Laboratory Support</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-CAPEX EU AM LATAM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>50 - Equipment %26 MRO</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>SCS - Supply Chain Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Legal_Services</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6403</description>
+        <label>Legal Services</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Innovation %26 Professional Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>64 - Professional Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Lubricants</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5011</description>
+        <label>Lubricants</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-CAPEX EU AM LATAM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>50 - Equipment %26 MRO</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>SCS - Supply Chain Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Management_Consulting</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6402</description>
+        <label>Management Consulting</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Innovation %26 Professional Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>64 - Professional Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Material_Handling_Equipment</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5004</description>
+        <label>Material Handling Equipment</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-CAPEX EU AM LATAM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>50 - Equipment %26 MRO</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>SCS - Supply Chain Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Mechanical</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5006</description>
+        <label>Mechanical</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-CAPEX EU AM LATAM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>50 - Equipment %26 MRO</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>SCS - Supply Chain Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Media_Agency</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6204</description>
+        <label>Media Agency</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Marketing Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>62 - Media %28Placement%29</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Motors_Power_Transmissions</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5012</description>
+        <label>Motors &amp; Power Transmissions</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-CAPEX EU AM LATAM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>50 - Equipment %26 MRO</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>SCS - Supply Chain Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Occupational_Health</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6603</description>
+        <label>Occupational Health</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--HR</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>66 - Human Resources</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Office_Consumables</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6803</description>
+        <label>Office Consumables</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Workplace %26 Travel</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Oil_Gas</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6817</description>
+        <label>Oil &amp; Gas</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Workplace %26 Travel</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_POS_Equipment</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5021</description>
+        <label>POS Equipment</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-CAPEX EU AM LATAM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>50 - Equipment %26 MRO</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>SCS - Supply Chain Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Packaging_Equipment</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5002</description>
+        <label>Packaging Equipment</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-CAPEX EU AM LATAM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>50 - Equipment %26 MRO</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>SCS - Supply Chain Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Packaging_Print_Production</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6007</description>
+        <label>Packaging Print Production</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Marketing Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>60 - Marketing Agencies and Media</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Payment</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6902</description>
+        <label>Payment</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Other</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>69 - Out of Scope Procurement</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Payroll</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6610</description>
+        <label>Payroll</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--HR</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>66 - Human Resources</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Pest_Control_Maintenance</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6811</description>
+        <label>Pest Control Maintenance</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Workplace %26 Travel</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Pipes_Valves_Fittings</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5013</description>
+        <label>Pipes, Valves &amp; Fittings</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-CAPEX EU AM LATAM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>50 - Equipment %26 MRO</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>SCS - Supply Chain Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Pneumatics_Hydraulics</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5014</description>
+        <label>Pneumatics &amp; Hydraulics</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-CAPEX EU AM LATAM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>50 - Equipment %26 MRO</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>SCS - Supply Chain Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Point_of_Sale_Materials_POSM</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5815</description>
+        <label>Point of Sale Materials (POSM)</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Marketing Materials</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>58 - Marketing Promotional and Sales Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Premiums</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5818</description>
+        <label>Premiums</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Marketing Materials</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>58 - Marketing Promotional and Sales Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Print_Media_Placement</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6203</description>
+        <label>Print Media Placement</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Marketing Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>62 - Media %28Placement%29</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Printed_Material</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5816</description>
+        <label>Printed Material</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Marketing Materials</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>58 - Marketing Promotional and Sales Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Printed_Stationary_Forms</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6805</description>
+        <label>Printed Stationary &amp; Forms</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Workplace %26 Travel</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Process_Equipment</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5001</description>
+        <label>Process Equipment</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-CAPEX EU AM LATAM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>50 - Equipment %26 MRO</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>SCS - Supply Chain Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Production_Support</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6901</description>
+        <label>Production Support</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Other</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>69 - Out of Scope Procurement</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Public_Relations_Marketing</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6005</description>
+        <label>Public Relations (Marketing)</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Marketing Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>60 - Marketing Agencies and Media</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Publications</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6807</description>
+        <label>Publications</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Workplace %26 Travel</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Pumps</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5015</description>
+        <label>Pumps</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-CAPEX EU AM LATAM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>50 - Equipment %26 MRO</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>SCS - Supply Chain Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_R_D_and_QA_Professional_Services</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6408</description>
+        <label>R&amp;D and QA Professional Services</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Innovation %26 Professional Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>64 - Professional Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Real_Estate</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6820</description>
+        <label>Real Estate</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Workplace %26 Travel</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Reception_Switchboard_Services</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6814</description>
+        <label>Reception &amp; Switchboard Services</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Workplace %26 Travel</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Reprographics_Services</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6806</description>
+        <label>Reprographics Services</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Workplace %26 Travel</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Resourcing_Permanent_Recruitment</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6607</description>
+        <label>Resourcing/Permanent Recruitment</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--HR</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>66 - Human Resources</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Resourcing_Temporary_Staffing</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6605</description>
+        <label>Resourcing/Temporary Staffing</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--HR</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>66 - Human Resources</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Security</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6812</description>
+        <label>Security</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Workplace %26 Travel</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Site_Infrastructure_Equipment</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5005</description>
+        <label>Site Infrastructure Equipment</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-CAPEX EU AM LATAM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>50 - Equipment %26 MRO</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>SCS - Supply Chain Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Software</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5401</description>
+        <label>Software</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--IT</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>54 - IT %26 Telecom</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Supply_Chain_Services</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6409</description>
+        <label>Supply Chain Services</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Innovation %26 Professional Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-Logistics - SEAA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-Logistics AM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-Logistics Africa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-Logistics EU</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-Logistics NA %28North Asia%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-Logistics NAME</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-Logistics RUB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-Logistics SA %28South Asia%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-Logistics TUII</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>64 - Professional Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_TV_Advertising_Production_Services</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6008</description>
+        <label>TV Advertising Production Services</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Marketing Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>60 - Marketing Agencies and Media</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Telecoms</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5404</description>
+        <label>Telecoms</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--IT</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>54 - IT %26 Telecom</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Training_Education_Seminar</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6606</description>
+        <label>Training, Education &amp; Seminar</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--HR</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>66 - Human Resources</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Travel_and_Accomodation</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6701</description>
+        <label>Travel and Accomodation</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Workplace %26 Travel</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>67 - Travel</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Warehousing_Logistics</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5819</description>
+        <label>Warehousing &amp; Logistics</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Marketing Materials</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>58 - Marketing Promotional and Sales Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Warehousing_Pallets</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5601</description>
+        <label>Warehousing &amp; Pallets</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>SCS-Logistics - SEAA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-Logistics AM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-Logistics Africa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-Logistics EU</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-Logistics NA %28North Asia%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-Logistics NAME</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-Logistics RUB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-Logistics SA %28South Asia%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-Logistics TUII</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>56 - Logistics</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>SCS - Supply Chain Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Waste</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6818</description>
+        <label>Waste</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Workplace %26 Travel</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Water</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6819</description>
+        <label>Water</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Workplace %26 Travel</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Water_Treatment_Consumables</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5009</description>
+        <label>Water Treatment Consumables</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-CAPEX EU AM LATAM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>50 - Equipment %26 MRO</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>SCS - Supply Chain Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Work_Clothing_Uniforms</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 6822</description>
+        <label>Work Clothing &amp; Uniforms</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Workplace %26 Travel</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

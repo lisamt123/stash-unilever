@@ -1,4 +1,5 @@
-<apex:page standardController="VPM_PurchasingRequests__c" standardStylesheets="true" sidebar="false" >
+<apex:page standardController="VPM_PurchasingRequests__c" standardStylesheets="true" sidebar="false" 
+           extensions="VPM_PurchaseRequestsControllerExtension">
 <apex:stylesheet value="{!URLFOR($Resource.vpmbootstrapresources, 'vpmbootstrapresources/bootstrap.css')}" />
 <apex:stylesheet value="{!URLFOR($Resource.vpmstyles, 'vpmstyles.css')}" />
 <apex:stylesheet value="{!URLFOR($Resource.vpmadvancedformcss)}" />
@@ -7,8 +8,10 @@
 <script type = "text/javascript">
     
      $(document).ready(function(){
+        var flag = false;
         var criteria1 = "{!VPM_PurchasingRequests__c.VPM_Status__c}"; 
-        var criteriaId = "{!VPM_PurchasingRequests__c.Id}"; 
+        var criteriaId = "{!VPM_PurchasingRequests__c.Id}";
+         var flsInCountry = "{!VPM_PurchasingRequests__c.VPM_FLSInCountryReqVendor__c}";
          console.log(criteriaId);
         var Islock = "{!VPM_PurchasingRequests__c.VPM_IsLock__c}";
         $('input[type="submit"],input[type="button"]').css('background-color','#0275d8 !important');
@@ -21,7 +24,17 @@
             $('link[href*="vpmadvancedformcss"]').remove();
             $('link[href*="bootstrap"]').remove();
             $('link[href*="vpmstyles"]').remove();
-            alert("Please Approve / Reject the Request before completing the Advanced Form");
+            alert("Please Approve / Reject the Request before completing the Advanced Form.");
+        }
+         if(flsInCountry == "true") {
+            $('link[href*="vpmadvancedformcss"]').remove();
+            $('link[href*="bootstrap"]').remove();
+            $('link[href*="vpmstyles"]').remove();
+            flag = confirm("Please note if you complete and submit the Advanced Form, you will bypass your Front Line Services team and the request will route straight to approver/s.");
+             //document.getElementById('{!$Component.theForm}').elements['{!$Component.hiddenField}'].value = flag;
+			 alert(flag);
+             //$('input[id*="hdnField"]').value = flag;
+           
         }
         else if (!Islock)
         {
@@ -117,9 +130,11 @@
         window.open('/apex/VPM_AttachFiles?id='+id,'Table','toolbar=yes, scrollbars=no, toolbar=no, menubar=no, height=500,width=1230, top=70, left=70'); 
     }
     </script>
+    
 
+    
     <flow:interview name="VPM_PurchasingRequestAdvanceForm" finishLocation="/{!VPM_PurchasingRequests__c.Id}" 
-                    rendered="{!VPM_PurchasingRequests__c.VPM_Status__c != 'FLS Review'}" >
+                    rendered="{!VPM_PurchasingRequests__c.VPM_Status__c != 'FLS Review'} && flsInCountryFlag" >
         <apex:param name="VPM_PurchasingRequestID" value="{!VPM_PurchasingRequests__c.Id}"/>    
     </flow:interview>
     
@@ -144,6 +159,9 @@
     
     <apex:detail subject="{!VPM_PurchasingRequests__c.Id}" rendered="{!VPM_PurchasingRequests__c.VPM_Status__c == 'FLS Review'}" 
                  showChatter="true"/>
+    <apex:form id="theForm">
+		<apex:inputHidden id="hdnField" value="{!flsInCountryFlag}"/>
+    </apex:form>
     
     <!--apex:detail subject="{!VPM_PurchasingRequests__c.Id}" showChatter="true"
                  rendered="{!(VPM_PurchasingRequests__c.VPM_Status__c != 'FLS Approved' &&

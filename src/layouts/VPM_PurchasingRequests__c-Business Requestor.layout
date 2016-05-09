@@ -16,14 +16,10 @@
                 <behavior>Required</behavior>
                 <field>VPM_CountryRequestingVendor__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>VPM_Commodity__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>VPM_CompanyCode__c</field>
             </layoutItems>
         </layoutColumns>
@@ -41,7 +37,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>VPM_CommodityName__c</field>
+                <field>VPM_Commodity__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -125,11 +121,19 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>VPM_Rework__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>VPM_MDMInsertUpdateStatus__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Vendor_Webform_URL__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>VPM_FLSInCountryReqVendor__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -144,6 +148,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>VPM_IsLock__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>VPM_RequestLastWithGroup__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

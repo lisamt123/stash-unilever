@@ -56,7 +56,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ReadWrite</externalSharingModel>
+    <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>Exception_Details__c</fullName>
         <externalId>false</externalId>
@@ -67,6 +67,42 @@
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ExciseRange__c</fullName>
+        <externalId>false</externalId>
+        <label>Excise Range</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ExciseRegNo__c</fullName>
+        <externalId>false</externalId>
+        <label>Excise Reg. No.</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>LSTno__c</fullName>
+        <externalId>false</externalId>
+        <label>LST no.</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Reconciliation_Account__c</fullName>
@@ -206,6 +242,18 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_AccountingNote__c</fullName>
+        <externalId>false</externalId>
+        <label>Accounting note</label>
+        <length>40</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>VPM_AccountingText__c</fullName>
@@ -436,6 +484,18 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>VPM_ArabiaOldNumber__c</fullName>
+        <externalId>false</externalId>
+        <label>Arabia old number</label>
+        <length>16</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_ArabicVersion__c</fullName>
         <externalId>false</externalId>
         <label>Arabic version</label>
@@ -580,6 +640,78 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>VPM_BankNumber__c</fullName>
+        <externalId>false</externalId>
+        <label>Bank Number</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_BeneficiaryAddress1__c</fullName>
+        <externalId>false</externalId>
+        <label>Beneficiary Address 1</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_BeneficiaryAddress2__c</fullName>
+        <externalId>false</externalId>
+        <label>Beneficiary Address 2</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_BeneficiaryAddress3__c</fullName>
+        <externalId>false</externalId>
+        <label>Beneficiary Address 3</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_BeneficiaryCountry__c</fullName>
+        <externalId>false</externalId>
+        <label>Beneficiary Country</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_BeneficiaryName__c</fullName>
+        <externalId>false</externalId>
+        <label>Beneficiary Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_BlockFunction__c</fullName>
         <externalId>false</externalId>
         <label>Block Function</label>
@@ -654,6 +786,30 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_CENVAT__c</fullName>
+        <externalId>false</externalId>
+        <label>CENVAT</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_CSTno__c</fullName>
+        <externalId>false</externalId>
+        <label>CST no.</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>VPM_CarFreightGroup__c</fullName>
@@ -731,6 +887,40 @@
         <externalId>false</externalId>
         <label>Certificate Number of the Withholding Ta</label>
         <length>200</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_CertificationDate__c</fullName>
+        <externalId>false</externalId>
+        <label>Certification date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>VPM_ChangedBy__c</fullName>
+        <externalId>false</externalId>
+        <label>Changed By</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_Changedon__c</fullName>
+        <externalId>false</externalId>
+        <label>Changed on</label>
+        <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -844,6 +1034,42 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>VPM_Commissionerate__c</fullName>
+        <externalId>false</externalId>
+        <label>Commissionerate</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_CommodityClass__c</fullName>
+        <externalId>false</externalId>
+        <label>Commodity Class</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_CommodityFamily__c</fullName>
+        <externalId>false</externalId>
+        <label>Commodity Family</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>VPM_CommodityNameIfKnown__c</fullName>
@@ -3153,6 +3379,18 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>VPM_ExcIndVendor__c</fullName>
+        <externalId>false</externalId>
+        <label>Exc. Ind. Vendor</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_ExceptionType__c</fullName>
         <description>VPM - Used as part of the Procurement Approval Golden Data; required data in SAP BPM for a Create</description>
         <externalId>false</externalId>
@@ -3172,6 +3410,18 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_ExciseDivision__c</fullName>
+        <externalId>false</externalId>
+        <label>Excise Division</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>VPM_ExemptionFrom__c</fullName>
@@ -3393,6 +3643,30 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_FreeText1__c</fullName>
+        <externalId>false</externalId>
+        <label>Free Text1</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_FreeText2__c</fullName>
+        <externalId>false</externalId>
+        <label>Free Text2</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>VPM_FunctionDescription__c</fullName>
@@ -3708,10 +3982,34 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>VPM_IndicatorPlantLevelRelevant__c</fullName>
+        <externalId>false</externalId>
+        <label>Indicator Plant Level Relevant</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_IndicatorSubjectToWithholdingTax__c</fullName>
         <externalId>false</externalId>
         <label>Indicator Subject to withholding tax?</label>
         <length>200</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_IndicatorVendorSubRangeRelevant__c</fullName>
+        <externalId>false</externalId>
+        <label>Indicator Vendor Sub Range Relevant</label>
+        <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -3728,6 +4026,42 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>VPM_IndividualSpec__c</fullName>
+        <externalId>false</externalId>
+        <label>Individual spec</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_IndonesiaOldVendorNumber__c</fullName>
+        <externalId>false</externalId>
+        <label>IndonesiaOldVendor_Number</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_IndustryType__c</fullName>
+        <externalId>false</externalId>
+        <label>Type of Industry</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>VPM_Industry__c</fullName>
@@ -3899,6 +4233,18 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>VPM_IsraelOldNumber__c</fullName>
+        <externalId>false</externalId>
+        <label>Israel Old number</label>
+        <length>16</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_KeyMapping__c</fullName>
         <externalId>false</externalId>
         <label>Key Mapping</label>
@@ -3921,6 +4267,26 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_LanguageKeyCOCode__c</fullName>
+        <externalId>false</externalId>
+        <label>Language Key_COCode</label>
+        <picklist>
+            <picklistValues>
+                <fullName>code 1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>code 2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>VPM_Language__c</fullName>
@@ -4270,6 +4636,16 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>VPM_NPIVendor__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>NPI Vendor(Y/N)</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>VPM_Name3__c</fullName>
         <externalId>false</externalId>
         <label>Name 3</label>
@@ -4376,10 +4752,46 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>VPM_OtherCommunication__c</fullName>
+        <externalId>false</externalId>
+        <label>Other Communication</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_OurAccNumWithVendor__c</fullName>
         <externalId>false</externalId>
         <label>Our account number with the vendor</label>
         <length>200</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_PANNumber__c</fullName>
+        <externalId>false</externalId>
+        <label>PAN Number</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_PANreference__c</fullName>
+        <externalId>false</externalId>
+        <label>PAN reference</label>
+        <length>20</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -4416,6 +4828,18 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
         <externalId>false</externalId>
         <label>PO Box</label>
         <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_POCreationSystem__c</fullName>
+        <externalId>false</externalId>
+        <label>PO Creation System</label>
+        <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -4516,6 +4940,18 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>VPM_PartnerFunctions__c</fullName>
+        <externalId>false</externalId>
+        <label>Partner Functions</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_PartnerName__c</fullName>
         <externalId>false</externalId>
         <label>Partner Name</label>
@@ -4532,6 +4968,18 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
         <externalId>false</externalId>
         <label>Partner Number</label>
         <length>200</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_PayableLocation__c</fullName>
+        <externalId>false</externalId>
+        <label>Payable Location</label>
+        <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -4619,6 +5067,18 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>VPM_PermittedPayee__c</fullName>
+        <externalId>false</externalId>
+        <label>Permitted payee</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>VPM_PhoneExtension__c</fullName>
@@ -4946,6 +5406,18 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>VPM_RegStGrp__c</fullName>
+        <externalId>false</externalId>
+        <label>Reg. St. Grp</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_Region__c</fullName>
         <externalId>false</externalId>
         <label>Region</label>
@@ -5160,6 +5632,16 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
         <type>TextArea</type>
     </fields>
     <fields>
+        <fullName>VPM_SMSIndicator__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>SMS indicator</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>VPM_SRVBasedVendorID__c</fullName>
         <defaultValue>true</defaultValue>
         <externalId>false</externalId>
@@ -5168,6 +5650,18 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>VPM_SSIStatus__c</fullName>
+        <externalId>false</externalId>
+        <label>SSI Status</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>VPM_SalesPerson__c</fullName>
@@ -5290,6 +5784,30 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
         <externalId>false</externalId>
         <label>Shipping Conditions</label>
         <length>200</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_SocialInsuranceCodeSoc__c</fullName>
+        <externalId>false</externalId>
+        <label>Social Insurance Code - [ Soc. Ins. Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_SocialInsurance__c</fullName>
+        <externalId>false</externalId>
+        <label>Social Insurance</label>
+        <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -5782,6 +6300,18 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>VPM_SupportingDocumentsGuidelines__c</fullName>
+        <externalId>false</externalId>
+        <label>Supporting Documents &amp; Guidelines</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_SwiftKey__c</fullName>
         <externalId>false</externalId>
         <label>Swift Key</label>
@@ -5954,6 +6484,18 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>VPM_TaxOfficeIdentification__c</fullName>
+        <externalId>false</externalId>
+        <label>Tax Office Identification</label>
+        <length>40</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_TaxSplit__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -6053,6 +6595,78 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
         <externalId>false</externalId>
         <label>Text to Input</label>
         <length>200</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_ThaiOldVendorNumber__c</fullName>
+        <externalId>false</externalId>
+        <label>ThaiOldVendor_Number</label>
+        <length>16</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_ThirdPartyAddress1__c</fullName>
+        <externalId>false</externalId>
+        <label>Third Party Address 1</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_ThirdPartyAddress2__c</fullName>
+        <externalId>false</externalId>
+        <label>Third Party  Address 2</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_ThirdPartyAddress3__c</fullName>
+        <externalId>false</externalId>
+        <label>Third Party Address 3</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_ThirdPartyAddress4__c</fullName>
+        <externalId>false</externalId>
+        <label>Third Party Address 4</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_ThirdPartyName__c</fullName>
+        <externalId>false</externalId>
+        <label>Third Party Name</label>
+        <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -6191,6 +6805,18 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_TurkeyOldNumber__c</fullName>
+        <externalId>false</externalId>
+        <label>Turkey Old number</label>
+        <length>16</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>VPM_UkrainianVersion__c</fullName>
@@ -6374,6 +7000,30 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_VendorSubType__c</fullName>
+        <externalId>false</externalId>
+        <label>Vendor Sub Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Vendor Sub Type 1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vendor Sub Type 2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vendor Sub Type 3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>VPM_VendorType__c</fullName>
@@ -8541,6 +9191,17 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_LanguageKeyCOCode__c</picklist>
+            <values>
+                <fullName>code 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>code 2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_Language__c</picklist>
             <values>
                 <fullName>English</fullName>
@@ -9163,6 +9824,21 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
             <values>
                 <fullName>Transportation Zone 2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_VendorSubType__c</picklist>
+            <values>
+                <fullName>Vendor Sub Type 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Sub Type 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Sub Type 3</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -11214,6 +11890,17 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_LanguageKeyCOCode__c</picklist>
+            <values>
+                <fullName>code 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>code 2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_Language__c</picklist>
             <values>
                 <fullName>English</fullName>
@@ -11836,6 +12523,21 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
             <values>
                 <fullName>Transportation Zone 2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_VendorSubType__c</picklist>
+            <values>
+                <fullName>Vendor Sub Type 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Sub Type 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Sub Type 3</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -13887,6 +14589,17 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_LanguageKeyCOCode__c</picklist>
+            <values>
+                <fullName>code 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>code 2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_Language__c</picklist>
             <values>
                 <fullName>English</fullName>
@@ -14509,6 +15222,21 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
             <values>
                 <fullName>Transportation Zone 2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_VendorSubType__c</picklist>
+            <values>
+                <fullName>Vendor Sub Type 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Sub Type 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Sub Type 3</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -16560,6 +17288,17 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_LanguageKeyCOCode__c</picklist>
+            <values>
+                <fullName>code 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>code 2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_Language__c</picklist>
             <values>
                 <fullName>English</fullName>
@@ -17182,6 +17921,21 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
             <values>
                 <fullName>Transportation Zone 2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_VendorSubType__c</picklist>
+            <values>
+                <fullName>Vendor Sub Type 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Sub Type 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Sub Type 3</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -19233,6 +19987,17 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_LanguageKeyCOCode__c</picklist>
+            <values>
+                <fullName>code 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>code 2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_Language__c</picklist>
             <values>
                 <fullName>English</fullName>
@@ -19855,6 +20620,21 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
             <values>
                 <fullName>Transportation Zone 2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_VendorSubType__c</picklist>
+            <values>
+                <fullName>Vendor Sub Type 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Sub Type 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Sub Type 3</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -21906,6 +22686,17 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_LanguageKeyCOCode__c</picklist>
+            <values>
+                <fullName>code 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>code 2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_Language__c</picklist>
             <values>
                 <fullName>English</fullName>
@@ -22528,6 +23319,21 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
             <values>
                 <fullName>Transportation Zone 2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_VendorSubType__c</picklist>
+            <values>
+                <fullName>Vendor Sub Type 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Sub Type 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Sub Type 3</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -24579,6 +25385,17 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_LanguageKeyCOCode__c</picklist>
+            <values>
+                <fullName>code 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>code 2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_Language__c</picklist>
             <values>
                 <fullName>English</fullName>
@@ -25201,6 +26018,21 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
             <values>
                 <fullName>Transportation Zone 2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_VendorSubType__c</picklist>
+            <values>
+                <fullName>Vendor Sub Type 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Sub Type 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Sub Type 3</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -27252,6 +28084,17 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_LanguageKeyCOCode__c</picklist>
+            <values>
+                <fullName>code 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>code 2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_Language__c</picklist>
             <values>
                 <fullName>English</fullName>
@@ -27878,6 +28721,21 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_VendorSubType__c</picklist>
+            <values>
+                <fullName>Vendor Sub Type 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Sub Type 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Sub Type 3</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_VendorType__c</picklist>
             <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
@@ -27917,7 +28775,7 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
         <customTabListAdditionalFields>CREATEDBY_USER</customTabListAdditionalFields>
         <customTabListAdditionalFields>UPDATEDBY_USER</customTabListAdditionalFields>
     </searchLayouts>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>Private</sharingModel>
     <validationRules>
         <fullName>VPM_VendorEmailorVendorPhoneMandatory</fullName>
         <active>true</active>
@@ -27993,7 +28851,6 @@ if(currentstatus.indexOf(&apos;Draft&apos;) &gt;= 0 )
 pur.VPM_BusinessRequestorSubmitted__c=&apos;Yes&apos;; 
 pur.VPM_Rework__c=&apos;No&apos;;
 result = sforce.connection.update([pur]); 
-window.location.reload(); 
 }
 
 if (currentstatus.indexOf(&apos;FLS Requested Re-Work&apos;) &gt;=0 &amp;&amp; Rework==&apos;Yes&apos;) 
@@ -28011,7 +28868,6 @@ var result = sforce.connection.query(&quot;Select Id, SobjectType, QueueId, Queu
                                 } 
 result = sforce.connection.update([pur]); 
 
-window.location.reload(); 
 } 
 if (currentstatus.indexOf(&apos;Procurement Requested Re-Work&apos;) &gt;=0 &amp;&amp; Rework==&apos;Yes&apos;) 
 { 
@@ -28023,10 +28879,10 @@ var result = sforce.connection.query(&quot;Select Id, SobjectType, QueueId, Queu
                                                 pur.VPM_Status__c = &apos;Approval Pending&apos;;
 												pur.VPM_AdvancedFormSubmitted__c=&apos;No&apos;;
 												pur.VPM_Rework__c=&apos;Completed&apos;;
+												pur.VPM_RequestLastWithGroup__c=&apos;FLS&apos;;
                                                 pur.OwnerId=queue_records[&apos;QueueId&apos;];
                                 }
 result = sforce.connection.update([pur]); 
-window.location.reload(); 
 } 
 
 if (currentstatus.indexOf(&apos;Finance Requested Re-Work&apos;) &gt;=0 &amp;&amp; Rework==&apos;Yes&apos;) 
@@ -28039,10 +28895,10 @@ var result = sforce.connection.query(&quot;Select Id, SobjectType, QueueId, Queu
                                                 pur.VPM_Status__c = &apos;Approval Pending&apos;;
 												pur.VPM_Rework__c=&apos;Completed&apos;;
 												pur.VPM_AdvancedFormSubmitted__c=&apos;No&apos;;
+												pur.VPM_RequestLastWithGroup__c=&apos;FLS&apos;;
                                                 pur.OwnerId=queue_records[&apos;QueueId&apos;];
                                 } 
 result = sforce.connection.update([pur]); 
-window.location.reload(); 
 } 
 
 if (currentstatus.indexOf(&apos;FLS Review&apos;)&gt;=0) 
@@ -28053,9 +28909,11 @@ if (result[&apos;size&apos;] == 1){
 var queue_records = result[&apos;records&apos;]; 
 pur.OwnerId=queue_records[&apos;QueueId&apos;]; 
 result = sforce.connection.update([pur]); 
-window.location.reload(); 
 } 
 } 
+var res = sforce.connection.describeSObjects([&apos;VPM_PurchasingRequests__c&apos;]);
+									var newId = res[0].keyPrefix;
+									window.location.href = &quot;/&quot;+newId;
 }</url>
     </webLinks>
     <webLinks>
@@ -28137,6 +28995,12 @@ if(result.getArray(&quot;records&quot;).length &lt;=0)
 				var CreatedBy=&quot;{!VPM_PurchasingRequests__c.CreatedById}&quot;;
 				var rework =&quot;{!VPM_PurchasingRequests__c.VPM_Rework__c}&quot;;
 
+				// Test 
+				//var ReferraAccepted = sforce.connection.query(&quot;SELECT Owner.Type from VPM_PurchasingRequests__c where id //=&apos;{!VPM_PurchasingRequests__c.Id}&apos; limit 1&quot;);
+
+				//records = ReferraAccepted.getArray(&quot;records&quot;); 
+				//alert(records);														
+				
 if ((currentstatus.indexOf(&apos;Draft&apos;) &gt;= 0 )||(rework==&apos;Yes&apos;) || (currentstatus.indexOf(&apos;MDM Ops&apos;) &gt;= 0 ))	
 {
 	if(rework==&apos;Yes&apos;)
@@ -28154,18 +29018,22 @@ else {
 var r = confirm(&quot;Are you sure you want to rework the request? \nPlease provide guidance via the Chatter feed&quot;);
 if(r == true) 
 {
-				if (LastGroup == &apos;Business Requestor&apos;  &amp;&amp; currentstatus==&apos;FLS Review&apos; )
+				if (LastGroup == &apos;Business Requestor&apos;  &amp;&amp; currentstatus==&apos;FLS Review&apos;)
                 {
                                                 
-                                                pur.VPM_Status__c = &apos;FLS Requested Re-Work&apos;;
+                                               
+											   pur.VPM_Status__c = &apos;FLS Requested Re-Work&apos;;
 												var CreatedBy=&quot;{!VPM_PurchasingRequests__c.CreatedById }&quot;; 
                                                 pur.OwnerId=CreatedBy;
 												pur.VPM_Rework__c=&apos;Yes&apos;;
-var today = new Date();
-pur.VPM_RequestGroupTime__c = today.toJSON();
+												var today = new Date();
+												pur.VPM_RequestGroupTime__c = today.toJSON();
 												pur.VPM_RequestLastWithGroup__c = &apos;FLS&apos;; 
 												//pur.VPM_IsLock__c=false;
                                                 result = sforce.connection.update([pur]); 
+												//alert(result);
+												sforce.connection.sessionId = &apos;{!$Api.Session_ID}&apos;;
+								
 
                                                                  
                                 
@@ -28285,7 +29153,9 @@ pur.VPM_RequestGroupTime__c = today.toJSON();
 					    
 						alert(&quot;Request has been reworked... &quot;); 
 						
-						window.location.reload(); 
+						var res = sforce.connection.describeSObjects([&apos;VPM_PurchasingRequests__c&apos;]);
+									var newId = res[0].keyPrefix;
+									window.location.href = &quot;/&quot;+newId; 
 				}
 }
 else 

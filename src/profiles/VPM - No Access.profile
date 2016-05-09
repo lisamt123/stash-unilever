@@ -78,6 +78,21 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.ExciseRange__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.ExciseRegNo__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.LSTno__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>VPM_PurchasingRequests__c.Reconciliation_Account__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -104,7 +119,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_AccountGroup__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -124,6 +139,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_AccountingClerk__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_AccountingNote__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -208,6 +228,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_ArabiaOldNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_ArabicVersion__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -268,6 +293,36 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_BankNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_BeneficiaryAddress1__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_BeneficiaryAddress2__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_BeneficiaryAddress3__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_BeneficiaryCountry__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_BeneficiaryName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_BlockFunction__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -284,6 +339,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_Bypass__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_CENVAT__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_CSTno__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -314,6 +379,21 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_CertificateWithholdingTaxExemption__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_CertificationDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_ChangedBy__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_Changedon__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -360,6 +440,21 @@
         <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_Comments__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_Commissionerate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_CommodityClass__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_CommodityFamily__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -613,7 +708,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_ExcIndVendor__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_ExceptionType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_ExciseDivision__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -699,6 +804,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_FiscalAddress__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_FreeText1__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_FreeText2__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -818,12 +933,37 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_IndicatorPlantLevelRelevant__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_IndicatorSubjectToWithholdingTax__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_IndicatorVendorSubRangeRelevant__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_IndividualPayment__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_IndividualSpec__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_IndonesiaOldVendorNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_IndustryType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -883,12 +1023,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_IsraelOldNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_KeyMapping__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_LLDCode__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_LanguageKeyCOCode__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1023,6 +1173,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_NPIVendor__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_Name3__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1058,7 +1213,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_OtherCommunication__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_OurAccNumWithVendor__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_PANNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_PANreference__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1074,6 +1244,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_POBox__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_POCreationSystem__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1103,12 +1278,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_PartnerFunctions__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_PartnerName__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_PartnerNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_PayableLocation__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1134,6 +1319,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_PaymentTerms__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_PermittedPayee__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1257,6 +1447,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_RegStGrp__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_Region__c</field>
         <readable>false</readable>
@@ -1333,7 +1528,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_SMSIndicator__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_SRVBasedVendorID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_SSIStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1379,6 +1584,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_ShippingConditions__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_SocialInsuranceCodeSoc__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_SocialInsurance__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1498,6 +1713,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_SupportingDocumentsGuidelines__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_SwiftKey__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1558,6 +1778,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_TaxOfficeIdentification__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_TaxSplit__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1598,6 +1823,36 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_ThaiOldVendorNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_ThirdPartyAddress1__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_ThirdPartyAddress2__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_ThirdPartyAddress3__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_ThirdPartyAddress4__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_ThirdPartyName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_Title__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1629,6 +1884,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_TransportZone__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_TurkeyOldNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1704,6 +1964,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_VendorSubRange__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_VendorSubType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1850,6 +2115,378 @@
         <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Activations_and_Promotions</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Ad_hoc_Research</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Adhesives_Sealants</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Advertising_Agency</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Advertising_Production_Services</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Agile_Working</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Archiving_Records_Management_Services</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Brand_Design</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Broadcast_Advertising_Placement</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Building_Maintenance_Repairs_Services</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Business_Support_Services</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Catering_Vending_Services</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Cleaning_Janitorial</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Co_op_marketing</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Consumer_Care</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Continuous_Research</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Corporate_Insurance_Services</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Corporate_Public_Relations_Services</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Courier_Mail_Services</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Creative_Services</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Customer_Care</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Electrical</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Electrical_innovation_device</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Electricity</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Factory_Technical_Engineering_Services</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Field_Sales</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Financial_Services</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Fleet_Company_Vehicles</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Food_and_Beverage_POS</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Furniture_Fixtures_Space_Planning_Office_Moves</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Global_Mobility_Personnel_Relocation</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Goods_Transportation_Distribution</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Grants_Subsidies</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Grounds_Maintenance_Services</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_HR_Benefits_and_Reward</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_HR_Services</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Hardware</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_IT_Services</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Ice_Cream_POS</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Industrial_Supplies</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Instrumentation_Process_Control</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Interactive_Advertising_Placement</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Interactive_Digital</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Intercompany_Charges</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Laboratory_Support</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Legal_Services</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Lubricants</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Management_Consulting</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Material_Handling_Equipment</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Mechanical</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Media_Agency</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Motors_Power_Transmissions</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Occupational_Health</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Office_Consumables</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Oil_Gas</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_POS_Equipment</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Packaging_Equipment</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Packaging_Print_Production</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Payment</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Payroll</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Pest_Control_Maintenance</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Pipes_Valves_Fittings</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Pneumatics_Hydraulics</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Point_of_Sale_Materials_POSM</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Premiums</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Print_Media_Placement</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Printed_Material</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Printed_Stationary_Forms</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Process_Equipment</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Production_Support</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Public_Relations_Marketing</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Publications</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Pumps</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_R_D_and_QA_Professional_Services</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Real_Estate</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Reception_Switchboard_Services</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Reprographics_Services</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Resourcing_Permanent_Recruitment</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Resourcing_Temporary_Staffing</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Security</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Site_Infrastructure_Equipment</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Software</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Supply_Chain_Services</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_TV_Advertising_Production_Services</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Telecoms</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Training_Education_Seminar</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Travel_and_Accomodation</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Warehousing_Logistics</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Warehousing_Pallets</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Waste</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Water</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Water_Treatment_Consumables</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Work_Clothing_Uniforms</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>VPM_CompanyCode__c-Company Code Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -1946,6 +2583,471 @@
         <apexPage>VPM_AttachmentSectionPopUp</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Activations_and_Promotions</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Ad_hoc_Research</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Adhesives_Sealants</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Advertising_Agency</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Advertising_Production_Services</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Agile_Working</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Archiving_Records_Management_Services</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Brand_Design</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Broadcast_Advertising_Placement</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Building_Maintenance_Repairs_Services</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Business_Support_Services</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Catering_Vending_Services</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Cleaning_Janitorial</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Co_op_marketing</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Consumer_Care</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Continuous_Research</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Corporate_Insurance_Services</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Corporate_Public_Relations_Services</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Courier_Mail_Services</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Creative_Services</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Customer_Care</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Electrical</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Electrical_innovation_device</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Electricity</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Factory_Technical_Engineering_Services</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Field_Sales</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Financial_Services</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Fleet_Company_Vehicles</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Food_and_Beverage_POS</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Furniture_Fixtures_Space_Planning_Office_Moves</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Global_Mobility_Personnel_Relocation</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Goods_Transportation_Distribution</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Grants_Subsidies</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Grounds_Maintenance_Services</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_HR_Benefits_and_Reward</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_HR_Services</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Hardware</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_IT_Services</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Ice_Cream_POS</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Industrial_Supplies</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Instrumentation_Process_Control</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Interactive_Advertising_Placement</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Interactive_Digital</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Intercompany_Charges</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Laboratory_Support</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Legal_Services</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Lubricants</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Management_Consulting</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Material_Handling_Equipment</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Mechanical</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Media_Agency</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Motors_Power_Transmissions</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Occupational_Health</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Office_Consumables</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Oil_Gas</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_POS_Equipment</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Packaging_Equipment</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Packaging_Print_Production</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Payment</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Payroll</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Pest_Control_Maintenance</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Pipes_Valves_Fittings</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Pneumatics_Hydraulics</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Point_of_Sale_Materials_POSM</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Premiums</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Print_Media_Placement</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Printed_Material</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Printed_Stationary_Forms</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <recordType>VPM_CommodityCode__c.VPM_Process_Equipment</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Production_Support</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Public_Relations_Marketing</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Publications</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Pumps</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_R_D_and_QA_Professional_Services</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Real_Estate</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Reception_Switchboard_Services</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Reprographics_Services</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Resourcing_Permanent_Recruitment</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Resourcing_Temporary_Staffing</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Security</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Site_Infrastructure_Equipment</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Software</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Supply_Chain_Services</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_TV_Advertising_Production_Services</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Telecoms</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Training_Education_Seminar</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Travel_and_Accomodation</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Warehousing_Logistics</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Warehousing_Pallets</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Waste</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Water</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Water_Treatment_Consumables</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Work_Clothing_Uniforms</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
         <personAccountDefault>true</personAccountDefault>

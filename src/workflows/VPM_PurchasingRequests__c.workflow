@@ -71,6 +71,17 @@
         <template>VPM_ApprovalEmails/VPM_RequestReviewNotification</template>
     </alerts>
     <fieldUpdates>
+        <fullName>VPM_AssignRequestToMDMOps</fullName>
+        <description>Assign request to MDM Ops</description>
+        <field>OwnerId</field>
+        <lookupValue>VPM_MDMOps</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>Assign request to MDM Ops</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>VPM_ChangeOwnerToFLSQueue</fullName>
         <description>VPM - Sets the Owner as FLS Queue on entering approval process.</description>
         <field>OwnerId</field>
