@@ -71,6 +71,28 @@
         <template>VPM_ApprovalEmails/VPM_RequestReviewNotification</template>
     </alerts>
     <fieldUpdates>
+        <fullName>ChangeReworkStatustoNo</fullName>
+        <description>VPM _ Used the Rest the rework flag as the approval process has been recall manually.</description>
+        <field>VPM_Rework__c</field>
+        <literalValue>No</literalValue>
+        <name>Change Rework Status to No</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>FLS_SubmittedYes</fullName>
+        <description>VPM - Sets FLS Submitted Field to &apos;Yes&apos; to confirm FLS have finished their review. Triggers a process builder to handle different updates</description>
+        <field>VPM_AdvancedFormSubmitted__c</field>
+        <literalValue>Yes</literalValue>
+        <name>FLS Submitted Yes</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>VPM_AssignRequestToMDMOps</fullName>
         <description>Assign request to MDM Ops</description>
         <field>OwnerId</field>
@@ -80,6 +102,27 @@
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
         <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_BusinessRequestorSubmitted_No</fullName>
+        <field>VPM_BusinessRequestorSubmitted__c</field>
+        <name>BusinessRequestorSubmitted</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_ChangeOwnerIdtoMDMOpsQueue</fullName>
+        <description>VPM - Update  Owner Id field to MDM Ops Queue when the status of request is MDM Ops Review</description>
+        <field>OwnerId</field>
+        <lookupValue>VPM_MDMOps</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>Change the Owner Id to MDM Ops Queue</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>VPM_ChangeOwnerToFLSQueue</fullName>
@@ -130,6 +173,40 @@
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>VPM_ChangeRecordTypeToFLS</fullName>
+        <description>VPM - it will update the record type</description>
+        <field>RecordTypeId</field>
+        <lookupValue>VPM_PurRequisVendorCreate</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>Change Record type to FLS</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_ChangesIslockStatusNo</fullName>
+        <description>VPM - Set the islock flaf to false when the record ia Approve/reject/recall</description>
+        <field>VPM_IsLock__c</field>
+        <literalValue>0</literalValue>
+        <name>Changes Is lock Status to False</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_ChangesIslockStatusTrue</fullName>
+        <description>VPM - Set  islock flag as True when the record is the approval process</description>
+        <field>VPM_IsLock__c</field>
+        <literalValue>1</literalValue>
+        <name>Changes Is lock Status to True</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>VPM_FinanceSubmittedYes</fullName>
         <description>VPM - Sets the Finance Submitted field to &apos;Yes&apos; to confirm Finance have finished their review. Triggers a process builder to handle different updates.</description>
         <field>VPM_FinanceSubmitted__c</field>
@@ -150,6 +227,17 @@
         <operation>Literal</operation>
         <protected>false</protected>
         <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_OwnerIsMDMOps</fullName>
+        <description>Updates record owner to MDM Ops queue</description>
+        <field>OwnerId</field>
+        <lookupValue>VPM_MDMOps</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>Owner is MDM Ops</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>VPM_ProcurementRejected</fullName>
@@ -182,6 +270,16 @@
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_ReworktoNo</fullName>
+        <field>VPM_Rework__c</field>
+        <literalValue>No</literalValue>
+        <name>Rework to No</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>VPM_StatusFLSApproved</fullName>
@@ -315,6 +413,31 @@
         <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
+    <fieldUpdates>
+        <fullName>test_No</fullName>
+        <field>VPM_Rework__c</field>
+        <literalValue>No</literalValue>
+        <name>test No</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Change the Owner Id to MDM Ops Queue</fullName>
+        <actions>
+            <name>VPM_ChangeOwnerIdtoMDMOpsQueue</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_Status__c</field>
+            <operation>contains</operation>
+            <value>MDM Ops</value>
+        </criteriaItems>
+        <description>VPM - Used to update the Owner id to MDM Ops Queues  when the request is under MDM Team for Review</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
     <rules>
         <fullName>Send Email Notification when status is FLS Requested Re-Work</fullName>
         <actions>
@@ -381,6 +504,25 @@
             <value>Approval Rejected in BPM</value>
         </criteriaItems>
         <description>Update salesforce record depending on MDM service call</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>test</fullName>
+        <actions>
+            <name>test_No</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_Status__c</field>
+            <operation>equals</operation>
+            <value>FLS Review,Approval Pending</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_Rework__c</field>
+            <operation>equals</operation>
+            <value>Completed</value>
+        </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
 </Workflow>
