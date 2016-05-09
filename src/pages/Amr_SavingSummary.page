@@ -1,10 +1,10 @@
-<apex:page controller="Amr_SavingSummaryController_CC" sidebar="false">
+<apex:page controller="Amr_SavingSummaryController_CC" sidebar="false" tabStyle="Saving_Summary__tab">
     <apex:include pageName="Amr_common" />
     <link rel="stylesheet" href="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/css/jquery-ui.css')}" />
     <!-- required CSS for Datepicker-->
     <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/jquery-ui.js')}" />
     <!-- required JS for Datepicker-->
-    <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/saving_summary.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/amr_saving_summary.js')}" />
     <link rel="stylesheet" href="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/css/saving-summary.css')}" />
     <script type="text/javascript">
         function callActionFunctionStartDate(startDate) {
@@ -109,7 +109,7 @@
             text-transform:capitalize;
         }
     </style>
-    <div class="job-portfolio-container saving_summary_container margin-top20">
+    <div class="job-portfolio-container saving_summary_container padding-top20 bg-w8">
         <apex:form >
             <div class="leftbar bg-g1" style="width:33.3%">
                 <div class="leftbar-container bg-g1 margin-btwn-container">
@@ -607,12 +607,12 @@
                                                 {!job.Duration_of_Masters__c}
                                             </apex:outputText>              
                                         </apex:column>
-                                        <apex:column value="{!job.No_of_Additional_Films__c}" headerValue="{!$Label.Amr_No_of_Additional_Films}" />
+                                        <apex:column value="{!job.No_of_Additional_Films_List__c}" headerValue="{!$Label.Amr_No_of_Additional_Films}" />
                                         <apex:column value="{!job.Duration_of_Additional_Films__c}" headerValue="{!$Label.Amr_Duration_Of_Additional_Films}" />
                                         <apex:column value="{!job.Total_no_of_films__c}" headerValue="{!$Label.Amr_Total_No_of_Films}" />
                                         <apex:column value="{!job.No_of_shoot_days__c}" headerValue="{!$Label.Amr_No_of_Shoot_Days}" />
                                         <apex:column headerValue="{!$Label.Amr_Shoot_Location}" title="{!job.Shoot_Location__c }">
-                                            <apex:outputText >
+                                            <apex:outputText > 
                                                 <div class="td-overflow width80">
                                                     {!job.Shoot_Location__c }
                                                 </div>
@@ -655,7 +655,7 @@
                                             <apex:outputText value="{!job.Cost_per_master_per_shoot_day__c}" />
                                         </apex:column>
 
-                                        <apex:column headerValue="{!$Label.Total_Accepted_Final_Cost_PC_PPC_CA}">
+                                        <apex:column headerValue="{!$Label.Amr_Total_Accepted_Final_Cost_PC_PPC_CA}">
                                             <apex:outputText value="{!job.Quotes__r[0].Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c}" rendered="{!job.Quotes__r.size != 0}" />
                                         </apex:column>    
                                         <apex:column headerValue="{!$Label.Amr_No_of_Quotes}">

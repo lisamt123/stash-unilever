@@ -276,10 +276,10 @@ body {
 		.lower-container-logo {
 			padding-left: 10px;
 		}
-		.duration-of-masters-class, .no-of-masters-class {
+		.duration-of-additional-films-class, .no-of-additional-films-class, .duration-of-masters-class, .no-of-masters-class {
         	width:100px !important;
         }
-        .row1Main {
+        .row1Main, .row1MainAdditional {
         	margin-bottom:10px;
         }
         

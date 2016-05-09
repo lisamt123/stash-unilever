@@ -209,15 +209,15 @@ Returns:
      if(!setFlag){
    
     
-      soql = 'select Average_Total_Opening_Quotes__c,Number_Of_Quotes__c,Cost_per_master_per_shoot_day__c,Cost_Per_Master__c,Saving_Accepted_Quote_Euro__c ,Percentage_Saving_Accepted_Quote__c,Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Job_Details__r.AdManagerText__c,Job_Details__r.Budget_Responsibility__c,Total_Accepted_FinalCost__c,Shoot_Location_Multiselect__c,CreatedDate,Production_Type__c,No_of_Masters__c,No_of_Masters_List__c,No_of_Additional_Films__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Script_Title__c,Scope_re_brief__c,Folder_Name__c,Duration_of_Additional_Films__c,Duration_of_Masters__c,Shoot_Location__c,Job_Details__r.id,CreatedById,LastModifiedById ,(select Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c'
+      soql = 'select Average_Total_Opening_Quotes__c,Number_Of_Quotes__c,Cost_per_master_per_shoot_day__c,Cost_Per_Master__c,Saving_Accepted_Quote_Euro__c ,Percentage_Saving_Accepted_Quote__c,Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Job_Details__r.AdManagerText__c,Job_Details__r.Budget_Responsibility__c,Total_Accepted_FinalCost__c,Shoot_Location_Multiselect__c,CreatedDate,Production_Type__c,No_of_Masters__c,No_of_Masters_List__c,No_of_Additional_Films__c,No_of_Additional_Films_List__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Script_Title__c,Scope_re_brief__c,Folder_Name__c,Duration_of_Additional_Films__c,Duration_of_Masters__c,Shoot_Location__c,Job_Details__r.id,CreatedById,LastModifiedById ,(select Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c'
                +',Is_PC_part_of_the_Roster__c,PC_name__c,PC_Country__c,Service_Company_Name__c,Local_Currency_of_PC_Costs__c,Local_Amount_of_PC__c,PC_Costs_Euro_Amount__c,Is_the_PPC_part_of_the_Roster__c,PPC_Name__c,PPC_Country__c,Local_Currency_of_PPC_Costs__c,Local_Amount_of_PPC__c,PPC_Costs_Euro_Amount__c,CA_Additional_agency_Name__c,CA_Location__c,Local_Currency_of_CA_Costs__c,Local_Amount_of_CA__c,CA_Costs_Euro_Amount__c,Total_Cost__c,Accepted_Final_Cost_PC_only_Currency__c,Accepted_Final_Cost_PC_only_Local_Amo__c,Accepted_Final_Cost_PC_Euro_Amou__c,Accepted_Final_Cost_PPC_only_Currency__c,Accepted_Final_Cost_PPC_only_Local_Am__c,Accepted_Final_Cost_PPC_Euro_Amount__c,Accepted_Final_Cost_CA_only_Currency__c'
-                +',Accepted_Final_Cost_CA_Local_Amount__c,Accepted_Final_Cost_CA_Euro_Amount__c,Accepted_Final_Cost_Editors_name__c,Accepted_Final_Cost_Total_editing_cost__c,Accepted_Final_Cost_Sound_Studio_Name__c,Accepted_Final_Cost_Total_Sound_Studio__c,Accepted_Final_Cost_Travel_Costs__c,Accepted_Final_Cost_props_wardrobe__c,Saving_Type__c from Quotes__r ORDER BY Quote_Number__c) from Amr_Saving__c where (CreatedById = :userid OR LastModifiedById = :userid) '; //and Job_Details__c IN :accountNumbers
+                +',Accepted_Final_Cost_CA_Local_Amount__c,Accepted_Final_Cost_CA_Euro_Amount__c,Accepted_Final_Cost_Editors_name__c,Accepted_Final_Cost_Total_editing_cost__c,Accepted_Final_Cost_Sound_Studio_Name__c,Accepted_Final_Cost_Total_Sound_Studio__c,Accepted_Final_Cost_Travel_Costs__c,Accepted_Final_Cost_props_wardrobe__c,Saving_Type__c from Quotes__r ORDER BY Quote_Number__c) from Amr_Saving__c where (CreatedById = :userid OR LastModifiedById = :userid) AND Display__c = true'; //and Job_Details__c IN :accountNumbers
      
      } else{
     
-      soql = 'select Average_Total_Opening_Quotes__c,Number_Of_Quotes__c,Cost_per_master_per_shoot_day__c,Cost_Per_Master__c,Saving_Accepted_Quote_Euro__c ,Percentage_Saving_Accepted_Quote__c,Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Job_Details__r.AdManagerText__c,Job_Details__r.Budget_Responsibility__c,Total_Accepted_FinalCost__c,Shoot_Location_Multiselect__c,CreatedDate,Production_Type__c ,No_of_Masters__c,No_of_Masters_List__c,No_of_Additional_Films__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Script_Title__c,Scope_re_brief__c,Duration_of_Additional_Films__c,Duration_of_Masters__c,Folder_Name__c,Shoot_Location__c,Job_Details__r.id,CreatedById,LastModifiedById ,(select Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c' 
+      soql = 'select Average_Total_Opening_Quotes__c,Number_Of_Quotes__c,Cost_per_master_per_shoot_day__c,Cost_Per_Master__c,Saving_Accepted_Quote_Euro__c ,Percentage_Saving_Accepted_Quote__c,Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Job_Details__r.AdManagerText__c,Job_Details__r.Budget_Responsibility__c,Total_Accepted_FinalCost__c,Shoot_Location_Multiselect__c,CreatedDate,Production_Type__c ,No_of_Masters__c,No_of_Masters_List__c,No_of_Additional_Films__c,No_of_Additional_Films_List__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Script_Title__c,Scope_re_brief__c,Duration_of_Additional_Films__c,Duration_of_Masters__c,Folder_Name__c,Shoot_Location__c,Job_Details__r.id,CreatedById,LastModifiedById ,(select Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c' 
               +',Is_PC_part_of_the_Roster__c,PC_name__c,Service_Company_Name__c,PC_Country__c,Local_Currency_of_PC_Costs__c,Local_Amount_of_PC__c,PC_Costs_Euro_Amount__c,Is_the_PPC_part_of_the_Roster__c,PPC_Name__c,PPC_Country__c,Local_Currency_of_PPC_Costs__c,Local_Amount_of_PPC__c,PPC_Costs_Euro_Amount__c,CA_Additional_agency_Name__c,CA_Location__c,Local_Currency_of_CA_Costs__c,Local_Amount_of_CA__c,CA_Costs_Euro_Amount__c,Total_Cost__c,Accepted_Final_Cost_PC_only_Currency__c,Accepted_Final_Cost_PC_only_Local_Amo__c,Accepted_Final_Cost_PC_Euro_Amou__c,Accepted_Final_Cost_PPC_only_Currency__c,Accepted_Final_Cost_PPC_only_Local_Am__c,Accepted_Final_Cost_PPC_Euro_Amount__c'
-               +',Accepted_Final_Cost_CA_only_Currency__c,Accepted_Final_Cost_CA_Local_Amount__c,Accepted_Final_Cost_CA_Euro_Amount__c,Accepted_Final_Cost_Editors_name__c,Accepted_Final_Cost_Total_editing_cost__c,Accepted_Final_Cost_Sound_Studio_Name__c,Accepted_Final_Cost_Total_Sound_Studio__c,Accepted_Final_Cost_Travel_Costs__c,Accepted_Final_Cost_props_wardrobe__c,Saving_Type__c from Quotes__r ORDER BY Quote_Number__c) from Amr_Saving__c where CreatedDate!=null';  
+               +',Accepted_Final_Cost_CA_only_Currency__c,Accepted_Final_Cost_CA_Local_Amount__c,Accepted_Final_Cost_CA_Euro_Amount__c,Accepted_Final_Cost_Editors_name__c,Accepted_Final_Cost_Total_editing_cost__c,Accepted_Final_Cost_Sound_Studio_Name__c,Accepted_Final_Cost_Total_Sound_Studio__c,Accepted_Final_Cost_Travel_Costs__c,Accepted_Final_Cost_props_wardrobe__c,Saving_Type__c from Quotes__r ORDER BY Quote_Number__c) from Amr_Saving__c where CreatedDate!=null AND Display__c = true';  
      
      }
       system.debug('soql !!'+soql);
@@ -254,6 +254,8 @@ Returns:
            
            system.debug('soql end date'+soql);
     }
+    
+    System.debug('START DATE ->  ' + startDate +  'END DATE   '+  endDate);
    
     if(String.isNotBlank(savingObject.Production_Type__c)){
       
@@ -809,7 +811,7 @@ Returns: It will return submitted saving data.
          
        public pageReference clearJob(){
                 
-                PageReference pageRef = new PageReference('/apex/Amr_SavingSummary');
+                PageReference pageRef = Page.Amr_SavingSummary;
                 pageRef.setRedirect(true);
                 return pageRef;
                 

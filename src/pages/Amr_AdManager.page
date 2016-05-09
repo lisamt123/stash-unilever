@@ -4,18 +4,21 @@
         <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" />
         <apex:includeScript value="/support/console/31.0/integration.js" />
         <script type="text/javascript">
-            $j = jQuery.noConflict();                                    
+            $j = jQuery.noConflict();                                                      
         </script>        
-        <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/menu-shift.js')}" />
-        <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/production-activity.js')}" />
-        <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/admanager-logging-form.js')}" />        
+        <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/amr_menu_shift.js')}" />
+        <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/amr_production_activity.js')}" />
+        <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/amr_admanager_logging_form.js')}" />        
         <style type="text/css">
             label.logging-form-label div {
                 background: url("{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/questionmark.png')}") no-repeat scroll center center rgba(0,0,0,0);
             }            
             label.logging-form-label strong {
                 background: url("{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/star.png')}") no-repeat scroll center center rgba(0,0,0,0);
-            }                        
+            }      
+            .container {
+            	background:#FFFFFF;
+            }                   
         </style>
         <apex:stylesheet value="{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/css/logging-form.css')}" />
     </head>
@@ -29,7 +32,7 @@
                 </div>
                 </apex:outputpanel>
                 
-                <section class="before-start margin-top15">
+                <section class="before-start padding-top15">
                     <apex:outputText value="{!r.Introduction__c}" escape="false" />
                 </section>
                 <section>
