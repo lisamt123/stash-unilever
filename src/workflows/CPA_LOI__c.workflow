@@ -312,6 +312,15 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>CPA_LOI_Send_for_signature_date_null</fullName>
+        <description>This is updated to blank for return from docusign msg display req.</description>
+        <field>dat_Sent_for_Signature_Date__c</field>
+        <name>CPA LOI Send for signature date null</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CPA_LOI_Sent_for_Signature_Date_update</fullName>
         <field>dat_Sent_for_Signature_Date__c</field>
         <formula>TODAY()</formula>

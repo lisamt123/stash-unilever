@@ -7,7 +7,7 @@
     <subject>Pickup Request</subject>
     <textOnly>Hi,
 
-Travelling to factory {!Vep_Visitor__c.Factory_to_Visit__c} from {!Vep_Visitor__c.Date_From__c} to {!Vep_Visitor__c.Date_To__c}, approved by {!Vep_Visitor__c.Factory_Manager_Name__c}
+Travelling to factory {!Vep_Visitor__c.Factory_to_Visit__c} from {!Vep_Visitor__c.Date_From__c} to {!Vep_Visitor__c.Date_To__c}, approved by {!Vep_Visitor__c.Person_to_Meet__c}
 
 Please do the needful for pickup
 

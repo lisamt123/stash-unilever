@@ -39,7 +39,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Standalone_PWO_clarity_ID__c</field>
+                <field>txt_Standalone_PWO_clarity_ID__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -53,7 +53,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>OwnerId</field>
+                <field>lkp_Owner__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -152,6 +152,10 @@
                 <behavior>Edit</behavior>
                 <field>eml_Unilever_Finance_BP_Contact_Email__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Comments__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
@@ -217,9 +221,6 @@
                 <field>txt_Other_Currency__c</field>
             </layoutItems>
             <layoutItems>
-                <emptySpace>true</emptySpace>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>num_Estimated_Man_days_of_PWO__c</field>
             </layoutItems>
@@ -238,6 +239,14 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>pec_Variance__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>num_Contingency_Charges__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>num_Discounts__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -294,6 +303,13 @@
                 <behavior>Edit</behavior>
                 <field>txt_PWORFDelta_Project_requestor_name__c</field>
             </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>CreatedById</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -323,6 +339,13 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>eml_PWORFDelta_Project_requestor_email__c</field>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>LastModifiedById</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -378,6 +401,14 @@
         <fields>pkl_Status__c</fields>
         <fields>CREATEDBY_USER</fields>
         <relatedList>CPA_CR__c.CPA_Project_Work_Order__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <customButtons>btn_New_User_Defined_Attribute</customButtons>
+        <excludeButtons>New</excludeButtons>
+        <fields>NAME</fields>
+        <fields>pkl_Attribute_Type__c</fields>
+        <fields>txt_Value__c</fields>
+        <relatedList>CPA_User_Defined_Attribute__c.lkp_PWO__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

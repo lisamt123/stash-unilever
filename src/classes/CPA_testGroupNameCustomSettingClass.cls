@@ -23,7 +23,7 @@ public with sharing class CPA_testGroupNameCustomSettingClass {
 
         CPA_Group__c groupName = new CPA_Group__c();
         groupName.Name ='SMT';
-        groupName.CPA_Group_Name__c = 'CPA SMT';        
+        groupName.CPA_Group_Name__c = 'CPA_SMT';        
         return groupName;
         
     }
@@ -37,7 +37,7 @@ public with sharing class CPA_testGroupNameCustomSettingClass {
 
         CPA_Group__c groupNameULPM = new CPA_Group__c();
         groupNameULPM.Name ='ULPM';
-        groupNameULPM.CPA_Group_Name__c = 'CPA ULPM';        
+        groupNameULPM.CPA_Group_Name__c = 'CAP_ULPM';        
         return groupNameULPM;
         
     }

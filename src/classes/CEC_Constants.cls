@@ -28,11 +28,41 @@ public with sharing class CEC_Constants {
     public static final String VALUE_TWENTY = '20';
     public static final String VALUE_THIRTY = '30';
     public static final String VALUE_FOURTY = '40';
-    public static final String VALUE_FIFTY= '50';
+    public static final String VALUE_FIFTY = '50';
+    public static final String VALUE_ZERO = '0';
+    public static final String VALUE_TWO = '2';
+    public static final String VALUE_FOUR = '4';
     
     //Constants for CEC_TH1_DraftTrigger
-    public static final string DRAFT_STATUS ='Approved';
-    public static final string PRIORITY ='High';
-    public static final string TASK_STATUS='Not Started';
-
+    public static final String DRAFT_STATUS ='Approved';
+    public static final String PRIORITY ='High';
+    public static final String TASK_STATUS='Not Started';
+    
+    //Constants for CEC_FulfilmentHelper
+    public static final String CANCELLED ='Cancelled';
+    public static final String REACTIVATED ='Reactivated';
+    public static final String ISSUED ='Issued';
+    public static final String STATUS_NEW ='New';
+    
+    public static final String LOCALIDENTIFIER_CPF = 'CPF';
+    
+    // Constants for Case Description Parser.
+    public static final String ADDRESS1 = 'ADDRESS1';
+    public static final String ADDRESS2 = 'ADDRESS2';
+    public static final String CITY = 'CITY';
+    public static final String PROVINCE = 'PROVINCE';
+    public static final String STATE = 'STATE';
+    public static final String POSTAL = 'POSTAL';
+    public static final String ZIPCODE = 'ZIP CODE';
+    public static final String ZIP = 'ZIP';
+    public static final String COUNTRY = 'COUNTRY';
+    public static final String LASTNAME_v1 = 'LASTNAME';
+    public static final String LASTNAME_v2 = 'LAST NAME';
+    public static final String FIRSTNAME_v1 = 'FIRSTNAME';
+    public static final String FIRSTNAME_v2 = 'FIRST NAME';
+    public static final String EMAIL_ADDRESS = 'EMAIL ADDRESS';
+    public static final String EMAIL = 'EMAIL';
+    public static final String BRAND = 'BRAND';
+    public static final String UPC = 'UPC';
+    public static final String STORE_NAME= 'STORE NAME';
 }

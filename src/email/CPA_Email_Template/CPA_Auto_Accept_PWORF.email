@@ -1,7 +1,7 @@
 <messaging:emailTemplate subject="{!RelatedTo.auto_PWORF_ID__c} : Auto Accepted " recipientType="User" relatedToType="CPA_PWORF__c">
 <messaging:htmlEmailBody >
     Hi, <br/><br/>
-    A PWORF with ID : {!RelatedTo.auto_PWORF_ID__c} is Auto Accepted by the System on {!RelatedTo.LastModifieddate} . <br/><br/>
+    A PWORF with ID : {!RelatedTo.auto_PWORF_ID__c} is Auto Accepted by the System on {!Now()} . <br/><br/>
 
     You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id} ">{!RelatedTo.Name} </a> <br/><br/>
 

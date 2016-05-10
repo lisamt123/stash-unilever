@@ -315,6 +315,15 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>CPA_HLE_req_Estimate_status_save</fullName>
+        <field>Estimates_Status__c</field>
+        <formula>&quot;Saved&quot;</formula>
+        <name>CPA HLE req Estimate status save</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CPA_HLE_request_Answered_date</fullName>
         <field>dat_HLE_Request_Answered_Date__c</field>
         <formula>TODAY()</formula>
@@ -601,6 +610,24 @@
             <field>CPA_HLE_Request__c.pkl_Status__c</field>
             <operation>equals</operation>
             <value>Returned</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>CPA HLE req Estimate status save</fullName>
+        <actions>
+            <name>CPA_HLE_req_Estimate_status_save</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>CPA_HLE_Request__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>HLE,BPE</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>CPA_HLE_Request__c.Estimates_Status__c</field>
+            <operation>equals</operation>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>

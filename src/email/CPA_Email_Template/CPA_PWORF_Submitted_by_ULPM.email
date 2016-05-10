@@ -1,7 +1,7 @@
 <messaging:emailTemplate subject="{!RelatedTo.auto_PWORF_ID__c} : Submitted" recipientType="User" relatedToType="CPA_PWORF__c">
 <messaging:htmlEmailBody >
     Hi, <br/><br/>
-    A PWORF with ID: {!RelatedTo.auto_PWORF_ID__c}  is submitted by {!RelatedTo.LastModifiedBy.Name} on {!RelatedTo.dat_Submitted_Date__c} . <br/><br/>
+    A PWORF with ID: {!RelatedTo.auto_PWORF_ID__c}  is submitted by {!RelatedTo.LastModifiedBy.Name} on {!Now()} . <br/><br/>
 
     You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id} ">{!RelatedTo.Name} </a> <br/><br/>
 

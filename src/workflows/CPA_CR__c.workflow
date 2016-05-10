@@ -211,6 +211,23 @@
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>CPA_CR_Sent_for_signature_date</fullName>
+        <field>dat_Sent_for_Signature_Date__c</field>
+        <formula>TODAY()</formula>
+        <name>CPA CR Sent for signature date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_CR_Sent_for_signature_date_null</fullName>
+        <field>dat_Sent_for_Signature_Date__c</field>
+        <name>CPA CR Sent for signature date null</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CPA_CR_Standalone_CR</fullName>
         <field>chk_isStandalone_CR__c</field>
         <literalValue>1</literalValue>
@@ -405,6 +422,20 @@
             <field>CPA_CR__c.chk_isStandalone_CR__c</field>
             <operation>equals</operation>
             <value>False</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>CPA CR Sent for signature</fullName>
+        <actions>
+            <name>CPA_CR_Sent_for_signature_date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>CPA_CR__c.pkl_Status__c</field>
+            <operation>equals</operation>
+            <value>Sent for Signature</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
