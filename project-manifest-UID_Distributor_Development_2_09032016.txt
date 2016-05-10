@@ -104,6 +104,27 @@ src/tabs/UID_Switch_User_Currency.tab
 src/tabs/UID_Switch_User_CurrencyTab.tab
 src
 src/classes/UID_Switch_User_Currency.cls
+<<<<<<< HEAD
 src/classes/UID_Switch_User_Currency.cls-meta.xml
 src/classes/UID_Switch_User_Currency_Test.cls
 src/classes/UID_Switch_User_Currency_Test.cls-meta.xml
+=======
+<<<<<<< HEAD
+src/classes/UID_Switch_User_Currency.cls-meta.xml
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+src/classes/UID_Switch_User_Currency.cls-meta.xml
+src/classes/UID_Switch_User_Currency_Test.cls
+src/classes/UID_Switch_User_Currency_Test.cls-meta.xml
+=======
+src/classes/UID_Switch_User_Currency.cls-meta.xml
+>>>>>>> develop
+=======
+src/classes/UID_Switch_User_Currency.cls-meta.xml
+src/layouts
+src/layouts/Order-Primary Sales.layout
+src/layouts/Order-Secondary Sales.layout
+>>>>>>> develop
+>>>>>>> 9b6a47dc32f05b57bae08c7629b5d71ca092338a
+>>>>>>> db2f0be94f1961275e868d3808e1906e6bca10e4
