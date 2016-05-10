@@ -1,12 +1,1 @@
-<messaging:emailTemplate subject="{!RelatedTo.auto_PWORF_ID__c} : Request to cancel" recipientType="User" relatedToType="CPA_PWORF__c">
-<messaging:htmlEmailBody >
-    Hi, <br/><br/>
-    {!RelatedTo.ftxt_Unilever_Project_Manager_Name__c} has requested to cancel the PWORF with ID: {!RelatedTo.auto_PWORF_ID__c}  on {!Now()} . <br/><br/>
-
-    You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id} ">{!$Label.CPA_Default_URL}{!RelatedTo.Id} </a> <br/><br/>
-
-Regards, <br/><br/>
-
-Automation Contract System
-</messaging:htmlEmailBody>
-</messaging:emailTemplate>
+<messaging:emailTemplate subject="From Hubble: Request to cancel PWORF raised by {!RelatedTo.LastModifiedBy.Name} to {!RelatedTo.Owner.name}" recipientType="User"  relatedToType="CPA_Queries__c"> <messaging:htmlEmailBody >     Hello,<br/><br/>    {!RelatedTo.LastModifiedBy.Name} has requested to cancel with ID {!RelatedTo.Pworf_ID__c}  on {!Now()} . <br/><br/>      Please follow the below link to know the status and take any appropriate action required.<br/> <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id}">{!RelatedTo.name}</a> <br/><br/>    For any queries, please use 'Queries' section in the application or contact Supplier Management Team (ApplicationSupplier.PM@unilever.com). <br/><br/>  Thanks and Regards,<br/> Hubble - Contract Management System. <br/><br/> </messaging:htmlEmailBody> </messaging:emailTemplate>
