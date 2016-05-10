@@ -28,8 +28,8 @@ global with sharing class Oblix_VersionControl implements Schedulable {
             Integer campaign_requested_sync_size = [SELECT count() FROM Oblix_SOW_Projects__c 
                 WHERE Sync_Status__c =: Oblix_Utils.JOB_STATUS_SYNC_REQUESTED OR Sync_Status__c =: Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS];
 
-            system.debug('### total sow_requested_clone_size: ' + sow_requested_clone_size + ' - sow_requested_sync_size: '
-                + sow_requested_sync_size + ' - campaign_requested_sync_size' + campaign_requested_sync_size);
+            system.debug('\n\n######## To Process ######## \ntotal sow_requested_clone_size: ' + sow_requested_clone_size + '\nsow_requested_sync_size: '
+                + sow_requested_sync_size + '\ncampaign_requested_sync_size: ' + campaign_requested_sync_size + '\n\n ');
 
             if (sow_requested_clone_size >0 || sow_requested_sync_size>0 || campaign_requested_sync_size> 0){
 

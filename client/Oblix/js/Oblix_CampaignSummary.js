@@ -1,3 +1,42 @@
+google.load("visualization", "1", {packages:["corechart"]});
+google.setOnLoadCallback(drawChart);
+
+function drawChart() {
+    /*var data = google.visualization.arrayToDataTable([
+    ['Task', 'Hours per Day'],
+    ['Audio / Visual',     11],
+    ['Digital',      2],
+    ['Experiental',  2],
+    ['Static Imagery', 2],
+    ['Stimulus Materials',    7]
+]);*/
+    console.log($('#chart_div').data('chart-data'));
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Asset');
+    data.addColumn('number', 'Count of Items');
+    var arrayCreated = $('#chart_div').data('chart-data');
+    var newArray = [];
+    for (var i=0; i < arrayCreated.length; i++){
+        console.log(arrayCreated[i][0]);
+        console.log(arrayCreated[i][1]);
+        //data.addRow([i[0], parseInt(i[1])]); 
+        newArray.push([arrayCreated[i][0], parseInt(arrayCreated[i][1])]);
+    }
+    data.addRows(newArray);
+    if(data.getNumberOfRows() > 0){
+        console.log(JSON.stringify(data));
+        var options = {
+            pieHole: 0.5,
+            colors: ['#B187B8', '#CEDC02', '#E46CB0', '#05B1A9', '#FFC62C'],
+            legend: {position : 'none', alignment : 'center'},
+            chartArea: {width: '75%', height: '75%'},
+            fontSize: 15
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+    }
+}
 $(document).ready(function() { 
     console.log('in here');
     var table = $('#sowListTable').DataTable({
@@ -41,10 +80,6 @@ $(document).ready(function() {
     });
     $("[data-toggle=popover]").popover();
 
-    /* Find any element which has a 'data-onload' function and load that to simulate an onload. */
-    $('[data-onload]').each(function(){
-        eval($(this).data('onload'));
-    });
 
     /*Check if Adjust fee value is empty, if empty disable button*/
     if($('.adjust_allocation_box').val() == ""){

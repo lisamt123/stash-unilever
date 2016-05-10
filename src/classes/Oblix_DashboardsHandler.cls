@@ -130,7 +130,7 @@ public with sharing class Oblix_DashboardsHandler {
 
 	private List<List<Object>> generateCampaignAssetTypesData(){
 		List<List<Object>> retVal = new List<List<Object>>();
-		List<AggregateResult> assetTypes = [select count(id) num, Asset_Type__c assetType from Oblix_Project_Assets__c group by Asset_Type__c order by Asset_Type__c asc];
+		List<AggregateResult> assetTypes = [select count(id) num, Asset_Type__c assetType from Oblix_Project_Assets__c group by Asset_Type__c order by Asset_Type__c asc limit 10000000];
 		System.DEBUG(assetTypes);
 		Map<String, Integer> assetCountToAddMap = new Map<String, Integer>();
 		//

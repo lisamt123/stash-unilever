@@ -104,6 +104,17 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
         }
     }
 
+    public Boolean submitForApprovalFX{
+        get{
+            String DateMsg = Oblix_Utils.getOblixSettingValueByName('FX_UPDATED_DATE');
+            Date FXChange = date.parse(DateMsg).addMonths(12);
+            if(date.today() <= FXChange){
+                return true;
+            }else{
+                return false;
+            }
+    }set;}
+
 
     public Oblix_SOWMainDetailController() {
 
@@ -132,7 +143,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
                 li_campaign_and_non_campaign_items.add(new CampaignNonCampaignItems('Non Campaign', nonCampaign, can_edit));
             }*/
 
-            Map<String, Oblix_BasketSectionWrapper> nonCampItemSections = Oblix_SOWNonCampaignPageHelperEXT1.initBasketSections(selected_sow.Id);
+            Map<String, Oblix_BasketSectionWrapper> nonCampItemSections = Oblix_SOWNonCampaignPageHelper.initBasketSections(selected_sow.Id);
             for (Oblix_BasketSectionWrapper sectionWrapper : nonCampItemSections.values()) {
                 li_campaign_and_non_campaign_items.add(new CampaignNonCampaignItems('Non Campaign', sectionWrapper));
             }

@@ -14,8 +14,8 @@
         .oblix_chart .overlay {
             position: absolute;
             text-align: center;
-            top: 186px;
-            left: 239px;      
+            top: 158px;
+            left: 175px;      
         }
     </style>
     <apex:composition template="Oblix_OuterPageTemplate">
@@ -495,7 +495,7 @@
                 </div>
                 <div class="col-lg-4 oblix_chart">
                     <!--div id="chart_div" style="width: 300px; height: 300px;"></div-->
-                    <div id="chart_div" style="width: 500px; height: 450px;" data-chart-data="{!scoresDashboard.graphData}"></div>
+                    <div id="chart_div" style="width: 375px; height: 375px;" data-chart-data="{!scoresDashboard.graphData}"></div>
                      <div class="overlay">
                         <apex:outputPanel rendered="{!IF(totalAssets == 1, true, false)}">
                           <div style="color: #888888; font-family:'Arial'; font-size: 32px; margin-left:5px;">{!totalAssets}</div>
@@ -510,6 +510,13 @@
                           <div style="color: #888888; font-family:'Arial'; font-size: 16px; margin-left:5px;">Assets</div>
                         </apex:outputPanel>
                     </div>
+                    <ul class="donut_chart_list">
+                        <li class="audio_visual_key"><span class="donut_point_align">&#9679;</span><span>Audio Visual</span></li>
+                        <li class="digital_key"><span class="donut_point_align">&#9679;</span><span>Digital</span></li>
+                        <li class="experimental_key"><span class="donut_point_align">&#9679;</span><span>Experimental</span></li>
+                        <li class="static_imagery_key"><span class="donut_point_align">&#9679;</span><span>Static Imagery</span></li>
+                        <li class="stimulus_material_key"><span class="donut_point_align">&#9679;</span><span>Stimulus Material</span></li>
+                    </ul>
                 </div>
             </div>
             <hr class="divider" />
@@ -605,7 +612,7 @@
         <apex:define name="page_scripts">
             <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/swopJS.js')}" />
             <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/Oblix_CampaignSummary.js')}" />
-            <script type="text/javascript">
+            <!--script type="text/javascript">
 
                 google.load("visualization", "1", {packages:["corechart"]});
                 google.setOnLoadCallback(drawChart);
@@ -647,7 +654,7 @@
                     }
                 }
 
-            </script>
+            </script-->
             <!--<script>
                 $(document).ready(function() {
                     $('.countriesSelected').readmore({

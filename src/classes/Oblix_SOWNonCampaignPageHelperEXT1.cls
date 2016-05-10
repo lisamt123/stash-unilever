@@ -1,47 +1,91 @@
-public with sharing class Oblix_SOWNonCampaignPageHelperEXT1 extends Oblix_SOWNonCampaignPageHelperParent{
+public with sharing virtual class Oblix_SOWNonCampaignPageHelperEXT1 extends Oblix_SOWNonCampaignPageHelperParent{
 
-    public static Map<String, Oblix_BasketSectionWrapper> initBasketSections(Id sowId) {
 
-        Map<String, Oblix_BasketSectionWrapper> basket = new Map<String, Oblix_BasketSectionWrapper>();
+    public void openBasketSection() {
+        if (currentSection == RESOURCE_DEV_NAME) {
+            currentTab = RESOURCE_DEV_NAME;
+        } else {
+            currentTab = ACTIVITY_DEV_NAME;
+        }
+        workList.put(currentTab, basket.get(currentSection).getCopy());
+    }
 
-        List<Marketing_Basics__c> existingNonCampaigns = [SELECT   Id, Activities__c, Name, No_of_Hours_Required__c, 
-                                                                    OblixCountry__c, OblixCountry__r.Name , Role_Title__c, 
-                                                                    Agency_Department__c,OblixOtherItemFee__c, 
-                                                                    Oblix_Hourly_Rate__c, RecordTypeId, Oblix_SOWMarketing__c, Description__c 
-                                                             FROM 
-                                                                    Marketing_Basics__c 
-                                                             WHERE 
-                                                                    Oblix_SOWMarketing__c =: sowId ];
 
-        for (Marketing_Basics__c nonCampaignSObject : existingNonCampaigns) {
-
-            Oblix_NonCampaignWrapper nonCampaignWrapper = new Oblix_NonCampaignWrapper(nonCampaignSObject);
-            String basketSectionKey = nonCampaignWrapper.getBasketSectionKey();
-
-            if (nonCampaignSObject.RecordTypeId == Oblix_Utils.RT_NON_CAMPAIGN_RESOURCE_ID) {
-                if (!basket.containsKey(basketSectionKey)) {
-                    Oblix_BasketSectionWrapper sectionWrapper = new Oblix_BasketSectionWrapper(sowId, basketSectionKey, 'Dedicated Resources', Oblix_Utils.RT_NON_CAMPAIGN_RESOURCE_DEV_NAME);
-                    basket.put(basketSectionKey, sectionWrapper);
-                }
-
-            } else if (nonCampaignSObject.RecordTypeId == Oblix_Utils.RT_NON_CAMPAIGN_ACTIVITY_ID && nonCampaignSObject.Activities__c != 'Other') {
-                if (!basket.containsKey(basketSectionKey)) {
-                    Oblix_BasketSectionWrapper sectionWrapper = new Oblix_BasketSectionWrapper(sowId, basketSectionKey, nonCampaignSObject.Activities__c, Oblix_Utils.RT_NON_CAMPAIGN_ACTIVITY_DEV_NAME, nonCampaignSObject.Activities__c);
-                    basket.put(basketSectionKey, sectionWrapper);
-                }
-
-            } else {
-                if (!basket.containsKey(basketSectionKey)) {
-                    Oblix_BasketSectionWrapper sectionWrapper = new Oblix_BasketSectionWrapper(sowId, basketSectionKey, nonCampaignSObject.Name, Oblix_Utils.RT_NON_CAMPAIGN_ACTIVITY_DEV_NAME, nonCampaignSObject.Activities__c, nonCampaignSObject.Name);
-                    basket.put(basketSectionKey, sectionWrapper);
-                }
+    public void openTab() {
+        if (resourceTabSelected) {
+            currentSection = RESOURCE_DEV_NAME;
+            //workList.put(currentTab, basket.get(currentSection).deepClone()());
+        } else {
+            if (currentSection == RESOURCE_DEV_NAME) {
+                currentSection = null;
+                //workList.put( = new Oblix_SOWNonCampaignPageHelperParent.BasketSectionWrapper(sow.Id, 'TBC', 'TBC', 'TBC');
             }
+        }
+    }
 
-            basket.get(basketSectionKey).add(nonCampaignWrapper);
+
+    public void refreshSelectionPicklists(){
+        fillCountries();
+        fillAgencyDepartment();
+        fillRoleTitle();
+        fillRate();
+    }
+
+
+
+    public void refreshActivitySelection(){
+        refreshSelectionPicklists();
+        
+        //If another nonCampaignWrapper was selected
+        //preserve all field selections but blank out nonCampaign sObject ID
+        //by cloning it
+        if (currentItemKey != null) { 
+            if (activityTabSelected) {
+                currentActivity = createNewWrapperFromExisting(currentActivity, true);
+            } else {
+                currentResource = createNewWrapperFromExisting(currentResource, true);
+
+            }
+            currentItemKey = null;
         }
 
-        return basket;
+        if (activityTabSelected) {
 
+            if (currentActivity.selectedActivity != currentActivity.nonCampaignItem.Activities__c) {
+                //Syncing Acitvites field on Wrapper in case another value was selected on the page and mapped to sObject
+                currentActivity.selectedActivity = currentActivity.nonCampaignItem.Activities__c;
+                if (currentActivity.nonCampaignItem.Activities__c == 'Other') {
+                    currentActivity.nonCampaignItem.Name = '';
+                }
+            }
+            if (currentActivity.selectedActivity == 'Other' && currentActivity.name != currentActivity.nonCampaignItem.Name) {
+                //Syncing Other name on Wrapper in case another value was selected on the page and mapped to sObject
+                currentActivity.name = currentActivity.nonCampaignItem.Name;
+            }
+            currentActivity.recalculateKey();
+            
+            //If new select picklist configuration matches existing item from worklist, set it as current and preserve hours (UPDATE button will appear)
+            if (workList.get(currentTab).items.containsKey(currentActivity.key)) {
+                currentActivity = createNewWrapperFromExisting(workList.get(currentTab).items.get(currentActivity.key), false);
+            } else if (basket.containsKey(currentActivity.getBasketSectionKey()) && 
+                        basket.get(currentActivity.getBasketSectionKey()).items.containsKey(currentActivity.key)) {
+                currentActivity = createNewWrapperFromExisting(basket.get(currentActivity.getBasketSectionKey()).items.get(currentActivity.key), false);
+            }
+        } else {
+            if (currentResource.name != currentResource.nonCampaignItem.Name) {
+                //Syncing Acitvites field on Wrapper in case another value was selected on the page and mapped to sObject
+                currentResource.name = currentResource.nonCampaignItem.Name;
+            }
+            currentResource.recalculateKey();
+
+            //If new select picklist configuration matches existing item from worklist, set it as current and preserve hours (UPDATE button will appear)
+            if (workList.get(currentTab).items.containsKey(currentResource.key)) {
+                currentResource = createNewWrapperFromExisting(workList.get(currentTab).items.get(currentResource.key), false);
+            } else if (basket.containsKey(currentResource.getBasketSectionKey()) && 
+                        basket.get(currentResource.getBasketSectionKey()).items.containsKey(currentResource.key)) {
+                currentResource = createNewWrapperFromExisting(basket.get(currentResource.getBasketSectionKey()).items.get(currentResource.key), false);
+            }
+        }
     }
 
 }

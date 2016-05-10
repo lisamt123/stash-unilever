@@ -4,7 +4,7 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
 	private static List<Asset_Scoring__c> list_of_asset_scoring;
 	private static user admin_super_user;
 	private static user qa1_user;
-	private static user super_user;
+	//private static user super_user;
 
 	private static void initialiseTestClass(){
 
@@ -24,7 +24,7 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
     	}
 
     	qa1_user = Oblix_TestUtils.createQA1User();
-    	super_user = Oblix_TestUtils.createSuperUser();
+    	//super_user = Oblix_TestUtils.createSuperUser();
     }
 
     private static Integer sow_requested_clone_size;
@@ -140,7 +140,7 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
 	    	processJobComponents(job_process_batch.list_job_components);
 
 
-			List<Marketing_SOW__c> list_sow = [SELECT Name, Original_SOW__c, Cloned_SOW__c, SOW_PFY__c, SOW_NFY__c, SOW_NFY__r.Name FROM Marketing_SOW__c];
+			List<Marketing_SOW__c> list_sow = [SELECT Name, Original_SOW__c, Cloned_SOW__c, SOW_PFY__c, SOW_NFY__c, SOW_NFY__r.Name FROM Marketing_SOW__c LIMIT 10];
 	        system.debug('### mSow result: ' + JSON.serialize(list_sow));
 
 

@@ -30,7 +30,7 @@ public with sharing class Oblix_SOWRollOverLogic {
     *********************************************************************/
     public static void processStep(Oblix_syncBatchJob.JobComponent job_component){
 
-    	system.debug('## process step: ' + job_component);
+    	//system.debug('## process step: ' + job_component);
         
         Boolean is_success = true;
 
@@ -186,6 +186,7 @@ public with sharing class Oblix_SOWRollOverLogic {
 
 			cloned_sow.Financial_Year__c = Oblix_Utils.FY_PREFIX + financial_year;
 			cloned_sow.Initial_Approval_Complete__c = false;
+			cloned_sow.SOW_Status__c = Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER;
 
 		}
 
@@ -307,7 +308,11 @@ public with sharing class Oblix_SOWRollOverLogic {
         	cloned_campaign.Projected_Stage_CFY__c = Oblix_Utils.CAMPAIGN_STAGES_ALL;
         }
         // set the remaining value for this FY
-        cloned_campaign.Percentage_of_Fee_for_this_FY__c = 100 - original_campaign.Percentage_of_Fees_PFY__c;
+        if (NULL != original_campaign.Percentage_of_Fees_PFY__c){
+        	cloned_campaign.Percentage_of_Fee_for_this_FY__c = 100 - original_campaign.Percentage_of_Fees_PFY__c;
+        }else{
+        	cloned_campaign.Percentage_of_Fee_for_this_FY__c = 100;
+        }
 
         cloned_campaign.Box_Number_PFY__c = original_campaign.Oblix_ProjectBoxNumber__c ;
 	}
@@ -368,7 +373,7 @@ public with sharing class Oblix_SOWRollOverLogic {
 			union_stages = String.join(list_union_stages, separator);
 		}
 		result += '\nunion_stages: ' + union_stages;
-		system.debug(result);
+		//system.debug(result);
 		return union_stages;
 
 	}
@@ -689,7 +694,10 @@ public with sharing class Oblix_SOWRollOverLogic {
             
             result_msg += '\n query2: ' + query_string2;
 
-            Map<Id, Oblix_SOW_Projects__c> map_original_ids_to_cloned = new Map<Id,Oblix_SOW_Projects__c>((List<Oblix_SOW_Projects__c>)database.query(query_string2));
+            Map<Id, Oblix_SOW_Projects__c> map_original_ids_to_cloned = new Map<Id,Oblix_SOW_Projects__c>();
+            for (Oblix_SOW_Projects__c cloned_campaign: database.query(query_string2)){
+            	map_original_ids_to_cloned.put(cloned_campaign.Campaign_PFY__c,cloned_campaign );
+            }
 
             result_msg += '\n query2 result rows: ' + map_original_ids_to_cloned.size();
 
@@ -759,12 +767,12 @@ public with sharing class Oblix_SOWRollOverLogic {
                     map_campaigns_to_update.put(campaign.Id, campaign);
 
                     // add the cloned campaign to a collection to delete
-                    if (map_original_ids_to_cloned.containsKey(campaign.Id)){
+                    //if (){
                     	map_campaigns_to_delete.put(campaign.Campaign_NFY__c, map_original_ids_to_cloned.get(campaign.Id));
             			
             			result_msg += '\n\n\n to delete: ' + map_original_ids_to_cloned.get(campaign.Id).name;
                     
-                    }
+                    //}
 
 				}
 				else if(NULL != map_original_ids_to_cloned && map_original_ids_to_cloned.containsKey(campaign.id)){
@@ -795,10 +803,17 @@ public with sharing class Oblix_SOWRollOverLogic {
 
             }
 
+			result_msg += '\n\n\n to update: ' + map_campaigns_to_update.size() + ' - to clone: ' + list_campaigns_to_clone.size() 
+				+ ' - to delete: ' + map_campaigns_to_delete.size() + ' - splits to delete: ' + map_splits_to_delete.size()
+				+ ' - map_original_id_splits_to_clone: ' + map_original_id_splits_to_clone.size()
+				+ ' - splits to insert: ' + list_splits_to_clone.size();
+
+			Oblix_SyncBatchJob.addEvent('DEBUG IN syncCampaignDuringTransitionPeriod() - result_msg: ' + result_msg,NULL);
+
             // insert new campaigns
-            if (!list_campaigns_to_clone.isEmpty()){
+            //if (!list_campaigns_to_clone.isEmpty()){
             	insert list_campaigns_to_clone;
-            }
+            //}
 
 
             // update the original Campaigns with the id of cloned Campaigns and set the id on hub split records
@@ -809,30 +824,31 @@ public with sharing class Oblix_SOWRollOverLogic {
 				+ ' - map_original_id_splits_to_clone: ' + map_original_id_splits_to_clone.size()
 				+ ' - splits to insert: ' + list_splits_to_clone.size();
 
+			// S.M. Removing if statements to resolve sonar issues
             // delete the cloned campaigns which are 100%
-            if (!map_campaigns_to_delete.isEmpty()){
+            //if (!map_campaigns_to_delete.isEmpty()){
             	delete map_campaigns_to_delete.values();
-            }
+            //}
 
             // update the original campaigns NFY fields
-            if (!map_original_id_original_campaign.isEmpty()){
+            //if (!map_original_id_original_campaign.isEmpty()){
             	update map_original_id_original_campaign.values();
-            }
+            //}
 
             // update existing campaigns
-            if (!map_campaigns_to_update.isEmpty()){
+            //if (!map_campaigns_to_update.isEmpty()){
             	update map_campaigns_to_update.values();
-            }
+            //}
 
             // delete old hub and splits
-            if (!map_splits_to_delete.isEmpty()){
+            //if (!map_splits_to_delete.isEmpty()){
             	delete map_splits_to_delete.values();
-            }
+            //}
 
             // insert new hub and splits
-            if (!list_splits_to_clone.isEmpty()){
+            //if (!list_splits_to_clone.isEmpty()){
             	insert list_splits_to_clone;
-            }
+            //}
 
 			Oblix_SyncBatchJob.addEvent('DEBUG IN syncCampaignDuringTransitionPeriod() - result_msg: ' + result_msg,NULL);
 
@@ -1089,7 +1105,7 @@ public with sharing class Oblix_SOWRollOverLogic {
             query_string += ' FROM  Marketing_Basics__c WHERE Oblix_SOWMarketing__r.Sync_Status__c =\'' + job_component.attrib_1 + '\' AND Id NOT in: processed_ids ORDER BY Id LIMIT ' + job_component.query_limit; 
 
             Oblix_SyncBatchJob.addEvent('INFO IN cloneNonCampaigns - query_string: ' + query_string,NULL);
-            system.debug(Oblix_SyncBatchJob.sync_job.process_result);
+            //system.debug(Oblix_SyncBatchJob.sync_job.process_result);
 
             
             Map<Id, Marketing_Basics__c> map_non_campaigns_to_clone = new Map<Id, Marketing_Basics__c>();

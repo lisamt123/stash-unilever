@@ -28,15 +28,20 @@
             <apex:outputPanel rendered="{!IF(can_edit,true,false)}">
                 <a href="{!$Page.Oblix_SowCreate + '?sowId=' + selected_sow.Id}">Edit SOW</a>&nbsp;&nbsp;|
             </apex:outputPanel>
-            <apex:outputPanel rendered="{!IF(can_delete_sow,true,false)}">
-                <a href="#" data-toggle="modal" data-target="#sowDelete">Delete SOW</a>&nbsp;&nbsp;| &nbsp;
-            </apex:outputPanel>
+            <apex:actionRegion >
+                <apex:outputPanel rendered="{!IF(can_delete_sow,true,false)}">
+                    <a href="#" data-toggle="modal" data-target="#sowDelete">Delete SOW</a>&nbsp;&nbsp;| &nbsp;
+                </apex:outputPanel>
+            </apex:actionRegion>
             <apex:outputPanel id="initiateRollOverLink" >
                 <apex:actionRegion >
                     <apex:outputPanel rendered="{!IF(can_edit,true,false)}">
                         <apex:outputLink value="#" onclick="blockme();initiateRollOver();" disabled="{!NOT(ISBLANK(selected_sow.Sync_Status__c))}" >{!IF(ISBLANK(selected_sow.Sync_Status__c),'Initiate Rollover','Rollover Initiated')}</apex:outputLink>&nbsp;&nbsp;
                     </apex:outputPanel>
                     <apex:actionFunction name="initiateRollOver" action="{!initiateRollOver}"  oncomplete="$.unblockUI();" reRender="initiateRollOverLink"/>
+                    <apex:actionFunction name="syncCampaigns" action="{!syncCampaigns}" oncomplete="$.unblockUI();location.reload();" reRender="relatedItems">
+                            </apex:actionFunction>
+                    <apex:actionFunction name="assignCampaignId" oncomplete="$.unblockUI();"><apex:param id="campaignIDSync" name="campaignIDSync" assignTo="{!campaignIDSync}" value="{!campaignIDSync}"/></apex:actionFunction>
                 </apex:actionRegion>
             </apex:outputPanel>
             <apex:outputPanel rendered="{!IF(selected_sow.Sync_Status__c == 'Sync In Progress',true,false)}">
@@ -61,8 +66,10 @@
                         </div>
                         <div class="modal-footer">
                             <div class="modal_button_align">
+                            <apex:actionRegion >
                                 <button type="button" class="btn btn_cross btn_cancel" data-dismiss="modal">CANCEL</button>
                                 <apex:commandButton action="{!deleteAction}" reRender="top_right_panel,sow_details" styleClass="btn btn-danger btn_check btn_yes_delete" value="YES, DELETE" html-data-dismiss="modal" onclick="blockme()" oncomplete="$.unblockUI()"/>
+                            </apex:actionRegion>
                             </div>
                         </div>
                     </div><!-- /.modal-content -->
@@ -74,7 +81,7 @@
             <apex:outputPanel id="top_right_panel">
                 <table class="SOW_header_value_summary">
                     <tr>
-                        <td class="header_approval_button" rowspan="3"><apex:outputPanel rendered="{!show_submit}"><button type="button" class="btn btn-danger btn-xs create_SOW_button btn_check btn_submit_approval" data-toggle="modal"  data-target="#submitApproval">SUBMIT FOR APPROVAL</button></apex:outputPanel></td>
+                        <td class="header_approval_button" rowspan="3"><apex:outputPanel rendered="{!show_submit}"><button type="button" class="btn btn-danger btn-xs create_SOW_button btn_check btn_submit_approval" data-toggle="modal"  data-target="#submitApproval" disabled="{!submitForApprovalFX}">SUBMIT FOR APPROVAL</button></apex:outputPanel></td>
                         <td class="header_approval_button" rowspan="3"><apex:outputPanel rendered="{!can_reject_sow}"><button type="button" class="btn btn-danger btn-xs two_button_header btn_return btn_send_back" data-toggle="modal"  data-target="#sendBack">RETURN SOW</button></apex:outputPanel></td>
                         <td class="header_approval_button" rowspan="3"><apex:outputPanel rendered="{!can_approve_sow}"><button type="button" class="btn btn-danger btn-xs create_SOW_button btn_check btn_approve_sow"  data-toggle="modal"  data-target="#sowApprove">APPROVE SOW</button></apex:outputPanel></td>
                         <td class="SOW_header_value_title">SOW total (including risk adjustment)</td>
@@ -275,7 +282,7 @@
             <!-- SOW details: -->
             <apex:outputPanel id="sow_details">
                     <hr class="divider" />
-                    <table class="SOW_name_status_info" style="border-right:1px solid #BBB;">
+                    <table class="SOW_name_status_info">
                         <tr>
                             <td class="SOW_name_status_info_titles">Status</td>
                             <td>{!selected_sow.SOW_Status__c}</td>
@@ -358,9 +365,6 @@
                     <apex:actionRegion >
                         <apex:outputPanel rendered="{!IF(can_edit && selected_sow.Sync_Required_NFY__c = 'Campaign Sync Required',true,false)}">
                             <apex:outputLink value="#" styleClass="btn btn-danger btn-xs btn_sync pull-right btn_sync_campaign" onclick="" html-data-toggle="modal"  html-data-target="#syncAllCampaigns">Sync All Campaigns</apex:outputLink>
-                            <apex:actionFunction name="syncCampaigns" action="{!syncCampaigns}" oncomplete="$.unblockUI();location.reload();" reRender="relatedItems">
-                            </apex:actionFunction>
-                            <apex:actionFunction name="assignCampaignId" oncomplete="$.unblockUI();"><apex:param id="campaignIDSync" name="campaignIDSync" assignTo="{!campaignIDSync}" value="{!campaignIDSync}"/></apex:actionFunction>
                         </apex:outputPanel>
                     </apex:actionRegion>
                 </ul>
@@ -405,7 +409,7 @@
                                                     <td style="display:none;width:0px !important">{!campaign_and_non_campaign.dynamic_object['Id']}</td>
                                                     <td>
                                                     
-                                                        <apex:outputLink title="Sync this Campaign with Previous FY Campaign" value="#" styleClass="btn btn-xs ind_btn_sync_static pull-right" onclick="blockme();assignCampaignId('{!campaign_and_non_campaign.dynamic_object['Campaign_PFY__c']}');" rendered="{!campaign_and_non_campaign.dynamic_object['Sync_Required_NFY__c'] == 'Sync Required'}" html-data-toggle="modal"  html-data-target="#syncSingleCampaign"></apex:outputLink>
+                                                        <apex:outputLink title="Sync this Campaign with Previous FY Campaign" value="#" styleClass="ind_btn_sync_static pull-right" onclick="blockme();assignCampaignId('{!campaign_and_non_campaign.dynamic_object['Campaign_PFY__c']}');" rendered="{!campaign_and_non_campaign.dynamic_object['Sync_Required_NFY__c'] == 'Sync Required'}" html-data-toggle="modal"  html-data-target="#syncSingleCampaign"></apex:outputLink>
                                                     
                                                     {!campaign_and_non_campaign.dynamic_object['Name']}</td>
                                                     <td>{!campaign_and_non_campaign.s_object_type}</td>
@@ -620,7 +624,7 @@
 
             </script>
 
-            <script>
+            <!--script>
 
             google.charts.load('current', {packages: ['corechart', 'bar']});
             google.charts.setOnLoadCallback(drawRightY);
@@ -686,7 +690,7 @@
                 //     chart.draw(data, options);
                 // }
 
-            </script>
+            </script-->
         </apex:define>
     </apex:composition>
     

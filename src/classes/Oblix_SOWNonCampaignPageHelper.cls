@@ -1,4 +1,4 @@
-public with sharing class Oblix_SOWNonCampaignPageHelper extends Oblix_SOWNonCampaignPageHelperParent{
+public with sharing class Oblix_SOWNonCampaignPageHelper extends Oblix_SOWNonCampaignPageHelperEXT1{
 	
 
     
@@ -243,36 +243,15 @@ public with sharing class Oblix_SOWNonCampaignPageHelper extends Oblix_SOWNonCam
         if (isActivity) {
             currentActivity = workList.get(currentTab).items.get(currentItemKey).clone();
             currentActivity.replaceSObjectWithClone();
-            refreshSelectionPicklists();
+            //refreshSelectionPicklists();
         } else {
             currentResource = workList.get(currentTab).items.get(currentItemKey).clone();
             currentResource.replaceSObjectWithClone();
-            refreshSelectionPicklists();
+            //refreshSelectionPicklists();
         }
     }
 
 
-    public void openBasketSection() {
-        if (currentSection == RESOURCE_DEV_NAME) {
-            currentTab = RESOURCE_DEV_NAME;
-        } else {
-            currentTab = ACTIVITY_DEV_NAME;
-        }
-        workList.put(currentTab, basket.get(currentSection).getCopy());
-    }
-
-
-    public void openTab() {
-        if (resourceTabSelected) {
-            currentSection = RESOURCE_DEV_NAME;
-            //workList.put(currentTab, basket.get(currentSection).deepClone()());
-        } else {
-            if (currentSection == RESOURCE_DEV_NAME) {
-                currentSection = null;
-                //workList.put( = new Oblix_SOWNonCampaignPageHelperParent.BasketSectionWrapper(sow.Id, 'TBC', 'TBC', 'TBC');
-            }
-        }
-    }
 
 
     public Class NonCampaignJSONWrapper{

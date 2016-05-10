@@ -121,7 +121,7 @@ public with sharing class Oblix_SyncBatchJob implements Database.Batchable<JobCo
         if (sync_sow_size >0 || sync_campaign_size >0 ){
             buildJobComponentsForSync(sync_sow_size, sync_campaign_size);
         }
-        system.debug(sync_job.process_result);
+        //system.debug(sync_job.process_result);
 
     }
     
@@ -254,7 +254,7 @@ public with sharing class Oblix_SyncBatchJob implements Database.Batchable<JobCo
             //      attrib_4: Cloned_Campaign__c
             //      attrib_5: Original_Campaign__c
         addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_CLONE_CAMPAIGN, Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT
-            , ORIGINAL_SOW ,CLONED_SOW,Oblix_Utils.JOB_STATUS_CLONE_IN_PROGRESS, CLONED_CAMPAIGN, ORIGINAL_CAMPAIGN, NULL);
+            , ORIGINAL_SOW ,CLONED_SOW,Oblix_Utils.JOB_STATUS_CLONE_IN_PROGRESS, CLONED_CAMPAIGN, ORIGINAL_CAMPAIGN, Oblix_Utils.PROCESS_TYPE_INITIAL_APPROVAL);
 
 
         //#################################################
@@ -461,7 +461,7 @@ public with sharing class Oblix_SyncBatchJob implements Database.Batchable<JobCo
         // because we are updating the original campaigns as well as the cloned campaigns, devide rows_per_context by 2
         // to make sure we are not running out of DML rows]
         addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_SET_STATUS, Integer.valueOf(Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT / 2)
-            , Oblix_Utils.JOB_STATUS_SYNC_REQUESTED, Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS,OBJECT_CAMPAIGN, PARENT_SYNC_FIELD,CAMPAIGN_PFY ,NULL);
+            , Oblix_Utils.JOB_STATUS_SYNC_REQUESTED, Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS,OBJECT_CAMPAIGN, SYNC_FIELD,CAMPAIGN_PFY ,NULL);
 
 
 
@@ -585,7 +585,7 @@ public with sharing class Oblix_SyncBatchJob implements Database.Batchable<JobCo
         
         sync_job = this;
 
-        system.debug('## this is: ' + this);
+        //system.debug('## this is: ' + this);
         //process_result = '';
         for (JobComponent scope : list_scope){
 
@@ -596,7 +596,7 @@ public with sharing class Oblix_SyncBatchJob implements Database.Batchable<JobCo
             if (sync_job.job_has_error){
 
                 addEvent('ERROR OCCURED ABORTING JOB!',NULL);
-                //system.debug(sync_job.process_result);
+                system.debug(sync_job.process_result);
         
                 // update the job status 
                 //finaliseBatchJob();

@@ -158,6 +158,8 @@ private class Oblix_SOWMainDetailController_Test {
         update mSow;
 
         Test.startTest();
+
+        Boolean fxEnabled = controllerInstance.submitForApprovalFX;
         
         PageReference submitForApproval = controllerInstance.submitForApproval();
 

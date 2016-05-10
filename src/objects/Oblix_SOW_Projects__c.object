@@ -2137,7 +2137,7 @@ Was originally Percentage_of_Fee_for_this_FY__c * Campaign_Total_Fees__c but ame
         <fullName>Lock_Campaign_Record_if_Campaign_Sync</fullName>
         <active>true</active>
         <description>Lock Campaign Record if Campaign Sync  in Progress.</description>
-        <errorConditionFormula>IF( $Profile.Name &lt;&gt; &apos;System Administrator&apos; &amp;&amp; (TEXT( Sync_Status__c ) == &apos;Sync In Progress&apos; ||  Sync_Required_NFY__c  == &apos;Sync In Progress&apos;),true,false)</errorConditionFormula>
+        <errorConditionFormula>IF( $Profile.Name &lt;&gt; &apos;System Administrator&apos; &amp;&amp; (TEXT( Sync_Status__c ) == &apos;Sync In Progress&apos; ||  Sync_Required_NFY__c  == &apos;Sync In Progress&apos; || TEXT( Sync_Status__c ) == &apos;Sync Requested&apos; ||  Sync_Required_NFY__c  == &apos;Sync Requested&apos;),true,false)</errorConditionFormula>
         <errorMessage>Sync in Progress. Record Locked</errorMessage>
     </validationRules>
     <validationRules>

@@ -14,7 +14,7 @@ private class Oblix_CampaignSummaryController_Test {
 
 			MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
-			Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_NAME, mSow.id);
+			Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_NAME + System.now().addDays(2), mSow.id);
 
             project.Project_Start_Date__c = date.today();
             project.Project_Completion_Date__c = date.today();
@@ -76,7 +76,7 @@ private class Oblix_CampaignSummaryController_Test {
 
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
-            Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_NAME, mSow.id);
+            Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_NAME + System.now().addDays(3), mSow.id);
             Oblix_Project_Assets__c asset = Oblix_TestUtils.createProjectAssets(project.Id);
             
             ApexPages.currentPage().getParameters().put(PAGE_PROJECT_ID_PARAMETER_NAME,project.Id);
@@ -109,7 +109,7 @@ private class Oblix_CampaignSummaryController_Test {
 
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
-            Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_NAME, mSow.id);
+            Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_NAME + System.now().addDays(4), mSow.id);
             Oblix_Project_Assets__c asset = Oblix_TestUtils.createProjectAssets(project.Id);
             
             ApexPages.currentPage().getParameters().put(PAGE_PROJECT_ID_PARAMETER_NAME,project.Id);
@@ -138,8 +138,9 @@ private class Oblix_CampaignSummaryController_Test {
             Test.startTest();
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
-            Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_NAME, mSow.id);
-            Oblix_SOW_Projects__c project1 = Oblix_TestUtils.createSowProjects(PROJECT_NAME + '1', mSow.id);
+            Marketing_SOW__c mSow1 = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME + System.now(), Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
+            Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_NAME + System.now(), mSow.id);
+            Oblix_SOW_Projects__c project1 = Oblix_TestUtils.createSowProjects(PROJECT_NAME + System.now().addDays(5), mSow1.id);
             project.Sync_Status__c = Oblix_TestUtils.JOB_STATUS_SYNC_REQUIRED;
             update project;
             project1.Campaign_PFY__c = project.Id;

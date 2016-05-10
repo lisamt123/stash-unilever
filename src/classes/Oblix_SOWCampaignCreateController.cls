@@ -322,7 +322,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
                     return null;
                 }
                 Oblix_SOW_Projects__c projectClone = campaignHelper.selectedProject.clone(false, true, false, false);
-                projectClone.Name = cloneName;
+                projectClone.Name_Prefix__c = cloneName;
                 insert projectClone;
 
                 setProjectInAgencyHubSplitList(projectClone.Id);

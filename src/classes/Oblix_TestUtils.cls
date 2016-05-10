@@ -7,6 +7,9 @@ public with sharing class Oblix_TestUtils {
     public static final String DEFAULT_SMALL_PROD_CAT_NAME = 'testsmallproductcategory';
     public static final String DEFAULT_BIG_PROD_CAT_NAME = 'testbigproductcategory';
 
+    public static final String UTF8 = 'UTF-8';
+    public static final String CATEGORY_FINANCE = 'Category Finance';
+
 
     public static final String JOB_STATUS_SYNC_COMPLETED = 'Sync Completed';
     public static final String JOB_STATUS_SYNC_REQUESTED = 'Sync Requested';
@@ -19,7 +22,7 @@ public with sharing class Oblix_TestUtils {
         Profile profile = [Select Id from Profile where Name='System Administrator'];       
      
         User user = new User(Alias = 'test123', Email = 'standarduser@unilever.com', 
-          EmailEncodingKey = 'UTF-8', LastName = 'af test', LanguageLocaleKey = EN_US, 
+          EmailEncodingKey = UTF8, LastName = 'af test', LanguageLocaleKey = EN_US, 
           LocaleSidKey = EN_US, ProfileId = profile.Id,firstname = 'sf test one', 
           TimeZoneSidKey = 'Europe/London',AF_Agency_Fees_User_Type__c = 'Category Finance',isActive = true, 
           UserName = 'testuseradmin@test123321.com');
@@ -33,9 +36,9 @@ public with sharing class Oblix_TestUtils {
         PermissionSet permission_set = [SELECT Id FROM PermissionSet WHERE Name = 'Oblix_SWOP_UL_1_V1'];
      
         User user = new User(Alias = 'QA1', Email = 'standarduser@unilever.com.qa1', 
-        EmailEncodingKey = 'UTF-8', LastName = 'qa1 test', LanguageLocaleKey = EN_US, 
+        EmailEncodingKey = UTF8, LastName = 'qa1 test', LanguageLocaleKey = EN_US, 
         LocaleSidKey = EN_US, ProfileId = profile.Id,firstname = 'qa1user', 
-        TimeZoneSidKey = 'Europe/London',AF_Agency_Fees_User_Type__c = 'Category Finance',isActive = true, 
+        TimeZoneSidKey = 'Europe/London',AF_Agency_Fees_User_Type__c = CATEGORY_FINANCE,isActive = true, 
         UserName = 'testuser@test123321.com');
         insert user; 
 
@@ -50,9 +53,9 @@ public with sharing class Oblix_TestUtils {
         PermissionSet permission_set = [SELECT Id FROM PermissionSet WHERE Name = 'Oblix_SWOP_Super_User_V1'];
      
         User user = new User(Alias = 'S_User', Email = 'Super_User_Test@unilever.com.superuser', 
-        EmailEncodingKey = 'UTF-8', LastName = 'Super_User_Test test', LanguageLocaleKey = EN_US, 
+        EmailEncodingKey = UTF8, LastName = 'Super_User_Test test', LanguageLocaleKey = EN_US, 
         LocaleSidKey = EN_US, ProfileId = profile.Id,firstname = 'Super_User_Test', 
-        TimeZoneSidKey = 'Europe/London',AF_Agency_Fees_User_Type__c = 'Category Finance',isActive = true, 
+        TimeZoneSidKey = 'Europe/London',AF_Agency_Fees_User_Type__c = CATEGORY_FINANCE,isActive = true, 
         UserName = 'Super_User_Test@Super_User_Test123.com');
         insert user; 
 
@@ -67,9 +70,9 @@ public with sharing class Oblix_TestUtils {
         PermissionSet permission_set = [SELECT Id FROM PermissionSet WHERE Name = 'Oblix_SWOP_Super_User_V1'];
      
         User user = new User(Alias = 'S_Admin', Email = 'Admin_Super_User_Test@unilever.com.superuser', 
-        EmailEncodingKey = 'UTF-8', LastName = 'Admin_Super_User_Test test', LanguageLocaleKey = EN_US, 
+        EmailEncodingKey = UTF8, LastName = 'Admin_Super_User_Test test', LanguageLocaleKey = EN_US, 
         LocaleSidKey = EN_US, ProfileId = profile.Id,firstname = 'Admin_Super_User_Test', 
-        TimeZoneSidKey = 'Europe/London',AF_Agency_Fees_User_Type__c = 'Category Finance',isActive = true, 
+        TimeZoneSidKey = 'Europe/London',AF_Agency_Fees_User_Type__c = CATEGORY_FINANCE,isActive = true, 
         UserName = 'Admin_Super_User_Test@Admin_Super_User_Test123.com');
         insert user; 
 
@@ -142,6 +145,7 @@ public with sharing class Oblix_TestUtils {
         project.Name = name;
         project.Financial_Year__c = marketingSowId;
         project.Campaign_Countries__c = 'France, UK, Germany';
+        System.DEBUG('Project Name : ' + project);
         insert project;
         return project;
     }
@@ -637,9 +641,9 @@ public with sharing class Oblix_TestUtils {
     public static User createMarketingUser(String name){
         Profile profile = [SELECT Id FROM Profile WHERE Name='Marketing User'];
         return new User(Alias = name+'ut', Email = name+'unittest@unilever.com', 
-            EmailEncodingKey = 'UTF-8', LastName = 'LastName', LanguageLocaleKey = EN_US, 
+            EmailEncodingKey = UTF8, LastName = 'LastName', LanguageLocaleKey = EN_US, 
             LocaleSidKey = EN_US, ProfileId = profile.Id, FirstName = name, 
-            TimeZoneSidKey = 'Europe/London',AF_Agency_Fees_User_Type__c = 'Category Finance',isActive = true, 
+            TimeZoneSidKey = 'Europe/London',AF_Agency_Fees_User_Type__c = CATEGORY_FINANCE,isActive = true, 
             UserName = name+'@unilever.com.unittest');
     }
 

@@ -3016,7 +3016,7 @@ Changed to Campaign on 26/10/2015</description>
         <fullName>Lock_Campaign_Record_if_Campaign_Sync</fullName>
         <active>true</active>
         <description>Lock Campaign Record if Campaign Sync in Progress.</description>
-        <errorConditionFormula>IF( $Profile.Name &lt;&gt; &apos;System Administrator&apos; &amp;&amp; (TEXT( Agency_Projects__r.Sync_Status__c  ) == &apos;Sync In Progress&apos; || Agency_Projects__r.Sync_Required_NFY__c == &apos;Sync In Progress&apos;),true,false)</errorConditionFormula>
+        <errorConditionFormula>IF( $Profile.Name &lt;&gt; &apos;System Administrator&apos; &amp;&amp; (TEXT( Agency_Projects__r.Sync_Status__c ) == &apos;Sync In Progress&apos; || Agency_Projects__r.Sync_Required_NFY__c == &apos;Sync In Progress&apos; || TEXT( Agency_Projects__r.Sync_Status__c ) == &apos;Sync Requested&apos; || Agency_Projects__r.Sync_Required_NFY__c == &apos;Sync Requested&apos;),true,false)</errorConditionFormula>
         <errorMessage>Sync in Progress. Record Locked</errorMessage>
     </validationRules>
 </CustomObject>
