@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <description>This custom setting determines if the job for version control and rollover is running. It is accessed by formulas and</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Job_Is_Running__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checks if the job orchestration is currently running</description>
+        <externalId>false</externalId>
+        <label>Job Is Running</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Oblix_Job_Orchestration</label>
+    <visibility>Protected</visibility>
+</CustomObject>

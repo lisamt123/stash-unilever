@@ -63,6 +63,13 @@ hr.divider {
     border-top: 1px solid #ddd;
 }
 
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+}
+
 
 .Oblix_header_bkgd {
 /*    background-image: url("/resource/1448558486000/Oblix_assetUI/bg_pattern_2.png");*/
@@ -166,6 +173,22 @@ hr {
     background-image: url(../images/12x12plus.png);
     background-repeat: no-repeat;
 }
+.btn_sync, .btn_sync:hover {
+    background-image: url(../images/sync_static.png);
+    background-repeat: no-repeat;
+}
+.ind_btn_sync {
+    background-image: url(../images/ajax-loader-red-spinning.gif);
+    background-repeat: no-repeat;
+    padding: 6px 8px 10px;
+    border: inherit;
+}
+.ind_btn_sync_static {
+    background-image: url(../images/sync_static_red.png);
+    background-repeat: no-repeat;
+    padding: 6px 8px 10px;
+    /*border: inherit;*/
+}
 .btn_return, .btn_return:hover {
     background-image: url(../images/12x12return.png);
     background-repeat: no-repeat;
@@ -210,6 +233,19 @@ hr {
     background-position: 165px !important;
     padding-bottom: 4px;
     padding-top: 7px;
+}
+.btn_sync_campaign {
+    padding-right: 30px;
+    background-position: 135px !important;
+    padding-bottom: 4px;
+    padding-top: 7px;
+}
+.btn_sync_campaign_summary {
+    padding-right: 30px;
+    background-position: 110px !important;
+    padding-bottom: 4px;
+    padding-top: 7px;
+    margin-right: 4px !important;
 }
 .btn_exit_swop {
     padding-right: 25px;
@@ -832,6 +868,7 @@ table tbody tr td {
 #crumbs ul {
     list-style: none;
     display: block;
+    padding-left: 10px;
 }
 #crumbs ul li {
     display: inline;
@@ -1100,7 +1137,7 @@ table tbody tr td {
     height: 50px;
     vertical-align: middle !important;
     line-height: 50px;
-    margin-top: -33px;
+    margin-top: -38px;
     background: rgba(255, 255, 255, 0.35);
     z-index: 100;
     position: relative;
@@ -1375,16 +1412,22 @@ table tbody tr td {
     background-color: #438940;
 }
 .asset_shopping_basket_title_bar {
-    padding: 20px 0px 20px 15px;
+    padding: 20px 15px 20px 15px;
 }
 .asset_shopping_basket_title_bar h2 {
     color: #ffffff;
     margin-top: 0px;
     font-size: 14px;
 }
+
+.asset_shopping_basket_title_bar h2.basket_quantity {
+    float: right;
+}
+
 .asset_shopping_basket_item {
     background-color: #f3f3f3;
-    padding: 20px 20px 20px 15px;
+    --padding: 20px 20px 20px 15px;
+    padding: 15px 10px 5px 15px;
     border-bottom: solid 1px #cccccc;
 }
 
@@ -1445,6 +1488,13 @@ table tbody tr td {
 }
 .asset_shopping_basket_btn .btn {
     float: right;
+}
+
+.asset_shopping_basket_item .col-lg-1, .asset_shopping_basket_item .col-lg-10, .asset_shopping_basket_item .col-lg-11, .asset_shopping_basket_item .col-lg-12, .asset_shopping_basket_item .col-lg-2, .asset_shopping_basket_item .col-lg-3, .asset_shopping_basket_item .col-lg-4, .asset_shopping_basket_item .col-lg-5, .asset_shopping_basket_item .col-lg-6, .asset_shopping_basket_item .col-lg-7, .asset_shopping_basket_item .col-lg-8, .asset_shopping_basket_item .col-lg-9, .asset_shopping_basket_item .col-md-1, .asset_shopping_basket_item .col-md-10, .asset_shopping_basket_item .col-md-11, .asset_shopping_basket_item .col-md-12, .asset_shopping_basket_item .col-md-2, .asset_shopping_basket_item .col-md-3, .asset_shopping_basket_item .col-md-4, .asset_shopping_basket_item .col-md-5, .asset_shopping_basket_item .col-md-6, .asset_shopping_basket_item .col-md-7, .asset_shopping_basket_item .col-md-8, .asset_shopping_basket_item .col-md-9, .asset_shopping_basket_item .col-sm-1, .asset_shopping_basket_item .col-sm-10, .asset_shopping_basket_item .col-sm-11, .asset_shopping_basket_item .col-sm-12, .asset_shopping_basket_item .col-sm-2, .asset_shopping_basket_item .col-sm-3, .asset_shopping_basket_item .col-sm-4, .asset_shopping_basket_item .col-sm-5, .asset_shopping_basket_item .col-sm-6, .asset_shopping_basket_item .col-sm-7, .asset_shopping_basket_item .col-sm-8, .asset_shopping_basket_item .col-sm-9, .asset_shopping_basket_item .col-xs-1, .asset_shopping_basket_item .col-xs-10, .asset_shopping_basket_item .col-xs-11, .asset_shopping_basket_item .col-xs-12, .asset_shopping_basket_item .col-xs-2, .asset_shopping_basket_item .col-xs-3, .asset_shopping_basket_item .col-xs-4, .asset_shopping_basket_item .col-xs-5, .asset_shopping_basket_item .col-xs-6, .asset_shopping_basket_item .col-xs-7, .asset_shopping_basket_item .col-xs-8, .asset_shopping_basket_item .col-xs-9 {
+    padding-right: 0px !important; 
+}
+.asset_shopping_basket_item {
+    padding-right: 20px !important;
 }
 
     /*Add assets page*/
@@ -1518,7 +1568,7 @@ table tbody tr td {
 
 .add_assets_chevron_percentage_values {
     padding:0;
-    width:12%;
+    width:17%;
     display:inline-block;
 }
 
@@ -1536,6 +1586,7 @@ table tbody tr td {
 
 .campaign_fee_percentage {
     color:#999999;
+    word-wrap: break-word;
 }
 
 .complete_percentage {
@@ -1629,6 +1680,10 @@ table tbody tr td {
     margin-bottom: 20px;
 }
 
+#campaign_asset_heading {
+    float: left;
+}
+
 /*modal windows*/
 
 .adjust_fee_modal {
@@ -1665,6 +1720,7 @@ table tbody tr td {
 .cancel_campaign_totals input {
     width: 100px;
     text-align: right;
+    margin-top: 10px;
 }
 
 .gbvp_adjustment {
@@ -1707,8 +1763,17 @@ table tbody tr td {
 }
 
 .bold_font.cancel_campaign_values {
-    padding-top: 20px;   
+    padding-top: 15px;   
 }
+
+.calculatedFeePanel td {
+    padding-left: 20px;
+}
+
+.calculatedFeePanel td .tooltip {
+    position:absolute
+}
+
 .bold_font {
     font-family: 'UldinproB', Arial, sans-serif;
 }
@@ -1794,6 +1859,10 @@ table tbody tr td {
 .non_camp_dropdown_spacing {
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+.non_camp_description_spacing {
+    margin-top: 20px;
 }
 
 .non_camp_add_selection_button {
@@ -1936,7 +2005,7 @@ table tbody tr td {
     background-image: url(../images/audithistorygrad.png);
     background-repeat: repeat-x;
     margin-top: -10px;
-    z-index: 0;
+    z-index: -1;
 }
 
 .history_table table {
@@ -2212,4 +2281,8 @@ a:focus {
 
 p.percentage_paid div.popover {
     white-space: nowrap;
+}
+
+.error-input-border {
+    border: 2px solid #FF0000;
 }

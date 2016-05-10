@@ -260,6 +260,11 @@
             <field>Total_Value_Driver__c</field>
             <table>Oblix_SOW_Projects__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Value_to_be_paid_in_Current_FY__c</field>
+            <table>Oblix_SOW_Projects__c</table>
+        </columns>
         <masterLabel>SWOP Campaigns</masterLabel>
     </sections>
     <sections>
