@@ -28,7 +28,7 @@ public with sharing class Oblix_OuterPageTemplateController extends Oblix_SwopPa
 	}
 
 	public void updateFX(){
-        Date csDate;
+        Date csDate = null;
         Oblix_FX_Change__c orgDate = Oblix_FX_Change__c.getInstance(UserInfo.getOrganizationId());
         if(orgDate != null){
             if(orgDate.Org_FX_Date__c != null)
