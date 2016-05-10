@@ -106,6 +106,7 @@ var jq=jQuery.noConflict();
     
     function getRecentCountrySelection()
     {
+    	selectedNoRollouts=[];
         jq('input:radio[name ^=grp]').each(function()
         {
             var $radio = jq(this);  
