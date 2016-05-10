@@ -111,13 +111,22 @@
         public Pagereference getPbsArticleSearchList()
         {
         
+        
+        
+        
         if (searchstring == null || searchstring == '')
 {
     //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Search term must be longer than one character'));
     return null;
 } 
  
+          if(searchstring != null && searchstring != '' && this.currentPage > 1){
           
+              
+              this.currentPage = 1;
+              
+              
+          }
 
                                           
             String searchQuery = 'FIND \'' + searchstring + '\' IN ALL FIELDS RETURNING PBS_Wiki__kav(Id,KnowledgeArticleId WHERE PublishStatus=\'Online\' AND Language=\'en_US\'';

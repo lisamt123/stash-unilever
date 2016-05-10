@@ -75,8 +75,8 @@
    
                     </div>
                     <div class="col-md-9 col-lg-9">
-                    
-                        <apex:dataTable value="{!PbsArticleList}" var="article" styleClass="table table-bordered table-striped table-hover" id="theSearchResults">
+                    <apex:outputPanel id="theSearchResults" >
+                        <apex:dataTable value="{!PbsArticleList}" var="article" styleClass="table table-bordered table-striped table-hover" >
                            
                             <apex:column >
                                 <apex:facet name="header">
@@ -141,6 +141,7 @@
                                 <li><apex:commandLink action="{!next}" rendered="{!hasNext}"><span aria-hidden="true">Next &raquo;</span></apex:commandlink></li>
                             </ul>
                         </nav>
+                       </apex:outputPanel>
                     </div>
                 </div>
 
