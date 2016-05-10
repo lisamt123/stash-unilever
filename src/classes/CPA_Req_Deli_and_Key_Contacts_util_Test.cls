@@ -67,5 +67,28 @@ private class CPA_Req_Deli_and_Key_Contacts_util_Test {
        Test.stopTest();      
         system.assert(objPworf13.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED);
     }
-
+	/*******************************************************************
+    Purpose: This method is used to cover CPA_UserDefineAttribute_Util
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public Static testMethod  void  CPA_UDA_Test(){ 
+        CPA_StatusMsgCustomSetting();
+		
+        CPA_Trigger_Pattern__c UDA_TriggerPattern = CPA_Test_Req_Deli_and_Key_Contacts_util.createTest_UDATriggerPattern();
+        insert UDA_TriggerPattern;
+        
+       Test.startTest();        
+            CPA_PWORF__c objPworf13 = CPA_testPWORFClass_util.createTest_other_PWORF();
+        	insert objPworf13;
+			
+			CPA_User_Defined_Attribute__c uda1 = CPA_Test_Req_Deli_and_Key_Contacts_util.createTest_UDA(objPworf13);
+			insert uda1;
+      
+        	uda1.txt_Value__c = 'test123';
+        	update uda1;
+       Test.stopTest();      
+        system.assert(objPworf13.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED);
+    }
 }

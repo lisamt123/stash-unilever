@@ -1,3 +1,4 @@
+// wrapper used to hold data for VF page
 public with sharing class Oblix_NonCampaignWrapper {
 
 	public Marketing_Basics__c nonCampaignItem {get;set;}
@@ -8,11 +9,21 @@ public with sharing class Oblix_NonCampaignWrapper {
 	public String selectedAgencyDepartment { get; set; }
 	public String selectedRole { get; set; }
 	public String hourlyRate { get; set; }
-	public String roundedRate { get; set; }
-	public Integer hoursSelected { get; set; }
+	public String roundedRate {get;
+		set
+		{
+			if (String.isNotBlank(value)){
+				roundedRate = String.valueOf(Math.round(Decimal.valueOf(value)));
+			}
+			else{
+				roundedRate = '0';
+			}
+		} 
+	}
+	public Integer hoursSelected { get; set;}
 	public String result { get;set; }
 	public String name { get; set; }
-	public Double totalAmount { get; set; }
+	public Double totalAmount { get; set;}
 	public String key { get; set; }
 	public Id activityId { get; set; }
 

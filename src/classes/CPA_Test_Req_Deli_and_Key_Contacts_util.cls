@@ -54,6 +54,20 @@ public with sharing class CPA_Test_Req_Deli_and_Key_Contacts_util {
         ResourceTriggerPattern.chk_Check_Run__c = true;
         return ResourceTriggerPattern;
         
+    }
+    /*******************************************************************
+    Purpose: This method is used to set the after UDA trigger pattern
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public static CPA_Trigger_Pattern__c createTest_UDATriggerPattern(){
+
+        CPA_Trigger_Pattern__c UDATriggerPattern = new CPA_Trigger_Pattern__c();
+        UDATriggerPattern.Name ='CPA_User_Defined_Attribute';
+        UDATriggerPattern.chk_Check_Run__c = true;
+        return UDATriggerPattern;
+        
     }	
     /*******************************************************************
     Purpose: This method is used to set Resource summary record
@@ -73,6 +87,22 @@ public with sharing class CPA_Test_Req_Deli_and_Key_Contacts_util {
         Resource.txt_Resource_Location__c = CPA_ConstantsForContractingAppClasses.TEST;
         Resource.txt_Role_Level_1_13__c = '1';
         return Resource;
+        
+    }
+    /*******************************************************************
+    Purpose: This method is used to set UDA record
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public static CPA_User_Defined_Attribute__c createTest_UDA(CPA_PWORF__c objPWORF){
+
+        CPA_User_Defined_Attribute__c uda = new CPA_User_Defined_Attribute__c();
+        
+        uda.pkl_Attribute_Type__c = 'Cost';
+        uda.txt_Value__c = 'test'  ;
+        uda.lkp_PWORF__c = objPWORF.id  ;        
+        return uda;
         
     }		
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
     <aggregates>
-        <calculatedFormula>WU_Warehouse_Capacity_Detail__c.WU_Current_Pallet_Utilization_Week__c:SUM</calculatedFormula>
+        <calculatedFormula>WU_Warehouse_Capacity_Detail__c.WU_Current_Pallet_Utilization_Week__c:AVG</calculatedFormula>
         <datatype>number</datatype>
         <developerName>FORMULA1</developerName>
         <isActive>true</isActive>

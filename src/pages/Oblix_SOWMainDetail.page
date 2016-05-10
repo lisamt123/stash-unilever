@@ -155,7 +155,7 @@
                         <div class="modal-footer">
                             <div class="modal_button_align">
                                 <button type="button" class="btn btn_cross btn_cancel" data-dismiss="modal">CANCEL</button>
-                                <apex:commandButton rendered="{!isAgencyApproval}" action="{!approveSOW}" onclick="blockme();" styleClass="btn btn-danger btn_check btn_yes_submit" value="YES, APPROVE" reRender="top_right_panel,sow_details" html-data-dismiss="modal" oncomplete="$.unblockUI();alert('{!selected_sow.Name} has been approved successfully by Unilever and Agency.\nAn \'open for updates\' version will be available shortly to allow Unilever reflect any changes during the year.');window.location.href='/agency/apex/oblix_sowmain';"/>
+                                <apex:commandButton rendered="{!isAgencyApproval}" action="{!approveSOW}" onclick="blockme();" styleClass="btn btn-danger btn_check btn_yes_submit" value="YES, APPROVE" reRender="top_right_panel,sow_details" html-data-dismiss="modal" oncomplete="$.unblockUI();alert('{!selected_sow.Name} has been approved successfully by Unilever and Agency.\nAn \'open for updates\' version will be available shortly to allow Unilever reflect any changes during the year.');window.location.href='{!URLFOR($Page.Oblix_SOWMain)}';"/>
                                 <apex:commandButton rendered="{!!isAgencyApproval}" action="{!approveSOW}" reRender="top_right_panel,sow_details" styleClass="btn btn-danger btn_check btn_yes_approve" value="YES, APPROVE" html-data-dismiss="modal"  onclick="blockme()" oncomplete="$.unblockUI()"/>
                             </div>
                         </div>

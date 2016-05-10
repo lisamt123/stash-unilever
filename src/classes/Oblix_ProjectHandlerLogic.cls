@@ -36,7 +36,7 @@ public with sharing class Oblix_ProjectHandlerLogic {
         for (Oblix_SOW_Projects__c campaign : [SELECT Financial_Year__r.Financial_Year__c, Brand_Led_Growth__c, Project_Scale_1__c, Project_Scale_2__c, Campaign_Idea__c,
             Total_Value_Driver__c, ProjectTotalAssetscore__c,Total_Project_Score__c, Name, Campaign_Hub_Summary__c, OblixProjectSplitPercentage_Comment__c
             , (SELECT Id, Name, Project_Splits__c, Percentage__c, OblixCountry__r.Name FROM Marketing_SOW_Project_Splits__r)
-            , (SELECT Location__c, Asset_Picklist__c, Asset_name__c, Quantity__c, Sub_Category__c, Asset_Score__c FROM Agency_Project_Assets__r) 
+            , (SELECT Location__c, Asset_Picklist__c, Asset_name__c, Quantity__c, Sub_Category__c, Asset_Score__c, Asset_Type__c FROM Agency_Project_Assets__r) 
             FROM Oblix_SOW_Projects__c WHERE ID in :list_projects]){
 
 
@@ -275,12 +275,19 @@ public with sharing class Oblix_ProjectHandlerLogic {
 
         String asset_separator = ' / ';
         String s_asset_deliverables = '';
+        String assetCategoryRemovedExamples = '';
 
         for (Oblix_Project_Assets__c project_asset : campaign_in_scope.Agency_Project_Assets__r){
+            
+            assetCategoryRemovedExamples = '';
+
+            if (NULL != project_asset.Asset_Type__c && project_asset.Asset_Type__c.contains(' - ')){
+                assetCategoryRemovedExamples = project_asset.Asset_Type__c.split(' - ')[0];
+            }
 
             s_asset_deliverables +=  String.isNotBlank(project_asset.Location__c) 
-                ? ', ' + project_asset.Quantity__c + asset_separator + project_asset.Asset_name__c + asset_separator + project_asset.Location__c + asset_separator + project_asset.Sub_Category__c
-                : ', ' + project_asset.Quantity__c + asset_separator + project_asset.Asset_name__c + asset_separator + project_asset.Sub_Category__c;
+                ? ', ' + project_asset.Quantity__c + asset_separator + project_asset.Asset_name__c + asset_separator + project_asset.Location__c + asset_separator + assetCategoryRemovedExamples + asset_separator + project_asset.Sub_Category__c
+                : ', ' + project_asset.Quantity__c + asset_separator + project_asset.Asset_name__c + asset_separator + assetCategoryRemovedExamples + asset_separator + project_asset.Sub_Category__c;
         }
 
         // remove the first comma

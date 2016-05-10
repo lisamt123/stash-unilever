@@ -51,7 +51,7 @@ public with sharing virtual class Oblix_SWOPparentController {
 
     public Boolean can_see_financial_fields {
         get{
-            return Oblix_PermissionHandler.canSeeFinancialField(selected_sow.SOW_Status__c);
+            return Oblix_PermissionHandler.canSeeFinancialField(selected_sow.SOW_Status__c, selected_sow.Approved_version__c);
         }
     }
 

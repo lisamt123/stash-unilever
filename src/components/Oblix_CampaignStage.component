@@ -11,18 +11,10 @@
 						2)Projection chevrons without checkboxes only, 
 						3)Projection chevrons with checkboxes only, 
 						4)Completion chevrons only" />
-	<!-- ************************************************************ -->
-	<!-- START - S.M. 2016-04-09 COMMENTING OUT TO RESOLVE DEPLOYMENT ISSUE -->
-	<!-- ************************************************************ -->						
-	<!-- <apex:attribute type="Boolean" name="showTotalPercentage" default="true" description="Controlls where the 'Total campaign fee to be paid this FY X%' block is displayed"  /> -->
-	<!-- ************************************************************ -->
-	<!-- START - S.M. 2016-04-09 COMMENTING OUT TO RESOLVE DEPLOYMENT ISSUE -->
-	<!-- ************************************************************ -->
-	<!-- <apex:attribute type="String" name="projectedStageLabel" description="Custom projected stage label - introduced in order to customise chevrons on Adjust Fee page." required="false" default="Stages to deliver:"/>
-	<apex:attribute type="String" name="completedStageLabel" description="Custom completed stage label - introduced in order to customise chevrons on Adjust Fee page." required="false" default="Stages completed:"/> -->
-	<!-- ************************************************************ -->
-	<!-- END - S.M. 2016-04-09 COMMENTING OUT TO RESOLVE DEPLOYMENT ISSUE -->
-	<!-- ************************************************************ -->
+	<apex:attribute type="Boolean" name="showTotalPercentage" default="true" description="Controlls where the 'Total campaign fee to be paid this FY X%' block is displayed"  />
+	<apex:attribute type="String" name="projectedStageLabel" description="Custom projected stage label - introduced in order to customise chevrons on Adjust Fee page." required="false" default="Stages to deliver:"/>
+	<apex:attribute type="String" name="completedStageLabel" description="Custom completed stage label - introduced in order to customise chevrons on Adjust Fee page." required="false" default="Stages completed:"/>
+
 
  	<apex:outputPanel id="panel_project_stage">
         <div class="status_completion_chevron_bar_main_styling add_asset_chevron_styling campaign_stage_chevron_blockme {!IF(displayMode == 1 || displayMode == 2, 'campaign_stage_chevron_bottom_space', '')}">

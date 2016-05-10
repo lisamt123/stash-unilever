@@ -3,7 +3,7 @@
     <backgroundEndColor>#FFFFFF</backgroundEndColor>
     <backgroundFadeDirection>Diagonal</backgroundFadeDirection>
     <backgroundStartColor>#FFFFFF</backgroundStartColor>
-    <dashboardType>MyTeamUser</dashboardType>
+    <dashboardType>SpecifiedUser</dashboardType>
     <isGridLayout>false</isGridLayout>
     <leftSection>
         <columnSize>Wide</columnSize>
@@ -14,47 +14,23 @@
                 <axisBinding>y</axisBinding>
                 <column>FORMULA1</column>
             </chartSummary>
-            <componentType>Pie</componentType>
-            <displayUnits>Auto</displayUnits>
-            <drillEnabled>false</drillEnabled>
-            <drillToDetailEnabled>false</drillToDetailEnabled>
-            <enableHover>true</enableHover>
-            <expandOthers>false</expandOthers>
-            <groupingColumn>WU_Warehouse_Capacity_Detail__c.WU_Utilization_Start_Date__c</groupingColumn>
-            <legendPosition>Bottom</legendPosition>
-            <report>WU_Warehouse_Leadership_Team/Global_View_Report1</report>
-            <showPercentage>false</showPercentage>
-            <showValues>true</showValues>
-            <sortBy>RowLabelAscending</sortBy>
-            <title>Global view by Utilization Start Date</title>
-            <useReportChart>false</useReportChart>
-        </components>
-    </leftSection>
-    <middleSection>
-        <columnSize>Wide</columnSize>
-        <components>
-            <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
-            <chartAxisRange>Auto</chartAxisRange>
-            <chartSummary>
-                <axisBinding>y</axisBinding>
-                <column>FORMULA1</column>
-            </chartSummary>
-            <componentType>Pie</componentType>
+            <componentType>ColumnStacked</componentType>
             <displayUnits>Auto</displayUnits>
             <drillEnabled>false</drillEnabled>
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>WU_Master_Warehouse__c.WU_MCO__c</groupingColumn>
+            <groupingColumn>WU_Master_Warehouse__c.WU_MCO__c</groupingColumn>
             <legendPosition>Bottom</legendPosition>
             <report>WU_Warehouse_Leadership_Team/Global_View_Report1</report>
             <showPercentage>false</showPercentage>
-            <showValues>true</showValues>
+            <showValues>false</showValues>
             <sortBy>RowLabelAscending</sortBy>
-            <title>Global view by MCO</title>
+            <title>Global View by MCO</title>
             <useReportChart>false</useReportChart>
         </components>
-    </middleSection>
+    </leftSection>
     <rightSection>
         <columnSize>Wide</columnSize>
         <components>
@@ -64,19 +40,20 @@
                 <axisBinding>y</axisBinding>
                 <column>FORMULA1</column>
             </chartSummary>
-            <componentType>Pie</componentType>
+            <componentType>ColumnStacked</componentType>
             <displayUnits>Auto</displayUnits>
             <drillEnabled>false</drillEnabled>
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>WU_Master_Warehouse__c.WU_Network__c</groupingColumn>
+            <groupingColumn>WU_Master_Warehouse__c.WU_Network__c</groupingColumn>
             <legendPosition>Bottom</legendPosition>
             <report>WU_Warehouse_Leadership_Team/Global_View_Report1</report>
             <showPercentage>false</showPercentage>
-            <showValues>true</showValues>
+            <showValues>false</showValues>
             <sortBy>RowLabelAscending</sortBy>
-            <title>Global view by Network</title>
+            <title>Global View by Network</title>
             <useReportChart>false</useReportChart>
         </components>
     </rightSection>

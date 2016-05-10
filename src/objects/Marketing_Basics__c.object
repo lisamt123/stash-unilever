@@ -18,9 +18,7 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Edit</actionName>
-        <content>Oblix_VF4Bis_OverrideOtherItemsNews</content>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Visualforce</type>
+        <type>Default</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Follow</actionName>
@@ -32,9 +30,7 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>New</actionName>
-        <content>Oblix_VF4Bis_OverrideOtherItemsNews</content>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Visualforce</type>
+        <type>Default</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>SaveEdit</actionName>
@@ -113,11 +109,7 @@ Renamed to Other SOW items in reviews</description>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Other</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Regtional Status Meetings</fullName>
+                <fullName>Regional Status Meetings</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -128,6 +120,22 @@ Renamed to Other SOW items in reviews</description>
                 <fullName>USLP</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Global Leadership</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Regional Leadership</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Category Leadership</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>true</sorted>
         </picklist>
         <trackHistory>false</trackHistory>
@@ -136,28 +144,20 @@ Renamed to Other SOW items in reviews</description>
     </fields>
     <fields>
         <fullName>Activity_Fee_Agency__c</fullName>
+        <description>Field to show/hide data in an Agency report, dependent on the value in the SOW Status field</description>
         <externalId>false</externalId>
         <formula>IF( 
 OR( 
 ISPICKVAL( Oblix_SOWMarketing__r.SOW_Status__c , &quot;Awaiting Unilever Approval&quot;), 
 ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Draft - with Unilever&quot;), 
-ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;)), &quot;---&quot;, &quot;€&quot;&amp; 
-IF( 
- OblixOtherItemFee__c  &gt;= 1000000, 
-TEXT(FLOOR(OblixOtherItemFee__c / 1000000)) &amp; &quot;,&quot;, 
-&quot;&quot;) &amp; 
-IF( 
-OblixOtherItemFee__c &gt;= 1000, 
-RIGHT(TEXT(FLOOR(OblixOtherItemFee__c/ 1000)), 3) &amp; &quot;,&quot;, 
-&quot;&quot;) &amp; 
-RIGHT(TEXT(FLOOR(OblixOtherItemFee__c)), 3) )</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;)), NULL, OblixOtherItemFee__c)</formula>
         <label>Activity Fee</label>
+        <precision>18</precision>
         <required>false</required>
+        <scale>0</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>Agency_Department__c</fullName>
@@ -314,28 +314,20 @@ RIGHT(TEXT(FLOOR(OblixOtherItemFee__c)), 3) )</formula>
     </fields>
     <fields>
         <fullName>Hourly_Rate_Agency__c</fullName>
+        <description>Field to show/hide data in an Agency report, dependent on the value in the SOW Status field</description>
         <externalId>false</externalId>
         <formula>IF( 
 OR( 
 ISPICKVAL( Oblix_SOWMarketing__r.SOW_Status__c  , &quot;Awaiting Unilever Approval&quot;), 
 ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Draft - with Unilever&quot;), 
-ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;)), &quot;---&quot;, &quot;€&quot;&amp; 
-IF( 
- Oblix_Hourly_Rate__c  &gt;= 1000000, 
-TEXT(FLOOR(Oblix_Hourly_Rate__c / 1000000)) &amp; &quot;,&quot;, 
-&quot;&quot;) &amp; 
-IF( 
-Oblix_Hourly_Rate__c &gt;= 1000, 
-RIGHT(TEXT(FLOOR(Oblix_Hourly_Rate__c / 1000)), 3) &amp; &quot;,&quot;, 
-&quot;&quot;) &amp; 
-RIGHT(TEXT(FLOOR(Oblix_Hourly_Rate__c)), 3) )</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;)), NULL ,Oblix_Hourly_Rate__c)</formula>
         <label>Hourly Rate</label>
+        <precision>18</precision>
         <required>false</required>
+        <scale>0</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>No_of_Hours_Required__c</fullName>
@@ -406,8 +398,11 @@ RIGHT(TEXT(FLOOR(Oblix_Hourly_Rate__c)), 3) )</formula>
         <externalId>false</externalId>
         <formula>IF(
     No_of_Hours_Required__c = 0, 
-    0, 
-    OblixOtherItemFee__c /  No_of_Hours_Required__c
+    0,
+    IF( RecordType.DeveloperName == &apos;Activity&apos;,
+        OblixOtherItemFee__c /  No_of_Hours_Required__c,
+        OblixOtherItemFee__c /  No_of_Hours_Required__c * 100
+    )    
 )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Hourly Rate</label>
@@ -452,28 +447,21 @@ RIGHT(TEXT(FLOOR(Oblix_Hourly_Rate__c)), 3) )</formula>
     </fields>
     <fields>
         <fullName>Resource_Fee_Agency__c</fullName>
+        <description>Field to show/hide data in an Agency report, dependent on the value in the SOW Status field</description>
         <externalId>false</externalId>
         <formula>IF( 
 OR( 
 ISPICKVAL( Oblix_SOWMarketing__r.SOW_Status__c , &quot;Awaiting Unilever Approval&quot;), 
 ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Draft - with Unilever&quot;), 
-ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;)), &quot;---&quot;, &quot;€&quot;&amp; 
-IF( 
- Oblix_FTE_Real_Price__c &gt;= 1000000, 
-TEXT(FLOOR( Oblix_FTE_Real_Price__c / 1000000)) &amp; &quot;,&quot;, 
-&quot;&quot;) &amp; 
-IF( 
-Oblix_FTE_Real_Price__c &gt;= 1000, 
-RIGHT(TEXT(FLOOR(Oblix_FTE_Real_Price__c / 1000)), 3) &amp; &quot;,&quot;, 
-&quot;&quot;) &amp; 
-RIGHT(TEXT(FLOOR(Oblix_FTE_Real_Price__c)), 3) )</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;)), NULL, 
+Oblix_FTE_Real_Price__c)</formula>
         <label>Resource Fee</label>
+        <precision>18</precision>
         <required>false</required>
+        <scale>0</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>Role_Title__c</fullName>
@@ -1042,7 +1030,15 @@ RIGHT(TEXT(FLOOR(Oblix_FTE_Real_Price__c)), 3) )</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Category Leadership</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Competitive Reviews</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global Leadership</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1058,7 +1054,11 @@ RIGHT(TEXT(FLOOR(Oblix_FTE_Real_Price__c)), 3) )</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Regtional Status Meetings</fullName>
+                <fullName>Regional Leadership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional Status Meetings</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1669,6 +1669,18 @@ RIGHT(TEXT(FLOOR(Oblix_FTE_Real_Price__c)), 3) )</formula>
             </values>
             <values>
                 <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Category Leadership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global Leadership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional Leadership</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

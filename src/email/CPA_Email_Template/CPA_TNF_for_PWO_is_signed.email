@@ -1,7 +1,7 @@
 <messaging:emailTemplate subject="TNF-{!RelatedTo.Name} : Signed"  recipientType="User" relatedToType="CPA_project_work_order__c">
 <messaging:htmlEmailBody >
     Hi,<br/><br/>
-    A TNF for PWO with ID {!RelatedTo.Name}  is  Signed on {!Today()} and the PWORF with ID {!RelatedTo.PWORF_ID__r.auto_PWORF_ID__c} is now marked as Terminated.
+    A TNF for PWO with ID {!RelatedTo.Name}  is  Signed on {!Now()} and the PWORF with ID {!RelatedTo.PWORF_ID__r.auto_PWORF_ID__c} is now marked as Terminated.
 <br/><br/>
     You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id} ">{!RelatedTo.Name} </a> <br/><br/>
    

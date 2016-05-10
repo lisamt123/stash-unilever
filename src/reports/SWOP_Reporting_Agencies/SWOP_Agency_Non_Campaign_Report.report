@@ -13,6 +13,9 @@
         <field>Marketing_SOW__c.OblixBrand__c</field>
     </columns>
     <columns>
+        <field>Marketing_SOW__c.SOW_Status__c</field>
+    </columns>
+    <columns>
         <field>CHILD_RECORDTYPE</field>
     </columns>
     <columns>
@@ -20,9 +23,6 @@
     </columns>
     <columns>
         <field>FK_NAME</field>
-    </columns>
-    <columns>
-        <field>Marketing_Basics__c.Activities__c</field>
     </columns>
     <columns>
         <field>Marketing_Basics__c.Agency_Department__c</field>
@@ -62,6 +62,8 @@
     <reportType>CustomEntityCustomEntity$Marketing_SOW__c$Marketing_Basics__c@Marketing_Basics__c.OblixCountry__c</reportType>
     <scope>organization</scope>
     <showDetails>true</showDetails>
+    <sortColumn>Marketing_SOW__c.SOW_Status__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>CUST_CREATED_DATE</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>

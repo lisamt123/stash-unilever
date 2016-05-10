@@ -132,7 +132,15 @@ ISBLANK(WU_Latest_Committed_Pallet__c),WU_Latest_Committed_Pallet__c = 0),
     <fields>
         <fullName>WU_Average_Pallet_Utilization_Count__c</fullName>
         <externalId>false</externalId>
-        <formula>IF( OR(NOT(ISBLANK(WU_Count_Avg_Current_Month_Utilization__c)),WU_Count_Avg_Current_Month_Utilization__c &lt;&gt; 0), WU_Total_Current_Month_Utilisation__c /WU_Count_Avg_Current_Month_Utilization__c,null )</formula>
+        <formula>IF( 
+
+AND(NOT(ISBLANK(WU_Count_Avg_Current_Month_Utilization__c)),WU_Count_Avg_Current_Month_Utilization__c &lt;&gt; 0), 
+
+WU_Total_Current_Month_Utilisation__c /WU_Count_Avg_Current_Month_Utilization__c,
+
+null 
+
+)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Average Pallet Utilization Count</label>
         <precision>18</precision>
@@ -3297,7 +3305,7 @@ OR(DAY(WU_FromDate__c) &lt;&gt; 1,
 DAY(WU_ToDate__c) &lt;&gt; (IF( MONTH( WU_FromDate__c) = 12,31,DAY(DATE( YEAR( WU_FromDate__c), MONTH ( WU_FromDate__c) + 1, 1 ) - 1))))
 )</errorConditionFormula>
         <errorDisplayField>WU_Utilization_Type__c</errorDisplayField>
-        <errorMessage>Utilization Start Date and Utilization End Date should be for same month for Utilization Type has been chosen as Monthly.</errorMessage>
+        <errorMessage>Utilization Start Date and Utilization End Date should be for same month (with start date  1st day  and end date as last day of the Month)  for Utilization Type has been chosen as Monthly.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>DateValidationForWeeklyUtilizationType</fullName>
@@ -3306,7 +3314,14 @@ DAY(WU_ToDate__c) &lt;&gt; (IF( MONTH( WU_FromDate__c) = 12,31,DAY(DATE( YEAR( W
 ISPICKVAL( WU_Utilization_Type__c , &apos;Weekly&apos;), OR(WU_FromDate__c  =  WU_ToDate__c, WU_ToDate__c-WU_FromDate__c &gt;=  7))*/
 
 AND(
-ISPICKVAL( WU_Utilization_Type__c , &apos;Weekly&apos;), OR(WU_FromDate__c  =  WU_ToDate__c, WU_ToDate__c-WU_FromDate__c &gt;= 7,AND(MOD( WU_FromDate__c - DATE(1900, 1, 6), 7)&lt;&gt;1,MOD( WU_ToDate__c - DATE(1900, 1, 6), 7)&lt;&gt;0)))</errorConditionFormula>
+
+ISPICKVAL( WU_Utilization_Type__c , &apos;Weekly&apos;), 
+
+OR(WU_FromDate__c  =  WU_ToDate__c, WU_ToDate__c-WU_FromDate__c &gt;= 7, 
+
+MOD( WU_FromDate__c - DATE(1900, 1, 7), 7)&lt;&gt; 0,MOD( WU_ToDate__c - DATE(1900, 1, 7), 7)&lt;&gt;6)
+
+)</errorConditionFormula>
         <errorDisplayField>WU_Utilization_Type__c</errorDisplayField>
         <errorMessage>Weekly Utilization should be entered  from Sunday to Saturday. Please Re- Enter the Utilization Start Date as Sunday and End Date as Saturday.</errorMessage>
     </validationRules>

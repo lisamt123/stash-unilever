@@ -384,7 +384,7 @@
                 <axisBinding>y</axisBinding>
                 <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Avail_Quantity__c</column>
             </chartSummary>
-            <componentType>Column</componentType>
+            <componentType>ColumnGrouped</componentType>
             <dashboardFilterColumns>
                 <column>Account$Name</column>
             </dashboardFilterColumns>
@@ -396,6 +396,7 @@
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
+            <groupingColumn>Account.Stocked_Products__r$UID_Start_Date__c</groupingColumn>
             <groupingColumn>Account.Stocked_Products__r$UID_Start_Date__c</groupingColumn>
             <header>Monthly Inventory Volume (Cases)</header>
             <legendPosition>Bottom</legendPosition>

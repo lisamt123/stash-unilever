@@ -56,7 +56,7 @@
                                 Filter
                             </div>
                             <div class="form-group">
-                                <label for="Search">Search Article:</label>
+                                <label for="Search">Search Article:</label><br/>
                                <apex:inputText value="{!searchstring}" id="theSearchstring" maxlength="100" size="20"/> &nbsp;
    <apex:commandButton value="Go" action="{!getPbsArticleSearchList}" id="submitButton" style="width:30" reRender="theSearchResults" status="actStatusId" />
    

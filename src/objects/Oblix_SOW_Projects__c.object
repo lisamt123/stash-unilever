@@ -731,27 +731,14 @@ OR(
 ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Awaiting Unilever Approval&quot;),
 ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Draft - with Unilever&quot;),
 ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Returned by Agency&quot;)
-), &quot;---&quot;, &quot;€&quot;&amp;
-
-IF(
-  Value_to_be_paid_in_Current_FY__c  &gt;= 1000000,
-TEXT(ROUND(Value_to_be_paid_in_Current_FY__c/ 1000000, 0)) &amp; &quot;,&quot;,
-&quot;&quot;
-) &amp;
-IF(
-Value_to_be_paid_in_Current_FY__c&gt;= 1000,
-RIGHT(TEXT(ROUND(Value_to_be_paid_in_Current_FY__c / 1000, 0)), 3) &amp; &quot;,&quot;,
-&quot;&quot;
-) &amp;
-RIGHT(TEXT(ROUND(Value_to_be_paid_in_Current_FY__c, 0)), 3)
-)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Fees To Be Paid In Current FY</label>
+),NULL, Value_to_be_paid_in_Current_FY__c)</formula>
+        <label>FY Campaign Fee</label>
+        <precision>18</precision>
         <required>false</required>
+        <scale>0</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>Fees_To_Be_Paid_Next_Financial_Year__c</fullName>
@@ -772,7 +759,7 @@ RIGHT(TEXT(ROUND(Value_to_be_paid_in_Current_FY__c, 0)), 3)
         <description>Final release date</description>
         <externalId>false</externalId>
         <inlineHelpText>Enter the the date for final release</inlineHelpText>
-        <label>Final release</label>
+        <label>BET Final Release</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1342,6 +1329,18 @@ RIGHT(TEXT(ROUND(Value_to_be_paid_in_Current_FY__c, 0)), 3)
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>SOW_Campaign_Name__c</fullName>
+        <description>Not on the UI, only used in a report. Shows both SOW and Campaign names in the same field to allow easier grouping in a report</description>
+        <externalId>false</externalId>
+        <formula>Financial_Year__r.Name&amp;&quot;/&quot;&amp;Name</formula>
+        <label>SOW/Campaign Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>SOW_FY__c</fullName>

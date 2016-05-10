@@ -127,32 +127,48 @@
             </div>
             <div class="row">
                 <div class="col-lg-8 status_completion_chevron_bar campaign_create_chevron">
+                    <!-- ************************************************************ -->
+                    <!--  S.M. 2016-04-09 COMMENTING OUT TO RESOLVE DEPLOYMENT ISSUE -->
+                    <!-- ************************************************************ -->
+                    <!-- I.R. 2016-04-15 Work around start -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="status_completion_chevron_bar_main_styling">
+                                <p class="create_SOW_form_titles" id="stagesLabel">Choose stages for this FY*</p>
+                                <p class="campaign_create_agency_hub_split_table_subtitle">Confirm which stages of the project will be completed in the current year.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                        <div class="campaign_chevron_title campaign_summary_information_titles">Stages to deliver:</div>
+                        <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier}" AutoSave="false" Id="cancel_campaign_campaign_stage_component_projected" rerenderIds="campaign_create_stage_component_delivered, total_value_to_be_paid_CFY, calculatedFeePanel, cancel_campaign_campaign_stage_component_completed" displayMode="3"/> 
+                        <apex:outputPanel id="total_value_to_be_paid_CFY">
+                            <apex:outputText >
+                                <div class="add_assets_chevron_percentage_values">
+                                    <p class="campaign_create_agency_hub_split_table_subtitle">Total campaign fee to be paid this FY</p>
+                                    <h1 class="campaign_fee_percentage">{!stage_identifier.i_percentage_of_fee_this_year}%</h1> <br/>
+                                    <apex:outputText rendered="{!stage_identifier.b_manual_override_on}">
+                                        <p class="red_text"><strong>Fee adjusted</strong></p>
+                                    </apex:outputText>
+                                </div>
+                            </apex:outputText>
+                        </apex:outputPanel> 
+                        <div class="campaign_chevron_title campaign_summary_information_titles">Stages completed:</div>
+                        <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier}" AutoSave="false" Id="campaign_stage_component_bottom" displayMode="4" id="campaign_create_stage_component_delivered" rerenderIds="total_value_to_be_paid_CFY"/> 
+                        </div>
+                    </div>
+                    <!-- I.R Work around end -->
+
+                    <!-- OLD SOLUTION
                     <div class="chevron_width_control">
                         <div class="status_completion_chevron_bar_main_styling">
                             <p class="create_SOW_form_titles" id="stagesLabel">Choose stages for this FY*</p>
                             <p class="campaign_create_agency_hub_split_table_subtitle">Confirm which stages of the project will be completed in the current year.</p>
                         </div>
-                                            <!-- ************************************************************ -->
-                                            <!--  S.M. 2016-04-09 COMMENTING OUT TO RESOLVE DEPLOYMENT ISSUE -->
-                                            <!-- ************************************************************ -->
-                                            <div class="campaign_chevron_title campaign_summary_information_titles">Stages to deliver:</div>
-                                            <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier}" AutoSave="false" Id="cancel_campaign_campaign_stage_component_projected" rerenderIds="campaign_create_stage_component_delivered, total_value_to_be_paid_CFY, calculatedFeePanel, cancel_campaign_campaign_stage_component_completed" displayMode="3"/> 
-                                                <apex:outputPanel id="total_value_to_be_paid_CFY">
-                                                    <apex:outputText >
-                                                        <div class="add_assets_chevron_percentage_values">
-                                                            <p class="campaign_create_agency_hub_split_table_subtitle">Total campaign fee to be paid this FY</p>
-                                                            <h1 class="campaign_fee_percentage">{!stage_identifier.i_percentage_of_fee_this_year}%</h1> <br/>
-                                                            <apex:outputText rendered="{!stage_identifier.b_manual_override_on}">
-                                                                <p class="red_text"><strong>Fee adjusted</strong></p>
-                                                            </apex:outputText>
-                                                        </div>
-                                                    </apex:outputText>
-                                                </apex:outputPanel>
-                                            </div> 
-                                            <div class="campaign_chevron_title campaign_summary_information_titles">Stages completed:</div>
-                                            <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier}" AutoSave="false" Id="campaign_stage_component_bottom" displayMode="4" id="campaign_create_stage_component_delivered" rerenderIds="total_value_to_be_paid_CFY"/> 
-
-                        <!-- <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier}" AutoSave="false" /> -->
+                        <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier}" AutoSave="false" />
+                    </div>
+                     -->
                 </div>
             </div>
             <div class="row">

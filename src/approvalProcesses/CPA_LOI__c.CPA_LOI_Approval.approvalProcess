@@ -52,6 +52,10 @@
                 <type>FieldUpdate</type>
             </action>
             <action>
+                <name>CPA_LOI_Accepted_Recordtype</name>
+                <type>FieldUpdate</type>
+            </action>
+            <action>
                 <name>CPA_LOI_Owner_Update_to_VDM</name>
                 <type>FieldUpdate</type>
             </action>
@@ -61,6 +65,10 @@
             </action>
             <action>
                 <name>CPA_LOI_Returned_Status</name>
+                <type>FieldUpdate</type>
+            </action>
+            <action>
+                <name>CPA_LOI_Submitted_recordtype</name>
                 <type>FieldUpdate</type>
             </action>
         </rejectionActions>
@@ -90,6 +98,10 @@
     <initialSubmissionActions>
         <action>
             <name>CPA_LOI_Owner_Update_to_SMT</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>CPA_LOI_Send_for_signature_date_null</name>
             <type>FieldUpdate</type>
         </action>
         <action>

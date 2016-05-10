@@ -305,12 +305,13 @@ DAY(WU_Utilization_End_Date__c) &lt;&gt; (IF( MONTH( WU_Utilization_Start_Date__
     <validationRules>
         <fullName>DateValidationForWeeklyUtilizationType</fullName>
         <active>true</active>
-        <errorConditionFormula>/*AND( 
-ISPICKVAL( WU_Utilization_Type__c , &apos;Weekly&apos;), OR(WU_Utilization_Start_Date__c = WU_Utilization_End_Date__c, WU_Utilization_End_Date__c-WU_Utilization_Start_Date__c &gt; 7))*/
-
-
-AND( 
-ISPICKVAL( WU_Utilization_Type__c , &apos;Weekly&apos;), OR(WU_Utilization_Start_Date__c = WU_Utilization_End_Date__c, WU_Utilization_End_Date__c-WU_Utilization_Start_Date__c &gt;= 7,AND(MOD( WU_Utilization_Start_Date__c - DATE(1900, 1, 6), 7)&lt;&gt;1,MOD( WU_Utilization_End_Date__c - DATE(1900, 1, 6), 7)&lt;&gt;0)))</errorConditionFormula>
+        <errorConditionFormula>AND( 
+ISPICKVAL( WU_Utilization_Type__c , &apos;Weekly&apos;), 
+OR(
+WU_Utilization_Start_Date__c = WU_Utilization_End_Date__c, WU_Utilization_End_Date__c-WU_Utilization_Start_Date__c &gt;= 7,
+MOD( WU_Utilization_Start_Date__c - DATE(1900, 1, 7), 7) &lt;&gt; 0 , MOD( WU_Utilization_End_Date__c - DATE(1900, 1, 7), 7)&lt;&gt;6
+)
+)</errorConditionFormula>
         <errorDisplayField>WU_Utilization_Type__c</errorDisplayField>
         <errorMessage>Weekly Utilization should be entered  from Sunday to Saturday. Please Re- Enter the Utilization Start Date as Sunday and End Date as Saturday.</errorMessage>
     </validationRules>

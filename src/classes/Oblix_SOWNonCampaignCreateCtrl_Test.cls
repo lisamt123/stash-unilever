@@ -3,7 +3,7 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
 
     static Marketing_Basics__c globalAct; 
 
- private static  id createMaketingSow (){
+    @isTest private static void createMaketingSow (){
       
          Account myAccount = new Account();
              myAccount.Name = 'AgencyAccount';
@@ -74,19 +74,16 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
             basicParentActivity1.name = 'preselected';
             insert basicParentActivity1;
             globalAct = basicParentActivity1;
-            return marketingSow.id; 
-        
-    }
- 
-    static testMethod void CampaignEdit_Test() {
-        
-        User u = Oblix_TestUtils.createTestUser(); 
+            //return marketingSow.id; 
+
+
+            User u = Oblix_TestUtils.createTestUser(); 
          
         System.runAs(u){
    
             Test.startTest();
             ApexPages.currentPage().getParameters().put('preSelectedName', 'preselected' );
-            ApexPages.currentPage().getParameters().put('sowId', createMaketingSow() );
+            ApexPages.currentPage().getParameters().put('sowId', marketingSow.id);
             Oblix_SOWNonCampaignCreateController controller = new Oblix_SOWNonCampaignCreateController();
                  
             controller.seletedActivity = JSON.serialize(globalAct);
@@ -96,6 +93,7 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
             controller.activity.selectedCountryname ='France' ;
             controller.fillAgencyDepartment();
             controller.activity.selectedAgencyDepartment= 'Account Management';
+            controller.activity.hourlyRate = '100';
             controller.fillRoleTitle();
             controller.fillRate();
 
@@ -140,5 +138,7 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
             Test.stopTest();
                
          }
+        
     }
+ 
 }

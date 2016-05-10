@@ -64,7 +64,7 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
         
         if (NULL!=selected_project && NULL!=selected_project.Financial_Year__c){
             // query the selected sow in scope
-            selected_sow = getSOW(selected_project.Financial_Year__c,new List<String>{'Name','OwnerId','SOW_Status__c'}, null);
+            selected_sow = getSOW(selected_project.Financial_Year__c,new List<String>{'Name','OwnerId','SOW_Status__c', 'Approved_version__c'}, null);
         }
 
         if (NULL != selected_project && NULL!= selected_sow){

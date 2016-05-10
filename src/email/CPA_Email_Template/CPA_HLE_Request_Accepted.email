@@ -1,7 +1,7 @@
 <messaging:emailTemplate subject="{!RelatedTo.HLE_Request_ID__c} : Accepted" recipientType="User" relatedToType="CPA_HLE_Request__c">
 <messaging:htmlEmailBody >
     Hi, <br/><br/>
-    A HLE Request with ID: {!RelatedTo.HLE_Request_ID__c}  is accepted on {!RelatedTo.Accepted_Date__c} . <br/><br/>
+    A HLE Request with ID: {!RelatedTo.HLE_Request_ID__c}  is accepted on {!Now()} . <br/><br/>
 
     You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id} ">{!RelatedTo.HLE_Request_ID__c} </a> <br/><br/>
 

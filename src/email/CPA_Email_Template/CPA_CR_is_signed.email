@@ -1,7 +1,7 @@
 <messaging:emailTemplate subject="{!RelatedTo.Name} : Signed" recipientType="User" relatedToType="CPA_CR__c">
 <messaging:htmlEmailBody >
     Hi, <br/><br/>
-    A CR with ID {!RelatedTo.Name} is Signed on {!Today()}. <br/><br/>
+    A CR with ID {!RelatedTo.Name} is Signed on {!Now()}. <br/><br/>
 
     You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id} ">{!RelatedTo.Name} </a> <br/><br/>
 

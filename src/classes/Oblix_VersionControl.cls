@@ -81,7 +81,7 @@ global with sharing class Oblix_VersionControl implements Schedulable {
             // clone campaigns
 
             List<Oblix_SOW_Projects__c> master_campaigns = [SELECT Id,Stage_Projected_CFY__c, Stage_Completed_CFY__c, Agency_Percentage_of_Fees_to_this_FY__c,Asset_Deliverables__c,BET_first_release__c,Brand_Led_Growth__c,Budget_Burnt_to_date__c,Campaign_Countries__c,Campaign_Fees_Total__c
-                    ,Campaign_Hub_Summary__c,Campaign_Idea__c,Campaign_Points__c,Campaign_Score__c,Campaign_Splits_Total__c,Campaign_Status__c,Campaign_Total_Adjustment__c,Campaign_Total_Fees__c
+                    ,Campaign_Hub_Summary__c,Campaign_Idea__c,Campaign_Points__c,Campaign_Score__c,Campaign_Splits_Total__c,Campaign_Status__c,Campaign_Total_Adjustment__c,Campaign_Total_Fees__c, First_3_selected_countries__c
                     ,Completed_Stage__c,Date_for_Assets_to_be_in_BET__c,Description__c,Enforce_Trigger_Update__c,Fees_To_Be_Paid_Next_Financial_Year__c,Final_release__c,Financial_Year__c,First_Air_Date__c
                     ,Innovation_Projects__c,IsDeleted,Is_this_High_Risk__c,Is_type_of_item_usually_poduced_by_this__c,Jobs_to_be_Done__c,List_Preview_Markets__c,Live_date_Asset_delivery__c,Live_Date__c
                     ,Name,Number_of_Agency_Hub_Splits__c,Number_of_Markets_for_Preview__c,Number_of_Previews__c,OblixClonedFromParentProject__c,OblixProjectSplitPercentage_Comment__c,OblixRegion__c
@@ -89,7 +89,7 @@ global with sharing class Oblix_VersionControl implements Schedulable {
                     ,Production_Completion_Date__c,Projected_Stage__c,ProjectTotalAssetscore__c,Project_Completion_Date__c,Project_Finish_Date__c,Project_Priority__c,Project_Scale_1__c,Project_Scale_2__c
                     ,Project_Stage__c,Project_Start_Date__c,Region__c,Selected_Countries__c,Should_legal_review_this_project__c,Start_of_TV_production__c,Stimulus_Requirements__c,Timescale_Notes__c
                     ,Total_Adapt_Fees__c,Total_Asset_Deliverables__c,Total_Digital_Fee__c,Total_Fees_for_Project__c,Total_Locations__c,Total_Project_Score__c,Total_Value_Driver__c,Value_To_BePaid_Manual_Override__c
-                    ,Value_to_be_paid_in_Current_FY__c, (SELECT Actual_Delivery_Date__c,Additional_Description__c,Agency_Projects__c,Asset_Description__c,Asset_name__c,Asset_Picklist__c,Asset_Scoring_Number__c
+                    ,Value_to_be_paid_in_Current_FY__c, (SELECT Actual_Delivery_Date__c,Additional_Description__c,Agency_Projects__c,Asset_Description__c,Asset_name__c,Asset_Picklist__c,Asset_Scoring_Number__c, Description__c
                     ,Asset_Title__c,Asset_Total_Score__c,Asset_Type__c,Calculator_Question__c,Category__c,Channels__c,FULL_Description__c,Location__c,Name,OblixClonedFromParentAsset__c,Option_Name__c,Quantity__c
                     ,RecordTypeId,Sub_Category__c,SystemModstamp,Target_Delivery_Date__c,MDM_id__c,Asset_Score__c FROM Agency_Project_Assets__r)
                     , (SELECT Enforce_Trigger_Update__c,Name,OblixCountry__c,Percentage__c,Project_Splits__c FROM Marketing_SOW_Project_Splits__r) 

@@ -75,7 +75,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>OwnerId</field>
+                <field>lkp_Owner__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -90,7 +90,7 @@
                 <field>dt_LOI_End_date__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>txt_Other_Phases_Covered_by_W_R__c</field>
             </layoutItems>
             <layoutItems>
@@ -208,6 +208,14 @@
     <relatedLists>
         <fields>NAME</fields>
         <relatedList>CPA_Queries__c.LookupLOI_Query__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <customButtons>btn_New_User_Defined_Attribute</customButtons>
+        <excludeButtons>New</excludeButtons>
+        <fields>NAME</fields>
+        <fields>pkl_Attribute_Type__c</fields>
+        <fields>txt_Value__c</fields>
+        <relatedList>CPA_User_Defined_Attribute__c.lkp_LOI__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

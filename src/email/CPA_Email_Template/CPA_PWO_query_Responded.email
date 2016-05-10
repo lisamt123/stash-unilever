@@ -2,7 +2,7 @@
 <messaging:htmlEmailBody >
 Hi,<br/><br/>
 
-{!RelatedTo.Responded_By__c} has responded to a query posted on {!RelatedTo.PWO_ID__c} with ID {!RelatedTo.Name} on {!RelatedTo.Createddate}.<br/>
+{!RelatedTo.Responded_By__c} has responded to a query posted on {!RelatedTo.PWO_ID__c} with ID {!RelatedTo.Name} on {!Now()}.<br/>
 
 You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.LookupCPA_Queries__r.CPA_Project_Work_Order__c} ">{!RelatedTo.PWO_ID__c} </a> <br/><br/>
 

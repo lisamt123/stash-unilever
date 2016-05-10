@@ -285,6 +285,15 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>dat_Sent_for_Signature_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Sent for Signature date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>dat_Submitted_Date__c</fullName>
         <description>Submission date of CR, This filed will be non editable for ULPM,Vendor ,ULPT and ULFT</description>
         <externalId>false</externalId>
@@ -317,6 +326,7 @@
     </fields>
     <fields>
         <fullName>dt_Date_raised__c</fullName>
+        <defaultValue>TODAY()</defaultValue>
         <description>Date when CR was raised</description>
         <externalId>false</externalId>
         <label>Date Raised</label>
@@ -442,6 +452,18 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>lkp_Owner__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Owner</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>CR2</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>lkp_Unilever_budget_approver__c</fullName>
@@ -685,12 +707,36 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>num_Contingency_Charges__c</fullName>
+        <externalId>false</externalId>
+        <label>Contingency Charges</label>
+        <precision>16</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>num_Delta_Efforts__c</fullName>
         <externalId>false</externalId>
         <label>Delta Efforts</label>
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_Discounts__c</fullName>
+        <externalId>false</externalId>
+        <label>Discounts</label>
+        <precision>16</precision>
+        <required>false</required>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -916,6 +962,17 @@
         <externalId>false</externalId>
         <label>Expense %*</label>
         <precision>5</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>per_Variance__c</fullName>
+        <externalId>false</externalId>
+        <label>Variance %*</label>
+        <precision>4</precision>
         <required>false</required>
         <scale>2</scale>
         <trackHistory>false</trackHistory>
@@ -1257,7 +1314,7 @@
         <fullName>pkl_Status__c</fullName>
         <description>Auto generated based on user actions</description>
         <externalId>false</externalId>
-        <label>Status*</label>
+        <label>Status</label>
         <picklist>
             <picklistValues>
                 <fullName>Saved</fullName>
@@ -1397,7 +1454,7 @@
         <fullName>txt_Other_Phase_change_record_raised__c</fullName>
         <externalId>false</externalId>
         <label>Other Phase change record raised</label>
-        <length>20</length>
+        <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1408,7 +1465,7 @@
         <fullName>txt_Other_Project_Phases__c</fullName>
         <externalId>false</externalId>
         <label>Other Project Phases</label>
-        <length>20</length>
+        <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1440,7 +1497,7 @@
     <fields>
         <fullName>txt_PWODelta_Other_Innovation_Area__c</fullName>
         <externalId>false</externalId>
-        <label>Other Innovation Area</label>
+        <label>Other Unilever Innovation Area</label>
         <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1571,10 +1628,82 @@
     <listViews>
         <fullName>All_CR</fullName>
         <columns>NAME</columns>
+        <columns>txta_PWORFDelta_Title__c</columns>
         <columns>pkl_Status__c</columns>
+        <columns>txt_PWODelta_Accenture_Project_Manager__c</columns>
+        <columns>CPA_Project_Work_Order__c</columns>
+        <columns>PWO_number__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
         <filterScope>Everything</filterScope>
         <label>All CR</label>
         <language>en_US</language>
+        <sharedTo>
+            <group>CAP_SMT_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CR_Assigned_to_SMT</fullName>
+        <columns>NAME</columns>
+        <columns>txta_PWORFDelta_Title__c</columns>
+        <columns>pkl_Status__c</columns>
+        <columns>txt_PWODelta_Accenture_Project_Manager__c</columns>
+        <columns>CPA_Project_Work_Order__c</columns>
+        <columns>PWO_number__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Queue</filterScope>
+        <label>CR Assigned to SMT</label>
+        <language>en_US</language>
+        <queue>CPA_SMT</queue>
+        <sharedTo>
+            <group>CAP_SMT_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CR_Assigned_to_VDM</fullName>
+        <columns>NAME</columns>
+        <columns>txta_PWORFDelta_Title__c</columns>
+        <columns>pkl_Status__c</columns>
+        <columns>txt_PWODelta_Accenture_Project_Manager__c</columns>
+        <columns>CPA_Project_Work_Order__c</columns>
+        <columns>PWO_number__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Queue</filterScope>
+        <label>CR Assigned to VDM</label>
+        <language>en_US</language>
+        <queue>CAP_VDM_Queue</queue>
+        <sharedTo>
+            <group>CAP_SMT_Group</group>
+            <group>CAP_VDM_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CR_Created_By_Me</fullName>
+        <columns>NAME</columns>
+        <columns>txta_PWORFDelta_Title__c</columns>
+        <columns>pkl_Status__c</columns>
+        <columns>txt_PWODelta_Accenture_Project_Manager__c</columns>
+        <columns>CPA_Project_Work_Order__c</columns>
+        <columns>PWO_number__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Mine</filterScope>
+        <label>CR Created By Me</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>CAP_SMT_Group</group>
+            <group>CAP_VDM_Group</group>
+        </sharedTo>
     </listViews>
     <nameField>
         <displayFormat>CR-{00000}</displayFormat>
@@ -1615,7 +1744,7 @@
             <picklist>mpkl_Change_Record_history__c</picklist>
             <values>
                 <fullName>1st Change</fullName>
-                <default>true</default>
+                <default>false</default>
             </values>
             <values>
                 <fullName>2nd Change</fullName>
@@ -2044,7 +2173,7 @@
             <picklist>mpkl_Change_Record_history__c</picklist>
             <values>
                 <fullName>1st Change</fullName>
-                <default>true</default>
+                <default>false</default>
             </values>
             <values>
                 <fullName>2nd Change</fullName>
@@ -2473,7 +2602,7 @@
             <picklist>mpkl_Change_Record_history__c</picklist>
             <values>
                 <fullName>1st Change</fullName>
-                <default>true</default>
+                <default>false</default>
             </values>
             <values>
                 <fullName>2nd Change</fullName>
@@ -2902,7 +3031,7 @@
             <picklist>mpkl_Change_Record_history__c</picklist>
             <values>
                 <fullName>1st Change</fullName>
-                <default>true</default>
+                <default>false</default>
             </values>
             <values>
                 <fullName>2nd Change</fullName>
@@ -3765,7 +3894,7 @@ ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Saved&quot;)
     </validationRules>
     <validationRules>
         <fullName>CPA_Status_cant_be_chaged</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>IF PWO is set for Termination then CR status cant be changed</description>
         <errorConditionFormula>OR(
 ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &apos;Sent For Termination&apos;),
@@ -3827,10 +3956,10 @@ else if(p.pkl_Status__c == &quot;Delivered&quot;){
 alert(&quot;CR is already Delivered&quot;); 
 }
 else if(p.pkl_Status__c != &quot;Signed&quot;){ 
-alert(&quot;CR can not be Delivered as it is not yet signed&quot;); 
+alert(&quot;CR cant be Delivered as it is not yet signed&quot;); 
 } 
 else { 
-alert(&quot;CR can not be Delivered, Contact Administrator&quot;); 
+alert(&quot;CR cant be Delivered, Contact Administrator&quot;); 
 } 
 }
 else{
@@ -3867,13 +3996,13 @@ if(permissionSetName == &quot;CPA_ADM&quot;  ){
 
 	if(&apos;{!CPA_project_work_order__c.Id}&apos; == &apos;&apos;){
 		//alert(&quot;StandAlone CR&quot;);
-		window.open(&quot;/&quot;+&quot;{!$Label.CPA_CR_Object_Id}/e?RecordType=&quot;+RecTypeStandAlone[0].Id+&quot;&amp;retURL={!$Label.CPA_CR_Object_Id}&quot;,&quot;_self&quot;); 
+		window.open(&quot;/&quot;+&quot;{!$Label.CPA_CR_Object_Id}/e?RecordType=&quot;+RecTypeStandAlone[0].Id+&quot;&amp;retURL={!$Label.CPA_CR_Object_Id}&quot;,&quot;_parent&quot;); 
 	}else{
 		//alert(&quot;Regular CR&quot;);
 		if((&quot;{!CPA_project_work_order__c.pkl_Status__c}&quot; == &quot;Accepted&quot; || &quot;{!CPA_project_work_order__c.pkl_Status__c}&quot; == &quot;Sent for Signature&quot;|| &quot;{!CPA_project_work_order__c.pkl_Status__c}&quot; == &quot;Signed&quot; || &quot;{!CPA_project_work_order__c.pkl_Status__c}&quot; == &quot;Delivered&quot;) ||&quot;{!CPA_project_work_order__c.Id}&quot; == &apos;&apos; ) 
 		{ 
 			//window.open(&apos;/apex/CPA_CreatePWO?id={!CPA_project_work_order__c.Id}&apos;,&quot;_self&quot;); 
-			window.open(&quot;/&quot;+&quot;{!$Label.CPA_CR_Object_Id}/e?RecordType=&quot;+RecTypeRegular[0].Id+&quot;{!$Label.CPA_PWO_Name_Field_Id}={!CPA_project_work_order__c.Name}&amp;{!$Label.CPA_PWO_Name_Field_Id}_lkid={!CPA_project_work_order__c.Id}&quot;,&quot;_self&quot;);
+			window.open(&quot;/&quot;+&quot;{!$Label.CPA_CR_Object_Id}/e?RecordType=&quot;+RecTypeRegular[0].Id+&quot;{!$Label.CPA_PWO_Name_Field_Id}={!CPA_project_work_order__c.Name}&amp;{!$Label.CPA_PWO_Name_Field_Id}_lkid={!CPA_project_work_order__c.Id}&quot;,&quot;_parent&quot;);
 		}else{ 
 			alert(&quot;CR can be created only if associated PWO is in Accepted/Sent for Signature/Signed/Delivered status&quot;); 
 		} 
@@ -3928,12 +4057,12 @@ if(permissionSetName == &quot;CPA_ADM&quot;){
 		else{ 
 			p.pkl_Status__c = &quot;Submitted&quot;; 
 			result = sforce.connection.update([p]); 
-	
+	//alert(result);
 			location.reload(true); 
 		} 
 	} 
 	else { 
-		alert(&quot;CR can not be submitted, as required fields are missing&quot;); 
+		alert(&quot;CR cant be submitted, as required fields are missing&quot;); 
 	}
 }else{
 	alert(&quot;You are not authorized to perform this action.&quot;);
@@ -3964,9 +4093,9 @@ var permissionSetName = records1[0].PermissionSet.Name;
 if( permissionSetName == &quot;CPA_SMT&quot;){ 
 
 	if(p.pkl_Status__c == &apos;Cancelled&apos;){ 
-		alert(&quot;Can not Cancel CR as it is already Cancelled&quot;); 
+		alert(&quot;Cant Cancel CR as it is already Cancelled&quot;); 
 	}else if(p.pkl_Status__c == &apos;Delivered&apos;){ 
-		alert(&quot;Can not Cancel CR as it is Delivered&quot;); 
+		alert(&quot;Cant Cancel CR as it is Delivered&quot;); 
 	} 
 	else{ 
 		window.open(&apos;/apex/CPA_CR_Cancel_Reason?id=&apos;+&quot;{!CPA_CR__c.Id}&quot;,&quot;_self&quot;); 
@@ -4001,13 +4130,13 @@ try {
 
 	if( permissionSetName == &quot;CPA_SMT&quot;){ 
 		if(p.pkl_Status__c == &quot;Signed&quot;){ 
-			alert(&quot;Can not Return, as CR is already Signed&quot;); 
+			alert(&quot;Cant Return, as CR is already Signed&quot;); 
 		} else if(p.pkl_Status__c == &quot;Cancelled&quot;){ 
-			alert(&quot;Can not Return, as CR is already Cancelled&quot;); 
+			alert(&quot;Cant Return, as CR is already Cancelled&quot;); 
 		}else if(p.pkl_Status__c ==&quot;Sent for Signature&quot;){ 
 			window.open(&apos;/apex/CPA_CR_Reason_for_return?id=&apos;+&quot;{!CPA_CR__c.Id}&quot;,&quot;_self&quot;); 
 		}else if(p.pkl_Status__c == &quot;Returned&quot;){ 
-			alert(&quot;Can not Return, as CR is already Returned&quot;); 
+			alert(&quot;Cant Return, as CR is already Returned&quot;); 
 		}else if(p.pkl_Status__c == &quot;Accepted&quot; ){ 
 			alert(&quot;The CR should be sent for Signature before returning from DocuSign.&quot;); 
 		}else if(p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot;){
@@ -4057,7 +4186,7 @@ if( permissionSetName == &quot;CPA_SMT&quot;){
 		alert(&quot;CR is already Sent for Signature&quot;);
 	}
 	else{ 
-		alert(&quot;CR Can not be Sent for Signature, Concern Administrator&quot;); 
+		alert(&quot;CR cant be Sent for Signature, Concern Administrator&quot;); 
 	} 
 }else{ 
 	alert(&quot;You are not authorized to perform this action.&quot;); 
@@ -4095,7 +4224,7 @@ if( permissionSetName == &quot;CPA_SMT&quot;){
 		alert(&quot;CR is already Signed&quot;);
 	}
 	else{ 
-		alert(&quot;CR Can not be Signed, Concern Administrator&quot;); 
+		alert(&quot;CR cant be Signed, Concern Administrator&quot;); 
 	} 
 }else{ 
 	alert(&quot;You are not authorized to perform this action.&quot;); 
