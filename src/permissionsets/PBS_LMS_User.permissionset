@@ -281,7 +281,6 @@
         <field>PC_Group__c.Title__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <label>PBS LMS User</label>
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
@@ -318,7 +317,6 @@
         <object>PBS_Standard_Job_Profile__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
-    
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
