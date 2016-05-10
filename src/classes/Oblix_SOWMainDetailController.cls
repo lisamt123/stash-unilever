@@ -106,12 +106,14 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
 
     public Boolean submitForApprovalFX{
         get{
-            String DateMsg = Oblix_Utils.getOblixSettingValueByName('FX_UPDATED_DATE');
-            Date FXChange = date.parse(DateMsg).addMonths(12);
-            if(date.today() <= FXChange){
-                return true;
-            }else{
+            Date fxDate = null;
+            Oblix_FX_Change__c orgDate = Oblix_FX_Change__c.getInstance(UserInfo.getOrganizationId());
+            if(null != orgDate)
+                fxDate = orgDate.Org_FX_Date__c;
+            if(fxDate != null && date.today() <= fxDate.addMonths(12)){
                 return false;
+            }else{
+                return true;
             }
     }set;}
 

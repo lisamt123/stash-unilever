@@ -577,6 +577,8 @@ public with sharing class Oblix_SyncBatchJob implements Database.Batchable<JobCo
 
     public Iterable<JobComponent> start(Database.BatchableContext BC) {
         
+        // set job is running to block workflows updating campaigns
+        updateJobRunningCustomSetting(true);
         sync_job = this;
         return sync_job.list_job_components;
     }
@@ -596,8 +598,8 @@ public with sharing class Oblix_SyncBatchJob implements Database.Batchable<JobCo
             if (sync_job.job_has_error){
 
                 addEvent('ERROR OCCURED ABORTING JOB!',NULL);
-                system.debug(sync_job.process_result);
-        
+                
+        		finalise();
                 // update the job status 
                 //finaliseBatchJob();
 
@@ -616,11 +618,17 @@ public with sharing class Oblix_SyncBatchJob implements Database.Batchable<JobCo
         addEvent(EVENT_ADD,NULL);
         addEvent('completed sync batch job',NULL);
         addEvent(EVENT_ADD,NULL);
-
-        system.debug(sync_job.process_result);
-        
+        finalise();
     }
 
+    private void finalise(){
+
+        // set job running back to false to allow workflows working again
+        updateJobRunningCustomSetting(false);
+        
+        system.debug(sync_job.process_result);
+
+    }
 
     public static void addEvent(String event_message, String dml_exception){
 
@@ -678,5 +686,16 @@ public with sharing class Oblix_SyncBatchJob implements Database.Batchable<JobCo
         }
 
         return numberOfChuncks;
+    }
+
+
+	public void updateJobRunningCustomSetting(boolean new_value){
+
+		addEvent('#### switching job running flag ' + new_value,NULL);
+		Oblix_Job_Orchestration__c job_is_running = Oblix_Job_Orchestration__c.getOrgDefaults();
+		job_is_running.Job_Is_Running__c = new_value;
+
+		update job_is_running;
+
     }
 }

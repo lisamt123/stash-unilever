@@ -302,14 +302,23 @@ public with sharing class Oblix_SOWRollOverLogic {
         cloned_campaign.Completed_Stage_PFY__c = getUnionCurrentAndPastStages(original_campaign, 'Completed_Stage_CFY__c','Completed_Stage_PFY__c'); // original_campaign.Completed_Stage_CFY__c;
         cloned_campaign.Projected_Stage_PFY__c = getUnionCurrentAndPastStages(original_campaign, 'Projected_Stage_CFY__c','Projected_Stage_PFY__c'); //original_campaign.Projected_Stage_CFY__c;
         cloned_campaign.Total_Project_Score_PFY__c = original_campaign.Total_Project_Score__c ;
+
+
+        cloned_campaign.Percentage_of_Fees_PFY__c = NULL != original_campaign.Percentage_of_Fees_PFY__c
+        	? original_campaign.Percentage_of_Fee_for_this_FY__c + original_campaign.Percentage_of_Fees_PFY__c
+        	: original_campaign.Percentage_of_Fee_for_this_FY__c;
         
         if (is_new_clone){
 	        // select all projected stages by default when initiating rollover process
         	cloned_campaign.Projected_Stage_CFY__c = Oblix_Utils.CAMPAIGN_STAGES_ALL;
         }
+        //else
+        //{
+
+        //}
         // set the remaining value for this FY
-        if (NULL != original_campaign.Percentage_of_Fees_PFY__c){
-        	cloned_campaign.Percentage_of_Fee_for_this_FY__c = 100 - original_campaign.Percentage_of_Fees_PFY__c;
+        if (NULL != cloned_campaign.Percentage_of_Fees_PFY__c){
+        	cloned_campaign.Percentage_of_Fee_for_this_FY__c = 100 - cloned_campaign.Percentage_of_Fees_PFY__c;
         }else{
         	cloned_campaign.Percentage_of_Fee_for_this_FY__c = 100;
         }

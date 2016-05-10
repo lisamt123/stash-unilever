@@ -9,6 +9,7 @@ public with sharing class Oblix_DashboardsHandler {
 	public final String SCORE_L = 'L';
 	public final String SCORE_TOTAL = 'TOTAL';
 	public final String TOTAL_ASSETS = 'TotalAssets';
+	public final Set<String> ASSET_TYPES_SET = new Set<String> { 'Stimulus Materials', 'Audio Visual' , 'Digital', 'Experiential', 'Static Imagery'};
 	
 	public Integer totalAssets { 
 		get{
@@ -133,13 +134,33 @@ public with sharing class Oblix_DashboardsHandler {
 		List<AggregateResult> assetTypes = [select count(id) num, Asset_Type__c assetType from Oblix_Project_Assets__c group by Asset_Type__c order by Asset_Type__c asc limit 10000000];
 		System.DEBUG(assetTypes);
 		Map<String, Integer> assetCountToAddMap = new Map<String, Integer>();
+		//to maintain the order of the colours in the graph, google expects all possible types with a value 0 
+		for(String eachAssetType : ASSET_TYPES_SET){
+			if(assetCountToAddMap.get(eachAssetType) == null){
+				assetCountToAddMap.put(eachAssetType,0);
+			}
+		}
 		//
 		for(AggregateResult ar : [SELECT sum(Quantity__c) num, Asset_Type__c assetType FROM Oblix_Project_Assets__c 
 									WHERE Agency_Projects__c =: recordId
 		                          	GROUP BY Asset_Type__c ORDER BY Asset_Type__c ASC]){
-		                              if(ar.get('assetType') != null && !String.valueOf(ar.get('assetType')).equalsIgnoreCase('null')){
-		                              	assetCountToAddMap.put(removeStringValuesAfterHyphen((String)ar.get('assetType')),Integer.valueOf(ar.get('num')));
-		                              }
+			for(String eachAssetType : ASSET_TYPES_SET){
+	            if(ar.get('assetType') != null && !String.valueOf(ar.get('assetType')).equalsIgnoreCase('null')){
+	            	//to maintain the order of the colours in the graph, google expects all possible types with a value 0 
+            		String currentAssetType = removeStringValuesAfterHyphen((String)ar.get('assetType'));
+            		System.DEBUG('Current colour : ' + currentAssetType);
+	            	System.DEBUG('Current Asset Type : ' + eachAssetType);
+            		if(currentAssetType.equalsIgnoreCase(eachAssetType)){
+              			assetCountToAddMap.put(eachAssetType,Integer.valueOf(ar.get('num')));
+            		}
+	            }
+	        }
+		}
+		//to maintain the order of the colours in the graph, google expects all possible types with a value 0 
+		for(String eachAssetType : ASSET_TYPES_SET){
+			if(assetCountToAddMap.get(eachAssetType) == null){
+				assetCountToAddMap.put(eachAssetType,0);
+			}
 		}
 		for(String assetType : assetCountToAddMap.keyset()){
 			retval.add(new List<String>{assetType,String.valueOf(assetCountToAddMap.get(assetType))});

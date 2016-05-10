@@ -9,6 +9,7 @@ public with sharing class Oblix_TestUtils {
 
     public static final String UTF8 = 'UTF-8';
     public static final String CATEGORY_FINANCE = 'Category Finance';
+    public static final String EUROPE_LONDON = 'Europe/London';
 
 
     public static final String JOB_STATUS_SYNC_COMPLETED = 'Sync Completed';
@@ -24,7 +25,7 @@ public with sharing class Oblix_TestUtils {
         User user = new User(Alias = 'test123', Email = 'standarduser@unilever.com', 
           EmailEncodingKey = UTF8, LastName = 'af test', LanguageLocaleKey = EN_US, 
           LocaleSidKey = EN_US, ProfileId = profile.Id,firstname = 'sf test one', 
-          TimeZoneSidKey = 'Europe/London',AF_Agency_Fees_User_Type__c = 'Category Finance',isActive = true, 
+          TimeZoneSidKey = EUROPE_LONDON,AF_Agency_Fees_User_Type__c = CATEGORY_FINANCE,isActive = true, 
           UserName = 'testuseradmin@test123321.com');
         insert user; 
 
@@ -38,7 +39,7 @@ public with sharing class Oblix_TestUtils {
         User user = new User(Alias = 'QA1', Email = 'standarduser@unilever.com.qa1', 
         EmailEncodingKey = UTF8, LastName = 'qa1 test', LanguageLocaleKey = EN_US, 
         LocaleSidKey = EN_US, ProfileId = profile.Id,firstname = 'qa1user', 
-        TimeZoneSidKey = 'Europe/London',AF_Agency_Fees_User_Type__c = CATEGORY_FINANCE,isActive = true, 
+        TimeZoneSidKey = EUROPE_LONDON,AF_Agency_Fees_User_Type__c = CATEGORY_FINANCE,isActive = true, 
         UserName = 'testuser@test123321.com');
         insert user; 
 
@@ -55,7 +56,7 @@ public with sharing class Oblix_TestUtils {
         User user = new User(Alias = 'S_User', Email = 'Super_User_Test@unilever.com.superuser', 
         EmailEncodingKey = UTF8, LastName = 'Super_User_Test test', LanguageLocaleKey = EN_US, 
         LocaleSidKey = EN_US, ProfileId = profile.Id,firstname = 'Super_User_Test', 
-        TimeZoneSidKey = 'Europe/London',AF_Agency_Fees_User_Type__c = CATEGORY_FINANCE,isActive = true, 
+        TimeZoneSidKey = EUROPE_LONDON,AF_Agency_Fees_User_Type__c = CATEGORY_FINANCE,isActive = true, 
         UserName = 'Super_User_Test@Super_User_Test123.com');
         insert user; 
 
@@ -72,7 +73,7 @@ public with sharing class Oblix_TestUtils {
         User user = new User(Alias = 'S_Admin', Email = 'Admin_Super_User_Test@unilever.com.superuser', 
         EmailEncodingKey = UTF8, LastName = 'Admin_Super_User_Test test', LanguageLocaleKey = EN_US, 
         LocaleSidKey = EN_US, ProfileId = profile.Id,firstname = 'Admin_Super_User_Test', 
-        TimeZoneSidKey = 'Europe/London',AF_Agency_Fees_User_Type__c = CATEGORY_FINANCE,isActive = true, 
+        TimeZoneSidKey = EUROPE_LONDON,AF_Agency_Fees_User_Type__c = CATEGORY_FINANCE,isActive = true, 
         UserName = 'Admin_Super_User_Test@Admin_Super_User_Test123.com');
         insert user; 
 
@@ -142,7 +143,7 @@ public with sharing class Oblix_TestUtils {
 
     public static Oblix_SOW_Projects__c createSowProjects(String name, Id marketingSowId){
         Oblix_SOW_Projects__c project = new Oblix_SOW_Projects__c();
-        project.Name = name;
+        project.Name_Prefix__c = name;
         project.Financial_Year__c = marketingSowId;
         project.Campaign_Countries__c = 'France, UK, Germany';
         System.DEBUG('Project Name : ' + project);
@@ -251,6 +252,20 @@ public with sharing class Oblix_TestUtils {
         oblix_settings = (list<Oblix_Settings__c>) json.deserialize(settings_json_string,list<Oblix_Settings__c>.class);
 
         return oblix_settings;
+    }
+
+    public static List<Oblix_FX_Change__c> createOblixFXChangeCustomSetting(){
+        List<Oblix_FX_Change__c> retList = new List<Oblix_FX_Change__c>();
+
+        Oblix_FX_Change__c csRec = new Oblix_FX_Change__c();
+
+        csRec.SetupOwnerId = UserInfo.getOrganizationId();
+        csRec.Acknowledged__c = false;
+        csRec.FX_Date__c = '01/01/2015';
+        csRec.Org_FX_Date__c = Date.Today();
+        retList.add(csRec);
+        
+        return retList;
     }
 
     public static Map<Id, Oblix_SOW_Projects__c> insertCampaignsWithRelatedRecords(Integer number_of_campaigns,Integer  number_of_assets,Integer  number_of_hubs, Id sow_id,String brand_led_growth, String scale_1, String scale_2, String campaign_idea ){
@@ -643,7 +658,7 @@ public with sharing class Oblix_TestUtils {
         return new User(Alias = name+'ut', Email = name+'unittest@unilever.com', 
             EmailEncodingKey = UTF8, LastName = 'LastName', LanguageLocaleKey = EN_US, 
             LocaleSidKey = EN_US, ProfileId = profile.Id, FirstName = name, 
-            TimeZoneSidKey = 'Europe/London',AF_Agency_Fees_User_Type__c = CATEGORY_FINANCE,isActive = true, 
+            TimeZoneSidKey = EUROPE_LONDON,AF_Agency_Fees_User_Type__c = CATEGORY_FINANCE,isActive = true, 
             UserName = name+'@unilever.com.unittest');
     }
 

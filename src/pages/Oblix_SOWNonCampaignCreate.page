@@ -154,6 +154,10 @@
                                         </apex:outputPanel>
                                     </apex:outputPanel>
                                     <div class="row">
+                                        <div class="col-lg-4 non_camp_description_spacing">
+                                            <p class="create_SOW_form_titles">Other info (optional)</p>
+                                            <apex:inputField id="activityDescription" value="{!helper.currentActivity.nonCampaignItem.Description__c}" html-rows="3" html-cols="35"/>
+                                        </div>
                                         <div class="col-lg-4 non_camp_dropdown_spacing">
                                             <p class="create_SOW_form_titles">Role*</p>
                                             <apex:selectList size="1" value="{!helper.currentActivity.selectedRole}" id="selectedRole" styleclass="picklist_init" style="min-width:100%;" disabled="{!IF(helper.currentActivity.roleVisible==false,true,false)}" onchange="refreshActivitySelection();blockme();">
@@ -173,21 +177,14 @@
                                                 <apex:input type="number" styleClass="hourly_rate_box" html-min="0" html-step="0.01" value="{!helper.currentActivity.hoursSelected}"  disabled="{!IF(helper.currentActivity.valVisible==false,false,false)}" id="hoursSelected" onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);" html-onPaste="return false;" onkeypress="return onKeyPress_IsDigitAndDecimalValidation(event, this);"/>
                                                 hours                                
                                             </p>
-                                        </div>
-                                        <div class="col-lg-4 non_camp_description_spacing">
-                                            <p class="create_SOW_form_titles">Other info (optional)</p>
-                                            <apex:inputField id="activityDescription" value="{!helper.currentActivity.nonCampaignItem.Description__c}" html-rows="3" html-cols="35"/>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-offset-10 col-lg-2">
                                             <apex:outputPanel id="addUpdateButton">
                                                 <apex:outputPanel rendered="{!IF(can_manage_non_campaign,true,false)}">
                                                     <apex:commandButton value="{!(IF(helper.isUpdateActivity,'UPDATE','ADD'))}" styleClass="pull-right btn btn-primary btn_plus {!(IF(helper.isUpdateActivity,'btn_update','btn_asset_add'))}" onclick="blockme();addToActivitySelection(true);return false;" /> 
                                                 </apex:outputPanel> 
-                                            </apex:outputPanel>  
+                                            </apex:outputPanel> 
                                         </div>
-                                    </div>    
+                                        
+                                    </div>
 
                                 </apex:outputPanel>
                                 <apex:outputPanel id="activitySelectionTable" >
@@ -278,6 +275,10 @@
                                             </div>
                                         </div>
                                         <div class="row">
+                                            <div class="col-lg-4 non_camp_description_spacing">
+                                                <p class="create_SOW_form_titles">Other info (optional)</p>
+                                                <apex:inputField id="resourceDescription" value="{!helper.currentResource.nonCampaignItem.Description__c}" html-rows="3" html-cols="35"/>
+                                            </div>
                                             <div class="col-lg-4 non_camp_dropdown_spacing">
                                                 <p class="create_SOW_form_titles">Role*</p>
                                                 <apex:selectList size="1" value="{!helper.currentResource.selectedRole}" id="dedicatedSelectedRole" styleclass="picklist_init" style="min-width:100%;" disabled="{!IF(helper.currentResource.roleVisible==false,true,false)}" onchange="refreshActivitySelection();blockme();">
@@ -296,21 +297,15 @@
                                                     <apex:input type="number" styleclass="prcentt input_init" html-min="0" html-max="100" html-step="0.01" value="{!helper.currentResource.hoursSelected}"  style="width:60px;" id="prcent"   onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);  if($(this).val()>100)  $(this).val(100);  " html-onPaste="return false;" onkeypress="return onKeyPress_IsDigitAndDecimalValidation(event, this);" />
                                                     
                                                 </p>
-                                            </div>
-                                            <div class="col-lg-4 non_camp_description_spacing">
-                                                <p class="create_SOW_form_titles">Other info (optional)</p>
-                                                <apex:inputField id="resourceDescription" value="{!helper.currentResource.nonCampaignItem.Description__c}" html-rows="3" html-cols="35"/>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-offset-10 col-lg-2">
                                                 <apex:outputPanel id="addResourceUpdateButton">
                                                     <apex:outputPanel rendered="{!IF(can_manage_non_campaign,true,false)}">
                                                         <apex:commandButton value="{!(IF(helper.isUpdateResource,'UPDATE','ADD'))}" styleClass="pull-right btn btn-primary btn_plus {!(IF(helper.isUpdateResource,'btn_update','btn_asset_add'))}" onclick="blockme();addToActivitySelection(false); return false;" /> 
                                                     </apex:outputPanel> 
                                                 </apex:outputPanel> 
                                             </div>
+                                            
                                         </div>
+
                                     </apex:outputPanel>
                                     <apex:outputPanel id="resourceSelectionTable"  >
                                         <apex:outputPanel rendered="{!IF(helper.currentSectionItemCount > 0, true, false)}">

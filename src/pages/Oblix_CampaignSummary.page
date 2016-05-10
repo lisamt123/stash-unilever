@@ -511,11 +511,11 @@
                         </apex:outputPanel>
                     </div>
                     <ul class="donut_chart_list">
+                        <li class="stimulus_material_key"><span class="donut_point_align">&#9679;</span><span>Stimulus Material</span></li>
                         <li class="audio_visual_key"><span class="donut_point_align">&#9679;</span><span>Audio Visual</span></li>
                         <li class="digital_key"><span class="donut_point_align">&#9679;</span><span>Digital</span></li>
                         <li class="experimental_key"><span class="donut_point_align">&#9679;</span><span>Experimental</span></li>
                         <li class="static_imagery_key"><span class="donut_point_align">&#9679;</span><span>Static Imagery</span></li>
-                        <li class="stimulus_material_key"><span class="donut_point_align">&#9679;</span><span>Stimulus Material</span></li>
                     </ul>
                 </div>
             </div>

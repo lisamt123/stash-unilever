@@ -81,7 +81,7 @@
             <apex:outputPanel id="top_right_panel">
                 <table class="SOW_header_value_summary">
                     <tr>
-                        <td class="header_approval_button" rowspan="3"><apex:outputPanel rendered="{!show_submit}"><button type="button" class="btn btn-danger btn-xs create_SOW_button btn_check btn_submit_approval" data-toggle="modal"  data-target="#submitApproval" disabled="{!submitForApprovalFX}">SUBMIT FOR APPROVAL</button></apex:outputPanel></td>
+                        <td class="header_approval_button" rowspan="3"><apex:outputPanel rendered="{!show_submit}"><button type="button" class="btn btn-danger btn-xs create_SOW_button btn_check btn_submit_approval" data-toggle="modal"  data-target="#submitApproval">SUBMIT FOR APPROVAL</button></apex:outputPanel></td>
                         <td class="header_approval_button" rowspan="3"><apex:outputPanel rendered="{!can_reject_sow}"><button type="button" class="btn btn-danger btn-xs two_button_header btn_return btn_send_back" data-toggle="modal"  data-target="#sendBack">RETURN SOW</button></apex:outputPanel></td>
                         <td class="header_approval_button" rowspan="3"><apex:outputPanel rendered="{!can_approve_sow}"><button type="button" class="btn btn-danger btn-xs create_SOW_button btn_check btn_approve_sow"  data-toggle="modal"  data-target="#sowApprove">APPROVE SOW</button></apex:outputPanel></td>
                         <td class="SOW_header_value_title">SOW total (including risk adjustment)</td>
@@ -282,55 +282,59 @@
             <!-- SOW details: -->
             <apex:outputPanel id="sow_details">
                     <hr class="divider" />
-                    <table class="SOW_name_status_info">
-                        <tr>
-                            <td class="SOW_name_status_info_titles">Status</td>
-                            <td>{!selected_sow.SOW_Status__c}</td>
-                            <td class="SOW_name_status_info_margin SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.BB_or_BD__c.label}</td>
-                            <td>{!selected_sow.BB_or_BD__c}</td>
-                        </tr>
-                        <tr>
-                            <td class="SOW_name_status_info_titles">Last updated</td>
-                            <td><apex:outputText value="{!last_updated}" />  by {!selected_sow.LastModifiedBy.Name}</td>
-                            <td class="SOW_name_status_info_margin SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.OblixBrand__c.label}</td>
-                            <td>{!selected_sow.OblixBrand__r.Name}</td>
-                        </tr>
-                        <tr>
-                            <td class="SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.Oblix_AgencyEstimate__c.label}</td>
-                            <td>{!selected_sow.Oblix_AgencyEstimate__r.name}</td>
-                            <td class="SOW_name_status_info_margin SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.BigOblixProductCategory__c.label}</td>
-                            <td>{!selected_sow.BigOblixProductCategory__r.name}</td>
-                        </tr>
-                        <tr>
-                            <td class="SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.Agency_Contact__c.label} </td>
-                            <td>{!selected_sow.Agency_Contact__r.name}</td>
-                            <td class="SOW_name_status_info_margin SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.SmallProductCategory__c.label}</td>
-                            <td>{!selected_sow.SmallProductCategory__r.name}</td>
-                        </tr>
-                        <tr>
-                            <td class="SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.Unilever_Lead__c.label}</td>
-                            <td>{!selected_sow.Unilever_Lead__r.name}</td>
-                            <td class="SOW_name_status_info_margin SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.Financial_Year__c.label}</td>
-                            <td>{!selected_sow.Financial_Year__c}</td>
-                        </tr>
-                    </table>
-                    <div class="oblix_chart" id="charts" style="display:inline-block;float:right;width:500px;margin-top:-15px;">
-                        <!-- <div class="SOW_name_status_info_titles" style="padding-left:30px;">Spend by Outcome Priority</div> -->
-                        <!-- <analytics:reportChart developerName="{!reportDeveloperName}" filter="{!reportFilter}" size="tiny" showRefreshButton="false"/> -->
-                        <!-- <apex:actionRegion> -->
-                        <!-- <apex:outputPanel id="chartPanel"> -->
-                        <div id="chart_div_fy_fee" class="chartHolder" data-chart-data="{!scoresFYFeeDashboard.graphData}"></div>
-                        <div id="chart_div_full_fee" class="chartHolder" data-chart-data="{!scoresFullFeeDashboard.graphData}" style="display:none"></div>
-                        <a href="#" onclick="$('.chartHolder').toggle();">Full Fee</a>&nbsp;|&nbsp;<a href="#" onclick="$('.chartHolder').toggle();">Full Fee</a>
-                        <!-- </apex:outputPanel> -->
-                        <!-- <apex:commandLink value="Full Fee" action="{!setFee}" reRender="chartPanel">
-                            <apex:param value="FULL_FEE" assignTo="{!scoresDashboard.instanceFeeType}"/>
-                        </apex:commandLink>
-                        &nbsp;|&nbsp;
-                        <apex:commandLink value="FY Fee" action="{!setFee}" reRender="chartPanel">
-                        <apex:param value="FY_FEE" assignTo="{!scoresDashboard.instanceFeeType}"/>
-                        </apex:commandLink>
-                        </apex:actionRegion> -->
+                    <div class="col-lg-8">
+                        <table class="SOW_name_status_info" >
+                            <tr>
+                                <td class="SOW_name_status_info_titles">Status</td>
+                                <td>{!selected_sow.SOW_Status__c}</td>
+                                <td class="SOW_name_status_info_margin SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.BB_or_BD__c.label}</td>
+                                <td>{!selected_sow.BB_or_BD__c}</td>
+                            </tr>
+                            <tr>
+                                <td class="SOW_name_status_info_titles">Last updated</td>
+                                <td><apex:outputText value="{!last_updated}" />  by {!selected_sow.LastModifiedBy.Name}</td>
+                                <td class="SOW_name_status_info_margin SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.OblixBrand__c.label}</td>
+                                <td>{!selected_sow.OblixBrand__r.Name}</td>
+                            </tr>
+                            <tr>
+                                <td class="SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.Oblix_AgencyEstimate__c.label}</td>
+                                <td>{!selected_sow.Oblix_AgencyEstimate__r.name}</td>
+                                <td class="SOW_name_status_info_margin SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.BigOblixProductCategory__c.label}</td>
+                                <td>{!selected_sow.BigOblixProductCategory__r.name}</td>
+                            </tr>
+                            <tr>
+                                <td class="SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.Agency_Contact__c.label} </td>
+                                <td>{!selected_sow.Agency_Contact__r.name}</td>
+                                <td class="SOW_name_status_info_margin SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.SmallProductCategory__c.label}</td>
+                                <td>{!selected_sow.SmallProductCategory__r.name}</td>
+                            </tr>
+                            <tr>
+                                <td class="SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.Unilever_Lead__c.label}</td>
+                                <td>{!selected_sow.Unilever_Lead__r.name}</td>
+                                <td class="SOW_name_status_info_margin SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.Financial_Year__c.label}</td>
+                                <td>{!selected_sow.Financial_Year__c}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-lg-4 bar-chart-col">
+                        <div class="oblix_chart" id="charts" style="display:inline-block;float:right;width:500px;margin-top:-15px;">
+                            <!-- <div class="SOW_name_status_info_titles" style="padding-left:30px;">Spend by Outcome Priority</div> -->
+                            <!-- <analytics:reportChart developerName="{!reportDeveloperName}" filter="{!reportFilter}" size="tiny" showRefreshButton="false"/> -->
+                            <!-- <apex:actionRegion> -->
+                            <!-- <apex:outputPanel id="chartPanel"> -->
+                            <div id="chart_div_fy_fee" class="chartHolder" data-chart-data="{!scoresFYFeeDashboard.graphData}"></div>
+                            <div id="chart_div_full_fee" class="chartHolder" data-chart-data="{!scoresFullFeeDashboard.graphData}" style="display:none"></div>
+                            <a href="#" onclick="$('.chartHolder').toggle();">Full Fee</a>&nbsp;|&nbsp;<a href="#" onclick="$('.chartHolder').toggle();">Full Fee</a>
+                            <!-- </apex:outputPanel> -->
+                            <!-- <apex:commandLink value="Full Fee" action="{!setFee}" reRender="chartPanel">
+                                <apex:param value="FULL_FEE" assignTo="{!scoresDashboard.instanceFeeType}"/>
+                            </apex:commandLink>
+                            &nbsp;|&nbsp;
+                            <apex:commandLink value="FY Fee" action="{!setFee}" reRender="chartPanel">
+                            <apex:param value="FY_FEE" assignTo="{!scoresDashboard.instanceFeeType}"/>
+                            </apex:commandLink>
+                            </apex:actionRegion> -->
+                        </div>
                     </div>
                 </apex:outputPanel>
                 <!--<div class="form-group sow_main_attachments " id="UnileverAttachment">

@@ -145,6 +145,8 @@ private class Oblix_SOWMainDetailController_Test {
 
         initTestData();
 
+        insert Oblix_TestUtils.createOblixFXChangeCustomSetting();
+
         ApexPAges.currentPage().getParameters().put('sowId', mSow.Id);
         Oblix_SowMainDetailController controllerInstance = new Oblix_SowMainDetailController();
 
