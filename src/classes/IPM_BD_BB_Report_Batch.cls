@@ -576,7 +576,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
        
         IPM_Analytics__c parent = parentanalyticrec;
         list<IPM_Analytics__c> returnList = new list<IPM_Analytics__c>();
-        id regionalrolloutid;             
+        id regionalrolloutid=null;             
          
              for(IPM_Project_Rollout__c pr:projRolloutMap.get(parent.IPM_Project_Id__c)){
                     
