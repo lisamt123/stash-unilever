@@ -1,0 +1,211 @@
+    <labels>
+        <fullName>Bonus_Annual</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Bonus_Annual</shortDescription>
+        <value>Bonus Annual</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_generic_request_failure</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Generic error message for request failures</shortDescription>
+        <value>Unable to process request.</value>
+    </labels>
+    <labels>
+        <fullName>Entity_RT_Agency</fullName>
+        <categories>Recordtype</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Entity RT Agency</shortDescription>
+        <value>Agency Entity</value>
+    </labels>
+    <labels>
+        <fullName>Entity_RT_Unilever</fullName>
+        <categories>Recordtype</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Entity RT Unilever</shortDescription>
+        <value>Unilever Entity</value>
+    </labels>
+    <labels>
+        <fullName>GoogleAPIKey</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GoogleAPIKey</shortDescription>
+        <value>gme-unilever</value>
+    </labels>
+
+    <labels>
+        <fullName>HideTermsOfUseLabel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HideTermsOfUseLabel</shortDescription>
+        <value>I Accept</value>
+    </labels>
+ 
+    <labels>
+        <fullName>LAUNCH_PINNOVATE_CMD</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_LAUNCH_PINNOVATE_CMD</shortDescription>
+        <value>#launchthewall</value>
+    </labels>
+    <labels>
+        <fullName>MLST_OBJ_NAME</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MLST_OBJ_NAME</shortDescription>
+        <value>a4N</value>
+    </labels>
+    <labels>
+        <fullName>Matrix_Currency_Desc</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Matrix Currency Desc</shortDescription>
+        <value>All figures in thousands of Euro unless another currency is specified.</value>
+    </labels>
+
+    <labels>
+        <fullName>PD_OBJ_NAME</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PD_OBJ_NAME</shortDescription>
+        <value>a4S</value>
+    </labels>
+
+    <labels>
+        <fullName>PS_OBJ_NAME</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PS_OBJ_NAME</shortDescription>
+        <value>a4R</value>
+    </labels>
+    <labels>
+        <fullName>Project_Name_Contains_Brand_Name_Target_Launch_Date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Project Name Contains Brand Name Target Launch Date</shortDescription>
+        <value>Project Name Should not Contain Brand Name and Target Launch Date</value>
+    </labels>
+    <labels>
+        <fullName>Rollout_No_Records_Msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Rollout No Records Msg</shortDescription>
+        <value>No Rollouts exist for this project, Please select one from the above.</value>
+    </labels>
+    <labels>
+        <fullName>TASK_OBJ_NAME</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TASK_OBJ_NAME</shortDescription>
+        <value>a4a</value>
+    </labels>
+    <labels>
+        <fullName>TO_CaseIdentifier</fullName>
+        <categories>TO - Case Idenifier Constant</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TO_CaseIdentifier</shortDescription>
+        <value>George</value>
+    </labels>
+    <labels>
+        <fullName>TermsOfUseTitle</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>TermsOfUseTitle</shortDescription>
+        <value>Terms Of Use</value>
+    </labels>
+	<labels>
+        <fullName>toAccess_Err</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VEP_Access_Err</shortDescription>
+        <value>You do not have sufficient access to the record</value>
+    </labels>
+    <labels>
+        <fullName>button_cancel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Button cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>close</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>close button</shortDescription>
+        <value>Close</value>
+    </labels>
+    <labels>
+        <fullName>delete_milestone_msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Confirmation messages displayed while deleting milestone</shortDescription>
+        <value>You are about to remove this milestone from the milestone list. It cannot be restored at a later time. Are you sure to continue</value>
+    </labels>
+    <labels>
+        <fullName>delete_task_msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Confirmation messages displayed while deleting task</shortDescription>
+        <value>You are about to remove this task from the task list. It cannot be restored at a later time. Are you sure to continue?</value>
+    </labels> 
+    <labels>
+        <fullName>modal_info_heading</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Heading text for information dialogs</shortDescription>
+        <value>Information:</value>
+    </labels>
+    <labels>
+        <fullName>page_title_chatter_feed</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Page title for the Chatter page</shortDescription>
+        <value>My Chatter</value>
+    </labels>
+    <labels>
+        <fullName>pull_to_refresh_loading_text</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Display text when loading data via pull to refresh</shortDescription>
+        <value>Loading...</value>
+    </labels>
+    <labels>
+        <fullName>pull_to_refresh_release_text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Display text for pull to refresh release state</shortDescription>
+        <value>Release to refresh...</value>
+    </labels>
+    <labels>
+        <fullName>pull_to_refresh_text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Display text for pull to refresh</shortDescription>
+        <value>Pull down to refresh...</value>
+    </labels>
+    <labels>
+        <fullName>refresh</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Refresh</shortDescription>
+        <value>Refresh</value>
+    </labels>
+    <labels>
+        <fullName>toolbar_app_top_nav_lbl_title_text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Text for the link in the upper left corner</shortDescription>
+        <value>My chatter app</value>
+    </labels>
+    <labels>
+        <fullName>Total_Accepted_Final_Cost_PC_PPC_CA</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Total_Accepted_Final_Cost_PC_PPC_CA</shortDescription>
+        <value>Total Accepted Final Cost (CA/PC/PPC) Euro Amount</value>
+    </labels>
+    

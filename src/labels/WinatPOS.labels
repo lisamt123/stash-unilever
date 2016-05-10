@@ -1,0 +1,85 @@
+    <labels>
+        <fullName>WinAtPOS_AssetGroupName_help_text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WinAtPOS AssetGroupName help text</shortDescription>
+        <value>The name of the asset group as it will be displayed to the user in the front-end</value>
+    </labels>
+    <labels>
+        <fullName>WinAtPOS_AssetName_help_text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WinAtPOS AssetName help text</shortDescription>
+        <value>The name of the asset as it will be displayed to the user in the front-end.</value>
+    </labels>
+    <labels>
+        <fullName>WinAtPOS_Asset_Group_Info_message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WinAtPOS Asset Group Info message</shortDescription>
+        <value>Please ensure that Category or Brand or both are selected</value>
+    </labels>
+    <labels>
+        <fullName>WinAtPOS_FileName_help_text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WinAtPOS FileName help text</shortDescription>
+        <value>The name of the file as it will be displayed to the user in the front-end.</value>
+    </labels>
+    <labels>
+        <fullName>WinAtPOS_File_Upload_msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WinAtPOS File Upload msg</shortDescription>
+        <value>To upload your file – click on &apos;File&apos; and then select either &apos;Select a file from Salesforce&apos; or &apos;Upload a file from your Computer&apos;. After you have selected your file click on &apos;Share&apos;. Once the upload is finished click on &apos;Store&apos;.</value>
+    </labels>
+    <labels>
+        <fullName>WinAtPOS_Helper_link_tooltip</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WinAtPOS Helper link tooltip</shortDescription>
+        <value>Click on the link to launch Help Manual</value>
+    </labels>
+    <labels>
+        <fullName>WinatPOS_Asset_Delete_Status</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WinatPOS Asset Delete Status</shortDescription>
+        <value>ToDelete</value>
+    </labels>
+    <labels>
+        <fullName>WinatPOS_File_Error_primary_image</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WinatPOS File Error primary image</shortDescription>
+        <value>There is already another file existing for this asset which is classified as the primary image.</value>
+    </labels>
+    <labels>
+        <fullName>WinatPOS_File_empty_file_type</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WinatPOS  File empty file type</shortDescription>
+        <value>File Type: You must enter a value</value>
+    </labels>
+    <labels>
+        <fullName>WinatPOS_Upload_Error_No_Chatter_File</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WinatPOS Upload Error No Chatter File</shortDescription>
+        <value>No File has been uploaded. Please ensure that you upload your file – click on &apos;File&apos; and then select either &apos;Select a file from Salesforce&apos; or &apos;Upload a file from your Computer&apos;. After you have selected your file click on &apos;Share&apos;. Once the upload is finished click on &apos;Store&apos;.</value>
+    </labels>
+    <labels>
+        <fullName>WINatPOS_Empty_Param</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WINatPOS Empty Param</shortDescription>
+        <value>Method get an empyt value please pass non null value.</value>
+    </labels>
+    <labels>
+        <fullName>WINatPOS_Salesforce_Base_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WINatPOS_Salesforce_Base_URL</shortDescription>
+        <value>https://unilever--c.na9.visual.force.com/</value>
+    </labels>
+    
