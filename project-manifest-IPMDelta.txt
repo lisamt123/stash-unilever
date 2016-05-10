@@ -1,7 +1,4 @@
 src
 src/classes
-src/classes/IPM_ProjectShareJobQueue.cls
-src/classes/IPM_ProjectShareJobQueue.cls-meta.xml
-src/pages
-src/pages/IPM_ImageUploadCoreParam.page
-src/pages/IPM_ImageUploadCoreParam.page-meta.xml
+src/classes/IPM_FinancialYearHelper.cls
+src/classes/IPM_FinancialYearHelper.cls-meta.xml
