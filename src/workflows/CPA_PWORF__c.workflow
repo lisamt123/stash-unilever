@@ -1462,7 +1462,7 @@ null)),null)</formula>
     </rules>
     <rules>
         <fullName>CPA PWORF Status update to Auto Accepted updated</fullName>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>CPA_PWORF__c.dat_Expected_SLA1_Date__c</field>
             <operation>notEqual</operation>
@@ -1624,7 +1624,7 @@ null)),null)</formula>
     </rules>
     <rules>
         <fullName>CPA SLA2 BreachCheck Updated</fullName>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>CPA_PWORF__c.dat_Expected_SLA2_Date__c</field>
             <operation>notEqual</operation>
