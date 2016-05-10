@@ -57,6 +57,46 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
+        <fullName>Date_From__c</fullName>
+        <externalId>false</externalId>
+        <formula>Visitor__r.Date_From__c</formula>
+        <label>Date From</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_To__c</fullName>
+        <externalId>false</externalId>
+        <formula>Visitor__r.Date_To__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Date To</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Factory_to_Visit__c</fullName>
+        <externalId>false</externalId>
+        <formula>Text(Visitor__r.Factory_to_Visit__c)</formula>
+        <label>Factory to Visit</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>Text(Visitor__r.Status__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Visitor__c</fullName>
         <externalId>false</externalId>
         <label>Visitor</label>
@@ -71,9 +111,27 @@
     </fields>
     <label>Vep Visitor Pass</label>
     <listViews>
-        <fullName>All</fullName>
+        <fullName>Visitor_Dashboard</fullName>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <columns>NAME</columns>
+        <columns>Visitor__c</columns>
+        <columns>Factory_to_Visit__c</columns>
+        <columns>Status__c</columns>
+        <columns>Date_From__c</columns>
+        <columns>Date_To__c</columns>
         <filterScope>Everything</filterScope>
-        <label>All</label>
+        <filters>
+            <field>Date_From__c</field>
+            <operation>equals</operation>
+            <value>LAST_N_DAYS:7</value>
+        </filters>
+        <filters>
+            <field>Date_From__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <label>Visitor Dashboard</label>
+        <language>en_US</language>
     </listViews>
     <nameField>
         <displayFormat>VEP-{0000000}</displayFormat>
@@ -81,7 +139,11 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Vep Visitor Passes</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts>
+        <excludedStandardButtons>New</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+    </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <webLinks>
         <fullName>Generate_Pass</fullName>

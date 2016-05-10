@@ -416,7 +416,7 @@ overflow: auto; */
                                   <div class="form-group">
                                       <label class="col-lg-4 control-label">Approved By </label>
                                       
-                                      <label class="col-lg-5">{!vPass.visitor__r.Person_to_meet__c}</label>
+                                      <label class="col-lg-5">{!vPass.visitor__r.Person_to_meet__r.name}</label>
                                       
                                   </div>
                                   <div class="clearfix" style="height: 10px;clear: both;"></div>

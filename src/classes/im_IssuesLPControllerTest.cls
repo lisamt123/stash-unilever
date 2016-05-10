@@ -40,7 +40,7 @@ private class im_IssuesLPControllerTest {
         string testgetIntroduction = controller.Introduction;
         string testgetDashboardId = controller.DashboardId;  
         Test.stopTest();
-        system.assert(testgetIntroduction.contains('To Report an Issue, please use Search to check if the issue already exists.'));
+        system.assert(testgetIntroduction.contains('TEST_intro'),'Assert failed');
        }
 
     private static testMethod void testOpenLinkExternal() {
