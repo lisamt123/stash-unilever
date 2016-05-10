@@ -74,8 +74,17 @@ src/tabs/UID_Switch_User_CurrencyTab.tab
 src
 src/classes/UID_Switch_User_Currency.cls
 <<<<<<< HEAD
+<<<<<<< HEAD
 src/classes/UID_Switch_User_Currency.cls-meta.xml
 =======
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+src/classes/UID_Switch_User_Currency.cls-meta.xml
+=======
+>>>>>>> db2f0be94f1961275e868d3808e1906e6bca10e4
+>>>>>>> develop
 <<<<<<< HEAD
 <<<<<<< HEAD
 src/classes/UID_Switch_User_Currency.cls-meta.xml
