@@ -82,8 +82,6 @@ src/classes/Oblix_Ctrl10_nonCampaignView_Test.cls
 src/classes/Oblix_Ctrl10_nonCampaignView_Test.cls-meta.xml
 src/classes/Oblix_Ctrl10_nonCampaignView.cls
 src/classes/Oblix_Ctrl10_nonCampaignView.cls-meta.xml
-src/classes/Oblix_Ctrl11AuditTracking_Cmp.cls
-src/classes/Oblix_Ctrl11AuditTracking_Cmp.cls-meta.xml
 src/classes/Oblix_NonCampaignWrapper.cls
 src/classes/Oblix_NonCampaignWrapper.cls-meta.xml
 src/classes/Oblix_OuterPageTemplateController.cls
@@ -273,8 +271,6 @@ src/reports/SWOP_Reporting_Agencies/SWOP_Approval_Flow.report
 src/components
 src/components/Oblix_CampaignStage.component
 src/components/Oblix_CampaignStage.component-meta.xml
-src/components/Oblix_CmpAuditTracking.component
-src/components/Oblix_CmpAuditTracking.component-meta.xml
 src/components/Oblix_leaseGanttChart.component
 src/components/Oblix_leaseGanttChart.component-meta.xml
 src/labels
