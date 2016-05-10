@@ -20,7 +20,7 @@ public with sharing class Amr_AdManagerController_CC{
     public String productionActivityData {get;set;}
     public List<selectOption> currencyRecords {
         get {
-            List<selectOption> options  = new List<selectOption>();
+            List<selectOption> options = new List<selectOption>();
             List<selectOption> optionsNew = new List<selectOption>();
             options.add(new SelectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
             List<Amr_CurrencyConversionRate__c> lstcov = Amr_CurrencyConversionRate__c.getAll().values();
