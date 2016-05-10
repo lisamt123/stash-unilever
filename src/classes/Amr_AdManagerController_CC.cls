@@ -9,14 +9,14 @@ Purpose:
  History                                                             
  -------                                                             
  VERSION   AUTHOR                        DATE              DETAIL                    Description    
- 1.0       Mindtree                  04/02/2016      INITIAL DEVELOPMENT            CSR: 
+ 1.0       Mindtree                  04/02/2016       INITIAL DEVELOPMENT            CSR: 
  ***********************************************************************/
 public with sharing class Amr_AdManagerController_CC{
 
     public Amr_Job_Details__c jobDetails{get;set;}
     public Amr_Logging_Form_Setting__c r  {get; set;}
     public String selectedCountry {get;set;}
-    public String projectNameFromPage{get;set;}
+    public String projectNameFromPage {get;set;}
     public String productionActivityData {get;set;}
     public List<selectOption> currencyRecords {
         get {
