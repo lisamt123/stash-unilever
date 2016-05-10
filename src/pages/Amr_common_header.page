@@ -89,38 +89,6 @@
         .holder-class-star {
             line-height:40px;
         }
-        .margin-top3 {
-        	margin-top:3px;
-        }
-        .margin-top2 {
-        	margin-top:2px;
-        }
-        .margin-top40imp {
-        	margin-top:40px !important;
-        }
-        .margin-top40 {
-        	margin-top:40px;
-        }
-        .height90 {
-        	height:90px;
-        }
-        .zen .zen-noTabOrganizer .zen-tabMenu {
-		    padding-bottom: 0px !important;
-		}
-		.lower-container{
-			height:20px !important;
-		}
-		#Maintab {
-		    background: #FFF none repeat scroll 0 0;
-		    margin-left: 0px !important;
-		    padding-left: 10px;
-		}
-		.padding-top15 {
-			padding-top:15px;
-		}
-		.padding-top30 {
-			padding-top:30px;
-		}
     </style>
     <apex:form >
     <div class="header-container">
@@ -136,7 +104,7 @@
                     Hi {!$User.FirstName} {!$User.LastName}, Welcome to AdManager
                 </div>          
                 <div class="right upper-container-right-logo">
-                    <img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/email-templates/admanager_90.png')}" alt="header" />
+                    <img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/email-templates/admanager.png')}" class="height75" alt="header" />
                 </div>
                 <div class="right done-for-today" style="height:16px;">
                     <div class="left">                  
@@ -159,7 +127,7 @@
             </div>
         </div>      
         <div class="lower-container margin-top20">
-            <div class="left lower-container-logo hide">                
+            <div class="left lower-container-logo">                
                 <div class="left"><img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/email-templates/admanager.png')}" alt="banner" /></div>
                 <div class="left logo-banner-small"><img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/email-templates/animatics.png')}" alt="banner" /></div>
                 <div class="left logo-banner-small"><img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/email-templates/music.png')}" alt="banner" /></div>

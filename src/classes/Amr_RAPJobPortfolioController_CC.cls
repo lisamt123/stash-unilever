@@ -686,32 +686,11 @@ Search functionality is implemented and SOQL is built dynamically so can not bre
                Date d = Date.newInstance(myIntYear, myIntMonth, myIntDate);
                DateTime startDateFinal = DateTime.newInstance(d.year(), d.month(), d.day(), 0, 0, 0);
                DateTime refDate2 = startDateFinal.addDays(1);
-       //        soql += ' and AM_Job_Detail__r.createdDate '+  ' >= '+ startDateFinal.formatGMT(Amr_ConstantForAdManager.SECDATEFORMAT) ;
-         //      soql += ' and AM_Job_Detail__r.createdDate '+  '< '+ refDate2.formatGMT(Amr_ConstantForAdManager.SECDATEFORMAT);
-          soql += ' and AM_Job_Detail__r.createdDate'+  ' >= '+ startDateFinal.formatGMT(Amr_ConstantForAdManager.SECDATEFORMAT) ; 
+               soql += ' and AM_Job_Detail__r.createdDate '+  ' >= '+ startDateFinal.formatGMT(Amr_ConstantForAdManager.SECDATEFORMAT) ;
+               soql += ' and AM_Job_Detail__r.createdDate '+  '< '+ refDate2.formatGMT(Amr_ConstantForAdManager.SECDATEFORMAT);
                
                system.debug('soql created date'+soql);
     }
-    
-       
-   // END DATE
-   
-   if (String.isNotBlank(endDate)){
-    //end date creation
-   String[] endDateSplitQuote = endDate.split(' ');
-   String[] endDateSplitSlash = endDateSplitQuote[0].split(Amr_ConstantForAdManager.BACK_SLASH);
-   Integer myIntDate1 = integer.valueOf(endDateSplitSlash[0]);
-   Integer myIntMonth1 = integer.valueOf(endDateSplitSlash[1]);
-   Integer myIntYear1 = integer.valueOf(endDateSplitSlash[2]);
-   Date d1 = Date.newInstance(myIntYear1, myIntMonth1, myIntDate1);
-   DateTime endDateDateFinal = DateTime.newInstance(d1.year(), d1.month(), d1.day(), 0, 0, 0);
-  
-           soql += ' and AM_Job_Detail__r.createdDate ' +  ' < '+ endDateDateFinal.addDays(1).formatGMT(Amr_ConstantForAdManager.SECDATEFORMAT );
-           
-           system.debug('soql end date'+soql);
-    }
-    
-     System.debug('START DATE ->  ' + startDate +  'END DATE   '+  endDate);
         
          jobDetailList = Database.query(soql);
             getPriorityJobs();

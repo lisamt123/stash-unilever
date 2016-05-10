@@ -4,8 +4,8 @@
     <script type="text/javascript">
         $j = jQuery.noConflict();       
     </script>
-    <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/amr_menu_shift.js')}"/>    
-    <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/amr_common.js')}"/>      
+    <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/menu-shift.js')}"/>    
+    <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/common.js')}"/>      
     <style type="text/css">
         /*Overall*/        
         .foldclass {

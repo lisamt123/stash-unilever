@@ -108,16 +108,10 @@ public with sharing class Amr_JobSheetController_CC{
     public List<Amr_Quote__c> quoteRelatedToSavingList{get;set;}
  
     public string userId{get;set;}
-    public list<Amr_Saving__c>savingJobsToShow {get;set;}
-     public Integer totalSizeForSavingJobs =0;
-    public Integer limitSizeForSavingJobs=5;
-    public Integer counterForSavingJobs=0;
-     public Integer totalSavingJobPages  {get; set;}
-    public Integer currentPageNumber {get;set;}
    
     public Amr_JobSheetController_CC(){
     try{
-         if(documentList == null){
+    	 if(documentList == null){
          documentList = new List<FeedItem>();
          }
         jobIsAccepted   = false;
@@ -392,21 +386,19 @@ Returns:
             if(jobId != null){
                  if(flag){
                       quoteList = [select id,PC_Appraisal_Time_Management__c,PC_Appraisal_Output_Quality__c,PC_Appraisal_Process_Management__c,PC_Appraisal_Cost_Management__c,Duration_of_Additional_Films__c,PPC_Appraisal_Time_Management__c,PPC_Appraisal_Output_Quality__c,PPC_Appraisal_Process_Management__c ,PPC_Appraisal_Cost_Management__c,CA_Appraisal_Time_Management__c,CA_Appraisal_Output_Quality__c ,CA_Appraisal_Process_Management__c ,CA_Appraisal_Cost_Management__c,Folder_Name__c,Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,LastModifiedById, 
-                               No_of_Masters__c,No_of_Masters_List__c,Total_no_of_films__c,No_of_Additional_Films_List__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Production_Type__c,Job_Details__r.AdManagerText__c,CreatedById,Number_Of_Quotes__c, Duration_of_Masters__c,
+                               No_of_Masters__c,No_of_Masters_List__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Production_Type__c,Job_Details__r.AdManagerText__c,CreatedById,Number_Of_Quotes__c, Duration_of_Masters__c,
                                Average_Total_Opening_Quotes__c,Saving_Average_of_Quotes__c,Percentage_Saving_Accepted_Quote__c,Saving_Accepted_Quote_Euro__c,Percentage_Saving_Average_of_Quotes__c,Cost_Per_Master__c,Cost_per_master_per_shoot_day__c,(select Accepted_Final_Cost_Total_editing_cost__c,Total_Cost__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c,Is_PC_part_of_the_Roster__c,PC_name__c,PC_Country__c,Service_Company_Name__c,Local_Currency_of_PC_Costs__c,Local_Amount_of_PC__c,Is_the_PPC_part_of_the_Roster__c,PPC_Name__c,PPC_Country__c,Local_Amount_of_PPC__c,Local_Currency_of_PPC_Costs__c,PPC_Costs_Euro_Amount__c,CA_Location__c,CA_Additional_agency_Name__c,Local_Currency_of_CA_Costs__c,Local_Amount_of_CA__c,CA_Costs_Euro_Amount__c
 
-                               ,Accepted_Final_Cost_PC_only_Currency__c,Accepted_Final_Cost_PPC_only_Local_Am__c,Accepted_Final_Cost_PC_Euro_Amou__c,Accepted_Final_Cost_PC_only_Local_Amo__c,Accepted_Final_Cost_PPC_Euro_Amount__c,Accepted_Final_Cost_PPC_only_Currency__c,Accepted_Final_Cost_CA_only_Currency__c,Accepted_Final_Cost_CA_Euro_Amount__c,Accepted_Final_Cost_CA_Local_Amount__c,Accepted_Final_Cost_Editors_name__c,Accepted_Final_Cost_Sound_Studio_Name__c,Accepted_Final_Cost_Total_Sound_Studio__c,Accepted_Final_Cost_Travel_Costs__c,Accepted_Final_Cost_props_wardrobe__c,Saving_Type__c,PC_Costs_Euro_Amount__c from Quotes__r ORDER BY Quote_Number__c) from Amr_Saving__c where Display__c = true and Job_Details__r.id = :jobId];
+                               ,Accepted_Final_Cost_PC_only_Currency__c,Accepted_Final_Cost_PPC_only_Local_Am__c,Accepted_Final_Cost_PC_Euro_Amou__c,Accepted_Final_Cost_PC_only_Local_Amo__c,Accepted_Final_Cost_PPC_Euro_Amount__c,Accepted_Final_Cost_PPC_only_Currency__c,Accepted_Final_Cost_CA_only_Currency__c,Accepted_Final_Cost_CA_Euro_Amount__c,Accepted_Final_Cost_CA_Local_Amount__c,Accepted_Final_Cost_Editors_name__c,Accepted_Final_Cost_Sound_Studio_Name__c,Accepted_Final_Cost_Total_Sound_Studio__c,Accepted_Final_Cost_Travel_Costs__c,Accepted_Final_Cost_props_wardrobe__c,Saving_Type__c,PC_Costs_Euro_Amount__c from Quotes__r ORDER BY Quote_Number__c) from Amr_Saving__c where Job_Details__r.id = :jobId];
                      
                  }else{
                    quoteList = [select id,PC_Appraisal_Time_Management__c,PC_Appraisal_Output_Quality__c,PC_Appraisal_Process_Management__c,PC_Appraisal_Cost_Management__c,PPC_Appraisal_Time_Management__c,PPC_Appraisal_Output_Quality__c,Duration_of_Additional_Films__c,PPC_Appraisal_Process_Management__c ,PPC_Appraisal_Cost_Management__c,CA_Appraisal_Time_Management__c,CA_Appraisal_Output_Quality__c ,CA_Appraisal_Process_Management__c ,CA_Appraisal_Cost_Management__c,Folder_Name__c,Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,LastModifiedById, 
-                               No_of_Masters__c,No_of_Masters_List__c,Total_no_of_films__c,No_of_Additional_Films_List__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Production_Type__c,Job_Details__r.AdManagerText__c,CreatedById,Number_Of_Quotes__c,Duration_of_Masters__c,
+                               No_of_Masters__c,No_of_Masters_List__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Production_Type__c,Job_Details__r.AdManagerText__c,CreatedById,Number_Of_Quotes__c,Duration_of_Masters__c,
                                Average_Total_Opening_Quotes__c,Saving_Average_of_Quotes__c,Percentage_Saving_Accepted_Quote__c,Saving_Accepted_Quote_Euro__c,Percentage_Saving_Average_of_Quotes__c,Cost_Per_Master__c,Cost_per_master_per_shoot_day__c,(select Accepted_Final_Cost_Total_editing_cost__c,Total_Cost__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c,Is_PC_part_of_the_Roster__c,PC_name__c,PC_Country__c,Service_Company_Name__c,Local_Currency_of_PC_Costs__c,Local_Amount_of_PC__c,Is_the_PPC_part_of_the_Roster__c,PPC_Name__c,PPC_Country__c,Local_Amount_of_PPC__c,Local_Currency_of_PPC_Costs__c,PPC_Costs_Euro_Amount__c,CA_Location__c,CA_Additional_agency_Name__c,Local_Currency_of_CA_Costs__c,Local_Amount_of_CA__c,CA_Costs_Euro_Amount__c
 
-                               ,Accepted_Final_Cost_PC_only_Currency__c,Accepted_Final_Cost_PPC_only_Local_Am__c,Accepted_Final_Cost_PC_Euro_Amou__c,Accepted_Final_Cost_PC_only_Local_Amo__c,Accepted_Final_Cost_PPC_Euro_Amount__c,Accepted_Final_Cost_PPC_only_Currency__c,Accepted_Final_Cost_CA_only_Currency__c,Accepted_Final_Cost_CA_Euro_Amount__c,Accepted_Final_Cost_CA_Local_Amount__c,Accepted_Final_Cost_Editors_name__c,Accepted_Final_Cost_Sound_Studio_Name__c,Accepted_Final_Cost_Total_Sound_Studio__c,Accepted_Final_Cost_Travel_Costs__c,Accepted_Final_Cost_props_wardrobe__c,Saving_Type__c,PC_Costs_Euro_Amount__c from Quotes__r ORDER BY Quote_Number__c) from Amr_Saving__c where Display__c = true and Job_Details__r.id = :jobId AND (CreatedById = :userId OR LastModifiedById = :userId )];
+                               ,Accepted_Final_Cost_PC_only_Currency__c,Accepted_Final_Cost_PPC_only_Local_Am__c,Accepted_Final_Cost_PC_Euro_Amou__c,Accepted_Final_Cost_PC_only_Local_Amo__c,Accepted_Final_Cost_PPC_Euro_Amount__c,Accepted_Final_Cost_PPC_only_Currency__c,Accepted_Final_Cost_CA_only_Currency__c,Accepted_Final_Cost_CA_Euro_Amount__c,Accepted_Final_Cost_CA_Local_Amount__c,Accepted_Final_Cost_Editors_name__c,Accepted_Final_Cost_Sound_Studio_Name__c,Accepted_Final_Cost_Total_Sound_Studio__c,Accepted_Final_Cost_Travel_Costs__c,Accepted_Final_Cost_props_wardrobe__c,Saving_Type__c,PC_Costs_Euro_Amount__c from Quotes__r ORDER BY Quote_Number__c) from Amr_Saving__c where Job_Details__r.id = :jobId AND (CreatedById = :userId OR LastModifiedById = :userId )];
                       
-                 }      
-                 paginationMethodForSaving(quoteList);      
-                 
+                 }            
                   Set<Id>savingIds=new Set<Id>();
                       for(Amr_Saving__c saving:quoteList){
                         savingIds.add(saving.Id);
@@ -433,133 +425,7 @@ Returns:
         }
     }  
     
-      //pagination for savings starts here
-   public void paginationMethodForSaving(List<Amr_Saving__c> savingListToDisplay){
-    try{
-       savingJobsToShow = new list<Amr_Saving__c>();
-       totalSizeForSavingJobs = savingListToDisplay.size();
       
-       
-        //Intial adding
-        //check the total records are more than limitSizeForPriorityJobs and assign the records
-        if((counterForSavingJobs+limitSizeForSavingJobs) <= totalSizeForSavingJobs ){
-            for(Integer i=0;i<limitSizeForSavingJobs;i++){
-                savingJobsToShow.add(savingListToDisplay.get(i));
-            }
-        }else{
-            for(Integer i=0;i<totalSizeForSavingJobs ;i++){
-                savingJobsToShow.add(savingListToDisplay.get(i));
-            }
-        }
-        system.debug('savingJobsToShow!!'+savingJobsToShow);
-        
-        totalSavingJobPages = (totalSizeForSavingJobs /limitSizeForSavingJobs)+1;
-        currentPageNumber  = (counterForSavingJobs/limitSizeForSavingJobs)+1;
-                     
-        //getTotalActiveJobPages(totalSizeForActiveJobs/limitSizeForActiveJobs);
-        }catch(Exception ex){
-                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
-            system.debug(ex.getMessage());
-        }
-      }
-      
-      
-        public void beginningForSavingJobs(){
-        try{
-        savingJobsToShow.clear();
-        counterForSavingJobs=0;
-        if((counterForSavingJobs+ limitSizeForSavingJobs) <= totalSizeForSavingJobs){
-            for(Integer i=0;i<limitSizeForSavingJobs;i++){
-                savingJobsToShow.add(quoteList.get(i));
-            }   
-        }else{
-            for(Integer i=0;i<totalSizeForSavingJobs ;i++){
-                savingJobsToShow.add(quoteList.get(i));
-            }       
-        }
-        
-        totalSavingJobPages = (totalSizeForSavingJobs/limitSizeForSavingJobs)+1;
-        currentPageNumber = (counterForSavingJobs/limitSizeForSavingJobs)+1;
-        }catch(Exception ex){
-                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
-            system.debug(ex.getMessage());
-        }
-    }
-   
-    public void nextForSavingJobs(){
-        try{
-        savingJobsToShow.clear();
-        counterForSavingJobs=counterForSavingJobs+limitSizeForSavingJobs;
-               
-        if((counterForSavingJobs+limitSizeForSavingJobs) <= totalSizeForSavingJobs ){
-            for(Integer i=counterForSavingJobs;i<(counterForSavingJobs+limitSizeForSavingJobs);i++){
-                savingJobsToShow.add(quoteList.get(i));
-            }
-        } else{
-            for(Integer i=counterForSavingJobs;i<totalSizeForSavingJobs ;i++){
-                savingJobsToShow.add(quoteList.get(i));
-            }
-        }
-        
-        totalSavingJobPages = (totalSizeForSavingJobs /limitSizeForSavingJobs)+1;
-        currentPageNumber = (counterForSavingJobs/limitSizeForSavingJobs)+1;
-        
-        }catch(Exception ex){
-                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
-            system.debug(ex.getMessage());
-        } 
-    }
-   
-    public void previousForSavingJobs(){
-        try{
-        savingJobsToShow.clear();
-        counterForSavingJobs=counterForSavingJobs-limitSizeForSavingJobs;       
-            for(Integer i=counterForSavingJobs;i<(counterForSavingJobs+limitSizeForSavingJobs); i++){
-            savingJobsToShow.add(quoteList.get(i));
-        }
-        
-        totalSavingJobPages = (totalSizeForSavingJobs /limitSizeForSavingJobs)+1;
-        currentPageNumber = (counterForSavingJobs/limitSizeForSavingJobs)+1;
-        }catch(Exception ex){
-                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
-            system.debug(ex.getMessage());
-        }
-    }
-
-    public void lastForSavingJobs (){
-        try{
-        SavingJobsToShow.clear();
-        if(math.mod(totalSizeForSavingJobs , limitSizeForSavingJobs) == 0){
-            counterForSavingJobs = limitSizeForSavingJobs* ((totalSizeForSavingJobs/limitSizeForSavingJobs)-1);
-        } else if (math.mod(totalSizeForSavingJobs, limitSizeForSavingJobs) != 0){
-            counterForSavingJobs = limitSizeForSavingJobs* ((totalSizeForSavingJobs/limitSizeForSavingJobs));
-        }
-        for(Integer i=counterForSavingJobs-1;i<totalSizeForSavingJobs-1;i++){
-                savingJobsToShow.add(quoteList.get(i));
-        }
-        
-        totalSavingJobPages = (totalSizeForSavingJobs/limitSizeForSavingJobs)+1;
-        currentPageNumber = (counterForSavingJobs/limitSizeForSavingJobs)+1;
-        }catch(Exception ex){
-                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
-            system.debug(ex.getMessage());
-        }
-      }
-   
-    public Boolean getDisableNextForSavingJobs(){
-        if((counterForSavingJobs + limitSizeForSavingJobs) >= totalSizeForSavingJobs )
-            return true ;
-        else
-            return false ;
-    }
-   
-    public Boolean getDisablePreviousForSavingJobs(){
-        if(counterForSavingJobs  == 0)
-            return true ;
-        else
-            return false ;
-    } 
-    // ************************************************************  
     
     public  Document document {
         get {
@@ -578,12 +444,7 @@ Returns:
     }  
     
    
-  /***********************************************************************************************************************************
-Purpose:Method to pass currency records
-Parameters: 
-Returns: List of select option
-
-************************************************************************************************************************************/  
+ 
   
   public List<selectOption> currencyRecords {
         get {
@@ -622,7 +483,7 @@ Returns: List of select option
   /***********************************************************************************************************************************
 Purpose:Method to pass project names
 Parameters: 
-Returns: JSON String
+Returns: 
 
 ************************************************************************************************************************************/       
          public String getMethodToPassProjectNames(){
@@ -703,7 +564,7 @@ Returns:
  /***********************************************************************************************************************************
 Purpose: CAP job reallocate method, reallocates job to the selected RAP
 Parameters: 
-Returns: PageReference
+Returns: 
 
 ************************************************************************************************************************************/        
      public PageReference reAllocate() {
@@ -743,7 +604,7 @@ Returns: PageReference
 /***********************************************************************************************************************************
 Purpose:  This method contains the logic to reallocate job functionality and is called from 
         both CAP and RAP reallocate job method
-Parameters: Selected RAP name (String), JobID (Id), Job Detail Object (object)
+Parameters: 
 Returns: 
 
 ************************************************************************************************************************************/     
@@ -798,7 +659,7 @@ Returns:
  /***********************************************************************************************************************************
 Purpose:  CAP job cancel method, to cancel a particular job and send it to cancelled list.
 Parameters: 
-Returns: PageReference
+Returns: 
 
 ************************************************************************************************************************************/      
     public pagereference cancelJob(){
@@ -833,7 +694,7 @@ Returns: PageReference
  /***********************************************************************************************************************************
 Purpose:  Method contains the logic for the RAP to accept a Job.
 Parameters: 
-Returns: PageReference
+Returns: 
 
 ************************************************************************************************************************************/     
     public PageReference acceptJob(){
@@ -889,7 +750,7 @@ Returns: PageReference
 /***********************************************************************************************************************************
 Purpose:   This method contains the logic to cancel job by RAP.
 Parameters: 
-Returns: PageReference
+Returns: 
 
 ************************************************************************************************************************************/  
     public PageReference cancelRapJob(){
@@ -912,7 +773,7 @@ Returns: PageReference
   /***********************************************************************************************************************************
 Purpose:   Method to reallocate a particular job by one RAP(Primary RAP) to another RAP
 Parameters: 
-Returns: PageReference
+Returns: 
 
 ************************************************************************************************************************************/ 
     public PageReference reAllocateRAP() {
@@ -956,7 +817,7 @@ Returns: PageReference
   /***********************************************************************************************************************************
 Purpose:   Method to reallocate a particular job by one RAP(Primary RAP) to another RAP
 Parameters: 
-Returns: PageReference
+Returns: 
 
 ************************************************************************************************************************************/  
      public PageReference reAllocateSecRAP(){
@@ -971,7 +832,7 @@ Returns: PageReference
   /***********************************************************************************************************************************
 Purpose:   Method for changing job status Live, dormant, etc.
 Parameters: 
-Returns: PageReference
+Returns: 
 
 ************************************************************************************************************************************/  
     public PageReference changePriority(){
@@ -992,7 +853,7 @@ Returns: PageReference
  /***********************************************************************************************************************************
 Purpose:  Method to get all the categories.
 Parameters: 
-Returns: JSON String
+Returns: 
 
 ************************************************************************************************************************************/        
 
@@ -1006,7 +867,7 @@ Returns: JSON String
   /***********************************************************************************************************************************
 Purpose: Method to get all the brand positions on the basis of selected category.
 Parameters: 
-Returns: List of select options
+Returns: 
 
 ************************************************************************************************************************************/   
     public List<SelectOption> getBrandPositioningList(){    
@@ -1043,7 +904,7 @@ Returns: List of select options
 /***********************************************************************************************************************************
 Purpose:Method to get all the brand names on the basis of selected brand position.
 Parameters: 
-Returns: List of select options
+Returns: 
 
 ************************************************************************************************************************************/     
        public List<SelectOption> getBrandList(){      
@@ -1068,7 +929,7 @@ Returns: List of select options
 /***********************************************************************************************************************************
 Purpose:Method to update the job.
 Parameters: 
-Returns: PageReference
+Returns: 
 N-Path:
 MDO* obejcts are the Matser live data in UL and this method itertes the whole category data to dispaly on AdManager page and Job sheet page
 ************************************************************************************************************************************/
@@ -1138,7 +999,7 @@ MDO* obejcts are the Matser live data in UL and this method itertes the whole ca
  /***********************************************************************************************************************************
 Purpose:Method to update job once notes entered.
 Parameters: 
-Returns: PageReference
+Returns: 
 
 ************************************************************************************************************************************/  
     public PageReference updateJobForNotes(){
@@ -1164,7 +1025,7 @@ Returns: PageReference
     /***********************************************************************************************************************************
 Purpose: Method for RAP(primary) to share job with other RAPs
 Parameters: 
-Returns: PageReference
+Returns: 
 
 ************************************************************************************************************************************/  
       
@@ -1263,7 +1124,7 @@ Returns: PageReference
   /***********************************************************************************************************************************
 Purpose:  Method for RAP(primary) to unshare job with RAPs.
 Parameters: 
-Returns: PageReference
+Returns: 
 
 ************************************************************************************************************************************/ 
      public PageReference jobUnShare(){
@@ -1317,7 +1178,7 @@ Returns: PageReference
     /***********************************************************************************************************************************
 Purpose: Method to validate job
 Parameters: 
-Returns: PageReference
+Returns: 
 N-Path:
  This validation is on JobSheet edit page where CAP/RAP can edit and submit the form again, so can not break down 'if' decision points
 ************************************************************************************************************************************/
@@ -1452,7 +1313,7 @@ N-Path:
    /***********************************************************************************************************************************
 Purpose: Method to upload documents
 Parameters: 
-Returns: PageReference
+Returns: 
 
 ************************************************************************************************************************************/
    
@@ -1567,7 +1428,7 @@ Returns:
 /***********************************************************************************************************************************
 Purpose: Method to transfer to other page.
 Parameters: 
-Returns: PageReference
+Returns: 
 
 ************************************************************************************************************************************/
 
@@ -1579,7 +1440,7 @@ Returns: PageReference
            return pageRef;
        }
        
-    public void makeAcceptanceEmailFalse() {        
-        jobIsAccepted = false;      
+    public void makeAcceptanceEmailFalse() {    	
+    	jobIsAccepted = false;    	
     }
 }

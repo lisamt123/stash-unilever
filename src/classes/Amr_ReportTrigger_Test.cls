@@ -14,7 +14,7 @@ Purpose:
 @isTest
 public with sharing class Amr_ReportTrigger_Test{
     
-    static testMethod void testMethod1() {
+    static testMethod void testReportTrigger() {
          Amr_Trigger_Pattern__c customSetting = new Amr_Trigger_Pattern__c(Check_Run__c = true,name = 'Amr_Report');
          insert customSetting;
           
