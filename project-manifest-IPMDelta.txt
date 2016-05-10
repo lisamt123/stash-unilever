@@ -1,10 +1,7 @@
 src
 src/classes
-src/classes/IPM_FinancialYearHelper.cls
-src/classes/IPM_FinancialYearHelper.cls-meta.xml
-src/classes/IPM_GroupManagement.cls
-src/classes/IPM_GroupManagement.cls-meta.xml
-src/classes/IPM_ProjectOwnerChangeQueue.cls
-src/classes/IPM_ProjectOwnerChangeQueue.cls-meta.xml
-src/classes/IPM_ProjectOwnerUpdate_Batch.cls
-src/classes/IPM_ProjectOwnerUpdate_Batch.cls-meta.xml
+src/classes/IPM_ProjectShareJobQueue.cls
+src/classes/IPM_ProjectShareJobQueue.cls-meta.xml
+src/Pages
+src/Pages/IPM_ImageUploadCoreParam.page
+src/Pages/IPM_ImageUploadCoreParam.page-meta.xml
