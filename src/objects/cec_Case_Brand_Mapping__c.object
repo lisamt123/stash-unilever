@@ -538,9 +538,6 @@
         <filterScope>Everything</filterScope>
         <label>CEC Portugal Queue</label>
         <language>en_US</language>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_Southern_Cone_Queue_cec_Case_Brand_Mapping</fullName>
