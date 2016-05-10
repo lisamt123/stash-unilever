@@ -1,6 +1,48 @@
+google.load("visualization", "1", {packages:["corechart"]});
+google.setOnLoadCallback(drawChart);
+
+function drawChart() {
+    /*var data = google.visualization.arrayToDataTable([
+    ['Task', 'Hours per Day'],
+    ['Audio / Visual',     11],
+    ['Digital',      2],
+    ['Experiental',  2],
+    ['Static Imagery', 2],
+    ['Stimulus Materials',    7]
+]);*/
+    console.log($('#chart_div').data('chart-data'));
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Asset');
+    data.addColumn('number', 'Count of Items');
+    var arrayCreated = $('#chart_div').data('chart-data');
+    var newArray = [];
+    for (var i=0; i < arrayCreated.length; i++){
+        console.log(arrayCreated[i][0]);
+        console.log(arrayCreated[i][1]);
+        //data.addRow([i[0], parseInt(i[1])]); 
+        newArray.push([arrayCreated[i][0], parseInt(arrayCreated[i][1])]);
+    }
+    data.addRows(newArray);
+    if(data.getNumberOfRows() > 0){
+        console.log(JSON.stringify(data));
+        var options = {
+            pieHole: 0.5,
+            colors: ['#B187B8', '#CEDC02', '#E46CB0', '#05B1A9', '#FFC62C'],
+            legend: {position : 'none', alignment : 'center'},
+            chartArea: {width: '75%', height: '75%'},
+            fontSize: 15
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+    }
+}
 $(document).ready(function() { 
+    console.log('in here');
     var table = $('#sowListTable').DataTable({
         "dom": 'lrtip',
+        'pageLength': 100,
+        'lengthChange': false,
         'pagingType': 'full_numbers'
     });
     $('#sowListTable tbody').on('click', 'td', function() {
@@ -37,19 +79,55 @@ $(document).ready(function() {
         $('#countryFullList').toggleClass('hidden');
     });
     $("[data-toggle=popover]").popover();
+
+
+    /*Check if Adjust fee value is empty, if empty disable button*/
+    if($('.adjust_allocation_box').val() == ""){
+        $("[id$=saveChangesButton]").attr('disabled',true);
+    }else{
+        $("[id$=saveChangesButton]").attr('disabled',false);
+    }
+
+    $('.adjust_allocation_box').on('blur focus onchange mouseleave',
+        function(){
+            if($('.adjust_allocation_box').val() == ""){
+                $("[id$=saveChangesButton]").attr('disabled',true);
+            }else{
+                $("[id$=saveChangesButton]").attr('disabled',false);
+        }
+    });
+
 });
+
+function validate(inputId) {
+    var element = $('[id=\"'+inputId+'\"]');
+    var valid = element[0].checkValidity();
+    if (!valid) {
+        element.addClass('error-input-border');
+    } else {
+        element.removeClass('error-input-border');
+    }
+    return valid;
+}
 
 function calculateFee(){
     var percentageElement = $('input[id$=manualPercentage]');
     if($.isNumeric(percentageElement.val()) == false){
         $('#calculatedFee').html('#Error');
-        $('#confirm_cancel_campaign').attr('disabled', 'disabled');
     } else {
-        percentageElement.val(Math.round(percentageElement.val()));
         var fullFee = $(percentageElement).data('fullfee');
         var calculatedfee = Math.round(fullFee * percentageElement.val() / 100);
-        $('#calculatedFee').html('€ ' + calculatedfee);
+
+        var formatter = new Intl.NumberFormat({
+          maximumFractionDigits: 0,
+          useGrouping: true,
+          minimumSignificantDigits: 1
+        });
+
+        var formattedFee = formatter.format(calculatedfee);
+
+        $('#calculatedFee').html('€ ' + formattedFee);
         $('#calculatedFee').data('calculatedfee', calculatedfee);
-        $('#confirm_cancel_campaign').removeAttr('disabled');
     }
 }
+
