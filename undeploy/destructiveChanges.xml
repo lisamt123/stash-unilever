@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-		<members>AF_AgencyEstimate </members>
+		<members>AF_AgencyEstimate</members>
 		<members>AF_Assign_Category_Brand</members>
 		<members>AF_Assigncategories</members>
 		<members>AF_BonusThresholdHelper</members>
@@ -59,7 +59,7 @@
 		<members>AF_Bonusthresholds</members>
 		<members>AF_Category_Brands</members>
 		<members>Category_Brands</members>
-		<members>category</members>
+		<members>Category</members>
 		<name>ApexPage</name>
     </types>
 	<types>  
