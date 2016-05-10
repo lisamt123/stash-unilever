@@ -226,7 +226,7 @@
         <field>PBS_Wiki__kav.Wiki_Content__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <label>PBS LMS Admin</label>
+    <label>PBS LMS User</label>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
