@@ -2,6 +2,6 @@ src
 src/classes
 src/classes/IPM_ProjectShareJobQueue.cls
 src/classes/IPM_ProjectShareJobQueue.cls-meta.xml
-src/Pages
-src/Pages/IPM_ImageUploadCoreParam.page
-src/Pages/IPM_ImageUploadCoreParam.page-meta.xml
+src/pages
+src/pages/IPM_ImageUploadCoreParam.page
+src/pages/IPM_ImageUploadCoreParam.page-meta.xml
