@@ -18,6 +18,8 @@ global with sharing class CPA_CRInformationController {
  public String mandatoryStringFlag {get; set;}   
  public Map<String,String> RequiredFieldMap {get; set;}
  boolean callFromVF = false;
+ public String tableformat {get; set;} 
+public map<String,double> mapThreshold; 
    
    /*******************************************************************
     Purpose: This constructor will be called from VF page
@@ -52,10 +54,14 @@ global with sharing class CPA_CRInformationController {
      boolean CPA_Messages(id crRecId,boolean callFromVF){  
         mandatoryStringFlag = null;
         RequiredFieldMap = new Map<String,String>();
-
-        crRec = [select id,chk_Contract_Attached__c,per_Variance__c,chk_Contract_Excel_Attached__c,txt_Accenture_Project_Manager__c , isValidated__c ,mpkl_Change_Record_history__c ,Region_impacted__c  , txt_Change_Record_number__c , dt_CR_End_date__c , dt_CR_Start_Date__c , pkl_Currency__c , dt_Date_raised__c , num_Estimated_Man_days_of_CR__c , pec_Estimated_Off_shore__c , pec_Estimated_On_shore__c , num_Estimated_Value_of_CR__c , pec_Expense__c , num_Expense_charges_of_CR__c , pkl_Phase_change_record_raised__c , pkl_Project_Phases__c , PWO_number__c , pkl_Status__c , num_Target_Blend_Rate__c , txt_Title_of_change__c , num_Total_charge_of_CR__c , eml_Unilever_Content_Approver_Email__c, txt_Unilever_Content_Approver_Name__c, eml_Unilever_Budget_Approver_Email__c, txt_Unilever_Budget_Approver_Name__c, txta_Unilever_Project_Name__c , txt_Unilever_Reference__c , num_Varied_Target_Blend_Rate__c , txt_Other_Currency__c , txt_Other_Phase_change_record_raised__c , txt_Other_Project_Phases__c,PWORFDelta_OtherProcess_Office_Area_E2E__c ,txt_Other_PWORFDelta_Request_Type__c ,txt_PWODelta_Other_Billing_Details__c ,txt_PWODelta_Other_Innovation_Area__c ,pkl_PWORFDelta_Process_Office_Area_E2E__c ,pkl_PWORFDelta_Request_Type__c ,mpkl_PWODelta_Billing_Details__c ,mpkl_PWODelta_Unilever_Innovation_Area__c ,chk_isStandalone_CR__c,dat_Sent_for_Signature_Date__c, ltxta_Comments__c  from CPA_CR__c where id =:crRecId];
+        mapThreshold = new map<String,double>();
+        
+        crRec = [select id,chk_Contract_Attached__c,per_Variance__c,chk_Contract_Excel_Attached__c,txt_Accenture_Project_Manager__c , isValidated__c ,mpkl_Change_Record_history__c ,Region_impacted__c  , txt_Change_Record_number__c , dt_CR_End_date__c , dt_CR_Start_Date__c , pkl_Currency__c , dt_Date_raised__c , num_Estimated_Man_days_of_CR__c , pec_Estimated_Off_shore__c , pec_Estimated_On_shore__c , num_Estimated_Value_of_CR__c , pec_Expense__c , num_Expense_charges_of_CR__c , pkl_Phase_change_record_raised__c , pkl_Project_Phases__c , PWO_number__c , pkl_Status__c , num_Target_Blend_Rate__c , txt_Title_of_change__c , num_Total_charge_of_CR__c , eml_Unilever_Content_Approver_Email__c, txt_Unilever_Content_Approver_Name__c, eml_Unilever_Budget_Approver_Email__c, txt_Unilever_Budget_Approver_Name__c, txta_Unilever_Project_Name__c , txt_Unilever_Reference__c , num_Varied_Target_Blend_Rate__c , txt_Other_Currency__c , txt_Other_Phase_change_record_raised__c , txt_Other_Project_Phases__c,PWORFDelta_OtherProcess_Office_Area_E2E__c ,txt_Other_PWORFDelta_Request_Type__c ,txt_PWODelta_Other_Billing_Details__c ,txt_PWODelta_Other_Innovation_Area__c ,pkl_PWORFDelta_Process_Office_Area_E2E__c ,pkl_PWORFDelta_Request_Type__c ,mpkl_PWODelta_Billing_Details__c ,mpkl_PWODelta_Unilever_Innovation_Area__c ,chk_isStandalone_CR__c,dat_Sent_for_Signature_Date__c, ltxta_Comments__c,fur_Project_Scale__c,fur_pworfrecord_type__c,pkl_PWORFDelta_Project_Scale__c from CPA_CR__c where id =:crRecId];
                 
-       
+        if(crRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || crRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED || crRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SUBMITTED ||crRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RESUBMITTED){
+           mapThreshold = CPA_getThreshold.getThresholdCR(crRec);
+           mandatoryStringFlag = commercialThreshold(mapThreshold,crRec);
+       }
         if((crRec.pkl_Status__c == 'Saved' || crRec.pkl_Status__c == 'Returned')|| !callFromVF){
             //if(crRec.chk_Contract_Excel_Attached__c  != true)
             if(!crRec.chk_Contract_Excel_Attached__c){ 
@@ -178,8 +184,8 @@ global with sharing class CPA_CRInformationController {
                 RequiredFieldMap.put( 'Other Project Phases' ,' It should be only entered when "Project Phases" is Other');
             }
             if(crRec.per_Variance__c == null){
-				RequiredFieldMap.put( 'Variance %' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
-			}
+                RequiredFieldMap.put( 'Variance %' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
+            }
             if(crRec.chk_isStandalone_CR__c){
                 if(crRec.txt_Unilever_Reference__c  == null){  
                      RequiredFieldMap.put( 'Unilever Reference' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
@@ -208,9 +214,9 @@ global with sharing class CPA_CRInformationController {
                 if((crRec.mpkl_PWODelta_Unilever_Innovation_Area__c == null || !crRec.mpkl_PWODelta_Unilever_Innovation_Area__c.contains(CPA_ConstantsForContractingAppClasses.OTHER)) && crRec.txt_PWODelta_Other_Innovation_Area__c != null){
                     RequiredFieldMap.put( 'Other Unilever Innovation Area' ,' It should be only entered when "Unilever Innovation Area" is Other');
                 }
-                if(crRec.ltxta_Comments__c  == null){  
+                /*if(crRec.ltxta_Comments__c  == null){  
                      RequiredFieldMap.put( 'Comments' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
-                }            
+                } */           
             }
         }
 
@@ -229,13 +235,31 @@ global with sharing class CPA_CRInformationController {
         }
         
         if(RequiredFieldMap != null && !RequiredFieldMap.isEmpty()){
-              mandatoryStringFlag = 'Below field(s) are mandatory to Submit the record';
+              mandatoryStringFlag = mandatoryStringFlag + System.Label.CPA_Mandatory_Fields_Message;
+              tableformat = System.Label.CPA_Mandatory_Fields_Message;
             return false;
         }       
         
         return true;        
     }
-    
+    /*******************************************************************
+    Purpose: This method validate commertial threshold
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    static String commercialThreshold(map<String,double> mapThreshold,CPA_CR__c crRecordValues) {
+        String mandatoryStringFlag1 = '';
+        if(mapThreshold != null){
+            if(mapThreshold.get(CPA_ConstantsForContractingAppClasses.ESTOFF)<crRecordValues.pec_Estimated_Off_shore__c)
+                mandatoryStringFlag1 = 'Off-Shore % is more then threshold' + '\n';
+            if(mapThreshold.get(CPA_ConstantsForContractingAppClasses.ESTON)<crRecordValues.pec_Estimated_On_shore__c)
+                mandatoryStringFlag1 = mandatoryStringFlag1 + 'ON-Shore % is more then threshold' + '\n';
+            if(mapThreshold.get(CPA_ConstantsForContractingAppClasses.EXP)<crRecordValues.pec_Expense__c)
+                mandatoryStringFlag1 = mandatoryStringFlag1 + 'Expense % is more then threshold' + '\n';            
+        }
+        return mandatoryStringFlag1;
+    }
    /*******************************************************************
     Purpose: 
     Parameters: crId
