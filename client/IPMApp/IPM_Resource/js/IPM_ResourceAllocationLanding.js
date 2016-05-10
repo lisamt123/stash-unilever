@@ -8,33 +8,33 @@
 var jq= jQuery.noConflict();
 jq(document).ready(function() {
 /* Below script works on click event. When clicked on the button it hides the container and loads the container again. */
-	jq(document).on('click', '.ipmTable .rbutton', function(){
-		   jq('.editbContainer').hide(); 
-		   jq('.cust-overlay').show().delay(2000).fadeOut(); 
-		   jq('.editbContainer').show();
-	});
-	  /* Below script adds a css class to a table row if the condition is true */
-	jq(".teamCheck").change(function(){
-		var $this = jq(this);
-		if($this.is(':checked')) {
-			$this.closest('tr').addClass('selected');
-		}			
-		else {
-			$this.closest('tr').removeClass('selected');
-			}
-	});
-	jq('.teamSearch1 input').clearSearch();
-	jq('.teamSearch2 input').clearSearch();
-	jq('.teamSearch3 input').clearSearch();
+  jq(document).on('click', '.ipmTable .rbutton', function(){
+       jq('.editbContainer').hide(); 
+       jq('.cust-overlay').show().delay(2000).fadeOut(); 
+       jq('.editbContainer').show();
+  });
+    /* Below script adds a css class to a table row if the condition is true */
+  jq(".teamCheck").change(function(){
+    var $this = jq(this);
+    if($this.is(':checked')) {
+      $this.closest('tr').addClass('selected');
+    }     
+    else {
+      $this.closest('tr').removeClass('selected');
+      }
+  });
+  jq('.teamSearch1 input').clearSearch();
+  jq('.teamSearch2 input').clearSearch();
+  jq('.teamSearch3 input').clearSearch();
 });
 /* Below function performs the search functionality. Based on the type of condition, if it is true it calls a function. */
 function callsearch(){
-	if (document.getElementById('mycategory').checked) {
-	  searchTeamMem();  
-	 }
-	if (document.getElementById('allcategory').checked) {
-	  searchallTeamMem();
-	 } 
+  if (document.getElementById('mycategory').checked) {
+    searchTeamMem();  
+   }
+  if (document.getElementById('allcategory').checked) {
+    searchallTeamMem();
+   } 
 }
 /* Below function the save functionality of the selected team members. It also disables the button once clicked. */
 function submitOnClick (objSubmitBtn) {
@@ -55,8 +55,8 @@ function submitOnClickRole(objSubmitBtn) {
 }
 /* Below function performs a trigger which clicks on the close button of a modal which closes the modal. */
  function dismissModal(){      
-	 var frame = parent.document.getElementById("ipmAddMemberModal");
-	 jq(frame).find('.close').trigger('click');
+   var frame = parent.document.getElementById("ipmAddMemberModal");
+   jq(frame).find('.close').trigger('click');
     }
 /* Below function performs a page redirection. */
 function closepopup(){

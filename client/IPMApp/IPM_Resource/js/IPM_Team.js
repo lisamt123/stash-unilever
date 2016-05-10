@@ -22,16 +22,16 @@
    
 /* Below function opens the delete modal */
 function delTeamMem(str) {  
-	jq('#ipmModalDelete .modal-dialog').width('40%');
-	jq('#ipmModalDelete .modal-dialog').height('200px');                        
-	jq('#ipmModalDelete .modal-dialog').css({'margin-top':'10%','z-index':'999'});
-	jq('#ipmModalDelete .confirmAction').attr('data-value', str);
-	jq(".confirmAction").addClass("removeTeamMember");
+  jq('#ipmModalDelete .modal-dialog').width('40%');
+  jq('#ipmModalDelete .modal-dialog').height('200px');                        
+  jq('#ipmModalDelete .modal-dialog').css({'margin-top':'10%','z-index':'999'});
+  jq('#ipmModalDelete .confirmAction').attr('data-value', str);
+  jq(".confirmAction").addClass("removeTeamMember");
 }
 
 /* Below script works on click event. When clicked on remove button, it removes the team member and hides the modal. */
 jq(document).on('click', '#ipmModalDelete .removeTeamMember', function(){
-	var teamMemId = jq(this).attr('data-value');            
-	DeleteMember(teamMemId);
-	jq("#ipmModalDelete").modal('hide');
+  var teamMemId = jq(this).attr('data-value');            
+  DeleteMember(teamMemId);
+  jq("#ipmModalDelete").modal('hide');
 });

@@ -20,17 +20,17 @@ function pageclose() {
     }
 }
 jq(document).ready(function($) {
-	var max = 225;
-	jq('textarea.todoName').keypress(function(e) {
-		if (e.which < 0x20) {
-			return;
-		}
-		if (this.value.length === max) {
-			e.preventDefault();
-		} else if (this.value.length > max) {
-			this.value = this.value.substring(0, max);
-		}
-	});
+  var max = 225;
+  jq('textarea.todoName').keypress(function(e) {
+    if (e.which < 0x20) {
+      return;
+    }
+    if (this.value.length === max) {
+      e.preventDefault();
+    } else if (this.value.length > max) {
+      this.value = this.value.substring(0, max);
+    }
+  });
 });
 
 var unsaved = false;

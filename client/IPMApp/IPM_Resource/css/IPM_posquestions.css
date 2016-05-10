@@ -50,7 +50,7 @@
 	.legendSld label[for=s4] {text-align:left;left:0; width:10%;}
 	.legendSld label[for=s5],.legendSld label[for=s6],.legendSld label[for=s7],.legendSld label[for=s8]  {text-align:center; width:20%;}
 	.legendSld label[for=s9] {text-align:right;right:0; width:10%;}
-	.legendSld label:before {content:"";display:block;position:absolute;left:49.5%; top:-25px; border:1px solid #252525; background:#fff; width:5px; height:16px; border-radius:5px; -webkit-border-radius:5px; -webkit-border-radius:5px;}
+	.legendSld label:before {content:"";display:block;position:absolute;left:49.5%; top:-25px; border:1px solid #252525; background:#fff; width:5px; height:16px; border-radius:5px; -webkit-border-radius:5px;}
 	.legendSld label[for=s3]:before, .legendSld label[for=s9]:before {left:100%;}
 	.legendSld label[for=s0]:before, .legendSld label[for=s4]:before {left:0;}    
 	.slider3 .legendSld label[for=s2]:before {display:none;}

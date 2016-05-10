@@ -175,8 +175,7 @@ ul.progress-bar {
     height: 1px;    
     padding: 0;
     position: relative;
-    width: 100%;  
-    padding: 0;
+    width: 100%;
 }
  
   ul.progress-bar li {  
@@ -258,7 +257,7 @@ width: 279.5%;
 ul.progress-bar.pleProgress li.plePhase.visited{
   background-color: #e98824;
 }
-ul.progress-bar.pleProgress li.plePhase.completed {
+ul.progress-bar.pleProgress li.plePhase.completedÂ {
   background-color: #A3C24B;
 }
 

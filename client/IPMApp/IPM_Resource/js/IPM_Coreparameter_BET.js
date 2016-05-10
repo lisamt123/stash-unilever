@@ -7,7 +7,7 @@ var jq = jQuery.noConflict();
 /* Below script calls two other functions on page load. */
 jq(document).ready(function() {
     betCallBack();
-	hilightTaskScript();
+    hilightTaskScript();
 });
 function betCallBack() {
 /* Below script works on click event. When clicked on row it checks the checkbox and also highlights the row by adding a color. */
@@ -44,8 +44,8 @@ function changeValue(input, textid) {
 
 /* Below function contains the script which has the tooltip functionality. This function is called when the rerendering happens and the script will run again */
 function hilightTaskScript(){
-	jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});
-	jq(".deleteChannel").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});	
-	jq(".arrow-left").tooltip({ position: { my: 'left top', at: 'center bottom+10' },tooltipClass:'ui-lefttip'}); 
-	jq(".aTabs").find("input[type=checkbox]:checked").closest(".aTabs").addClass("active");
+    jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});
+    jq(".deleteChannel").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});    
+    jq(".arrow-left").tooltip({ position: { my: 'left top', at: 'center bottom+10' },tooltipClass:'ui-lefttip'}); 
+    jq(".aTabs").find("input[type=checkbox]:checked").closest(".aTabs").addClass("active");
 }

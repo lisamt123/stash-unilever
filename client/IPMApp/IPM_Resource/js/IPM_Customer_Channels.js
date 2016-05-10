@@ -17,7 +17,7 @@ jq(document).ready(function() {
     jq(document).on('click', '.ccChannelList input[type="checkbox"], .ccChannelList li', function(e) {
         e.stopPropagation();
     });
-	/* Below script works on click event. If the condition is true it hides the channel list */
+    /* Below script works on click event. If the condition is true it hides the channel list */
     jq(document).click(function(e) {
         if (e.target.id !== 'channelList') {
             jq(".channelList").hide();
@@ -58,12 +58,12 @@ function selectCheckboxScript() {
                     jq(this).prop('checked', true);
                     jq(this).prop('disabled', true);
                     jq(this).next('label').addClass('selected');
-					jq(this).next('label').addClass('disabled');
+                    jq(this).next('label').addClass('disabled');
                 } else {
                     jq(this).prop('checked', false);
                     jq(this).next('label').removeClass('selected');
                     jq(this).prop('disabled', false);
-					jq(this).next('label').removeClass('disabled');
+                    jq(this).next('label').removeClass('disabled');
                 }
             });
         }
@@ -77,12 +77,12 @@ function selectCheckboxScript() {
                     jq(this).prop('checked', true);
                     jq(this).prop('disabled', true);
                     jq(this).next('label').addClass('selected');
-					jq(this).next('label').addClass('disabled');
+                    jq(this).next('label').addClass('disabled');
                 } else {
                     jq(this).prop('checked', false);
-					jq(this).prop('disabled', false);
+                    jq(this).prop('disabled', false);
                     jq(this).next('label').removeClass('selected');
-					jq(this).next('label').removeClass('disabled');
+                    jq(this).next('label').removeClass('disabled');
                 }
             });
         }
@@ -91,40 +91,40 @@ function selectCheckboxScript() {
         checkBoxRec1();
     });
     checkBoxRec();
-	
-	/* Below function works on page load. If the checked check boxes are greater than three then the users will not be able to check the check boxes */
+    
+    /* Below function works on page load. If the checked check boxes are greater than three then the users will not be able to check the check boxes */
     jq('.ccCheck').change(function(e) {
         if (jq('.ccListbox input[type=checkbox]:checked').length > 3) {
             jq(this).prop('checked', false);
             jq(this).next('label').removeClass('selected');
         }
     });
-	
+    
     /* Below script works on click event. When clicked on remove button it calls a function which removes the Customer channels */
     jq(document).on('click', '#ipmChannelDelete .removeChannel', function() {
         var questionId = jq(this).attr('data-result');
         deleteChannel(questionId);
         jq("#ipmChannelDelete").modal('hide');
     });
-	
+    
     /* Below script works on click event. If the condition is true it unchecks the check boxes and enables it and vice versa */ 
     jq(document).on('click', '.filterActionscc .ipmDropresetcc', function(e) {
         e.stopPropagation();
         jq(".channelList input:checkbox").each(function() {
             if (selectedValues.indexOf(jq(this).val()) === -1) {
                 jq(this).prop('checked', false);
-				jq(this).prop('disabled', false);
+                jq(this).prop('disabled', false);
                 jq(this).next('label').removeClass('selected');
-				jq(this).next('label').removeClass('disabled');
+                jq(this).next('label').removeClass('disabled');
             } else {
                 jq(this).prop('checked', true);
-				jq(this).prop('disabled', true);
+                jq(this).prop('disabled', true);
                 jq(this).next('label').addClass('selected');
-				jq(this).next('label').addClass('disabled');
+                jq(this).next('label').addClass('disabled');
             }
         });
     });
-	/* Below function works on reset functionality */
+    /* Below function works on reset functionality */
     function fchannelReset(e) {
         jq('.channelList').hide();
         jq(".channelList input:checkbox").each(function() {
@@ -133,8 +133,8 @@ function selectCheckboxScript() {
         });
         createCustomChannels('');
     }
-	
-	/* Below script works on tooltip functionality */
+    
+    /* Below script works on tooltip functionality */
     jq(".info").tooltip({
         position: {
             my: 'center top',
@@ -154,14 +154,14 @@ function checkboxScript() {
             var val = jq(this).attr('value');
             if (jq.inArray(val, selectedValuesArr1) !== -1) {
                 jq(this).prop('checked', true);
-                jq(this).next('label').addClass('selected');				
+                jq(this).next('label').addClass('selected');                
             } else {
                 jq(this).prop('checked', false);
                 jq(this).next('label').removeClass('selected');
             }
         });
     }
-	/* Below script works on click event. If the condition is true the value of the checked check boxes pushed to a function */
+    /* Below script works on click event. If the condition is true the value of the checked check boxes pushed to a function */
     jq(document).on('click', '.ipmCheckbox.infoCheck > input[type="checkbox"]', function() {
         var channelM = [];
         jq('.infoCheck input[type="checkbox"]').each(function() {
@@ -174,7 +174,7 @@ function checkboxScript() {
             updateInfoLogo(conName);
         });
     });
-	/* Below script works on tooltip functionality */
+    /* Below script works on tooltip functionality */
     jq(".info").tooltip({
         position: {
             my: 'center top',
@@ -196,7 +196,7 @@ function ccimageloadstatus() {
         }, 100);
     });
 }
-	/* Below function pushes the value of the checked check boxes to a function */
+    /* Below function pushes the value of the checked check boxes to a function */
 function fchannelM() {
     var conName;
     var channelM;

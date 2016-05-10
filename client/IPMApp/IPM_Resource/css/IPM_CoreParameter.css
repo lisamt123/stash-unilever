@@ -1,4 +1,4 @@
-.slide-bar label{font-weight:normal;font-family:Arial; display:block; position:relative;display:inline-block; color:#666; margin:20px 5px;text-align:center;vertical-align:top;cursor: pointer;}
+.slide-bar label{font-weight:normal;font-family:Arial; position:relative;display:inline-block; color:#666; margin:20px 5px;text-align:center;vertical-align:top;cursor: pointer;}
 .slide-bar label.active{font-weight:bold;color:#333;}
 .slideBar2 label{width:18%;}
 .labelWidth23{width:22% ;}
@@ -8,7 +8,7 @@
 @media screen and (min-width: 1300px) {slideIcon{margin-top:-0.6%;}}
 .slide-bar{background-color: #EcEcEc;border-radius: 15px;height: 7px;margin: 0 auto;padding: 0;}
 .item{background:white;}
-.mainMenu .circle{height: 30px;line-height: 30px;width: 30px;z-index: 99;background: #a9a9a9;border-radius: 50% ;color: #FFF;font-size: 14px;font-weight: 700;text-align: center;text-shadow: 1px 1px rgba(0, 0, 0, 0.2);z-index: 999;display:inline-block;}
+.mainMenu .circle{height: 30px;line-height: 30px;width: 30px;background: #a9a9a9;border-radius: 50% ;color: #FFF;font-size: 14px;font-weight: 700;text-align: center;text-shadow: 1px 1px rgba(0, 0, 0, 0.2);z-index: 999;display:inline-block;}
 .description{background-color:#F5F5F5;padding:10px;/*overflow-y:auto;*/height:35%;padding-left: 45px;}
 .helpTextDiv{height:100%;}
 .mainMenu, .subMenu{text-align: center;padding:10px;}

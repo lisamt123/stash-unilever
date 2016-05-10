@@ -13,11 +13,11 @@ jq(document).ready(function() {
     jq('#ipmUpdateStatusTab .ipmStatusTabs li:first').addClass('active');
     statusTab.parent().find('.ipmGetStartedContent:first').show();
     jq('#ipmUpdateStatusTab .ipmStatusTabs li:first').find('input:radio').prop("checked", "true");
-	
+  
 /* Below script is for the Tab functionality on click event. Based on the clicked li the tab is highlighted and the content related the clicked tab is displayed. Also it hides the previous opened content */
     jq('#ipmUpdateStatusTab .ipmStatusTabs li').on('click', function(e) {
         e.preventDefault();
-		unsaved = true;
+    unsaved = true;
         var $this = jq(this);
         jq('#ipmUpdateStatusTab .ipmStatusTabs li').removeClass('active');
         jq('#ipmUpdateStatusTab .ipmStatusTabs li').removeClass('highlightRed');
@@ -82,7 +82,7 @@ jq(function(){
         if(initialValue !== false){
             oldTextareaval = jq(".txtArea ").val();
         }
-		
+    
    });   
    
    function unloadIframe(){

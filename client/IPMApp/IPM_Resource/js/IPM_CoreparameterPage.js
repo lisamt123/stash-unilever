@@ -5,12 +5,12 @@
 *********************************************************************************/
 var jq = jQuery.noConflict();
 jq(document).ready(function() {
-	jq(".cust-overlay").hide();
+    jq(".cust-overlay").hide();
     var ipmEditProjectMD = jq('#ipmEditProject .modal-dialog');
     var ipmEditCoreparametersMD = jq('#ipmEditCoreparameters .modal-dialog');
     var ipmEditAdditionalParametersMD = jq('#ipmEditAdditionalParameters .modal-dialog');
     jq('.ipmFinancialTable td').find('img[src$="spacer.gif"]').css('display', 'none');
-	
+    
 /* Below script works on click event. It opens a modal where user can edit the project details. */
     jq(document).on('click', '.editProject', function(e) {
         e.preventDefault ? e.preventDefault() : e.returnValue = false;
@@ -20,7 +20,7 @@ jq(document).ready(function() {
         ipmEditProjectMD.width('95%');
         ipmEditProjectMD.height('95%');
     });
-	
+    
 /* Below script works on click event. It opens a modal where user can edit the coreparameters. */
     jq(document).on('click', '.editcoreparam', function(e) {
         e.preventDefault ? e.preventDefault() : e.returnValue = false;
@@ -30,15 +30,15 @@ jq(document).ready(function() {
         ipmEditCoreparametersMD.width('95%');
         ipmEditCoreparametersMD.height('95%');
     });
-	if(window.location.href.indexOf("BETOptions") > -1){
+    if(window.location.href.indexOf("BETOptions") > -1){
             document.getElementById("editAddtnlParam").click();
     }
-	
-	hilightTaskScript();
+    
+    hilightTaskScript();
 });
 /* Below script works on page load. If both the conditions are true, it moves to third coreparameters question and also it displays the correct help text pointer below. */
 jq(window).load(function() {
-	 setTimeout(function() {
+     setTimeout(function() {
         setSlider(1);
     }, 500);
    if (IPMProAppCP.tpluser === 'true' && IPMProAppCP.addtnlParameter === 'false') {
@@ -74,9 +74,9 @@ jq(window).load(function() {
 
 /* Below function contains the script which has the tooltip functionality. This function is called when the rerendering happens and the script will run again */
 function hilightTaskScript(){
-	jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});
-	jq(".deleteChannel").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});	
-	jq(".arrow-left").tooltip({ position: { my: 'left top', at: 'center bottom+10' },tooltipClass:'ui-lefttip'}); 
-	jq(".aTabs").find("input[type=checkbox]:checked").closest(".aTabs").addClass("active");
+    jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});
+    jq(".deleteChannel").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});    
+    jq(".arrow-left").tooltip({ position: { my: 'left top', at: 'center bottom+10' },tooltipClass:'ui-lefttip'}); 
+    jq(".aTabs").find("input[type=checkbox]:checked").closest(".aTabs").addClass("active");
 }
 

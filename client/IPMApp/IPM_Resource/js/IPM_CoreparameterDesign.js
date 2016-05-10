@@ -16,9 +16,11 @@ jq(document).ready(function() {
 
 /* Below function performs a page reload. It removes a attribute from the url when this function is called. */
 function updateAdditional() {
-	var pageURL = window.parent.location.href;     // Getting the current location
-	pageURL = pageURL.replace('&BETOptions=1',''); //Removing attribute
-	window.parent.location.href = pageURL;
+    if(window.parent.location.href.indexOf("&BETOptions=1") > -1){
+        window.parent.location.href = window.parent.location + "&BETOptions=1";
+    }else{
+        window.parent.location.href = window.parent.location;
+    }
 }
 /* Below function performs a page reload. It reloads the page when reset is clicked for first question. */
 function resetqone() {
@@ -38,25 +40,27 @@ function resetqthree() {
 /* Below function performs a page reload. If the condition is true it removes a attribute from the url. */
 function checkCoreParam() {
     if (IPMProAppCP.coreParameter === 'true') {
-        var pageURL = window.parent.location.href;     // Getting the current location
-		pageURL = pageURL.replace('&BETOptions=1',''); //Removing attribute
-		window.parent.location.href = pageURL;
+        if(window.parent.location.href.indexOf("&BETOptions=1") > -1){
+            window.parent.location.href = window.parent.location + "&BETOptions=1";
+        }else{
+            window.parent.location.href = window.parent.location;
+        }
     }
 }
 
 /* Below function displays the tooltip when clicked on save and continue button */
 function checkTooltip(){
-	jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});	
+    jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' }}); 
 }
 
 /* Below function performs moving of the carousel to the exact coreparameters question. Also for each question based on the number of options it calculates dynamic width for each option. */
 function sliderCP(el) {
-	jq('.selText').hide();
+    jq('.selText').hide();
     var elm = jq('#myCarousel').find('.active').find(el);
     var str = elm.attr("id");
-	if( jq('label').hasClass('fstchild active')){
-		jq('.helpDesc').prepend('<div class="selText">'+IPMProAppCP.select+'</div>');
-	}
+    if( jq('label').hasClass('fstchild active')){
+        jq('.helpDesc').prepend('<div class="selText">'+IPMProAppCP.select+'</div>');
+    }
     var s = str.match(/\d+$/)[0];
     var totalwidth = elm.width();
     var lblCount = elm.find('label').length;
@@ -68,21 +72,21 @@ function sliderCP(el) {
 /* Below function performs a page reload. */
 function cpredirect() {
     window.parent.location.reload(true);
-	jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});
+    jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});
 }
 
 /* Below function performs key code check. If key code is 95 it returns nothing else it returns true value. */
 function invalidChar(key)
  {
    var keycode = (key.which) ? key.which : key.keyCode; 
-   if(keycode==95){
-	  return false;
+   if(keycode===95){
+      return false;
    }else{
-	  return true;
+      return true;
    }   
 }
 
-var unsaved = false;
+var cppageunsaved = false;
 var OldBosscardNameVal = "";
 var NewBosscardNameVal = "";
 var oldInputval = "";
@@ -91,47 +95,46 @@ var newInputval = "";
 jq(function(){ /* DOM ready */
    OldBosscardNameVal = jq(".BosscardNameInputBox ").val();
    jq(":input").change(function() {
-		unsaved = true;
-	});             
-								
-	
+        cppageunsaved = true;
+    });             
+     
 });
 
 function changeAlertBosscardName(){
-	CurrentBosscardNameVal = jq(".BosscardNameInputBox ").val();
-	 jq(":input").change(function() {
-		unsaved = true;
-	});
-	 if( OldBosscardNameVal !== CurrentBosscardNameVal){
-		unsaved = true;
-	  
-	}else if(unsaved){
-		unloadPage();            
-	}
-	else{
-	unsaved = false;
-		OldBosscardNameVal = CurrentBosscardNameVal;
-	}
-	
+    CurrentBosscardNameVal = jq(".BosscardNameInputBox ").val();
+     jq(":input").change(function() {
+        cppageunsaved = true;
+    });
+     if( OldBosscardNameVal !== CurrentBosscardNameVal){
+        cppageunsaved = true;
+      
+    }else if(cppageunsaved){
+        unloadPage();            
+    }
+    else{
+    cppageunsaved = false;
+        OldBosscardNameVal = CurrentBosscardNameVal;
+    }
+    
 }
 
 function changeAlert(){
-	unsaved = true;
+    cppageunsaved = true;
  }
 
 function unloadPage()
 { 
-	if(unsaved){
-		return IPMAppPS.wmessage;            
-	}
+    if(cppageunsaved){
+        return IPMAppPS.wmessage;            
+    }
 } 
 
-if(window.parent.location.href.indexOf("Milestoneid") > -1) {
- }else{
-window.onbeforeunload = unloadPage;
- }
+if(window.parent.location.href.indexOf("Milestoneid") === -1) {
+     window.onbeforeunload = unloadPage;
+}
+
 
 /* Below code is to skip the unsaved changes*/
 function skipValidation() {
-	unsaved = false;
+    cppageunsaved = false;
 }

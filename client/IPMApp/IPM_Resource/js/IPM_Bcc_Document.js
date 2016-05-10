@@ -11,13 +11,13 @@ jq(document).ready(function() {
     accordion.find(".pHead .expico").addClass("fa-minus");
     accordion.find(".pHead .expico-square").removeClass("fa-plus");
     accordion.find(".pHead .expico-square").addClass("fa-minus");
-	
+    
 /* Below script works on click. On click a CSS class being added to the Modal dialog box */
     jq(document).on('click', '.updateBox', function(e) {
         jq('#ipmModal .modal-dialog').addClass('modalMarginTop');
     });
-	
-	hilightTaskScript();
+    
+    hilightTaskScript();
 });
 /* Below function performs a click event. On click Confirm button it hides the modal */
 function changeStatus() {
@@ -28,8 +28,8 @@ function changeStatus() {
 
 /* Below function contains the script which has the tooltip functionality. This function is called when the rerendering happens and the script will run again */
 function hilightTaskScript(){
-	jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});
-	jq(".deleteChannel").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});	
-	jq(".arrow-left").tooltip({ position: { my: 'left top', at: 'center bottom+10' },tooltipClass:'ui-lefttip'}); 
-	jq(".aTabs").find("input[type=checkbox]:checked").closest(".aTabs").addClass("active");
+    jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});
+    jq(".deleteChannel").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});    
+    jq(".arrow-left").tooltip({ position: { my: 'left top', at: 'center bottom+10' },tooltipClass:'ui-lefttip'}); 
+    jq(".aTabs").find("input[type=checkbox]:checked").closest(".aTabs").addClass("active");
 }

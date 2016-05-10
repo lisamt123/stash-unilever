@@ -37,13 +37,13 @@ function initSlider() {
             jq('#s' + ui.value).prop('checked', true);
             score = itemsProposed[pointer];
         },
-		slide: function( event, ui ) {
-			jq(this).find(".legendSld label").css({color: "#555", fontWeight: "normal"}).eq(ui.value -1).css({color: "#E98824", fontWeight: "bold"});
-			jq(this).find(".legendSld label").eq(ui.value -1).click();
-		}
+        slide: function( event, ui ) {
+            jq(this).find(".legendSld label").css({color: "#555", fontWeight: "normal"}).eq(ui.value -1).css({color: "#E98824", fontWeight: "bold"});
+            jq(this).find(".legendSld label").eq(ui.value -1).click();
+        }
     });
 
-	/* Below works on click event. It highlights the selected option with a different color and different font style. Also it moves the help text pointer to selected option. */	
+    /* Below works on click event. It highlights the selected option with a different color and different font style. Also it moves the help text pointer to selected option. */    
     jq(".legendSld label").on("click", function() {
         var lpos = jq(".legendSld label").offset().left;
         var $this = jq(this);
@@ -60,7 +60,7 @@ function initSlider() {
     });
     jq("input[type=radio][id^='s']").hide();
 
-	/* Below script highlights the selected option with a different color when the condition is true. Also it moves the slider handle position
+    /* Below script highlights the selected option with a different color when the condition is true. Also it moves the slider handle position
 based on the condition. */ 
     jq(".scoreDB").each(function() {
         var $this = jq(this);
@@ -114,13 +114,13 @@ function initSlider1() {
                 jq('#s' + ui.value).prop('checked', true);
                 quest = itemsProposed[pointer];
             },
-			slide: function( event, ui ) {
-				jq(this).find(".legendSld label").css({color: "#555", fontWeight: "normal"}).eq(ui.value -1).css({color: "#E98824", fontWeight: "bold"});
-				jq(this).find(".legendSld label").eq(ui.value -1).click();
-			}
+            slide: function( event, ui ) {
+                jq(this).find(".legendSld label").css({color: "#555", fontWeight: "normal"}).eq(ui.value -1).css({color: "#E98824", fontWeight: "bold"});
+                jq(this).find(".legendSld label").eq(ui.value -1).click();
+            }
         });
 
-		/* Below works on click event. It highlights the selected option with a different color and different font style. Also it moves the help text pointer to selected option. */	
+        /* Below works on click event. It highlights the selected option with a different color and different font style. Also it moves the help text pointer to selected option. */    
         jq(".legendSld label").on("click", function() {
             var lpos = jq(".legendSld label").offset().left;
             var $this = jq(this);
@@ -138,7 +138,7 @@ function initSlider1() {
         jq("input[type=radio][id^='s']").hide();
         jq("[data-toggle=tooltip]").tooltip();
 
-		/* Below script highlights the selected option with a different color when the condition is true. Also it moves the slider handle position
+        /* Below script highlights the selected option with a different color when the condition is true. Also it moves the slider handle position
 based on the condition. */ 
 
         jq("input[name=quest]").each(function() {
@@ -189,20 +189,20 @@ based on the condition. */
 
 /* Below function calls another function */
 function changeScore(id,score)
-	{    
-		callChangeScore(id,score);
-	}
-	/* Below function calls another function */
-	function changeScore1(id,score)
-	{
-		callChangeScore1(id,score);
-	}
-	
+    {    
+        callChangeScore(id,score);
+    }
+    /* Below function calls another function */
+    function changeScore1(id,score)
+    {
+        callChangeScore1(id,score);
+    }
+    
 /* Below function performs page redirection. */
-	function goToParentPage()
-	{            
-		window.top.location.href = IPMApp.pageName+'?id='+IPMApp.projectId+'&projDocSecId='+IPMApp.projDocSecId;
-	}    
+    function goToParentPage()
+    {            
+        window.top.location.href = IPMApp.pageName+'?id='+IPMApp.projectId+'&projDocSecId='+IPMApp.projDocSecId;
+    }    
  
  /* Below function opens a delete modal. */
         function delQuestion(str) {  
@@ -218,3 +218,59 @@ function changeScore(id,score)
             deleteQuestion(questionId);
             jq("#ipmDeleteModal").modal('hide');
         });
+
+var unsaved = false;
+var oldTextareaval = "";
+var newTextareaval = "";
+var initialValue = true;
+jq(function(){  
+      var frame = parent.document.getElementById("ipmModalDiv");
+       jq(frame).find('.close').click(function(){
+           if(unsaved){
+               jq(this).removeAttr( "data-dismiss" );
+               unloadIframe();
+           }
+           else{
+               jq(this).attr("data-dismiss","modal");
+           }
+       });
+        if(initialValue !== false){
+            oldTextareaval = jq(".txtArea ").val();
+        }
+   });   
+   
+   function unloadIframe(){
+       window.parent.location.href=IPMApp.pageName + '?id=' + IPMApp.projectId + '&projDocSecId=' + IPMApp.projDocSecId;
+   }
+
+   function selectchk(){
+    unsaved = true;
+   }
+   
+   function checktextval(){
+   inputTextArea = jq(".ipmQuestTextarea ");
+    inputTextArea.bind('input propertychange', function() {
+            newTextareaval = jq(".ipmQuestTextarea ").val();
+            initialValue = false;
+            if( oldTextareaval !== newTextareaval ){
+              unsaved = true;
+            }else{
+              unsaved = false;
+            }
+            oldTextareaval = newTextareaval;
+         });
+     }
+  
+  function unloadPage()
+  { 
+      if(unsaved){
+          return IPMApp.wmessage;
+      }
+  } 
+ 
+  window.onbeforeunload = unloadPage;
+  
+  /* Below code is to skip the unsaved changes*/
+  function skipValidation() {  
+    unsaved = false;
+  }

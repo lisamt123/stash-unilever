@@ -157,7 +157,7 @@
              top: 12px;
          }
          .secUsersHistory .listHistory:before {
-             left: 0%;
+             left: 0;
              top: 50%;
              border: solid transparent;
              content: "";
@@ -208,7 +208,7 @@
              left: 14px;
          }
          .secUsersHistory .listHistory-green:before {
-             left: 0%;
+             left: 0;
              top: 40px;
              border: solid transparent;
              content: "";
@@ -232,7 +232,7 @@
              left: 14px;
          }
          .secUsersHistory .listHistory-ltgreen:before {
-             left: 0%;
+             left: 0;
              top: 40px;
              border: solid transparent;
              content: "";
@@ -256,7 +256,7 @@
              left: 14px;
          }
          .secUsersHistory .listHistory-ble:before {
-             left: 0%;
+             left: 0;
              top: 40px;
              border: solid transparent;
              content: "";
@@ -280,7 +280,7 @@
              left: 14px;
          }
          .secUsersHistory .listHistory-blue:before {
-             left: 0%;
+             left: 0;
              top: 40px;
              border: solid transparent;
              content: "";
@@ -1284,7 +1284,6 @@
     min-height: 1em;
 	float:right;
     outline: none;
-    border: none;
     background-color: #fff;
 	border:1px solid #8ab3da;
 	color:#0f81bb;
@@ -1313,7 +1312,6 @@
 		display: inline-block;
 		min-height: 1em;
 		outline: none;
-		border: none;
 		padding: 0.625em;
 		padding-bottom:0.55em\9;
 		font-size: 16px ;	    
@@ -1433,7 +1431,6 @@
 		display: inline-block;
 		min-height: 1em;
 		outline: none;
-		border: none;
 		padding: 0.625em;
 		padding-bottom:0.55em\9;
 		font-size: 16px ;	    

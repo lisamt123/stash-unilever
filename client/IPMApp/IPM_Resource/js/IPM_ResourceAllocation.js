@@ -8,26 +8,26 @@
 var jq= jQuery.noConflict();
 jq(document).ready(function() {
 /* Below script works on click event. When clicked on the button it hides the container and loads the container again. */
-	jq(document).on('click', '.ipmTable .rbutton', function(){
-		var editContainer = jq('.editbContainer');
-		   editContainer.hide(); 
-		   jq('.cust-overlay').show().delay(2000).fadeOut(); 
-		   editContainer.show();
-	  });
-	  
+    jq(document).on('click', '.ipmTable .rbutton', function(){
+        var editContainer = jq('.editbContainer');
+           editContainer.hide(); 
+           jq('.cust-overlay').show().delay(2000).fadeOut(); 
+           editContainer.show();
+      });
+      
   /* Below script adds a css class to a table row if the condition is true */
-	   jq(".teamCheck").change(function() {
-		var $this = jq(this);
-		if($this.is(':checked')) {
-			$this.closest('tr').addClass('selected'); 
-			}
-		else {
-			$this.closest('tr').removeClass('selected');
-			}
-	});
-	jq('.teamSearch1 input').clearSearch();
-	jq('.teamSearch2 input').clearSearch();
-	jq('.teamSearch3 input').clearSearch();
+       jq(".teamCheck").change(function() {
+        var $this = jq(this);
+        if($this.is(':checked')) {
+            $this.closest('tr').addClass('selected'); 
+            }
+        else {
+            $this.closest('tr').removeClass('selected');
+            }
+    });
+    jq('.teamSearch1 input').clearSearch();
+    jq('.teamSearch2 input').clearSearch();
+    jq('.teamSearch3 input').clearSearch();
 });
 
 /* Below function performs a trigger which clicks on the close button of a modal which closes the modal. */
@@ -38,30 +38,27 @@ jq(document).ready(function() {
 
 /* Below function performs the search functionality. If the condition is true it will call the function based on the condition. */
 function callsearch(blnInvokedFromRollOuts) {
-    //if (document.getElementById('mycategory').checked) 
-	//{
-	   //searchTeamMem();
    if (document.getElementById('mycategory').checked) {
-		if(blnInvokedFromRollOuts)
-		{
-			 searchLeaderMem();
-		}
-		else
-		{
-			 searchTeamMem();
-		}
-	}
-	if (document.getElementById('allcategory').checked) {
-		if (blnInvokedFromRollOuts)
-		{
-			   searchallLeaderMem();
-		}
-		else
-		{
-			   searchallTeamMem();
-		}
-	}  
-				
+        if(blnInvokedFromRollOuts)
+        {
+             searchLeaderMem();
+        }
+        else
+        {
+             searchTeamMem();
+        }
+    }
+    if (document.getElementById('allcategory').checked) {
+        if (blnInvokedFromRollOuts)
+        {
+               searchallLeaderMem();
+        }
+        else
+        {
+               searchallTeamMem();
+        }
+    }  
+                
 }
 
 /* Below function the save functionality of the selected team members. It also disables the button once clicked. */

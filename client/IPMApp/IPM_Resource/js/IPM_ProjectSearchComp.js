@@ -21,14 +21,14 @@ Also variables have to be kept global to make the functionality work. */
     function filterTLDs() {
         filterTLD(jq('#tldFrom').val(), jq('#tldTo').val());
     }
-	/* Below function loads the projects based on the value passed to the function. */
+    /* Below function loads the projects based on the value passed to the function. */
     function searchProjects() {
         loadProjects(jq('#srchTxt').val());
     }
     function wrapGeography() {
         geoAll = jq('#geographyAll').is(":checked");
         clusters = [];mcos=[];countries=[];
-		/* Below script pushes the value if the condition is true. */
+        /* Below script pushes the value if the condition is true. */
         jq('.clusterCheck').each(function() {
             if (jq(this).is(":checked") === true &&  jq(this).val() !== 'Unassigned' ) {
                 clusters.push(jq(this).val());
@@ -37,20 +37,20 @@ Also variables have to be kept global to make the functionality work. */
                     unAssigned = 'true';
             }
         });
-		/* Below script pushes the value if the condition is true. */
+        /* Below script pushes the value if the condition is true. */
         jq('.mcoCheck').each(function() {
             if (jq(this).is(":checked") === true) {
                 mcos.push(jq(this).val());
             }
         });
-		/* Below script pushes the value if the condition is true. */
+        /* Below script pushes the value if the condition is true. */
         jq('.countryCheck').each(function() {
             if (jq(this).is(":checked") === true) {
                 countries.push(jq(this).val());
             }
         });
     }
-	/* Below works on click event. It calls another function. */
+    /* Below works on click event. It calls another function. */
     jq("#applyFilter").on("click", function() { 
         applyFilter();
     });
@@ -58,12 +58,12 @@ Also variables have to be kept global to make the functionality work. */
             var checkedPhases = [];
             var checkedProjectTypes = [];
             jq('.phase').each(function() {
-			/* Below script pushes the value if the condition is true. */
+            /* Below script pushes the value if the condition is true. */
                 if (jq(this).is(":checked") ){
                     checkedPhases.push(jq(this).val());
                 }
             });
-			/* Below script pushes the value if the condition is true. */
+            /* Below script pushes the value if the condition is true. */
             jq('.projectType').each(function() {
                  if (jq(this).is(":checked")){
                  checkedProjectTypes.push(jq(this).val());
@@ -78,8 +78,8 @@ Also variables have to be kept global to make the functionality work. */
             }
             applyFltr(checkedPhases.toString(), jq('.tldFrom').val(), jq('.tldTo').val(), jq('.my').is(":checked"), jq('.aPro').is(":checked"), geoAll, clusters, mcos, countries.toString(), iTORange1, iTORange2, brandPositions.toString(),checkedProjectTypes.toString(),jq('#ActiveProjects').is(':checked'),jq('#StoppedProjects').is(':checked'),unAssigned);   
         }
-	chkAll();
-	chkSub();
+    chkAll();
+    chkSub();
 /* Below script is for the auto complete functionality. It returns a set of results based on the key words entered by the user. */   
     jq(".filterBrand").autocomplete({
         source: brandList,
@@ -91,7 +91,7 @@ Also variables have to be kept global to make the functionality work. */
             }
         }
     });
-	/* Below works on click event. It removes the list when clicked on it */
+    /* Below works on click event. It removes the list when clicked on it */
      jq(".filterBrandList").on("click", ".brndFilter", function() {
         brandPositions.splice( jq.inArray(jq(this).text(), brandPositions), 1 );
         jq(this).remove();
@@ -99,7 +99,7 @@ Also variables have to be kept global to make the functionality work. */
 });
 
 function chkAll(){
-	/* Below script works on click event. When the check all is checked all the child checkboxes will be checked. */
+    /* Below script works on click event. When the check all is checked all the child checkboxes will be checked. */
     jq(".docFilter").on("click", ".checkAll", function() {
         if (jq(this).is(":checked")) {
             jq(this).closest("ul.docFilter").find("input[type=checkbox]:not('[disabled]')").prop("checked", true);
@@ -109,23 +109,23 @@ function chkAll(){
             jq(this).closest("ul").find("input[type=checkbox]:not('[disabled]')").next().removeClass("selected");
         }
     });
-	
-	/* Below script replace a text with a specific time format. */
+    
+    /* Below script replace a text with a specific time format. */
      jq(".dueDate,.comDate").each(function() {
         jq(this).text(jq(this).text().replace('00:00:00 GMT', ''));
     });
     jq('tr:nth-child(4n),tr:nth-child(4n-1)').addClass('greyColr').removeClass('noBackground');
     jq('tr:nth-child(4n)').addClass('genRowOdd');
 
-	/* Below script works on keypress. When user presses enter key a search function is called */
+    /* Below script works on keypress. When user presses enter key a search function is called */
     jq('#srchTxt').keypress(function(e) {
         if (e.which === 13) {
             loadProjects(jq('#srchTxt').val());
             return false;
         }
     });
-	
-	/* Below script works on keypress. When user presses enter key a search function is called */
+    
+    /* Below script works on keypress. When user presses enter key a search function is called */
     jq('#srchBrand').keypress(function(e) {
         if (e.which === 13) {
             loadProjects(jq('#srchBrand').val());
@@ -135,11 +135,11 @@ function chkAll(){
 }
 
 function chkSub(){
-	/* Below script works on click event. It reloads the current page. */
+    /* Below script works on click event. It reloads the current page. */
     jq(document).on('click', '#resetFilterBtnNew', function() {
         location.reload();
     });
-	/* Below script works on click event. Based on condition it checks for a specific class in below conditions.
+    /* Below script works on click event. Based on condition it checks for a specific class in below conditions.
 Also if the checkbox is checked it will check its own related child checkboxes. */
     jq(".docFilter").on("click", ".checkSub", function() {
         var checkSub = jq(this).closest("ul").find(".checkSub:checked").closest("li").length;
@@ -212,17 +212,17 @@ Also if the checkbox is checked it will check its own related child checkboxes. 
             }
         });
     }
-	/* Below function performs checking of children checkboxes. */
+    /* Below function performs checking of children checkboxes. */
     function checkChildren(str) {
         jq('.' + str).each(function() {
             jq(this).attr("checked", true);
         });
     }
-	/* Below function performs unchecking of parent checkboxes when the condition is true. */
+    /* Below function performs unchecking of parent checkboxes when the condition is true. */
     function unCheckParent(str) {
         jq('.' + str).each(function() {
             if (jq(this).val() === 'all') {
                 jq(this).attr("checked", false);
             }
         });
-    }	
+    }   

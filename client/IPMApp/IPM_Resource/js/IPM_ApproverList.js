@@ -24,10 +24,10 @@ function closepopup() {
     window.top.location.href = approver + '?id=' + id;
 }
 function changeText(){
-		unsaved = true;
-	}
+    unsaved = true;
+  }
 jq(function(){  
-	
+  
       var frame = parent.document.getElementById("editApprover");
        jq(frame).find('.close').click(function(){
            if(unsaved){
