@@ -73,10 +73,6 @@
         <visible>false</visible>
     </applicationVisibilities>
     <applicationVisibilities>
-        <application>WIN_POS</application>
-        <visible>false</visible>
-    </applicationVisibilities>
-    <applicationVisibilities>
         <application>cB4L</application>
         <visible>false</visible>
     </applicationVisibilities>
