@@ -186,7 +186,6 @@
         <field>PBS_Profile__c.Work_Level__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <description>Almond - Permission Set used for internal admin users</description>
     <fieldPermissions>
         <editable>true</editable>
         <field>PBS_Wiki__kav.Group_Name__c</field>

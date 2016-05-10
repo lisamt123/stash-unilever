@@ -12,12 +12,15 @@ src/classes/PBS_WikiController_CC.cls-meta.xml
 src/classes/PBS_WikiController_Test.cls
 src/classes/PBS_WikiController_Test.cls-meta.xml
 src
+src/staticresources
+src/staticresources/PCResources.resource
+src/staticresources/PCResources.resource-meta.xml
+src
 src/pages
 src/pages/PBS_Library.page
 src/pages/PBS_Library.page-meta.xml
 src/pages/PBS_Wiki.page
 src/pages/PBS_Wiki.page-meta.xml
-
 src
 src/permissionsets
 src/permissionsets/PBS_LMS_Admin.permissionset

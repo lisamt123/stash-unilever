@@ -4,7 +4,7 @@
   <title>Wiki</title>
   <meta charset="utf-8"></meta>
   
-      <apex:stylesheet value="{!URLFOR($Resource.PCResources_MT, '/css/Wiki.css')}" />
+      <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/Wiki.css')}" />
 
  
     
