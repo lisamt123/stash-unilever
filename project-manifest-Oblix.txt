@@ -164,8 +164,7 @@ src/classes/Oblix_UserPermissionHandlerTest.cls
 src/classes/Oblix_UserPermissionHandlerTest.cls-meta.xml
 src/classes/Oblix_VersionControl.cls
 src/classes/Oblix_VersionControl.cls-meta.xml
-src/classes/TriggerFactory.cls
-src/classes/TriggerFactory.cls-meta.xml
+
 src/classes/Oblix_Utils.cls
 src/classes/Oblix_Utils.cls-meta.xml
 src/classes/Oblix_Utils_Test.cls
@@ -248,10 +247,12 @@ src/reports/SWOP_Reporting_Super_Users/SWOP_Campaign_Report_Full_Detail_v2.repor
 src/reports/SWOP_Reporting_Super_Users/SWOP_Pick_Lists_v2.report
 src/reports/SWOP_Reporting_Super_Users/SWOP_Role_Rates_Non_Campaign_v2.report
 src/reports/SWOP_Reporting_Super_Users/SWOP_SOW_Report_Full_Export_v2.report
-src/reports/SWOP_Reporting_Agencies/SWOP_Agency_SOW_Report_Full_Export
-src/reports/SWOP_Reporting_Agencies/SWOP_Agency_Asset_Summary_Per_Campaign
-src/reports/SWOP_Reporting_Agencies/SWOP_Agency_Non_Campaign_Report
-src/reports/SWOP_Reporting_Agencies/SWOP_Agency_Asset_Summary_Per_SOW
+src/reports/SWOP_Reporting_Agencies
+src/reports/SWOP_Reporting_Agencies-meta.xml
+src/reports/SWOP_Reporting_Agencies/SWOP_Agency_SOW_Report_Full_Export.report
+src/reports/SWOP_Reporting_Agencies/SWOP_Agency_Asset_Summary_Per_Campaign.report
+src/reports/SWOP_Reporting_Agencies/SWOP_Agency_Non_Campaign_Report.report
+src/reports/SWOP_Reporting_Agencies/SWOP_Agency_Asset_Summary_Per_SOW.report
 src/components
 src/components/Oblix_CampaignStage.component
 src/components/Oblix_CampaignStage.component-meta.xml
@@ -340,3 +341,7 @@ src/documents/SWOP_Files/SWOP_Letterhead_Logo.jpg
 src/documents/SWOP_Files/SWOP_Letterhead_Logo.jpg-meta.xml
 src/letterhead
 src/letterhead/SWOP_Letterhead.letter
+src/groups
+src/groups/Oblix_SWOP_Agency.group
+src/groups/Oblix_SWOP_All_UL1_UL2_UL3.group
+src/groups/Oblix_SWOP_Super_User.group

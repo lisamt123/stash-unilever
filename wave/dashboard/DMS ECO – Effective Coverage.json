@@ -1,0 +1,592 @@
+{
+    "label": "DMS ECO – Effective Coverage",
+    "state": {
+        "gridLayouts": [],
+        "layouts": [],
+        "steps": {
+            "Invoiced_Stores_3": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "Invoiced_Stores"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DMS_Effective_Coverage"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Distributor_AccountName_4": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Distributor_AccountName"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DMS_Effective_Coverage"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Target_Date_6": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Target_Date"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DMS_Effective_Coverage"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Sales_Channel_9": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Performance_Result"
+                        ]
+                    ],
+                    "groups": [
+                        "Sales_Channel"
+                    ],
+                    "order": [
+                        [
+                            -1,
+                            {
+                                "ascending": false
+                            }
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DMS_Effective_Coverage"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Total_Active_Stores_2": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "Total_Active_Stores"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DMS_Effective_Coverage"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "compare_8": {
+                "isFacet": true,
+                "isGlobal": false,
+                "selectMode": "single",
+                "type": "multi",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DMS_Effective_Coverage"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "comparisontable"
+                },
+                "columns": [
+                    {
+                        "header": "Tiendas Activas",
+                        "query": {
+                            "measures": [
+                                [
+                                    "sum",
+                                    "Total_Active_Stores"
+                                ]
+                            ],
+                            "groups": [
+                                "Distributor_AccountName",
+                                "Target_Date",
+                                "Sales_Channel"
+                            ]
+                        }
+                    },
+                    {
+                        "header": "Tiendas Facturadas",
+                        "query": {
+                            "measures": [
+                                [
+                                    "sum",
+                                    "Invoiced_Stores"
+                                ]
+                            ],
+                            "groups": [
+                                "Distributor_AccountName",
+                                "Target_Date",
+                                "Sales_Channel"
+                            ]
+                        }
+                    },
+                    {
+                        "header": "Valor de la Meta",
+                        "query": {
+                            "measures": [
+                                [
+                                    "sum",
+                                    "Target_Value"
+                                ]
+                            ],
+                            "groups": [
+                                "Distributor_AccountName",
+                                "Target_Date",
+                                "Sales_Channel"
+                            ]
+                        }
+                    },
+                    {
+                        "header": "Resultado del Desempeño (%)",
+                        "query": {
+                            "measures": [
+                                [
+                                    "avg",
+                                    "Performance_Result"
+                                ]
+                            ],
+                            "groups": [
+                                "Distributor_AccountName",
+                                "Target_Date",
+                                "Sales_Channel"
+                            ]
+                        },
+                        "showBars": false
+                    },
+                    {
+                        "format": "percentage",
+                        "header": "Resultado del Desempeño",
+                        "query": {
+                            "measures": [
+                                [
+                                    "sum",
+                                    "PerformanceIndicatorPercentage2__c"
+                                ]
+                            ],
+                            "groups": [
+                                "Distributor_AccountName",
+                                "Target_Date",
+                                "Sales_Channel"
+                            ],
+                            "formula": "D/C"
+                        },
+                        "showBars": true
+                    }
+                ],
+                "globalQuery": {}
+            },
+            "Target_Date_11": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Target_Date"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DMS_Effective_Coverage"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Distributor_AccountName_13": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Performance_Result"
+                        ]
+                    ],
+                    "groups": [
+                        "Distributor_AccountName"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DMS_Effective_Coverage"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Invoiced_Stores_7": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "q = load \"DMS_Effective_Coverage\";q = filter q by 'Distributor_AccountName' in {{ selection(Distributor_AccountName_4) }};q = filter q by 'Sales_Channel' in {{ selection(Sales_Channel_5) }};q = filter q by 'Target_Date' in {{ selection(Target_Date_6) }};q = group q by all;q = foreach q generate (sum('Invoiced_Stores') * 100)/sum('Total_Active_Stores') as 'avg_Invoiced_Stores';",
+                    "measures": [
+                        [
+                            "avg",
+                            "Invoiced_Stores"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DMS_Effective_Coverage"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Sales_Channel_5": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Sales_Channel"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DMS_Effective_Coverage"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            }
+        },
+        "widgets": {
+            "comparetable_1": {
+                "type": "comparetable",
+                "position": {
+                    "h": 500,
+                    "w": 1060,
+                    "x": 300,
+                    "y": 750,
+                    "zIndex": 3
+                },
+                "parameters": {
+                    "step": "compare_8",
+                    "selectModeOverride": "single"
+                }
+            },
+            "box_1": {
+                "type": "box",
+                "position": {
+                    "h": 40,
+                    "w": 180,
+                    "x": 30,
+                    "y": 30,
+                    "zIndex": 6
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(255, 255, 255, 0)",
+                    "borderColor": "rgba(255, 255, 255, 0)",
+                    "imageUrl": "01556000000DGl0"
+                }
+            },
+            "text_1": {
+                "type": "text",
+                "position": {
+                    "x": 20,
+                    "y": 100,
+                    "zIndex": 8
+                },
+                "parameters": {
+                    "fontSize": 24,
+                    "text": "Filtros",
+                    "textAlignment": "left"
+                }
+            },
+            "box_3": {
+                "type": "box",
+                "position": {
+                    "h": 1230,
+                    "w": 1100,
+                    "x": 280,
+                    "y": 90,
+                    "zIndex": 1
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(255, 255, 255, 0.35)"
+                }
+            },
+            "box_2": {
+                "type": "box",
+                "position": {
+                    "h": 430,
+                    "w": 230,
+                    "x": 20,
+                    "y": 90,
+                    "zIndex": 7
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(255, 255, 255, 0.35)"
+                }
+            },
+            "dimfilter_3": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 190,
+                    "x": 40,
+                    "y": 270,
+                    "zIndex": 100002
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Sales_Channel_5"
+                }
+            },
+            "dimfilter_4": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 190,
+                    "x": 40,
+                    "y": 380,
+                    "zIndex": 100002
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Target_Date_11"
+                }
+            },
+            "dimfilter_1": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 190,
+                    "x": 40,
+                    "y": 160,
+                    "zIndex": 100001
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Distributor_AccountName_4"
+                }
+            },
+            "number_4": {
+                "type": "number",
+                "position": {
+                    "w": 300,
+                    "x": 1060,
+                    "y": 140,
+                    "zIndex": 5
+                },
+                "parameters": {
+                    "exploreLink": false,
+                    "fontSize": 42,
+                    "measureField": "avg_Invoiced_Stores",
+                    "step": "Invoiced_Stores_7",
+                    "textAlignment": "center",
+                    "title": "Tiendas Facturadas (%)"
+                }
+            },
+            "number_2": {
+                "type": "number",
+                "position": {
+                    "w": 460,
+                    "x": 600,
+                    "y": 140,
+                    "zIndex": 7
+                },
+                "parameters": {
+                    "fontSize": 42,
+                    "measureField": "sum_Invoiced_Stores",
+                    "step": "Invoiced_Stores_3",
+                    "textAlignment": "center",
+                    "title": "Total Tiendas Facturadas"
+                }
+            },
+            "number_1": {
+                "type": "number",
+                "position": {
+                    "w": 300,
+                    "x": 300,
+                    "y": 140,
+                    "zIndex": 3
+                },
+                "parameters": {
+                    "fontSize": 42,
+                    "measureField": "sum_Total_Active_Stores",
+                    "step": "Total_Active_Stores_2",
+                    "textAlignment": "center",
+                    "title": "Total Tiendas Activas"
+                }
+            },
+            "text_3": {
+                "type": "text",
+                "position": {
+                    "x": 850,
+                    "y": 280,
+                    "zIndex": 12
+                },
+                "parameters": {
+                    "fontSize": 24,
+                    "text": "Desempeño por Distribuidor"
+                }
+            },
+            "box_5": {
+                "type": "box",
+                "position": {
+                    "h": 160,
+                    "w": 1100,
+                    "x": 280,
+                    "y": 90,
+                    "zIndex": 2
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)"
+                }
+            },
+            "text_2": {
+                "type": "text",
+                "position": {
+                    "x": 300,
+                    "y": 280,
+                    "zIndex": 11
+                },
+                "parameters": {
+                    "fontSize": 24,
+                    "text": "Desempeño por Canal de Ventas"
+                }
+            },
+            "chart_5": {
+                "type": "chart",
+                "position": {
+                    "h": 360,
+                    "w": 510,
+                    "x": 850,
+                    "y": 320,
+                    "zIndex": 15
+                },
+                "parameters": {
+                    "step": "Distributor_AccountName_13",
+                    "visualizationType": "hbar"
+                }
+            },
+            "text_4": {
+                "type": "text",
+                "position": {
+                    "x": 300,
+                    "y": 710,
+                    "zIndex": 13
+                },
+                "parameters": {
+                    "fontSize": 24,
+                    "text": "Desempeño de Distribuidores"
+                }
+            },
+            "chart_1": {
+                "type": "chart",
+                "position": {
+                    "h": 360,
+                    "w": 510,
+                    "x": 300,
+                    "y": 320,
+                    "zIndex": 9
+                },
+                "parameters": {
+                    "step": "Sales_Channel_9",
+                    "visualizationType": "hbar"
+                }
+            }
+        }
+    },
+    "datasets": [
+        {
+            "id": "0Fb5600000017AoCAI",
+            "name": "DMS_Effective_Coverage"
+        }
+    ]
+}
