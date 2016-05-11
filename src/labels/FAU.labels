@@ -1,0 +1,81 @@
+    <labels>
+        <fullName>FAU_Invite_Accepted</fullName>
+        <categories>FAU, Participant</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FAU_Invite_Accepted</shortDescription>
+        <value>Thankyou for accepting the invite</value>
+    </labels>
+    <labels>
+        <fullName>FAU_Invite_Decline_Problem</fullName>
+        <categories>FAU, Four Acres, Participant</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FAU Invite Decline Problem</shortDescription>
+        <value>There was a problem declining this invitation; please contact the Four Acres team.</value>
+    </labels>
+    <labels>
+        <fullName>FAU_Invite_Declined</fullName>
+        <categories>FAU, Participant</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FAU Invite Declined</shortDescription>
+        <value>You have declined this invite, thank you for your response</value>
+    </labels>
+    <labels>
+        <fullName>FAU_Invite_Invited</fullName>
+        <categories>FAU, Participant</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FAU Invite Invited</shortDescription>
+        <value>Please reply as soon as possible</value>
+    </labels>
+    <labels>
+        <fullName>FAU_Invite_Smallprint</fullName>
+        <categories>Participant, FAU</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FAU_Invite_Smallprint</shortDescription>
+        <value>Four Acres Unilever.</value>
+    </labels>
+    <labels>
+        <fullName>FAU_Invite_Title</fullName>
+        <categories>FAU, Participant</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FAU Invite Title</shortDescription>
+        <value>Welcome to Four Acres.</value>
+    </labels>
+    <labels>
+        <fullName>FAU_PA_Will_Complete</fullName>
+        <categories>Participant, FAU</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FAU_PA_Will_Complete</shortDescription>
+        <value>Your P.A. will receive instructions to complete the registration</value>
+    </labels>
+    <labels>
+        <fullName>FAU_To_Defer_To_PA_error_message</fullName>
+        <categories>FAU</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FAU To Defer To PA error message</shortDescription>
+        <value>To defer to your personal assistant. Please enter your personal assistant&apos;s user or email address.</value>
+    </labels>
+    <labels>
+        <fullName>FAU_Webinar_Invitation_Template</fullName>
+        <categories>FAU, Participant</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FAU Webinar Invitation Template</shortDescription>
+        <value>FAU_Webinar_Invitation</value>
+    </labels>
+    <labels>
+        <fullName>FAU_Invite_Accept_Problem</fullName>
+        <categories>FAU, Participant</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FAU Invite Accept Problem</shortDescription>
+        <value>There was a problem accepting the invitation; please contact the Four Acres team.</value>
+    </labels>    
+    

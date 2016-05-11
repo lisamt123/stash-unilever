@@ -180,6 +180,8 @@ private class Oblix_SowMainController_Test {
         MDO_Brand__c bCiff = Oblix_TestUtils.createBrand(BRAND_CIFF);
         insert new List<MDO_Brand__c>{bDove, bKnorr, bAmbrosia, bCiff};
 
+        insert Oblix_TestUtils.createOblixCustomSettings();
+
         // insert categories MDO data
         MDO_Category__c scPC = Oblix_TestUtils.createProductCategory(SMALL_CAT_PC);
         MDO_Category__c scOF = Oblix_TestUtils.createProductCategory(SMALL_CAT_OF);

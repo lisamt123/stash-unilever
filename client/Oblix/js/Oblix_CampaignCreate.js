@@ -33,6 +33,15 @@ $(document).ready(function() {
         $('[class="countries_global_checkbox"]').prop('checked', true);
         setAsGlobal();
     }
+
+    if($('.Innovation').is(':checked')) {
+        $('.projBrandBrand').attr('disabled', 'disabled');
+    }
+
+    if($('.Brand_Led_Growth').is(':checked')) {
+        $('.projBrandInnov').attr('disabled', 'disabled');
+    }
+
     $.unblockUI();
 });
 

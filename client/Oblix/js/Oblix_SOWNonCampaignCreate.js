@@ -1,22 +1,67 @@
 var key = 0;
 
-function addToActivitySelection() {
+$(document).ready(function() {
+    initPopover();
+});
+
+function initPopover() {
+    $("[data-toggle=popover]").popover();
+}
+
+function addToActivitySelection(isActivity) {
     var nonCampaignItem = {};
     var validationPass;
-    nonCampaignItem.selectedCountry = $('[id$="country"] option:selected').text();
-    nonCampaignItem.selectedActivity = $('[id$="activityId"] option:selected').text();
-    nonCampaignItem.selectedAgencyDepartment = $('[id$="agencyDepartment"] option:selected').text();
-    nonCampaignItem.selectedRole = $('[id$="selectedRole"] option:selected').text();
-    nonCampaignItem.otherName = $('[id$="dedicatedResourceOther"]').length !== 0 && $('[id$="dedicatedResourceOther"]').val().length > 0  ? $('[id$="dedicatedResourceOther"]').val() : "";
-    validationPass = validateSelection();
-    if(validationPass){
-        key = sow_id + nonCampaignItem.selectedActivity + nonCampaignItem.selectedCountry + nonCampaignItem.selectedAgencyDepartment + nonCampaignItem.selectedRole;
-        nonCampaignItem.hourlyRate = $('[id$="rate"]').text();
-        nonCampaignItem.hoursSelected = $('[id$="hoursSelected"]').val();
-        nonCampaignItem.totalAmount = nonCampaignItem.hourlyRate * nonCampaignItem.hoursSelected;
-        nonCampaignItem.key = key;
-        addToActivitySelectionMap(JSON.stringify(nonCampaignItem));
+    
+    if (isActivity) {
+        validationPass = validateSelection();
+        if(validationPass){
+
+            nonCampaignItem.selectedCountry = $('[id$="country"] option:selected').text();
+            nonCampaignItem.selectedActivity = $('[id$="activityId"] option:selected').text();
+            nonCampaignItem.selectedAgencyDepartment = $('[id$="agencyDepartment"] option:selected').text();
+            nonCampaignItem.selectedRole = $('[id$="selectedRole"] option:selected').text();
+            nonCampaignItem.otherName = $('[id$="activityOtherName"]').length !== 0 && $('[id$="activityOtherName"]').val().length > 0  ? $('[id$="activityOtherName"]').val() : "";
+            nonCampaignItem.description = $('[id$="activityDescription"]').val();
+
+            if (nonCampaignItem.selectedActivity.toUpperCase() !== 'OTHER') {
+                key = sow_id + nonCampaignItem.selectedActivity + nonCampaignItem.selectedCountry + nonCampaignItem.selectedAgencyDepartment + nonCampaignItem.selectedRole;
+            } else {
+                key = sow_id + nonCampaignItem.selectedActivity + nonCampaignItem.otherName + nonCampaignItem.selectedCountry + nonCampaignItem.selectedAgencyDepartment + nonCampaignItem.selectedRole;
+            }
+            nonCampaignItem.hourlyRate = $('[id$="hiddenRate"]').text();
+            nonCampaignItem.hoursSelected = $('[id$="hoursSelected"]').val();
+            nonCampaignItem.totalAmount = nonCampaignItem.hourlyRate * nonCampaignItem.hoursSelected;
+            nonCampaignItem.key = key;
+            nonCampaignItem.isActivity = true;
+
+            addToWorkList(JSON.stringify(nonCampaignItem));
+        } else {
+            $.unblockUI();
+        }
+    } else {
+        validationPass = validateResourceSelection();
+        if(validationPass){
+
+            nonCampaignItem.selectedCountry = $('[id$="dedicatedCountry"] option:selected').text();
+            nonCampaignItem.name = $('[id$="dedicatedResourceName"]').val();
+            nonCampaignItem.selectedAgencyDepartment = $('[id$="dedicatedAgencyDepartment"] option:selected').text();
+            nonCampaignItem.selectedRole = $('[id$="dedicatedSelectedRole"] option:selected').text();
+            //nonCampaignItem.otherName = $('[id$="activityOtherName"]').length !== 0 && $('[id$="activityOtherName"]').val().length > 0  ? $('[id$="activityOtherName"]').val() : "";
+            nonCampaignItem.description = $('[id$="resourceDescription"]').val();
+
+            key = sow_id + nonCampaignItem.name + nonCampaignItem.selectedCountry + nonCampaignItem.selectedAgencyDepartment + nonCampaignItem.selectedRole;
+            nonCampaignItem.hourlyRate = $('[id$="hiddenDedicatedRate"]').text();
+            nonCampaignItem.hoursSelected = $('[id$="prcent"]').val();
+            nonCampaignItem.totalAmount = nonCampaignItem.hourlyRate * nonCampaignItem.hoursSelected / 100;
+            nonCampaignItem.key = key;
+            nonCampaignItem.isActivity = false;
+
+            addToWorkList(JSON.stringify(nonCampaignItem));
+        } else {
+            $.unblockUI();
+        }
     }
+    
     return false;
 }
 
@@ -37,11 +82,11 @@ function validateSelection(){
         alert('Please choose a Role');
         return false;
     }
-    if($('[id$="hoursSelected"]').val() == ''){
-        alert('Please Enter number of hours required');
+    if($('[id$="hoursSelected"]').val() == '' || $('[id$="hoursSelected"]').val() == 0){
+        alert('Please Enter number of hours required. \'0\' is not a valid value.');
         return false;
     }
-    if($('[id$="dedicatedResourceOther"]').val() == ''){
+    if($('[id$="activityOtherName"]').val() == ''){
         alert('Please Enter Other Description');
         return false;
     }
@@ -65,36 +110,42 @@ function validateResourceSelection(){
         alert('Please choose a Role');
         return false;
     }
-    if($('[id$="prcent"]').val() == ''){
-        alert('Please Enter % of hours required');
+    if($('[id$="prcent"]').val() == '' || $('[id$="prcent"]').val() == 0){
+        alert('Please Enter % of hours required. \'0\' is not a valid value.');
         return false;
     }
-    if(true){
+    /*if(true){
         blockme();
         insertSelectedResource();
-    }
+    }*/
     return true;
 }
 
-function removeRow(selectedkey){
+function removeItem(selectedkey){
     console.log('SelectedKey : ' + selectedkey); 
-    var returnValue = confirm("Are you sure you want to Delete?");
+    var returnValue = confirm("Are you sure you want to delete?");
     if(selectedkey != null){
         if(returnValue == true){
-            removeFromSelectionMap(selectedkey);
+            blockme();
+            removeItemAction(selectedkey);
         }else{
             return returnValue;
         }
     }
 }
 
-function basketRemoveRow(basketName){
-    var returnValue = confirm("Are you sure you want to Delete?");
-    if(basketName != null){
+function removeSection(sectionName){
+    var returnValue = confirm("Are you sure you want to delete?");
+    if(sectionName != null){
         if(returnValue == true){
-            removeItemFromBasketList(basketName);
+            blockme();
+            removeSectionAction(sectionName);
         }else{
             return returnValue;
         }
     }
 }
+
+// $(document).ready(function(){
+//     $('[id*=activityId] option[value="Other"]').remove();
+// });
