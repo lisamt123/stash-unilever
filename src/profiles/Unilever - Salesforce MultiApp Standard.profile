@@ -21052,9 +21052,6 @@
     <layoutAssignments>
         <layout>cp_ULE__c-Unilever Leadership Executive Layout</layout>
     </layoutAssignments>
-	 <layoutAssignments>
-        <layout>IPM_Clusters__c-IPM_Clusters_Layout</layout>
-    </layoutAssignments>
     <layoutAssignments>
         <layout>im_Issue_Tracker__c-Issue Tracker Layout</layout>
     </layoutAssignments>
