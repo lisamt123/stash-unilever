@@ -222,9 +222,6 @@ boolean callFromVF = false;
                 if(pworfRec.pkl_Process_Office_Area_E2E__c ==CPA_ConstantsForContractingAppClasses.OTHER && pworfRec.txt_otherProcessOfficeAreaE2E__c == null ){  
                     objectMap.put(CPA_ConstantsForContractingAppClasses.OTHERPROCESSOFFICEAREAE2E ,CPA_ConstantsForContractingAppClasses.MANDATORYIFOTHISSELECTEDINPO);
                 }
-                if(pworfRec.pkl_Process_Office_Area_E2E__c !=null && pworfRec.pkl_Process_Office_Area_E2E__c !=CPA_ConstantsForContractingAppClasses.OTHER && pworfRec.txt_otherProcessOfficeAreaE2E__c != null ){  
-                    objectMap.put(CPA_ConstantsForContractingAppClasses.OTHERPROCESSOFFICEAREAE2E ,CPA_ConstantsForContractingAppClasses.MANDATORYIFPROCESSOFFICEAREAE2EISOTHER);
-                }
                 if(pworfRec.mpkl_Project_Phases__c !=null && pworfRec.mpkl_Project_Phases__c.contains(CPA_ConstantsForContractingAppClasses.OTHER) && pworfRec.txt_OtherProjectPhases__c == null ){ 
                     objectMap.put(CPA_ConstantsForContractingAppClasses.OTHERPROJECTPHASES ,CPA_ConstantsForContractingAppClasses.MANDATORYIFOTHERISSELECTEDINPP);
                 }
