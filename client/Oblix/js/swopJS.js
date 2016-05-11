@@ -13,6 +13,19 @@ function blockme() {
         }
     });
 }
+
+function onKeyPress_IsDigitAndDecimalValidation(event, element) {
+    var isDigitOrDot = event.charCode >= 48 && event.charCode <= 57 || event.keyCode == 46;
+    var parts = $(element).val().split(/[.,]/);
+    if (parts.length <= 1) { //Has no decimals - check if is digit
+        return isDigitOrDot;
+    } else if (parts.length == 2) { //has decimals - check if is digit and <2 decimals
+        return (isDigitOrDot && parts[1].length < 2);    
+    }
+    return true;
+}
+
+
 $(document).ready(function() {
     
     $("link.user").each(function(index, value) {

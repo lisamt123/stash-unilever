@@ -222,6 +222,16 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>eml_SMT_group_email__c</fullName>
+        <externalId>false</externalId>
+        <label>SMT group email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>eml_Unilever_Budget_Approver_Email__c</fullName>
         <description>Unilever Budget Approver Email</description>
         <externalId>false</externalId>
@@ -237,6 +247,16 @@
         <description>Unilever Content Approver Email</description>
         <externalId>false</externalId>
         <label>Unilever Content Approver Email*</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>eml_VDM_group_email__c</fullName>
+        <externalId>false</externalId>
+        <label>VDM group email</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -326,10 +346,6 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Analyse</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Design</fullName>
                 <default>false</default>
             </picklistValues>
@@ -347,6 +363,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Analyze</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -700,6 +720,19 @@
     </fields>
     <label>LOI</label>
     <listViews>
+        <fullName>All_LOI</fullName>
+        <columns>NAME</columns>
+        <columns>pkl_Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All LOI</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>CAP_SMT_Group</group>
+            <group>CAP_ULFT_Group</group>
+            <group>CAP_ULPT_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>LOI_Assigned_to_SMT</fullName>
         <columns>NAME</columns>
         <columns>lkp_PWORF__c</columns>
@@ -779,7 +812,7 @@
         <picklistValues>
             <picklist>mpkl_Phases_covered_by_WAR__c</picklist>
             <values>
-                <fullName>Analyse</fullName>
+                <fullName>Analyze</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -889,7 +922,7 @@
         <picklistValues>
             <picklist>mpkl_Phases_covered_by_WAR__c</picklist>
             <values>
-                <fullName>Analyse</fullName>
+                <fullName>Analyze</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -999,7 +1032,7 @@
         <picklistValues>
             <picklist>mpkl_Phases_covered_by_WAR__c</picklist>
             <values>
-                <fullName>Analyse</fullName>
+                <fullName>Analyze</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1108,7 +1141,7 @@
         <picklistValues>
             <picklist>mpkl_Phases_covered_by_WAR__c</picklist>
             <values>
-                <fullName>Analyse</fullName>
+                <fullName>Analyze</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1217,7 +1250,7 @@
         <picklistValues>
             <picklist>mpkl_Phases_covered_by_WAR__c</picklist>
             <values>
-                <fullName>Analyse</fullName>
+                <fullName>Analyze</fullName>
                 <default>false</default>
             </values>
             <values>

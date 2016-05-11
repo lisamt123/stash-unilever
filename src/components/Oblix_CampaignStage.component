@@ -51,15 +51,7 @@
              -->
 	        <apex:outputText rendered="{!display_mode == 1 || display_mode == 2 || display_mode == 3}">
 	        	<!--Chevrons-->
-	        	<!-- ************************************************************ -->
-	        	<!-- START - S.M. 2016-04-09 COMMENTING OUT TO RESOLVE DEPLOYMENT ISSUE -->
-	        	<!-- ************************************************************ -->
-             	<!-- <div class="campaign_chevron_title campaign_summary_information_titles">{!projectedStageLabel}</div> -->
-	        	
-	        	<!-- ************************************************************ -->
-	        	<!-- END - S.M. 2016-04-09 COMMENTING OUT TO RESOLVE DEPLOYMENT ISSUE -->
-	        	<!-- ************************************************************ -->
-
+	        	<div class="campaign_chevron_title campaign_summary_information_titles">{!projectedStageLabel}</div> 
              	<div class="campaign_chevron_container">
 				    <apex:repeat value="{!stage_identifier.projected_stages}" var="index">
 				    	<apex:variable var="projected_stage" value="{!stage_identifier.projected_stages[index]}" />
@@ -118,7 +110,13 @@
 					    	<apex:outputPanel styleClass="chevron_top_label{!projected_stage.stageNumber}" rendered="{!display_mode == 2}">{!projected_stage.name}</apex:outputPanel>
 					    </apex:repeat>
 			    	</div>
-			    	<apex:outputPanel rendered="{! (display_mode != 3 && stage_identifier.b_manual_override_on) || stage_identifier.sow_project_in_scope.Campaign_Status__c == 'Cancelled'}">
+			    	<!--
+						Overlay projected stages with blockme() panel if:
+							- campaign is cancelled OR
+							- campaign fee is overriden BUT
+								x this is not "Adjust Fee" screen (Id != 'campaign_stage_component_adjust_fee')
+			    	 -->
+			    	<apex:outputPanel rendered="{! (stage_identifier.b_manual_override_on && Id != 'campaign_stage_component_adjust_fee') || stage_identifier.sow_project_in_scope.Campaign_Status__c == 'Cancelled'}">
 				    	<div class="campaign_stage_chevron_override_label campaign_summary_information_titles"></div>
 				    </apex:outputPanel>
 			    </div>
@@ -136,14 +134,7 @@
 			************************************************************************
              -->
         	<apex:outputText rendered="{!display_mode == 1 || display_mode == 4}">
-        		<!--Chevrons-->
-	        	<!-- ************************************************************ -->
-	        	<!-- START - S.M. 2016-04-09 COMMENTING OUT TO RESOLVE DEPLOYMENT ISSUE -->
-	        	<!-- ************************************************************ -->
-        		<!-- <div class="campaign_chevron_title campaign_summary_information_titles">{!completedStageLabel}</div> -->
-	        	<!-- ************************************************************ -->
-	        	<!-- END - S.M. 2016-04-09 COMMENTING OUT TO RESOLVE DEPLOYMENT ISSUE -->
-	        	<!-- ************************************************************ -->
+        		<div class="campaign_chevron_title campaign_summary_information_titles">{!completedStageLabel}</div>
         		<div class="campaign_chevron_container">
 				    <apex:repeat value="{!stage_identifier.completed_stages}" var="index">
 				    	<apex:variable var="completed_stage" value="{!stage_identifier.completed_stages[index]}" />
@@ -221,27 +212,21 @@
 			************************************************************************
              -->
 	    </div>
-	        	<!-- ************************************************************ -->
-	        	<!-- START - S.M. 2016-04-09 COMMENTING OUT TO RESOLVE DEPLOYMENT ISSUE -->
-	        	<!-- ************************************************************ -->
-<!-- 	    <apex:outputText rendered="{!showTotalPercentage}">
+	    <apex:outputText rendered="{!showTotalPercentage}">
 	        <div class="add_assets_chevron_percentage_values">
 	            <p class="campaign_create_agency_hub_split_table_subtitle">Total campaign fee to be paid this FY</p>
-	            <h1 class="campaign_fee_percentage">{!stage_identifier.i_percentage_of_fee_this_year}%</h1> <br/>
+	            <h1 class="campaign_fee_percentage"><apex:outPutText value="{0,number,#,##0.###############}"><apex:param value="{!stage_identifier.i_percentage_of_fee_this_year}"/></apex:outPutText>%</h1> <br/>
 	            <apex:outputText rendered="{!stage_identifier.b_manual_override_on}">
 	            	<p class="red_text"><strong>Fee adjusted</strong></p>
 	            </apex:outputText>
 	        </div>
-	    </apex:outputText> -->
-	        	<!-- ************************************************************ -->
-	        	<!-- END - S.M. 2016-04-09 COMMENTING OUT TO RESOLVE DEPLOYMENT ISSUE -->
-	        	<!-- ************************************************************ -->
-		            <!--
-					************************************************************************
-						Total campaign fee end
-					************************************************************************
-		             -->
-		    
+	    </apex:outputText> 
+            <!--
+			************************************************************************
+				Total campaign fee end
+			************************************************************************
+             -->
+    
 	</apex:outputPanel>
 	<script>
 		var blockStages = function(containerId) {

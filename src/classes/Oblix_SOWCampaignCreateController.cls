@@ -258,19 +258,21 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
     }
 
     public void setCampaignStages() {
-        campaignHelper.selectedProject.Stage_Completed_CFY__c = stage_identifier.s_selected_completed_stage;
-        campaignHelper.selectedProject.Stage_Projected_CFY__c = stage_identifier.s_selected_projected_stage;
+        campaignHelper.selectedProject.Completed_Stage_CFY__c = stage_identifier.s_selected_completed_stage;
+        campaignHelper.selectedProject.Projected_Stage_CFY__c = stage_identifier.s_selected_projected_stage;
         campaignHelper.selectedProject.Percentage_of_Fee_for_this_FY__c = stage_identifier.sow_project_in_scope.Percentage_of_Fee_for_this_FY__c;
 
     }
 
     public void setInvestmentPriority() {
+        
         if (campaignHelper.selectedBrandInnovation != null) {
-            campaignHelper.selectedProject.Innovation_Projects__c = Label.Oblix_Lbl_Innovation_Projects_Innovation;
+            campaignHelper.selectedProject.Innovation_Projects__c = Oblix_Utils.getOblixSettingValueByName('INNOVATION_LABEL');
         } else {
-            campaignHelper.selectedProject.Innovation_Projects__c = Label.Oblix_Lbl_Innovation_Projects_BrandLedGrowth;
+            campaignHelper.selectedProject.Innovation_Projects__c = Oblix_Utils.getOblixSettingValueByName('BRAND_LED_GROWTH_LABEL');
         }
-        if (campaignHelper.selectedProject.Innovation_Projects__c == Label.Oblix_Lbl_Innovation_Projects_Innovation) {
+
+        if (campaignHelper.selectedProject.Innovation_Projects__c == Oblix_Utils.getOblixSettingValueByName('INNOVATION_LABEL')) {
             campaignHelper.selectedProject.Brand_Led_Growth__c = campaignHelper.selectedBrandInnovation;
         } else {
             campaignHelper.selectedProject.Brand_Led_Growth__c = campaignHelper.selectedBrandBrand;
@@ -320,7 +322,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
                     return null;
                 }
                 Oblix_SOW_Projects__c projectClone = campaignHelper.selectedProject.clone(false, true, false, false);
-                projectClone.Name = cloneName;
+                projectClone.Name_Prefix__c = cloneName;
                 insert projectClone;
 
                 setProjectInAgencyHubSplitList(projectClone.Id);

@@ -1,6 +1,9 @@
 ({
     //On page load set the form component informations
-	init : function(component, event, helper) {        
+	init : function(component, event, helper) {      
+        var mailSubject = encodeURIComponent(component.get("v.NewsDetail.Name"))+': '+component.get("v.NewsDetail.SharepointURL");
+		component.set("v.mailSubjectDetail",mailSubject);
+        
         var newsArticle = component.get("v.NewsDetail");
         var newsType = component.get("v.NewsType");
         var displayMessage;

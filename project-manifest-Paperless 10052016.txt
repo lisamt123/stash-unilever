@@ -1,0 +1,17 @@
+src/pages/VEP_VisitorPass_Dashboard.page
+src/pages/VEP_VisitorPass_Dashboard.page-meta.xml
+src/tabs/Visitor_Dashboard.tab
+src/reports/VEP_Reports-meta.xml
+src/applications/ScPaperles.app
+src/classes/VEP_Visitor_TriggerHandler.cls
+src/classes/VEP_Visitor_TriggerHandler.cls-meta.xml
+src/pages/VEP_SafetyQuiz_VF.page
+src/pages/VEP_SafetyQuiz_VF.page-meta.xml
+src/classes/VEP_SafetyQuiz_CC.cls
+src/classes/VEP_SafetyQuiz_CC.cls-meta.xml
+src/objects/Vep_Visitor_Pass__c.object
+src/permissionsets/VEP_Security_Permissions.permissionset
+src/staticresources/VEP_ProgressBar.resource
+src/staticresources/VEP_ProgressBar.resource-meta.xml
+src/staticresources/VEP_ProhibiteditemsImage.resource
+src/staticresources/VEP_ProhibiteditemsImage.resource-meta.xml

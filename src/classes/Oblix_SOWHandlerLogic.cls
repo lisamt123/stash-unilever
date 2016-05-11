@@ -245,8 +245,9 @@ public with sharing class Oblix_SOWHandlerLogic {
                 }
                 // to be uncommented if more than one user will be able to approve:
                 // if(unileverApprovers.iterator().hasNext()) sow.Unilever_SOW_Approver_Name_2__c = unileverApprovers.iterator().next();
-            } else {
+            } else if(sow.Unilever_SOW_Approver_Name__c != null){
                 // if no approvers are defined, clear the current approver value
+                isChanged = true;
                 sow.Unilever_SOW_Approver_Name__c = null;
             }
 
@@ -260,8 +261,9 @@ public with sharing class Oblix_SOWHandlerLogic {
                 }
                 // to be uncommented if more than one user will be able to approve:
                 // if(agencyApprovers.iterator().hasNext()) sow.Agency_SOW_Approver_Name_2__c = agencyApprovers.iterator().next();
-            } else {
+            } else if(sow.Agency_SOW_Approver_Name__c != null){
                 // if no approvers are defined, clear the current approver value
+                isChanged = true;
                 sow.Agency_SOW_Approver_Name__c = null;
             }
 
@@ -271,4 +273,31 @@ public with sharing class Oblix_SOWHandlerLogic {
 
     }
 
+
+    /*******************************************************************************
+    * @author       Execloud ©
+    * @date         2016-02-07
+    * @description  Build SOW name by combining the prefix and suffix of SOW name
+    ********************************************************************************/
+    public static void setSOWname(Marketing_SOW__c sow){
+              
+        Integer financial_year = getFinancialYear(sow);
+
+        if (String.isEmpty(sow.Name_Suffix__c)){
+            sow.Name = sow.Name_Prefix__c + Oblix_Utils.FY_SEPARATOR + financial_year;
+        }
+        else{
+            sow.Name = sow.Name_Prefix__c + Oblix_Utils.FY_SEPARATOR + financial_year + ' (' + sow.Name_Suffix__c + ')';
+        }  
+    }
+
+    public static Integer getFinancialYear(Marketing_SOW__c sow){
+        Integer financial_year =  System.Today().year();
+
+        if (String.isNotEmpty(sow.Financial_Year__c)){    
+            financial_year = Integer.valueOf(sow.Financial_Year__c.subStringAfter(Oblix_Utils.FY_PREFIX)); 
+        }
+        return financial_year;
+
+    }
 }
