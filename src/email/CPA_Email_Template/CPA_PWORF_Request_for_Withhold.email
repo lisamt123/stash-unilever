@@ -1,1 +1,28 @@
-<messaging:emailTemplate subject="From Hubble:{!RelatedTo.auto_PWORF_ID__c} : {!RelatedTo.txta_Title__c}: {!RelatedTo.pkl_Status__c}" recipientType="User" relatedToType="CPA_PWORF__c"> <messaging:htmlEmailBody > Hello,      <br/><br/>     {!RelatedTo.auto_PWORF_ID__c} : titled :  {!RelatedTo.txta_Title__c}  has been {!RelatedTo.pkl_Status__c} by {!RelatedTo.LastModifiedBy.Name} on {!Now()}.<br/><br/>      You are addressed in this mail because you are one of the stakeholders in the process.<br/>     Please follow the below link to know the status and take any appropriate action required.<br/>     <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id} ">{!RelatedTo.auto_PWORF_ID__c} </a> <br/><br/>    For any queries, please use 'Queries' section in the application or contact Supplier Management Team (ApplicationSupplier.PM@unilever.com). <br/><br/>  Thanks and Regards,<br/> Hubble - Contract Management System. <br/><br/></messaging:htmlEmailBody> </messaging:emailTemplate>
+<messaging:emailTemplate subject="{!RelatedTo.Pworf_ID__c} : Request for Withhold" recipientType="User" relatedToType="CPA_Queries__c">
+<messaging:htmlEmailBody >
+    Hi, <br/><br/>
+    {!RelatedTo.LastModifiedBy.Name}  has requested to withhold the PWORF with ID: {!RelatedTo.Pworf_ID__c} on {!NOW()} . <br/><br/>
+
+    You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.LookupPWORF_Name__c} ">{!RelatedTo.Pworf_ID__c} </a> <br/><br/>
+
+Regards, <br/><br/>
+
+Automation Contract System
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>
+
+<!--
+sub: Request to withhold PWORF: <PWORF ID> by <ULPM Name>
+
+body: 
+
+"Hi,
+
+<ULPM Name> has requested to withhold the PWORF with ID: <PWORF ID> on <Date & Time>
+You can access it from here: <URL to PWORF/System>
+
+Regards,
+Automation Contract System."
+
+
+-->
