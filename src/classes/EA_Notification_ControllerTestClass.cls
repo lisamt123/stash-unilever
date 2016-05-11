@@ -47,6 +47,52 @@ public class EA_Notification_ControllerTestClass{
             team.Type__c='Participant';
             insert team;
             
+            
+             EA_ThemesDetails__c ea=new EA_ThemesDetails__c();
+            ea.name='ThemesDetails';
+            ea.ThemeColorCode__c='test.color';
+            ea.ThemeDescription__c='Description';
+            insert ea;
+            
+            EA_BadgeDetails__c badge=new EA_BadgeDetails__c();
+            badge.name='Newbee';
+            badge.BadgeColor__c='blue';
+            badge.BadgeSerial__c=1;
+            badge.BadgeValue__c=2;
+            insert badge;
+            
+            EA_BadgeDetails__c badge1=new EA_BadgeDetails__c();
+            badge1.name='Bronze';
+            badge1.BadgeColor__c='red';
+            badge1.BadgeSerial__c=1;
+            badge1.BadgeValue__c=2;
+            insert badge1;
+            
+            EA_BadgeDetails__c badge2=new EA_BadgeDetails__c();
+            badge2.name='Silver';
+            badge2.BadgeColor__c='yellow';
+            badge2.BadgeSerial__c=1;
+            badge2.BadgeValue__c=2;
+            insert badge2;
+            
+            EA_BadgeDetails__c badge3=new EA_BadgeDetails__c();
+            badge3.name='Gold';
+            badge3.BadgeColor__c='black';
+            badge3.BadgeSerial__c=1;
+            badge3.BadgeValue__c=2;
+            insert badge3;
+            
+            EA_ReportingGA__c report=new EA_ReportingGA__c();
+            report.name='ReportEA';
+            report.Text_value__c='dummyvalue';
+            insert report;
+            
+            
+            
+            
+            
+            
+            
             EA_Team_Member__c team1=new  EA_Team_Member__c();
             
             System.assertEquals('test.comments', team.Feedback_Comments__c);
@@ -69,6 +115,7 @@ public class EA_Notification_ControllerTestClass{
               
               
             try{
+             EA_Notification_Controller.getUserDetail();
              List<EA_Wrapper_Class.EA_UserProfile_Wrapper> temp1=EA_Notification_Controller.getuserimage(event.id, team.id);
              EA_Notification_Controller.updateParticipantResponse('event.id',team.Participant__c, team1.Invitation_Status__c);
             }catch(exception e){
@@ -103,6 +150,23 @@ public class EA_Notification_ControllerTestClass{
             insert event;
             
             System.assertEquals('test.desc', event.Description__c);
+            
+            
+            
+              EA_ThemesDetails__c ea=new EA_ThemesDetails__c();
+            ea.name='test11';
+            ea.ThemeColorCode__c='test.color';
+            ea.ThemeDescription__c='Description';
+            insert ea;
+            EA_BadgeDetails__c badge=new EA_BadgeDetails__c();
+            badge.name='Bronze';
+            badge.BadgeColor__c='blue';
+            badge.BadgeSerial__c=1;
+            badge.BadgeValue__c=2;
+            insert badge;
+           
+           
+           
             EA_Team_Member__c Team =new EA_Team_Member__c();
             team.Activity_Due_Day__c='Today';
             team.Activity_Points__c=5;
@@ -139,6 +203,7 @@ public class EA_Notification_ControllerTestClass{
            // 
                // 
            try{
+           EA_Notification_Controller.getUserDetail();
               List<EA_Wrapper_Class.EA_UserProfile_Wrapper> temp1=EA_Notification_Controller.getuserimage(event.id, team.id);
           EA_Notification_Controller.updateParticipantResponse('event.id',team.Participant__c, team1.Invitation_Status__c);    
               }catch(exception e){ 
