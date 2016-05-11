@@ -11,6 +11,7 @@
         private static final string STR_TITLE = 'Title';
         
     
+	
         /**
          * Holds user language
          */
