@@ -11,26 +11,16 @@ src/classes/CPA_attachment_Trigger_Handler.cls
 src/classes/CPA_attachment_Trigger_Handler.cls-meta.xml
 src/classes/CPA_AttachmentUtil.cls
 src/classes/CPA_AttachmentUtil.cls-meta.xml
-src/classes/CPA_AttchemntCommerical_util.cls
-src/classes/CPA_AttchemntCommerical_util.cls-meta.xml
 src/classes/CPA_AttchemntUtilController_Test.cls
 src/classes/CPA_AttchemntUtilController_Test.cls-meta.xml
-src/classes/CPA_batchProrfAgeUpdate_test.cls
-src/classes/CPA_batchProrfAgeUpdate_test.cls-meta.xml
-src/classes/CPA_batchProrfAgeUpdate.cls
-src/classes/CPA_batchProrfAgeUpdate.cls-meta.xml
 src/classes/CPA_CalculationOfBusinessDaysForSLADates.cls
 src/classes/CPA_CalculationOfBusinessDaysForSLADates.cls-meta.xml
 src/classes/CPA_CancelController_Test.cls
 src/classes/CPA_CancelController_Test.cls-meta.xml
 src/classes/CPA_CNFTNF_TriggerUtil.cls
 src/classes/CPA_CNFTNF_TriggerUtil.cls-meta.xml
-src/classes/CPA_Commercials_Threshold_Test.cls
-src/classes/CPA_Commercials_Threshold_Test.cls-meta.xml
 src/classes/CPA_ConstantsForContractingAppClasses.cls
 src/classes/CPA_ConstantsForContractingAppClasses.cls-meta.xml
-src/classes/CPA_ConstantsForPworfAging.cls
-src/classes/CPA_ConstantsForPworfAging.cls-meta.xml
 src/classes/CPA_Contract_UtilMethods_Test.cls
 src/classes/CPA_Contract_UtilMethods_Test.cls-meta.xml
 src/classes/CPA_ContractInformationController.cls
@@ -47,8 +37,6 @@ src/classes/CPA_CRListController.cls
 src/classes/CPA_CRListController.cls-meta.xml
 src/classes/CPA_CRTrigger_Handler.cls
 src/classes/CPA_CRTrigger_Handler.cls-meta.xml
-src/classes/CPA_getThreshold.cls
-src/classes/CPA_getThreshold.cls-meta.xml
 src/classes/CPA_HLE_CancelReasonController.cls
 src/classes/CPA_HLE_CancelReasonController.cls-meta.xml
 src/classes/CPA_HLE_RequestTrigger_Handler.cls
@@ -85,8 +73,6 @@ src/classes/CPA_PwoCnfTnf_CancelReasonController.cls
 src/classes/CPA_PwoCnfTnf_CancelReasonController.cls-meta.xml
 src/classes/CPA_PwoCnfTnf_ReturnReasonController.cls
 src/classes/CPA_PwoCnfTnf_ReturnReasonController.cls-meta.xml
-src/classes/CPA_PWORF_Aging_Schedular_Test.cls
-src/classes/CPA_PWORF_Aging_Schedular_Test.cls-meta.xml
 src/classes/CPA_PWORF_CancelReasonController.cls
 src/classes/CPA_PWORF_CancelReasonController.cls-meta.xml
 src/classes/CPA_PWORF_PWO_UtilMethods_Test.cls
@@ -95,8 +81,6 @@ src/classes/CPA_PWORF_TriggerUtil.cls
 src/classes/CPA_PWORF_TriggerUtil.cls-meta.xml
 src/classes/CPA_PWORF_WithholdReasonController.cls
 src/classes/CPA_PWORF_WithholdReasonController.cls-meta.xml
-src/classes/CPA_PWORFAgeing.cls
-src/classes/CPA_PWORFAgeing.cls-meta.xml
 src/classes/CPA_PWORFInformationController.cls
 src/classes/CPA_PWORFInformationController.cls-meta.xml
 src/classes/CPA_PWORFTrigger_Handler.cls
@@ -121,8 +105,6 @@ src/classes/CPA_Resource_Requirement_TriggerUtil.cls
 src/classes/CPA_Resource_Requirement_TriggerUtil.cls-meta.xml
 src/classes/CPA_ReturnController_Test.cls
 src/classes/CPA_ReturnController_Test.cls-meta.xml
-src/classes/CPA_ScheduleBatchProrfAgeUpdate.cls
-src/classes/CPA_ScheduleBatchProrfAgeUpdate.cls-meta.xml
 src/classes/CPA_SelectRecordType_Test.cls
 src/classes/CPA_SelectRecordType_Test.cls-meta.xml
 src/classes/CPA_SelectRecordTypeController.cls
@@ -139,16 +121,32 @@ src/classes/CPA_testPWORFClass_util.cls
 src/classes/CPA_testPWORFClass_util.cls-meta.xml
 src/classes/CPA_testStatusMsgCustomSettingClass.cls
 src/classes/CPA_testStatusMsgCustomSettingClass.cls-meta.xml
-src/classes/CPA_TotalWorkingDyasBetweenTwoDates.cls
-src/classes/CPA_TotalWorkingDyasBetweenTwoDates.cls-meta.xml
 src/classes/CPA_TriggerFactory.cls
 src/classes/CPA_TriggerFactory.cls-meta.xml
-src/classes/CPA_User_Defined_Attribute_Handler.cls
-src/classes/CPA_User_Defined_Attribute_Handler.cls-meta.xml
-src/classes/CPA_UserDefineAttribute_Util.cls
-src/classes/CPA_UserDefineAttribute_Util.cls-meta.xml
 src/classes/CPA_Utilities.cls
 src/classes/CPA_Utilities.cls-meta.xml
+src/classes/CPA_ConstantsForPworfAging.cls
+src/classes/CPA_ConstantsForPworfAging.cls-meta.xml
+src/classes/CPA_PWORFAgeing.cls
+src/classes/CPA_PWORFAgeing.cls-meta.xml
+src/classes/CPA_PWORFInformationController.cls
+src/classes/CPA_PWORFTrigger_Handler.cls
+src/classes/CPA_PWORF_Aging_Schedular_Test.cls
+src/classes/CPA_PWORF_Aging_Schedular_Test.cls-meta.xml
+src/classes/CPA_ScheduleBatchProrfAgeUpdate.cls
+src/classes/CPA_ScheduleBatchProrfAgeUpdate.cls-meta.xml
+src/classes/CPA_TotalWorkingDyasBetweenTwoDates.cls
+src/classes/CPA_TotalWorkingDyasBetweenTwoDates.cls-meta.xml
+src/classes/CPA_batchProrfAgeUpdate.cls
+src/classes/CPA_batchProrfAgeUpdate.cls-meta.xml
+src/classes/CPA_batchProrfAgeUpdate_test.cls
+src/classes/CPA_batchProrfAgeUpdate_test.cls-meta.xml
+src/classes/CPA_UserDefineAttribute_Util.cls
+src/classes/CPA_UserDefineAttribute_Util.cls-meta.xml
+src/classes/CPA_User_Defined_Attribute_Handler.cls
+src/classes/CPA_User_Defined_Attribute_Handler.cls-meta.xml
+src/classes/CPA_AttchemntCommerical_util.cls
+src/classes/CPA_AttchemntCommerical_util.cls-meta.xml
 src/email
 src/email/CPA_Email_Template-meta.xml
 src/email/CPA_Email_Template
@@ -162,8 +160,6 @@ src/email/CPA_Email_Template/CPA_Auto_Accept_a_PWORF.email
 src/email/CPA_Email_Template/CPA_Auto_Accept_a_PWORF.email-meta.xml
 src/email/CPA_Email_Template/CPA_Auto_Accept_PWORF.email
 src/email/CPA_Email_Template/CPA_Auto_Accept_PWORF.email-meta.xml
-src/email/CPA_Email_Template/CPA_Cancel_a_PWORF.email
-src/email/CPA_Email_Template/CPA_Cancel_a_PWORF.email-meta.xml
 src/email/CPA_Email_Template/CPA_CR_is_accepted.email
 src/email/CPA_Email_Template/CPA_CR_is_accepted.email-meta.xml
 src/email/CPA_Email_Template/CPA_CR_is_accepted2.email
@@ -190,16 +186,12 @@ src/email/CPA_Email_Template/CPA_HLE_Request_Answered.email
 src/email/CPA_Email_Template/CPA_HLE_Request_Answered.email-meta.xml
 src/email/CPA_Email_Template/CPA_HLE_Request_Cancelled_by_SMT.email
 src/email/CPA_Email_Template/CPA_HLE_Request_Cancelled_by_SMT.email-meta.xml
-src/email/CPA_Email_Template/CPA_HLE_Request_Cancelled_by_ULPM.email
-src/email/CPA_Email_Template/CPA_HLE_Request_Cancelled_by_ULPM.email-meta.xml
 src/email/CPA_Email_Template/CPA_HLE_Request_Query_Reassigned.email
 src/email/CPA_Email_Template/CPA_HLE_Request_Query_Reassigned.email-meta.xml
 src/email/CPA_Email_Template/CPA_HLE_REquest_query_Submitted.email
 src/email/CPA_Email_Template/CPA_HLE_REquest_query_Submitted.email-meta.xml
 src/email/CPA_Email_Template/CPA_HLE_Request_Resubmitted_by_SMT.email
 src/email/CPA_Email_Template/CPA_HLE_Request_Resubmitted_by_SMT.email-meta.xml
-src/email/CPA_Email_Template/CPA_HLE_Request_Resubmitted_by_ULPM.email
-src/email/CPA_Email_Template/CPA_HLE_Request_Resubmitted_by_ULPM.email-meta.xml
 src/email/CPA_Email_Template/CPA_HLE_Request_Return_by_VDM.email
 src/email/CPA_Email_Template/CPA_HLE_Request_Return_by_VDM.email-meta.xml
 src/email/CPA_Email_Template/CPA_HLE_Request_SLA1.email
@@ -208,8 +200,6 @@ src/email/CPA_Email_Template/CPA_HLE_Request_SLA2.email
 src/email/CPA_Email_Template/CPA_HLE_Request_SLA2.email-meta.xml
 src/email/CPA_Email_Template/CPA_HLE_Request_Submitted_by_SMT.email
 src/email/CPA_Email_Template/CPA_HLE_Request_Submitted_by_SMT.email-meta.xml
-src/email/CPA_Email_Template/CPA_HLE_Request_Submitted_by_ULPM.email
-src/email/CPA_Email_Template/CPA_HLE_Request_Submitted_by_ULPM.email-meta.xml
 src/email/CPA_Email_Template/CPA_HLE_REquestquery_Responded.email
 src/email/CPA_Email_Template/CPA_HLE_REquestquery_Responded.email-meta.xml
 src/email/CPA_Email_Template/CPA_LOI_Accepted.email
@@ -252,20 +242,12 @@ src/email/CPA_Email_Template/CPA_Project_Work_Order_Signed.email
 src/email/CPA_Email_Template/CPA_Project_Work_Order_Signed.email-meta.xml
 src/email/CPA_Email_Template/CPA_Project_Work_Order_Submitted.email
 src/email/CPA_Email_Template/CPA_Project_Work_Order_Submitted.email-meta.xml
-src/email/CPA_Email_Template/CPA_PWO_CNF_accepted_email_template.email
-src/email/CPA_Email_Template/CPA_PWO_CNF_accepted_email_template.email-meta.xml
-src/email/CPA_Email_Template/CPA_PWO_CNF_cancel_email_template.email
-src/email/CPA_Email_Template/CPA_PWO_CNF_cancel_email_template.email-meta.xml
-src/email/CPA_Email_Template/CPA_PWO_CNF_email_template.email
-src/email/CPA_Email_Template/CPA_PWO_CNF_email_template.email-meta.xml
 src/email/CPA_Email_Template/CPA_PWO_Query_Reassigned.email
 src/email/CPA_Email_Template/CPA_PWO_Query_Reassigned.email-meta.xml
 src/email/CPA_Email_Template/CPA_PWO_query_Responded.email
 src/email/CPA_Email_Template/CPA_PWO_query_Responded.email-meta.xml
 src/email/CPA_Email_Template/CPA_PWO_query_Submitted.email
 src/email/CPA_Email_Template/CPA_PWO_query_Submitted.email-meta.xml
-src/email/CPA_Email_Template/CPA_PWO_TNF_cancel_email_template.email
-src/email/CPA_Email_Template/CPA_PWO_TNF_cancel_email_template.email-meta.xml
 src/email/CPA_Email_Template/CPA_PWORF_Cancelled_by_SMT.email
 src/email/CPA_Email_Template/CPA_PWORF_Cancelled_by_SMT.email-meta.xml
 src/email/CPA_Email_Template/CPA_PWORF_Cancelled_by_ULPM.email
@@ -306,10 +288,6 @@ src/email/CPA_Email_Template/CPA_Request_for_Cancellation.email
 src/email/CPA_Email_Template/CPA_Request_for_Cancellation.email-meta.xml
 src/email/CPA_Email_Template/CPA_Request_for_Withhold.email
 src/email/CPA_Email_Template/CPA_Request_for_Withhold.email-meta.xml
-src/email/CPA_Email_Template/CPA_Resubmit_a_PWORF.email
-src/email/CPA_Email_Template/CPA_Resubmit_a_PWORF.email-meta.xml
-src/email/CPA_Email_Template/CPA_Return_a_PWORF.email
-src/email/CPA_Email_Template/CPA_Return_a_PWORF.email-meta.xml
 src/email/CPA_Email_Template/CPA_Return_PWORF.email
 src/email/CPA_Email_Template/CPA_Return_PWORF.email-meta.xml
 src/email/CPA_Email_Template/CPA_Set_a_CR_as_delivered.email
@@ -328,6 +306,18 @@ src/email/CPA_Email_Template/CPA_TNF_for_PWO_is_signed.email
 src/email/CPA_Email_Template/CPA_TNF_for_PWO_is_signed.email-meta.xml
 src/email/CPA_Email_Template/CPA_TNF_for_PWO_is_submitted.email
 src/email/CPA_Email_Template/CPA_TNF_for_PWO_is_submitted.email-meta.xml
+src/email/CPA_Email_Template/CPA_Cancel_a_PWORF.email
+src/email/CPA_Email_Template/CPA_Cancel_a_PWORF.email-meta.xml
+src/email/CPA_Email_Template/CPA_HLE_Request_Cancelled_by_ULPM.email
+src/email/CPA_Email_Template/CPA_HLE_Request_Cancelled_by_ULPM.email-meta.xml
+src/email/CPA_Email_Template/CPA_HLE_Request_Resubmitted_by_ULPM.email
+src/email/CPA_Email_Template/CPA_HLE_Request_Resubmitted_by_ULPM.email-meta.xml
+src/email/CPA_Email_Template/CPA_HLE_Request_Submitted_by_ULPM.email
+src/email/CPA_Email_Template/CPA_HLE_Request_Submitted_by_ULPM.email-meta.xml
+src/email/CPA_Email_Template/CPA_Resubmit_a_PWORF.email
+src/email/CPA_Email_Template/CPA_Resubmit_a_PWORF.email-meta.xml
+src/email/CPA_Email_Template/CPA_Return_a_PWORF.email
+src/email/CPA_Email_Template/CPA_Return_a_PWORF.email-meta.xml
 src/email/CPA_Email_Template/CPA_Withhold_a_PWORF.email
 src/email/CPA_Email_Template/CPA_Withhold_a_PWORF.email-meta.xml
 src/groups
@@ -398,39 +388,28 @@ src/layouts/CPA_Requirements_and_Deliverables__c-Requirements and Deliverables L
 src/layouts/CPA_Resource_Requirement__c-Resource Requirement Layout.layout
 src/layouts/CPA_Risk_Assessment_and_Mitigation__c-Risk Assessment and Mitigation Layout.layout
 src/layouts/CPA_TAT__c-CPA TAT Layout.layout
-src/layouts/CPA_User_Defined_Attribute__c-User Defined Attribute CR Docusign.layout
+src/layouts/CPA_User_Defined_Attribute__c-User Defined Attribute Layout.layout
 src/layouts/CPA_User_Defined_Attribute__c-User Defined Attribute CR.layout
 src/layouts/CPA_User_Defined_Attribute__c-User Defined Attribute HLE Request.layout
-src/layouts/CPA_User_Defined_Attribute__c-User Defined Attribute Layout.layout
-src/layouts/CPA_User_Defined_Attribute__c-User Defined Attribute LOI Docusign.layout
 src/layouts/CPA_User_Defined_Attribute__c-User Defined Attribute LOI.layout
-src/layouts/CPA_User_Defined_Attribute__c-User Defined Attribute PWO Docusign.layout
-src/layouts/CPA_User_Defined_Attribute__c-User Defined Attribute PWO.layout
 src/layouts/CPA_User_Defined_Attribute__c-User Defined Attribute PWORF.layout
+src/layouts/CPA_User_Defined_Attribute__c-User Defined Attribute PWO.layout
+src/objects
 src/objects/CPA_CNF_TNF__c.object
 src/objects/CPA_Commercial_Details__c.object
-src/objects/CPA_Commercials_Threshold__c.object
 src/objects/CPA_CR__c.object
-src/objects/CPA_Group__c.object
 src/objects/CPA_HLE_Request__c.object
-src/objects/CPA_HLE_Request_SLAs__c.object
 src/objects/CPA_Key_Contacts__c.object
 src/objects/CPA_LOI__c.object
-src/objects/CPA_LOIMandatoryMessages__c.object
 src/objects/CPA_project_work_order__c.object
 src/objects/CPA_PWORF__c.object
 src/objects/CPA_PWORF_Ageing__c.object
-src/objects/CPA_PWORFMandatoryMessages__c.object
 src/objects/CPA_Queries__c.object
 src/objects/CPA_Query_comment__c.object
 src/objects/CPA_Requirements_and_Deliverables__c.object
 src/objects/CPA_Resource_Requirement__c.object
 src/objects/CPA_Risk_Assessment_and_Mitigation__c.object
-src/objects/CPA_SLAConfiguration__c.object
-src/objects/CPA_Status_Msg__c.object
 src/objects/CPA_TAT__c.object
-src/objects/CPA_Trigger_Pattern__c.object
-src/objects/CPA_User_Defined_Attribute__c.object
 src/objects/CPA_User_Defined_Attribute__c.object
 src/pages
 src/pages/CPA_Contract_Information_Display_Page.page
@@ -470,16 +449,11 @@ src/pages/CPA_PWORF_Reason_for_Withhold.page-meta.xml
 src/permissionsets
 src/permissionsets/CPA_ADM.permissionset
 src/permissionsets/CPA_SMT.permissionset
-src/permissionsets/CPA_SystemAdmin.permissionset
-src/permissionsets/CPA_ULFT.permissionset
 src/permissionsets/CPA_ULPM.permissionset
-src/permissionsets/CPA_ULPT.permissionset
 src/queues
 src/queues/CAP_ULPM.queue
 src/queues/CAP_VDM_Queue.queue
 src/queues/CPA_SMT.queue
-src/queues/CPA_ULFT.queue
-src/queues/CPA_ULPT.queue
 src/tabs
 src/tabs/CPA_CR__c.tab
 src/tabs/CPA_HLE_Request__c.tab
@@ -519,7 +493,6 @@ src/workflows/CPA_project_work_order__c.workflow
 src/workflows/CPA_PWORF__c.workflow
 src/workflows/CPA_Queries__c.workflow
 src/workflows/CPA_Query_comment__c.workflow
-src/workflows/CPA_User_Defined_Attribute__c.workflow
 src/dashboards
 src/dashboards/CPA_Supplier_Management_Dashbords
 src/dashboards/CPA_Supplier_Management_Dashbords-meta.xml
@@ -540,14 +513,14 @@ src/flows/CPA_PWO_creted_By_on_Owner-1.flow
 src/flows/CPA_PWO_status_PWORF_field_update-1.flow
 src/reportTypes
 src/reportTypes/CPA_PWORF_with_PWORF_aging.reportType
-src/reportTypes/Project_Work_Order_with_Commercials.reportType
-src/reportTypes/Project_Work_Order_with_CR_Commercials.reportType
-src/reportTypes/PWO_TAT.reportType
+src/reportTypes/PWORF_With_User_Defined_Attribute.reportType
 src/reportTypes/PWORF_with_CPA_Project_Work_Order.reportType
 src/reportTypes/PWORF_with_CR.reportType
 src/reportTypes/PWORF_with_LOI.reportType
 src/reportTypes/PWORF_with_PWORF_Ageing.reportType
-src/reportTypes/PWORF_With_User_Defined_Attribute.reportType
+src/reportTypes/PWO_TAT.reportType
+src/reportTypes/Project_Work_Order_with_CR_Commercials.reportType
+src/reportTypes/Project_Work_Order_with_Commercials.reportType
 src/reportTypes/User_Activities_with_PWO_CR_CNF_TNF.reportType
 src/reportTypes/User_Activity_of_PWO_CR_CNF_TNF.reportType
 src/reportTypes/Users_with_HLE.reportType
@@ -590,3 +563,5 @@ src/reports/CPA_Vendor_Demand_Management/CPA_Commercial_for_CR.report
 src/reports/CPA_Vendor_Demand_Management/CPA_Commercial_for_PWO.report
 src/reports/CPA_Vendor_Demand_Management/CPA_PWORF_Aging_for_Dashboard.report
 src/reports/CPA_Vendor_Demand_Management/CPA_WO_Status_Report.report
+src/labels
+src/labels/CustomLabels.labels

@@ -1,62 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
-        <fullName>CPA_PWORF_Query_Request_for_Cancellation_Notification</fullName>
-        <description>CPA PWORF Query Request for Cancellation Notification</description>
-        <protected>false</protected>
-        <recipients>
-            <type>creator</type>
-        </recipients>
-        <recipients>
-            <field>eml_SMT_group_email__c</field>
-            <type>email</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>CPA_Email_Template/CPA_PWORF_Request_for_Cancellation</template>
-    </alerts>
-    <alerts>
-        <fullName>CPA_PWORF_Query_Request_for_Withhold_Notification</fullName>
-        <description>CPA PWORF Query Request for Withhold Notification</description>
-        <protected>false</protected>
-        <recipients>
-            <type>creator</type>
-        </recipients>
-        <recipients>
-            <field>eml_SMT_group_email__c</field>
-            <type>email</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>CPA_Email_Template/CPA_Request_for_Withhold</template>
-    </alerts>
-    <alerts>
-        <fullName>CPA_PWORF_Query_for_Request_for_Cancellation_Notification</fullName>
-        <description>CPA PWORF Query for Request for Cancellation Notification</description>
-        <protected>false</protected>
-        <recipients>
-            <type>creator</type>
-        </recipients>
-        <recipients>
-            <field>eml_SMT_group_email__c</field>
-            <type>email</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>CPA_Email_Template/CPA_PWORF_Request_for_Cancellation</template>
-    </alerts>
-    <alerts>
-        <fullName>CPA_PWORF_Query_for_Request_for_Withhold_Notification</fullName>
-        <description>CPA PWORF Query for Request for Withhold Notification</description>
-        <protected>false</protected>
-        <recipients>
-            <type>creator</type>
-        </recipients>
-        <recipients>
-            <field>eml_SMT_group_email__c</field>
-            <type>email</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>CPA_Email_Template/CPA_PWORF_Request_for_Withhold</template>
-    </alerts>
-    <alerts>
         <fullName>CR_Ownership_Reassignment_Notification</fullName>
         <description>CR Ownership Reassignment Notification</description>
         <protected>false</protected>
@@ -64,8 +8,8 @@
             <type>creator</type>
         </recipients>
         <recipients>
-            <field>eml_SMT_group_email__c</field>
-            <type>email</type>
+            <recipient>CAP_SMT_Group</recipient>
+            <type>group</type>
         </recipients>
         <recipients>
             <type>owner</type>
@@ -81,8 +25,8 @@
             <type>creator</type>
         </recipients>
         <recipients>
-            <field>eml_SMT_group_email__c</field>
-            <type>email</type>
+            <recipient>CAP_SMT_Group</recipient>
+            <type>group</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_CR_query_Submitted</template>
@@ -95,8 +39,8 @@
             <type>creator</type>
         </recipients>
         <recipients>
-            <field>eml_SMT_group_email__c</field>
-            <type>email</type>
+            <recipient>CAP_SMT_Group</recipient>
+            <type>group</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_HLE_REquest_query_Submitted</template>
@@ -109,8 +53,8 @@
             <type>creator</type>
         </recipients>
         <recipients>
-            <field>eml_SMT_group_email__c</field>
-            <type>email</type>
+            <recipient>CAP_SMT_Group</recipient>
+            <type>group</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_LOI_query_Submitted</template>
@@ -123,8 +67,8 @@
             <type>creator</type>
         </recipients>
         <recipients>
-            <field>eml_SMT_group_email__c</field>
-            <type>email</type>
+            <recipient>CAP_SMT_Group</recipient>
+            <type>group</type>
         </recipients>
         <recipients>
             <type>owner</type>
@@ -140,8 +84,8 @@
             <type>creator</type>
         </recipients>
         <recipients>
-            <field>eml_SMT_group_email__c</field>
-            <type>email</type>
+            <recipient>CAP_SMT_Group</recipient>
+            <type>group</type>
         </recipients>
         <recipients>
             <type>owner</type>
@@ -157,8 +101,8 @@
             <type>creator</type>
         </recipients>
         <recipients>
-            <field>eml_SMT_group_email__c</field>
-            <type>email</type>
+            <recipient>CAP_SMT_Group</recipient>
+            <type>group</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_PWORF_query_Submitted</template>
@@ -171,8 +115,8 @@
             <type>creator</type>
         </recipients>
         <recipients>
-            <field>eml_SMT_group_email__c</field>
-            <type>email</type>
+            <recipient>CAP_SMT_Group</recipient>
+            <type>group</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_PWO_query_Submitted</template>
@@ -185,8 +129,8 @@
             <type>creator</type>
         </recipients>
         <recipients>
-            <field>eml_SMT_group_email__c</field>
-            <type>email</type>
+            <recipient>CAP_SMT_Group</recipient>
+            <type>group</type>
         </recipients>
         <recipients>
             <type>owner</type>
@@ -194,24 +138,6 @@
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_PWO_Query_Reassigned</template>
     </alerts>
-    <fieldUpdates>
-        <fullName>CPA_Queries_SMT_group_email</fullName>
-        <field>eml_SMT_group_email__c</field>
-        <formula>&quot;Vivek.Kalidoss@unilever.com&quot;</formula>
-        <name>CPA Queries SMT group email</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>CPA_Queries_VDM_group_email</fullName>
-        <field>eml_VDM_group_email__c</field>
-        <formula>&quot;Sameer.Vaidya@unilever.com&quot;</formula>
-        <name>CPA Queries VDM group email</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
     <rules>
         <fullName>CPA CR Query Notification</fullName>
         <actions>
@@ -305,11 +231,6 @@
             <field>CPA_Queries__c.Pworf_ID__c</field>
             <operation>notEqual</operation>
         </criteriaItems>
-        <criteriaItems>
-            <field>CPA_Queries__c.Type_Of_Query__c</field>
-            <operation>equals</operation>
-            <value>Query</value>
-        </criteriaItems>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -321,58 +242,5 @@
         <active>true</active>
         <formula>(  Pworf_ID__c   &lt;&gt; null) &amp;&amp;  ISCHANGED(  Assigned_to__c )</formula>
         <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
-        <fullName>CPA PWORF Query Request for Cancellation Notification</fullName>
-        <actions>
-            <name>CPA_PWORF_Query_Request_for_Cancellation_Notification</name>
-            <type>Alert</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>CPA_Queries__c.Pworf_ID__c</field>
-            <operation>notEqual</operation>
-        </criteriaItems>
-        <criteriaItems>
-            <field>CPA_Queries__c.Type_Of_Query__c</field>
-            <operation>equals</operation>
-            <value>Request for Cancellation</value>
-        </criteriaItems>
-        <triggerType>onCreateOnly</triggerType>
-    </rules>
-    <rules>
-        <fullName>CPA PWORF Query Request for Withhold Notification</fullName>
-        <actions>
-            <name>CPA_PWORF_Query_Request_for_Withhold_Notification</name>
-            <type>Alert</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>CPA_Queries__c.Pworf_ID__c</field>
-            <operation>notEqual</operation>
-        </criteriaItems>
-        <criteriaItems>
-            <field>CPA_Queries__c.Type_Of_Query__c</field>
-            <operation>equals</operation>
-            <value>Request to Withhold</value>
-        </criteriaItems>
-        <triggerType>onCreateOnly</triggerType>
-    </rules>
-    <rules>
-        <fullName>CPA Queries Clone%2Fnew</fullName>
-        <actions>
-            <name>CPA_Queries_SMT_group_email</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_Queries_VDM_group_email</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>CPA_Queries__c.CreatedById</field>
-            <operation>notEqual</operation>
-        </criteriaItems>
-        <triggerType>onCreateOnly</triggerType>
     </rules>
 </Workflow>

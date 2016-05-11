@@ -3,12 +3,12 @@
   <apex:pageBlock >
       <apex:pageMessages />   
        <apex:pageBlock rendered="{!mandatoryStringFlag != null}">
-       <apex:pageMessage summary="{!SUBSTITUTE(JSENCODE(mandatoryStringFlag), '\n', '<br/>')}"
+       <apex:pageMessage summary="{!mandatoryStringFlag}"
                       severity="warning"
                       strength="3"
-                     rendered="{!mandatoryStringFlag != null}" escape="false"/>
+                     rendered="{!mandatoryStringFlag != null}" />
         
-            <apex:pageBlockTable value="{!RequiredFieldMap}" var="listItem" rendered="{!tableformat != null}">
+            <apex:pageBlockTable value="{!RequiredFieldMap}" var="listItem" rendered="{!mandatoryStringFlag != null}">
                 <apex:column value="{!listItem}"  headerValue="Field Name" style="width:300px" />
                 <apex:column value="{!RequiredFieldMap[listItem]}" headerValue="Criteria"/>
             </apex:pageBlockTable>
