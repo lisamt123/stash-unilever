@@ -117,13 +117,6 @@
         <shortDescription>TermsOfUseTitle</shortDescription>
         <value>Terms Of Use</value>
     </labels>
-	<labels>
-        <fullName>toAccess_Err</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>VEP_Access_Err</shortDescription>
-        <value>You do not have sufficient access to the record</value>
-    </labels>
     <labels>
         <fullName>button_cancel</fullName>
         <language>en_US</language>
