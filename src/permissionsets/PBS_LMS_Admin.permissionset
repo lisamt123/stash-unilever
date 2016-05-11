@@ -4,6 +4,10 @@
         <application>Plancraft</application>
         <visible>true</visible>
     </applicationVisibilities>
+	<classAccesses>
+        <apexClass>PBS_WikiController_CC</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <classAccesses>
         <apexClass>PBS_LMSBaseController_CC</apexClass>
         <enabled>false</enabled>
@@ -58,10 +62,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PBS_TriggerFactory</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-	 <classAccesses>
-        <apexClass>PBS_WikiController_CC</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -226,7 +226,6 @@
         <field>PBS_Wiki__kav.Wiki_Content__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <label>PBS LMS Admin</label>
     <fieldPermissions>
         <editable>true</editable>
         <field>PC_Group__c.Background_Location__c</field>
@@ -272,6 +271,7 @@
         <field>PC_Group__c.Title__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <label>PBS LMS Admin</label>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
@@ -362,12 +362,12 @@
         <apexPage>PC_ForumGroup</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
-    <pageAccesses>
-        <apexPage>PC_Home</apexPage>
+	<pageAccesses>
+        <apexPage>PBS_Wiki</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
-	 <pageAccesses>
-        <apexPage>PBS_Wiki</apexPage>
+    <pageAccesses>
+        <apexPage>PC_Home</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <tabSettings>
