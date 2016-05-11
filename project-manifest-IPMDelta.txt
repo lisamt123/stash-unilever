@@ -20,7 +20,7 @@ src/classes/IPM_ProjectOwnerChangeQueue.cls
 src/classes/IPM_ProjectOwnerChangeQueue.cls-meta.xml
 src/classes/IPM_ProjectOwnerUpdate_Batch.cls
 src/classes/IPM_ProjectOwnerUpdate_Batch.cls-meta.xml
-src/classes/IPM_FinancialController.cls 
+src/classes/IPM_FinancialController.cls
 src/classes/IPM_FinancialController.cls-meta.xml
 src/classes/IPM_ProjectCountryDetails.cls
 src/classes/IPM_ProjectCountryDetails.cls-meta.xml
@@ -84,8 +84,8 @@ src/pages/IPM_EditProject.page
 src/pages/IPM_EditProject.page-meta.xml
 src/pages/IPM_ImageUpload.page
 src/pages/IPM_ImageUpload.page-meta.xml
-src/pages/IPM_ImageUploadCoreParam.Page
-src/pages/IPM_ImageUploadCoreParam.Page-meta.xml
+src/pages/IPM_ImageUploadCoreParam.page
+src/pages/IPM_ImageUploadCoreParam.page-meta.xml
 src/pages/IPM_ProjectSetUpView.page
 src/pages/IPM_ProjectSetUpView.page-meta.xml
 src/pages/IPM_PosQuestions.page
@@ -106,10 +106,7 @@ src/pages/IPM_Bcc_Document.page
 src/pages/IPM_Bcc_Document.page-meta.xml
 src/pages/IPM_ExportBosscardPDF.page
 src/pages/IPM_ExportBosscardPDF.page-meta.xml
-src/pages/IPM_Editmilestone page
-src/pages/IPM_Editmilestone page-meta.xml
+src/pages/IPM_Editmilestone.page
+src/pages/IPM_Editmilestone.page-meta.xml
 src/pages/IPM_Financial.page
 src/pages/IPM_Financial.page-meta.xml
-src/permissionsets
-src/permissionsets/IPM_ProjectLeader.permissionset
-src/permissionsets/IPMNG_Basic.permissionset
