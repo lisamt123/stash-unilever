@@ -31,6 +31,9 @@
         <field>Marketing_Basics__c.Role_Title__c</field>
     </columns>
     <columns>
+        <field>Marketing_Basics__c.Description__c</field>
+    </columns>
+    <columns>
         <field>Marketing_Basics__c.No_of_Hours_Required__c</field>
     </columns>
     <columns>

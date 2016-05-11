@@ -1,0 +1,136 @@
+    <labels>
+        <fullName>cp_DefaultSubmitWarning</fullName>
+        <categories>Visualforce, Apex</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Default submit warning</shortDescription>
+        <value>Oops...
+Please action the following to continue:</value>
+    </labels>
+    <labels>
+        <fullName>cp_DeleteConfirm</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Delete confirm message</shortDescription>
+        <value>Your Planner event has been deleted.</value>
+    </labels>
+    <labels>
+        <fullName>cp_DeleteWarning</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Delete warning message</shortDescription>
+        <value>Oops…&lt;br/&gt;
+You don&apos;t have permission to delete this event. Get in contact with the project lead.</value>
+    </labels>
+    <labels>
+        <fullName>cp_EditWarning</fullName>
+        <categories>Visualforce</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Edit warning message</shortDescription>
+        <value>Oops…&lt;br/&gt;
+You don&apos;t have permission to edit this event. Get in contact with the project lead.</value>
+    </labels>
+    <labels>
+        <fullName>cp_EventAlreadyActivatedWarning</fullName>
+        <categories>Visualforce, Apex</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Event Already Activated Warning</shortDescription>
+        <value>Oops…&lt;br/&gt;
+This event has already been activated, no action required.</value>
+    </labels>
+    <labels>
+        <fullName>cp_EventTriggerHandler_General_Exception</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EventTriggerHandler_General_Exception</shortDescription>
+        <value>Exception occurred during creation of Event Participants. 
+Please contact with your Administrator.</value>
+    </labels>
+    <labels>
+        <fullName>cp_EventTriggerHandler_not_central_statuses</fullName>
+        <categories>Planner Code</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Do not translate - code variable</shortDescription>
+        <value>Tier 1 - Big Moment,Tier 1 - External,Tier 1 - Internal,Enabler - Operational Activity,Enabler - Capability Building</value>
+    </labels>
+    <labels>
+        <fullName>cp_GlobalApprovalError</fullName>
+        <categories>Visualforce, Apex</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Global Approval Error</shortDescription>
+        <value>Your local event does not require global approval. Exit this message and click the ‘LOCAL save and exit’ button.</value>
+    </labels>
+    <labels>
+        <fullName>cp_LocalSaveError</fullName>
+        <categories>Visualforce, Apex</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Local Save Error</shortDescription>
+        <value>Your global event requires approval (re-approval is also required if you have updated the activation dates or event status). Exit this message and click the ‘GLOBAL save and submit’ button.</value>
+    </labels>
+    <labels>
+        <fullName>cp_NoPlannerSelected</fullName>
+        <categories>Visualforce, Apex</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No planner selected</shortDescription>
+        <value>Who is activating this event? Please select the relevant Planners.
+
+If you are representing a Central team, don’t forget to select the respective Central Planners too.</value>
+    </labels>
+    <labels>
+        <fullName>cp_OptOutNoReason</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Opt out no reason</shortDescription>
+        <value>Oops…&lt;br/&gt;
+Please leave a few words explaining why you are opting out of this Planner event.</value>
+    </labels>
+    <labels>
+        <fullName>cp_OptOutWarning</fullName>
+        <categories>Visualforce, Apex</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Opt Out Warning Message</shortDescription>
+        <value>Oops…&lt;br/&gt;
+You can’t opt out of this event as your Planner has not been invited to activate.</value>
+    </labels>
+    <labels>
+        <fullName>cp_Planner_Code_AT_I_Approced_Statuses</fullName>
+        <categories>Planner Code</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Do not translate - code variable</shortDescription>
+        <value>Tentative,Confirmed</value>
+    </labels>
+    <labels>
+        <fullName>cp_Planner_Code_AT_I_Global</fullName>
+        <categories>Planner Code</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Do not translate - code variable</shortDescription>
+        <value>Global</value>
+    </labels>
+    <labels>
+        <fullName>cp_Planner_Code_AT_I_Statuses</fullName>
+        <categories>Planner Code</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Do not translate - code variable</shortDescription>
+        <value>Tier 1 - Big Moment,Tier 1 - External,Tier 1 - Internal,Tier 2 - Integrated (external &amp; internal),Tier 2 - External,Tier 2 - Internal,Enabler - Operational Activity,Enabler - Capability Building</value>
+    </labels>
+    <labels>
+        <fullName>cp_UserPreferenceValidationMessage</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>User Preference Validation Message</shortDescription>
+        <value>Oops…
+Which Communications team do you represent? You must be associated to one Planner.</value>
+    </labels>
+    
