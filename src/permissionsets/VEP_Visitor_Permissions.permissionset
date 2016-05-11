@@ -410,7 +410,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Vep_Visitor__c.Request_on_Behalf</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <pageAccesses>
         <apexPage>VEP_SafetyQuiz_VF</apexPage>
