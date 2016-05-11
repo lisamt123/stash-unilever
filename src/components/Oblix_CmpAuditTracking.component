@@ -14,7 +14,51 @@
         <script type="text/javascript" src="https://cdn.datatables.net/s/bs-3.3.5/jqc-1.11.3,dt-1.10.10/datatables.min.js"></script>
         <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/swopJS.js')}" />" -->
       
-        <table class="table table-striped" id="swopTable">
+     <div class="Oblix_table" id="Oblix_DashId">
+                <table class="table table-striped" id="historyListTable">
+                    <thead>
+                        <tr>
+                            <th>Date and  Time</th>
+                            <th>By Who</th>
+                            <th>Action Taken</th>
+                            <th>On file</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <apex:repeat value="{!SowHistory}" var="sowHist">
+                                <tr>
+                                    <td>{!sowHist.CreatedDate}</td>
+                                    <td>{!sowHist.CreatedBy.Name}</td>
+                                    <td width="15%">
+                                                <apex:outputPanel rendered="{!sowHist.NewValue<>''}">Changed <b>{!sowHist.Field}</b>  to <b>{!sowHist.NewValue}</b></apex:outputPanel>
+                                                <apex:outputPanel rendered="{!AND(sowHist.OldValue=='', sowHist.NewValue =='')}">{!sowHist.Field} <b> {!sowHist.Parent.Name}</b> </apex:outputPanel>
+                                    </td>
+                                    <td>{!sowHist.Parent.Name}</td>
+                                </tr>
+                        </apex:repeat>
+                    </tbody>
+                </table>
+            </div>   
+</apex:component>
+
+<!-- S.S. 11.05.2016 - THE WORK IN PROGRESS ON THIS CLASS HAS BEEN COMMENTED OUT SINCE IT MAKES BUILD VALIDATION TO FAIL EVEN THOUGH IT'S NOT IN THE PROJECT MANIFEST FILE -->
+<!-- <apex:component controller="Oblix_Ctrl11AuditTracking_Cmp" selfClosing="false" >
+     <apex:componentBody />
+     <apex:attribute name="recordId"
+        description="Id of the record ParentId to fetch list of tracking"
+        type="String" assignTo="{!sObjParentId}" required="true"/>
+      <apex:attribute name="objApiName"
+        description="Object API Name to construct History Object Name"
+        type="String" assignTo="{!sObjApiName}" required="true"/>
+     
+     
+        <!-- <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="https:////code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/s/bs-3.3.5/jqc-1.11.3,dt-1.10.10/datatables.min.css"/>
+        <script type="text/javascript" src="https://cdn.datatables.net/s/bs-3.3.5/jqc-1.11.3,dt-1.10.10/datatables.min.js"></script>
+        <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/swopJS.js')}" />" -->
+      
+<!--         <table class="table table-striped" id="swopTable">
             <thead>
                 <tr>
                     <th>Date and  Time</th>
@@ -37,4 +81,4 @@
                 </apex:repeat>
             </tbody>
         </table>
-</apex:component>
+</apex:component> -->
