@@ -354,6 +354,21 @@
         <field>Vep_Visitor__c.Which_Inhaler_do_you_use_if_applicable__c</field>
         <readable>false</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Vep_Visitor__c.Safety_Quiz_Url__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Vep_Visitor__c.In_Visit__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Vep_Visitor__c.Visit_Ended__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>
