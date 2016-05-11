@@ -223,16 +223,10 @@
     </relatedLists>
     <relatedLists>
         <customButtons>btn_New_User_Defined_Attribute</customButtons>
-        <customButtons>New_User_Defined_DocuSign_Attribute</customButtons>
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>pkl_Attribute_Type__c</fields>
         <fields>txt_Value__c</fields>
-        <fields>DS_Status__c</fields>
-        <fields>DS_Responsibility_Owner__c</fields>
-        <fields>DS_Responsibility_With__c</fields>
-        <fields>Sent_in_Docusign__c</fields>
-        <fields>Comments__c</fields>
         <relatedList>CPA_User_Defined_Attribute__c.lkp_LOI__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>

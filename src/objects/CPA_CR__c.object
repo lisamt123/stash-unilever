@@ -55,7 +55,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ReadWrite</externalSharingModel>
+    <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>CPA_Project_Work_Order__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -383,16 +383,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>eml_SMT_group_email__c</fullName>
-        <externalId>false</externalId>
-        <label>SMT group email</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Email</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>eml_Unilever_Budget_Approver_Email__c</fullName>
         <description>Unilever Budget Approver Email</description>
         <externalId>false</externalId>
@@ -415,19 +405,9 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>eml_VDM_group_email__c</fullName>
-        <externalId>false</externalId>
-        <label>VDM group email</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Email</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>fml_Pworf_Clarity_ID__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(  ISBLANK(txt_Unilever_Reference__c),If(ISBLANK(CPA_Project_Work_Order__r.PWORF_ID__r.txt_Clarity_ID__c), CPA_Project_Work_Order__r.txt_Standalone_PWO_clarity_ID__c ,CPA_Project_Work_Order__r.PWORF_ID__r.txt_Clarity_ID__c ),  txt_Unilever_Reference__c )</formula>
+        <formula>IF(  ISBLANK(txt_Unilever_Reference__c),CPA_Project_Work_Order__r.PWORF_ID__r.txt_Clarity_ID__c ,  txt_Unilever_Reference__c )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Unilever Reference</label>
         <required>false</required>
@@ -449,18 +429,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>fur_Project_Scale__c</fullName>
-        <externalId>false</externalId>
-        <formula>CPA_Project_Work_Order__r.fur_Project_Scale__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Project Scale</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>fur_per_Variance__c</fullName>
         <externalId>false</externalId>
         <formula>IF(	AND(num_Varied_Target_Blend_Rate__c &gt; 0,
@@ -475,18 +443,6 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
-    </fields>
-    <fields>
-        <fullName>fur_pworfrecord_type__c</fullName>
-        <externalId>false</externalId>
-        <formula>CPA_Project_Work_Order__r.fur_PWORFRecord_Type__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>PWORF Reord type</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>isValidated__c</fullName>
@@ -1686,8 +1642,6 @@
         <language>en_US</language>
         <sharedTo>
             <group>CAP_SMT_Group</group>
-            <group>CAP_ULFT_Group</group>
-            <group>CAP_ULPT_Group</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -3914,7 +3868,7 @@
         <searchResultsAdditionalFields>CREATEDBY_USER</searchResultsAdditionalFields>
         <searchResultsCustomButtons>New_CR</searchResultsCustomButtons>
     </searchLayouts>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>Private</sharingModel>
     <validationRules>
         <fullName>CPA_CR_Cant_be_created</fullName>
         <active>true</active>

@@ -1,1 +1,13 @@
-<messaging:emailTemplate subject="From Hubble: Query Responded for CR with ID {!RelatedTo.CR_ID__c} by {!RelatedTo.createdby.name}" recipientType="User"  relatedToType="CPA_Query_comment__c"> <messaging:htmlEmailBody > Hello,<br/><br/>  {!RelatedTo.createdby.name} has responded to a query posted on CR with ID {!RelatedTo.CR_ID__c} on {!Now()}.<br/>  Please follow the below link to know the status and take any appropriate action required.<br/> <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id} ">{!RelatedTo.Name} </a> <br/><br/>    For any queries, please use 'Queries' section in the application or contact Supplier Management Team (ApplicationSupplier.PM@unilever.com). <br/><br/>  Thanks and Regards,<br/> Hubble - Contract Management System. <br/><br/>  </messaging:htmlEmailBody> </messaging:emailTemplate>
+<messaging:emailTemplate subject="Query Responded for {!RelatedTo.CR_ID__c} with ID {!RelatedTo.Name} by {!RelatedTo.Responded_By__c}" recipientType="User"  relatedToType="CPA_Query_comment__c" >
+<messaging:htmlEmailBody >
+Hi,<br/><br/>
+
+{!RelatedTo.Responded_By__c} has responded to a query posted on {!RelatedTo.CR_ID__c} with ID {!RelatedTo.Name} on {!Now()}.<br/>
+
+You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id} ">{!RelatedTo.Name} </a> <br/><br/>
+
+Regards,<br/><br/>
+Automation Contract System
+
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>
