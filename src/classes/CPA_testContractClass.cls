@@ -60,7 +60,7 @@ public with sharing class CPA_testContractClass {
         
         objLOI.dt_LOI_End_date__c = system.Today()+10;
         objLOI.dt_LOI_Start_Date__c = system.Today();
-        objLOI.mpkl_Phases_covered_by_WAR__c = 'Plan';
+        objLOI.mpkl_Phases_covered_by_WAR__c = CPA_ConstantsForContractingAppClasses.PLAN_ANALYSE;
         objLOI.txt_PWO_number__c = 'PWO00123';
         objLOI.lkp_PWORF__c = objPWORF.Id;
         objLOI.txt_PWO_title__c = CPA_ConstantsForContractingAppClasses.TEST;
