@@ -82,13 +82,15 @@ private class CPA_Req_Deli_and_Key_Contacts_util_Test {
        Test.startTest();        
             CPA_PWORF__c objPworf13 = CPA_testPWORFClass_util.createTest_other_PWORF();
         	insert objPworf13;
-			
-			CPA_User_Defined_Attribute__c uda1 = CPA_Test_Req_Deli_and_Key_Contacts_util.createTest_UDA(objPworf13);
+			CPA_project_work_order__c objPWO = CPA_testContractClass.createotherPWO(objPworf13);
+            insert objPWO;
+			CPA_User_Defined_Attribute__c uda1 = CPA_Test_Req_Deli_and_Key_Contacts_util.createTest_UDA(objPWO);
 			insert uda1;
       
         	uda1.txt_Value__c = 'test123';
         	update uda1;
-       Test.stopTest();      
-        system.assert(objPworf13.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED);
+        CPA_project_work_order__c objPWOList = [Select Id,pkl_Status__c from CPA_project_work_order__c where id= :objPWO.id];
+       Test.stopTest();        
+        system.assert(objPWOList.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED);
     }
 }

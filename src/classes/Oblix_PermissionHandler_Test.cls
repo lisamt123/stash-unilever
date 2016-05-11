@@ -95,8 +95,8 @@ private class Oblix_PermissionHandler_Test {
             System.assertEquals(true, Oblix_PermissionHandler.canDeleteSOW(Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER, mSow.Id));
             System.assertEquals(true, Oblix_PermissionHandler.canSetCompletionStage(Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER));
             System.assertEquals(true, Oblix_PermissionHandler.canSetProjectedStage(Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER));
-            System.assertEquals(true, Oblix_PermissionHandler.canSeeGeographicScale());
-            System.assertEquals(true, Oblix_PermissionHandler.canSeeAgencyHubFields());
+            //System.assertEquals(true, Oblix_PermissionHandler.canSeeGeographicScale());
+            //System.assertEquals(true, Oblix_PermissionHandler.canSeeAgencyHubFields());
             System.assertEquals(true, Oblix_PermissionHandler.canCancelCampaign(Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER));
             System.assertEquals(true, Oblix_PermissionHandler.canManageNonCampaign(Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER, mSow.Id));
             System.assertEquals(true, Oblix_PermissionHandler.canManageCampaign(Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER, mSow.Id, 'New'));

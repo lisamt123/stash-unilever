@@ -1,0 +1,36 @@
+    <labels>
+        <fullName>WWP_NocodeAssigned_Err</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WWP_NocodeAssigned_Err</shortDescription>
+        <value>You have not been assigned to any Plant Code. Please contact Administrator</value>
+    </labels>
+    <labels>
+        <fullName>WWP_Norecords_Err</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WWP_Norecords_Err</shortDescription>
+        <value>No records meeting the criteria</value>
+    </labels>
+    <labels>
+        <fullName>WWP_RecordsUpdated_Msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WWP_RecordsUpdated_Msg</shortDescription>
+        <value>Records Updated</value>
+    </labels>
+    <labels>
+        <fullName>WWP_RequiredFeilds_Err</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WWP_RequiredFeilds_Err</shortDescription>
+        <value>Please fill the required fields</value>
+    </labels>
+    <labels>
+        <fullName>WWP_selectRecord_Err</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WWP_selectRecord_Err</shortDescription>
+        <value>Please select atleast one record</value>
+    </labels>
+    
