@@ -445,23 +445,23 @@
     </pageAccesses>
     <tabSettings>
         <tab>Vep_Answer__c</tab>
-        <visibility>true</visibility>
+        <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
         <tab>Vep_Factory__c</tab>
-        <visibility>true</visibility>
+        <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
         <tab>Vep_Question__c</tab>
-        <visibility>true</visibility>
+        <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
         <tab>Vep_Visitor_Pass__c</tab>
-        <visibility>true</visibility>
+        <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
         <tab>Vep_Visitor__c</tab>
-        <visibility>true</visibility>
+        <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
         <tab>Visitor_Entry_Portal</tab>
