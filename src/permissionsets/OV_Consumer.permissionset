@@ -600,6 +600,10 @@ One View Report Favourites</description>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
+        <recordType>News_Article__c.Core_Create</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
         <recordType>OV_Shelf__c.Moment</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>

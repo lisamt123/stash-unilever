@@ -1174,6 +1174,10 @@
         <layout>News_Article__c-News Article Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>News_Article__c-News Article Layout</layout>
+        <recordType>News_Article__c.Core_Create</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>OOH_SellOutData__c-Sell Out Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -2627,6 +2631,11 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Marketing_SOW__c.ParentSowMarketing</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>News_Article__c.Core_Create</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

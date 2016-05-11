@@ -590,6 +590,10 @@
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
+        <recordType>News_Article__c.Core_Create</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
         <recordType>OV_Shelf__c.Moment</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
@@ -667,7 +671,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Vep_Visitor__c.Request_on_Behalf</recordType>
-        <visible>true</visible>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>WU_Master_Warehouse__c.Edit_Warehouse_Capacity</recordType>
