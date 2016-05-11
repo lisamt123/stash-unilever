@@ -12134,7 +12134,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_LblBrandLedGrowth_IncremTurnoverLessAbove40</shortDescription>
-        <value>Total Turnover &gt;40M</value>
+        <value>Incremental Turn Over &gt;40M</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_Activity</fullName>
@@ -12157,7 +12157,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_Lbl_BrandLedGrowth_100_200</shortDescription>
-        <value>€100-€200m</value>
+        <value>Total turnover €100-€200m</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_BrandLedGrowth_IncremTurnover1020</fullName>
@@ -12165,7 +12165,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_Lbl_BrandLedGrowth_IncremTurnover1020</shortDescription>
-        <value>Total Turnover 10M - 20M</value>
+        <value>Incremental Turn Over 10M - 20M</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_BrandLedGrowth_IncremTurnover200_300</fullName>
@@ -12173,7 +12173,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_Lbl_BrandLedGrowth_IncremTurnover200_300</shortDescription>
-        <value>€200-€300m</value>
+        <value>Total turnover €200-€300m</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLess10</fullName>
@@ -12181,7 +12181,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLess10</shortDescription>
-        <value>Total Turnover &lt;10M</value>
+        <value>Incremental Turn Over &lt;10M</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLess2030</fullName>
@@ -12189,7 +12189,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLess2030</shortDescription>
-        <value>Total Turnover 20M - 30M</value>
+        <value>Incremental Turn Over 20M - 30M</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLess300_400</fullName>
@@ -12197,7 +12197,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLess300_400</shortDescription>
-        <value>€300-€400m</value>
+        <value>Total turnover €300-€400m</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLess3040</fullName>
@@ -12205,7 +12205,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLess3040</shortDescription>
-        <value>Total Turnover 30M - 40M</value>
+        <value>Incremental Turn Over 30M - 40M</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLessAbove400</fullName>
@@ -12213,7 +12213,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLessAbove400</shortDescription>
-        <value>&gt;€400m</value>
+        <value>Total turnover &gt;€400m</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_BrandLedGrowth_Less100</fullName>
@@ -12221,7 +12221,16 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_Lbl_BrandLedGrowth_Less100</shortDescription>
-        <value>&lt;€100m</value>
+        <value>Total turnover &lt;€100m</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_By_selecting_Global</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_By_selecting_Global</shortDescription>
+        <value>By selecting Global you confirm
+
+the campaign covers more than 15 countries</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_Innovation_Projects_BrandLedGrowth</fullName>
@@ -12348,7 +12357,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_Lbl_Oblix_Lbl_Innovation_Projects_Market5</shortDescription>
-        <value>Global campaign/s suitable for  &gt;15 number of markets</value>
+        <value>Global campaign (all market clusters)</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_Role</fullName>
@@ -12488,7 +12497,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Audio / Visual ORIGINATION – FULL</shortDescription>
-        <value>Production of a new film master, with creative development work already complete. Requires agency in casting and oversight of production. Ie/ reshoot of an existing script</value>
+        <value>&amp;nbsp;</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Score3</fullName>
@@ -12496,7 +12505,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Audio / Visual ORIGINATION – FULL</shortDescription>
-        <value>Creative development of a new master only. No production. Assumes several new scripts created for testing.</value>
+        <value>&amp;nbsp;</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Score4</fullName>
@@ -12865,7 +12874,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Cut downs &amp; Tag</shortDescription>
-        <value>Cut downs and Tags</value>
+        <value>Cut Downs and Tags</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Data_Ana_Rep_Dash</fullName>
@@ -12953,7 +12962,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Digital adaptation requirements</shortDescription>
-        <value>Banner or landing page adaptations (complex)</value>
+        <value>Static or Flash banner adaptation or Adaptation of Social Media Content (eg/ facebook post, simple imafes for e-commerce, youtube masthead)</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Digit_adapt_requir_Score2</fullName>
@@ -12961,7 +12970,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Digital adaptation requirements</shortDescription>
-        <value>Digital strategy adaptation / refresh. Eg/ mobile or UX strategy</value>
+        <value>Adaptation of Landing Pages, Page Take-overs etc</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Digit_adapt_requir_Score3</fullName>
@@ -12969,7 +12978,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Digital adaptation requirements</shortDescription>
-        <value>EDM/eNewsletters - Adapt copy, design &amp; layout.</value>
+        <value>Low - Adaptation of up to 5 digital items (eg/ banners, webpage updates, social media content/posts)</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Digit_adapt_requir_Score4</fullName>
@@ -12977,8 +12986,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Digital adaptation requirements</shortDescription>
-        <value>Micro site adaptation for language or localised creative concept
-8 Page / 10 Sections</value>
+        <value>Medium - Adaptation of up to 10 digital items (eg/ banners, webpage updates, social media content/posts) or Adaptation of simple social media app (eg/ FB contest)</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Digit_adapt_requir_Score5</fullName>
@@ -12986,7 +12994,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Digital adaptation requirements</shortDescription>
-        <value>Complex website revamp or localisation. Eg/ Inclusion of registration module, Mobile App adaptation, interactive game adaptation.</value>
+        <value>High - Adaptation of up to 15 items (eg/ banners, webpage updates, social media content/posts) or Micro site adaptation for language or localised creative concept 8 Page / 10 Sections</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory</fullName>
@@ -13034,7 +13042,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Digital campaign assets</shortDescription>
-        <value>Digital campaign assets</value>
+        <value>Digital Campaign Assets</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Digital_campaign_assets_score1</fullName>
@@ -13042,7 +13050,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Digital campaign assets</shortDescription>
-        <value>Banner, landing page, page take over, youtube uploads (includes writing the copy for you tube clips etc).</value>
+        <value>Static and Flash Banners, Social media content (eg/ facebook post, simple images for e-commerce, youtube masthead)</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Digital_campaign_assets_score2</fullName>
@@ -13050,7 +13058,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Digital campaign assets</shortDescription>
-        <value>EDM/eNewsletters (Standard) - Originate copy, design &amp; layout</value>
+        <value>Landing Pages, Page Take-overs</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Digital_campaign_assets_score3</fullName>
@@ -13058,7 +13066,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Digital campaign assets</shortDescription>
-        <value>EDM/eNewsletters (Complex) - Originate copy, design &amp; layout</value>
+        <value>Low - Digital bundle of assets up to 5 items (eg/ banners, webpage updates, social media content/posts)</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Digital_campaign_assets_score4</fullName>
@@ -13066,7 +13074,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Digital campaign assets</shortDescription>
-        <value>Simple app for social media eg/ facebook contest</value>
+        <value>Medium - Digital bundle of assets up to 10 items (eg/ banners, webpage updates, social media content/posts) or Simple app for social media eg/ facebook contest</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Digital_campaign_assets_score5</fullName>
@@ -13074,8 +13082,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Digital campaign assets</shortDescription>
-        <value>Micro site creation (Complex)
-8 Page / 10 Sections</value>
+        <value>High - Digital bundle of assets up to 15 items (eg/ banners, webpage updates, social media content/posts) or Micro site creation (Complex) 8 Page / 10 Sections</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Experiential</fullName>
@@ -13518,7 +13525,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Stimulus requirements</shortDescription>
-        <value>Stimulus requirements</value>
+        <value>Stimulus Requirements</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Stimulus</fullName>
@@ -13535,6 +13542,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>Stimulus Materials</shortDescription>
         <value>Stimulus Materials - Research requirements</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Sub_Category</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Sub_Category</shortDescription>
+        <value>Sub Category</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Updated</fullName>
@@ -14140,6 +14154,14 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Determined by Countries selector</value>
     </labels>
     <labels>
+        <fullName>Oblix_lbl_UIUX_Digital_Strategy_Adapt</fullName>
+        <categories>Oblix_VF07_ProjectView</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Digital Strategy Adapt</shortDescription>
+        <value>Digital Strategy Adapt</value>
+    </labels>
+    <labels>
         <fullName>Oblix_lbl_UIUX_Edit</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -14267,6 +14289,14 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Information</value>
     </labels>
     <labels>
+        <fullName>Oblix_lbl_UIUX_Interactive_Game_Adapt</fullName>
+        <categories>Oblix_VF07_ProjectView</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Interactive Game Adapt</shortDescription>
+        <value>Interactive Game Adapt</value>
+    </labels>
+    <labels>
         <fullName>Oblix_lbl_UIUX_Lead_Agency</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -14286,6 +14316,22 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_Marketing_SOW_Campaign_Edit</shortDescription>
         <value>Marketing SOW Campaign Edit</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Mob_APP_Conceptualisation</fullName>
+        <categories>Oblix_VF07_ProjectView</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Mob APP Conceptualisation</shortDescription>
+        <value>Mob APP Conceptualisation</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Mobile_APP_Conceptualisation</fullName>
+        <categories>Oblix_VF07_ProjectView</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Mobile APP Conceptualisation</shortDescription>
+        <value>Mobile APP Conceptualisation</value>
     </labels>
     <labels>
         <fullName>Oblix_lbl_UIUX_Name</fullName>
@@ -14631,6 +14677,22 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_Visible_to_Unilever</shortDescription>
         <value>Visible to Unilever only</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Web_Optimisation_for_Mob</fullName>
+        <categories>Oblix_VF07_ProjectView</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Web Optimisation for Mob</shortDescription>
+        <value>Web Optimisation for Mob</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Web_Optimisation_for_Mobile</fullName>
+        <categories>Oblix_VF07_ProjectView</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Website Optimisation for Mobile</shortDescription>
+        <value>Website Optimisation for Mobile</value>
     </labels>
     <labels>
         <fullName>Oblix_lbl_UIUX_hours</fullName>

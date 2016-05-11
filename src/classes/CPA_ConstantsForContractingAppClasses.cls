@@ -144,6 +144,8 @@ public class CPA_ConstantsForContractingAppClasses{
     public static final String PROCESSOFFICEAREAE2E='Process Office Area E2E';
     public static final String OTHERPROJECTPHASES='Other Project Phases';
     public static final String OTHERPROCESSOFFICEAREAE2E='Other-Process Office area E2E';
+    public static final String MANDATORYIFPROCESSOFFICEAREAE2EISOTHER='Required only when Process Office area E2E is Other';
+    
     public static final String ISTHISPROJINVASIVEINNATURE='Is this ‘Project’ Invasive in nature?';
     public static final String NEWORREWORKEDINTREQ='New or ReWorked Integration Requirement';
     public static final String APPPERTESTINGNEEDED='Application Performance Testing Needed';
@@ -280,5 +282,9 @@ public class CPA_ConstantsForContractingAppClasses{
     public static final String CONTRACTDELETE = 'Contract can be deleted in Save and Return Status only';
     public static final String COMMERICALDELETE = 'Commercial can be deleted in Save and Return Status only';
     public static final String STANDALONECR = 'Standalone CR';
+    
+    public static final String ESTOFF = 'Est_Off';
+    public static final String ESTON = 'Est_On'; 
+    public static final String EXP = 'Expense_perc';
 
 }

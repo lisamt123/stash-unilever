@@ -3,6 +3,5 @@
     <apiVersion>33.0</apiVersion>
     <availableInTouch>false</availableInTouch>
     <confirmationTokenRequired>false</confirmationTokenRequired>
-    <description>This is RAP and CAP Job Sheet page.</description>
-    <label>Amr_JobSheet</label>
+    <label>Oblix_SOWChatterFeedWrapper</label>
 </ApexPage>

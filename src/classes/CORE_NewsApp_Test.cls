@@ -23,11 +23,15 @@ public class CORE_NewsApp_Test{
         lstCustSet.add( new CORE_NEWS_ARTICLE__c(Name='MyNewsSiteNameColorCode', Text_Value__c='red'));
         lstCustSet.add( new CORE_NEWS_ARTICLE__c(Name='GoogleAnalyticsId', Text_Value__c='UA-69390369-6'));
         lstCustSet.add( new CORE_NEWS_ARTICLE__c(Name='RecordCounNumber', Text_Value__c='10'));
+        lstCustSet.add( new CORE_NEWS_ARTICLE__c(Name='NEWS_ARTICLE_AVATAR_USER', Text_Value__c='005E0000005My3X'));
         if(!lstCustSet.isEmpty()){
             insert lstCustSet;  
         }
               
     }
+    
+    
+    
     public static testMethod void TestNewsAppGlobalNews(){
         Test.startTest();
 
@@ -87,6 +91,9 @@ public class CORE_NewsApp_Test{
         System.assertNotEquals(null, Core_NC_NewsCenterController.getGlobalNewsForMostRecent('MyNews'));
         System.assertNotEquals(null,  Core_NC_NewsCenterController.getGlobalNewsForMostRecent('PaulsBlog'));
         System.assertNotEquals(null,  Core_NC_NewsCenterController.getGlobalNewsForMostRecent('GlobalNews'));
+        System.assertNotEquals(null,  Core_NC_NewsCenterController.getTopicNames());
+        
+        
         Test.stopTest();
     }
     

@@ -196,9 +196,9 @@ private class CPA_Contract_UtilMethods_Test {
         Test.startTest(); 
             CPA_HLE_Request__c objHLERequest = CPA_testContractClass.CreateHLERequest();
             insert objHLERequest;
-            objHLERequest.pkl_Status__c = CPA_ConstantsForContractingAppClasses.SUBMITTED;
+            /*objHLERequest.pkl_Status__c = CPA_ConstantsForContractingAppClasses.SUBMITTED;
             update objHLERequest;
-           CPA_HLERequest_TriggerUtil.isSubmitted  = false;
+           CPA_HLERequest_TriggerUtil.isSubmitted  = false;*/
            objHLERequest.pkl_Status__c = CPA_ConstantsForContractingAppClasses.CANCELLED;
             update objHLERequest;
             System.assertNotEquals(CPA_ConstantsForContractingAppClasses.CANCELLED, objHLERequest.ID);  
