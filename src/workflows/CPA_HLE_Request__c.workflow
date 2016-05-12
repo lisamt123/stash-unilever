@@ -5,8 +5,12 @@
         <description>CAP Email HLE Request is Submitted</description>
         <protected>false</protected>
         <recipients>
-            <recipient>CAP_VDM_Group</recipient>
-            <type>group</type>
+            <field>eml_SMT_group_email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>eml_VDM_group_email__c</field>
+            <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_HLE_Request_Submitted_by_SMT</template>
@@ -16,16 +20,12 @@
         <description>CAP Email after HLE is Accepted</description>
         <protected>false</protected>
         <recipients>
-            <recipient>CAP_SMT_Group</recipient>
-            <type>group</type>
+            <field>eml_SMT_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_ULPT_Group</recipient>
-            <type>group</type>
-        </recipients>
-        <recipients>
-            <recipient>CAP_VDM_Group</recipient>
-            <type>group</type>
+            <field>eml_VDM_group_email__c</field>
+            <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_HLE_Request_Accepted</template>
@@ -35,24 +35,12 @@
         <description>CAP HLE Request Withhold</description>
         <protected>false</protected>
         <recipients>
-            <recipient>CAP_SMT_Group</recipient>
-            <type>group</type>
+            <field>eml_SMT_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_ULFT_Group</recipient>
-            <type>group</type>
-        </recipients>
-        <recipients>
-            <recipient>CAP_ULPM_group</recipient>
-            <type>group</type>
-        </recipients>
-        <recipients>
-            <recipient>CAP_ULPT_Group</recipient>
-            <type>group</type>
-        </recipients>
-        <recipients>
-            <recipient>CAP_VDM_Group</recipient>
-            <type>group</type>
+            <field>eml_VDM_group_email__c</field>
+            <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_PWORF_Withheld_by_SMT</template>
@@ -62,24 +50,12 @@
         <description>CAP HLE Request returned by VDM</description>
         <protected>false</protected>
         <recipients>
-            <recipient>CAP_SMT_Group</recipient>
-            <type>group</type>
+            <field>eml_SMT_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_ULFT_Group</recipient>
-            <type>group</type>
-        </recipients>
-        <recipients>
-            <recipient>CAP_ULPM_group</recipient>
-            <type>group</type>
-        </recipients>
-        <recipients>
-            <recipient>CAP_ULPT_Group</recipient>
-            <type>group</type>
-        </recipients>
-        <recipients>
-            <recipient>CAP_VDM_Group</recipient>
-            <type>group</type>
+            <field>eml_VDM_group_email__c</field>
+            <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_HLE_Request_Return_by_VDM</template>
@@ -89,20 +65,12 @@
         <description>CPA HLE Request Cancelled</description>
         <protected>false</protected>
         <recipients>
-            <recipient>CAP_SMT_Group</recipient>
-            <type>group</type>
+            <field>eml_SMT_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_ULPM_group</recipient>
-            <type>group</type>
-        </recipients>
-        <recipients>
-            <recipient>CAP_ULPT_Group</recipient>
-            <type>group</type>
-        </recipients>
-        <recipients>
-            <recipient>CAP_VDM_Group</recipient>
-            <type>group</type>
+            <field>eml_VDM_group_email__c</field>
+            <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_HLE_Request_Cancelled_by_SMT</template>
@@ -112,8 +80,12 @@
         <description>CPA HLE Request SLA1</description>
         <protected>false</protected>
         <recipients>
-            <recipient>CAP_VDM_Group</recipient>
-            <type>group</type>
+            <field>eml_SMT_group_email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>eml_VDM_group_email__c</field>
+            <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_HLE_Request_SLA1</template>
@@ -123,16 +95,12 @@
         <description>HLE Request Answered</description>
         <protected>false</protected>
         <recipients>
-            <recipient>CAP_SMT_Group</recipient>
-            <type>group</type>
+            <field>eml_SMT_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_ULPT_Group</recipient>
-            <type>group</type>
-        </recipients>
-        <recipients>
-            <recipient>CAP_VDM_Group</recipient>
-            <type>group</type>
+            <field>eml_VDM_group_email__c</field>
+            <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_HLE_Request_Answered</template>
@@ -142,8 +110,12 @@
         <description>HLE Request SLA2</description>
         <protected>false</protected>
         <recipients>
-            <recipient>CAP_VDM_Group</recipient>
-            <type>group</type>
+            <field>eml_SMT_group_email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>eml_VDM_group_email__c</field>
+            <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_HLE_Request_SLA2</template>
@@ -337,6 +309,24 @@
         <field>dat_Cancelled_date__c</field>
         <formula>TODAY()</formula>
         <name>CPA HLE request Cancelled date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_HLE_request_SMT_group_email</fullName>
+        <field>eml_SMT_group_email__c</field>
+        <formula>&quot;Vivek.Kalidoss@unilever.com&quot;</formula>
+        <name>CPA HLE request SMT group email</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_HLE_request_VDM_group_email</fullName>
+        <field>eml_VDM_group_email__c</field>
+        <formula>&quot;Sameer.Vaidya@unilever.com&quot;</formula>
+        <name>CPA HLE request VDM group email</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
@@ -552,6 +542,14 @@
             <type>FieldUpdate</type>
         </actions>
         <actions>
+            <name>CPA_HLE_request_SMT_group_email</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CPA_HLE_request_VDM_group_email</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
             <name>CPA_Status_Saved</name>
             <type>FieldUpdate</type>
         </actions>
@@ -638,6 +636,11 @@
             <field>CPA_HLE_Request__c.HLE_Request_SLA1_end_Date__c</field>
             <operation>notEqual</operation>
         </criteriaItems>
+        <criteriaItems>
+            <field>CPA_HLE_Request__c.pkl_Status__c</field>
+            <operation>notEqual</operation>
+            <value>Submitted,Resubmitted</value>
+        </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
             <actions>
@@ -655,6 +658,16 @@
         <criteriaItems>
             <field>CPA_HLE_Request__c.HLE_Request_SLA2_end_Date__c</field>
             <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>CPA_HLE_Request__c.pkl_Status__c</field>
+            <operation>equals</operation>
+            <value>Accepted</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>CPA_HLE_Request__c.Estimates_Status__c</field>
+            <operation>notEqual</operation>
+            <value>Submitted</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>

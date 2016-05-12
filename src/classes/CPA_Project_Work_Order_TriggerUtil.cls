@@ -150,19 +150,22 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
                       if(objPWo.dt_Date_PWORF_accepted__c == null && objPWORFTemp.dat_SLA1_Accepted_Date__c !=null) 
                       {   objPWo.dt_Date_PWORF_accepted__c = objPWORFTemp.dat_SLA1_Accepted_Date__c;
                       }
-                    if(objPWORFTemp.pkl_Project_Scale__c != null && objPWORFTemp.RecordTypeid == AllrecordType){
-                        if(objPWORFTemp.pkl_Project_Scale__c == 'Small Project (<50 days)') objPWo.mpkl_Project_Classification__c = 'Other';
-                        else if(objPWORFTemp.pkl_Project_Scale__c == 'Large Project (>2000 days)') 
-                        {
-                        objPWo.mpkl_Project_Classification__c = 'Complex';
-                        
-                        }
-                        else if(objPWORFTemp.pkl_Project_Scale__c == 'Low Complexity Project (50 - 500 days)' ) objPWo.mpkl_Project_Classification__c = 'Low Complexity';
-                        else if(objPWORFTemp.pkl_Project_Scale__c == 'Standard Project (500 - 2000 days)') objPWo.mpkl_Project_Classification__c = 'Standard';
-                        
-                        if(objPWo.txt_Other_Project_Phases__c == null && objPWORFTemp.txt_OtherProjectPhases__c !=null)
-                            objPWo.txt_Other_Project_Phases__c = objPWORFTemp.txt_OtherProjectPhases__c;
-                    }else objPWo.mpkl_Project_Classification__c = 'Resource Augmentation'; 
+                      
+                    if(objPWo.mpkl_Project_Classification__c == null){
+                        if(objPWORFTemp.pkl_Project_Scale__c != null && objPWORFTemp.RecordTypeid == AllrecordType){
+                            if(objPWORFTemp.pkl_Project_Scale__c == 'Small Project (<50 days)') objPWo.mpkl_Project_Classification__c = 'Other';
+                            else if(objPWORFTemp.pkl_Project_Scale__c == 'Large Project (>2000 days)') 
+                            {
+                            objPWo.mpkl_Project_Classification__c = 'Complex';
+                            
+                            }
+                            else if(objPWORFTemp.pkl_Project_Scale__c == 'Low Complexity Project (50 - 500 days)' ) objPWo.mpkl_Project_Classification__c = 'Low Complexity';
+                            else if(objPWORFTemp.pkl_Project_Scale__c == 'Standard Project (500 - 2000 days)') objPWo.mpkl_Project_Classification__c = 'Standard';
+                            
+                            if(objPWo.txt_Other_Project_Phases__c == null && objPWORFTemp.txt_OtherProjectPhases__c !=null)
+                                objPWo.txt_Other_Project_Phases__c = objPWORFTemp.txt_OtherProjectPhases__c;
+                        }else objPWo.mpkl_Project_Classification__c = 'Resource Augmentation'; 
+                    }  
 
                 if(objPWo.mpkl_Unilever_Innovation_Area__c == null && objPWORFTemp.pkl_Business_Area__c !=null)
                     objPWo.mpkl_Unilever_Innovation_Area__c = objPWORFTemp.pkl_Business_Area__c;
