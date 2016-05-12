@@ -600,10 +600,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>AgencyHomePageController</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>ArticleExtension</apexClass>
         <enabled>false</enabled>
     </classAccesses>
