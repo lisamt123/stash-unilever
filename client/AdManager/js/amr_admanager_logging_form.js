@@ -27,15 +27,15 @@ function calculateOnChangenKP(onchange) {
 			localValue = parseCurrency( localValue );		
 			var finalValue =localValue/selectedValue;
 			finalValue=finalValue.toFixed(2);   
-			$j('.outputIdClass').val(finalValue);
+			$j('.outputIdClass').val('\u20AC'+' '+finalValue);
 		}else{
-			$j('.outputIdClass').val(0);					
+			$j('.outputIdClass').val('\u20AC'+' '+0);					
 			if(onchange) {
 				$j('.inputIdClass').val('');
 			}		
 		}
 	}else{
-		$j('.outputIdClass').val(0);
+		$j('.outputIdClass').val('\u20AC'+' '+0);
 	}               
 }
 
@@ -216,10 +216,11 @@ $j(document).ready(function() {
 		var projDeatVal =$j('.projecttextProjDetail').val();	
 		$j('.projectpick').val(projDeatVal);                     
 	}	
-		
+	/*	
 	if($j(".loadErrorParent").length) {
 		$j('html,body').animate({scrollTop: $j(".loadErrorParent").offset().top},'slow');
 	} else if($j(".errorM3").length){
 		$j('html,body').animate({scrollTop: $j(".errorM3").offset().top},'slow');
 	}
+	*/
 });

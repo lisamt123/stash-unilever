@@ -543,13 +543,6 @@ input[type=checkbox] {
 .summary span {} label dfn {
     font-style: normal;
 }
-.dfn-selected {
-    background: #E6E6E6 none repeat scroll 0 0;
-    font-style: normal;
-    padding: 4px 0px;
-    border-radius: 6px;
-    height: auto !important;
-}
 .orclass {
     color: #333333;
     font-size: 12px;

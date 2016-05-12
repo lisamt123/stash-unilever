@@ -4,18 +4,28 @@
         <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" />
         <apex:includeScript value="/support/console/31.0/integration.js" />
         <script type="text/javascript">
-            $j = jQuery.noConflict();                                    
+            $j = jQuery.noConflict();                                                                 
         </script>        
-        <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/menu-shift.js')}" />
-        <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/production-activity.js')}" />
-        <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/admanager-logging-form.js')}" />        
+        <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/amr_menu_shift.js')}" />
+        <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/amr_production_activity.js')}" />
+        <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/amr_admanager_logging_form.js')}" />        
+                
         <style type="text/css">
             label.logging-form-label div {
                 background: url("{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/questionmark.png')}") no-repeat scroll center center rgba(0,0,0,0);
             }            
             label.logging-form-label strong {
                 background: url("{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/star.png')}") no-repeat scroll center center rgba(0,0,0,0);
-            }                        
+            }      
+            .container {
+            	background:#FFFFFF;
+            } 
+            .lower-container-logo {
+            	display:none;
+            }
+            .lower-container {
+			    height: 20px !important;
+			}                  
         </style>
         <apex:stylesheet value="{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/css/logging-form.css')}" />
     </head>
@@ -23,13 +33,15 @@
         <apex:include pageName="Amr_common_header" />
         <apex:form >            
             <div class="container">
-                <apex:outputpanel rendered="{!successmessage}">                
-                <div class="success-message">
-                    <apex:outputlabel value="{!$Label.Amr_Success_AdManager}" /> <!--  -->
+            	<div style="padding:1px 0;">
+	                <apex:outputpanel rendered="{!successmessage}">                
+	                <div class="success-message">
+	                    <apex:outputlabel value="{!$Label.Amr_Success_AdManager}" /> <!--  -->
+	                </div>
+	                </apex:outputpanel>
                 </div>
-                </apex:outputpanel>
                 
-                <section class="before-start margin-top15">
+                <section class="before-start padding-top15">
                     <apex:outputText value="{!r.Introduction__c}" escape="false" />
                 </section>
                 <section>
@@ -492,7 +504,7 @@
                     <h2 class="margintop25 margin-bottom10">{!$Label.Amr_Production_Activity_Detail}</h2>
                     <div class="production-activity-sub-section pos-rel">
 
-                        <apex:pageMessages id="showmsg"></apex:pageMessages>
+                        <apex:pageMessages id="showmsg" rendered="{!boolIsProductionActivityError}"></apex:pageMessages>
 						<div class="setinactivemask">&nbsp;</div>
                         <div id="productionactivitytypegroup">
                             <div class="form-field padding-5-0">                                
@@ -1161,7 +1173,7 @@
                 <section>
                     <apex:actionRegion >
                         <div class="submit_button right">
-                            <apex:commandButton image="{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/email-templates/admanager-submit.png')}" id="submit" onclick="enableText1();return false;" styleClass="bgbnone">
+                            <apex:commandButton image="{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/email-templates/v3admanager-submit.png')}" id="submit" onclick="enableText1();return false;" styleClass="bgbnone">
                             </apex:commandButton>
                             <apex:actionStatus id="actStatusId">
                                 <apex:facet name="start">
@@ -1198,7 +1210,8 @@
             var strArr = {!CategoryList};            
             var catName = '{!categoryName}';
             
-            catProjectADM(stringArray,strArr,projFormPage,catName);                                    
+            catProjectADM(stringArray,strArr,projFormPage,catName);
+            loadErrorParentCall();                                                
         });
     </script>
 </apex:page>

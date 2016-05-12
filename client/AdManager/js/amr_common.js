@@ -92,10 +92,8 @@ function callFuctionForLiveSort(liveSortOption) {
     callContrlLiveSort(liveSortOption);
 }
 
-
-function currencyPopup() {
-
-    $j('.commonCurrencyRelated').on('change', function() {        
+function currencyPopupCommonCurrencyRelatedcall() {
+	$j('.commonCurrencyRelated').on('change', function() {        
         var a = $j(this).val();
         var data_id = $j(this).attr('data-id');        
         var PCLocalAmount = $j('.PCLocalAmount' + data_id).val();
@@ -117,8 +115,13 @@ function currencyPopup() {
             }
         }
 
-    });
+    });	
+}
 
+function currencyPopup() {
+	
+	currencyPopupCommonCurrencyRelatedcall();
+	
     $j('.commonPCLocalAmount').on('keyup', function() {        
         var a = $j(this).parent().find('.commonCurrencyRelated').val();
         //var data_id = $j(this).closest('.adMangerNo').find('.commonCurrencyRelated').attr('data-id');
@@ -265,18 +268,60 @@ function currencyCAAmount(){
 
 }
 
-function removeMasterDurationRows() {
-                	
-	        	$j('.remove_master_durationrows').click(function(){
-	        		if($j('.row1Main').length > 1 ) {        	
-	        			$j(this).closest('.row1Main').remove();
-	        		}
-	        		
-	        		masterProcess();
-	        	});  
-	        	
-	        	masterProcess();      	
-        }
+function removeMasterDurationRows() {                	
+	$j('.remove_master_durationrows').click(function(){
+		if($j('.row1Main').length > 1 ) {        	
+			$j(this).closest('.row1Main').remove();
+		}
+		
+		masterProcess();
+	});  		
+	masterProcess();      	
+}
+
+function removeAdditionalFilmDurationRows() {                	
+	$j('.remove_additional_films_durationrows').click(function(){
+		if($j('.row1MainAdditional').length > 1 ) {        	
+			$j(this).closest('.row1MainAdditional').remove();
+		}
+		
+		additionalFilmProcess();
+	});  		
+	additionalFilmProcess();      	
+}
+
+function additionalFilmProcess() {
+	var intNoOfMasters=0;
+	var strNoOfMasters='';
+	var strDurationOfMasters='';
+	
+	$j('.no-of-additional-films-class').each(function(){
+		strNoOfMasters += ($j(this).val()?$j(this).val():0);
+		strNoOfMasters += ',';
+		
+		if($j('.noOfAdditionalFilmsAddition').length) {
+			intNoOfMasters += Number($j(this).val()?$j(this).val():0);
+		}
+		
+	});
+	
+	strNoOfMasters = strNoOfMasters.replace(/,\s*$/, "");
+	
+	$j('.duration-of-additional-films-class').each(function(){
+		strDurationOfMasters += ($j(this).val()?$j(this).val():0);
+		strDurationOfMasters += ',';
+	});
+	
+	strDurationOfMasters = strDurationOfMasters.replace(/,\s*$/, "");
+
+	$j('.noOfAdditionalFilmsMain').val(strNoOfMasters);
+	$j('.durationOfAdditionalFilmsMain').val(strDurationOfMasters);
+	
+	if($j('.noOfAdditionalFilmsAddition').length) {
+		$j('.noOfAdditionalFilmsAddition').val(intNoOfMasters);
+	} 	
+}
+
         
         function masterProcess() {
         	var intNoOfMasters=0;
@@ -333,10 +378,42 @@ function removeMasterDurationRows() {
 						$j(this).val(arrstrNoOfMasters[index]);	        		
 					});
 				}	        	
-				if(lengtharrstrdurationOfMasters == 1 && (($j('.durationOfMastersMain').val().trim() =='' || $j('.noOfMastersMain').val().trim() ==0) && ($j('.durationOfMastersMain').val().trim() =='' || $j('.durationOfMastersMain').val().trim() ==0 ))) {
+				if(lengtharrstrdurationOfMasters == 1 && (($j('.noOfMastersMain').val().trim() =='' || $j('.noOfMastersMain').val().trim() ==0) && ($j('.durationOfMastersMain').val().trim() =='' || $j('.durationOfMastersMain').val().trim() ==0 ))) {
 					$j('.duration-of-masters-class').val('');
 				} else {
 					$j('.duration-of-masters-class').each(function(index, value){
+						$j(this).val(arrstrdurationOfMasters[index]);	        		
+					});
+				}
+        	}        		
+        }
+		
+		function loadAdditionalFilmProcess() {        	
+        	var arrstrNoOfMasters = $j('.noOfAdditionalFilmsMain').val().split(",");
+        	var lengtharrstrNoOfMasters = arrstrNoOfMasters.length;
+        	
+        	var arrstrdurationOfMasters = $j('.durationOfAdditionalFilmsMain').val().split(",");
+        	var lengtharrstrdurationOfMasters = arrstrdurationOfMasters.length;
+        	        	
+        	if(lengtharrstrNoOfMasters > 1) {
+        		for( var i=0; i<lengtharrstrNoOfMasters-1;i++ ) {
+        			var dataToAppend = $j('.row1MainAdditional').html();
+        			$j('.row1AdditionalMainParent').append('<div class="row1MainAdditional">'+dataToAppend+'</div>');
+        		}
+        	}
+        	
+        	if(lengtharrstrNoOfMasters >= 1) {
+				if(lengtharrstrNoOfMasters == 1 && (($j('.noOfAdditionalFilmsMain').val().trim() =='' || $j('.noOfAdditionalFilmsMain').val().trim() ==0) && ($j('.durationOfAdditionalFilmsMain').val().trim() =='' || $j('.durationOfAdditionalFilmsMain').val().trim() ==0 ))) {
+					$j('.no-of-additional-films-class').val('');
+				} else {
+					$j('.no-of-additional-films-class').each(function(index, value){
+						$j(this).val(arrstrNoOfMasters[index]);	        		
+					});
+				}	        	
+				if(lengtharrstrdurationOfMasters == 1 && (($j('.noOfAdditionalFilmsMain').val().trim() =='' || $j('.noOfAdditionalFilmsMain').val().trim() ==0) && ($j('.durationOfAdditionalFilmsMain').val().trim() =='' || $j('.durationOfMastersMain').val().trim() ==0 ))) {
+					$j('.duration-of-additional-films-class').val('');
+				} else {
+					$j('.duration-of-additional-films-class').each(function(index, value){
 						$j(this).val(arrstrdurationOfMasters[index]);	        		
 					});
 				}
@@ -348,6 +425,12 @@ function removeMasterDurationRows() {
         		masterProcess();
         	});
         }
+		
+		function noOfAdditionalFilmdurationkeypress() {
+        	$j('.no-of-additional-films-class, .duration-of-additional-films-class').on('input',function(){        		
+        		additionalFilmProcess();
+        	});
+        }
         
         function addMasterDurationrowsCall() {
         	$j('.add_master_durationrows').click(function(){        	        	
@@ -356,6 +439,16 @@ function removeMasterDurationRows() {
                 		
         		removeMasterDurationRows();
         		noOfmasterdurationkeypress();        		
+        	});
+        }
+		
+		function addAdditionalFilmsDurationrowsCall() {
+        	$j('.add_additional_films_durationrows').click(function(){        	        	
+        		var dataToAppend = $j('.row1MainAdditional').html();
+        		$j('.row1AdditionalMainParent').append('<div class="row1MainAdditional">'+dataToAppend+'</div>');
+                		
+        		removeAdditionalFilmDurationRows();
+        		noOfAdditionalFilmdurationkeypress();        		
         	});
         }
 

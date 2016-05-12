@@ -16310,7 +16310,7 @@ Which Communications team do you represent? You must be associated to one Planne
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Amr Budget allocated for this activity (enter full amount)</shortDescription>
-        <value>Budget Allocated For This Activity (enter full amount)</value>
+        <value>Budget Allocated for this Activity (enter full amount)</value>
     </labels>
     <labels>
         <fullName>Amr_Budget_responsibility_BD_BB_Other</fullName>
@@ -16534,7 +16534,7 @@ Which Communications team do you represent? You must be associated to one Planne
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Amr_Cost Per Master</shortDescription>
-        <value>Cost Per Master</value>
+        <value>Cost per Master</value>
     </labels>
     <labels>
         <fullName>Amr_Cost_per_master_per_shoot_day</fullName>
@@ -17122,7 +17122,7 @@ Which Communications team do you represent? You must be associated to one Planne
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Amr Location of Unilever project leader</shortDescription>
-        <value>Location Of Unilever Project Leader</value>
+        <value>Location of Unilever Project Leader</value>
     </labels>
     <labels>
         <fullName>Amr_Logout</fullName>
@@ -18371,6 +18371,13 @@ Which Communications team do you represent? You must be associated to one Planne
         <value>Save</value>
     </labels>
     <labels>
+        <fullName>Amr_SavingSummary</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_SavingSummary</shortDescription>
+        <value>Amr_SavingSummary</value>
+    </labels>
+    <labels>
         <fullName>Amr_Saving_Accepted_Of_Quotes</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -18579,6 +18586,13 @@ Which Communications team do you represent? You must be associated to one Planne
         <protected>false</protected>
         <shortDescription>Amr_Total_Accepted_Final_Cost</shortDescription>
         <value>€ Total Accepted Final Cost</value>
+    </labels>
+    <labels>
+        <fullName>Amr_Total_Accepted_Final_Cost_PC_PPC_CA</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amr_Total_Accepted_Final_Cost_PC_PPC_CA</shortDescription>
+        <value>Total Accepted Final Cost (CA/PC/PPC) Euro Amount</value>
     </labels>
     <labels>
         <fullName>Amr_Total_Cost</fullName>
@@ -18803,12 +18817,5 @@ Which Communications team do you represent? You must be associated to one Planne
         <protected>false</protected>
         <shortDescription>Amr tab</shortDescription>
         <value>tab</value>
-    </labels>
-    <labels>
-        <fullName>Total_Accepted_Final_Cost_PC_PPC_CA</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Total_Accepted_Final_Cost_PC_PPC_CA</shortDescription>
-        <value>Total Accepted Final Cost (CA/PC/PPC) Euro Amount</value>
     </labels>
     </CustomLabels>

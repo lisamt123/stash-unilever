@@ -1,58 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
-    <actionOverrides>
-        <actionName>Accept</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Clone</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Delete</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Edit</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>List</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>New</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Tab</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>View</actionName>
-        <type>Default</type>
-    </actionOverrides>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>true</enableActivities>
-    <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
     <fields>
         <fullName>Average_Total_Opening_Quotes__c</fullName>
-        <externalId>false</externalId>
         <formula>Sum_Of_Total_Cost__c / Number_Of_Quotes__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Average Total Opening Quotes</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>CA_Appraisal_Cost_Management__c</fullName>
-        <externalId>false</externalId>
         <label>CA Appraisal - Cost Management</label>
         <picklist>
             <picklistValues>
@@ -77,13 +39,10 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>CA_Appraisal_Output_Quality__c</fullName>
-        <externalId>false</externalId>
         <label>CA Appraisal - Output Quality</label>
         <picklist>
             <picklistValues>
@@ -108,13 +67,10 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>CA_Appraisal_Process_Management__c</fullName>
-        <externalId>false</externalId>
         <label>CA Appraisal - Process Management</label>
         <picklist>
             <picklistValues>
@@ -139,13 +95,10 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>CA_Appraisal_Time_Management__c</fullName>
-        <externalId>false</externalId>
         <label>CA Appraisal - Time Management</label>
         <picklist>
             <picklistValues>
@@ -170,13 +123,10 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>CA_Only_Currency__c</fullName>
-        <externalId>false</externalId>
         <label>CA Only (Currency)</label>
         <picklist>
             <picklistValues>
@@ -249,171 +199,104 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>CA_Only_Euro_Amount__c</fullName>
-        <externalId>false</externalId>
         <label>CA Only(Euro Amount)</label>
         <precision>17</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>CA_Only_Local_Amount__c</fullName>
-        <externalId>false</externalId>
         <label>CA Only (Local Amount)</label>
         <precision>17</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Ca_Cost_Manage_Star__c</fullName>
-        <externalId>false</externalId>
         <label>Ca Cost Manage Star</label>
         <length>50</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Ca_Output_Quality_Star__c</fullName>
-        <externalId>false</externalId>
         <label>Ca Output Quality Star</label>
         <length>50</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Ca_Process_Manage_Star__c</fullName>
-        <externalId>false</externalId>
         <label>Ca Process Manage Star</label>
         <length>50</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Ca_Time_Manage_Star__c</fullName>
-        <externalId>false</externalId>
         <label>Ca Time Manage Star</label>
         <length>50</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Cost_Per_Master_Per_Shoot_Day_Text__c</fullName>
-        <externalId>false</externalId>
-        <formula>TEXT(Cost_per_master_per_shoot_day__c)</formula>
+        <formula>TEXT(ROUND(Cost_per_master_per_shoot_day__c,2))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Cost Per Master Per Shoot Day Text</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Cost_Per_Master_Text__c</fullName>
-        <externalId>false</externalId>
-        <formula>TEXT(Cost_Per_Master__c)</formula>
+        <formula>TEXT(ROUND(Cost_Per_Master__c,2))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Cost Per Master Text</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Cost_Per_Master__c</fullName>
-        <externalId>false</externalId>
         <formula>Total_Accepted_FinalCost__c  /  No_of_Masters__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Cost Per Master</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Cost_per_master_per_shoot_day__c</fullName>
-        <externalId>false</externalId>
         <formula>(Total_Accepted_FinalCost__c  /  No_of_Masters__c ) /  No_of_shoot_days__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Cost per master per shoot day</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Display__c</fullName>
         <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
         <label>Display</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Duration_of_Additional_Films__c</fullName>
-        <externalId>false</externalId>
         <label>Duration of Additional Films</label>
         <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Duration_of_Masters__c</fullName>
-        <externalId>false</externalId>
         <label>Duration of Masters</label>
         <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Edirors_Name__c</fullName>
-        <externalId>false</externalId>
         <label>Edirors Name</label>
         <length>100</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Folder_Name__c</fullName>
-        <externalId>false</externalId>
         <label>Folder Name</label>
         <picklist>
             <picklistValues>
@@ -426,26 +309,18 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Job_Details__c</fullName>
-        <externalId>false</externalId>
         <label>Job Details</label>
         <referenceTo>Amr_Job_Details__c</referenceTo>
         <relationshipName>AM_Savings</relationshipName>
         <relationshipOrder>0</relationshipOrder>
-        <reparentableMasterDetail>false</reparentableMasterDetail>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>MasterDetail</type>
-        <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
     <fields>
         <fullName>Monthly_Submitted__c</fullName>
-        <externalId>false</externalId>
         <label>Monthly Submitted</label>
         <picklist>
             <picklistValues>
@@ -498,94 +373,66 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>No_Of_Shoot_Days_Text__c</fullName>
-        <externalId>false</externalId>
         <formula>TEXT(No_of_shoot_days__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>No Of Shoot Days Text</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>No_of_Additional_Films_List__c</fullName>
+        <description>It will contain list of additional films.</description>
+        <label>No of Additional Films List</label>
+        <length>255</length>
+        <type>Text</type>
     </fields>
     <fields>
         <fullName>No_of_Additional_Films__c</fullName>
-        <externalId>false</externalId>
         <label>No of Additional Films</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>0</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>No_of_Masters_List__c</fullName>
         <description>It will contain list of no. of masters.</description>
-        <externalId>false</externalId>
         <label>No of Masters List</label>
         <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>No_of_Masters__c</fullName>
-        <externalId>false</externalId>
         <label>No of Masters</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>0</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>No_of_shoot_days__c</fullName>
-        <externalId>false</externalId>
         <label>No of shoot days</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>0</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Number_Of_Additional_Films_Text__c</fullName>
-        <externalId>false</externalId>
         <formula>TEXT(No_of_Additional_Films__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Number Of Additional Films Text</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Number_Of_Masters_Text__c</fullName>
-        <externalId>false</externalId>
         <formula>TEXT(No_of_Masters__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Number Of Masters Text</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Number_Of_Quotes__c</fullName>
-        <externalId>false</externalId>
         <label>Number Of Quotes</label>
         <summaryFilterItems>
             <field>Amr_Quote__c.Total_Cost__c</field>
@@ -594,12 +441,10 @@
         </summaryFilterItems>
         <summaryForeignKey>Amr_Quote__c.Saving__c</summaryForeignKey>
         <summaryOperation>count</summaryOperation>
-        <trackHistory>false</trackHistory>
         <type>Summary</type>
     </fields>
     <fields>
         <fullName>PC_Appraisal_Cost_Management__c</fullName>
-        <externalId>false</externalId>
         <label>PC Appraisal - Cost Management</label>
         <picklist>
             <picklistValues>
@@ -624,13 +469,10 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>PC_Appraisal_Output_Quality__c</fullName>
-        <externalId>false</externalId>
         <label>PC Appraisal - Output Quality</label>
         <picklist>
             <picklistValues>
@@ -655,13 +497,10 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>PC_Appraisal_Process_Management__c</fullName>
-        <externalId>false</externalId>
         <label>PC Appraisal - Process Management</label>
         <picklist>
             <picklistValues>
@@ -686,13 +525,10 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>PC_Appraisal_Time_Management__c</fullName>
-        <externalId>false</externalId>
         <label>PC Appraisal - Time Management</label>
         <picklist>
             <picklistValues>
@@ -717,13 +553,10 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>PC_Only_Currency__c</fullName>
-        <externalId>false</externalId>
         <label>PC Only (Currency)</label>
         <picklist>
             <picklistValues>
@@ -796,37 +629,24 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>PC_Only_Euro_Amount__c</fullName>
-        <externalId>false</externalId>
         <label>PC Only (Euro Amount)</label>
         <precision>17</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>PC_Only_Local_Amount__c</fullName>
-        <externalId>false</externalId>
         <label>PC Only (Local Amount)</label>
         <precision>17</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>PPC_Appraisal_Cost_Management__c</fullName>
-        <externalId>false</externalId>
         <label>PPC Appraisal - Cost Management</label>
         <picklist>
             <picklistValues>
@@ -851,13 +671,10 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>PPC_Appraisal_Output_Quality__c</fullName>
-        <externalId>false</externalId>
         <label>PPC Appraisal - Output Quality</label>
         <picklist>
             <picklistValues>
@@ -882,13 +699,10 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>PPC_Appraisal_Process_Management__c</fullName>
-        <externalId>false</externalId>
         <label>PPC Appraisal - Process Management</label>
         <picklist>
             <picklistValues>
@@ -913,13 +727,10 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>PPC_Appraisal_Time_Management__c</fullName>
-        <externalId>false</externalId>
         <label>PPC Appraisal - Time Management</label>
         <picklist>
             <picklistValues>
@@ -944,13 +755,10 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>PPC_Only_Currency__c</fullName>
-        <externalId>false</externalId>
         <label>PPC Only (Currency)</label>
         <picklist>
             <picklistValues>
@@ -1023,194 +831,114 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>PPC_Only_Euro_Amount__c</fullName>
-        <externalId>false</externalId>
         <label>PPC Only (Euro Amount)</label>
         <precision>17</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>PPC_Only_Local_Amount__c</fullName>
-        <externalId>false</externalId>
         <label>PPC Only (Local Amount)</label>
         <precision>17</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Pc_Cost_Manage_Star__c</fullName>
-        <externalId>false</externalId>
         <label>Pc Cost Manage Star</label>
         <length>50</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Pc_Output_Quality_Star__c</fullName>
-        <externalId>false</externalId>
         <label>Pc Output Quality Star</label>
         <length>50</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Pc_Output_Quality__c</fullName>
-        <externalId>false</externalId>
         <label>Pc Output Quality</label>
         <length>50</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Pc_Proces_Manage_Star__c</fullName>
-        <externalId>false</externalId>
         <label>Pc Proces Manage Star</label>
         <length>50</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Pc_Time_Manage_Star__c</fullName>
-        <externalId>false</externalId>
         <label>Pc Time Manage Star</label>
         <length>50</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Percentage_Saving_Accepted_Quote_Text__c</fullName>
-        <externalId>false</externalId>
         <formula>TEXT(Percentage_Saving_Accepted_Quote__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Percentage Saving Accepted Quote Text</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Percentage_Saving_Accepted_Quote__c</fullName>
-        <externalId>false</externalId>
         <label>% Saving - Accepted Quote</label>
         <precision>17</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Percentage_Saving_Average_Quote_Text__c</fullName>
-        <externalId>false</externalId>
         <formula>TEXT(round(Percentage_Saving_Average_of_Quotes__c,2))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Percentage Saving Average Quote Text</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Percentage_Saving_Average_of_Quotes__c</fullName>
-        <externalId>false</externalId>
-        <formula>Saving_Average_of_Quotes__c/Average_Total_Opening_Quotes__c</formula>
+        <formula>(Saving_Average_of_Quotes__c/Average_Total_Opening_Quotes__c) * 100</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>% Saving - Average of Quotes</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Ppc_Cost_Manage_Star__c</fullName>
-        <externalId>false</externalId>
         <label>Ppc Cost Manage Star</label>
         <length>50</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Ppc_Output_Quality_Star__c</fullName>
-        <externalId>false</externalId>
         <label>Ppc Output Quality Star</label>
         <length>50</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Ppc_Process_Manage_Star__c</fullName>
-        <externalId>false</externalId>
         <label>Ppc Process Manage Star</label>
         <length>50</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Ppc_Time_Manage_Star__c</fullName>
-        <externalId>false</externalId>
         <label>Ppc Time Manage Star</label>
         <length>50</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Production_Type_Tv__c</fullName>
-        <externalId>false</externalId>
         <label>Production Type Tv</label>
         <length>150</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Production_Type__c</fullName>
-        <externalId>false</externalId>
         <label>Production Type</label>
         <picklist>
             <picklistValues>
@@ -1379,61 +1107,41 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Saving_Accepted_Quote_Euro_Text__c</fullName>
-        <externalId>false</externalId>
         <formula>TEXT(Saving_Accepted_Quote_Euro__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Saving Accepted Quote Euro Text</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Saving_Accepted_Quote_Euro__c</fullName>
         <defaultValue>0</defaultValue>
-        <externalId>false</externalId>
         <label>€ Saving - Accepted Quote</label>
         <precision>17</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Saving_Average_Of_Quote_Text__c</fullName>
-        <externalId>false</externalId>
         <formula>TEXT(Saving_Average_of_Quotes__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Saving Average Of Quote Text</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Saving_Average_of_Quotes__c</fullName>
-        <externalId>false</externalId>
         <formula>Average_Total_Opening_Quotes__c - Total_Accepted_FinalCost__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>€ Saving - Average of Quotes</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Scope_re_brief__c</fullName>
-        <externalId>false</externalId>
         <label>Scope re-brief</label>
         <picklist>
             <picklistValues>
@@ -1446,24 +1154,16 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Script_Title__c</fullName>
-        <externalId>false</externalId>
         <label>Script Title</label>
         <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Shoot_Location_Multiselect__c</fullName>
-        <externalId>false</externalId>
         <label>Shoot Location Multiselect</label>
         <picklist>
             <picklistValues>
@@ -1472,34 +1172,22 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>MultiselectPicklist</type>
         <visibleLines>4</visibleLines>
     </fields>
     <fields>
         <fullName>Shoot_Location__c</fullName>
-        <externalId>false</externalId>
         <label>Shoot Location</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>TextArea</type>
     </fields>
     <fields>
         <fullName>Sound_Studio_Name__c</fullName>
-        <externalId>false</externalId>
         <label>Sound Studio Name</label>
         <length>100</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Stage_RAP_engaged__c</fullName>
-        <externalId>false</externalId>
         <label>Stage RAP engaged</label>
         <picklist>
             <picklistValues>
@@ -1528,23 +1216,18 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Sum_Of_Total_Cost__c</fullName>
-        <externalId>false</externalId>
         <label>Sum Of Total Cost</label>
         <summarizedField>Amr_Quote__c.Total_Cost__c</summarizedField>
         <summaryForeignKey>Amr_Quote__c.Saving__c</summaryForeignKey>
         <summaryOperation>sum</summaryOperation>
-        <trackHistory>false</trackHistory>
         <type>Summary</type>
     </fields>
     <fields>
         <fullName>Sum_Of_Total_Cost_of_Accepted_Quotes__c</fullName>
-        <externalId>false</externalId>
         <label>Sum Of Total Cost of Accepted Quotes</label>
         <summarizedField>Amr_Quote__c.Total_Cost__c</summarizedField>
         <summaryFilterItems>
@@ -1554,93 +1237,62 @@
         </summaryFilterItems>
         <summaryForeignKey>Amr_Quote__c.Saving__c</summaryForeignKey>
         <summaryOperation>sum</summaryOperation>
-        <trackHistory>false</trackHistory>
         <type>Summary</type>
     </fields>
     <fields>
         <fullName>Total_Accepted_FinalCost__c</fullName>
-        <externalId>false</externalId>
         <label>Total Accepted FinalCost</label>
         <summarizedField>Amr_Quote__c.Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c</summarizedField>
         <summaryForeignKey>Amr_Quote__c.Saving__c</summaryForeignKey>
         <summaryOperation>sum</summaryOperation>
-        <trackHistory>false</trackHistory>
         <type>Summary</type>
     </fields>
     <fields>
         <fullName>Total_Accepted_Final_Cost_Text__c</fullName>
-        <externalId>false</externalId>
         <formula>TEXT(Total_Accepted_FinalCost__c )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Total Accepted Final Cost Text</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Total_Editing_Cost__c</fullName>
-        <externalId>false</externalId>
         <label>Total Editing Cost</label>
         <precision>17</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Total_No_Of_Films_Text__c</fullName>
-        <externalId>false</externalId>
         <formula>TEXT(Total_no_of_films__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Total No Of Films Text</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Total_Sound_Studio__c</fullName>
-        <externalId>false</externalId>
         <label>Total Sound Studio</label>
         <precision>17</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Total_no_of_films__c</fullName>
-        <externalId>false</externalId>
         <formula>No_of_Masters__c + No_of_Additional_Films__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Total no of films</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Travel_Costs__c</fullName>
-        <externalId>false</externalId>
         <label>Travel Costs</label>
         <precision>17</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Type_of_Saving__c</fullName>
-        <externalId>false</externalId>
         <label>Type of Saving</label>
         <picklist>
             <picklistValues>
@@ -1657,21 +1309,14 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Value_of_props_wardrobe__c</fullName>
-        <externalId>false</externalId>
         <label>Value of props &amp; wardrobe (paid for)</label>
         <precision>17</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <label>Amr Saving</label>
     <listViews>
@@ -1686,12 +1331,9 @@
         <columns>Average_Total_Opening_Quotes__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
-        <language>en_US</language>
     </listViews>
     <nameField>
         <label>AM_Saving Name</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
     </nameField>
     <pluralLabel>Amr Savings</pluralLabel>

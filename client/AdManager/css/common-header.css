@@ -66,6 +66,14 @@ body {
             background-position: 0 0;
             background-repeat: repeat-x;
         }
+
+.dfn-selected {
+    background: #E6E6E6 none repeat scroll 0 0;
+    font-style: normal;
+    padding: 4px 0px;
+    border-radius: 6px;
+    height: auto !important;
+}
 		
 .header-container {             
 	font-family: "dinOffPro",sans-serif !important;
@@ -276,10 +284,10 @@ body {
 		.lower-container-logo {
 			padding-left: 10px;
 		}
-		.duration-of-masters-class, .no-of-masters-class {
+		.duration-of-additional-films-class, .no-of-additional-films-class, .duration-of-masters-class, .no-of-masters-class {
         	width:100px !important;
         }
-        .row1Main {
+        .row1Main, .row1MainAdditional {
         	margin-bottom:10px;
         }
         
