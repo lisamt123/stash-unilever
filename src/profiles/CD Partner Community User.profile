@@ -272,10 +272,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>AFBrandEstimateStCtrlExtSummary</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>AF_AdjustQuater_Homepage_lightbox</apexClass>
         <enabled>false</enabled>
     </classAccesses>
