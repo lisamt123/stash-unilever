@@ -265,7 +265,7 @@ public with sharing class CPA_HLERequest_TriggerUtil{
     {       
       // If no comment exists, then prevent the object from saving.                 
 
-           approvalStatements.get(pi.TargetObjectId).addError('<br/><br/><Strong style= "color:red">Error: </Strong><b>HLE request can be Accepted/Returned/Recall by Vendor only.<br/>Please raise a query with vendor for recalling this form using Query section. </b><br/><br/>');
+           approvalStatements.get(pi.TargetObjectId).addError('<br/><br/><Strong style= "color:red">Error: </Strong><b>HLE request Can be Accepted/Returned by Vendor only.</b><br/><br/>');
        }
     }                                       
   }

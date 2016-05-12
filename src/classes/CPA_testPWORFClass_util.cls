@@ -102,7 +102,6 @@ public with sharing class CPA_testPWORFClass_util {
         pworfRec.pkl_Process_Office_Area_E2E__c ='Other (provide free text to enter)';
         pworfRec.txt_otherProcessOfficeAreaE2E__c ='Other Process Office area E2E'  ;
         pworfRec.mpkl_Project_Phases__c =CPA_ConstantsForContractingAppClasses.PLAN_ANALYSE;
-        pworfRec.pkl_Phases_covered_by_the_WAR__c =CPA_ConstantsForContractingAppClasses.PLAN_ANALYSE;
         pworfRec.txt_OtherProjectPhases__c = 'Other Project Phases'  ;            
         pworfRec.pkl_Process_Office_Area_E2E__c='Process Office Area E2E'  ;
         pworfRec.Is_Project__c  =CPA_ConstantsForContractingAppClasses.YES ;
@@ -249,7 +248,6 @@ public with sharing class CPA_testPWORFClass_util {
         pworfRec.pkl_Process_Office_Area_E2E__c ='Other (provide free text to enter)';
         pworfRec.txt_otherProcessOfficeAreaE2E__c ='Other Process Office area E2E'  ;
         pworfRec.mpkl_Project_Phases__c =CPA_ConstantsForContractingAppClasses.PLAN_ANALYSE;
-        pworfRec.pkl_Phases_covered_by_the_WAR__c =CPA_ConstantsForContractingAppClasses.PLAN_ANALYSE;
         pworfRec.txt_OtherProjectPhases__c = 'Other Project Phases'  ;            
         pworfRec.pkl_Process_Office_Area_E2E__c='Process Office Area E2E'  ;
         pworfRec.Is_Project__c  =CPA_ConstantsForContractingAppClasses.YES ;

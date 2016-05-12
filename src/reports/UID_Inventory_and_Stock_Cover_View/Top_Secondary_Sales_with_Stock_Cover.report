@@ -45,7 +45,6 @@
     <columns>
         <field>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Summarized_Invoice_Value__c</field>
     </columns>
-    <currency>EUR</currency>
     <filter>
         <criteriaItems>
             <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Stock_Product_Summary_Ranking__c</column>
@@ -74,6 +73,6 @@
     <sortOrder>Desc</sortOrder>
     <timeFrameFilter>
         <dateColumn>Account.Stocked_Products__r$UID_Start_Date__c</dateColumn>
-        <interval>INTERVAL_LAST30</interval>
+        <interval>INTERVAL_LASTMONTH</interval>
     </timeFrameFilter>
 </Report>

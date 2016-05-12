@@ -47,6 +47,10 @@
         <fullName>ContractName</fullName>
     </fields>
     <fields>
+        <fullName>CurrencyIsoCode</fullName>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
         <fullName>CustomerAuthorizedById</fullName>
         <trackHistory>true</trackHistory>
         <type>Lookup</type>
@@ -454,8 +458,7 @@ UID_IOP__r.UID_Dec_IOP__c)</formula>
         <required>false</required>
         <scale>2</scale>
         <trackHistory>false</trackHistory>
-        <type>Number</type>
-        <unique>false</unique>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>UID_IOP__c</fullName>
