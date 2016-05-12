@@ -10,7 +10,7 @@ Purpose: This class is used to capture mandatory fields
 History
 -------
 VERSION     AUTHOR     DATE            DETAIL Description
-1.0         Name       06/05/2016     INITIAL DEVELOPMENT CSR:
+1.0         Name       06/05/2016     INITIAL DEVELOPMENT CSR
 
 ***********************************************************************/
 public with sharing class  CPA_getThreshold {
