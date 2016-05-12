@@ -359,16 +359,6 @@ null)))</formula>
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>eml_SMT_group_email__c</fullName>
-        <externalId>false</externalId>
-        <label>SMT group email</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Email</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>eml_UBPR_Email__c</fullName>
         <externalId>false</externalId>
         <label>Email*</label>
@@ -392,16 +382,6 @@ null)))</formula>
         <fullName>eml_Unilever_project_manager_Email__c</fullName>
         <externalId>false</externalId>
         <label>Unilever project manager Email</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Email</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>eml_VDM_group_email__c</fullName>
-        <externalId>false</externalId>
-        <label>VDM group email</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1226,8 +1206,6 @@ null)))</formula>
         <language>en_US</language>
         <sharedTo>
             <group>CAP_SMT_Group</group>
-            <group>CAP_ULFT_Group</group>
-            <group>CAP_ULPT_Group</group>
         </sharedTo>
     </listViews>
     <listViews>

@@ -4,6 +4,10 @@
         <application>Plancraft</application>
         <visible>true</visible>
     </applicationVisibilities>
+	<classAccesses>
+        <apexClass>PBS_WikiController_CC</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <classAccesses>
         <apexClass>PBS_LMSBaseController_CC</apexClass>
         <enabled>false</enabled>
@@ -182,15 +186,45 @@
         <field>PBS_Profile__c.Work_Level__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
+     <fieldPermissions>
+        <editable>true</editable>
         <field>PBS_Wiki__kav.Group_Name__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
+        <field>PBS_Wiki__kav.Related_Articles__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PBS_Wiki__kav.Related_Files2__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PBS_Wiki__kav.Related_Files3__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PBS_Wiki__kav.Related_Files4__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PBS_Wiki__kav.Related_Files5__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PBS_Wiki__kav.Related_Files__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>PBS_Wiki__kav.Wiki_Content__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -318,6 +352,10 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>PC_ContainerPage</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+	<pageAccesses>
+        <apexPage>PBS_Wiki</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
