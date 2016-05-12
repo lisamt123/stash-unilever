@@ -6,6 +6,6 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>CPA LOI Submitted</name>
     <style>none</style>
-    <subject>PWO with ID  is Submitted by</subject>
+    <subject>LOI  is Submitted by</subject>
     <type>visualforce</type>
 </EmailTemplate>
