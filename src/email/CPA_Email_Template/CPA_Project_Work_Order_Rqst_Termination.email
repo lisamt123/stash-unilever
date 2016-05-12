@@ -1,1 +1,29 @@
-<messaging:emailTemplate subject="From Hubble: {!RelatedTo.Name}: {!RelatedTo.txt_PWO_title__c}: {!RelatedTo.pkl_Status__c}" recipientType="User" relatedToType="CPA_project_work_order__c"> <messaging:htmlEmailBody > Hello,      <br/><br/>    {!RelatedTo.Name}: titled:  {!RelatedTo.txt_PWO_title__c}  has been {!RelatedTo.pkl_Status__c} by {!RelatedTo.LastModifiedBy.Name} on {!Now()}.<br/><br/>      You are addressed in this mail because you are one of the stakeholders in the process.<br/>     Please follow the below link to know the status and take any appropriate action required.<br/>     <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id} ">{!RelatedTo.Name} </a> <br/><br/>    For any queries, please use 'Queries' section in the application or contact Supplier Management Team (ApplicationSupplier.PM@unilever.com). <br/><br/>  Thanks and Regards,<br/> Hubble - Contract Management System. <br/><br/></messaging:htmlEmailBody> </messaging:emailTemplate>
+<messaging:emailTemplate subject="{!RelatedTo.Name} : Termination Requested" recipientType="User" relatedToType="CPA_project_work_order__c" >
+<messaging:htmlEmailBody >
+    Hi, <br/><br/>
+    Termination requested for PWO with ID {!RelatedTo.Name} by {!RelatedTo.LastModifiedBy.Name} on {!Now()}. <br/><br/>
+
+    You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id} ">{!RelatedTo.Name} </a> <br/><br/>
+
+Regards, <br/><br/>
+
+Automation Contract System
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>
+
+
+
+<!---
+Sub: Termination requested for PWO with ID <PWO ID>
+
+Body:
+
+"Hi,
+
+Termination requested for PWO with ID <PWO ID> by <ULPM Name> on <Date & Time>.
+You can access it from here: <URL to PWORF/System>
+
+Regards,
+Automation Contract System"
+
+-->

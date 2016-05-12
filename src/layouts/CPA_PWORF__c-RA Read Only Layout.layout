@@ -123,6 +123,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>txta_Other_Request_Type__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>pkl_Business_Area__c</field>
             </layoutItems>
             <layoutItems>
@@ -299,10 +303,11 @@
         <customButtons>New_Requirements_and_Deliverables</customButtons>
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
-        <fields>Business_Process_Area_del__c</fields>
         <fields>High_Level_Description_del__c</fields>
         <fields>Requirement_Type_del__c</fields>
         <fields>New_or_changed_requirement_del__c</fields>
+        <fields>CREATEDBY_USER</fields>
+        <fields>OBJECT_ID</fields>
         <relatedList>CPA_Requirements_and_Deliverables__c.PWORF_Requirement_Deliverables__c</relatedList>
     </relatedLists>
     <relatedLists>

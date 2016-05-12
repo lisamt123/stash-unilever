@@ -285,24 +285,6 @@
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
-    <fields>
-        <fullName>eml_SMT_group_email__c</fullName>
-        <externalId>false</externalId>
-        <label>SMT group email</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Email</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>eml_VDM_group_email__c</fullName>
-        <externalId>false</externalId>
-        <label>VDM group email</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Email</type>
-        <unique>false</unique>
-    </fields>
     <label>Queries</label>
     <listViews>
         <fullName>All</fullName>
@@ -310,24 +292,6 @@
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
-    </listViews>
-    <listViews>
-        <fullName>CPA_ULFT_CPA_Queries</fullName>
-        <filterScope>Queue</filterScope>
-        <label>ULFT</label>
-        <queue>CPA_ULFT</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CPA_ULPT_CPA_Queries</fullName>
-        <filterScope>Queue</filterScope>
-        <label>ULPT</label>
-        <queue>CPA_ULPT</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
     </listViews>
     <nameField>
         <label>Query Name</label>

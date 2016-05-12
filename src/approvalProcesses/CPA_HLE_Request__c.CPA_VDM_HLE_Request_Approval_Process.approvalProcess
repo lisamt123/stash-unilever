@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
     <active>true</active>
-    <allowRecall>false</allowRecall>
+    <allowRecall>true</allowRecall>
     <allowedSubmitters>
         <submitter>CAP_SMT_Group</submitter>
         <type>group</type>
@@ -94,18 +94,6 @@
     <recallActions>
         <action>
             <name>Approval_Comment_Required_for_HLE_reques</name>
-            <type>FieldUpdate</type>
-        </action>
-        <action>
-            <name>CAP_HLE_Request_returned</name>
-            <type>FieldUpdate</type>
-        </action>
-        <action>
-            <name>CAP_HLE_Request_returned_by_VDM</name>
-            <type>Alert</type>
-        </action>
-        <action>
-            <name>CAP_Owner_Update_to_SMT</name>
             <type>FieldUpdate</type>
         </action>
     </recallActions>

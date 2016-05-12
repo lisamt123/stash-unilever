@@ -4,7 +4,38 @@ public with sharing class Oblix_Ctrl11AuditTracking_Cmp {
 //      THE CONTENT OF THIS CLASS HAS BEEN COMMENT OUT AS THIS CLASS IS NO LONGER USED
 //      AS PART OF CODE REFACTORING, NEW CLASSES HAVE REPLACED THESE
 //      S.M. 2016-03-30
+//      THIS CLASS NEEDS TO BE REMOVED AS PART OF FINAL CLEANUP PROCEDURE, AS COMMENTING OUT THIS CODE
+//      CAUSES BUILD VALIDATION TO FAIL
+//      S.S. 2016-05-11
 //******************************************************************************************************/
+  public String sObjParentId {get;set;}
+  public String sObjApiName {get;set;}
+  
+  public Oblix_Ctrl11AuditTracking_Cmp(){
+  }
+   /**
+    * Run the main query for 
+    * @param Sales_Id [Sales_Id]
+    */
+
+    public List<Marketing_SOW__History> getSowHistory() {
+       sObjParentId = esc(sObjParentId);
+       sObjApiName = esc(sObjApiName);
+       sObjApiName = sObjApiName.replace('__c','__History');
+       system.debug('###sObjParentId : '+sObjParentId);
+       return Database.query('Select ParentId, OldValue, NewValue, IsDeleted, Id, Field, CreatedDate, CreatedById, CreatedBy.Name, Parent.Name From '+ sObjApiName +' WHERE ParentId =:sObjParentId');
+       
+    }
+    
+     /**
+     * Guard against SOQL injection
+     */
+    private String esc(String s) {
+        return s != null ? String.escapeSingleQuotes(s) : null;
+    }
+
+
+
 	//public String sObjParentId {get;set;}
 	//public String sObjApiName {get;set;}
 	//public Map<String, Schema.SObjectField> fieldMap { get; set; }

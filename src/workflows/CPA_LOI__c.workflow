@@ -5,12 +5,16 @@
         <description>CPA LOI Accepted Email Alert</description>
         <protected>false</protected>
         <recipients>
-            <field>eml_SMT_group_email__c</field>
-            <type>email</type>
+            <recipient>CAP_SMT_Group</recipient>
+            <type>group</type>
         </recipients>
         <recipients>
-            <field>eml_VDM_group_email__c</field>
-            <type>email</type>
+            <recipient>CAP_ULPT_Group</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <recipient>CAP_VDM_Group</recipient>
+            <type>group</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_LOI_Accepted</template>
@@ -20,12 +24,16 @@
         <description>CPA LOI Record ReSubmitted</description>
         <protected>false</protected>
         <recipients>
-            <field>eml_SMT_group_email__c</field>
-            <type>email</type>
+            <recipient>CAP_SMT_Group</recipient>
+            <type>group</type>
         </recipients>
         <recipients>
-            <field>eml_VDM_group_email__c</field>
-            <type>email</type>
+            <recipient>CAP_ULPT_Group</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <recipient>CAP_VDM_Group</recipient>
+            <type>group</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_LOI_Resubmitted</template>
@@ -35,12 +43,16 @@
         <description>CPA LOI Record Signed</description>
         <protected>false</protected>
         <recipients>
-            <field>eml_SMT_group_email__c</field>
-            <type>email</type>
+            <recipient>CAP_SMT_Group</recipient>
+            <type>group</type>
         </recipients>
         <recipients>
-            <field>eml_VDM_group_email__c</field>
-            <type>email</type>
+            <recipient>CAP_ULPT_Group</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <recipient>CAP_VDM_Group</recipient>
+            <type>group</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_LOI_Signed</template>
@@ -50,12 +62,16 @@
         <description>CPA LOI Record Submitted</description>
         <protected>false</protected>
         <recipients>
-            <field>eml_SMT_group_email__c</field>
-            <type>email</type>
+            <recipient>CAP_SMT_Group</recipient>
+            <type>group</type>
         </recipients>
         <recipients>
-            <field>eml_VDM_group_email__c</field>
-            <type>email</type>
+            <recipient>CAP_ULPT_Group</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <recipient>CAP_VDM_Group</recipient>
+            <type>group</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_LOI_Submitted</template>
@@ -65,12 +81,16 @@
         <description>CPA LOI Record send for Signature</description>
         <protected>false</protected>
         <recipients>
-            <field>eml_SMT_group_email__c</field>
-            <type>email</type>
+            <recipient>CAP_SMT_Group</recipient>
+            <type>group</type>
         </recipients>
         <recipients>
-            <field>eml_VDM_group_email__c</field>
-            <type>email</type>
+            <recipient>CAP_ULPT_Group</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <recipient>CAP_VDM_Group</recipient>
+            <type>group</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_LOI_Sent_For_Signature</template>
@@ -80,12 +100,16 @@
         <description>CPA LOI Returned Email Update</description>
         <protected>false</protected>
         <recipients>
-            <field>eml_SMT_group_email__c</field>
-            <type>email</type>
+            <recipient>CAP_SMT_Group</recipient>
+            <type>group</type>
         </recipients>
         <recipients>
-            <field>eml_VDM_group_email__c</field>
-            <type>email</type>
+            <recipient>CAP_ULPT_Group</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <recipient>CAP_VDM_Group</recipient>
+            <type>group</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_LOI_Returned</template>
@@ -95,12 +119,16 @@
         <description>CPA LOI cancelled Email Alert</description>
         <protected>false</protected>
         <recipients>
-            <field>eml_SMT_group_email__c</field>
-            <type>email</type>
+            <recipient>CAP_SMT_Group</recipient>
+            <type>group</type>
         </recipients>
         <recipients>
-            <field>eml_VDM_group_email__c</field>
-            <type>email</type>
+            <recipient>CAP_ULPT_Group</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <recipient>CAP_VDM_Group</recipient>
+            <type>group</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_LOI_is_cancelled</template>
@@ -284,15 +312,6 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>CPA_LOI_SMT_group_email</fullName>
-        <field>eml_SMT_group_email__c</field>
-        <formula>&quot;Vivek.Kalidoss@unilever.com&quot;</formula>
-        <name>CPA LOI SMT group email</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
         <fullName>CPA_LOI_Send_for_signature_date_null</fullName>
         <description>This is updated to blank for return from docusign msg display req.</description>
         <field>dat_Sent_for_Signature_Date__c</field>
@@ -348,15 +367,6 @@
         <name>CPA LOI Submitted recordtype</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>CPA_LOI_VDM_group_email</fullName>
-        <field>eml_VDM_group_email__c</field>
-        <formula>&quot;Sameer.Vaidya@unilever.com&quot;</formula>
-        <name>CPA LOI VDM group email</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
@@ -428,14 +438,6 @@
     </rules>
     <rules>
         <fullName>CPA LOI Cloned%2FCreated</fullName>
-        <actions>
-            <name>CPA_LOI_SMT_group_email</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_LOI_VDM_group_email</name>
-            <type>FieldUpdate</type>
-        </actions>
         <actions>
             <name>CPA_Status_Saved</name>
             <type>FieldUpdate</type>
