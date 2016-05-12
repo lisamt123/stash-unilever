@@ -34814,10 +34814,6 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>AgencyHomePage</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>Agent_App_Report</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
