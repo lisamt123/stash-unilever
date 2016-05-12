@@ -5,8 +5,16 @@
         <description>CAP Email PWORF is Submitted</description>
         <protected>false</protected>
         <recipients>
-            <recipient>CAP_VDM_Group</recipient>
-            <type>group</type>
+            <field>eml_SMT_group_email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>eml_VDM_group_email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>lkp_Owner__c</field>
+            <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_PWORF_Submitted_by_ULPM</template>
@@ -16,16 +24,16 @@
         <description>CAP Email after PWORF is Accepted</description>
         <protected>false</protected>
         <recipients>
-            <recipient>CAP_SMT_Group</recipient>
-            <type>group</type>
+            <field>eml_SMT_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_ULPM_group</recipient>
-            <type>group</type>
+            <field>eml_VDM_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_VDM_Group</recipient>
-            <type>group</type>
+            <field>lkp_Owner__c</field>
+            <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_Accept_PWORF</template>
@@ -35,27 +43,15 @@
         <description>CAP Email after PWORF is Submitted</description>
         <protected>false</protected>
         <recipients>
-            <recipient>CAP_SMT_Group</recipient>
-            <type>group</type>
+            <field>eml_SMT_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_ULFT_Group</recipient>
-            <type>group</type>
+            <field>eml_VDM_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_ULPM_group</recipient>
-            <type>group</type>
-        </recipients>
-        <recipients>
-            <recipient>CAP_ULPT_Group</recipient>
-            <type>group</type>
-        </recipients>
-        <recipients>
-            <recipient>CAP_VDM_Group</recipient>
-            <type>group</type>
-        </recipients>
-        <recipients>
-            <field>lkp_Unilever_project_manager__c</field>
+            <field>lkp_Owner__c</field>
             <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
@@ -66,24 +62,16 @@
         <description>CAP PWORF returned by VDM</description>
         <protected>false</protected>
         <recipients>
-            <recipient>CAP_SMT_Group</recipient>
-            <type>group</type>
+            <field>eml_SMT_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_ULFT_Group</recipient>
-            <type>group</type>
+            <field>eml_VDM_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_ULPM_group</recipient>
-            <type>group</type>
-        </recipients>
-        <recipients>
-            <recipient>CAP_ULPT_Group</recipient>
-            <type>group</type>
-        </recipients>
-        <recipients>
-            <recipient>CAP_VDM_Group</recipient>
-            <type>group</type>
+            <field>lkp_Owner__c</field>
+            <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_Return_PWORF</template>
@@ -93,24 +81,16 @@
         <description>CAP Pworf Withhold</description>
         <protected>false</protected>
         <recipients>
-            <recipient>CAP_SMT_Group</recipient>
-            <type>group</type>
+            <field>eml_SMT_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_ULFT_Group</recipient>
-            <type>group</type>
+            <field>eml_VDM_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_ULPM_group</recipient>
-            <type>group</type>
-        </recipients>
-        <recipients>
-            <recipient>CAP_ULPT_Group</recipient>
-            <type>group</type>
-        </recipients>
-        <recipients>
-            <recipient>CAP_VDM_Group</recipient>
-            <type>group</type>
+            <field>lkp_Owner__c</field>
+            <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_PWORF_Withheld_by_SMT</template>
@@ -120,8 +100,16 @@
         <description>CPA Email PWORF is Submitted</description>
         <protected>false</protected>
         <recipients>
-            <recipient>CAP_VDM_Group</recipient>
-            <type>group</type>
+            <field>eml_SMT_group_email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>eml_VDM_group_email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>lkp_Owner__c</field>
+            <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_PWORF_Submitted_by_ULPM</template>
@@ -131,16 +119,16 @@
         <description>CPA PWORF Accepted Email Alert</description>
         <protected>false</protected>
         <recipients>
-            <recipient>CAP_SMT_Group</recipient>
-            <type>group</type>
+            <field>eml_SMT_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_ULPT_Group</recipient>
-            <type>group</type>
+            <field>eml_VDM_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_VDM_Group</recipient>
-            <type>group</type>
+            <field>lkp_Owner__c</field>
+            <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_Accept_PWORF</template>
@@ -150,16 +138,16 @@
         <description>CPA PWORF Auto Accepted Email Alert</description>
         <protected>false</protected>
         <recipients>
-            <recipient>CAP_SMT_Group</recipient>
-            <type>group</type>
+            <field>eml_SMT_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_ULPM_group</recipient>
-            <type>group</type>
+            <field>eml_VDM_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_VDM_Group</recipient>
-            <type>group</type>
+            <field>lkp_Owner__c</field>
+            <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_Auto_Accept_PWORF</template>
@@ -169,16 +157,16 @@
         <description>CPA PWORF Cancelled Email Alert</description>
         <protected>false</protected>
         <recipients>
-            <recipient>CAP_SMT_Group</recipient>
-            <type>group</type>
+            <field>eml_SMT_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_ULPT_Group</recipient>
-            <type>group</type>
+            <field>eml_VDM_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_VDM_Group</recipient>
-            <type>group</type>
+            <field>lkp_Owner__c</field>
+            <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_PWORF_Cancelled_by_SMT</template>
@@ -188,16 +176,16 @@
         <description>CPA PWORF Re-Submitted Email Alert</description>
         <protected>false</protected>
         <recipients>
-            <recipient>CAP_SMT_Group</recipient>
-            <type>group</type>
+            <field>eml_SMT_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_ULPT_Group</recipient>
-            <type>group</type>
+            <field>eml_VDM_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_VDM_Group</recipient>
-            <type>group</type>
+            <field>lkp_Owner__c</field>
+            <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_PWORF_Resubmitted_by_SMT</template>
@@ -207,16 +195,16 @@
         <description>CPA PWORF Reminder to respond to PWORF SLA1</description>
         <protected>false</protected>
         <recipients>
-            <recipient>CAP_SMT_Group</recipient>
-            <type>group</type>
+            <field>eml_SMT_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_ULPM_group</recipient>
-            <type>group</type>
+            <field>eml_VDM_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_VDM_Group</recipient>
-            <type>group</type>
+            <field>lkp_Owner__c</field>
+            <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_Reminder_to_respond_to_PWORF</template>
@@ -226,16 +214,16 @@
         <description>CPA PWORF Reminder to submit PWO SLA2</description>
         <protected>false</protected>
         <recipients>
-            <recipient>CAP_SMT_Group</recipient>
-            <type>group</type>
+            <field>eml_SMT_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_ULPM_group</recipient>
-            <type>group</type>
+            <field>eml_VDM_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_VDM_Group</recipient>
-            <type>group</type>
+            <field>lkp_Owner__c</field>
+            <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_Reminder_to_submit_PWO</template>
@@ -245,16 +233,16 @@
         <description>CPA PWORF Returned Email Alert</description>
         <protected>false</protected>
         <recipients>
-            <recipient>CAP_SMT_Group</recipient>
-            <type>group</type>
+            <field>eml_SMT_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_ULPT_Group</recipient>
-            <type>group</type>
+            <field>eml_VDM_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_VDM_Group</recipient>
-            <type>group</type>
+            <field>lkp_Owner__c</field>
+            <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_Return_PWORF</template>
@@ -264,24 +252,16 @@
         <description>CPA PWORF Submitted Email Alert</description>
         <protected>false</protected>
         <recipients>
-            <recipient>CAP_SMT_Group</recipient>
-            <type>group</type>
+            <field>eml_SMT_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_ULFT_Group</recipient>
-            <type>group</type>
+            <field>eml_VDM_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_ULPM_group</recipient>
-            <type>group</type>
-        </recipients>
-        <recipients>
-            <recipient>CAP_ULPT_Group</recipient>
-            <type>group</type>
-        </recipients>
-        <recipients>
-            <recipient>CAP_VDM_Group</recipient>
-            <type>group</type>
+            <field>lkp_Owner__c</field>
+            <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_PWORF_Submitted_by_SMT</template>
@@ -291,19 +271,34 @@
         <description>CPA PWORF Withhold Email Alert</description>
         <protected>false</protected>
         <recipients>
-            <recipient>CAP_SMT_Group</recipient>
-            <type>group</type>
+            <field>eml_SMT_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_ULPT_Group</recipient>
-            <type>group</type>
+            <field>eml_VDM_group_email__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <recipient>CAP_VDM_Group</recipient>
-            <type>group</type>
+            <field>lkp_Owner__c</field>
+            <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_PWORF_Withheld_by_SMT</template>
+    </alerts>
+    <alerts>
+        <fullName>CPA_PWORF_reminder_for_Clarity_ID</fullName>
+        <description>CPA PWORF reminder for Clarity ID</description>
+        <protected>false</protected>
+        <recipients>
+            <field>eml_SMT_group_email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>lkp_Owner__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>CPA_Email_Template/CPA_Reminder_to_enter_a_Clarity_ID</template>
     </alerts>
     <fieldUpdates>
         <fullName>Accepted_Action_field_Udate</fullName>
@@ -758,6 +753,15 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>CPA_PWORF_SMT_group_email</fullName>
+        <field>eml_SMT_group_email__c</field>
+        <formula>&quot;Vivek.Kalidoss@unilever.com&quot;</formula>
+        <name>CPA PWORF SMT group email</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CPA_PWORF_Submit_Resubmit_SLA1</fullName>
         <field>dat_Expected_SLA1_Date__c</field>
         <formula>IF( NOT(ISNULL(num_Number_of_SLA1_Days__c)), (CASE( 
@@ -870,6 +874,15 @@ null)),null)</formula>
         <name>CPA PWORF Submitted date null</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_PWORF_VDM_group_mail</fullName>
+        <field>eml_VDM_group_email__c</field>
+        <formula>&quot;Sameer.Vaidya@unilever.com&quot;</formula>
+        <name>CPA PWORF VDM group mail</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
@@ -1428,6 +1441,14 @@ null)),null)</formula>
             <name>CPA_PWORF_SLA2_blank</name>
             <type>FieldUpdate</type>
         </actions>
+        <actions>
+            <name>CPA_PWORF_SMT_group_email</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CPA_PWORF_VDM_group_mail</name>
+            <type>FieldUpdate</type>
+        </actions>
         <active>true</active>
         <criteriaItems>
             <field>CPA_PWORF__c.pkl_Status__c</field>
@@ -1836,6 +1857,24 @@ null)),null)</formula>
             <value>Withhold</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>CPA PWORF reminder for Clarity ID</fullName>
+        <active>true</active>
+        <criteriaItems>
+            <field>CPA_PWORF__c.txt_Clarity_ID__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>CPA_PWORF_reminder_for_Clarity_ID</name>
+                <type>Alert</type>
+            </actions>
+            <offsetFromField>CPA_PWORF__c.CreatedDate</offsetFromField>
+            <timeLength>5</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
     </rules>
     <rules>
         <fullName>CPA PWORF submitted</fullName>

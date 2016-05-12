@@ -487,6 +487,18 @@
         <layout>CPA_User_Defined_Attribute__c-User Defined Attribute Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>CPA_User_Defined_Attribute__c-User Defined Attribute Layout</layout>
+        <recordType>CPA_User_Defined_Attribute__c.CR_docusign</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CPA_User_Defined_Attribute__c-User Defined Attribute Layout</layout>
+        <recordType>CPA_User_Defined_Attribute__c.LOI_docusign</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CPA_User_Defined_Attribute__c-User Defined Attribute Layout</layout>
+        <recordType>CPA_User_Defined_Attribute__c.PWO_docusign</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>CPA_User_Defined_Attribute__c-User Defined Attribute PWO</layout>
         <recordType>CPA_User_Defined_Attribute__c.CPA_PWO</recordType>
     </layoutAssignments>
@@ -2235,6 +2247,21 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>CPA_User_Defined_Attribute__c.CPA_PWORF</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>CPA_User_Defined_Attribute__c.CR_docusign</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>CPA_User_Defined_Attribute__c.LOI_docusign</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>CPA_User_Defined_Attribute__c.PWO_docusign</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

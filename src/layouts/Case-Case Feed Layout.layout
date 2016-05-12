@@ -374,12 +374,8 @@
                 <field>Claim_Status__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Claims_Notes__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Claims_Note__c</field>
+                <field>Claims_Notes__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -433,6 +429,9 @@
         <fields>SuppliedEmail</fields>
     </miniLayout>
     <quickActionList>
+        <quickActionListItems>
+            <quickActionName>Case.Email</quickActionName>
+        </quickActionListItems>
         <quickActionListItems>
             <quickActionName>Case.ONE_Correspond_Email</quickActionName>
         </quickActionListItems>

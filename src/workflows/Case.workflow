@@ -185,16 +185,6 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>CEC_Update_Claims_Notes</fullName>
-        <description>CEC Update Claims notes amends &apos;Claim Notes&apos; field value with the &apos;Claim Note&apos; field value</description>
-        <field>Claims_Notes__c</field>
-        <formula>&apos;Added By: &apos; &amp; &quot; &quot; &amp; $User.FirstName &amp; &quot; &quot; &amp; $User.LastName &amp; &quot; &quot; &amp; &apos;(&apos; &amp; TEXT(NOW())&amp; &apos;)&apos;&amp; BR() &amp; Claims_Note__c + BR() + Claims_Notes__c</formula>
-        <name>CEC Update Claims Notes</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
         <fullName>Escalated_Date_Update</fullName>
         <description>CEC : To capture the date when a case gets Escalated for first time.</description>
         <field>Escalated_Date__c</field>
@@ -321,17 +311,6 @@
             <value>Email North America CS,Email Brazil,Email Middle Americas,Email Southern Cone</value>
         </criteriaItems>
         <description>CEC : To update the Case Origin field.</description>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
-        <fullName>CEC Amend Claims Notes</fullName>
-        <actions>
-            <name>CEC_Update_Claims_Notes</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <description>CEC Update Claim notes field is used to populate the data entered in Claim note field</description>
-        <formula>ISCHANGED( Claims_Note__c )  &amp;&amp; Claims_Note__c  &lt;&gt; &apos;&apos;</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>

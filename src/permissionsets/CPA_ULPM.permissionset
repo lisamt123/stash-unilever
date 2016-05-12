@@ -275,6 +275,18 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
+        <recordType>CPA_User_Defined_Attribute__c.CR_docusign</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>CPA_User_Defined_Attribute__c.LOI_docusign</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>CPA_User_Defined_Attribute__c.PWO_docusign</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
         <recordType>CPA_project_work_order__c.CPA_PWO</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
