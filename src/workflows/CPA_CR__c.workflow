@@ -2,45 +2,87 @@
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
         <fullName>CPA_CR_Acceptance_Notification</fullName>
+        <ccEmails>ramani.kannan@unilever.com</ccEmails>
+        <ccEmails>harshada.naik@mindtree.com</ccEmails>
         <description>CR Acceptance Notification</description>
         <protected>false</protected>
         <recipients>
-            <field>eml_SMT_group_email__c</field>
-            <type>email</type>
+            <recipient>CAP_SMT_Group</recipient>
+            <type>group</type>
         </recipients>
         <recipients>
-            <field>eml_VDM_group_email__c</field>
-            <type>email</type>
+            <recipient>CAP_ULFT_Group</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <recipient>CAP_ULPM_group</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <recipient>CAP_ULPT_Group</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <recipient>CAP_VDM_Group</recipient>
+            <type>group</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_CR_is_accepted</template>
     </alerts>
     <alerts>
         <fullName>CPA_Notify_CR_Rejection</fullName>
+        <ccEmails>ramani.kannan@unilever.com</ccEmails>
+        <ccEmails>harshada.naik@mindtree.com</ccEmails>
         <description>Notify CR Rejection</description>
         <protected>false</protected>
         <recipients>
-            <field>eml_SMT_group_email__c</field>
-            <type>email</type>
+            <recipient>CAP_SMT_Group</recipient>
+            <type>group</type>
         </recipients>
         <recipients>
-            <field>eml_VDM_group_email__c</field>
-            <type>email</type>
+            <recipient>CAP_ULFT_Group</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <recipient>CAP_ULPM_group</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <recipient>CAP_ULPT_Group</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <recipient>CAP_VDM_Group</recipient>
+            <type>group</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_CR_is_returned</template>
     </alerts>
     <alerts>
         <fullName>CPA_Notify_Unilever_Team_about_CR_submission</fullName>
+        <ccEmails>ramani.kannan@unilever.com</ccEmails>
+        <ccEmails>harshada.naik@mindtree.com</ccEmails>
         <description>Notify Unilever Team about CR submission</description>
         <protected>false</protected>
         <recipients>
-            <field>eml_SMT_group_email__c</field>
-            <type>email</type>
+            <recipient>CAP_SMT_Group</recipient>
+            <type>group</type>
         </recipients>
         <recipients>
-            <field>eml_VDM_group_email__c</field>
-            <type>email</type>
+            <recipient>CAP_ULFT_Group</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <recipient>CAP_ULPM_group</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <recipient>CAP_ULPT_Group</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <recipient>CAP_VDM_Group</recipient>
+            <type>group</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_Submit_a_CR_against_PWO</template>
@@ -158,15 +200,6 @@
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>CPA_CR_SMT_group_email</fullName>
-        <field>eml_SMT_group_email__c</field>
-        <formula>&quot;Vivek.Kalidoss@unilever.com&quot;</formula>
-        <name>CPA CR SMT group email</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
         <fullName>CPA_CR_Saved_returned</fullName>
         <field>RecordTypeId</field>
         <lookupValue>CPA_CR_Other</lookupValue>
@@ -218,15 +251,6 @@
         <field>dat_Submitted_Date__c</field>
         <formula>TODAY()</formula>
         <name>CPA CR Submitted</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>CPA_CR_VDM_group_email</fullName>
-        <field>eml_VDM_group_email__c</field>
-        <formula>&quot;Sameer.Vaidya@unilever.com&quot;</formula>
-        <name>CPA CR VDM group email</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
@@ -363,24 +387,6 @@
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
-        <fullName>CPA CR Return from docusign</fullName>
-        <actions>
-            <name>CPA_Notify_Unilever_Team_about_CR_submission</name>
-            <type>Alert</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>CPA_CR__c.dat_Sent_for_Signature_Date__c</field>
-            <operation>notEqual</operation>
-        </criteriaItems>
-        <criteriaItems>
-            <field>CPA_CR__c.pkl_Status__c</field>
-            <operation>equals</operation>
-            <value>Returned</value>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
         <fullName>CPA CR Returned</fullName>
         <actions>
             <name>CPA_CR_record_type_Standalone_CR</name>
@@ -422,10 +428,6 @@
     <rules>
         <fullName>CPA CR Sent for signature</fullName>
         <actions>
-            <name>CPA_Notify_Unilever_Team_about_CR_submission</name>
-            <type>Alert</type>
-        </actions>
-        <actions>
             <name>CPA_CR_Sent_for_signature_date</name>
             <type>FieldUpdate</type>
         </actions>
@@ -439,10 +441,6 @@
     </rules>
     <rules>
         <fullName>CPA CR Signed</fullName>
-        <actions>
-            <name>CPA_Notify_Unilever_Team_about_CR_submission</name>
-            <type>Alert</type>
-        </actions>
         <actions>
             <name>CPA_CR_Delivered_Record_type</name>
             <type>FieldUpdate</type>
@@ -474,28 +472,7 @@
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
-        <fullName>CPA CR clone%2Fnew</fullName>
-        <actions>
-            <name>CPA_CR_SMT_group_email</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_CR_VDM_group_email</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>CPA_CR__c.CreatedById</field>
-            <operation>notEqual</operation>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
         <fullName>CPA Delivered%2CCancel</fullName>
-        <actions>
-            <name>CPA_Notify_Unilever_Team_about_CR_submission</name>
-            <type>Alert</type>
-        </actions>
         <actions>
             <name>CPA_CR_Delivered_Cancelled</name>
             <type>FieldUpdate</type>

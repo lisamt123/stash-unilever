@@ -1,4 +1,11 @@
     <labels>
+        <fullName>VEP_Access_Err</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VEP_Access_Err</shortDescription>
+        <value>You do not have sufficient access to the record</value>
+    </labels>
+    <labels>
         <fullName>VEP_Approve_Reject_Status_Error</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -61,4 +68,3 @@
         <shortDescription>VEP Visitor Email Id</shortDescription>
         <value>00Nc0000001NXD5</value>
     </labels>
-    
