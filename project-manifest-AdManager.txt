@@ -245,7 +245,7 @@ src/groups
 src/groups/AdManager_Report_Group.group
 src
 src/labels
-src/labels/CustomLabels.labels
+src/labels/Amr.labels
 src
 src/email
 
