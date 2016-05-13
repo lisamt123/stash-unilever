@@ -30,6 +30,10 @@
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
+                <behavior>Edit</behavior>
+                <field>RecordTypeId</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Required</behavior>
                 <field>Status</field>
             </layoutItems>
@@ -95,12 +99,13 @@
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
-        <fields>Product2</fields>
+        <fields>NAME</fields>
+        <fields>UID_Product__c</fields>
         <fields>UID_Category__c</fields>
         <fields>UID_Brand__c</fields>
         <fields>UID_Order_Quantity__c</fields>
         <fields>UID_Distributor_Value__c</fields>
-        <relatedList>RelatedOrderItemList</relatedList>
+        <relatedList>UID_Order_Product__c.UID_Order__c</relatedList>
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedEntityHistoryList</relatedList>

@@ -44,20 +44,19 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
-    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
-    <enableHistory>false</enableHistory>
+    <enableHistory>true</enableHistory>
     <enableReports>false</enableReports>
-    <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>Added_At_Stage__c</fullName>
+        <description>Store Rollout generation stage like Ideas,Feasibility,Capability,Market Ready,Market Deployment,PLE</description>
         <externalId>false</externalId>
         <label>Added At Stage</label>
         <picklist>
@@ -87,15 +86,18 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Calculated_Sustainability_Period__c</fullName>
+        <description>Calculate Sustainability for the project.</description>
         <externalId>false</externalId>
         <formula>IF(NOT(ISBLANK(Regional_Project__c)),TEXT(Regional_Project__r.Sustainability_Period__c), TEXT(IPM_Project__r.Sustainability_Period__c))</formula>
         <label>Calculated Sustainability Period</label>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -108,6 +110,7 @@
         <label>External Id</label>
         <length>100</length>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>true</unique>
@@ -115,33 +118,74 @@
     <fields>
         <fullName>Finance_Member__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>Store financial lead member for the rollout</description>
         <externalId>false</externalId>
         <label>Finance Lead</label>
         <referenceTo>User</referenceTo>
         <relationshipName>IPM_Project_Rollout1</relationshipName>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Global_Project_Phase__c</fullName>
+        <description>Phase of Global project</description>
         <externalId>false</externalId>
         <formula>TEXT(IPM_Project__r.IPM_Phase__c)</formula>
         <label>Global Project Phase</label>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Global_Regional_Finance_Leader_Email__c</fullName>
+        <description>Global/Regional Finance Leader Email</description>
+        <externalId>false</externalId>
+        <label>Global/Regional Finance Leader Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_CharterApproved__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Is charter Approved</description>
+        <externalId>false</externalId>
+        <label>CharterApproved</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_CharterFinancial__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Financial added at charter</description>
+        <externalId>false</externalId>
+        <label>Financial At Charter</label>
+        <referenceTo>IPM_Financial__c</referenceTo>
+        <relationshipLabel>IPM Project Rollout</relationshipLabel>
+        <relationshipName>IPM_Project_Rollout_del</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>IPM_Company_Card__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>Company card related with project Rollout</description>
         <externalId>false</externalId>
         <label>IPM Company Card</label>
         <referenceTo>IPM_Company_Card__c</referenceTo>
         <relationshipLabel>IPM Project Rollout</relationshipLabel>
         <relationshipName>IPM_Project_Rollout</relationshipName>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -152,12 +196,27 @@
         <label>Finance Lead Text</label>
         <length>255</length>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Global_OR_Regional__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(
+	NOT(ISBLANK(IPM_Project__r.Name)), IPM_Project__r.IPM_Global_OR_Regional__c, 
+	false
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Global OR Regional</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>IPM_Local_Rollout_Status__c</fullName>
+        <description>Status of local rollout like not created.</description>
         <externalId>false</externalId>
         <label>Local Rollout Status</label>
         <picklist>
@@ -167,21 +226,25 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>IPM_PhaseChangeQueueJobId__c</fullName>
+        <description>Phase Change Job Queue Value</description>
         <externalId>false</externalId>
         <label>Phase Change Queue Job Id</label>
         <length>40</length>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_Project_Job_Status__c</fullName>
+        <description>Project Job Status Like Failed,Processing,Completed</description>
         <externalId>false</externalId>
         <label>Project Job Status</label>
         <picklist>
@@ -211,36 +274,43 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>IPM_Project__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>Relationship between global project and rollout</description>
         <externalId>false</externalId>
         <label>Global Project</label>
         <referenceTo>IPM_Project__c</referenceTo>
         <relationshipLabel>IPM Project Rollout</relationshipLabel>
         <relationshipName>IPM_Project_Rollout</relationshipName>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
         <fullName>IPM_Regional_Original_Project__c</fullName>
+        <description>Identify Regional Original project</description>
         <externalId>false</externalId>
         <formula>IF( AND( ISPICKVAL(Regional_Project__r.IPMProject_Span__c, &apos;Regional&apos;),ISPICKVAL(Regional_Project__r.IPM_Project_Type__c , &apos;Original&apos;)),true,false)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>IPM Regional Original Project</label>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>IPM_Regional_PL_Text__c</fullName>
+        <description>Text for Regional Project Leader</description>
         <externalId>false</externalId>
         <label>IPM Regional PL Text</label>
         <length>255</length>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -248,16 +318,40 @@
     <fields>
         <fullName>IPM_Regional_PL__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>Regional Project Leader for Rollout</description>
         <externalId>false</externalId>
         <label>Rollout Project Leader</label>
         <referenceTo>User</referenceTo>
         <relationshipName>IPM_Project_Rollout</relationshipName>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>IPM_Regional_Rollout_Status__c</fullName>
+        <description>It will set the status First &amp; Follow at Regional Level</description>
+        <externalId>false</externalId>
+        <inlineHelpText>It will set the status First &amp; Follow at Regional Level</inlineHelpText>
+        <label>IPM Regional Rollout Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Leader</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Follower</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>IPM_RolloutJobType__c</fullName>
+        <description>Select Rollout Job Type like Adhoc - Rollout Project Creation</description>
         <externalId>false</externalId>
         <label>Rollout Job Type</label>
         <picklist>
@@ -275,22 +369,39 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>IPM_Rollout_Gatekeeper__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>GateKeeper user for Project Rollout</description>
+        <externalId>false</externalId>
+        <label>IPM Rollout Gatekeeper</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>IPM_Rollout_Gatekeepers</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>IPM_Rollout_Project__c</fullName>
         <caseSensitive>false</caseSensitive>
+        <description>Project Created for Rollout</description>
         <externalId>true</externalId>
         <label>Rollout Project</label>
         <length>80</length>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>true</unique>
     </fields>
     <fields>
         <fullName>IPM_Rollout_Span__c</fullName>
+        <description>Rollout Span like Regional or Local</description>
         <externalId>false</externalId>
         <label>Rollout Span</label>
         <picklist>
@@ -304,11 +415,13 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>IPM_Rollout_Type__c</fullName>
+        <description>Rollout Type like Project or Rollout</description>
         <externalId>false</externalId>
         <label>Rollout Type</label>
         <picklist>
@@ -318,6 +431,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -327,12 +441,14 @@
         <label>Small C</label>
         <length>255</length>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_Status__c</fullName>
+        <description>Rollout Status Like Leader or Follower at Global Level</description>
         <externalId>false</externalId>
         <label>Status</label>
         <picklist>
@@ -346,129 +462,216 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>KeyMCOAtCharter__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Key MCO Rollout added at Charter</description>
+        <externalId>false</externalId>
+        <label>Key MCO At Charter</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>KeyMCO__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>MCO as a key for Rollout Creation</description>
         <externalId>false</externalId>
         <label>KeyMCO</label>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Local_Project_Span__c</fullName>
+        <description>Span of local project</description>
         <externalId>false</externalId>
         <formula>TEXT(Local_Project__r.IPMProject_Span__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Local Project Span</label>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>Local_Project_Sustainability_Period__c</fullName>
+        <description>Sustainability of local project</description>
         <externalId>false</externalId>
         <formula>TEXT(Local_Project__r.Sustainability_Period__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Local Project Sustainability Period</label>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Local_Project_Target_Launch_Date__c</fullName>
+        <description>Local Project Target Launch Date</description>
+        <externalId>false</externalId>
+        <label>Local Project Target Launch Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Local_Project__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>Lookup of local Project on Rollout</description>
         <externalId>false</externalId>
         <label>Local Project</label>
         <referenceTo>IPM_Project__c</referenceTo>
         <relationshipLabel>IPM Project Rollout (Local Project)</relationshipLabel>
         <relationshipName>Local_Project_Rollout</relationshipName>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Local_Rollout_Phase__c</fullName>
+        <description>phase of local rollout</description>
+        <externalId>false</externalId>
+        <formula>if(RecordType.Name =&quot;Local Rollouts&quot;,
+  if(isblank( Local_Project__c) ,
+     CASE(Regional_Rollout_Phase__c,
+     &quot;Market Ready&quot;, &quot;Feasibility&quot;,
+     &quot;Market Deployment&quot;,&quot;Feasibility&quot;,
+     &quot;PLE&quot;,&quot;Feasibility&quot;
+     ,Global_Project_Phase__c) ,
+   text( Local_Project__r.IPM_Phase__c )
+   )
+,&quot;&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Local Rollout Phase</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>MCO_Name__c</fullName>
+        <description>Rollout MCO name</description>
         <externalId>false</externalId>
         <label>MCO Name</label>
         <length>100</length>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>MCO__c</fullName>
+        <description>MCO of rollout</description>
         <externalId>false</externalId>
         <label>MCO</label>
         <length>100</length>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>Market_Cluster_Name__c</fullName>
+        <description>Market Cluster Name of Rollout</description>
         <externalId>false</externalId>
         <label>Market Cluster Name</label>
         <length>255</length>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>Market_Cluster__c</fullName>
+        <description>Market Cluster of Project Rollout</description>
         <externalId>false</externalId>
         <label>Market Cluster</label>
         <length>100</length>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>MisAligned_Confirmed_By_Finance_Leader__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>To store confirmation from RFL/LFL regarding TLD misalignment</description>
+        <externalId>false</externalId>
+        <label>MisAligned Confirmed By Finance Leader</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Previous_Target_Launch_Date__c</fullName>
+        <description>To store previous target launch date</description>
+        <externalId>false</externalId>
+        <label>Previous Target Launch Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Project_Span__c</fullName>
+        <description>Span of Global Project</description>
         <externalId>false</externalId>
         <formula>TEXT(IPM_Project__r.IPMProject_Span__c)</formula>
         <label>Global Project Span</label>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>Project_Sustainability_Period__c</fullName>
+        <description>Sustainability Period of Global Project.</description>
         <externalId>false</externalId>
         <formula>TEXT(IPM_Project__r.Sustainability_Period__c)</formula>
         <label>Global Project Sustainability Period</label>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>Regional_Project_Span__c</fullName>
+        <description>Span of Regional Project</description>
         <externalId>false</externalId>
         <formula>TEXT(Regional_Project__r.IPMProject_Span__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Regional Project Span</label>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>Regional_Project_Sustainability_Period__c</fullName>
+        <description>Sustainability of Regional Project</description>
         <externalId>false</externalId>
         <formula>TEXT(Regional_Project__r.Sustainability_Period__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Regional Project Sustainability Period</label>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -476,22 +679,45 @@
     <fields>
         <fullName>Regional_Project__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>Relationship between Project Rollout and Regional Project</description>
         <externalId>false</externalId>
         <label>Regional Project</label>
         <referenceTo>IPM_Project__c</referenceTo>
         <relationshipLabel>IPM Project Rollout (Regional Project)</relationshipLabel>
         <relationshipName>Regional_Project_Rollout</relationshipName>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Regional_Rollout_External_Id__c</fullName>
+        <description>Unique Id for External Reference</description>
         <externalId>false</externalId>
         <formula>IF(Regional_Project__c!=null,Regional_Project__r.IPM_Project_Name__c,Regional_Rollout__r.IPM_Rollout_Project__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Regional Rollout External Id</label>
         <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Regional_Rollout_Phase__c</fullName>
+        <description>Phase of Regional Rollout</description>
+        <externalId>false</externalId>
+        <formula>if(RecordType.Name =&quot;Regional Rollout&quot;, 
+if(isblank(Regional_Project__c), 
+Case(Global_Project_Phase__c,
+&quot;Ideas&quot;,&quot;Ideas&quot;,
+&quot;Feasibility&quot;) 
+,text( Regional_Project__r.IPM_Phase__c )) 
+,&quot;&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Regional Rollout Phase</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -499,20 +725,75 @@
     <fields>
         <fullName>Regional_Rollout__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>Relationship for Regional Rollout</description>
         <externalId>false</externalId>
         <label>Regional Rollout</label>
         <referenceTo>IPM_Project_Rollout__c</referenceTo>
         <relationshipLabel>Local Rollouts</relationshipLabel>
         <relationshipName>Local_Rollouts</relationshipName>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Target_LaunchMonth__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE(MONTH(Target_Launch_Date__c), 
+
+1, &quot;January&quot;, 
+
+2, &quot;February&quot;, 
+
+3, &quot;March&quot;, 
+
+4, &quot;April&quot;, 
+
+5, &quot;May&quot;, 
+
+6, &quot;June&quot;, 
+
+7, &quot;July&quot;, 
+
+8, &quot;August&quot;, 
+
+9, &quot;September&quot;, 
+
+10, &quot;October&quot;, 
+
+11, &quot;November&quot;, 
+
+12, &quot;December&quot;, 
+
+&quot;&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Target Launch Month</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Target_LaunchYear__c</fullName>
+        <description>Year</description>
+        <externalId>false</externalId>
+        <formula>TEXT(YEAR(Target_Launch_Date__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Target Launch Year</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Target_Launch_Date__c</fullName>
+        <description>Project Rollout Target Launch Date</description>
         <externalId>false</externalId>
         <label>Target Launch Date</label>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
@@ -572,6 +853,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -639,11 +921,13 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Type__c</fullName>
+        <description>Type for Rollout Like MCO or Country</description>
         <externalId>false</externalId>
         <label>Type</label>
         <picklist>
@@ -657,8 +941,31 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>isActive__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>check if rollout is active or not for (hard/soft) deletion</description>
+        <externalId>false</externalId>
+        <label>isActive</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Parent_Project_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(TEXT(IPM_Rollout_Span__c) = &apos;Regional&apos; ,IPM_Project__r.Name, IF( Regional_Project__c &lt;&gt; null, Regional_Project__r.Name , Regional_Rollout__r.Name ))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Parent Project Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <label>IPM Project Rollout</label>
     <listViews>
@@ -681,11 +988,14 @@
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
+   
     <nameField>
         <label>IPM Project Rollout Name</label>
+        <trackHistory>false</trackHistory>
         <type>Text</type>
     </nameField>
     <pluralLabel>IPM Project Rollout</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
         <fullName>Local_Rollouts</fullName>
         <active>true</active>

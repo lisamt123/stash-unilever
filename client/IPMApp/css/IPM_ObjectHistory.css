@@ -19,7 +19,7 @@
 .secUsersHistory .btn {padding:.8em!important;}
 .secUsersHistory .SecButtonSet {display:inline-block; text-align:right; margin-top:7px;}
 .secUsersHistory .SecButtonSet .icoButton {display:inline-block;width:30px; margin: 0 5px; height:30px;border:1px solid #1568b6;border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%;}
-
+a.icoButton.question{margin-top:5px !important;}
 #ipmSecHistoryTab {}
 #ipmSecHistoryTab .ipmTabContent { width:100%; }
 #ipmSecHistoryTab .panel {background:transparent;}

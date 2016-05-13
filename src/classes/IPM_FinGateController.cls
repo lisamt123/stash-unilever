@@ -5,7 +5,7 @@
 *               in the gate document
 */
 public with sharing class IPM_FinGateController {
-
+ 
     public IPM_Project__c project {get; set;} //The project record for which the financial business cases are being viewed
     public Id projectId; //Project Id of te current project
     public ID getprojectId(){ return projectId; }
@@ -18,7 +18,7 @@ public with sharing class IPM_FinGateController {
     public Integer colSpan {get; set;} //Derived from Sustainability Perido. Used to define the number of columns visible on the Financial Table
     
     public string printDoc {get; set;} //Current Document being viewed
-	public boolean renderGate{get;set;}
+    public boolean renderGate{get;set;}
     public IPM_Financial__c currentFinancial {get; set;} //Used to store the financial business case (IPM_Financial & associated IPM_Financial_Year__c records)
 
     public transient IPM_FinancialWrapper financialsInnovation {get; set;} //Wrapper to store the financial values for the Innovation Years for the currentFinancial
@@ -43,8 +43,9 @@ public with sharing class IPM_FinGateController {
     * @return       NONE
     */
     public void showFinancials() {
-        if (projectId == null)
+        if (projectId == null) {
             projectId = ApexPages.currentPage().getParameters().get('id');
+        }
         
         if (projectId != NULL){
             project = [SELECT Id, IPM_Project_Name__c, Sustainability_Period__c, IPMProject_Span__c, Market_Cluster__c, Market_Cluster_Name__c, IPM_Parent_Project__c, 
@@ -77,14 +78,17 @@ public with sharing class IPM_FinGateController {
     */
     private void getFieldSuffix(){
         if (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL || project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL 
-        	 ||(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && project.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS))
+             ||(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && project.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS)) {
             fieldSuffix = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
+        }
 
-        else if (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && project.IPM_Project_Type__c!=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
+        else if (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && project.IPM_Project_Type__c!=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) {
             fieldSuffix = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
+        }
 
-        else
+        else {
             fieldSuffix = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
+        }
     }
 
     /*******************************************************************************************************
@@ -97,7 +101,7 @@ public with sharing class IPM_FinGateController {
         String localFieldSufx = localFieldSuffix;
         printDoc=ApexPages.currentPage().getParameters().get('printDoc');
         if(printDoc  == IPM_ConstantUtils.CHARTER_GATE){
-       		 renderGate = true;
+             renderGate = true;
         }
         //Charter gate document is accessed in any other phase
         if (printDoc == IPM_ConstantUtils.CHARTER_GATE && currentFinancial.Charter_Approved__c){
@@ -128,19 +132,23 @@ public with sharing class IPM_FinGateController {
     */
     private void getFinancials(){
         String ExternalId; // NO SONAR. variable used in Dyanamic SOQL
-        if (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL || (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL))
+        if (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL || (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)) {
             ExternalId = project.IPM_Project_Name__c;
-        else
+        } 
+        else {
             ExternalId = project.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
+        }
         String queryString = 'SELECT ';
         //IPM Financial
-        For (String field : Schema.SObjectType.IPM_Financial__c.fields.getMap().KeySet())
+        For (String field : Schema.SObjectType.IPM_Financial__c.fields.getMap().KeySet()) {
             queryString+= field + ', ';
+        }
         //IPM Financial Year
         queryString+= '(SELECT ';
         For (String field : Schema.SObjectType.IPM_Financial_Year__c.fields.getMap().KeySet()){
-            if (field != 'Id')
+            if (field != 'Id') {
                 queryString+= field + ', ';
+            }
         }
         queryString+= 'Id FROM IPM_Financial_Years__r ORDER BY Year__c)';
         queryString+= 'FROM IPM_Financial__c WHERE Financial_External_ID__c =: ExternalId';// need to repace by external is
@@ -246,11 +254,13 @@ public with sharing class IPM_FinGateController {
         PBObpsWrapper = new ipmFinancialSummaryWrapper();
         iTOWrapper = new ipmFinancialSummaryWrapper();
         iAPWrapper = new ipmFinancialSummaryWrapper();
+        
+        String projectId=IPM_ConstantUtils.BLANK;
 
         //Only valid for Charter Gate Document
         if (printDoc==IPM_ConstantUtils.CHARTER_GATE){ 
             //Global Original Project
-            if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){
+            if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && project.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS){
                 List<IPM_Financial__c> lstConsolidatedFinancial = new List<IPM_Financial__c>();
                 lstConsolidatedFinancial = [SELECT Id, IPM_Project_Rollout__r.Market_Cluster_Name__c, GM_Y1_bps_vs_DNDS_Global__c, GM_Y1_bps_vs_DNDS_Regional__c, GM_Y1_bps_vs_DNDS_Charter__c, 
                                                                         PBO_Y1_bps_vs_DNDS_Global__c, PBO_Y1_bps_vs_DNDS_Regional__c, PBO_Y1_bps_vs_DNDS_Charter__c,
@@ -262,7 +272,7 @@ public with sharing class IPM_FinGateController {
                                                                         WHERE Year_Type__c =: IPM_ConstantUtils.YEAR_TYPE_INNOVATION
                                                                             AND Year__c =: IPM_ConstantUtils.Y1_YEARINDEX)
                                                                 FROM IPM_Financial__c
-                                                                WHERE Parent_Project__c =: project.Id 
+                                                                WHERE Parent_Project__c =: project.Id OR Regional_Project__c =: project.Id
             
                                                                 ORDER BY IPM_Project_Rollout__r.Market_Cluster_Name__c];
                 For(IPM_Financial__c consolidatedFinancial : lstConsolidatedFinancial){

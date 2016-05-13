@@ -13,6 +13,10 @@
         <name>Active__c</name>
     </fields>
     <fields>
+        <label><!-- Exclude From CSAT --></label>
+        <name>Exclude_From_CSAT__c</name>
+    </fields>
+    <fields>
         <label><!-- L1 Code --></label>
         <name>L1_Code__c</name>
     </fields>

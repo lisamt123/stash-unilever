@@ -2,12 +2,14 @@
     Purpose: Helper class for all the mandatory without sharing business logic, purposely kept without sharing
     Author: Cognizant Technology
     @Date: Nov 2015
+    This class has been specifically created to write general without sharing business logic. For e.g. the methods included in this 
+    class require to insert subscription records for the object EntitySubscription. This needs mandatory without sharing.
 **/
 public without sharing class IPM_WithoutSharingHelper {
-	
-	private static final String AS_STR= ' as a ';
-	private static final String ASSIGNED_STR =' You have been assigned to ';
-	private static Set<Id> projectIds= new Set<Id>();
+    
+    private static final String AS_STR= ' as a ';
+    private static final String ASSIGNED_STR =' You have been assigned to ';
+    private static Set<Id> projectIds= new Set<Id>();
     private static Map<Id, String> subjectIdMessageMap = new Map<Id, String>();
     private static Map<Id,Set<Id>> subjectIdMentionIdMap = new Map<Id,Set<Id>>();
     private static Set<Id> mentionId = new Set<Id>();
@@ -17,7 +19,7 @@ public without sharing class IPM_WithoutSharingHelper {
     * @param1 - newProjectResources: The list of IPM_Project_Resource__c object
     */ 
     public static void autoFollowTeamMembers(IPM_Project_Resource__c[] newProjectResources) {
-    	projectIds= new Set<Id>();
+        projectIds= new Set<Id>();
         subjectIdMessageMap = new Map<Id, String>();
         subjectIdMentionIdMap = new Map<Id,Set<Id>>();
         String posttext;
@@ -63,7 +65,7 @@ public without sharing class IPM_WithoutSharingHelper {
        
        if(!subscriptionRecordsToCreate.isEmpty())
        {
-       	    insert subscriptionRecordsToCreate;
+            insert subscriptionRecordsToCreate;
        }    
        
   }
@@ -80,45 +82,45 @@ public without sharing class IPM_WithoutSharingHelper {
         Set<Id> projIds= new Set<Id>();
         projIds.addAll(projectUserMap.keyset());
         
-        List<IPM_Project__c> projectDetails = [select IPM_Project_Name__c,IPM_Project_Gatekeeper__c,IPM_Finance_Member__c,IPM_Finance_Member__r.IPM_Role__c,
-        IPM_Technical_Project_Leader__r.IPM_Role__c,IPM_Project_Leader__r.IPM_Role__c,Deputy_Project_Leader__r.IPM_Role__c from IPM_Project__c where id IN :projIds LIMIT:IPM_ConstantUtils.MaxLimit];
+        List<IPM_Project__c> projectDetails = [select IPM_Project_Name__c,IPM_Project_Gatekeeper__c,IPM_Finance_Member__c,
+        IPM_Technical_Project_Leader__c,IPM_Project_Leader__c,Deputy_Project_Leader__c from IPM_Project__c where id IN :projIds LIMIT:IPM_ConstantUtils.MaxLimit];
 
          for(Id eachRecord : projIds) 
          {
            for(IPM_Project__c eachProject :projectDetails)
            {
-	           if(eachRecord == eachProject.id)
-	           {   
-		            if(projectUserMap.get(eachRecord).contains(eachProject.IPM_Project_Leader__c))  //&& eachProject.IPM_Project_Name__c != null
- 		            {
- 		            	posttext = ASSIGNED_STR+ eachProject.IPM_Project_Name__c+AS_STR+
-		                IPM_ConstantUtils.PROJECT_LEADER+IPM_ConstantUtils.IPM_SPACE+System.Label.IPM_Check_The_Project;
-		            }
-		            
-		            if(projectUserMap.get(eachRecord).contains(eachProject.Deputy_Project_Leader__c))
-		            {
-		                posttext = ASSIGNED_STR+ eachProject.IPM_Project_Name__c+AS_STR+
-		                IPM_ConstantUtils.TEAM_DEPUTY_PROJECT_LEADER+IPM_ConstantUtils.IPM_SPACE+System.Label.IPM_Check_The_Project;
-		            }
-		            
-		            if(projectUserMap.get(eachRecord).contains(eachProject.IPM_Technical_Project_Leader__c))
-		            {
-		                posttext = ASSIGNED_STR+ eachProject.IPM_Project_Name__c+AS_STR+
-		                IPM_ConstantUtils.TEAM_TECHNICAL_PROJECT_LEADER+IPM_ConstantUtils.IPM_SPACE+System.Label.IPM_Check_The_Project;
-		            }
-		            
-		            if(projectUserMap.get(eachRecord).contains(eachProject.IPM_Finance_Member__c))
-		            {
-		                posttext = ASSIGNED_STR+ eachProject.IPM_Project_Name__c+AS_STR+
-		                IPM_ConstantUtils.FINANCE_MEMBER_CONSTANT+IPM_ConstantUtils.IPM_SPACE+System.Label.IPM_Check_The_Project;
-		            }
-		            
-		            if(projectUserMap.get(eachRecord).contains(eachProject.IPM_Project_Gatekeeper__c))
-		            {
-		                projectUserMap.remove(eachRecord); 
-		            }
-		            
-		        }   
+               if(eachRecord == eachProject.id)
+               {   
+                    if(projectUserMap.get(eachRecord).contains(eachProject.IPM_Project_Leader__c))  //&& eachProject.IPM_Project_Name__c != null
+                    {
+                        posttext = ASSIGNED_STR+ eachProject.IPM_Project_Name__c+AS_STR+
+                        IPM_ConstantUtils.PROJECT_LEADER+IPM_ConstantUtils.IPM_SPACE+System.Label.IPM_Check_The_Project;
+                    }
+                    
+                    if(projectUserMap.get(eachRecord).contains(eachProject.Deputy_Project_Leader__c))
+                    {
+                        posttext = ASSIGNED_STR+ eachProject.IPM_Project_Name__c+AS_STR+
+                        IPM_ConstantUtils.TEAM_DEPUTY_PROJECT_LEADER+IPM_ConstantUtils.IPM_SPACE+System.Label.IPM_Check_The_Project;
+                    }
+                    
+                    if(projectUserMap.get(eachRecord).contains(eachProject.IPM_Technical_Project_Leader__c))
+                    {
+                        posttext = ASSIGNED_STR+ eachProject.IPM_Project_Name__c+AS_STR+
+                        IPM_ConstantUtils.TEAM_TECHNICAL_PROJECT_LEADER+IPM_ConstantUtils.IPM_SPACE+System.Label.IPM_Check_The_Project;
+                    }
+                    
+                    if(projectUserMap.get(eachRecord).contains(eachProject.IPM_Finance_Member__c))
+                    {
+                        posttext = ASSIGNED_STR+ eachProject.IPM_Project_Name__c+AS_STR+
+                        IPM_ConstantUtils.FINANCE_MEMBER_CONSTANT+IPM_ConstantUtils.IPM_SPACE+System.Label.IPM_Check_The_Project;
+                    }
+                    
+                    if(projectUserMap.get(eachRecord).contains(eachProject.IPM_Project_Gatekeeper__c))
+                    {
+                        projectUserMap.remove(eachRecord); 
+                    }
+                    
+                }   
             }
         }
         

@@ -22,7 +22,7 @@ public class IPM_UploadBusinessCase_Test {
          test.startTest(); 
         //Global     
             
-            u1 = u1 = IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+            u1 = IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
             
             system.runAs(u1){
                 projectList = IPM_TestFactory_Helper.insertIPMProjectList();

@@ -410,7 +410,7 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Filled-in</fullName>
+                <fullName>Started</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -854,6 +854,19 @@ IMAGE(&quot;/resource/ipmResource/images/cone.png&quot;, &quot;Not Started&quot;
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Summary_Character_Remaining__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Summary Character Remaining</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>

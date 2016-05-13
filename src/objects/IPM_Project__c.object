@@ -44,7 +44,6 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
-    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Used by the IPM project.</description>
@@ -53,7 +52,6 @@
     <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
-    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
@@ -175,10 +173,31 @@
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
+        <displayedFields>
+            <field>IPM_Project_Leader__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Deputy_Project_Leader__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IPM_Technical_Project_Leader__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IPM_Finance_Lead__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
         <label>IPM Project Fields EcoDesign</label>
     </fieldSets>
     <fields>
         <fullName>BET_Archive_Status__c</fullName>
+        <description>To store BET status when BET is archived (first release, final release, unreleased).</description>
         <externalId>false</externalId>
         <label>BET Archive Status</label>
         <length>255</length>
@@ -191,6 +210,7 @@
     </fields>
     <fields>
         <fullName>BET_Archived_BET_Text__c</fullName>
+        <description>To store the BET name of the last archived BET.</description>
         <externalId>false</externalId>
         <label>BET Archived BET Text</label>
         <length>255</length>
@@ -218,6 +238,7 @@
     </fields>
     <fields>
         <fullName>BET_Archived_Date__c</fullName>
+        <description>To store the date when associated BET is archived.</description>
         <externalId>false</externalId>
         <label>BET Archived Date</label>
         <required>false</required>
@@ -228,6 +249,7 @@
     </fields>
     <fields>
         <fullName>BET_Denied_BET_Link__c</fullName>
+        <description>To store BET for which approval was denied.</description>
         <externalId>false</externalId>
         <label>BET Denied BET Link</label>
         <length>255</length>
@@ -283,7 +305,21 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>BET_Last_BET__c</fullName>
+        <description>To capture the last BET name.</description>
+        <externalId>false</externalId>
+        <label>Last BET</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>BET_Link_Requested__c</fullName>
+        <description>To store the existing BET selected for linking.</description>
         <externalId>false</externalId>
         <label>BET Link Requested</label>
         <length>18</length>
@@ -296,6 +332,7 @@
     </fields>
     <fields>
         <fullName>BET_Link_Requested_on_Date__c</fullName>
+        <description>To store the date on which existing BET link is requested or BET is selected to link.</description>
         <externalId>false</externalId>
         <label>BET Link Requested on Date</label>
         <required>false</required>
@@ -306,13 +343,24 @@
     </fields>
     <fields>
         <fullName>BET_MS_Final_Release_Date__c</fullName>
+        <description>To store the final release BET milestone due date as per BET Final Release Date.</description>
         <externalId>false</externalId>
         <label>BET MS Final Release Date</label>
         <summarizedField>IPM_Milestone__c.IPM_Due_Date__c</summarizedField>
         <summaryFilterItems>
             <field>IPM_Milestone__c.Name</field>
             <operation>contains</operation>
-            <value>BETFinalRelease</value>
+            <value>BET</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Milestone__c.Name</field>
+            <operation>contains</operation>
+            <value>Final</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Milestone__c.Name</field>
+            <operation>contains</operation>
+            <value>Release</value>
         </summaryFilterItems>
         <summaryFilterItems>
             <field>IPM_Milestone__c.IPM_Type_of_Milestone__c</field>
@@ -327,13 +375,24 @@
     </fields>
     <fields>
         <fullName>BET_MS_First_Release_Date__c</fullName>
+        <description>To store the first release BET milestone due date as per BET First Release Date.</description>
         <externalId>false</externalId>
         <label>BET MS First Release Date</label>
         <summarizedField>IPM_Milestone__c.IPM_Due_Date__c</summarizedField>
         <summaryFilterItems>
             <field>IPM_Milestone__c.IPM_Name__c</field>
             <operation>contains</operation>
-            <value>BETFirstRelease</value>
+            <value>BET</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Milestone__c.IPM_Name__c</field>
+            <operation>contains</operation>
+            <value>First</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Milestone__c.IPM_Name__c</field>
+            <operation>contains</operation>
+            <value>Release</value>
         </summaryFilterItems>
         <summaryFilterItems>
             <field>IPM_Milestone__c.IPM_Type_of_Milestone__c</field>
@@ -348,6 +407,7 @@
     </fields>
     <fields>
         <fullName>BET_TLD_Final_Release_Date__c</fullName>
+        <description>To store the final release BET milestone due date as per Project Target Launch Date.</description>
         <externalId>false</externalId>
         <label>BET TLD Final Release Date</label>
         <required>false</required>
@@ -358,6 +418,7 @@
     </fields>
     <fields>
         <fullName>BET_TLD_First_Release_Date__c</fullName>
+        <description>To store the first release BET milestone due date as per Project Target Launch Date.</description>
         <externalId>false</externalId>
         <label>BET TLD First Release Date</label>
         <required>false</required>
@@ -369,6 +430,7 @@
     <fields>
         <fullName>BET_Update__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>To check if BET is updated.</description>
         <externalId>false</externalId>
         <label>BET Update</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -379,6 +441,7 @@
     <fields>
         <fullName>BET__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>To store BET linked to the project.</description>
         <externalId>false</externalId>
         <label>BET</label>
         <referenceTo>uw_BET__c</referenceTo>
@@ -391,8 +454,22 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>BI__c</fullName>
+        <description>BI Value from IPM Finance record</description>
+        <externalId>false</externalId>
+        <label>BI</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Bulk_BET_Member_Request__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>To store the boolean value to show whether BET member request is in bulk.</description>
         <externalId>false</externalId>
         <label>Bulk BET Member Request</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -403,6 +480,7 @@
     <fields>
         <fullName>Created_in_error__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>To check if any error occurs.</description>
         <externalId>false</externalId>
         <label>Created in error</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -413,6 +491,7 @@
     <fields>
         <fullName>Deputy_Project_Leader__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>Lookup to the related user.</description>
         <externalId>false</externalId>
         <label>Deputy Project Leader</label>
         <referenceTo>User</referenceTo>
@@ -424,17 +503,8 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>EcoDesign_Sync_Eligible_Timestamp__c</fullName>
-        <externalId>false</externalId>
-        <label>EcoDesign Sync Eligible Timestamp</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>DateTime</type>
-    </fields>
-    <fields>
         <fullName>EcoDesign_Sync_Error__c</fullName>
+        <description>To capture the error if it occurs during ecodesign sync.</description>
         <externalId>false</externalId>
         <label>EcoDesign Sync Error</label>
         <length>32768</length>
@@ -446,6 +516,7 @@
     </fields>
     <fields>
         <fullName>EcoDesign_Sync_Status__c</fullName>
+        <description>To capture the ecodesign sync status.</description>
         <externalId>false</externalId>
         <label>EcoDesign Sync Status</label>
         <picklist>
@@ -468,13 +539,14 @@
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Exempt_from_Threshold__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>To store the Exempt from Threshold value.</description>
         <externalId>false</externalId>
         <label>Exempt from Threshold</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -484,6 +556,7 @@
     </fields>
     <fields>
         <fullName>Fetch_Timestamp_Mulesoft__c</fullName>
+        <description>To fetch the date time when the ecodesign sync&apos;s to a project.</description>
         <externalId>false</externalId>
         <label>Fetch Timestamp Mulesoft</label>
         <required>false</required>
@@ -499,12 +572,13 @@
         <externalId>false</externalId>
         <label>First Sync To EcoDesign</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>IPMCompany__c</fullName>
+        <description>To capture the company related to the project.</description>
         <externalId>false</externalId>
         <label>Company</label>
         <picklist>
@@ -528,6 +602,10 @@
                 <fullName>Sample 1</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>--None--</fullName>
+                <default>true</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
@@ -536,7 +614,20 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>IPMProjectBaseURL__c</fullName>
+        <externalId>false</externalId>
+        <formula>Left($Api.Enterprise_Server_URL_350,(find(&apos;/services&apos;,$Api.Enterprise_Server_URL_350))) + &apos;apex/IPM_ProjectOverview?id=&apos;+Id</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Project Base URL</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPMProject_Span__c</fullName>
+        <description>To capture the span of project.</description>
         <externalId>false</externalId>
         <label>Project Span</label>
         <picklist>
@@ -561,6 +652,7 @@
     </fields>
     <fields>
         <fullName>IPMProject_Type__c</fullName>
+        <description>To capture the type of project.</description>
         <externalId>false</externalId>
         <label>Project Type (OLD)</label>
         <picklist>
@@ -577,6 +669,7 @@
     </fields>
     <fields>
         <fullName>IPMRegion__c</fullName>
+        <description>To capture the region of the project.</description>
         <externalId>false</externalId>
         <label>Region</label>
         <picklist>
@@ -593,6 +686,7 @@
     </fields>
     <fields>
         <fullName>IPM_Actual_Launch_Date__c</fullName>
+        <description>The date on which project was actually launched.</description>
         <externalId>false</externalId>
         <label>Actual Launch Date</label>
         <required>false</required>
@@ -603,6 +697,7 @@
     </fields>
     <fields>
         <fullName>IPM_Actual_Launch_Month__c</fullName>
+        <description>The month in which project was actually launched.</description>
         <externalId>false</externalId>
         <formula>CASE(MONTH( IPM_Actual_Launch_Date__c ), 
 
@@ -630,7 +725,7 @@
 
 12, &quot;December&quot;, 
 
-&quot;None&quot;)</formula>
+&quot;&quot;)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Actual Launch Month</label>
         <required>false</required>
@@ -641,6 +736,7 @@
     </fields>
     <fields>
         <fullName>IPM_Actual_Launch_Year__c</fullName>
+        <description>The year in which project was actually launched.</description>
         <externalId>false</externalId>
         <formula>TEXT(YEAR( IPM_Actual_Launch_Date__c ))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
@@ -653,6 +749,7 @@
     </fields>
     <fields>
         <fullName>IPM_Answer_of_Q1__c</fullName>
+        <description>To store the project parameter value in this case Market Place Activity.</description>
         <externalId>false</externalId>
         <label>Market Place Activity</label>
         <length>50</length>
@@ -665,6 +762,7 @@
     </fields>
     <fields>
         <fullName>IPM_Answer_of_Q2__c</fullName>
+        <description>To store the project parameter value in this case Consumer Value Perception.</description>
         <externalId>false</externalId>
         <label>Consumer Value Perception</label>
         <length>50</length>
@@ -677,6 +775,7 @@
     </fields>
     <fields>
         <fullName>IPM_Answer_of_Q3__c</fullName>
+        <description>To store the project parameter value in this case Enabling Technology.</description>
         <externalId>false</externalId>
         <label>Enabling Technology</label>
         <length>50</length>
@@ -689,6 +788,7 @@
     </fields>
     <fields>
         <fullName>IPM_Approver_of_Charter__c</fullName>
+        <description>To capture the approver of charter gate.</description>
         <externalId>false</externalId>
         <label>Approver of Charter</label>
         <picklist>
@@ -709,6 +809,7 @@
     </fields>
     <fields>
         <fullName>IPM_Approver_of_Contract_Market_Ready__c</fullName>
+        <description>To capture the approver of Contract &amp; Market Ready gates.</description>
         <externalId>false</externalId>
         <label>Approver of Contract &amp; Market Ready</label>
         <picklist>
@@ -755,6 +856,7 @@
     <fields>
         <fullName>IPM_Batch_Initiate__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>To check if the batch is initiated.</description>
         <externalId>false</externalId>
         <label>IPM Batch Initiate</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -765,6 +867,7 @@
     <fields>
         <fullName>IPM_Bosscard_Status__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>To tell whether bosscard is available for the project.</description>
         <externalId>false</externalId>
         <label>Bosscard Status</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -775,6 +878,7 @@
     <fields>
         <fullName>IPM_Bosscard__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>Lookup to the related Bosscard.</description>
         <externalId>false</externalId>
         <label>Bosscard</label>
         <referenceTo>IPM_Bosscard__c</referenceTo>
@@ -788,6 +892,7 @@
     </fields>
     <fields>
         <fullName>IPM_Brand_Positioning__c</fullName>
+        <description>To capture the brand of product for the project.</description>
         <externalId>false</externalId>
         <label>Brand Positioning</label>
         <length>255</length>
@@ -800,6 +905,7 @@
     </fields>
     <fields>
         <fullName>IPM_Brand__c</fullName>
+        <description>To capture the brand.</description>
         <externalId>false</externalId>
         <label>IPM_Brand</label>
         <length>30</length>
@@ -812,6 +918,7 @@
     </fields>
     <fields>
         <fullName>IPM_Business_Partner_User_Name__c</fullName>
+        <description>To capture the name of the business partner.</description>
         <externalId>false</externalId>
         <formula>IPM_Company_Card__r.IPM_Business_Partner__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
@@ -824,6 +931,7 @@
     </fields>
     <fields>
         <fullName>IPM_CPP_Change_Reason__c</fullName>
+        <description>To store the reason for change in the company project priority(CPP).</description>
         <externalId>false</externalId>
         <label>CPP Change Reason</label>
         <required>false</required>
@@ -834,6 +942,7 @@
     </fields>
     <fields>
         <fullName>IPM_CPP__c</fullName>
+        <description>To store the company project priority.</description>
         <externalId>false</externalId>
         <label>Company Project Priority</label>
         <picklist>
@@ -858,6 +967,7 @@
     </fields>
     <fields>
         <fullName>IPM_Category_Group__c</fullName>
+        <description>To capture the category of the project.</description>
         <externalId>false</externalId>
         <label>Category Group</label>
         <picklist>
@@ -874,6 +984,7 @@
     </fields>
     <fields>
         <fullName>IPM_Category_Icon__c</fullName>
+        <description>To store the category icon details.</description>
         <externalId>false</externalId>
         <formula>IF(IPM_Category_Text__c = &apos;Beverages&apos; || IPM_Category_Text__c = &apos;BEVERAGES&apos;, 
 IMAGE(&apos;/resource/IPM_Resource/images/category_beverages.png&apos;,&apos;BEVERAGES&apos;,21,21), 
@@ -912,6 +1023,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     </fields>
     <fields>
         <fullName>IPM_Category_Text__c</fullName>
+        <description>To store the category text.</description>
         <externalId>false</externalId>
         <label>IPM Category</label>
         <length>50</length>
@@ -925,6 +1037,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     <fields>
         <fullName>IPM_Category__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>Lookup to the related category.</description>
         <externalId>false</externalId>
         <label>IPM_Category</label>
         <referenceTo>Category__c</referenceTo>
@@ -938,7 +1051,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     </fields>
     <fields>
         <fullName>IPM_Child_Complexity__c</fullName>
-        <description>hold value for child project for complexity type</description>
+        <description>To hold value for child project for complexity type</description>
         <externalId>false</externalId>
         <label>IPM Child Complexity</label>
         <picklist>
@@ -1002,7 +1115,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         <fullName>IPM_Clusters__c</fullName>
         <description>To fill this formula field from IPM Cluster</description>
         <externalId>false</externalId>
-        <formula>IF((ISPICKVAL(IPMProject_Span__c, &apos;Global&apos;) &amp;&amp; ISPICKVAL(IPM_Project_Type__c , &apos;Original&apos;)), IPM_Cluster__r.IPM_Cluster_Name__c,  IF((ISPICKVAL( IPMProject_Span__c, &apos;Regional&apos;) &amp;&amp; ISPICKVAL(IPM_Project_Type__c , &apos;Rollout&apos;)), IPM_Parent_Project__r.IPM_Cluster__r.IPM_Cluster_Name__c,  IF((ISPICKVAL( IPMProject_Span__c, &apos;Local&apos;) &amp;&amp; ISPICKVAL(IPM_Project_Type__c , &apos;Rollout&apos;)), IPM_Parent_Project__r.IPM_Cluster__r.IPM_Cluster_Name__c, &apos;&apos;) ) )</formula>
+        <formula>IF(AND(ISPICKVAL(IPM_SourceProjectType__c,&apos;Original&apos;), IPM_CompanyCardText__c=&apos;Global Company Card&apos;),IF(ISPICKVAL(IPMProject_Span__c, &apos;Global&apos;),IPM_Cluster__r.IPM_Cluster_Name__c,IF(ISPICKVAL(IPMProject_Span__c, &apos;Regional&apos;),IPM_Parent_Project__r.IPM_Cluster__r.IPM_Cluster_Name__c,IF(ISPICKVAL(IPMProject_Span__c, &apos;Local&apos;),IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Cluster__r.IPM_Cluster_Name__c,&apos;&apos;))),IF(AND(ISPICKVAL(IPM_SourceProjectType__c,&apos;Original&apos;), IPM_CompanyCardText__c=&apos;Regional Company Card&apos;),IF(ISPICKVAL(IPMProject_Span__c, &apos;Regional&apos;),IPM_Cluster__r.IPM_Cluster_Name__c,IF(ISPICKVAL(IPMProject_Span__c, &apos;Local&apos;),IPM_Parent_Project__r.IPM_Cluster__r.IPM_Cluster_Name__c,&apos;&apos; ) ),&apos;&apos; ))</formula>
         <label>IPM Project Clusters</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1012,6 +1125,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     </fields>
     <fields>
         <fullName>IPM_CompanyCardText__c</fullName>
+        <description>To capture the Company Card Text.</description>
         <externalId>false</externalId>
         <label>Source Company Card</label>
         <length>255</length>
@@ -1025,6 +1139,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     <fields>
         <fullName>IPM_Company_Card__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>Lookup to the related company card.</description>
         <externalId>false</externalId>
         <label>IPM Company Card</label>
         <referenceTo>IPM_Company_Card__c</referenceTo>
@@ -1038,6 +1153,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     </fields>
     <fields>
         <fullName>IPM_Complexity__c</fullName>
+        <description>To capture the complexity of the project.</description>
         <externalId>false</externalId>
         <label>Complexity</label>
         <picklist>
@@ -1059,6 +1175,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     <fields>
         <fullName>IPM_Confidential__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>To check if confidential.</description>
         <externalId>false</externalId>
         <label>Confidential</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -1082,6 +1199,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     <fields>
         <fullName>IPM_Core_Parameters__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Checkbox to check if core parameters are available for the project.</description>
         <externalId>false</externalId>
         <label>Core Parameters</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -1091,6 +1209,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     </fields>
     <fields>
         <fullName>IPM_Current_Document_Status__c</fullName>
+        <description>To capture the current state of the gate document.</description>
         <externalId>false</externalId>
         <label>Current Document Status</label>
         <picklist>
@@ -1131,11 +1250,13 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     </fields>
     <fields>
         <fullName>IPM_Current_Gate_Name__c</fullName>
+        <description>Formula field which finds the name of the current gate document.</description>
         <externalId>false</externalId>
-        <formula>IF(ISPICKVAL(IPM_Temporary_Phase__c, &quot;Feasibility&quot;),&quot;Contract&quot;,
+        <formula>IF(ISPICKVAL(IPM_Temporary_Phase__c, &quot;Ideas&quot;),&quot;Charter&quot;,
+IF(ISPICKVAL(IPM_Temporary_Phase__c, &quot;Feasibility&quot;),&quot;Contract&quot;,
 IF(ISPICKVAL(IPM_Temporary_Phase__c, &quot;Capability&quot;), &quot;Market Ready&quot;,
 IF(ISPICKVAL(IPM_Temporary_Phase__c, &quot;Market Ready&quot;),&quot;Market Deployment&quot;,
-&quot; &quot;)))</formula>
+&quot; &quot;))))</formula>
         <label>IPM Current Gate Name</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1144,7 +1265,29 @@ IF(ISPICKVAL(IPM_Temporary_Phase__c, &quot;Market Ready&quot;),&quot;Market Depl
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Data_Migrated_Gate__c</fullName>
+        <description>To capture the name of the data migrated gate.</description>
+        <externalId>false</externalId>
+        <label>IPM Data Migrated Gate</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Contract</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Market Ready</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>IPM_Document_Update_Comments__c</fullName>
+        <description>To capture the comments if the documents are updated.</description>
         <externalId>false</externalId>
         <label>Document Update Comments</label>
         <length>32768</length>
@@ -1156,6 +1299,7 @@ IF(ISPICKVAL(IPM_Temporary_Phase__c, &quot;Market Ready&quot;),&quot;Market Depl
     </fields>
     <fields>
         <fullName>IPM_Document_Update_Date__c</fullName>
+        <description>To capture the date on which the document was updated.</description>
         <externalId>false</externalId>
         <label>Document Update Date</label>
         <required>false</required>
@@ -1167,16 +1311,18 @@ IF(ISPICKVAL(IPM_Temporary_Phase__c, &quot;Market Ready&quot;),&quot;Market Depl
     <fields>
         <fullName>IPM_Exists_AtLeast_OneAssmntPerEICountry__c</fullName>
         <defaultValue>true</defaultValue>
+        <description>If the EICountry has one assessment related to it then this checkbox is checked.</description>
         <externalId>false</externalId>
         <label>Exists At Least One Assmnt Per EICountry</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>IPM_Fast_Track_Project__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>To select the project as a fast track project.</description>
         <externalId>false</externalId>
         <label>IPM Fast Track Project</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -1199,8 +1345,23 @@ IF(ISPICKVAL(IPM_Temporary_Phase__c, &quot;Market Ready&quot;),&quot;Market Depl
         <type>Percent</type>
     </fields>
     <fields>
+        <fullName>IPM_Finance_Lead__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Lookup to the related user in this case the finance lead.</description>
+        <externalId>false</externalId>
+        <label>IPM Finance Lead</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>IPM_FinanceLead</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>IPM_Finance_Member__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>Lookup to the finance related user.</description>
         <externalId>false</externalId>
         <label>Finance Member</label>
         <referenceTo>User</referenceTo>
@@ -1258,6 +1419,7 @@ IF(ISPICKVAL(IPM_Temporary_Phase__c, &quot;Market Ready&quot;),&quot;Market Depl
     </fields>
     <fields>
         <fullName>IPM_Gate_Keeping_Module__c</fullName>
+        <description>To capture the Gate Keeping Module(GKM) that is selected.</description>
         <externalId>false</externalId>
         <label>Gate Keeping Module</label>
         <picklist>
@@ -1285,6 +1447,33 @@ IF(ISPICKVAL(IPM_Temporary_Phase__c, &quot;Market Ready&quot;),&quot;Market Depl
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>IPM_Global_OR_Regional__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(
+
+AND(
+AND( 
+	IF(NOT(ISBLANK(IPM_Parent_Project__r.IPM_Parent_Project__r.Name)), TEXT(IPM_Parent_Project__r.IPM_Parent_Project__r.IPMProject_Span__c),
+	IF(NOT(ISBLANK(IPM_Parent_Project__r.Name)), TEXT(IPM_Parent_Project__r.IPMProject_Span__c),
+	TEXT(IPMProject_Span__c)))= &apos;Global&apos;),
+AND(
+	IF(NOT(ISBLANK(IPM_Parent_Project__r.IPM_Parent_Project__r.Name)), TEXT(IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Phase__c),
+	IF(NOT(ISBLANK(IPM_Parent_Project__r.Name)), TEXT(IPM_Parent_Project__r.IPM_Phase__c),
+	TEXT(IPM_Phase__c)))= &apos;Ideas&apos;),
+AND(
+	IF(NOT(ISBLANK(IPM_Parent_Project__r.IPM_Parent_Project__r.Name)), TEXT(IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Type__c),
+	IF(NOT(ISBLANK(IPM_Parent_Project__r.Name)), TEXT(IPM_Parent_Project__r.IPM_Project_Type__c),
+	TEXT(IPM_Project_Type__c)))= &apos;Original&apos;)
+)
+
+, true, false)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Global OR Regional</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>IPM_Global_ProjectId__c</fullName>
         <description>Global Project Id will be populated by Workflow</description>
         <externalId>true</externalId>
@@ -1299,6 +1488,7 @@ IF(ISPICKVAL(IPM_Temporary_Phase__c, &quot;Market Ready&quot;),&quot;Market Depl
     </fields>
     <fields>
         <fullName>IPM_Global_Project_Id__c</fullName>
+        <description>Formula field which finds the global project id.</description>
         <externalId>false</externalId>
         <formula>IF(NOT(ISBLANK(IPM_Parent_Project__r.IPM_Parent_Project__r.Name)), IPM_Parent_Project__r.IPM_Parent_Project__r.Id,
 IF(NOT(ISBLANK(IPM_Parent_Project__r.Name)), IPM_Parent_Project__r.Id,
@@ -1313,6 +1503,7 @@ Id))</formula>
     </fields>
     <fields>
         <fullName>IPM_Golbal_Project_OwnerId__c</fullName>
+        <description>Formula field which finds the global project owner id.</description>
         <externalId>false</externalId>
         <formula>IF(NOT(ISBLANK(IPM_Parent_Project__r.IPM_Parent_Project__r.Name)), IPM_Parent_Project__r.IPM_Parent_Project__r.OwnerId,
 IF(NOT(ISBLANK(IPM_Parent_Project__r.Name)), IPM_Parent_Project__r.OwnerId,
@@ -1328,6 +1519,7 @@ OwnerId))</formula>
     <fields>
         <fullName>IPM_IsCompleted__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>To check if project is completed.</description>
         <externalId>false</externalId>
         <label>IsCompleted</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -1338,6 +1530,7 @@ OwnerId))</formula>
     <fields>
         <fullName>IPM_IsSaved__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>To check if the project is saved or not</description>
         <externalId>false</externalId>
         <label>IsSaved</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -1347,9 +1540,9 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>IPM_Is_Finance_Member_Null__c</fullName>
+        <description>To check if the finance member is present or not for the project.</description>
         <externalId>false</externalId>
-        <formula>ISNULL(IPM_Finance_Member__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <formula>ISBLANK(IPM_Finance_Member__c)</formula>
         <label>IPM Is Finance Member Null</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1388,17 +1581,30 @@ OwnerId))</formula>
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>IPM_MCO_Name__c</fullName>
+        <description>To capture the name of the MCO.</description>
+        <externalId>false</externalId>
+        <formula>IPM_Project_Rollout__r.MCO_Name__c</formula>
+        <label>IPM MCO Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Market_Type__c</fullName>
+        <description>To capture the type of market.</description>
         <externalId>false</externalId>
         <label>Market Type</label>
         <picklist>
             <picklistValues>
                 <fullName>Developed</fullName>
-                <default>false</default>
+                <default>true</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Developing &amp; Emerging</fullName>
-                <default>true</default>
+                <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -1409,6 +1615,7 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>IPM_Market__c</fullName>
+        <description>To capture the market name value.</description>
         <externalId>false</externalId>
         <label>Market</label>
         <picklist>
@@ -1428,7 +1635,21 @@ OwnerId))</formula>
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>IPM_Misalligned__c</fullName>
+        <description>To store auto aligned value.</description>
+        <externalId>false</externalId>
+        <formula>IF(AND( TEXT(IPMProject_Span__c) = &apos;Local&apos;,IPM_Target_Launch_Dates__c &lt;&gt;   IPM_Project_Rollout__r.Target_Launch_Date__c), &apos;NO&apos;,&apos;YES&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>IPM_AutoAligned</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_No_of_Country_Rollouts__c</fullName>
+        <description>To keep count of the number of country rollouts.</description>
         <externalId>false</externalId>
         <label>No of Country Rollouts</label>
         <precision>18</precision>
@@ -1441,7 +1662,21 @@ OwnerId))</formula>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Org_Base_URL__c</fullName>
+        <description>To capture the org URL.</description>
+        <externalId>false</externalId>
+        <formula>LEFT($Api.Enterprise_Server_URL_300, FIND(&apos;/services&apos;,$Api.Enterprise_Server_URL_300))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Org Base URL</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_PM_Approach__c</fullName>
+        <description>To select the PM approach taken.</description>
         <externalId>false</externalId>
         <label>PM Approach</label>
         <picklist>
@@ -1477,6 +1712,7 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>IPM_PhaseChangeQueueJobId__c</fullName>
+        <description>To capture the phase change queue job id.</description>
         <externalId>false</externalId>
         <label>Phase Change Queue Job Id</label>
         <length>40</length>
@@ -1489,6 +1725,7 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>IPM_Phase__c</fullName>
+        <description>To capture the phase of the project.</description>
         <externalId>false</externalId>
         <label>IPM_Phase</label>
         <picklist>
@@ -1525,6 +1762,7 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>IPM_ProjectJobType__c</fullName>
+        <description>To store the project job type.</description>
         <externalId>false</externalId>
         <label>Project Job Type</label>
         <picklist>
@@ -1545,6 +1783,7 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>IPM_ProjectSubType__c</fullName>
+        <description>To capture the subtype of project.</description>
         <externalId>false</externalId>
         <label>Project Sub Type</label>
         <picklist>
@@ -1569,6 +1808,7 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>IPM_Project_Description__c</fullName>
+        <description>To capture the description of the project.</description>
         <externalId>false</externalId>
         <label>Project Description</label>
         <required>false</required>
@@ -1579,6 +1819,7 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>IPM_Project_Gate__c</fullName>
+        <description>To store the current gate document name of the project.</description>
         <externalId>false</externalId>
         <formula>CASE( IPM_Phase__c , &apos;Ideas&apos;, &apos;Charter Gate&apos;, &apos;Feasibility&apos;, &apos;Contract Gate&apos;,&apos;Capability&apos;, &apos;Market Ready Gate&apos;,&apos;Market Ready&apos;, &apos;Market Deployment Gate&apos; ,null)</formula>
         <label>Project Gate</label>
@@ -1591,6 +1832,7 @@ OwnerId))</formula>
     <fields>
         <fullName>IPM_Project_Gatekeeper__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>Lookup to the related user in this case the gatekeeper.</description>
         <externalId>false</externalId>
         <label>Project Gatekeeper</label>
         <referenceTo>User</referenceTo>
@@ -1603,6 +1845,7 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>IPM_Project_Job_Status__c</fullName>
+        <description>To store the status of the project job.</description>
         <externalId>false</externalId>
         <label>Project Job Status</label>
         <picklist>
@@ -1636,6 +1879,7 @@ OwnerId))</formula>
     <fields>
         <fullName>IPM_Project_Leader__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>Lookup to the related user in this case the project leader.</description>
         <externalId>false</externalId>
         <label>Project Leader</label>
         <referenceTo>User</referenceTo>
@@ -1648,6 +1892,7 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>IPM_Project_Logo_Id__c</fullName>
+        <description>To capture the project logo id.</description>
         <externalId>false</externalId>
         <label>IPM Project Logo Id</label>
         <length>18</length>
@@ -1660,6 +1905,7 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>IPM_Project_Logo__c</fullName>
+        <description>To capture the logo of the project.</description>
         <externalId>false</externalId>
         <label>Project Logo</label>
         <length>32768</length>
@@ -1672,6 +1918,7 @@ OwnerId))</formula>
     <fields>
         <fullName>IPM_Project_Name__c</fullName>
         <caseSensitive>false</caseSensitive>
+        <description>To store the name of the project.</description>
         <externalId>true</externalId>
         <inlineHelpText>Project Name is mandatory</inlineHelpText>
         <label>Project Name</label>
@@ -1686,6 +1933,7 @@ OwnerId))</formula>
     <fields>
         <fullName>IPM_Project_Navigate__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>To navigate the project.</description>
         <externalId>false</externalId>
         <label>Project Navigate</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -1696,6 +1944,7 @@ OwnerId))</formula>
     <fields>
         <fullName>IPM_Project_Rollout__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>Lookup to the related rollout project.</description>
         <externalId>false</externalId>
         <label>IPM Source Rollout</label>
         <referenceTo>IPM_Project_Rollout__c</referenceTo>
@@ -1706,6 +1955,17 @@ OwnerId))</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Project_Start_Date__c</fullName>
+        <description>This field holds the project start date for migrated projects.</description>
+        <externalId>false</externalId>
+        <label>Project Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
     </fields>
     <fields>
         <fullName>IPM_Project_Stopped_By__c</fullName>
@@ -1723,6 +1983,7 @@ OwnerId))</formula>
     <fields>
         <fullName>IPM_Project_Template__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>Lookup to the related project template.</description>
         <externalId>false</externalId>
         <label>IPM Project Template</label>
         <referenceTo>IPM_Project_Template__c</referenceTo>
@@ -1736,12 +1997,13 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>IPM_Project_Type__c</fullName>
+        <description>To capture the type of project.</description>
         <externalId>false</externalId>
         <label>Project Type</label>
         <picklist>
             <picklistValues>
                 <fullName>Original</fullName>
-                <default>true</default>
+                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Rollout</fullName>
@@ -1760,6 +2022,7 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>IPM_Quit_Project_Tab__c</fullName>
+        <description>To keep track if the user quits the project.</description>
         <externalId>false</externalId>
         <label>Quit Project Tab</label>
         <length>255</length>
@@ -1772,6 +2035,20 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>IPM_Region_Shr__c</fullName>
+        <description>To capture the region of the project.</description>
+        <externalId>false</externalId>
+        <label>Region</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Region__c</fullName>
+        <description>To capture the region of the project.</description>
         <externalId>false</externalId>
         <label>Region</label>
         <length>80</length>
@@ -1783,12 +2060,12 @@ OwnerId))</formula>
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>IPM_Region__c</fullName>
+        <fullName>IPM_RolloutStatus__c</fullName>
+        <description>To capture the status of the rollout.</description>
         <externalId>false</externalId>
-        <label>Region</label>
-        <length>80</length>
+        <formula>Text(IPM_Project_Rollout__r.IPM_Regional_Rollout_Status__c)</formula>
+        <label>IPM_RolloutStatus</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -1809,6 +2086,7 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>IPM_Rollout_Status__c</fullName>
+        <description>To capture the status of the rollout.</description>
         <externalId>false</externalId>
         <label>Rollout Status</label>
         <picklist>
@@ -1830,6 +2108,7 @@ OwnerId))</formula>
     <fields>
         <fullName>IPM_STOP__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>To check if the project is in the stopped state.</description>
         <externalId>false</externalId>
         <label>STOP</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -1839,6 +2118,7 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>IPM_Sector__c</fullName>
+        <description>To store the sector of the project.</description>
         <externalId>false</externalId>
         <label>Sector</label>
         <picklist>
@@ -1875,6 +2155,7 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>IPM_Selected_Project_Type__c</fullName>
+        <description>To store the type of the selected project.</description>
         <externalId>false</externalId>
         <label>Selected Project Type</label>
         <length>80</length>
@@ -1887,6 +2168,7 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>IPM_SourceProjectType__c</fullName>
+        <description>To capture the Source Project Type.</description>
         <externalId>false</externalId>
         <label>Source Project Type</label>
         <picklist>
@@ -1908,7 +2190,7 @@ OwnerId))</formula>
     <fields>
         <fullName>IPM_Stopped_By__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>when the project is stopped, it notes who has actually stopped it last</description>
+        <description>When the project is stopped, it notes who has actually stopped it last.</description>
         <externalId>false</externalId>
         <label>Stopped By</label>
         <referenceTo>User</referenceTo>
@@ -1921,6 +2203,7 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>IPM_Stopped_Comments__c</fullName>
+        <description>To capture the comments for a stopped project.</description>
         <externalId>false</externalId>
         <label>IPM Stopped Comments</label>
         <length>32768</length>
@@ -1932,6 +2215,7 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>IPM_Stopped_Date_Time__c</fullName>
+        <description>When the project is stopped, it notes the date and time it stopped.</description>
         <externalId>false</externalId>
         <label>Stopped Date/Time</label>
         <required>false</required>
@@ -1955,6 +2239,7 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>IPM_Strategic_Intent__c</fullName>
+        <description>To store the Strategic Intent value.</description>
         <externalId>false</externalId>
         <label>IPM Strategic Intent</label>
         <length>50</length>
@@ -1967,6 +2252,7 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>IPM_Sub_Category__c</fullName>
+        <description>To capture the sub category.</description>
         <externalId>false</externalId>
         <label>Sub Category</label>
         <length>80</length>
@@ -1979,19 +2265,12 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>IPM_Sub_sector__c</fullName>
+        <description>To capture the sub sector.</description>
         <externalId>false</externalId>
         <label>Sub sector</label>
         <picklist>
             <picklistValues>
-                <fullName>Machine Wash</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>MDW Machine Maintenance</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Machine Dishwash Adjustment</fullName>
+                <fullName>None</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -2003,6 +2282,7 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>IPM_Target_Launch_Date__c</fullName>
+        <description>The target launch date of the project.</description>
         <externalId>false</externalId>
         <label>Target Launch Date</label>
         <length>20</length>
@@ -2015,6 +2295,7 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>IPM_Target_Launch_Dates__c</fullName>
+        <description>To capture the target launch date of the project.</description>
         <externalId>false</externalId>
         <label>IPM Target Launch Date</label>
         <required>false</required>
@@ -2025,6 +2306,7 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>IPM_Target_Launch_Month__c</fullName>
+        <description>The target launch month of the project.</description>
         <externalId>false</externalId>
         <formula>CASE(MONTH(IPM_Target_Launch_Dates__c),
 
@@ -2052,7 +2334,7 @@ OwnerId))</formula>
 
 12, &quot;December&quot;,
 
-&quot;None&quot;)</formula>
+&quot;&quot;)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Target Launch Month</label>
         <required>false</required>
@@ -2063,6 +2345,7 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>IPM_Target_Launch_Period__c</fullName>
+        <description>The target launch period of the project.</description>
         <externalId>false</externalId>
         <formula>IPM_Bosscard__r.IPM_Target_Launch_Date__c</formula>
         <label>Target Launch Period</label>
@@ -2074,6 +2357,7 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>IPM_Target_Launch_Year__c</fullName>
+        <description>The target launch year of the project.</description>
         <externalId>false</externalId>
         <formula>TEXT(YEAR( IPM_Target_Launch_Dates__c))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
@@ -2087,6 +2371,7 @@ OwnerId))</formula>
     <fields>
         <fullName>IPM_Technical_Project_Leader__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>Lookup to related user in this case the Technical Project Leader.</description>
         <externalId>false</externalId>
         <label>Technical Project Leader</label>
         <referenceTo>User</referenceTo>
@@ -2099,6 +2384,7 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>IPM_Temporary_Phase__c</fullName>
+        <description>To capture the temporary phase of the project.</description>
         <externalId>false</externalId>
         <label>Temporary Phase</label>
         <picklist>
@@ -2135,6 +2421,7 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>IPM_Threshold_Value__c</fullName>
+        <description>To store the Threshold value</description>
         <externalId>false</externalId>
         <label>Threshold Value</label>
         <picklist>
@@ -2155,6 +2442,7 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>IPM_Trigger_Time_05__c</fullName>
+        <description>To store the trigger time value.</description>
         <externalId>false</externalId>
         <formula>(Now()  -  0.04100)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
@@ -2180,6 +2468,7 @@ OwnerId))</formula>
     <fields>
         <fullName>IPM_White_Space_Project__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>To select the project as a white space project.</description>
         <externalId>false</externalId>
         <label>IPM White Space Project</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -2189,6 +2478,7 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>IsFinanceMemberNull__c</fullName>
+        <description>To check if the finance member is present or not for the project.</description>
         <externalId>false</externalId>
         <formula>ISNULL(IPM_Finance_Member__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
@@ -2202,7 +2492,7 @@ OwnerId))</formula>
         <defaultValue>false</defaultValue>
         <description>TO indicate if the IPM NG Project Is Archieved</description>
         <externalId>false</externalId>
-        <label>Is Archieved</label>
+        <label>Is Archived</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -2211,6 +2501,7 @@ OwnerId))</formula>
     <fields>
         <fullName>ManualCheck__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>To check for Manual Checks.</description>
         <externalId>false</externalId>
         <label>ManualCheck</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -2220,6 +2511,7 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>Market_Cluster_Name__c</fullName>
+        <description>To capture the name of the master cluster.</description>
         <externalId>false</externalId>
         <label>Market Cluster Name</label>
         <length>255</length>
@@ -2232,6 +2524,7 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>Market_Cluster__c</fullName>
+        <description>To capture the master cluster.</description>
         <externalId>false</externalId>
         <label>Market Cluster</label>
         <length>255</length>
@@ -2243,7 +2536,19 @@ OwnerId))</formula>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>MisAligned_Confirmed_By_Finance_Leader__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>MisAligned TLD Confirmed By Finance Leader</description>
+        <externalId>false</externalId>
+        <label>MisAligned Confirmed By Finance Leader</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Parent_Planned_Global_Contract_Date__c</fullName>
+        <description>To capture the parent planned charter document date.</description>
         <externalId>false</externalId>
         <formula>IPM_Parent_Project__r.Planned_Global_Contract_Date__c</formula>
         <label>Parent Planned Global Contract Date</label>
@@ -2271,6 +2576,7 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>Previous_Target_Launch_Date__c</fullName>
+        <description>To capture the previous target launch date of the project.</description>
         <externalId>false</externalId>
         <label>Previous Target Launch Date</label>
         <required>false</required>
@@ -2281,17 +2587,19 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>Project_Countries__c</fullName>
+        <description>To capture the countries related to the project.</description>
         <externalId>false</externalId>
         <label>Project Countries</label>
         <length>5000</length>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>Project_External_ID__c</fullName>
+        <description>External ID for the project.</description>
         <externalId>true</externalId>
         <label>Project External ID</label>
         <length>50</length>
@@ -2304,17 +2612,19 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>Project_Members__c</fullName>
+        <description>To capture the members of the project.</description>
         <externalId>false</externalId>
         <label>Project Members</label>
         <length>32768</length>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>Regional_Project_Leader_Name__c</fullName>
+        <description>To capture the name of the regional project leader.</description>
         <externalId>false</externalId>
         <formula>IPM_Parent_Project__r.IPM_Project_Leader__r.FirstName + &quot;  &quot; + IPM_Parent_Project__r.IPM_Project_Leader__r.LastName</formula>
         <label>Regional Project Leader Name</label>
@@ -2337,6 +2647,7 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>Ship_to_Trade_Milestone_Due_Date__c</fullName>
+        <description>To capture the due date of the ship to trade milestone.</description>
         <externalId>false</externalId>
         <label>Ship to Trade Milestone Due Date</label>
         <summarizedField>IPM_Milestone__c.IPM_Due_Date__c</summarizedField>
@@ -2353,6 +2664,7 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>Success_Timestamp_EcoDesign__c</fullName>
+        <description>When the project is synced with ecodesign sucessfully, it notes the date and time.</description>
         <externalId>false</externalId>
         <label>Success Timestamp EcoDesign</label>
         <required>false</required>
@@ -2364,6 +2676,7 @@ OwnerId))</formula>
     <fields>
         <fullName>Sustainability_Period_Changed__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Defines the change in number of Innovation years for the project</description>
         <externalId>false</externalId>
         <label>Sustainability Period Changed</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -2394,47 +2707,8 @@ OwnerId))</formula>
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>Sync_Countries__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Sync Countries</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Sync_Members__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Sync Members</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Sync_Project__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Sync Project</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Synced_From_EcoDesign_TimeStamp__c</fullName>
-        <externalId>false</externalId>
-        <label>Synced From EcoDesign TimeStamp</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>DateTime</type>
-    </fields>
-    <fields>
         <fullName>Upcoming_Milestone_Due_Date__c</fullName>
+        <description>To store the due date of the upcoming milestone.</description>
         <externalId>false</externalId>
         <label>Upcoming Milestone Due Date</label>
         <summarizedField>IPM_Milestone__c.IPM_Planned_Date__c</summarizedField>
@@ -2442,6 +2716,11 @@ OwnerId))</formula>
             <field>IPM_Milestone__c.IPM_Completed__c</field>
             <operation>equals</operation>
             <value>False</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Milestone__c.IPM_Type_of_Milestone__c</field>
+            <operation>equals</operation>
+            <value>Standard</value>
         </summaryFilterItems>
         <summaryForeignKey>IPM_Milestone__c.IPM_Project__c</summaryForeignKey>
         <summaryOperation>min</summaryOperation>
@@ -2452,6 +2731,7 @@ OwnerId))</formula>
     <fields>
         <fullName>Update_BET__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>To check if BET is updated.</description>
         <externalId>false</externalId>
         <label>Update BET</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -2460,17 +2740,8 @@ OwnerId))</formula>
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>existsAtLeastOneAssmntPerEICountry__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Exists At Least One Assmnt Per EICountry</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>update_on_change_of_ms_first_release_dat__c</fullName>
+        <description>To update on change of ms first release date.</description>
         <externalId>false</externalId>
         <label>update on change of ms first release dat</label>
         <length>255</length>
@@ -2604,11 +2875,6 @@ OwnerId))</formula>
             <operation>equals</operation>
             <value>IPM_Project__c.Clustering</value>
         </filters>
-        <filters>
-            <field>CREATEDBY_USER</field>
-            <operation>equals</operation>
-            <value>Gautam Bhatia</value>
-        </filters>
         <label>Original Projects</label>
     </listViews>
     <nameField>
@@ -2654,7 +2920,7 @@ OwnerId))</formula>
             <picklist>IPMPlatform__c</picklist>
             <values>
                 <fullName>Sample 1</fullName>
-                <default>true</default>
+                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -2795,6 +3061,17 @@ OwnerId))</formula>
             </values>
             <values>
                 <fullName>Stopped</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_Data_Migrated_Gate__c</picklist>
+            <values>
+                <fullName>Contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Market Ready</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3015,16 +3292,8 @@ OwnerId))</formula>
         <picklistValues>
             <picklist>IPM_Sub_sector__c</picklist>
             <values>
-                <fullName>MDW Machine Maintenance</fullName>
+                <fullName>None</fullName>
                 <default>false</default>
-            </values>
-            <values>
-                <fullName>Machine Dishwash Adjustment</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Machine Wash</fullName>
-                <default>true</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -3256,6 +3525,17 @@ OwnerId))</formula>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>IPM_Data_Migrated_Gate__c</picklist>
+            <values>
+                <fullName>Contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Market Ready</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>IPM_GateKeeping_Model__c</picklist>
             <values>
                 <fullName>GCLT %26 RCLT</fullName>
@@ -3413,7 +3693,7 @@ OwnerId))</formula>
             </values>
             <values>
                 <fullName>Original</fullName>
-                <default>true</default>
+                <default>false</default>
             </values>
             <values>
                 <fullName>Rollout</fullName>
@@ -3472,15 +3752,7 @@ OwnerId))</formula>
         <picklistValues>
             <picklist>IPM_Sub_sector__c</picklist>
             <values>
-                <fullName>MDW Machine Maintenance</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Machine Dishwash Adjustment</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Machine Wash</fullName>
+                <fullName>None</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

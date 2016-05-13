@@ -1,0 +1,321 @@
+   <labels>
+        <fullName>UW_ASSET_IN_TOOLKIT</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_ASSET_IN_TOOLKIT</shortDescription>
+        <value>This file is viewable in the toolkit</value>
+    </labels>
+    <labels>
+        <fullName>UW_ASSET_NOT_IN_TOOLKIT</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_ASSET_NOT_IN_TOOLKIT</shortDescription>
+        <value>This file is not viewable in the toolkit</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_AddMembers_Save_Success</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_AddMembers_Save_Success</shortDescription>
+        <value>Successfully added selected users to this BET</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_AddSelectedButton</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_AddSelectedButton</shortDescription>
+        <value>View Selected</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_Add_Internal_Members</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_Add_Internal_Members</shortDescription>
+        <value>Add Internal Members</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_BackButton</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_BackButton</shortDescription>
+        <value>Back</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_ConfirmMembers_Button</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_ConfirmMembers_Button</shortDescription>
+        <value>Add Selected</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_External_Chatter_Profile_Name</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_External_Chatter_Profile_Name</shortDescription>
+        <value>Chatter External User</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_GoToPageCommandLink</fullName>
+        <categories>BET 2.0 - TabHomePage</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_GoToPageCommandLink</shortDescription>
+        <value>View Site</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_Groups_Radio_Button</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_Groups_Radio_Button</shortDescription>
+        <value>Groups</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_HelpAndGuide_Button</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_HelpAndGuide_Button</shortDescription>
+        <value>HELP &amp; GUIDANCE</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_HelpAndGuide_Id</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_HelpAndGuide_Id</shortDescription>
+        <value>a0CE0000002iLITMA2</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_HelpAndGuide_Text</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_HelpAndGuide_Text</shortDescription>
+        <value>&lt;br/&gt;&lt;br/&gt;
+This is the place where Marketers collaborate together to deliver exceptional brand experiences in market.  If you need some help to get you started, or to access templates and materials click in the box below.&lt;br/&gt;&lt;br/&gt;</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_HelpAndGuide_WelcomeText</fullName>
+        <categories>BET 2.0 - TabHomePage</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_HelpAndGuide_WelcomeText</shortDescription>
+        <value>Welcome to Brand Experience</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_MANAGER_REQUIRED</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_MANAGER_REQUIRED</shortDescription>
+        <value>A BET Team must have at least one manager.</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_MembersAccesslevel_HelpText</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_MembersAccesslevel_HelpText</shortDescription>
+        <value>Full Brand Experience (Toolkit &amp; Studio) has access to both the toolkit and studio, Toolkit Experience (Toolkit only) has access to only the toolkit and External View (Chatter group only) has access to the Chatter Group only</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_MembersSelected_Count</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_MembersSelected_Count</shortDescription>
+        <value>Members selected:</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_Members_Radio_Button</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_Members_Radio_Button</shortDescription>
+        <value>Members</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_Next_Page</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_Next_Page</shortDescription>
+        <value>Next Page&gt;&gt;</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_NoAccess_HelpText</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_NoAccess_HelpText</shortDescription>
+        <value>Not all Chatter users have access to this Brand Experience App, if a member is already added they won&apos;t be displayed here</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_Previous_Page</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_Previous_Page</shortDescription>
+        <value>&lt;&lt;Previous Page</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_ReadMoreCommandLink</fullName>
+        <categories>BET 2.0 - TabHomePage</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_ReadMoreCommandLink</shortDescription>
+        <value>Read more...</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_SearchText_Error_MSG</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_SearchText_Error_MSG</shortDescription>
+        <value>Search term must contain at least 2 characters</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_Search_NoResult_Message</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_Search_NoResult_Message</shortDescription>
+        <value>No matching search results</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_TabHome_Heading</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_TabHome_Heading</shortDescription>
+        <value>BRAND &lt;span style=&quot;font:16px&quot;&gt;E&lt;/span&gt;XPERIENCE</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_Users_To_Show_In_List</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_Users_To_Show_In_List</shortDescription>
+        <value>20</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_membersRoleName_HelpText</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_membersRoleName_HelpText</shortDescription>
+        <value>Manager: Has full control of the toolkit, able to add users to the studio/toolkit, label &amp; promote files from studio. Member: Able to view toolkit and contribute to the studio.</value>
+    </labels>
+    <labels>
+        <fullName>UW_CANNOT_LAUNCH_WALL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_CANNOT_LAUNCH_WALL</shortDescription>
+        <value>You must be group owner or System Admin to launch the wall!</value>
+    </labels>
+    <labels>
+        <fullName>UW_CANNOT_MODIFY_PREFS</fullName>
+        <categories>Pinnovate</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_CANNOT_MODIFY_PREFS</shortDescription>
+        <value>You are not authorised to modify preferences</value>
+    </labels>
+    <labels>
+        <fullName>UW_CANNOT_PIN</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_CANNOT_PIN</shortDescription>
+        <value>You must be the chatter post owner to pin a video to the wall</value>
+    </labels>
+    <labels>
+        <fullName>UW_ERR_DUPE_BET_NAME</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_ERR_DUPE_BET_NAME</shortDescription>
+        <value>BET Name already used and caused a  duplicate Studio Group Name!</value>
+    </labels>
+    <labels>
+        <fullName>UW_OPEN_STUDIO_FROM_GROUP</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_OPEN_STUDIO_FROM_GROUP</shortDescription>
+        <value>This is the external view of the studio.
+For Unilever Internal users, use the links below to open the toolkit, brand &amp; studio.</value>
+    </labels>
+    <labels>
+        <fullName>UW_PINNOVATE_ALREADY_LAUNCHED</fullName>
+        <categories>Pinnovate</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_PINNOVATE_ALREADY_LAUNCHED</shortDescription>
+        <value>Pinnovate Wall already launched</value>
+    </labels>
+    <labels>
+        <fullName>UW_PINNOVATE_LAUNCHED</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_PINNOVATE_LAUNCHED</shortDescription>
+        <value>has launched the pinnovate wall. See the Link in the information section.</value>
+    </labels>
+    <labels>
+        <fullName>UW_SET_BACKGROUND_CMD</fullName>
+        <categories>Pinnovate</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_SET_BACKGROUND_CMD</shortDescription>
+        <value>#setbackground</value>
+    </labels>
+    <labels>
+        <fullName>UW_SET_HEADER_CMD</fullName>
+        <categories>Pinnovate</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_SET_HEADER_CMD</shortDescription>
+        <value>#setheader</value>
+    </labels>
+        <labels>
+        <fullName>uw_BET_Chattergrouparchived</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>uw_BET_Chattergrouparchived</shortDescription>
+        <value>This chatter group has been archived.Please contact your groupowner/manager for reactivation</value>
+    </labels>
+    <labels>
+        <fullName>uw_BET_Chattergrouplimit</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>uw_BET_Chattergrouplimit</shortDescription>
+        <value>Bet cannot be created because you are at the chatter group limit. To Join new group please leave/withdraw request from atleast 1 group</value>
+    </labels>
+    <labels>
+        <fullName>uw_BET_standardchatterlimitmessage</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>uw_BET_standardchatterlimitmessage</shortDescription>
+        <value>Maximum per user collaboration group limit reached.</value>
+    </labels>
+    <labels>
+        <fullName>uw_Inoplan_error_duplicateValue</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>User enters a project name which is already associated to another BET</shortDescription>
+        <value>Another BET is already linked to the Inoplan Project &apos;projectName&apos;. Every Inoplan project should have only one BET. The BET already associated to this project is &apos;BetName&apos;</value>
+    </labels>
+    <labels>
+        <fullName>uw_Inoplan_error_nullvalue</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>User doesn&apos;t enter any value for &apos;Inoplan Project Name&apos;</shortDescription>
+        <value>Please enter your Inoplan project name. If you do not have an Inoplan project please select No Inoplan Project</value>
+    </labels>
+    

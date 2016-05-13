@@ -392,7 +392,18 @@ span.expico {
     border-radius: 4px;
 }
 .searchBox {
-    width: 65%;
+    width: 28%;float: left;
+}
+.rollRegInfo{
+	float: left;
+	width: 69%;
+    
+	border: 1px solid #B0D2E6;
+    padding: 10px;
+    color: #007DBB;
+    border-radius: 4px;
+    text-indent: 30px;
+    background: url(../images/info_icon.png) no-repeat 12px 10px #E5F8FF;
 }
 .mb20 {
     margin-bottom: 20px;
@@ -827,3 +838,4 @@ a.noDecoration:hover {
 .placeholder {
     color: #aaa !important;
 }
+.delTaskGatebtn{margin-right:15px;}

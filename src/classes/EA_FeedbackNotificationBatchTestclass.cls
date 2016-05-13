@@ -46,7 +46,7 @@ private class EA_FeedbackNotificationBatchTestclass{
        List<EA_Team_Member__c> EA = new List<EA_Team_Member__c >();
        for (Integer i=0;i<10;i++) {
            EA_Team_Member__c team= new EA_Team_Member__c (
-           Activity_Due_Date__c=system.today(),
+           Activity_Due_Date__c=system.today()-1,
             Activity_Due_Day__c='Today',
             Activity_Points__c=5,
             Everyday_Activity__c=event.id,
@@ -60,12 +60,15 @@ private class EA_FeedbackNotificationBatchTestclass{
            EA.add(team);
        }
        insert EA;
+        
+        
 
        Test.startTest();
        
            EA_FeedbackNotificationBatch  fnb = new EA_FeedbackNotificationBatch ();
           
            Id batchprocessId = Database.executeBatch(fnb);  
+         
            
        Test.stopTest();
 

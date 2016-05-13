@@ -134,7 +134,7 @@ function addAllNewMembers(){
 		}
 		addNewMembers(selectedUsers);
 		lockUI();
-		clearSearchByNameField();
+		//clearSearchByNameField();
 	}
 }
 

@@ -46,7 +46,7 @@ private class BET_ManageMembersController_Test {
     ApexPages.StandardController ctr = new ApexPages.StandardController(new BET_Member_Request__c());
     BET_ManageMembersController controller = new BET_ManageMembersController(ctr);
 
-    List<User> users = [select id from User where isActive = true and id !=: UserInfo.getUserId() limit 2];
+    List<User> users = BET_TestUtils.createUserSystemAdmin(1);
 
     List<BET_Member_Request__c> rmembers = [select id from BET_Member_Request__c where Brand_Experience_Toolkit__c=:testBET.id and Status__C =: APROVED_STATUS];
 
@@ -72,8 +72,6 @@ private class BET_ManageMembersController_Test {
     ApexPages.StandardController ctr = new ApexPages.StandardController(new BET_Member_Request__c());
     BET_ManageMembersController controller = new BET_ManageMembersController(ctr);
 
-    List<User> users = [select id from User where isActive = true and id !=: UserInfo.getUserId() limit 2];
-
     List<BET_Member_Request__c> rmembers = [select id from BET_Member_Request__c where Brand_Experience_Toolkit__c=:testBET.id and Status__C =: APROVED_STATUS];
     Test.startTest();
     System.assert(rmembers.isEmpty(),NO_MEMBER_REQUEST_MESSAGE);
@@ -95,8 +93,6 @@ private class BET_ManageMembersController_Test {
     ApexPages.currentPage().getParameters().put(BET_PARAM,testBET.Id);
     ApexPages.StandardController ctr = new ApexPages.StandardController(new BET_Member_Request__c());
     BET_ManageMembersController controller = new BET_ManageMembersController(ctr);
-
-    List<User> users = [select id from User where isActive = true and id !=: UserInfo.getUserId() limit 2];
 
     List<BET_Member_Request__c> rmembers = [select id from BET_Member_Request__c where Brand_Experience_Toolkit__c=:testBET.id and Status__C =: APROVED_STATUS];
     Test.startTest();
@@ -227,7 +223,7 @@ private class BET_ManageMembersController_Test {
     List<uw_BET_Team_Member__c> members = [select id from uw_BET_Team_Member__c where BET__C=:testBET.id];
     System.assertEquals(members.size(),1,ONE_MEMBER_MESSAGE);
 
-    List<User> users = [select id from User where isActive = true and id !=: UserInfo.getUserId() limit 2];
+    List<User> users = BET_TestUtils.createUserSystemAdmin(1);
 
     uw_BET_Team_Member__c member = new uw_BET_Team_Member__c(BET__C=testBET.id,Team_Member__c=users.get(0).id);
     insert member;
@@ -261,7 +257,7 @@ private class BET_ManageMembersController_Test {
     Test.startTest();
     System.assertEquals(members.size(),1,ONE_MEMBER_MESSAGE);
 
-    List<User> users = [select id from User where isActive = true and id !=: UserInfo.getUserId() limit 2];
+    List<User> users = BET_TestUtils.createUserSystemAdmin(1);
 
     uw_BET_Team_Member__c member = new uw_BET_Team_Member__c(BET__C=testBET.id,Team_Member__c=users.get(0).id);
     insert member;
@@ -294,7 +290,7 @@ private class BET_ManageMembersController_Test {
   @isTest private static void updateMemberRoleTest(){
     uw_Bet__c testBET = BET_TestUtils.getTestBet();
     insert testBET;
-    List<User> users = [select id from User where isActive = true and id !=: UserInfo.getUserId() limit 2];
+    List<User> users = BET_TestUtils.createUserSystemAdmin(1);
     uw_BET_Team_Member__c member = new uw_BET_Team_Member__c(BET__C=testBET.id,Team_Member__c=users.get(0).id,Role__c = 'Member');
     insert member;
     BET_ManageMembersController.updateMemberRole(String.valueOf(member.id),'Manager');

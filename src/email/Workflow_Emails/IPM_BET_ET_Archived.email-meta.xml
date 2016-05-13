@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>IPM_BET_ET_Archived</name>
+    <style>none</style>
+    <subject>IPM Project&apos;s Linked BET archived.</subject>
+    <textOnly>The BET {!IPM_Project__c.BET_Archived_BET_Text__c} that your IPM project {!IPM_Project__c.Name} is linked to has been archived in the BET system. Please contact the BET Owner if this is in error.</textOnly>
+    <type>custom</type>
+</EmailTemplate>

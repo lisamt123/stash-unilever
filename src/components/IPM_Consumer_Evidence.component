@@ -17,9 +17,11 @@
         <div class="row noMargin"> 
             <div class="col-sm-12 selectBackground">
                 <div class="noPadleft channelText">
+                	<!-- Condition for checking editable -->
                     <apex:outputText value="{!$Label.IPM_Select_Countries}" rendered="{!isEditable}"/>
                 </div>
                 <apex:outputPanel id="channelListDropDown" layout="block" styleClass="col-sm-5 dropdown consumerDropdown ipmDropDown noPadleft">
+                    <!-- Condition for checking editable -->
                     <apex:outputPanel rendered="{!isEditable}">
                     <apex:outputPanel html-data-toggle="dropdown">
                         <div class="customerSelect">
@@ -61,11 +63,14 @@
                                                 <span class='expico fa fa-minus'></span><span class="todoSubhead">{!evidenceCountry}</span>
                                             </div>
                                         </div>
+                                        <!-- Condition for checking editable -->
                                         <apex:outputPanel styleClass="pull-left" layout="block" rendered="{!isEditable}">
                                             <div class="SecButtonSet noPadright noMtop">
-                                                <apex:commandLink styleClass="icoButton delete deleteCountry" title="Remove Country" onclick="deleteCountry('{!evidenceCountry}','{!projDocSecId}');" rendered="{!isEditable}"> </apex:commandLink>
+                                            	<!-- Condition for checking editable -->
+                                                <a class="icoButton delete deleteCountry" title="Remove Country" onclick="deleteCountry('{!evidenceCountry}','{!projDocSecId}');" rendered="{!isEditable}"></a>
                                             </div>
                                         </apex:outputPanel>
+                                        <!-- Condition for checking editable -->
                                         <apex:outputPanel rendered="{!isEditable}">
                                         <div class="conceptLink pull-right" onClick="addCon('{!evidenceCountry}','{!projDocSecId}');" >
                                             <span >{!$Label.IPM_Add_Concept}</span>
@@ -74,34 +79,44 @@
                                     </div>
                                     <div class="ipmAcrdnExpand">  
                                         <apex:repeat value="{!consumerEvidenceList}" var="evi">
+                                        	<!-- Condition for checking the country name -->
                                             <apex:outputPanel layout="block" rendered="{!evi.IPM_Consumer_Evidence_Country__c=evidenceCountry}">
                                                 <div class="col-sm-12 noPadleft noPadright consumerImgContainer clearfix">
                                                     <div class="ceInfoContainer">
                                                         
                                                         <apex:outputPanel layout="block" styleClass="pull-left delTitlecon"> 
-                                                            <span >{!evi.IPM_Consumer_Evidence_Concept_Name__c}</span>
-                                                            <apex:commandLink styleClass="icoButton delete floatR deleteConcept" title="Remove Concept" onclick="deleteconcept('{!evidenceCountry}','{!projDocSecId}','{!evi.Id}');" rendered="{!AND(isEditable,evi.IPM_Consumer_Evidence_Gate__c=gateType)}"></apex:commandLink>
+                                                            <span >{!evi.IPM_Consumer_Evidence_Concept_Name__c} {!evi.IPM_Consumer_Evidence_Priority__c}</span>
+                                                            <!-- Condition for checking editable and gate type -->
+                                                            <apex:outputPanel rendered="{!AND(isEditable,evi.IPM_Consumer_Evidence_Gate__c=gateType)}">
+                                                                <a class="icoButton delete floatR deleteConcept" title="Remove Concept" onclick="deleteconcept('{!evidenceCountry}','{!projDocSecId}','{!evi.Id}','{!evi.IPM_Consumer_Evidence_Priority__c}');"></a>
+                                                            </apex:outputPanel>
                                                         </apex:outputPanel>
                                                         <div class="ceImage ceImageBig">
                                                             <apex:outputPanel layout="block" >
+                                                            	<!-- Condition for displaying image with hyper link -->
                                                                 <apex:outputPanel layout="block"  styleClass="uploadImage uploadImagebig" rendered="{!AND(evi.IPM_Consumer_Evidence_Image__c=null,isEditable,evi.IPM_Consumer_Evidence_Gate__c=gateType)}">
                                                                     <div class="consumerimgloader" title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}" value="{!$Page.IPM_ConsumerEvidenceImageUpload}?Id={!projectId}&projDocSecId={!projDocSecId}&projDocSecConId={!evi.Id}" id="consumerImage" data-target="#ipmModal" data-toggle="modal" data-keyboard="false" data-backdrop="static">
                                                                         <apex:image value="{!URLFOR($Resource.IPM_Resource, 'images/pro_placeholder.png')}" styleClass="ipmImage cursordefault" title="Click to Upload Image"  /> 
                                                                     </div>
                                                                 </apex:outputPanel> 
+                                                                <!-- Condition for displaying image -->
                                                                 <apex:outputPanel layout="block" styleClass="uploadImage uploadImagebig" rendered="{!evi.IPM_Consumer_Evidence_Image__c!=null}">      
                                                                     <apex:image value="/servlet/servlet.FileDownload?file={!evi.IPM_Consumer_Evidence_Logo_Id__c }" styleClass="ipmImage cursordefault" title="Click to Upload Image"/>
+                                                                    <!-- Condition for displaying image with hyper link -->
                                                                     <c:IPM_Image_Hover component="{!$Label.IPM_Consumer_Evidence}" imageHover="true" projectId="{!projectId}" projDocSecId="{!projDocSecId}" contentId="{!evi.Id}" rendered="{!AND(isEditable,evi.IPM_Consumer_Evidence_Gate__c=gateType)}"></c:IPM_Image_Hover>
                                                                 </apex:outputPanel>
                                                             </apex:outputPanel> 
                                                         </div>
                                                         <div class="ceCommentBox marginL0">  
+                                                        	<!-- Condition for checking editable and gate type -->
                                                             <apex:inputTextArea value="{!evi.IPM_Consumer_Evidence_Comments__c}" html-placeholder="Enter your comment here" styleClass="smallTextarea" onChange="saveComment('{!evi.Id}',this.value)" rendered="{!AND(isEditable,evi.IPM_Consumer_Evidence_Gate__c=gateType)}"/>
+                                                            <!-- Condition for checking read only or gate type -->
                                                             <apex:outputField value="{!evi.IPM_Consumer_Evidence_Comments__c}" styleClass="smallTextarea" rendered="{!OR(!isEditable,evi.IPM_Consumer_Evidence_Gate__c!=gateType)}"/>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </apex:outputPanel>
+                                            <!-- Condition for checking editable -->
                                             <apex:outputPanel layout="block" rendered="{!isEditable}">
                                                 <div id="ipmConceptModalDelete" class="modal fade">
                                                     <div class="modal-dialog">
@@ -114,7 +129,7 @@
                                                                 <div class="container-fluid">
                                                                     <div class="row">    
                                                                         <div class="col-sm-12">
-                                                                            <span class="skipDesc">{!$Label.IPM_Remove_Country}</span>
+                                                                            <span class="skipDesc">{!$Label.IPM_Remove_CMI}</span>
                                                                             <span>{!$Label.IPM_CMI_NOTE}</span>
                                                                         </div>
                                                                         <div class="deleteButtoncontainer txtAlignright pull-right"> 
@@ -137,6 +152,7 @@
                                         </apex:repeat>
                                     </div>
                                 </apex:outputPanel>
+                                <!-- Condition for checking editable -->
                                 <apex:outputPanel layout="block" rendered="{!isEditable}">
                                     <div id="ipmCountryModalDelete" class="modal fade">
                                         <div class="modal-dialog">
@@ -150,7 +166,7 @@
                                                         <div class="row">    
                                                             <div class="col-sm-12">
                                                                 <span class="skipDesc">{!$Label.IPM_Remove_Country}</span>
-                                                                <span>{!$Label.IPM_CMI_NOTE}</span>
+                                                                <span>{!$Label.IPM_CONCEPT_REMOVE_NOTE}</span>
                                                             </div>
                                                             <div class="deleteButtoncontainer txtAlignright pull-right"> 
                                                                 <div class="noPadright buttonMarginRight pull-left">
@@ -194,6 +210,7 @@
         <apex:param name="parama" assignTo="{!deleteCountry}" value=""/>
         <apex:param name="paramb" assignTo="{!projDocSecId}" value=""/>
         <apex:param name="paramc" assignTo="{!projDocSecConId}" value=""/>
+        <apex:param name="paramd" assignTo="{!priorityNumber}" value=""/>
     </apex:actionFunction>  
     <apex:actionFunction status="Loading" name="addNew" action="{!addConcept}" reRender="selectCheckboxScript,channelListDropDown,conceptSection,consumerEvidenceimgUpdate" oncomplete="selectCheckboxScript();">
         <apex:param name="parameter1" assignTo="{!addCountryConcept}" value=""/>

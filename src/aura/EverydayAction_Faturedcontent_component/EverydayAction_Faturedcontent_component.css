@@ -17,6 +17,9 @@
     margin-left: 40px;
     
 }
+.THIS td.com_table_td_list ul li {
+    font-size: 1.4rem;
+}
 .THIS .imageBorder {
    
     background: white;
@@ -43,13 +46,19 @@
 }
 .THIS .Para-content {
     font-size: 14px;
-  padding: 4px;
-  line-height: 1.25;
-  font-weight: 400;
-  margin-top: 10px;
-  width: 95%;
-  margin-left: 2.5%;
+    padding: 4px;
+    line-height: 1.25;
+    font-weight: 400;
+    margin-top: 10px;
+    width: 89%;
+    margin-left: 5%;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e5e5;
        
+}
+.THIS .Para-content:last-child {
+    border-bottom: 0;
 }
 .THIS .divider {
     height: 1px;
@@ -117,7 +126,7 @@
     width: 30px;
     height: 30px;
     border-radius: 100px;  
-    margin-left:0;
+	margin-left:5%;
     
 }
 .THIS .subTitle{
@@ -136,5 +145,5 @@
     width:75%;
 }
 .THIS .com_table_td_pic{
-    width:15%;
+    width:12%;
 }

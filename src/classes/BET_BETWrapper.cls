@@ -40,6 +40,8 @@ public with sharing class BET_BETWrapper {
     public Id brandPosition{get;set;}
     //Id of BET owner user
     public Id brand{get;set;}
+    //Date of launch
+    public Datetime targetLaunchDate{get;set;}
     
     
     /************************************************************
@@ -110,6 +112,7 @@ public with sharing class BET_BETWrapper {
         this.category               = tmpBet.Product_Category__c;
         this.brandPosition          = tmpBet.Brand_Position__c;
         this.brand                  = tmpBet.Product_Brand__c;
+        this.targetLaunchDate       = tmpBet.Launch_Date__c;
 
         system.debug('Exiting betToWrapper');
     }
@@ -145,6 +148,7 @@ public with sharing class BET_BETWrapper {
         this.category               = bsi.category;
         this.brandPosition          = bsi.brandPosition;
         this.brand                  = bsi.brand;
+        this.targetLaunchDate       = bsi.betLaunchDate;
 
         system.debug('Exiting betSearchItemToBetWrapper');
     }

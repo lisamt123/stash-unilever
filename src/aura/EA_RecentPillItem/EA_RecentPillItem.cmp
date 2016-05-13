@@ -6,8 +6,7 @@
     <aura:attribute name="selectedItem" type="String[]" description="To map selected details"/>
     <aura:attribute name="maxLimit" type="Integer" description="To limit selection" />
     <span  onclick="{!c.update}">
-        <!--a href="javascript:void(0);"><span class="invt_lst">{!v.itemName}</span></a-->
-        <span class="invt_lst">{!v.itemName}</span>
-	</span>
+        <a href="javascript:void(0);"><span class="invt_lst">{!v.itemName}</span></a>
+    </span>
        
 </aura:component>

@@ -126,7 +126,7 @@
                         <div class="col-sm-4 pull-right expandMarginTop expandTool noPadright">
                             <span class="expandAll">{!$Label.IPM_EXPAND_ALL}</span> | <span class="collapseAll">{!$Label.IPM_COLLAPSE_ALL}</span>
                         </div>
-                        <apex:actionfunction name="DeleteMember" action="{!DeleteAssignedmembers}" status="teamDelete" reRender="frm,refreshlst,gotomiles" onComplete="renderaccrdn();">
+                        <apex:actionfunction name="DeleteMember" action="{!DeleteAssignedmembers}" status="teamDelete" reRender="frm,ResCount,refreshlst,gotomiles" onComplete="renderaccrdn();">
                             <apex:param assignTo="{!IPMResourceId}" value="" name="Resourceid"/>
                         </apex:actionfunction>
                         <div class="ipmAccordion">
@@ -134,36 +134,38 @@
                                 <div class="teamContainer">
                                     <div class="pHead">
                                         <span class='expico fa fa-minus'></span>
-                                        <span class="teamHead">
-                                            <apex:outputtext value="{!$Label.IPM_BD_Marketing}" rendered="{! if(uRole='BD','true','false')}"/>
-                                            <apex:outputtext value="{!$Label.IPM_Brand_Builders_BB}" rendered="{! if(uRole='BB','true','false')}"/>
-                                            <apex:outputtext value="{!$Label.IPM_Customer_Development_CD}" rendered="{! if(uRole='CD','true','false')}"/>
-                                            <apex:outputtext value="{!$Label.IPM_Consumer_Marketing_Insight_CMI}" rendered="{! if(uRole='CMI','true','false')}"/>
-                                            <apex:outputtext value="{!$Label.IPM_Brand_Development_Finance_BD_Finance}" rendered="{! if(uRole='Finance','true','false')}"/>
-                                            <apex:outputtext value="{!$Label.IPM_Supply_Chain_SC}" rendered="{! if(uRole='Supply Chain','true','false')}"/>
-                                            <apex:outputtext value="{!$Label.IPM_Research_and_Development_R_D}" rendered="{! if(uRole='R&D','true','false')}"/> 
-                                            <apex:outputtext value="{!$Label.IPM_Guest}" rendered="{! if(uRole='Guest','true','false')}"/>
-                                        </span>
-                                        <span class="teamCount">
-                                            <apex:outputtext value="{!countBB}" rendered="{! if(uRole='BB','true','false')}"/>
-                                            <apex:outputtext value="{!countBD}" rendered="{! if(uRole='BD','true','false')}"/>
-                                            <apex:outputtext value="{!countCD}" rendered="{! if(uRole='CD','true','false')}"/>
-                                            <apex:outputtext value="{!countCMI}" rendered="{! if(uRole='CMI','true','false')}"/>
-                                            <apex:outputtext value="{!countFinance}" rendered="{! if(uRole='Finance','true','false')}"/>
-                                            <apex:outputtext value="{!countSupplyChain}" rendered="{! if(uRole='Supply Chain','true','false')}"/>
-                                            <apex:outputtext value="{!countReDev}" rendered="{! if(uRole='R&D','true','false')}"/> 
-                                            <apex:outputtext value="{!countGuest}" rendered="{! if(uRole='Guest','true','false')}"/>
-                                        </span>
-                                        <span class="tMembers"> 
-                                            {!$Label.IPM_Team_Member}                                              
-                                        </span>
-                                        <apex:outputPanel styleClass="SecButtonSet" rendered="{!if(uRole='Guest',true,false)}">
-                                            <a class="icoButton info" title="{!$Label.IPM_Read_Gate_Documents}"></a>
-                                        </apex:outputPanel>
-                                        <apex:outputPanel styleClass="SecButtonSet" rendered="{!if(uRole<>'Guest',true,false)}">
-                                            <a class="icoButton info" title="{!$Label.IPM_Function_Leader_is_responsible}"></a>
-                                        </apex:outputPanel>
-                                                                                        
+                                        <apex:outputPanel id="ResCount">
+                                            <span class="teamHead">
+                                                <apex:outputtext value="{!$Label.IPM_BD_Marketing}" rendered="{! if(uRole='BD','true','false')}"/>
+                                                <apex:outputtext value="{!$Label.IPM_Brand_Builders_BB}" rendered="{! if(uRole='BB','true','false')}"/>
+                                                <apex:outputtext value="{!$Label.IPM_Customer_Development_CD}" rendered="{! if(uRole='CD','true','false')}"/>
+                                                <apex:outputtext value="{!$Label.IPM_Consumer_Marketing_Insight_CMI}" rendered="{! if(uRole='CMI','true','false')}"/>
+                                                <apex:outputtext value="{!$Label.IPM_Brand_Development_Finance_BD_Finance}" rendered="{! if(AND(uRole='Finance',IPM_proj.IPMProject_Span__c!='Local'),'true','false')}"/>
+                                               <apex:outputtext value="{!$Label.IPM_BRAND_BUILDING_FINANCE}" rendered="{! if(AND(uRole='Finance',IPM_proj.IPMProject_Span__c='Local'),'true','false')}"/>
+                                                <apex:outputtext value="{!$Label.IPM_Supply_Chain_SC}" rendered="{! if(uRole='Supply Chain','true','false')}"/>
+                                                <apex:outputtext value="{!$Label.IPM_Research_and_Development_R_D}" rendered="{! if(uRole='R&D','true','false')}"/> 
+                                                <apex:outputtext value="{!$Label.IPM_Guest}" rendered="{! if(uRole='Guest','true','false')}"/>
+                                            </span>
+                                            <span class="teamCount">
+                                                <apex:outputtext value="{!countBB}" rendered="{! if(uRole='BB','true','false')}"/>
+                                                <apex:outputtext value="{!countBD}" rendered="{! if(uRole='BD','true','false')}"/>
+                                                <apex:outputtext value="{!countCD}" rendered="{! if(uRole='CD','true','false')}"/>
+                                                <apex:outputtext value="{!countCMI}" rendered="{! if(uRole='CMI','true','false')}"/>
+                                                <apex:outputtext value="{!countFinance}" rendered="{! if(uRole='Finance','true','false')}"/>
+                                                <apex:outputtext value="{!countSupplyChain}" rendered="{! if(uRole='Supply Chain','true','false')}"/>
+                                                <apex:outputtext value="{!countReDev}" rendered="{! if(uRole='R&D','true','false')}"/> 
+                                                <apex:outputtext value="{!countGuest}" rendered="{! if(uRole='Guest','true','false')}"/>
+                                            </span>
+                                            <span class="tMembers"> 
+                                                {!$Label.IPM_Team_Member}                                              
+                                            </span>
+                                            <apex:outputPanel styleClass="SecButtonSet" rendered="{!if(uRole='Guest',true,false)}">
+                                                <a class="icoButton info" title="{!$Label.IPM_Read_Gate_Documents}"></a>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel styleClass="SecButtonSet" rendered="{!if(uRole<>'Guest',true,false)}">
+                                                <a class="icoButton info" title="{!$Label.IPM_Function_Leader_is_responsible}"></a>
+                                            </apex:outputPanel>
+                                        </apex:outputPanel>                                                
                                     </div>
                                                 <div class="ipmAcrdnExpand">
                                                     <div class="col-sm-12 noPadleft teamSpacing">
@@ -172,6 +174,7 @@
                                                                 <apex:outputpanel id="displayAissgnedM" rendered="{!IF(AND(uRole=lstMem.IPM_Role_Type__c) , 'true', 'false') }">
                                                                     <div class="custPosition noPadleft">
                                                                         <div class="memContainer">                                                                   
+                                                                        <!-- If Logged in user is core team member and user role is login user type then User can delete the member  -->                                                               
                                                                             <apex:outputPanel rendered="{! if(OR(isCoreMemEditable=true,uRole=loginusertype),'true','false')}">
                                                                                
                                                                                  <div class="SecButtonSet teamMemberButton" data-toggle="modal" data-target="#ipmModalDelete" title="Delete Member" data-backdrop="static" data-keyboard="false">

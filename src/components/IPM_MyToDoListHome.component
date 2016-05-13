@@ -21,12 +21,14 @@
         <div class="row">
             <div class="col-sm-12">
                 <apex:outputPanel id="noToDoPanel">
+                <!--Comment : If task records that should be shown on home page are zero then display message to user  -->
                 <apex:outputpanel rendered="{! if(AND(setCon.ResultSize==0,setControl.ResultSize==0, setCont.ResultSize==0),'true','false')}">
                     <div class="noRecordsMsg">{!$Label.IPM_NO}
                         {!$Label.IPM_Home_Todo}</div>
                     </apex:outPutPanel>
                     </apex:outputPanel>
                     <apex:outputPanel id="completePanel">
+                    <!--Comment : If task records that should be shown on home page are are greater than zero , then tasks should be visible on page  -->
                     <apex:outputpanel rendered="{! if(OR(setCon.ResultSize > 0,setControl.ResultSize > 0, setCont.ResultSize > 0),'true','false')}">
                         <div class="ipmAccordion">
                 <apex:outputPanel id="overduePanel">
@@ -75,6 +77,7 @@
             </div>
         </div>
         </apex:repeat>
+        <!--Comment : if total no. of records are greater than no. of records shown on one page and tasks are not completed then pagination is visible  -->
         <apex:outputPanel id="overduePagination" rendered="{!if(setCon.ResultSize > setCon.PageSize && isCompleteTasks != 'Yes',true,false)}">  
             <table class="table ipmTable paginationTable">
                 <tbody>
@@ -166,6 +169,7 @@
                 </div>
             </div>
         </apex:repeat>
+        <!--Comment : if total no. of records are greater than no. of records shown on one page and tasks are not completed then pagination is visible  -->
         <apex:outputPanel id="todayTskPagination" rendered="{!if(setControl.ResultSize > setControl.PageSize && isCompleteTasks != 'Yes',true,false)}"> 
             <table class="table ipmTable paginationTable">
                 <tbody>

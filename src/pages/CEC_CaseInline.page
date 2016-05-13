@@ -16,7 +16,7 @@
 
 <apex:page id="page" standardController="case" showHeader="false" extensions="CEC_CaseInlineController">
     <apex:stylesheet value="{!URLFOR($Resource.cec_TypeaheadStyles, 'cec_TypeaheadStyles.css')}"/>
-    <apex:includeScript value="/support/console/30.0/integration.js"/>    
+    <apex:includeScript value="/support/console/34.0/integration.js"/>    
     <apex:pageMessages />
     <apex:form id="form">
         <apex:pageBlock id="pageBlock" mode="maindetail">      
@@ -59,18 +59,22 @@
                 </apex:pageBlockSectionItem>
             </apex:pageBlockSection>
             
-            <apex:pageBlockSection columns="2">
+            <apex:pageBlockSection columns="3">
                 <apex:pageBlockSectionItem >
-                    <apex:commandLink value="{!$Label.CEC_Missing_Information}" action="{!toggleMissingInfoDisplay}" reRender="MissingInfoSectionOuter"/>
-                </apex:pageBlockSectionItem>  
+                    <apex:commandLink value="{!$Label.CEC_Missing_Information}" onclick="callCountryVerbatimValidation();" action="{!toggleMissingInfoDisplay}" reRender="MissingInfoSectionOuter"/>
+                </apex:pageBlockSectionItem> 
                 <apex:pageBlockSectionItem id="ProductButton">
                     <!--<apex:image value="{!$Resource.CEC_Recommended_Products}" title="Recommended Products" height="25" width="25" onclick="return popitup('/apex/CEC_ProductRange?id={!$CurrentPage.parameters.id}')"/>-->
                     <apex:commandLink value="{!$Label.CEC_RecommendedProducts}" onclick="return popitup('/apex/CEC_ProductRange?id={!$CurrentPage.parameters.id}')"/>
-                </apex:pageBlockSectionItem>          
+                    <apex:outputLabel ></apex:outputLabel>
+                </apex:pageBlockSectionItem> 
+                <apex:pageBlockSectionItem id="ProductLocator">
+                    <apex:commandLink value="{!$Label.CEC_ProductLocator}" onclick="return popitup('/apex/CEC_IRIProductLocator?id={!$CurrentPage.parameters.id}')"/>
+                </apex:pageBlockSectionItem> 
             </apex:pageBlockSection>
 
             
-            <apex:outputPanel id="MissingInfoSectionOuter" layout="block">
+            <apex:outputPanel id="MissingInfoSectionOuter" layout="block" rendered="{!!isEmptyCountryVerbatimCheck}">
                 <apex:pageBlockSection id="MissingInfoSection" columns="2" rendered="{!missingInfoSectionDisplay}">
                     <apex:outputLabel value="{!$Label.CEC_Detail_Request_Info}"/>          
                     <apex:outputLabel value=""/>  
@@ -113,8 +117,8 @@
                 <apex:pageBlockSectionItem id="OtherDetailsInner">
                     <apex:outputlabel value="{!$ObjectType.case.Fields.Production_Code__c.label}"/>
                     <apex:actionRegion immediate="false">
-                        <apex:inputField value="{!caseRecord.Production_Code__c}" styleClass="productionCodeInputBox">
-                            <apex:actionSupport event="onchange" action="{!processProductionCode}" status="displaystatus" immediate="false" reRender="DaycodeSection,DateOfPurchaseSection" oncomplete="displayPopupAlert({!popupAlertCheck},'{!popupAlertMsg}')"/>
+                        <apex:inputField value="{!caseRecord.Production_Code__c}" styleClass="productionCodeInputBox" onclick="callCountryVerbatimValidation();">
+                            <apex:actionSupport event="onchange" action="{!processProductionCode}" status="displaystatus" immediate="false" reRender="DaycodeSection,DateOfPurchaseSection" oncomplete="checkAlertAction({!popupAlertCheck},{!questionnaireAlertCheck},'{!popupAlertMsg}')"/>
                         </apex:inputField>
                     </apex:actionRegion> 
                 </apex:pageBlockSectionItem>
@@ -144,74 +148,75 @@
             </apex:outputpanel>
         </apex:pageBlock>
         <apex:actionFunction name="callProcessProdCode" action="{!processProductionCode}" />
-        <apex:actionFunction name="callUpdateReasonHierarchy" action="{!updateReasonHierarchy}" rerender="ReasonHierarchy,KnowledgeArticles" oncomplete="displayPopupAlert({!popupAlertCheck},'{!popupAlertMsg}')"/>
-        <apex:actionFunction name="callUpdateProductHierarchy" action="{!updateProductHierarchy}" rerender="ProductHierarchy,KnowledgeArticles" oncomplete="displayPopupAlert({!popupAlertCheck},'{!popupAlertMsg}')"/>
+        <apex:actionFunction name="callUpdateReasonHierarchy" action="{!updateReasonHierarchy}" rerender="ReasonHierarchy,KnowledgeArticles" oncomplete="checkAlertAction({!popupAlertCheck},{!questionnaireAlertCheck},'{!popupAlertMsg}')"/>
+        <apex:actionFunction name="callUpdateProductHierarchy" action="{!updateProductHierarchy}" rerender="ProductHierarchy,KnowledgeArticles" oncomplete="checkAlertAction({!popupAlertCheck},{!questionnaireAlertCheck},'{!popupAlertMsg}')"/>
     </apex:form>
     <script src = "/soap/ajax/28.0/connection.js" type = "text/javascript"/>
     <script language="javascript" type = "text/javascript" >
-
         function refreshPrimaryTab() {
             sforce.console.getFocusedPrimaryTabId(doRefresh);
         }
-
         var doRefresh = function doRefresh(result) {
             sforce.console.refreshPrimaryTabById(result.id, true, refreshSuccess);
         };
-
         var refreshSuccess = function refreshSuccess(result) {
-            // Display error if refresh tab is not successful
             if (result.success != true) {
                 alert('{!$Label.CEC_NewCaseError_BeforeAddNewArticle}');
             }
         };
-
-        function closeTab() {
-            sforce.console.getEnclosingTabId(closeSubtab);
-        }
-
-        var closeSubtab = function closeSubtab(result) {
-            var tabId = result.id;
-            sforce.console.closeTab(tabId);
-        };
-
         function checkForValidReasonCode() {
+            callCountryVerbatimValidation();
             var reasonIdVal = document.getElementById("page:form:pageBlock:reasonId").value;
             if (reasonIdVal != '' && reasonIdVal.length == 18) {
                 callUpdateReasonHierarchy();
             }
         }
-
         function checkForValidProductCode() {
+            callCountryVerbatimValidation();
             var productIdVal = document.getElementById("page:form:pageBlock:productId").value;
             if (productIdVal != '' && productIdVal.length == 18) {
                 callUpdateProductHierarchy();
             }
         }
-        function openCaseinPrimarytab(caseIdentity, caseNumber) {
-            sforce.console.openPrimaryTab(null, '/' + caseIdentity, true);
+        function checkUpdatePacksizeAvailabilityDetails(){
+            callCountryVerbatimValidation();
+            updatePacksizeAvailabilityDetails();
         }
-        function refreshPage() {
-            sforce.console.getPrimaryTabIds(refreshPrimaryCase);
+        function callCountryVerbatimValidation() {
+            if({!isEmptyCountryVerbatimCheck}){
+                exceptionMsg = '{!$Label.CEC_CaseCountryVerbitimMessage}'; 
+                checkAlertAction(true, false, exceptionMsg);          
+            }
         }
-        function refreshPrimaryCase(result) {
-            var primaryCaseIds = result.ids;
-            sforce.console.refreshPrimaryTabById(primaryCaseIds[0], true);
-        }
-
         // Open Knowledge Article in primary tab
         function openArticleinPrimarytab(articleIdentity) {
             sforce.console.openPrimaryTab(null, '/' + articleIdentity, true);
         }
-        function displayPopupAlert(popupAlertCheck, popupAlertMsg){
+        function checkAlertAction(popupAlertCheck, questionnaireAlertCheck, popupAlertMsg){
             if(popupAlertCheck){
                 alert(popupAlertMsg);
             }
+            if(questionnaireAlertCheck) {
+                focusCaseActionTab();
+            }           
         }
-    //open the Product Range visualforce page in a popup.
+        function focusCaseActionTab() {
+            sforce.console.focusSidebarComponent(JSON.stringify({componentType: 'VISUALFORCE', pageName: 'CEC_CaseActions'}),"",true);
+            sforce.console.getFocusedPrimaryTabId(doPrimaryTabRefresh);            
+        }
+        var doPrimaryTabRefresh = function doPrimaryTabRefresh(result) {
+            sforce.console.refreshPrimaryTabById(result.id, true, refreshPrimaryTabSuccess);
+        };
+        var refreshPrimaryTabSuccess = function refreshPrimaryTabSuccess(result) {
+            if (result.success != true) {
+                alert('{!$Label.CEC_CaseRefreshAlertError}');
+            }
+        };
+        //open the Product Range visualforce page in a popup.
         function popitup(url) {
             newwindow=window.open(url,'name','width=1000, height=600');
             if (window.focus) {newwindow.focus()}
             return false;
         }
-    </script>
+       </script>
 </apex:page>

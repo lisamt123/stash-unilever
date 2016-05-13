@@ -278,6 +278,18 @@
                 <fullName>Weight Management</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Social Media</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Creative Solutions</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Food Solutions</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackHistory>false</trackHistory>
@@ -471,8 +483,17 @@
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Queue_cec_Case_Brand_Mapping</fullName>
+        <columns>NAME</columns>
+        <columns>Inbound_Email__c</columns>
+        <columns>Country__c</columns>
+        <columns>Brand__c</columns>
+        <columns>Language__c</columns>
+        <columns>Skill__c</columns>
+        <columns>Default_Outbound_Email__c</columns>
+        <columns>Outbound_Email_Address__c</columns>
         <filterScope>Queue</filterScope>
         <label>CEC North America Queue</label>
+        <language>en_US</language>
         <queue>CEC_North_America_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>

@@ -99,7 +99,7 @@ function setFocusOnLoad() {}
 function scriptPanelLoad(){
 	var keyMCO = jq('#keyMCO');
 	var srchTxt = jq('#srchTxt');
-	jq('.placeholder').clearSearch();
+	/*jq('.placeholder').clearSearch();*/
    jq('.countrybg input:checkbox').each(function(){
 		var $this = jq(this);
 		if($this.hasClass('selected')){

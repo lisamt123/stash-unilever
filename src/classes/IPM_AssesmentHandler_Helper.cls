@@ -8,7 +8,7 @@
 ******************************************************************************/
 
 public with sharing class IPM_AssesmentHandler_Helper {
-    
+    public static Boolean SKIP_TRIGGER_EXECUTION = false;
     /****************************************************************************
     @Description : Delete existing assessments for the project and the country (Overloaded method)
     @Params ProjectIdSet:  Set of project Ids associated with incoming countries
@@ -209,7 +209,7 @@ public with sharing class IPM_AssesmentHandler_Helper {
             Set<Id> projectIdSet = projectIdPhaseMap.keySet();
             
             String queryStr = '';
-            queryStr = IPM_Utils.prepareSOQLQuery('IPM_Assessment__c', false, null);
+            queryStr = IPM_Utils.prepareSOQLQuery('IPM_Assessment__c', false, null,true);
             queryStr += ' Where IPM_Project__c IN:projectIdSet';
             
             //find all the assessments which are required to be copied over

@@ -57,10 +57,32 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
+        <fullName>BET_Required_Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>BET Required Comments</label>
+        <length>200</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Brand__c</fullName>
         <externalId>false</externalId>
         <label>Brand</label>
         <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Business_Impact_BD__c</fullName>
+        <externalId>false</externalId>
+        <label>Business Impact (BD)</label>
+        <length>100</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -139,6 +161,17 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Market_Place_Activity__c</fullName>
+        <externalId>false</externalId>
+        <label>Market Place Activity</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Phase__c</fullName>
         <externalId>false</externalId>
         <label>Phase</label>
@@ -197,6 +230,17 @@
         <unique>true</unique>
     </fields>
     <fields>
+        <fullName>Project_Leader__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Leader</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Project_Span__c</fullName>
         <externalId>false</externalId>
         <label>Project Span</label>
@@ -218,6 +262,17 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Strategic_Intent__c</fullName>
+        <externalId>false</externalId>
+        <label>Strategic Intent</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Sub_Category__c</fullName>
@@ -697,6 +752,40 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Target_Launch_Month_BD__c</fullName>
+        <externalId>false</externalId>
+        <label>Target Launch Month (BD)</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Target_Launch_Year_BD__c</fullName>
+        <externalId>false</externalId>
+        <label>Target Launch Year (BD)</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Y3_iTO_BD__c</fullName>
+        <externalId>false</externalId>
+        <label>Y3 iTO(BD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <label>Inoplan Project</label>
     <nameField>

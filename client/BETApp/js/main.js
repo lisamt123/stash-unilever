@@ -3358,6 +3358,13 @@ angular.module('unileverApp')
                             refreshChatter();
                             _refreshBet(true);
                             break;
+						case 'saveAssetsOrder':
+							//jQuery('#reorderAssets').hide();
+							jQuery('.modal-bet').modal('hide');
+                            //refresh chatter
+                            refreshChatter();
+                            _refreshBet(true);
+                            break;
                         default:
                     }
                 }

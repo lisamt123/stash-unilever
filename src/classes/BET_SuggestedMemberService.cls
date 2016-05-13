@@ -8,8 +8,8 @@ History
 VERSION  AUTHOR                DATE        DETAIL   Description
 1.0      k.szepietowski@polsource.com  23-07-2015  Initial
 *************************************************************************************/
-
-public with sharing class BET_SuggestedMemberService {
+/* Without sharing due to this is a service class which is used indirectly by external system */
+public without sharing class BET_SuggestedMemberService {
 
     public static final String APPROVED = 'Approved';
     public static final String REJECTED = 'Rejected';
@@ -263,5 +263,9 @@ public with sharing class BET_SuggestedMemberService {
         }
         System.debug('Exiting method retrieveRecordsFromDatabase with value: '+recordsToInsertMap.values());
         return recordsToInsertMap.values();
+    }
+
+    public static void insertMemberRequests(List<BET_Member_Request__c> membersToInsert){
+        insert membersToInsert;
     }
 }

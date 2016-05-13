@@ -24,6 +24,7 @@ public with sharing class Core_CA_RequestDetailsController {
     Set<Id> approverHeaderId2 = new Set<Id>();
     Set<Id> approverHeaderId3 = new Set<Id>();
     Set<Id> approverHeaderId4 = new Set<Id>();
+    public static String strGtesTemp = 'GTES';
     
     public Core_CA_RequestDetailsController (){       
         //Set the pagination Limit
@@ -52,7 +53,7 @@ public with sharing class Core_CA_RequestDetailsController {
          approverHeaderId2 = new Set<Id>();
         
         //Open request Condition for GTES   
-        List<Core_Approver_Details__c> lstApprover1 = [Select Approval_Header__c From Core_Approver_Details__c Where (((Role__c='EMP' OR  Role__c='SUB') AND Interested_Party__c=:strUid) OR TF_Requested_By__c =: (strUid.Substring(0, strUid.length()-3))) AND Source_System__c=:'GTES'];         
+        List<Core_Approver_Details__c> lstApprover1 = [Select Approval_Header__c From Core_Approver_Details__c Where (((Role__c='EMP' OR  Role__c='SUB') AND Interested_Party__c=:strUid) OR TF_Requested_By__c =: (strUid.Substring(0, strUid.length()-3))) AND Source_System__c=: strGtesTemp];         
          for(Core_Approver_Details__c id:lstApprover1)
              approverHeaderId1.add(id.Approval_Header__c );
              
@@ -76,7 +77,7 @@ public with sharing class Core_CA_RequestDetailsController {
         //Take the count of open request records.
         total_sizeOpen = [Select count() from Core_Approval_Header__c WHERE 
                           ((Status__c in :lstOpenReqst AND Source_System__c=:'Ariba' AND (Requested_By__c=: strUid  OR Requested_For__c=: strUid)) OR
-                           (Source_System__c=:'GTES' AND ID IN:approverHeaderId3 )) ]; 
+                           (Source_System__c=: strGtesTemp AND ID IN:approverHeaderId3 )) ]; 
     }
     
     public void paginationClosedCount(){
@@ -92,7 +93,7 @@ public with sharing class Core_CA_RequestDetailsController {
         //Take the count of closed request records.                                     
         total_sizeClose =  [Select count() from Core_Approval_Header__c WHERE
                             ((Status__c in :lstClosedReqst AND Source_System__c=:'Ariba' AND (Requested_By__c=: strUid  OR Requested_For__c=: strUid)) OR
-                             (Source_System__c=:'GTES' AND ID IN:approverHeaderId4))]; 
+                             (Source_System__c=: strGtesTemp AND ID IN:approverHeaderId4))]; 
     }
     
     public List<Core_Approval_Header__c>  getopenRequests() {
@@ -100,7 +101,7 @@ public with sharing class Core_CA_RequestDetailsController {
           //Retrive open request records.
            List<Core_Approval_Header__c>  lstOpenReq=[Select Id,Name,Source_System__c,Title_Summary__c,Status__c from Core_Approval_Header__c WHERE 
                                                    ((Status__c in :lstOpenReqst AND Source_System__c=:'Ariba' AND (Requested_By__c=: strUid  OR Requested_For__c=: strUid)) OR
-                                                    (Source_System__c=:'GTES' AND ID IN:approverHeaderId3 ))
+                                                    (Source_System__c=: strGtesTemp AND ID IN:approverHeaderId3 ))
                                                     ORDER BY LastModifiedDate DESC  limit :list_size offset :counterOpen];
                                                    
           system.debug('second list'+lstOpenReq); 
@@ -116,7 +117,7 @@ public with sharing class Core_CA_RequestDetailsController {
           //Retrive Closed request records.
           List<Core_Approval_Header__c>  lstCloseReq =[Select Id,Name,Source_System__c,Title_Summary__c,Status__c from Core_Approval_Header__c WHERE
                                                      ((Status__c in :lstClosedReqst AND Source_System__c=:'Ariba' AND (Requested_By__c=: strUid  OR Requested_For__c=: strUid)) OR
-                                                      (Source_System__c=:'GTES' AND ID IN:approverHeaderId4)) 
+                                                      (Source_System__c=: strGtesTemp AND ID IN:approverHeaderId4)) 
                                                       ORDER BY LastModifiedDate DESC  limit :list_size offset :counterClose];
                                                    
  

@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <customSettingsType>List</customSettingsType>
+    <visibility>Public</visibility>
+    <description>This custom setting data will decide the type of strategic intent(Innovation/Renovation)</description>
     <enableFeeds>false</enableFeeds>
     <fields>
         <fullName>IPM_CPV__c</fullName>
-        <description>customer place values</description>
+        <description>Store customer place values</description>
         <externalId>false</externalId>
         <label>CPV</label>
         <length>255</length>
@@ -15,6 +17,7 @@
     </fields>
     <fields>
         <fullName>IPM_CVP__c</fullName>
+        <description>To Be Deleted</description>
         <externalId>false</externalId>
         <label>CVP</label>
         <length>80</length>
@@ -25,6 +28,7 @@
     </fields>
     <fields>
         <fullName>IPM_ET__c</fullName>
+        <description>Store enabled technology values</description>
         <externalId>false</externalId>
         <label>ET</label>
         <length>80</length>
@@ -36,6 +40,7 @@
     <fields>
         <fullName>IPM_Innovation__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>check whether strategic intent is innovation or not.</description>
         <externalId>false</externalId>
         <label>Innovation</label>
         <trackTrending>false</trackTrending>
@@ -44,11 +49,11 @@
     <fields>
         <fullName>IPM_Renovation__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>check whether strategic intent is renovation or not.</description>
         <externalId>false</externalId>
         <label>Renovation</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <label>IPM InnovationRenovation</label>
-    <visibility>Public</visibility>
 </CustomObject>

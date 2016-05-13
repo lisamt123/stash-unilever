@@ -58,20 +58,11 @@ jq(document).ready(function() {
     });
     jq(document).on('click', '.uploadImage', function() {
         callsave();
-    });
-    ipmModal('.uploadImage', 'Upload Image', '525px', '220px', '15%');
+    });	
 });
 /* Below script is for Edit Approver modal */
 jq(document).on('click', '.selectContainer', function(e) {
-    e.preventDefault ? e.preventDefault() : e.returnValue = false;
-    var url = jq(this).attr('value');
-    jq("#editApprover .modal-body").html('<iframe frameborder="0" height="100%" width="100%" marginheight="0" marginwidth="0" allowtransparency="true" src= "' + url + '"></iframe>');
-    jq('#editApprover .modal-dialog').width('600px');
-    jq('#editApprover .modal-dialog').height('545px');
-    jq('#editApprover .modal-dialog').css({
-        'margin-top': '2%',
-        'z-index': '999'
-    });
+    
 });
 /* Below script is for Remove Approver modal */
 jq(document).on('click', '.editApprover', function(e) {
@@ -101,7 +92,8 @@ function checkValidation() {
     var regex = /^[0-9a-zA-Z\_]+/
     var specChars = regex.test(bossCardName);
     var url = jq('.updateBox').attr('value');
-    if (companyName != '' && categoryName != '' && bossCardName != undefined && bossCardName != '' && specChars == true && jq.inArray(bossCardName, apexAccountList) == -1) {
+	var bossname = jq('.hiddenBossname').attr('data-target');
+    if (companyName != '' && categoryName != '' && bossCardName != undefined && bossCardName != '' && specChars == true && bossname == 'false') {
         jq('#ipmModal').modal({
             show: true,
             keyboard: false,
@@ -134,5 +126,55 @@ function createPro() {
             }
         }
     );
+}
+function upldImage(){
+	var bossCardName = jq('.BosscardNameInputBox').val();
+    var companyName = jq('.compC').val();
+    var categoryName = jq('.cateG').val();
+    var regex = /^[0-9a-zA-Z\_]+/
+    var specChars = regex.test(bossCardName);
+    var url = jq('.uploadImage').attr('value');
+	var bossname = jq('.hiddenBossname').attr('data-target');
+    if (companyName != '' && categoryName != '' && bossCardName != undefined && bossCardName != '' && specChars == true && bossname == 'false') {
+        jq('#ipmModal').modal({
+            show: true,
+            keyboard: false,
+            backdrop: 'static'
+        });
+        openModal(url);
+		jq('#ipmModal .modal-title').html('Upload Image');
+        jq('#ipmModal .modal-dialog').width('525px');
+        jq('#ipmModal .modal-dialog').height('220px');
+        jq('#ipmModal .modal-dialog').css('margin-top', '15%');
+    } else {
+        jq('#ipmModal').modal('hide');
+    }
+}
+
+function slctApprover(){
+	var bossCardName = jq('.BosscardNameInputBox').val();
+    var companyName = jq('.compC').val();
+    var categoryName = jq('.cateG').val();
+    var regex = /^[0-9a-zA-Z\_]+/
+    var specChars = regex.test(bossCardName);
+    var url = jq('.selectContainer').attr('value');
+	var bossname = jq('.hiddenBossname').attr('data-target');
+    if (companyName != '' && categoryName != '' && bossCardName != undefined && bossCardName != '' && specChars == true && bossname == 'false') {
+        jq('#editApprover').modal({
+            show: true,
+            keyboard: false,
+            backdrop: 'static'
+        });
+        openModal(url);
+        jq('#editApprover .modal-body').html('<iframe frameborder="0" height="100%" width="100%" marginheight="0" marginwidth="0" allowtransparency="true" src= "' + url + '"></iframe>');
+        jq('#editApprover .modal-dialog').width('600px');
+		jq('#editApprover .modal-dialog').height('545px');
+		jq('#editApprover .modal-dialog').css({
+			'margin-top': '2%',
+			'z-index': '999'
+		});
+    } else {
+        jq('#editApprover').modal('hide');
+    }	
 }
 set();

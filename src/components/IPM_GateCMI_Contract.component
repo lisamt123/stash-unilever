@@ -32,11 +32,13 @@
                             
                         <div class="row ipmAcrdnExpand">
                             <div class="col-xs-12 ipmAcrdnExpandDiv">
+                            	<!-- Condition for checking gate is charter or not -->
                                 <span class="conceptHeading"><apex:outputText value="{!$Label.IPM_CMI_Select_Concept_Tests}" rendered="{!OR(gateType='Charter',AND(gateType='Contract',OR(types.value='Contract',types.value='Market Ready')),AND(gateType='Market Ready',types.value='Market Ready'))}"/></span>
                                 <apex:outputPanel styleClass="row" layout="block" id="checkboxes">
+                                	<!-- Condition for checking editable -->
                                     <apex:outputPanel layout="block" rendered="{!isEditable}">
                                         <div class="row noMargin">
-                                            <div class="col-sm-12 selectBackground noBGcolor">
+                                            <div class="col-sm-12 selectBackground noPaddingNbg">
                                                 <apex:outputPanel layout="block" styleClass="col-sm-7 dropdown cmiTestList ipmDropDown">
                                                     <apex:outputPanel html-data-toggle="dropdown" layout="block" html-data-list="{!projDocSec.IPM_CMI_Selected_Test_Concepts__c}" styleClass="clickCmiList" rendered="{!OR(gateType='Charter',AND(gateType='Contract',OR(types.value='Contract',types.value='Market Ready')),AND(gateType='Market Ready',types.value='Market Ready'))}">
                                                         <div class="ipmDropDownSelect">
@@ -46,6 +48,7 @@
                                                     </apex:outputPanel>
                                                     
                                                     <apex:outputPanel layout="block" styleClass="dropdown-menu pull-right ipmDropDownList CMIList" >
+                                                         <!-- For checking cmi type is contract  -->
                                                         <apex:outputpanel rendered="{!types.value='Contract'}">
                                                             <apex:dataList value="{!contractOptionList}" var="Contrt" id="CMIList1" styleClass="ccCmiList">
                                                                 <div class="col-xs-1 ipmCheckbox">
@@ -55,6 +58,7 @@
                                                                 <div class="col-xs-10 noPadleft cmiLabel">{!Contrt.value}</div>
                                                             </apex:dataList>
                                                         </apex:outputPanel>
+                                                         <!-- For checking cmi type is market ready  -->
                                                         <apex:outputpanel rendered="{!types.value='Market Ready'}">
                                                             <apex:dataList value="{!contractMarketReadyList}" var="Mgr" id="CMIList2" styleClass="ccCmiList">
                                                                 <div class="col-xs-1 ipmCheckbox">
@@ -64,6 +68,7 @@
                                                                 <div class="col-xs-10 noPadleft cmiLabel">{!Mgr.value}</div>
                                                             </apex:dataList>
                                                         </apex:outputPanel>
+                                                        <!-- Condition for checking editable -->
                                                         <apex:outputPanel rendered="{!AND(isEditable,OR(AND(gateType='Contract',OR(types.value='Contract',types.value='Market Ready')),AND(gateType='Market Ready',types.value='Market Ready')))}" >                    
                                                             <li class="filterActionscc">
                                                                 <div class="ipmButtonGroup noPadleft noPadright col-xs-6 pull-left">
@@ -84,9 +89,11 @@
                                 <div class="row">
                                     <apex:outputPanel styleClass="{!IF(cmiList.size>0,'cmiListcont','')}" layout="block" id="refreshid">                 
                                         <apex:repeat value="{!cmiList}" var="cmi">                  
+                                        	<!-- Condition for checking cmi type with gate -->             
                                             <apex:outputPanel layout="block" rendered="{!cmi.Gate__c=types.value}">
                                                 <div class="col-xs-12 ipmAcrdnHeader aHead SecButtonSet">                                          
                                                     <div class="col-xs-8 checkMarginTop txtalignLeft"><span class='expico fa fa-minus'></span><span class="conceptTitle">{!cmi.Element__c}/{!cmi.Test__c}</span></div>
+                                                    <!-- Condition for checking editable and not charter gate -->
                                                     <apex:outputPanel rendered="{!AND(isEditable,OR(AND(gateType='Contract',OR(types.value='Contract',types.value='Market Ready')),AND(gateType='Market Ready',types.value='Market Ready')))}">
                                                         <div class="pull-left checkMarginTop">  
                                                            <div class="ipmCheckbox skipCheck">
@@ -97,16 +104,23 @@
                                                            <div class="skipTestLabel">{!$Label.IPM_CMI_Skip_Test}</div>
                                                        </div>
                                                     </apex:outputPanel>   
+                                                     <!-- Condition for checking editable and not charter gate -->
                                                 <apex:outputPanel layout="block" rendered="{!AND(isEditable,OR(AND(gateType='Contract',OR(types.value='Contract',types.value='Market Ready')),AND(gateType='Market Ready',types.value='Market Ready')))}">    
                                                    <div class="deletBtnDiv pull-right" ><a class="icoButton delete deleteCMITest" title="Remove Concept Test" onClick="deleteCMITest('{!cmi.ID}')" /></div>
                                                 </apex:outputPanel>
                                                 </div>
                                             <div class="col-xs-12 ipmAcrdnExpand">
                                                 <div class="row">
-                                                    <apex:outputPanel styleClass="col-xs-12" layout="block" rendered="{!cmi.IPM_Skip_Test__c}">
+													<!-- Condition for checking skipping cmi test -->
+                                                    <apex:outputPanel styleClass="col-xs-12" layout="block" rendered="{!AND(cmi.IPM_Skip_Test__c,OR(AND(gateType='Contract',OR(types.value='Contract',types.value='Market Ready')),AND(gateType='Market Ready',types.value='Market Ready')))}">
                                                         <span class="skipCommentHead">{!$Label.IPM_CMI_Please_provide_the_reason_for_skipping_the_test}</span>
                                                             <apex:inputTextarea styleClass="skipCommentBox" value="{!cmi.IPM_Skip_Test_Reason__c}"  onchange="skipComment('{!cmi.Id}',this.value);"/>
                                                     </apex:outputPanel>
+                                                     <!-- Condition for checking skip test -->
+                                                    <apex:outputPanel rendered="{!AND(cmi.IPM_Skip_Test__c,AND(gateType='Market Ready',types.value='Contract'))}">
+                                                        <apex:outputField styleClass="skipCommentBox" value="{!cmi.IPM_Skip_Test_Reason__c}"/>
+                                                    </apex:outputPanel>
+                                                     <!-- Condition for checking editable and not charter gate -->
                                                     <apex:outputPanel rendered="{!AND(isEditable,!cmi.IPM_Skip_Test__c,OR(AND(gateType='Contract',OR(types.value='Contract',types.value='Market Ready')),AND(gateType='Market Ready',types.value='Market Ready')))}">      
                                                     <div class="fieldLabel col-xs-3">{!$Label.IPM_CMI_Conducted_In}</div>
                                                     <apex:outputPanel layout="block" styleClass="dropdown cmiCountrySelector ipmDropDown col-xs-6">
@@ -125,6 +139,7 @@
                                                                         <div class="col-xs-10 noPadleft cmiLabel">{!cou.value}</div>
                                                                    
                                                             </apex:dataList>
+                                                             <!-- Condition for checking editable and not charter gate -->
                                                             <apex:outputPanel rendered="{!AND(isEditable,OR(AND(gateType='Contract',OR(types.value='Contract',types.value='Market Ready')),AND(gateType='Market Ready',types.value='Market Ready')))}" >
                                                                 <li class="filterActionscc">
                                                                     <div class="ipmButtonGroup noPadleft noPadright col-xs-6 pull-left">
@@ -140,12 +155,14 @@
                                                     </apex:outputPanel>
                                                     <apex:outputPanel id="cmiInputTable">   
                                                         <apex:repeat value="{!countryNameList}" var="selCon">
+                                                        	<!-- Condition for checking cmi country -->
                                                             <apex:outputPanel layout="block" styleClass="CMIcountryAccordian" rendered="{!AND(cmi.Country__c!=null,cmi.Country__c!='',CONTAINS(cmi.Country__c,selCon))}">
                                                                 <apex:outputPanel layout="block" styleClass="col-xs-12 ipmAcrdnHeader aHead SecButtonSet">
                                                                     <div class="col-xs-10">
                                                                         <span class='expico fa fa-minus'></span>
                                                                         <span class="conceptTitle">{!selCon}</span>
                                                                     </div>
+                                                                     <!-- Condition for checking editable and not charter gate -->
                                                                     <apex:outputPanel rendered="{!AND(isEditable,OR(AND(gateType='Contract',OR(types.value='Contract',types.value='Market Ready')),AND(gateType='Market Ready',types.value='Market Ready')))}" >
                                                                    
                                                                     <div class="deletBtnDiv pull-right" >
@@ -157,13 +174,16 @@
                                                                 <apex:outputPanel layout="block" styleClass="cmiContractContainer col-xs-12 ipmAcrdnExpand">
                                                                     <div class="row">
                                                                          <apex:repeat value="{!resList}" var="res" id="resListt"> 
+                                                                          <!-- Condition for displaying cmi result timing -->
                                                                             <apex:outputPanel layout="block" rendered="{!AND(resList!=null,resList.size>0,cmi.Id=res.IPM_Gate_CMI__c,res.IPM_CMI_Country__c=selCon)}">
                                                                                 <div class="cmiResultTime fieldLabel">{!$Label.IPM_CMI_Result_Timings}</div>
+                                                                                 <!-- Condition for checking editable and not charter gate -->
                                                                                 <apex:outputPanel layout="block" rendered="{!AND(isEditable,OR(AND(gateType='Contract',OR(types.value='Contract',types.value='Market Ready')),AND(gateType='Market Ready',types.value='Market Ready')))}" styleClass="col-xs-5 noPadleft">
                                                                                     <div class="inputField">
                                                                                         <apex:inputField value="{!res.IPM_CMI_Result_Timing__c}" styleClass="dateInputBox calendar" onchange="updateTiming(this.value,'{!res.IPM_Gate_CMI__c}','{!res.IPM_CMI_Country__c}',false,'{res.IPM_CMI_Overall_Comments__c}')" />
                                                                                     </div>
                                                                                 </apex:outputPanel>
+                                                                                 <!-- Condition for checking editable and not charter gate -->
                                                                                 <apex:outputPanel layout="block" rendered="{!OR(!isEditable,!OR(AND(gateType='Contract',OR(types.value='Contract',types.value='Market Ready')),AND(gateType='Market Ready',types.value='Market Ready')))}}" styleClass="col-xs-5 noPadleft">
                                                                                     <apex:outputField value="{!res.IPM_CMI_Result_Timing__c}" styleClass="dateInputBox calendar" />
                                                                                 </apex:outputPanel>
@@ -178,9 +198,10 @@
                                                                             <span class="cmiContractHeadBlock2">
                                                                                 <apex:outputText value="{!IF(types.value='Charter',$Label.IPM_CMI_Results,$Label.IPM_CMI_Action_Standards)}"></apex:outputText> 
                                                                             </span>
-                                                                            <apex:outputPanel layout="block" rendered="{!OR(types.value='Contract',types.value='Market Ready')}">
+                                                                             <!-- Condition for checking gate is not charter -->
+                                                                            <apex:outputPanel layout="block" rendered="{!OR(AND(types.value='Contract',OR(gateType='Contract',gateType='Market Ready')),AND(types.value='Market Ready',gateType='Market Ready'))}">
                                                                                 <span class="cmiContractHeadBlock3">
-                                                                                   Results
+                                                                                   {!$Label.IPM_CMI_Results}
                                                                                 </span>
                                                                             </apex:outputPanel>
                                                                             <span class="cmiContractHeadBlock4">
@@ -188,40 +209,56 @@
                                                                             </span>
                                                                         </div>
                                                                         <apex:repeat value="{!sectionList}" var="sec" id="secList">
+                                                                        	 <!-- Condition for checking gate cmi record -->
                                                                             <apex:outputPanel styleClass="cmigTable" layout="block" rendered="{!cmi.Id=sec.IPM_Gate_CMI__c}">
+                                                                            	 <!-- Condition for checking cmi country -->
                                                                                 <apex:outputPanel layout="block" rendered="{!sec.IPM_CMI_Country__c=selCon}">
                                                                                     <div class="rContainer">
                                                                                         <div class="cmiContractInputContainer">
+                                                                                        	 <!-- Condition for checking editable and gate is contract or market ready -->
                                                                                             <apex:outputPanel rendered="{!AND(isEditable,OR(gateType='Contract',gateType='Market Ready'))}">
-																								<apex:inputField id="inputSelectList" styleClass="cmiSelectBox" html-disabled="disabled" value="{!sec.IPM_CMI_Input__c}"  rendered="{!!sec.IPM_CMI_Is_Free_Text__c}"/>
-                                                                                                <apex:inputField value="{!sec.IPM_CMI_Free_Text__c}" rendered="{!sec.IPM_CMI_Is_Free_Text__c}" onchange="updateCMIContent('{!sec.Id}',this.value,'{!sec.IPM_CMI_Comments__c}',false);"/>
+                                                                                            	 <!-- Condition for checking input free text or not -->
+                                                                                                <apex:inputField id="inputSelectList" styleClass="cmiSelectBox" html-disabled="disabled" value="{!sec.IPM_CMI_Input__c}"  rendered="{!AND(!sec.IPM_CMI_Is_Free_Text__c,OR(AND(gateType='Contract',types.value='Contract'),AND(OR(gateType='Market Ready',gateType='Contract'),types.value='Market Ready')))}"/>
+                                                                                                  <!-- Condition for checking input free text -->
+                                                                                                <apex:inputField value="{!sec.IPM_CMI_Free_Text__c}" rendered="{!AND(sec.IPM_CMI_Is_Free_Text__c,OR(AND(gateType='Market Ready',types.value='Market Ready'),AND(gateType='Contract',types.value='Contract')))}" onchange="updateCMIContent('{!sec.Id}',this.value,'{!sec.IPM_CMI_Comments__c}',false);"/>
                                                                                             </apex:outputPanel>   
-                                                                                            <apex:outputPanel rendered="{!OR(!isEditable,!OR(AND(gateType='Contract',OR(types.value='Contract',types.value='Market Ready')),AND(gateType='Market Ready',types.value='Market Ready')))}">
+                                                                                             <!-- Condition for checking read only -->
+                                                                                            <apex:outputPanel rendered="{!OR(!isEditable,types.value='Charter',AND(gateType='Market Ready',types.value='Contract'))}">
+                                                                                                 <!-- Condition for checking free text or not -->
+                                                                                                <apex:outputField value="{!sec.IPM_CMI_Input__c}"  rendered="{!!sec.IPM_CMI_Is_Free_Text__c}"/>
+                                                                                                 <!-- Condition for checking  free text -->
                                                                                                 <apex:outputField value="{!sec.IPM_CMI_Free_Text__c}" rendered="{!sec.IPM_CMI_Is_Free_Text__c}"/>
                                                                                             </apex:outputPanel>  
                                                                                         </div>
                                                                                         <div class="cmiContractResultContainer">
-                                                                                            <apex:outputPanel layout="block" styleClass="cmiResultBox pull-left">
-                                                                                                <apex:outputField value="{!sec.IPM_CMI_Result__c}" rendered="{!OR(types.value='Contract',types.value='Charter')}"  />
-                                                                                                <apex:inputField value="{!sec.IPM_CMI_Result__c}" rendered="{!AND(cmi.Id=sec.IPM_Gate_CMI__c,!sec.IPM_CMI_Is_Free_Text__c,types.value!='Contract',isEditable,OR(AND(gateType='Contract',OR(types.value='Contract',types.value='Market Ready')),AND(gateType='Market Ready',types.value='Market Ready')))}"  onchange="updateCMIContent('{!sec.Id}',this.value,'{!sec.IPM_CMI_Comments__c}',false,false);"/>
+                                                                                            <apex:outputPanel layout="block" styleClass="cmiResultBox pull-left">    
+                                                                                            	 <!-- Condition for checking read only -->
+                                                                                                <apex:outputField value="{!sec.IPM_CMI_Result__c}" rendered="{!OR(!isEditable,AND(gateType='Contract',types.value='Contract'),AND(gateType='Market Ready',OR(types.value='Contract',types.value='Market Ready')),types.value='Charter')}"  />
+                                                                                                 <!-- Condition for checking editable -->
+                                                                                                <apex:inputField value="{!sec.IPM_CMI_Result__c}" rendered="{!AND(cmi.Id=sec.IPM_Gate_CMI__c,!sec.IPM_CMI_Is_Free_Text__c,types.value!='Contract',isEditable,OR(AND(gateType='Contract',types.value='Market Ready')))}"  onchange="updateCMIContent('{!sec.Id}',this.value,'{!sec.IPM_CMI_Comments__c}',false,false);"/>
                                                                                             </apex:outputPanel> 
                                                                                             <span class="{!sec.IPM_CMI_Outcome_Color__c}"></span>
                                                                                         </div>
-                                                                                        <div class="cmiContractAchievedContainer">
-                                                                                            <apex:outputPanel layout="block" rendered="{!OR(types.value='Contract',types.value='Market Ready')}">
-                                                                                                <apex:outputPanel layout="block" styleClass="cmiResultBox pull-left" rendered="{!isEditable}">
-                                                                                                    <apex:inputField value="{!sec.IPM_CMI_Results_Acheived__c}" rendered="{!AND(cmi.Id=sec.IPM_Gate_CMI__c,!sec.IPM_CMI_Is_Free_Text__c)}"  onchange="updateCMIContent('{!sec.Id}',this.value,'{!sec.IPM_CMI_Comments__c}',false,true);"/>
-                                                                                                </apex:outputPanel>   
-                                                                                                <apex:outputPanel layout="block" styleClass="pull-left" rendered="{!AND(!isEditable,!sec.IPM_CMI_Is_Free_Text__c)}">
-                                                                                                    <apex:outputField value="{!sec.IPM_CMI_Results_Acheived__c}"  />
-                                                                                                </apex:outputPanel> 
-                                                                                                <span class="{!sec.IPM_CMI_Outcome_Color_Achieved__c}"></span>
+                                                                                         <!-- Condition for checking gate is not charter -->
+                                                                                        <apex:outputPanel styleclass="cmiContractAchievedContainer" layout="block" rendered="{!OR(AND(types.value='Contract',OR(gateType='Market Ready',gateType='Contract')),AND(types.value='Market Ready',gateType='Market Ready'))}">
+                                                                                            <!-- Condition for checking editable -->
+                                                                                            <apex:outputPanel layout="block" styleClass="cmiResultBox pull-left" rendered="{!isEditable}">
+                                                                                            	<!-- condition for displaying cmi results achieved -->
+                                                                                                <apex:inputField value="{!sec.IPM_CMI_Results_Acheived__c}" rendered="{!AND(cmi.Id=sec.IPM_Gate_CMI__c,!sec.IPM_CMI_Is_Free_Text__c,OR(AND(types.value='Market Ready',gateType='Market Ready'),AND(types.value='Contract',gateType='Contract')))}"  onchange="updateCMIContent('{!sec.Id}',this.value,'{!sec.IPM_CMI_Comments__c}',false,true);"/>
+                                                                                            </apex:outputPanel>   
+                                                                                            <!-- condition for displaying cmi results achieved value -->
+                                                                                            <apex:outputPanel layout="block" styleClass="pull-left" rendered="{!OR(AND(!isEditable,!sec.IPM_CMI_Is_Free_Text__c),AND(types.value='Contract',gateType='Market Ready'))}">
+                                                                                                <apex:outputField value="{!sec.IPM_CMI_Results_Acheived__c}"  />
                                                                                             </apex:outputPanel> 
-                                                                                        </div>
+                                                                                            <span class="{!sec.IPM_CMI_Outcome_Color_Achieved__c}"></span>
+                                                                                        </apex:outputPanel> 
                                                                                         <div class="cmiContractCommentContainer">
+                                                                                        	<!-- condition for checking editable -->
                                                                                             <apex:outputPanel rendered="{!isEditable}">
+                                                                                            	<!-- Condition for checking gate is contract or market ready -->
                                                                                                 <apex:inputField styleClass="cmiCommentBox" value="{!sec.IPM_CMI_Comments__c}" rendered="{!AND(cmi.Id=sec.IPM_Gate_CMI__c,OR(AND(gateType='Contract',OR(types.value='Contract',types.value='Market Ready')),AND(gateType='Market Ready',types.value='Market Ready')))}" onchange="updateCMIContent('{!sec.Id}','{!sec.IPM_CMI_Result__c}',this.value,true,true);" />
                                                                                             </apex:outputPanel>
+                                                                                            <!-- Condition for checking editable and gate is contract or market ready -->
                                                                                             <apex:outputPanel layout="block" styleClass="ronlyComment" rendered="{!OR(!isEditable,!OR(AND(gateType='Contract',OR(types.value='Contract',types.value='Market Ready')),AND(gateType='Market Ready',types.value='Market Ready')))}">
                                                                                                 <apex:outputField styleClass="ronlyComment" value="{!sec.IPM_CMI_Comments__c}"   />
                                                                                             </apex:outputPanel> 
@@ -231,31 +268,40 @@
                                                                             </apex:outputPanel>
                                                                         </apex:repeat>
                                                                         <apex:repeat value="{!resList}" var="os" id="oslist">
+                                                                        	<!--  Condition for checking cmi recors list not empty -->
                                                                             <apex:outputPanel styleClass="cmigTable" layout="block" rendered="{!AND(resList!=null,resList.size>0,cmi.Id=os.IPM_Gate_CMI__c,os.IPM_CMI_Country__c=selCon,!os.IPM_CMI_Is_Free_Text__c,os.IPM_CMI_Overall_Colour_Coding_Method__c!='Not Applicable')}">
                                                                                 <div class="rContainer">
                                                                                     <div class="contractInputContainer">
+                                                                                    	<!-- Condition for displaying cmi over all score label -->
                                                                                         <apex:outputLabel Value="{!os.IPM_CMI_Overall_Score_Label__c}" styleClass="overallText" rendered="{!OR(os.IPM_CMI_Overall_Colour_Coding_Method__c='Manual',os.IPM_CMI_Overall_Colour_Coding_Method__c='System')}"/>
                                                                                     </div>
                                                                                     <div class="contractAchievedContainer">
                                                                                         <div class="midContainer">
                                                                                             <apex:outputPanel layout="block" styleClass="cmiResultBox ContractoverallSubtext">
-                                                                                                <apex:inputField value="{!os.IPM_CMI_Overall_Score__c}"  onchange="updateScore('{!os.IPM_Gate_CMI__c}','{!os.IPM_CMI_Country__c}',this.value,false)" rendered="{!AND(os.IPM_CMI_Overall_Colour_Coding_Method__c='Manual',isEditable,OR(AND(gateType='Contract',OR(types.value='Contract',types.value='Market Ready')),AND(gateType='Market Ready',types.value='Market Ready')))}"/>
-                                                                                                <apex:outputField value="{!os.IPM_CMI_Overall_Score__c}" rendered="{!OR(os.IPM_CMI_Overall_Colour_Coding_Method__c='System',AND(!isEditable,os.IPM_CMI_Overall_Colour_Coding_Method__c='Manual'))}"/>  
+                                                                                            	<!-- Condition for checking overall score method is manual -->
+                                                                                                <apex:inputField value="{!os.IPM_CMI_Overall_Score__c}"  onchange="updateScore('{!os.IPM_Gate_CMI__c}','{!os.IPM_CMI_Country__c}',this.value,false)" rendered="{!AND(os.IPM_CMI_Overall_Colour_Coding_Method__c='Manual',isEditable,AND(gateType='Contract',types.value='Market Ready'))}"/>
+                                                                                                <!-- Condition for checking overall score method is system -->
+                                                                                                <apex:outputField value="{!os.IPM_CMI_Overall_Score__c}" rendered="{!OR(os.IPM_CMI_Overall_Colour_Coding_Method__c='System',AND(types.value='Charter',os.IPM_CMI_Overall_Colour_Coding_Method__c='Manual'),AND(!isEditable,os.IPM_CMI_Overall_Colour_Coding_Method__c='Manual'),AND(OR(gateType='Contract',gateType='Market Ready'),types.value='Contract'),AND(gateType='Market Ready',types.value='Market Ready'))}"/>  
                                                                                             </apex:outputPanel>
-                                                                                            <span class="{!os.IPM_CMI_Overall_Colour__c}"></span>
+                                                                                            <span class="{!os.IPM_CMI_Overall_Colour__c}"></span>   
                                                                                         </div>
                                                                                     </div>
                                                                                     <div class="contractResultContainer">
                                                                                         <div class="midContainer">
-                                                                                            <apex:outputPanel layout="block" styleClass="cmiResultBox ContractoverallSubtext">
-                                                                                                <apex:inputField value="{!os.IPM_CMI_Overall_Score_Achieved__c}"  onchange="updateScore('{!os.IPM_Gate_CMI__c}','{!os.IPM_CMI_Country__c}',this.value,true)" rendered="{!AND(os.IPM_CMI_Overall_Colour_Coding_Method__c='Manual',isEditable,OR(AND(gateType='Contract',OR(types.value='Contract',types.value='Market Ready')),AND(gateType='Market Ready',types.value='Market Ready')))}"/>
-                                                                                                <apex:outputField value="{!os.IPM_CMI_Overall_Score_Achieved__c}" rendered="{!OR(os.IPM_CMI_Overall_Colour_Coding_Method__c='System',AND(!isEditable,os.IPM_CMI_Overall_Colour_Coding_Method__c='Manual'))}"/>  
+                                                                                        	<!-- Condition for checking gate is contract or market ready -->
+                                                                                            <apex:outputPanel layout="block" styleClass="cmiResultBox ContractoverallSubtext" rendered="{!OR(AND(types.value='Market Ready',gateType='Market Ready'),AND(types.value='Contract',OR(gateType='Contract',gateType='Market Ready')))}">
+                                                                                                <!-- Condition for checking editable  -->
+                                                                                                <apex:inputField value="{!os.IPM_CMI_Overall_Score_Achieved__c}"  onchange="updateScore('{!os.IPM_Gate_CMI__c}','{!os.IPM_CMI_Country__c}',this.value,true)" rendered="{!AND(os.IPM_CMI_Overall_Colour_Coding_Method__c='Manual',isEditable,OR(AND(types.value='Contract',gatetype='Contract'),AND(types.value='Market Ready',gatetype='Market Ready')))}"/>
+                                                                                                <!-- Condition for checking read only  -->
+                                                                                                <apex:outputField value="{!os.IPM_CMI_Overall_Score_Achieved__c}" rendered="{!OR(os.IPM_CMI_Overall_Colour_Coding_Method__c='System',!isEditable)}"/>  
                                                                                             </apex:outputPanel>
                                                                                             <span class="{!os.IPM_CMI_Overall_Colour_Achieved__c}"></span>
                                                                                         </div>
                                                                                     </div>
-                                                                                    <div class="contractCommentContainer ronlyComment">
+                                                                                    <div class="contractCommentContainer ronlyComment" >
+                                                                                    	<!-- Condition for checking editable  -->
                                                                                         <apex:inputField styleClass="cmiCommentBox" value="{!os.IPM_CMI_Overall_Comments__c}" rendered="{!AND(isEditable,OR(AND(gateType='Contract',OR(types.value='Contract',types.value='Market Ready')),AND(gateType='Market Ready',types.value='Market Ready')))}" onchange="updateTiming('{!os.IPM_CMI_Result_Timing__c}','{!os.IPM_Gate_CMI__c}','{!os.IPM_CMI_Country__c}',true,this.value)"/>
+                                                                                        <!-- Condition for checking read only  -->
                                                                                         <apex:outputField value="{!os.IPM_CMI_Overall_Comments__c}" rendered="{!OR(!isEditable,!OR(AND(gateType='Contract',OR(types.value='Contract',types.value='Market Ready')),AND(gateType='Market Ready',types.value='Market Ready')))}"/>
                                                                                     </div>
                                                                                 </div>  

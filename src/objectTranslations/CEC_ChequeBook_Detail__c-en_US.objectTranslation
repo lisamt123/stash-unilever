@@ -2,11 +2,11 @@
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseValues>
         <plural>false</plural>
-        <value>ChequeBook Detail</value>
+        <value>CheckBook Detail</value>
     </caseValues>
     <caseValues>
         <plural>true</plural>
-        <value>ChequeBook Details</value>
+        <value>CheckBook Details</value>
     </caseValues>
     <fields>
         <label><!-- Active --></label>
@@ -17,7 +17,7 @@
         <name>Brand__c</name>
     </fields>
     <fields>
-        <label><!-- Cheque Book --></label>
+        <label>Check Book</label>
         <name>Cheque_Book__c</name>
     </fields>
     <fields>
@@ -28,6 +28,16 @@
         <label><!-- Country --></label>
         <name>Country__c</name>
         <relationshipLabel><!-- ChequeBook Details --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Textual version of decimal currency, e.g. CENTS --></help>
+        <label><!-- Currency Decimal Text --></label>
+        <name>Currency_Decimal_Text__c</name>
+    </fields>
+    <fields>
+        <help><!-- Textual version of currency, e.g. DOLLARS --></help>
+        <label><!-- Currency Text --></label>
+        <name>Currency_Text__c</name>
     </fields>
     <fields>
         <label><!-- Currency --></label>
@@ -46,11 +56,11 @@
         <name>Increment_Number__c</name>
     </fields>
     <fields>
-        <label><!-- Last Cheque Number --></label>
+        <label>Last Check Number</label>
         <name>Last_Cheque_Number__c</name>
     </fields>
     <fields>
-        <label><!-- Max Cheque Number --></label>
+        <label>Max Check Number</label>
         <name>Max_Cheque_Number__c</name>
     </fields>
     <fields>
@@ -73,5 +83,6 @@
             <section>Custom Links</section>
         </sections>
     </layouts>
+    <nameFieldLabel>CheckBook Details Number</nameFieldLabel>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

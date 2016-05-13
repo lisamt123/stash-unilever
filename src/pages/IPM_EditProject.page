@@ -14,16 +14,17 @@
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/bootstrap.min.css')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Checkbox.css')}"/> 
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_RadioButton.css')}"/>
-    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_editproject.css')}"/>       
-    <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery.js')}" type="text/javascript"></script>    
-    <script src="{!URLFOR($Resource.IPM_Resource, 'js/bootstrap.min.js')}" type="text/javascript"></script>      
-    <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery-ui.min.js')}" type="text/javascript"></script>
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_EditProject.css')}"/> 
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_ProjectSetupDesign.css')}"/>
+    
     <div class="container-fluid">
         <apex:form >   
             <div class="col-sm-12 editProTop">
+            <!-- To display below outputPanel when project is not saved   -->
             <apex:outputPanel rendered="{!!project.IPM_IsSaved__c}">
                 <div class="row">    
                     <div class="col-sm-12">
+                        <!-- To display below outputPanel when current logged in user has edit access   -->
                         <apex:outputPanel layout="inline" styleClass="newProjinfo" rendered="{!isEditable}" >{!$Label.IPM_ESSENTIAL_INFFORMATION}</apex:outputPanel>
                     </div>
                 </div>
@@ -49,14 +50,19 @@
                                     <apex:outputPanel id="imgpn">                                                           
                                         <apex:outputPanel id="isID" > 
                                             <div value="{!$Page.IPM_ImageUpload}?isProject=true&id={!project.id}" title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}" onClick="callsave();" class="uploadImage upImageContainer" data-target="#ipmUploadImage" data-toggle="modal" data-keyboard="false" data-backdrop="static">
+                                                <!-- To display below image when IPM_Project_Logo__c field value is null or empty   -->
                                                 <apex:image styleClass="ipmImage" value="{!URLFOR($Resource.IPM_Resource, 'images/pro_placeholder.png')}" rendered="{!If(AND(OR(ImageId=='',ImageId==null),OR(project.IPM_Project_Logo__c==null,project.IPM_Project_Logo__c=='')),true,false)}" title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}"/>
+                                                <!-- To display below image when IPM_Project_Logo__c field value is not null or empty   -->
                                                 <apex:image url="/servlet/servlet.FileDownload?file={!ImageId}" styleClass="ipmImage" rendered="{! if(AND(ImageId !='',ImageId !=null),true,false)}" /> 
+                                                <!-- To display below outputfield when IPM_Project_Logo__c field value is not null or empty   -->
                                                 <apex:outputfield value="{!project.IPM_Project_Logo__c}" rendered="{! if(AND(OR(ImageId=='',ImageId==null),OR(project.IPM_Project_Logo__c!='',project.IPM_Project_Logo__c!=null)),true,false)}"/>
                                             </div>
+                                            <!-- To display below outputPanel when IPM_Project_Logo__c field value is not null  -->
                                             <apex:outputPanel layout="block" rendered="{!project.IPM_Project_Logo__c!=null}">
                                                 <div class="imgHoverContainer">
                                                     <div class="imgHbuttonContainer">
                                                        <span value="{!$Page.IPM_ImageUpload}?id={!project.id}&isProject=true&isEdit=true" title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}" class="uploadImage" data-target="#ipmUploadImage" data-toggle="modal" data-keyboard="false" data-backdrop="static">
+                                                           <!-- To display below commandLink when IPM_Project_Logo__c field value is not null or empty   -->
                                                            <apex:commandLink value="Update" styleClass="imgUpdateButton" action="{!save}" reRender="none" rendered="{!project.IPM_Project_Logo__c!=null}">
                                                                 
                                                            </apex:commandLink>
@@ -70,13 +76,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-10">
-                            <div class="col-sm-10 noPadleft">
-                            
-                            <!-- To place the help symbol in the top right hand corner of page -->
-                            <apex:outputPanel layout="block" styleClass="SecButtonSet delete pull-right" >
-                                <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
-                            </apex:outputPanel> 
+                        <div class="col-sm-9">
+                            <div class="col-sm-11 noPadleft">                            
                             
                                 <apex:outputPanel id="ProjectNamePanel" styleClass="inputField oneCol">
                                     <apex:outputPanel layout="block"  styleClass="required proNameContainer">
@@ -85,32 +86,41 @@
                                         <span class="SecButtonSet infoMarTop">
                                             <a class="icoButton info" title="{!$Label.IPM_ProjectNameHelpText}"></a>        
                                         </span>
-                                        <apex:inputText value="{!project.IPM_Project_Name__c}" id="proname"  styleClass="brandautocomplete proNameBox"  onkeyup="var u=this.value.toUpperCase();if(this.value!=u){this.value=u;};dupProjectName();"  maxlength="14" rendered="{!AND(isEditable,OR(project.IPM_Phase__c=null,project.IPM_Phase__c='',project.IPM_Phase__c!='PLE'),project.IPM_Project_Type__c!=isRollout)}" />
+                                        <!-- To display below inputText when current logged in user has edit access   -->
+                                        <apex:inputText value="{!project.IPM_Project_Name__c}" id="proname"  styleClass="brandautocomplete proNameBox" html-onpaste="return false" onkeypress="return invalidChar(event);" onkeyup="var u=this.value.toUpperCase();if(this.value!=u){this.value=u;};dupProjectName();"  maxlength="14" rendered="{!AND(isEditable,OR(project.IPM_Phase__c=null,project.IPM_Phase__c='',project.IPM_Phase__c!='PLE'),project.IPM_Project_Type__c!=isRollout)}" />
                                         <apex:actionfunction name="dupProjectName" action="{!searchDuplicateProject}" rerender="refreshProjectName"/>
                                         <apex:outputpanel id="refreshProjectName" >
+                                        <!-- To display below outputPanel when user typed in project name   -->
                                             <apex:outputpanel layout="block" styleClass="autoContainer" rendered="{!!isProjectNameBlank}">
                                                 <apex:repeat value="{!listofprojectname}" var="proList">          
                                                     <apex:outputLabel styleClass="bcAuto" value="{!proList.IPM_Project_Name__c}"/>         
                                                 </apex:repeat> 
                                             </apex:outputpanel> 
                                         </apex:outputpanel>
-                                        
+                                        <!-- To display below outputField when current logged in user has read access to the page   -->
                                         <apex:outputField rendered="{!OR(!isEditable,project.IPM_Phase__c='PLE',project.IPM_Project_Type__c=isRollout)}" value="{!project.IPM_Project_Name__c}"/>
                                         <apex:outputPanel id="nameMsg">
+                                            <!-- To display below outputText when project name is empty   -->
                                             <apex:outputText value="{!$Label.IPM_ENTER_PROJECT_NAME}" rendered="{!AND(isBusinessError,CONTAINS(businessErrorField,'IPM_Project_Name__c'))}" styleClass="ErrMsg"/>
+                                            <!-- To display below outputText when project name contains any special character   -->
                                             <apex:outputText value="{!$Label.IPM_DO_NOT_SPECIAL_CHAR}" rendered="{!isContainSpecialChars}" styleclass="projDescErrMsg"/>
+                                            <!-- To display below outputText when project name is already exits   -->
                                             <apex:outputText value="{!$Label.IPM_Project_Name_Exists}" rendered="{!isDupProjectname}" styleclass="projDescErrMsg"/>
                                         </apex:outputPanel>
                                     </apex:outputPanel>
                                     <apex:outputPanel layout="block"  styleClass="inputField">  
                                         <apex:outputLabel value="{!$Label.IPM_PROJECT_DESCRIPTION}" styleClass="bsFieldLabel descTop" />
+                                        <!-- To display below inputTextarea when current logged in user has edit access on page   -->
                                         <apex:inputTextarea id="projDesc" value="{!project.IPM_Project_Description__c}" rendered="{!isEditable}"  styleClass="limitdesc BosscardNameInputBox"  />
                                         <apex:outputPanel id="DescMsg" styleClass="proDescLabel" >
+                                            <!-- To display below outputText when project description is empty while saving project. -->
                                             <apex:outputText value="{!$Label.IPM_ENTER_PROJECT_DESCRIPTION}" rendered="{!AND(isBusinessError,CONTAINS(businessErrorField,'IPM_Project_Description__c'))}" styleClass="projDescErrMsg"/>   
                                         </apex:outputPanel>
                                         <apex:outputPanel layout="block" styleClass="proDescLabel"  >
+                                            <!-- To display below outputField when current logged in user has read access on page   -->
                                             <apex:outputField value="{!project.IPM_Project_Description__c}" rendered="{!!isEditable}"/>
                                         </apex:outputPanel>
+                                        <!-- To display below outputPanel when current logged in user has edit access on page   -->
                                         <apex:outputPanel layout="block" styleClass="txtRight" rendered="{!isEditable}"> 
                                             <span id="charCountRemainingText"> {!$Label.IPM_CHAR_REMAINING} </span> 
                                             <span id="charCountRemaining">{!$Label.IPM_CHAR_70}</span>
@@ -124,14 +134,17 @@
                                             <label class="ipmSelect">
                                                 <apex:actionRegion >
                                                     <apex:outputPanel >
-                                                        <apex:selectList size="1" value="{!project.IPM_Company_Card__c}" styleClass="selCompany" disabled="{!OR(ISBLANK(project.Id),project.IPM_IsSaved__c,NOT(isEditable))}">  
-                                                            <apex:actionSupport event="onchange" action="{!populateCategory}" reRender="ProjectSubTypePanel,WhiteSpaceFastTrackPanel,gateKeepingPanel,questionCharter,categoryPanel,BrandPositionPanel,pos,selectNextTabScript" status="refreshCategory" />
+                                                        <apex:selectList size="1" value="{!project.IPM_Company_Card__c}" onchange="callCompanyCard();" styleClass="selCompany" disabled="{!OR(ISBLANK(project.Id),project.IPM_IsSaved__c,NOT(isEditable))}">  
                                                             <apex:selectOptions value="{!Allcompanycard}" />
                                                         </apex:selectList>
                                                     </apex:outputPanel>
+                                                    <apex:actionfunction name="callCompanyCard" onComplete="callBrandPos();" action="{!populateCategory}" reRender="ProjectSubTypePanel,WhiteSpaceFastTrackPanel,fastTrackPanel,whiteSpacePanel,gateKeepingPanel,questionCharter,categoryPanel,BrandPositionPanel,pos,selectNextTabScript,multiBPositions" status="refreshCategory" />
+                                                    <apex:actionfunction name="callBrandPos" action="{!none}" reRender="BrandPositionPanel,multiBPositions" status="refreshCategory" />
+                                                                                
                                                 </apex:actionRegion>
                                             </label>
                                             <apex:outputPanel layout="block" id="CompanyMsg">
+                                                <!-- To display below outputText when company card is empty while saving project   -->
                                                 <apex:outputText value="{!$Label.IPM_Company_Card_Mandatory}" rendered="{!AND(isBusinessError,CONTAINS(businessErrorField,'IPM_Company_Card__c'))}" styleClass="brandErrMsg"/>
                                             </apex:outputPanel>
                                         </apex:outputPanel>      
@@ -149,6 +162,7 @@
                                                 </apex:actionRegion>
                                             </label>
                                             <apex:outputPanel id="CateMsg">
+                                                <!-- To display below outputText when category is empty while saving project   -->
                                                 <apex:outputText value="{!$Label.IPM_SELECT_CATEGORY}" rendered="{!AND(isBusinessError,CONTAINS(businessErrorField,'IPM_Category_Text__c'))}" styleClass="categoryErrMsg"/>
                                             </apex:outputPanel>
                                         </apex:outputPanel>     
@@ -156,6 +170,7 @@
                                 </div>      
                                 <div class="row">
                                     <apex:outputPanel id="ProjectSubTypePanel" styleClass="col-sm-12">
+                                        <!-- To display below outputPanel when project sub type size is greater than 0   -->
                                         <apex:outputPanel layout="block" styleClass="inputField"  rendered="{!projectSubTypes.size > 0}"> 
                                             <apex:outputPanel layout="block" styleClass="inputField oprtnRadioContainer" >
                                                 <apex:outputLabel value="{!$Label.IPM_SelectProjectType}" styleClass="bsFieldLabel" /><span class="mandatorycolor"> *</span>                                                                     
@@ -166,6 +181,7 @@
                                                     </apex:selectRadio>
                                                 </div>
                                                 <apex:variable value="{!1}" var="rowNum"/>
+                                                <!-- To display below project sub type when user has edit access and project is not saved   -->
                                                 <apex:repeat value="{!projectSubTypes}" var="subProjectType" rendered="{!OR(NOT(project.IPM_IsSaved__c),isEditable)}">
                                                     
                                                     <div class="radioTooltip{!rowNum} toolTipMsg oprtnToolTipMsg" data-toggle="tooltip" selectedValue="{!subProjectType.value}" > 
@@ -174,7 +190,9 @@
                                                     <apex:variable var="rowNum" value="{!rowNum + 1}"/>
                                                 </apex:repeat>                                 
                                             </apex:outputPanel>
+                                            <!-- To display below outputPanel when current user has edit access on page   -->
                                             <apex:outputPanel layout="block" rendered="{!OR(NOT(project.IPM_IsSaved__c),isEditable)}" >
+                                                <!-- To display below outputText when project subtype is not selected   -->
                                                 <apex:outputText value="{!$Label.IPM_SELECT_PROJECTSUBTYPE}" rendered="{!AND(isBusinessError,CONTAINS(businessErrorField,'IPM_ProjectSubType__c'))}" styleClass="brandErrMsg"/>
                                             </apex:outputPanel>
                                         </apex:outputPanel>
@@ -184,16 +202,31 @@
                                     <div class="col-sm-6"> 
                                         <apex:outputPanel id="BrandPositionPanel" layout="block" styleClass="inputField">
                                             <apex:outputLabel value="{!$Label.IPM_BRAND_POSITIONING}" styleClass="bsFieldLabel" /><span class="mandatorycolor"> *</span>
+                                            <span class="SecButtonSet infoMarTop">
+                      <!-- To display below outputPanel when multiple brand positioning is applicable   -->
+                                            	<apex:outputPanel rendered="{!projectMetadata.IPM_MultipleBrandPosApplicable__c}">
+                                                	<a class="icoButton info smallllinfo" title="{!$Label.IPM_BrandPositioningHelpText}"></a>
+                                                </apex:outputPanel>
+                                            </span>
                                             <apex:actionStatus startText="" id="refreshPos" startStyleClass="proInit"/>    
+                                            <!-- To display below outputPanel when multiple brand positioning is not applicable   -->
                                             <apex:outputPanel id="SingleBrandPanel" rendered="{!NOT(projectMetadata.IPM_MultipleBrandPosApplicable__c)}">
                                                 <label class="ipmSelect custSelectWidth">
-                                                    <apex:selectList value="{!project.IPM_Brand_Positioning__c}" multiselect="false" size="1" styleClass="selBrandPos" >
+                                                    <apex:selectList value="{!project.IPM_Brand_Positioning__c}" multiselect="false" size="1" disabled="{!IF(OR(!isEditable,AND(isEditable,project.IPM_Phase__c!=projectMetadata.IPM_DefaultPhase__c,project.IPM_Phase__c !=null)),true,false)}"  styleClass="selBrandPos" >
                                                         <apex:selectOptions value="{!brandPos}"></apex:selectOptions>
                                                     </apex:selectList>
                                                 </label>
                                             </apex:outputPanel>
+                                            <!-- To display below outputPanel when multiple brand positioning is applicable   -->
                                             <apex:outputPanel layout="block" rendered="{!AND(projectMetadata.IPM_MultipleBrandPosApplicable__c)}" styleClass="noPadright noPadleft dropdown brandposListContainer ipmDropDown" >    
-                                                <apex:outputPanel html-data-toggle="dropdown" layout="block" styleClass="clickCmiList" >
+                                            <!-- To display below outputPanel when current user has edit access on page   -->    
+                        <apex:outputPanel rendered="{!IF(OR(!isEditable,AND(isEditable,project.IPM_Phase__c!=projectMetadata.IPM_DefaultPhase__c,project.IPM_Phase__c !=null)),true,false)}"  >
+                            <apex:OutputText value="{!project.IPM_Brand_Positioning__c}" id="brandPosDisableField"/>
+                        </apex:outputPanel>
+                                            <!-- To display below outputPanel when current user has edit access on page   -->
+                        <apex:outputpanel rendered="{!IF(OR(!isEditable,AND(isEditable,project.IPM_Phase__c!=projectMetadata.IPM_DefaultPhase__c,project.IPM_Phase__c !=null)),false,true)}">
+                        
+                        <apex:outputPanel html-data-toggle="dropdown" layout="block" styleClass="clickCmiList" >
                                                     <div class="ipmDropDownSelect">
                                                         <span class='brandSelValues'>Select</span>
                                                         <a class="listArrow"></a>    
@@ -203,11 +236,12 @@
                                                     <apex:inputText value="{!project.IPM_Brand_Positioning__c}" id="brandHiddenField" styleClass="hiddenBrand" />
                                                     <apex:dataList value="{!brandPos}" var="cou" id="brandposListUL" styleClass="cccmiList">                                                               
                                                         <div class="col-xs-1 ipmCheckbox">
-                                                            <input class="brandPosListbox" type="checkbox" value="{!cou.value}" id="{!cou.value}" />
+                                                            <input class="{!IF(isEditable,'brandPosListbox','disable')} ccCheck" type="checkbox" value="{!cou.value}" id="{!cou.value}" />
                                                             <label for="{!cou.value}"></label>
                                                         </div>
                                                         <div class="col-xs-8 noPadleft brandPosLabel">{!cou.label}</div>                                                                
                                                     </apex:dataList>
+                                                    <!-- To display below outputPanel when current user has edit access on page   -->
                                                     <apex:outputPanel rendered="{!isEditable}" >
                                                         <li class="filterActionscc">
                                                             <div class="ipmButtonGroup noPadleft noPadright col-xs-6 pull-left">
@@ -218,9 +252,12 @@
                                                             </div>
                                                         </li>
                                                     </apex:outputPanel>
-                                                </apex:outputPanel>      
-                                            </apex:outputPanel>              
+                                                </apex:outputPanel>  
+                        </apex:outputPanel>
+                                            </apex:outputPanel>
+                        
                                             <apex:outputPanel layout="block">
+                                                <!-- To display below outputText when brand positioning field value is empty while saving project   -->
                                                 <apex:outputText value="{!$Label.IPM_SELECT_BRAND_POSITIONING}" rendered="{!AND(isBusinessError,CONTAINS(businessErrorField,'IPM_Brand_Positioning__c'))}" styleClass="brandErrMsg"/>
                                             </apex:outputPanel>
                                         </apex:outputPanel>
@@ -228,12 +265,21 @@
                                     <div class="col-sm-6 rightColumn">
                                         <apex:outputPanel layout="block" id="TargetDatePanel" styleClass="inputField launchPeriod" >
                                             <div class="tldLabel"><apex:outputLabel value="{!$Label.IPM_TARGET_LAUNCH_DATE}" styleClass="bsFieldLabel" /><span class="mandatorycolor"> *</span></div>
-                                            <apex:inputField value="{!project.IPM_Target_Launch_Dates__c}" styleClass="dateInputBox tldBox calendar" rendered="{!isEditable}" onfocus="DatePicker.pickDate(true, this , false);"/>                                                              
-                                            <apex:outputField value="{!project.IPM_Target_Launch_Dates__c}" rendered="{!!isEditable}"/>
+                                            <!-- To display below inputField when current user has edit access on page   -->
+                                            <apex:inputField value="{!project.IPM_Target_Launch_Dates__c}" styleClass="dateInputBox tldBox calendar" rendered="{!And(isEditable,isTLDFieldEditable)}" onfocus="DatePicker.pickDate(true, this , false);" onchange="TLDDateCheck()"/>                                                              
+                                            <!-- To display below outputField when current user has read access on page   -->
+                                            <apex:outputField value="{!project.IPM_Target_Launch_Dates__c}" rendered="{!OR(!isEditable,!isTLDFieldEditable)}"/>
+                                            <!-- To display below outputLabel when IPM_Target_Launch_Date__c field value has been selected from bosscard    -->
                                             <apex:outputLabel value="{!project.IPM_Target_Launch_Date__c} [In Bosscard]" styleClass="tldQ" rendered="{!IF(project.IPM_Target_Launch_Date__c !='','true','false')}"/>
                                             <apex:outputPanel id="TLDPMsg">
+                                                <!-- To display below outputText when IPM_Target_Launch_Dates__c field value is empty while saving project    -->
                                                 <apex:outputText value="{!$Label.IPM_SELECT_TLD}" rendered="{!AND(isBusinessError,CONTAINS(businessErrorField,'IPM_Target_Launch_Dates__c'))}" styleClass="TldErrMsg"/>
+                                                <!-- To display below outputText when TLD date is less than six month    -->
                                                 <apex:outputText value="{!$Label.IPM_TLD_SHOULD_BE_GREATER_THAN_TODAY}" rendered="{!isTLDLessThnSixMnth}" styleClass="TldErrMsg"/>
+                                                <!-- To display below outputText when TLD date is greater than today date    -->
+                                                <apex:outputText value="{!$Label.IPM_TLD_SHOULD_BE_GREATER_THAN_TODAYDate}" rendered="{!isTLDLessThnToday}" styleClass="TldErrMsg"/>
+                                                <!-- To display below outputText when TLD date is before gate dates    -->
+                                                <apex:outputText value="{!$Label.TLD_After_Charter_Contract_and_Market_Ready_Milestone_Dates}" rendered="{!isTLDBeforeGates}" styleClass="TldErrMsg"/>
                                             </apex:outputPanel>
                                         </apex:outputPanel>
                                     </div>
@@ -242,8 +288,10 @@
                                 <div class="row">
                                     <div class="col-sm-12"> 
                                         <apex:outputPanel layout="block" styleClass="inputField"  id="questionCharter" >                                              
+                                            <!-- To display below outputPanel when charter question is applicable    -->  
                                             <apex:outputPanel layout="block" styleClass="inputField oprtnRadioContainer contractContainer" rendered="{!projectMetadata.IPM_Charter_Question_Applicable__c}">
                                                 <apex:outputLabel value="{!$Label.IPM_WHO_WILL_APPROVE_CHARTER_GATE}" styleClass="bsFieldLabel editDspBlock" />
+                                                <!-- To display below outputPanel when charter question is empty while saving project    -->
                                                 <apex:outputPanel layout="inline" styleClass="mandatorycolor" rendered="{!CONTAINS(projectMetadata.IPM_MadatoryFields__c,'IPM_Charter_Question_Applicable__c')}"></apex:outputPanel>
                                                 <div class="ipmRadioButton gcltquestions">  
                                                     <apex:selectRadio styleClass="{!IF(OR(!isEditable,AND(isEditable,project.IPM_Phase__c!=projectMetadata.IPM_DefaultPhase__c,project.IPM_Phase__c !=null)),'disable','')}" value="{!project.IPM_Approver_of_Charter__c}" disabled="{!IF(OR(!isEditable,AND(isEditable,project.IPM_Phase__c!=projectMetadata.IPM_DefaultPhase__c,project.IPM_Phase__c !=null)),true,false)}" >
@@ -258,7 +306,9 @@
                                                     <apex:variable var="rowNum" value="{!rowNum + 1}"/>
                                                 </apex:repeat>                                 
                                             </apex:outputPanel>
+                                            <!-- To display below outputPanel when current user has edit access on page    -->
                                             <apex:outputPanel layout="block" rendered="{!OR(NOT(project.IPM_IsSaved__c),isEditable)}" >
+                                                <!-- To display below outputText when gatekeeping model is empty while saving project    -->
                                                 <apex:outputText value="{!$Label.IPM_SELECT_GATEKEEPING}" rendered="{!AND(isBusinessError,CONTAINS(businessErrorField,'IPM_GateKeeping_Model__c'))}" styleClass="brandErrMsg"/>
                                             </apex:outputPanel>
                                         </apex:outputPanel>
@@ -268,8 +318,10 @@
                                 <div class="row">
                                     <div class="col-sm-12"> 
                                         <apex:outputPanel layout="block" styleClass="inputField"  id="gateKeepingPanel" >                                              
+                                              <!-- To display below outputPanel when gatekeeping model is applicable    -->
                                             <apex:outputPanel layout="block" styleClass="inputField oprtnRadioContainer contractContainer" rendered="{!projectMetadata.IPM_GatekeepingModelsApplicable__c}">
                                                 <apex:outputLabel value="{!$Label.IPM_WHO_WILL_APPROVE_CONTRACT_MR}" styleClass="bsFieldLabel editDspBlock"/>
+                                                <!-- To display below outputText when gatekeeping model is empty while saving project  -->
                                                 <apex:outputPanel layout="inline" styleClass="mandatorycolor" rendered="{!CONTAINS(projectMetadata.IPM_MadatoryFields__c,'IPM_GateKeeping_Model__c')}"></apex:outputPanel>
                                             
                                                 <div class="ipmRadioButton gateKeepingModel">
@@ -285,7 +337,9 @@
                                                     <apex:variable var="rowNum" value="{!rowNum + 1}"/>
                                                 </apex:repeat>                                 
                                             </apex:outputPanel>
+                                            <!-- To display below outputPanel when current user has edit access and project is not saved    -->
                                             <apex:outputPanel layout="block" rendered="{!OR(NOT(project.IPM_IsSaved__c),isEditable)}" >
+                                                <!-- To display below outputText when gatekeeping model is empty while saving project  -->
                                                 <apex:outputText value="{!$Label.IPM_SELECT_GATEKEEPING}" rendered="{!AND(isBusinessError,CONTAINS(businessErrorField,'IPM_GateKeeping_Model__c'))}" styleClass="brandErrMsg"/>
                                             </apex:outputPanel>
                                         </apex:outputPanel>
@@ -295,25 +349,44 @@
                                 <div class="row">
                                     <div class="col-sm-12"> 
                                         <apex:outputPanel id="WhiteSpaceFastTrackPanel">
-                                            <apex:outputPanel rendered="{!OR(projectMetadata.IPM_FastTrackApplicable__c,projectMetadata.IPM_WhiteSpaceApplicable__c)}"> 
-                                                <div class="col-sm-12 yellowBox noPadleft">
-                                                    <apex:outputPanel id="fastTrackPanel" styleClass="fastTrackBox" rendered="{!projectMetadata.IPM_FastTrackApplicable__c}" > 
-                                                        <apex:inputCheckbox styleClass="fastTrackcheck" value="{!project.IPM_Fast_Track_Project__c }" disabled="{!IF(OR(!isEditable,AND(isEditable,project.IPM_Phase__c!=projectMetadata.IPM_DefaultPhase__c,project.IPM_Phase__c!='Feasibility',project.IPM_Phase__c!='Capability')),true,false)}"/>
-                                                        <span class="projectraLabel">{!$Label.IPM_FAST_TRACK}</span>
-                                                    </apex:outputPanel>
-                                                    <apex:outputPanel id="whiteSpacePanel" styleClass="whiteSpaceBox" rendered="{!projectMetadata.IPM_WhiteSpaceApplicable__c}" >
-                                                        <apex:inputCheckbox styleClass="fastTrackcheck" value="{!project.IPM_White_Space_Project__c}" disabled="{!IF(OR(!isEditable,AND(isEditable,project.IPM_Phase__c!=projectMetadata.IPM_DefaultPhase__c)),true,false)}"/>
-                                                        <apex:actionSupport event="onchange" reRender="WhiteSpaceHelpTextpanel"  />
-                                                        <span class="projectraLabel">{!$Label.IPM_White_Space}</span>
-                                                    </apex:outputPanel>
-                                                </div>
-                                                <apex:outputPanel id="WhiteSpaceHelpTextpanel">
-                                                    <apex:outputPanel styleClass="col-sm-12 yellowBox" layout="block" rendered="{!AND(project.IPM_White_Space_Project__c,isEditable)}" >
-                                                        <apex:outputText value="{!$Label.IPM_WhiteSpace_HelpText}" />
-                                                    </apex:outputPanel>
+                                        <!-- To display below outputPanel when fasttract or white space is applicable    -->
+                                        <apex:outputPanel rendered="{!OR(projectMetadata.IPM_FastTrackApplicable__c,projectMetadata.IPM_WhiteSpaceApplicable__c)}"> 
+                                        <div class="col-sm-12 yellowBox noPadleft">
+                                         <span class="SecButtonSet infoMarTop pull-left">
+                                                                                <a class="icoButton info smalllinfo" title="{!$Label.IPM_FAST_TRACK_WHITE_SPACE}"></a>
+                                                                            </span>
+                                            <apex:outputPanel id="fastTrackPanel" styleClass="fastTrackBox" >
+                                                <!-- To display below outputPanel when fasttract is applicable    -->
+                                                <apex:outputPanel rendered="{!projectMetadata.IPM_FastTrackApplicable__c}" > 
+                                                    <apex:inputCheckbox styleClass="fastTrackcheck" value="{!project.IPM_Fast_Track_Project__c }" disabled="{!IF(OR(!isEditable,AND(isEditable,project.IPM_Phase__c!=projectMetadata.IPM_DefaultPhase__c,project.IPM_Phase__c!='Feasibility',project.IPM_Phase__c!='Capability')),true,false)}"/>
+                                                    <span class="projectraLabel">{!$Label.IPM_FAST_TRACK}</span>
+                                                    <apex:actionSupport event="onchange" reRender="FastTrackHelpTextpanel"  />
                                                 </apex:outputPanel>
                                             </apex:outputPanel>
+                                            <apex:outputPanel id="whiteSpacePanel" styleClass="whiteSpaceBox" >
+                                                 <!-- To display below outputPanel when white space is applicable    -->
+                                                 <apex:outputPanel rendered="{!projectMetadata.IPM_WhiteSpaceApplicable__c}" >
+                                                    <apex:inputCheckbox styleClass="fastTrackcheck" value="{!project.IPM_White_Space_Project__c}" disabled="{!IF(OR(!isEditable,AND(isEditable,project.IPM_Phase__c!=projectMetadata.IPM_DefaultPhase__c)),true,false)}"/>
+                                                    <apex:actionSupport event="onchange" reRender="WhiteSpaceHelpTextpanel"  />
+                                                    <span class="projectraLabel">{!$Label.IPM_White_Space}</span>
+                                                    <apex:actionSupport event="onchange" reRender="WhiteSpaceHelpTextpanel"  />
+                                                </apex:outputPanel>
+                                            </apex:outputPanel>
+                                        </div>
+                                        <apex:outputPanel id="FastTrackHelpTextpanel">
+                                            <!-- To display below outputPanel when current user has edit access on page    -->
+                                            <apex:outputPanel styleClass="col-sm-12 toolTipMsg radioTooltip10 marginT20" layout="block" rendered="{!AND(project.IPM_Fast_Track_Project__c,isEditable)}" >
+                                                <apex:outputText value="{!$Label.IPM_FastTrack_HelpText}" />
+                                             </apex:outputPanel>
                                         </apex:outputPanel>
+                                        <apex:outputPanel id="WhiteSpaceHelpTextpanel">
+                                            <!-- To display below outputPanel when current user has edit access on page    -->
+                                            <apex:outputPanel styleClass="col-sm-12 yellowBox" layout="block" rendered="{!AND(project.IPM_White_Space_Project__c,isEditable)}" >
+                                            <apex:outputText value="{!$Label.IPM_WhiteSpace_HelpText}" />
+                                            </apex:outputPanel>
+                                        </apex:outputPanel>
+                                        </apex:outputPanel>
+                                    </apex:outputPanel>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 noPadleft">
@@ -321,6 +394,14 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- To place the help symbol in the top right hand corner of page -->
+                        <div class="col-sm-1">
+                            <div class="row">
+                            <apex:outputPanel layout="block" styleClass="SecButtonSet delete pull-right" >
+                                <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
+                            </apex:outputPanel> 
+                            </div>
+                        </div>                      
                     </div>
                 </div> 
                
@@ -328,6 +409,7 @@
             <div class="col-sm-12">
                 <div class="pull-right renderBtnset txtAlignright">
                     <apex:actionStatus startText="" id="Loading" startStyleClass="proInit"/>
+                    <!-- To display below commandLink when current user has edit access on page and phase is not empty    -->
                     <apex:commandLink value="{!$Label.IPM_Update}"  action="{!saveProceed}" rendered="{!AND(isEditable,project.IPM_Phase__c!=null)}" styleClass="coreparameters custMarginbottom ipmButton primary"  reRender="CompanyCardPanel,ProjectNamePanel,Container5, refreshquit,miles,selectNextTabScript,categoryPanel,ProjectSubTypePanel,gateKeepingPanel,questionCharter,WhiteSpaceFastTrackPanel,CompanyCardPanel,BrandPositionPanel,TargetDatePanel,formMessage,editProjectAction" oncomplete="Closepopup();">
                     </apex:commandLink>
                 </div>
@@ -374,6 +456,39 @@
             </div>
         </div>
     </div>  
+
+<!-- Modal -->
+    <div id="tldWarningDialog" tabindex="-1" data-backdrop-limit="1" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <div class="modal-title">{!$Label.Business_Case_Update_Needed}</div>
+                </div>
+                <div class="modal-body">
+                    <div class="removeapprpopup">
+                        <span class="removeApprText">{!$Label.Business_Case_Update_Needed_Value}</span>
+                        <div class="remvButtonContainer pull-right">  
+                            <div class="pull-left buttonMarginRight noPadright">
+                                <input type="button" class="ipmButton" data-dismiss="modal" value="{!$Label.Cancel_and_Revert}" onClick="revertTLDValue();"/>
+                            </div>
+                            <div class="buttonMarginRight noPadright pull-left" >
+                                <!-- <span class="ipmButton primary" data-dismiss="modal" >Agree and Proceed</span> 
+                    <apex:commandLink value="{!$Label.Agree_and_Proceed}"  rendered="{!AND(isEditable,project.IPM_Phase__c!=null)}" styleClass="coreparameters custMarginbottom ipmButton primary"  oncomplete="hideTldWarningDialog();" >
+                    </apex:commandLink> -->
+                    <a class="coreparameters custMarginbottom ipmButton primary" onClick="hideTldWarningDialog()">{!$Label.Agree_and_Proceed}</a>
+                        
+                            </div>
+                        </div>
+                    </div>        
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery.js')}" type="text/javascript"></script>    
+    <script src="{!URLFOR($Resource.IPM_Resource, 'js/bootstrap.min.js')}" type="text/javascript"></script>      
+    <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery-ui.min.js')}" type="text/javascript"></script> 
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_functions.js')}" type="text/javascript"></script>
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Limiter.js')}" type="text/javascript"></script>
     <apex:outputPanel id="editProjectAction">               
@@ -384,6 +499,12 @@
     <apex:repeat value="{!listofprojectname}" var="proList">                
         apexAccountList.push('{!proList.IPM_Project_Name__c}');                 
     </apex:repeat>      
+	jq('.ccCheck').change(function(e) {
+        if (jq('.brandposList input[type=checkbox]:checked').length > 20) {
+            jq(this).prop('checked', false);
+            jq(this).next('label').removeClass('selected');
+        }
+    });  
     jq(".brandautocomplete").autocomplete({     
        source : apexAccountList,        
        select: function (event, ui) {       
@@ -438,8 +559,23 @@
                jq(this).show(); 
            }
        });
-    });                         
+    }); 
+    function TLDDateCheck(){
+        var newTLDValue = jq('.dateInputBox').val();
+        if(newTLDValue != tldOrignalValue){
+            jq('#tldWarningDialog').modal('show'); 
+            return false;
+        }
+        return true;
+    }
+    function revertTLDValue(){
+        jq('.dateInputBox').val(tldOrignalValue);
+    }
+    function hideTldWarningDialog(){
+        jq('#tldWarningDialog').modal('hide'); 
+    }
+    const tldOrignalValue = jq('.dateInputBox').prop("defaultValue");   
     </script>
     </apex:outputPanel>
-     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_editproject.js')}" type="text/javascript"></script>
+     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_EditProject.js')}" type="text/javascript"></script>
 </apex:page>

@@ -16,27 +16,35 @@ jq(document).ready(function() {
 function updateSecGateKeeperList(id, ans, comment, cmnts) {
     callupdateSecGateKeeperList(id, ans, comment, cmnts);
 }
+function updateGKList(id, ans, comment, cmnts) {
+    callupdateGKList(id, ans, comment, cmnts);
+}
 
 /* Below code is for the slider functionality */
 function initSliderSecGk() {
 
-    var itemsGK = [IPMAppSecGK.select, IPMAppSecGK.yes, IPMAppSecGK.partly, IPMAppSecGK.no, IPMAppSecGK.na];
+    var itemsSecGK = [IPMAppSecGK.select, IPMAppSecGK.yes, IPMAppSecGK.partly, IPMAppSecGK.no, IPMAppSecGK.na];
     var s = jq(".sliderGk");
     var score;
-    var PointerT = 100 / (itemsGK.length - 1);
+    var PointerT = 100 / (itemsSecGK.length - 1);
 
 jq(s).each(function() {
-    var answerSecGK = jq(this).find("input[name=secGkans]").val();    
+    var answerSecGK = jq(this).find("input[name=secGkans]").val(); 
+	
     jq(this).slider({
         min: 1,
-        max: itemsGK.length,
+        max: itemsSecGK.length,
         animate: 'slow',
-        value:itemsGK.indexOf(answerSecGK)+1,
+        value:itemsSecGK.indexOf(answerSecGK)+1,
         stop: function(event, ui) {
             var pointer = ui.value - 1;
-            jq('#s' + itemsGK.indexOf(answerSecGK)+1).prop('checked', true);
-            score = itemsGK[pointer];
-        }
+            jq('#s' + itemsSecGK.indexOf(answerSecGK)+1).prop('checked', true);
+            score = itemsSecGK[pointer];
+        },
+		slide: function( event, ui ) {
+			jq(this).find(".legendSld.gateKeeperSlider label").css({color: "#555", fontWeight: "normal"}).eq(ui.value -1).css({color: "#E98824", fontWeight: "bold"});
+			jq(this).find(".legendSld.gateKeeperSlider label").eq(ui.value -1).click();			
+		}
     });
     
     if (answerSecGK == IPMAppSecGK.yes) {           

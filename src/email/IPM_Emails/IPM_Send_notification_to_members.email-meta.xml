@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>IPM Send notification to members</name>
+    <style>none</style>
+    <subject>Updation of the Gate Section:{!01IE0000000lVME.00NE0000005URL5} of project {!01IE0000000lVME.00NE0000005URKz}</subject>
+    <textOnly>Hi,
+
+{!01IE0000000lVME.LastModifiedBy} has updated the Additional information of the Section-{!01IE0000000lVME.00NE0000005URL6} of project: {!01IE0000000lVME.00NE0000005URKz} on {!01IE0000000lVME.LastModifiedDate}
+
+Direct link to the section is as below:
+Hyperlink- https://unilever--cogstagin--c.cs8.visual.force.com/apex/ipmProjectDocumentSectionEditorV1?id={!01IE0000000lVME.00NE0000005URL1.Id}&amp;projDocSecId={!01IE0000000lVME.00NE0000005URL4}
+
+
+
+Warm Regards,</textOnly>
+    <type>custom</type>
+</EmailTemplate>

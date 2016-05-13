@@ -253,6 +253,70 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Due_Date_Capability__c</fullName>
+        <externalId>false</externalId>
+        <label>Due Date@Capability</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Due_Date_Feasibility__c</fullName>
+        <description>Snapshot of Feasibility Due Date</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Snapshot of Feasibility Due Date</inlineHelpText>
+        <label>Due Date@Feasibility</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Due_Date_Idea__c</fullName>
+        <description>Snapshot of Idea Due Date</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Snapshot of Idea Due Date</inlineHelpText>
+        <label>Due Date@Idea</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Due_Date_Market_Deployment__c</fullName>
+        <description>Snapshot of Market Deployment Due Date</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Snapshot of Market Deployment Due Date</inlineHelpText>
+        <label>Due Date@Market Deployment</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Due_Date_Market_Ready__c</fullName>
+        <description>Snapshot of Market Ready Due Date</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Snapshot of Market Ready Due Date</inlineHelpText>
+        <label>Due Date@Market Ready</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Due_Date_Post_Launch_Evaluation__c</fullName>
+        <description>Sanpshot of Post Launch Evaluation Due Date</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Sanpshot of Post Launch Evaluation Due Date</inlineHelpText>
+        <label>Due Date@Post Launch Evaluation</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>IPM_Due_Date__c</fullName>
         <externalId>false</externalId>
         <label>Due Date</label>
@@ -780,11 +844,11 @@ IF(TEXT(IPM_Project__r.IPM_Market_Type__c) = &apos;Developing &amp; Emerging&apo
         <fullName>Mini_Milestones</fullName>
         <columns>NAME</columns>
         <columns>IPM_Name__c</columns>
+        <columns>IPM_Milestone__c</columns>
         <columns>IPM_Type_of_Milestone__c</columns>
         <columns>IPM_Project_Type__c</columns>
         <columns>IPM_Project__c</columns>
         <columns>IPM_Phase_Order__c</columns>
-        <columns>IPM_Milestone__c</columns>
         <columns>IPM_Active__c</columns>
         <columns>IPM_Market_Type__c</columns>
         <columns>RECORDTYPE</columns>
@@ -802,6 +866,13 @@ IF(TEXT(IPM_Project__r.IPM_Market_Type__c) = &apos;Developing &amp; Emerging&apo
         </filters>
         <label>Mini Milestones</label>
         <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>My_Milestones</fullName>
+        <columns>NAME</columns>
+        <columns>IPM_Project__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>My Milestones</label>
     </listViews>
     <listViews>
         <fullName>Standard_MileStones</fullName>

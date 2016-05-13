@@ -80,18 +80,18 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
         isAsc = false;
         warningMessages = new List<String>();
         //this field will actually define what is the current sorting column applies to, default is Project name
-        currentSort = new Map<String, String>{IPM_ConstantUtils.THIS_FIELD => 'IPM_Due_Date__c'};
+        currentSort = new Map<String, String>{IPM_ConstantUtils.THIS_FIELD => 'IPM_Phase_Order__c'};
         projectId = ApexPages.currentPage().getParameters().get('id');
         if(projectId =='' || projectId ==null){
             projectId = ApexPages.currentPage().getParameters().get('Pid');
         }
         projectObj = [SELECT IPM_Phase__c,IPM_Fast_Track_Project__c, IPM_CompanyCardText__c, IPM_Target_Launch_Dates__c,IPM_Market_Type__c, IPM_Project_Type__c, IPMProject_Span__c, IPM_GateKeeping_Model__c,
-                    BET_First_Release_Missed__c,BET_Final_Release_Missed__c,BET_MS_First_Release_Date__c,BET_MS_Final_Release_Date__c,BET_TLD_First_Release_Date__c,BET_TLD_Final_Release_Date__c  FROM IPM_Project__c WHERE Id =:projectId];
+                    BET_First_Release_Missed__c,BET_Final_Release_Missed__c,BET_MS_First_Release_Date__c,BET_MS_Final_Release_Date__c,BET_TLD_First_Release_Date__c,BET_TLD_Final_Release_Date__c, BET__c  FROM IPM_Project__c WHERE Id =:projectId];
         projectPhase =  projectObj != null && projectObj.IPM_Phase__c != null ? projectObj.IPM_Phase__c : '';
         initializeMilestones();
         phaseMsList.sort();//customised sort
         //Code to add BET related messages
-        if((projectObj.BET_TLD_First_Release_Date__c > projectObj.BET_MS_First_Release_Date__c) || (projectObj.BET_TLD_Final_Release_Date__c > projectObj.BET_MS_Final_Release_Date__c)){
+        if(projectObj.BET__c!=null && ((projectObj.BET_TLD_First_Release_Date__c < projectObj.BET_MS_First_Release_Date__c) || (projectObj.BET_TLD_Final_Release_Date__c < projectObj.BET_MS_Final_Release_Date__c))){
             isWarningRequired = true;   
             warningMessages.add(system.label.IPM_BETMilestoneDateMismatch);
         }
@@ -138,6 +138,10 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
             
             // BET Milestone will be read only 
             if(eachMilestone.IPM_Type_of_Milestone__c == IPM_ConstantUtils.BET){
+                isEditable = false;
+            }
+            // Target Launch Date will be read only
+            if(eachMilestone.IPM_Name__c.equalsignorecase(IPM_Utils.TargetLaunchDateShiptoTrade) || IPM_ConstantUtils.SHIPTO_TRADE_TLD.equalsignorecase(eachMilestone.IPM_Name__c)){
                 isEditable = false;
             }
             
@@ -208,8 +212,7 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
         currentSort.put(IPM_ConstantUtils.THIS_FIELD, 'IPM_Completed_On__c');
         getProjectMilestones();
     }
-    
-    
+        
     public void initializeMilestones()
     {
         loadMilestones();
@@ -255,18 +258,15 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
         if(phaseM != '') {
            soql += ' AND IPM_phase__c IN '+ IPM_Utils.convertStrToSoqlList(String.escapeSingleQuotes(phaseM)); 
         } 
-        if(isCompleteMilestones == 't') {
+        if(isCompleteMilestones != null && isCompleteMilestones == 't') {
             soql += ' AND IPM_Completed__c = true';
         }
-        if(isCompleteMilestones == 'f') {
+        if(isCompleteMilestones != null && isCompleteMilestones == 'f') {
             soql += ' AND IPM_Completed__c = false';
         }
         soql += ' AND recordtypeId=\'' + IPM_Utils.getMilestoneRecordType('IPM Project Milestones') + '\'';
         
-        if( isCompleteMilestones == null )
-        {
-            sortString += ' IPM_Completed__c  DESC,IPM_Phase_Order__c ASC,';
-        }
+
         if(isAsc)
         {
             sortString +=  currentSort.get(IPM_ConstantUtils.THIS_FIELD) + ' DESC '; 
@@ -290,7 +290,11 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
         loadMilestones();
         loadTimelines((List<IPM_Milestone__c>)sourcesObjectList);
         getWrapperRecords();
-        paginationUIDisplay = string.format(System.Label.IPM_PaginationUIDisplay, new string[] {string.valueof(getBeginIndexNumber()),String.valueof(getEndIndexNumber()),String.valueof(milestoneCnt)});
+        if(getEndIndexNumber() == 0){
+            paginationUIDisplay = string.format(System.Label.IPM_PaginationUIDisplay, new string[] {string.valueof(getBeginIndexNumber() - 1),String.valueof(getEndIndexNumber()),String.valueof(milestoneCnt)});
+        }else{
+            paginationUIDisplay = string.format(System.Label.IPM_PaginationUIDisplay, new string[] {string.valueof(getBeginIndexNumber()),String.valueof(getEndIndexNumber()),String.valueof(milestoneCnt)});
+        }
         
         return  wrapperRecordList;
     }

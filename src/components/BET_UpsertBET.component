@@ -71,7 +71,7 @@
         </div>
 
         <!-- FabricConditioner begin -->
-        <div class="form-item" style="{!IF(fabricConditionerCategory,'padding-bottom: 20px;','display:none;')}">
+        <div class="form-item" style="{!IF(fabricConditionerCategory,'display:none;','display:none;')}">
             <div class="item-label">
                 <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.Is_Fabric_Conditioners__c.Label}</apex:outputLabel>
             </div>
@@ -102,7 +102,7 @@
         </div>
 
         <!-- FabricConditioner begin -->
-        <div class="form-item" style="{!IF(fabricConditionerCategory,'display:none;','')}">
+        <div class="form-item" style="{!IF(fabricConditionerCategory,'','')}">
         <!-- FabricConditioner end -->
             <div class="item-label">
                 <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.IPM_Project__c.Label}</apex:outputLabel>
@@ -114,9 +114,12 @@
 
         <div class="form-item">
             <div class="item-label">
-                <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.Description__c.Label}</apex:outputLabel>
+                <apex:outputLabel Title="{!$ObjectType.uw_BET__c.Fields.Description__c.InlineHelpText}">{!$ObjectType.uw_BET__c.Fields.Description__c.Label}</apex:outputLabel>
+                <span class="SecButtonSet infoMarTop">
+                <a class="icoButton info smalllinfo" title="{!$ObjectType.uw_BET__c.Fields.Description__c.InlineHelpText}"></a>
+                </span>
             </div>
-            <div class="item-input">
+            <div class="item-input-description">
                 <apex:inputTextarea rows="5" value="{!betobject.Description__c}" />
             </div>
         </div>

@@ -33,7 +33,6 @@ global class BET_ReleaseDateEmails implements Database.Batchable<sObject>, Datab
 
         BET_Request_Access__c settings  = BET_Request_Access__c.getInstance();
 
-        String template = '';
         List<String> toAddresses = new List<String>();
         Messaging.SingleEmailMessage mail;
         //T0-Begin
@@ -59,24 +58,29 @@ global class BET_ReleaseDateEmails implements Database.Batchable<sObject>, Datab
                 }
                 mail.setSubject('REMINDER: '+bet.Name+' BET is due for Final Release on '+bet.Final_Release_Due_Date__c);
             }           
-            template = BET_ReleaseDateEmails.generateTemplate(bet, settings, isFirst);
-                    //T0-Begin
-            //comment out below line
-          // mail.setSenderDisplayName(settings.From_Name__c);
-                  //T0-End
-            mail.setToAddresses(toAddresses);
-            mail.setHtmlBody(template);
-                                //T0-Begin
-            //comment out below line
-          //  mail.setReplyTo(settings.Email_Address__c);
-                  //T0-End
-            mailList.add(mail);
+            mailList.add(updateEmailParams(mail,bet,settings,isFirst,toAddresses));
         }
 
         List<Messaging.Sendemailresult> mailResult;
         if(!Test.isRunningTest()){
             mailResult = Messaging.sendEmail(mailList); 
         }
+    }
+
+    @TestVisible
+    private static Messaging.SingleEmailMessage updateEmailParams(Messaging.SingleEmailMessage mail,uw_BET__c bet,BET_Request_Access__c settings,Boolean isFirst,List<String> toAddresses){
+        String template = BET_ReleaseDateEmails.generateTemplate(bet, settings, isFirst);
+                    //T0-Begin
+            //comment out below line
+          // mail.setSenderDisplayName(settings.From_Name__c);
+                  //T0-End
+        mail.setToAddresses(toAddresses);
+        mail.setHtmlBody(template);
+                                //T0-Begin
+            //comment out below line
+          //  mail.setReplyTo(settings.Email_Address__c);
+                  //T0-End
+        return mail;
     }
 
     @TestVisible

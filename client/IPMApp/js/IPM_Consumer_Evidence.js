@@ -113,6 +113,7 @@ function selectCheckboxScript() {
     /* Below script is for resetting the selected channels */
     jq(document).on('click', '.filterActionscc .ipmDropresetcc', function(e) {
         e.stopPropagation();
+		var selectedValues = IPMAppCE.countryName;
         jq(".channelList input:checkbox").each(function() {
             if (selectedValues.indexOf(jq(this).val()) == -1) {
                 jq(this).prop('checked', false);
@@ -147,6 +148,24 @@ function selectCheckboxScript() {
         }
     });
     /* Below script is for the accordion functionality */
+    jq(".ipmAcrdnExpand").show();
+    jq(document).on("click", ".evidenceHead span.expico, .evidenceHead span.expico-square", function() {
+        if (jq(this).closest(".cevidenceborder").find(".ipmAcrdnExpand").is(":visible") && jq(elem).closest(".cevidenceborder").find(".ipmAcrdnExpand").not(':empty')) {
+            jq(this).closest(".cevidenceborder").find(".ipmAcrdnExpand").slideUp("fast");
+        } else {
+            jq(this).closest(".cevidenceborder").find(".ipmAcrdnExpand").slideDown("fast");
+        }
+    });
+	jq(".ipmAccordion").find(".evidenceHead span.expico").removeClass("fa-plus");
+    jq(".ipmAccordion").find(".evidenceHead span.expico").addClass("fa-minus");
+   
+}
+jq(document).ready(function() {
+    selectCheckboxScript();
+    jq(document).on('click', '.ccChannelList input[type="checkbox"], .ccChannelList li,.filterActionscc', function(e) {
+        e.stopPropagation();
+    });
+	/* Below script is for the accordion functionality */
     jq(".ipmAcrdnExpand").hide();
     jq(".ipmAcrdnExpand:first, .ipmAcrdnExpand:first .ipmAcrdnExpand").not(':empty').show();
     jq(document).on("click", ".evidenceHead span.expico, .evidenceHead span.expico-square", function() {
@@ -160,12 +179,6 @@ function selectCheckboxScript() {
     jq(".ipmAccordion").find(".evidenceHead span.expico").addClass("fa-plus");
     jq(".ipmAccordion").find(".evidenceHead:first span.expico").removeClass("fa-plus");
     jq(".ipmAccordion").find(".evidenceHead:first span.expico").addClass("fa-minus");
-}
-jq(document).ready(function() {
-    selectCheckboxScript();
-    jq(document).on('click', '.ccChannelList input[type="checkbox"], .ccChannelList li,.filterActionscc', function(e) {
-        e.stopPropagation();
-    });
     jq(document).click(function(e) {
         if (e.target.className != 'cecList') {
             jq(".channelList").hide();

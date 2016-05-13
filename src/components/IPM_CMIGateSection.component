@@ -28,23 +28,24 @@
                         <th>    
                             <table>
                                 <tr>
-                                    <th class="cmiCountryHead" scope="col">{!$Label.IPM_COUNTRY}</th>
+                                    <th class="cmiCountryHead {!if(gate!='Charter','cmiContractCountryHead','')}" scope="col">{!$Label.IPM_COUNTRY}</th>
                                     <th class="cmiInputHead {!if(gate!='Charter','cmiContractInputHead','')}"> {!$Label.IPM_INPUT}</th>
                                     <th class="cmiTimingHead {!if(gate!='Charter','cmiContractTimingHead','')}">{!$Label.IPM_RESULTS} {!$Label.IPM_TIMINGS}</th>
                                     <th class="cmiResultsHead {!If(gate!='Charter','','cmiCharterResults')}"><apex:outputText value="{!If(gate!='Charter','Action Standards',$Label.IPM_RESULTS)}"></apex:outputText>
                                     </th>
                                     <th class="cmiOverallHead"><div class="cmiNopadding"><apex:outputText value="{!If(gate!='Charter','Action Standards',$Label.IPM_RESULTS)}"></apex:outputText></div><span class="ovrAllHeadText"> {!$Label.IPM_OVERALL}</span><div class="cmiNopadding">{!$Label.IPM_COLOR_CODING}</div>
                                     </th>
+                                    <!-- Condition for checking gate document is contract or market ready -->
                                     <apex:outputPanel layout="block" rendered="{!OR(gate='Contract',gate='Market Ready')}">
                                         <th class="cmiContractResultsHead" colspan="2" scope="col">
                                             {!$Label.IPM_RESULTS} 
                                         </th>
-                                        <th class="cmiOverallHead" scope="col"> 
+                                        <th class="cmiContractOverallHead" scope="col"> 
                                             <div class="cmiNopadding">{!$Label.IPM_RESULTS}</div><span class="ovrAllHeadText"> {!$Label.IPM_OVERALL}</span><div class="cmiNopadding">{!$Label.IPM_COLOR_CODING}</div>
                                         </th>
                                     </apex:outputPanel>
-                                    <th class="cmiCommentsHead">{!$Label.IPM_COMMENTS}<apex:outputText value=" / Follow up plan in Feasibility phase" rendered="{!gate='Charter'}"/></th>
-                                
+                                    <!-- Condition for checking charter gate -->
+                                    <th class="cmiCommentsHead {!If(gate!='Charter','cmiContractCommentsHead','')}">{!$Label.IPM_COMMENTS}<apex:outputText value=" / Follow up plan in Feasibility phase" rendered="{!gate='Charter'}"/></th>                                
                                 </tr>
                             </table>
                         </th>   
@@ -57,6 +58,7 @@
                 </tr>
                 <tbody>
                     <apex:repeat value="{!gateCMIList}" var="cmi">
+                    	<!-- Checking condition for cmi records list is empty or not -->
                         <apex:outputPanel layout="block" rendered="{!AND(gateCMIList.size>0,cmi.Gate__c=gate)}">
                             <tr>
                                 <td rowspan="1" class="rSpan" >{!cmi.Element__c}</td>  
@@ -67,31 +69,38 @@
                                         <tbody>
                                              <td>
                                             <apex:repeat value="{!countryNames}" var="key">
+                                            		<!-- Checking countries available for cmi record -->
                                                     <apex:outputPanel layout="block" rendered="{!AND(displayCon[key]!=null,displayCon[key].IPM_Gate_CMI__c=cmi.Id)}">
                                                         <tr>
-                                                            <td rowspan="{!inputCount[cmi.Test__c]+1}" class="{!if(gate!='Charter','cmiContractCountryHead','cmiCountryHead')}"><apex:outputText value="{!displayCon[key].IPM_CMI_Country__c}" /></td>
+                                                            <td rowspan="{!inputCount[cmi.Test__c]+1}" class="{!if(gate!='Charter','cmiContractCountryval','cmiCountryval')}"><apex:outputText value="{!displayCon[key].IPM_CMI_Country__c}" /></td>
                                                             <apex:variable var="i" value="{!1}"/> 
                                                             <apex:repeat value="{!secConList}" var="con">
+                                                            	<!-- Checking country name with cmi country -->
                                                                 <apex:outputpanel layout="block" rendered="{!AND(secConList.size>0,cmi.Id=con.IPM_Gate_CMI__c,displayCon[key].IPM_CMI_Country__c=con.IPM_CMI_Country__c)}">
                                                                     <tr>
-                                                                        <td class="cmiInputHead" rowspan="1">{!con.IPM_CMI_Input__c}</td>
+                                                                        <td class="{!If(gate='Charter','cmiInputval','cmiContractInputval')}" rowspan="1">{!con.IPM_CMI_Input__c}</td>
+                                                                        <!-- Condition for displaying approximate result timing of cmi -->
                                                                         <apex:outputPanel layout="block" rendered="{!AND(displayCon[key]!=null,displayCon[key].IPM_Gate_CMI__c=cmi.Id,i=1)}">
-                                                                            <td class="cmiTimingHead" rowspan="{!inputCount[cmi.Test__c]}"><apex:outputField value="{!displayCon[key].IPM_CMI_Result_Timing__c}" /></td>   
+                                                                            <td class="{!If(gate!='Charter','cmiTimingval','cmiContractTimingval')}" rowspan="{!inputCount[cmi.Test__c]}"><apex:outputField value="{!displayCon[key].IPM_CMI_Result_Timing__c}" /></td>   
                                                                         </apex:outputPanel> 
-                                                                        <td class="cmiResfirst">
+                                                                        <td class="{!If(gate='Charter','cmiResfirst','cmiContractResfirst1')}">
                                                                             <span class="pull-left">{!con.IPM_CMI_Result__c}</span>                                       
                                                                         </td>
-                                                                        <td class="cmiRessecond">
+                                                                        <td class="{!If(gate='Charter','cmiRessecond','cmiContractRessecond1')}">
                                                                             <span class="cmiCodingColumn {!If(con.IPM_CMI_Color_Score_Value__c!=null,'','cmiColorBox')}  {!con.IPM_CMI_Outcome_Color__c}">{!con.IPM_CMI_Color_Score_Value__c}</span>
                                                                         </td>
-                                                                        <apex:outputPanel layout="block" rendered="{!AND(displayCon[key]!=null,displayCon[key].IPM_Gate_CMI__c=cmi.Id,i=1,gate!='Charter')}"><td class="cmiOverallHead" rowspan="{!inputCount[cmi.Test__c]}"><div class="bgcmiContainer"><span class="pull-left {!displayCon[key].IPM_CMI_Overall_Colour__c}"><apex:outputText value="{!displayCon[key].IPM_CMI_Overall_Score__c}" /></span></div></td> </apex:outputPanel>
+                                                                        <!-- Condition for displaying cmi overall score-->
+                                                                        <apex:outputPanel layout="block" rendered="{!AND(displayCon[key]!=null,displayCon[key].IPM_Gate_CMI__c=cmi.Id,i=1,gate!='Charter')}"><td class="cmiContractOverallval1" rowspan="{!inputCount[cmi.Test__c]}"><div class="bgcmiContainer"><span class="pull-left {!displayCon[key].IPM_CMI_Overall_Colour__c}"><apex:outputText value="{!displayCon[key].IPM_CMI_Overall_Score__c}" /></span></div></td> </apex:outputPanel>
+                                                                        <!-- Condition for checking other than charter gate -->
                                                                         <apex:outputPanel layout="block" rendered="{!gate!='Charter'}">
-                                                                            <td class="cmiResfirst"><span class="cmiCodingColumn">{!con.IPM_CMI_Results_Acheived__c}</span></td>
-                                                                            <td class="cmiRessecond"><span class="{!con.IPM_CMI_Outcome_Color_Achieved__c}">{!con.IPM_CMI_Color_Score_Value_Achieved__c}</span></td>
+                                                                            <td class="cmiContractResfirst2"><span class="cmiCodingColumn">{!con.IPM_CMI_Results_Acheived__c}</span></td>
+                                                                            <td class="cmiContractRessecond2"><span class="{!If(con.IPM_CMI_Color_Score_Value__c!=null,'','cmiColorBox')} {!con.IPM_CMI_Outcome_Color_Achieved__c}">{!con.IPM_CMI_Color_Score_Value_Achieved__c}</span></td>
                                                                         </apex:outputPanel>
-                                                                        <apex:outputPanel layout="block" rendered="{!AND(displayCon[key]!=null,displayCon[key].IPM_Gate_CMI__c=cmi.Id,i=1,gate='Charter')}"><td class="cmiOverallHead " rowspan="{!inputCount[cmi.Test__c]}"><div class="bgcmiContainer"><span class="pull-left {!displayCon[key].IPM_CMI_Overall_Colour__c}"><apex:outputText value="{!displayCon[key].IPM_CMI_Overall_Score__c}" /></span></div></td> </apex:outputPanel>
-                                                                        <apex:outputPanel layout="block" rendered="{!AND(displayCon[key]!=null,displayCon[key].IPM_Gate_CMI__c=cmi.Id,i=1,gate!='Charter')}"><td class="cmiOverallHead " rowspan="{!inputCount[cmi.Test__c]}"><div class="bgcmiContainer"><span class="pull-left {!displayCon[key].IPM_CMI_Overall_Colour_Achieved__c}"><apex:outputText value="{!displayCon[key].IPM_CMI_Overall_Score_Achieved__c}" /></span></div></td> </apex:outputPanel>
-                                                                        <td class="cmiCommentsHead">{!con.IPM_CMI_Comments__c}</td>
+                                                                        <!-- Condition for displaying cmi overall color -->
+                                                                        <apex:outputPanel layout="block" rendered="{!AND(displayCon[key]!=null,displayCon[key].IPM_Gate_CMI__c=cmi.Id,i=1,gate='Charter')}"><td class="cmiOverallval" rowspan="{!inputCount[cmi.Test__c]}"><div class="bgcmiContainer"><span class="pull-left {!displayCon[key].IPM_CMI_Overall_Colour__c}"><apex:outputText value="{!displayCon[key].IPM_CMI_Overall_Score__c}" /></span></div></td> </apex:outputPanel>
+                                                                        <!-- Condition for displaying cmi overall color achieved -->
+                                                                        <apex:outputPanel layout="block" rendered="{!AND(displayCon[key]!=null,displayCon[key].IPM_Gate_CMI__c=cmi.Id,i=1,gate!='Charter')}"><td class="cmiContractOverallval2" rowspan="{!inputCount[cmi.Test__c]}"><div class="bgcmiContainer"><span class="pull-left {!displayCon[key].IPM_CMI_Overall_Colour_Achieved__c}"><apex:outputText value="{!displayCon[key].IPM_CMI_Overall_Score_Achieved__c}" /></span></div></td> </apex:outputPanel>
+                                                                        <td class="{!If(gate='Charter','cmiCommentsval','cmiContractCommentsval')}">{!con.IPM_CMI_Comments__c}</td>
                                                                     </tr>  
                                                                     <apex:variable var="i" value="{!i+1}"/>
                                                                 </apex:outputPanel> 

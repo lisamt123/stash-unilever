@@ -6,7 +6,10 @@
 @Version 1.0
 @reference Project Job Queue
 */
-// This class would initially run in System mode to make sure that it can view all project associations.However internal invocations for Helpers are 'With sharing'.
+/* This class would initially run in System mode to make sure that it can view all project associations.However internal 
+    invocations for Helpers are 'With sharing'.
+*/
+
 public without sharing class IPM_ProjectJobHelper 
 {
     public static String REGIONAL_ROLLOUT_RECORDTYPE = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.REGIONAL_ROLLOUT_RT).getRecordTypeId(); 
@@ -99,22 +102,50 @@ public without sharing class IPM_ProjectJobHelper
                 {
                     nextPhaseSet.add(nextPhase.IPM_Phase__c);
                 }   
-        
-                if(currentProjectType!=null)
-                {   
+                
+                if(currentProjectType!=null) 
+                { 
+                     IPM_Project__c globalProject,regionalProject = null;
+                     
                     /* Local Project Calculation Begins.Used for Updating Phase of related Projects based on gatekeeping Model */
                     if(incomingProjectDetail.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
                     {
-                        if(currentProjectType.IPM_CopyPhase2Regional__c && projectToParentMapping.containsKey(projectId))  
+                        globalProject = projectToGrandParentMapping.get(projectId);
+                        regionalProject = projectToParentMapping.get(projectId);
+                          
+                        if(globalProject !=null && processingProjectMap.containsKey(globalProject.Id))
                         {
-                            IPM_Project__c regionalProject =  projectToParentMapping.get(projectId);
-                           
+                           globalProject = processingProjectMap.get(globalProject.Id);
+                        }
+                         
+                        if(regionalProject !=null && processingProjectMap.containsKey(regionalProject.Id))
+                        {
+                           regionalProject = processingProjectMap.get(regionalProject.Id);
+                        } 
+                        
+                        if(regionalProject!=null)  
+                        {
+                            Boolean phaseChange = false;
                             // Get Regional Project Phase and validate whether GateSequence is already ahead of Current Project Sequence.If yes no need to Update.
-                            if( regionalProject.IPM_Phase__c != incomingProjectDetail.IPM_Phase__c  && 
+                            if(currentProjectType.IPM_CopyPhase2Regional__c && regionalProject.IPM_Phase__c != incomingProjectDetail.IPM_Phase__c  && 
                                 IPM_ConstantUtils.phaseSequence.get(regionalProject.IPM_Phase__c) < IPM_ConstantUtils.phaseSequence.get(incomingProjectDetail.IPM_Phase__c) )
                             {
-                                regionalProject.IPM_Temporary_Phase__c = incomingProjectDetail.IPM_Phase__c;
-                                regionalProject.IPM_Phase__c = incomingProjectDetail.IPM_Phase__c;
+                                regionalProject.IPM_Temporary_Phase__c = regionalProject.IPM_Phase__c = incomingProjectDetail.IPM_Phase__c;
+                                phaseChange = true;
+                            }
+                            
+                            // If local Project is ahead of Regional Project and Fast Forward is true, upgrade Regional Project to same Phase as local
+                            IPM_Project_Type__c regionalProjectType =  IPM_Utils.retrieveProjectType(regionalProject);
+                            
+                            if(regionalProjectType.IPM_Fast_Forward_Phase_Change__c && regionalProject.IPM_Phase__c != incomingProjectDetail.IPM_Phase__c && 
+                                IPM_ConstantUtils.phaseSequence.get(regionalProject.IPM_Phase__c) < IPM_ConstantUtils.phaseSequence.get(incomingProjectDetail.IPM_Phase__c))
+                            {
+                                regionalProject.IPM_Temporary_Phase__c = regionalProject.IPM_Phase__c = incomingProjectDetail.IPM_Phase__c;
+                                phaseChange = true;
+                            } 
+                            
+                            if(phaseChange)
+                            {
                                 regionalProject.IPM_ProjectJobType__c = IPM_ConstantUtils.JOBTYPE_PHASECHANGE;
                                 regionalProject.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_PROCESSING;
                                 if(qContext!=null)
@@ -122,18 +153,32 @@ public without sharing class IPM_ProjectJobHelper
                                     regionalProject.IPM_PhaseChangeQueueJobId__c = qContext.getJobId();
                                 }     
                                 processingProjectMap.put(regionalProject.Id,regionalProject);
-                            }
+                            } 
                         }
                         
-                        if(currentProjectType.IPM_CopyPhase2Global__c && projectToGrandParentMapping.containsKey(projectId))
+                        if(globalProject!=null)
                         {
-                            IPM_Project__c globalProject =  projectToGrandParentMapping.get(projectId);
+                            Boolean phaseChange = false;
                             // Get Global Project Phase and validate whether GateSequence is already ahead of Current Project Sequence.If yes no need to Update.                            
-                            if( globalProject.IPM_Phase__c != incomingProjectDetail.IPM_Phase__c && 
+                            if(currentProjectType.IPM_CopyPhase2Global__c && globalProject.IPM_Phase__c != incomingProjectDetail.IPM_Phase__c && 
                                 IPM_ConstantUtils.phaseSequence.get(globalProject.IPM_Phase__c) < IPM_ConstantUtils.phaseSequence.get(incomingProjectDetail.IPM_Phase__c)  )
                             {
-                                globalProject.IPM_Temporary_Phase__c = incomingProjectDetail.IPM_Phase__c;
-                                globalProject.IPM_Phase__c = incomingProjectDetail.IPM_Phase__c;
+                                globalProject.IPM_Temporary_Phase__c = globalProject.IPM_Phase__c = incomingProjectDetail.IPM_Phase__c;
+                                phaseChange = true;
+                            }
+                            
+                            // If local Project is Ahead of Global Project and Fast Forward is true, upgrade Global to same Phase
+                            IPM_Project_Type__c globalProjectType =  IPM_Utils.retrieveProjectType(globalProject);
+                            
+                            if(globalProjectType.IPM_Fast_Forward_Phase_Change__c && globalProject.IPM_Phase__c != incomingProjectDetail.IPM_Phase__c && 
+                                IPM_ConstantUtils.phaseSequence.get(globalProject.IPM_Phase__c) < IPM_ConstantUtils.phaseSequence.get(incomingProjectDetail.IPM_Phase__c))
+                            {
+                                globalProject.IPM_Temporary_Phase__c = globalProject.IPM_Phase__c = incomingProjectDetail.IPM_Phase__c;
+                                phaseChange = true; 
+                            }
+                            
+                            if(phaseChange)
+                            {
                                 globalProject.IPM_ProjectJobType__c = IPM_ConstantUtils.JOBTYPE_PHASECHANGE;
                                 globalProject.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_PROCESSING;        
                                 if(qContext!=null)
@@ -141,18 +186,26 @@ public without sharing class IPM_ProjectJobHelper
                                     globalProject.IPM_PhaseChangeQueueJobId__c = qContext.getJobId();
                                 }
                                 processingProjectMap.put(globalProject.Id,globalProject);
-                            }
+                            }  
                         }
                     }
                     /* Local Project Calculation ends */
-
+					
+					
                     /* Regional Project Calculation Begins */         
                     if(incomingProjectDetail.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL )
                     {
+
+                        globalProject = projectToParentMapping.get(projectId);
+                          
+                        if(globalProject !=null && processingProjectMap.containsKey(globalProject.Id))
+                        {
+                           globalProject = processingProjectMap.get(globalProject.Id);
+                        }
+
                         if(currentProjectType.IPM_Fast_Forward_Phase_Change__c)
                         {
                             Map<Id,IPM_Project__c> childProjectMap = projectToChildMapping.get(projectId);
-                            
                             Integer maxPhaseCounter = Integer.valueOf(currentProjectType.IPM_Gate_Sequence__c);
                             String maxPhase = incomingProjectDetail.IPM_Phase__c;
                             for(IPM_Project__c childProject : childProjectMap.values())
@@ -173,16 +226,29 @@ public without sharing class IPM_ProjectJobHelper
                             incomingProjectDetail.IPM_Phase__c = maxPhase;
                             
                         }
-       
-                        if(currentProjectType.IPM_CopyPhase2Global__c && projectToParentMapping.containsKey(projectId))
+                        
+                        if(globalProject!=null)
                         {
-                            IPM_Project__c globalProject =  projectToParentMapping.get(projectId);
+                            Boolean phaseChange = false;
                             // Get Global Project Phase and validate whether GateSequence is already ahead of Current Project Sequence.If yes no need to Update.
-                            if(globalProject.IPM_Phase__c != incomingProjectDetail.IPM_Phase__c &&  
+                            if(currentProjectType.IPM_CopyPhase2Global__c && globalProject.IPM_Phase__c != incomingProjectDetail.IPM_Phase__c &&  
                                 IPM_ConstantUtils.phaseSequence.get(globalProject.IPM_Phase__c) < IPM_ConstantUtils.phaseSequence.get(incomingProjectDetail.IPM_Phase__c) )  
                             {
-                                globalProject.IPM_Temporary_Phase__c = incomingProjectDetail.IPM_Phase__c;
-                                globalProject.IPM_Phase__c = incomingProjectDetail.IPM_Phase__c;    
+                                globalProject.IPM_Temporary_Phase__c = globalProject.IPM_Phase__c = incomingProjectDetail.IPM_Phase__c;
+                                phaseChange = true;
+                            }
+                            
+                             // If regional Project is Ahead of Global Project and Fast Forward is true, upgrade Global to same Phase
+                            IPM_Project_Type__c globalProjectType =  IPM_Utils.retrieveProjectType(globalProject);
+                            
+                            if(globalProjectType.IPM_Fast_Forward_Phase_Change__c && globalProject.IPM_Phase__c != incomingProjectDetail.IPM_Phase__c && 
+                                IPM_ConstantUtils.phaseSequence.get(globalProject.IPM_Phase__c) < IPM_ConstantUtils.phaseSequence.get(incomingProjectDetail.IPM_Phase__c))
+                            {
+                                globalProject.IPM_Temporary_Phase__c = incomingProjectDetail.IPM_Phase__c = incomingProjectDetail.IPM_Phase__c;
+                            } 
+                            
+                            if(phaseChange)
+                            {
                                 globalProject.IPM_ProjectJobType__c = IPM_ConstantUtils.JOBTYPE_PHASECHANGE;
                                 globalProject.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_PROCESSING;
                                 if(qContext!=null)
@@ -190,9 +256,11 @@ public without sharing class IPM_ProjectJobHelper
                                     globalProject.IPM_PhaseChangeQueueJobId__c = qContext.getJobId();
                                 }
                                 processingProjectMap.put(globalProject.Id,globalProject);
-                            }
-                              
+                            } 
+                            
                         }
+                        
+                        
                         
                         if( (currentProjectType.IPM_CreateLocalProjects__c || currentProjectType.IPM_CopyPhase2Local__c) && projectToChildMapping.containsKey(projectId))
                         {
@@ -274,16 +342,16 @@ public without sharing class IPM_ProjectJobHelper
                         if( (currentProjectType.IPM_CreateRegionalProjects__c || currentProjectType.IPM_CopyPhase2Regional__c) && projectToChildMapping.containsKey(projectId))
                         {
                             Map<Id,IPM_Project__c> regionalProjectMap =  projectToChildMapping.get(projectId);
-                            for(IPM_Project__c regionalProject : regionalProjectMap.values())
+                            for(IPM_Project__c tempRegionalProject : regionalProjectMap.values())
                             {
                                 Boolean phaseChanged = false;
                                 if(currentProjectType.IPM_CreateRegionalProjects__c)
                                 {
                                     // If the Phase is Blank - It means it is a newly created Project and Temporary Phase should have the latest Phase.
-                                    if(String.isBlank(regionalProject.IPM_Phase__c) &&  !String.isBlank(regionalProject.IPM_Temporary_Phase__c))
+                                    if(String.isBlank(tempRegionalProject.IPM_Phase__c) &&  !String.isBlank(tempRegionalProject.IPM_Temporary_Phase__c))
                                     {
-                                        regionalProject.IPM_Phase__c = regionalProject.IPM_Temporary_Phase__c;
-                                        regionalProject.IPM_ProjectJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION;
+                                        tempRegionalProject.IPM_Phase__c = tempRegionalProject.IPM_Temporary_Phase__c;
+                                        tempRegionalProject.IPM_ProjectJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION;
                                         phaseChanged = true;
                                     }   
                                 }
@@ -291,24 +359,24 @@ public without sharing class IPM_ProjectJobHelper
                                 if(currentProjectType.IPM_CopyPhase2Regional__c)
                                 {
                                     // Get Global Project Phase and validate whether GateSequence is already ahead of Current Project Sequence.If yes no need to Update.
-                                    if( regionalProject.IPM_Phase__c != incomingProjectDetail.IPM_Phase__c &&
-                                        IPM_ConstantUtils.phaseSequence.get(regionalProject.IPM_Phase__c) < IPM_ConstantUtils.phaseSequence.get(incomingProjectDetail.IPM_Phase__c) )
+                                    if( tempRegionalProject.IPM_Phase__c != incomingProjectDetail.IPM_Phase__c &&
+                                        IPM_ConstantUtils.phaseSequence.get(tempRegionalProject.IPM_Phase__c) < IPM_ConstantUtils.phaseSequence.get(incomingProjectDetail.IPM_Phase__c) )
                                     {
-                                       regionalProject.IPM_Temporary_Phase__c = incomingProjectDetail.IPM_Phase__c;
-                                       regionalProject.IPM_Phase__c = incomingProjectDetail.IPM_Phase__c;
-                                       regionalProject.IPM_ProjectJobType__c = IPM_ConstantUtils.JOBTYPE_PHASECHANGE;
+                                       tempRegionalProject.IPM_Temporary_Phase__c = incomingProjectDetail.IPM_Phase__c;
+                                       tempRegionalProject.IPM_Phase__c = incomingProjectDetail.IPM_Phase__c;
+                                       tempRegionalProject.IPM_ProjectJobType__c = IPM_ConstantUtils.JOBTYPE_PHASECHANGE;
                                        phaseChanged = true;  
                                     }
                                 }
                                 
                                 if(phaseChanged)
                                 {
-                                    regionalProject.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_PROCESSING;
+                                    tempRegionalProject.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_PROCESSING;
                                     if(qContext!=null)
                                     {
-                                        regionalProject.IPM_PhaseChangeQueueJobId__c = qContext.getJobId();
+                                        tempRegionalProject.IPM_PhaseChangeQueueJobId__c = qContext.getJobId();
                                     }
-                                    processingProjectMap.put(regionalProject.Id,regionalProject);
+                                    processingProjectMap.put(tempRegionalProject.Id,tempRegionalProject);
                                 }
                             }
                         }
@@ -362,7 +430,20 @@ public without sharing class IPM_ProjectJobHelper
         
         if(!processingProjectMap.isEmpty())
         {
-            update processingProjectMap.values();
+        	List<IPM_Project__c> projectUpdateList = new List<IPM_Project__c>();
+        	for(IPM_Project__c incomingProjectDetail : processingProjectMap.values())
+        	{
+				IPM_Project__c tempIncomingProjectDetail = new IPM_Project__c(IPM_Phase__c = incomingProjectDetail.IPM_Phase__c,IPM_Complexity__c = incomingProjectDetail.IPM_Complexity__c,
+				IPM_Child_Complexity__c = incomingProjectDetail.IPM_Child_Complexity__c,IPM_Temporary_Phase__c = incomingProjectDetail.IPM_Temporary_Phase__c,
+				IPM_Current_Document_Status__c = incomingProjectDetail.IPM_Current_Document_Status__c,
+				IPM_ProjectJobType__c = incomingProjectDetail.IPM_ProjectJobType__c,IPM_PhaseChangeQueueJobId__c = incomingProjectDetail.IPM_PhaseChangeQueueJobId__c,
+				IPM_Project_Job_Status__c = incomingProjectDetail.IPM_Project_Job_Status__c);
+        		projectUpdateList.add(incomingProjectDetail);
+        	}
+        	if(!projectUpdateList.isEmpty())
+        	{	
+            	update projectUpdateList;
+        	}
         }
     } 
     
@@ -372,21 +453,27 @@ public without sharing class IPM_ProjectJobHelper
     * @param2 qContext : Queueable Context.
     */
     
-    public static void processRollouts(Map<Id,IPM_Project__c> incomingProjectMap,QueueableContext qContext)
+    public static void processRollouts(Map<Id,IPM_Project__c> incomingProjectMap,Set<Id> rolloutIdSet,QueueableContext qContext)
     {
         Set<Id> incomingProjectIds = incomingProjectMap.keySet();
         processingRolloutMap.clear();
         
-        List<IPM_Project__c> rolloutProjects = new List<IPM_Project__c>();
+        Map<String,IPM_Project__c> rolloutProjectsMap = new Map<String,IPM_Project__c>();
         
         Map<Id,Map<Id,IPM_Project_Rollout__c>> projectSpecificRegionalRolloutMap = new Map<Id,Map<Id,IPM_Project_Rollout__c>>();
         Map<Id,Map<Id,IPM_Project_Rollout__c>> projectSpecificLocalRolloutMap = new Map<Id,Map<Id,IPM_Project_Rollout__c>>();
         
         /*Get Rollouts Starts. Need to verify whether Project has 'Change  Project On Status Change','create REgional/Local Projects' enabled. */
-        String rolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null);
+        String rolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null,true);
         String eligibleRolloutValue = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
-        String rolloutWhereClause = ' WHERE (IPM_Project__c IN: incomingProjectIds OR Regional_Project__c IN: incomingProjectIds ) AND IPM_Project_Job_Status__c =:eligibleRolloutValue limit 10000';
-        rolloutWhereClause = rolloutQuery + rolloutWhereClause;
+        String rolloutWhereClause = ' WHERE (IPM_Project__c IN: incomingProjectIds OR Regional_Project__c IN: incomingProjectIds ) AND IPM_Project_Job_Status__c =:eligibleRolloutValue'; 
+        
+        if(rolloutIdSet!=null && !rolloutIdSet.isEmpty())
+        {
+            rolloutWhereClause = rolloutWhereClause + ' AND Id in:rolloutIdSet '; 
+        }
+         
+        rolloutWhereClause = rolloutQuery + rolloutWhereClause + ' limit 50000';
       
         Map<Id,IPM_Project_Rollout__c> rolloutMap = new Map<Id,IPM_Project_Rollout__c>( (List<IPM_Project_Rollout__c>) database.query(rolloutWhereClause) );
         if(!rolloutMap.isEmpty())
@@ -419,7 +506,6 @@ public without sharing class IPM_ProjectJobHelper
             }
         }             
         
-        System.debug(LoggingLevel.ERROR,'projectSpecificLocalRolloutMap--->>'+projectSpecificLocalRolloutMap);
                           
         for(Id projectId : incomingProjectIds)
         {
@@ -435,8 +521,6 @@ public without sharing class IPM_ProjectJobHelper
                 
                 IPM_Project_Type__c currentProjectType =  IPM_Utils.retrieveProjectType(incomingProjectDetail);
                 
-                System.debug(LoggingLevel.ERROR,'currentProjectType--->>'+currentProjectType);
-                
                 if(currentProjectType!=null)
                 {   
                     // Check for Rollouts.
@@ -447,7 +531,12 @@ public without sharing class IPM_ProjectJobHelper
                         if(projectSpecificRegionalRolloutMap.containsKey(projectId) &&  projectSpecificRegionalRolloutMap.get(projectId) !=null)
                         {
                             Map<Id,IPM_Project_Rollout__c> associatedRegionalRolloutsMap = projectSpecificRegionalRolloutMap.get(projectId);
-                            rolloutProjects.addAll(IPM_CreateRolloutProjects.processRollouts(incomingProjectDetail, associatedRegionalRolloutsMap.values() ) );
+                            List<IPM_Project__c> preparedProjectList = IPM_CreateRolloutProjects.processRollouts(incomingProjectDetail, associatedRegionalRolloutsMap.values() );
+                            for(IPM_Project__c project : preparedProjectList)
+                            {
+                                rolloutProjectsMap.put(project.IPM_Project_Name__c,project);    
+                            } 
+                            
                             for(IPM_Project_Rollout__c projectRollout : associatedRegionalRolloutsMap.values())
                             {
                                 projectRollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_PROCESSING;
@@ -460,8 +549,6 @@ public without sharing class IPM_ProjectJobHelper
                         }          
                     }
                     
-                    System.debug(LoggingLevel.ERROR,'currentProjectType--->>'+currentProjectType.IPM_CreateLocalProjects__c);
-                            
                     if(currentProjectType.IPM_CreateLocalProjects__c)
                     {
                         Map<Id,IPM_Project_Rollout__c> localRollouts = new Map<Id,IPM_Project_Rollout__c>();
@@ -470,8 +557,14 @@ public without sharing class IPM_ProjectJobHelper
                             Map<Id,IPM_Project_Rollout__c> associatedLocalRolloutsMap = projectSpecificLocalRolloutMap.get(projectId);
                             if(!associatedLocalRolloutsMap.isEmpty())
                             {
-                                rolloutProjects.addAll(IPM_CreateRolloutProjects.processRollouts(incomingProjectDetail, associatedLocalRolloutsMap.values() ) );
-                                System.debug(LoggingLevel.ERROR,'rolloutProjects--->>'+rolloutProjects);
+                                Map<Id,IPM_Project_Rollout__c> associatedRegionalRolloutsMap = projectSpecificRegionalRolloutMap.get(projectId);
+                                List<IPM_Project__c> preparedProjectList = IPM_CreateRolloutProjects.processRollouts(incomingProjectDetail, associatedLocalRolloutsMap.values() );
+                                
+                                 for(IPM_Project__c project : preparedProjectList)
+                                {
+                                    rolloutProjectsMap.put(project.IPM_Project_Name__c,project);    
+                                } 
+
                                 for(IPM_Project_Rollout__c projectRollout : associatedLocalRolloutsMap.values())
                                 {
                                     projectRollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_PROCESSING;
@@ -488,16 +581,14 @@ public without sharing class IPM_ProjectJobHelper
             }
         }
         
-        System.debug(LoggingLevel.ERROR,'rolloutProjects--->>'+rolloutProjects);
-        
         if(!processingRolloutMap.isEmpty())
         {
             update processingRolloutMap.values();
         }
         
-        if(!rolloutProjects.isEmpty())
+        if(!rolloutProjectsMap.isEmpty())
         {
-            insert rolloutProjects;
+            upsert rolloutProjectsMap.values() IPM_Project_Name__c;
         }
     } 
     
@@ -507,10 +598,10 @@ public without sharing class IPM_ProjectJobHelper
     */
     public static Map<Id,IPM_Project__c> populateProjectDetails(Set<Id> incomingProjectIds)
     {
-        String ProjectDetailSelectQuery = IPM_Utils.prepareSOQLQuery('IPM_Project__c',false,null);
+        String ProjectDetailSelectQuery = IPM_Utils.prepareSOQLQuery('IPM_Project__c',false,null,true);
         String ProjectDetailWhereClause = 'Id in :incomingProjectIds';
         
-        projectDetailSelectQuery = ProjectDetailSelectQuery  + ' WHERE ' + ProjectDetailWhereClause  + IPM_Utils.LIMIT_STRING + IPM_Utils.FORUPDATE_STRING;
+        projectDetailSelectQuery = ProjectDetailSelectQuery  + ' WHERE ' + ProjectDetailWhereClause  + IPM_Utils.LIMIT_STRING;
         return new Map<Id,IPM_Project__c>( (List<IPM_Project__c>) database.query(ProjectDetailSelectQuery) );
    
     }
@@ -521,34 +612,45 @@ public without sharing class IPM_ProjectJobHelper
     */
     public static void markProjectsAsComplete(QueueableContext qContext)
     {
+        Map<Id,IPM_Project__c> successProjectMap = new Map<Id,IPM_Project__c>();
+        Map<Id,IPM_Project_Rollout__c> successRolloutMap = new Map<Id,IPM_Project_Rollout__c>();
+        
+        Map<Id, Decimal> mapProjectIdWithFilledInPerc = new Map<Id, Decimal>();
+        mapProjectIdWithFilledInPerc = prepareProjectWithFilledInPercentMap(processingProjectMap);
         for(IPM_Project__c project : processingProjectMap.values())
         {
-            project.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_COMPLETED;
+            IPM_Project__c tempProject = new IPM_Project__c(Id=project.Id);
+            tempProject.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_COMPLETED;
+            //After phase change, as next phase's document is in 'Not Started' status, following logic will populate Filled In Percentage field on IPM project depending on filled-in copied over sections'
+            tempProject.IPM_FilledIn_Percentage__c = mapProjectIdWithFilledInPerc.get(project.Id);
             if(qContext!=null)
             {  
-                project.IPM_PhaseChangeQueueJobId__c = qContext.getJobId();
+                tempProject.IPM_PhaseChangeQueueJobId__c = qContext.getJobId();
             }
+            successProjectMap.put(tempProject.Id,tempProject);
         }
         
         for(IPM_Project_Rollout__c rollout : processingRolloutMap.values())
         {
-            rollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_COMPLETED;
+        	IPM_Project_Rollout__c tempRollout = new IPM_Project_Rollout__c(Id=rollout.Id);
+            tempRollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_COMPLETED;
             if(qContext!=null)
             {
-                rollout.IPM_PhaseChangeQueueJobId__c = qContext.getJobId();
+                tempRollout.IPM_PhaseChangeQueueJobId__c = qContext.getJobId();
             }
+            successRolloutMap.put(tempRollout.Id,tempRollout);
         }
         
         // Udpate Rollout Values with Status as completed.
-        if(!processingRolloutMap.isEmpty())
+        if(!successRolloutMap.isEmpty())
         {
-            update processingRolloutMap.values();
+            update successRolloutMap.values();
         }
         
         // Udpate Project Values with Status as completed.
-        if(!processingProjectMap.isEmpty())
+        if(!successProjectMap.isEmpty())
         {
-            update processingProjectMap.values();
+            update successProjectMap.values();
         } 
     }
      
@@ -573,7 +675,7 @@ public without sharing class IPM_ProjectJobHelper
                 }
             }
             
-            String rolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null);
+            String rolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null,true);
             String eligibleRolloutValue = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
             String rolloutWhereClause = ' WHERE (IPM_Project__c IN: projectsIdsToBeProcessed OR Regional_Project__c IN: projectsIdsToBeProcessed ) AND IPM_Project_Job_Status__c =:eligibleRolloutValue limit 10000';
             rolloutWhereClause = rolloutQuery + rolloutWhereClause;
@@ -600,6 +702,46 @@ public without sharing class IPM_ProjectJobHelper
         {
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,'markProjectAsFailed',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
         }
+    }
+    
+    /******************************************************************
+    *   @description: Method for preparing map of project id with filled-in percentages of associated document's sections
+        @param1 : Projects for which filled-in percentages need to calculated
+    */
+    public static Map<Id, Decimal> prepareProjectWithFilledInPercentMap(Map<Id,IPM_Project__c> projectMap){
+    	
+        Map<Id, Decimal> mapProjectIdWithFilledInPerc = new Map<Id, Decimal>();
+        Map<Id, IPM_Project_Document__c> mapProjectDoc = new Map<Id, IPM_Project_Document__c>([
+          																						     Select Id, IPM_Document_Status__c,IPM_Project__c,
+          																						     (Select Id, IPM_Section_Status__c FROM IPM_Project_Sections__r 
+          																						     WHERE IPM_Default_Section__c=true 
+          																						     AND IPM_Section__r.IPM_Section_Type__c NOT IN ( :IPM_ConstantUtils.SECTION_TYPE_HEADER , :IPM_ConstantUtils.SECTION_TYPE_SUBHEADER) 
+	  																								 AND IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c!=:IPM_ConstantUtils.APPENDIX
+          																						     ) 
+          																						     FROM IPM_Project_Document__c 
+          																						     WHERE IPM_Project__c IN : projectMap.keySet() 
+          																						     AND  ( IPM_Document_Status__c =:IPM_ConstantUtils.STATUS_NOT_STARTED OR (IPM_Project__r.IPM_Phase__c = :IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT AND IPM_Project__r.IPMProject_Span__c= :IPM_ConstantUtils.PROJECT_SPAN_LOCAL))
+          																						  ]);      
+        for(IPM_Project_Document__c projectDoc : mapProjectDoc.values())
+        {
+        	Integer removeoptional = 0;
+            Decimal filledinPer = 0;
+            Integer NonNegotiable = projectDoc.IPM_Project_Sections__r.size();
+        	for(IPM_Project_Document_Section__c projectDocSection : projectDoc.IPM_Project_Sections__r)
+        	{
+    				if(projectDocSection.IPM_Section_Status__c == IPM_ConstantUtils.SECTION_STATUS_FILLED)
+    				{
+    					removeoptional++;
+    				}
+        	}
+        	if(NonNegotiable!=0)
+        	{
+            	filledinPer=math.round((Decimal.valueof(removeoptional)/decimal.valueof(NonNegotiable))*100);
+            }
+            mapProjectIdWithFilledInPerc.put(projectDoc.IPM_Project__c, filledinPer);
+        } 
+        
+        return mapProjectIdWithFilledInPerc;
     }
 
 }

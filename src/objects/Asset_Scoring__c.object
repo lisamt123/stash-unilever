@@ -56,7 +56,42 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ReadWrite</externalSharingModel>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>Asset_Option_Description__c</fullName>
+        <description>Description of each option for a given asset</description>
+        <externalId>false</externalId>
+        <label>Asset Option Description</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Asset_Option__c</fullName>
+        <description>Asset option number</description>
+        <externalId>false</externalId>
+        <label>Asset Option</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Asset_name__c</fullName>
+        <externalId>false</externalId>
+        <label>Asset name</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>Description__c</fullName>
         <externalId>false</externalId>
@@ -66,6 +101,29 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Is_Active__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Determines whether to show or hide the item on the screen</description>
+        <externalId>false</externalId>
+        <label>Is Active</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Layout_Order__c</fullName>
+        <description>The order of items appearing on the screen Type - Sub-Category - Option - Asset Name</description>
+        <externalId>false</externalId>
+        <label>Layout Order</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -82,6 +140,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Sub_Category_Description__c</fullName>
+        <description>Description for sub category shown on the Add Asset Page</description>
+        <externalId>false</externalId>
+        <label>Sub Category Description</label>
+        <length>500</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
         <fullName>Sub_Category__c</fullName>
         <externalId>false</externalId>
         <label>Sub Category</label>
@@ -95,7 +164,7 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Cut downs and Tags</fullName>
+                <fullName>Cut Downs and Tags</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -139,11 +208,11 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Experiential - Promotional Ideas Origination</fullName>
+                <fullName>Experiential - Promotional ideas ORIGINATION</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Experiential - Promotional Ideas Adaptation</fullName>
+                <fullName>Experiential - Promotional ideas ADAPTATION</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -183,15 +252,33 @@
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
+    <fields>
+        <fullName>mdm_id__c</fullName>
+        <description>unique identifier of an asset</description>
+        <externalId>true</externalId>
+        <label>MDM ID</label>
+        <length>11</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <label>SWOP Asset  Scoring</label>
     <listViews>
         <fullName>All</fullName>
         <columns>Type__c</columns>
-        <columns>RECORDTYPE</columns>
         <columns>Sub_Category__c</columns>
+        <columns>Asset_Option__c</columns>
         <columns>NAME</columns>
+        <columns>Asset_name__c</columns>
         <columns>Point_Score__c</columns>
-        <columns>Description__c</columns>
+        <columns>Is_Active__c</columns>
+        <columns>mdm_id__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>Layout_Order__c</columns>
+        <columns>Asset_Option_Description__c</columns>
+        <columns>Sub_Category_Description__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
@@ -296,7 +383,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Cut downs and Tags</fullName>
+                <fullName>Cut Downs and Tags</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -312,11 +399,11 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Experiential - Promotional Ideas Adaptation</fullName>
+                <fullName>Experiential - Promotional ideas ADAPTATION</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Experiential - Promotional Ideas Origination</fullName>
+                <fullName>Experiential - Promotional ideas ORIGINATION</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -367,5 +454,5 @@
     <searchLayouts>
         <lookupDialogsAdditionalFields>Description__c</lookupDialogsAdditionalFields>
     </searchLayouts>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>Private</sharingModel>
 </CustomObject>

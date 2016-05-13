@@ -833,6 +833,46 @@
         <fullName>Title</fullName>
         <trackFeedHistory>false</trackFeedHistory>
     </fields>
+    <fields>
+        <fullName>hoot2sf_FacebookId__c</fullName>
+        <externalId>false</externalId>
+        <label>Facebook Id</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>hoot2sf_FacebookUsername__c</fullName>
+        <externalId>false</externalId>
+        <label>Facebook Username</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>hoot2sf_TwitterId__c</fullName>
+        <externalId>false</externalId>
+        <label>Twitter Id</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>hoot2sf_TwitterUsername__c</fullName>
+        <externalId>false</externalId>
+        <label>Twitter Username</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <listViews>
         <fullName>AllContacts</fullName>
         <columns>FULL_NAME</columns>

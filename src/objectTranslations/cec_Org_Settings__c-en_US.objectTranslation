@@ -14,6 +14,10 @@
         <name>AlertAction_Time_Scheduler__c</name>
     </fields>
     <fields>
+        <label><!-- Alert Chatter User Id --></label>
+        <name>Alert_Chatter_User_Id__c</name>
+    </fields>
+    <fields>
         <label><!-- Cosmetovigilence CaseId Reference --></label>
         <name>Cosmetovigilence_CaseId_Reference__c</name>
     </fields>
@@ -30,8 +34,20 @@
         <name>Homecare_Questionnaire_Id__c</name>
     </fields>
     <fields>
+        <label><!-- IRI Client Id --></label>
+        <name>IRI_Client_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- IRI Product Family Id --></label>
+        <name>IRI_Product_Family_Id__c</name>
+    </fields>
+    <fields>
         <label><!-- Ingestion Questionnaire Id --></label>
         <name>Ingestion_Questionnaire_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- LiveChatQuestionaireId --></label>
+        <name>LiveChatQuestionaireId__c</name>
     </fields>
     <fields>
         <label><!-- Mulesoft User Id --></label>
@@ -69,6 +85,14 @@
     <fields>
         <label><!-- Safety Alert Email Id --></label>
         <name>Safety_Alert_Email_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Social Response Survey Id --></label>
+        <name>Social_Response_Survey_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Survey URL --></label>
+        <name>Survey_URL__c</name>
     </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

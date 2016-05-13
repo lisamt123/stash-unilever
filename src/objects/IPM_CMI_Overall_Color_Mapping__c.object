@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <customSettingsType>List</customSettingsType>
+    <visibility>Public</visibility>
+    <description>For associating color value with the overall score of CMI data</description>
     <enableFeeds>false</enableFeeds>
     <fields>
         <fullName>IPM_CMI_Gate__c</fullName>
+        <description>Contains gate Name Where CMI Test Conducted</description>
         <externalId>false</externalId>
         <label>IPM CMI Gate</label>
         <length>255</length>
@@ -14,6 +17,7 @@
     </fields>
     <fields>
         <fullName>IPM_CMI_Input_Combination__c</fullName>
+        <description>Combination of CMI Inputs for determining Overall Color score</description>
         <externalId>false</externalId>
         <label>IPM CMI Input Combination</label>
         <length>255</length>
@@ -24,6 +28,7 @@
     </fields>
     <fields>
         <fullName>IPM_CMI_Overall_Score_Colour__c</fullName>
+        <description>Contains Overall Score Color Value</description>
         <externalId>false</externalId>
         <label>IPM CMI Overall Score Colour</label>
         <length>255</length>
@@ -34,6 +39,7 @@
     </fields>
     <fields>
         <fullName>IPM_CMI_Overall_Score__c</fullName>
+        <description>Contains Overall Color Score</description>
         <externalId>false</externalId>
         <label>IPM CMI Overall Score</label>
         <length>255</length>
@@ -44,6 +50,7 @@
     </fields>
     <fields>
         <fullName>IPM_CMI_Test__c</fullName>
+        <description>Conducted CMI Test</description>
         <externalId>false</externalId>
         <label>IPM CMI Test</label>
         <length>255</length>
@@ -53,5 +60,4 @@
         <unique>false</unique>
     </fields>
     <label>IPM CMI Overall Color Mapping</label>
-    <visibility>Public</visibility>
 </CustomObject>

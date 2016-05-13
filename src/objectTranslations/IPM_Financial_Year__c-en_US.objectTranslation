@@ -189,6 +189,26 @@
         <name>Gross_Profit_Regional__c</name>
     </fields>
     <fields>
+        <label><!-- AssociatedFinancialRecordTypeId --></label>
+        <name>IPM_AssociatedFinancialRecordTypeId__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Financial Postfix --></label>
+        <name>IPM_Financial_Postfix__c</name>
+        <picklistValues>
+            <masterLabel>Global</masterLabel>
+            <translation><!-- Global --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Local</masterLabel>
+            <translation><!-- Local --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Regional</masterLabel>
+            <translation><!-- Regional --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- IPM Financial --></label>
         <name>IPM_Financial__c</name>
         <relationshipLabel><!-- IPM Financial Years --></relationshipLabel>
@@ -544,6 +564,10 @@
             <masterLabel>9</masterLabel>
             <translation><!-- 9 --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- isActive --></label>
+        <name>isActive__c</name>
     </fields>
     <layouts>
         <layout>IPM Financial Year Layout</layout>

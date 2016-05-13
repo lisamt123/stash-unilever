@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>IPM_Notification_Letterhead</letterhead>
+    <name>IPM Notify Project Leader about FL confirm TLD change</name>
+    <style>freeForm</style>
+    <subject>Finance Leader confirmed the Target Launch Date change</subject>
+    <textOnly>Finance Leader confirmed the Target Launch Date change on  {!IPM_Project__c.Name} project.</textOnly>
+    <type>html</type>
+</EmailTemplate>

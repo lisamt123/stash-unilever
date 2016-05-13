@@ -80,5 +80,16 @@ private class BET_NewBetComponentControllerTest {
 		System.assertEquals(displayed.size(),1,'Displayed errors list size must be 1');
 		Test.stopTest();
 	}
+
+	@isTest static void ownerOrManagerTest(){
+		BET_NewBetComponentController controller = new BET_NewBetComponentController();
+		uw_BET__c betObject = BET_TestUtils.getTestBet();
+		insert betObject;
+		controller.bet = betObject;
+		Test.startTest();
+		System.assertEquals(controller.ownerOrManager,true,'User is bet owner');
+		controller.ownerOrManager = false;
+		Test.stopTest();
+	}
 	
 }

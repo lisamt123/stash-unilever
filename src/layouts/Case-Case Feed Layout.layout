@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <customButtons>Add_Issue</customButtons>
+    <customButtons>Social_Response_URL</customButtons>
     <customConsoleComponents>
         <subtabComponents>
             <containers>
@@ -18,6 +19,11 @@
                     <componentType>Lookup</componentType>
                     <label>Account</label>
                     <lookup>Account</lookup>
+                </sidebarComponents>
+                <sidebarComponents>
+                    <componentType>VisualForcePage</componentType>
+                    <label>Case Actions</label>
+                    <page>CEC_CaseActions</page>
                 </sidebarComponents>
                 <style>Tabs</style>
                 <unit>Pixel</unit>
@@ -61,6 +67,10 @@
             <feedFilterType>FeedItemType</feedFilterType>
             <feedItemType>ActivityEvent</feedItemType>
         </feedFilters>
+        <feedFilters>
+            <feedFilterType>FeedItemType</feedFilterType>
+            <feedItemType>ChatTranscriptPost</feedItemType>
+        </feedFilters>
         <fullWidthFeed>true</fullWidthFeed>
         <hideSidebar>false</hideSidebar>
         <highlightExternalFeedItems>false</highlightExternalFeedItems>
@@ -79,7 +89,6 @@
         <rightComponents>
             <componentType>CustomButtons</componentType>
         </rightComponents>
-        <useInlineFiltersInConsole>false</useInlineFiltersInConsole>
     </feedLayout>
     <layoutSections>
         <customLabel>false</customLabel>
@@ -116,7 +125,16 @@
                 <field>Status</field>
             </layoutItems>
             <layoutItems>
-                <emptySpace>true</emptySpace>
+                <behavior>Readonly</behavior>
+                <field>Default_From_Address__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Override_From_Address__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Consumer_Note__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -144,7 +162,7 @@
                 <field>Case_Brand__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>Country_Name__c</field>
             </layoutItems>
             <layoutItems>
@@ -154,6 +172,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Manual_Retention_Override__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>PII_Data_Check__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -173,12 +195,7 @@
                 <field>Description</field>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>PII_Data_Check__c</field>
-            </layoutItems>
-        </layoutColumns>
+        <layoutColumns/>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
     <layoutSections>
@@ -240,6 +257,29 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
+        <label>CosmetoVigilance links</label>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Homecare__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Personal_Care__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Ingestion__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <style>TwoColumnsLeftToRight</style>
+    </layoutSections>
+    <layoutSections>
+        <customLabel>true</customLabel>
+        <detailHeading>true</detailHeading>
+        <editHeading>true</editHeading>
         <label>Attachments</label>
         <layoutColumns/>
         <style>OneColumn</style>
@@ -249,21 +289,9 @@
         <detailHeading>false</detailHeading>
         <editHeading>false</editHeading>
         <label>Custom Links</label>
-        <layoutColumns>
-            <layoutItems>
-                <customLink>Cosmetovigilence</customLink>
-            </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <customLink>Homecare_Cosmetovigilence</customLink>
-            </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <customLink>Ingestion_Cosmetovigilence</customLink>
-            </layoutItems>
-        </layoutColumns>
+        <layoutColumns/>
+        <layoutColumns/>
+        <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
     <layoutSections>
@@ -343,6 +371,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>Claim_Status__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>Claims_Notes__c</field>
             </layoutItems>
         </layoutColumns>
@@ -379,6 +411,14 @@
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
+    <layoutSections>
+        <customLabel>true</customLabel>
+        <detailHeading>true</detailHeading>
+        <editHeading>true</editHeading>
+        <label>Related Contact Roles</label>
+        <layoutColumns/>
+        <style>OneColumn</style>
+    </layoutSections>
     <miniLayout>
         <fields>ContactId</fields>
         <fields>Priority</fields>
@@ -390,7 +430,7 @@
     </miniLayout>
     <quickActionList>
         <quickActionListItems>
-            <quickActionName>Case.Email</quickActionName>
+            <quickActionName>Case.ONE_Correspond_Email</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
             <quickActionName>FeedItem.TextPost</quickActionName>
@@ -403,6 +443,9 @@
         </quickActionListItems>
         <quickActionListItems>
             <quickActionName>FeedItem.LinkPost</quickActionName>
+        </quickActionListItems>
+        <quickActionListItems>
+            <quickActionName>Case.Quick_Code</quickActionName>
         </quickActionListItems>
     </quickActionList>
     <relatedContent>
@@ -483,7 +526,36 @@
         <relatedList>Third_Party_Survey__c.Case__c</relatedList>
     </relatedLists>
     <relatedLists>
+        <excludeButtons>New</excludeButtons>
+        <fields>NAME</fields>
+        <fields>Name__c</fields>
+        <fields>Address__c</fields>
+        <fields>City__c</fields>
+        <fields>Distance__c</fields>
+        <fields>Phone__c</fields>
+        <fields>State__c</fields>
+        <fields>Zip_Code__c</fields>
+        <relatedList>CEC_Product_Locator__c.Case__c</relatedList>
+    </relatedLists>
+    <relatedLists>
         <relatedList>RelatedCaseContactRoleList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>Name</fields>
+        <fields>Owner</fields>
+        <fields>StartTime</fields>
+        <fields>EndTime</fields>
+        <fields>Status</fields>
+        <relatedList>RelatedLiveChatTranscriptList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>TH1__Draft_name__c</fields>
+        <fields>TH1__Document_Setting__c</fields>
+        <fields>TH1__Primary_Object_Record_Name__c</fields>
+        <fields>TH1__Status__c</fields>
+        <fields>LAST_UPDATE</fields>
+        <relatedList>TH1__Draft__c.Related_Lookup_Case__c</relatedList>
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedEntityHistoryList</relatedList>

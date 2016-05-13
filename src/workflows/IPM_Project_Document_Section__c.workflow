@@ -9,29 +9,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/IPM_PL_Email2</template>
-    </alerts>
-    <alerts>
-        <fullName>IPM_Send_Email_PL_OnUpdate</fullName>
-        <description>IPM_Send_Email_PL_OnUpdate</description>
-        <protected>false</protected>
-        <recipients>
-            <field>IPM_Project_L_eader_Email__c</field>
-            <type>email</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>unfiled$public/IPM_section_notification1</template>
-    </alerts>
-    <alerts>
-        <fullName>IPM_send_Email_PL_EmailAlert</fullName>
-        <description>IPM send Email PL EmailAlert</description>
-        <protected>false</protected>
-        <recipients>
-            <field>IPM_Project_L_eader_Email__c</field>
-            <type>email</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>unfiled$public/IPM_section_notification1</template>
+        <template>IPM_Emails/IPM_PL_Email2</template>
     </alerts>
     <fieldUpdates>
         <fullName>IPM_Field_Update_Negotiable</fullName>
@@ -97,7 +75,7 @@
         <active>true</active>
         <description>To support Data migration a composite field needs to be updated</description>
         <formula>NOT( ISNULL(IPM_Project_Document__r.External_Id__c) )</formula>
-        <triggerType>onAllChanges</triggerType>
+        <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
         <fullName>IPM Make Default Section Mandatory</fullName>
@@ -115,10 +93,6 @@
     </rules>
     <rules>
         <fullName>IPM Notify PL</fullName>
-        <actions>
-            <name>IPM_send_Email_PL_EmailAlert</name>
-            <type>Alert</type>
-        </actions>
         <actions>
             <name>IPM_update_notify</name>
             <type>FieldUpdate</type>
@@ -143,14 +117,10 @@
         </actions>
         <active>true</active>
         <formula>IPM_Notify_Team__c=true</formula>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
         <fullName>IPM_Send_Mail_PL</fullName>
-        <actions>
-            <name>IPM_Send_Email_PL_OnUpdate</name>
-            <type>Alert</type>
-        </actions>
         <actions>
             <name>IPM_Update_Notify_PL</name>
             <type>FieldUpdate</type>

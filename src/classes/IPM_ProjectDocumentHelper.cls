@@ -9,8 +9,8 @@
 
 public with sharing class IPM_ProjectDocumentHelper   
 {
-    private transient static final String BOSSCARD = 'Bosscard'; 
-    private transient static final String SECTION_SEQUENCE ='7.2.'; 
+    private transient static final String BOSSCARD = 'Bosscard';  
+    public static Boolean SKIP_TRIGGER_EXECUTION = false;  
     public static final Map<String,String> DOC_COMMENT_FIELDMAPPING = new Map<String,String>{
         IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED => 'IPM_Approved_Comments__c',
         IPM_ConstantUtils.DOCUMENT_STATUS_POSTPONED  => 'IPM_Postponed_Comments__c',
@@ -21,7 +21,8 @@ public with sharing class IPM_ProjectDocumentHelper
     {
         IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED => 'IPM_Approval_Date__c',
         IPM_ConstantUtils.DOCUMENT_STATUS_POSTPONED => 'IPM_Postponement_Date__c',
-        IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED => 'IPM_Stopped_Date__c'
+        IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED => 'IPM_Stopped_Date__c',
+        IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED => 'IPM_Proposed_Date__c'
     };
     
     
@@ -189,6 +190,9 @@ public with sharing class IPM_ProjectDocumentHelper
     * @description: Used for Creating project documents sections on Project Creation and Phase Change.
     * @param1 projectToDocumentMap : project to Project Document Map 
     * @param2 incomingProjects : Trigger.New projects Map
+    * @Business Logic: This method is used for copying over the section details from one gate document to the subsequent gate document section
+    				   The major parameters to be considered for copying a sections are the Gate Documetn Summary, the FUnctional Summary,
+    				   Whether the Section was default at previous gate, and the Character Count of the Summary section.
     */
     
     public static List<IPM_Project_Document_Section__c> manageProjectDocumentSections(Map<Id,Map<String,IPM_Project_Document__c>> projectToDocumentMap,Map<Id,IPM_Project__c> incomingProjects)
@@ -254,6 +258,7 @@ public with sharing class IPM_ProjectDocumentHelper
                                         IPM_Project_Document_Section__c projDocSect = new IPM_Project_Document_Section__c();
                                         // If there is an existing Product document Template associated,we assume sections are already associated with them.
                                         // In that case we need to update references to those project document section to point to proper master sec.
+                                        
                                         if(existingProjectDocument!=null && IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.containsKey(existingProjectDocument.Id) 
                                         && IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.containsKey(existingProjectDocument.Id)  )
                                         {
@@ -262,16 +267,7 @@ public with sharing class IPM_ProjectDocumentHelper
                                                 // If the sections are Same
                                                 if(section.External_ID__c !=null && existingProjectDocSec.IPM_Master_Section_External_Id__c !=null && 
                                                     existingProjectDocSec.IPM_Master_Section_External_Id__c == section.External_ID__c && 
-                                                    !matchedDocumentSectionsSet.contains(existingProjectDocSec.Id) )
-                                                {
-                                                    matchedDocumentSectionsSet.add(existingProjectDocSec.Id);
-                                                    projDocSect.Id = existingProjectDocSec.Id;
-                                                    projDocSect.IPM_Gate_Document_Summary__c = existingProjectDocSec.IPM_Gate_Document_Summary__c;
-                                                    projDocSect.IPM_PDP_Document_Summary__c = existingProjectDocSec.IPM_PDP_Document_Summary__c;
-                                                    break;
-                                                }
-                                                else if(existingProjectDocSec.IPM_Section_Sequence_Number__c == section.IPM_Section_Sequence__c && 
-                                                        !matchedDocumentSectionsSet.contains(existingProjectDocSec.Id) )
+                                                    !matchedDocumentSectionsSet.contains(existingProjectDocSec.Id) && section.ProjectSpan__c.contains(project.IPMProject_Span__c) )
                                                 {
                                                     matchedDocumentSectionsSet.add(existingProjectDocSec.Id);
                                                     projDocSect.Id = existingProjectDocSec.Id;
@@ -302,35 +298,52 @@ public with sharing class IPM_ProjectDocumentHelper
                                         else if(currentProject.IPM_Complexity__c == IPM_ConstantUtils.COMPLEXITY_LITE)
                                         {
                                             projDocSect.IPM_Default_Section__c= !section.IPM_Negotiable__c; 
-                                        }
+                                        } 
+                                        
                                         initiateCopyOverLogic(associatedGate,projDocSect,section.External_ID__c,currentProject,parentProject);
-                                        String summary=projDocSect.IPM_Gate_Document_Summary__c;
+                                        
+                                        String summary=projDocSect.IPM_Gate_Document_Summary__c; 
                                         if(String.isNotBlank(summary)){
                                             summary=summary.replaceAll(IPM_ConstantUtils.SPECIAL_CHARACTERS,'');
-                                         }   
+                                         }  
+                                         
+                                         // the below logic is required because from Bosscard RTF field data needs to be copied into RTF field of Section with Character Limit 
                                          if(associatedGate==IPM_ConstantUtils.CHARTER_GATE && String.isNotBlank(projDocSect.IPM_Gate_Document_Summary__c) && summary.length()>(Integer)section.IPM_Character_Limit__c){
                                             projDocSect.IPM_Gate_Document_Summary__c=summary.subString(0,(Integer)section.IPM_Character_Limit__c);
+                                        }
+                                        if(section.IPM_Character_Limit__c!=NULL){
+                                            if(String.isNotBlank(projDocSect.IPM_Gate_Document_Summary__c)){
+                                                projDocSect.IPM_Summary_Character_Remaining__c=(Integer)section.IPM_Character_Limit__c-projDocSect.IPM_Gate_Document_Summary__c.length();
+                                            }
+                                            else{
+                                                projDocSect.IPM_Summary_Character_Remaining__c=section.IPM_Character_Limit__c;
+                                            }
                                         }
                                         // Update the Status based on Whether Gate Summary information is filled or not.
                                         if(section.IPM_Section_Type__c !=IPM_ConstantUtils.SECTION_TYPE_HEADER && 
                                             section.IPM_Section_Type__c!=IPM_ConstantUtils.SECTION_TYPE_SUBHEADER)
                                         {
-                                            if(String.isBlank(projDocSect.IPM_Gate_Document_Summary__c))
+                                           // DEF2994 Restrict the copy over of Filled in logic 16/12/2015
+                                            if(String.isBlank(projDocSect.IPM_PDP_Document_Summary__c))
                                             {
-                                                projDocSect.IPM_Section_Status__c=IPM_ConstantUtils.STATUS_NOT_STARTED;
+                                                projDocSect.IPM_Functional_Input_Status__c=IPM_ConstantUtils.STATUS_NOT_STARTED;
                                             }
-                                            else
+                                            else if(String.isNotBlank(projDocSect.IPM_PDP_Document_Summary__c) && projDocSect.IPM_PDP_Document_Summary__c.length() >=15)
                                             {
-                                                projDocSect.IPM_Section_Status__c=IPM_ConstantUtils.SECTION_STATUS_FILLED;
+                                                projDocSect.IPM_Functional_Input_Status__c=IPM_ConstantUtils.STATUS_STARTED;
                                             }
                                         }
                                         else
                                         {
-                                            projDocSect.IPM_Section_Status__c = '';
+                                            projDocSect.IPM_Section_Status__c = IPM_ConstantUtils.BLANK;
+                                            projDocSect.IPM_Functional_Input_Status__c = IPM_ConstantUtils.BLANK;
                                         }
                                         
                                        if(!String.isBlank(section.ProjectSpan__c) && !String.isBlank(project.IPMProject_Span__c) && section.ProjectSpan__c.contains(project.IPMProject_Span__c)){
+											if(!(project.IPM_ProjectSubType__c == IPM_ConstantUtils.IPM_BLG && section.IPM_Section_Sequence__c == '5.3'))
+											{
                                             projectDocumentSectionList.add(projDocSect);
+											}                                     
                                        }
                                     }
                                 }
@@ -427,7 +440,7 @@ public with sharing class IPM_ProjectDocumentHelper
                             {
                                 if(targetProDocSection.IPM_Master_Section_External_Id__c == currentSectionExternalId)
                                 {
-                                    sourceObject = targetProDocSection;
+                                    sourceObject = targetProDocSection;    
                                     break;
                                 }
                             }
@@ -440,7 +453,8 @@ public with sharing class IPM_ProjectDocumentHelper
                             sourceObject = IPM_ProjectHelper.bossCardMap.get(associatedBosscard);
                         }
                     } 
-                } 
+                }
+                
                 if(sourceObject!=null)
                 {
                     for(Integer counter =0;counter<sourceFieldAPIList.size();counter++)
@@ -448,11 +462,13 @@ public with sharing class IPM_ProjectDocumentHelper
                         // Get the source Api Name from which to copy
                         String sourceField = sourceFieldAPIList.get(counter);
                         String targetField = targetFieldAPIList.get(counter);
-                        if(sourceField!=null && !String.isBlank(sourceField) && targetField !=null && !String.isBlank(targetField) && incomingSection.get(targetField) == null)
+                        //NO SONAR for Unnecessary Boolean Comparison, since targetField is coming from Map where two fields are of typr Text and 1 is of Checkbox, we need to explicitly check for this condition in order for Business Logic to Work
+                        //While copying over sections data 3 fields pulled from the custom settings "IPM_Section_CopyMapping" needs to be copied Gate Summary, Functional Summary (which are text fields) and isDefault which is a boolean  
+                        if(String.isNotBlank(sourceField) && String.isNotBlank(targetField) && (incomingSection.get(targetField) == null || incomingSection.get(targetField)==false))
                         {
-                            if(currentSectionExternalId != IPM_ConstantUtils.FEEDBACK_FROM_LAST_GATE)
+                            if(copyFromGate.equals(BOSSCARD) || currentSectionExternalId != IPM_ConstantUtils.FEEDBACK_FROM_LAST_GATE)
                             {
-                                incomingSection.put(targetField,sourceObject.get(sourceField));    
+                                incomingSection.put(targetField,sourceObject.get(sourceField));        
                             }    
                             else 
                             {   if(targetProjectDocument !=null)
@@ -465,221 +481,5 @@ public with sharing class IPM_ProjectDocumentHelper
                 }
             }
         }
-    }
-    
-    // Once Local projects are created, we need to create Project Sections at Charter level 
-    public static void manageCountryFeedbackOnParentProjects(Map<Id,IPM_Project__c> incomingProjects)
-    {
-        List<IPM_Project_Document_Section__c> upsertParentSections = new List<IPM_Project_Document_Section__c>();
-        Set<Id> globalProjectIdsSet = new Set<Id>();
-        String DYNAMIC_SECTION_SEQUENCE=Section_Sequence; //Country Feedback Section Sequence Number
-        
-        Map<Id,List<Id>> parentToChildProjects = new Map<Id,List<Id>>();
-        
-        for(IPM_Project__c project : incomingProjects.values())
-        {
-            if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL && project.IPM_Phase__c == IPM_ConstantUtils.MARKET_READY_GATE)
-            {
-                Id regionalProjectID = project.IPM_Parent_Project__c;
-                IPM_Project__c regionalProject = null;
-                IPM_Project__c globalProject = null;
-                if(IPM_ProjectHelper.projectMasterMap.containsKey(regionalProjectID) && IPM_ProjectHelper.projectMasterMap.get(regionalProjectID)!=null )
-                {
-                   regionalProject =  IPM_ProjectHelper.projectMasterMap.get(regionalProjectID);
-                   List<Id> childProjectList = new List<Id>();
-                   if(parentToChildProjects.containsKey(regionalProjectID))
-                   {
-                       childProjectList =  parentToChildProjects.get(regionalProjectID);        
-                   }
-                   childProjectList.add(project.Id);
-                   parentToChildProjects.put(regionalProjectID,childProjectList);
-                       
-                       
-                   if(regionalProject!=null)
-                   {
-                       Id globalProjectID = regionalProject.IPM_Parent_Project__c;
-                       if(IPM_ProjectHelper.projectMasterMap.containsKey(globalProjectId) && IPM_ProjectHelper.projectMasterMap.get(globalProjectId) !=null )
-                       {
-                           globalProject = IPM_ProjectHelper.projectMasterMap.get(globalProjectId);
-                           List<Id> childProjectListTemp = new List<Id>();
-                           if(parentToChildProjects.containsKey(globalProjectID))
-                           {
-                               childProjectListTemp =  parentToChildProjects.get(globalProjectID);        
-                           }
-                           childProjectListTemp.add(project.Id);
-                           parentToChildProjects.put(globalProjectID,childProjectListTemp);
-                       }
-                   }
-                }
-            }
-        }   
-
-        for(Id globalProjectId : parentToChildProjects.KeySet())
-        {
-            IPM_Project__c globalProject = null;
-            IPM_Project_Document__c globalProjectDocument = null;
-            Integer lastGlobalCountrySection = 1;
-            if(IPM_ProjectHelper.projectMasterMap.containsKey(globalProjectId) && IPM_ProjectHelper.projectMasterMap.get(globalProjectId) !=null )
-            {
-                globalProject = IPM_ProjectHelper.projectMasterMap.get(globalProjectId);
-            }
-            
-            if(globalProject!=null && IPM_ProjectHelper.DBprojectSpecificDocumentMap.containsKey(globalProject.Id) && 
-            IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(globalProject.Id)!=null)
-            {
-                for(IPM_Project_Document__c projectDocument :  IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(globalProject.Id))
-                {
-                    if(projectDocument.IPM_GateDocuments__c == IPM_ConstantUtils.CONTRACT_GATE)
-                    {
-                        // Check what sequence Number should be set
-                        globalProjectDocument = projectDocument;
-                        if(IPM_ProjectHelper.projectDocumentMap.containsKey(globalProjectDocument.Id) && 
-                            IPM_ProjectHelper.projectDocumentMap.get(globalProjectDocument.Id) !=null)
-                        {
-                            IPM_Project_Document__c existingDocument = IPM_ProjectHelper.projectDocumentMap.get(globalProjectDocument.Id);
-                            
-                            if(IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.containsKey(existingDocument.Id) && 
-                                IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(existingDocument.Id)!=null)
-                            {
-                                for(IPM_Project_Document_Section__c docSection : IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(existingDocument.Id))
-                                {
-                                    if(docSection.IPM_Section_Sequence_Number__c.startsWith(DYNAMIC_SECTION_SEQUENCE))
-                                    {
-                                        // Find the last Dot and prepare largest index based on that.  
-                                        Integer startIndex = docSection.IPM_Section_Sequence_Number__c.lastIndexOf(IPM_ConstantUtils.DOT_DELIMITER);
-                                        Integer endIndex = docSection.IPM_Section_Sequence_Number__c.length();
-                                        String sequenceNumber = docSection.IPM_Section_Sequence_Number__c.substring(startIndex+1,endIndex);
-                                        Integer sequenceInteger = Integer.valueOf(sequenceNumber);  
-                                        
-                                        if(sequenceInteger > lastGlobalCountrySection)
-                                        {
-                                            lastGlobalCountrySection = sequenceInteger; 
-                                        }    
-                                    }
-                                }
-                            }
-                        }
-                        break;
-                    }
-                } 
-                
-                // Get local Records Associated with it.
-                if(parentToChildProjects.containsKey(globalProjectId) && parentToChildProjects.get(globalProjectId)!=null)
-                {
-                   List<Id> localProjectIds = parentToChildProjects.get(globalProjectId);
-                   for(Id localProjectID : localProjectIds)
-                   {
-                       IPM_Project__c localProject = null;
-                       if(IPM_ProjectHelper.projectMasterMap.containsKey(localProjectID) && IPM_ProjectHelper.projectMasterMap.get(localProjectID) !=null )
-                       {
-                           localProject = IPM_ProjectHelper.projectMasterMap.get(localProjectID);
-                       }
-                       if(localProject!=null)
-                       {
-                            IPM_Project_Document_Section__c projDocSect = new IPM_Project_Document_Section__c();
-                            projDocSect.IPM_Project_Document__c = globalProjectDocument.Id;
-                            projDocSect.IPM_Section_Name__c = localProject.IPM_Project_Name__c;
-                            projDocSect.IPM_Section_Status__c = IPM_ConstantUtils.STATUS_NOT_STARTED;
-                            projDocSect.IPM_FunctionalRole__c = IPM_ConstantUtils.IPM_ROLE_BB;
-                            projDocSect.IPM_Section_Sequence_Number__c = DYNAMIC_SECTION_SEQUENCE+lastGlobalCountrySection;
-                            projDocSect.IPM_Negotiable__c = true;
-                            if(localProject.IPM_Complexity__c == IPM_ConstantUtils.COMPLEXITY_FULL)
-                            {
-                                projDocSect.IPM_Default_Section__c=true;
-                            }
-                            lastGlobalCountrySection++;
-                            upsertParentSections.add(projDocSect);     
-                       }
-                   }
-                } 
-            }
-                
-            List<Id> regionalProjectIds = parentToChildProjects.get(globalProjectId);
-            
-            for(Id regionalProjectId : regionalProjectIds)
-            {
-                Integer lastRegionalCountrySection = 1;
-                IPM_Project__c regionalProject = null;
-                IPM_Project_Document__c regionalProjectDocument = null; 
-                if(IPM_ProjectHelper.projectMasterMap.containsKey(regionalProjectId) && IPM_ProjectHelper.projectMasterMap.get(regionalProjectId) !=null )
-                {
-                    regionalProject = IPM_ProjectHelper.projectMasterMap.get(regionalProjectId);
-                }
-                
-                // Get the last Section of 7.2 which is present at Regional Level.
-                if(regionalProject!=null && IPM_ProjectHelper.DBprojectSpecificDocumentMap.containsKey(regionalProject.Id) && IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(regionalProject.Id)!=null)
-                {
-                    for(IPM_Project_Document__c projectDocument : IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(regionalProject.Id))
-                    {
-                        if(projectDocument.IPM_GateDocuments__c == IPM_ConstantUtils.CONTRACT_GATE)
-                        {
-                            // Check what sequence Number should be set
-                            regionalProjectDocument = projectDocument;
-                            if(IPM_ProjectHelper.projectDocumentMap.containsKey(regionalProjectDocument.Id) && IPM_ProjectHelper.projectDocumentMap.get(regionalProjectDocument.Id) !=null)
-                            {
-                                IPM_Project_Document__c existingRegionalDocument = IPM_ProjectHelper.projectDocumentMap.get(globalProjectDocument.Id);
-                                
-                                if(existingRegionalDocument!=null && IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.containsKey(existingRegionalDocument.Id) 
-                                    && IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(existingRegionalDocument.Id)!=null)
-                                {
-                                    for(IPM_Project_Document_Section__c docSection : IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(existingRegionalDocument.Id))
-                                    {
-                                        if(docSection.IPM_Section_Sequence_Number__c.startsWith(DYNAMIC_SECTION_SEQUENCE))
-                                        {
-                                            // Find the last Dot and prepare largest index based on that.   
-                                            Integer startIndex = docSection.IPM_Section_Sequence_Number__c.lastIndexOf(IPM_ConstantUtils.DOT_DELIMITER);
-                                            Integer endIndex = docSection.IPM_Section_Sequence_Number__c.length()+1; 
-                                            String sequenceNumber = docSection.IPM_Section_Sequence_Number__c.substring(startIndex,endIndex);
-                                            Integer sequenceInteger = Integer.valueOf(sequenceNumber);  
-                                            
-                                            if(sequenceInteger > lastRegionalCountrySection)
-                                            {
-                                                lastRegionalCountrySection = sequenceInteger; 
-                                            }    
-                                        }
-                                    }
-                                }
-                            }
-                            break;
-                        } 
-                    }
-                }
-                
-                // Get local Records Associated with it.
-                if(parentToChildProjects.containsKey(regionalProjectId) && parentToChildProjects.get(regionalProjectId)!=null)
-                {
-                   List<Id> localProjectIds = parentToChildProjects.get(regionalProjectId);
-                   for(Id localProjectID : localProjectIds)
-                   {
-                       IPM_Project__c localProject = null;
-                       if(IPM_ProjectHelper.projectMasterMap.containsKey(localProjectID) && IPM_ProjectHelper.projectMasterMap.get(localProjectID) !=null )
-                       {
-                           localProject = IPM_ProjectHelper.projectMasterMap.get(localProjectID);
-                       }
-                       if(localProject!=null)
-                       {
-                            IPM_Project_Document_Section__c projDocSect = new IPM_Project_Document_Section__c();
-                            projDocSect.IPM_Project_Document__c = regionalProjectDocument.Id;
-                            projDocSect.IPM_Section_Name__c = localProject.IPM_Project_Name__c;
-                            projDocSect.IPM_Section_Status__c = IPM_ConstantUtils.STATUS_NOT_STARTED;
-                            projDocSect.IPM_FunctionalRole__c = IPM_ConstantUtils.IPM_ROLE_BB;
-                            projDocSect.IPM_Section_Sequence_Number__c = DYNAMIC_SECTION_SEQUENCE+lastRegionalCountrySection;
-                            projDocSect.IPM_Negotiable__c = true;
-                            if(localProject.IPM_Complexity__c == IPM_ConstantUtils.COMPLEXITY_FULL)
-                            {
-                                projDocSect.IPM_Default_Section__c=true;
-                            }
-                            lastRegionalCountrySection++;   
-                            upsertParentSections.add(projDocSect);  
-                       }
-                   }
-                }  
-            }
-        } 
-        
-        if(upsertParentSections!=null && !upsertParentSections.isEmpty())
-        {
-            insert upsertParentSections; // Not including try , catch as when the transaction is failed roll back is handled at other class  
-        }         
     }
 }

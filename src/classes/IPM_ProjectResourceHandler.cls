@@ -5,7 +5,6 @@
 * interface to help ensure the trigger code is bulkified and all in one place.
 */
 public with sharing class IPM_ProjectResourceHandler implements ITrigger{   
-   
      
     //Select list which should contain only the owners in the team
     private list<IPM_Project_Resource__c> newPRListWithOwners = new list<IPM_Project_Resource__c>();
@@ -29,6 +28,17 @@ public with sharing class IPM_ProjectResourceHandler implements ITrigger{
         }
       else if(Trigger.isDelete){
             handler.onBeforeDelete((List<IPM_Project_Resource__c>)Trigger.old);
+        	Map<Id,IPM_Project__c> updatedProjMap = new Map<Id,IPM_Project__c>();
+    	
+    		for(IPM_Project_Resource__c eachResource:(List<IPM_Project_Resource__c>)Trigger.old)
+            {
+            	if(eachResource.IPM_Role_Type__c == IPM_ConstantUtils.FUNCTIONAL_ROLE_FINANCE  && eachResource.IPM_Project_Role_Owner__c)
+            	{
+            		IPM_Project__c project = new IPM_Project__c(Id=eachResource.IPM_Project__c,IPM_Finance_Lead__c=null);
+            		updatedProjMap.put(project.id,project);
+            	}
+            }
+           update updatedProjMap.values();
         }
     }
 
@@ -41,35 +51,21 @@ public with sharing class IPM_ProjectResourceHandler implements ITrigger{
     * any data required into maps prior execution of the trigger.
     */
     public void bulkAfter(){
-        //This is not the right way of performing everything in the bulkified method. Will comment it for now.
-        
-    /*    IPM_ProjectResourceTriggerHandler handler = new IPM_ProjectResourceTriggerHandler();
-        IPM_ProjectResourceShare shareHandler=new IPM_ProjectResourceShare();
-        IPM_ProjectShare projectShareHandler=new IPM_ProjectShare();
-        if(Trigger.isDelete ){
-            map<id,IPM_Project_Resource__c>oldResourceMap=(map<id,IPM_Project_Resource__c>)trigger.oldmap;
-            handler.OnAfterDelete((List<IPM_Project_Resource__c>)Trigger.old);
-            shareHandler.deleteProjectResource(oldResourceMap);
-            projectShareHandler.DeleteshareLocalMember(oldResourceMap);
-
-            handler.setSyncResourceAftInsertDelete(oldResourceMap.values());
-        }else if(Trigger.isInsert){
-            map<id,IPM_Project_Resource__c>newResourceMap=(map<id,IPM_Project_Resource__c>)trigger.newmap;
-            handler.onAfterInsert((List<IPM_Project_Resource__c>)Trigger.new);
-            shareHandler.insertProjectResource((List<IPM_Project_Resource__c>)Trigger.new);
-            projectShareHandler.ShareWithLocalMember(newResourceMap);
-
-            handler.setSyncResourceAftInsertDelete(newResourceMap.values());
-        }else if(Trigger.isUnDelete ){
-            handler.onAfterUnDelete((List<IPM_Project_Resource__c>)Trigger.new);
-        }else if(Trigger.isUpdate){
-            map<id,IPM_Project_Resource__c>newResourceMap=(map<id,IPM_Project_Resource__c>)trigger.newmap;
-            map<id,IPM_Project_Resource__c>oldResourceMap=(map<id,IPM_Project_Resource__c>)trigger.oldmap;            
-            handler.OnAfterUpdate((List<IPM_Project_Resource__c>)Trigger.new, newResourceMap, oldResourceMap);
-
-            handler.setSyncResourceAftUpdate(oldResourceMap,newResourceMap);
-        }*/
-        
+    	
+    	if(Trigger.isInsert  || Trigger.isUpdate){
+    	Map<Id,IPM_Project__c> updatedProjMap = new Map<Id,IPM_Project__c>();
+    	for(IPM_Project_Resource__c eachResource:(List<IPM_Project_Resource__c>)Trigger.new)
+           {
+            	if(eachResource.IPM_Role_Type__c == IPM_ConstantUtils.FUNCTIONAL_ROLE_FINANCE  && eachResource.IPM_Project_Role_Owner__c)
+            	{
+            		IPM_Project__c project = new IPM_Project__c(Id=eachResource.IPM_Project__c);
+            		project.IPM_Finance_Lead__c = eachResource.IPM_User__c;
+            		updatedProjMap.put(project.id,project);
+            	}
+           }
+           
+           update updatedProjMap.values();
+    	}     
         
         //IPM EcoDesign Related Changes
         IPM_ProjectResourceTriggerHandler handler = new IPM_ProjectResourceTriggerHandler();
@@ -105,7 +101,6 @@ public with sharing class IPM_ProjectResourceHandler implements ITrigger{
                 IPM_BETHelper.sendRolloutMemberBETAccessRequest(mapProjResources);  
             }
         }
-        //IPM_ProjectResourceTriggerHandler handler = new IPM_ProjectResourceTriggerHandler();
         if(Trigger.isInsert){
             handler.onAfterInsert((List<IPM_Project_Resource__c>)Trigger.new);
        }
@@ -115,11 +110,6 @@ public with sharing class IPM_ProjectResourceHandler implements ITrigger{
             handler.OnAfterDelete((List<IPM_Project_Resource__c>)Trigger.old);
        }
        //@@Data Sharing
-       /*if(Trigger.isUpdate){
-       		map<id,IPM_Project_Resource__c>newResourceMap=(map<id,IPM_Project_Resource__c>)trigger.newmap;
-            map<id,IPM_Project_Resource__c>oldResourceMap=(map<id,IPM_Project_Resource__c>)trigger.oldmap;
-       		handler.OnAfterUpdate((List<IPM_Project_Resource__c>)Trigger.new, newResourceMap, oldResourceMap);	
-       }*/
     }
     /**
     * @description:beforeInsert
@@ -189,7 +179,7 @@ public with sharing class IPM_ProjectResourceHandler implements ITrigger{
     public void afterDelete(SObject oldSo){
       //This method has been included as the class implements the ITrigger interface
         IPM_Project_Resource__c projRes = (IPM_Project_Resource__c)oldSo;
-        IPM_TaskHelper.assigneUserToTask(projRes.IPM_Project__c);
+        IPM_TaskHelper.assignUserToTask(new Set<Id>{projRes.IPM_Project__c});
     }
     
     /**

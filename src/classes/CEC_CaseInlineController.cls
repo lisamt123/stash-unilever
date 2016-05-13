@@ -1,6 +1,6 @@
 /**********************************************************************
- Name:  CEC_CaseInlineController()
- Copyright@: 2015  Unilever
+Name:  CEC_CaseInlineController()
+Copyright@: 2015  Unilever
 =======================================================================
 =======================================================================
 Purpose: This is the controller class for CEC_CaseInline Vf page                                                                                                    
@@ -10,66 +10,72 @@ Purpose: This is the controller class for CEC_CaseInline Vf page
 History                                                            
 -------                                                            
 VERSION    AUTHOR            DATE            DETAIL                   
-  1.0       Koti           Jan-2015      INITIAL DEVELOPMENT   
+1.0       Koti           Jan-2015      INITIAL DEVELOPMENT   
 
 ************************************************************************/
 
 
 global with sharing class CEC_CaseInlineController{
-
+    
     /* Case object */
     public case caseRecord {get; set;}
-
+    
     /* Reason Id */
     public String reasonId {get; set;}
-
+    
     /* Old Reason Id Value - To maintain state between old and new Reason id */
     public String oldReasonId {get;set;}
-
+    
     /* Reason name */
     public String reasonName {get; set;}
-
+    
     /* Product Id */
     public String productId {get; set;}
-
+    
     /* Old Product Id - To maintain state between old and new product id */
     public String oldProductId {get; set;}
-
+    
     /* Product name */
     public String productName {get; set;}
-
+    
     public String userWarning {get; set;}
-
+    
     /* to decide whether to display missing information section or not */
     public boolean missingInfoSectionDisplay {get; set;}    
-
+    
     /* to maintain product category */
     public String productCategory{get; set;}
-
+    
     /* to maintain date of manufacture */
     public String dateOfManufacture{get; set;}
-
+    
     /* to decide whether the product category is enabled or disabled */
     public boolean isProductCategoryEnabled {get; set;}    
-
+    
     /* reason hierarchy */
     public String reasonHierarchy {get; set;}
-
+    
     /* product hierarchy */
     public String productHierarchy {get; set;}
-
+    
     /* Popup Alert related variables */
     public Boolean popupAlertCheck {get;set;}
     public String popupAlertMsg {get;set;}
+    
+    /* Popup Questionnaire related variables */
+    public Boolean questionnaireAlertCheck {get;set;}
+    
+    /*Variable to display Country and Verbetim message if account is populated*/
+    public Boolean isEmptyCountryVerbatimCheck {get;set;}
     
     /*  Related Issues */
     public List<RelatedIssue> relatedIssues {get; set;}
     public List<RelatedIssue> fiveRelatedIssues {get; set;}
     public Boolean displayMore{get;set;}
-
+    
     /* List to maintain matching Product knowledge articles*/
     public List<cec_Product_Information__kav> matchingProductArticlesList {get; set;}
-
+    
     /* List to maintain matching Product knowledge articles for TO*/
     public List<TO_Product_Information__kav> matchingTOProductArticlesList {get; set;}
     
@@ -82,18 +88,18 @@ global with sharing class CEC_CaseInlineController{
     /* Inner class */
     /* This class is a wrapper class for the knowledge articles */
     public class KnowledgeArticleWrapper{
-    
-    /* article id*/
+        
+        /* article id*/
         public String articleId{ get; set; }
-
+        
         public String knowledgeArticleId{ get; set; }
         
         /* Reference to reason article */
         public cec_Reason_Information__kav reasonArticle{ get; set; }
-
+        
         /* Reference to product article */
         public cec_Product_Information__kav productArticle{ get; set; }
-
+        
         /* Reference to product article */
         public TO_Product_Information__kav TOProductArticle{ get; set; }
         
@@ -110,7 +116,7 @@ global with sharing class CEC_CaseInlineController{
         public KnowledgeArticleWrapper(){}
         
     }
-
+    
     /* Selected Article */
     public String selectedArticleId {get;set;}
     
@@ -118,26 +124,33 @@ global with sharing class CEC_CaseInlineController{
     
     /* constructor */
     public CEC_CaseInlineController(ApexPages.StandardController controller) {
-
+        
         caseRecord = (case) controller.getRecord();
         if (caseRecord.Id != null) {
             /* caseRecord = [Select Id, CaseNumber,Reason_Code__c,Parent.CaseNumber,ParentId, Reason_Code__r.Name,Status, CEC_Product__c, CEC_Product__r.Name,CEC_Product__r.Global_CPG_Code__c,
-                          isFormKnown__c, isVariantKnown__c, isPacksizeKnown__c,Case_product_category__c, Production_Code__c, DayCode__c,CEC_Product__r.Global_CPG_Code__r.L2_Product_Category__c,
-                          Date_of_Manufacture_str__c,Subject,Description,Market__c From case Where Id = :caseRecord.Id];*/
-                          
+isFormKnown__c, isVariantKnown__c, isPacksizeKnown__c,Case_product_category__c, Production_Code__c, DayCode__c,CEC_Product__r.Global_CPG_Code__r.L2_Product_Category__c,
+Date_of_Manufacture_str__c,Subject,Description,Market__c From case Where Id = :caseRecord.Id];*/
+            
             caseRecord = [Select Id, CaseNumber,Reason_Code__c,Parent.CaseNumber,ParentId, Reason_Code__r.Name,Status, CEC_Product__c, CEC_Product__r.Name,CEC_Product__r.Global_CPG_Code__c,
                           isFormKnown__c, isVariantKnown__c, isPacksizeKnown__c,Case_product_category__c, Production_Code__c, DayCode__c,CEC_Product__r.Global_CPG_Code__r.L2_Product_Category__c,
-                          Date_of_Manufacture_str__c,Subject,Description,Market__c,Country_Name__c,Country__c,Country__r.Country__r.ISO_3166_1_Code__c,CEC_Product_Hierarchy__c,Case_Market_Tag__c From case Where Id = :caseRecord.Id];
+                          Date_of_Manufacture_str__c,Subject,Description,Market__c,Country_Name__c,Country__c,Country__r.Country__r.ISO_3166_1_Code__c,CEC_Product_Hierarchy__c,Case_Market_Tag__c, AccountId From case Where Id = :caseRecord.Id];
             
             selectedCountryCode = caseRecord.Country__r.Country__r.ISO_3166_1_Code__c;
             
             oldReasonId = reasonId = caseRecord.Reason_Code__c;
             reasonName = caseRecord.Reason_Code__r.Name;
             oldProductId = productId = caseRecord.CEC_Product__c;
-            productName = caseRecord.CEC_Product__r.Name; 
-
+            productName = caseRecord.CEC_Product__r.Name;
+            
+            /*-- Populate the isEmptyCountryVerbatimCheck --*/
+            if(caseRecord.AccountId != null && (caseRecord.Country__c == null || String.isEmpty(caseRecord.Subject)) && caseRecord.Status != 'New'){
+                isEmptyCountryVerbatimCheck = true;
+            }
+            else{
+                isEmptyCountryVerbatimCheck = false;
+            }
             /*---- On loading page to display Reason Hierarchy -----
-             */
+*/
             String level1Desc = '', level2Desc = '';
             popupAlertMsg = '';
             if (reasonId != null && reasonId != ''){
@@ -146,14 +159,14 @@ global with sharing class CEC_CaseInlineController{
                     reasonName = rObjList[0].name;
                 }
             }
-
+            
             if (productId != null && productId != ''){
                 List<mdm_Case_Product__c> pObjList = [select name from mdm_Case_Product__c where id = :productId ];
                 if (pObjList != null && pObjList.size() > 0 && pObjList[0].name != null){
                     productName = pObjList[0].name;
                 }
             }
-
+            
             if (reasonId != null && reasonId != ''){
                 List<mdm_Reason_Code__c> reasonCodeObjList = [ select id, L1_Desc__c, L2_Desc__c from mdm_Reason_Code__c where Id =:  reasonId ];
                 if (reasonCodeObjList != null && reasonCodeObjList.size() > 0 && reasonCodeObjList[0] != null ){
@@ -163,14 +176,14 @@ global with sharing class CEC_CaseInlineController{
                     if (reasonCodeObjList[0].L2_Desc__c != null && reasonCodeObjList[0].L2_Desc__c != null){
                         level2Desc = reasonCodeObjList[0].L2_Desc__c;
                     }
-
+                    
                     reasonHierarchy = level1Desc + ' ' +  level2Desc ;
                 }
-
+                
             }
-
+            
             /*---- On loading page to display Product Hierarchy -----
-             */
+*/
             if (reasonId != null && reasonId != ''){
                 mdm_Reason_Code__c rObj = [select name from mdm_Reason_Code__c where id = :reasonId ];
                 if (rObj != null && rObj.name != null){
@@ -178,7 +191,7 @@ global with sharing class CEC_CaseInlineController{
                 }
             }
             System.debug('reasonName =' + reasonName );
-
+            
             System.debug('productId =' + productId );
             if (productId != null && productId != ''){
                 mdm_Case_Product__c pObj = [select name from mdm_Case_Product__c where id = :productId ];
@@ -186,13 +199,13 @@ global with sharing class CEC_CaseInlineController{
                 if (pObj != null && pObj.name != null){
                     productName = pObj.name;
                 }
-
+                
                 //isProductCategoryEnabled = false;
                 
             }
             System.debug('productName =' + productName );
-
-
+            
+            
             List<mdm_Case_Product__c> productObj = [select id, Consumer_Product_Descriptor_Local_Lang__c,Global_CPG_Code__r.Corp_Prod_Grouping_Name__c,Brand__c,Consumer_Product_Descriptor_no_size__c from mdm_Case_Product__c where Id = :productId ];
             System.debug('productObj =' + productObj+'caseRecord.isFormKnown__c'+caseRecord.isFormKnown__c+'    caseRecord.isVariantKnown__c'+caseRecord.isVariantKnown__c+' caseRecord.isPacksizeKnown__c'+caseRecord.isPacksizeKnown__c);
             if (productObj.size()>0 && productObj != null && productObj[0] != null){
@@ -210,7 +223,7 @@ global with sharing class CEC_CaseInlineController{
                 }
                 else if(caseRecord.isVariantKnown__c==false){ //if Variant is false
                     productHierarchy = productObj[0].Global_CPG_Code__r.Corp_Prod_Grouping_Name__c;
-                     System.debug('Variant PH>>>>>>>>> =' + productHierarchy );
+                    System.debug('Variant PH>>>>>>>>> =' + productHierarchy );
                     
                 }else if(caseRecord.isPacksizeKnown__c==false){ //if Pack size is false
                     productHierarchy = productObj[0].Consumer_Product_Descriptor_no_size__c;
@@ -222,58 +235,58 @@ global with sharing class CEC_CaseInlineController{
                     
                 }
             }  
-        //Related Issue
-        relatedIssues = new List<RelatedIssue>();
-        fiveRelatedIssues = new List<RelatedIssue>();
-        if (caseRecord.ParentId == null) {
-          // Add this case - it is the primary
-          relatedIssues.add(new RelatedIssue('Primary', caseRecord,caseRecord.Parent.CaseNumber));
-          // Retrieve child cases
-          for (Case cc : [Select CaseNumber,ParentId,Status,Parent.CaseNumber, Subject, CEC_Product__c,CEC_Product__r.Name,Case_product_category__c, Reason_Code__c,Reason_Code__r.Name, Description From Case Where ParentId = :caseRecord.Id order by CaseNumber]) {
-            relatedIssues.add(new RelatedIssue('Additional', cc,cc.Parent.CaseNumber));
+            //Related Issue
+            relatedIssues = new List<RelatedIssue>();
+            fiveRelatedIssues = new List<RelatedIssue>();
+            if (caseRecord.ParentId == null) {
+                // Add this case - it is the primary
+                relatedIssues.add(new RelatedIssue('Primary', caseRecord,caseRecord.Parent.CaseNumber));
+                // Retrieve child cases
+                for (Case cc : [Select CaseNumber,ParentId,Status,Parent.CaseNumber, Subject, CEC_Product__c,CEC_Product__r.Name,Case_product_category__c, Reason_Code__c,Reason_Code__r.Name, Description From Case Where ParentId = :caseRecord.Id order by CaseNumber]) {
+                    relatedIssues.add(new RelatedIssue('Additional', cc,cc.Parent.CaseNumber));
+                }
+            } else {
+                // Add the parent case
+                Case pc = [Select CaseNumber, ParentId,Subject,Status,Parent.CaseNumber, CEC_Product__c,CEC_Product__r.Name,Case_product_category__c, Reason_Code__c,Reason_Code__r.Name, Description From Case Where Id = :caseRecord.ParentId];
+                relatedIssues.add(new RelatedIssue('Primary', pc,pc.Parent.CaseNumber));
+                // Then add all the children of the parent          
+                for (Case cc : [Select CaseNumber, Subject,Status, ParentId,Parent.CaseNumber,CEC_Product__c,CEC_Product__r.Name,Case_product_category__c, Reason_Code__c,Reason_Code__r.Name, Description From Case Where ParentId = :caseRecord.ParentId order by CaseNumber]) {
+                    relatedIssues.add(new RelatedIssue('Additional', cc,cc.Parent.CaseNumber));
+                }
             }
-        } else {
-          // Add the parent case
-          Case pc = [Select CaseNumber, ParentId,Subject,Status,Parent.CaseNumber, CEC_Product__c,CEC_Product__r.Name,Case_product_category__c, Reason_Code__c,Reason_Code__r.Name, Description From Case Where Id = :caseRecord.ParentId];
-          relatedIssues.add(new RelatedIssue('Primary', pc,pc.Parent.CaseNumber));
-          // Then add all the children of the parent          
-          for (Case cc : [Select CaseNumber, Subject,Status, ParentId,Parent.CaseNumber,CEC_Product__c,CEC_Product__r.Name,Case_product_category__c, Reason_Code__c,Reason_Code__r.Name, Description From Case Where ParentId = :caseRecord.ParentId order by CaseNumber]) {
-            relatedIssues.add(new RelatedIssue('Additional', cc,cc.Parent.CaseNumber));
+            
+            for(integer relatedCase=0;relatedCase<5 && relatedIssues.size()>relatedCase;relatedCase++){
+                fiveRelatedIssues.add(relatedIssues[relatedCase]);
             }
-        }
-        
-        for(integer relatedCase=0;relatedCase<5 && relatedIssues.size()>relatedCase;relatedCase++){
-            fiveRelatedIssues.add(relatedIssues[relatedCase]);
-        }
-        if(relatedIssues.size()>5){
-            displayMore=true;
-        } else{
-            displayMore=false;
-        }
-       
+            if(relatedIssues.size()>5){
+                displayMore=true;
+            } else{
+                displayMore=false;
+            }
+            
         }
         /* making 'missing info' section hidden as default */        
         missingInfoSectionDisplay = false;
-
+        
         isProductCategoryEnabled = false;
-
+        
         /*---- On loading page to search and display Knowledge Articles ----- */
         knowledgeWrapperList = new List<KnowledgeArticleWrapper>();
-
+        
         searchMatchingReasonKnowledgeArticles();
         searchMatchingProductKnowledgeArticles();
-
+        
         
     }
     
-
+    
     
     //RelatedCase
     public void getAllRecords(){
         fiveRelatedIssues=relatedIssues;
         displayMore=false;
     }
-    
+
     public Boolean isCountryPopulated {get;set;}
     
     //Record type Spam
@@ -281,59 +294,59 @@ global with sharing class CEC_CaseInlineController{
         isCountryPopulated = false;
         try{
             if(caseRecord.Country__c != null){
-                update caseRecord;
                 isCountryPopulated = true;
+                update caseRecord;
             }
         }catch(Exception e){
             System.debug('Case not updated');
         }
         return null;      
     }
-
+    
     /**
-    This method toggles the display of 'Missing information' section
-     */
+This method toggles the display of 'Missing information' section
+*/
     public void toggleMissingInfoDisplay(){
         System.debug('in toggleMissingInfoDisplay....................');
         if (missingInfoSectionDisplay == true){
             missingInfoSectionDisplay = false;
         }else{
             missingInfoSectionDisplay = true;
-             if(caseRecord.isFormKnown__c==false){
+            if(caseRecord.isFormKnown__c==false){
                 isProductCategoryEnabled = true;
             }else{
                 isProductCategoryEnabled = false;
+            }
         }
-        }
-
+        
         /*maintaining reason name on screen */   
         if (reasonId != null && reasonId != ''){
             mdm_Reason_Code__c rObj = [select name from mdm_Reason_Code__c where id = :reasonId ];
             if (rObj != null){
                 reasonName = rObj.name;
             }
-
+            
         }
-
+        
         /*maintaining product name on screen */   
         if (productId != null && productId != ''){
             mdm_Case_Product__c pObj = [select name from mdm_Case_Product__c where id = :productId ];
             if (pObj != null && pObj.name != null){
                 productName = pObj.name;
             }
-
+            
         }
         System.debug('missingInfoSectionDisplay = ....................' + missingInfoSectionDisplay );
     }
-
+    
     /**
-    This method updates the details based on check / uncheck of FORM checkbox
-     */
+This method updates the details based on check / uncheck of FORM checkbox
+*/
     public void updateFormAvailabilityDetails(){
         
         if (caseRecord.isFormKnown__c == false){
             isProductCategoryEnabled = true;
-
+            
             /*if form is missing, loading product hierarchy */
             if (caseRecord.isFormKnown__c== false){
                 if (productId != null && productId != ''){
@@ -369,10 +382,10 @@ global with sharing class CEC_CaseInlineController{
             ApexPages.addMessage(new ApexPages.Message(ApexPages.severity.Error, e.getMessage()) );
         }
     }
-
+    
     /**
-    This method updates the details based on check / uncheck of VARIANT checkbox
-     */
+This method updates the details based on check / uncheck of VARIANT checkbox
+*/
     public void updateVariantAvailabilityDetails(){
         /*if variant is missing, loading product hierarchy */
         if (caseRecord.isVariantKnown__c== false){
@@ -401,11 +414,11 @@ global with sharing class CEC_CaseInlineController{
             ApexPages.addMessage(new ApexPages.Message(ApexPages.severity.Error, e.getMessage()) );
         }
     }
-
-
+    
+    
     /**
-    This method updates the details based on check / uncheck of PACK SIZE checkbox
-     */
+This method updates the details based on check / uncheck of PACK SIZE checkbox
+*/
     public void updatePacksizeAvailabilityDetails(){
         if (caseRecord.isPacksizeKnown__c == false){
             if (productId != null && productId != ''){ 
@@ -433,45 +446,47 @@ global with sharing class CEC_CaseInlineController{
             ApexPages.addMessage(new ApexPages.Message(ApexPages.severity.Error, e.getMessage()) );
         }
     }
-
-
-    /**
-    This method processes the Production code into 2 parts -
-    1. Generate daycode
-    2. Generate Date of Manufacture
-     */
-    public void processProductionCode(){
-        if (reasonId != null && reasonId != ''){
-            List<mdm_Reason_Code__c> rObjList = [select name from mdm_Reason_Code__c where id = :reasonId ];
-            if (rObjList != null && rObjList.size() > 0){
-                reasonName = rObjList[0].name;
-            }
-        }
-
-        if (productId != null && productId != ''){
-            List<mdm_Case_Product__c> pObjList = [select name from mdm_Case_Product__c where id = :productId ];
-            if (pObjList != null && pObjList .size() > 0){
-                productName = pObjList[0].name;
-            }
-        }
-
-        /* process the production code to identify daycode */
-        identifyDaycode();
-
-        /* process the daycode to identify date of manufacture */
-        identifyDateOfManufacture();
-        
-        /* check for any popup alerts to show */
-        checkPopupAlert();
-    }
-
-
-
-    /**
-    This method identifies daycode from the production code
-     */
-    public void identifyDaycode(){
     
+    
+    /**
+This method processes the Production code into 2 parts -
+1. Generate daycode
+2. Generate Date of Manufacture
+*/
+    public void processProductionCode(){
+        if(!isEmptyCountryVerbatimCheck){
+            if (reasonId != null && reasonId != ''){
+                List<mdm_Reason_Code__c> rObjList = [select name from mdm_Reason_Code__c where id = :reasonId ];
+                if (rObjList != null && rObjList.size() > 0){
+                    reasonName = rObjList[0].name;
+                }
+            }
+            
+            if (productId != null && productId != ''){
+                List<mdm_Case_Product__c> pObjList = [select name from mdm_Case_Product__c where id = :productId ];
+                if (pObjList != null && pObjList .size() > 0){
+                    productName = pObjList[0].name;
+                }
+            }
+            
+            /* process the production code to identify daycode */
+            identifyDaycode();
+            
+            /* process the daycode to identify date of manufacture */
+            identifyDateOfManufacture();
+            
+            /* check for any popup alerts to show */
+            checkAlertAction();
+        }
+    }
+    
+    
+    
+    /**
+This method identifies daycode from the production code
+*/
+    public void identifyDaycode(){
+        
         Boolean populateDayCode;
         String Daycode = '';
         caseRecord.Date_of_Manufacture_str__c = '';
@@ -480,22 +495,22 @@ global with sharing class CEC_CaseInlineController{
         if (caseRecord.Production_Code__c!= null && caseRecord.Production_Code__c!= '' && caseRecord.Production_Code__c.length() >= 4){
             //production_Code validations
             String productionCode=caseRecord.Production_Code__c;
-           
+            
             if((productionCode.substring(0,4)).isNumeric()){
                 Daycode = productionCode.substring(0,4);
             }
             else if (productionCode.length()>4 &&( productionCode.substring(1,5)).isNumeric() ){
                 Daycode = productionCode.substring(1,5);
             }
-        
+            
             if(Daycode !=''){
                 String days=Daycode.subString(1);
                 if(Integer.valueof(days)>366){
-                Daycode='';
-                            
+                    Daycode='';
+                    
                 }
-
-            /* identify the date of manufacture from the daycode */
+                
+                /* identify the date of manufacture from the daycode */
             }
             
             identifyDateOfManufacture();
@@ -507,79 +522,79 @@ global with sharing class CEC_CaseInlineController{
             ApexPages.addMessage(new ApexPages.Message(ApexPages.severity.Error, e.getMessage()) );
         }
     }
-
+    
     /**
-    This method identifies date of manufacture from the daycode
-     */
+This method identifies date of manufacture from the daycode
+*/
     public void identifyDateOfManufacture(){
         if (caseRecord.DayCode__c != null && caseRecord.DayCode__c != '' && caseRecord.DayCode__c.length() == 4){
             /* splitting 1st char as Year & taking it as integer */
-
+            
             try{
-
+                
                 String year = caseRecord.DayCode__c.substring(0,1); 
                 Integer prodYearDigit = Integer.valueOf(year);  
-
+                
                 /* splitting 2 to 4 chars as number of days & taking it as integer*/            
                 String noOfDays = caseRecord.DayCode__c.substring(1); 
                 Integer n = Integer.valueOf(noOfDays);
-
-
-
+                
+                
+                
                 /* identifying current year & converting it into String */
                 Integer currentYear = Integer.valueOf((Date.today()).year()); 
                 String currentYearStr  = String.valueOf(currentYear);
-
+                
                 /*extracting the last digit of the current year */
                 String currentYearLastDigitStr = currentYearStr.substring(3);
                 Integer currentYearLastDigitNum = Integer.valueOf(currentYearLastDigitStr); 
-
+                
                 /*extracting the first three digits of the current year */
                 String currentYearfirstthreeDigitStr = currentYearStr.substring(0,3);
                 Integer currentYearfirstthreeDigitNum = Integer.valueOf(currentYearfirstthreeDigitStr); 
-
-
+                
+                
                 Integer prodYear;
-
+                
                 /* if production year <= current year */
                 if (prodYearDigit <= currentYearLastDigitNum ){    
                     //prodYear = Date.today().year();
-
+                    
                     String prodYearStr = currentYearfirstthreeDigitStr + year;
                     System.debug('~~~prodYearStr '+ prodYearStr );
                     prodYear = Integer.valueOf(prodYearStr);
-
+                    
                 }else{
                     prodYear =  Date.today().year() -1;
-
+                    
                     System.debug('~~~currentYearfirstthreeDigitNum '+ currentYearfirstthreeDigitNum);
-
+                    
                     Integer prodYearfirstthreeDigitNum = currentYearfirstthreeDigitNum-1;
                     System.debug('~~~prodYearfirstthreeDigitNum '+ prodYearfirstthreeDigitNum );
-
+                    
                     String prodYearfirstthreeDigitStr= string.valueof(prodYearfirstthreeDigitNum);
                     System.debug('~~~prodYearfirstthreeDigitStr'+ prodYearfirstthreeDigitStr);
-
+                    
                     String prodYearStr = prodYearfirstthreeDigitStr + year;
                     System.debug('~~~prodYearStr'+ prodYearStr);
-
+                    
                     prodYear =  Integer.valueOf(prodYearStr);
                     System.debug('~~~prodYear '+ prodYear );
                 }
-
+                
                 /*creating a date instance for the Prod year & 1st Jan */
                 DateTime dateOfManufacture =  DateTime.newInstance(prodYear , 1, 1);
                 System.debug('~~~dateOfManufacture '+dateOfManufacture);
                 /* adding number of days from daycode to above date */
                 dateOfManufacture = dateOfManufacture.addDays(n-1);
                 String dateOfManufactureStr =  dateOfManufacture.format('dd-MM-yyyy');
-
+                
                 System.debug('~~~dateOfManufactureStr '+ dateOfManufactureStr);
-
+                
                 this.dateOfManufacture = dateOfManufactureStr;
                 caseRecord.Date_of_Manufacture__c = dateOfManufacture;
                 caseRecord.Date_of_Manufacture_str__c = dateOfManufactureStr;
-
+                
             }
             catch(Exception e)  {
                 ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.ERROR,'Invalid Production Code.');
@@ -587,24 +602,24 @@ global with sharing class CEC_CaseInlineController{
                 caseRecord.DayCode__c = '';
                 this.dateOfManufacture = '';
             }
-
+            
             try{ 
                 Database.update(caseRecord);
             }
             catch(Exception e){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.severity.Error, e.getMessage()) );
             }
-
+            
         }else if(caseRecord.DayCode__c==null || caseRecord.DayCode__c==''){
             caseRecord.Date_of_Manufacture__c =null;
             Database.update(caseRecord);
         }
     }
-
-
+    
+    
     /**
-    This method selects all distinct categories from ProductCategory table
-     */
+This method selects all distinct categories from ProductCategory table
+*/
     public List<SelectOption> getCategoryValues() {
         List<SelectOption> categoryOptions = new List<SelectOption>();
         if(caseRecord.Case_product_category__c==null){
@@ -615,28 +630,29 @@ global with sharing class CEC_CaseInlineController{
         if (productCategoryList != null && productCategoryList.size() > 0){
             Integer increment = 0;
             for (AggregateResult ar : productCategoryList ){
-               /* if ( (productCategory == null || productCategory == '') && increment == 0 ){
-                    if (ar.get('L2_Product_Category__c') != null && ar.get('L2_Product_Category__c') != ''){
-                        productCategory = String.valueOf(ar.get('L2_Product_Category__c'));
-                    }
-                }
-                */if (ar.get('L2_Product_Category__c') != null && ar.get('L2_Product_Category__c') != ''){
-                    //if(String.valueOf(ar.get('L2_Product_Category__c'))!=caseRecord.Category__c)
-                    categoryOptions.add(new SelectOption(String.valueOf(ar.get('L2_Product_Category__c')), String.valueOf(ar.get('L2_Product_Category__c') )));
-                }
+                /* if ( (productCategory == null || productCategory == '') && increment == 0 ){
+if (ar.get('L2_Product_Category__c') != null && ar.get('L2_Product_Category__c') != ''){
+productCategory = String.valueOf(ar.get('L2_Product_Category__c'));
+}
+}
+*/if (ar.get('L2_Product_Category__c') != null && ar.get('L2_Product_Category__c') != ''){
+    //if(String.valueOf(ar.get('L2_Product_Category__c'))!=caseRecord.Category__c)
+    categoryOptions.add(new SelectOption(String.valueOf(ar.get('L2_Product_Category__c')), String.valueOf(ar.get('L2_Product_Category__c') )));
+}
                 increment++;                
             }
         }
-
+        
         return categoryOptions;
     }
-
+    
     /**
-    This method updates the reason hierarchy
-     */
+This method updates the reason hierarchy
+*/
     public void updateReasonHierarchy(){ 
         String level1Desc = '', level2Desc = '';
         popupAlertCheck = false;
+        questionnaireAlertCheck = false;
         if (reasonId != null && reasonId != '' && oldReasonId != reasonId){
             List<mdm_Reason_Code__c> rObjList = [select name from mdm_Reason_Code__c where id = :reasonId ];
             if (rObjList != null && rObjList.size() > 0 && rObjList[0].name != null){
@@ -650,7 +666,7 @@ global with sharing class CEC_CaseInlineController{
                 if (reasonCodeObjList[0].L2_Desc__c != null && reasonCodeObjList[0].L2_Desc__c != null){
                     level2Desc = reasonCodeObjList[0].L2_Desc__c;
                 }
-
+                
                 reasonHierarchy = level1Desc + ' ' +  level2Desc ;
             }
             caseRecord.Reason_Code__c = reasonId;
@@ -662,8 +678,8 @@ global with sharing class CEC_CaseInlineController{
                 searchMatchingReasonKnowledgeArticles();
                 searchMatchingProductKnowledgeArticles();
                 if (productId != null && productId != ''){
-                  /* check for any popup alerts to show */
-                  checkPopupAlert();
+                    /* check for any popup alerts to show */
+                    checkAlertAction();
                 }
             }
             catch(Exception e){
@@ -671,7 +687,7 @@ global with sharing class CEC_CaseInlineController{
                 System.debug('Exception:: ' + e.getMessage()+ ' :: '+ e.getStackTraceString());
             }
         }
-
+        
         if (productId != null && productId != '' && oldProductId != productId){
             List<mdm_Case_Product__c> pObjList = [select name from mdm_Case_Product__c where id = :productId ];
             if (pObjList != null && pObjList.size() > 0 && pObjList[0].name != null){
@@ -679,15 +695,16 @@ global with sharing class CEC_CaseInlineController{
             }
         }
     }
-
-
+    
+    
     /**
-    This method updates the product hierarchy
-     */
+This method updates the product hierarchy
+*/
     public void updateProductHierarchy(){
         System.debug('reasonId =' + reasonId );
         // Reset the security alert flag to false
         popupAlertCheck = false;
+        questionnaireAlertCheck = false;
         if (reasonId != null && reasonId != '' && oldReasonId != reasonId){
             mdm_Reason_Code__c rObj = [select name from mdm_Reason_Code__c where id = :reasonId ];
             if (rObj != null && rObj.name != null){
@@ -702,7 +719,7 @@ global with sharing class CEC_CaseInlineController{
             if (pObj != null && pObj.name != null){
                 productName = pObj.name;
             }
-
+            
             caseRecord.isFormKnown__c = true;
             caseRecord.isVariantKnown__c= true;
             caseRecord.isPacksizeKnown__c= true;
@@ -722,8 +739,8 @@ global with sharing class CEC_CaseInlineController{
                 searchMatchingProductKnowledgeArticles();
                 searchMatchingReasonKnowledgeArticles();
                 if (reasonId != null && reasonId != '') {
-                  /* check for any popup alerts to show */
-                  checkPopupAlert();
+                    /* check for any popup alerts to show */
+                    checkAlertAction();
                 }
             } catch(Exception e){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.severity.Error, e.getMessage()) );
@@ -731,39 +748,40 @@ global with sharing class CEC_CaseInlineController{
             }
             System.debug('productHierarchy  =' + productHierarchy);
         }
-
-
+        
+        
     }
     
-        
+    
     /**
-        This method checks for any Popup and Questionnaire alerts for the Case
-    */
+This method checks for any Popup and Questionnaire alerts for the Case
+*/
     
-    public void checkPopupAlert(){
-
+    public void checkAlertAction(){
+        
         popupAlertCheck = false;
-    
+        questionnaireAlertCheck = false;
+        
         List<cec_Alert_Tracker__c> alertTrackerList;
         
         // Get the Alert Tracker for the Case       
         
-        List<cec_Alert_Tracker_Item__c> alertTrackerItems = [SELECT Alert_Tracker_Id__c FROM cec_Alert_Tracker_Item__c WHERE Case_Id__c = :caseRecord.Id];
- 
+        List<cec_Alert_Tracker_Item__c> alertTrackerItems = [SELECT Alert_Tracker_Id__c FROM cec_Alert_Tracker_Item__c WHERE Active__c = True AND Case_Id__c = :caseRecord.Id];
+        
         List<Id> alertTrackerIdList = new List<Id>();
         
         if(alertTrackerItems.size() > 0){
-
+            
             for(cec_Alert_Tracker_Item__c atItem : alertTrackerItems){
                 alertTrackerIdList.add(atItem.Alert_Tracker_Id__c); 
             }
- 
+            
             alertTrackerList = [SELECT Id, Alert_Rule_Id__c, Alert_Threshold__c, Current_Threshold__c FROM cec_Alert_Tracker__c WHERE Id IN :alertTrackerIdList];
-
+            
         }   
         // Check the Current Threshold is reached to maximum Threshold
         
-        System.debug('checkPopupAlert::alertTrackerList:: '+alertTrackerList);
+        System.debug('checkAlertAction::alertTrackerList:: '+alertTrackerList);
         
         List<Id> alertRuleIdList = new List<Id>();
         
@@ -774,39 +792,34 @@ global with sharing class CEC_CaseInlineController{
                     alertRuleIdList.add(alertTracker.Alert_Rule_Id__c);
                 }
             }
-
-            System.debug('checkPopupAlert::alertRuleIdList:: '+alertRuleIdList);
+            
+            System.debug('checkAlertAction::alertRuleIdList:: '+alertRuleIdList);
             
             if(!alertRuleIdList.isEmpty()){
-
-                // Get all the Alert Actions for the Alert Tracker Rule
-                List<cec_Alert_Action__c> alertActionList = [SELECT Id, Type__c, Popup_Message__c, Questionnaire_URL__c FROM cec_Alert_Action__c WHERE Alert_Rule_Id__c IN :alertRuleIdList AND (Type__c = 'Popup' OR Type__c = 'Questionnaire')];
-
-                //List<cec_Alert_Action__c> alertActionList = [SELECT Id, Type__c, Popup_Message__c, Questionnaire_URL__c FROM cec_Alert_Action__c WHERE Alert_Rule_Id__c IN :alertRuleIdList AND (Type__c = 'Popup' OR Type__c = 'Questionnaire') AND (All_Markets__C = false OR (All_Markets__C = true AND (Language__C ='' OR Language__C=: caseRecord.Language__C)))];
-
-                System.debug('checkPopupAlert::alertActionList:: '+alertActionList);
-                //System.debug('checkPopupAlert::alertActionList1:: '+alertActionList1);
                 
-                Boolean questionnaireAction = false;
+                // Get all the Alert Actions for the Alert Tracker Rule
+                List<cec_Alert_Action__c> alertActionList = [SELECT Id, Type__c, Popup_Message__c FROM cec_Alert_Action__c WHERE Alert_Rule_Id__c IN :alertRuleIdList AND (Type__c = 'Popup' OR Type__c = 'Questionnaire')];
+                
+                System.debug('checkAlertAction::alertActionList:: '+alertActionList);
                 popupAlertMsg = '';
-
                 for(cec_Alert_Action__c alertAction : alertActionList){
-            
-                    // Pick up the first Popup (or) Questionnaire Alert Action of the rule
-            
+                    
+                    // Pick up all the Popup (or) Questionnaire Alert Action of the rule
+                    
                     if(alertAction.Type__c == 'Popup'){
                         popupAlertCheck = true;
                         popupAlertMsg += String.escapeSingleQuotes(alertAction.Popup_Message__c) + '\\r\\n';
-                    }
-                
+                    } else if (alertAction.Type__c == 'Questionnaire') {
+                        questionnaireAlertCheck = true;
+                    }                
                 }
             }
         }
     }
     
     /**
-    This method updates form availability based on Category selection
-     */    
+This method updates form availability based on Category selection
+*/    
     public void updateProductCategory() {
         if(caseRecord.Case_product_category__c=='None'){
             caseRecord.Case_product_category__c=null;
@@ -815,25 +828,25 @@ global with sharing class CEC_CaseInlineController{
         updateFormAvailabilityDetails();
     }
     /*Wrapper class to contain the Related cases */
-     public class RelatedIssue { 
+    public class RelatedIssue { 
         public String issueType {get; set;}
         public Case record {get; set;}
         public String parentNumber{get; set;}
-     
-         public RelatedIssue(String issueType, Case record,String parentNumber) {
-           this.issueType = issueType;
-           this.record = record;
-           this.parentNumber=parentNumber;
-         }
-     
+        
+        public RelatedIssue(String issueType, Case record,String parentNumber) {
+            this.issueType = issueType;
+            this.record = record;
+            this.parentNumber=parentNumber;
+        }
+        
     }
     
     /* Method to search for matching Product knowledge articles */ 
     public void searchMatchingProductKnowledgeArticles(){
         String productUPC = '';
-
+        
         System.debug('product Id ='  + productId  );
-
+        
         /* identifying the GTIN_EAN_UPC_Code__c code for the selected product */        
         if (productId != null && productId != ''){
             mdm_Case_Product__c productObj = [ select GTIN_EAN_UPC_Code__c from mdm_Case_Product__c where id =:productId ];
@@ -845,10 +858,10 @@ global with sharing class CEC_CaseInlineController{
         
         /* identifying the matching PRODUCT knowledge articles */        
         if (productUPC  != null && productUPC != '') {
-
+            
             String query;
             // If the Case is of type George then fetch only the French language Product Info articles from 'TO - Product Information' article type - As per the business process the George will be creating/uploading the articles only in French language.
-
+            
             if (caseRecord.Case_Market_Tag__c == Label.TO_CaseIdentifier) {
                 query = 'select id, ArticleType, Title, KnowledgeArticleId from TO_Product_Information__kav where language = \'fr\' and publishStatus = \'Online\' and TO_Product_Code__c =: productUPC';
                 if(caseRecord.Country_Name__c != null && caseRecord.Country_Name__c != ''){
@@ -856,7 +869,7 @@ global with sharing class CEC_CaseInlineController{
                 }
                 matchingTOProductArticlesList = Database.query(query);
                 if (matchingTOProductArticlesList != null && matchingTOProductArticlesList .size() > 0){
-
+                    
                     for(TO_Product_Information__kav productArticle : matchingTOProductArticlesList ){
                         KnowledgeArticleWrapper wrapperObj =  new KnowledgeArticleWrapper();
                         wrapperObj.TOProductArticle = productArticle;
@@ -885,7 +898,7 @@ global with sharing class CEC_CaseInlineController{
                         wrapperObj.knowledgeArticleId = productArticle.knowledgeArticleId;    
                         knowledgeWrapperList.add(wrapperObj);
                     }
-             
+                    
                 }
             }
         }
@@ -894,12 +907,12 @@ global with sharing class CEC_CaseInlineController{
     
     
     /* Method to search for matching Reason knowledge articles */ 
-     public void searchMatchingReasonKnowledgeArticles(){
- 
+    public void searchMatchingReasonKnowledgeArticles(){
+        
         String reasonShortCode = '';
-
+        
         System.debug('reason Id ='  + reasonId  );
-
+        
         /* identifying the reason 5 short desc for the selected reason */ 
         if (reasonId != null && reasonId != ''){
             mdm_Reason_Code__c reasonObj = [ select L5_Short_Desc__c from mdm_Reason_Code__c where id =:reasonId ];
@@ -907,12 +920,12 @@ global with sharing class CEC_CaseInlineController{
                 reasonShortCode = reasonObj.L5_Short_Desc__c ;
             }
         }
- 
+        
         System.debug('reasonShortCode ='  + reasonShortCode );
         
         /* identifying the matching REASON knowledge articles */  
         if (reasonShortCode != null && reasonShortCode != '') {
-
+            
             String query;
             // If the Case is of type George then fetch only the French language Reason Code articles - As per the business process the George will be creating/uploading the articles only in French language.
             if (caseRecord.Case_Market_Tag__c == Label.TO_CaseIdentifier) {
@@ -941,23 +954,23 @@ global with sharing class CEC_CaseInlineController{
             }
         }
     }
-
+    
     /* Method to map knowledge articles to Case */
     public void mapArticleToCase(){
- 
+        
         try{
-
+            
             CaseArticle caseArticleObj;
             
             if (selectedArticleId != null && selectedArticleId != ''){
-    
+                
                 /* creating a new CaseArticle object */ 
                 caseArticleObj = new CaseArticle();
-                        
+                
                 /* setting case id for the case article */
                 caseArticleObj.CaseId = caseRecord.Id;
                 caseArticleObj.KnowledgeArticleId = Id.valueOf(selectedArticleId);
- 
+                
                 /* setting article language for French if it is for George Case else English*/
                 if (caseRecord.Case_Market_Tag__c == Label.TO_CaseIdentifier) {
                     caseArticleObj.ArticleLanguage = 'fr';
@@ -966,12 +979,12 @@ global with sharing class CEC_CaseInlineController{
                 }
                 insert caseArticleObj;
             }
-           
+            
             System.debug('caseArticleObj = ' + caseArticleObj);
             
         }catch(Exception ex){
             System.debug('Error in CEC_CaseInlineController -> mapArticleToCase : ' +  ex);
         }
     }
-
+    
 }

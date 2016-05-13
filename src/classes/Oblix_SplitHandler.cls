@@ -2,7 +2,7 @@ public with sharing class Oblix_SplitHandler implements ITrigger {
     
     public Oblix_SplitHandler() {    
     }
-    
+    public static boolean b_initiated_from_vf_page = false;
     List<Oblix_SOW_Projects__c> lstProjectSplits = new List<Oblix_SOW_Projects__c>();
     List<Oblix_SOW_Projects__c> lstProjectSplitsOld =  new List<Oblix_SOW_Projects__c>();
     @testVisible
@@ -20,53 +20,52 @@ public with sharing class Oblix_SplitHandler implements ITrigger {
     
     public void bulkAfter()
     {
-         if(Trigger.isInsert) {
-                lstProjectSplits = Oblix_TR05SOWSplitProjectAvoid.retrieveProjects(Trigger.New);
-                
-         }
-        if(Trigger.isUpdate) {
-                lstProjectSplits = Oblix_TR05SOWSplitProjectAvoid.retrieveProjects(Trigger.New);
-                lstProjectSplitsOld = Oblix_TR05SOWSplitProjectAvoid.retrieveProjects(Trigger.Old); 
-        }
-         if(Trigger.isDelete) {
-                lstProjectSplits = Oblix_TR05SOWSplitProjectAvoid.retrieveProjects(Trigger.Old);
-        }
+        return;
        
     }
         
         
     public void beforeInsert(SObject so)
     {
-        return;
+        Oblix_SplitHandlerLogic.setEnforceTriggerUpdate((Oblix_Marketing_SOW_Project_Splits__c) so);
     }
     
     public void beforeUpdate(SObject oldSo, SObject so)
     { 
-    return;
+        Oblix_SplitHandlerLogic.setEnforceTriggerUpdate((Oblix_Marketing_SOW_Project_Splits__c) so);
     }
      
 
     public void beforeDelete(SObject so)
     {
-    return;
+        return;
     }
     
     public void afterInsert(SObject so) 
     {
-        Oblix_TR05SOWSplitProjectAvoid.SOWSplitProjectAvoid((Oblix_Marketing_SOW_Project_Splits__c) so, Trigger.New, lstProjectSplits);
-        //Oblix_TR05SOWSplitProjectAvoid.UpdateProjectWhenisChanged((Oblix_Marketing_SOW_Project_Splits__c) so, Trigger.New, lstProjectSplits, Trigger.Old, lstProjectSplitsOld);
+        //if (!b_initiated_from_vf_page)
+        //    Oblix_TR05SOWSplitProjectAvoid.SOWSplitProjectAvoid((Oblix_Marketing_SOW_Project_Splits__c) so, Trigger.New, lstProjectSplits);
+        ////Oblix_TR05SOWSplitProjectAvoid.UpdateProjectWhenisChanged((Oblix_Marketing_SOW_Project_Splits__c) so, Trigger.New, lstProjectSplits, Trigger.Old, lstProjectSplitsOld);
+        return;
+
     }
     
     public void afterUpdate(SObject oldSo, SObject so)
     {
-        
-        Oblix_TR05SOWSplitProjectAvoid.UpdateProjectWhenisChanged((Oblix_Marketing_SOW_Project_Splits__c) so, Trigger.New, lstProjectSplits, Trigger.Old, lstProjectSplitsOld);
+        //if (!b_initiated_from_vf_page)
+        //    Oblix_TR05SOWSplitProjectAvoid.SOWSplitProjectAvoid((Oblix_Marketing_SOW_Project_Splits__c) so, Trigger.New, lstProjectSplits);
+        //    //Oblix_TR05SOWSplitProjectAvoid.UpdateProjectWhenisChanged((Oblix_Marketing_SOW_Project_Splits__c) so, Trigger.New, lstProjectSplits, Trigger.Old, lstProjectSplitsOld);
+        return;
+
     }
     
     public void afterDelete(SObject so)
     {
-        Oblix_TR05SOWSplitProjectAvoid.SOWSplitProjectAvoid((Oblix_Marketing_SOW_Project_Splits__c) so, Trigger.Old, lstProjectSplits);
+        //if (!b_initiated_from_vf_page)
+        //    Oblix_TR05SOWSplitProjectAvoid.SOWSplitProjectAvoid((Oblix_Marketing_SOW_Project_Splits__c) so, Trigger.Old, lstProjectSplits);
         //Oblix_TR05SOWSplitProjectAvoid.UpdateProjectWhenisChanged((Oblix_Marketing_SOW_Project_Splits__c) so, Trigger.New, lstProjectSplits, Trigger.Old, lstProjectSplitsOld);   
+        return;
+
     }
     
     /**
@@ -77,14 +76,16 @@ public with sharing class Oblix_SplitHandler implements ITrigger {
      */
     public void andFinally()
     {
-        System.debug('Entering FAU_ProgramHandler.andFinally');
-        if(triggerShouldExecute){
-            upsert lstProjectSplits;
-            if(trigger.isUpdate){
-                upsert lstProjectSplitsOld;
-            }
+        //System.debug('Entering FAU_ProgramHandler.andFinally');
+        //if(triggerShouldExecute && !b_initiated_from_vf_page){
+        //    upsert lstProjectSplits;
+        //    if(trigger.isUpdate){
+        //        upsert lstProjectSplitsOld;
+        //    }
             
-        }
-        System.debug('Exiting Oblix_ProjectHandler.andFinally');
+        //}
+        //System.debug('Exiting Oblix_ProjectHandler.andFinally');
+        return;
+        
     }
 }

@@ -1,6 +1,5 @@
 <apex:page docType="html-5.0" showHeader="false" standardStylesheets="false" sidebar="false">
-<meta http-equiv="content-type" content="text/html; charset=UTF8" />
-    
+    <meta http-equiv="content-type" content="text/html; charset=UTF8" />
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -14,12 +13,15 @@
         ga('set', 'dimension3', 'HomePage'); 
         ga('send', 'pageview');   
     </script>
-
     <div class="iPhoneHomeScreenHeight">
         <div id="homePage1" class="headerBarBackground">
-            <table class="headerBarWidth"> 
-                <tr>                    
-                    <td class="headerBarRowAlign" > <a href="/#home"><img src="{!URLFOR($Resource.MyApprovalsSR, 'img/back.svg')}"  class="homePageFilter" /></a></td>                     
+            <table class="headerBarWidth">
+                <tr>
+                    <td class="headerBarRowAlign" >
+                        <a href="/#home">
+                            <img src="{!URLFOR($Resource.MyApprovalsSR, 'img/back.svg')}" alt="Back Arrow" class="homePageFilter" />
+                        </a>
+                    </td>
                 </tr>
             </table>
         </div>
@@ -36,9 +38,7 @@
                function inIframe () {
                    try {
                     return window.self !== window.top;     
-                   } catch (e) {
-                    return true;
-                   }
+                   } catch (e) { return true; } 
                }
                 function getQueryVariable() {
                   var query = window.location.search.substring(1);
@@ -51,76 +51,109 @@
                   } 
                   return(false);
                 }
-        </script>
-        <div class="homePageHeader">
-            <div class="defaultLeftSpace"><br/>
-                <img src="{!URLFOR($Resource.MyApprovalsSR, 'img/Approvals_Logo.svg')}" class="headerBarIconStyle" />&nbsp;&nbsp;
-                <label class="homePageHeaderText">{{'LBL_MY_APPROVALS' | translate}}</label> <br/><br/>
+            </script>
+            <div class="homePageHeader">
+                <div class="defaultLeftSpace">
+                    <br/>
+                    <img src="{!URLFOR($Resource.MyApprovalsSR, 'img/Approvals_Logo.svg')}" alt="Approvals_Logo" class="headerBarIconStyle" />&nbsp;&nbsp;
+                
+                    <div class="homePageHeaderText">{{'LBL_MY_APPROVALS' | translate}}</div>
+                    
+                    <br/>
+                    <br/>
+                </div>
             </div>
-        </div>
-        <!--<div ng-if='pendingapprovalData.StatusCode != 200' ng-init="true">
-            <br/><br/>
-            <span class="Subtext3"> {{'LBL_ERROR_ONLOAD' | translate} </span>
-        </div> ng-if='pendingapprovalData.StatusCode == 200' ng-init="true"-->
-        <tabset class="homePageMenuWidth"> 
-            <tab heading="{{'LBL_PENDING' | translate}}" class="homePageMenuBody" ng-click="setSelectedTab('Pending')" active="tab1selected"> 
-                <div id="header">
-                    <span class="rightAlignOnHomeUI">  
-                        <img src="{!URLFOR($Resource.MyApprovalsSR, 'img/filter.svg')}" class="homePageFilter" ng-click='gotoFilterPage()' />
-                    </span>
-                </div>
-                <div>
-                    <div ng-if='pendingApprovalList.length==0' class="defaultLeftSpace">
-                        <br/><br/>
-                        <span class="Subtext3">{{'MSG_NO_PENDING_REQUEST_APPROVAL' | translate}}</span>
+            <!--<div ng-if='pendingapprovalData.StatusCode != 200' ng-init="true"><br/><br/><span class="Subtext3"> {{'LBL_ERROR_ONLOAD' | translate} </span></div> ng-if='pendingapprovalData.StatusCode == 200' ng-init="true"-->
+            <tabset class="homePageMenuWidth">
+                <tab heading="{{'LBL_PENDING' | translate}}" class="homePageMenuBody" ng-click="setSelectedTab('Pending')" active="tab1selected">
+                    <div id="header">
+                        <span class="rightAlignOnHomeUI">
+                            <img src="{!URLFOR($Resource.MyApprovalsSR, 'img/filter.svg')}" alt="filter" class="homePageFilter" ng-click='gotoFilterPage()' />
+                        </span>
                     </div>
-                    <table ng-if='pendingApprovalList.length>0' class="homePageApprovalsListTable">
-                        <tr ng-repeat="pendingapprovalData in pendingApprovalList| filter:{ExpenseType: filterSelectedForPendingExp}" ng-click='gotoApprovalDetailPage(pendingapprovalData)' class="homePageApprovalsListTableData">
-                            <td class="defaultLeftSpace">
-                                <div class="Subtext1">{{pendingapprovalData.ExpenseID}}</div>                           
-                                <div class="textLinkExpenceNameTruncate">
-                                    {{ pendingapprovalData.ExpenseName }}
-                                </div> 
-                               <!-- <div class="Subtext2">{{pendingapprovalData.RequestedBy}},&nbsp;{{pendingapprovalData.Dates}}</div> -->
-                                 <div class="Subtext2">{{pendingapprovalData.RequestedBy}}</div>
-                            </td>
-                            <td class="defaultRightSpacePendingAmountDetail" align="right">
-                                <span class="Subtext3">{{pendingapprovalData.Currencies}} {{pendingapprovalData.Amount}}</span> 
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </tab>
-            <tab heading="{{'LBL_CLOSED' | translate}}" class="homePageMenuBody" ng-click="setSelectedTab('Closed')" active="tab2selected">
-                <div id="header">
-                    <span class="rightAlignOnHomeUI">
-                        <img src="{!URLFOR($Resource.MyApprovalsSR, 'img/filter.svg')}" class="homePageFilter" ng-click='gotoFilterPage()'/>
-                    </span>
-                </div>
-                <div>
-                    <div ng-if='closedApprovalList.length==0' class="defaultLeftSpace">
-                        <br/><br/>
-                        <span class="Subtext3">{{'MSG_NO_CLOSED_REQUEST_APPROVAL' | translate}}</span>
+                    <div>
+                        <div ng-if='(pendingApprovalList| filter:{ExpenseType: filterSelectedForPendingExp}).length==0' class="defaultLeftSpace">
+                            <br/>
+                            <br/>                      
+                            <span class="Subtext3">{{'MSG_NO_PENDING_REQUEST_APPROVAL' | translate}}</span>
+                        </div>
+                        <table ng-if='pendingApprovalList.length>0' class="homePageApprovalsListTable">
+                            <tr ng-repeat="pendingapprovalData in pendingApprovalList| filter:{ExpenseType: filterSelectedForPendingExp} | limitTo: listLimitCount_pending" ng-click='gotoApprovalDetailPage(pendingapprovalData)' class="homePageApprovalsListTableData">
+                                <td class="defaultLeftSpace">
+                                    <div class="Subtext1">{{pendingapprovalData.ExpenseID}}</div>
+                                    <div class="textLinkExpenceNameTruncate">
+                                    {{pendingapprovalData.ExpenseName }}
+                                </div>
+                                    <!-- <div class="Subtext2">{{pendingapprovalData.RequestedBy}},&nbsp;{{pendingapprovalData.Dates}}</div> -->
+                                    <div class="Subtext2" >{{pendingapprovalData.RequestedBy}}</div>
+                                </td>
+                                <td class="defaultRightSpacePendingAmountDetail" align="right" ng-if="pendingapprovalData.Action != 'QUER' && pendingapprovalData.Status != 'Query With Vendor' ">
+                                    <span class="Subtext3" ng-if="pendingapprovalData.ExpenseType != 'Clarity'">{{pendingapprovalData.Currencies}} {{pendingapprovalData.Amount}}</span>
+                                    <span class="Subtext3" ng-if="pendingapprovalData.ExpenseType == 'Clarity'">{{pendingapprovalData.Currencies}} {{pendingapprovalData.ProjectBug}}</span>
+                                </td> 
+                                <td class="defaultRightSpaceClosedAmountDetail" align="right" valign="bottom" ng-if="pendingapprovalData.Action == 'QUER' || pendingapprovalData.Status == 'Query With Vendor'">
+                                    <span class="Subtext3" ng-if="pendingapprovalData.ExpenseType != 'Clarity'">{{pendingapprovalData.Currencies}} {{pendingapprovalData.Amount}}</span>
+                                    <span class="Subtext3" ng-if="pendingapprovalData.ExpenseType == 'Clarity'">{{pendingapprovalData.Currencies}} {{pendingapprovalData.ProjectBug}}</span>
+                                    <br/>
+                                    <div type="button" class="queryWithVendorIndicatorText queryWithVendorTextWidth">{{'LBL_QUERY_WITH_VENDOR'| translate}}</div>                           
+                                </td>
+                            </tr>
+                        </table>
                     </div>
-                    <table ng-if='closedApprovalList.length>0' class="homePageApprovalsListTable" >
-                        <tr ng-repeat="closedapprovalData in closedApprovalList | filter:{ExpenseType: filterSelectedForClosedExp}" ng-click='gotoApprovalDetailPage(closedapprovalData)' class="homePageApprovalsListTableData">
-                            <td class="defaultLeftSpace" >
-                                <div class="Subtext1">{{closedapprovalData.ExpenseID}}</div>
-                                <div class="textLinkExpenceNameTruncate">
+                    <!-- Clarity app: loading functionality -->
+                    <div id="alignCenter">
+                        <loading></loading>
+                    </div>
+                    <!-- Clarity app: Loading functionality -->
+                    <!-- Clarity app: Load more functionality for pending tab starts -->
+                    <br/>
+                    <div class="showMoreDiv" ng-click="show_more_pending()" ng-show="(((pendingApprovalList.length==0|| (pendingApprovalList | filter:{ExpenseType: filterSelectedForPendingExp}).length <= listLimitCount_pending) || loading || (!pendingApprovalList.length>0))?false:true)">
+                        <span class="icon-plus icon-white"> Show More </span>
+                    </div>
+                    <!-- Clarity app: Load more functionality for pending ends -->
+                </tab>
+                <tab heading="{{'LBL_CLOSED' | translate}}" class="homePageMenuBody" ng-click="setSelectedTab('Closed')" active="tab2selected">
+                    <div id="header">
+                        <span class="rightAlignOnHomeUI">
+                            <img src="{!URLFOR($Resource.MyApprovalsSR, 'img/filter.svg')}"  alt="filter" class="homePageFilter" ng-click='gotoFilterPage()'/>
+                        </span>
+                    </div>
+                    <div>
+                        <div ng-if='(closedApprovalList | filter:{ExpenseType: filterSelectedForClosedExp}).length==0' class="defaultLeftSpace">
+                            <br/>
+                            <br/>
+                            <span class="Subtext3">{{'MSG_NO_CLOSED_REQUEST_APPROVAL' | translate}}</span>
+                        </div>
+                        <table ng-if='closedApprovalList.length>0' class="homePageApprovalsListTable" >
+                            <tr ng-repeat="closedapprovalData in closedApprovalList | filter:{ExpenseType: filterSelectedForClosedExp} | limitTo: listLimitCount_closed" ng-click='gotoApprovalDetailPage(closedapprovalData)' class="homePageApprovalsListTableData">
+                                <td class="defaultLeftSpace" >
+                                    <div class="Subtext1">{{closedapprovalData.ExpenseID}}</div>
+                                    <div class="textLinkExpenceNameTruncate">
                                     {{closedapprovalData.ExpenseName}}
-                                </div> 
-                              <!--  <span class="Subtext2">{{closedapprovalData.RequestedBy}}, &nbsp;{{closedapprovalData.Dates}}</span> -->
-                                <span class="Subtext2">{{closedapprovalData.RequestedBy}}</span>
-                            </td>
-                            <td class="defaultRightSpaceClosedAmountDetail" align="right" valign="bottom">
-                                <span class="Subtext3">{{closedapprovalData.Currencies}} {{closedapprovalData.Amount}}</span><br/>
-                                <button ng-if="closedapprovalData.Action == 'APPR' || (closedapprovalData.Action != 'APPR' && closedapprovalData.Action != 'REJC' &&  closedapprovalData.Status == 'Approved') " type="button" class="approveIndicatorText">{{'LBL_APPROVED' | translate}}</button>
-                                <button ng-if="closedapprovalData.Action == 'REJC' || (closedapprovalData.Action != 'APPR' && closedapprovalData.Action__c != 'REJC' && closedapprovalData.Status == 'Rejected') " type="button" class="rejectIndicatorText">{{'LBL_REJECTED'| translate}}</button>
-                            </td>
-                        </tr>
-                    </table>
-                </div>            
-            </tab>
-        </tabset>
-    </div>
-</apex:page>
+                                </div>
+                                    <!--  <span class="Subtext2">{{closedapprovalData.RequestedBy}}, &nbsp;{{closedapprovalData.Dates}}</span> -->
+                                    <span class="Subtext2" >{{closedapprovalData.RequestedBy}}</span>
+                                </td>
+                                <td class="defaultRightSpaceClosedAmountDetail" align="right" valign="bottom">
+                                    <span class="Subtext3" ng-if="closedapprovalData.ExpenseType != 'Clarity'">{{closedapprovalData.Currencies}} {{closedapprovalData.Amount}}</span>
+                                    <span class="Subtext3" ng-if="closedapprovalData.ExpenseType == 'Clarity'">{{closedapprovalData.Currencies}} {{closedapprovalData.ProjectBug}}</span>
+                                    <br/>
+                                    <button ng-if="closedapprovalData.Action == 'APPR' || (closedapprovalData.Action != 'REWO' && closedapprovalData.Action != 'APPR' && closedapprovalData.Action != 'REJC' && closedapprovalData.Status == 'Approved') " type="button" class="approveIndicatorText">{{'LBL_APPROVED' | translate}}</button>
+                                    <button ng-if="(closedapprovalData.ExpenseType != 'Invoice' && closedapprovalData.Action == 'REJC') || (closedapprovalData.ExpenseType != 'Invoice' && closedapprovalData.Action != 'REWO' && closedapprovalData.Action != 'APPR' && closedapprovalData.Action__c != 'REJC' && closedapprovalData.Status == 'Rejected') " type="button" class="rejectIndicatorText">{{'LBL_REJECTED'| translate}}</button>
+                                    <button ng-if="closedapprovalData.Action == 'REWO' || (closedapprovalData.Action != 'REWO' && closedapprovalData.Action != 'APPR' && closedapprovalData.Action != 'REJC' && closedapprovalData.Status == 'Rework')" type="button" class="reworkIndicatorText">{{'LBL_REWORK_CAPS'| translate}}</button>
+                                    <button ng-if="(closedapprovalData.ExpenseType == 'Invoice' && closedapprovalData.Action == 'REJC') || (closedapprovalData.ExpenseType == 'Invoice' && closedapprovalData.Action != 'REWO' && closedapprovalData.Action != 'APPR' && closedapprovalData.Action != 'REJC' && closedapprovalData.Action != 'QUER' && closedapprovalData.Status == 'Return to AP')" type="button" class="reworkIndicatorText returnToApIndicatorTextWidth">{{'LBL_RETURN_TO_AP_CAPS'| translate}}</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <!-- Clarity app: Load more functionality for closed tab starts -->
+                    <br/>
+                    
+                    <div class="showMoreDiv" ng-click="show_more_closed()" ng-show="(((closedApprovalList.length==0|| (closedApprovalList | filter:{ExpenseType: filterSelectedForClosedExp}).length <= listLimitCount_closed) || loading)?false:true)">
+                        <span class="icon-plus icon-white">Show More</span>
+                    </div>
+                    <!-- Clarity app: Load more functionality for closed ends -->
+                </tab>
+            </tabset>
+        </div>
+    </apex:page>

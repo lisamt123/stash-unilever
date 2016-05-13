@@ -414,6 +414,10 @@
         <relationshipLabel><!-- Additional Case Informations --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- ChatKey --></label>
+        <name>ChatKey__c</name>
+    </fields>
+    <fields>
         <label><!-- Our response to your issue was addressed --></label>
         <name>Close_Case_2__c</name>
     </fields>

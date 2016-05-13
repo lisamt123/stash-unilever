@@ -52,9 +52,7 @@ public class EA_Feedback_ControllerTestClass{
             insert post;
             System.assertEquals('test.comments', team.Feedback_Comments__c);
               Test.startTest();
-           /* string event.id=ApexPages.currentPage().getParameters().put('Id',event.id);
-            string team.id=Apexpages.currentPage().getParameters().put('Id',team.id);
-            string partid=Apexpages.currentPage().getParameters().put('Id',team.Participant__c);*/
+           
             EA_Feedback_Controller feed=new EA_Feedback_Controller();
             string participantId=userinfo.getuserid();
             List<Everyday_Activity__c> temp1=EA_Feedback_Controller.getactivitydetail(event.id); 
@@ -115,7 +113,7 @@ public class EA_Feedback_ControllerTestClass{
             EA_Feedback_Controller feed=new EA_Feedback_Controller();
             List<Everyday_Activity__c> temp1=EA_Feedback_Controller.getactivitydetail(event.id); 
             EA_Feedback_Controller.updateActivityRating(event.id);
-            EA_Feedback_Controller.sendFeedbackReminder(teamList );
+           
             List<Everyday_Activity__c>temp=EA_Feedback_Controller.provideRating(event.id,2);
               try{
             EA_Feedback_Controller.submitRating(event.id,team.Participant__c,123);

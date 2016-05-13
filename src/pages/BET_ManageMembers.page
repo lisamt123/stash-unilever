@@ -155,7 +155,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 
               </td>
               <td style="{!IF(OR(isBetOwnerOrManager,isHubAdmin),'','display:none')}">
-                <apex:commandButton action="{!doDelete}" value="{!$Label.BET_Delete}" styleClass="buttong2y" style="background: #e6007e; color:white;" rendered="{!NOT(member.isbetOwner)}" rerender="browseMembersid" status="saveStatus4">
+                <apex:commandButton action="{!doDelete}" value="{!$Label.BET_Delete}" styleClass="buttong2y" style="background: #e6007e; color:white;-webkit-appearance: none;" rendered="{!NOT(member.isbetOwner)}" rerender="browseMembersid" status="saveStatus4">
                   <apex:actionStatus id="saveStatus4">
                     <apex:facet name="start">
                       <apex:image value="/img/loading.gif" style="width: 16px;height: 16px;" />
@@ -218,13 +218,29 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
               <apex:outputText value="{!memberRequest.projectName }"/>
             </td>
             <td style="{!IF(isBetOwnerOrManager,'','display:none')}">
-              <apex:commandLink action="{!doApprove}" value="{!$Label.BET_Approve}">
+
+              <div style="position:relative;left:-25px;">
+                <apex:commandButton action="{!doApprove}" value="{!$Label.BET_Approve}" styleClass="buttong2y" 
+                                    style="background: #e6007e; color:white;" rerender="memberpage">
+                    <apex:param name="obid" assignTo="{!selectedRequestId}" value="{!memberRequest.objectId}"/>
+                </apex:commandButton>
+
+              </div>
+              
+              <div style="position:relative;top:-27px;left:20px;">
+                <apex:commandButton action="{!doDeny}" value="{!$Label.BET_Delete}" styleClass="buttong2y" 
+                                   style="background: #e6007e; color:white;" rerender="memberpage">
+                  <apex:param name="obid" assignTo="{!selectedRequestId}" value="{!memberRequest.objectId}"/>
+                </apex:commandButton>
+              </div>  
+              <!--<apex:commandLink action="{!doApprove}" value="{!$Label.BET_Approve}">
                 <apex:param name="obid" assignTo="{!selectedRequestId}" value="{!memberRequest.objectId}"/>
               </apex:commandLink>
               &nbsp;|&nbsp; 
               <apex:commandLink action="{!doDeny}" value="{!$Label.BET_Deny}">
                 <apex:param name="obid" assignTo="{!selectedRequestId}" value="{!memberRequest.objectId}"/>
-              </apex:commandLink>
+              </apex:commandLink>-->
+
             </td>
           </tr>
         </apex:repeat>

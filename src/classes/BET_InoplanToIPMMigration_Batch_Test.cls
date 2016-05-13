@@ -17,9 +17,11 @@ private class BET_InoplanToIPMMigration_Batch_Test {
 		BET_TestUtils tu = new BET_TestUtils();
 		tu.initBET();
 		User sa = BET_TestUtils.createUserSystemAdmin();
-		IPM_Project__c ipmProject = BET_TestUtils.createIPMProject('Test mig',tu.liInoplanProjects[0].Project_Id__c, sa.id, sa.id );
+		IPM_Project__c ipmProject = BET_TestUtils.createIPMProject('Test mig',
+			tu.liInoplanProjects[0].Project_Id__c + BET_InoplanToIPMMigration_Batch.IPM_INOPLAN_SUFFIX, sa.id, sa.id );
 		String strCatName = tu.liCategories[0].name;
 
+		System.assertEquals(false, [select id, Is_Archived__c from uw_bet__c where id = :tu.liBets[0].id].Is_Archived__c);
 		// when
 		Test.startTest();
 			BET_InoplanToIPMMigration_Batch batch = new BET_InoplanToIPMMigration_Batch(strCatName);

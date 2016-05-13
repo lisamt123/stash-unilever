@@ -28,7 +28,6 @@
         cmp.set('v.selectedUsers',[]);
         cmp.set('v.selectedItem',[]);
         cmp.set("v.errorMessage","");
-        
         helper.clearSelection(cmp);    
         console.log("After Clear action:"+ cmp.get('v.selectedUsers'));
     },

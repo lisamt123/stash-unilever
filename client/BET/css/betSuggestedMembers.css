@@ -127,6 +127,22 @@ margin-bottom: 20px;
 font-family: Rockwell;
 }
 
+.skipMembersBtn{
+cursor: pointer;
+float: left;
+color: #FFF;
+background-color: #BE236D;
+width: 120px;
+height: 30px;
+text-align: center;
+vertical-align: middle;
+line-height: 30px;
+margin-left: 15px;
+margin-top: 40px;
+margin-bottom: 20px;
+font-family: Rockwell;
+}
+
 .leadBlock{
 	font-weight: bold;
 	background-color:yellow;

@@ -22,14 +22,17 @@
                                     <div class="row">
                                         <apex:outputPanel styleClass="{!IF(cmiList.size>0,'cmiListcont','')}" layout="block" > 
                                             <apex:repeat value="{!cmiList}" var="cmi">   
+                                             <!--Below rendered condition is used for executing the output panel-->
                                             <apex:outputPanel layout="block" rendered="{!cmi.Gate__c=types}">
                                                 <div class="col-xs-12 ipmAcrdnHeader aHead SecButtonSet">                                          
                                                     <div class="checkMarginTop txtalignLeft"><span class='expico pull-left fa fa-minus'></span><span class="pull-left conceptTitle">{!cmi.Element__c}/{!cmi.Test__c}</span><span class="pull-right conceptTitle regGateText">{!cmi.IPM_Project__r.IPM_Project_Name__c}</span></div>
                                                 </div>
                                                 <div class="col-xs-12 ipmAcrdnExpand">
                                                     <div class="row">
+                                                     <!--Below rendered condition is used to  showing output field -->  
                                                             <apex:outputField value="{!cmi.IPM_Skip_Test_Reason__c }" rendered="{!cmi.IPM_Skip_Test__c}"/>
                                                             <apex:repeat value="{!countryNameList}" var="selCon">
+                                                             <!-- Below rendered condition is used for executing the output panel -->
                                                                 <apex:outputPanel layout="block" styleClass="CMIcountryAccordian" rendered="{!AND(cmi.Country__c!=null,cmi.Country__c!='',CONTAINS(cmi.Country__c,selCon))}">
                                                                     <div class="col-xs-12 ipmAcrdnHeader aHead SecButtonSet">
                                                                         <div class="col-xs-10">
@@ -40,6 +43,7 @@
                                                                     <div class="cmiContractContainer col-xs-12 ipmAcrdnExpand">
                                                                         <div class="row">
                                                                               <apex:repeat value="{!resList}" var="res" id="resListt"> 
+                                                                              <!--Below rendered condition is used for executing the output panel-->
                                                                                 <apex:outputPanel layout="block" rendered="{!AND(resList!=null,resList.size>0,cmi.Id=res.IPM_Gate_CMI__c,res.IPM_CMI_Country__c=selCon)}">
                                                                                     <div class="cmiResultTime fieldLabel">{!$Label.IPM_CMI_Result_Timings}</div>
                                                                                     <div class="col-xs-5 noPadleft">
@@ -57,6 +61,7 @@
                                                                                     <apex:outputText value="{!IF(types='Charter',$Label.IPM_CMI_Results,$Label.IPM_CMI_Action_Standards)}"></apex:outputText> 
                                                                                 </span>
                                                                                     <span class="cmiContractHeadBlock3">
+                                                                                        <!--Below rendered condition is used to  showing output text -->
                                                                                        <apex:outputText value="Results" rendered="{!OR(types='Contract',types='Market Ready')}"/>
                                                                                     </span>
                                                                                 <span class="cmiContractHeadBlock4">
@@ -64,10 +69,13 @@
                                                                                 </span>
                                                                             </div>
                                                                             <apex:repeat value="{!sectionList}" var="sec" id="secList">
+                                                                            <!--Below rendered condition is used for executing the output panel-->
                                                                                 <apex:outputPanel styleClass="cmigTable" layout="block" rendered="{!AND(cmi.Id=sec.IPM_Gate_CMI__c,sec.IPM_CMI_Country__c=selCon)}">
                                                                                     <div class="rContainer">
                                                                                         <div class="cmiContractInputContainer">
+                                                                                             <!--Below rendered condition is used to  showing output field -->
                                                                                             <apex:outputField value="{!sec.IPM_CMI_Input__c}" rendered="{!!sec.IPM_CMI_Is_Free_Text__c}"/>
+                                                                                             <!--Below rendered condition is used to  showing output field -->
                                                                                             <apex:outputField value="{!sec.IPM_CMI_Free_Text__c}" rendered="{!sec.IPM_CMI_Is_Free_Text__c}"/>
                                                                                         </div>
                                                                                         <div class="cmiContractResultContainer">
@@ -76,14 +84,14 @@
                                                                                             </div> 
                                                                                             <span class="{!sec.IPM_CMI_Outcome_Color__c}"></span>
                                                                                         </div>
-                                                                                        <div class="cmiContractAchievedContainer">
-                                                                                            <apex:outputPanel layout="block" rendered="{!OR(types='Contract',types='Market Ready')}">
-                                                                                                <div class="pull-left">
-                                                                                                    <apex:outputField value="{!sec.IPM_CMI_Results_Acheived__c}" rendered="{!!sec.IPM_CMI_Is_Free_Text__c}"/>
-                                                                                                </div> 
-                                                                                                <span class="{!sec.IPM_CMI_Outcome_Color_Achieved__c}"></span>
-                                                                                            </apex:outputPanel> 
-                                                                                        </div>
+                                                                                        <!--Below rendered condition is used for executing the output panel-->
+                                                                                        <apex:outputPanel styleclass="cmiContractAchievedContainer" layout="block" rendered="{!OR(types='Contract',types='Market Ready')}">
+                                                                                            <div class="pull-left">
+                                                                                             <!--Below rendered condition is used to  showing output field -->
+                                                                                                <apex:outputField value="{!sec.IPM_CMI_Results_Acheived__c}" rendered="{!!sec.IPM_CMI_Is_Free_Text__c}"/>
+                                                                                            </div> 
+                                                                                            <span class="{!sec.IPM_CMI_Outcome_Color_Achieved__c}"></span>
+                                                                                        </apex:outputPanel> 
                                                                                         <div class="cmiContractCommentContainer">
                                                                                             <div class="ronlyComment">
                                                                                                 <apex:outputField styleClass="ronlyComment" value="{!sec.IPM_CMI_Comments__c}"   />
@@ -93,27 +101,32 @@
                                                                                 </apex:outputPanel>
                                                                             </apex:repeat> 
                                                                               <apex:repeat value="{!resList}" var="os" id="oslist">
+                                                                              <!--Below rendered condition is used for executing the output panel-->
                                                                                 <apex:outputPanel styleClass="cmigTable" layout="block" rendered="{!AND(resList!=null,resList.size>0,cmi.Id=os.IPM_Gate_CMI__c,os.IPM_CMI_Country__c=selCon,!os.IPM_CMI_Is_Free_Text__c,os.IPM_CMI_Overall_Colour_Coding_Method__c!='Not Applicable')}">
                                                                                     <div class="rContainer">
                                                                                         <div class="contractInputContainer">
+                                                                                         <!--Below rendered condition is used to  showing output label -->
                                                                                             <apex:outputLabel Value="{!os.IPM_CMI_Overall_Score_Label__c}" styleClass="overallText" rendered="{!OR(os.IPM_CMI_Overall_Colour_Coding_Method__c='Manual',os.IPM_CMI_Overall_Colour_Coding_Method__c='System')}"/>
                                                                                         </div>
                                                                                         <div class="contractAchievedContainer">
                                                                                             <div class="midContainer">
                                                                                                 <div class="cmiResultBox ContractoverallSubtext">
+                                                                                                 <!--Below rendered condition is used to  showing output field -->
                                                                                                     <apex:outputField value="{!os.IPM_CMI_Overall_Score__c}" rendered="{!OR(os.IPM_CMI_Overall_Colour_Coding_Method__c='System',os.IPM_CMI_Overall_Colour_Coding_Method__c='Manual')}"/>  
                                                                                                 </div>
                                                                                                 <span class="{!os.IPM_CMI_Overall_Colour__c}"></span>
                                                                                             </div>
                                                                                         </div>
-                                                                                        <div class="contractResultContainer">
+                                                                                        <!--Below rendered condition is used for executing the output panel-->
+                                                                                        <apex:outputPanel styleClass="contractResultContainer" layout="block" rendered="{!OR(types='Contract',types='Market Ready')}">
                                                                                             <div class="midContainer">
                                                                                                 <div class="cmiResultBox ContractoverallSubtext">
+                                                                                                 <!--Below rendered condition is used to  showing output field -->
                                                                                                     <apex:outputField value="{!os.IPM_CMI_Overall_Score_Achieved__c}" rendered="{!OR(os.IPM_CMI_Overall_Colour_Coding_Method__c='System',os.IPM_CMI_Overall_Colour_Coding_Method__c='Manual')}"/>  
                                                                                                 </div>
                                                                                                 <span class="{!os.IPM_CMI_Overall_Colour_Achieved__c}"></span>
                                                                                             </div>
-                                                                                        </div>
+                                                                                        </apex:outputPanel>
                                                                                         <div class="contractCommentContainer ronlyComment">
                                                                                             <apex:outputField value="{!os.IPM_CMI_Overall_Comments__c}" />
                                                                                         </div>

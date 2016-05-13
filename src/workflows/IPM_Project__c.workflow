@@ -23,15 +23,22 @@
         <template>Workflow_Emails/IPM_BET_ET_LinkDenied</template>
     </alerts>
     <alerts>
-        <fullName>IPM_Notify_leaders_the_TLD_changed_after_Contract</fullName>
-        <description>IPM Notify leaders the TLD changed after Contract</description>
+        <fullName>IPM_Notify_Finance_Leader_the_TLD_changed</fullName>
+        <description>IPM Notify Finance Leader the TLD changed</description>
+        <protected>false</protected>
+        <recipients>
+            <field>IPM_Finance_Member__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_Emails/IPM_Notify_Finance_Leader_about_TLD_is_changed</template>
+    </alerts>
+    <alerts>
+        <fullName>IPM_Notify_PL_DPL_and_Gatekeeper_TLD_changed_after_Contract</fullName>
+        <description>IPM Notify PL,DPL and Gatekeeper TLD changed after Contract</description>
         <protected>false</protected>
         <recipients>
             <field>Deputy_Project_Leader__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <recipients>
-            <field>IPM_Finance_Member__c</field>
             <type>userLookup</type>
         </recipients>
         <recipients>
@@ -43,7 +50,75 @@
             <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/IPM_Notify_Leads_TLD_is_changed</template>
+        <template>IPM_Emails/IPM_Notify_PL_DPL_and_Gatekeeper_TLD_changed_after_Contract</template>
+    </alerts>
+    <alerts>
+        <fullName>IPM_Notify_PL_and_DPL_the_TLD_changed_during_Charter_or_Contract</fullName>
+        <description>IPM Notify PL and DPL the TLD changed during Charter or Contract</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Deputy_Project_Leader__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>IPM_Project_Leader__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>IPM_Emails/IPM_Notify_PL_and_DPL_the_TLD_changed_during_Charter_or_Contract</template>
+    </alerts>
+    <alerts>
+        <fullName>IPM_Notify_Project_Leader_for_FL_TLD_confirmation</fullName>
+        <description>IPM Notify Project Leader for FL TLD confirmation</description>
+        <protected>false</protected>
+        <recipients>
+            <field>IPM_Project_Leader__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>IPM_Emails/IPM_Notify_Project_Leader_about_FL_confirm_TLD_change_on_Local_Rollout</template>
+    </alerts>
+    <alerts>
+        <fullName>IPM_Notify_leaders_the_TLD_changed_after_Contract</fullName>
+        <description>IPM Notify leaders the TLD changed after Contract</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Deputy_Project_Leader__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>IPM_Finance_Lead__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>IPM_Project_Gatekeeper__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>IPM_Project_Leader__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>IPM_Emails/IPM_Notify_PL_DPL_FL_and_Gatekeeper_TLD_changed_after_Contract</template>
+    </alerts>
+    <alerts>
+        <fullName>IPM_Notify_leaders_the_TLD_changed_during_Charter_Contract</fullName>
+        <description>IPM Notify leaders the TLD changed during Charter or Contract</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Deputy_Project_Leader__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>IPM_Finance_Lead__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>IPM_Project_Leader__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>IPM_Emails/IPM_Notify_PL_DPL_and_FL_TLD_is_changed</template>
     </alerts>
     <alerts>
         <fullName>IPM_Notify_leaders_the_TLD_changed_during_Charter_doc</fullName>
@@ -62,7 +137,7 @@
             <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/IPM_Notify_Leads_TLD_is_changed</template>
+        <template>IPM_Emails/IPM_Notify_Leads_TLD_is_changed</template>
     </alerts>
     <alerts>
         <fullName>IPM_Notify_the_Local_Project_leader_when_local_project_created</fullName>
@@ -73,7 +148,7 @@
             <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/IPM_Notify_Local_Leader_when_local_project_created</template>
+        <template>IPM_Emails/IPM_Notify_Local_Leader_when_local_project_created</template>
     </alerts>
     <alerts>
         <fullName>IPM_Project_Archival_Email_Alert</fullName>
@@ -83,7 +158,7 @@
             <type>creator</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/IPM_Project_Archival_Mail_Alert</template>
+        <template>IPM_Emails/IPM_Project_Archival_Mail_Alert</template>
     </alerts>
     <alerts>
         <fullName>IPM_Send_Failure_Phase_Change_Notification</fullName>
@@ -94,7 +169,7 @@
             <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/IPM_FailurePhaseChangeTemplate</template>
+        <template>IPM_Emails/IPM_FailurePhaseChangeTemplate</template>
     </alerts>
     <alerts>
         <fullName>IPM_Send_Success_Phase_Change_Notification</fullName>
@@ -105,7 +180,7 @@
             <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/IPM_SucessPhaseChangeTemplate</template>
+        <template>IPM_Emails/IPM_Successful_Phase_Change_Template</template>
     </alerts>
     <fieldUpdates>
         <fullName>Bosscard_Status</fullName>
@@ -229,10 +304,29 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>Update_FL_Confirm_button_on_Project</fullName>
+        <field>MisAligned_Confirmed_By_Finance_Leader__c</field>
+        <literalValue>0</literalValue>
+        <name>Update FL Confirm button on Project</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Update_IPM_Project_Name</fullName>
         <field>Name</field>
         <formula>IPM_Project_Name__c</formula>
         <name>Update IPM Project Name</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Rollout_TLD_on_Project</fullName>
+        <description>Update Rollout TLD on Project</description>
+        <field>Rollout_Plan_Target_Launch_Date__c</field>
+        <formula>IPM_Target_Launch_Dates__c</formula>
+        <name>Update Rollout TLD on Project</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
@@ -244,6 +338,15 @@
         <name>Update Threshold Value</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_field_Previous_Target_Launch_Date</fullName>
+        <field>Previous_Target_Launch_Date__c</field>
+        <formula>PRIORVALUE(IPM_Target_Launch_Dates__c)</formula>
+        <name>Update field Previous_Target_Launch_Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
@@ -327,6 +430,11 @@
             <field>IPM_Project__c.IPM_Last_Modified_Date_Time__c</field>
             <operation>notEqual</operation>
         </criteriaItems>
+        <criteriaItems>
+            <field>IPM_Project__c.IPM_Project_Name__c</field>
+            <operation>notEqual</operation>
+            <value>IPM_MasterProject</value>
+        </criteriaItems>
         <description>Archive a Project if Inactive for More than 4 Weeks. Based on Last Modified Date REQ00378</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
@@ -381,6 +489,17 @@
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
+        <fullName>IPM Send Email to Project Leader Once FL ackldge TLD change</fullName>
+        <actions>
+            <name>IPM_Notify_Project_Leader_for_FL_TLD_confirmation</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>IPM Send Email to Project Leader Once Finance Leader acknowledge  TLD change on Financial page</description>
+        <formula>AND(ISCHANGED( MisAligned_Confirmed_By_Finance_Leader__c),  MisAligned_Confirmed_By_Finance_Leader__c)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
         <fullName>IPM Update Project Phase Based on RCLT GKM</fullName>
         <active>false</active>
         <description>To update the phase of the Global project based on the Regional Project</description>
@@ -417,7 +536,7 @@
         <fullName>IPM_BET_WF_AutoApproveBETlink</fullName>
         <active>true</active>
         <description>time based workflow to update the BET link after 72 hours on the project</description>
-        <formula>!ISNULL(BET_Link_Requested__c) &amp;&amp; !ISBLANK(BET_Link_Requested__c)</formula>
+        <formula>!ISNULL(BET_Link_Requested__c) &amp;&amp; !ISBLANK(BET_Link_Requested__c) &amp;&amp; NOT( ISPICKVAL( IPM_Phase__c , &apos;Ideas&apos;) )</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
             <actions>
@@ -450,13 +569,24 @@
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
+        <fullName>Notification to LFL for TLD change in Local Rollout Project</fullName>
+        <actions>
+            <name>IPM_Notify_Finance_Leader_the_TLD_changed</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Notification to Finance Leader for TLD change in Local Rollout Project</description>
+        <formula>AND( ISPICKVAL(IPMProject_Span__c, &apos;Local&apos;),  ISPICKVAL(IPM_Project_Type__c, &apos;Rollout&apos;), OR(ISPICKVAL(IPM_Phase__c, &apos;Feasibility&apos;), ISPICKVAL(IPM_Phase__c, &apos;Capability&apos;), ISPICKVAL(IPM_Phase__c, &apos;Market Ready&apos;), ISPICKVAL(IPM_Phase__c, &apos;Market Deployment&apos;)), ISCHANGED( IPM_Target_Launch_Dates__c ) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
         <fullName>Successful Project Phase</fullName>
         <actions>
             <name>IPM_Send_Success_Phase_Change_Notification</name>
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>ISPICKVAL(IPM_Project_Job_Status__c,&apos;Completed&apos;)</formula>
+        <formula>AND(ISPICKVAL(IPM_ProjectJobType__c,&apos;Phase Change&apos;),ISPICKVAL(IPM_Project_Job_Status__c,&apos;Completed&apos;))</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -512,9 +642,45 @@
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
+        <fullName>Update Finance Leader Confirm button on Project</fullName>
+        <actions>
+            <name>Update_FL_Confirm_button_on_Project</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Update Finance Leader Confirm button on Project</description>
+        <formula>AND(!ISBLANK( Rollout_Plan_Target_Launch_Date__c ), ISCHANGED(  IPM_Target_Launch_Dates__c  ), (IPM_Target_Launch_Dates__c != Rollout_Plan_Target_Launch_Date__c))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Rollout Plan TLD on IPM Project</fullName>
+        <actions>
+            <name>Update_Rollout_TLD_on_Project</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>IPM_Project__c.Rollout_Plan_Target_Launch_Date__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <description>Update Rollout Plan TLD on IPM Project</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
         <fullName>Update field on change of ms release field</fullName>
         <active>false</active>
         <formula>ISCHANGED( BET_MS_First_Release_Date__c )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update the previous TLD value</fullName>
+        <actions>
+            <name>Update_field_Previous_Target_Launch_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Update the previous TLD value in Previous_Target_Launch_Date__c field</description>
+        <formula>ISCHANGED(IPM_Target_Launch_Dates__c)</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
 </Workflow>

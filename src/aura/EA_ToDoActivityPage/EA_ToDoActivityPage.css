@@ -23,6 +23,7 @@
   font-weight: 500;
   font-size: 1.8rem;
   line-height: 1.25;
+  margin-top: 10px;
 }
 .THIS .a-title_f {
   margin-left: 10px;
@@ -50,7 +51,6 @@
 .THIS .cTitle{
     margin-left: 10px;
   color: black;
-  font-weight: bold;
   font-size: 14px;
   line-height: 1.25; 
     margin-top:12px;

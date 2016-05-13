@@ -17,6 +17,10 @@
         <name>Brand__c</name>
     </fields>
     <fields>
+        <label><!-- Company --></label>
+        <name>Company__c</name>
+    </fields>
+    <fields>
         <label>Land</label>
         <name>Country__c</name>
         <picklistValues>
@@ -34,6 +38,10 @@
         <picklistValues>
             <masterLabel>Bulgaria</masterLabel>
             <translation><!-- Bulgaria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Canada</masterLabel>
+            <translation><!-- Canada --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Croatia</masterLabel>
@@ -104,6 +112,10 @@
             <translation><!-- Macedonia, the Former Yugoslav Republic of --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Mexico</masterLabel>
+            <translation><!-- Mexico --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Mlodova, Republic of</masterLabel>
             <translation><!-- Mlodova, Republic of --></translation>
         </picklistValues>
@@ -159,6 +171,18 @@
             <masterLabel>United Kingdom</masterLabel>
             <translation><!-- United Kingdom --></translation>
         </picklistValues>
+        <picklistValues>
+            <masterLabel>United States</masterLabel>
+            <translation><!-- United States --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Enclosure Code --></label>
+        <name>Enclosure_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Enclosure Quantity --></label>
+        <name>Enclosure_Quantity__c</name>
     </fields>
     <fields>
         <label><!-- FileName --></label>
@@ -175,6 +199,14 @@
     <fields>
         <label><!-- MaximumQty --></label>
         <name>MaximumQty__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Inventory Quantity --></label>
+        <name>Total_Inventory_Quantity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Used Quantity --></label>
+        <name>Total_Used_Quantity__c</name>
     </fields>
     <fields>
         <label><!-- Type --></label>

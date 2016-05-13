@@ -54,6 +54,19 @@
         <name>Global_Project_Phase__c</name>
     </fields>
     <fields>
+        <label><!-- Global/Regional Finance Leader Email --></label>
+        <name>Global_Regional_Finance_Leader_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- CharterApproved --></label>
+        <name>IPM_CharterApproved__c</name>
+    </fields>
+    <fields>
+        <label><!-- Financial At Charter --></label>
+        <name>IPM_CharterFinancial__c</name>
+        <relationshipLabel><!-- IPM Project Rollout --></relationshipLabel>
+    </fields>
+    <fields>
         <label><!-- IPM Company Card --></label>
         <name>IPM_Company_Card__c</name>
         <relationshipLabel><!-- IPM Project Rollout --></relationshipLabel>
@@ -121,6 +134,19 @@
         <relationshipLabel><!-- IPM Project Rollout (Rollout Project Leader) --></relationshipLabel>
     </fields>
     <fields>
+        <help><!-- It will set the status First &amp; Follow at Regional Level --></help>
+        <label><!-- IPM Regional Rollout Status --></label>
+        <name>IPM_Regional_Rollout_Status__c</name>
+        <picklistValues>
+            <masterLabel>Follower</masterLabel>
+            <translation><!-- Follower --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Leader</masterLabel>
+            <translation><!-- Leader --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Rollout Job Type --></label>
         <name>IPM_RolloutJobType__c</name>
         <picklistValues>
@@ -135,6 +161,11 @@
             <masterLabel>Process Phase Change</masterLabel>
             <translation><!-- Process Phase Change --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IPM Rollout Gatekeeper --></label>
+        <name>IPM_Rollout_Gatekeeper__c</name>
+        <relationshipLabel><!-- IPM Project Rollout (IPM Rollout Gatekeeper) --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Rollout Project --></label>
@@ -177,6 +208,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Key MCO At Charter --></label>
+        <name>KeyMCOAtCharter__c</name>
+    </fields>
+    <fields>
         <label><!-- KeyMCO --></label>
         <name>KeyMCO__c</name>
     </fields>
@@ -187,6 +222,10 @@
     <fields>
         <label><!-- Local Project Sustainability Period --></label>
         <name>Local_Project_Sustainability_Period__c</name>
+    </fields>
+    <fields>
+        <label><!-- Local Project Target Launch Date --></label>
+        <name>Local_Project_Target_Launch_Date__c</name>
     </fields>
     <fields>
         <label><!-- Local Project --></label>
@@ -208,6 +247,14 @@
     <fields>
         <label><!-- Market Cluster --></label>
         <name>Market_Cluster__c</name>
+    </fields>
+    <fields>
+        <label><!-- MisAligned Confirmed By Finance Leader --></label>
+        <name>MisAligned_Confirmed_By_Finance_Leader__c</name>
+    </fields>
+    <fields>
+        <label><!-- Previous Target Launch Date --></label>
+        <name>Previous_Target_Launch_Date__c</name>
     </fields>
     <fields>
         <label><!-- Global Project Span --></label>
@@ -366,6 +413,10 @@
             <masterLabel>MCO</masterLabel>
             <translation><!-- MCO --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- isActive --></label>
+        <name>isActive__c</name>
     </fields>
     <layouts>
         <layout>Local Rollout</layout>

@@ -44,7 +44,6 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
-    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <compactLayouts>
         <fullName>Ariba_Approver_Compact_Layout</fullName>
@@ -69,7 +68,6 @@
     <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
-    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
@@ -118,6 +116,18 @@
             </picklistValues>
             <picklistValues>
                 <fullName>SUBM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>REWO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>QUER</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PAPP</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -177,15 +187,19 @@
     <fields>
         <fullName>CA_Action__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(ISPICKVAL( Action__c, &quot;ACTV&quot;), &quot;Active&quot;,
-IF(ISPICKVAL( Action__c, &quot;APPR&quot;), &quot;Approved&quot;,
-IF(ISPICKVAL( Action__c, &quot;CANC&quot;), &quot;Cancelled&quot;,
+        <formula>IF(ISPICKVAL( Action__c, &quot;ACTV&quot;), &quot;Active&quot;, 
+IF(ISPICKVAL( Action__c, &quot;APPR&quot;), &quot;Approved&quot;, 
+IF(ISPICKVAL( Action__c, &quot;CANC&quot;), &quot;Cancelled&quot;, 
 IF(ISPICKVAL( Action__c, &quot;COPY&quot;), &quot;Copy&quot;, 
-IF(ISPICKVAL( Action__c, &quot;DRFT&quot;), &quot;Draft&quot;,
-IF(ISPICKVAL( Action__c, &quot;PREP&quot;), &quot;Prepared For&quot;,
-IF(ISPICKVAL( Action__c, &quot;REJC&quot;), &quot;Returned&quot;,
+IF(ISPICKVAL( Action__c, &quot;DRFT&quot;), &quot;Draft&quot;, 
+IF(ISPICKVAL( Action__c, &quot;PREP&quot;), &quot;Prepared For&quot;, 
+IF(((ISPICKVAL(Source_System__c , &quot;Invoice&quot;))&amp;&amp;(ISPICKVAL( Action__c, &quot;REJC&quot;))),&quot;Return to AP&quot;, 
+IF(ISPICKVAL( Action__c, &quot;REJC&quot;), &quot;Returned&quot;, 
 IF(ISPICKVAL( Action__c, &quot;SUBM&quot;), &quot;Submitted&quot;, 
-NULL))))))))</formula>
+IF(ISPICKVAL( Action__c, &quot;REWO&quot;), &quot;Rework&quot;, 
+IF(ISPICKVAL( Action__c, &quot;QUER&quot;), &quot;Query with Vendor&quot;, 
+IF(ISPICKVAL( Action__c, &quot;PAPP&quot;), &quot;Partial Approver&quot;, 
+NULL))))))))))))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Action</label>
         <required>false</required>
@@ -207,7 +221,9 @@ IF(ISPICKVAL( Role__c, &quot;PST&quot;), &quot;Post Auditor&quot;,
 IF(ISPICKVAL( Role__c, &quot;SUB&quot;), &quot;Submit For&quot;,
 IF(ISPICKVAL( Role__c, &quot;SFO&quot;), &quot;Submit For their own form&quot;,
 IF(ISPICKVAL( Role__c, &quot;SYS&quot;), &quot;System Approver&quot;,
-NULL))))))))))</formula>
+IF(ISPICKVAL( Role__c, &quot;END&quot;), &quot;Endorser&quot;, 
+IF(ISPICKVAL( Role__c, &quot;OTH&quot;), &quot;Others&quot;, 
+NULL))))))))))))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Role</label>
         <required>false</required>
@@ -400,6 +416,14 @@ NULL))))))))))</formula>
                 <fullName>SYS</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>END</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>OTH</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
@@ -461,6 +485,14 @@ NULL))))))))))</formula>
                 <fullName>Remedy</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Clarity</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Invoice</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
@@ -481,12 +513,35 @@ NULL))))))))))</formula>
                 <fullName>Rejected</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Rework</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Query With Vendor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Return to AP</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>TF_CreatedDate__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( ISPICKVAL( Source_System__c , &quot;Invoice&quot;) , Action_Date__c , CreatedDate)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>TF_CreatedDate</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
     </fields>
     <fields>
         <fullName>TF_Header_Status__c</fullName>
@@ -582,11 +637,23 @@ NULL))))))))))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>PAPP</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>PREP</fullName>
                 <default>false</default>
             </values>
             <values>
+                <fullName>QUER</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>REJC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>REWO</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -606,6 +673,14 @@ NULL))))))))))</formula>
             </values>
             <values>
                 <fullName>EMP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>END</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OTH</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -659,7 +734,15 @@ NULL))))))))))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Clarity</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>GTES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invoice</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -674,7 +757,183 @@ NULL))))))))))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Query With Vendor</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Return to AP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rework</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Clarity</fullName>
+        <active>true</active>
+        <label>Clarity</label>
+        <picklistValues>
+            <picklist>Action__c</picklist>
+            <values>
+                <fullName>ACTV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>APPR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CANC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>COPY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DRFT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PAPP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PREP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>QUER</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>REJC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>REWO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SUBM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Role__c</picklist>
+            <values>
+                <fullName>APP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DAT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EMP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>END</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OTH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PRE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PRP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PST</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>REV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SFO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SUB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SYS</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Send_to_Source_System__c</picklist>
+            <values>
+                <fullName>Done</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Source_System__c</picklist>
+            <values>
+                <fullName>Ariba</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clarity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GTES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invoice</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Remedy</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Query With Vendor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Return to AP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rework</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -707,11 +966,23 @@ NULL))))))))))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>PAPP</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>PREP</fullName>
                 <default>false</default>
             </values>
             <values>
+                <fullName>QUER</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>REJC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>REWO</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -731,6 +1002,14 @@ NULL))))))))))</formula>
             </values>
             <values>
                 <fullName>EMP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>END</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OTH</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -784,7 +1063,15 @@ NULL))))))))))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Clarity</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>GTES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invoice</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -799,7 +1086,183 @@ NULL))))))))))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Query With Vendor</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Return to AP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rework</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Invoice</fullName>
+        <active>true</active>
+        <label>Invoice</label>
+        <picklistValues>
+            <picklist>Action__c</picklist>
+            <values>
+                <fullName>ACTV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>APPR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CANC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>COPY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DRFT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PAPP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PREP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>QUER</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>REJC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>REWO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SUBM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Role__c</picklist>
+            <values>
+                <fullName>APP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DAT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EMP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>END</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OTH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PRE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PRP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PST</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>REV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SFO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SUB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SYS</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Send_to_Source_System__c</picklist>
+            <values>
+                <fullName>Done</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Source_System__c</picklist>
+            <values>
+                <fullName>Ariba</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clarity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GTES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invoice</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Remedy</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Query With Vendor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Return to AP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rework</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

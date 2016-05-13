@@ -23,5 +23,31 @@ getactivities1 : function(component, event, helper) {
         }
     });
     $A.enqueueAction(action);
-}
+},
+
+    showTabActive:function(cmp,event,tabName){
+        if(tabName === 'themes'){
+            tabstyle=cmp.find("themes");
+            $A.util.removeClass(tabstyle,"inactive_class");
+            tabstyle=cmp.find("themes");
+            $A.util.addClass(tabstyle,"active_class");
+        
+            tabstyle=cmp.find("myaction");
+            $A.util.removeClass(tabstyle,"active_class");
+            tabstyle=cmp.find("myaction");
+            $A.util.addClass(tabstyle,"inactive_class");
+        }
+ 		if(tabName === 'myaction'){
+            tabstyle=cmp.find("themes");
+            $A.util.removeClass(tabstyle,"active_class");
+            tabstyle=cmp.find("themes");
+            $A.util.addClass(tabstyle,"inactive_class");
+        
+            tabstyle=cmp.find("myaction");
+            $A.util.removeClass(tabstyle,"inactive_class");
+            tabstyle=cmp.find("myaction");
+            $A.util.addClass(tabstyle,"active_class");
+        }
+    },
+    
 })

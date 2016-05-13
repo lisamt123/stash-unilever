@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <customSettingsType>List</customSettingsType>
+    <visibility>Public</visibility>
     <description>configuration of company card page</description>
     <enableFeeds>false</enableFeeds>
     <fields>
         <fullName>IPM_Country__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>to check country is applicable to company card or not</description>
         <externalId>false</externalId>
         <label>Country</label>
         <trackTrending>false</trackTrending>
@@ -14,6 +16,7 @@
     <fields>
         <fullName>IPM_Global__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>to check global is applicable to company card or not</description>
         <externalId>false</externalId>
         <label>Global</label>
         <trackTrending>false</trackTrending>
@@ -22,6 +25,7 @@
     <fields>
         <fullName>IPM_Local__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>to check whether user has selected local company card or not.</description>
         <externalId>false</externalId>
         <label>Local</label>
         <trackTrending>false</trackTrending>
@@ -30,6 +34,7 @@
     <fields>
         <fullName>IPM_MCO__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>to check MCO is applicable to company card or not</description>
         <externalId>false</externalId>
         <label>MCO</label>
         <trackTrending>false</trackTrending>
@@ -38,6 +43,7 @@
     <fields>
         <fullName>IPM_Market_Cluster__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>to check market cluster is applicable to company card or not</description>
         <externalId>false</externalId>
         <label>Market Cluster</label>
         <trackTrending>false</trackTrending>
@@ -46,6 +52,7 @@
     <fields>
         <fullName>IPM_Multiple_Geographical_Scope__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>to check whether company card has multiple geographical scope or not.</description>
         <externalId>false</externalId>
         <label>Multiple Geographical Scope</label>
         <trackTrending>false</trackTrending>
@@ -54,6 +61,7 @@
     <fields>
         <fullName>IPM_Multiple_Managed_Catagory__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>to check whether company card has multiple category or not.</description>
         <externalId>false</externalId>
         <label>Multiple Managed Catagory</label>
         <trackTrending>false</trackTrending>
@@ -62,6 +70,7 @@
     <fields>
         <fullName>IPM_Regional__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>to check user has selected regional or not</description>
         <externalId>false</externalId>
         <label>Regional</label>
         <trackTrending>false</trackTrending>
@@ -70,6 +79,7 @@
     <fields>
         <fullName>IPM_Single_Geographical_Scope__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>to check whether company card has single geographical scope or not.</description>
         <externalId>false</externalId>
         <label>Single Geographical Scope</label>
         <trackTrending>false</trackTrending>
@@ -78,11 +88,11 @@
     <fields>
         <fullName>IPM_Single_Managed_Catagory__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>to check whether company card has single managed category or not.</description>
         <externalId>false</externalId>
         <label>Single Managed Catagory</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <label>IPM CompanyCard</label>
-    <visibility>Public</visibility>
 </CustomObject>

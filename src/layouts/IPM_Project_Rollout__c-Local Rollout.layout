@@ -79,8 +79,33 @@
                 <behavior>Readonly</behavior>
                 <field>IPM_Regional_Original_Project__c</field>
             </layoutItems>
+            <layoutItems>		
+                <behavior>Readonly</behavior>		
+                <field>Regional_Rollout_Phase__c</field>		
+            </layoutItems>		
+            <layoutItems>		
+                <behavior>Readonly</behavior>		
+                <field>Local_Rollout_Phase__c</field>		
+            </layoutItems>		
+            <layoutItems>		
+                <behavior>Readonly</behavior>		
+                <field>Target_LaunchYear__c</field>		
+            </layoutItems>		
+            <layoutItems>		
+                <behavior>Readonly</behavior>		
+                <field>Target_LaunchMonth__c</field>		
+            </layoutItems>		
+            <layoutItems>		
+                <behavior>Readonly</behavior>		
+                <field>IPM_Global_OR_Regional__c</field>		
+            </layoutItems>		
+            <layoutItems>		
+                <behavior>Readonly</behavior>		
+                <field>IPM_Parent_Project_Name__c</field>		
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
+        
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>IPM_Project__c</field>
@@ -95,6 +120,10 @@
             </layoutItems>
             <layoutItems>
                 <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>		
+                <behavior>Edit</behavior>		
+                <field>isActive__c</field>		
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

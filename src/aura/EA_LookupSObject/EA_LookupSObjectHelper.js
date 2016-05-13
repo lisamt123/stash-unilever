@@ -1,4 +1,16 @@
 ({
+    getRecentItem : function(cmp){
+        var action = cmp.get("c.getRecentlyWorkedWithUsers");
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            if(state === 'SUCCESS' && response.getReturnValue()!==''){
+                var items = response.getReturnValue();
+                console.log("Helper getRecentItem"+JSON.stringify(items));
+                cmp.set('v.recentItem',items);
+            }
+        });
+        $A.enqueueAction(action);
+    },
     /**
      * Perform the SObject search via an Apex Controller
      */
@@ -136,9 +148,17 @@
         var maxLimit = cmp.get("v.maxLimit");
         var participantCount = cmp.get("v.participantCount");
         
-            if((typeof selectedUsers !== 'undefined' ) && (((selectedUsers.length + 1) >= participantCount) || participantCount >= maxLimit)){
+       /* if(maxLimit === 1){
+      		cmp.set("v.errorMessage","You can do this activity only with your self.");
+             // Hide the Lookup List
+            var lookupList = cmp.find("lookuplist");
+            $A.util.addClass(lookupList, 'slds-hide');
+            return;
+        }
+        */
+            if((typeof selectedUsers !== 'undefined' ) && selectedUsers.length >= 10){ 
                 var limitMsgBody = cmp.get('v.errorMessage');
-                cmp.set("v.errorMessage","You can do this activity only with "+ (maxLimit-1) +" colleagues(s).");
+                cmp.set("v.errorMessage","You can do this activity only with 10 colleagues(s).");
                 // Hide the Lookup List
                 var lookupList = cmp.find("lookuplist");
                 $A.util.addClass(lookupList, 'slds-hide');
@@ -267,22 +287,50 @@
         var i = elmId.lastIndexOf('_');
         return elmId.substr(i+1);
     },
-    getRecentItem : function(cmp){
-       	var action = cmp.get("c.getRecentlyWorkedWithUsers");
-        action.setCallback(this, function(response) {
-            var state = response.getState();
-            if(state === 'SUCCESS' && response.getReturnValue()!==''){
-                	var items = response.getReturnValue();
-                    cmp.set('v.recentItem',items);
-            }
-        });
-        $A.enqueueAction(action);
-    },
     getItemResponse : function(cmp, event, helper) {
-    	var itemId = event.getParam("item");
+        var itemId = event.getParam("item");
         var itemName = event.getParam("item_name");
-       	console.log("Id:"+itemId);
-        console.log("Name:"+itemName);
-        return;
+       	// Check the limit to select item
+        var selectedUsers = cmp.get("v.selectedUsers");
+        var maxLimit = cmp.get("v.maxLimit");
+        var participantCount = cmp.get("v.participantCount");
+        /*
+        if(maxLimit === 1){
+      		cmp.set("v.errorMessage","You can do this activity only with your self.");
+             // Hide the Lookup List
+            var lookupList = cmp.find("lookuplist");
+            $A.util.addClass(lookupList, 'slds-hide');
+            return;
+        }
+        */
+        if((typeof selectedUsers !== 'undefined' ) && selectedUsers.length >= 10){
+            var limitMsgBody = cmp.get('v.errorMessage');
+            cmp.set("v.errorMessage","You can do this activity only with 10 colleagues(s).");
+            return;
+        }
+        
+        var toDoActivityUser = cmp.get("v.selectedUsers");
+        for (var i=0;i<toDoActivityUser.length;i++) {
+            if (toDoActivityUser[i] == itemId) {
+                //console.log("handleIdUpdate#User:"+ itemId +" already exist");
+            	cmp.set("v.errorMessage", '"' + itemName +'" already selected.');
+        		return;	 
+             }
+        }
+ 		toDoActivityUser.push(itemId);
+        cmp.set('v.selectedUsers', toDoActivityUser);
+        // Created array to store id and its name
+        var sMcmp = cmp.get('v.selectedItem');
+        var sIMap =[];
+        for(k in sMcmp){
+            if (sMcmp.hasOwnProperty(k)) {
+                sIMap.push({'id':sMcmp[k]['id'],'name':sMcmp[k]['name']});
+            }
+        }
+        sIMap.push({'id':itemId,'name':itemName});
+        cmp.set('v.selectedItem',sIMap);
+        // Show the Lookup pill
+        var lookupPill = cmp.find("lookup-pill");
+        this.renderLookupPill(cmp,lookupPill,selectedUsers);
 	},
 })

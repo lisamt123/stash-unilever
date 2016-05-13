@@ -7,7 +7,7 @@
 *************************************************************************
 -->
 
-<apex:page controller="IPM_BosscardStatusController" title="{!bosscardStatus_STR}" standardStylesheets="true" sidebar="false" showHeader="false" extensions="IPM_GetHelpDoc" id="IPM_BosscardStatus">
+<apex:page controller="IPM_BosscardStatusController" title="{!bosscardStatus_STR}" standardStylesheets="true" sidebar="false" showHeader="false"  id="IPM_BosscardStatus">
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'assets/font-awesome/css/font-awesome.min.css')}"/>
 
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Modal1.css')}"/>    
@@ -53,11 +53,7 @@
                                     <label for="discard"></label>
                                 </div>
                             </li>
-                            
-                            <!-- To place the help symbol in the top right hand corner of page -->
-                            <apex:outputPanel layout="block" styleClass="SecButtonSet delete pull-right" >
-                                <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
-                            </apex:outputPanel>
+
                         </div>
                     </ul> 
                     <div class="ipmGetStartedContent" id="status_progress">
@@ -68,7 +64,7 @@
                         </div>
                         <div class="textareaContainer">
                             <span class="commentHeader">{!$Label.IPM_Bosscard_Comments}</span>
-                            <textarea />
+                            <apex:inputtextarea value="{!inProgressComments}"  id="Bosscommentsinprogress" />
                         </div>
                     </div> 
                     <div class="ipmGetStartedContent" id="status_approved">
@@ -113,7 +109,7 @@
                         </apex:outputPanel>
                         <div class="textareaContainer">
                             <span class="commentHeader">{!$Label.IPM_Bosscard_Comments}</span>
-                            <apex:inputField value="{!bosscard.IPM_Bosscard_Approver_Comments__c}"  id="Bosscomments"/>
+                            <apex:inputtextarea value="{!inApprovedComments}"  id="Bosscomments"/>
                             <span class="commentDesc">{!$Label.IPM_Bosscard_Feedback}</span>
                         </div>
                         <apex:actionFunction action="{!filterprojectLeader}" name="callsearch" reRender="SearchCoreMem,peoplecount,refresh"/>
@@ -129,7 +125,7 @@
                         </div>   
                         <div class="textareaContainer">
                             <span class="commentHeader">{!$Label.IPM_Bosscard_Comments}</span>
-                            <textarea />
+                            <apex:inputtextarea value="{!inNotApprovedComments}"  id="BosscommentsNotApprove"/>
                         </div>  
                     </div> 
                     <div class="ipmGetStartedContent" id="status_discard">
@@ -140,7 +136,7 @@
                         </div>  
                         <div class="textareaContainer">
                             <span class="commentHeader">{!$Label.IPM_Bosscard_Comments}</span>
-                            <textarea />
+                            <apex:inputtextarea value="{!inDiscardComments}"  id="BosscommentsDiscard"/>
                         </div> 
                     </div> 
                     <apex:actionStatus id="loading" startStyleClass="proInit"></apex:actionStatus>
@@ -180,6 +176,7 @@
     </apex:outputPanel> 
     <script>
     jq('.searchLeader').clearSearch();
+    <!-- The below script needs to included in the page as RemoteAction is invoked when Bosscard is Approved to create Project, which doesnot work when referenced from Static resource-->
     function createPro(plId){
             var RemoteActionCreatePro = '{!$RemoteAction.IPM_BosscardStatusController.createProject}';
             var bossCommentValue = document.getElementById(IPMApp.ComponentBosscomments).value;
@@ -187,8 +184,7 @@
                 RemoteActionCreatePro,IPMApp.bosscardId,plId,bossCommentValue,
                 function(result, event){
                     if (event.status) {
-                        if(event.result!=null){                            
-                            
+                        if(event.result!=null){
                             if(IPMApp.boolVal=='true'){
                                  window.top.location.href=IPMApp.homeurl;
                             }else{
@@ -197,12 +193,10 @@
                                }
                              else{
                                  alert(IPMApp.systemMsg);
-                             }    
-                        
+                             }
+                        }
                     }
-                }
-            );
-               
-        }
+                );         
+            }
     </script>
 </apex:page>

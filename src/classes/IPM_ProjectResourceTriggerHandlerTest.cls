@@ -16,7 +16,7 @@ public class IPM_ProjectResourceTriggerHandlerTest {
     public static List<IPM_Task__c> taskList  = new List<IPM_Task__c>();
     private static String RESOURCE_HISTORY_INSERTED = 'Project Resource History Inserted'; 
     private static String RESOURCE_HISTORY_UPDATED = 'Project Resource History Updated'; 
-
+    private static User projectLeader;
     /***********************************
     * @Description: Test Data Creation
     * *********************************/
@@ -24,7 +24,7 @@ public class IPM_ProjectResourceTriggerHandlerTest {
     {
         Profile p = [SELECT Id FROM Profile WHERE Name='System Administrator' limit 3]; 
 
-        User projectLeader = IPM_TestFactory_Helper.createUser(false);
+       projectLeader = IPM_TestFactory_Helper.createUser(false);
         projectLeader.ProfileId = p.id;                           
 
 
@@ -242,6 +242,16 @@ public class IPM_ProjectResourceTriggerHandlerTest {
             }
         }
         System.assertEquals(5, updateCount, RESOURCE_HISTORY_UPDATED);
+        IPM_ProjectResourceTriggerHandler proResTrig=new IPM_ProjectResourceTriggerHandler();
+        Map<Id, IPM_Project_Resource__c> resMap=new Map<Id, IPM_Project_Resource__c>();
+        resMap.put(projectResourceList[0].Id,projectResourceList[0]);
+        proResTrig.OnAfterUpdate(lstResourceToUpdate,resMap,resMap);
+        Set<Id>userId=new Set<Id>();
+        //User projectLeader = IPM_TestFactory_Helper.createUser(false);
+        userId.add(projectLeader.Id);
+        IPM_ProjectResourceTriggerHandler.notifyRoleChangeToPLs(userId);
+        IPM_ProjectResourceTriggerHandler.memberChangingRole(lstResourceToUpdate);
+        proResTrig.onAfterUnDelete(lstResourceToUpdate);
         Test.stopTest();
     }
     
@@ -261,45 +271,29 @@ public class IPM_ProjectResourceTriggerHandlerTest {
         
         userList = new List<User>{globalUser,regionalUser,localUser};
         insert userList;    
-        List<IPM_Assessment__c> finalAssessmentList = new List<IPM_Assessment__c>();
+
         List<IPM_Company_Card__c> companyCardList ;
         
         
         System.runAs(userList[0]) {
-	        // Create Company Card information 
-	        IPM_Company_Card__c globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
-	        globalCompanyCard.IPM_TxtGeographical_Scope__c = 'TEST123';
-	        globalCompanyCard.IPM_Business_Partner__c = NULL;
-	        IPM_Company_Card__c regionalCompanyCard = IPM_TestFactory_Helper.createRegionalCompanyCard(false);
-	        regionalCompanyCard.IPM_TxtGeographical_Scope__c = 'TEST123';
-	        regionalCompanyCard.IPM_Business_Partner__c = NULL;
-	        IPM_Company_Card__c localCompanyCard = IPM_TestFactory_Helper.createLocalCompanyCard(false);
-	        localCompanyCard.IPM_TxtGeographical_Scope__c = 'TEST123';
-	        localCompanyCard.IPM_Business_Partner__c = NULL;
-	        
-	        companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
-	        insert companyCardList;
+            // Create Company Card information 
+            IPM_Company_Card__c globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
+            globalCompanyCard.IPM_TxtGeographical_Scope__c = 'TEST123';
+            globalCompanyCard.IPM_Business_Partner__c = NULL;
+            IPM_Company_Card__c regionalCompanyCard = IPM_TestFactory_Helper.createRegionalCompanyCard(false);
+            regionalCompanyCard.IPM_TxtGeographical_Scope__c = 'TEST123';
+            regionalCompanyCard.IPM_Business_Partner__c = NULL;
+            IPM_Company_Card__c localCompanyCard = IPM_TestFactory_Helper.createLocalCompanyCard(false);
+            localCompanyCard.IPM_TxtGeographical_Scope__c = 'TEST123';
+            localCompanyCard.IPM_Business_Partner__c = NULL;
+            
+            companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
+            insert companyCardList;
         }
         Test.startTest();
         System.runAs(userList[0]) {
-	        //  Create User profile Information
-	        Map<String,List<Object>> IPMUserProfileMap =  new Map<String,List<Object>>{
-	        'IPM_Business_Partner__c' => new List<Object>{false,false,false},
-	        'IPM_Category__c' => new List<Object>{'','',''},
-	        'IPM_Central_Team__c' => new List<Object>{false,false,false},
-	        'IPM_Finance_Member__c' => new List<Object>{false,false,false},
-	        'IPM_GateKeeper__c' => new List<Object>{false,false,false},
-	        'IPM_Project_Leader__c' => new List<Object>{false,false,false},
-	        'IPM_User_Category__c' => new List<Object>{'HHC','HHC','HHC'},
-	        'IPM_User_Function__c' => new List<Object>{'Project Leader','Project Leader','Project Leader'},
-	        'IPM_User_Role__c' => new List<Object>{'MO','MO','MO'},
-	        'IPM_Work_Level__c' => new List<Object>{'WL1','WL2','WL3'},
-	        'IPM_Company_Card__c' => new List<Object>{companyCardList[0].Id,companyCardList[1].Id,companyCardList[2].Id},
-	        'IPM_User__c' => new List<Object>{userList[0].Id,userList[1].Id,userList[2].Id}
-	        };
-	
-	        List<IPM_User_Profile__c> userProfileList = (List<IPM_User_Profile__c>)IPM_TestFactory.createSObjectList('IPM_User_Profile__c',IPMUserProfileMap,true);
-	        List<String> projectNames = new List<String>();
+
+            List<String> projectNames = new List<String>();
         
             // Get master data for the project including Templates,Documents,Section,Tasks and Milestones.
             IPM_TestFactory_Helper.getProjectMasterData();
@@ -331,8 +325,8 @@ public class IPM_ProjectResourceTriggerHandlerTest {
             ipmProjectResource2.IPM_Member_Email__c = 'xyz@gmail.com';
             projectResourceList.add(ipmProjectResource2);
             insert ipmProjectResource2;
-            List <IPM_Project__c> projList1 = [Select id,EcoDesign_Sync_Status__c from IPM_Project__c where Id =: ipmProjectList[1].Id];
-            System.assertEquals('Ready', projList1[0].EcoDesign_Sync_Status__c, 'EcoDesign_Sync_Status__c Is Different');
+            List <IPM_Project_Resource__c> projList1 = [Select id,IPM_User__c from IPM_Project_Resource__c where Id =: ipmProjectResource2.Id LIMIT 1];
+            System.assertEquals(userList[2].Id, projList1[0].IPM_User__c, 'User id should be '+userList[2].Id);
             
             List<IPM_Project_Resource__c> ipmProjectResourceList = [Select id,IPM_User__c,IPM_Role_Type__c,IPM_Member_Email__c from IPM_Project_Resource__c limit 1000];
             for(IPM_Project_Resource__c projRes : ipmProjectResourceList){
@@ -340,14 +334,17 @@ public class IPM_ProjectResourceTriggerHandlerTest {
             }
 
             Update ipmProjectResourceList;
-            List <IPM_Project__c> projList2 = [Select id,EcoDesign_Sync_Status__c from IPM_Project__c where Id =: ipmProjectList[1].Id];
-            System.assertEquals('Ready', projList2[0].EcoDesign_Sync_Status__c, 'Status Is Different');
             
             delete ipmProjectResourceList[0];
-            List <IPM_Project__c> projList3 = [Select id,EcoDesign_Sync_Status__c from IPM_Project__c where Id =: ipmProjectList[1].Id];
-            System.assertEquals('Ready', projList3[0].EcoDesign_Sync_Status__c, 'Status Is Different');
+            
+            List <IPM_Project_Resource__c> projResourceLst = [Select id,IPM_User__c from IPM_Project_Resource__c where Id =: ipmProjectResourceList[0].Id LIMIT 1];
+            System.assertEquals(projResourceLst.isEmpty(),true,'record is deleted');
+            
         }
         
         Test.stopTest();
     }
+    
+    
+    
 }

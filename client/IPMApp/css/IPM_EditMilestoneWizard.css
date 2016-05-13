@@ -1,7 +1,7 @@
 	.inlineEdit{margin:10px 10px 0 10px;}
 	.inlineEdit > div{padding-left:5px; padding-right:5px;}
 	.inlineEdit > div:first-child{padding-left:0;}
-	.inlineEdit .ipmButtonGroup{padding-right: 0;width:13%;}
+	.inlineEdit .ipmButtonGroup{padding-right: 0;width:18%;}
 	.inputField{margin-bottom:15px;}
 	.inputField input, .inputField select{width:100%;height:30px;border-radius: 3px; border: 1px #a8a8a8 solid;}
 	.fa-calendar:before{margin-left: -41px;}
@@ -39,3 +39,11 @@
 	.buttonmarRight{margin-right:15px;}
 	.dateFormat {display:none!important;}
 	.buttonMarginRight{margin-right:15px;}
+	.marginL100P {margin-left:100%;} 
+       
+@media only screen and (min-device-width:768px) and (max-device-width:1024px) { 
+   .marginL100P { 
+		margin-left:72%; 
+    } 
+}
+	

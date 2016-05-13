@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>uw_BET__c.IPM_Project__c</field>
+    </columns>
+    <columns>
+        <field>uw_BET__c.Category_Group__c</field>
+    </columns>
+    <columns>
+        <field>uw_BET__c.Product_Category__c</field>
+    </columns>
+    <columns>
+        <field>uw_BET__c.Brand_Position__c</field>
+    </columns>
+    <columns>
+        <field>uw_BET__c.Product_Brand__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>uw_BET__c.IPM_Project__c</column>
+            <operator>notEqual</operator>
+            <value></value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>BETs with IPMs</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$uw_BET__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>uw_BET__c.Date_Published__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

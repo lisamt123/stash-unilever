@@ -1,0 +1,216 @@
+<apex:page standardController="WU_Master_Warehouse__c" extensions="WU_WarehouseSearchController" tabStyle="WU_Master_Warehouse__c">
+<apex:form >
+<apex:pageblock >
+
+    <!--Style to give white background to LookUp Fields -->
+    <style>
+        .emptyDependentLookup {
+            background-color: White !important;
+        }
+    </style>
+  
+    <table width="85%">
+         <tr> 
+             <td vertical-align="center">
+                <apex:outputLabel value="{!$Label.WU_SAPCode}"></apex:outputLabel>
+                <apex:inputfield value="{!warehouseCapacity.WU_SAPCode_s__c}" id="ipSAP"/>
+            </td>
+            <td>&nbsp;&nbsp;</td>
+            <td >
+                <apex:outputLabel value="{!$Label.WU_Region}"></apex:outputLabel>&nbsp;&nbsp;
+                 <apex:inputfield value="{!warehouseCapacity.WU_Region__c}" id="ipregion"  >
+                    <apex:actionsupport event="onchange" rerender="wareList"/>
+                </apex:inputfield>
+            </td>
+            
+             <td align="center">
+                 <apex:outputLabel value="{!$Label.WU_MCO}"></apex:outputLabel>&nbsp;&nbsp;
+                 <apex:inputfield value="{!warehouseCapacity.WU_MCO__c}" id="ipMCO">
+                     <apex:actionsupport event="onchange" rerender="wareList"/>
+                 </apex:inputfield>
+             </td>
+             
+            <td>
+                 <apex:outputLabel value="{!$Label.WU_Category}"></apex:outputLabel>&nbsp;&nbsp;
+                 <apex:inputfield value="{!warehouseCapacity.WU_Network__c}" id="ipCategory">
+                     <apex:actionsupport event="onchange" rerender="wareList"/>
+                 </apex:inputfield>
+             </td>
+            <td>&nbsp;&nbsp;</td>
+             <td>
+                 <apex:outputLabel value="{!$Label.WU_Country}"></apex:outputLabel>&nbsp;&nbsp;
+                 <apex:inputfield value="{!warehouseCapacity.WU_Country__c}" id="ipCountry" >
+                     <apex:actionsupport event="onchange" rerender="wareList"/>
+                 </apex:inputfield>
+             </td>
+             <td>&nbsp;&nbsp;</td>
+             <td>
+                 <apex:outputLabel value="{!$Label.WU_City}"></apex:outputLabel>&nbsp;&nbsp;
+                 <apex:inputfield value="{!warehouseCapacity.WU_CityName__c}" id="ipCity">
+                     <apex:actionsupport event="onchange" rerender="wareList"/>
+                 </apex:inputfield>
+            </td>
+           
+           <td>&nbsp;&nbsp;</td><td>&nbsp;&nbsp;</td>
+            <td>
+                <br></br>
+                <apex:commandButton value="Search" action="{!SearchRecords}" style="height:20px;width:70px;text-align:center;"/>
+            </td>
+            <td>&nbsp;&nbsp;</td><td>&nbsp;&nbsp;</td>
+            <td>
+                <br></br>
+                <apex:commandButton value="Export Report" action="{!redirectToReport}" />
+            </td>
+            <td>&nbsp;&nbsp;</td>
+           
+        </tr>
+       
+        <tr>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        </tr>
+    </table>
+   
+    <apex:pageBlockSection > 
+        
+    </apex:pageBlockSection>
+  
+    <!--Code updated on 09/02/2016
+    <apex:pageBlockSection columns="15" > 
+    <table width="95%">
+         <tr> 
+             <td>
+                <apex:pageBlockSectionItem > 
+                <apex:outputLabel value="{!$Label.WU_SAPCode}"></apex:outputLabel>
+                <apex:inputfield value="{!warehouseCapacityLookup.WU_SAPCode_s__c}" id="ipSAP1"/>
+                </apex:pageBlockSectionItem>
+            </td>
+            <td>
+            <apex:pageBlockSectionItem >
+                <apex:outputLabel value="{!$Label.WU_Region}"></apex:outputLabel>
+                <apex:inputfield value="{!warehouseCapacityLookup.Master_Region__c}" id="ipregion1" />
+                </apex:pageBlockSectionItem>
+            </td>
+            
+             <td align="center">
+             <apex:pageBlockSectionItem >
+                 <apex:outputLabel value="{!$Label.WU_MCO}"></apex:outputLabel>
+                 <apex:inputfield value="{!warehouseCapacityLookup.Master_MCO__c}" id="ipMCO1" />
+                 </apex:pageBlockSectionItem>
+             </td>
+             
+            <td>
+           
+            <apex:pageBlockSectionItem >
+            
+               <apex:outputLabel value="{!$Label.WU_Category}"></apex:outputLabel>
+                <apex:inputfield value="{!warehouseCapacityLookup.WU_Network__c}" id="ipCategory1">
+                    <apex:actionsupport event="onchange" rerender="wareList"/>
+                </apex:inputfield>
+                </apex:pageBlockSectionItem>
+                
+             </td>
+           
+             <td>
+             <apex:pageBlockSectionItem >
+                 <apex:outputLabel value="{!$Label.WU_Country}"></apex:outputLabel>
+                 <apex:inputfield value="{!warehouseCapacityLookup.Master_Country__c}" id="ipCountry1" />
+                 </apex:pageBlockSectionItem>
+             </td>
+           
+             <td>
+             <apex:pageBlockSectionItem >
+                <apex:outputLabel value="{!$Label.WU_City}"></apex:outputLabel>
+                <apex:inputfield value="{!warehouseCapacityLookup.Master_city__c}" id="ipCity1" />
+                </apex:pageBlockSectionItem>
+            </td>
+           
+            <td>
+            <apex:pageBlockSectionItem >
+                <apex:commandButton value="Search" action="{!SearchRecordsWithLookupVal}" style="height:20px;width:70px;text-align:center;"/>
+              </apex:pageBlockSectionItem>  
+            </td>
+        </tr>
+    </table>
+    </apex:pageBlockSection>
+    
+     -->
+
+    <table>
+        <tr>
+            <td>
+                 <apex:outputPanel >
+                       <strong>
+                       Total Records Found : <apex:outputText rendered="{!IF(lstWarehouses.resultSize==10000,true,false)}">10000 +</apex:outputText>
+                       <apex:outputText rendered="{!IF(lstWarehouses.resultSize < 10000,true,false)}">{!lstWarehouses.resultSize}</apex:outputText>  </strong>
+                      <apex:image url="/img/search_prevarrow_disabled.gif" styleClass="prevArrow" rendered="{!NOT(lstWarehouses.HasPrevious)}"/>  
+                      <apex:image url="/img/search_prevarrow.gif" title="Previous Page" styleClass="prevArrow" rendered="{!lstWarehouses.HasPrevious}"/>  
+                      <apex:commandLink action="{!Previous}" title="Previous Page" value="Previous Page" rendered="{!lstWarehouses.HasPrevious}"/>  
+                      <apex:outputPanel styleClass="pShowLess noLink" style="color:grey" rendered="{!NOT(lstWarehouses.HasPrevious)}">Previous Page</apex:outputPanel>           
+                      &nbsp;({!IF(lstWarehouses.PageNumber == 1,1,((lstWarehouses.PageNumber -1) * lstWarehouses.PageSize)+1)}-{!IF(lstWarehouses.resultSize < lstWarehouses.PageSize,lstWarehouses.resultSize,lstWarehouses.PageNumber * lstWarehouses.pageSize)})&nbsp;  
+                      <apex:outputPanel styleClass="pShowLess noLink" style="color:grey" rendered="{!NOT(lstWarehouses.HasNext)}">Next Page</apex:outputPanel>           
+                      <apex:commandLink title="Next Page" value="Next Page" rendered="{!lstWarehouses.HasNext}" action="{!Next}"/>&nbsp;  
+                      <apex:image url="/img/search_nextarrow.gif" title="Next Page" styleClass="nextArrow" rendered="{!lstWarehouses.HasNext}"/>  
+                      <apex:image url="/img/search_nextarrow_disabled.gif" rendered="{!NOT(lstWarehouses.HasNext)}"/>            
+                   </apex:outputPanel>
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        </tr>
+        <tr>
+            <td>
+                <apex:pageblocktable Value="{!AllSearchRecords}" var="item" Id="wareList"  rendered="{!(AllSearchRecords.size != 0)}">
+                        <apex:column headerValue="SAP Code">
+                              <apex:outputLink value="{!LEFT($CurrentPage.URL,FIND('/',$CurrentPage.URL,9))}{!Item.Id}">{!item.WU_SAPCode_s__c}</apex:outputLink>
+                        </apex:column>
+                        <apex:column value="{!item.WU_SAPName_s__c}"/>
+                        <apex:column value="{!item.WU_Region__c}"/>
+                        <apex:column value="{!item.WU_MCO__c}"/>
+                        <!-- <apex:column value="{!item.WU_Network__c }"/>  -->
+                        <apex:column value="{!item.WU_Country__c}"/>
+                        <apex:column value="{!item.WU_CityName__c}"/>
+                       <!-- <apex:column value="{!item.WU_FromDate__c}"/>
+                        <apex:column value="{!item.WU_ToDate__c}"/>-->
+                        <apex:column headerValue="Committed/Max Pallet Utilization">
+                            <apex:actionRegion >
+                            <apex:outputField value="{!item.WU_Committed_Max_PalletStorage__c}">
+                                <apex:inlineEditSupport event="ondblClick" 
+                                showOnEdit="saveButton" hideOnEdit="editButton" changedStyleClass="myBoldClass" resetFunction="resetInlineEdit"/>
+                            </apex:outputField>
+                            </apex:actionRegion>
+                        </apex:column>
+                        <apex:column value="{!item.WU_Total_Current_Month_Utilisation__c}"/>
+                        <apex:column value="{!item.WU_Average_Current_Utilization__c}"/>
+                        <apex:column headerValue="Warehouse POC" value="{!item.Owner.Name}"/>
+                        <apex:column headerValue="Procurement Manager" value="{!item.WU_Procurement_Manager__r.Name}"/>
+                       <!--  <apex:column headerValue="Current Pallet Utilization Count">
+                            <apex:actionRegion >
+                            <apex:outputField value="{!item.WU_Current_Utilization__c}">
+                                <apex:inlineEditSupport event="ondblClick" 
+                                showOnEdit="saveButton" hideOnEdit="editButton" changedStyleClass="myBoldClass" resetFunction="resetInlineEdit"/>
+                            </apex:outputField>
+                            </apex:actionRegion>
+                        </apex:column> -->
+                        <!--<apex:column value="{!item.WU_Warehouse_Capacity__c}"/>-->
+                        
+                       <!--  <apex:column value="{!item.WU_Average_Pallet_Utilization_Week__c}"/>
+                        <apex:column value="{!item.WU_Average_Pallet_Utilization_Month__c}"/>
+                         -->
+                 </apex:pageblocktable>
+                <strong>
+                <apex:outputText style="font-style:italic;color:red;" rendered="{!(AllSearchRecords.size = 0)}" value="There are no records to display for search Criteria." /></strong>
+            </td>
+        </tr>
+    </table>
+
+</apex:pageblock>
+
+</apex:form>
+<style>
+body .bPageBlock, body #bodyCell .bResource .secondaryPalette, body .secondaryPalette.bPageBlock, body .individualPalette .secondaryPalette.bPageBlock, body .bodyDiv .genericTable, body .genericPageBlockTable, body .bodyDiv .bSubBlock, body .bComponentBlock .bPageBlock, body .bMyDashboard .bPageBlock, body.rlHoverFrame .bPageBlock, body.subjectSelectionPopup div.choicesBox, body.lookupTab .secondaryPalette.bPageBlock, body.popupTab .secondaryPalette.bPageBlock, body.UserTagStatsPage .secondaryPalette.bPageBlock{
+     background: #FFFFFF ;
+     border: none;
+}
+
+</style>
+</apex:page>

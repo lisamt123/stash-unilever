@@ -56,7 +56,20 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ReadWrite</externalSharingModel>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>Enforce_Trigger_Update__c</fullName>
+        <description>In order to enforce trigger on SWOP Campaign, there is a rollup summary field created to aggregate this field. This ensure before trigger on SWOP Campaign collects information about the children and update accordingly.</description>
+        <externalId>false</externalId>
+        <label>Enforce Trigger Update</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>OblixCountry__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -75,24 +88,26 @@
         <externalId>false</externalId>
         <inlineHelpText>Enter the percentage of the project for the location the project will be executed in?</inlineHelpText>
         <label>Split Percentage</label>
-        <precision>3</precision>
+        <precision>5</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
     </fields>
     <fields>
         <fullName>Project_Splits__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Project Splits</label>
         <referenceTo>Oblix_SOW_Projects__c</referenceTo>
+        <relationshipLabel>SWOP Campaign Splits</relationshipLabel>
         <relationshipName>Marketing_SOW_Project_Splits</relationshipName>
-        <required>false</required>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Lookup</type>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
     <label>SWOP Campaign Splits</label>
     <listViews>
@@ -108,5 +123,12 @@
     </nameField>
     <pluralLabel>SWOP Campaign Splits</pluralLabel>
     <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Lock_Record_if_Sync_in_Progress</fullName>
+        <active>true</active>
+        <description>If a roll over Sync in Progress. Record Locked</description>
+        <errorConditionFormula>IF( $Profile.Name &lt;&gt; &apos;System Administrator&apos; &amp;&amp; (TEXT( Project_Splits__r.Sync_Status__c ) == &apos;Sync In Progress&apos; || Project_Splits__r.Sync_Required_NFY__c == &apos;Sync In Progress&apos; || TEXT( Project_Splits__r.Sync_Status__c ) == &apos;Sync Requested&apos; || Project_Splits__r.Sync_Required_NFY__c == &apos;Sync Requested&apos;),true,false)</errorConditionFormula>
+        <errorMessage>Sync in Progress. Record Locked</errorMessage>
+    </validationRules>
 </CustomObject>

@@ -46,7 +46,6 @@
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Visualforce</type>
     </actionOverrides>
-    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <compactLayouts>
         <fullName>Ariba_Compact_Layout</fullName>
@@ -71,7 +70,6 @@
     <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
-    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
@@ -96,6 +94,18 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>All_years__c</fullName>
+        <externalId>false</externalId>
+        <label>All years</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -172,6 +182,16 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>Approval_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Approval Type</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
     </fields>
     <fields>
         <fullName>Ariba_Company_Code__c</fullName>
@@ -695,6 +715,14 @@
                 <fullName>Remedy</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Clarity</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Invoice</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
@@ -834,6 +862,18 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Total_Budget__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Budget</label>
+        <length>18</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Total_Expenses_Amount__c</fullName>
         <externalId>false</externalId>
         <label>Total Expenses Amount</label>
@@ -901,6 +941,24 @@
         <label>Ariba</label>
     </listViews>
     <listViews>
+        <fullName>Clarity</fullName>
+        <columns>NAME</columns>
+        <columns>Status__c</columns>
+        <columns>Requested_By__c</columns>
+        <columns>Requested_For__c</columns>
+        <columns>Impact__c</columns>
+        <columns>Urgency__c</columns>
+        <columns>Priority__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Source_System__c</field>
+            <operation>equals</operation>
+            <value>Clarity</value>
+        </filters>
+        <label>Clarity</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
         <fullName>GTES</fullName>
         <columns>NAME</columns>
         <columns>Status__c</columns>
@@ -916,6 +974,24 @@
             <value>GTES</value>
         </filters>
         <label>GTES</label>
+    </listViews>
+    <listViews>
+        <fullName>Invoice</fullName>
+        <columns>NAME</columns>
+        <columns>Status__c</columns>
+        <columns>Requested_By__c</columns>
+        <columns>Requested_For__c</columns>
+        <columns>Impact__c</columns>
+        <columns>Urgency__c</columns>
+        <columns>Priority__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Source_System__c</field>
+            <operation>equals</operation>
+            <value>Invoice</value>
+        </filters>
+        <label>Invoice</label>
+        <language>en_US</language>
     </listViews>
     <nameField>
         <label>Request ID</label>
@@ -938,7 +1014,15 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Clarity</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>GTES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invoice</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -987,6 +1071,77 @@
         </picklistValues>
     </recordTypes>
     <recordTypes>
+        <fullName>Clarity</fullName>
+        <active>true</active>
+        <label>Clarity</label>
+        <picklistValues>
+            <picklist>Source_System__c</picklist>
+            <values>
+                <fullName>Ariba</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clarity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GTES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invoice</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Remedy</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fully Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partially Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sent for Payment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Withdrawn</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
         <fullName>GTES</fullName>
         <active>true</active>
         <compactLayoutAssignment>GTES_Compact_Layout</compactLayoutAssignment>
@@ -998,7 +1153,15 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Clarity</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>GTES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invoice</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1034,6 +1197,73 @@
             </values>
             <values>
                 <fullName>Sent for Payment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Withdrawn</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Invoice</fullName>
+        <active>true</active>
+        <label>Invoice</label>
+        <picklistValues>
+            <picklist>Source_System__c</picklist>
+            <values>
+                <fullName>Ariba</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clarity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GTES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invoice</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Remedy</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fully Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partially Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
                 <default>false</default>
             </values>
             <values>

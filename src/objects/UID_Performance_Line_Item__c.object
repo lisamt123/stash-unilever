@@ -57,21 +57,9 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
-        <fullName>UID_IOP_Value__c</fullName>
-        <externalId>false</externalId>
-        <label>IOP Value</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>UID_IOP_Date__c</fullName>
         <externalId>false</externalId>
-        <label>IOP Date</label>
+        <label>JBP Date</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -82,7 +70,7 @@
         <externalId>false</externalId>
         <formula>MONTH(UID_IOP_Date__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>IOP Month</label>
+        <label>JBP Month</label>
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
@@ -92,10 +80,37 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>UID_IOP_Value_Curr__c</fullName>
+        <externalId>false</externalId>
+        <formula>UID_IOP_Value__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>JBP Report Value</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+
+    <fields>
+        <fullName>UID_IOP_Value__c</fullName>
+        <externalId>false</externalId>
+        <label>JBP Value</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>UID_IOP__c</fullName>
         <externalId>false</externalId>
-        <label>IOP</label>
+        <label>JBP</label>
         <referenceTo>UID_Performance__c</referenceTo>
+        <relationshipLabel>Performance Line Items</relationshipLabel>
         <relationshipName>IOP_Details</relationshipName>
         <relationshipOrder>0</relationshipOrder>
         <reparentableMasterDetail>false</reparentableMasterDetail>
@@ -103,6 +118,18 @@
         <trackTrending>false</trackTrending>
         <type>MasterDetail</type>
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+	<fields>
+        <fullName>UID_ISO_Currency__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT( CurrencyIsoCode )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>ISO Currency</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>UID_Product__c</fullName>

@@ -4,10 +4,11 @@
              
 @Created Date: 12/03/2015
 @Author: Cognizant
+@Justification: Without Shairing required as this is a Feed Object Class used for Posting Deleting Viewing Feed Items
 @Referenced: IPMCommentsPage page
 ******************************************************************/
 
-global with sharing class IPM_CommentsListController {
+global without sharing class IPM_CommentsListController {
         
     public String parentID {get;set;}//used to store current page id
     public FeedItem commentRecord {get;set;}//used to store feedItem's comment record
@@ -40,8 +41,9 @@ global with sharing class IPM_CommentsListController {
         	onLoadComments();
         }
         
-        if(parentID!=null && IPM_ConstantUtils.EMPTY_STRING_INITIAL != parentID)
+        if(parentID!=null && IPM_ConstantUtils.EMPTY_STRING_INITIAL != parentID){
                 countOfComments=[Select Count() from FeedItem where ParentId =: parentID and type =:IPM_ConstantUtils.COMMENT_TYPE];
+        }
      }
     /*****************************************************************
     @Description :Add a new feedItem as a comment to the project document section
@@ -63,15 +65,15 @@ global with sharing class IPM_CommentsListController {
                     Apexpages.addmessage(new apexpages.message(apexpages.severity.info,System.Label.IPM_Data_Value_Too_Large));
                 }
                 else{
-                        if(insertCommentsList != null && !insertCommentsList.isEmpty())
-                        insert insertCommentsList;
+                        if(insertCommentsList != null && !insertCommentsList.isEmpty()){
+                        	insert insertCommentsList;
+                        }
                 } 
                 onLoadComments();
                 getCommentsWrapper();
             }
             catch(Exception ex){
-                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
-            				ADD_COMMENT,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,null);
+                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,ADD_COMMENT,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,null);
                 string msg=ex.getmessage(); 
                 if(msg.contains(System.Label.IPM_Data_Value_Too_Large)){           
                     Apexpages.addmessage(new apexpages.message(apexpages.severity.info,System.Label.IPM_Data_Value_Too_Large));
@@ -86,11 +88,9 @@ global with sharing class IPM_CommentsListController {
                         update projDocSec;// update the project documetn section record for the counts of commens
                  }
                  catch(Exception ex){
-                         string msg=ex.getmessage(); 
-	                 Apexpages.addmessage(new apexpages.message(apexpages.severity.error,msg));
-	                 
-	                 ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
-            				ADD_COMMENT,ex.getMessage(),ex, 'Error', null, null, null,null);
+                     Apexpages.addmessage(new apexpages.message(apexpages.severity.error,ex.getmessage()));
+                     
+                     ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,ADD_COMMENT,ex.getMessage(),ex, 'Error', null, null, null,null);
                  }
         } 
     }
@@ -141,8 +141,7 @@ global with sharing class IPM_CommentsListController {
                 }
                 catch (Exception ex){
                     ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,Label.IPM_Generic_ErrorMessage )); 
-                    ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
-            				'doDelete',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
+                    ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,'doDelete',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
                 }
            }
         }

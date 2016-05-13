@@ -17,8 +17,9 @@ public with sharing class IPM_FileUploadController {
     public Boolean isUpload{get; set;}
     public Attachment myfiles{ //Getter for the attachment
         get {
-            if (myfiles== null)
+            if (myfiles== null){
                 myfiles= new Attachment ();
+		    }
             
             return myfiles;
         }
@@ -69,7 +70,8 @@ public with sharing class IPM_FileUploadController {
                     SAVEDOC_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
             }
             finally {          
-                docAttachment.body = null;       
+                docAttachment.body = null;   
+                myfiles.body = null;    
                 docAttachment= new Attachment();        
             }        
         } 

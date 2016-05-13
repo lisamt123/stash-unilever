@@ -14,15 +14,16 @@
 <apex:attribute name="imageId" description="To Display Image Hover Options" required="false" type="Id"/>
 <apex:attribute name="channelType" description="To Display Image Hover Options" required="false" type="String"/>
 <apex:attribute name="component" description="Name of the component from where request made" required="false" type="String"/>
-
+    <!-- Show the content on image hover -->
     <apex:outputPanel layout="block" rendered="{!imageHover}">
         <div class="updateDeletimg">
             <ul class="imgupdatelink">
+                <!-- Display the content when the section is Customer channel -->
               <apex:outputPanel rendered="{!component=$Label.IPM_Customer_Channel}"> 
                   <li><a title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}" value="{!$Page.IPM_ChannelImageUpload}?Id={!projectId}&projDocSecId={!projDocSecId}&contentId={!contentId}&desc={!channelType}" id="uploadImage" data-target="#ipmModal" data-toggle="modal" data-keyboard="false" data-backdrop="static">{!$Label.IPM_UpdateLabel}</a></li>
                   <li><a onclick="delImage('{!contentId}','{!projDocSecId}','{!imageId}','{!channelType}')">{!$Label.IPM_Delete_Button}</a></li>
               </apex:outputPanel> 
-              
+              <!-- Display the content when the section is Consumer Evidence -->
               <apex:outputPanel rendered="{!component=$Label.IPM_Consumer_Evidence}"> 
                   <li><a title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}" value="{!$Page.IPM_ConsumerEvidenceImageUpload}?Id={!projectId}&projDocSecId={!projDocSecId}&projDocSecConId={!contentId}" id="consumerImage" data-target="#ipmModal" data-toggle="modal" data-keyboard="false" data-backdrop="static">{!$Label.IPM_UpdateLabel}</a></li>
                   <li><a onclick="delConceptImage('{!contentId}')">{!$Label.IPM_Delete_Button}</a></li>

@@ -1,13 +1,32 @@
+/******************************************** 
+@Author: Cognizant
+@name: IPM_BETSuggestedMembersController_Test
+@CreateDate: 04/06/2015
+@Description: Test class to test IPM_BETSuggestedMembersController  Class.
+@Version: 1.0
+@reference: 
+*********************************************/
+
 @isTest(SeeAllData = false)
 public class IPM_BETSuggestedMembersController_Test {
     
     Static User runningUser;
 
     Static void initialSetup() {
+        
         test.loadData(IPM_Project_Type__c.sobjectType, 'IPM_ProjectType');
         
+        List < IPM_Project_Type__c > lstProjType = IPM_Project_Type__c.getAll().values();
+         
+        System.assertNotEquals(lstProjType ,null ,'Failed to load IPM_Project_Type__c.');
+        
         runningUser = IPM_TestFactory_Helper.createUser(true);
+        
+        System.assertEquals(1 , [Select count() from User where Id =:runningUser.Id] ,'Failed to create user.');
+        
         User AdminUser = IPM_TestFactory_Helper.createUserAdmin(true);
+        
+        System.assertEquals(1 , [Select count() from User where Id =:AdminUser.Id] ,'Failed to create admin user.');
         
         //to avoid mix dml error  ,we are assigning permission  set  using admin user 
         system.runAs(AdminUser) {
@@ -18,6 +37,8 @@ public class IPM_BETSuggestedMembersController_Test {
             insert new List < PermissionSetAssignment > {
                 psaIPMNG, psaProjectLeader
             };
+            
+             System.assertEquals(2 , [Select count() from PermissionSetAssignment  where AssigneeId =: runningUser.Id AND ( PermissionSetId =: IPMProjectLeaderId OR PermissionSetId =: IPMNGBasicId ) ] ,'Failed to assign permission  sets.'); 
         }
     }
     
@@ -28,12 +49,26 @@ public class IPM_BETSuggestedMembersController_Test {
         system.runAs(runningUser) {
             uw_bet__c bet = BET_TestUtils.getTestBet();
             insert bet;
+            
+            System.assertEquals(1 , [Select count()  from uw_bet__c where Id =:bet.Id] ,'Failed to create BET record.');
+            
             IPM_Project__c ipmProject = (IPM_TestFactory_Helper.createOriginalProjectList(true, 1))[0];
             
+            System.assertEquals(1 , [Select count()  from IPM_Project__c where Id =:ipmProject.Id] ,'Failed to create project record.');
+            
             Test.startTest();
-             ipmproject.ipm_phase__c = IPM_ConstantUtils.PHASE_FEASIBILITY;
-             update ipmProject;
-             PageReference pRef1 = new PageReference('/apex/IPM_BETSuggestedMembers?id=' + ipmProject.id + '&showMembers=true&BETId=' + Bet.id);
+            
+             ipmproject.ipm_phase__c = IPM_ConstantUtils.PHASE_IDEAS;
+             
+             ipmproject.name ='ANZ1'; 
+             
+             update ipmProject; 
+             
+             System.assertEquals(ipmproject.name  , [Select name  from IPM_Project__c where Id =:ipmProject.Id].name ,'Failed to update project phase.');
+             
+             
+             PageReference pRef1 = new PageReference(Page.IPM_BETSuggestedMembers + '?id=' + ipmProject.id + '&showMembers=true&BETId=' + Bet.id);
+             
              ApexPages.currentPage().getParameters().put('BETId', Bet.id);
              ApexPages.currentPage().getParameters().put('id', ipmProject.id);
              Test.setCurrentPage(pRef1);
@@ -45,27 +80,5 @@ public class IPM_BETSuggestedMembersController_Test {
         }
     }
 
-    // Negative test to check for the error message
-    static testmethod void testupdateBETonProjectNegative() {
-        initialSetup();
-        system.runAs(runningUser) {
-            Test.startTest();
-            
-            try {
-                IPM_Project__c ipmProject = (IPM_TestFactory_Helper.createOriginalProjectList(true, 1))[0];
-                PageReference pRef1 = new PageReference('/apex/IPM_BETSuggestedMembers?id=' + ipmProject.id + '&showMembers=true&BETId=' + null);
-                ApexPages.currentPage().getParameters().put('BETId', 'InvalidId');
-                ApexPages.currentPage().getParameters().put('id', ipmProject.id);
-                Test.setCurrentPage(pRef1);
-                IPM_BETSuggestedMembersController cont = new IPM_BETSuggestedMembersController();
-                cont.updateBETonProject();
-            } catch (Exception e) {
-                Boolean expectedExceptionThrown = e.getMessage().contains(System.Label.IPM_BET_BETUpdate_failure_ErrMsg) ? true : false;
-                System.AssertEquals(expectedExceptionThrown, true, 'Intended custom error message not thrown');
-            }
-            
-            Test.stopTest();
-        }
-    }
-
+   
 }

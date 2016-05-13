@@ -1,0 +1,51 @@
+<apex:page Controller="CPA_SelectRecordTypeController"  >
+<style>
+.myTable { background-color:#eee;border-collapse:collapse; }
+.myTable th { background-color:#fff;color:white;width:50%; }
+.myTable td, .myTable th { padding:5px;border:1px solid #000; }
+
+</style>
+  <apex:form >
+  <apex:sectionHeader title="New {!titleText}" subtitle="Select {!titleText} Record Type"/> 
+    <apex:pageBlock title="Select {!titleText} Record Type"> 
+    <apex:PageBlockButtons >
+       <apex:commandButton action="{!redirectToPageNewItem}" value="Continue">
+       <apex:param name="objName" value="{!objName}" assignTo="{!objName}"/>
+       </apex:commandButton>
+       <apex:commandButton action="{!cancelRedirect}" value="Cancel"/> 
+        
+    </apex:PageBlockButtons>
+
+      
+     
+      <apex:pageBlockSection columns="1" collapsible="false"  id="theSec">
+       <apex:selectList label="{!$Label.CPA_RecordType}" value="{!recordtypeId}" style=" width: 177px; form-control" size="1" > 
+        <apex:selectOptions value="{!recordTypelist}" /> 
+      </apex:selectList>
+       
+        
+      </apex:pageBlockSection>   
+      
+      
+ <apex:pageBlockSection title="{!$Label.CPA_RecordType_Details}" columns="1" collapsible="false"  >
+<table style="width:30%" class="myTable" border="1">
+  <tr>
+    <td><strong>Name</strong></td>
+    <td><strong>Description</strong></td> 
+    
+  </tr>
+   <apex:repeat value="{!schemeList}" var="obj">
+  <tr>
+    <td>{!obj.Name}</td>
+    <td>{!obj.Description}</td>
+    
+  </tr>
+  </apex:repeat>
+</table>
+</apex:pageBlockSection>
+         
+    </apex:pageBlock>
+      
+    
+  </apex:form>
+</apex:page>

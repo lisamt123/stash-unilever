@@ -58,7 +58,7 @@ public with sharing class Core_CA_Approver_ApproveController {
         if(!lstApprover.isempty()){
             integer count=0;
             for(Core_Approver_Details__c Approver : lstApprover){
-                    if(Approver.Interested_Party__c==Userinfo.getuserId() && Approver.Role__c=='APP'&&Approver.Source_System__c=='Ariba' && Approver.Is_Active__c==true) count++;
+                    if(Approver.Interested_Party__c==Userinfo.getuserId() && Approver.Role__c=='APP'&&Approver.Source_System__c=='Ariba' && Approver.Is_Active__c) count++;
                     if(Approver.Role__c=='EMP'&& Approver.Action__c =='CANC'&& Approver.Source_System__c=='GTES') bolGTES_CANC=true;
             }
             if(lstApproverId[0].Interested_Party__c==Userinfo.getuserId() && lstApproverId[0].Role__c=='APP'){ 
@@ -66,7 +66,7 @@ public with sharing class Core_CA_Approver_ApproveController {
                     strMsg=CORE_Chatter_Approval__c.getinstance('AppRejAribaMessage').Text_Value__c;
                     bolAribaChkBox=true;
                 }
-                if((lstApproverId[0].Source_System__c=='GTES' && lstApproverId[0].Action__c!='COPY') || (lstApproverId[0].Source_System__c=='Ariba' && lstApproverId[0].Is_Active__c==true)){ 
+                if((lstApproverId[0].Source_System__c=='GTES' && lstApproverId[0].Action__c!='COPY') || (lstApproverId[0].Source_System__c=='Ariba' && lstApproverId[0].Is_Active__c)){ 
                     if(lstApproverId[0].Status__c=='Approved'||lstApproverId[0].Status__c=='Rejected') bolAppRej=true;
                     if(lstApproverId[0].Status__c=='Rejected'&&lstApproverId[0].Source_System__c=='Ariba'&&count==1) bolAppRej=false;
                     //if(lstApproverId[0].Source_System__c=='Ariba') bolAribaChkBox=true;
@@ -76,13 +76,13 @@ public with sharing class Core_CA_Approver_ApproveController {
                         approverRecId =lstApproverId[0].id;
                         strStatus=lstApproverId[0].Status__c;
                         strSourceSystem=lstApproverId[0].Source_System__c;
-                        if(bolGTES_CANC==true) bolCANCConfirm=true;
+                        if(bolGTES_CANC) bolCANCConfirm=true;
                 }
             }
         }
-        if(bolAppRej==true||bolCANCConfirm==true){
-            if(bolAppRej==true) strMsg=CORE_Chatter_Approval__c.getinstance('AppRejAlreadyStatus').Text_Value__c;
-            if(bolCANCConfirm==true) strMsg=CORE_Chatter_Approval__c.getinstance('AppRejGTESCANCMessage').Text_Value__c;
+        if(bolAppRej||bolCANCConfirm){
+            if(bolAppRej) strMsg=CORE_Chatter_Approval__c.getinstance('AppRejAlreadyStatus').Text_Value__c;
+            if(bolCANCConfirm) strMsg=CORE_Chatter_Approval__c.getinstance('AppRejGTESCANCMessage').Text_Value__c;
             //strMsg= strMsg.replace('XXXXXX',strStatus);
             bolApprover =false;
         }

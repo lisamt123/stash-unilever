@@ -8,6 +8,16 @@
   width: 90%;
   margin-left: 5%;
 }
+.THIS .cross_img{
+    height: 35px;
+    width: 53px;
+    float: right;
+    margin-top: -8px;
+    padding-top: 6px;
+}
+.THIS .default-rating {
+    margin-top: -6px;
+}
 .THIS .section_acc {
   background: white;
   height: 225px;
@@ -15,17 +25,18 @@
   border-bottom-right-radius: 8px;
   width: 100%;
   margin-left:0;
-    margin-top:15px;
+   margin-top: 10px;
 }
 .THIS .t-title_acc {
-  margin-left: 5px;
+  margin-left: 10px;
   color: white;
   font-weight: 500;
   font-size: 1.8rem;
   line-height: 1.25;
+  margin-top: 5px;
 }
 .THIS .a-title_acc {
-  margin-left: 5px;
+  margin-left: 10px;
   color: white;
   font-size: 1.2rem;
   font-weight: 300;
@@ -39,21 +50,21 @@
   margin-top: 15px;
 }
 .THIS .rateTitle_acc{
-  margin-left: 5px;
+  margin: 0 20%;
   color: black;
   font-weight: bold;
   font-size: 14px;
   line-height: 1.25;
-    margin-top:0px;
-    width: 60%;
+  width: 60%;
   align-content: center;
   text-align: center;
-  margin-left: 5rem;
   font-weight:bold;
+}
+.THIS .act_Req_user p {
+  text-align: center;
 }
 .THIS .act_Req_user
 {
-  margin-left: 12rem;
   color: black;
   font-weight: bold;
   font-size: 18px;
@@ -112,8 +123,11 @@
   width: 80px;
   height: 80px;
   border-radius: 100px;
-  margin-left: 12rem;
-    margin-top: 20px;
+  margin-top: 20px;
+}
+
+.THIS .prof_pic {
+  text-align: center;
 }
 .THIS .close_btn{
   width: 15px;

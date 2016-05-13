@@ -1,0 +1,1 @@
+Your request to link {!IPM_Project__c.Name} to {!IPM_Project__c.BET_Denied_BET_Link__c} has been denied by the BET Owner. Please change your selection in core parameters via the ' Change BET selection' on your <a href="https://unilever--ipmtrain.cs14.my.salesforce.com/apex/IPM_ProjectOverview?id={!IPM_Project__c.Id}">IPM Project Overview</a>.

@@ -1,0 +1,65 @@
+<!--====================================================-->
+<!--Name:  CEC_IRIProductLocator                        -->
+<!--Copyright notice:2016 @ Unilever                    -->
+<!--====================================================-->
+<!--====================================================-->
+<!-- Purpose: To query for the product locator          -->
+<!--====================================================-->
+<!--====================================================-->
+<!-- History                                            -->
+<!-- -------                                            -->
+<!-- VERSION  AUTHOR      DATE            DETAIL               RELEASE/CSR     -->
+<!-- 1.0 -    Nagesh     Jan-2015      INITIAL DEVELOPMENT     Sprint VI(NA)   -->
+<!-- 1.0 -    koti       Jan-2015      Added Custom Labels     Sprint VI(NA)   -->
+
+<apex:page controller="CEC_IRIProductLocatorController" showHeader="false" sidebar="false">
+    <apex:form >
+        
+        <apex:pageBlock >
+            <apex:pageMessages ></apex:pageMessages>
+            
+            <apex:pageBlockSection columns="3">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$Label.CEC_PostCode}"></apex:outputLabel> 
+                    <apex:inputText value="{!postCode}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$Label.CEC_ProductCode}"></apex:outputLabel>
+                    <apex:inputText value="{!prodCode}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$Label.CEC_PageSize}"></apex:outputLabel>
+                    <apex:selectList value="{!pageSize}" size="1">
+                        <apex:selectOptions value="{!pageSizeOptions}"/>
+                    </apex:selectList>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+
+            
+            <div align="center" draggable="false" >
+                <apex:commandButton value="Store Search" style="float:centre" action="{!IRISearch}"/>&nbsp;&nbsp;&nbsp;&nbsp;       
+                <apex:commandButton value="Add to Case" style="float:centre" action="{!addToCase}"/>              
+            </div>
+                        
+            <apex:pageBlockTable value="{!stores}" var="pl" id="CaseProdLoc" rendered="{!IF(stores==null,FALSE, TRUE)}">
+                <apex:column >
+                    <apex:inputCheckbox value="{!pl.ISSELECTED}"/>
+                </apex:column>
+                <!--<apex:column headerValue="Store Id" value="{!pl.STORE_ID}"/>-->
+                <apex:column headerValue="{!$Label.CEC_Phone}" value="{!pl.PHONE}"/>
+                <apex:column headerValue="{!$Label.CEC_Address}" value="{!pl.ADDRESS}"/>
+                <apex:column headerValue="{!$Label.CEC_Distance}" value="{!pl.DISTANCE}"/>
+                <apex:column headerValue="{!$Label.CEC_City}" value="{!pl.CITY}"/>
+                <apex:column headerValue="{!$Label.CEC_State}" value="{!pl.STATE}"/>
+                <apex:column headerValue="{!$Label.CEC_ZipCode}" value="{!pl.ZIP}"/>
+                <apex:column headerValue="{!$Label.CEC_Longitude}" value="{!pl.LONGITUDE}"/>
+                <apex:column headerValue="{!$Label.CEC_Latitude}" value="{!pl.LATITUDE}"/>
+                <apex:column headerValue="{!$Label.CEC_Name}" value="{!pl.NAME}"/>
+                <!--<apex:column headerValue="Store Number" value="{!pl.STORE_NUMBER}"/>
+                <apex:column headerValue="UPC COde" value="{!pl.UPC_CODE}"/>-->
+                
+            </apex:pageBlockTable>              
+        </apex:pageBlock>
+    </apex:form>
+    
+</apex:page>

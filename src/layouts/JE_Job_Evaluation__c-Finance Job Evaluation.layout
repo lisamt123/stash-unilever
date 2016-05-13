@@ -165,11 +165,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Influence_in_Decison_Making_Process_Comm__c</field>
+                <field>Influence_in_Decision_Making_Process__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Influence_in_Decision_Making_Process__c</field>
+                <field>Influence_in_Decison_Making_Process_Comm__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns/>
@@ -313,7 +313,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hL0000000NWtU</masterLabel>
+        <masterLabel>00hE000000SCaaR</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

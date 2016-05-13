@@ -9,6 +9,8 @@
     <aura:attribute name="MailToBody4" type="String" />
     <aura:attribute name="MailToBody5" type="String" />
     <aura:attribute name="MailSubject" type="String"/>
+    <aura:attribute name="pagename" type="String" />
+    <aura:attribute name="index" type="integer"/>
     <ltng:require styles="/resource/EA_StaticResource/css/bootstrap.3.3.css" />
     
     <ltng:require styles="/resource/EA_StaticResource/css/bootstrap.3.3.css" />
@@ -34,9 +36,13 @@
       <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
     <div class="slds-modal__container">
         <div class="chat_btn">
-        <div><button  class="chatter" onclick="{!c.chatterfeeditem1}"> Chatter</button></div>
+        <div>
+            <button  class="chatter" onclick="{!c.chatterfeeditem1}"> Chatter</button>
+           
+            </div>
           <div class="divider"></div>
-        <div><button  class="email" onclick="{!c.gotoDetail}"> <a  href="{!'mailto:?subject='+v.MailSubject+'&amp;body='+v.MailToBody1+'%20'+v.activityDetail.Name+'%20'+v.MailToBody2+'%0D%0A%0D%0A'+v.MailToBody5+'%20'+v.activityDetail.Description__c+'%0D%0A%0D%0A'+v.MailToBody3+'%0D%0A%0D%0A'+v.MailToBody4}" style="color: #344A5F" >
+        <div><button  class="email" onclick="{!c.gotoDetail}">
+            <a  href="{!'mailto:?subject='+v.MailSubject+'&amp;body='+v.MailToBody1+'%20%22'+v.activityDetail.Name+'%22%20'+v.MailToBody2+'%20'+v.MailToBody4}" style="color: #344A5F" >
                          <div class="anchor" >Email</div>
                      </a></button></div>
           <div><button  onclick="{!c.cancelShare}" class="cancel">Cancel</button></div>  

@@ -99,13 +99,35 @@ global with sharing class CEC_NewAccountController{
             duplicateConsumers = new Map<Id, ConsumerWrapper>();  
             duplicateConsumerList = new List<ConsumerWrapper>();
             Boolean  hasResultToDisplayFlag = false; 
-            if(String.isNotBlank(newConsumer.LastName) || String.isNotBlank(newConsumer.PersonMailingPostalCode) || String.isNotBlank(newConsumer.PersonMailingStreet) || String.isNotBlank(newConsumer.PersonEmail) || String.isNotBlank(newConsumer.Phone)) {  
+            System.debug('**** Search consumer parameters : ' + newConsumer);
+            if(String.isNotBlank(newConsumer.LastName) || String.isNotBlank(newConsumer.PersonMailingPostalCode) || 
+                    String.isNotBlank(newConsumer.PersonMailingStreet) || String.isNotBlank(newConsumer.PersonEmail) || 
+                    String.isNotBlank(newConsumer.Phone) || String.isNotBlank(newConsumer.Local_Identifier__c)) {  
                 newConsumer.RecordTypeId = [Select Id From RecordType Where SObjectType = 'Account' And Name = 'Person Account'].Id;
 
                 // If there is a phone value then remove all the special characters and set the value to the custom field. This will be used in the DupeBlocker search for the phone which has special characters.
                 if (String.isNotBlank(newConsumer.Phone)) {
                     newConsumer.Phone_No_Special_Char__c = CEC_Util.removeSpecialChar(newConsumer.Phone);
                 }
+                
+                User loggedinuser = [select UserRole.name from User where id = :UserInfo.getUserId()];
+                string  UserRole =  loggedinuser.UserRole.name;
+                system.debug('User role :=' +UserRole);
+                system.debug('Local_Identifier__c :=' +newConsumer.Local_Identifier__c);
+                
+                if (String.isNotBlank(newConsumer.Local_Identifier__c)) {
+					newConsumer.Local_Identifier_No_Special_Char__c = newConsumer.Local_Identifier__c;
+					
+                    cec_Org_Settings__c SpecialRoles = cec_Org_Settings__c.getOrgDefaults();
+					if (SpecialRoles.Local_Identifier_Special_roles__c != null){
+						if (SpecialRoles.Local_Identifier_Special_roles__c.contains(UserRole)) {  
+							newConsumer.Local_Identifier_No_Special_Char__c = CEC_Util.removeSpecialChar(newConsumer.Local_Identifier__c);
+						}						
+                    }
+                }
+
+                system.debug('Local_Identifier_No_Special_Char__c :=' +newConsumer.Local_Identifier_No_Special_Char__c);
+                
                 String accountString = JSON.serialize(newConsumer);                
                 accountString = accountString.subString(0, accountString.length() - 1 ) + ',"IsPersonAccount":true}';
                 newConsumer = (Account)JSON.deserialize( accountString, Account.class );
@@ -119,7 +141,7 @@ global with sharing class CEC_NewAccountController{
                             accountIds.add(accId);
                         }
                     }        
-                    for (Account consumer : [Select Salutation, Name, Phone, FirstName, LastName, IsPersonAccount,PersonEmail, PersonMailingStreet, PersonMailingCity, PersonMailingPostalCode, PersonMailingState, PersonMailingCountry, Latest_Case_Number__c, Latest_Case_Reason_Code__c,Latest_Case_Product_Code__c,Phone_No_Special_Char__c From Account Where Id In : accountIds]) {
+                    for (Account consumer : [Select Salutation, Name, Phone, FirstName, LastName, IsPersonAccount,PersonEmail, PersonMailingStreet, PersonMailingCity, PersonMailingPostalCode, PersonMailingState, PersonMailingCountry, Latest_Case_Number__c, Latest_Case_Reason_Code__c,Latest_Case_Product_Code__c,Phone_No_Special_Char__c,Consumer_Note__c,VIP__c,Local_Identifier__c, Local_Identifier_No_Special_Char__c From Account Where Id In : accountIds]) {
                         duplicateConsumers.put(consumer.Id, new ConsumerWrapper(consumer)); 
                     }
                     List<ConsumerWrapper> unOrderedConsumerList = duplicateConsumers.values(); 
@@ -253,29 +275,46 @@ global with sharing class CEC_NewAccountController{
 
     /*
         The Consumer search results returned by DupeBlocker should be Ordered based on the following criterias
-        1. Email Match
-        2. Phone Match
-        3. PostCode Match
-        4. Street + LastName Match
+        1. Local Identifier
+        2. Email Match
+        3. Phone Match
+        4. PostCode Match
+        5. Street + LastName Match
+        6. Street + City Match
         The rest of the Consumer records are ignored.
     */
     public List<ConsumerWrapper> filterAndReorderSearchResults(List<ConsumerWrapper> duplicateConsumerList) { 
 
         List<ConsumerWrapper> finalOrderedConsumerList = new List<ConsumerWrapper>();
+        Set<Id> accountIdSet = new Set<Id>();
 
         System.debug('The Consumer List to be filtered/Ordered :: ' + duplicateConsumerList);
 
-        // Order 1 : Check the email match
+        // Order 1 : Check the Local Identifier match
+        if(String.isNotBlank(newConsumer.Local_Identifier_No_Special_Char__c)) {
+            
+            String searchLocalIdentifier = newConsumer.Local_Identifier_No_Special_Char__c;
+            for(ConsumerWrapper account : duplicateConsumerList) {
+                if (account.resultOrderFlag != true && String.isNotBlank(account.consumer.Local_Identifier_No_Special_Char__c) && account.consumer.Local_Identifier_No_Special_Char__c == searchLocalIdentifier) {
+                    account.resultOrderFlag = true;
+                    finalOrderedConsumerList.add(account);
+                    accountIdSet.add(account.consumer.Id);
+                }
+            }
+        } 
+        
+        // Order 2 : Check the email match
         if(String.isNotBlank(newConsumer.PersonEmail)) {
             String searchEmailStr = newConsumer.PersonEmail;
             for(ConsumerWrapper account : duplicateConsumerList) {
                 if (account.resultOrderFlag != true && String.isNotBlank(account.consumer.PersonEmail) && account.consumer.PersonEmail == searchEmailStr) {
                     account.resultOrderFlag = true;
                     finalOrderedConsumerList.add(account);
+                    accountIdSet.add(account.consumer.Id);
                 }
             }
         }
-        // Order 2 : Check the phone match
+        // Order 3 : Check the phone match
         if(String.isNotBlank(newConsumer.Phone_No_Special_Char__c) && newConsumer.Phone_No_Special_Char__c.length() >= 6) {
             // Get last 6 characters of the phone.
             String searchPhoneStr = newConsumer.Phone_No_Special_Char__c.subString(newConsumer.Phone_No_Special_Char__c.length()-6);
@@ -283,11 +322,12 @@ global with sharing class CEC_NewAccountController{
                 if (account.resultOrderFlag != true && String.isNotBlank(account.consumer.Phone_No_Special_Char__c) && account.consumer.Phone_No_Special_Char__c.contains(searchPhoneStr)) {
                     account.resultOrderFlag = true;
                     finalOrderedConsumerList.add(account);
+                    accountIdSet.add(account.consumer.Id);
                 }
             }
         }
 
-        // Order 3 : Check the PostalCode match
+        // Order 4 : Check the PostalCode match
 
         if(String.isNotBlank(newConsumer.PersonMailingPostalCode)) {
             String searchPostalCodeStr = newConsumer.PersonMailingPostalCode;
@@ -295,11 +335,12 @@ global with sharing class CEC_NewAccountController{
                 if (account.resultOrderFlag != true && String.isNotBlank(account.consumer.PersonMailingPostalCode) && account.consumer.PersonMailingPostalCode == searchPostalCodeStr) {
                     account.resultOrderFlag = true;
                     finalOrderedConsumerList.add(account);
+                    accountIdSet.add(account.consumer.Id);
                 }
             }
         }
 
-        // Order 4 : Check the Street & LastName match
+        // Order 5 : Check the Street & LastName match
 
         if(String.isNotBlank(newConsumer.PersonMailingStreet) && String.isNotBlank(newConsumer.LastName)) {
             String searchStreetStr = newConsumer.PersonMailingStreet;
@@ -308,9 +349,21 @@ global with sharing class CEC_NewAccountController{
                 if (account.resultOrderFlag != true && String.isNotBlank(account.consumer.PersonMailingStreet) && String.isNotBlank(account.consumer.LastName) && account.consumer.PersonMailingStreet == searchStreetStr && account.consumer.LastName == searchLastNameStr) {
                     account.resultOrderFlag = true;
                     finalOrderedConsumerList.add(account);
+                    accountIdSet.add(account.consumer.Id);
                 }
             }
         }
+        
+        //Order 6 : Display Street fuzzy match
+        if(String.isNotBlank(newConsumer.PersonMailingStreet) && String.isNotBlank(newConsumer.PersonMailingCity)) {
+           
+            for(ConsumerWrapper account : duplicateConsumerList) {
+                if(!accountIdSet.contains(account.consumer.Id))
+                    finalOrderedConsumerList.add(account);
+            }
+        }
+      
+        
         return finalOrderedConsumerList;
     }
     

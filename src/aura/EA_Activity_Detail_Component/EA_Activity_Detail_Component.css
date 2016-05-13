@@ -3,20 +3,36 @@
    
 }
 .THIS .share_img{
-  
     border-radius: 200px;
     width: 40px;
-    margin-left: 50px;
-    margin-top:12px;
+    margin: 12px auto;
     
+}
+
+.THIS .chat_icon ul li {
+    width: 33%;
+}
+.THIS .see_more{
+    padding-left:12px;
+    color: #007ec1;
+    cursor: pointer;
+    line-height:38px;
+    font-size:1.4rem;
+}
+.THIS ul.piclist-inline span {
+        margin: 8% 13px;
+    font-size: 1.4rem;
+}
+.THIS .slds-tabs--default.chat_icon {
+    border-top: 1px solid #e9eaea;
+    width: 90%;
+    margin-top:12px;
 }
 .THIS .approve_img{
     
    border-radius: 200px;
     width: 40px;
-    margin-left: 50px;
-      margin-top:12px;
-    
+   margin: 12px auto;
 }
 .THIS .imageBorder {
    
@@ -40,9 +56,10 @@
 .THIS .min-sec{
     width: 90%;
     background: #eef1f6;
-    margin-top: -30px;
+    margin-top: 30px;
     margin-left: 5%;
     height: 50%;
+    padding-bottom: 5px;
 }
 .THIS .min-table{
   background-color: transparent;
@@ -51,10 +68,10 @@
   margin-left: 5%;
 }
 
-
 .THIS .min-table td{
-    padding-left: 5px;
     padding-top:5px;
+    padding-top: 5px;
+  	text-align: -webkit-auto;
 }
 .THIS .tdFont{
   color: #4F6A92;
@@ -112,7 +129,7 @@
   letter-spacing: .0625em;
   color: #4F6A92;
   margin-left: 12px;
-  padding-top: 20px;
+  padding-top: 8px;
 }
 
 .THIS .topTip {
@@ -178,4 +195,17 @@
     width:2rem;
     height:2rem;
     margin-top: 60px;
+}
+.THIS td.tdFont {
+    width: 30%;
+}
+.THIS .td_img_icon{
+    width:6%;
+}
+.THIS .section {
+  background: white;
+  height: 100%;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  padding-bottom:10px;  
 }

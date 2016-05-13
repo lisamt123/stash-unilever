@@ -36,7 +36,7 @@ public without sharing class BET_EmailNotificationService {
         mail.setHtmlBody(String.format(Label.BET_LeadProjectRequestNotification,new List<String>{project.projectName,bet.name,beturl,bet.name,beturl,bet.name,bet.name}));
         
         List<Messaging.SingleEmailMessage> messagesToBeSent = new List<Messaging.SingleEmailMessage> {mail};
-        if(!Test.isRunningTest()) {
+        if(!Test.isRunningTest() && !sendTo.isEmpty()) {
             Messaging.sendEmail(new List<Messaging.SingleEmailMessage> {mail});
         }
         return messagesToBeSent;
@@ -64,7 +64,7 @@ public without sharing class BET_EmailNotificationService {
         mail.setSubject(String.format(Label.BET_MultipleRequestNotificationSubject,new List<String>{bet.name}));
         mail.setHtmlBody(String.format(Label.BET_MultipleRequestNotification,new List<String>{bet.name,project.projectName,beturl,bet.name}));
         List<Messaging.SingleEmailMessage> messagesToBeSent = new List<Messaging.SingleEmailMessage> {mail};
-        if(!Test.isRunningTest()) {
+        if(!Test.isRunningTest() && !sendTo.isEmpty()) {
             Messaging.sendEmail(messagesToBeSent);
         }
         return messagesToBeSent;
@@ -88,7 +88,7 @@ public without sharing class BET_EmailNotificationService {
         mail.setSubject(String.format(Label.BET_UnlinkedProjectNotificationSubject,new List<String>{oldProject.projectName,bet.name}));
         mail.setHtmlBody(String.format(Label.BET_UnlinkedProjectNotification,new List<String>{oldProject.projectName,bet.name,newProject.projectName,bet.name}));
         List<Messaging.SingleEmailMessage> messagesToBeSent = new List<Messaging.SingleEmailMessage> {mail};
-        if(!Test.isRunningTest()) {
+        if(!Test.isRunningTest() && !sendTo.isEmpty()) {
             Messaging.sendEmail(messagesToBeSent);
         }
         return messagesToBeSent;
@@ -117,7 +117,7 @@ public without sharing class BET_EmailNotificationService {
         mail.setSubject(String.format(Label.BET_NewLeadProjectNotificationSubject,new List<String>{newProject.projectName,bet.name}));
         mail.setHtmlBody(String.format(Label.BET_NewLeadProjectNotification, new List<String>{newProject.projectName,bet.name,bet.name}));
         List<Messaging.SingleEmailMessage> messagesToBeSent = new List<Messaging.SingleEmailMessage> {mail};
-        if(!Test.isRunningTest()) {
+        if(!Test.isRunningTest() && !sendTo.isEmpty()) {
             Messaging.sendEmail(messagesToBeSent);
         }
         return messagesToBeSent;
@@ -143,7 +143,7 @@ public without sharing class BET_EmailNotificationService {
         mail.setHtmlBody(String.format(Label.BET_UnfollowNotification, new List<String>{project.projectName,bet.name,beturl,bet.name}));
 
         List<Messaging.SingleEmailMessage> messagesToBeSent = new List<Messaging.SingleEmailMessage> {mail};
-        if(!Test.isRunningTest()){
+        if(!Test.isRunningTest() && !sendTo.isEmpty()){
             Messaging.sendEmail(messagesToBeSent);
         }
         return messagesToBeSent;
