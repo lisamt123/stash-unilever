@@ -102,7 +102,10 @@ private class PBS_LibraryController_Test {
         pbsLibrary.filterArticleType = 'PBS_Wiki__kav';
         System.assertEquals(1, pbsLibrary.getPbsArticleList().size(), 'There should be 1 article');
         System.assertEquals(pbsLibrary.filterArticleType, pbsLibrary.getPbsArticleList().get(0).ArticleType, 'Article type should match filter');
-
+        
+        pbsLibrary.searchstring = 'test wiki';
+        pbsLibrary.getPbsArticleSearchList();
+        
         Test.stopTest();
     }
 
