@@ -74,10 +74,10 @@ src/reports/UID_Inventory_and_Stock_Cover_View/Trend_Report_Inventory_YTD_V_2_Fi
 src/pages
 src/pages/UID_Currency_Button.page
 src/pages/UID_Currency_Button.page-meta.xml
-src/pages/UID_Switch_User_Currency.page
-src/pages/UID_Switch_User_Currency.page-meta.xml
 src/pages/UID_Switch_User_CurrencyTab.page
 src/pages/UID_Switch_User_CurrencyTab.page-meta.xml
+src/pages/UID_Switch_User_Currency.page
+src/pages/UID_Switch_User_Currency.page-meta.xml
 src/roles
 src/roles/UI_DMS_BDD_KR.role
 src/roles/UI_DMS_BDD_NA.role
