@@ -221,18 +221,18 @@ function commonfnCall() {
 	$j(".reallocatepopupstatus select option[value='Pending']").remove();
 	$j(".reallocatepopupstatus select option[value='']").remove(); 
 	
-	/*
 	if($j('.loadErrorParent').length) {
 		$j('html,body').animate({scrollTop: $j('.loadErrorParent').offset().top},'slow');
 	} else if($j(".errorM3").length){
 		$j('html,body').animate({scrollTop: $j('.errorM3').offset().top},'slow');
 	}
-	*/
 }
 
 function defaultParamCall() {
 	var defaultParam = urlParam('defaultPage');
-
+	
+	var isJobdetail = false;
+	isJobdetail 	= ($j('.loadErrorParent').length > 0 || (($j('.job_detail_main .messageText').length > 0)&& $j('.job_detail_main_error_visibility').is(":visible"))|| ($j('.job_detail_main .message').length > 0 && $j('.tabsection .messageText').is(':hidden')));
     if (defaultParam) {
         $j('.main_inner_sectionh4[hashId=' + defaultParam + ']').find('div').attr('class', 'commonall foldclass');
         var data_id_selected = $j('.main_inner_sectionh4[hashId=' + defaultParam + ']').find('div').attr('data-id');
@@ -246,25 +246,27 @@ function defaultParamCall() {
         if (data_id_selected) {
             $j('.' + data_id_selected).show();
         }
-		
+		/*
 		if($j('.loadErrorParent').length) {
 			$j('html,body').animate({scrollTop: $j('.loadErrorParent').offset().top},'slow');
 		} else if($j(".errorM3").length){
 			$j('html,body').animate({scrollTop: $j('.errorM3').offset().top},'slow');
 		}
-	}else if (($j('.compulsory-validation select').val() == '' && $j('.tabsection .errorM3').length == 0)&&($j('.loadErrorParent').length > 0 || (($j('.job_detail_main .messageText').length > 0)&& $j('.job_detail_main_error_visibility').is(":visible"))|| ($j('.job_detail_main .message').length > 0 && $j('.tabsection .messageText').is(':hidden')))) {
+		*/
+	}else if (($j('.compulsory-validation select').val() == '' && $j('.tabsection .errorM3').length == 0)&&(isJobdetail)) {
         $j('.main_inner_sectionh4[hashId=jobdetails]').find('div').attr('class', 'commonall foldclass');
 
         var data_id_selected = $j('.main_inner_sectionh4[hashId=jobdetails]').find('div').attr('data-id');
         if (data_id_selected) {
             $j('.' + data_id_selected).show();
         }
-		
+		/*
 		if($j('.loadErrorParent').length) {
 			$j('html,body').animate({scrollTop: $j('.loadErrorParent').offset().top},'slow');
 		} else if($j(".errorM3").length){
 			$j('html,body').animate({scrollTop: $j('.errorM3').offset().top},'slow');
 		}
+		*/
     } else if ($j('.compulsory-validation select').val() !== '' || $j('.tabsection .messageText').length > 0) {		
         $j('.main_inner_sectionh4[hashId=new_saving]').find('div').attr('class', 'commonall foldclass');
 
@@ -274,10 +276,37 @@ function defaultParamCall() {
         }		
 
     }
-	
 	loadErrorParentCall();
 }
 
+function loadErrorParentCall() {
+    /*Load Error code*/ 
+
+    $j('.loadError').each(function() {
+        var lengthOfParent = $j(this).attr('data-width');
+        if (lengthOfParent) {
+            $j(this).closest('.form-field-parent').addClass('loadErrorParent width70percent');
+        } else {
+            $j(this).closest('.form-field-parent').addClass('loadErrorParent');
+        }
+    });
+
+    /*End of load error code*/
+
+    if ($j(".loadErrorParent").length) {
+		$j('html,body').animate({
+			scrollTop: $j(".loadErrorParent").offset().top
+		}, 'slow');
+	} else if ($j(".production-activity-section .errorM3").length) {		    	 
+		$j('html,body').animate({
+			scrollTop: $j(".production-activity-section").offset().top
+		}, 'slow');
+	} else if ($j(".errorM3").length) {		    	 
+		$j('html,body').animate({
+			scrollTop: $j(".errorM3").offset().top
+		}, 'slow');
+	}
+}
 $j(document).ready(function() {
 	
 	commonfnCall();
