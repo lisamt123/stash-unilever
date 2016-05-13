@@ -1713,7 +1713,7 @@
                                     <div class="left" style="margin-left:12px;">
                                         <apex:inputFile value="{!document.body}"  filename="{!document.name}" />
                                     </div> 
-                                    <div class="left">
+                                    <div class="left margin-left20">
                                         <apex:commandButton action="{!uploadDocument}" value="Upload" styleClass="commonbtn-blue" style="width: 100px;" status="actStatusIdDoc"/>
                                         <apex:actionStatus id="actStatusIdDoc" >
                                             <apex:facet name="start" >

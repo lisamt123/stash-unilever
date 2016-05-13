@@ -1211,7 +1211,7 @@
             var catName = '{!categoryName}';
             
             catProjectADM(stringArray,strArr,projFormPage,catName);
-            loadErrorParentCall();                                                
+            //loadErrorParentCall();                                                
         });
     </script>
 </apex:page>
