@@ -1,4 +1,4 @@
-    <labels>
+   <labels>
         <fullName>WWP_NocodeAssigned_Err</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -33,4 +33,3 @@
         <shortDescription>WWP_selectRecord_Err</shortDescription>
         <value>Please select atleast one record</value>
     </labels>
-    
