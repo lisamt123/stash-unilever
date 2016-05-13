@@ -271,11 +271,11 @@
         <apexClass>AA_theAgent_ChatterPost_FutureClass</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-	<classAccesses>
-        <apexClass>AF_BrandEstimateStCtrlExtSummary</apexClass>
+    <classAccesses>
+        <apexClass>AFBrandEstimateStCtrlExtSummary</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-	<classAccesses>
+    <classAccesses>
         <apexClass>AF_AdjustQuater_Homepage_lightbox</apexClass>
         <enabled>false</enabled>
     </classAccesses>

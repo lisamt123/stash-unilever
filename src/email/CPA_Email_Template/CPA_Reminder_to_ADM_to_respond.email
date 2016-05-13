@@ -1,12 +1,1 @@
-<messaging:emailTemplate subject="Reminder to respond to HLE: {!RelatedTo.HLE_Request_ID__c}"  recipientType="User" relatedToType="CPA_HLE_Request__c">
-<messaging:htmlEmailBody >
-    Hi, <br/><br/>
-    A HLE with ID: {!RelatedTo.Id}  is awaiting your response. Please respond before {!RelatedTo.dat_Expected_SLA1_Date__c}. <br/><br/>
-
-    You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id} ">{!$Label.CPA_Default_URL}{!RelatedTo.Id} </a> <br/><br/>
-
-Regards, <br/><br/>
-
-Automation Contract System
-</messaging:htmlEmailBody>
-</messaging:emailTemplate>
+<messaging:emailTemplate subject="From Hubble: Reminder to respond to HLE: {!RelatedTo.HLE_Request_ID__c}" recipientType="User"  relatedToType="CPA_HLE_Request__c"> <messaging:htmlEmailBody > Hello,<br/><br/>  A HLE Request with ID: {!RelatedTo.HLE_Request_ID__c} is awaiting your response. Please respond before {!RelatedTo.HLE_Request_SLA1_end_Date__c} . <br/><br/>      Please follow the below link to know the status and take any appropriate action required.<br/> <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id}">{!RelatedTo.name}</a> <br/><br/>    For any queries, please use 'Queries' section in the application or contact Supplier Management Team (ApplicationSupplier.PM@unilever.com). <br/><br/>  Thanks and Regards,<br/> Hubble - Contract Management System. <br/><br/> </messaging:htmlEmailBody> </messaging:emailTemplate>

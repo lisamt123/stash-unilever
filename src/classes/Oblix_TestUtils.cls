@@ -161,6 +161,7 @@ public with sharing class Oblix_TestUtils {
     public static Marketing_Basics__c createMarketingBasics(Id marketingSowId){
         Marketing_Basics__c mbasics = new Marketing_Basics__c();
         mbasics.Oblix_SOWMarketing__c = marketingSowId;
+		mbasics.RecordTypeId = Oblix_Utils.RT_NON_CAMPAIGN_RESOURCE_ID;
         insert mbasics;
         return mbasics;
     }

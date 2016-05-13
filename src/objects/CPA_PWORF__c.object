@@ -1216,6 +1216,17 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>eml_SMT_group_email__c</fullName>
+        <externalId>false</externalId>
+        <label>SMT group email</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>eml_Unilever_Budget_Approver_Email__c</fullName>
         <description>Unilever Budget Approver Email*</description>
         <externalId>false</externalId>
@@ -1260,6 +1271,17 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <externalId>false</externalId>
         <inlineHelpText>Email of project manager</inlineHelpText>
         <label>Unilever Project Manager Email*</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>eml_VDM_group_email__c</fullName>
+        <externalId>false</externalId>
+        <label>VDM group email</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -1758,7 +1780,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Analyze</fullName>
+                <fullName>Analyse</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -2597,6 +2619,8 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <language>en_US</language>
         <sharedTo>
             <group>CAP_SMT_Group</group>
+            <group>CAP_ULFT_Group</group>
+            <group>CAP_ULPT_Group</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -2989,7 +3013,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <picklistValues>
             <picklist>pkl_Phases_covered_by_the_WAR__c</picklist>
             <values>
-                <fullName>Analyze</fullName>
+                <fullName>Analyse</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3516,7 +3540,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <picklistValues>
             <picklist>pkl_Phases_covered_by_the_WAR__c</picklist>
             <values>
-                <fullName>Analyze</fullName>
+                <fullName>Analyse</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4132,7 +4156,7 @@ Is required</description>
         <active>true</active>
         <description>to prevent the cancelled PROWF from been edited.</description>
         <errorConditionFormula>isCancelled_PWORF__c == TRUE</errorConditionFormula>
-        <errorMessage>This PWORF is in cancelled status, can not edit.</errorMessage>
+        <errorMessage>This PWORF is in cancelled status, cannot edit.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Revised_Submission_Date</fullName>
@@ -4187,7 +4211,7 @@ ISPICKVAL( pkl_Status__c , &quot;Resubmitted&quot;)
 )
 ,$Profile.Name = &quot;CPA ULPM&quot;)</errorConditionFormula>
         <errorDisplayField>pkl_Status__c</errorDisplayField>
-        <errorMessage>Can not edit the status of the PWORF</errorMessage>
+        <errorMessage>Cannot edit the status of the PWORF</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Summary_of_requirements_and_deliverables</fullName>
@@ -4406,8 +4430,8 @@ else if(permissionSetName == &quot;CPA_ULPM&quot;){
 	if(loiRec != null &amp;&amp; loiRec.length &gt; 0){
 		alert(&quot;PWORF cannot be Withheld as it has LOI in Process.&quot;); 
 	}
-	else if(p.pkl_Status__c == &quot;Save+d&quot;){ 
-	alert(&quot;Record should first be submitted before withholding it.&quot;); 
+	else if(p.pkl_Status__c == &quot;Saved&quot;){ 
+	alert(&quot;PWORF cannot be withheld since it is yet to be submitted.&quot;); 
 	} /*
 	else if(p.pkl_Status__c == &quot;Returned&quot;){ 
 	//window.open(&apos;/apex/CPA_PWORF_Reason_for_Withhold?id=&apos;+&quot;{!CPA_PWORF__c.Id}&quot;,&quot;_self&quot;); 

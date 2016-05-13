@@ -27,3 +27,9 @@ src
 src/permissionsets
 src/permissionsets/PBS_LMS_Admin.permissionset
 src/permissionsets/PBS_LMS_User.permissionset
+src
+src/staticresources
+src/staticresources/PBSResources.resource
+src/staticresources/PBSResources.resource-meta.xml
+src/staticresources/PCResources.resource
+src/staticresources/PCResources.resource-meta.xml
