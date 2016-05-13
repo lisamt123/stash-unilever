@@ -6,6 +6,3 @@ src/classes/IPM_ProjectCountryDetails.cls
 src/classes/IPM_ProjectCountryDetails.cls-meta.xml
 src/objects
 src/objects/IPM_Financial__c.object
-src/permissionsets
-src/permissionsets/IPM_ProjectLeader.permissionset
-src/permissionsets/IPMNG_Basic.permissionset
