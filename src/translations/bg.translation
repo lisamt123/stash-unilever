@@ -1881,7 +1881,7 @@
         <name>IPM_Assort_Distribution_Type</name>
     </customLabels>
     <customLabels>
-        <label><!-- IPM Assumption BMI --></label>
+        <label><!-- IPM Assumption A&amp;P --></label>
         <name>IPM_Assumption_A_P</name>
     </customLabels>
     <customLabels>
@@ -4357,7 +4357,7 @@
         <name>IPM_Milestone_DueDate_Validation</name>
     </customLabels>
     <customLabels>
-        <label><!-- Postponed Past Date Validation --></label>
+        <label><!-- Milestone Due Date --></label>
         <name>IPM_Milestone_Due_Date</name>
     </customLabels>
     <customLabels>

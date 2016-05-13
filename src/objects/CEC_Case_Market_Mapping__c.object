@@ -199,6 +199,15 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Enable_Skill_Routing__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>CEC Enable Skill Routing</description>
+        <externalId>false</externalId>
+        <label>Enable Skill Routing</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Language__c</fullName>
         <description>CEC: contains the Language Name which will be used in webtocase scenario by integration team</description>
         <externalId>false</externalId>
@@ -324,6 +333,18 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Product_Factory_Email_Template__c</fullName>
+        <description>Contains the email template name for product factory of the country</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter Developer name of the email template. Developer Name doesn&apos;t contain spaces</inlineHelpText>
+        <label>Product Factory Email Template</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Tag__c</fullName>
         <description>TO: Picklist to differentiate between CEC and George Case Market Mapping</description>
         <externalId>false</externalId>
@@ -341,6 +362,18 @@
         </picklist>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Textile_Factory_Email_Template__c</fullName>
+        <description>Contains textile factory email template for the country</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter Developer name of the email template. Developer Name doesn&apos;t contain spaces</inlineHelpText>
+        <label>Textile Factory Email Template</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <label>Case Market Mapping</label>
     <listViews>

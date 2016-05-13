@@ -2459,28 +2459,23 @@ function refreshFulfilmentSubTab(result) {
         <url>{!REQUIRESCRIPT(&quot;/soap/ajax/32.0/connection.js&quot;)}
 {!REQUIRESCRIPT(&quot;/support/console/30.0/integration.js&quot;)}
 {!REQUIRESCRIPT(&quot;/soap/ajax/30.0/apex.js&quot;)}
-
 sforce.connection.sessionId = &quot;{!$Api.Session_ID}&quot;;
-
 var fulfillmentQuery;
 if ({!$Permission.CEC_Retrieval_Process}) {
     fulfillmentQuery = sforce.connection.query(&quot;Select Id,case__r.id,case__r.AccountId,case__r.Account.Phone,case__r.Account.PersonMobilePhone,case__r.Account.PersonOtherPhone,case__r.Account.PersonHomePhone,case__r.Account.PersonMailingCity,case__r.Account.PersonMailingCountry,case__r.Account.PersonBirthdate, case__r.Account.PersonMailingPostalCode, case__r.Account.PersonMailingState, case__r.Account.PersonMailingStreet,case__r.Account.Name,case__r.Country_Name__c,Retrieval_Id__c,isApproved__c From cec_fulfilment__c Where Id = &apos;{!cec_Fulfilment__c.Id}&apos;&quot;);
-
     var retrivalRequestId;
     var retrivalRequestName;
     var records = fulfillmentQuery.getArray(&quot;records&quot;);
     var fulfillmentRecord = records[0];
     var caseRecord = fulfillmentRecord.getArray(&quot;Case__r&quot;);
     var accountRecord = caseRecord[0].getArray(&quot;Account&quot;);
-
-    if (fulfillmentRecord != null &amp;&amp; caseRecord != null &amp;&amp; accountRecord != null &amp;&amp; (accountRecord[0].Phone == null || accountRecord[0].PersonMobilePhone == null || accountRecord[0].PersonOtherPhone == null || accountRecord[0].PersonHomePhone == null)) {
+    if (fulfillmentRecord != null &amp;&amp; caseRecord != null &amp;&amp; accountRecord != null &amp;&amp; (accountRecord[0].Phone == null &amp;&amp; accountRecord[0].PersonMobilePhone == null &amp;&amp; accountRecord[0].PersonOtherPhone == null &amp;&amp; accountRecord[0].PersonHomePhone == null)) {
         alert(&apos;{!$Label.CEC_CaseAccountPersonPhoneMissing}&apos;);
     } else if (fulfillmentRecord.isApproved__c == &apos;true&apos;) {
 		alert(&apos;{!$Label.CEC_ApprovedFulfilmentError}&apos;);
 	} else if (fulfillmentRecord.Retrieval_Id__c != null) {
 		alert(&apos;{!$Label.CEC_DuplicateRetrievalRequestError}&apos;);
 	}else {
-        //create new Retrieval Request 
         var newRetrievelRequest = new sforce.SObject(&quot;CEC_Retrieval_Request__c&quot;);
         newRetrievelRequest.Fulfilment_Id__c = fulfillmentRecord.Id;
         newRetrievelRequest.Case__c = caseRecord[0].Id;
@@ -2490,25 +2485,33 @@ if ({!$Permission.CEC_Retrieval_Process}) {
 } else {
     alert(&apos;{!$Label.CEC_NoAccessForRetrievalProcess}&apos;);
 }
-
 function updateFulfilment(result) {
     retrivalRequestId = result[0].id;
+	var fulfillmentProductQuery;
+	fulfillmentProductQuery = sforce.connection.query(&quot;Select Id,Retrieval_Id__c From CEC_Fulfilment_Product__c Where Fulfilment_Id__c = &apos;{!cec_Fulfilment__c.Id}&apos;&quot;);
+	var recordsFP = fulfillmentProductQuery.getArray(&quot;records&quot;);
+	var updateFP = [];
+	if (recordsFP !=null ){
+		for(var i=0;i&lt;recordsFP.length;i++){
+			var FulfilmentProduct=new sforce.SObject(&quot;CEC_Fulfilment_Product__c&quot;);
+			FulfilmentProduct.Id=recordsFP[i].Id;
+			FulfilmentProduct.Retrieval_Id__c = retrivalRequestId;
+			updateFP.push(FulfilmentProduct);
+		}
+		var result = sforce.connection.update(updateFP);	
+	}
     var fulfilment = new sforce.SObject(&quot;cec_fulfilment__c&quot;);
     fulfilment.id = &apos;{!cec_Fulfilment__c.Id}&apos;;
-    fulfilment.Retrieval_Id__c = result[0].id; // Update Retrieval Request Id on 
+    fulfilment.Retrieval_Id__c = retrivalRequestId; // Update Retrieval Request Id on 
     sforce.connection.update([fulfilment], tabOperations);
 }
-
 function tabOperations(result) {
     sforce.console.getFocusedSubtabId(refreshFulfilmentSubTab);
     sforce.console.getFocusedPrimaryTabId(openRetrievalRequestSubtab);
 }
-
 function refreshFulfilmentSubTab(result) {
-    //Refresh Fulfilment tab
     sforce.console.refreshSubtabById(result.id);
 }
-
 function openRetrievalRequestSubtab(result) {
     //Now that we have the primary tab ID, we can open a new subtab in it
     var primaryTabId = result.id;

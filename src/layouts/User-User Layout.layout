@@ -115,6 +115,10 @@
                 <behavior>Readonly</behavior>
                 <field>Max_Refund_Amount__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>E_Voucher_Refund_Limit__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>OneColumn</style>
     </layoutSections>

@@ -2077,6 +2077,38 @@ Email Brazil</inlineHelpText>
                 <fullName>Food Solutions</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Sun</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Deoleo</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>R &amp; B Foods</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bluewater</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Gortons</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dove</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Lux</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Lynx</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
@@ -2357,7 +2389,7 @@ Email Brazil</inlineHelpText>
         <fullName>Skill_Match__c</fullName>
         <description>CEC - A formula field to check whether Language &amp; Product  skill of a case contains Language &amp; Product Category of a User. And also checks the Status , Market of a case &amp; whether the case is assigned to a Queue or not.</description>
         <externalId>false</externalId>
-        <formula>AND(Is_Language_Skill_Match__c,Is_Product_Skill_Match__c,(TEXT(Status)=&apos;New&apos;),IF(Owner:Queue.DeveloperName !=&apos;&apos;, TRUE, FALSE))</formula>
+        <formula>AND(Case_Brand_Mapping__r.Country__r.Enable_Skill_Routing__c ,Is_Language_Skill_Match__c,Is_Product_Skill_Match__c,(TEXT(Status)=&apos;New&apos;),IF(Owner:Queue.DeveloperName !=&apos;&apos;, TRUE, FALSE))</formula>
         <label>Skill Match</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
