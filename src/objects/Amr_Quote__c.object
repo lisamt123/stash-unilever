@@ -4,6 +4,7 @@
     <enableActivities>true</enableActivities>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+	<enableFeeds>true</enableFeeds>
     <fields>
         <fullName>Accepted_Final_Cost_CA_Euro_Amount__c</fullName>
         <label>Accepted Final Cost - CA(Euro Amount)</label>

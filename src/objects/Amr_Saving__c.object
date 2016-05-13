@@ -4,6 +4,7 @@
     <enableActivities>true</enableActivities>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+	<enableFeeds>true</enableFeeds>
     <fields>
         <fullName>Average_Total_Opening_Quotes__c</fullName>
         <formula>Sum_Of_Total_Cost__c / Number_Of_Quotes__c</formula>

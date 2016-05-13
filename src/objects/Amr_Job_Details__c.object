@@ -4,6 +4,7 @@
     <enableActivities>true</enableActivities>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+	<enableFeeds>true</enableFeeds>
     <fields>
         <fullName>Accepted__c</fullName>
         <label>Accepted</label>
