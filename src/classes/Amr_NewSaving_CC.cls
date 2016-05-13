@@ -43,20 +43,20 @@ public with sharing class Amr_NewSaving_CC {
         set;
     }
     //public Transient Document document{get;set;}
-    public List<FeedItem> attachedList{
+    public List<Amr_Quote__Feed> attachedList{
     get{
              if(attachedList== null)
-                 attachedList= new List<FeedItem>();
+                 attachedList= new List<Amr_Quote__Feed>();
              return attachedList;
     }set;} 
     
     public String IdDeleted{get;set;}
     public String IdDeletedSaving{get;set;}
     
-    public List<FeedItem> attachedListSaving{
+    public List<Amr_Saving__Feed> attachedListSaving{
     get{
              if(attachedListSaving== null)
-                 attachedListSaving= new List<FeedItem>();
+                 attachedListSaving= new List<Amr_Saving__Feed>();
              return attachedListSaving;
     }set;} 
     
@@ -166,7 +166,7 @@ public with sharing class Amr_NewSaving_CC {
                 savingMessages = true;
                  okayToSave=false;
             }
-            if(acceptedQuote.PC_Costs_Euro_Amount__c == 0 || acceptedQuote.PPC_Costs_Euro_Amount__c == 0 || acceptedQuote.CA_Costs_Euro_Amount__c == 0){
+           /* if(acceptedQuote.PC_Costs_Euro_Amount__c == 0 || acceptedQuote.PPC_Costs_Euro_Amount__c == 0 || acceptedQuote.CA_Costs_Euro_Amount__c == 0){
                  ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please Enter PC,PPC,CA Euro amount in Accepted Quote (Opening and Closing Quote 1)'));
                  savingMessages = true;
                  okayToSave=false;
@@ -180,7 +180,7 @@ public with sharing class Amr_NewSaving_CC {
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please Enter What type of Savings is this?'));
                 savingMessages = true;
                  okayToSave=false;
-            }
+            }*/
             
             if(!okayToSave){
             system.debug('inside error');
@@ -259,7 +259,7 @@ public with sharing class Amr_NewSaving_CC {
             }
             Amr_Saving__c savingObjInserted = [select Total_no_of_films__c,Cost_Per_Master__c,Cost_per_master_per_shoot_day__c,Percentage_Saving_Accepted_Quote__c,
                                 Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Saving_Accepted_Quote_Euro__c, 
-                                Production_Type__c,No_of_Masters__c,No_of_Masters_List__c,Duration_of_Masters__c,No_of_Additional_Films__c,Duration_of_Additional_Films__c,
+                                Production_Type__c,No_of_Masters__c,No_of_Masters_List__c,Duration_of_Masters__c,No_of_Additional_Films__c,No_of_Additional_Films_List__c,Duration_of_Additional_Films__c,
                                 No_of_shoot_days__c,Stage_RAP_engaged__c,Script_Title__c,Scope_re_brief__c,Number_Of_Quotes__c,Average_Total_Opening_Quotes__c,Shoot_Location__c
                                  from Amr_Saving__c where id =:savingObj.id];
             savingObj = savingObjInserted;
@@ -283,7 +283,7 @@ public with sharing class Amr_NewSaving_CC {
    ********************************************************************/ 
    
     public void UploadAcceptedquoteDoc(){
-    	fileUploadMessage = false;
+        fileUploadMessage = false;
         if(validateAccepted(acceptedQuote)){
             String parentId = null;
             system.debug('accepted quote Id '+acceptedQuote.id);
@@ -313,7 +313,7 @@ public with sharing class Amr_NewSaving_CC {
             }
          
             attachedList = [select id,CreatedById,CreatedBy.name,Body,ContentFileName,LinkUrl,RelatedRecordId,ParentId,Title,CreatedDate 
-                                FROM FeedItem where ParentId =:parentId];
+                                FROM Amr_Quote__Feed where ParentId =:parentId];
         }
     }
     
@@ -343,14 +343,14 @@ public with sharing class Amr_NewSaving_CC {
 
    ********************************************************************/ 
     public void deleteDocument(){
-    	fileUploadMessage = false;
+        fileUploadMessage = false;
         system.debug('feed Item Id need to be deleted ========>'+IdDeleted);
         FeedItem feedObj = [select id,CreatedById,CreatedBy.name,Body,ContentFileName,LinkUrl,RelatedRecordId,ParentId,Title,CreatedDate 
                                 FROM FeedItem where id = :IdDeleted];
         delete feedObj;
         
         attachedList = [select id,CreatedById,CreatedBy.name,Body,ContentFileName,LinkUrl,RelatedRecordId,ParentId,Title,CreatedDate 
-                                FROM FeedItem where ParentId =:acceptedQuote.id];
+                                FROM Amr_Quote__Feed where ParentId =:acceptedQuote.id];
     }
     
     
@@ -361,7 +361,7 @@ public with sharing class Amr_NewSaving_CC {
 
    ********************************************************************/ 
     public void UploadAdditionalDoc(){
-    	fileUploadMessage = false;
+        fileUploadMessage = false;
         if(validateAdditional(savingObj)){
             String parentId = null;
             system.debug('accepted quote Id '+acceptedQuote.id);
@@ -391,7 +391,8 @@ public with sharing class Amr_NewSaving_CC {
             }
          
             attachedListSaving = [select id,CreatedById,CreatedBy.name,Body,ContentFileName,LinkUrl,RelatedRecordId,ParentId,Title,CreatedDate 
-                                FROM FeedItem where ParentId =:parentId];
+                                FROM Amr_Saving__Feed where ParentId =:parentId];
+                              
         }
     }
     
@@ -428,7 +429,7 @@ public with sharing class Amr_NewSaving_CC {
         delete feedObj;
         
         attachedListSaving = [select id,CreatedById,CreatedBy.name,Body,ContentFileName,LinkUrl,RelatedRecordId,ParentId,Title,CreatedDate 
-                                FROM FeedItem where ParentId =:savingObj.id];
+                                FROM Amr_Saving__Feed where ParentId =:savingObj.id];
     }
     
     public void getCaProcessMangCategory(){
@@ -444,7 +445,7 @@ public with sharing class Amr_NewSaving_CC {
    ********************************************************************/ 
     
      public Pagereference AllValues(){
-     	fileUploadMessage = false;
+        fileUploadMessage = false;
         Boolean flag = true;
         if(attachedListSaving.size()<1 && attachedList.size()<1){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please attach at least one document'));
@@ -480,12 +481,13 @@ public with sharing class Amr_NewSaving_CC {
         System.debug('CA OUTPUR -> '+ caOutputQualityCategoryValue  + ' CLASSS -> 12' + caOutputQualityCategoryClass );
         
         if(savingObj.id != null){
-        	  List<Amr_Job_Allocation__c> jobAllocationList = [Select Reported__c from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId];
+              List<Amr_Job_Allocation__c> jobAllocationList = [Select Reported__c from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId];
               System.debug('ID COUNT' + jobAllocationList.size());
                 
               for(Amr_Job_Allocation__c jobAlloc : jobAllocationList ){
                     jobAlloc.Reported__c = 'Yes';
               }
+              savingObj.Display__c = true;
               
               update jobAllocationList;
             //pc appraisal
@@ -526,7 +528,10 @@ public with sharing class Amr_NewSaving_CC {
               
         }
         
-        PageReference pageRef = new PageReference('/apex/Amr_jobsheet?id='+jobId+'&defaultPage=new_saving');
+   //     PageReference pageRef = new PageReference('/apex/Amr_jobsheet?id='+jobId+'&defaultPage=new_saving');
+        PageReference pageRef = Page.Amr_jobsheet;
+        pageRef.getParameters().put('id',jobId);
+        pageRef.getParameters().put('defaultPage','new_saving');
         return pageRef.setRedirect(true);
         
      }

@@ -2,7 +2,7 @@
     <apex:include pageName="Amr_common" />
     <apex:include pageName="Amr_common_header" />
 
-    <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/submitted-saving.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/amr_submitted_saving.js')}" />
 
     <style type="text/css">
         .inner_saving_details .bPageBlock {
@@ -112,7 +112,6 @@
             var starRatingData = {!SelectedRatingStar};
             starRatingProcess(starRatingData);
         });        
-        
     </script>
     <div class="container">
         <apex:form >
@@ -126,7 +125,7 @@
                     <apex:pageMessages id="msg" />
                 </div>
                 <apex:outputPanel id="pageBlockId">
-                    <div class="inner_section margin-top20">
+                    <div class="inner_section padding-top20 bg-w8">
                         <h4>
                                    {!$Label.Amr_Job_Information}                                 
                                 </h4>
@@ -166,12 +165,20 @@
                                                         showOnEdit();
                                                         if( $j('.noOfMastersMain').length ) {
                                                         showOnEdit();
+                                                        
                                                         loadMasterProcess();
                                                         noOfmasterdurationkeypress();
-                                                        remove_master_durationrows();
+                                                        removeMasterDurationRows();
                                                         addMasterDurationrowsCall();
+                                                        
                                                         $j('.show-on-edit').show();
+                                                        
+                                                        loadAdditionalFilmProcess(); //
+										                noOfAdditionalFilmdurationkeypress(); //
+										                removeAdditionalFilmDurationRows(); //
+										                addAdditionalFilmsDurationrowsCall(); //
                                                         }
+                                                                                                               
                                                     </script>
                                                 </apex:outputPanel>
                                                 <div class="job-field-parent displayIB VATop" style="width:200px;">
@@ -180,48 +187,139 @@
                                                         <apex:outputText value="{!adManagerNumber}" />
                                                     </div>
                                                 </div>
-                                                <!--  
-                                                <div class="job-field-parent left">
-                                                    <div class="job-field-label">{!$Label.Amr_No_Of_Masters}</div>
-                                                    <div class="job-field-input">
-                                                        <apex:inputField value="{!savObj.No_of_Masters__c}" rendered="{!if(saveRecordValue == savObj.id,true,false) && (editedSavingMode == true)}" />
-                                                        <apex:outputField value="{!savObj.No_of_Masters__c}" rendered="{!if(saveRecordValue == savObj.id,false,true) && (viewSavingMode == true)}" />
-                                                    </div>
-                                                </div>
-                                                <div class="job-field-parent left">
-                                                    <div class="job-field-label">{!$Label.Amr_Duration_of_Masters}</div>
-                                                    <div class="job-field-input">
-                                                        <apex:inputField value="{!savObj.Duration_of_Masters__c}" rendered="{!if(saveRecordValue == savObj.id,true,false) && (editedSavingMode == true)}" html-placeholder="In Seconds" />
-                                                        <apex:outputText value="{!savObj.Duration_of_Masters__c}" rendered="{!if(saveRecordValue == savObj.id,false,true) && (viewSavingMode == true)}" />
-                                                    </div>
-                                                </div>
-                                                -->
-                                                <apex:outputPanel rendered="{!if(editedSavingMode==true,false,true)}">
-                                                <div class="job-field-parent displayIB VATop" style="width:220px !important;">
-                                                    <div class="job-field-label">Duration of Masters x No. of Masters</div>
-                                                    <div class="job-field-input">
-                                                        <apex:outputPanel >
-                                                            <div class="nombydom">                                                              
-                                                                {!SUBSTITUTE(savObj.Duration_of_Masters__c,',','_')}:::{!SUBSTITUTE(savObj.No_of_Masters_List__c,',','_')}
-                                                            </div>
-                                                        </apex:outputPanel>
-                                                    </div>
-                                                </div>
+                                                <apex:outputPanel rendered="{!if(saveRecordValue == savObj.id,false,true) && (viewSavingMode == true)}">                                                   
+	                                                <div class="job-field-parent job-field-parent-smaller displayIB VATop">
+	                                                    <div class="job-field-label">{!$Label.Amr_No_Of_Masters}</div>
+	                                                    <div class="job-field-input">
+	                                                      <!--  <apex:inputField value="{!savObj.No_of_Masters__c}" rendered="{!if(saveRecordValue == savObj.id,true,false) && (editedSavingMode == true)}" />-->
+	                                                        <apex:outputField value="{!savObj.No_of_Masters_List__c}" rendered="{!if(saveRecordValue == savObj.id,false,true) && (viewSavingMode == true)}" />
+	                                                    </div>
+	                                                </div>
+	                                                <div class="job-field-parent job-field-parent-smaller displayIB VATop">
+	                                                    <div class="job-field-label">{!$Label.Amr_Duration_of_Masters}</div>
+	                                                    <div class="job-field-input">
+	                                                       <!--  <apex:inputField value="{!savObj.Duration_of_Masters__c}" rendered="{!if(saveRecordValue == savObj.id,true,false) && (editedSavingMode == true)}" html-placeholder="In Seconds" /> -->
+	                                                        <apex:outputText value="{!savObj.Duration_of_Masters__c}" rendered="{!if(saveRecordValue == savObj.id,false,true) && (viewSavingMode == true)}" />
+	                                                    </div>
+	                                                </div>                                                
+	                                                <!--
+	                                                <apex:outputPanel rendered="{!if(editedSavingMode==true,false,true)}">
+	                                                <div class="job-field-parent displayIB VATop" style="width:220px !important;">
+	                                                    <div class="job-field-label">Duration of Masters x No. of Masters</div>
+	                                                    <div class="job-field-input">
+	                                                        <apex:outputPanel >
+	                                                            <div class="nombydom">                                                              
+	                                                                {!SUBSTITUTE(savObj.Duration_of_Masters__c,',','_')}:::{!SUBSTITUTE(savObj.No_of_Masters_List__c,',','_')}
+	                                                            </div>
+	                                                        </apex:outputPanel>
+	                                                    </div>
+	                                                </div>
+	                                                </apex:outputPanel>
+	                                                -->
+	                                                <div class="job-field-parent job-field-parent-smaller displayIB VATop">
+	                                                    <div class="job-field-label">{!$Label.Amr_No_of_Additional_Films}</div>
+	                                                    <div class="job-field-input">
+	                                                        <!--  <apex:inputField value="{!savObj.No_of_Additional_Films__c}" rendered="{!if(saveRecordValue == savObj.id,true,false) && (editedSavingMode == true)}" /> -->
+	                                                        <apex:outputText value="{!savObj.No_of_Additional_Films_List__c}" rendered="{!if(saveRecordValue == savObj.id,false,true) && (viewSavingMode == true)}" />
+	                                                    </div>
+	                                                </div>
+	                                                <div class="job-field-parent job-field-parent-smaller displayIB VATop">
+	                                                    <div class="job-field-label">{!$Label.Amr_Duration_Of_Additional_Films}</div>
+	                                                    <div class="job-field-input">
+	                                                        <!--  <apex:inputField value="{!savObj.Duration_of_Additional_Films__c}" rendered="{!if(saveRecordValue == savObj.id,true,false) && (editedSavingMode == true)}" html-placeholder="In Seconds" />-->
+	                                                        <apex:outputText value="{!savObj.Duration_of_Additional_Films__c}" rendered="{!if(saveRecordValue == savObj.id,false,true) && (viewSavingMode == true)}" />
+	                                                    </div>
+	                                                </div>
                                                 </apex:outputPanel>
-                                                <div class="job-field-parent job-field-parent-smaller displayIB VATop" style="width:350px !important;">
-                                                    <div class="job-field-label">{!$Label.Amr_No_of_Additional_Films}</div>
-                                                    <div class="job-field-input">
-                                                        <apex:inputField value="{!savObj.No_of_Additional_Films__c}" rendered="{!if(saveRecordValue == savObj.id,true,false) && (editedSavingMode == true)}" />
-                                                        <apex:outputText value="{!savObj.No_of_Additional_Films__c}" rendered="{!if(saveRecordValue == savObj.id,false,true) && (viewSavingMode == true)}" />
-                                                    </div>
-                                                </div>
-                                                <div class="job-field-parent job-field-parent-smaller displayIB VATop">
-                                                    <div class="job-field-label">{!$Label.Amr_Duration_Of_Additional_Films}</div>
-                                                    <div class="job-field-input">
-                                                        <apex:inputField value="{!savObj.Duration_of_Additional_Films__c}" rendered="{!if(saveRecordValue == savObj.id,true,false) && (editedSavingMode == true)}" html-placeholder="In Seconds" />
-                                                        <apex:outputText value="{!savObj.Duration_of_Additional_Films__c}" rendered="{!if(saveRecordValue == savObj.id,false,true) && (viewSavingMode == true)}" />
-                                                    </div>
-                                                </div>                                                
+                                                
+                                                <apex:outputPanel rendered="{!if(editedSavingMode==true,true,false)}">
+                                                <div class="displayIB VATop margin-right20">
+	                                                <div style="margin-bottom:5px;margin-top:20px;">
+	                                                    Masters
+	                                                </div>
+	                                                <div style="margin-bottom:10px;border:3px solid #205EA5;padding:20px;width:90%;">
+	                                                    <div class="row1MainParent">
+	                                                        <apex:inputField value="{!savObj.Duration_of_Masters__c}" styleClass="durationOfMastersMain hide"/>
+	                                                        <apex:inputField value="{!savObj.No_of_Masters_List__c}" styleClass="noOfMastersMain hide"/>
+	                                                        <div class="row1" style="margin-bottom:5px;">
+	                                                            <div class="displayIB" style="width:170px;">
+	                                                                Duration                                        
+	                                                            </div>
+	                                                            <div class="displayIB VATop">
+	                                                                Number                           
+	                                                            </div>
+	                                                        </div>
+	                                                        <div class="row1Main">
+	                                                            <div class="displayIB VATop" style="width:140px;">                                      
+	                                                                <div class="job-field-input" style="font-weight:bold;">
+	                                                                    <input type="text" class="duration-of-masters-class" />
+	                                                                </div>
+	                                                            </div>
+	                                                            <div class="displayIB VATop" style="margin:10px 18px 0 0;">                                      
+	                                                                X
+	                                                            </div>
+	                                                            <div class="displayIB VATop" style="width:140px;">                                      
+	                                                                <div class="job-field-input" style="font-weight:bold;">
+	                                                                    <input type="text" class="no-of-masters-class" />
+	                                                                </div>
+	                                                            </div>
+	                                                            <div class="displayIB remove_master_durationrows pointer" style="margin:6px 0 0 0;font-size:18px;color:red;text-decoration:none;font-weight:bold;">                                     
+	                                                                x
+	                                                            </div>
+	                                                        </div>
+	                                                    </div>
+	                                                    <div style="margin-top:20px;">
+	                                                        <input type="button" value="Add More" class="commonbtn add_master_durationrows pointer" />
+	                                                    </div>
+	                                                    <div class="clear"></div>
+	                                                </div>
+	                                             </div>
+	                                             
+	                                             <div class="displayIB VATop margin-right20">
+						                            <div style="margin-bottom:5px;margin-top:20px;">
+						                                Additional Films
+						                            </div>
+						                            <div style="margin-bottom:10px;border:3px solid #205EA5;padding:20px;width:90%;">
+						                                <div class="row1AdditionalMainParent">
+						                                    <apex:inputField value="{!savObj.Duration_of_Additional_Films__c}" styleClass="durationOfAdditionalFilmsMain hide"/>
+						                                    <apex:inputField value="{!savObj.No_of_Additional_Films_List__c}" styleClass="noOfAdditionalFilmsMain hide"/>
+						                                    <apex:inputField value="{!savObj.No_of_Additional_Films__c}" styleClass="noOfAdditionalFilmsAddition hide"/>
+						                                    <div class="row1Additional" style="margin-bottom:5px;">
+						                                        <div class="displayIB" style="width:170px;">
+						                                            Duration                                        
+						                                        </div>
+						                                        <div class="displayIB VATop"> 
+						                                            Number                                      
+						                                        </div>
+						                                    </div>
+						                                    <div class="row1MainAdditional">
+						                                        <div class="displayIB VATop" style="width:140px;">                                      
+						                                            <div class="job-field-input" style="font-weight:bold;">
+						                                                <input type="text" class="duration-of-additional-films-class" placeholder="In Seconds" />
+						                                            </div>
+						                                        </div>
+						                                        <div class="displayIB VATop" style="margin:10px 18px 0 0;">                                     
+						                                            X
+						                                        </div>
+						                                        <div class="displayIB VATop" style="width:140px;">                                      
+						                                            <div class="job-field-input" style="font-weight:bold;">
+						                                                <input type="text" class="no-of-additional-films-class" />
+						                                            </div>
+						                                        </div>
+						                                        <div class="displayIB remove_additional_films_durationrows pointer" style="margin:6px 0 0 0;font-size:18px;color:red;text-decoration:none;font-weight:bold;">                                      
+						                                            x
+						                                        </div>
+						                                    </div>
+						                                </div>
+						                                <div style="margin-top:20px;">
+						                                    <input type="button" value="Add More" class="commonbtn add_additional_films_durationrows pointer" />
+						                                </div>
+						                                <div class="clear"></div>
+						                            </div>
+					                            </div>					                            
+                                                </apex:outputPanel>
+                                                
+                                                                                                
                                                 <div class="job-field-parent job-field-parent-smaller displayIB VATop">
                                                     <div class="job-field-label">{!$Label.Amr_No_of_Shoot_Days}</div>
                                                     <div class="job-field-input">
@@ -388,47 +486,7 @@
 
                                                 <div class="clear"></div>
                                                 
-                                                <apex:outputPanel rendered="{!if(editedSavingMode==true,true,false)}">
-                                                <div style="margin-bottom:5px;margin-top:20px;">
-                                                    Masters
-                                                </div>
-                                                <div style="margin-bottom:30px;border:3px solid #205EA5;padding:20px;width:30%;">
-                                                    <div class="row1MainParent">
-                                                        <apex:inputField value="{!savObj.Duration_of_Masters__c}" styleClass="durationOfMastersMain hide"/>
-                                                        <apex:inputField value="{!savObj.No_of_Masters_List__c}" styleClass="noOfMastersMain hide"/>
-                                                        <div class="row1" style="margin-bottom:5px;">
-                                                            <div class="displayIB" style="width:170px;">
-                                                                Duration                                        
-                                                            </div>
-                                                            <div class="displayIB VATop">
-                                                                Number                           
-                                                            </div>
-                                                        </div>
-                                                        <div class="row1Main">
-                                                            <div class="displayIB VATop" style="width:140px;">                                      
-                                                                <div class="job-field-input" style="font-weight:bold;">
-                                                                    <input type="text" class="duration-of-masters-class" />
-                                                                </div>
-                                                            </div>
-                                                            <div class="displayIB VATop" style="margin:5px 18px 0 0;">                                      
-                                                                X
-                                                            </div>
-                                                            <div class="displayIB VATop" style="width:140px;">                                      
-                                                                <div class="job-field-input" style="font-weight:bold;">
-                                                                    <input type="text" class="no-of-masters-class" />
-                                                                </div>
-                                                            </div>
-                                                            <div class="displayIB remove_master_durationrows pointer" style="margin:10px 18px 0 0;font-size:18px;color:red;text-decoration:none;font-weight:bold;">                                     
-                                                                x
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div style="margin-top:20px;">
-                                                        <input type="button" value="Add More" class="commonbtn add_master_durationrows pointer" />
-                                                    </div>
-                                                    <div class="clear"></div>
-                                                </div>
-                                                </apex:outputPanel>
+                                                
                                                 
                                             </apex:outputPanel>
                                         </apex:pageBlock>
@@ -1251,33 +1309,33 @@
                                 <div class="clear"></div>
 
                                 <apex:outputPanel rendered="{!if(feedItemAdditionalList.size>0,true,false)}">
-                                	<div>
-	                                    <apex:repeat value="{!feedItemAdditionalList}" var="obj">
-	                                        <div class="displayinlineblock margin-right20 margin-top20">
-	                                            <div class="left margin-right12 margin-top25 show-on-edit">
-	                                                <apex:commandLink value="x" action="{!deleteOtherFile}" style="font-size:18px;color:red;text-decoration:none;font-weight:bold;">
-	                                                    <apex:param name="recordId" assignTo="{!chosenFileId}" value="{!obj.id}" />
-	                                                </apex:commandLink>
-	                                            </div>
-	                                            <div class="left margin-right12">
-	                                                <apex:outputLink value="/sfc/servlet.shepherd/version/renditionDownload?rendition=THUMB720BY480&versionId={!obj.RelatedRecordId}" target="_blank">
-	                                                    <img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/file.png')}" class="pdficon" alt="Preview" height="90" />
-	                                                </apex:outputLink>
-	                                            </div>
-	                                            <div class="left margin-right12 margin-top25 width120">
-	                                                <a href="/sfc/servlet.shepherd/version/download/{!obj.relatedrecordid}"> {!obj.ContentFileName}</a>
-	                                            </div>
-	                                            <div class="left margin-right12 margin-top25">
-	                                                {!obj.CreatedBy.name}
-	                                            </div>
-	                                            <div class="left margin-top25">
-	                                                <apex:outputText value="{0,date,dd/MM/yy}">
-	                                                    <apex:param value="{!obj.createdDate}" />
-	                                                </apex:outputText>
-	                                            </div>
-	                                            <div class="clear"></div>
-	                                        </div>                                        
-	                                    </apex:repeat>
+                                    <div>
+                                        <apex:repeat value="{!feedItemAdditionalList}" var="obj">
+                                            <div class="displayinlineblock margin-right20 margin-top20">
+                                                <div class="left margin-right12 margin-top25 show-on-edit">
+                                                    <apex:commandLink value="x" action="{!deleteOtherFile}" style="font-size:18px;color:red;text-decoration:none;font-weight:bold;">
+                                                        <apex:param name="recordId" assignTo="{!chosenFileId}" value="{!obj.id}" />
+                                                    </apex:commandLink>
+                                                </div>
+                                                <div class="left margin-right12">
+                                                    <apex:outputLink value="/sfc/servlet.shepherd/version/renditionDownload?rendition=THUMB720BY480&versionId={!obj.RelatedRecordId}" target="_blank">
+                                                        <img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/file.png')}" class="pdficon" alt="Preview" height="90" />
+                                                    </apex:outputLink>
+                                                </div>
+                                                <div class="left margin-right12 margin-top25 width120">
+                                                    <a href="/sfc/servlet.shepherd/version/download/{!obj.relatedrecordid}"> {!obj.ContentFileName}</a>
+                                                </div>
+                                                <div class="left margin-right12 margin-top25">
+                                                    {!obj.CreatedBy.name}
+                                                </div>
+                                                <div class="left margin-top25">
+                                                    <apex:outputText value="{0,date,dd/MM/yy}">
+                                                        <apex:param value="{!obj.createdDate}" />
+                                                    </apex:outputText>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>                                        
+                                        </apex:repeat>
                                     <div class="clear"></div>
                                     </div>
                                 </apex:outputPanel>

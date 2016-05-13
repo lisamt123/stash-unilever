@@ -134,24 +134,25 @@ public with sharing class Oblix_PermissionHandler {
     	}
     }
 
+
     /*******************************************************************************
     * @author       Shahin Movahedi
     * @date         2016-02-02
     * @description  Depending on the assigned permission sets and status of SOW
-    				determine if the user can delete SOW
+                    determine if the user can delete SOW
     ********************************************************************************/
     public static Boolean canDeleteSOW(String sow_status, Id sow_id){
-    	// only UL1, UL2, SuperUser and Sysadmin can delete SOW and only if
-    	// the sow is not approved or locked
+        // only UL1, UL2, SuperUser and Sysadmin can delete SOW and only if
+        // the sow is not approved or locked
         // SS 20160214 added check if a record is locked
-    	if ( isSystemAdmin() || (!isLocked(sow_id) && (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet()))
-    		&& 
-    		(Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status) && (Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY != sow_status)){
-    		return true;
-    	}
-    	else{
-    		return false;
-    	}
+        if ( isSystemAdmin() || (!isLocked(sow_id) && (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet()))
+            && 
+            (Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status) && (Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY != sow_status)){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
 
@@ -200,15 +201,15 @@ public with sharing class Oblix_PermissionHandler {
     * @description  Depending on the assigned permission sets 
     				allow user to see geographic scale
     ********************************************************************************/
-    public static Boolean canSeeGeographicScale(){
-    	// only UL1, UL2, SuperUser and Sysadmin can see geographic scale 
-    	if (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin()){
-    		return true;
-    	}
-    	else{
-    		return false;
-    	}
-    }
+    //public static Boolean canSeeGeographicScale(){
+    //	// only UL1, UL2, SuperUser and Sysadmin can see geographic scale 
+    //	if (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin()){
+    //		return true;
+    //	}
+    //	else{
+    //		return false;
+    //	}
+    //}
 
     /*******************************************************************************
     * @author       Shahin Movahedi
@@ -216,15 +217,15 @@ public with sharing class Oblix_PermissionHandler {
     * @description  Depending on the assigned permission sets 
     				allow user to see agency hub fields
     ********************************************************************************/
-    public static Boolean canSeeAgencyHubFields(){
-    	// only UL1, UL2, SuperUser and Sysadmin can see geographic scale 
-    	if (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin()){
-    		return true;
-    	}
-    	else{
-    		return false;
-    	}
-    }
+    //public static Boolean canSeeAgencyHubFields(){
+    //	// only UL1, UL2, SuperUser and Sysadmin can see geographic scale 
+    //	if (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin()){
+    //		return true;
+    //	}
+    //	else{
+    //		return false;
+    //	}
+    //}
 
     /*******************************************************************************
     * @author       Shahin Movahedi
@@ -381,7 +382,7 @@ public with sharing class Oblix_PermissionHandler {
                 && 
                 (Oblix_Utils.SOW_STATUS_AWAITING_UNILEVER_APPROVAL == sow_status)
             ||
-                (isSystemAdmin() || hasAG1permissionSet() && isNextApprover(sow_id))
+                (hasSuperUserpermissionSet() || isSystemAdmin() || (hasAG1permissionSet() && isNextApprover(sow_id)))
                 &&
                 (Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL == sow_status)
         ){

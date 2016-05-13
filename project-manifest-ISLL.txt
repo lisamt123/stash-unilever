@@ -1,2 +1,3 @@
 src/classes/isll_ChatterGroupSearchControllerTest.cls
+src/classes/isll_ChatterGroupSearchControllerTest.cls-meta.xml
 

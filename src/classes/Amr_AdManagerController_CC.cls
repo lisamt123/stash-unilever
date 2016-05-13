@@ -15,7 +15,7 @@ public with sharing class Amr_AdManagerController_CC{
 
     public Amr_Job_Details__c jobDetails{get;set;}
     public Amr_Logging_Form_Setting__c r  {get; set;}
-      public String selectedCountry {get;set;}
+    public String selectedCountry {get;set;}
     public String projectNameFromPage{get;set;}
     public String productionActivityData {get;set;}
     public List<selectOption> currencyRecords {
@@ -64,10 +64,12 @@ public with sharing class Amr_AdManagerController_CC{
     public boolean flag{get;set;}
     public boolean display{get;set;}
     public boolean displayRap{get;set;}
+    public boolean boolIsProductionActivityError{get;set;}
     public String CheckWithCMI{get;set;}
 
     public Amr_AdManagerController_CC(){
         try{
+        	boolIsProductionActivityError = false;
             Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
             jobDetails = new Amr_Job_Details__c();
             r = [SELECT Introduction__c, Header__c, Footer__c, Allocation__c, Automatic_Allocation_On__c FROM Amr_Logging_Form_Setting__c LIMIT 1];
@@ -380,12 +382,13 @@ public with sharing class Amr_AdManagerController_CC{
             if(jobDetails.Stage_of_Production_Activity__c == null){
                 StageProductionActivity = true;           
             }
-            //okayToSave = admanagerHelper.productionActivityTypeValidation(jobDetails);
+            okayToSave = admanagerHelper.productionActivityTypeValidation(jobDetails);
+            boolIsProductionActivityError = true;
            
             if( !okayToSave || CheckWithCMIflag || yourEmailAddressFlag || unileverFinanceMemberEmailFlag || projectLeaderCountryClusterFlag || finalApproverMaterialEmailFlag || functionYouArePartFlag
                  || budgetResponsibilityFlag || budgetAllocatedCountryFlag || budgetAllocatedInputFlag || categoryNameFlag || brandPosNameFlag || brandNameFromPageFlag || agencyDirectorEmailFlag
                  || projectDescriptionFlag || campaignNameFlag || leadAgencyFlag || LeadAgencyClusterFlag || projectDetailsFlag || productionActivityTypeFlag 
-                 || ExecutionNameFlag || BrodcastMarketFlag || RequireMusicFlag || RequireTalentFlag || StageProductionActivity) {
+                 || ExecutionNameFlag ||TargetAirDateFlag || BrodcastMarketFlag || RequireMusicFlag || RequireTalentFlag || StageProductionActivity) {
            
                 successmessage = false;
                 return null;

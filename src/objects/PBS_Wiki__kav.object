@@ -35,6 +35,55 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Related_Articles__c</fullName>
+        <externalId>false</externalId>
+        <label>Related Articles</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Related_Files2__c</fullName>
+        <externalId>false</externalId>
+        <label>Related Files2</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>File</type>
+    </fields>
+    <fields>
+        <fullName>Related_Files3__c</fullName>
+        <externalId>false</externalId>
+        <label>Related Files3</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>File</type>
+    </fields>
+    <fields>
+        <fullName>Related_Files4__c</fullName>
+        <externalId>false</externalId>
+        <label>Related Files4</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>File</type>
+    </fields>
+    <fields>
+        <fullName>Related_Files5__c</fullName>
+        <externalId>false</externalId>
+        <label>Related Files5</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>File</type>
+    </fields>
+    <fields>
+        <fullName>Related_Files__c</fullName>
+        <externalId>false</externalId>
+        <label>Related Files</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>File</type>
+    </fields>
+    <fields>
         <fullName>Wiki_Content__c</fullName>
         <description>Used to store the main body of the Wiki content</description>
         <externalId>false</externalId>

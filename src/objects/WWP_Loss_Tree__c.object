@@ -840,6 +840,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>SKU_Description__c</fullName>
+        <externalId>false</externalId>
+        <label>SKU Description</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>SKU__c</fullName>
         <externalId>false</externalId>
         <label>SKU</label>

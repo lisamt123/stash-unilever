@@ -1,39 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 
-	Please update to list the components which are required to be removed
-	//-->
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-    <types>
-    		<members>axe_brand_centre_resources</members>
-    		<members>babycare_brand_centre_resources</members>
-    		<members>benandjerrys_brand_centre_resources</members>
-    		<members>cif_brand_centre_resources</members>
-    		<members>cornetto_brand_centre_resources</members>
-    		<members>domestos_brand_centre_resources</members>
-    		<members>dove_brand_centre_resources</members>
-    		<members>family_health_brand_brand_centre_resources</members>
-    		<members>familygoodness_brand_centre_resources</members>
-    		<members>glorix_brand_centre_resources</members>
-    		<members>hellmanns_brand_centre_resources</members>
-    		<members>knorr_brand_centre_resources</members>
-    		<members>lifebuoy_brand_centre_resources</members>
-    		<members>lipton_brand_centre_resources</members>
-    		<members>lux_brand_centre_resources</members>
-    		<members>magnum_brand_centre_resources</members>
-    		<members>persil_brand_centre_resources</members>
-    		<members>ponds_brand_centre_resources</members>
-    		<members>radiant_brand_centre_resources</members>
-    		<members>rexona_brand_centre_resources</members>
-    		<members>shared_brand_centre_resources</members>
-    		<members>skip_brand_centre_resources</members>
-    		<members>stives_brand_centre_resources</members>
-    		<members>sun_brand_centre_resources</members>
-    		<members>sunlight_brand_centre_resources</members>
-    		<members>sunsilk_brand_centre_resources</members>
-    		<members>surf_brand_centre_resources</members>
-    		<members>toniandguy_brand_centre_resources</members>
-    		<members>tresemme_brand_centre_resources</members>
-    		<members>walls_brand_centre_resources</members>
-    		<name>StaticResource</name>
-    	</types>
-</Package>
+	<types>
+		<members>af_usersearch</members>
+		<members>af_SendCurrencyReminder</members>
+		<members>AFBrandEstimateStCtrlExtSummary</members>
+		<members>checkRecursive</members>
+		<members>checkRecursiveBonusQuarterly</members>
+		<members>checkRecursivePOReport</members>
+		<members>AgencyHomePageController</members>
+		<name>ApexClass</name>
+    </types>
+	</Package>
