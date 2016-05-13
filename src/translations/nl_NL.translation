@@ -229,6 +229,23 @@
         </sections>
     </reportTypes>
     <reportTypes>
+        <description><!-- Amr Job Details with Amr Saving Details --></description>
+        <label><!-- Amr Job Details with Amr Saving Details --></label>
+        <name>Amr_Job_Details_with_Amr_Saving_Details</name>
+        <sections>
+            <label><!-- AM Job Details --></label>
+            <name>AM Job Details</name>
+        </sections>
+        <sections>
+            <label><!-- AM Quotes --></label>
+            <name>AM Quotes</name>
+        </sections>
+        <sections>
+            <label><!-- AM Savings --></label>
+            <name>AM Savings</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
         <description><!-- BB BD Report --></description>
         <label><!-- BB BD Report --></label>
         <name>BB_BD_Report</name>

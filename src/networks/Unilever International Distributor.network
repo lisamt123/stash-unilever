@@ -34,6 +34,7 @@
     <site>Unilever_International_Distributor</site>
     <status>Live</status>
     <tabs>
+        <customTab>UID_Switch_User_CurrencyTab</customTab>
         <defaultTab>home</defaultTab>
         <standardTab>home</standardTab>
         <standardTab>Account</standardTab>

@@ -144,6 +144,40 @@
         <layout>Agency_Fee_Field_History__c-Agency Fee - Field History Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Amr_Alert__c-Amr Alert Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Amr_Comments__c-Amr Comments Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Amr_JobBudgetThreshold__c-Amr JobBudgetThreshold Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Amr_Job_Allocation__c-Amr Job Allocation Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Amr_Job_Details__c-Amr Job Details Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Amr_Logging_Form_Setting__c-Amr Logging Form Setting Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Amr_Project_Details__c-Amr Project Details Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Amr_Quote__c-Amr Quote Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Amr_Saving__c-Amr Saving Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Amr_Summary_Plan__c-Amr Summary Plan Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Amr_Summary_Plan__c-Amr Summary Plan Layout</layout>
+        <recordType>Amr_Summary_Plan__c.Actual</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Application_Usage__c-Application Usage Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -2008,6 +2042,11 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Account.UID_Secondary_Account</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Amr_Summary_Plan__c.Actual</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
