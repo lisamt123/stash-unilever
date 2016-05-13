@@ -257,32 +257,3 @@ function loadDefaultAmr() {
     $j('.defaultPrint').attr('disabled', 'disabled');
     $j('.defaultInternalVideo').attr('disabled', 'disabled');
 }
-
-function loadErrorParentCall() {
-    /*Load Error code*/ 
-
-    $j('.loadError').each(function() {
-        var lengthOfParent = $j(this).attr('data-width');
-        if (lengthOfParent) {
-            $j(this).closest('.form-field-parent').addClass('loadErrorParent width70percent');
-        } else {
-            $j(this).closest('.form-field-parent').addClass('loadErrorParent');
-        }
-    });
-
-    /*End of load error code*/
-
-    if ($j(".loadErrorParent").length) {
-		$j('html,body').animate({
-			scrollTop: $j(".loadErrorParent").offset().top
-		}, 'slow');
-	} else if ($j(".production-activity-section .errorM3").length) {		    	 
-		$j('html,body').animate({
-			scrollTop: $j(".production-activity-section").offset().top
-		}, 'slow');
-	} else if ($j(".errorM3").length) {		    	 
-		$j('html,body').animate({
-			scrollTop: $j(".errorM3").offset().top
-		}, 'slow');
-	}
-}
