@@ -422,6 +422,7 @@ function dirApp() {
         jq(".ipmAccordian.appendix").find(">.ipmAcrdnExpand").slideDown("fast").find("." + appDir).slideDown("fast");
         jq("." + appDir).closest(".ipmAcrdnExpand").prev(".aHead").find(".expico").removeClass("fa-plus").addClass("fa-minus");
         jq("html, body").scrollTop(jq("." + appDir).offset().top);
+        jq(".consumerContainer .ipmAcrdnExpand").show();
     });
 }
 jq(window).load(function(){

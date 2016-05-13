@@ -82,28 +82,32 @@ jq(document).ready(function() {
     skipTestrender();
 });
 /* Below function gets the value from the checked checkboxes. Then the values will be passed to another function 'selectTest'. */
-function addTest() {
+function addTest(nelem1) {
     var cmiTestList = [];
     jq('.CMIList').hide();
     jq(".CMIList input:checkbox:checked").each(function() {
         cmiTestList.push(jq(this).val());
     });
     testStr = cmiTestList.toString();
-    selectTest(testStr);
+    var gate=nelem1.split(" ");
+    selectTest(testStr,gate[0]);
+    inputchanged = false;
 }
 
 /* Below function gets the value from the checked checkboxes. Then the values will be passed to another function 'selectCountry'. */
-function addCountry(gateCMIId) {
+function addCountry(gateCMIId,nelem2) {
     var cmiCountryList = [];
     jq('.CMICountryList').hide();
     jq(".CMICountryList input:checkbox:checked").each(function() {
         cmiCountryList.push(jq(this).val());
     });
     countryStr = cmiCountryList.toString();
-    selectCountry(countryStr, gateCMIId);
+    var gate=nelem2.split(" ");
+    selectCountry(countryStr, gateCMIId,gate[0]);
+    inputchanged = false;
 }
 /* Below function performs the modal operation. It opens the CMI delete modal.*/
-function deleteCMITest(str) {
+function deleteCMITest(str,val1) {
     jq('#ipmCMIModalDelete').modal({
         show: true,
         keyboard: false,
@@ -112,6 +116,7 @@ function deleteCMITest(str) {
     var title = jq('.deleteCMITest').attr('title');
     jq('#ipmCMIModalDelete .modal-title').html(title);
     jq('#ipmCMIModalDelete .confirmCMI').attr('data-result', str);
+    jq('#ipmCMIModalDelete .confirmCMI').attr('data-val1', val1);
     jq('#ipmCMIModalDelete .modal-dialog').width('600px');
     jq('#ipmCMIModalDelete .modal-dialog').height('170px');
     jq('#ipmCMIModalDelete .modal-dialog').css({
@@ -122,7 +127,7 @@ function deleteCMITest(str) {
 }
 
 /* Below function performs the modal operation. It opens the CMI delete Country modal. */
-function deleteCountry(str1, str2) {
+function deleteCountry(str1, str2,val1) {
     jq('#ipmCountryModalDelete').modal({
         show: true,
         keyboard: false,
@@ -132,6 +137,7 @@ function deleteCountry(str1, str2) {
     jq('#ipmCountryModalDelete .modal-title').html(title);
     jq('#ipmCountryModalDelete .confirmCountry').attr('data-result1', str1);
     jq('#ipmCountryModalDelete .confirmCountry').attr('data-result2', str2);
+    jq('#ipmCountryModalDelete .confirmCountry').attr('data-val1', val1);
     jq('#ipmCountryModalDelete .modal-dialog').width('600px');
     jq('#ipmCountryModalDelete .modal-dialog').height('170px');
     jq('#ipmCountryModalDelete .modal-dialog').css({
@@ -140,12 +146,15 @@ function deleteCountry(str1, str2) {
     });
     jq(".confirmCountry").addClass("removeCountry");
 }
-function skipTestrender() {
+function skipTestrender(elem1,elem2,elem3) {
     conceptcheck();
+    clikevnts();
     /* Below script works on click event. When clicked on remove button it deletes the cmi by calling 'deletCMI' function and hides the modal. */
     jq(document).on('click', '#ipmCMIModalDelete .removeCMI', function() {
         var questionId = jq(this).attr('data-result');
-        deletCMI(questionId);
+        var typeval = jq(this).attr('data-val1');
+        inputchanged = false;
+        deletCMI(questionId,typeval);
         jq("#ipmCMIModalDelete").modal('hide');
     });
     
@@ -153,7 +162,9 @@ function skipTestrender() {
     jq(document).on('click', '#ipmCountryModalDelete .removeCountry', function() {
         var questionId1 = jq(this).attr('data-result1');
         var questionId2 = jq(this).attr('data-result2');
-        deleteContry(questionId1, questionId2);
+        var typeval = jq(this).attr('data-val1');
+        inputchanged = false;
+        deleteContry(questionId1, questionId2,typeval);
         jq("#ipmCountryModalDelete").modal('hide');
     });
     
@@ -194,20 +205,90 @@ function skipTestrender() {
             jq(this).attr('checked', 'checked');
             jq(this).next().addClass('selected');
         }
-    });
+    });   
     
-    /* Below script works on click event. It checks whether the checkbox is checked or not. If it is checked it sets the status to 'True' else 'False' */
+    if(elem2 !== 'addNew'){
+        jq(".ipmAccordianDiv").find(".aHead span.expico").removeClass("fa-minus");
+        jq(".ipmAccordianDiv").find(".aHead span.expico").addClass("fa-plus");
+        jq(".CMIGateDoc .ipmAccordianDiv:first").find(".aHead:first span.expico").removeClass("fa-plus");
+        jq(".CMIGateDoc .ipmAccordianDiv:first").find(".aHead:first span.expico").addClass("fa-minus");
+        jq(".cmiListcont .subCmi").find(".aHead span.expico").removeClass("fa-minus");
+        jq(".cmiListcont .subCmi").find(".aHead span.expico").addClass("fa-plus");
+    }else{
+        jq(".ipmAcrdnExpand").hide();
+        jq('.ipmAcrdnExpand').each(function(){
+            if(jq(this).hasClass(elem1)){
+                jq(this).show();
+            }
+        });
+        jq(".ipmAccordianDiv").find(".aHead span.expico").removeClass("fa-minus");
+        jq(".ipmAccordianDiv").find(".aHead span.expico").addClass("fa-plus");
+        jq(".aHead").each(function(){
+            if(jq(this).hasClass(elem1)){
+                jq(this).find("span.expico").removeClass("fa-plus");
+                jq(this).find("span.expico").addClass("fa-minus");
+            }
+        });
+        if(elem3 !== '')
+        {
+            jq(".cmiListcont .ipmAcrdnExpand").hide();
+            jq('.ipmAcrdnExpand').each(function(){
+                if(jq(this).hasClass(elem3)){
+                    jq(this).show();
+                }
+            });
+            jq(".cmiListcont").find(".aHead span.expico").removeClass("fa-minus");
+            jq(".cmiListcont").find(".aHead span.expico").addClass("fa-plus");
+            jq(".aHead").each(function(){
+                if(jq(this).hasClass(elem3)){
+                    jq(this).find("span.expico").removeClass("fa-plus");
+                    jq(this).find("span.expico").addClass("fa-minus");
+                }
+            });
+        }
+    }
+}
+
+/* Below function checks the checkboxes value with the backend values. If the values match the checkboxes will be checked and disables the checkbox. */
+    function conceptcheck() {
+        var selectedValues = IPMAPPCMI.concepts;
+        var selectedValuesArr = selectedValues.split(';');
+        if (selectedValuesArr.length !== 0) {
+            jq('.cmiTestList .dropdown-menu input[type="checkbox"]').each(function() {
+                var val = jq(this).attr('value');
+                if (jq.inArray(val, selectedValuesArr) !== -1) {
+                    jq(this).prop('checked', true);
+                    jq(this).prop('disabled', true);
+                    jq(this).next('label').addClass('selected');
+                } else {
+                    jq(this).prop('checked', false);
+                    jq(this).next('label').removeClass('selected');
+                    jq(this).prop('disabled', false);
+                }
+            });
+        }
+    }
+
+function clikevnts(){
+/* Below script works on click event. It checks whether the checkbox is checked or not. If it is checked it sets the status to 'True' else 'False' */
     jq(".ccListbox").click(function() {
         var status;
         var list;
+        var tyval;
+        var gate;
         if (jq(this).prop('checked')) {
             status = "True";
             list = jq(this).attr('id');
+            tyval = jq(this).attr('data-val');
+            gate=tyval.split(" ");
         } else {
             status = "False";
             list = jq(this).attr('id');
+            tyval = jq(this).attr('data-val');
+            gate=tyval.split(" ");
         }
-        skipTestScript(list, status);
+        inputchanged = false;
+        skipTestScript(list, status,gate[0]);
     });
     
     /* Below script works on click event. If the condition is true it unchecks the checkboxes. */
@@ -237,25 +318,6 @@ function skipTestrender() {
                 }).prop("checked", "true").next('label').addClass('selected');
             });
         }
-    });
+    });    
 }
 
-/* Below function checks the checkboxes value with the backend values. If the values match the checkboxes will be checked and disables the checkbox. */
-    function conceptcheck() {
-        var selectedValues = IPMAPPCMI.concepts;
-        var selectedValuesArr = selectedValues.split(';');
-        if (selectedValuesArr.length !== 0) {
-            jq('.cmiTestList .dropdown-menu input[type="checkbox"]').each(function() {
-                var val = jq(this).attr('value');
-                if (jq.inArray(val, selectedValuesArr) !== -1) {
-                    jq(this).prop('checked', true);
-                    jq(this).prop('disabled', true);
-                    jq(this).next('label').addClass('selected');
-                } else {
-                    jq(this).prop('checked', false);
-                    jq(this).next('label').removeClass('selected');
-                    jq(this).prop('disabled', false);
-                }
-            });
-        }
-    }
