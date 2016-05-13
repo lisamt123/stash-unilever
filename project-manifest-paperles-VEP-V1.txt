@@ -137,3 +137,4 @@ src/staticresources/VEP_ProgressBar.resource
 src/staticresources/VEP_ProgressBar.resource-meta.xml
 src/staticresources/VEP_ProhibiteditemsImage.resource
 src/staticresources/VEP_ProhibiteditemsImage.resource-meta.xml
+src/objects/VEP_TravelDesk__c.object
