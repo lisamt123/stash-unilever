@@ -30,7 +30,7 @@ public with sharing Class Amr_AdManagerHelper_CC{
     
         /*******************************************************************    
    Purpose:  This method is check the production activity type validation                                      
-   Parameters: 
+   Parameters: Job Detail(Object)
    Returns: It’s return a Boolean value.
    ********************************************************************/ 
    
@@ -258,7 +258,7 @@ public with sharing Class Amr_AdManagerHelper_CC{
     
       /*******************************************************************    
    Purpose:  This method is used to insert Job                                 
-   Parameters: 
+   Parameters: Country(String), vategory(String), Brand position(String), Brand(String), Job Detail(Object), project name(String), Brand Value(List<SelectOption>)
    Returns: It’s return Pagereference
    ********************************************************************/ 
         public PageReference createJob(String selectedCountryValue, String categoryNameValue, String brandPosNameValue,  String brandNameFromPageValue,Amr_Job_Details__c jobDetailsObj, String projectNameFromPageValue, List<SelectOption> listOfBrandValue){
@@ -312,7 +312,7 @@ public with sharing Class Amr_AdManagerHelper_CC{
         } 
          /*******************************************************************    
    Purpose:  This method is used to trigger Email when amount given is greater than Thresold                                      
-   Parameters: 
+   Parameters:  Job detail object(object), Category(String), Brand position(String), Brand(String)
    Returns: It’s return Nothing
    ********************************************************************/ 
     // For Threshold Reach
@@ -352,7 +352,7 @@ public with sharing Class Amr_AdManagerHelper_CC{
 
     /*******************************************************************    
    Purpose:  This method is used to create Ad Manager Number Denpending on Brand Name Value                                       
-   Parameters: 
+   Parameters: Job Detail Object(Object)
    Returns: It’s return Nothing
    ********************************************************************/ 
 
@@ -390,7 +390,7 @@ public with sharing Class Amr_AdManagerHelper_CC{
     }
      /*******************************************************************    
    Purpose:  This method is used to allocate job to RAP                                         
-   Parameters: 
+   Parameters: Job Object(String)
    Returns: It’s return Nothing
    ********************************************************************/ 
 

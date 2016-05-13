@@ -25,8 +25,8 @@ public with sharing class Amr_SubmittedSavingController_CC {
     public List<Amr_Quote__c> quoteRelatedToSavingList{get;set;}
     public String savingId {get;set;}
     public String acceptedQuoteId{get;set;}
-    public List<FeedItem> feedItemAcceptedList{get;set;}
-    public List<FeedItem> feedItemAdditionalList {get;set;}
+    public List<Amr_Quote__Feed> feedItemAcceptedList{get;set;}
+    public List<Amr_Saving__Feed> feedItemAdditionalList {get;set;}
     public String chosenFileId {get;set;}
     public String jobId{get;set;}
     //Appraisal
@@ -74,8 +74,8 @@ public with sharing class Amr_SubmittedSavingController_CC {
     public Amr_SubmittedSavingController_CC(){
         try{
     savingIdFromPage = ApexPages.currentPage().getParameters().get('id');
-    feedItemAcceptedList = new List <FeedItem>();
-    feedItemAdditionalList = new List <FeedItem>();
+    feedItemAcceptedList = new List <Amr_Quote__Feed>();
+    feedItemAdditionalList = new List <Amr_Saving__Feed>();
     if(savingIdFromPage!=null){
         editedSavingMode = false;
         viewSavingMode = true;
@@ -203,7 +203,7 @@ Returns:
     public void getFeedItemAcceptedData(){
         try{
         feedItemAcceptedList = [select id,CreatedById,CreatedBy.name,Body,ContentFileName,LinkUrl,RelatedRecordId,ParentId,Title,CreatedDate 
-                                          FROM FeedItem where ParentId =:acceptedQuote.Id];
+                                          FROM Amr_Quote__Feed where ParentId =:acceptedQuote.Id];
        
         }catch(Exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -271,7 +271,7 @@ Returns:
     public void getFeedItemAdditionalData(){
         try{
         feedItemAdditionalList = [select id,CreatedById,CreatedBy.name,Body,ContentFileName,LinkUrl,RelatedRecordId,ParentId,Title,CreatedDate 
-                                          FROM FeedItem where ParentId =:savingIdFromPage];
+                                          FROM Amr_Saving__Feed where ParentId =:savingIdFromPage];
        
     }catch(Exception ex){
         ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
