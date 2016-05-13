@@ -41934,7 +41934,7 @@
     </tabSettings>
     <tabSettings>
         <tab>IPM_Clusters__c</tab>
-        <visibility>true</visibility>
+        <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
         <tab>IPM_Company_Card__c</tab>
