@@ -802,6 +802,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>UID_Performance_Line_Item__c.UID_IOP_Value_Curr__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>UID_Performance__c.UID_Apr_IOP__c</field>
         <readable>true</readable>
     </fieldPermissions>
