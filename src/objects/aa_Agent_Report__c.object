@@ -880,14 +880,6 @@ Captured Images will be stored as attachment or document object.</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Counterfeit</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Look-a-like</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Market Development</fullName>
                 <default>false</default>
             </values>
@@ -996,11 +988,7 @@ Captured Images will be stored as attachment or document object.</description>
                 <fullName>Brand Building</fullName>
                 <default>false</default>
             </values>
-            <values>
-                <fullName>Look-a-like</fullName>
-                <default>false</default>
-            </values>
-            <values>
+             <values>
                 <fullName>Market Development</fullName>
                 <default>false</default>
             </values>
@@ -1112,10 +1100,6 @@ Captured Images will be stored as attachment or document object.</description>
             <picklist>Reporting_on__c</picklist>
             <values>
                 <fullName>Brand Building</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Look-a-like</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1233,10 +1217,6 @@ Captured Images will be stored as attachment or document object.</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Look-a-like</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Market Development</fullName>
                 <default>false</default>
             </values>
@@ -1347,10 +1327,6 @@ Captured Images will be stored as attachment or document object.</description>
             <picklist>Reporting_on__c</picklist>
             <values>
                 <fullName>Brand Building</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Look-a-like</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1468,14 +1444,6 @@ Captured Images will be stored as attachment or document object.</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Counterfeit</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Look-a-like</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Market Development</fullName>
                 <default>false</default>
             </values>
@@ -1575,14 +1543,6 @@ Captured Images will be stored as attachment or document object.</description>
             <picklist>Reporting_on__c</picklist>
             <values>
                 <fullName>Brand Building</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Counterfeit</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Look-a-like</fullName>
                 <default>false</default>
             </values>
             <values>
