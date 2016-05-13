@@ -223,7 +223,7 @@ src/email/AdManager/Amr_ThresholdNotification.email
 src/email/AdManager/Amr_ThresholdNotification.email-meta.xml
 src/email/AdManager/Amr_UserNotification_Hold.email
 src/email/AdManager/Amr_UserNotification_Hold.email-meta.xml
-src/email/AdManager/src/email/AdManager/Amr_User_MusicAndTalent.email
+src/email/AdManager/Amr_User_MusicAndTalent.email
 src/email/AdManager/Amr_User_MusicAndTalent.email-meta.xml
 src/email/AdManager/Amr_User_NoSelectection.email
 src/email/AdManager/Amr_User_NoSelectection.email-meta.xml
@@ -246,8 +246,10 @@ src/groups/AdManager_Report_Group.group
 src
 src/labels
 src/labels/CustomLabels.labels
+src/labels/Amr.labels
 src
-src/email
+
+
 
 
 
