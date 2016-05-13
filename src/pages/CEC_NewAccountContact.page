@@ -93,9 +93,9 @@
                         <apex:inputField value="{!newConsumer.Phone}" id="consumerPhoneField" />
                     </apex:pageBlockSectionItem>
                     <apex:pageBlockSectionItem labelStyleClass="non-searchable" dataStyleClass="non-searchable">
-                        <apex:outputLabel value="{!$Label.CEC_Marketing_Opt_in}"/>
-                        <apex:inputField value="{!newConsumer.CEC_Marketing_Opt_In__c}" Style="autoWidth" />
-                    </apex:pageBlockSectionItem>
+                        <apex:outputLabel value="{!$Label.CEC_Unilever_Opt_In}"/>
+						<apex:inputField value="{!newConsumer.Unilever_Opt_In__c}"/>
+                    </apex:pageBlockSectionItem>	  
                 </apex:pageBlockSection>     
             </apex:pageBlock>
         </apex:outputPanel>
