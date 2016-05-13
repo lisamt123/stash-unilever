@@ -26,6 +26,11 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     public static String CLASS_NAME = IPM_BD_BB_Report_Batch.class.getName();
     public static string METHOD_NAME='execute';
     public IPM_Reporting__c reportcs = IPM_Reporting__c.getValues(BB_BD_REPORT_RUNDATE); 
+    private static string GOLD = 'Gold';
+    private static string SILVER = 'Silver';
+    private static string BRONZE = 'Bronze';
+    private static string N_A = 'NA';
+    private static string EMPTY_STRING = '';
     public static final Id REGIONAL_ROLLOUT_RECTYPE = Schema.SObjectType.IPM_Project_Rollout__c.RecordTypeInfosByName.get('Regional Rollout').RecordTypeId;
     public static final Id LOCAL_ROLLOUT_RECORDTYPE = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get('Local Rollouts').getRecordTypeId();
     public static final Id CONSOLIDATED_RECTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get('Consolidated').getRecordTypeId();
@@ -239,6 +244,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                                                                                                     IPM_Status__c,
                                                                                                     KeyMCO__c,
                                                                                                     IPM_Company_Card__r.Name,
+                                                                                                    IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c,
                                                                                                     Target_Launch_Year__c,
                                                                                                     Regional_Rollout_Phase__c,
                                                                                                     Local_Rollout_Phase__c,
@@ -304,7 +310,9 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                                                                                             IPM_Project_Rollout__r.Name,
                                                                                             Regional_Project__c,
                                                                                             Regional_Project__r.id, 
-                                                                                            IPM_CPP_Regional__c
+                                                                                            IPM_CPP_Regional__c,
+                                                                                            Year_1_iTO_Global__c,
+                                                                                            Year_1_iTO_Regional__c
                                                                                             FROM IPM_Financial__c 
                                                                                             WHERE isActive__c=true AND (IPM_Project_Rollout__c IN: regionalRolloutset OR Regional_Project__c IN: regionalRolloutset)  Limit 50000]);
                                                 
@@ -590,7 +598,8 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
               		}else if(pr.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE){
               			
                  		 regionalrolloutid=pr.Regional_Project__c != null?pr.Regional_Project__r.id:pr.Regional_Rollout__r.id; 
-                 		 analyticObj = setRolloutFinancialdetails(analyticObj, regionalrolloutid); 
+                 		 Boolean bdGlobal=pr.IPM_Project__c != null?(pr.Regional_Project__c != null?false:true):false; 
+                 		 analyticObj = setRolloutFinancialdetails(analyticObj, regionalrolloutid, pr.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c,bdGlobal); 
                  	} 
               
                     string finExtId = '';
@@ -750,18 +759,53 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
      * @param1: IPM_Analytics__c, String, IPM_Project_Rollout__c
      * @return: IPM_Analytics__c Analytic object record  
      *********************************************************************************************************************/     
-    public IPM_Analytics__c setRolloutFinancialdetails(IPM_Analytics__c analyticObj,Id regionalrolloutid){
-    	
+    public IPM_Analytics__c setRolloutFinancialdetails(IPM_Analytics__c analyticObj,Id regionalrolloutid, Decimal companyCardTurnOver, Boolean bdGlobal){
+    	string CPP;
   	  	if(regionalrolloutid != null && rolloutFinancialmap.containsKey(regionalrolloutid)){
 	  		for(IPM_Financial__c tempFin : rolloutFinancialmap.get(regionalrolloutid)){
-	  			analyticObj.IPM_Company_Priority__c = tempFin.IPM_CPP_Regional__c; 
-
+	  			if(bdGlobal)
+	  			{
+	  				CPP =calculateCPP(tempFin.Year_1_iTO_Global__c, companyCardTurnOver);
+	  			}
+	  			else
+	  			{
+	  				CPP =calculateCPP(tempFin.Year_1_iTO_Regional__c, companyCardTurnOver);
+	  			}
+	  			
+	  			 
+	  			//analyticObj.IPM_Company_Priority__c = tempFin.IPM_CPP_Regional__c;
+	  			analyticObj.IPM_Company_Priority__c = CPP; 
 	  		}
 	  	} 
   		return analyticObj;  
    
   	}
     
+    /*********************************************************************************************************************
+     * @Description: To calculate CPP
+     * @param1: Year1BDnumber either Global Turnover or Regional Turnover
+     * @param1: companycardturnover  total opco tunover of the Local Company card
+     * @return: string for CPP  
+     *********************************************************************************************************************/
+    
+    
+    public string calculateCPP(Decimal year1BDNumber, Decimal companyCardTurnOver){
+    	if(companyCardTurnOver != null && year1BDNumber != null){
+    		if((companyCardTurnOver/1000000 > 200) || (year1BDNumber/1000 >= 10) || ( (year1BDNumber/1000) >= ((companyCardTurnOver/1000000) *0.005))){
+	    		return GOLD;
+	    	}
+	    	else if(((year1BDNumber/1000) >= (companyCardTurnOver/1000000)*0.001) && ((year1BDNumber/1000) < (companyCardTurnOver/1000000)*0.005)){
+	    		return SILVER;
+	    	}
+	    	else if(((year1BDNumber/1000) < (companyCardTurnOver/1000000)*0.001)){
+	    		return BRONZE;
+	    	}	    	
+	    	else{
+	    		return N_A;
+	    	}
+    	}
+    	return EMPTY_STRING;
+    }
         
     /*********************************************************************************************************************
      * @Description: To copy Milestone related details to that particular project
