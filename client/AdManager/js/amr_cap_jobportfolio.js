@@ -75,13 +75,10 @@ $j(function() {
     $j('.pbTitle').remove();
 	
 	var defaultSection = urlSection('defaultSection');
-	if(defaultSection) {
-		if(defaultSection=='CancelList') {
+	if(defaultSection && defaultSection=='CancelList') {		
 			$j('.foldclass').attr('class','commonall openclass');
 			$j('.joblist-section').hide();
 			$j('.joblist-cancelled-section').show();
-			$j('.cancelled-joblist-main-section h4.main_inner_sectionh4 .openclass').attr('class','foldclass');
-		}
+			$j('.cancelled-joblist-main-section h4.main_inner_sectionh4 .openclass').attr('class','foldclass');		
 	}
-
 });
