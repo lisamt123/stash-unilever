@@ -37,6 +37,14 @@
         <name>CaseOrigin__c</name>
     </fields>
     <fields>
+        <label><!-- Company Address --></label>
+        <name>Company_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Phone --></label>
+        <name>Company_Phone__c</name>
+    </fields>
+    <fields>
         <label><!-- Country --></label>
         <name>Country__c</name>
         <relationshipLabel><!-- Case Market Mappings --></relationshipLabel>
@@ -53,6 +61,10 @@
     <fields>
         <label><!-- Default From Address --></label>
         <name>Default_From_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- Enable Skill Routing --></label>
+        <name>Enable_Skill_Routing__c</name>
     </fields>
     <fields>
         <label><!-- Language --></label>
@@ -159,6 +171,11 @@
         <name>Market__c</name>
     </fields>
     <fields>
+        <help><!-- Enter Developer name of the email template. Developer Name doesn&apos;t contain spaces --></help>
+        <label><!-- Product Factory Email Template --></label>
+        <name>Product_Factory_Email_Template__c</name>
+    </fields>
+    <fields>
         <label><!-- Tag --></label>
         <name>Tag__c</name>
         <picklistValues>
@@ -169,6 +186,11 @@
             <masterLabel>George</masterLabel>
             <translation><!-- George --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Enter Developer name of the email template. Developer Name doesn&apos;t contain spaces --></help>
+        <label><!-- Textile Factory Email Template --></label>
+        <name>Textile_Factory_Email_Template__c</name>
     </fields>
     <layouts>
         <layout>Case Market Mapping Layout</layout>

@@ -579,7 +579,7 @@
             <criteriaItems>
                 <field>Case.Origin</field>
                 <operation>equals</operation>
-                <value>Email North America,Social Media North America</value>
+                <value>Email North America,Social Media North America,Web North America</value>
             </criteriaItems>
             <criteriaItems>
                 <field>Case.Out_of_Hours__c</field>
@@ -594,6 +594,90 @@
                 <field>Case.Origin</field>
                 <operation>equals</operation>
                 <value>Email North America CS</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Out_of_Hours__c</field>
+                <operation>equals</operation>
+                <value>False</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>CEC_Southern_Cone_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Case_Market__c</field>
+                <operation>equals</operation>
+                <value>Southern Cone</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Out_of_Hours__c</field>
+                <operation>equals</operation>
+                <value>False</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>CEC_Brazil_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Case_Market__c</field>
+                <operation>equals</operation>
+                <value>Brazil</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Out_of_Hours__c</field>
+                <operation>equals</operation>
+                <value>False</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>CEC_Middle_Americas_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Case_Market__c</field>
+                <operation>equals</operation>
+                <value>Middle Americas</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Out_of_Hours__c</field>
+                <operation>equals</operation>
+                <value>False</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>CEC_Brazil_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Email Brazil</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Out_of_Hours__c</field>
+                <operation>equals</operation>
+                <value>False</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>CEC_Southern_Cone_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Email Southern Cone</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Out_of_Hours__c</field>
+                <operation>equals</operation>
+                <value>False</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>CEC_Middle_Americas_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Email Middle Americas</value>
             </criteriaItems>
             <criteriaItems>
                 <field>Case.Out_of_Hours__c</field>

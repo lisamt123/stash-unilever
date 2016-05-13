@@ -125,7 +125,7 @@
         <inlineHelpText>Textual version of decimal currency, e.g. CENTS</inlineHelpText>
         <label>Currency Decimal Text</label>
         <length>20</length>
-        <required>false</required>
+        <required>true</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -138,7 +138,7 @@
         <inlineHelpText>Textual version of currency, e.g. DOLLARS</inlineHelpText>
         <label>Currency Text</label>
         <length>20</length>
-        <required>false</required>
+        <required>true</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -249,10 +249,13 @@
         <columns>Cheque_Book__c</columns>
         <columns>Country__c</columns>
         <columns>Product_Category_Name__c</columns>
+        <columns>Brand__c</columns>
         <columns>Starting_Number__c</columns>
         <columns>Last_Cheque_Number__c</columns>
         <columns>Currency__c</columns>
         <columns>UPDATEDBY_USER</columns>
+        <columns>Currency_Decimal_Text__c</columns>
+        <columns>Currency_Text__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Active__c</field>
@@ -276,6 +279,7 @@
         <columns>Cheque_Book__c</columns>
         <columns>Active__c</columns>
         <columns>Country__c</columns>
+        <columns>Brand__c</columns>
         <columns>Product_Category_Name__c</columns>
         <columns>Starting_Number__c</columns>
         <columns>Last_Cheque_Number__c</columns>

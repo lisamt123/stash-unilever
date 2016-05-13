@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Retrieval Request</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Retrieval Requests</value>
+    </caseValues>
+    <fields>
+        <label><!-- Appointment Date --></label>
+        <name>Appointment_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Best Visiting Hour --></label>
+        <name>Best_Visiting_Hour__c</name>
+    </fields>
+    <fields>
+        <label><!-- Blank Field1 --></label>
+        <name>Blank_Field1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Blank Field2 --></label>
+        <name>Blank_Field2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Blank Field3 --></label>
+        <name>Blank_Field3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Case Country Name --></label>
+        <name>Case_Country_Name__c</name>
+        <picklistValues>
+            <masterLabel>Brazil</masterLabel>
+            <translation><!-- Brazil --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Case Market --></label>
+        <name>Case_Market__c</name>
+    </fields>
+    <fields>
+        <label><!-- Case Product --></label>
+        <name>Case_Product__c</name>
+    </fields>
+    <fields>
+        <label><!-- Case --></label>
+        <name>Case__c</name>
+        <relationshipLabel><!-- Retrieval Requests --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Company Address --></label>
+        <name>Company_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Name --></label>
+        <name>Company_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Phone --></label>
+        <name>Company_Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Consumer Home Phone --></label>
+        <name>Consumer_Home_Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Consumer Mobile --></label>
+        <name>Consumer_Mobile__c</name>
+    </fields>
+    <fields>
+        <label><!-- Consumer Name --></label>
+        <name>Consumer_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Consumer Other Phone --></label>
+        <name>Consumer_Other_Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Consumer Phone --></label>
+        <name>Consumer_Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Consumer Telephone Number --></label>
+        <name>Consumer_Telephone_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Exchange Flag --></label>
+        <name>Exchange_Flag__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fulfilment Approved --></label>
+        <name>Fulfilment_Approved__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fulfilment Id --></label>
+        <name>Fulfilment_Id__c</name>
+        <relationshipLabel><!-- Retrieval Requests --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Global Product Cd --></label>
+        <name>Global_Product_Cd__c</name>
+    </fields>
+    <fields>
+        <label><!-- Include Gift --></label>
+        <name>Include_Gift__c</name>
+    </fields>
+    <fields>
+        <label><!-- Internal Code 1 --></label>
+        <name>Internal_Code_1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Internal Code 2 --></label>
+        <name>Internal_Code_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Internal Code 3 --></label>
+        <name>Internal_Code_3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Mailing Address --></label>
+        <name>Mailing_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product CU Description (English) --></label>
+        <name>Product_CU_Description_English__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product CU MRDR Code --></label>
+        <name>Product_CU_MRDR_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product Factory Email Sent --></label>
+        <name>Product_Factory_Email_Sent__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product Factory --></label>
+        <name>Product_Factory__c</name>
+        <relationshipLabel><!-- Retrieval Requests (Product Factory) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Product Notes --></label>
+        <name>Product_Notes__c</name>
+    </fields>
+    <fields>
+        <label><!-- Quantity of Bulks --></label>
+        <name>Quantity_of_Bulks__c</name>
+    </fields>
+    <fields>
+        <label><!-- Retrieval Action --></label>
+        <name>Retrieval_Action__c</name>
+        <picklistValues>
+            <masterLabel>Clothing Retrieval</masterLabel>
+            <translation><!-- Clothing Retrieval --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deliver Gift with Appointment</masterLabel>
+            <translation><!-- Deliver Gift with Appointment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deliver New Product with Appointment</masterLabel>
+            <translation><!-- Deliver New Product with Appointment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product &amp; Clothing Retrieval</masterLabel>
+            <translation><!-- Product &amp; Clothing Retrieval --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product &amp; Clothing Retrieval with Replacement</masterLabel>
+            <translation><!-- Product &amp; Clothing Retrieval with Replacement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product &amp; Foreign Matter Retrieval with Replacement(Factory)</masterLabel>
+            <translation><!-- Product &amp; Foreign Matter Retrieval with Replacement(Factory) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product Retrieval</masterLabel>
+            <translation><!-- Product Retrieval --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product Retrieval with Replacement(Disposal)</masterLabel>
+            <translation><!-- Product Retrieval with Replacement(Disposal) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product Retrieval with Replacement(Factory Study)</masterLabel>
+            <translation><!-- Product Retrieval with Replacement(Factory Study) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product Retrieval with Replacement(Factory)</masterLabel>
+            <translation><!-- Product Retrieval with Replacement(Factory) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product Retrieval(Factory)</masterLabel>
+            <translation><!-- Product Retrieval(Factory) --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Retrieval Message --></label>
+        <name>Retrieval_Message__c</name>
+    </fields>
+    <fields>
+        <label><!-- Retrieval Notes --></label>
+        <name>Retrieval_Notes__c</name>
+    </fields>
+    <fields>
+        <label><!-- Retrieval Quantity --></label>
+        <name>Retrieval_Quantity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Retrieval Status --></label>
+        <name>Retrieval_Status__c</name>
+        <picklistValues>
+            <masterLabel>Appointment Booked</masterLabel>
+            <translation><!-- Appointment Booked --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cancelled</masterLabel>
+            <translation><!-- Cancelled --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Closed</masterLabel>
+            <translation><!-- Closed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Clothing Delivered</masterLabel>
+            <translation><!-- Clothing Delivered --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Clothing Delivery Initiated</masterLabel>
+            <translation><!-- Clothing Delivery Initiated --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Errored</masterLabel>
+            <translation><!-- Errored --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Initiate Clothing Delivery</masterLabel>
+            <translation><!-- Initiate Clothing Delivery --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Initiate Product Analysis</masterLabel>
+            <translation><!-- Initiate Product Analysis --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Initiated</masterLabel>
+            <translation><!-- Initiated --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New</masterLabel>
+            <translation><!-- New --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rebook Appointment</masterLabel>
+            <translation><!-- Rebook Appointment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Resolved</masterLabel>
+            <translation><!-- Resolved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Retrieval Complete</masterLabel>
+            <translation><!-- Retrieval Complete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Submitted</masterLabel>
+            <translation><!-- Submitted --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Submitted Date --></label>
+        <name>Submitted_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Textile Factory Email Sent --></label>
+        <name>Textile_Factory_Email_Sent__c</name>
+    </fields>
+    <fields>
+        <label><!-- Textile Factory --></label>
+        <name>Textile_Factory__c</name>
+        <relationshipLabel><!-- Retrieval Requests --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Thread Id --></label>
+        <name>Thread_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Weight KG --></label>
+        <name>Total_Weight_KG__c</name>
+    </fields>
+    <fields>
+        <label><!-- Weight KG --></label>
+        <name>Weight_KG__c</name>
+    </fields>
+    <layouts>
+        <layout>Retrieval Request Layout</layout>
+        <sections>
+            <label><!-- Case Detail --></label>
+            <section>Case Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Consumer Detail --></label>
+            <section>Consumer Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fulfilment Detail --></label>
+            <section>Fulfilment Detail</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Retrieval Request Layout(Read Only)</layout>
+        <sections>
+            <label><!-- Case Detail --></label>
+            <section>Case Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Consumer Detail --></label>
+            <section>Consumer Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fulfilment Detail --></label>
+            <section>Fulfilment Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Information --></label>
+            <section>Information</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Default --></label>
+        <name>Default</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Read Only --></label>
+        <name>Read_Only</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- Analyse_Product --></label>
+        <name>Analyse_Product</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Delivery_Clothing --></label>
+        <name>Delivery_Clothing</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- New_Retrieval_Request --></label>
+        <name>New_Retrieval_Request</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Rebook --></label>
+        <name>Rebook</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Submit --></label>
+        <name>Submit</name>
+    </webLinks>
+</CustomObjectTranslation>

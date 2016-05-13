@@ -10,7 +10,7 @@ Class.
 ========================================================================
 History                                                            
 -------                                                            
-VERSION    AUTHOR            			 DATE            DETAIL                   
+VERSION    AUTHOR                        DATE            DETAIL                   
 1.0        Masood Ahmad Ansari           April-2016      INITIAL DEVELOPMENT   
 
 ***********************************************************************/
@@ -78,14 +78,14 @@ public class CEC_FufilmentProductInlineControllerTest {
         CEC_FufilmentProductInlineController controller = new CEC_FufilmentProductInlineController(stdController);
         
         controller.productId = productObj.id;
-        controller.productQuantity ='1';
+        controller.productQuantity =1;
         test.StartTest();
         
         controller.saveList(); 
         
         test.StopTest();
         CEC_Fulfilment_Product__c fulfilmentProduct = [Select id, Fulfilment_Id__c, Product_Quantity__c FROM CEC_Fulfilment_Product__c WHERE Product__c =: productObj.id LIMIT 1 ]; 
-    	system.assert(fulfilmentProduct != null);
+        system.assert(fulfilmentProduct != null);
         system.assertEquals(1,fulfilmentProduct.Product_Quantity__c);
         system.assertEquals(fulfilment.id, fulfilmentProduct.Fulfilment_Id__c);
     }

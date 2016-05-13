@@ -1,0 +1,812 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <fields>
+        <label>Tarjeta - Número</label>
+        <name>Account_Card_Number__c</name>
+    </fields>
+    <fields>
+        <label>Tarjeta - Status</label>
+        <name>Account_Card_Status__c</name>
+    </fields>
+    <fields>
+        <label>ID tarjeta</label>
+        <name>Account_Id__c</name>
+    </fields>
+    <fields>
+        <label>Nombre del Operador</label>
+        <name>Advisor_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Advisor Nameold --></label>
+        <name>Advisor_Nameold__c</name>
+    </fields>
+    <fields>
+        <label><!-- Agent ID --></label>
+        <name>AgentID__c</name>
+    </fields>
+    <fields>
+        <label><!-- AgentIDold --></label>
+        <name>AgentIDold__c</name>
+    </fields>
+    <fields>
+        <label><!-- Agent Position --></label>
+        <name>AgentPosition__c</name>
+        <picklistValues>
+            <masterLabel>Careline Advisor</masterLabel>
+            <translation><!-- Careline Advisor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Careline Escalations</masterLabel>
+            <translation><!-- Careline Escalations --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Logo de marca</label>
+        <name>Brand_Logo__c</name>
+        <relationshipLabel><!-- Fulfilment --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Case Brand --></label>
+        <name>CaseBrand__c</name>
+    </fields>
+    <fields>
+        <label><!-- Case Market --></label>
+        <name>Case_Market__c</name>
+    </fields>
+    <fields>
+        <label><!-- Case Product Category --></label>
+        <name>Case_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- Case --></label>
+        <name>Case__c</name>
+        <relationshipLabel><!-- Fulfilment --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- ChequeBook --></label>
+        <name>ChequeBook__c</name>
+        <relationshipLabel><!-- Fulfilment --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Cheque Number --></label>
+        <name>Cheque_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cheque Sent --></label>
+        <name>Cheque_Sent__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cheque Voided --></label>
+        <name>Cheque_Voided__c</name>
+    </fields>
+    <fields>
+        <label>Número del Documento Consumidor</label>
+        <name>Consumer_Document_Number__c</name>
+    </fields>
+    <fields>
+        <label>Tipo de documento</label>
+        <name>Consumer_Document_Type__c</name>
+    </fields>
+    <fields>
+        <label>Nombre</label>
+        <name>Consumer_First_Name__c</name>
+    </fields>
+    <fields>
+        <label>Teléfono particular de linea</label>
+        <name>Consumer_Home_Phone_Number__c</name>
+    </fields>
+    <fields>
+        <label>Apellido</label>
+        <name>Consumer_Last_Name__c</name>
+    </fields>
+    <fields>
+        <label>Celular</label>
+        <name>Consumer_Mobile_Phone_Number__c</name>
+    </fields>
+    <fields>
+        <label>Otro teléfono</label>
+        <name>Consumer_Other_Phone_Number__c</name>
+    </fields>
+    <fields>
+        <label>Otro teléfono</label>
+        <name>Consumer_Phone_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Country &amp; BrandLogo --></label>
+        <name>Country_BrandLogo__c</name>
+    </fields>
+    <fields>
+        <label>Pais</label>
+        <name>Country__c</name>
+        <picklistValues>
+            <masterLabel>Argentina</masterLabel>
+            <translation><!-- Argentina --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Austria</masterLabel>
+            <translation><!-- Austria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Belgium</masterLabel>
+            <translation><!-- Belgium --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bolivia</masterLabel>
+            <translation><!-- Bolivia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bosnia and Herzegovina</masterLabel>
+            <translation><!-- Bosnia and Herzegovina --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brazil</masterLabel>
+            <translation><!-- Brazil --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bulgaria</masterLabel>
+            <translation><!-- Bulgaria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Canada</masterLabel>
+            <translation><!-- Canada --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chile</masterLabel>
+            <translation><!-- Chile --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Colombia</masterLabel>
+            <translation><!-- Colombia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Costa Rica</masterLabel>
+            <translation><!-- Costa Rica --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Croatia</masterLabel>
+            <translation><!-- Croatia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Czech Republic</masterLabel>
+            <translation><!-- Czech Republic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Denmark</masterLabel>
+            <translation><!-- Denmark --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ecuador</masterLabel>
+            <translation><!-- Ecuador --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>El Salvador</masterLabel>
+            <translation><!-- El Salvador --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Estonia</masterLabel>
+            <translation><!-- Estonia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Finland</masterLabel>
+            <translation><!-- Finland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>France</masterLabel>
+            <translation><!-- France --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Germany</masterLabel>
+            <translation><!-- Germany --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Greece</masterLabel>
+            <translation><!-- Greece --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Guatemala</masterLabel>
+            <translation><!-- Guatemala --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Honduras</masterLabel>
+            <translation><!-- Honduras --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hungary</masterLabel>
+            <translation><!-- Hungary --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Iceland</masterLabel>
+            <translation><!-- Iceland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>India</masterLabel>
+            <translation><!-- India --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ireland</masterLabel>
+            <translation><!-- Ireland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Italy</masterLabel>
+            <translation><!-- Italy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Latvia</masterLabel>
+            <translation><!-- Latvia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lithuania</masterLabel>
+            <translation><!-- Lithuania --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Luxembourg</masterLabel>
+            <translation><!-- Luxembourg --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Macedonia, the Former Yugoslav Republic of</masterLabel>
+            <translation><!-- Macedonia, the Former Yugoslav Republic of --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mexico</masterLabel>
+            <translation><!-- Mexico --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mlodova, Republic of</masterLabel>
+            <translation><!-- Mlodova, Republic of --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Montenegro</masterLabel>
+            <translation><!-- Montenegro --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Netherlands</masterLabel>
+            <translation><!-- Netherlands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nicaragua</masterLabel>
+            <translation><!-- Nicaragua --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Norway</masterLabel>
+            <translation><!-- Norway --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Panama</masterLabel>
+            <translation><!-- Panama --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Paraguay</masterLabel>
+            <translation><!-- Paraguay --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Peru</masterLabel>
+            <translation><!-- Peru --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Poland</masterLabel>
+            <translation><!-- Poland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Portugal</masterLabel>
+            <translation><!-- Portugal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Romania</masterLabel>
+            <translation><!-- Romania --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Serbia</masterLabel>
+            <translation><!-- Serbia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Slovakia</masterLabel>
+            <translation><!-- Slovakia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Slovenia</masterLabel>
+            <translation><!-- Slovenia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Spain</masterLabel>
+            <translation><!-- Spain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sweden</masterLabel>
+            <translation><!-- Sweden --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Switzerland</masterLabel>
+            <translation><!-- Switzerland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>United Kingdom</masterLabel>
+            <translation><!-- United Kingdom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>United States</masterLabel>
+            <translation><!-- United States --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Uruguay</masterLabel>
+            <translation><!-- Uruguay --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Venezuela</masterLabel>
+            <translation><!-- Venezuela --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Currency_Decimal_Text --></label>
+        <name>Currency_Decimal_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Currency_Text --></label>
+        <name>Currency_Text__c</name>
+    </fields>
+    <fields>
+        <label>Fecha de aprobación</label>
+        <name>Date_Approved__c</name>
+    </fields>
+    <fields>
+        <label>Fecha de nacimiento</label>
+        <name>Date_of_Birth__c</name>
+    </fields>
+    <fields>
+        <label>Detalles de valor tarjeta Débito</label>
+        <name>Debit_Card_Detail_Card_Value__c</name>
+    </fields>
+    <fields>
+        <label>Número tarjeta de débito</label>
+        <name>Debit_Card_Number__c</name>
+        <relationshipLabel>Detalles tarjet de d�bito</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Valor tarjeta de débito</label>
+        <name>Debit_Card_Value__c</name>
+    </fields>
+    <fields>
+        <label>Aprobación de Documento</label>
+        <name>Document_Approval__c</name>
+    </fields>
+    <fields>
+        <label>E-Voucher - Fecha de Vencimiento</label>
+        <name>E_Voucher_Expiry_Date__c</name>
+    </fields>
+    <fields>
+        <label>E-Voucher - Número</label>
+        <name>E_Voucher_Number__c</name>
+        <relationshipLabel><!-- Fulfilment --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>E-Voucher - Valor</label>
+        <name>E_Voucher_Value__c</name>
+    </fields>
+    <fields>
+        <label>Anexo 1 Notas</label>
+        <name>Enclosure1_Notes__c</name>
+    </fields>
+    <fields>
+        <label>Anexo 1 Cantidad</label>
+        <name>Enclosure1_Quantity__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Adjunto1</label>
+        <name>Enclosure1__c</name>
+        <relationshipLabel><!-- Fulfilment --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>Anexo 2 Notas</label>
+        <name>Enclosure2_Notes__c</name>
+    </fields>
+    <fields>
+        <label>Anexo 2 Cantidad</label>
+        <name>Enclosure2_Quantity__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Adjunto2</label>
+        <name>Enclosure2__c</name>
+        <relationshipLabel>Fulfilment (Adjunto2)</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Anexo 3 Notas</label>
+        <name>Enclosure3_Notes__c</name>
+    </fields>
+    <fields>
+        <label>Anexo 3 Cantidad</label>
+        <name>Enclosure3_Quantity__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Adjunto3</label>
+        <name>Enclosure3__c</name>
+        <relationshipLabel>Fulfilment (Adjunto3)</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Anexo 4 Notas</label>
+        <name>Enclosure4_Notes__c</name>
+    </fields>
+    <fields>
+        <label>Anexo 4 Cantidad</label>
+        <name>Enclosure4_Quantity__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Adjunto4</label>
+        <name>Enclosure4__c</name>
+        <relationshipLabel>Fulfilment (Adjunto4)</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Anexo 5 Notas</label>
+        <name>Enclosure5_Notes__c</name>
+    </fields>
+    <fields>
+        <label>Anexo 5 Cantidad</label>
+        <name>Enclosure5_Quantity__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Adjunto5</label>
+        <name>Enclosure5__c</name>
+        <relationshipLabel>Fulfilment (Adjunto5)</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Fecha de Vencimiento</label>
+        <name>Expiry_Date__c</name>
+    </fields>
+    <fields>
+        <label>Terminada</label>
+        <name>Fulfilled__c</name>
+    </fields>
+    <fields>
+        <label>Nombre completo</label>
+        <name>Full_Name__c</name>
+    </fields>
+    <fields>
+        <label>Nombre completo</label>
+        <name>Fullname__c</name>
+    </fields>
+    <fields>
+        <label><!-- FullnameOLD --></label>
+        <name>Fullnameold__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID --></label>
+        <name>ID__c</name>
+    </fields>
+    <fields>
+        <label>Incluye regalo</label>
+        <name>Include_Gift__c</name>
+    </fields>
+    <fields>
+        <label>Impreso localmente</label>
+        <name>IsPrintedLocally__c</name>
+    </fields>
+    <fields>
+        <label>Problema tarjeta</label>
+        <name>Issue_Card__c</name>
+    </fields>
+    <fields>
+        <label>CBU consumidor</label>
+        <name>Local_Identifier__c</name>
+    </fields>
+    <fields>
+        <label>Dirección de Correo</label>
+        <name>Mailing_Address__c</name>
+    </fields>
+    <fields>
+        <label>Mercado</label>
+        <name>Market__c</name>
+    </fields>
+    <fields>
+        <label>Mensaje</label>
+        <name>Message__c</name>
+    </fields>
+    <fields>
+        <label>Ninguno de los articulos reemplazados</label>
+        <name>No_of_Replacement_Items__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payable To --></label>
+        <name>Payable_To__c</name>
+    </fields>
+    <fields>
+        <label>E-mail personal</label>
+        <name>PersonEmail__c</name>
+    </fields>
+    <fields>
+        <label>Codigo Postal opcional</label>
+        <name>PostOption__c</name>
+    </fields>
+    <fields>
+        <label>Observaciones producto</label>
+        <name>Product_Notes__c</name>
+    </fields>
+    <fields>
+        <label>Producto enviado</label>
+        <name>Product_Sent__c</name>
+    </fields>
+    <fields>
+        <label><!-- QA flag --></label>
+        <name>QA_flag__c</name>
+    </fields>
+    <fields>
+        <label><!-- Refund Currency --></label>
+        <name>Refund_Currency__c</name>
+    </fields>
+    <fields>
+        <label><!-- Refund Value --></label>
+        <name>Refund_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Refund Value in Words --></label>
+        <name>Refund_Value_in_Words__c</name>
+    </fields>
+    <fields>
+        <label>Reenviar E-mail de E-Voucher</label>
+        <name>Resend_E_Voucher_Email__c</name>
+    </fields>
+    <fields>
+        <label>ID de retiro</label>
+        <name>Retrieval_Id__c</name>
+        <relationshipLabel><!-- Fulfilment --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>Status retiro</label>
+        <name>Retrieval_Status__c</name>
+    </fields>
+    <fields>
+        <label>Saludo</label>
+        <name>Salutation__c</name>
+    </fields>
+    <fields>
+        <label><!-- SalutationOld --></label>
+        <name>Salutationold__c</name>
+    </fields>
+    <fields>
+        <label>Tipo</label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Dosing Request</masterLabel>
+            <translation><!-- Dosing Request --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Remuneration</masterLabel>
+            <translation><!-- Remuneration --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Standard Letter</masterLabel>
+            <translation>Carta standard</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Aprobado</label>
+        <name>isApproved__c</name>
+    </fields>
+    <fields>
+        <label>Enviado</label>
+        <name>isSubmitted__c</name>
+    </fields>
+    <gender><!-- Masculine --></gender>
+    <layouts>
+        <layout>Fulfilment Layout</layout>
+        <sections>
+            <label><!-- ChequeBook Details --></label>
+            <section>ChequeBook Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>Detalles Tarjeta de Débito</label>
+            <section>Debit Card Details</section>
+        </sections>
+        <sections>
+            <label>Detalles E-voucher</label>
+            <section>E-Voucher Details</section>
+        </sections>
+        <sections>
+            <label>Anexos</label>
+            <section>Enclosures</section>
+        </sections>
+        <sections>
+            <label>Detalle de Carta y Consumidor</label>
+            <section>Letter and Consumer Details</section>
+        </sections>
+        <sections>
+            <label>Mensaje</label>
+            <section>Message</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label>Detalle de productos</label>
+            <section>Product Details</section>
+        </sections>
+        <sections>
+            <label>Detalle de productos retirados</label>
+            <section>Retrieval Request Details</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Fulfilment Name --></nameFieldLabel>
+    <validationRules>
+        <errorMessage>No se puede crear el Fulfilment hasta que la dirección del consumidor se haya añadido</errorMessage>
+        <name>Case_Information_Vlidation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>El Fulflillment ya está aprobado, no se puede actualizar la información de la tarjeta de débito</errorMessage>
+        <name>DebitCard_Value_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>El Fulfillment ya está aprobado, no es posible actualizar datos del E-Voucher.</errorMessage>
+        <name>E_Voucher_Value_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>La cantidad de anexos enviados es obligatoria</errorMessage>
+        <name>Enclosure_Quantity_Check</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Falta la a información de &quot;tipo&quot; para crear un fulfilment. Seleccione el país para proceder</errorMessage>
+        <name>FulfilmentType_MandatoryCheck</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Valor de reembolso excede el límite máximo del valor de reembolso.</errorMessage>
+        <name>Max_Refund_value_validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Valor de remmbolso no se puede actualizar, el cheque ya fue enviado</errorMessage>
+        <name>RefundValue_Not_Editable_ChequeSent</name>
+    </validationRules>
+    <webLinks>
+        <label>Agregar detalles cheque</label>
+        <name>Add_Cheque_Details</name>
+    </webLinks>
+    <webLinks>
+        <label>Agregar detalles tarjeta crédito</label>
+        <name>Add_Debit_Card_Details</name>
+    </webLinks>
+    <webLinks>
+        <label>Agregar detalles e-voucher</label>
+        <name>Add_E_Voucher_Details</name>
+    </webLinks>
+    <webLinks>
+        <label>Agregar detalles del canje</label>
+        <name>Add_Retrieval_Request</name>
+    </webLinks>
+    <webLinks>
+        <label>Nuevo Fulfilment</label>
+        <name>New_Fulfilment</name>
+    </webLinks>
+    <workflowTasks>
+        <description>La correspondencia al consumidor ha sido rechazada por el equipo de chequeo de calidad necesita modifcaciones antes de ser enviado. Por favor, siga el link al registro y modifique según lo requerido. Gracias</description>
+        <name>CEC_Rejected_correspondence</name>
+        <subject>Correspondencia rechazada</subject>
+    </workflowTasks>
+</CustomObjectTranslation>

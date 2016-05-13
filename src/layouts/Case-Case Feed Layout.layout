@@ -89,6 +89,7 @@
         <rightComponents>
             <componentType>CustomButtons</componentType>
         </rightComponents>
+        <useInlineFiltersInConsole>false</useInlineFiltersInConsole>
     </feedLayout>
     <layoutSections>
         <customLabel>false</customLabel>
@@ -232,6 +233,10 @@
                 <behavior>Edit</behavior>
                 <field>Product_Skill__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Used_Product_Previously__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -342,10 +347,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Used_Product_Previously__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>DW_Order_Number__c</field>
             </layoutItems>
         </layoutColumns>
@@ -430,6 +431,9 @@
     </miniLayout>
     <quickActionList>
         <quickActionListItems>
+            <quickActionName>Case.Email</quickActionName>
+        </quickActionListItems>
+        <quickActionListItems>
             <quickActionName>Case.ONE_Correspond_Email</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
@@ -472,6 +476,15 @@
         <relatedList>cec_Fulfilment__c.Case__c</relatedList>
         <sortField>NAME</sortField>
         <sortOrder>Desc</sortOrder>
+    </relatedLists>
+    <relatedLists>
+        <customButtons>New_Retrieval_Request</customButtons>
+        <excludeButtons>New</excludeButtons>
+        <fields>NAME</fields>
+        <fields>Appointment_Date__c</fields>
+        <fields>Retrieval_Status__c</fields>
+        <fields>Submitted_Date__c</fields>
+        <relatedList>CEC_Retrieval_Request__c.Case__c</relatedList>
     </relatedLists>
     <relatedLists>
         <excludeButtons>New</excludeButtons>

@@ -284,6 +284,7 @@
         <columns>NAME</columns>
         <columns>Brand__c</columns>
         <columns>Consumer_Product_Descriptor_Local_Lang__c</columns>
+        <columns>GTIN_EAN_UPC_Code__c</columns>
         <columns>Global_CPG_Code__c</columns>
         <columns>Form__c</columns>
         <columns>ISO_Country_Code__c</columns>

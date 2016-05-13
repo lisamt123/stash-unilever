@@ -22,6 +22,15 @@
         <name>All_Market__c</name>
     </fields>
     <fields>
+        <label><!-- Case Product --></label>
+        <name>Case_Product__c</name>
+        <relationshipLabel><!-- Alert Rule --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Consumer Product Descriptor (no size) --></label>
+        <name>Consumer_Product_Descriptor_no_size__c</name>
+    </fields>
+    <fields>
         <help>Une fois sélectionnés, les dossiers doivent avoir un code de production/code jour ajouté afin d&apos;être suivis.</help>
         <label>Groupe par code de jour</label>
         <name>Group_By_Day_Code__c</name>
@@ -43,12 +52,24 @@
         <name>L2_Product_Category__c</name>
     </fields>
     <fields>
+        <label><!-- L2 Reason Code --></label>
+        <name>L2_Reason_Code__c</name>
+    </fields>
+    <fields>
         <label><!-- L3 Product Category --></label>
         <name>L3_Product_Category__c</name>
     </fields>
     <fields>
         <label><!-- L3 Reason Code --></label>
         <name>L3_Reason_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- L4 Product Category --></label>
+        <name>L4_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- L4 Reason Code --></label>
+        <name>L4_Reason_Code__c</name>
     </fields>
     <fields>
         <label><!-- L5 Product Category --></label>
@@ -72,6 +93,10 @@
         <picklistValues>
             <masterLabel>Benelux</masterLabel>
             <translation><!-- Benelux --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brazil</masterLabel>
+            <translation><!-- Brazil --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Czech Republic</masterLabel>
@@ -102,6 +127,10 @@
             <translation><!-- Italy --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Middle Americas</masterLabel>
+            <translation><!-- Middle Americas --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Nordic</masterLabel>
             <translation><!-- Nordic --></translation>
         </picklistValues>
@@ -118,6 +147,10 @@
             <translation><!-- Portugal --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Southern Cone</masterLabel>
+            <translation><!-- Southern Cone --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Spain</masterLabel>
             <translation><!-- Spain --></translation>
         </picklistValues>
@@ -129,6 +162,10 @@
             <masterLabel>United Kingdom</masterLabel>
             <translation><!-- United Kingdom --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Product Category Concat Value --></label>
+        <name>Product_Category_Concat_Value__c</name>
     </fields>
     <fields>
         <label><!-- Product Category --></label>
@@ -156,6 +193,10 @@
             <translation><!-- 3 --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>5</masterLabel>
             <translation><!-- 5 --></translation>
         </picklistValues>
@@ -163,6 +204,10 @@
             <masterLabel>7</masterLabel>
             <translation><!-- 7 --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- ReasonCode Concat Value --></label>
+        <name>ReasonCode_Concat_Value__c</name>
     </fields>
     <fields>
         <label><!-- Reason Code --></label>
@@ -215,8 +260,16 @@
             <section>Custom Links</section>
         </sections>
         <sections>
-            <label><!-- New Section --></label>
-            <section>New Section</section>
+            <label><!-- Product --></label>
+            <section>Product</section>
+        </sections>
+        <sections>
+            <label><!-- Product Category --></label>
+            <section>Product Category</section>
+        </sections>
+        <sections>
+            <label><!-- Reason --></label>
+            <section>Reason</section>
         </sections>
     </layouts>
     <nameFieldLabel><!-- Alert Rule Name --></nameFieldLabel>
@@ -239,5 +292,17 @@
     <validationRules>
         <errorMessage>Merci de spécifier le marché ou de cocher le champs Tous les marchés</errorMessage>
         <name>Market_And_Global_Flag_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Only one of  &apos;Product Category&apos; or &apos;Case Product&apos; value is allowed. --></errorMessage>
+        <name>Product_Mandatory_Alert_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please verify the Product Level and its corresponding Product Category value : &apos;Category Name(L2)&apos; or  &apos;Sector Name(L4)&apos; is populated and not null for the type &apos;Quality&apos;. --></errorMessage>
+        <name>QualityAlert_Product_Category_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please verify the Product Level and its corresponding Product Category value : &apos;Division Name(L0)&apos; or &apos;Sector Name(L4)&apos; is populated and not null for the type &apos;Safety&apos;. --></errorMessage>
+        <name>SafetyAlert_Product_Category_Validation</name>
     </validationRules>
 </CustomObjectTranslation>

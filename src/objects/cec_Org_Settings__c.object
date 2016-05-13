@@ -27,6 +27,28 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Alert_Retention_Days__c</fullName>
+        <description>CEC Alert Retention Days will be used to clear alert data tracker.</description>
+        <externalId>false</externalId>
+        <label>Alert Retention Days</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Brazil_Factory_Response_Email_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>Brazil Factory Response Email Id</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Cosmetovigilence_CaseId_Reference__c</fullName>
         <description>CEC: Survey field reference that will store the Case Id from the Case record e.g. q55 in a url of  http://survey.clicktools.com/go?iv=26bnjdwb56aj0&amp;q55=500c0000004P3Vz.</description>
         <externalId>false</externalId>
@@ -46,6 +68,30 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Debit_Card_Expiry_Days__c</fullName>
+        <description>CEC Debit Card Expiry Days is used to calculate the expiry date of a debit card.</description>
+        <externalId>false</externalId>
+        <label>Debit Card Expiry Days</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>E_Voucher_Expiry_Days__c</fullName>
+        <description>CEC E-Voucher Expiry Days is used to calculate the expiry date of the E Voucher.</description>
+        <externalId>false</externalId>
+        <label>E-Voucher Expiry Days</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -106,6 +152,18 @@
         <description>CEC: to store survey id for live chats</description>
         <externalId>false</externalId>
         <label>LiveChatQuestionaireId</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Local_Identifier_Special_roles__c</fullName>
+        <description>CEC This wil hold Roles separated by &apos;;&apos; for which special processing is required to get Local_Identifier_No_Special_Char__c</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Seperate the CEC roles by a seperator &apos;;&apos;</inlineHelpText>
+        <label>Local Identifier Special roles</label>
         <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
