@@ -679,15 +679,15 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Vep_Visitor__c.Request</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Vep_Visitor__c.Request_Readonly</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Vep_Visitor__c.Request_on_Behalf</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>WU_Master_Warehouse__c.Edit_Warehouse_Capacity</recordType>
