@@ -10580,8 +10580,10 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <searchResultsAdditionalFields>ACCOUNT.PHONE1</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>PC_EMAIL</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>ACCOUNT.SITE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>PC_ADDRESS2_STREET</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>PC_ADDRESS2_CITY</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>PC_ADDRESS2_ZIP</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Local_Identifier__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>Private</sharingModel>
     <validationRules>

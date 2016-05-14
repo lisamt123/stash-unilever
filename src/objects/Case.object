@@ -6254,7 +6254,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>notEqual</operation>
-            <value>CEC UKI Escalation Queue,mlatter,RThornhi,SDouglas</value>
+            <value>CEC UKI Escalation Queue,mlatter,RThornhi,SDouglas,Jeymeh,CEC UKI Queue</value>
         </filters>
         <label>My teams open cases - UK</label>
         <language>en_US</language>
