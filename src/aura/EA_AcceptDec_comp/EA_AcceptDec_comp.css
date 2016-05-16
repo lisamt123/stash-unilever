@@ -89,6 +89,7 @@
   margin-top: 20px;
   color: white;
   border:none;
+    font-size: 1.4rem;
 }
 .THIS .decline
 {
@@ -99,7 +100,7 @@
   background-color: white;
   margin-top: 245px;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 1.4rem;
   line-height: 1.25;
   color: black;
   border: none;
@@ -135,3 +136,114 @@
   float: right;
   margin-right: 15px;
 }
+.THIS .prof_pic div {
+    margin: 0 auto;
+    Width: 13rem;
+    
+}
+
+
+
+
+
+
+
+
+
+.THIS .slds .slds-text-body--regular space_below{
+    margin-top: 60px;
+  font-size: 14px;
+  line-height: 1.25;
+  margin-left: 15px;
+  font-weight: bold;
+}
+.THIS .act_space{
+    margin-top:6rem;
+}
+.THIS .actionTitle {
+  font-size: 1.5rem;
+  line-height: 1.25;
+  margin-left: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+  padding-top: 10px;
+}
+.THIS .dashTitle {
+  font-size: 1.5rem;
+  line-height: 1.25;
+  margin-left: 20px;
+  font-weight: bold;
+  margin-top: 80px;
+  padding-top: 50px;
+}
+
+.THIS .dashboard{
+    background:#EEF1F6;
+    margin-top:-50px;
+    }
+.THIS .right_arrow{
+    width:10px;
+    height:10px;
+    margin-left:180px;
+    }
+
+.THIS .badges_name :nth-child(1) {
+    margin: -7px;
+}
+.THIS .badges_name :nth-child(2) {
+    padding: 6px;
+}
+.THIS .badges_name :nth-child(4) {
+    padding: 15px;
+}
+
+   
+
+
+.THIS .badges_name{
+    position: absolute;
+    margin-top: 65px;
+    margin-left: 5px;
+    
+
+}
+ 
+.THIS .bigcirlce3.active {
+    border-radius: 60%;
+    background: green;
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    margin-top: 35px;
+
+}
+        
+.THIS img.user_badge {
+ display: block;
+ padding-left:20%;
+}
+
+.THIS  .main_badge {
+    
+}
+.THIS  .main_badge_image{
+    width: 85px;
+    margin: 0 auto;
+    text-align: center;
+        
+ }
+.THIS .progress_bar{
+    text-align: center;
+}
+.THIS  img.user_badge-New {
+    border-radius: 34px;
+}    
+.THIS .prg_image{
+    width:90%;
+   margin: 0 auto;
+} 
+.THIS .main_image_content{
+    width: 100%;
+  margin-right: 5%;
+}       
+.THIS ul li{list-style:none;}
