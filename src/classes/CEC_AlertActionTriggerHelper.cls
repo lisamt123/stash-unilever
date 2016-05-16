@@ -57,7 +57,7 @@ public with sharing class CEC_AlertActionTriggerHelper {
             }
         }
         catch(Exception e){
-            
+            system.debug('Error :'+e);
         }
     }
     

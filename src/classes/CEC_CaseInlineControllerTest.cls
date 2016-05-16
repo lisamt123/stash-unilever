@@ -77,7 +77,9 @@ public class CEC_CaseInlineControllerTest{
         System.runAs(u) {
             Test.startTest(); 
             Case caseObj = [SELECT Id, Reason_Code__c FROM Case LIMIT 1];           
-            mdm_Case_Product__c productObj = [SELECT Id FROM mdm_Case_Product__c LIMIT 1];
+            mdm_Case_Product__c productObj = [SELECT Id,Product_Status__c FROM mdm_Case_Product__c LIMIT 1];
+            productObj.Product_Status__c = 'Active';
+            update productObj;
             mdm_Reason_Code__c reasonObj = [SELECT Id FROM mdm_Reason_Code__c LIMIT 1];
 
             ApexPages.StandardController stdController = new ApexPages.StandardController(caseObj);
@@ -85,6 +87,7 @@ public class CEC_CaseInlineControllerTest{
             
             caseControllerObj.reasonId = reasonObj.Id;
             caseControllerObj.productId = productObj.Id;
+            caseControllerObj.productStatus = productObj.Product_Status__c;
             caseControllerObj.toggleMissingInfoDisplay();
             System.assertEquals(true, caseControllerObj.missingInfoSectionDisplay);
 
@@ -298,13 +301,16 @@ Test method for updateProductHierarchy method
             Case caseObj = new Case();
             insert caseObj;
             
-            mdm_Case_Product__c productObj = [SELECT Id FROM mdm_Case_Product__c LIMIT 1];
+            mdm_Case_Product__c productObj = [SELECT Id,Product_Status__c FROM mdm_Case_Product__c LIMIT 1];
+            productObj.Product_Status__c = 'Active';
+            update productObj;
             mdm_Reason_Code__c reasonObj = [SELECT Id FROM mdm_Reason_Code__c LIMIT 1];
             
             ApexPages.StandardController stdController = new ApexPages.StandardController(caseObj);
             CEC_CaseInlineController caseControllerObj = new CEC_CaseInlineController(stdController);
             caseControllerObj.productId = productObj.Id;
             caseControllerObj.reasonId = reasonObj.Id;
+            caseControllerObj.productStatus = productObj.Product_Status__c;
             caseControllerObj.updateProductHierarchy();
             system.assertEquals(caseControllerObj.productId, productObj.Id);
             Test.stopTest();
@@ -474,13 +480,16 @@ Test method for checkAlertAction method
             caseObj.Reason_Code__c = null;
             update caseObj;
             
-            mdm_Case_Product__c productObj = [SELECT Id FROM mdm_Case_Product__c LIMIT 1];
+            mdm_Case_Product__c productObj = [SELECT Id,Product_Status__c FROM mdm_Case_Product__c LIMIT 1];
+            productObj.Product_Status__c = 'Active';
+            update productObj;
             mdm_Reason_Code__c reasonObj = [SELECT Id FROM mdm_Reason_Code__c LIMIT 1];
 
             ApexPages.StandardController stdController = new ApexPages.StandardController(caseObj);
             CEC_CaseInlineController caseControllerObj = new CEC_CaseInlineController(stdController);
             caseControllerObj.productId = productObj.Id;
             caseControllerObj.reasonId = reasonObj.Id;
+            caseControllerObj.productStatus = productObj.Product_Status__c;
                         
             caseObj.Reason_Code__c = reasonObj.Id;
             caseObj.Production_Code__c = null;

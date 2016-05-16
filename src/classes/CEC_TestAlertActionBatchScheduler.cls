@@ -139,6 +139,11 @@ private class CEC_TestAlertActionBatchScheduler {
             cec_Org_Settings__c custsett = new cec_Org_Settings__c(AlertAction_Time_Scheduler__c = '12;');
             insert custsett;
             CEC_AlertActionBatchScheduler.startScheduler();
+            
+            String cecNameFilter = Label.CEC_AlertActionSchedulerName + '%';
+             List<CronTrigger> cecAsyncJobList = [SELECT Id, CronJobDetail.Id, CronJobDetail.Name, CronJobDetail.JobType FROM CronTrigger WHERE CronJobDetail.Name LIKE :cecNameFilter AND CronJobDetail.JobType = '7' AND (STATE = 'WAITING' OR STATE = 'RUNNING')];
+             System.assert(cecAsyncJobList[0].CronJobDetail.Name.contains('CEC AlertAction Scheduler'));
+             
             // Assert whether the scheduler job is created
             CEC_AlertActionBatchScheduler.stopAllScheduler();
             Test.stopTest();
