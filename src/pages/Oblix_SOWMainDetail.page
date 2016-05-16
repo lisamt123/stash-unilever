@@ -68,6 +68,34 @@
         </apex:define>
 
         <apex:define name="top_right_panel">
+
+            <!-- Sync Process Notification modal-->
+            <apex:outputText rendered="{!is_going_through_rollover}">
+                <div class="modal-backdrop fade in syncProcessNotification"></div>
+                <div class="modal show syncProcessNotification" tabindex="-1" role="dialog" aria-labelledby="syncProcessNotification" id="syncProcessNotification">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content submit_for_approval_modal">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="$('.syncProcessNotification').addClass('hidden');"><span aria-hidden="true">&times;</span></button>
+                                <h1 class="modal_window_title" id="gridSystemModalLabel">Sync Process Notification</h1>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        Please note that you cannot modify the attributes or assets of the rolled-over campaigns. You will need to make the changes to the campaigns under the original SOW from previous financial year. You can then sync these changes forward. The only exception is for the campaign Projected Stage which can be edited and used for planning and calculation purposes. Syncing campaign will overwrite the Projected Stage.
+                                    </div>   
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="modal_button_align">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="$('.syncProcessNotification').addClass('hidden');">Accept and continue</button>
+                                </div>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+            </apex:outputText>
+
             <apex:outputPanel id="top_right_panel">
                 <table class="SOW_header_value_summary">
                     <tr>

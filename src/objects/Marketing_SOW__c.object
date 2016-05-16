@@ -972,7 +972,7 @@ ISPICKVAL(SOW_Status__c , &quot;Returned by Agency&quot;)
         <label>SOW PFY</label>
         <referenceTo>Marketing_SOW__c</referenceTo>
         <relationshipLabel>SWOP (SOW PFY)</relationshipLabel>
-        <relationshipName>SOW_PFY</relationshipName>
+        <relationshipName>SOW_PFYs</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>

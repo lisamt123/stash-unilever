@@ -152,10 +152,42 @@ public with sharing class Oblix_SOWRollOverLogic {
 
             Oblix_SyncBatchJob.addEvent('INFO IN setProcessingFlag() - query_string: ' + query_string, NULL);
 
+            Map<Id, sObject> map_objects_to_update = new Map<Id, sObject>((List<sObject>)(database.query(query_string)));
+
+            setProcessingFlag(map_objects_to_update.values(), job_component.attrib_5, Boolean.valueOf(job_component.attrib_2));
+            
+        }
+        catch(QueryException queryEx){  
+            Oblix_SyncBatchJob.addEvent('ERROR IN setProcessingFlag() - ', queryEx.getMessage() + STACK_TRACE + queryEx.getStackTraceString());
+            is_success = false;
+        }
+        catch(DmlException dmlEx){  
+            Oblix_SyncBatchJob.addEvent('ERROR IN setProcessingFlag() - ', dmlEx.getMessage() + STACK_TRACE + dmlEx.getStackTraceString());
+            is_success = false;
+        }
+        catch(Exception ex){  
+            Oblix_SyncBatchJob.addEvent('ERROR IN setProcessingFlag() - ', ex.getMessage() + STACK_TRACE + ex.getStackTraceString());
+            is_success = false;
+        }
+        return is_success;   
+    }
+
+
+    /********************************************************************
+    * @author       Execloud ©
+    * @date         2016-05-04
+    * @description  Depending on the passed in object and attributes 
+                    set the status of sObject flag
+    *********************************************************************/
+    public static boolean setProcessingFlag(List<sObject> list_objects_to_update, String field_to_update, Boolean value_for_update ){
+
+        Boolean is_success = true;
+        try{
+
             Map<Id, sObject> map_objects_to_update = new Map<Id, sObject>();
 
-            for (sObject obj: database.query(query_string)){
-                obj.put(job_component.attrib_5, Boolean.valueOf(job_component.attrib_2));
+            for (sObject obj: list_objects_to_update){
+                obj.put(field_to_update, value_for_update);
                 map_objects_to_update.put(obj.Id, obj);
             }
 
@@ -1438,6 +1470,8 @@ public with sharing class Oblix_SOWRollOverLogic {
                 set_cloned_parent_id.add(attch.ParentId);
             }
 
+            Map<Id, Marketing_SOW__c> map_parents_to_update = new Map<Id, Marketing_SOW__c>(
+                (List<Marketing_SOW__c>)[SELECT Attachments_Cloned__c FROM Marketing_SOW__c WHERE Id in: set_cloned_parent_id]);
 
             String query_string2 = 'SELECT ' + job_component.attrib_1 + ', ' + job_component.attrib_2 + ' FROM Marketing_SOW__c WHERE Id in: set_cloned_parent_id ';
             Map<Id,Marketing_SOW__c> map_original_to_cloned = new Map<Id, Marketing_SOW__c>((List<Marketing_SOW__c>)
@@ -1469,30 +1503,9 @@ public with sharing class Oblix_SOWRollOverLogic {
 
 
         //#################################################
-        //  ADD JOB COMPONENT FOR SETTING FLAG FOR 
-        //  SOWS WHICH ALREADY HAVE CLONED THE ATTACHMENTS
+        //  SET ATTACHMENT CLONED VALUE AGAINST THE PARENT SOWS
         //#################################################
-        // how many attachments?
-            // job component attribute list
-            //      attrib_1: sync status
-            //      attrib_2: attachment_cloned/attribute updated? value to be set true/false
-            //      attrib_3: original status
-            //      attrib_4: object type
-            //      attrib_5: field used for flag
-            //      attrib_6: field used for checking sow status (either Financial_Year__r.SOW_Status__c or SOW_Status__c)
-
-        Oblix_syncBatchJob.JobComponent job_component2 = new Oblix_syncBatchJob.JobComponent(
-            Oblix_Utils.JOB_PROCESS_SET_PROCESSING_FLAG, 
-            job_component.query_limit, 
-            job_component.chunk_number, 
-            job_component.attrib_3,
-            Oblix_syncBatchJob.TRUE_VALUE,
-            job_component.attrib_4, 
-            Oblix_syncBatchJob.OBJECT_SOW, 
-            Oblix_syncBatchJob.ATTACHMENT_CLONED,
-            Oblix_syncBatchJob.SOW_STATUS_FIELD);
-
-        setProcessingFlag(job_component2);
+        setProcessingFlag(map_parents_to_update.values(),Oblix_syncBatchJob.ATTACHMENT_CLONED, true );
 
         }
         catch(QueryException queryEx){  
