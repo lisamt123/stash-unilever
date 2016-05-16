@@ -191,7 +191,8 @@ private class Oblix_SOWMainDetailController_Test {
 
         List<Oblix_SOW_Projects__c> lst_sowp = [SELECT Id, Sync_Status__c FROM Oblix_SOW_Projects__c limit 1];
 
-        lst_sowp[0].Sync_Status__c = Oblix_Utils.JOB_STATUS_SYNC_REQUIRED;
+        //lst_sowp[0].Sync_Status__c = Oblix_Utils.JOB_STATUS_SYNC_REQUIRED;
+        controllerInstance.selected_sow.Initial_Approval_Complete__c = true;
 
         update lst_sowp;
 
@@ -205,7 +206,13 @@ private class Oblix_SOWMainDetailController_Test {
         Test.stopTest();    
 
         PageReference sow_details_page = Page.oblix_sowmain;
-        
+
+        //List<Marketing_SOW__c> sowRecord = [SELECT Id, Name_Suffix__c FROM Marketing_SOW__c LIMIT 1];
+
+        System.assertNotEquals(null, controllerInstance.selected_sow);
+        System.assertEquals(mSow.Id, controllerInstance.selected_sow.Id);
+
+        System.assertEquals(Oblix_Utils.NAME_SUFFIX_FINALISED, controllerInstance.selected_sow.Name_Suffix__c);
 
     }
 

@@ -61,6 +61,9 @@ public with sharing class Oblix_SOWRollOverLogic {
         else if(Oblix_Utils.JOB_PROCESS_SYNC_ADJUST_CAMPAIGN == job_component.process_name){
             is_success = syncCampaignDuringTransitionPeriod(job_component);
         }
+        else if(Oblix_Utils.JOB_PROCESS_RECALCULATE_FEES_PFY == job_component.process_name){
+            is_success = recalculateTotalPFYCampaignFeesUsingCFYcalculator(job_component);
+        }
         
 
         // update the batch job component with the status
@@ -781,6 +784,97 @@ public with sharing class Oblix_SOWRollOverLogic {
 
     }
 
+
+    /********************************************************************
+    * @author       Execloud ©
+    * @date         2016-05-04
+    * @description  this method recalculates campaign total fees by applying the 
+                    calculator records of CFY - it can then work out the value paied in 
+                    previous financial year using current FY calculator records to help
+                    adjust value to be paid in current financial year
+
+    *********************************************************************/
+    public static boolean recalculateTotalPFYCampaignFeesUsingCFYcalculator(Oblix_syncBatchJob.JobComponent job_component){
+        
+        Boolean is_success = true;
+        
+        try{
+
+            String result_msg = '';
+
+            //##########################################################################################
+            //  query the correct records in scope, clone and add to list to insert
+            //##########################################################################################
+            // initial sync:
+            //      attrib_1: JOB_STATUS_SYNC_IN_PROGRESS
+            //      attrib_2: 
+            //      attrib_3: 
+            //      attrib_4: 
+            //      attrib_5: 
+            //      attrib_6: 
+
+
+            String query_string = 'SELECT Total_Project_Score_PFY__c, Percentage_of_Fees_PFY__c, Fees_PFY_Total_By_CFY_Calculator__c, Fees_PFY_Paid_Using_CFY_Calc__c ';
+            query_string += ' ,Financial_Year__r.Financial_Year__c';
+            query_string += ', (SELECT Project_Splits__r.Campaign_NFY__c, OblixCountry__r.Name';
+            query_string += String.join(Oblix_Utils.getfieldsByObject('Oblix_Marketing_SOW_Project_Splits__c'),',');
+            query_string += ' FROM Marketing_SOW_Project_Splits__r)';
+            query_string += ' FROM  Oblix_SOW_Projects__c WHERE Sync_Status__c = \'' + job_component.attrib_3 + '\''; 
+            // only query the cloned campaigns here
+            query_string += ' AND Financial_Year__r.SOW_Status__c = \'' + Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER + '\' ORDER BY Id LIMIT ' + job_component.query_limit; 
+            
+            result_msg += '\nquery_string: ' + query_string;
+
+            Map<Id, Oblix_SOW_Projects__c> map_ids_cloned_campaign = new Map<Id,Oblix_SOW_Projects__c>((List<Oblix_SOW_Projects__c>)database.query(query_string));
+            Map<Id, Long> map_campaign_id_total_fee = Oblix_CalculatorLogic.getCampaignFee(map_ids_cloned_campaign, NULL,false,false, false, Oblix_Utils.TOTAL_PROJECT_SCORE_PFY_FILED);
+            Map<Id, Oblix_SOW_Projects__c> map_campaigns_to_update = new Map<Id,Oblix_SOW_Projects__c>();
+
+            result_msg += '\n\nmap_ids_cloned_campaign size: ' + map_ids_cloned_campaign.size();
+
+            for (Id campaign_id: map_ids_cloned_campaign.keySet()){
+
+                Oblix_SOW_Projects__c campaign = map_ids_cloned_campaign.get(campaign_id);
+
+                if (NULL != map_campaign_id_total_fee && map_campaign_id_total_fee.containsKey(campaign_id) 
+                    && NULL != map_campaign_id_total_fee.get(campaign_id)){
+
+                    // get total fees from the calculated map and assign to campaign
+                    campaign.Fees_PFY_Total_By_CFY_Calculator__c = map_campaign_id_total_fee.get(campaign_id);
+
+                    // calculate total fees paid in PFY by applying % paid last year
+                    campaign.Fees_PFY_Paid_Using_CFY_Calc__c = campaign.Fees_PFY_Total_By_CFY_Calculator__c * campaign.Percentage_of_Fees_PFY__c;
+
+                    map_campaigns_to_update.put(campaign_id, campaign);
+
+                }
+
+            }
+            result_msg += '\n\nmap_campaigns_to_update size: ' + map_campaigns_to_update.size();
+
+            // update existing campaigns
+            update map_campaigns_to_update.values();
+
+            Oblix_SyncBatchJob.addEvent('DEBUG IN recalculateTotalPFYCampaignFeesUsingCFYcalculator() - result_msg: ' + result_msg,NULL);
+
+
+        }catch(QueryException queryEx){  
+            Oblix_SyncBatchJob.addEvent('ERROR IN recalculateTotalPFYCampaignFeesUsingCFYcalculator() - ', queryEx.getMessage() + STACK_TRACE + queryEx.getStackTraceString());
+            is_success = false;
+        }
+        catch(DmlException dmlEx){  
+            Oblix_SyncBatchJob.addEvent('ERROR IN recalculateTotalPFYCampaignFeesUsingCFYcalculator() - ', dmlEx.getMessage() + STACK_TRACE + dmlEx.getStackTraceString());
+            is_success = false;
+        }
+        catch(Exception ex){  
+            Oblix_SyncBatchJob.addEvent('ERROR IN recalculateTotalPFYCampaignFeesUsingCFYcalculator() - ', ex.getMessage() + STACK_TRACE + ex.getStackTraceString());
+            is_success = false;
+        }
+        return is_success;  
+    }
+
+
+
+
     /********************************************************************
     * @author       Execloud ©
     * @date         2016-05-04
@@ -1316,11 +1410,13 @@ public with sharing class Oblix_SOWRollOverLogic {
             //      attrib_1: Original_SOW__c
             //      attrib_2: Cloned_SOW__c
             //      attrib_3: JOB_STATUS_CLONE_IN_PROGRESS
+            //      attrib_4: original status
 
             // initial sync:
             //      attrib_1: SOW_PFY__c
             //      attrib_2: SOW_NFY__c
             //      attrib_3: JOB_STATUS_SYNC_IN_PROGRESS
+            //      attrib_4: original status
             //##########################################################################################
             //  query the correct records in scope, clone and add to list to insert
             //##########################################################################################
@@ -1370,6 +1466,34 @@ public with sharing class Oblix_SOWRollOverLogic {
 
             Database.insert(list_attachments_to_clone, false);
             
+
+
+        //#################################################
+        //  ADD JOB COMPONENT FOR SETTING FLAG FOR 
+        //  SOWS WHICH ALREADY HAVE CLONED THE ATTACHMENTS
+        //#################################################
+        // how many attachments?
+            // job component attribute list
+            //      attrib_1: sync status
+            //      attrib_2: attachment_cloned/attribute updated? value to be set true/false
+            //      attrib_3: original status
+            //      attrib_4: object type
+            //      attrib_5: field used for flag
+            //      attrib_6: field used for checking sow status (either Financial_Year__r.SOW_Status__c or SOW_Status__c)
+
+        Oblix_syncBatchJob.JobComponent job_component2 = new Oblix_syncBatchJob.JobComponent(
+            Oblix_Utils.JOB_PROCESS_SET_PROCESSING_FLAG, 
+            job_component.query_limit, 
+            job_component.chunk_number, 
+            job_component.attrib_3,
+            Oblix_syncBatchJob.TRUE_VALUE,
+            job_component.attrib_4, 
+            Oblix_syncBatchJob.OBJECT_SOW, 
+            Oblix_syncBatchJob.ATTACHMENT_CLONED,
+            Oblix_syncBatchJob.SOW_STATUS_FIELD);
+
+        setProcessingFlag(job_component2);
+
         }
         catch(QueryException queryEx){  
             Oblix_SyncBatchJob.addEvent('ERROR IN cloneAttachments() - ', queryEx.getMessage() + STACK_TRACE + queryEx.getStackTraceString());

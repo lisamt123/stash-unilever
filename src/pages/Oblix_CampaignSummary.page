@@ -140,10 +140,12 @@
                                             </apex:outputText>
                                         </p>
                                         <apex:outputPanel id="calculatedFeePanel">
-                                            <apex:inputText html-type="number" html-step="0.01" onkeyup="validateTotalAdjustFee(this, 'adjustFeeExcessWarningOnCancel');" html-onPaste="return false;" onkeypress="return onKeyPress_IsDigitAndDecimalValidation(event, this);" id="manualPercentage" html-data-fullfee="{!stage_identifier_pop_up.sow_project_in_scope.Campaign_Fees_Total__c}" value="{!stage_identifier_pop_up.cancelCampaignManualPercent}" />
-                                            <p class="bold_font cancel_campaign_values" id="calculatedFee" html-data-calculatedfee="{!stage_identifier_pop_up.sow_project_in_scope.Campaign_Fees_Total__c * stage_identifier_pop_up.cancelCampaignManualPercent / 100.0 }">
+                                            <apex:inputText html-type="number" html-step="0.01" onkeyup="calculateFee(); validateTotalAdjustFee(this, 'adjustFeeExcessWarningOnCancel');" html-onPaste="return false;" onkeypress="return onKeyPress_IsDigitAndDecimalValidation(event, this);" id="manualPercentage" html-data-fullfee="{!stage_identifier_pop_up.sow_project_in_scope.Campaign_Fees_Total__c}" value="{!stage_identifier_pop_up.cancelCampaignManualPercent}" />
+                                            <apex:inputHidden id="percentageFeePFY" value="{!stage_identifier_pop_up.sow_project_in_scope.Percentage_of_Fees_PFY__c}" />
+                                            <apex:inputHidden id="feesPFYwithFXadjustment" value="{!stage_identifier_pop_up.sow_project_in_scope.Fees_PFY_Paid_Using_CFY_Calc__c}" />
+                                            <p class="bold_font cancel_campaign_values" id="calculatedFee" html-data-calculatedfee="{! ((stage_identifier_pop_up.cancelCampaignManualPercent + stage_identifier_pop_up.sow_project_in_scope.Percentage_of_Fees_PFY__c) * stage_identifier_pop_up.sow_project_in_scope.Campaign_Fees_Total__c / 100.0) - stage_identifier_pop_up.sow_project_in_scope.Fees_PFY_Paid_Using_CFY_Calc__c }">
                                                 <apex:outputText value="€ {0, number,###,###,##0}">
-                                                    <apex:param value="{!stage_identifier_pop_up.sow_project_in_scope.Campaign_Fees_Total__c * stage_identifier_pop_up.cancelCampaignManualPercent / 100.0 }" />
+                                                    <apex:param value="{! ((stage_identifier_pop_up.cancelCampaignManualPercent + stage_identifier_pop_up.sow_project_in_scope.Percentage_of_Fees_PFY__c) * stage_identifier_pop_up.sow_project_in_scope.Campaign_Fees_Total__c / 100.0) - stage_identifier_pop_up.sow_project_in_scope.Fees_PFY_Paid_Using_CFY_Calc__c }" />
                                                 </apex:outputText>
                                             </p>
                                         </apex:outputPanel>

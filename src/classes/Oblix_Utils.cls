@@ -541,6 +541,7 @@ public with sharing class Oblix_Utils {
     public static final String JOB_PROCESS_CLONE_ASSETS = 'Clone Assets';
     public static final String JOB_PROCESS_CLONE_ATTACHMENT_FLAG = 'Set Clone Attachment Flag';
     public static final String JOB_PROCESS_SET_PROCESSING_FLAG = 'Set sync job flag';
+    public static final String JOB_PROCESS_RECALCULATE_FEES_PFY = 'Recalculate PFY fees using CFY calculator';
 
     //public static final String JOB_PROCESS_SYNC_SOW = 'Sync SOW';
     public static final String JOB_PROCESS_SYNC_ADJUST_CAMPAIGN = 'Sync Adjust Campaigns';
