@@ -49,8 +49,8 @@
     display: inline-block;
 }
 .THIS .img_icon_size{
-    width:10px;
-    height:10px;
+    width:12px;
+    height:12px;
 }
 
 .THIS .min-sec{
@@ -60,6 +60,7 @@
     margin-left: 5%;
     height: 50%;
     padding-bottom: 5px;
+    font-size:1.4rem;
 }
 .THIS .min-table{
   background-color: transparent;
@@ -76,8 +77,9 @@
 .THIS .tdFont{
   color: #4F6A92;
   font-weight: 300;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   line-height: 1.25;
+  vertical-align: bottom;
 }
 .THIS .navbar-fixed-bottom {
     bottom: 0;
@@ -87,30 +89,31 @@
 .THIS .outer_sec{
     /*padding-top:2px;*/
     height:100%;
+    display:none;
+     
 }
 .THIS .desc {
-  font-size: 1.5rem;
   padding: 4px;
   margin-left: 5px;
   line-height: 1.25;
-  font-weight: normal;
   margin-left: 2.5%;
   width: 95%;
   color: black;
-  width: 90%;
+  height: 7rem;
+  overflow: hidden;
+  /*width: 90%;
   margin-left: 5%;
+  letter-spacing: 0.1rem;*/
 }
 
 .THIS .desc {
-  font-size: 1.5rem;
   padding: 4px;
   margin-left: 5px;
   line-height: 1.25;
-  font-weight: normal;
   margin-left: 2.5%;
   width: 95%;
   color: black;
- 
+ font-size: 1.4rem;
 }
 .THIS .divider {
     height: 1px;
@@ -197,10 +200,10 @@
     margin-top: 60px;
 }
 .THIS td.tdFont {
-    width: 30%;
+    width: 29%;
 }
 .THIS .td_img_icon{
-    width:6%;
+    width:7%;
 }
 .THIS .section {
   background: white;

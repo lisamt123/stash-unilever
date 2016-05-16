@@ -46,8 +46,23 @@ public class EA_ControllerTestClass{
             team.Rating_By_Participant__c=4;
             team.Type__c='Participant';
             //insert team;
+            
+            EA_Team_Member__c testObject2 =new EA_Team_Member__c();
+            testObject2.Activity_Due_Date__c=datetime.newInstance(2014, 7, 15, 13, 30, 0);
+            testObject2.Activity_Due_Day__c='Today';
+            testObject2.Activity_Points__c=5;
+            testObject2.Everyday_Activity__c=event.id;
+            testObject2.Feedback_Comments__c='test.feedback';
+            testObject2.Invitation_Status__c='Invited';
+            testObject2.Invitation_Text__c='test.inv';
+            testObject2.Invited_By__c=localUser.id;
+            testObject2.Participant__c=localUser.id;
+            testObject2.Rating_By_Participant__c=4;
+            testObject2.Type__c='Participant';
+            
             List<EA_Team_Member__c> userList= new List<EA_Team_Member__c>();
             userList.add(team);
+            userList.add(testObject2);
             insert userList;
             
             System.assertEquals('test.feedback', team.Feedback_Comments__c);
@@ -107,11 +122,13 @@ public class EA_ControllerTestClass{
             EA_ControllerClass Eacontroller=new EA_ControllerClass();
             EA_ControllerClass.getActivities();
             EA_ControllerClass.getThemes();
-            List<Everyday_Activity__c> temp1=EA_ControllerClass.getActivitiesonfilter('Working Effectively');
+          
+            List<EA_Wrapper_Class.EA_RecentlyCompletedUsers> temp1=EA_ControllerClass.getActivitiesonfilter('Building Inclusion');
+         
             List<Everyday_Activity__c> temp2=EA_ControllerClass.getactivitydetail('2223333');
             List<EA_Wrapper_Class.EA_UserProfile_Wrapper>temp4=EA_ControllerClass.getActivityPoints('122');
-            EA_ControllerClass.getbooleanvalue('3446677');
-            List<EA_Wrapper_Class.EA_RecentlyCompletedUsers> temp6=EA_ControllerClass.getuserList('event.id');           
+            EA_ControllerClass.getbooleanvalue();
+            List<EA_Wrapper_Class.EA_RecentlyCompletedUsers> temp6=EA_ControllerClass.getuserList('event.id');         
             try{
                 EA_ControllerClass.getUserDetail(); 
                  List<EA_Wrapper_Class.EA_UserProfile_Wrapper> temp7=EA_ControllerClass.getUserActivities(); 
@@ -123,13 +140,13 @@ public class EA_ControllerTestClass{
             EA_ControllerClass.getActivityParticipantCount(event.id);
             
             EA_ControllerClass.insertfeeditem(event.id,'comment');             
-            EA_ControllerClass.getbooleanvalue(event.id);                                          
+            EA_ControllerClass.getbooleanvalue();                                          
             EA_ControllerClass.getToDoTimeline();
             List<EA_Team_Member__c > temp211=EA_ControllerClass.getinvitelist(event.id);
             EA_ControllerClass.chatterfeeditem('postbody');
             string s1=EA_ControllerClass.callSubmitToDoAction(event.id,'json','activityTime');
             Map<string,string> test2=EA_ControllerClass.getThemeColors();
-            //Increasing Test Coverage - Start
+            
             string dateStr = '2015-12-05';
             string resultStr = EA_ControllerClass.getProperDate(dateStr);
             System.assertEquals(resultStr, '05-Dec-2015');
@@ -145,8 +162,27 @@ public class EA_ControllerTestClass{
             string result4 =EA_ControllerClass.callSubmitToDoAction(event.id, jsonStr,'Two Weeks');
             string result5 =EA_ControllerClass.callSubmitToDoAction(event.id, jsonStr,'One Month');
             List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper> lst = EA_ControllerClass.getcommentDetail(event.id);
-            //Increasing Test Coverage - End
             
+            List<RecordType> testRecordType = [SELECT Name,Id,IsActive,SobjectType FROM RecordType WHERE SobjectType = 'Everyday_Activity__c']; 
+            if((testRecordType.size()> 0) || (testRecordType!=null) ){
+            string testThemeName = testRecordType.get(0).Name;
+            List<EA_Wrapper_Class.EA_RecentlyCompletedUsers> temp8 = EA_ControllerClass.getActivitiesonfilter(testThemeName);
+            }
+            
+            string testActivityid = null;
+            Integer testActivityParticipantCount = EA_ControllerClass.getActivityParticipantCount(testActivityid);
+            System.assertEquals(testActivityParticipantCount,0);
+            
+            List<EA_Wrapper_Class.EA_RecentlyCompletedUsers> temp10=EA_ControllerClass.getuserList(event.id);
+            
+            List<EA_Wrapper_Class.EA_UserProfile_Wrapper> temp13=EA_ControllerClass.getActivityPoints(event.id);
+        
+            try{
+            string testStrgaid = EA_ControllerClass.getGAID();
+            }catch(Exception e){
+            System.debug('Exception caught: ' + e.getMessage());
+            }
+     
             Test.stopTest();
             
         }
@@ -227,10 +263,10 @@ public class EA_ControllerTestClass{
             EA_ControllerClass Eacontroller=new EA_ControllerClass();
             EA_ControllerClass.getActivities();
             EA_ControllerClass.getThemes();
-            List<Everyday_Activity__c> temp1=EA_ControllerClass.getActivitiesonfilter('Working Effectively');
+            List<EA_Wrapper_Class.EA_RecentlyCompletedUsers> temp1=EA_ControllerClass.getActivitiesonfilter('Building Inclusion');
             List<Everyday_Activity__c> temp2=EA_ControllerClass.getactivitydetail('2223333');
             List<EA_Wrapper_Class.EA_UserProfile_Wrapper>temp4=EA_ControllerClass.getActivityPoints('122');
-            EA_ControllerClass.getbooleanvalue('3446677');
+            EA_ControllerClass.getbooleanvalue();
             List<EA_Wrapper_Class.EA_RecentlyCompletedUsers> temp6=EA_ControllerClass.getuserList('event.id');
             try{
                 EA_ControllerClass.getUserDetail();
@@ -241,7 +277,7 @@ public class EA_ControllerTestClass{
                 System.debug('Exception caught: ' + e.getMessage());}
               
             EA_ControllerClass.insertfeeditem(event.id,'comment');
-            EA_ControllerClass.getbooleanvalue(event.id);                                 
+            EA_ControllerClass.getbooleanvalue();                                 
             List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper>temp12=EA_ControllerClass.getcommentDetail(event.id);          
             EA_ControllerClass.getToDoTimeline();
             List<EA_Wrapper_Class.EA_UserProfile_Wrapper> temp7=EA_ControllerClass.getUserActivities();    
@@ -249,13 +285,13 @@ public class EA_ControllerTestClass{
             EA_ControllerClass.chatterfeeditem('postbody');
             string s1=EA_ControllerClass.callSubmitToDoAction(event.id,'json','activityTime');
             Map<string,string> test2=EA_ControllerClass.getThemeColors();
-            //Increasing Test Coverage - Start
+            
             string dateStr = '2015-12-05';
             string resultStr = EA_ControllerClass.getProperDate(dateStr);
             System.assertEquals(resultStr, '05-Dec-2015');
-            //Increasing Test Coverage - End
+            
+            }
+            
             Test.stopTest();
         }
-    } 
-    
-}
+    }
