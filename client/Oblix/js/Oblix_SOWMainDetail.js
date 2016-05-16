@@ -3,40 +3,39 @@ google.charts.load('current', {packages: ['corechart', 'bar']});
 google.charts.setOnLoadCallback(drawRightY);
 
 function drawRightY() {
-    // var data = google.visualization.arrayToDataTable([
-    //     [{label: '', type: 'string'},
-    //     {label: 'Record Share', type: 'number'},
-    //     {label: 'Value Share', type: 'number'},
-    //     {type: 'string', role: 'annotation'}],
-    //     ['Box 1-5', 79, 90, 'Annotated'],
-    //     ['Box 6-10', 48, 13, 'Annotated'],
-    //     ['Box 11-15', 50, 55, 'Annotated']
-    // ]);
 
-    var options = {
-        title: 'Spend by Outcome Priority',
-        legend: {position: 'none'},
-        hAxis: {
-            minValue: 0,
-            maxValue: 100
-        },
-        series: {
-            0: { color: '#04B388'},
-            1: { color: '#e56DB1'}
-        },
-        tooltip: {ignoreBounds: true, isHtml: true},
-        height: 130,
-        width: 500,
-        chartArea: {width: '90%', height: '70%'}
-    };
+    var chartDivFYFee = $('#chart_div_fy_fee');
+    var chartDivFullFee = $('#chart_div_full_fee');
 
-    var dataFYFee = google.visualization.arrayToDataTable($('#chart_div_fy_fee').data('chart-data'));
-    var chartFYFee = new google.visualization.BarChart(document.getElementById('chart_div_fy_fee'));
-    chartFYFee.draw(dataFYFee, options);
+    if(chartDivFYFee !== null && chartDivFullFee !== null){
 
-    var dataFullFee = google.visualization.arrayToDataTable($('#chart_div_full_fee').data('chart-data'));
-    var chartFullFee = new google.visualization.BarChart(document.getElementById('chart_div_full_fee'));
-    chartFullFee.draw(dataFullFee, options);
+        var options = {
+            //title: 'Spend by Outcome Priority',
+            legend: {position: 'none'},
+            /*hAxis: {
+                minValue: 0,
+                maxValue: 100
+            },*/
+            vAxis: { format: '#\'%\'' },
+            series: {
+                0: { color: '#04B388'},
+                1: { color: '#e56DB1'}
+            },
+            tooltip: {isHtml: true},
+            height: 130,
+            width: 500,
+            chartArea: {width: '90%', height: '70%', left: 40}
+        };
+
+        var dataFYFee = google.visualization.arrayToDataTable(chartDivFYFee.data('chart-data'));
+        var chartFYFee = new google.visualization.ColumnChart(chartDivFYFee[0]);
+        chartFYFee.draw(dataFYFee, options);
+
+        var dataFullFee = google.visualization.arrayToDataTable(chartDivFullFee.data('chart-data'));
+        var chartFullFee = new google.visualization.ColumnChart(chartDivFullFee[0]);
+        chartFullFee.draw(dataFullFee, options);
+
+    }
 }
 $(document).ready(function() {
     // force a user to write comments when rejecting SOW approval
@@ -124,6 +123,6 @@ $(document).ready(function() {
 
 function messageUser(swopName){
         $.unblockUI();
-        alert('(' + swopName + ') has been approved successfully by Unilever and Agency.\nAn \'open for updates\' version will be available shortly to allow Unilever reflect any changes during the year.');
+        alert('(' + swopName + ') has been approved successfully by Unilever and Agency.\nAn \'open for updates\' version will be available shortly to allow Unilever to reflect any changes during the year.');
         window.location.href='/agency/apex/oblix_sowmain'
     }
