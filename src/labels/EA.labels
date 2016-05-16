@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
         <fullName>EA_Chatter2</fullName>
@@ -14,4 +14,4 @@
         <shortDescription>EA_ShareEmail6</shortDescription>
         <value>More information can be found here https://apps.unilever.com/global/CollaborationHub/SitePages/DEMobile.aspx %0DSalesforce1 is available in App store for Android and iOs devices.</value>
     </labels>
-</CustomLabels>
+
