@@ -109,7 +109,7 @@ public with sharing class CEC_RetrievalRequestTriggerHelper {
 
             // map email templates 
             for(EmailTemplate eTmp :emailTemplates){ 
-            	emailTemplateMap.put(eTmp.DeveloperName, eTmp);
+                emailTemplateMap.put(eTmp.DeveloperName, eTmp);
             }
 
 
@@ -123,7 +123,7 @@ public with sharing class CEC_RetrievalRequestTriggerHelper {
 
                 // get parent case of current retrieval record
                 aCase = parentCaseMap.get(rr.Case__c);
-				                
+                                
                 Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
                 // format mail subject and body accordingly
                 if(string.IsNotBlank(rr.Textile_Factory__c) && (rr.Retrieval_Status__c != 'Initiate Product Analysis')){
@@ -189,8 +189,8 @@ public with sharing class CEC_RetrievalRequestTriggerHelper {
                 if(!emailList.IsEmpty()){
                     resultMail = Messaging.sendEmail(emailList,true);
                 }else{
-					return false;
-				}
+                    return false;
+                }
             }catch(exception e){
                 for(CEC_Retrieval_Request__c rr :factoryRetrievalMapToSendMail.values()){
                     // update error message on retrieval records
@@ -266,14 +266,17 @@ public with sharing class CEC_RetrievalRequestTriggerHelper {
     }    
 
     private list<string> extractToEmailAddresses(string factoryEmail){
+        string aFactoryEmail;
+        string removedEmail;
+        
         // extract all email address
-        factoryEmail = factoryEmail.replace(',',';');
-        string[] toEmailAdresses = factoryEmail.trim().split(';');
+        aFactoryEmail = factoryEmail.replace(',',';');
+        string[] toEmailAdresses = aFactoryEmail.trim().split(';');
         // reject invalid email address
         integer i = toEmailAdresses.size()-1;
         while(i >= 0){
             if(!CEC_Util.isValidEmailAddress(toEmailAdresses.get(i))){
-                toEmailAdresses.remove(i);
+                removedEmail = toEmailAdresses.remove(i);
             }
             i--;
         }

@@ -1081,7 +1081,7 @@ if ({!$Permission.CEC_Retrieval_Process}) {
 	var caseRecord = records[0];
 
 	if (caseRecord != null &amp;&amp; caseRecord.AccountId == null) {
-		alert(&apos;{!$Label.CEC_CaseAccountMissing}&apos;);
+		alert(&apos;{!$Label.CEC_CaseAccountMissing_retrieval}&apos;);
 	} else if (caseRecord != null &amp;&amp;
 		caseRecord.Account.PersonMailingCity == null &amp;&amp; caseRecord.Account.PersonMailingCountry == null &amp;&amp; caseRecord.Account.PersonMailingPostalCode == null &amp;&amp; caseRecord.Account.PersonMailingState == null &amp;&amp; caseRecord.Account.PersonMailingStreet == null) {
 		alert(&apos;{!$Label.CEC_CaseAccountPersonAddressMissing}&apos;);

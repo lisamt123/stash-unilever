@@ -486,6 +486,19 @@ ISO Country Dependency Medium Name</description>
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Claims_Note__c</fullName>
+        <description>CEC Claims Note is used to record notes on the case that are confidential and only claims users can view so that confidential information is hidden from standard users</description>
+        <externalId>false</externalId>
+        <label>Claims Note</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Claims_Notes__c</fullName>
         <description>CEC : To store the information relevant to the Claims team confidentiality.</description>
         <externalId>false</externalId>
@@ -574,6 +587,10 @@ IF( ISPICKVAL(  Account.Known_Consumer__c , &apos;Frequent&apos;), IMAGE(&apos;/
         <picklist>
             <picklistValues>
                 <fullName>Argentina</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Australia</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -685,6 +702,10 @@ IF( ISPICKVAL(  Account.Known_Consumer__c , &apos;Frequent&apos;), IMAGE(&apos;/
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>New Zealand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Nicaragua</fullName>
                 <default>false</default>
             </picklistValues>
@@ -714,6 +735,10 @@ IF( ISPICKVAL(  Account.Known_Consumer__c , &apos;Frequent&apos;), IMAGE(&apos;/
             </picklistValues>
             <picklistValues>
                 <fullName>Portugal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>South Africa</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -853,7 +878,7 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <fullName>Email_Subject__c</fullName>
         <description>CEC: Email Subject field for outbound emails</description>
         <externalId>false</externalId>
-        <formula>IF( Case_Brand__c !=&apos;&apos;,  Case_Brand__c + &quot; &quot;, &quot;&quot;) + &quot;Consumer Services Case #: &quot; +  CaseNumber</formula>
+        <formula>IF( Case_Brand__c !=&apos;&apos;,  Case_Brand__c + &quot; &quot;, &quot;&quot;) + $Label.CEC_Email_Subject +&quot; &quot; +  CaseNumber</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Email Subject</label>
         <required>false</required>
@@ -1187,11 +1212,22 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>L0_Product_Reporting__c</fullName>
+        <description>CEC : This field is used to create Reports with L0 Products.</description>
+        <externalId>false</externalId>
+        <formula>IF(Not(ISBLANK(Case_product_category__c)),&apos;&apos;, L0_Product_Category__c)</formula>
+        <label>L0 Product Reporting</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>L1_Product_Category__c</fullName>
         <description>Retrieves the L1 Product description from product category table</description>
         <externalId>false</externalId>
         <formula>CEC_Product__r.Global_CPG_Code__r.L1_Product_Category__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>L1 Product Category</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1241,7 +1277,6 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <description>Retrieves the L3 Product description from product category table</description>
         <externalId>false</externalId>
         <formula>CEC_Product__r.Global_CPG_Code__r.L3_Product_Category__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>L3 Product Category</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1266,7 +1301,6 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <description>Retrieves the L1 Product description from product category table</description>
         <externalId>false</externalId>
         <formula>CEC_Product__r.Global_CPG_Code__r.L4_Product_Category__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>L4 Product Category</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1303,7 +1337,6 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <description>Retrieves the L5 Product description from product category table</description>
         <externalId>false</externalId>
         <formula>CEC_Product__r.Global_CPG_Code__r.L5_Product_Category__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>L5 Product Category</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1328,7 +1361,6 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <description>Retrieves the L6 Product description from product category table</description>
         <externalId>false</externalId>
         <formula>CEC_Product__r.Global_CPG_Code__r.L6_Product_Category__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>L6 Product Category</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1353,7 +1385,6 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <description>Retrieves the L7 Product description from product category table</description>
         <externalId>false</externalId>
         <formula>CEC_Product__r.Global_CPG_Code__r.L7_Product_Category__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>L7 Product Category</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1432,7 +1463,7 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -1443,7 +1474,7 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <label>Manual Retention Override</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
@@ -1508,9 +1539,6 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
     </fields>
     <fields>
         <fullName>Origin</fullName>
-        <inlineHelpText>Email Middle Americas
-Email Southern Cone
-Email Brazil</inlineHelpText>
         <picklist>
             <picklistValues>
                 <fullName>Chat</fullName>
@@ -1518,6 +1546,10 @@ Email Brazil</inlineHelpText>
             </picklistValues>
             <picklistValues>
                 <fullName>Email</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Email ANZ</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1586,6 +1618,10 @@ Email Brazil</inlineHelpText>
             </picklistValues>
             <picklistValues>
                 <fullName>Email Portugal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Email South Africa</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1698,41 +1734,42 @@ Email Brazil</inlineHelpText>
             <controllingField>Country_Name__c</controllingField>
             <picklistValues>
                 <fullName>bertolli@mizkan.com</fullName>
-                <controllingFieldValues>United States</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>bertollioliveoilusa@deoleo.com</fullName>
-                <controllingFieldValues>United States</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>carapelliusa@deoleo.com</fullName>
-                <controllingFieldValues>United States</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>carbonellusa@deoleo.com</fullName>
-                <controllingFieldValues>United States</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Comments.Canada@benjerry.com</fullName>
-                <controllingFieldValues>Canada</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Canada</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>comments@talentigelato.com</fullName>
-                <controllingFieldValues>United States</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>consumerproduct@mizkan.com</fullName>
-                <controllingFieldValues>United States</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>consumidor@sac-unilever.com</fullName>
+                <default>false</default>
                 <controllingFieldValues>Colombia</controllingFieldValues>
                 <controllingFieldValues>Costa Rica</controllingFieldValues>
                 <controllingFieldValues>Ecuador</controllingFieldValues>
@@ -1742,97 +1779,96 @@ Email Brazil</inlineHelpText>
                 <controllingFieldValues>Nicaragua</controllingFieldValues>
                 <controllingFieldValues>Panama</controllingFieldValues>
                 <controllingFieldValues>Venezuela</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>consumidor@sac-unilever.com.ar</fullName>
+                <default>false</default>
                 <controllingFieldValues>Argentina</controllingFieldValues>
                 <controllingFieldValues>Bolivia</controllingFieldValues>
                 <controllingFieldValues>Chile</controllingFieldValues>
                 <controllingFieldValues>Paraguay</controllingFieldValues>
                 <controllingFieldValues>Peru</controllingFieldValues>
                 <controllingFieldValues>Uruguay</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>info@bertolli.ca</fullName>
-                <controllingFieldValues>Canada</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Canada</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>info@bluewater.ca</fullName>
-                <controllingFieldValues>Canada</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Canada</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>info@carapelli.ca</fullName>
-                <controllingFieldValues>Canada</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Canada</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>info@gortons.com</fullName>
-                <controllingFieldValues>United States</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Product.Contactus@benjerry.com</fullName>
-                <controllingFieldValues>United States</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Ragu.ca@mizkan.com</fullName>
-                <controllingFieldValues>Canada</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Canada</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Ragu.us@mizkan.com</fullName>
-                <controllingFieldValues>United States</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>reply.canada@sunproductscorp.com</fullName>
-                <controllingFieldValues>Canada</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Canada</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>reply.us@sunproductscorp.com</fullName>
-                <controllingFieldValues>United States</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>sac@atendimentounilever.com.br</fullName>
-                <controllingFieldValues>Brazil</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Brazil</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>t2customercare@t2tea.com</fullName>
-                <controllingFieldValues>United States</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>UnileverConsumercare.CA@unilever.com</fullName>
-                <controllingFieldValues>Canada</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Canada</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>unileverconsumercare.usa@unilever.com</fullName>
-                <controllingFieldValues>United States</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>unileverservices.auxconsommateurs@unilever.com</fullName>
-                <controllingFieldValues>Canada</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Canada</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>UnileverServicioalConsumidor.MX@unilever.com</fullName>
-                <controllingFieldValues>Mexico</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Mexico</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>unileverservicioalconsumidor.usa@unilever.com</fullName>
-                <controllingFieldValues>United States</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
             </picklistValues>
             <sorted>true</sorted>
         </picklist>
@@ -2158,33 +2194,33 @@ Email Brazil</inlineHelpText>
         <picklist>
             <picklistValues>
                 <fullName>Existing problem</fullName>
-                <cssExposed>false</cssExposed>
                 <default>false</default>
+                <cssExposed>false</cssExposed>
             </picklistValues>
             <picklistValues>
                 <fullName>Enquiry</fullName>
-                <cssExposed>false</cssExposed>
                 <default>false</default>
+                <cssExposed>false</cssExposed>
             </picklistValues>
             <picklistValues>
                 <fullName>Praise</fullName>
-                <cssExposed>false</cssExposed>
                 <default>false</default>
+                <cssExposed>false</cssExposed>
             </picklistValues>
             <picklistValues>
                 <fullName>Complaint</fullName>
-                <cssExposed>false</cssExposed>
                 <default>false</default>
+                <cssExposed>false</cssExposed>
             </picklistValues>
             <picklistValues>
                 <fullName>Suggestion</fullName>
-                <cssExposed>false</cssExposed>
                 <default>false</default>
+                <cssExposed>false</cssExposed>
             </picklistValues>
             <picklistValues>
                 <fullName>Duplicate</fullName>
-                <cssExposed>false</cssExposed>
                 <default>false</default>
+                <cssExposed>false</cssExposed>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -2419,53 +2455,53 @@ Email Brazil</inlineHelpText>
         <picklist>
             <picklistValues>
                 <fullName>New</fullName>
-                <closed>false</closed>
                 <default>true</default>
+                <closed>false</closed>
             </picklistValues>
             <picklistValues>
                 <fullName>In Progress</fullName>
-                <closed>false</closed>
                 <default>false</default>
+                <closed>false</closed>
             </picklistValues>
             <picklistValues>
                 <fullName>On Hold</fullName>
-                <closed>false</closed>
                 <default>false</default>
+                <closed>false</closed>
             </picklistValues>
             <picklistValues>
                 <fullName>Escalated</fullName>
-                <closed>false</closed>
                 <default>false</default>
+                <closed>false</closed>
             </picklistValues>
             <picklistValues>
                 <fullName>Review Needed</fullName>
-                <closed>false</closed>
                 <default>false</default>
+                <closed>false</closed>
             </picklistValues>
             <picklistValues>
                 <fullName>Pending with Courier</fullName>
-                <closed>false</closed>
                 <default>false</default>
+                <closed>false</closed>
             </picklistValues>
             <picklistValues>
                 <fullName>Awaiting Knowledge Response</fullName>
-                <closed>false</closed>
                 <default>false</default>
+                <closed>false</closed>
             </picklistValues>
             <picklistValues>
                 <fullName>Awaiting Information from Consumer</fullName>
-                <closed>false</closed>
                 <default>false</default>
+                <closed>false</closed>
             </picklistValues>
             <picklistValues>
                 <fullName>Closed</fullName>
-                <closed>true</closed>
                 <default>false</default>
+                <closed>true</closed>
             </picklistValues>
             <picklistValues>
                 <fullName>Closed as Duplicate</fullName>
-                <closed>true</closed>
                 <default>false</default>
+                <closed>true</closed>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -3119,6 +3155,28 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <sharedTo>
             <role>CEC_Manager_UK</role>
             <role>CEC_User_UK</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_ANZ_Escalation_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC ANZ Escalation Queue</label>
+        <queue>CEC_ANZ_Escalation_Queue</queue>
+        <sharedTo>
+            <role>CEC_Manager_ANZ</role>
+            <role>CEC_User_ANZ</role>
+            <role>CEC_Global_Head</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_ANZ_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC ANZ Queue</label>
+        <queue>CEC_ANZ_Queue</queue>
+        <sharedTo>
+            <role>CEC_Manager_ANZ</role>
+            <role>CEC_User_ANZ</role>
+            <role>CEC_Global_Head</role>
         </sharedTo>
     </listViews>
     <listViews>
@@ -5744,6 +5802,45 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_South_Africa_Escalation_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC South Africa Escalation Queue</label>
+        <queue>CEC_South_Africa_Escalation_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_South_Africa</role>
+            <role>CEC_User_South_Africa</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_South_Africa_Food_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC South Africa Food Queue</label>
+        <queue>CEC_South_Africa_Food_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_South_Africa</role>
+            <role>CEC_User_South_Africa</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_South_Africa_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.CLOSED</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <label>CEC South Africa Home and Personal Queue</label>
+        <language>en_US</language>
+        <queue>CEC_South_Africa_Home_and_Personal_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_South_Africa</role>
+            <role>CEC_User_South_Africa</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Southern_Cone_Escalation_Queue_Case</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Southern Cone Escalation Queue</label>
@@ -6023,46 +6120,29 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>India_tier_2</fullName>
-        <booleanFilter>1 AND 2 AND 3 AND (4 OR 5)</booleanFilter>
+        <fullName>Kittys_Queue</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CASES.LAST_UPDATE</columns>
         <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>CASES.ORIGIN</field>
+            <field>CORE.USERS.FIRST_NAME</field>
             <operation>equals</operation>
-            <value>Email,Phone,Web,White Mail,Email India,Email Sri Lanka</value>
+            <value>Kitty</value>
         </filters>
         <filters>
-            <field>CASES.CLOSED</field>
-            <operation>equals</operation>
-            <value>0</value>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
         </filters>
-        <filters>
-            <field>Case_Market__c</field>
-            <operation>equals</operation>
-            <value>India</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.ALIAS</field>
-            <operation>contains</operation>
-            <value>Shree,Karmaka,Akram,KN.J,rvaz,srawa,ishai,shah,gmont,grajp,solanki,nawaz</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.ALIAS</field>
-            <operation>contains</operation>
-            <value>India Tier 2</value>
-        </filters>
-        <label>India tier 2</label>
+        <label>Kittys Queue</label>
         <language>en_US</language>
         <sharedTo>
-            <role>CEC_Manager_India</role>
+            <roleAndSubordinatesInternal>CEC_Manager_Nordic</roleAndSubordinatesInternal>
         </sharedTo>
     </listViews>
     <listViews>
@@ -6078,9 +6158,9 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>CASES.CLOSED</field>
-            <operation>equals</operation>
-            <value>0</value>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
         </filters>
         <filters>
             <field>CORE.USERS.ALIAS</field>
@@ -6137,7 +6217,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <columns>Country__c</columns>
-        <columns>Country_Name__c</columns>
         <columns>Market__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
@@ -6162,20 +6241,14 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <label>Mulesoft Owned Cases</label>
         <language>en_US</language>
-        <sharedTo>
-            <role>CEC_Global_Head</role>
-        </sharedTo>
     </listViews>
     <listViews>
         <fullName>MyCases</fullName>
         <columns>CASES.CASE_NUMBER</columns>
-        <columns>Case_Brand__c</columns>
-        <columns>L2_Product_Category__c</columns>
-        <columns>ACCOUNT.NAME</columns>
+        <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
         <columns>CASES.CREATED_DATE</columns>
-        <columns>CASES.LAST_UPDATE_DATE_ONLY</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Mine</filterScope>
         <label>My Cases</label>
@@ -6185,51 +6258,19 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <fullName>My_Open_Cases</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
-        <columns>CASES.STATUS</columns>
         <columns>CASES.SUBJECT</columns>
-        <columns>Case_Brand__c</columns>
-        <columns>Country__c</columns>
+        <columns>CASES.STATUS</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
+        <columns>CEC_Product_Hierarchy__c</columns>
         <filterScope>Mine</filterScope>
         <filters>
-            <field>CASES.CLOSED</field>
-            <operation>equals</operation>
-            <value>0</value>
-        </filters>
-        <label>My Open Cases - DO NOT EDIT</label>
-        <language>en_US</language>
-    </listViews>
-    <listViews>
-        <fullName>My_Teams_Open_Cases1</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.ORIGIN</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CASES.LAST_UPDATE_DATE_ONLY</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CASES.CLOSED</field>
-            <operation>equals</operation>
-            <value>0</value>
-        </filters>
-        <filters>
-            <field>Case_Market__c</field>
-            <operation>equals</operation>
-            <value>India</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.ALIAS</field>
+            <field>CASES.STATUS</field>
             <operation>notEqual</operation>
-            <value>CEC India Tier 2</value>
+            <value>Closed,Closed as Duplicate</value>
         </filters>
-        <label>My Teams Open Cases</label>
+        <label>My Open Cases</label>
         <language>en_US</language>
-        <sharedTo>
-            <role>CEC_Manager_India</role>
-        </sharedTo>
     </listViews>
     <listViews>
         <fullName>My_teams_open_cases</fullName>
@@ -6242,9 +6283,9 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>CASES.CLOSED</field>
-            <operation>equals</operation>
-            <value>0</value>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
         </filters>
         <filters>
             <field>Case_Market__c</field>
@@ -6256,34 +6297,15 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>notEqual</operation>
             <value>CEC UKI Escalation Queue,mlatter,RThornhi,SDouglas</value>
         </filters>
-        <label>My teams open cases - UK</label>
+        <filters>
+            <field>CASES.LAST_UPDATE_DATE_ONLY</field>
+            <operation>lessThan</operation>
+            <value>LAST_N_DAYS:7</value>
+        </filters>
+        <label>My teams open cases</label>
         <language>en_US</language>
         <sharedTo>
             <role>CEC_Manager_UK</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>NA_Chat_View</fullName>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CASES.LAST_UPDATE</columns>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>CASES.ORIGIN</columns>
-        <columns>Product_UPC__c</columns>
-        <columns>CEC_Product__c</columns>
-        <columns>Reason_L5_desc__c</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CASES.ORIGIN</field>
-            <operation>equals</operation>
-            <value>Chat</value>
-        </filters>
-        <label>NA Chat View</label>
-        <language>en_US</language>
-        <sharedTo>
-            <role>CEC_Manager_North_America</role>
         </sharedTo>
     </listViews>
     <listViews>
@@ -6297,30 +6319,66 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>CASES.CLOSED</field>
-            <operation>equals</operation>
-            <value>0</value>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>On Hold,Closed,Closed as Duplicate</value>
         </filters>
         <filters>
             <field>Case_Market_Mapping_Country__c</field>
             <operation>equals</operation>
             <value>Finland</value>
         </filters>
-        <label>CEC Nordic Queue - Finland V2</label>
+        <label>Nordic Queue - Finland V2</label>
         <language>en_US</language>
         <sharedTo>
             <group>CEC_Nordic_Visibility</group>
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>Out_of_Hours_case_Case</fullName>
+        <fullName>North_America_Canada_DIN_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC North America Canada DIN Queue</label>
+        <queue>CEC_North_America_Canada_DIN_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Open_cases_older_than_2_weeks</fullName>
         <columns>CASES.CASE_NUMBER</columns>
-        <columns>ACCOUNT.NAME</columns>
-        <columns>CASES.STATUS</columns>
         <columns>CASES.SUBJECT</columns>
-        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.STATUS</columns>
         <columns>CORE.USERS.ALIAS</columns>
-        <columns>Country__c</columns>
+        <columns>CASES.LAST_UPDATE_DATE_ONLY</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.ORIGIN</field>
+            <operation>equals</operation>
+            <value>Email,Phone,Web,Social,White Mail,Store,Email UK</value>
+        </filters>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>equals</operation>
+            <value>United Kingdom</value>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <filters>
+            <field>CASES.LAST_UPDATE_DATE_ONLY</field>
+            <operation>lessOrEqual</operation>
+            <value>10/29/2015 12:00 AM</value>
+        </filters>
+        <label>Open cases older than 2 weeks</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_UK</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Out_of_Hours_case_Case</fullName>
         <filterScope>Queue</filterScope>
         <label>Out of Hours case</label>
         <language>en_US</language>
@@ -6333,79 +6391,26 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>Review_Needed</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.ORIGIN</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CASES.LAST_UPDATE_DATE_ONLY</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>Review Needed</value>
-        </filters>
-        <filters>
-            <field>Case_Market__c</field>
-            <operation>equals</operation>
-            <value>United Kingdom</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.ALIAS</field>
-            <operation>notEqual</operation>
-            <value>CEC UKI Escalation Queue,mlatter,RThornhi,SDouglas</value>
-        </filters>
-        <label>Review Needed</label>
-        <language>en_US</language>
-        <sharedTo>
-            <role>CEC_Manager_UK</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>TO_France_Escalation_Queue_Case</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Queue</filterScope>
-        <filters>
-            <field>CASES.CLOSED</field>
-            <operation>equals</operation>
-            <value>0</value>
-        </filters>
         <label>TO France Escalation Queue</label>
-        <language>en_US</language>
         <queue>TO_France_Escalation_Queue</queue>
         <sharedTo>
-            <role>CEC_Global_Head</role>
-            <role>TO_Global_Head</role>
-            <role>TO_Manager_Europe</role>
-            <role>TO_Manager_France</role>
-            <role>TO_User_France</role>
+            <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>
         <fullName>TO_France_Queue_Case</fullName>
         <filterScope>Queue</filterScope>
         <label>TO France Queue</label>
-        <language>en_US</language>
         <queue>TO_France_Queue</queue>
         <sharedTo>
-            <role>CEC_Global_Head</role>
-            <role>TO_Global_Head</role>
-            <role>TO_Manager_Europe</role>
-            <role>TO_Manager_France</role>
-            <role>TO_User_France</role>
+            <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>
         <fullName>Vacation_Queue_DACH</fullName>
-        <booleanFilter>(2 OR 3 OR 4) AND 1</booleanFilter>
+        <booleanFilter>(2 OR 3 OR 4 OR 5 OR 6) AND 1</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
@@ -6432,7 +6437,17 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>JuStedin</value>
+            <value>Anlasser</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>anclasen</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>gukunkel</value>
         </filters>
         <label>DACH Vacation Queue</label>
         <language>de</language>
@@ -6442,47 +6457,14 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>Voice_of_the_Consumer</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>CASES.ORIGIN</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>NAME</columns>
-        <columns>Case_Brand__c</columns>
-        <columns>Product_UPC__c</columns>
-        <columns>CEC_Product_Reporting_Name__c</columns>
-        <columns>Reason_L5_desc__c</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CASES.CREATED_DATE</field>
-            <operation>equals</operation>
-            <value>LAST_N_DAYS:30</value>
-        </filters>
-        <filters>
-            <field>Country__c</field>
-            <operation>lessOrEqual</operation>
-            <value>United States - English</value>
-        </filters>
-        <filters>
-            <field>CASES.ORIGIN</field>
-            <operation>equals</operation>
-            <value>Email</value>
-        </filters>
-        <label>Voice of the Consumer</label>
-        <language>en_US</language>
-        <sharedTo>
-            <role>CEC_User_North_America</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>Within_SLA</fullName>
-        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7</booleanFilter>
+        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>Brand__c</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CASES.LAST_UPDATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
@@ -6490,36 +6472,32 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.ORIGIN</field>
             <operation>equals</operation>
-            <value>Email,Web,White Mail,Email UK</value>
+            <value>Web,Email,White Mail</value>
         </filters>
         <filters>
             <field>CASES.LAST_UPDATE_DATE_ONLY</field>
             <operation>greaterOrEqual</operation>
-            <value>LAST_N_DAYS:7</value>
+            <value>LAST_N_DAYS:2</value>
         </filters>
         <filters>
-            <field>Case_Market__c</field>
+            <field>Market__c</field>
             <operation>notContain</operation>
-            <value>India,DACH,Benelux,France,Spain,Nordic,Portugal,Czech,Italy,Greece,Poland</value>
-        </filters>
-        <filters>
-            <field>Case_Market__c</field>
-            <operation>notContain</operation>
-            <value>Hungary,Slovakia,Baltics,Romania,Bulgaria,Serbia,Slovenia,Lanka,Croatia,Bosnia</value>
-        </filters>
-        <filters>
-            <field>Case_Market__c</field>
-            <operation>notContain</operation>
-            <value>America</value>
-        </filters>
-        <filters>
-            <field>Case_Market__c</field>
-            <operation>notEqual</operation>
+            <value>India,Nordic,Benelux,France,DACH</value>
         </filters>
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
             <value>New</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>notContain</operation>
+            <value>CEC Nordic,CEC France,CEC DACH,CEC BENELUX,CEC ITALY</value>
+        </filters>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>notContain</operation>
+            <value>Nordic,France,DACH,BENELUX,ITALY</value>
         </filters>
         <label>Within SLA</label>
         <language>en_US</language>
@@ -6529,7 +6507,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>cec_czech</fullName>
+        <fullName>cec_case</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
@@ -6537,22 +6515,14 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Queue</filterScope>
+        <filterScope>Everything</filterScope>
         <filters>
-            <field>CASES.CLOSED</field>
+            <field>CASES.CASE_NUMBER</field>
             <operation>equals</operation>
-            <value>0</value>
+            <value>03167439,03165310</value>
         </filters>
-        <label>cec czech</label>
-        <language>cs</language>
-        <queue>CEC_Czech_Republic_Queue</queue>
-        <sharedTo>
-            <role>CEC_Global_Head</role>
-            <role>CEC_Manager_CEE</role>
-            <role>CEC_Manager_Czech_Republic</role>
-            <role>CEC_Manager_Europe</role>
-            <role>CEC_User_Czech_Republic</role>
-        </sharedTo>
+        <label>cec case</label>
+        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>spam_pp</fullName>
@@ -6563,25 +6533,34 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Everything</filterScope>
+        <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.SUBJECT</field>
             <operation>contains</operation>
-            <value>spam</value>
-        </filters>
-        <filters>
-            <field>OWNER_NAME</field>
-            <operation>equals</operation>
-            <value>CEC Spain queue</value>
+            <value>PepsiCola</value>
         </filters>
         <label>spam pp Spain</label>
         <language>es</language>
-        <sharedTo>
-            <role>CEC_Global_Head</role>
-            <role>CEC_Manager_Europe</role>
-            <role>CEC_Manager_Spain</role>
-            <role>CEC_User_Spain</role>
-        </sharedTo>
+        <queue>CEC_Spain_Queue</queue>
+    </listViews>
+    <listViews>
+        <fullName>test_CSC_3987</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>L0_Product_Reporting__c</columns>
+        <columns>L1_Product_Reporting__c</columns>
+        <columns>L2_Product_Reporting__c</columns>
+        <columns>L3_Product_Reporting__c</columns>
+        <columns>L4_Product_Reporting__c</columns>
+        <columns>L5_Product_Reporting__c</columns>
+        <columns>L6_Product_Reporting__c</columns>
+        <columns>L7_Product_Reporting__c</columns>
+        <columns>CEC_Product_Reporting_Name_no_size__c</columns>
+        <columns>CEC_Product_Reporting_Name__c</columns>
+        <columns>CPG_Code_Reporting__c</columns>
+        <columns>Brand_Reporting__c</columns>
+        <filterScope>Mine</filterScope>
+        <label>test CSC 3987</label>
+        <language>en_US</language>
     </listViews>
     <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
@@ -6633,6 +6612,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <picklist>Country_Name__c</picklist>
             <values>
                 <fullName>Argentina</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Australia</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6744,6 +6727,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>New Zealand</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Nicaragua</fullName>
                 <default>false</default>
             </values>
@@ -6773,6 +6760,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             </values>
             <values>
                 <fullName>Portugal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>South Africa</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6875,6 +6866,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <values>
                 <fullName>Phone</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>SMS %2F text Messages</fullName>
+                <default>false</default>
             </values>
             <values>
                 <fullName>Social</fullName>
@@ -7154,6 +7149,36 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Tag__c</picklist>
+            <values>
+                <fullName>CEC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>George</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Test123__c</picklist>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Type</picklist>
             <values>
                 <fullName>Feature Request</fullName>
@@ -7201,9 +7226,56 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <businessProcess>Default</businessProcess>
         <label>Spam</label>
         <picklistValues>
+            <picklist>Claim_Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Active Transferred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Legal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Legal Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Legal Transferred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Potential</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Store Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Store Closed</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Country_Name__c</picklist>
             <values>
                 <fullName>Argentina</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Austria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Belgium</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7231,11 +7303,39 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>Czech Republic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denmark</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Ecuador</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>El Salvador</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Estonia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>France</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Germany</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Greece</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7247,7 +7347,35 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>Hungary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>India</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ireland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Italy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Latvia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lithuania</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Mexico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Netherlands</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7256,6 +7384,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             </values>
             <values>
                 <fullName>None</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Norway</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7271,11 +7403,58 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>Poland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Portugal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>South Africa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sweden</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Switzerland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>United Kingdom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>United States</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Uruguay</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Venezuela</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Manual_Override_Reason__c</picklist>
+            <values>
+                <fullName>1-Legal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2-Customer Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3-Default</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -7335,6 +7514,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <values>
                 <fullName>Phone</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>SMS %2F text Messages</fullName>
+                <default>false</default>
             </values>
             <values>
                 <fullName>Social</fullName>
@@ -7610,6 +7793,36 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Tag__c</picklist>
+            <values>
+                <fullName>CEC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>George</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Test123__c</picklist>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Type</picklist>
             <values>
                 <fullName>Feature Request</fullName>
@@ -7621,6 +7834,25 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             </values>
             <values>
                 <fullName>Question</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Used_Product_Previously__c</picklist>
+            <values>
+                <fullName>Brand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New User</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regular User</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unknown</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -7675,12 +7907,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <fullName>CEC_UsedProductPreviouslyCheck</fullName>
         <active>true</active>
         <description>CEC - Mandatory check for &apos;Used Product Previously&apos; field.</description>
-        <errorConditionFormula>AND( Case_Market__c = &apos;North America&apos;,
-ISPICKVAL( Status , &apos;Closed&apos;),
-$RecordType.Name = &apos;None&apos;,CONTAINS(
-Reason_L1_desc__c , &apos;Complaint&apos;),
-ISPICKVAL(Used_Product_Previously__c ,&apos;&apos;)
-)</errorConditionFormula>
+        <errorConditionFormula>AND( Case_Market__c = &apos;North America&apos;, ISPICKVAL( Status , &apos;Closed&apos;),$RecordType.Name = &apos;None&apos;,CONTAINS( Reason_L1_desc__c , &apos;Complaint&apos;),   ISPICKVAL(Used_Product_Previously__c ,&apos;&apos;) )</errorConditionFormula>
         <errorMessage>&apos;Used Product Previously&apos; field is mandatory for Complaint cases.</errorMessage>
     </validationRules>
     <validationRules>

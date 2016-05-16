@@ -394,6 +394,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Australia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Austria</fullName>
                 <default>false</default>
             </picklistValues>
@@ -534,6 +538,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>New Zealand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Nicaragua</fullName>
                 <default>false</default>
             </picklistValues>
@@ -575,6 +583,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Slovenia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>South Africa</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1454,7 +1466,9 @@ Case__r.Account.PersonContact.MailingCountry</formula>
             <controllingField>Country__c</controllingField>
             <picklistValues>
                 <fullName>Standard Letter</fullName>
+                <default>true</default>
                 <controllingFieldValues>Argentina</controllingFieldValues>
+                <controllingFieldValues>Australia</controllingFieldValues>
                 <controllingFieldValues>Austria</controllingFieldValues>
                 <controllingFieldValues>Belgium</controllingFieldValues>
                 <controllingFieldValues>Bolivia</controllingFieldValues>
@@ -1490,6 +1504,7 @@ Case__r.Account.PersonContact.MailingCountry</formula>
                 <controllingFieldValues>Mlodova, Republic of</controllingFieldValues>
                 <controllingFieldValues>Montenegro</controllingFieldValues>
                 <controllingFieldValues>Netherlands</controllingFieldValues>
+                <controllingFieldValues>New Zealand</controllingFieldValues>
                 <controllingFieldValues>Nicaragua</controllingFieldValues>
                 <controllingFieldValues>Norway</controllingFieldValues>
                 <controllingFieldValues>Panama</controllingFieldValues>
@@ -1501,6 +1516,7 @@ Case__r.Account.PersonContact.MailingCountry</formula>
                 <controllingFieldValues>Serbia</controllingFieldValues>
                 <controllingFieldValues>Slovakia</controllingFieldValues>
                 <controllingFieldValues>Slovenia</controllingFieldValues>
+                <controllingFieldValues>South Africa</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sweden</controllingFieldValues>
                 <controllingFieldValues>Switzerland</controllingFieldValues>
@@ -1508,20 +1524,19 @@ Case__r.Account.PersonContact.MailingCountry</formula>
                 <controllingFieldValues>United States</controllingFieldValues>
                 <controllingFieldValues>Uruguay</controllingFieldValues>
                 <controllingFieldValues>Venezuela</controllingFieldValues>
-                <default>true</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Dosing Request</fullName>
+                <default>false</default>
                 <controllingFieldValues>Ireland</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Remuneration</fullName>
+                <default>false</default>
                 <controllingFieldValues>Belgium</controllingFieldValues>
                 <controllingFieldValues>Luxembourg</controllingFieldValues>
                 <controllingFieldValues>Netherlands</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>

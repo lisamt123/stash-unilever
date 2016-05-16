@@ -5607,6 +5607,13 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>The fulfilment cannot be created without an Account attached to the Case</value>
     </labels>
     <labels>
+        <fullName>CEC_CaseAccountMissing_retrieval</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_CaseAccountMissing_retrieval</shortDescription>
+        <value>The retrieval request cannot be created without an Account attached to the Case</value>
+    </labels>
+    <labels>
         <fullName>CEC_CaseAccountPersonAddressMissing</fullName>
         <categories>CEC:Case_Error</categories>
         <language>en_US</language>
@@ -5676,6 +5683,14 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <protected>false</protected>
         <shortDescription>CEC_Category</shortDescription>
         <value>Category</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ChatSurveySchedulerName</fullName>
+        <categories>CEC: Label</categories>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ChatSurveySchedulerName</shortDescription>
+        <value>CEC Chat Survey Scheduler</value>
     </labels>
     <labels>
         <fullName>CEC_ChequeBook_ChequeNo_Already_Added</fullName>
@@ -5830,6 +5845,27 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>Update action cannot be performed. Consumer record is already associated with the case record.</value>
     </labels>
     <labels>
+        <fullName>CEC_ContactEmail</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ContactEmail</shortDescription>
+        <value>Email</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ContactName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ContactName</shortDescription>
+        <value>Contact Name</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ContactPhone</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ContactPhone</shortDescription>
+        <value>Phone</value>
+    </labels>
+    <labels>
         <fullName>CEC_Country</fullName>
         <categories>CEC: VF Page Global Display</categories>
         <language>en_US</language>
@@ -5892,6 +5928,13 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <protected>false</protected>
         <shortDescription>CEC_DebitCardDetails_No_Active_DebitCard_For_Country</shortDescription>
         <value>There is no Active debit card present for this country</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Delisted_Product</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC Delisted Product</shortDescription>
+        <value>* DELISTED PRODUCT *</value>
     </labels>
     <labels>
         <fullName>CEC_Detail_Request_Info</fullName>
@@ -5964,6 +6007,13 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <protected>false</protected>
         <shortDescription>CEC_Email_Label</shortDescription>
         <value>Email</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Email_Subject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC Email Subject</shortDescription>
+        <value>Consumer Services Case #:</value>
     </labels>
     <labels>
         <fullName>CEC_EvoucherDetails_No_Active_EVoucher_For_Country</fullName>
@@ -6127,6 +6177,13 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>Missing Information</value>
     </labels>
     <labels>
+        <fullName>CEC_Multilanguage_Birth</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Multilanguage_Birth</shortDescription>
+        <value>Birth-Nascimento-Nacimiento-Geburt-La naissance-Nascita-誕生-Födelse-출생-分娩-Geboorte-Fødsel-syntymä-рождение</value>
+    </labels>
+    <labels>
         <fullName>CEC_Name</fullName>
         <categories>CEC: VF Page Global Display</categories>
         <language>en_US</language>
@@ -6277,6 +6334,13 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>Product Hierarchy</value>
     </labels>
     <labels>
+        <fullName>CEC_Product_Last_Manufactured_Date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC Product Last Manufactured Date</shortDescription>
+        <value>Product Last Manufactured Date</value>
+    </labels>
+    <labels>
         <fullName>CEC_Product_Quantity</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -6377,6 +6441,13 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>Rebooking is applicable only for scheduled retrieval request</value>
     </labels>
     <labels>
+        <fullName>CEC_Role</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Role</shortDescription>
+        <value>Role</value>
+    </labels>
+    <labels>
         <fullName>CEC_SearchValidationError</fullName>
         <categories>CEC:Case_Error</categories>
         <language>en_US</language>
@@ -6449,12 +6520,34 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>Survey Results</value>
     </labels>
     <labels>
+        <fullName>CEC_Task_Description</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Task_Description</shortDescription>
+        <value>Your consumer template has been approved by the Quality Check team.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Task_Subject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Task_Subject</shortDescription>
+        <value>Approved correspondence</value>
+    </labels>
+    <labels>
         <fullName>CEC_Title</fullName>
         <categories>CEC: VF Page Global Display</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CEC_Title</shortDescription>
         <value>Title</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Unilever_Opt_In</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Unilever_Opt_In</shortDescription>
+        <value>Unilever Opt-In</value>
     </labels>
     <labels>
         <fullName>CEC_ValidChatterTemplate</fullName>
@@ -6466,10 +6559,11 @@ This means that they will not have editing rights. You can manage member &lt;br/
     </labels>
     <labels>
         <fullName>CEC_ValidEmailTemplate</fullName>
+        <categories>CEC : Error</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CEC_ValidEmailTemplate</shortDescription>
-        <value>Please enter a valid Email Template Name.</value>
+        <value>Invalid Email Template Name :</value>
     </labels>
     <labels>
         <fullName>CEC_ZipCode</fullName>

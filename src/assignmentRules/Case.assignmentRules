@@ -685,5 +685,61 @@
                 <value>False</value>
             </criteriaItems>
         </ruleEntry>
+        <ruleEntry>
+            <assignedTo>CEC_South_Africa_Home_and_Personal_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Email South Africa</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Out_of_Hours__c</field>
+                <operation>equals</operation>
+                <value>False</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>CEC_South_Africa_Home_and_Personal_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Case_Market__c</field>
+                <operation>equals</operation>
+                <value>South Africa</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Out_of_Hours__c</field>
+                <operation>equals</operation>
+                <value>False</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>CEC_ANZ_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Email ANZ</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Out_of_Hours__c</field>
+                <operation>equals</operation>
+                <value>False</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>CEC_ANZ_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Case_Market__c</field>
+                <operation>equals</operation>
+                <value>ANZ</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Out_of_Hours__c</field>
+                <operation>equals</operation>
+                <value>False</value>
+            </criteriaItems>
+        </ruleEntry>
     </assignmentRule>
 </AssignmentRules>
