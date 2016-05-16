@@ -1,69 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
-    <actionOverrides>
-        <actionName>Accept</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Clone</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Delete</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Edit</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>List</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>New</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Tab</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>View</actionName>
-        <type>Default</type>
-    </actionOverrides>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>true</enableActivities>
-    <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+	<enableFeeds>true</enableFeeds>
     <fields>
         <fullName>Accepted_Final_Cost_CA_Euro_Amount__c</fullName>
-        <externalId>false</externalId>
         <label>Accepted Final Cost - CA(Euro Amount)</label>
         <precision>17</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Accepted_Final_Cost_CA_Local_Amount__c</fullName>
-        <externalId>false</externalId>
         <label>Accepted Final Cost - CA(Local Amount)</label>
         <precision>17</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Accepted_Final_Cost_CA_only_Currency__c</fullName>
-        <externalId>false</externalId>
         <label>Accepted Final Cost -CA(Currency Amount)</label>
         <picklist>
             <picklistValues>
@@ -440,36 +397,23 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Accepted_Final_Cost_Editors_name__c</fullName>
-        <externalId>false</externalId>
         <label>Accepted Final Cost - Editors name</label>
         <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Accepted_Final_Cost_PC_Euro_Amou__c</fullName>
-        <externalId>false</externalId>
         <label>Accepted Final Cost - PC(Euro Amount)</label>
         <precision>17</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Accepted_Final_Cost_PC_only_Currency__c</fullName>
-        <externalId>false</externalId>
         <label>Accepted Final Cost-PC(Currency Amount)</label>
         <picklist>
             <picklistValues>
@@ -846,37 +790,24 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Accepted_Final_Cost_PC_only_Local_Amo__c</fullName>
-        <externalId>false</externalId>
         <label>Accepted Final Cost - PC (Local Amount)</label>
         <precision>17</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Accepted_Final_Cost_PPC_Euro_Amount__c</fullName>
-        <externalId>false</externalId>
         <label>Accepted Final Cost - PPC(Euro Amount)</label>
         <precision>17</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Accepted_Final_Cost_PPC_only_Currency__c</fullName>
-        <externalId>false</externalId>
         <label>Accepted Final Cost-PPC(Currency amount)</label>
         <picklist>
             <picklistValues>
@@ -1253,95 +1184,57 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Accepted_Final_Cost_PPC_only_Local_Am__c</fullName>
-        <externalId>false</externalId>
         <label>Accepted Final Cost - PPC(Local Amount)</label>
         <precision>17</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Accepted_Final_Cost_Sound_Studio_Name__c</fullName>
-        <externalId>false</externalId>
         <label>Accepted Final Cost - Sound Studio Name</label>
         <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Accepted_Final_Cost_Total_Sound_Studio__c</fullName>
-        <externalId>false</externalId>
         <label>Accepted Final Cost - Total Sound Studio</label>
         <precision>17</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Accepted_Final_Cost_Total_editing_cost__c</fullName>
-        <externalId>false</externalId>
         <label>Accepted Final Cost - Total editing cost</label>
         <precision>17</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Accepted_Final_Cost_Travel_Costs__c</fullName>
-        <externalId>false</externalId>
         <label>Accepted Final Cost - Travel Costs</label>
         <precision>17</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Accepted_Final_Cost_props_wardrobe__c</fullName>
-        <externalId>false</externalId>
         <label>Accepted Final Cost-props&amp; wardrobe</label>
         <precision>17</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Average_total_opening_quotes__c</fullName>
-        <externalId>false</externalId>
         <label>Average total opening quotes</label>
         <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>CA_Additional_agency_Name__c</fullName>
-        <externalId>false</externalId>
         <label>CA/Additional agency Name</label>
         <picklist>
             <picklistValues>
@@ -1370,25 +1263,17 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>CA_Costs_Euro_Amount__c</fullName>
-        <externalId>false</externalId>
         <label>CA Costs(Euro Amount)</label>
         <precision>17</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>CA_Location__c</fullName>
-        <externalId>false</externalId>
         <label>CA Location</label>
         <picklist>
             <picklistValues>
@@ -2401,35 +2286,22 @@
             </picklistValues>
             <sorted>true</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Cost_Per_Master__c</fullName>
-        <externalId>false</externalId>
         <label>Cost Per Master</label>
         <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Cost_per_master_per_shoot_day__c</fullName>
-        <externalId>false</externalId>
         <label>Cost per master per shoot day</label>
         <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Folder__c</fullName>
-        <externalId>false</externalId>
         <label>Folder</label>
         <picklist>
             <picklistValues>
@@ -2442,22 +2314,16 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Is_Accepted__c</fullName>
         <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
         <label>Is Accepted</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Is_PC_part_of_the_Roster__c</fullName>
-        <externalId>false</externalId>
         <label>Is PC part of the Roster ?</label>
         <picklist>
             <picklistValues>
@@ -2470,13 +2336,10 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Is_the_PPC_part_of_the_Roster__c</fullName>
-        <externalId>false</externalId>
         <label>Is PPC part of the Roster?</label>
         <picklist>
             <picklistValues>
@@ -2489,49 +2352,31 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Local_Amount_of_CA__c</fullName>
-        <externalId>false</externalId>
         <label>Local Amount of CA</label>
         <precision>17</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Local_Amount_of_PC__c</fullName>
-        <externalId>false</externalId>
         <label>Local Amount of PC</label>
         <precision>17</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Local_Amount_of_PPC__c</fullName>
-        <externalId>false</externalId>
         <label>Local Amount of PPC</label>
         <precision>17</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Local_Currency_of_CA_Costs__c</fullName>
-        <externalId>false</externalId>
         <label>Local Currency of CA Costs</label>
         <picklist>
             <picklistValues>
@@ -2908,13 +2753,10 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Local_Currency_of_PC_Costs__c</fullName>
-        <externalId>false</externalId>
         <label>Local Currency of PC Costs</label>
         <picklist>
             <picklistValues>
@@ -3291,13 +3133,10 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Local_Currency_of_PPC_Costs__c</fullName>
-        <externalId>false</externalId>
         <label>Local Currency of PPC Costs</label>
         <picklist>
             <picklistValues>
@@ -3674,25 +3513,17 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>PC_Costs_Euro_Amount__c</fullName>
-        <externalId>false</externalId>
         <label>PC Costs (Euro Amount)</label>
         <precision>17</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>PC_Country__c</fullName>
-        <externalId>false</externalId>
         <label>PC Country</label>
         <picklist>
             <picklistValues>
@@ -4705,36 +4536,23 @@
             </picklistValues>
             <sorted>true</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>PC_name__c</fullName>
-        <externalId>false</externalId>
         <label>PC name</label>
         <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>PPC_Costs_Euro_Amount__c</fullName>
-        <externalId>false</externalId>
         <label>PPC Costs(Euro Amount)</label>
         <precision>17</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>PPC_Country__c</fullName>
-        <externalId>false</externalId>
         <label>PPC Country</label>
         <picklist>
             <picklistValues>
@@ -5747,36 +5565,23 @@
             </picklistValues>
             <sorted>true</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>PPC_Name__c</fullName>
-        <externalId>false</externalId>
         <label>PPC Name</label>
         <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Quote_Number__c</fullName>
-        <externalId>false</externalId>
         <label>Quote Number</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>0</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Saving_Type__c</fullName>
-        <externalId>false</externalId>
         <label>Saving Type</label>
         <picklist>
             <picklistValues>
@@ -5793,38 +5598,25 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Saving__c</fullName>
-        <externalId>false</externalId>
         <label>Saving</label>
         <referenceTo>Amr_Saving__c</referenceTo>
         <relationshipLabel>Amr Quotes</relationshipLabel>
         <relationshipName>Quotes</relationshipName>
         <relationshipOrder>0</relationshipOrder>
-        <reparentableMasterDetail>true</reparentableMasterDetail>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>MasterDetail</type>
-        <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
     <fields>
         <fullName>Service_Company_Name__c</fullName>
-        <externalId>false</externalId>
         <label>Service Company Name</label>
         <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Shoot_Location__c</fullName>
-        <externalId>false</externalId>
         <label>Shoot Location</label>
         <picklist>
             <picklistValues>
@@ -5833,40 +5625,27 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c</fullName>
-        <externalId>false</externalId>
         <label>Total Accepted FinalCost (CA/PC/PPC)Euro</label>
         <precision>17</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Total_Cost__c</fullName>
-        <externalId>false</externalId>
         <formula>CA_Costs_Euro_Amount__c + PC_Costs_Euro_Amount__c + PPC_Costs_Euro_Amount__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Total Cost (€)</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <label>Amr Quote</label>
     <nameField>
         <label>Quote Name</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
     </nameField>
     <pluralLabel>Amr Quotes</pluralLabel>

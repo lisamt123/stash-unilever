@@ -3,7 +3,7 @@
  Copyright © 2016  Unilever
  ======================================================
 ======================================================
-Purpose: Trigger Handler for the CPA_CR__c SObject. This class implements the ITrigger
+Purpose: Trigger Handler for the Amr Plan Summary SObject. This class implements the ITrigger
  interface to help ensure the trigger code is bulkified and all in one place.                                                      
 -------                                                             
 ======================================================
@@ -11,14 +11,14 @@ Purpose: Trigger Handler for the CPA_CR__c SObject. This class implements the IT
 History                                                            
 -------                                                            
 VERSION  AUTHOR                      DATE              DETAIL                 Description
-   1.0 -   Mahesh Sankapal      05/04/2016            Initaial Developemnt        
+   1.0 -   Mahesh Sankapal      05/04/2016            Initial Developemnt        
 ***********************************************************************/
 
 public with sharing class Amr_Job_DetailsTrigger_Handler
     implements amr_Interface_Trigger
 {   
     
-    /*CPA_Trigger_Pattern__c objCRPattern = CPA_Trigger_Pattern__c.getValues(CPA_ConstantsForContractingAppClasses.CRTRIGGERNAME);
+    /*Amr_Trigger_Pattern__c objCRPattern = Amr_Trigger_Pattern__c.getValues(Amr_ConstantsForContractingAppClasses.CRTRIGGERNAME);
     boolean triggerShouldExecute = objCRPattern.chk_Check_Run__c;
     */
     // Constructor

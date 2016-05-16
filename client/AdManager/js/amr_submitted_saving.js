@@ -11,8 +11,8 @@ function closeloading() {
 }
 
 function pCEuroAmountAcceptedCall(stringArray) {
-	
-	var PCCurrency = $j('.PCCurrencyAccepted').val();
+
+    var PCCurrency = $j('.PCCurrencyAccepted').val();
     var PCLocalAmount = $j('.PCLocalAmountAccepted').val();
 
     if (PCCurrency == null || PCCurrency.length == 0) {
@@ -56,11 +56,11 @@ function pCEuroAmountAcceptedCall(stringArray) {
 
 
 function pPCEuroAmountAcceptedCall(stringArray) {
-	
-	 var PPCCurrency = $j('.PPCCurrencyAccepted').val();
-     var PPCLocalAmount = $j('.PPCLocalAmountAccepted').val();
-	 
-	 
+
+    var PPCCurrency = $j('.PPCCurrencyAccepted').val();
+    var PPCLocalAmount = $j('.PPCLocalAmountAccepted').val();
+
+
     if (PPCCurrency == null || PPCCurrency.length == 0) {
         $j('.PPCEuroAmountAccepted').val('');
     }
@@ -102,10 +102,10 @@ function pPCEuroAmountAcceptedCall(stringArray) {
 }
 
 function cAEuroAmountAcceptedCall(stringArray) {
-	
-	var CACurrency = $j('.CACurrencyAccepted').val();
+
+    var CACurrency = $j('.CACurrencyAccepted').val();
     var CALocalAmount = $j('.CALocalAmountAccepted').val();
-			
+
     if (CACurrency == null || CACurrency.length == 0) {
         $j('.CAEuroAmountAccepted').val('');
     }
@@ -147,11 +147,11 @@ function cAEuroAmountAcceptedCall(stringArray) {
 
 
 function commonCurrencyRelatedNewCall(stringArray) {
-	
-	var PCLocalAmountNew = $j('.PCLocalAmountNew').val();
-	var PCEuroAmountNew = $j('.PCEuroAmountNew').val();
-	var PCCurrencyNew = $j('.commonCurrencyRelatedNew').val();
-	
+
+    var PCLocalAmountNew = $j('.PCLocalAmountNew').val();
+    var PCEuroAmountNew = $j('.PCEuroAmountNew').val();
+    var PCCurrencyNew = $j('.commonCurrencyRelatedNew').val();
+
     if (PCCurrencyNew == null || PCCurrencyNew.length == 0) {
         $j('.PCEuroAmountNew').val('');
     }
@@ -177,11 +177,11 @@ function commonCurrencyRelatedNewCall(stringArray) {
 }
 
 function commonCurrencyRelatedPPCNewFunCall(stringArray) {
-	
-	var PPCLocalAmountNew = $j('.PPCLocalAmountNew').val();
-	var PPCEuroAmountNew = $j('.PPCEuroAmountNew').val();
-	var PPCCurrencyNew = $j('.commonCurrencyRelatedPPCNew').val();
-	
+
+    var PPCLocalAmountNew = $j('.PPCLocalAmountNew').val();
+    var PPCEuroAmountNew = $j('.PPCEuroAmountNew').val();
+    var PPCCurrencyNew = $j('.commonCurrencyRelatedPPCNew').val();
+
     if (PPCCurrencyNew == null || PPCCurrencyNew.length == 0) {
         $j('.PPCEuroAmountNew').val('');
     }
@@ -207,11 +207,11 @@ function commonCurrencyRelatedPPCNewFunCall(stringArray) {
 }
 
 function commonCurrencyRelatedCANewFunCall(stringArray) {
-	
-	var CALocalAmountNew 	= $j('.CALocalAmountNew').val();
-	var CAEuroAmountNew 	= $j('.CAEuroAmountNew').val();
-	var CACurrencyNew 		= $j('.commonCurrencyRelatedCANew').val();
-	
+
+    var CALocalAmountNew = $j('.CALocalAmountNew').val();
+    var CAEuroAmountNew = $j('.CAEuroAmountNew').val();
+    var CACurrencyNew = $j('.commonCurrencyRelatedCANew').val();
+
     if (CACurrencyNew == null || CACurrencyNew.length == 0) {
         $j('.CAEuroAmountNew').val('');
     }
@@ -391,170 +391,172 @@ function commonCurrencyRelatedCall(stringArray, PCLocalAmount, PCEuroAmount, PCC
 }
 
 function multiSelectShootLocation() {
-	var multiselectJq_selected = $j('.job-field-input-multiselectJq select').attr('datalist'); 
-//	alert(multiselectJq_selected_array);
-	   if(multiselectJq_selected) {         
-		    var multiselectJq_selected_array = multiselectJq_selected.split(",");		   
-		    $j.each(multiselectJq_selected_array,function(i){           		
-			var multiselectJq_selected_arrayvalue = multiselectJq_selected_array[i]; 			
-			$j('.job-field-input-multiselectJq select option[value="'+multiselectJq_selected_arrayvalue+'"]').attr('selected',1);
-			system.debug(multiselectJq_selected_arrayvalue);
-		//	alert(multiselectJq_selected_arrayvalue);
-	 });					  
-   }        
+    var multiselectJq_selected = $j('.job-field-input-multiselectJq select').attr('datalist');
+    //	alert(multiselectJq_selected_array);
+    if (multiselectJq_selected) {
+        var multiselectJq_selected_array = multiselectJq_selected.split(",");
+        $j.each(multiselectJq_selected_array, function(i) {
+            var multiselectJq_selected_arrayvalue = multiselectJq_selected_array[i];
+            $j('.job-field-input-multiselectJq select option[value="' + multiselectJq_selected_arrayvalue + '"]').attr('selected', 1);
+            //system.debug(multiselectJq_selected_arrayvalue);
+            //	alert(multiselectJq_selected_arrayvalue);
+        });
+    }
 }
 
 function starRatingProcess(data) {
-	
-	var divclass; 
-           for(var i = 0; i<data.length;i++ ){
-           var savingId = data[i].Id;
-               divclass = data[i].Pc_Time_Manage_Star__c;
-               for(var j=1;j<=data[i].PC_Appraisal_Time_Management__c;j++){   
-                  
-               $j('.'+divclass+ savingId  +' span[rel='+j +']').addClass('changeColor');
-                           
-               }
-               divclass = data[i].Pc_Cost_Manage_Star__c;
-               for(var j=1;j<=data[i].PC_Appraisal_Cost_Management__c ;j++){   
-                $j('.'+divclass+ savingId  +' span[rel='+j +']').addClass('changeColor');
-                           
-               }
-               divclass = data[i].Pc_Proces_Manage_Star__c;
-               for(var j=1;j<=data[i].PC_Appraisal_Process_Management__c ;j++){   
-               $j('.'+divclass+ savingId  +' span[rel='+j +']').addClass('changeColor');
-                           
-               }
-               divclass = data[i].Pc_Output_Quality_Star__c;
-               for(var j=1;j<=data[i].PC_Appraisal_Output_Quality__c;j++){   
-               $j('.'+divclass+ savingId  +' span[rel='+j +']').addClass('changeColor');
-                           
-               }
-               divclass = data[i].Ppc_Time_Manage_Star__c;
-               for(var j=1;j<=data[i].PPC_Appraisal_Time_Management__c;j++){   
-               $j('.'+divclass+ savingId  +' span[rel='+j +']').addClass('changeColor');
-                           
-               }
-               divclass = data[i].Ppc_Cost_Manage_Star__c;
-               for(var j=1;j<=data[i].PPC_Appraisal_Cost_Management__c;j++){   
-               $j('.'+divclass+ savingId  +' span[rel='+j +']').addClass('changeColor');
-                           
-               }
-               divclass = data[i].Ppc_Process_Manage_Star__c;
-               for(var j=1;j<=data[i].PPC_Appraisal_Process_Management__c;j++){   
-               $j('.'+divclass+ savingId  +' span[rel='+j +']').addClass('changeColor');
-                           
-               }
-               divclass = data[i].Ppc_Output_Quality_Star__c;
-               for(var j=1;j<=data[i].PPC_Appraisal_Output_Quality__c;j++){   
-               $j('.'+divclass+ savingId  +' span[rel='+j +']').addClass('changeColor');
-                           
-               }
-               divclass = data[i].Ca_Time_Manage_Star__c;
-               for(var j=1;j<=data[i].CA_Appraisal_Time_Management__c;j++){   
-                $j('.'+divclass+ savingId  +' span[rel='+j +']').addClass('changeColor');
-                           
-               }
-               divclass = data[i].Ca_Cost_Manage_Star__c;
-               for(var j=1;j<=data[i].CA_Appraisal_Cost_Management__c;j++){   
-                $j('.'+divclass+ savingId  +' span[rel='+j +']').addClass('changeColor');
-                           
-               }
-               divclass = data[i].Ca_Process_Manage_Star__c;
-               for(var j=1;j<=data[i].CA_Appraisal_Process_Management__c ;j++){   
-                $j('.'+divclass+ savingId  +' span[rel='+j +']').addClass('changeColor');
-                           
-               }
-                divclass = data[i].Ca_Output_Quality_Star__c;
-               for(var j=1;j<=data[i].CA_Appraisal_Output_Quality__c ;j++){  
-                $j('.'+divclass+ savingId  +' span[rel='+j +']').addClass('changeColor');
-                           
-               }
-    
-           }
-		   
-		   
-		   $j('.holder-class span.common').click(function(){
-                
-                $j('.entire-submit').show();
-                
-                //$j('.loadingclass').show();
-                $j('.holder-class').attr('style','pointer-events:none;');
-               // $j(this).closest('.holder-class').find('.categoryStyle').append('<div class="loadingclass"> <img src="/img/loading.gif" alt="loading-image" /></div>');
-          
-               var num = $j(this).attr('rel');  
-    
-             //  $(this).removeClass('changeColor');
-               $j(this).parent().find('span').removeClass('changeColor');
-               
-               var jq;
-               for(var i = 1; i<=num; i++){
-                         
-                jq = $j(this).parent().children('span[rel='+i+']');
-                jq.addClass('changeColor');                
-               }
-               $j('.hel').text(num);
-               var data_id = $j(this).closest('.holder-class').attr('data-id');    
-              
-                var fnstring = data_id;
-                var fnparams = [num,data_id];
-               //  var fnparams1 = [];
-                
-            
-                var fn = window[fnstring];
-            
-                if (typeof fn === "function") {
-                    fn.apply(null, fnparams);
-		}
-                   
-           });
-		   
-		    $j(".holder-class span").hover(function(){ 
-            var num = $j(this).attr('rel');
-            $j(this).parent().find('span').removeClass('changeColorHover');
-            var jq;
-            for(var i = 1; i<=num; i++){
-                jq = $j(this).parent().children('span[rel='+i+']');
-                jq.addClass('changeColorHover'); 
-            }
-               
-           });
-           
-           $j('.holder-class div').mouseleave(function() {          
-               $j(this).find('span').removeClass('changeColorHover');       
-           });
-}
-$j(function(){
-	
-	multiSelectShootLocation();
-	
-	$j('.quote_check').each(function(){
-		if($j(this).is(':checked')) {
-			$j(this).addClass('default_quote');
-		}
-	});
-	
-	$j('.add_quote_button').click(function(){
-		$j('.entire-submit').show();
-	});
-	
-	$j('.available-quotes-file').hide();
-    $j('.available-quotes-saving').hide();
-	
-	var accepted_quote_css = $j('.accepted-quote-css').html().trim();
-            
-	if(accepted_quote_css.length == 0) {            
-		$j('.accepted-quote-css').addClass('hide');
-	}
 
-	 //save button hide quote
-	 $j('.savingClass').hide();
-	
-	if( $j('.noOfMastersMain').length ) {
-		loadMasterProcess();
-		noOfmasterdurationkeypress();
-		removeMasterDurationRows();
-		addMasterDurationrowsCall();
-		$j('.show-on-edit').show();
-	}
+    var divclass;
+    for (var i = 0; i < data.length; i++) {
+        var savingId = data[i].Id;
+        divclass = data[i].Pc_Time_Manage_Star__c;
+        for (var j = 1; j <= data[i].PC_Appraisal_Time_Management__c; j++) {
+
+            $j('.' + divclass + savingId + ' span[rel=' + j + ']').addClass('changeColor');
+
+        }
+        divclass = data[i].Pc_Cost_Manage_Star__c;
+        for (var j = 1; j <= data[i].PC_Appraisal_Cost_Management__c; j++) {
+            $j('.' + divclass + savingId + ' span[rel=' + j + ']').addClass('changeColor');
+
+        }
+        divclass = data[i].Pc_Proces_Manage_Star__c;
+        for (var j = 1; j <= data[i].PC_Appraisal_Process_Management__c; j++) {
+            $j('.' + divclass + savingId + ' span[rel=' + j + ']').addClass('changeColor');
+
+        }
+        divclass = data[i].Pc_Output_Quality_Star__c;
+        for (var j = 1; j <= data[i].PC_Appraisal_Output_Quality__c; j++) {
+            $j('.' + divclass + savingId + ' span[rel=' + j + ']').addClass('changeColor');
+
+        }
+        divclass = data[i].Ppc_Time_Manage_Star__c;
+        for (var j = 1; j <= data[i].PPC_Appraisal_Time_Management__c; j++) {
+            $j('.' + divclass + savingId + ' span[rel=' + j + ']').addClass('changeColor');
+
+        }
+        divclass = data[i].Ppc_Cost_Manage_Star__c;
+        for (var j = 1; j <= data[i].PPC_Appraisal_Cost_Management__c; j++) {
+            $j('.' + divclass + savingId + ' span[rel=' + j + ']').addClass('changeColor');
+
+        }
+        divclass = data[i].Ppc_Process_Manage_Star__c;
+        for (var j = 1; j <= data[i].PPC_Appraisal_Process_Management__c; j++) {
+            $j('.' + divclass + savingId + ' span[rel=' + j + ']').addClass('changeColor');
+
+        }
+        divclass = data[i].Ppc_Output_Quality_Star__c;
+        for (var j = 1; j <= data[i].PPC_Appraisal_Output_Quality__c; j++) {
+            $j('.' + divclass + savingId + ' span[rel=' + j + ']').addClass('changeColor');
+
+        }
+        divclass = data[i].Ca_Time_Manage_Star__c;
+        for (var j = 1; j <= data[i].CA_Appraisal_Time_Management__c; j++) {
+            $j('.' + divclass + savingId + ' span[rel=' + j + ']').addClass('changeColor');
+
+        }
+        divclass = data[i].Ca_Cost_Manage_Star__c;
+        for (var j = 1; j <= data[i].CA_Appraisal_Cost_Management__c; j++) {
+            $j('.' + divclass + savingId + ' span[rel=' + j + ']').addClass('changeColor');
+
+        }
+        divclass = data[i].Ca_Process_Manage_Star__c;
+        for (var j = 1; j <= data[i].CA_Appraisal_Process_Management__c; j++) {
+            $j('.' + divclass + savingId + ' span[rel=' + j + ']').addClass('changeColor');
+
+        }
+        divclass = data[i].Ca_Output_Quality_Star__c;
+        for (var j = 1; j <= data[i].CA_Appraisal_Output_Quality__c; j++) {
+            $j('.' + divclass + savingId + ' span[rel=' + j + ']').addClass('changeColor');
+
+        }
+
+    }
+}
+
+function holderClassOpn() {
+    $j('.holder-class span.common').click(function() {
+
+        $j('.entire-submit').show();
+
+        //$j('.loadingclass').show();
+        $j('.holder-class').attr('style', 'pointer-events:none;');
+        // $j(this).closest('.holder-class').find('.categoryStyle').append('<div class="loadingclass"> <img src="/img/loading.gif" alt="loading-image" /></div>');
+
+        var num = $j(this).attr('rel');
+
+        //  $(this).removeClass('changeColor');
+        $j(this).parent().find('span').removeClass('changeColor');
+
+        var jq;
+        for (var i = 1; i <= num; i++) {
+
+            jq = $j(this).parent().children('span[rel=' + i + ']');
+            jq.addClass('changeColor');
+        }
+        $j('.hel').text(num);
+        var data_id = $j(this).closest('.holder-class').attr('data-id');
+
+        var fnstring = data_id;
+        var fnparams = [num, data_id];
+        //  var fnparams1 = [];
+
+
+        var fn = window[fnstring];
+
+        if (typeof fn === "function") {
+            fn.apply(null, fnparams);
+        }
+
+    });
+
+    $j(".holder-class span").hover(function() {
+        var num = $j(this).attr('rel');
+        $j(this).parent().find('span').removeClass('changeColorHover');
+        var jq;
+        for (var i = 1; i <= num; i++) {
+            jq = $j(this).parent().children('span[rel=' + i + ']');
+            jq.addClass('changeColorHover');
+        }
+
+    });
+
+    $j('.holder-class div').mouseleave(function() {
+        $j(this).find('span').removeClass('changeColorHover');
+    });
+}
+$j(function() {
+
+    multiSelectShootLocation();
+    holderClassOpn();
+
+    $j('.quote_check').each(function() {
+        if ($j(this).is(':checked')) {
+            $j(this).addClass('default_quote');
+        }
+    });
+
+    $j('.add_quote_button').click(function() {
+        $j('.entire-submit').show();
+    });
+
+    $j('.available-quotes-file').hide();
+    $j('.available-quotes-saving').hide();
+
+    var accepted_quote_css = $j('.accepted-quote-css').html().trim();
+
+    if (accepted_quote_css.length == 0) {
+        $j('.accepted-quote-css').addClass('hide');
+    }
+
+    //save button hide quote
+    $j('.savingClass').hide();
+
+    if ($j('.noOfMastersMain').length) {
+        loadMasterProcess();
+        noOfmasterdurationkeypress();
+        removeMasterDurationRows();
+        addMasterDurationrowsCall();
+        $j('.show-on-edit').show();
+    }
 });
