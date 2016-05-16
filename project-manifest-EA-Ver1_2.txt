@@ -76,6 +76,10 @@ src/classes/EA_ControllerClass.cls
 src/classes/EA_Feedback_Controller.cls
 src/classes/EA_Notification_Controller.cls
 src/classes/EA_Wrapper_Class.cls
+src/classes/EA_ControllerTestClass.cls
+src/classes/EA_Feedback_ControllerTestClass.cls
+src/classes/EA_Notification_ControllerTestClass.cls
+src/classes/EA_Wrapper_ClassTestClass.cls
 src/tabs
 src/tabs/EA_Demo.tab
 
