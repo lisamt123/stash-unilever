@@ -329,6 +329,16 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+    <fields>    
+        <fullName>UID_Stock_Cover_Calculation_Flag__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>this will signifies that stock cover has been calculated.</description>
+        <externalId>false</externalId>
+        <label>Stock Cover Calculation Flag</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
     <fields>
         <fullName>UID_Stock_Cover__c</fullName>
         <defaultValue>0</defaultValue>
