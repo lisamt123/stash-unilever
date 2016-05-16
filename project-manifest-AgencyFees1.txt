@@ -470,6 +470,7 @@ src/objects/VEP_FactoryVisit__c.object
 src/objects/Vep_Question__c.object
 src/objects/Vep_Visitor__c.object
 src/objects/Vep_Visitor_Pass__c.object
+src/objects/VEP_TravelDesk__c.object
 src/approvalProcesses
 src/approvalProcesses/Vep_Visitor__c.VEP_Factory_Manager_Approval_Process.approvalProcess
 src/email
