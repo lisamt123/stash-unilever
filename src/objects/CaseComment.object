@@ -21,10 +21,6 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Email Brazil</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Email Cyprus</fullName>
                 <default>false</default>
             </picklistValues>
@@ -57,10 +53,6 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Email Middle Americas</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Email Nordic</fullName>
                 <default>false</default>
             </picklistValues>
@@ -78,10 +70,6 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Email Portugal</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Email Southern Cone</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -142,10 +130,6 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Web</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Web North America</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>

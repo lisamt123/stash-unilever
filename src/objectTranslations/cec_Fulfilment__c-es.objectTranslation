@@ -9,18 +9,6 @@
         <value><!-- Fulfilment --></value>
     </caseValues>
     <fields>
-        <label><!-- Account Card Number --></label>
-        <name>Account_Card_Number__c</name>
-    </fields>
-    <fields>
-        <label><!-- Account Card Status --></label>
-        <name>Account_Card_Status__c</name>
-    </fields>
-    <fields>
-        <label><!-- Account Id --></label>
-        <name>Account_Id__c</name>
-    </fields>
-    <fields>
         <label><!-- Advisor Name --></label>
         <name>Advisor_Name__c</name>
     </fields>
@@ -71,11 +59,6 @@
         <relationshipLabel><!-- Fulfilment --></relationshipLabel>
     </fields>
     <fields>
-        <label><!-- ChequeBook --></label>
-        <name>ChequeBook__c</name>
-        <relationshipLabel><!-- Fulfilment --></relationshipLabel>
-    </fields>
-    <fields>
         <label><!-- Cheque Number --></label>
         <name>Cheque_Number__c</name>
     </fields>
@@ -88,48 +71,12 @@
         <name>Cheque_Voided__c</name>
     </fields>
     <fields>
-        <label><!-- Consumer Document Number --></label>
-        <name>Consumer_Document_Number__c</name>
-    </fields>
-    <fields>
-        <label><!-- Consumer Document Type --></label>
-        <name>Consumer_Document_Type__c</name>
-    </fields>
-    <fields>
-        <label><!-- Consumer First Name --></label>
-        <name>Consumer_First_Name__c</name>
-    </fields>
-    <fields>
-        <label><!-- Consumer Home Phone Number --></label>
-        <name>Consumer_Home_Phone_Number__c</name>
-    </fields>
-    <fields>
-        <label><!-- Consumer Last Name --></label>
-        <name>Consumer_Last_Name__c</name>
-    </fields>
-    <fields>
-        <label><!-- Consumer Mobile Phone Number --></label>
-        <name>Consumer_Mobile_Phone_Number__c</name>
-    </fields>
-    <fields>
-        <label><!-- Consumer Other Phone Number --></label>
-        <name>Consumer_Other_Phone_Number__c</name>
-    </fields>
-    <fields>
-        <label><!-- Consumer Phone Number --></label>
-        <name>Consumer_Phone_Number__c</name>
-    </fields>
-    <fields>
         <label><!-- Country &amp; BrandLogo --></label>
         <name>Country_BrandLogo__c</name>
     </fields>
     <fields>
         <label>País</label>
         <name>Country__c</name>
-        <picklistValues>
-            <masterLabel>Argentina</masterLabel>
-            <translation><!-- Argentina --></translation>
-        </picklistValues>
         <picklistValues>
             <masterLabel>Austria</masterLabel>
             <translation><!-- Austria --></translation>
@@ -139,16 +86,8 @@
             <translation><!-- Belgium --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Bolivia</masterLabel>
-            <translation><!-- Bolivia --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Bosnia and Herzegovina</masterLabel>
             <translation><!-- Bosnia and Herzegovina --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Brazil</masterLabel>
-            <translation><!-- Brazil --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Bulgaria</masterLabel>
@@ -157,18 +96,6 @@
         <picklistValues>
             <masterLabel>Canada</masterLabel>
             <translation><!-- Canada --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Chile</masterLabel>
-            <translation><!-- Chile --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Colombia</masterLabel>
-            <translation><!-- Colombia --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Costa Rica</masterLabel>
-            <translation><!-- Costa Rica --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Croatia</masterLabel>
@@ -181,14 +108,6 @@
         <picklistValues>
             <masterLabel>Denmark</masterLabel>
             <translation><!-- Denmark --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Ecuador</masterLabel>
-            <translation><!-- Ecuador --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>El Salvador</masterLabel>
-            <translation><!-- El Salvador --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Estonia</masterLabel>
@@ -209,14 +128,6 @@
         <picklistValues>
             <masterLabel>Greece</masterLabel>
             <translation><!-- Greece --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Guatemala</masterLabel>
-            <translation><!-- Guatemala --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Honduras</masterLabel>
-            <translation><!-- Honduras --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Hungary</masterLabel>
@@ -271,24 +182,8 @@
             <translation><!-- Netherlands --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Nicaragua</masterLabel>
-            <translation><!-- Nicaragua --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Norway</masterLabel>
             <translation><!-- Norway --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Panama</masterLabel>
-            <translation><!-- Panama --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Paraguay</masterLabel>
-            <translation><!-- Paraguay --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Peru</masterLabel>
-            <translation><!-- Peru --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Poland</masterLabel>
@@ -334,60 +229,10 @@
             <masterLabel>United States</masterLabel>
             <translation><!-- United States --></translation>
         </picklistValues>
-        <picklistValues>
-            <masterLabel>Uruguay</masterLabel>
-            <translation><!-- Uruguay --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Venezuela</masterLabel>
-            <translation><!-- Venezuela --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <label><!-- Currency_Decimal_Text --></label>
-        <name>Currency_Decimal_Text__c</name>
-    </fields>
-    <fields>
-        <label><!-- Currency_Text --></label>
-        <name>Currency_Text__c</name>
-    </fields>
-    <fields>
-        <label><!-- Date Approved --></label>
-        <name>Date_Approved__c</name>
-    </fields>
-    <fields>
-        <label><!-- Date of Birth --></label>
-        <name>Date_of_Birth__c</name>
-    </fields>
-    <fields>
-        <label><!-- Debit Card Detail Card Value --></label>
-        <name>Debit_Card_Detail_Card_Value__c</name>
-    </fields>
-    <fields>
-        <label><!-- Debit Card Number --></label>
-        <name>Debit_Card_Number__c</name>
-        <relationshipLabel><!-- Debit Card Detail --></relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- Debit Card Value --></label>
-        <name>Debit_Card_Value__c</name>
     </fields>
     <fields>
         <label>Aprobación de documento</label>
         <name>Document_Approval__c</name>
-    </fields>
-    <fields>
-        <label><!-- E-Voucher Expiry Date --></label>
-        <name>E_Voucher_Expiry_Date__c</name>
-    </fields>
-    <fields>
-        <label><!-- E-Voucher Number --></label>
-        <name>E_Voucher_Number__c</name>
-        <relationshipLabel><!-- Fulfilment --></relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- E-Voucher Value --></label>
-        <name>E_Voucher_Value__c</name>
     </fields>
     <fields>
         <label><!-- Enclosure1 Notes --></label>
@@ -575,10 +420,6 @@
         <relationshipLabel>Fulfilment (Adjunto5)</relationshipLabel>
     </fields>
     <fields>
-        <label><!-- Expiry Date --></label>
-        <name>Expiry_Date__c</name>
-    </fields>
-    <fields>
         <label><!-- Fulfilled --></label>
         <name>Fulfilled__c</name>
     </fields>
@@ -599,24 +440,8 @@
         <name>ID__c</name>
     </fields>
     <fields>
-        <label><!-- Include Gift --></label>
-        <name>Include_Gift__c</name>
-    </fields>
-    <fields>
         <label><!-- Printed Locally --></label>
         <name>IsPrintedLocally__c</name>
-    </fields>
-    <fields>
-        <label><!-- Issue Card --></label>
-        <name>Issue_Card__c</name>
-    </fields>
-    <fields>
-        <label><!-- Local Identifier --></label>
-        <name>Local_Identifier__c</name>
-    </fields>
-    <fields>
-        <label><!-- Mailing Address --></label>
-        <name>Mailing_Address__c</name>
     </fields>
     <fields>
         <label>Mercado</label>
@@ -627,28 +452,12 @@
         <name>Message__c</name>
     </fields>
     <fields>
-        <label><!-- No of Replacement Items --></label>
-        <name>No_of_Replacement_Items__c</name>
-    </fields>
-    <fields>
         <label><!-- Payable To --></label>
         <name>Payable_To__c</name>
     </fields>
     <fields>
-        <label><!-- Person Email --></label>
-        <name>PersonEmail__c</name>
-    </fields>
-    <fields>
         <label>Opción código postal</label>
         <name>PostOption__c</name>
-    </fields>
-    <fields>
-        <label><!-- Product Notes --></label>
-        <name>Product_Notes__c</name>
-    </fields>
-    <fields>
-        <label><!-- Product Sent --></label>
-        <name>Product_Sent__c</name>
     </fields>
     <fields>
         <label><!-- QA flag --></label>
@@ -661,23 +470,6 @@
     <fields>
         <label><!-- Refund Value --></label>
         <name>Refund_Value__c</name>
-    </fields>
-    <fields>
-        <label><!-- Refund Value in Words --></label>
-        <name>Refund_Value_in_Words__c</name>
-    </fields>
-    <fields>
-        <label><!-- Resend E-Voucher Email --></label>
-        <name>Resend_E_Voucher_Email__c</name>
-    </fields>
-    <fields>
-        <label><!-- Retrieval Id --></label>
-        <name>Retrieval_Id__c</name>
-        <relationshipLabel><!-- Fulfilment --></relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- Retrieval Status --></label>
-        <name>Retrieval_Status__c</name>
     </fields>
     <fields>
         <label>Encabezamiento</label>
@@ -723,14 +515,6 @@
             <section>Custom Links</section>
         </sections>
         <sections>
-            <label><!-- Debit Card Details --></label>
-            <section>Debit Card Details</section>
-        </sections>
-        <sections>
-            <label><!-- E-Voucher Details --></label>
-            <section>E-Voucher Details</section>
-        </sections>
-        <sections>
             <label>Adjuntos</label>
             <section>Enclosures</section>
         </sections>
@@ -746,27 +530,11 @@
             <label><!-- New Section --></label>
             <section>New Section</section>
         </sections>
-        <sections>
-            <label><!-- Product Details --></label>
-            <section>Product Details</section>
-        </sections>
-        <sections>
-            <label><!-- Retrieval Request Details --></label>
-            <section>Retrieval Request Details</section>
-        </sections>
     </layouts>
     <nameFieldLabel><!-- Fulfilment Name --></nameFieldLabel>
     <validationRules>
         <errorMessage>No se puede crear el Fulfilment hasta que la dirección  consumidor se haya añadido</errorMessage>
         <name>Case_Information_Vlidation</name>
-    </validationRules>
-    <validationRules>
-        <errorMessage><!-- The fulfillment is already approved, cannot update debit card information --></errorMessage>
-        <name>DebitCard_Value_Validation</name>
-    </validationRules>
-    <validationRules>
-        <errorMessage><!-- The fulfilment is already approved, cannot update E Voucher details information. --></errorMessage>
-        <name>E_Voucher_Value_Validation</name>
     </validationRules>
     <validationRules>
         <errorMessage><!-- Enclosure quantity is mandatory for the selected enclosure. --></errorMessage>
@@ -787,18 +555,6 @@
     <webLinks>
         <label><!-- Add_Cheque_Details --></label>
         <name>Add_Cheque_Details</name>
-    </webLinks>
-    <webLinks>
-        <label><!-- Add_Debit_Card_Details --></label>
-        <name>Add_Debit_Card_Details</name>
-    </webLinks>
-    <webLinks>
-        <label><!-- Add_E_Voucher_Details --></label>
-        <name>Add_E_Voucher_Details</name>
-    </webLinks>
-    <webLinks>
-        <label><!-- Add_Retrieval_Request --></label>
-        <name>Add_Retrieval_Request</name>
     </webLinks>
     <webLinks>
         <label>Nuevo Fulfilment</label>

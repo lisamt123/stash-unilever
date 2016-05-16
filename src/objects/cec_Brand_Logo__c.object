@@ -91,37 +91,10 @@
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>CEC_Brazil_Queue_cec_Brand_Logo</fullName>
-        <filterScope>Queue</filterScope>
-        <label>CEC Brazil Queue</label>
-        <queue>CEC_Brazil_Queue</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CEC_Middle_Americas_Queue_cec_Brand_Logo</fullName>
-        <filterScope>Queue</filterScope>
-        <label>CEC Middle Americas Queue</label>
-        <queue>CEC_Middle_Americas_Queue</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>CEC_North_America_Queue_cec_Brand_Logo</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC North America Queue</label>
         <queue>CEC_North_America_Queue</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CEC_Southern_Cone_Queue_cec_Brand_Logo</fullName>
-        <filterScope>Queue</filterScope>
-        <label>CEC Southern Cone Queue</label>
-        <queue>CEC_Southern_Cone_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

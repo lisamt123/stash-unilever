@@ -36,7 +36,11 @@
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
         <entryCriteria>
-            <formula>VALUE(MID(TEXT(( CreatedDate - $System.OriginDateTime)),13,2)) &lt; ($User.Letter_Quality_Check_Percentage__c * 100)</formula>
+            <criteriaItems>
+                <field>cec_Fulfilment__c.QA_flag__c</field>
+                <operation>equals</operation>
+                <value>True</value>
+            </criteriaItems>
         </entryCriteria>
         <ifCriteriaNotMet>ApproveRecord</ifCriteriaNotMet>
         <label>Step 1</label>
@@ -85,6 +89,6 @@
             <type>FieldUpdate</type>
         </action>
     </recallActions>
-    <recordEditability>AdminOrCurrentApprover</recordEditability>
+    <recordEditability>AdminOnly</recordEditability>
     <showApprovalHistory>true</showApprovalHistory>
 </ApprovalProcess>

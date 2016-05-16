@@ -290,58 +290,6 @@
                 <fullName>Food Solutions</fullName>
                 <default>false</default>
             </picklistValues>
-            <picklistValues>
-                <fullName>Sun</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Deoleo</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>R &amp; B Foods</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Bluewater</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Gortons</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Dove</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Lux</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Lynx</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>Type__c</fullName>
-        <description>CEC Type is a picklist to select (Email/Brand)</description>
-        <externalId>false</externalId>
-        <label>Type</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Email</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Brand</fullName>
-                <default>false</default>
-            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackHistory>false</trackHistory>
@@ -388,15 +336,6 @@
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_Benelux</role>
             <role>CEC_User_Benelux</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CEC_Brazil_Queue_cec_Case_Brand_Mapping</fullName>
-        <filterScope>Queue</filterScope>
-        <label>CEC Brazil Queue</label>
-        <queue>CEC_Brazil_Queue</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>
@@ -527,15 +466,6 @@
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>CEC_Middle_Americas_Queue_cec_Case_Brand_Mapping</fullName>
-        <filterScope>Queue</filterScope>
-        <label>CEC Middle Americas Queue</label>
-        <queue>CEC_Middle_Americas_Queue</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>CEC_Nordic_Queue_cec_Case_Brand_Mapping</fullName>
         <columns>NAME</columns>
         <columns>Inbound_Email__c</columns>
@@ -590,12 +520,6 @@
         <filterScope>Everything</filterScope>
         <label>CEC Portugal Queue</label>
         <language>en_US</language>
-    </listViews>
-    <listViews>
-        <fullName>CEC_Southern_Cone_Queue_cec_Case_Brand_Mapping</fullName>
-        <filterScope>Queue</filterScope>
-        <label>CEC Southern Cone Queue</label>
-        <queue>CEC_Southern_Cone_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

@@ -38,12 +38,6 @@ global with sharing class CEC_CaseInlineController{
     /* Product name */
     public String productName {get; set;}
     
-    /* Product Status */
-    public String productStatus {get; set;}
-    
-    /* Product Last Manufacturing Date */
-    public String productMFD {get; set;}
-    
     public String userWarning {get; set;}
     
     /* to decide whether to display missing information section or not */
@@ -137,7 +131,7 @@ global with sharing class CEC_CaseInlineController{
 isFormKnown__c, isVariantKnown__c, isPacksizeKnown__c,Case_product_category__c, Production_Code__c, DayCode__c,CEC_Product__r.Global_CPG_Code__r.L2_Product_Category__c,
 Date_of_Manufacture_str__c,Subject,Description,Market__c From case Where Id = :caseRecord.Id];*/
             
-            caseRecord = [Select Id, CaseNumber,Reason_Code__c,Parent.CaseNumber,ParentId, Reason_Code__r.Name,Status, CEC_Product__c, CEC_Product__r.Name, CEC_Product__r.Global_CPG_Code__c, CEC_Product__r.Product_Name_Other__c,
+            caseRecord = [Select Id, CaseNumber,Reason_Code__c,Parent.CaseNumber,ParentId, Reason_Code__r.Name,Status, CEC_Product__c, CEC_Product__r.Name,CEC_Product__r.Global_CPG_Code__c,
                           isFormKnown__c, isVariantKnown__c, isPacksizeKnown__c,Case_product_category__c, Production_Code__c, DayCode__c,CEC_Product__r.Global_CPG_Code__r.L2_Product_Category__c,
                           Date_of_Manufacture_str__c,Subject,Description,Market__c,Country_Name__c,Country__c,Country__r.Country__r.ISO_3166_1_Code__c,CEC_Product_Hierarchy__c,Case_Market_Tag__c, AccountId From case Where Id = :caseRecord.Id];
             
@@ -146,7 +140,7 @@ Date_of_Manufacture_str__c,Subject,Description,Market__c From case Where Id = :c
             oldReasonId = reasonId = caseRecord.Reason_Code__c;
             reasonName = caseRecord.Reason_Code__r.Name;
             oldProductId = productId = caseRecord.CEC_Product__c;
-            productName = caseRecord.CEC_Product__r.Product_Name_Other__c;
+            productName = caseRecord.CEC_Product__r.Name;
             
             /*-- Populate the isEmptyCountryVerbatimCheck --*/
             if(caseRecord.AccountId != null && (caseRecord.Country__c == null || String.isEmpty(caseRecord.Subject)) && caseRecord.Status != 'New'){
@@ -167,11 +161,9 @@ Date_of_Manufacture_str__c,Subject,Description,Market__c From case Where Id = :c
             }
             
             if (productId != null && productId != ''){
-              List<mdm_Case_Product__c> pObjList = [select name, Product_Name_Other__c, Product_Status__c, Last_Sold_Manufactured__c from mdm_Case_Product__c where id = :productId ];
+                List<mdm_Case_Product__c> pObjList = [select name from mdm_Case_Product__c where id = :productId ];
                 if (pObjList != null && pObjList.size() > 0 && pObjList[0].name != null){
-                    productName = pObjList[0].Product_Name_Other__c;
-                    productStatus = pObjList[0].Product_Status__c.toLowerCase();
-                    productMFD = pObjList[0].Last_Sold_Manufactured__c ;
+                    productName = pObjList[0].name;
                 }
             }
             
@@ -202,10 +194,10 @@ Date_of_Manufacture_str__c,Subject,Description,Market__c From case Where Id = :c
             
             System.debug('productId =' + productId );
             if (productId != null && productId != ''){
-                mdm_Case_Product__c pObj = [select name, Product_Name_Other__c from mdm_Case_Product__c where id = :productId ];
+                mdm_Case_Product__c pObj = [select name from mdm_Case_Product__c where id = :productId ];
                 System.debug('pObj =' + pObj );
                 if (pObj != null && pObj.name != null){
-                    productName = pObj.Product_Name_Other__c;
+                    productName = pObj.name;
                 }
                 
                 //isProductCategoryEnabled = false;
@@ -294,7 +286,7 @@ Date_of_Manufacture_str__c,Subject,Description,Market__c From case Where Id = :c
         fiveRelatedIssues=relatedIssues;
         displayMore=false;
     }
-    
+
     public Boolean isCountryPopulated {get;set;}
     
     //Record type Spam
@@ -722,12 +714,10 @@ This method updates the product hierarchy
         System.debug('reasonName =' + reasonName);
         System.debug('productId =' + productId);
         if (productId != null && productId != '' && oldProductId != productId){
-            mdm_Case_Product__c pObj = [select name, Product_Status__c,Last_Sold_Manufactured__c  from mdm_Case_Product__c where id = :productId ];
+            mdm_Case_Product__c pObj = [select name from mdm_Case_Product__c where id = :productId ];
             System.debug('pObj =' + pObj );
             if (pObj != null && pObj.name != null){
                 productName = pObj.name;
-                productStatus = pObj.Product_Status__c.toLowerCase();
-                productMFD = pObj.Last_Sold_Manufactured__c ;
             }
             
             caseRecord.isFormKnown__c = true;
@@ -996,4 +986,5 @@ This method updates form availability based on Category selection
             System.debug('Error in CEC_CaseInlineController -> mapArticleToCase : ' +  ex);
         }
     }
+    
 }

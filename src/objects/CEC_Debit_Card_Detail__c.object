@@ -53,10 +53,6 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
-<<<<<<< HEAD
-    <enableSearch>true</enableSearch>
-=======
->>>>>>> develop
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>

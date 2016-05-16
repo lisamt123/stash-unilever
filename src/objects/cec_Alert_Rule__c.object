@@ -87,31 +87,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Case_Product__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>CEC - The lookup field to the CEC Products</description>
-        <externalId>false</externalId>
-        <label>Case Product</label>
-        <referenceTo>mdm_Case_Product__c</referenceTo>
-        <relationshipLabel>Alert Rule</relationshipLabel>
-        <relationshipName>Alert_Rule</relationshipName>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Consumer_Product_Descriptor_no_size__c</fullName>
-        <description>CEC - Product Description without Size details</description>
-        <externalId>false</externalId>
-        <formula>Case_Product__r.Consumer_Product_Descriptor_no_size__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Consumer Product Descriptor (no size)</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Group_By_Day_Code__c</fullName>
         <defaultValue>false</defaultValue>
         <description>CEC</description>
@@ -164,18 +139,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>L2_Reason_Code__c</fullName>
-        <description>CEC : Reason Code for Level 2</description>
-        <externalId>false</externalId>
-        <formula>IF(VALUE(TEXT(Reason_Level__c))&gt;=2, Reason_Code__r.Global_Listening_Tree__r.L2_Desc__c , null)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>L2 Reason Code</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>L3_Product_Category__c</fullName>
         <externalId>false</externalId>
         <formula>IF(VALUE(TEXT(Product_Level__c))&gt;=3, Product_Category__r.L3_Product_Category__c, null)</formula>
@@ -192,30 +155,6 @@
         <formula>IF(VALUE(TEXT(Reason_Level__c))&gt;=3 , Reason_Code__r.Global_Listening_Tree__r.L3_Desc__c  , null)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>L3 Reason Code</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>L4_Product_Category__c</fullName>
-        <description>CEC - Level 4 description for the Product Category</description>
-        <externalId>false</externalId>
-        <formula>IF(VALUE(TEXT(Product_Level__c))&gt;=3, Product_Category__r.L4_Product_Category__c, null)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>L4 Product Category</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>L4_Reason_Code__c</fullName>
-        <description>CEC : Reason Code for Level 4</description>
-        <externalId>false</externalId>
-        <formula>IF(VALUE(TEXT(Reason_Level__c))&gt;=4, Reason_Code__r.Global_Listening_Tree__r.L4_Desc__c , null)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>L4 Reason Code</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -260,19 +199,11 @@
         <label>Market</label>
         <picklist>
             <picklistValues>
-                <fullName>ANZ</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Baltics</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Benelux</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Brazil</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -304,10 +235,6 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Middle Americas</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Nordic</fullName>
                 <default>false</default>
             </picklistValues>
@@ -321,14 +248,6 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Portugal</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>South Africa</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Southern Cone</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -347,18 +266,6 @@
         </picklist>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>Product_Category_Concat_Value__c</fullName>
-        <description>CEC : To concatenate all the Product Category Level values. To be used in SOQL query</description>
-        <externalId>false</externalId>
-        <formula>L0_Product_Category__c +  L1_Product_Category__c +  L2_Product_Category__c +  L3_Product_Category__c +  L4_Product_Category__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Product Category Concat Value</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Product_Category__c</fullName>
@@ -399,12 +306,6 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>4</fullName>
-                <controllingFieldValues>Quality</controllingFieldValues>
-                <controllingFieldValues>Safety</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>5</fullName>
                 <default>false</default>
             </picklistValues>
@@ -412,22 +313,10 @@
                 <fullName>7</fullName>
                 <default>false</default>
             </picklistValues>
-            <sorted>true</sorted>
+            <sorted>false</sorted>
         </picklist>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>ReasonCode_Concat_Value__c</fullName>
-        <description>CEC : To concatenate all the Reason Code Level values. To be used in SOQL query</description>
-        <externalId>false</externalId>
-        <formula>L1_Reason_Code__c  +  L2_Reason_Code__c + L3_Reason_Code__c + L4_Reason_Code__c + L5_Reason_Code__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>ReasonCode Concat Value</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Reason_Code__c</fullName>
@@ -572,15 +461,6 @@
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>CEC_Brazil_Queue_cec_Alert_Rule</fullName>
-        <filterScope>Queue</filterScope>
-        <label>CEC Brazil Queue</label>
-        <queue>CEC_Brazil_Queue</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>CEC_Cyprus_Queue_cec_Alert_Rule</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Cyprus Queue</label>
@@ -662,15 +542,6 @@
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>CEC_Middle_Americas_Queue_cec_Alert_Rule</fullName>
-        <filterScope>Queue</filterScope>
-        <label>CEC Middle Americas Queue</label>
-        <queue>CEC_Middle_Americas_Queue</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>CEC_Nordic_Queue_cec_Alert_Rule</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Nordic Queue</label>
@@ -715,15 +586,6 @@
         </filters>
         <label>CEC Portugal Queue</label>
         <language>pt_PT</language>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CEC_Southern_Cone_Queue_cec_Alert_Rule</fullName>
-        <filterScope>Queue</filterScope>
-        <label>CEC Southern Cone Queue</label>
-        <queue>CEC_Southern_Cone_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
@@ -807,14 +669,14 @@
     <sharingModel>ReadWrite</sharingModel>
     <validationRules>
         <fullName>L0_Product_Category_Mandatory_Validation</fullName>
-        <active>false</active>
+        <active>true</active>
         <description>Please verify that the Product Category&apos;s &apos;Division Name&apos; is not null if Type is &apos;Safety&apos;</description>
-        <errorConditionFormula>ISPICKVAL(Type__c, &apos;Safety&apos;) &amp;&amp; (Product_Category__c != null  &amp;&amp; L0_Product_Category__c = null)</errorConditionFormula>
+        <errorConditionFormula>L0_Product_Category__c = null &amp;&amp;  ISPICKVAL(Type__c, &apos;Safety&apos;)</errorConditionFormula>
         <errorMessage>Please make sure that  the Product Category&apos;s  &apos;Division Name&apos; is not null for &apos;Safety&apos; alerts.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>L2_Product_Category_Mandatory_Validation</fullName>
-        <active>false</active>
+        <active>true</active>
         <description>This validation rule is to verify if the L2 Product Category is mandatory if the type is &apos;Quality&apos;</description>
         <errorConditionFormula>L2_Product_Category__c = null &amp;&amp; ISPICKVAL(Type__c,&apos;Quality&apos;)</errorConditionFormula>
         <errorMessage>Please make sure that the Product Category&apos;s &apos;Category Name&apos; is not null for &apos;Quality&apos; alerts.</errorMessage>
@@ -835,47 +697,5 @@
         <description>Market_And_Global_Flag_Validation</description>
         <errorConditionFormula>AND( TEXT(Market__c)= null,  All_Market__c = false)</errorConditionFormula>
         <errorMessage>Please specify the Market or Check All Market field</errorMessage>
-    </validationRules>
-    <validationRules>
-        <fullName>Product_Mandatory_Alert_Validation</fullName>
-        <active>true</active>
-        <description>CEC :  Only one of the Case Product or Product Category should be mandatory</description>
-        <errorConditionFormula>(Case_Product__c = null &amp;&amp;  Product_Category__c = null) ||
-(Case_Product__c != null &amp;&amp;  Product_Category__c != null)</errorConditionFormula>
-        <errorMessage>Only one of  &apos;Product Category&apos; or &apos;Case Product&apos; value is allowed.</errorMessage>
-    </validationRules>
-    <validationRules>
-        <fullName>QualityAlert_Product_Category_Validation</fullName>
-        <active>true</active>
-        <description>CEC : Validation for Quality Alert Types to check Product Category values are available,</description>
-        <errorConditionFormula>ISPICKVAL(Type__c, &apos;Quality&apos;) &amp;&amp; 
-( Case_Product__c = null &amp;&amp;
-  Product_Category__c != null &amp;&amp;
-   (
-        ISPICKVAL(Product_Level__c,&apos;&apos;) ||
-	(ISPICKVAL(Product_Level__c,&apos;2&apos;) &amp;&amp; 
-        L2_Product_Category__c = null) ||
-        (ISPICKVAL(Product_Level__c,&apos;4&apos;) &amp;&amp; 
-	L4_Product_Category__c = null)
-    )
-)</errorConditionFormula>
-        <errorMessage>Please verify the Product Level and its corresponding Product Category value : &apos;Category Name(L2)&apos; or  &apos;Sector Name(L4)&apos; is populated and not null for the type &apos;Quality&apos;.</errorMessage>
-    </validationRules>
-    <validationRules>
-        <fullName>SafetyAlert_Product_Category_Validation</fullName>
-        <active>true</active>
-        <description>CEC : Validation for Safety Alert Types to check Product Category values are available,</description>
-        <errorConditionFormula>ISPICKVAL(Type__c, &apos;Safety&apos;) &amp;&amp; 
-( Case_Product__c = null &amp;&amp;
-  Product_Category__c != null &amp;&amp;
-   (
-        ISPICKVAL(Product_Level__c,&apos;&apos;) ||
-	(ISPICKVAL(Product_Level__c,&apos;0&apos;) &amp;&amp; 
-        L0_Product_Category__c = null) ||
-        (ISPICKVAL(Product_Level__c,&apos;4&apos;) &amp;&amp; 
-	L4_Product_Category__c = null)
-    )
-)</errorConditionFormula>
-        <errorMessage>Please verify the Product Level and its corresponding Product Category value : &apos;Division Name(L0)&apos; or &apos;Sector Name(L4)&apos; is populated and not null for the type &apos;Safety&apos;.</errorMessage>
     </validationRules>
 </CustomObject>

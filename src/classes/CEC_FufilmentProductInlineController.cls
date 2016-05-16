@@ -23,7 +23,7 @@ public with sharing class CEC_FufilmentProductInlineController {
     /* Product name */
     public String productName {get; set;}
     /* Product quantity */
-    public Integer productQuantity {get; set;}
+    public String productQuantity {get; set;}
     public String errorMsg {get; set;}
     public String caseCountryCode {get;set;}
     public Boolean isApproved {get;set;}
@@ -34,12 +34,12 @@ public with sharing class CEC_FufilmentProductInlineController {
         
         if(fulfilmentRecord.Id != null){
         
-            fulfilmentRecord = [Select Id, Retrieval_Id__c,Case__r.Country__r.Country__r.ISO_3166_1_Code__c,
+            fulfilmentRecord = [Select Id, Case__r.Country__r.Country__r.ISO_3166_1_Code__c,
                                 Case__r.CEC_Product__c, Case__r.CEC_Product__r.Name, isApproved__c
                                 FROM cec_Fulfilment__c WHERE Id =: fulfilmentRecord.Id];
             caseCountryCode = fulfilmentRecord.Case__r.Country__r.Country__r.ISO_3166_1_Code__c;
             isApproved = fulfilmentRecord.isApproved__c;
-            productQuantity=1;
+            productQuantity='1';
         }
     }
     
@@ -51,16 +51,12 @@ public with sharing class CEC_FufilmentProductInlineController {
             } else if(String.isNotBlank(productId)){
                 CEC_Fulfilment_Product__c fulfilmentProduct = new CEC_Fulfilment_Product__c();
                 fulfilmentProduct.Product__c = productId ;
-                if(productQuantity== NULL || productQuantity == 0){
+                if(productQuantity==''){
                     fulfilmentProduct.Product_Quantity__c = 1;   
                 }else{
-                    fulfilmentProduct.Product_Quantity__c = productQuantity;
+                    fulfilmentProduct.Product_Quantity__c = integer.valueOf(productQuantity);
                 }
                 fulfilmentProduct.Fulfilment_Id__c = fulfilmentRecord.id; 
-                if (fulfilmentRecord.Retrieval_Id__c != null){
-                    fulfilmentProduct.Retrieval_Id__c = fulfilmentRecord.Retrieval_Id__c;
-                }
-                
                 insert fulfilmentProduct;               
                 System.debug('@@@@@fulfilment id '+ fulfilmentProduct.id);
             }

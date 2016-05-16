@@ -82,16 +82,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Alert_Tracker_Item_count__c</fullName>
-        <description>CEC Alert Tracker Item count is used to count number of Alert Tracker Item.</description>
-        <externalId>false</externalId>
-        <label>Alert Tracker Item count</label>
-        <summaryForeignKey>cec_Alert_Tracker_Item__c.Alert_Tracker_Id__c</summaryForeignKey>
-        <summaryOperation>count</summaryOperation>
-        <trackTrending>false</trackTrending>
-        <type>Summary</type>
-    </fields>
-    <fields>
         <fullName>Current_Threshold__c</fullName>
         <description>CEC :  To hold the current Threshold Value of the Alert Tracker</description>
         <externalId>false</externalId>

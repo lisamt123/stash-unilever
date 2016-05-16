@@ -48,10 +48,6 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Account Record Count --></label>
-        <name>Account_Record_Count__c</name>
-    </fields>
-    <fields>
         <label><!-- Additional Information --></label>
         <name>Additional_Information__c</name>
     </fields>
@@ -200,10 +196,6 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Anonymise check --></label>
-        <name>Anonymise_check__c</name>
-    </fields>
-    <fields>
         <label><!-- Awards --></label>
         <name>Awards__c</name>
     </fields>
@@ -227,10 +219,6 @@
     <fields>
         <label><!-- Company Structure --></label>
         <name>Company_Structure__c</name>
-    </fields>
-    <fields>
-        <label><!-- Consumer Note --></label>
-        <name>Consumer_Note__c</name>
     </fields>
     <fields>
         <label><!-- Financials Currency --></label>
@@ -701,37 +689,8 @@
         <name>D_B_Duns_Number__c</name>
     </fields>
     <fields>
-        <label><!-- Date Anonymized --></label>
-        <name>Date_Anonymized__c</name>
-    </fields>
-    <fields>
-        <label><!-- Debit Card Expiry Date --></label>
-        <name>Debit_Card_Expiry_Date__c</name>
-    </fields>
-    <fields>
-        <label><!-- Debit Card Number --></label>
-        <name>Debit_Card_Number__c</name>
-        <relationshipLabel><!-- Accounts --></relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- Debit Card Status --></label>
-        <name>Debit_Card_Status__c</name>
-    </fields>
-    <fields>
         <label><!-- Demandware Customer No --></label>
         <name>Demandware_ID__c</name>
-    </fields>
-    <fields>
-        <label><!-- Deoleo Opt-in --></label>
-        <name>Deoleo_Opt_in__c</name>
-        <picklistValues>
-            <masterLabel>No</masterLabel>
-            <translation><!-- No --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Yes</masterLabel>
-            <translation><!-- Yes --></translation>
-        </picklistValues>
     </fields>
     <fields>
         <label><!-- Discipline --></label>
@@ -850,14 +809,6 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Document Number --></label>
-        <name>Document_Number__c</name>
-    </fields>
-    <fields>
-        <label><!-- Document Type --></label>
-        <name>Document_Type__c</name>
-    </fields>
-    <fields>
         <help><!-- Per Week --></help>
         <label><!-- Tea Drinking Frequency --></label>
         <name>Drinking_frequency__c</name>
@@ -873,18 +824,6 @@
     <fields>
         <label><!-- General Email --></label>
         <name>General_Email__c</name>
-    </fields>
-    <fields>
-        <label><!-- Gortons Opt-in --></label>
-        <name>Gortons_Opt_in__c</name>
-        <picklistValues>
-            <masterLabel>No</masterLabel>
-            <translation><!-- No --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Yes</masterLabel>
-            <translation><!-- Yes --></translation>
-        </picklistValues>
     </fields>
     <fields>
         <name>Industry</name>
@@ -1031,10 +970,6 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Latest Case Number --></label>
-        <name>Latest_Case_Number__c</name>
-    </fields>
-    <fields>
         <label>Produkt Code vom letzten Fall</label>
         <name>Latest_Case_Product_Code__c</name>
     </fields>
@@ -1080,14 +1015,6 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Local Identifier No Special Char --></label>
-        <name>Local_Identifier_No_Special_Char__c</name>
-    </fields>
-    <fields>
-        <label><!-- Local Identifier --></label>
-        <name>Local_Identifier__c</name>
-    </fields>
-    <fields>
         <label><!-- Machine Id --></label>
         <name>Machine_Id__c</name>
     </fields>
@@ -1126,10 +1053,6 @@
         <help><!-- Please clarify the ownership status of the company, identifying any network or holding company, where appropriate. --></help>
         <label><!-- Ownership Status --></label>
         <name>Ownership_Status__c</name>
-    </fields>
-    <fields>
-        <label><!-- Phone No Special Char --></label>
-        <name>Phone_No_Special_Char__c</name>
     </fields>
     <fields>
         <label>Bevorzugter Kanal</label>
@@ -1173,28 +1096,8 @@
         <name>Previous_Names__c</name>
     </fields>
     <fields>
-        <label><!-- Profession --></label>
-        <name>Profession__c</name>
-    </fields>
-    <fields>
         <label><!-- Published --></label>
         <name>Published__c</name>
-    </fields>
-    <fields>
-        <label><!-- R&amp;B Opt-in --></label>
-        <name>R_B_Opt_in__c</name>
-        <picklistValues>
-            <masterLabel>Brand</masterLabel>
-            <translation><!-- Brand --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>No</masterLabel>
-            <translation><!-- No --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Yes</masterLabel>
-            <translation><!-- Yes --></translation>
-        </picklistValues>
     </fields>
     <fields>
         <name>Rating</name>
@@ -1212,10 +1115,6 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Ratings and Reviews Username --></label>
-        <name>Ratings_and_Reviews_Username__c</name>
-    </fields>
-    <fields>
         <label><!-- Registration Date --></label>
         <name>Registration_Date__c</name>
     </fields>
@@ -1223,34 +1122,6 @@
         <label><!-- Responsible Unilever Employee --></label>
         <name>Responsible_Unilever_Employee__c</name>
         <relationshipLabel><!-- Accounts --></relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- Retention Date --></label>
-        <name>Retention_Date__c</name>
-    </fields>
-    <fields>
-        <label><!-- Retention Reason --></label>
-        <name>Retention_Reason__c</name>
-        <picklistValues>
-            <masterLabel>1-Legal</masterLabel>
-            <translation><!-- 1-Legal --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>2-Customer Request</masterLabel>
-            <translation><!-- 2-Customer Request --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>3-Default</masterLabel>
-            <translation><!-- 3-Default --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <label><!-- Retention Record Id --></label>
-        <name>Retention_Record_Id__c</name>
-    </fields>
-    <fields>
-        <label><!-- Retention Record --></label>
-        <name>Retention_Record__c</name>
     </fields>
     <fields>
         <label><!-- Strategic Capabilities Video --></label>
@@ -1290,22 +1161,6 @@
         <picklistValues>
             <masterLabel>Winery</masterLabel>
             <translation><!-- Winery --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <label><!-- Sun Opt-In --></label>
-        <name>Sun_Opt_In__c</name>
-        <picklistValues>
-            <masterLabel>Brand</masterLabel>
-            <translation><!-- Brand --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>No</masterLabel>
-            <translation><!-- No --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Yes</masterLabel>
-            <translation><!-- Yes --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -1396,246 +1251,6 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Branch --></label>
-        <name>UID_Branch__c</name>
-    </fields>
-    <fields>
-        <label><!-- Geography --></label>
-        <name>UID_Geography__c</name>
-        <picklistValues>
-            <masterLabel>AILEU</masterLabel>
-            <translation><!-- AILEU --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>AIMUTIN</masterLabel>
-            <translation><!-- AIMUTIN --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>AINARO</masterLabel>
-            <translation><!-- AINARO --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>ATABAE</masterLabel>
-            <translation><!-- ATABAE --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>ATAURO</masterLabel>
-            <translation><!-- ATAURO --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>BAIROPITE</masterLabel>
-            <translation><!-- BAIROPITE --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>BALIBE</masterLabel>
-            <translation><!-- BALIBE --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>BALIBO</masterLabel>
-            <translation><!-- BALIBO --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>BAUCAU</masterLabel>
-            <translation><!-- BAUCAU --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>BECORA</masterLabel>
-            <translation><!-- BECORA --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>BEDOIS</masterLabel>
-            <translation><!-- BEDOIS --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>BIDAU</masterLabel>
-            <translation><!-- BIDAU --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>COLMERA</masterLabel>
-            <translation><!-- COLMERA --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>DAISOLI</masterLabel>
-            <translation><!-- DAISOLI --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>DILI</masterLabel>
-            <translation><!-- DILI --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>DILI4</masterLabel>
-            <translation><!-- DILI4 --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>DISTRICT</masterLabel>
-            <translation><!-- DISTRICT --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>ELMERA-GLENO</masterLabel>
-            <translation><!-- ELMERA-GLENO --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>ERMERA</masterLabel>
-            <translation><!-- ERMERA --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>GLENO</masterLabel>
-            <translation><!-- GLENO --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>GLENO-ERMERA</masterLabel>
-            <translation><!-- GLENO-ERMERA --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>HUDILARAN</masterLabel>
-            <translation><!-- HUDILARAN --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>KAMPUNG MERDEKA</masterLabel>
-            <translation><!-- KAMPUNG MERDEKA --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>LIQUICA</masterLabel>
-            <translation><!-- LIQUICA --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>LIQUICA-MAUBARA</masterLabel>
-            <translation><!-- LIQUICA-MAUBARA --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>LIQUISA</masterLabel>
-            <translation><!-- LIQUISA --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>LOES</masterLabel>
-            <translation><!-- LOES --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>LOS PALOS</masterLabel>
-            <translation><!-- LOS PALOS --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>LOSPALOS</masterLabel>
-            <translation><!-- LOSPALOS --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>MALIANA</masterLabel>
-            <translation><!-- MALIANA --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>MANATUTO</masterLabel>
-            <translation><!-- MANATUTO --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>MANLEUANA</masterLabel>
-            <translation><!-- MANLEUANA --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>MANUTOTO</masterLabel>
-            <translation><!-- MANUTOTO --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>MAUBESI</masterLabel>
-            <translation><!-- MAUBESI --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>MAUBESSI</masterLabel>
-            <translation><!-- MAUBESSI --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>METINARO</masterLabel>
-            <translation><!-- METINARO --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>OTHERS</masterLabel>
-            <translation><!-- OTHERS --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>PANTAI KELAPA</masterLabel>
-            <translation><!-- PANTAI KELAPA --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>SAME</masterLabel>
-            <translation><!-- SAME --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>SUAI</masterLabel>
-            <translation><!-- SUAI --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>TAIBESI</masterLabel>
-            <translation><!-- TAIBESI --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>VIQUEQUE</masterLabel>
-            <translation><!-- VIQUEQUE --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>WALKIN</masterLabel>
-            <translation><!-- WALKIN --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <label><!-- Region --></label>
-        <name>UID_Region__c</name>
-        <picklistValues>
-            <masterLabel>EUROPE</masterLabel>
-            <translation><!-- EUROPE --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>MIDDLE EAST ASIA</masterLabel>
-            <translation><!-- MIDDLE EAST ASIA --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>NORTH ASIA</masterLabel>
-            <translation><!-- NORTH ASIA --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>SOUTH ASIA</masterLabel>
-            <translation><!-- SOUTH ASIA --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>SOUTH EAST ASIA</masterLabel>
-            <translation><!-- SOUTH EAST ASIA --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>USA</masterLabel>
-            <translation><!-- USA --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <label><!-- Segment --></label>
-        <name>UID_Segment__c</name>
-        <picklistValues>
-            <masterLabel>NON PI CUSTOMERS</masterLabel>
-            <translation><!-- NON PI CUSTOMERS --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>PI CUSTOMERS</masterLabel>
-            <translation><!-- PI CUSTOMERS --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <label><!-- Unilever Opt-In --></label>
-        <name>Unilever_Opt_In__c</name>
-        <picklistValues>
-            <masterLabel>Brand</masterLabel>
-            <translation><!-- Brand --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Neutral</masterLabel>
-            <translation><!-- Neutral --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>No</masterLabel>
-            <translation><!-- No --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Yes</masterLabel>
-            <translation><!-- Yes --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
         <label><!-- VIP --></label>
         <name>VIP__c</name>
     </fields>
@@ -1647,46 +1262,6 @@
         <label><!-- Year Established --></label>
         <name>Year_Established__c</name>
     </fields>
-    <layouts>
-        <layout>Person Account Layout</layout>
-        <layoutType>PersonAccount</layoutType>
-        <sections>
-            <label>zusätzliche Adressinformationen</label>
-            <section>Additional Address Information</section>
-        </sections>
-        <sections>
-            <label><!-- Debit Card --></label>
-            <section>Debit Card</section>
-        </sections>
-        <sections>
-            <label><!-- Identifier Information --></label>
-            <section>Identifier Information</section>
-        </sections>
-        <sections>
-            <label><!-- Preferences --></label>
-            <section>Preferences</section>
-        </sections>
-        <sections>
-            <label><!-- Social Information --></label>
-            <section>Social Information</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>TO Person Account Layout</layout>
-        <layoutType>PersonAccount</layoutType>
-        <sections>
-            <label><!-- Additional Address Information --></label>
-            <section>Additional Address Information</section>
-        </sections>
-        <sections>
-            <label><!-- Additional Demandware Information --></label>
-            <section>Additional Demandware Information</section>
-        </sections>
-    </layouts>
-    <quickActions>
-        <label><!-- Add Expertise --></label>
-        <name>Pitch_Add_Expertise</name>
-    </quickActions>
     <recordTypes>
         <label><!-- Agency --></label>
         <name>Agency</name>
@@ -1707,18 +1282,6 @@
         <label><!-- Standard --></label>
         <name>Standard</name>
     </recordTypes>
-    <recordTypes>
-        <label><!-- Primary Account --></label>
-        <name>UID_Primary_Account</name>
-    </recordTypes>
-    <recordTypes>
-        <label><!-- Secondary Account --></label>
-        <name>UID_Secondary_Account</name>
-    </recordTypes>
-    <validationRules>
-        <errorMessage><!-- Invalid CPF number (Should contain 11 digit numeric value) --></errorMessage>
-        <name>LocalIdentifier_Length_Validation</name>
-    </validationRules>
     <validationRules>
         <errorMessage><!-- Either Email or Phone must be filled in. --></errorMessage>
         <name>Pitch_Email_or_Phone_Mandatory</name>

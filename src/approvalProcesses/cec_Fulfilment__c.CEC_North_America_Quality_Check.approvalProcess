@@ -85,6 +85,6 @@
             <type>FieldUpdate</type>
         </action>
     </recallActions>
-    <recordEditability>AdminOrCurrentApprover</recordEditability>
+    <recordEditability>AdminOnly</recordEditability>
     <showApprovalHistory>false</showApprovalHistory>
 </ApprovalProcess>

@@ -79,10 +79,6 @@
         <name>Case_Brand__c</name>
     </fields>
     <fields>
-        <label><!-- Case ISO Country Code --></label>
-        <name>Case_ISO_Country_Code__c</name>
-    </fields>
-    <fields>
         <label><!-- Case Market Mapping Country Id --></label>
         <name>Case_Market_Mapping_Country_Id__c</name>
     </fields>
@@ -166,10 +162,6 @@
         <label><!-- Country Name --></label>
         <name>Country_Name__c</name>
         <picklistValues>
-            <masterLabel>Argentina</masterLabel>
-            <translation><!-- Argentina --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Austria</masterLabel>
             <translation><!-- Austria --></translation>
         </picklistValues>
@@ -178,28 +170,8 @@
             <translation><!-- Belgium --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Bolivia</masterLabel>
-            <translation><!-- Bolivia --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Brazil</masterLabel>
-            <translation><!-- Brazil --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Canada</masterLabel>
             <translation><!-- Canada --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Chile</masterLabel>
-            <translation><!-- Chile --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Colombia</masterLabel>
-            <translation><!-- Colombia --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Costa Rica</masterLabel>
-            <translation><!-- Costa Rica --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Czech Republic</masterLabel>
@@ -208,14 +180,6 @@
         <picklistValues>
             <masterLabel>Denmark</masterLabel>
             <translation><!-- Denmark --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Ecuador</masterLabel>
-            <translation><!-- Ecuador --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>El Salvador</masterLabel>
-            <translation><!-- El Salvador --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Estonia</masterLabel>
@@ -236,14 +200,6 @@
         <picklistValues>
             <masterLabel>Greece</masterLabel>
             <translation><!-- Greece --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Guatemala</masterLabel>
-            <translation><!-- Guatemala --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Honduras</masterLabel>
-            <translation><!-- Honduras --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Hungary</masterLabel>
@@ -278,28 +234,12 @@
             <translation><!-- Netherlands --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Nicaragua</masterLabel>
-            <translation><!-- Nicaragua --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>None</masterLabel>
             <translation><!-- None --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Norway</masterLabel>
             <translation><!-- Norway --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Panama</masterLabel>
-            <translation><!-- Panama --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Paraguay</masterLabel>
-            <translation><!-- Paraguay --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Peru</masterLabel>
-            <translation><!-- Peru --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Poland</masterLabel>
@@ -328,14 +268,6 @@
         <picklistValues>
             <masterLabel>United States</masterLabel>
             <translation><!-- United States --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Uruguay</masterLabel>
-            <translation><!-- Uruguay --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Venezuela</masterLabel>
-            <translation><!-- Venezuela --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -366,10 +298,6 @@
     <fields>
         <label><!-- Default From Address --></label>
         <name>Default_From_Address__c</name>
-    </fields>
-    <fields>
-        <label><!-- Email Subject --></label>
-        <name>Email_Subject__c</name>
     </fields>
     <fields>
         <label><!-- Escalated Date --></label>
@@ -465,16 +393,8 @@
         <name>L1_Product_Category__c</name>
     </fields>
     <fields>
-        <label><!-- L1 Product Reporting --></label>
-        <name>L1_Product_Reporting__c</name>
-    </fields>
-    <fields>
         <label><!-- L2 Product Category --></label>
         <name>L2_Product_Category__c</name>
-    </fields>
-    <fields>
-        <label><!-- L2 Product Reporting --></label>
-        <name>L2_Product_Reporting__c</name>
     </fields>
     <fields>
         <label><!-- L3 Product Category --></label>
@@ -607,10 +527,6 @@
             <translation><!-- Email Benelux --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Email Brazil</masterLabel>
-            <translation><!-- Email Brazil --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Email Cyprus</masterLabel>
             <translation><!-- Email Cyprus --></translation>
         </picklistValues>
@@ -643,10 +559,6 @@
             <translation><!-- Email Italy --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Email Middle Americas</masterLabel>
-            <translation><!-- Email Middle Americas --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Email Nordic</masterLabel>
             <translation><!-- Email Nordic --></translation>
         </picklistValues>
@@ -665,10 +577,6 @@
         <picklistValues>
             <masterLabel>Email Portugal</masterLabel>
             <translation><!-- Email Portugal --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Email Southern Cone</masterLabel>
-            <translation><!-- Email Southern Cone --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Email Spain</masterLabel>
@@ -729,10 +637,6 @@
         <picklistValues>
             <masterLabel>Web</masterLabel>
             <translation><!-- Web --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Web North America</masterLabel>
-            <translation><!-- Web North America --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>White Mail</masterLabel>
@@ -799,14 +703,6 @@
             <translation><!-- consumerproduct@mizkan.com --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>consumidor@sac-unilever.com</masterLabel>
-            <translation><!-- consumidor@sac-unilever.com --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>consumidor@sac-unilever.com.ar</masterLabel>
-            <translation><!-- consumidor@sac-unilever.com.ar --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>info@bertolli.ca</masterLabel>
             <translation><!-- info@bertolli.ca --></translation>
         </picklistValues>
@@ -829,10 +725,6 @@
         <picklistValues>
             <masterLabel>reply.us@sunproductscorp.com</masterLabel>
             <translation><!-- reply.us@sunproductscorp.com --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>sac@atendimentounilever.com.br</masterLabel>
-            <translation><!-- sac@atendimentounilever.com.br --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>t2customercare@t2tea.com</masterLabel>
@@ -895,10 +787,6 @@
         <label><!-- Product Skill --></label>
         <name>Product_Skill__c</name>
         <picklistValues>
-            <masterLabel>Bluewater</masterLabel>
-            <translation><!-- Bluewater --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Coffee &amp; Snacks</masterLabel>
             <translation><!-- Coffee &amp; Snacks --></translation>
         </picklistValues>
@@ -911,14 +799,6 @@
             <translation><!-- Deodorants &amp; Fragrances --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Deoleo</masterLabel>
-            <translation><!-- Deoleo --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Dove</masterLabel>
-            <translation><!-- Dove --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Dressings</masterLabel>
             <translation><!-- Dressings --></translation>
         </picklistValues>
@@ -929,10 +809,6 @@
         <picklistValues>
             <masterLabel>Food Solutions</masterLabel>
             <translation><!-- Food Solutions --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Gortons</masterLabel>
-            <translation><!-- Gortons --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Hair Care</masterLabel>
@@ -949,14 +825,6 @@
         <picklistValues>
             <masterLabel>Laundry</masterLabel>
             <translation><!-- Laundry --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Lux</masterLabel>
-            <translation><!-- Lux --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Lynx</masterLabel>
-            <translation><!-- Lynx --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Non Corporate Home Care Category</masterLabel>
@@ -995,10 +863,6 @@
             <translation><!-- Professional Cleaning Category --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>R &amp; B Foods</masterLabel>
-            <translation><!-- R &amp; B Foods --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Savoury</masterLabel>
             <translation><!-- Savoury --></translation>
         </picklistValues>
@@ -1017,10 +881,6 @@
         <picklistValues>
             <masterLabel>Spreads</masterLabel>
             <translation><!-- Spreads --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Sun</masterLabel>
-            <translation><!-- Sun --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Tea and Soy &amp; Fruit Beverages</masterLabel>

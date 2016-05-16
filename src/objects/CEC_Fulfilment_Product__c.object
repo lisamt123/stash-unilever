@@ -53,10 +53,6 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>true</enableReports>
-<<<<<<< HEAD
-    <enableSearch>true</enableSearch>
-=======
->>>>>>> develop
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
@@ -154,22 +150,6 @@
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
-<<<<<<< HEAD
-    <fields>
-        <fullName>Retrieval_Id__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>CEC Retrieval Id  will hold Retrieval Id  information if user have access for Retrieval request</description>
-        <externalId>false</externalId>
-        <label>Retrieval Id</label>
-        <referenceTo>CEC_Retrieval_Request__c</referenceTo>
-        <relationshipLabel>Fulfilment Products</relationshipLabel>
-        <relationshipName>Fulfilment_Products</relationshipName>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-=======
->>>>>>> develop
     <label>Fulfilment Product</label>
     <nameField>
         <displayFormat>FP-{000000}</displayFormat>

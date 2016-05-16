@@ -3,7 +3,7 @@
     <articleTypeChannelDisplay>
         <articleTypeTemplates>
             <channel>App</channel>
-            <template>Toc</template>
+            <template>Tab</template>
         </articleTypeTemplates>
         <articleTypeTemplates>
             <channel>Prm</channel>
@@ -85,7 +85,7 @@
         <description>CEC</description>
         <externalId>false</externalId>
         <label>Date Code Location</label>
-        <length>131072</length>
+        <length>300</length>
         <trackHistory>false</trackHistory>
         <type>Html</type>
         <visibleLines>25</visibleLines>
@@ -106,7 +106,7 @@
         <description>CEC</description>
         <externalId>false</externalId>
         <label>Ingredients</label>
-        <length>131072</length>
+        <length>2000</length>
         <trackHistory>false</trackHistory>
         <type>Html</type>
         <visibleLines>25</visibleLines>
@@ -144,7 +144,7 @@
         <description>CEC</description>
         <externalId>false</externalId>
         <label>Pack Shot</label>
-        <length>131072</length>
+        <length>500</length>
         <trackHistory>false</trackHistory>
         <type>Html</type>
         <visibleLines>25</visibleLines>
@@ -194,7 +194,7 @@
         <description>CEC</description>
         <externalId>false</externalId>
         <label>Recycling Info</label>
-        <length>131072</length>
+        <length>300</length>
         <trackHistory>false</trackHistory>
         <type>Html</type>
         <visibleLines>25</visibleLines>
@@ -204,7 +204,7 @@
         <description>CEC</description>
         <externalId>false</externalId>
         <label>Sensitive Text</label>
-        <length>131072</length>
+        <length>1000</length>
         <trackHistory>false</trackHistory>
         <type>Html</type>
         <visibleLines>25</visibleLines>
@@ -213,7 +213,7 @@
         <fullName>Shelf_Life__c</fullName>
         <externalId>false</externalId>
         <label>Shelf Life</label>
-        <length>131072</length>
+        <length>300</length>
         <trackHistory>false</trackHistory>
         <type>Html</type>
         <visibleLines>25</visibleLines>
@@ -233,7 +233,7 @@
         <description>CEC</description>
         <externalId>false</externalId>
         <label>Storage</label>
-        <length>131072</length>
+        <length>300</length>
         <trackHistory>false</trackHistory>
         <type>Html</type>
         <visibleLines>25</visibleLines>
@@ -253,7 +253,7 @@
         <description>CEC</description>
         <externalId>false</externalId>
         <label>Usage</label>
-        <length>131072</length>
+        <length>1000</length>
         <trackHistory>false</trackHistory>
         <type>Html</type>
         <visibleLines>25</visibleLines>

@@ -9,6 +9,9 @@
         <sobjectType>Case</sobjectType>
     </queueSobject>
     <queueSobject>
+        <sobjectType>Macro</sobjectType>
+    </queueSobject>
+    <queueSobject>
         <sobjectType>QuickText</sobjectType>
     </queueSobject>
     <queueSobject>

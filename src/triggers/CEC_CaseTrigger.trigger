@@ -33,14 +33,11 @@ trigger CEC_CaseTrigger on Case (before insert,after insert,before update,after 
         caseHelper.updateCaseDetailsIfRecordTypeIsSpam(trigger.newMap,trigger.oldMap); 
         caseHelper.updateProductAndReasonCode(trigger.newMap);
         caseHelper.updateCountryDetail(trigger.newMap);
-        caseHelper.updateCaseBrandAndSkillOnUpdate(trigger.newmap, trigger.oldMap);
-        System.debug('Before updateCaseBrandAndSkillOnUpdate'); 
         //caseHelper.insertCountryDetail(trigger.new);
         caseHelper.updateDayCodeMftrCode(trigger.newMap, trigger.oldMap);
         // to set flag for survey email workflow
         caseHelper.setWorkflowFlag(trigger.newMap, trigger.oldMap);    
-        //to set the store and product information for web email cases
-        caseHelper.updateStoreAndProductInfo(trigger.new, trigger.oldmap);
+        
         caseHelper.updateRetentionDate(trigger.new ,trigger.oldmap);
         /* Start -  US-097 Personal data not included in Pulse */
         caseHelper.updatePIIWarningForUpdate(Trigger.New, Trigger.oldMap);
@@ -49,7 +46,7 @@ trigger CEC_CaseTrigger on Case (before insert,after insert,before update,after 
     
     // Create & Send Safety Alerts for the updated Case Product and Reason codes. 
     if(trigger.isAfter && trigger.isUpdate){
-        System.debug('After Update Create & Send Safety Alerts for the updated Case Product and Reason codes.'); 
+        System.debug('After Update'); 
         CEC_InstantAlertActionHelper actionHelper = new CEC_InstantAlertActionHelper();
         actionHelper.createAlertEntries(trigger.oldMap, trigger.newMap);
         CEC_CaseTriggerHelper caseHelper = new CEC_CaseTriggerHelper();
@@ -66,16 +63,11 @@ trigger CEC_CaseTrigger on Case (before insert,after insert,before update,after 
     if(trigger.isBefore && trigger.isInsert){ 
         System.debug('Before Insert'); 
         CEC_CaseTriggerHelper caseHelper = new CEC_CaseTriggerHelper();
-        caseHelper.updateSuppliedEmail(trigger.new);//To update the suppliedEmail for Web Cases
         caseHelper.insertCountryDetail(trigger.new);
         caseHelper.updatePIIWarningForInsert(trigger.new);
-        System.debug('$$$$$$$$$$InsertValues' + trigger.new[0].Country_Name__c + ' ' + trigger.new[0].Brand__C);
-        caseHelper.updateCaseBrandAndSkillOnInsert(trigger.new);
-        
         
     }
     
     /* Support team change ends*/
     
-
 }
