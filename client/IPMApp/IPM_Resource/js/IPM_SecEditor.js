@@ -346,13 +346,11 @@ jq(function(){
     }
 });
     
-function unloadPage()
+function unloadPage_secEditor()
 { 
-if(ckedited === true|| inputchanged === true)
+if((ckedited === true || inputchanged === true) && editorunsaved === true)
 {
-    if(editorunsaved){
         return IPMAppSE.wmessage;            
-    }
 }
 } 
 
@@ -360,7 +358,7 @@ function saveChanges(){
 editorunsaved = false;
 }
 
-window.onbeforeunload = unloadPage;
+window.onbeforeunload = unloadPage_secEditor;
 
 /* Below code is to redirect to a page on cancel*/
 function gotoPageNew() {

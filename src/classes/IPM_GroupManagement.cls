@@ -126,7 +126,7 @@ global without sharing class  IPM_GroupManagement {
           if(queueList!=null && !queueList.isEmpty()){
              if (Test.isRunningTest()) {
                 // start new context via system.runAs() for the same user for test code only
-                System.runAs(new User(Id = Userinfo.getUserId())) {
+                System.runAs(IPM_TestFactory_Helper.createUserAdmin(false)) {
                 insert queueList;
                 }
             } else {
@@ -143,7 +143,7 @@ global without sharing class  IPM_GroupManagement {
           if(memberList!=null && !memberList.isEmpty()){ 
             if (Test.isRunningTest()) {
                 // start new context via system.runAs() for the same user for test code only
-                System.runAs(new User(Id = Userinfo.getUserId())) {
+                System.runAs(IPM_TestFactory_Helper.createUserAdmin(false)) {
                     insert memberList;
             }
             } else {
@@ -189,7 +189,7 @@ global without sharing class  IPM_GroupManagement {
           if(grpList!=null && !grpList.isEmpty()){ 
             if (Test.isRunningTest()) {
                 // start new context via system.runAs() for the same user for test code only
-                System.runAs(new User(Id = Userinfo.getUserId())) {
+                System.runAs(IPM_TestFactory_Helper.createUserAdmin(false)) {
                 update grpList;
             }
             } else {
@@ -332,7 +332,7 @@ global without sharing class  IPM_GroupManagement {
             if(memberList!=null && !memberList.isEmpty()){ 
                    if (Test.isRunningTest()) {
                     // start new context via system.runAs() for the same user for test code only
-                    System.runAs(new User(Id = Userinfo.getUserId())) {
+                    System.runAs(IPM_TestFactory_Helper.createUserAdmin(false)) {
                     insert memberList;
                 }
                 } else {

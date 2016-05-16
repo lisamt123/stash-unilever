@@ -157,13 +157,17 @@ public with sharing class IPM_ProjectDocumentHelper
                             
                             if(projectGate == incomingGateType)
                             {
-                               projectDoc.IPM_Document_Status__c = project.IPM_Current_Document_Status__c;
-  
-                               if(project.IPM_Document_Update_Comments__c !=null && DOC_COMMENT_FIELDMAPPING.containsKey(projectDoc.IPM_Document_Status__c))
-                               {
+                                projectDoc.IPM_Document_Status__c = project.IPM_Current_Document_Status__c;
+                                if(project.IPM_Document_Update_Comments__c !=null && DOC_COMMENT_FIELDMAPPING.containsKey(projectDoc.IPM_Document_Status__c))
+                                {
                                     String commentFieldAPIName = DOC_COMMENT_FIELDMAPPING.get(projectDoc.IPM_Document_Status__c);
-                                    projectDoc.put(commentFieldAPIName,project.IPM_Document_Update_Comments__c);    
-                               }
+									if(projectDoc.IPM_Document_Status__c==IPM_ConstantUtils.DOCUMENT_STATUS_POSTPONED){
+										projectDoc.put(commentFieldAPIName,project.IPM_Postponed_Comments__c);
+									}
+									else{
+										  projectDoc.put(commentFieldAPIName,project.IPM_Document_Update_Comments__c);
+									}    
+                                }
                                
                                if(project.IPM_Document_Update_Date__c !=null && DOC_DATE_FIELDMAPPING.containsKey(projectDoc.IPM_Document_Status__c))
                                {
