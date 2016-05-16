@@ -59,6 +59,35 @@ public with sharing class IPM_FinancialHelper
             processIPMFinancialYears(financial,upsertFinancialYearMap);
         }  
     }
+	
+	/*******************************************************************************************************
+    * @description      Method to handle after update  Trigger context for IPM_Financial__c object. 
+                        Deletes  Financial Year records falling before TLD of consolidated financials
+                        
+    * @param1 newFinancials  List of Trigger.new records
+    * @return               NONE
+    ********************************************************************************************************/
+    public static void deleteFinancialYears(List<IPM_Financial__c> newFinancials)      
+    {
+        List<IPM_Financial_Year__c> deleteIPMFinancialYears = new List<IPM_Financial_Year__c>();
+        for(IPM_Financial__c financial : [Select Id ,Target_Launch_Date__c ,( Select Id,Name from IPM_Financial_Years__r where Year_Type__c=:IPM_ConstantUtils.YEAR_TYPE_CALENDAR AND  (NOT Name like '%Y%')) from IPM_Financial__c where Id IN :newFinancials  AND recordtypeId =:Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get('Consolidated').getRecordTypeId()])
+        {
+            Integer tldYear =financial.Target_Launch_Date__c.year();
+            for(IPM_Financial_Year__c finYear :financial.IPM_Financial_Years__r)
+            {
+            	if(tldYear > Integer.valueOf(finYear.name)) 
+            	{
+            	  deleteIPMFinancialYears.add(finYear);
+            	}
+            
+            }
+            
+        }
+        if(deleteIPMFinancialYears!=null && !deleteIPMFinancialYears.isEmpty()) 
+        {
+          delete deleteIPMFinancialYears;
+        }  
+    }
     
       /******************************************************************************************************************
     * @description                                  Used for Creating Consolidated Calendar Years whenever TLD is changed. 

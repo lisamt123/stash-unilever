@@ -729,6 +729,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 validPostpone=true;
                 project.IPM_Current_Document_Status__c = projectDoc.IPM_Document_Status__c;
                 project.IPM_Document_Update_Comments__c = projectDoc.IPM_Postponed_Comments__c;  
+                project.IPM_Postponed_Comments__c=projectDoc.IPM_Postponed_Comments__c;
                 project.IPM_Document_Update_Date__c = currentPhaseMilestone.IPM_Planned_Date__c;
                 projectDoc.IPM_Postponement_Date__c = currentPhaseMilestone.IPM_Planned_Date__c;
                 update project;

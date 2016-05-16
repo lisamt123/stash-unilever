@@ -287,6 +287,7 @@ private with sharing class IPM_PerformanceBreakdownController_Test {
     //This testmethod is used to test save functionality of 6.5 records when valid data is entered.
     static testMethod void testMarketPerformaceDataUpdatedPositiveTest()
     {
+    	Set<Id> setMarketPerformanceId = new Set<Id>();
         System.runAs([Select Id from User where email =: TEST_USER_EMAIL limit 1][0])
         {
             Test.startTest();
@@ -296,14 +297,14 @@ private with sharing class IPM_PerformanceBreakdownController_Test {
             IPM_MarketPerformaceController marketPerformanceController = new IPM_MarketPerformaceController();
             for(IPM_MarketPerformance__c marketPerformance : marketPerformanceController.lstMarketPerformaceData)
             {
-            	marketPerformance.InnovationVolumeShare__c = 80.63;
-            	marketPerformance.Penetrationcum__c = 84.25;
-            	marketPerformance.RepeatRate__c = 70.26;
-            	marketPerformance.WeightedDistribution__c = 10.26;
+              marketPerformance.InnovationVolumeShare__c = 80.63;
+              marketPerformance.Penetrationcum__c = 84.25;
+              marketPerformance.RepeatRate__c = 70.26;
+              marketPerformance.WeightedDistribution__c = 10.26;
+              setMarketPerformanceId.add(marketPerformance.Id);
             }
             marketPerformanceController.save();
-            
-            for(IPM_MarketPerformance__c marketPerformance : [Select Id, InnovationVolumeShare__c, Penetrationcum__c, RepeatRate__c, WeightedDistribution__c, IPMProjectRollout__r.Regional_Project__c from IPM_MarketPerformance__c limit 1000])
+            for(IPM_MarketPerformance__c marketPerformance : [Select Id, InnovationVolumeShare__c, Penetrationcum__c, RepeatRate__c, WeightedDistribution__c, IPMProjectRollout__r.Regional_Project__c from IPM_MarketPerformance__c where Id IN :setMarketPerformanceId limit 1000])
             {
             	System.assertEquals(80.63 , marketPerformance.InnovationVolumeShare__c, 'Innovation volume share is not updated successfully.');
             	System.assertEquals(84.25 , marketPerformance.Penetrationcum__c, 'Penetration Cum is not updated successfully.');

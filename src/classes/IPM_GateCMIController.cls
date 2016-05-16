@@ -14,8 +14,9 @@ public with sharing class IPM_GateCMIController{
     public String[] cmiNameList; //Contains List of Selected CMI Names
     public SObject ipmCMIGate; //Contains Gate CMI Object
     public String selectedCountryName; //Contains Country Names of Gate CMI
+    public String openAccordian{get; set;} //to open corresponding accordian after creating test
     public Map<String,IPM_CMI_Color_Mapping__c> colorMapping;//For color coding the results
-    public Map<String,IPM_CMI_Overall_Color_Mapping__c> overallColorMapping;
+    public Map<String,IPM_CMI_Overall_Color_Mapping__c> overallColorMapping; //For Overall Color Code Mapping
     public Id projectId {   //Contains Project Id for Retrieving Countries List
         get{
             return projectId ;

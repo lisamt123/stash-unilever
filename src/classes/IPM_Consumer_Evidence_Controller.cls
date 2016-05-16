@@ -37,7 +37,8 @@ public with sharing class IPM_Consumer_Evidence_Controller{
     public Boolean isEditable{get;set;}//for security
     public string gateType{get; set;} //For cureent project gate
     public Integer priorityNumber{get; set;} //For getting deleted concept priority number
-    public map<String,String> mapCountryNameWithCode {get;set;}
+    public map<String,String> mapCountryNameWithCode {get;set;} //To map country code with name
+    public string urlCountry{get; set;} //For getting country from url
     private static string IPM_CONSUMER_EVIDENCE_CONTROLLER_STR=IPM_Consumer_Evidence_Controller.class.getName();
     /************************************************************************************************************************
     *  Description For showing the countries in picklist
@@ -55,6 +56,7 @@ public with sharing class IPM_Consumer_Evidence_Controller{
             countryList=new List<IPM_Country__c>();
             cList=new List<IPM_Country__c>();
             String selCountryName=IPM_Constantutils.BLANK;
+            urlCountry = apexpages.currentpage().getparameters().get('country');
             if(!String.isBlank(projDocSecId)){
                 projDocSec=[SELECT Id,IPM_Section_Sequence__c,IPM_Project_Document__c,IPM_Project_Document__r.IPM_Project__c,IPM_Project_Document__r.IPM_Project__r.IPM_Parent_Project__c,IPM_Selected_Consumer_Evidence_Countries__c 
                             FROM IPM_Project_Document_Section__c 

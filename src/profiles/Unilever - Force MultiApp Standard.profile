@@ -20619,6 +20619,9 @@
     <layoutAssignments>
         <layout>IdeaTheme-Idea Theme Layout</layout>
     </layoutAssignments>
+	<layoutAssignments>
+        <layout>IPM_Clusters__c-IPM_Clusters_Layout</layout>
+    </layoutAssignments>
     <layoutAssignments>
         <layout>Lead-Lead Layout</layout>
     </layoutAssignments>

@@ -811,12 +811,14 @@ private class IPM_SyncFinanceTableTLD_Test
     
             IPM_Project_Rollout__c reginolRollout = [SELECT ID, Name,IPM_Project__c FROM IPM_Project_Rollout__c WHERE name=: TESTCOMMENTS1_REG limit 1];
             System.assert(reginolRollout.id!=null,ROLLOUT_MSG);
-            List<IPM_Financial__c> updatedFinancialList = [SELECT ID, Target_Launch_Date__c,Financial_External_ID__c FROM IPM_Financial__c WHERE IPM_Project_Rollout__c=:reginolRollout.id limit 2];
+            List<IPM_Financial__c> updatedFinancialList = [SELECT ID, Target_Launch_Date__c,Financial_External_ID__c,RecordType.Name FROM IPM_Financial__c WHERE IPM_Project_Rollout__c=:reginolRollout.id limit 2];
             List<ID> updatedFinancialIDList = new List<ID>();
             
             for(IPM_Financial__c updatedFinancial: updatedFinancialList) {
                 if(updatedFinancial.Financial_External_ID__c== TESTCOMMENTS1_REG_LOC_K) {
-                    System.assertEquals(targetLanchDate1,updatedFinancial.Target_Launch_Date__c,TLD_MATCH_MSG);
+                    if(String.valueOf(updatedFinancial.RecordType.Name)!=IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT){
+					   System.assertEquals(targetLanchDate1,updatedFinancial.Target_Launch_Date__c,TLD_MATCH_MSG);
+					}
                     updatedFinancialIDList.add(updatedFinancial.id);
                 }
             }

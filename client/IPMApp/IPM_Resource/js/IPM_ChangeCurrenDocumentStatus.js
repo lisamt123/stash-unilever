@@ -310,7 +310,6 @@ jq(function(){
        jq(frame).find('.close').click(function(){
            if(unsaved){
                jq(this).removeAttr( "data-dismiss" );
-               unloadIframe();
            }
            else{
                jq(this).attr("data-dismiss","modal");
@@ -320,11 +319,7 @@ jq(function(){
             oldTextareaval = jq(".txtArea ").val();
         }
    });   
-   
-   function unloadIframe(){
-       window.parent.location.href=IPMApp.GateDocumentPage + '?id=' + IPMApp.projectId + '&printDoc=' + IPMApp.projectDoc;
-   }
-   
+      
    function checktextval(){
    inputTextArea = jq(".txtArea ");
     inputTextArea.bind('input propertychange', function() {

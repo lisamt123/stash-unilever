@@ -557,8 +557,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                                                                 (SELECT Id, IPM_Section_Sequence__c, IPM_Section_Name__c
                                                                     FROM IPM_Project_Sections__r
                                                                     WHERE (NOT IPM_Section_Type__c LIKE: headerString)
-                                                                    AND IPM_FunctionalRole__c =: IPM_ConstantUtils.FUNCTIONAL_ROLE_FINANCE
-                                                                    AND (NOT IPM_Section_Sequence__c LIKE: IPM_ConstantUtils.EIGHT_PERCENTAGE)
+                                                                    AND (IPM_Section_Sequence__c LIKE: '6%')
                                                                     AND IPM_Default_Section__c = true
                                                                     ORDER BY IPM_Section_Sequence__c)
                                                             FROM IPM_Project_Document__c
