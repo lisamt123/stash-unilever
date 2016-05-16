@@ -1,0 +1,807 @@
+<apex:page controller="Amr_CAPJobPortfolioController_CC" title="Jobs Portfolio" sidebar="false" standardStylesheets="true" tabStyle="CAP_Jobs_Portfolio__tab">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <apex:include pageName="Amr_common" />
+    <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/amr_cap_jobportfolio.js')}"/>    
+    <apex:stylesheet value="{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/css/cap-jobportfolio.css')}" />
+    <script type="text/javascript">
+    
+        function setFocusOnLoad() {}
+        $j(function(){ 
+            $j('#datepick').datepicker({ dateFormat: 'dd/mm/yy' });   
+            $j('#datepick1').datepicker({ dateFormat: 'dd/mm/yy' });                     
+        });  
+        
+        function urlSection(name) {
+            var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+            if (results == null) {
+                return null;
+            } else {
+                return results[1] || 0;
+            }
+        }  
+        
+        function callActionFunctionEndDate(endDate) {
+        callContrlEndDate(endDate);
+    }    
+        
+    </script>
+    
+    <style type='text/css'>
+        
+        .scrollbar-table-parent-cap-joblist table.list tbody td, .scrollbar-table-parent-cap-joblist table.list thead th {
+            border:1px solid red !important;
+        }
+        
+        .scrollbar-table-parent table.list thead th:nth-child(4) div, .scrollbar-table-parent table.list thead th:nth-child(8) div, .scrollbar-table-parent table.list thead th:nth-child(9) div {
+            padding-left:8px;
+        }
+        .scrollbar-table-parent table.list thead th:nth-child(5) div {
+            padding-left:30px;
+        }
+        
+        /*
+        .scrollbar-table-parent-cap-joblist table.list tbody {
+            display: -moz-grid;
+            max-height: 300px;
+            overflow-y: auto;
+            width: 100%;
+        }       
+        .scrollbar-table-parent-cap-joblist table.list tbody td, .scrollbar-table-parent-cap-joblist table.list thead th {
+             width: 10em;
+        }
+        
+        .scrollbar-table-parent-cap-joblist tr.dataRow td {
+            padding: 11px 2px 11px 5px !important;
+        }
+        
+        .scrollbar-table-parent-cap-joblist table.list tbody td:nth-child(1), .scrollbar-table-parent-cap-joblist table.list thead th:nth-child(1) {
+             width: 7em;
+        }
+        
+        .scrollbar-table-parent-cap-joblist table.list tbody td:nth-child(3), .scrollbar-table-parent-cap-joblist table.list thead th:nth-child(3) {
+             width: 6em;
+             border:1px solid red !important;
+             
+        }
+        
+        .scrollbar-table-parent-cap-joblist table.list tbody td:nth-child(3) {
+            text-indent: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        
+        .scrollbar-table-parent-cap-joblist table.list tbody td:nth-child(4), .scrollbar-table-parent-cap-joblist table.list thead th:nth-child(4) {
+             width: 6em;
+             border:1px solid red !important;
+             
+        }        
+        
+        .scrollbar-table-parent-cap-joblist table.list tbody {
+            overflow-y: auto;
+            max-height: 300px;
+            display: -moz-grid;
+            display: run-in;
+            display: -webkit-box;
+            width: 100%;
+        }
+        
+        .scrollbar-table-parent-cap-joblist table.list thead {         
+            display: inline-flex;
+            width: 100%;
+            table-layout: fixed !important;
+        }
+        
+        .scrollbar-table-parent-cap-joblist {
+            overflow-x: auto;
+        }
+        */
+        .stage-common-class {
+            background-position: 15px center !important;
+            background-repeat: no-repeat;
+            background-size: 26px 26px !important;
+        }
+        
+        .scrollbar-table-parent table.list tbody td, .scrollbar-table-parent table.list thead th {
+             width: 10em;
+        }
+        @media all and (-ms-high-contrast: none),(-ms-high-contrast: active) {
+            .scrollbar-table-parent table.list {
+                table-layout: fixed !important;
+            }
+        }
+    </style>
+    <!--[if IE]>
+    <style type='text/css'>
+        .scrollbar-table-parent table.list tbody td, .scrollbar-table-parent table.list thead th {
+             width: 6em !important;
+        }
+        .scrollbar-table-parent table.list {                
+                table-layout:fixed !important;              
+            }
+    </style>
+    <![endif]-->
+    <!---Ad Main section---->
+    <apex:include pageName="Amr_common_header" />
+    <apex:pagemessages id="msgs"></apex:pagemessages>
+    <div class="job-portfolio-container padding-top20">
+
+        <apex:form >
+            <apex:actionRegion >
+                <div class="leftbar">
+                    <div class="leftbar-container1 bg-g1 margin-btwn-container">
+                        <div class="leftbar-container-header dark-blue-header">
+                            {!$Label.Amr_Search} &amp; {!$Label.Amr_Filter}
+                        </div>
+                        <div class="leftbar-container-content margin12 padding12 bg-w8">
+                            <div class="right clear-filter">
+                                <apex:commandLink value="Clear Filter" action="{!clearJob}" />
+                            </div>
+                            <div class="clear"></div>
+                            <div class="inputpanel">
+                                <!--
+                            <div class="left inputpanel-first">
+                                AdManager number
+                            </div>  -->
+                                <div class="clear  inputclass">
+                                    <apex:inputField value="{!jobDetails.AdManagerText__c}" html-placeholder="AdManager No." />
+                                </div>
+                                <div class="clear">
+                                </div>
+                            </div>
+                            <div class="inputpanel">
+                                <!--
+                            <div class="left inputpanel-first">
+                                {!$Label.Amr_Category}
+                            </div> -->
+                                <div class="clear  inputclass">
+                                    <!--  
+                                    <apex:selectList value="{!categoryName}" size="1"  multiselect="false" >
+                                        <apex:actionSupport event="onchange" reRender="brandPosPick,brandPick" status="actStatusId"/>
+                                        <apex:selectOptions value="{!CategoryList}" />
+                                    </apex:selectList>
+                                    
+                                <select id="categoryList" size="1" onchange="transferCategoryValue(this.value)" reRender="brandPosPick"  class="categorySelected"></select>-->
+                                    <apex:inputText value="{!categoryName}" html-placeholder="{!$Label.Amr_Category}" />
+                                </div>
+                                <div style="display:none;width:30px;border:none;margin-bottom:5px;" class="loading">
+                                    <img src="/img/loading.gif" alt="loading image" />
+                                </div>
+                                <div class="clear">
+                                </div>
+                            </div>
+                            <div class="inputpanel">
+                                <!--
+                            <div class="left inputpanel-first">
+                                {!$Label.Amr_Brand_Position_Name}
+                            </div>  -->
+                                <div class="clear  inputclass">
+                                    <!--
+                                <apex:selectList id="brandPosPick" value="{!brandPos}" size="1" multiselect="false" >
+                                    <apex:actionSupport event="onchange" reRender="brandPick" status="actStatusId1" />
+                                    <apex:selectOptions value="{!listOfBrandPosition}" />
+                                </apex:selectList>
+                                <apex:actionstatus id="actStatusId1">
+                            <apex:facet name="start" >
+                                <img src="/img/loading.gif"  alt = "loading image"/>                    
+                            </apex:facet>
+                        </apex:actionstatus>  -->
+                                    <apex:inputText value="{!brandPos}" html-placeholder="{!$Label.Amr_Brand_Position_Name}" />
+                                </div>
+                                <div class="clear">
+                                </div>
+                            </div>
+                            <div class="inputpanel">
+                                <!--
+                            <div class="left inputpanel-first">
+                               {!$Label.Amr_Brand_Name}
+                            </div>    -->
+                                <div class="clear  inputclass">
+                                    <!--
+                                <apex:selectList id="brandPick" value="{!brandName}" size="1" multiselect="false" >
+                                
+                                    <apex:selectOptions value="{!BrandList}" />
+                                </apex:selectList>    -->
+                                    <apex:inputText value="{!brandName}" html-placeholder="{!$Label.Amr_Brand_Name}" />
+                                </div>
+                                <div class="clear">
+                                </div>
+                            </div>
+
+                            <div class="inputpanel">
+                                <!--
+                            <div class="clear inputclass">
+                                Project name
+                            </div> -->
+                                <div class="clear  inputclass">
+                                    <!--
+                                <div class="hide">
+                                    <apex:inputField value="{!jobDetails.Project_Details__c}" styleclass="hidden-project-detail"  />
+                                    
+                                </div>
+                                
+                                <select id="projectList" size="1" onchange="transferValue(this.value, '{!jobDetails.Project_Details__c}'); "></select>    -->
+                                    <apex:inputText value="{!projectNameText}" html-placeholder="Project Name" />
+                                </div>
+                                <div class="clear">
+                                </div>
+                            </div>
+                            <!--
+                        <div class="inputpanel" id="projectNameOther">
+                            <div class="clear inputclass">
+                                 {!$Label.Amr_Other}
+                            </div>
+                            <div class="clear  inputclass">
+                                <apex:inputField value="{!jobDetails.Project_Name_Other__c}"   />
+                            </div>
+                            <div class="clear">
+                            </div>
+                        </div>  -->
+                            <div class="inputpanel">
+                                <!-- 
+                            <div class="left inputpanel-first">
+                                Campaign name
+                            </div>   -->
+                                <div class="clear  inputclass">
+                                    <apex:inputField value="{!jobDetails.Campaign_Name__c}" html-placeholder="Campaign Name" />
+                                </div>
+                                <div class="clear">
+                                </div>
+                            </div>
+
+                            <div class="inputpanel">
+                                <!--
+                            <div class="left inputclass bold padding-top10">
+                                <a class = "advance-popup" href="#">Advanced Search</a>
+                            </div> -->
+                                <div class="right">
+                                    <apex:commandButton styleClass="commonbtn-blue" value="Apply" action="{!getJobSearchDetails}" reRender="listRefresh,lstcancelid" status="actionStatusSearchFilter"></apex:commandButton>
+                                    <apex:actionStatus id="actionStatusSearchFilter">
+                                        <apex:facet name="start">
+                                            <img src="/img/loading.gif" alt="loading image" />
+                                        </apex:facet>
+                                    </apex:actionStatus>
+
+                                </div>
+                                <div class="right inputclass bold padding-top10 margin-right20 clear-filter">
+                                    <a class="advance-popup" href="#">{!$Label.Amr_Advanced_Search}</a>
+                                </div>
+                                <div class="clear">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </apex:actionRegion>
+            <!-- Advance Search Popup Start -->
+            <apex:actionRegion >
+
+                <div class="advance-search-popup popup-window hide" style="height:280px;">
+                    <div class="margin-btwn-container12">
+                        <div class="left popup-header">
+                            {!$Label.Amr_Advanced_Search}
+                        </div>
+                        <div class="right popup-close cancel-advance-popup pointer">
+                            <img src="{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/Ico_ClosePopup.png')}" alt="close" />
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="margin-btwn-inner-container" style="height:180px;">    <!--
+
+                        <div class="job-field-parent displayinlineblock margin-top0imp">
+                            <div class="job-field-input">
+                                <apex:inputField value="{!jobDetails.AdManagerText__c}" html-placeholder="{!$Label.Amr_AdManager_Number}" />
+                            </div>
+                        </div>    -->     
+                        <div class="job-field-parent displayinlineblock margin-top0imp">
+                            <div class="job-field-input">
+                                <input type="text" id="datepick" onchange="callActionFunctionStartDate(this.value);" placeholder="{!$Label.Amr_Start_Date}" />
+                            </div>
+                        </div>
+                        <div class="displayinlineblock" style="margin-top:15px;">
+                            <apex:actionStatus id="startdateloading">
+                                <apex:facet name="start">
+                                    <img src="/img/loading.gif" alt="loading image" />
+                                </apex:facet>
+                            </apex:actionStatus>
+                       </div>
+                        
+                         <div class="job-field-parent displayinlineblock margin-top0imp">
+                            <div class="job-field-input">
+                                <input type="text" placeholder="{!$Label.Amr_End_Date}" class="inputTextCommon" id="datepick1" onchange="callActionFunctionEndDate(this.value);" />
+                            </div>
+                        </div>
+                        <div class="displayinlineblock" style="margin-top:15px;">
+                            <apex:actionStatus id="enddateloading">
+                                <apex:facet name="start">
+                                    <img src="/img/loading.gif" alt="loading image" />
+                                </apex:facet>
+                            </apex:actionStatus>
+                        </div>
+                        
+                        <div class="job-field-parent displayinlineblock margin-top0imp">
+                            <div class="job-field-input">
+                                <!--  <apex:inputField value="{!jobDetails.Unilever_Project_Leader_Email__c}"  html-placeholder="{!$Label.Amr_Project_leader_email}" />-->
+                                <apex:inputText value="{!projectLeaderEmail}" html-placeholder="{!$Label.Amr_Project_leader_email}" />
+                            </div>
+                        </div>
+                        <div class="job-field-parent displayinlineblock">
+                            <!--  <div class="job-field-label">{!$Label.Amr_Broadcast_market}</div> -->
+                            <div class="job-field-input-multiselect">
+                                <apex:inputText value="{!broadcastMarket}" html-placeholder="{!$Label.Amr_Broadcast_market}" />
+                            </div>
+                        </div>
+
+                        <div class="job-field-parent displayinlineblock">
+                            <div class="job-field-input">
+                                <apex:inputText value="{!allocatedBudget}" html-placeholder="{!$Label.Amr_Allocated_budget_euro}" />
+                            </div>
+                        </div>
+                        <div class="job-field-parent displayinlineblock">
+                            <div class="job-field-input">
+                                <apex:inputText value="{!location}" html-placeholder="{!$Label.Amr_Location}" />
+                            </div>
+                        </div>
+                        <div class="job-field-parent displayinlineblock">
+                            <!--  <div class="job-field-label">{!$Label.Amr_RAP_Name}</div> -->
+                            <div class="job-field-input">
+                                <!--
+                                <apex:selectList label="Select the user Name"  size="1" value="{!selectedRapName}" >
+                                    <apex:selectOptions value="{!rapNameList}" />
+                                </apex:selectList>    -->
+                                <apex:inputText value="{!selectedRapName}" html-placeholder="{!$Label.Amr_RAP_Allocated}" />
+                            </div>
+                        </div>
+
+                        <div class="job-field-parent displayinlineblock">
+                            <div class="job-field-label">{!$Label.Amr_Stage_of_production_activity}</div>
+                            <div class="job-field-input">
+                                <apex:inputField value="{!jobDetails.Stage_of_Production_Activity__c}" />
+                            </div>
+                        </div>
+                        <div class="job-field-parent displayinlineblock">
+                            <div class="job-field-label">{!$Label.Amr_Job_Allocated}</div>
+                            <div class="job-field-input">
+                                <apex:inputField value="{!jobAllocation.Job_Allocated__c}" />
+                            </div>
+                        </div>    <!--
+                        <div class="job-field-parent displayinlineblock">
+                            <div class="job-field-label">{!$Label.Amr_Job_Status}</div>
+                            <div class="job-field-input">
+                                <apex:inputField value="{!jobAllocation.Job_Status__c}" />
+                            </div>
+                        </div>    -->
+                        <div class="job-field-parent displayinlineblock">
+                                <div class="job-field-label">{!$Label.Amr_Accepted_And_Email_Sent}</div>
+                                <div class="job-field-input">
+                                  <!--  <apex:inputField value="{!jobAlloc.Job_Status__c}" /> -->
+                                    <apex:selectList value="{!acceptedAndEmailSend}" size="1">
+                                        <apex:selectOption itemValue="--None--" />
+                                        <apex:selectOption itemValue="Yes" />
+                                        <apex:selectOption itemValue="No" />
+                                    </apex:selectList>
+                                </div>
+                            </div>
+
+                    </div>
+
+                    <div>
+                        <div class="right">
+                            <apex:commandButton value="Apply" action="{!getJobSearchDetails}" styleClass="apply-advance-popup commonbtn-blue" reRender="listRefresh,lstcancelid" />
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </div>
+
+                </div>
+            </apex:actionRegion>
+            <!-- Advance search popup End  -->
+            <div class="rightbar">
+                <apex:actionFunction action="{!getJobSearchDetails}" name="callContrlStartDate" reRender="listRefresh1" status="startdateloading">
+                    <apex:param name="param" value="" id="y" assignTo="{!startDate}" />
+                </apex:actionFunction>
+                <apex:actionFunction action="{!getJobSearchDetails}" name="callContrlEndDate" reRender="listRefresh1" status="enddateloading">
+                    <apex:param name="param16" value="" id="y16" assignTo="{!endDate}" />
+                </apex:actionFunction>
+                <apex:actionFunction action="{!getJobSearchDetails}" name="callContrlJobsSort" reRender="joblist_pageblock" status="actionStatusJobsSorting">
+                    <apex:param name="param18" value="" id="y18" assignTo="{!selectedSortJobsOption}" />
+                </apex:actionFunction>
+                <apex:actionFunction action="{!getJobSearchDetails}" name="callContrlCancelSort" reRender="cancelled_joblist_pageblock" status="actionStatusCancelSorting">
+                    <apex:param name="param19" value="" id="y19" assignTo="{!selectedSortCancelOption}" />
+                </apex:actionFunction>
+                <!--
+                 <apex:actionFunction name="sendCategory" action="{!brandPositionListData}" reRender="brandPosPick" oncomplete="closeloading()">
+                <apex:param id="catname" name="categoryName" value="" assignTo="{!categoryName}"/>
+                </apex:actionFunction>  -->
+                <div class="joblist-main-section bg-g1">
+                    <h4 class="main_inner_sectionh4">
+                    {!$Label.Amr_Job_List}
+                    <div data-id="joblist-section" class="commonall foldclass">                                     
+                    </div>
+                </h4>
+                    <div class="margin12 bg-w8 joblist-section">
+                        <div class="tabsection">
+                            <apex:outputPanel id="scriptRefresh">
+                                <script type="text/javascript">
+                                    addHeaderTitle();
+                                </script>
+                            </apex:outputPanel>
+                            <apex:outputPanel id="listRefresh">
+                                <div class="capjobportfolio-joblist-id bg-g1">
+                                    <div style="padding:10px;background:#FFFFFF;">
+                                        <apex:outputPanel rendered="{!If(AND(NOT(ISBLANK(activeJobsToShow)),activeJobsToShow.size>0),true,false)}">
+                                            <apex:outputLabel value="Sort By"></apex:outputLabel>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <apex:selectList value="{!selectedSortJobsOption}" size="1" multiselect="false" onchange="callFuctionForJobsSort(this.value);">
+                                                <apex:selectOptions value="{!SortOptions}" />
+                                            </apex:selectList>
+                                            <apex:actionStatus id="actionStatusJobsSorting">
+                                                <apex:facet name="start">
+                                                    <img src="/img/loading.gif" alt="loading image" />
+                                                </apex:facet>
+                                            </apex:actionStatus>
+                                        </apex:outputPanel>
+                                    </div>
+                                    <div class="scrollbar-table-parent">
+                                        <!-- style="max-height: 360px;overflow-y: auto;" -->
+                                        <apex:pageBlock id="joblist_pageblock">
+                                            <apex:pageBlockSection columns="1" collapsible="true">
+                                                <apex:pageBlockTable value="{!activeJobsToShow}" var="job" id="activeJobId">
+                                                    <apex:column headerValue="AdManager Number">
+
+                                                        <apex:commandLink value="{!job.AM_Job_Detail__r.AdManagerText__c}" action="{!jobSheetPageTransfer}">
+                                                            <apex:param name="chosenId" value="{!job.AM_Job_Detail__r.id}" assignTo="{!chosenId}" />
+                                                        </apex:commandLink>
+                                                    </apex:column>
+                                                    <apex:column headerValue="Date Logged">
+                                                        <apex:outputText value="{0,date,dd/MM/yy}">
+                                                            <apex:param value="{!job.AM_Job_Detail__r.CreatedDate}" />
+                                                        </apex:outputText>
+                                                    </apex:column>
+                                                    <apex:column styleclass="stage-common-class {!SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(job.AM_Job_Detail__r.Stage_of_Production_Activity__c, ' ', '_'),'(',''),')',''),',',''),'/','')}" headerValue="Stage Of Production Activity" >
+                                                        <div class="td-overflow width60">
+                                                            
+                                                        </div>
+                                                    </apex:column>
+                                                    <apex:column headerValue="Project Leader Email" title="{!job.AM_Job_Detail__r.Unilever_Project_Leader_Email__c}">
+                                                        <apex:outputText >
+                                                            <div class="td-overflow width60">
+                                                                <apex:outputLink value="mailto:{!job.AM_Job_Detail__r.Unilever_Project_Leader_Email__c}">{!job.AM_Job_Detail__r.Unilever_Project_Leader_Email__c}</apex:outputLink>
+                                                            </div>
+                                                        </apex:outputText>
+                                                    </apex:column>
+                                                    <apex:column headerValue="Location Of Project Leader(country)" title="{!job.AM_Job_Detail__r.Project_Leader_Country__c}">
+                                                        <apex:outputText >
+                                                            <div class="td-overflow width80">
+                                                                {!job.AM_Job_Detail__r.Project_Leader_Country__c}
+                                                            </div>
+                                                        </apex:outputText>
+
+                                                    </apex:column>
+                                                    <apex:column headerValue="Category" title="{!job.AM_Job_Detail__r.ProductCategory__r.name}">
+                                                        <apex:outputText >
+                                                            <div class="td-overflow width40">
+                                                                {!job.AM_Job_Detail__r.ProductCategory__r.name}
+                                                            </div>
+                                                        </apex:outputText>
+                                                    </apex:column>
+                                                    <apex:column headerValue="Brand Positioning" title="{!job.AM_Job_Detail__r.Brand_Position__r.name}">
+                                                        <apex:outputText >
+                                                            <div class="td-overflow width40">
+                                                                {!job.AM_Job_Detail__r.Brand_Position__r.name}
+                                                            </div>
+                                                        </apex:outputText>
+                                                    </apex:column>
+                                                    <apex:column headerValue="Brand Name" title="{!job.AM_Job_Detail__r.Brand_Final__r.name}">
+                                                        <apex:outputText >
+                                                            <div class="td-overflow width40">
+                                                                {!job.AM_Job_Detail__r.Brand_Final__r.name}
+                                                            </div>
+                                                        </apex:outputText>
+                                                    </apex:column>
+                                                    <apex:column headerValue="Project Name" title="{!if(job.AM_Job_Detail__r.Project_Details__r.Name !=null,job.AM_Job_Detail__r.Project_Details__r.Name,job.AM_Job_Detail__r.Project_Name_Other__c)}">
+                                                        <!--{!job.AM_Job_Detail__r.Project_Details__r.Name}
+                                                   {!job.AM_Job_Detail__r.Project_Name_Other__c }-->
+                                                        <apex:outputText >
+                                                            <div class="td-overflow width40">
+                                                                {!job.AM_Job_Detail__r.Project_Details__r.Name}
+                                                            </div>
+                                                        </apex:outputText>
+
+                                                        <apex:outputText >
+                                                            <div class="td-overflow width40">
+                                                                {!job.AM_Job_Detail__r.Project_Name_Other__c }
+                                                            </div>
+                                                        </apex:outputText>
+                                                    </apex:column>
+                                                    <!-- No need to show this field for CAP <apex:column title="{!if(job.AM_Job_Detail__r.Lead_Creative_Agency_name__c !=null,job.AM_Job_Detail__r.Lead_Creative_Agency_name__c,job.AM_Job_Detail__r.Lead_Agency_Name_Other__c)}" headerValue="Lead Agency Name"> 
+                                           <apex:outputText >
+                                                    <div class="td-overflow width40">                                                                                                                                                                                                                                                          
+                                                        {!job.AM_Job_Detail__r.Lead_Creative_Agency_name__c}
+                                                    </div>
+                                                </apex:outputText> 
+                                                <apex:outputText >
+                                                    <div class="td-overflow width40">                                                                                                                                                                                                                                                          
+                                                        {!job.AM_Job_Detail__r.Lead_Agency_Name_Other__c}
+                                                    </div>
+                                                </apex:outputText>                                          
+                                            </apex:column>-->
+                                                    <apex:column headerValue="Allocated Budget(euro)" title="{!job.AM_Job_Detail__r.Allocated_Budget_euro__c}" >
+                                                        <apex:outputText >
+                                                            <div class="td-overflow width60">
+                                                                &euro;{!job.AM_Job_Detail__r.Allocated_Budget_euro__c}
+                                                            </div>
+                                                        </apex:outputText>
+                                                    </apex:column>
+                                                    <apex:column headerValue="RAP Allocated" title="{!job.User__r.name}">
+                                                        <apex:outputText >
+                                                            <div class="td-overflow width40">
+                                                                <!-- {!job.User__c} -->
+                                                                <apex:outputLink value="mailto:{!job.User__r.Email}">{!job.User__r.name}</apex:outputLink>
+                                                            </div>
+                                                        </apex:outputText>
+                                                    </apex:column>
+                                                    <apex:column headerValue="Broadcast Market" title="{!job.AM_Job_Detail__r.Brodcast_Market__c}">
+                                                        <apex:outputText >
+                                                            <div class="td-overflow width40">
+                                                                {!job.AM_Job_Detail__r.Brodcast_Market__c}
+                                                            </div>
+                                                        </apex:outputText>
+                                                    </apex:column>
+                                                    <apex:column headerValue="Production Activity Type" title="{!job.AM_Job_Detail__r.ProductionActivityTextArea__c}">
+                                                        <apex:outputText >
+                                                            <div class="td-overflow width40">
+                                                                {!job.AM_Job_Detail__r.ProductionActivityTextArea__c}
+                                                            </div>
+                                                        </apex:outputText>
+                                                    </apex:column>
+                                                    <apex:column title="{!job.AM_Job_Detail__r.Campaign_Name__c}" headerValue="Campaign Name">
+                                                        <apex:outputText >
+                                                            <div class="td-overflow width40">
+                                                                {!job.AM_Job_Detail__r.Campaign_Name__c}
+                                                            </div>
+                                                        </apex:outputText>
+                                                    </apex:column>
+                                                    <apex:column value="{!job.Job_Allocated_Image__c}" headerValue="Allocated" />
+                                                    <apex:column value="{!job.Job_Status_Image__c}" headerValue="Accepted and Email Sent" />
+                                                    <!--<apex:column value="{!job.Reported_Image__c}" headerValue="Reported"/>
+                                                <apex:column value="{!job.Started_Image__c}" headerValue="Started"/>
+                                                <apex:column value="{!job.Job_Shared__c}" headerValue="Shared"/>-->
+                                                </apex:pageBlockTable>
+                                                <div class="no-data" style="display:{!if(activeJobsToShow.size=0 , '', 'none')}">
+                                                    {!$Label.Amr_There_is_no_data_to_display}
+                                                </div>
+                                                <!-- <apex:actionStatus id="actStatusId3" >
+                                            <apex:facet name="start" >
+                                              <img src="/img/loading.gif" alt = "loading image"/>                    
+                                            </apex:facet>
+                                            </apex:actionStatus>  -->
+                                            </apex:pageBlockSection>
+                                        </apex:pageBlock>
+                                    </div>
+                                    <div style="display:{!if(WrapperList.size=0 , '', '')}">
+                                        &nbsp;
+                                    </div>
+                                    <apex:outputPanel styleClass="pagination" id="joblistpagination">
+                                        <!--  <apex:outputPanel styleClass="pagination"> -->
+                                        <apex:actionStatus id="actStatusId3">
+                                            <apex:facet name="start">
+                                                <img src="/img/loading.gif" alt="loading image" />
+                                            </apex:facet>
+                                        </apex:actionStatus>
+                                        <apex:commandButton value="<<" action="{!beginningForActiveJobs}" status="actStatusId3" disabled="{!DisablePreviousForActiveJobs}" reRender="joblist_pageblock,joblistpagination,scriptRefresh" />
+                                        <apex:commandButton value="<" action="{!previousForActiveJobs}" status="actStatusId3" disabled="{!DisablePreviousForActiveJobs}" reRender="joblist_pageblock,joblistpagination,scriptRefresh" />
+                                        <apex:commandButton value=">" action="{!nextForActiveJobs}" status="actStatusId3" disabled="{!DisableNextForActiveJobs}" reRender="joblist_pageblock,joblistpagination,scriptRefresh" />
+                                        <apex:commandButton value=">>" action="{!lastForActiveJobs}" status="actStatusId3" disabled="{!DisableNextForActiveJobs}" reRender="joblist_pageblock,joblistpagination,scriptRefresh" /> &nbsp;{!CurrentActivePageNumber}&nbsp;out of&nbsp;{!TotalActiveJobPages}
+                                    </apex:outputPanel>
+                                    <div>
+                                        &nbsp;
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+
+                <div class="clear">
+                </div>
+
+                <div class="cancelled-joblist-main-section bg-g1 margin-top30">
+
+                    <h4 class="main_inner_sectionh4">
+                   {!$Label.Amr_Cancelled_Jobs_List}
+                    <div data-id="joblist-cancelled-section" class="commonall openclass">                                     
+                    </div>
+                </h4>
+
+                    <div class="margin12 bg-w8 joblist-cancelled-section hide">
+                        <apex:outputpanel id="lstcancelid">
+                            <script type="text/javascript">
+                                addHeaderTitle();
+                            </script>
+                            <div class="capjobportfolio-jobcancelledlist-id tabsectionModified">
+                                <div style="background:#FFFFFF;display:{!if(WrapperList.size=0 , 'none', '')}">
+                                    <div class="left" style="padding:10px;">
+                                        <apex:outputPanel rendered="{!if(cancelJobsToShow.size>0,true,false)}">
+                                            <apex:outputLabel value="Sort By"></apex:outputLabel>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <apex:selectList value="{!selectedSortCancelOption}" size="1" multiselect="false" onchange="callFuctionForCancelSort(this.value);">
+                                                <apex:selectOptions value="{!SortOptions}" />
+                                            </apex:selectList>
+                                            <apex:actionStatus id="actionStatusCancelSorting">
+                                                <apex:facet name="start">
+                                                    <img src="/img/loading.gif" alt="loading image" />
+                                                </apex:facet>
+                                            </apex:actionStatus>
+                                        </apex:outputPanel>
+                                    </div>
+                                    <div class="right" style="padding: 8px 8px 0px 0px;">
+                                        <apex:commandButton value="Uncancel" action="{!changwrapperClasseStatus}" styleClass="commonbtn pagination" rendered="{!IF(WrapperList.size>0,true,false)}" />
+                                    </div>
+                                </div>
+                                <div class="scrollbar-table-parent2">
+                                    <apex:pageBlock id="cancelled_joblist_pageblock">
+                                        <apex:pageBlockSection columns="1" collapsible="true">
+                                            <apex:pageBlock >
+                                                <apex:pageBlockTable value="{!cancelJobsToShow}" var="job" Id="TheTable1123">
+                                                    <apex:column width="10">
+                                                        <apex:facet name="header">
+                                                            <apex:inputCheckbox id="selectAllChecks" value="{!job.SelectBox}" onclick="checkAll(this,'eachrow')" />
+                                                        </apex:facet>
+                                                        <apex:inputcheckbox value="{!job.SelectBox}" id="eachrow" />
+                                                    </apex:column>
+                                                    <apex:column headerValue="AdManager Number">
+                                                        <apex:commandLink value="{!job.sObjRec.AM_Job_Detail__r.AdManagerText__c}" action="{!jobSheetPageTransfer}">
+                                                            <apex:param name="chosenId" value="{!job.sObjRec.AM_Job_Detail__r.id}" assignTo="{!chosenId}" />
+                                                        </apex:commandLink>
+                                                    </apex:column>
+                                                    <apex:column headerValue="Date Logged">
+                                                        <apex:outputText value="{0,date,dd/MM/yy}">
+                                                            <apex:param value="{!job.sObjRec.AM_Job_Detail__r.CreatedDate}" />
+                                                        </apex:outputText>
+                                                    </apex:column>
+                                                    <apex:column styleclass="stage-common-class {!SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(job.sObjRec.AM_Job_Detail__r.Stage_of_Production_Activity__c, ' ', '_'),'(',''),')',''),',',''),'/','')}" headerValue="Stage Of Production Activity" title="{!job.sObjRec.AM_Job_Detail__r.Stage_of_Production_Activity__c}" />
+                                                    <apex:column headerValue="Project Leader Email" title="{!job.sObjRec.AM_Job_Detail__r.Unilever_Project_Leader_Email__c}">
+                                                        <apex:outputText >
+                                                            <div class="td-overflow width80">
+                                                                <apex:outputLink value="mailto:{!job.sObjRec.AM_Job_Detail__r.Unilever_Project_Leader_Email__c}">{!job.sObjRec.AM_Job_Detail__r.Unilever_Project_Leader_Email__c}</apex:outputLink>
+                                                            </div>
+                                                        </apex:outputText>
+                                                    </apex:column>
+                                                    <apex:column headerValue="Location Of Project Leader(country)" title="{!job.sObjRec.AM_Job_Detail__r.Project_Leader_Country__c}">
+                                                        <apex:outputText >
+                                                            <div class="td-overflow width80">
+                                                                {!job.sObjRec.AM_Job_Detail__r.Project_Leader_Country__c}
+                                                            </div>
+                                                        </apex:outputText>
+                                                    </apex:column>
+                                                    <apex:column headerValue="Category" title="{!job.sObjRec.AM_Job_Detail__r.ProductCategory__r.name}">
+                                                        <apex:outputText >
+                                                            <div class="td-overflow width40">
+                                                                {!job.sObjRec.AM_Job_Detail__r.ProductCategory__r.name}
+                                                            </div>
+                                                        </apex:outputText>
+                                                    </apex:column>
+                                                    <apex:column headerValue="Brand Positioning" title="{!job.sObjRec.AM_Job_Detail__r.Brand_Position__r.name}">
+
+                                                        <apex:outputText >
+                                                            <div class="td-overflow width40">
+                                                                {!job.sObjRec.AM_Job_Detail__r.Brand_Position__r.name}
+                                                            </div>
+                                                        </apex:outputText>
+
+                                                    </apex:column>
+                                                    <apex:column headerValue="Brand Name" title="{!job.sObjRec.AM_Job_Detail__r.Brand_Final__r.name}">
+
+                                                        <apex:outputText >
+                                                            <div class="td-overflow width40">
+                                                                {!job.sObjRec.AM_Job_Detail__r.Brand_Final__r.name}
+                                                            </div>
+                                                        </apex:outputText>
+
+                                                    </apex:column>
+                                                    <apex:column headerValue="Project Name" title="{!if(job.sObjRec.AM_Job_Detail__r.Project_Details__r.Name != null,job.sObjRec.AM_Job_Detail__r.Project_Details__r.Name,job.sObjRec.AM_Job_Detail__r.Project_Name_Other__c)}">
+
+                                                        <apex:outputText >
+                                                            <div class="td-overflow width40">
+                                                                {!job.sObjRec.AM_Job_Detail__r.Project_Details__r.Name}
+                                                            </div>
+                                                        </apex:outputText>
+
+                                                        <apex:outputText >
+                                                            <div class="td-overflow width40">
+                                                                {!job.sObjRec.AM_Job_Detail__r.Project_Name_Other__c }
+                                                            </div>
+                                                        </apex:outputText>
+
+                                                    </apex:column>
+
+                                                    <!-- No need to show this field for CAP  <apex:column title="{!if(job.sObjRec.AM_Job_Detail__r.Lead_Creative_Agency_name__c !=null,job.sObjRec.AM_Job_Detail__r.Lead_Creative_Agency_name__c,job.sObjRec.AM_Job_Detail__r.Lead_Agency_Name_Other__c)}" headerValue="Lead Agency Name"> 
+                                           <apex:outputText >
+                                                    <div class="td-overflow width40">                                                                                                                                                                                                                                                          
+                                                        {!job.sObjRec.AM_Job_Detail__r.Lead_Creative_Agency_name__c}
+                                                    </div>
+                                                </apex:outputText> 
+                                                <apex:outputText >
+                                                    <div class="td-overflow width40">                                                                                                                                                                                                                                                          
+                                                        {!job.sObjRec.AM_Job_Detail__r.Lead_Agency_Name_Other__c}
+                                                    </div>
+                                                </apex:outputText>                                          
+                                            </apex:column>-->
+                                                    <apex:column value="{!job.sObjRec.AM_Job_Detail__r.Allocated_Budget_euro__c}" headerValue="Allocated Budget(euro)" title="{!job.sObjRec.AM_Job_Detail__r.Allocated_Budget_euro__c}" />
+                                                    <apex:column headerValue="RAP Allocated" title="{!job.sObjRec.user__r.name}">
+
+                                                        <apex:outputText >
+                                                            <div class="td-overflow width40">
+                                                                <!-- {!job.User__c} -->
+                                                                <apex:outputLink value="mailto:{!job.sObjRec.user__r.email}">{!job.sObjRec.user__r.name}</apex:outputLink>
+                                                            </div>
+                                                        </apex:outputText>
+
+                                                    </apex:column>
+                                                    <apex:column headerValue="Broadcast Market" title="{!job.sObjRec.AM_Job_Detail__r.Brodcast_Market__c}">
+
+                                                        <apex:outputText >
+                                                            <div class="td-overflow width40">
+                                                                {!job.sObjRec.AM_Job_Detail__r.Brodcast_Market__c}
+                                                            </div>
+                                                        </apex:outputText>
+
+                                                    </apex:column>
+                                                    <apex:column headerValue="Production Activity Type" title="{!job.sObjRec.AM_Job_Detail__r.ProductionActivityTextArea__c}">
+                                                        <apex:outputText >
+                                                            <div class="td-overflow width40">
+                                                                {!job.sObjRec.AM_Job_Detail__r.ProductionActivityTextArea__c}
+                                                            </div>
+                                                        </apex:outputText>
+                                                    </apex:column>
+                                                    <apex:column title="{!job.sObjRec.AM_Job_Detail__r.Campaign_Name__c}" headerValue="Campaign Name">
+                                                        <apex:outputText >
+                                                            <div class="td-overflow width40">
+                                                                {!job.sObjRec.AM_Job_Detail__r.Campaign_Name__c}
+                                                            </div>
+                                                        </apex:outputText>
+                                                    </apex:column>
+                                                    <apex:column value="{!job.sObjRec.Job_Allocated_Image__c}" headerValue="Allocated" />
+                                                    <apex:column value="{!job.sObjRec.Job_Status_Image__c}" headerValue="Accepted and Email Sent" />
+                                                    <!--  <apex:column value="{!job.sObjRec.Reported_Image__c}" headerValue="Reported"/>
+                                                    <apex:column value="{!job.sObjRec.Started_Image__c}" headerValue="Started"/>
+                                                    <apex:column value="{!job.sObjRec.Job_Shared__c}" headerValue="Shared"/>-->
+                                                </apex:pageBlockTable>
+                                                <div class="no-data" style="display:{!if(WrapperList.size=0 , '', 'none')}">
+                                                    {!$Label.Amr_There_is_no_data_to_display}
+                                                </div>
+                                            </apex:pageBlock>
+                                            <!--   <apex:outputPanel rendered="{!showPageButtonForCancel}" styleClass="pagination">-->
+                                            <apex:outputPanel styleClass="pagination">
+                                                <apex:actionStatus id="actStatusId4">
+                                                    <apex:facet name="start">
+                                                        <img src="/img/loading.gif" alt="loading image" />
+                                                    </apex:facet>
+                                                </apex:actionStatus>
+                                                <apex:commandButton value="<<" action="{!beginningForCancelJobs}" disabled="{!DisablePreviousForCancelJobs}" reRender="cancelled_joblist_pageblock,scriptRefresh" status="actStatusId4" />
+                                                <apex:commandButton value="<" action="{!previousForCancelJobs}" disabled="{!DisablePreviousForCancelJobs}" reRender="cancelled_joblist_pageblock,scriptRefresh" status="actStatusId4" />
+                                                <apex:commandButton value=">" action="{!nextForCancelJobs}" disabled="{!DisableNextForCancelJobs}" reRender="cancelled_joblist_pageblock,scriptRefresh" status="actStatusId4" />
+                                                <apex:commandButton value=">>" action="{!lastForCancelJobs}" disabled="{!DisableNextForCancelJobs}" reRender="cancelled_joblist_pageblock,scriptRefresh" status="actStatusId4" /> &nbsp;{!currentCancelPageNumber}&nbsp;out of&nbsp;{!totalCancelJobPages}
+                                            </apex:outputPanel>
+
+                                            <div style="display:{!if(WrapperList.size=0 , 'none', '')}">
+                                                &nbsp;
+                                            </div>
+                                        </apex:pageBlockSection>
+                                    </apex:pageBlock>
+                                </div>
+                            </div>
+                        </apex:outputpanel>
+                    </div>
+                </div>
+            </div>
+            <div class="clear">
+            </div>
+
+        </apex:form>
+    </div>
+</apex:page>

@@ -1,0 +1,711 @@
+body {
+    background: #fff;
+    margin: 0 auto;
+    font-family: "dinOffPro", Verdana, "Open Sans", sans-serif !important;
+}
+body {
+    background: #fff;
+    margin: 0 auto;
+    font-size: 12px;
+}
+/* Ad Main section CSS */
+
+.container {
+    margin: 0 auto;
+}
+.bold {
+    font-weight: bold;
+    font-family: "dinOffProBold", Verdana, "Open Sans", sans-serif !important;
+}
+.navbar-header {
+    background: #F6F6F6;
+}
+.navbar-header img {
+    float: left;
+}
+.clear {
+    clear: both;
+}
+.form-control {
+    border-radius: 30px 0 0 30px;
+    padding: 0 100px 0 8px;
+    height: 25px;
+    border: 2px solid #dcdcdc;
+}
+.form-groupright {
+    padding: 20px;
+    float: left;
+    padding: 20px 0 20px 150px;
+}
+.btn {
+    border-radius: 30px;
+}
+.btn-default {
+    background-color: #fbf9fc;
+    border: medium none;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    color: #1796BF;
+    padding: 5px 10px 5px 0;
+    font-weight: bold;
+    font-size: 12px;
+}
+#myNavbar {
+    float: right;
+    display: inline;
+}
+#myNavbar a {
+    text-decoration: none;
+    padding: 20px 15px 0px 20px;
+    display: block;
+    color: #1796bf;
+}
+#myNavbar ul li {
+    display: inline-block;
+    list-style-type: none;
+    color: #1796BF;
+    font-size: 12px;
+    font-weight: bold;
+}
+.caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    vertical-align: middle;
+    border-top: 4px dashed;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+    margin-left: 5px;
+}
+.admanager_text a {
+    color: #fff !important;
+    background: #1796bf none repeat scroll 0 0;
+    border-radius: 30px;
+    padding: 5px 30px 5px 5px !important;
+}
+.caret1 {
+    color: #fff;
+    margin: 0 -21px 0 20px;
+}
+.subsection {
+    background: #e1f0f5;
+    border-bottom: solid #20b0b9 2px;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+.subsection > ul {
+    margin: 0;
+    padding: 0px
+}
+.subsection ul li {
+    display: inline-block;
+    list-style-type: none;
+}
+.subsection a {
+    text-decoration: none;
+    display: block;
+    color: #1796BF;
+    padding: 4px 35px;
+    font-size: 12px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.subsection .active a {
+    color: #fff;
+    background: none repeat scroll 0 0 #20b0b9;
+}
+#myNavbar > ul {
+    padding: 0 30px 0 0;
+}
+/* Ad sub section CSS */
+
+section.description {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    color: #0b2f4d;
+    line-height: 1.3em;
+    margin-top: 15px;
+}
+section.description h1 {
+    font-size: 0.9em;
+    color: #0B2F4D;
+}
+.description > ul {
+    margin: 0;
+    padding: 0;
+}
+.secondary-heading {
+    margin-bottom: 10px;
+    font-size: 0.9em;
+    color: #0B2F4D;
+}
+section.description ul li {
+    margin: 0 0 0 3em;
+    line-height: 18px;
+    font-size: 0.9em;
+    color: #0B2F4D;
+}
+.Modify_text {
+    font-size: 0.9em;
+    color: #0B2F4D;
+}
+.star {
+    display: block;
+    float: left;
+    padding-left: 15px;
+    font-size: 0.9em;
+    color: #0B2F4D;
+}
+section {
+    overflow: hidden;
+    padding: 0;
+    /*0 0 30px;*/
+    
+    position: relative;
+}
+div.form-field a {
+    font-size: 12px;
+    font-family: "dinOffPro", Verdana, "Open Sans", sans-serif !important;
+}
+div.form-field {
+    padding: 5px 10px;
+    float: left;
+}
+.form-field label {
+    clear: left;
+    color: #333333;
+    display: inline;
+    float: left;
+    line-height: 1.5em;
+    margin: 0;
+    padding: 4px 60px 4px 0;
+    position: relative;
+    text-align: right;
+    width: 298px;
+}
+label strong {
+    display: block;
+    height: 1px;
+    overflow: hidden;
+    padding-top: 18px;
+    position: absolute;
+    right: 47px;
+    top: 0px;
+    width: 15px;
+}
+label div {
+    cursor: pointer;
+    height: 1px;
+    overflow: hidden;
+    padding-top: 18px;
+    position: absolute;
+    right: 33px;
+    top: 2px;
+    width: 15px;
+}
+section h2 {
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    background: none repeat scroll 0 0 #205EA5;
+    color: #fff;
+    display: block;
+    padding: 8px 10px 8px 20px;
+    border-radius: 6px;
+    font-family: 'dinOffProBold', Verdana, 'Open Sans', sans-serif !important;
+    /*I have changed it to normal from  bold*/
+    
+    margin-bottom: 20px;
+}
+.form-field input[type="text"] {
+    margin: 1px 0px;
+    padding: 2px 2px 2px 3px;
+    font-family: "dinOffPro", sans-serif !important;
+}
+.form-field input[type="text"],
+.form-field button,
+select {
+    background: #FFFFFF;
+    color: #0b2f4d;
+    width: 244px;
+    padding: 0px 2px 0px 6px;
+    border-radius: 6px;
+    border: 1px solid #E6E6E6;
+    height: 30px;
+    font-family: "dinOffPro", sans-serif !important;
+}
+select {
+    background: #FFFFFF;
+    color: #0b2f4d;
+    width: 254px;
+    padding: 0px 2px 0px 6px;
+    border-radius: 6px;
+    border: 1px solid #E6E6E6;
+    height: 33px;
+    font-family: "dinOffPro", sans-serif !important;
+}
+textarea {
+    background: #FFFFFF;
+    color: #0b2f4d;
+    width: 100%;
+    padding: 0px 2px 0px 4px;
+    border-radius: 6px;
+    border: 1px solid #E6E6E6;
+    height: 80px;
+    font-family: "dinOffPro", sans-serif !important;
+}
+.project-description {
+    height: 90px;
+    width: 420px !important;
+}
+.starfield {
+    display: block;
+}
+#productionactivitytypegroup ul {
+    float: left;
+    list-style-type: none;
+    width: 386px;
+    padding: 0 10px 10px 0;
+}
+#productionactivitytypegroup ul li label {
+    margin: 3px 0 5px;
+    padding: 0;
+    text-align: left;
+    width: auto;
+    line-height: 40px;
+    position: relative;
+    bottom: 18px;
+}
+#productionactivitytypegroup label input {
+    margin-right: 10px;
+}
+.radiobox {
+    clear: none !important;
+    float: none !important;
+    /* padding: 0 8px 0 16px !important; */
+    
+    top: 0;
+    width: auto !important;
+    left: 0;
+    position: relative;
+}
+.radiobt {
+    position: relative;
+    right: 2px;
+}
+input[type="radio"] {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    box-shadow: none;
+    filter: none;
+}
+/*
+            .submit_button{
+            font-size: 18px;
+            position: relative;
+            right: 72px;
+            text-align: center;
+            }*/
+
+.submit_button {
+    font-size: 18px;
+    margin-right: 20px;
+    position: relative;
+}
+/*
+.sbutton {
+    background: none repeat scroll 0 0 #3399CC !important;
+    color: #FFFFFF !important;
+    font-weight: bold;
+    border-radius: 6px !important;
+    color: #FFFFFF !important;
+    font-weight: bold !important;
+    padding: 5px 0 !important;
+    width: 200px !important;
+    font-family: "dinOffPro", Verdana, "Open Sans", sans-serif !important;
+}
+*/
+
+footer a {
+    text-decoration: none;
+    color: #3399CC !important;
+}
+footer p {
+    font-size: 12px;
+    text-align: right;
+    left: 30px;
+    position: relative;
+    color: #333333;
+}
+footer span {
+    color: #95A4B6 !important;
+}
+.form-field label input[type=checkbox] {
+    color: #0B2F4D;
+    border-radius: 5px;
+}
+.checkedtext {
+    color: #0B2F4D;
+}
+.radio-label {
+    color: #0B2F4D;
+}
+.radio-label label {
+    margin-right: 3px;
+}
+.float-left {
+    float: left;
+}
+.width220 {
+    width: 220px;
+}
+td {
+    color: #333333;
+}
+.before-start ul li {
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 11px;
+}
+footer {
+    font-family: "dinOffPro", Verdana, "Open Sans", sans-serif !important;
+}
+.production-activity-type-sub {
+    /*background: #2fa2c6 none repeat scroll 0 0;*/
+    
+    background: #3399CC none repeat scroll 0 0;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    height: 20px;
+    font-family: "dinOffProBold", Verdana, "Open Sans", sans-serif !important;
+}
+.before-start h1 {
+    font-family: 'dinOffProBold', Verdana, 'Open Sans', sans-serif !important;
+}
+p,
+label {
+    font-family: 'dinOffPro', Verdana, 'Open Sans', sans-serif !important;
+    font-size: 12px !important;
+}
+.before-start ul li {
+    font-family: 'dinOffPro', Verdana, 'Open Sans', sans-serif !important;
+    font-size: 12px !important;
+}
+.form-radio label {
+    width: 8px !important;
+    padding: 4px 20px 4px 0;
+}
+.cursor-pointer {
+    cursor: pointer;
+}
+.pos-rel {
+    position: relative;
+}
+.width252 {
+    width: 366px;
+}
+.hide {
+    display: none;
+}
+.hide2 {
+    visibility: hidden;
+}
+.master-detail {
+    border-left: 1px solid #1796BE;
+    float: left;
+    height: 430px;
+    padding-left: 20px;
+    width: 190px;
+}
+.sub-master-detail {
+    float: left;
+    width: 400px;
+    height: 430px;
+    //border-left:1px solid #1796BE;
+    padding-left: 20px;
+}
+.mediamasterdiv {
+    height: 35px;
+    padding-top: 10px;
+    width: 230px;
+    padding-left: 12px;
+}
+.mediamasterdiv-selected {
+    background-color: #73c0d9;
+    border: 1px solid #fff;
+    border-radius: 8px;
+}
+.mediamasterdiv-selected label {
+    color: #FFFFFF !important;
+    font-family: "dinOffProBold", Verdana, "Open Sans", sans-serif !important;
+    border-radius: 10px;
+}
+.submediamasterdiv {
+    height: 35px;
+    width: 420px;
+    padding-left: 12px;
+    padding-top: 10px;
+}
+.mediamasterdiv label {
+    float: none !important;
+    padding: 0px !important;
+    width: auto !important;
+}
+.submediamasterdiv label {
+    float: none !important;
+    padding-right: 6px !important; //it was 0 earlier, need to check
+    width: auto !important;
+}
+.form-production-activity-type label {
+    float: none !important;
+}
+.other_master_parent {
+    min-height: 45px;
+}
+.form-production-activity-type {
+    margin-left: 38px;
+}
+.projectotherClass,
+a.agencyother {
+    font-family: verdana;
+    font-size: 12px;
+    color: #3399CC;
+}
+.form-production-activity-type label {
+    padding: 0px !important;
+}
+.media-master {
+    float: left;
+    width: 300px;
+}
+.medium-master {
+    float: left;
+    width: 330px;
+    border-left: 1px solid #1796be;
+}
+.media-master label {
+    cursor: pointer;
+}
+.sub-master-detail {
+    display: none;
+}
+.production-activity-detail {
+    display: none;
+}
+#home_Tab {
+    display: none;
+}
+.production-activity-help-text {
+    font-size: 12px;
+    font-family: dinOffPro;
+    margin-left: 12px;
+}
+.dateFormat {
+    display: none;
+}
+input[type=checkbox] {
+    vertical-align: bottom;
+}
+.master_parent label {
+    cursor: pointer;
+}
+.summary-detail {
+    /*border:1px solid #FFF;*/
+    
+    padding: 5px 0 0 20px;
+    font-weight: bold;
+    font-family: "dinOffProBold", Verdana, "Open Sans", sans-serif !important;
+}
+.summary-detail1 {
+    /*border:1px solid #FFF;*/
+    
+    padding: 5px 0 0 20px;
+    margin: 0 5px 10px 0;
+    font-family: "dinOffPro", Verdana, "Open Sans", sans-serif !important;
+}
+.summary-title {
+    background: #e6e6e6 none repeat scroll 0 0;
+    font-family: "dinOffProBold", Verdana, "Open Sans", sans-serif !important;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding: 5px 20px;
+}
+.summary {
+    border-bottom: 1px solid #e6e6e6;
+    font-size: 12px;
+    margin-bottom: 20px;
+    margin-top: 35px;
+    margin-left: 20px;
+    width: 77%;
+}
+.summary span {} label dfn {
+    font-style: normal;
+}
+.orclass {
+    color: #333333;
+    font-size: 12px;
+    font-weight: bold;
+    height: 20px;
+    margin: 0 auto;
+    padding: 20px 0 15px 0;
+    width: 92%;
+}
+input[type="text"]:focus {
+    border-color: #66CCFF;
+}
+input[type=checkbox] {
+    vertical-align: sub;
+    /*this is for IE11*/
+}
+.asterisk {
+    color: red;
+    font-size: 12px;
+}
+.padding0-10-5 {
+    padding: 0 10px 5px !important;
+}
+.margintop25 {
+    margin-top: 25px;
+}
+.margin-left-minus30 {
+    margin-left: -30px;
+}
+.master_parent {
+    padding: 5px;
+    width: 92%;
+}
+.secondary-parent {
+    float: left;
+    width: 60%;
+}
+.amr-media-channel-master {
+    float: left;
+    width: 43%;
+}
+.margintop-15 {
+    margin-top: 15px;
+}
+.form-field-multiselect select {
+    height: 108px;
+    width: 250px !important;
+}
+div.form-field-multiselect {
+    padding: 0px 10px 5px 10px;
+}
+.errorM3 {
+    border: 3px solid red;
+    border-radius: 0px !important;
+    margin: 0 !important;
+    color: red !important;
+    background-color: #FFFFFF !important;
+    width: 40%;
+}
+.errorM3 span {
+    color: red !important;
+}
+.errorM2 .messageText {
+    color: red !important;
+}
+#AllTab_Tab {
+    display: none;
+}
+.loadError {
+    color: red !important;
+    position: absolute !important;
+    top: 0px !important;
+    left: 5px !important;
+    width: auto !important;
+}
+.loadErrorParent {
+    border: 2px solid red;
+    padding: 25px 0 10px 0;
+    position: relative;
+    margin: 12px 0;
+    border-radius: 6px;
+}
+.form-field-level1 {
+    background: #FFFFFF;
+}
+.fl-dn {
+    float: left;
+    display: none;
+}
+.loading-category-image {
+    display: none;
+    width: 30px;
+    border: none;
+    margin-bottom: 5px;
+}
+.w100ac {
+    width: 100%;
+    align: center;
+}
+.production-activity-sub-section {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+.left121 {
+    left: 121px;
+}
+.right208 {
+    right: 208px;
+}
+.flw26 {
+    float: left;
+    width: 26%;
+}
+.production-activity-help-text {
+    font-size: 12px;
+    font-family: dinOffPro;
+}
+.h50mt20 {
+    height: 50px;
+    margin-top: 20px;
+}
+.summary {
+    visibility: none;
+    border-bottom: 1px solid #E6E6E6;
+}
+.right-8 {
+    right: -8px;
+}
+.checkboxrmt {
+    margin-left: -39px;
+}
+.checkboxrmt-label {
+    margin-right: 44px !important;
+    padding: 4px 5px 4px 0 !important;
+    width: 306px !important;
+}
+.footer-c {
+    color: #95A4B6 !important;
+}
+.ht41 {
+    height: 41px !important;
+}
+.bgbnone {
+    background: none !important;
+    border: none !important;
+}
+.height258 {
+    height: 258px;
+}
+.errorM3 .msgIcon {
+    display: none;
+}
+.success-message {
+    color: #53853D;
+    padding: 12px 20px;
+    width: 70%;
+    border: 1px solid #74C366;
+    margin-top: 20px;
+    background: #CCEBC9;
+}
+.success-message label {
+    font-size: 14px !important;
+}
+.right202 {
+    right: 202px;
+}

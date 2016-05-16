@@ -1,0 +1,84 @@
+<span style="color:red; text-align:center;"> --- This is a confirmation email --- </span> <br/><br/><br/>
+
+
+Many thanks, your details have been logged into AdManager 
+<br/><br/>
+
+You will receive a second email outlining which Regional Advertising Producer (RAP) has been allocated to your project and will be contacted by them shortly afterwards as a way of introduction and to discuss next steps.
+<br/><br/>
+
+Your AdManager number is below. You and your agencies will be required to have  and use the number throughout the production process so please keep in a safe place. Including ART Briefs, Preview, commencing production with an agency/UL Music supplier Big Sync/Talent suppliers, Post View and Ariba etc. 
+
+ <br/><br/>
+AdManager Number :  {!Amr_Job_Details__c.AdManagerText__c} 
+
+ <br/>
+ <br/><br/>
+ <span style="font-weight:bold;">Project details: </span>
+ <br/>  <br/>
+<table>
+<tr>
+<td>Have you checked the wareout tool: </td><td>{!Amr_Job_Details__c.Check_With_CMI__c}</td>
+</tr>
+<tr>
+<td>Your email address </td><td> {!Amr_Job_Details__c.Your_Email_Address__c} </td> </tr>
+<tr>
+<td>Unilever project leader email </td><td> {!Amr_Job_Details__c.Unilever_Project_Leader_Email__c} 
+
+</td> </tr>
+<tr>
+<td>Location of Unilever project leader </td><td> {!Amr_Job_Details__c.Project_Leader_Cluster__c} --   {!Amr_Job_Details__c.Project_Leader_Country__c}</td> </tr>
+<tr>
+<td>Unilever finance member email </td><td> {!Amr_Job_Details__c.Unilever_Finance_Member_Email__c}	</td> </tr>
+<tr>
+<td>Final approver of material email </td><td> {!Amr_Job_Details__c.Final_Approver_Of_Material_Email__c} </td> </tr>
+<tr>
+<td>Which function are you part of (BD/BB/Other) </td><td> {!Amr_Job_Details__c.Function_You_Are_Part__c} </td> </tr>
+<tr>
+<td>Budget responsibility (BD, BB, Other) </td><td>{!Amr_Job_Details__c.Budget_Responsibility__c} </td> </tr>
+<tr>
+<td>Budget allocated for this activity (enter all digits) </td><td> {!Amr_Job_Details__c.Allocated_Budget_euro__c}  </td> </tr>
+<tr>
+<td>Category > Brand Positioning > Brand </td><td> {!Amr_Job_Details__c.00N18000000Tuws} --  {!Amr_Job_Details__c.00N18000000Tux0} --  {!Amr_Job_Details__c.00N18000000Tux1}</td> </tr>
+<tr>
+
+<td>Lead agency name </td><td> {!Amr_Job_Details__c.Lead_Creative_Agency_name__c}
+{!Amr_Job_Details__c.Lead_Agency_Name_Other__c}  
+</td> </tr>
+<tr>
+<td>Lead agency location	</td><td> {!Amr_Job_Details__c.Lead_Agency_Location_Cluster__c} --  {!Amr_Job_Details__c.Lead_Agency_Location_Country__c}</td> </tr>
+<tr>
+<td>Agency contact or account director email </td><td>  {!Amr_Job_Details__c.Agency_Contact_Account_Director_Email__c}</td> </tr>
+<tr>
+<td>Digital Agency Name (if applicable) </td><td>  {!Amr_Job_Details__c.Digital_Agency_Name__c}</td> </tr>
+<tr>
+<td>Any other agencies involved?</td><td> {!Amr_Job_Details__c.Any_other_agencies_involved__c}</td> </tr>
+<tr>
+<td>Project name </td><td>
+{!Amr_Job_Details__c.Project_Details__c} {!Amr_Job_Details__c.Project_Name_Other__c}
+ </td> </tr>
+<tr>
+<td>Project location </td><td> {!Amr_Job_Details__c.Project_Location_Cluster__c} --  {!Amr_Job_Details__c.Project_Location_Country__c}</td> </tr>
+<tr>
+<td>Broadcast market </td><td>{!Amr_Job_Details__c.Brodcast_Market__c}</td></tr>
+<tr>
+<td>What type of activity will this production support </td><td> {!Amr_Job_Details__c.Production_Activity_Type__c}</td> </tr>
+<tr>
+<td>Project description </td><td>{!Amr_Job_Details__c.Project_Description__c} </td> </tr>
+<tr>
+<td>Campaign name </td><td> {!Amr_Job_Details__c.Campaign_Name__c} </td> </tr>
+<tr>
+<td>Execution name </td><td> {!Amr_Job_Details__c.Execution_Name__c} </td> </tr>
+<tr>
+<td>Target air date </td><td>{!Amr_Job_Details__c.Target_Air_Date__c} </td> </tr>
+<tr>
+<td>Production activity type </td><td>{!Amr_Job_Details__c.ProductionActivityTextArea__c} </td> </tr>
+<tr>
+<td>Do you anticipate that your production will require Music?</td><td> {!Amr_Job_Details__c.Require_Music__c }</td> </tr>
+<tr>
+<td>Do you anticipate that your production will require Celebrity Talent? </td><td>  {!Amr_Job_Details__c.Require_Celebrity_Talent__c }</td> </tr>
+<tr>
+<td>Current stage of your production activity	</td><td> {!Amr_Job_Details__c.Stage_of_Production_Activity__c} </td> </tr>
+</table>
+<br/><br/>
+Please contact Advertising.Production@unilever.com if you require any further assistance or visit http://adproduction.unilever.com/ for supporting documentation.

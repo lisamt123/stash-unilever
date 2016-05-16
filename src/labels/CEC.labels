@@ -1,0 +1,554 @@
+    <labels>
+        <fullName>CEC_AlertActionSchedulerName</fullName>
+        <categories>CEC: Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_AlertActionSchedulerName</shortDescription>
+        <value>CEC AlertAction Scheduler</value>
+    </labels>
+    <labels>
+        <fullName>CEC_CBM_NotificationBodyFooter</fullName>
+        <categories>CEC : Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_CBM_NotificationBodyFooter</shortDescription>
+        <value>&lt;BR/&gt;&lt;BR/&gt;Thank You&lt;/Body&gt;&lt;/Html&gt;</value>
+    </labels>
+    <labels>
+        <fullName>CEC_CBM_NotificationBodyHeader</fullName>
+        <categories>CEC : Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_CBM_NotificationBodyHeader</shortDescription>
+        <value>&lt;Html&gt;&lt;Body&gt; This is an automated email&lt;BR/&gt;&lt;BR/&gt;Following are the list of Email Cases where CaseBrandMapping record is not found &lt;BR/&gt;&lt;BR/&gt;</value>
+    </labels>
+    <labels>
+        <fullName>CEC_CBM_NotificationSubject</fullName>
+        <categories>CEC : Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_CBM_NotificationSubject</shortDescription>
+        <value>CEC Alert : Missing CaseBrandMapping value</value>
+    </labels>
+    <labels>
+        <fullName>CEC_CaseAccountMissing</fullName>
+        <categories>CEC:Case_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_CaseAccountMissing</shortDescription>
+        <value>The fulfilment cannot be created without an Account attached to the Case</value>
+    </labels>
+    <labels>
+        <fullName>CEC_CaseAccountPersonDetailsError</fullName>
+        <categories>CEC:Case_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_CaseAccountPersonDetailsError</shortDescription>
+        <value>One of the Account value MailingStreet/MailingCity/MailingState/MailingCountry/MailingPostalCode should be available for creating the Fulfilment.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_CaseNumber</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_CaseNumber</shortDescription>
+        <value>Case#</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Case_Factory_Survey_Reference</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Case_Factory_Survey_Reference</shortDescription>
+        <value>Factory Investigation Survey</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Case_TabNotOpened</fullName>
+        <categories>CEC:Case_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Primary tab cannot be opened</shortDescription>
+        <value>Error:Primary tab cannot be opened.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Category</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Category</shortDescription>
+        <value>Category</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Console_Message1</fullName>
+        <categories>VF page : CEC_NewAccountContact</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Primary tab not refresh</shortDescription>
+        <value>Please save changes to your case record before attempting to add a new consumer.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Console_Message2</fullName>
+        <categories>VF page : CEC_NewAccountContact</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Primary tab cannot be opened</shortDescription>
+        <value>Primary tab cannot be opened</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Console_Message3</fullName>
+        <categories>VF page : CEC_NewAccountContact</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error Occured</shortDescription>
+        <value>Error:An Error has Occured.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ConsumerCreateContactButtonDisplay</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ConsumerCreateContactButtonDisplay</shortDescription>
+        <value>Create a new contact</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ConsumerInfoDisplay</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ConsumerInfoDisplay</shortDescription>
+        <value>Info : Consumer already attached to the Case</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ConsumerNotFoundInfo</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ConsumerNotFoundInfo</shortDescription>
+        <value>Consumer not found?</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ConsumerResultsDisplay</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ConsumerResultsDisplay</shortDescription>
+        <value>Results</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ConsumerResultsNoMatchTitle</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ConsumerResultsNoMatchTitle</shortDescription>
+        <value>No Match Found</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ConsumerResultsTitleDisplay</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ConsumerResultsTitleDisplay</shortDescription>
+        <value>Your matching search results:</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ConsumerSearchDisplay</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ConsumerSearchDisplay</shortDescription>
+        <value>Search</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Consumer_Duplicate_Error</fullName>
+        <categories>VF Page: CEC_NewAccountContact</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC Consumer Duplicate Error</shortDescription>
+        <value>Consumer could not be created because duplicate consumer exists.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Consumer_Message1</fullName>
+        <categories>VF page : CEC_NewAccountContact</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>To Display Click Ok to replace the existing Consumer or Cancel to return to the</shortDescription>
+        <value>Click Ok to replace the existing Consumer or Cancel to return to the Console Page .</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Consumer_Record_Update</fullName>
+        <categories>CEC:Case_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Update action cannot be performed.</shortDescription>
+        <value>Update action cannot be performed. Consumer record is already associated with the case record.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_CreateContactDisplay</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_CreateContactDisplay</shortDescription>
+        <value>Create Contact</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Create_Button</fullName>
+        <categories>Visualforce Page :CEC_NewAccountContact</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Create_Button</shortDescription>
+        <value>Create</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Detail_Request_Info</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Detail_Request_Info</shortDescription>
+        <value>Please specify which details are known</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Display_Records</fullName>
+        <categories>CEC:Case_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>records are being displayed</shortDescription>
+        <value>records are being displayed</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Email</fullName>
+        <categories>VF page :CEC_NewAccountCase</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>To display Email required message</shortDescription>
+        <value>Email: You must enter a value</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Email_Label</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Email_Label</shortDescription>
+        <value>Email</value>
+    </labels>
+    <labels>
+        <fullName>CEC_FirstName</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_FirstName</shortDescription>
+        <value>First Name</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Fulfilment_PostOption_Complaints</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Fulfilment_PostOption_Complaints</shortDescription>
+        <value>Complaints</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Fulfilment_PostOption_otherwise</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Fulfilment_PostOption_otherwise</shortDescription>
+        <value>otherwise</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Label_Action</fullName>
+        <categories>VF page :CEC_CaseInline</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC Label Action</shortDescription>
+        <value>Action</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Label_Knowledge_Articles</fullName>
+        <categories>VF page :CEC_CaseInline</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC Label Knowledge Articles</shortDescription>
+        <value>Knowledge Articles</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Label_Subject</fullName>
+        <categories>VF page :CEC_CaseInline</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC Label Subject</shortDescription>
+        <value>Subject</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Label_Type</fullName>
+        <categories>VF page :CEC_CaseInline</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC Label Type</shortDescription>
+        <value>Type</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Last_Name</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Last_Name</shortDescription>
+        <value>Last Name</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Lastname</fullName>
+        <categories>VF page :CEC_NewAccountCase</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>To display Last Name required message</shortDescription>
+        <value>Last Name: You must enter a value</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Marketing_Opt_in</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Marketing_Opt_in</shortDescription>
+        <value>Marketing Opt in</value>
+    </labels>
+    <labels>
+        <fullName>CEC_MatchingResponse_AccountNotCreated</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Consumer record could not be created</shortDescription>
+        <value>[ERR002] Consumer record could not be created.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_MatchingResponse_DuplicateAccount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>If Duplicate accounts found display this error message</shortDescription>
+        <value>[ERR001] Multiple consumer records exist with the same email, a manual update is required.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Missing_Information</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Missing_Information</shortDescription>
+        <value>Missing Information</value>
+    </labels>
+    <labels>
+        <fullName>CEC_NewCaseError</fullName>
+        <categories>CEC:Case_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Case Error Message</shortDescription>
+        <value>Error:Unable to create New Case</value>
+    </labels>
+    <labels>
+        <fullName>CEC_NewCaseError_BeforeAddNewArticle</fullName>
+        <categories>CEC:Case_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC NewCaseError BeforeAddNewArticle</shortDescription>
+        <value>Please save changes to your case record before attempting to add a new article.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_NewCaseError_BeforeAddNewConsumer</fullName>
+        <categories>CEC:Case_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Save case record before add a new consumer.</shortDescription>
+        <value>Please save the pending changes to the case record first and then search the Consumer to link to the case. If a new Consumer creation is attempted in this transaction, then this Consumer can be found again by Search.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_No_Cases_are_available_based_on_the_skill</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC No Cases are available based on the skill</shortDescription>
+        <value>No Cases are available based on the skill</value>
+    </labels>
+    <labels>
+        <fullName>CEC_No_Matching_Consumer</fullName>
+        <categories>CEC:Case_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No matching consumers</shortDescription>
+        <value>No Matching Consumers.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Origin</fullName>
+        <categories>VF page :CEC_NewAccountCase</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>To displayOrigin as required message</shortDescription>
+        <value>Origin: Validation Error: Value is required.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_OtherDetailsSection</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_OtherDetailsSection</shortDescription>
+        <value>Other Details</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ParentCaseNumber</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ParentCaseNumber</shortDescription>
+        <value>Parent Case#</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Phone</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Phone</shortDescription>
+        <value>Phone</value>
+    </labels>
+    <labels>
+        <fullName>CEC_PhoneSearchValidationError</fullName>
+        <categories>CEC:Case_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_PhoneSearchValidationError</shortDescription>
+        <value>The Phone Search should be 6 Character length</value>
+    </labels>
+    <labels>
+        <fullName>CEC_PostCode</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_PostCode</shortDescription>
+        <value>Postcode</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Product</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Product</shortDescription>
+        <value>Product</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Product_Hierarchy</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Product_Hierarchy</shortDescription>
+        <value>Product Hierarchy</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Quick_Code_Change_Error</fullName>
+        <categories>VF:CEC_QuickCode</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC Quick Code Change Error</shortDescription>
+        <value>Please Enter Country code before changing Quick Code!</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Reason</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Reason</shortDescription>
+        <value>Reason</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ReasonCode</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ReasonCode</shortDescription>
+        <value>Reason Code</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Reason_Hierarchy</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Reason_Hierarchy</shortDescription>
+        <value>Reason Hierarchy</value>
+    </labels>
+    <labels>
+        <fullName>CEC_RelatedCases</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_RelatedCases</shortDescription>
+        <value>Related Cases</value>
+    </labels>
+    <labels>
+        <fullName>CEC_SearchValidationError</fullName>
+        <categories>CEC:Case_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_SearchValidationError</shortDescription>
+        <value>Validation Error : Please fill at least one field in the search form</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Search_Button</fullName>
+        <categories>Visualforce Page :CEC_NewAccountContact</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Search_Button</shortDescription>
+        <value>Search</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Specify_Details_in_Missing_Info</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Specify Details in Missing Info</shortDescription>
+        <value>Please Specify which details are known</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Status</fullName>
+        <categories>VF page :CEC_NewAccountCase</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>To display Case Status as required message</shortDescription>
+        <value>Status: Validation Error: Value is required.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Street</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Street</shortDescription>
+        <value>Street</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Title</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Title</shortDescription>
+        <value>Title</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ValidEmailTemplate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ValidEmailTemplate</shortDescription>
+        <value>Please enter a valid Email Template Name.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_isFormKnown</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_isFormKnown</shortDescription>
+        <value>Is Form Known?</value>
+    </labels>
+    <labels>
+        <fullName>CEC_isPacksizeKnown</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_isPacksizeKnown</shortDescription>
+        <value>Is Pack Size Known?</value>
+    </labels>
+    <labels>
+        <fullName>CEC_isVariantKnown</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_isVariantKnown</shortDescription>
+        <value>Is Variant Known?</value>
+    </labels>
+    

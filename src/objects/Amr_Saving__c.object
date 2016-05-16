@@ -1,0 +1,1343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+	<enableFeeds>true</enableFeeds>
+    <fields>
+        <fullName>Average_Total_Opening_Quotes__c</fullName>
+        <formula>Sum_Of_Total_Cost__c / Number_Of_Quotes__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Average Total Opening Quotes</label>
+        <precision>18</precision>
+        <scale>2</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>CA_Appraisal_Cost_Management__c</fullName>
+        <label>CA Appraisal - Cost Management</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>CA_Appraisal_Output_Quality__c</fullName>
+        <label>CA Appraisal - Output Quality</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>CA_Appraisal_Process_Management__c</fullName>
+        <label>CA Appraisal - Process Management</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>CA_Appraisal_Time_Management__c</fullName>
+        <label>CA Appraisal - Time Management</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>CA_Only_Currency__c</fullName>
+        <label>CA Only (Currency)</label>
+        <picklist>
+            <picklistValues>
+                <fullName>NT $</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Shilling</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Baht</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TT $</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dinar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Lira</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>New Turkish Lira</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>New Shilling</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UAE Dirham</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>£</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hryvna</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Peso U</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>US $</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ref Type 1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fuerte (Parallel)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dong</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>New Kwacha</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>CA_Only_Euro_Amount__c</fullName>
+        <label>CA Only(Euro Amount)</label>
+        <precision>17</precision>
+        <scale>2</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>CA_Only_Local_Amount__c</fullName>
+        <label>CA Only (Local Amount)</label>
+        <precision>17</precision>
+        <scale>2</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Ca_Cost_Manage_Star__c</fullName>
+        <label>Ca Cost Manage Star</label>
+        <length>50</length>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Ca_Output_Quality_Star__c</fullName>
+        <label>Ca Output Quality Star</label>
+        <length>50</length>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Ca_Process_Manage_Star__c</fullName>
+        <label>Ca Process Manage Star</label>
+        <length>50</length>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Ca_Time_Manage_Star__c</fullName>
+        <label>Ca Time Manage Star</label>
+        <length>50</length>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Cost_Per_Master_Per_Shoot_Day_Text__c</fullName>
+        <formula>TEXT(ROUND(Cost_per_master_per_shoot_day__c,2))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Cost Per Master Per Shoot Day Text</label>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Cost_Per_Master_Text__c</fullName>
+        <formula>TEXT(ROUND(Cost_Per_Master__c,2))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Cost Per Master Text</label>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Cost_Per_Master__c</fullName>
+        <formula>Total_Accepted_FinalCost__c  /  No_of_Masters__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Cost Per Master</label>
+        <precision>18</precision>
+        <scale>2</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Cost_per_master_per_shoot_day__c</fullName>
+        <formula>(Total_Accepted_FinalCost__c  /  No_of_Masters__c ) /  No_of_shoot_days__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Cost per master per shoot day</label>
+        <precision>18</precision>
+        <scale>2</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Display__c</fullName>
+        <defaultValue>false</defaultValue>
+        <label>Display</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Duration_of_Additional_Films__c</fullName>
+        <label>Duration of Additional Films</label>
+        <length>255</length>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Duration_of_Masters__c</fullName>
+        <label>Duration of Masters</label>
+        <length>255</length>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Edirors_Name__c</fullName>
+        <label>Edirors Name</label>
+        <length>100</length>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Folder_Name__c</fullName>
+        <label>Folder Name</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Accepted Quotes and Documents</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Additional Quotes and Documents</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Job_Details__c</fullName>
+        <label>Job Details</label>
+        <referenceTo>Amr_Job_Details__c</referenceTo>
+        <relationshipName>AM_Savings</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <type>MasterDetail</type>
+    </fields>
+    <fields>
+        <fullName>Monthly_Submitted__c</fullName>
+        <label>Monthly Submitted</label>
+        <picklist>
+            <picklistValues>
+                <fullName>January</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>February</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>March</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>April</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>May</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>June</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>July</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>August</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>September</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>October</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>November</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>December</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>No_Of_Shoot_Days_Text__c</fullName>
+        <formula>TEXT(No_of_shoot_days__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>No Of Shoot Days Text</label>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>No_of_Additional_Films_List__c</fullName>
+        <description>It will contain list of additional films.</description>
+        <label>No of Additional Films List</label>
+        <length>255</length>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>No_of_Additional_Films__c</fullName>
+        <label>No of Additional Films</label>
+        <precision>18</precision>
+        <scale>0</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>No_of_Masters_List__c</fullName>
+        <description>It will contain list of no. of masters.</description>
+        <label>No of Masters List</label>
+        <length>255</length>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>No_of_Masters__c</fullName>
+        <label>No of Masters</label>
+        <precision>18</precision>
+        <scale>0</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>No_of_shoot_days__c</fullName>
+        <label>No of shoot days</label>
+        <precision>18</precision>
+        <scale>0</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Number_Of_Additional_Films_Text__c</fullName>
+        <formula>TEXT(No_of_Additional_Films__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Number Of Additional Films Text</label>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Number_Of_Masters_Text__c</fullName>
+        <formula>TEXT(No_of_Masters__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Number Of Masters Text</label>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Number_Of_Quotes__c</fullName>
+        <label>Number Of Quotes</label>
+        <summaryFilterItems>
+            <field>Amr_Quote__c.Total_Cost__c</field>
+            <operation>notEqual</operation>
+            <value>0</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Amr_Quote__c.Saving__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>PC_Appraisal_Cost_Management__c</fullName>
+        <label>PC Appraisal - Cost Management</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>PC_Appraisal_Output_Quality__c</fullName>
+        <label>PC Appraisal - Output Quality</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>PC_Appraisal_Process_Management__c</fullName>
+        <label>PC Appraisal - Process Management</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>PC_Appraisal_Time_Management__c</fullName>
+        <label>PC Appraisal - Time Management</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>PC_Only_Currency__c</fullName>
+        <label>PC Only (Currency)</label>
+        <picklist>
+            <picklistValues>
+                <fullName>NT $</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Shilling</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Baht</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TT $</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dinar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Lira</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>New Turkish Lira</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>New Shilling</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UAE Dirham</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>£</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hryvna</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Peso U</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>US $</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ref Type 1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fuerte (Parallel)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dong</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>New Kwacha</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>PC_Only_Euro_Amount__c</fullName>
+        <label>PC Only (Euro Amount)</label>
+        <precision>17</precision>
+        <scale>2</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>PC_Only_Local_Amount__c</fullName>
+        <label>PC Only (Local Amount)</label>
+        <precision>17</precision>
+        <scale>2</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>PPC_Appraisal_Cost_Management__c</fullName>
+        <label>PPC Appraisal - Cost Management</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>PPC_Appraisal_Output_Quality__c</fullName>
+        <label>PPC Appraisal - Output Quality</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>PPC_Appraisal_Process_Management__c</fullName>
+        <label>PPC Appraisal - Process Management</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>PPC_Appraisal_Time_Management__c</fullName>
+        <label>PPC Appraisal - Time Management</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>PPC_Only_Currency__c</fullName>
+        <label>PPC Only (Currency)</label>
+        <picklist>
+            <picklistValues>
+                <fullName>NT $</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Shilling</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Baht</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TT $</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dinar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Lira</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>New Turkish Lira</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>New Shilling</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UAE Dirham</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>£</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hryvna</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Peso U</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>US $</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ref Type 1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fuerte (Parallel)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dong</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>New Kwacha</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>PPC_Only_Euro_Amount__c</fullName>
+        <label>PPC Only (Euro Amount)</label>
+        <precision>17</precision>
+        <scale>2</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>PPC_Only_Local_Amount__c</fullName>
+        <label>PPC Only (Local Amount)</label>
+        <precision>17</precision>
+        <scale>2</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Pc_Cost_Manage_Star__c</fullName>
+        <label>Pc Cost Manage Star</label>
+        <length>50</length>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Pc_Output_Quality_Star__c</fullName>
+        <label>Pc Output Quality Star</label>
+        <length>50</length>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Pc_Output_Quality__c</fullName>
+        <label>Pc Output Quality</label>
+        <length>50</length>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Pc_Proces_Manage_Star__c</fullName>
+        <label>Pc Proces Manage Star</label>
+        <length>50</length>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Pc_Time_Manage_Star__c</fullName>
+        <label>Pc Time Manage Star</label>
+        <length>50</length>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Percentage_Saving_Accepted_Quote_Text__c</fullName>
+        <formula>TEXT(Percentage_Saving_Accepted_Quote__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Percentage Saving Accepted Quote Text</label>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Percentage_Saving_Accepted_Quote__c</fullName>
+        <label>% Saving - Accepted Quote</label>
+        <precision>17</precision>
+        <scale>2</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Percentage_Saving_Average_Quote_Text__c</fullName>
+        <formula>TEXT(round(Percentage_Saving_Average_of_Quotes__c,2))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Percentage Saving Average Quote Text</label>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Percentage_Saving_Average_of_Quotes__c</fullName>
+        <formula>(Saving_Average_of_Quotes__c/Average_Total_Opening_Quotes__c) * 100</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>% Saving - Average of Quotes</label>
+        <precision>18</precision>
+        <scale>2</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Ppc_Cost_Manage_Star__c</fullName>
+        <label>Ppc Cost Manage Star</label>
+        <length>50</length>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Ppc_Output_Quality_Star__c</fullName>
+        <label>Ppc Output Quality Star</label>
+        <length>50</length>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Ppc_Process_Manage_Star__c</fullName>
+        <label>Ppc Process Manage Star</label>
+        <length>50</length>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Ppc_Time_Manage_Star__c</fullName>
+        <label>Ppc Time Manage Star</label>
+        <length>50</length>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Production_Type_Tv__c</fullName>
+        <label>Production Type Tv</label>
+        <length>150</length>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Production_Type__c</fullName>
+        <label>Production Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>TV: Master</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TV: Animatic</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TV: Tag-on</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TV: Cutdown</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TV: Re Edit</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TV: Pack Shot</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TV: Buyouts - Talent</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TV: Buyouts - Music</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TV: Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Radio: Master</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Radio: Tag-on</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Radio: Cutdown</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Radio: Re-Edit</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Radio: Buyouts - Talent</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Radio: Buyouts - Music</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Radio: Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Print: Master</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Print: Retouch or Re-composition</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Print: Pack Shot</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Print: Buyouts - Talent</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Print: Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Video Production (Internal Comms)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital: Film Production</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital: Still Image Production</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital: Film Re-work</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital: Still Image Re-work</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital: Buyouts - Talent</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital: Buyouts - Music</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital: Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Language Adaptation (non UniAdapt)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Additional Cost: Additional Country Adapts</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Additional Cost: Cancellation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Additional Cost: Cast Usages</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Additional Cost: Import</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Additional Cost: Music/VO Usages</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Additional Cost: Pack Changes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Additional Cost: Postponement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Additional Cost: Preview Adapts</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Additional Cost: Preview Amends</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Additional Cost: Weather</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Additional Cost: Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Saving_Accepted_Quote_Euro_Text__c</fullName>
+        <formula>TEXT(Saving_Accepted_Quote_Euro__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Saving Accepted Quote Euro Text</label>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Saving_Accepted_Quote_Euro__c</fullName>
+        <defaultValue>0</defaultValue>
+        <label>€ Saving - Accepted Quote</label>
+        <precision>17</precision>
+        <scale>2</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Saving_Average_Of_Quote_Text__c</fullName>
+        <formula>TEXT(Saving_Average_of_Quotes__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Saving Average Of Quote Text</label>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Saving_Average_of_Quotes__c</fullName>
+        <formula>Average_Total_Opening_Quotes__c - Total_Accepted_FinalCost__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>€ Saving - Average of Quotes</label>
+        <precision>18</precision>
+        <scale>2</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Scope_re_brief__c</fullName>
+        <label>Scope re-brief</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Script_Title__c</fullName>
+        <label>Script Title</label>
+        <length>255</length>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Shoot_Location_Multiselect__c</fullName>
+        <label>Shoot Location Multiselect</label>
+        <picklist>
+            <picklistValues>
+                <fullName>None</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>MultiselectPicklist</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Shoot_Location__c</fullName>
+        <label>Shoot Location</label>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Sound_Studio_Name__c</fullName>
+        <label>Sound Studio Name</label>
+        <length>100</length>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Stage_RAP_engaged__c</fullName>
+        <label>Stage RAP engaged</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Before briefing the agency</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Before getting a response to the brief (eg storyboard)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Before getting quotations</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Before final selection of the supplier/production company</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Before physical production (eg shoot, contract)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>After completion</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Sum_Of_Total_Cost__c</fullName>
+        <label>Sum Of Total Cost</label>
+        <summarizedField>Amr_Quote__c.Total_Cost__c</summarizedField>
+        <summaryForeignKey>Amr_Quote__c.Saving__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Sum_Of_Total_Cost_of_Accepted_Quotes__c</fullName>
+        <label>Sum Of Total Cost of Accepted Quotes</label>
+        <summarizedField>Amr_Quote__c.Total_Cost__c</summarizedField>
+        <summaryFilterItems>
+            <field>Amr_Quote__c.Is_Accepted__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Amr_Quote__c.Saving__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Total_Accepted_FinalCost__c</fullName>
+        <label>Total Accepted FinalCost</label>
+        <summarizedField>Amr_Quote__c.Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c</summarizedField>
+        <summaryForeignKey>Amr_Quote__c.Saving__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Total_Accepted_Final_Cost_Text__c</fullName>
+        <formula>TEXT(Total_Accepted_FinalCost__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Accepted Final Cost Text</label>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Total_Editing_Cost__c</fullName>
+        <label>Total Editing Cost</label>
+        <precision>17</precision>
+        <scale>2</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Total_No_Of_Films_Text__c</fullName>
+        <formula>TEXT(Total_no_of_films__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total No Of Films Text</label>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Total_Sound_Studio__c</fullName>
+        <label>Total Sound Studio</label>
+        <precision>17</precision>
+        <scale>2</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Total_no_of_films__c</fullName>
+        <formula>No_of_Masters__c + No_of_Additional_Films__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total no of films</label>
+        <precision>18</precision>
+        <scale>2</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Travel_Costs__c</fullName>
+        <label>Travel Costs</label>
+        <precision>17</precision>
+        <scale>2</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Type_of_Saving__c</fullName>
+        <label>Type of Saving</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Cost Saving</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cost Avoidance</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Both</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Value_of_props_wardrobe__c</fullName>
+        <label>Value of props &amp; wardrobe (paid for)</label>
+        <precision>17</precision>
+        <scale>2</scale>
+        <type>Number</type>
+    </fields>
+    <label>Amr Saving</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>OBJECT_ID</columns>
+        <columns>Sum_Of_Total_Cost__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>NAME</columns>
+        <columns>Job_Details__c</columns>
+        <columns>Saving_Average_of_Quotes__c</columns>
+        <columns>Average_Total_Opening_Quotes__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>AM_Saving Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Amr Savings</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

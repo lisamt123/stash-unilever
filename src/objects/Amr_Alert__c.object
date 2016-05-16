@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <deploymentStatus>Deployed</deploymentStatus>
+    <fields>
+        <fullName>Alert_Message__c</fullName>
+        <label>Alert Message</label>
+        <length>150</length>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Hide__c</fullName>
+        <defaultValue>false</defaultValue>
+        <label>Hide</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Job_Id__c</fullName>
+        <label>Job Id</label>
+        <referenceTo>Amr_Job_Details__c</referenceTo>
+        <relationshipName>Alrets</relationshipName>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>New_Alert__c</fullName>
+        <label>New Alert</label>
+        <type>Date</type>
+    </fields>
+    <label>Amr Alert</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Job_Id__c</columns>
+        <columns>New_Alert__c</columns>
+        <columns>Alert_Message__c</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>Hide__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>All1</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Alert Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Amr Alerts</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

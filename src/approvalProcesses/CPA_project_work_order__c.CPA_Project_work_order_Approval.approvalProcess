@@ -26,6 +26,10 @@
                 <type>FieldUpdate</type>
             </action>
             <action>
+                <name>CPA_Project_Work_Order_Accepted_Email_Alert</name>
+                <type>Alert</type>
+            </action>
+            <action>
                 <name>CPA_PWO_Previous_Status_value</name>
                 <type>FieldUpdate</type>
             </action>
@@ -83,6 +87,10 @@
                 <name>CPA_Closure_Notification_Form_Accepted</name>
                 <type>FieldUpdate</type>
             </action>
+            <action>
+                <name>CPA_PWO_CNF_Accepted_email_alert</name>
+                <type>Alert</type>
+            </action>
         </approvalActions>
         <assignedApprover>
             <approver>
@@ -132,6 +140,10 @@
     <approvalStep>
         <allowDelegate>false</allowDelegate>
         <approvalActions>
+            <action>
+                <name>CPA_PWO_TNF_Accepted_email_alert</name>
+                <type>Alert</type>
+            </action>
             <action>
                 <name>CPA_Termination_Notification_Accept_date</name>
                 <type>FieldUpdate</type>

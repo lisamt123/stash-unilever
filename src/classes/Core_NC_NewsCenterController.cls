@@ -80,6 +80,16 @@ public class Core_NC_NewsCenterController {
     }
     
     /*******************************************************************************************************
+    * @description This method used to get list of topic names
+    * @param 
+    * @return List<String>
+    */ 
+    @AuraEnabled 
+    public static List<String> getTopicNames() {//String TopicName
+        return Core_NC_NewsCenterControllerHelper.getTopicNames();
+    }
+    
+    /*******************************************************************************************************
     * @description This method get the wrapper data for News Detail from helper and send to the Client.
     * @param Core_NC_NewsWrapperClass NewsType
     * @return List<Core_NC_NewsWrapperClass> wrapper
