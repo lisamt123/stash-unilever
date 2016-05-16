@@ -35,59 +35,29 @@ public with sharing class CPA_attachment_Trigger_Handler
      */
     public void bulkBefore()
     {   
-        //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
-        //if(triggerShouldExecute){
-         //   if(Trigger.isInsert || Trigger.isUpdate) {
-
-                //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
-                //if(Trigger.isInsert){
-                    
-                //}
-                //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
-                //if(Trigger.isUpdate) 
-                //{
-                    // Fill the Map with Participants Chatter Group memeberships for the program chatter group
-                    
-                    
-                //} 
-                
-
-        //    } else if(Trigger.isDelete){
-               // CPA_LOI_TriggerUtil.DontDelete(trigger.old); - This was already commented
-         //   }
-
-            
-        //}
+        System.debug('Entering CPA_attachment_Trigger_Handler.bulkBefore');     
+        System.debug('Exiting CPA_attachment_Trigger_Handler.bulkBefore');
         
     }
     
     public void bulkAfter()
     {
-        //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
-        //if(triggerShouldExecute){ 
-        //    if(Trigger.isInsert || Trigger.isUpdate) {
-                //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
-                //if(Trigger.isUpdate) {
-                    
-                //}
-         //   }
-        //}
+        System.debug('Entering CPA_attachment_Trigger_Handler.bulkAfter');     
+        System.debug('Exiting CPA_attachment_Trigger_Handler.bulkAfter');
         
     }
         
     public void beforeInsert(SObject so)
     {
-        //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
-        //if(triggerShouldExecute){
-        //}
+        System.debug('Entering CPA_attachment_Trigger_Handler.beforeInsert');     
+        System.debug('Exiting CPA_attachment_Trigger_Handler.beforeInsert');
         
     }
     
     public void beforeUpdate(SObject oldSo, SObject so)
     {
-        //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
-        //if(triggerShouldExecute){ 
-        //}
+         System.debug('Entering CPA_attachment_Trigger_Handler.beforeUpdate');     
+        System.debug('Exiting CPA_attachment_Trigger_Handler.beforeUpdate');
         
     }
     
@@ -113,9 +83,18 @@ public with sharing class CPA_attachment_Trigger_Handler
              }
             
         }
-        CPA_AttachmentUtil.deleteCommericalData(lstAttachmentRead);
-        CPA_AttachmentUtil.deleteContract(lstAttachmentRead1);
-        CPA_AttachmentUtil.DeleteLOI(lstAttachmentLOI);
+        IF(lstAttachmentRead!= NULL && lstAttachmentRead.size()>0){
+            CPA_AttachmentUtil.deleteCommericalData(lstAttachmentRead);
+        }
+        if(lstAttachmentRead1 != null && lstAttachmentRead1.size()>0){
+            CPA_AttachmentUtil.deleteContract(lstAttachmentRead1);
+        }
+        if(lstAttachmentLOI !=null && lstAttachmentLOI.size()>0){
+            CPA_AttachmentUtil.DeleteLOI(lstAttachmentLOI);
+        }
+        
+        
+        
     }
     
     public void afterInsert(SObject so) 
@@ -166,10 +145,8 @@ public with sharing class CPA_attachment_Trigger_Handler
     
     public void afterUpdate(SObject oldSo, SObject so)
     {
-        //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
-        //if(triggerShouldExecute){
-            
-        //}
+        System.debug('Entering CPA_attachment_Trigger_Handler.afterUpdate');     
+        System.debug('Exiting CPA_attachment_Trigger_Handler.afterUpdate');
         
     }
     /*******************************************************************

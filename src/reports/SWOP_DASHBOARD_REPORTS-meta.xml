@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReportFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <folderShares>
+        <accessLevel>View</accessLevel>
+        <sharedTo>Oblix_SWOP_Agency</sharedTo>
+        <sharedToType>Group</sharedToType>
+    </folderShares>
+    <folderShares>
+        <accessLevel>View</accessLevel>
+        <sharedTo>Oblix_SWOP_All_UL1_UL2_UL3</sharedTo>
+        <sharedToType>Group</sharedToType>
+    </folderShares>
+    <folderShares>
+        <accessLevel>Manage</accessLevel>
+        <sharedTo>Oblix_SWOP_Super_User</sharedTo>
+        <sharedToType>Group</sharedToType>
+    </folderShares>
+    <name>SWOP Dashboard Reports</name>
+</ReportFolder>

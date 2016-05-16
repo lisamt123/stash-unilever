@@ -89,7 +89,13 @@ private class Oblix_SOWMainDetailController_Test {
         ApexPAges.currentPage().getParameters().put('sowId', mSow.Id);
         Oblix_SowMainDetailController controllerInstance = new Oblix_SowMainDetailController();
 
+        controllerInstance.pageAttachment.Name='Unit Test Attachment';
+        controllerInstance.pageAttachment.Body=Blob.valueOf('Unit Test Attachment Body');
+
         Test.startTest();
+
+        controllerInstance.uploadAttachment();
+        controllerInstance.deleteAtt();
 
         PageReference deleteAction = controllerInstance.deleteAction();
             
@@ -139,6 +145,8 @@ private class Oblix_SOWMainDetailController_Test {
 
         initTestData();
 
+        insert Oblix_TestUtils.createOblixFXChangeCustomSetting();
+
         ApexPAges.currentPage().getParameters().put('sowId', mSow.Id);
         Oblix_SowMainDetailController controllerInstance = new Oblix_SowMainDetailController();
 
@@ -152,6 +160,8 @@ private class Oblix_SOWMainDetailController_Test {
         update mSow;
 
         Test.startTest();
+
+        Boolean fxEnabled = controllerInstance.submitForApprovalFX;
         
         PageReference submitForApproval = controllerInstance.submitForApproval();
 

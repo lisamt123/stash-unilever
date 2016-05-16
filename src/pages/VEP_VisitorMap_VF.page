@@ -21,6 +21,62 @@
       <script src="https://maps.google.com/maps/api/js?sensor=false">
       </script>
       
+      <script>
+      function navigateToItems()
+      {
+      
+                      // Go back to the Account detail page
+                if( (typeof sforce != 'undefined') && sforce && (!!sforce.one) ) {
+                    // Salesforce1 navigation
+                  //  sforce.one.navigateToSObject(aId);
+                     sforce.one.navigateToURL('/04i');
+                }
+                else {
+                    // Set the window's URL using a Visualforce expression
+                    window.location.href = '/04i';
+                }
+       
+      }
+       </script>
+      
+      <script>
+      function navList(){
+               if( (typeof sforce != 'undefined') && sforce && (!!sforce.one) ) {
+               sforce.one.navigateToURL("/"+'{!ListViewId}');               
+               }else
+               {
+               window.location.href = "/"+'{!ListViewId}';
+               }
+      }
+      </script>
+    <script>
+            function createNewRecord()
+            {
+            
+                        if( (typeof sforce != 'undefined') && sforce && (!!sforce.one) ) {
+                           sforce.one.createRecord("Vep_Visitor__c",'{!reqRecordTypeId}');
+                           }else
+                           {
+                           createRec();
+                           }
+            }
+    </script>
+    <script>
+    function createNewROBRecord()
+    {
+    
+                if( (typeof sforce != 'undefined') && sforce && (!!sforce.one) ) {
+                   sforce.one.createRecord("Vep_Visitor__c",'{!robRecordTypeId }');
+                   }else
+                   {
+                   createRobRec();
+                   }
+    }
+    </script> 
+
+     
+
+      
       <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"/>
       
       <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/bootstrap.min.css')}" />
@@ -266,6 +322,14 @@
   <apex:actionFunction name="SearchFactories" action="{!SearchFactoryList}" reRender="op1,mPanel" oncomplete="reloadImages();" status="blockUI" >
   </apex:actionFunction>
   
+  
+  
+    <apex:actionFunction name="createRec" action="{!gotoVFORM}"  >
+  </apex:actionFunction>
+  
+    <apex:actionFunction name="createRobRec" action="{!gotoVFORMROB}"  >
+  </apex:actionFunction>
+  
   <div class="app-container">
     <div class="row content-container">
       <nav class="navbar navbar-default navbar-fixed-top navbar-top">
@@ -340,7 +404,7 @@
                         Reject Visits
                       </li>
                     </a>
-                    <a href="/{!ListViewId}" target="_blank">
+                    <a onclick="navList();" href="" target="_blank">
                       <li class="list-group-item message">
                         view all
                       </li>
@@ -426,7 +490,7 @@
             <ul class="nav navbar-nav">
               
               <li>
-                <a href="/{!ListViewId}" target="_blank">
+                <a  onclick="navList();" href= "" target="_blank">
                   <span class="icon fa fa-tachometer">
                   </span>
                   <span class="title">
@@ -436,7 +500,7 @@
               </li>
               
               <li>
-                <a href="/04i" target="_blank">
+                <a  onclick="navigateToItems();" href=""  target="_blank">
                   <span class="icon fa fa-hand-o-up">
                   </span>
                   <span class="title">
@@ -540,8 +604,12 @@
                           <apex:variable var="imageVar" value="{!"VEP_FactoryImages/"+Factorydetails.Factory_Image_Code__c+'.png'}"/>
                           
                           <apex:image url="{!URLFOR($Resource.VEP_FactoryImages, imageVar)}" height="200px" width="100%"/>
-                           <apex:commandButton styleclass="btn btn-success .navbar-right" value="Request Visit" action="{!gotoVFORM}"/>&nbsp;&nbsp;
-                           <apex:commandButton styleclass="btn btn-success .navbar-right" value="Request on Behalf" action="{!gotoVFORMROB}" rendered="{!showROB}"/>
+                           <input type = "button" class="btn btn-success .navbar-right" value="Request Visit" onclick = "createNewRecord();"  />&nbsp;&nbsp;
+                           <apex:outputPanel rendered="{!showROB}">
+                           <input type = "button" class="btn btn-success .navbar-right" value="Request on Behalf" onclick = "createNewROBRecord();"  />
+                          <!-- <apex:commandButton styleclass="btn btn-success .navbar-right" value="Request on Behalf" action="{!gotoVFORMROB}" rendered="{!showROB}"/>-->
+                          
+                          </apex:outputPanel>
                          </div>
                            
                        
@@ -624,8 +692,12 @@
                   </div>
                   <div class="clearfix" style="height: 5px;clear: both;">
                   </div>
-                  <apex:commandButton styleclass="btn btn-success "  value="Request Visit" action="{!gotoVFORM}"/>&nbsp;&nbsp;
-                  <apex:commandButton styleclass="btn btn-success " value="Request on Behalf" action="{!gotoVFORMROB}" rendered="{!showROB}"/>
+                   <input type = "button" class="btn btn-success .navbar-right" value="Request Visit" onclick = "createNewRecord();"  />&nbsp;&nbsp;
+                           <apex:outputPanel rendered="{!showROB}">
+                           <input type = "button" class="btn btn-success .navbar-right" value="Request on Behalf" onclick = "createNewROBRecord();"  />
+                          <!-- <apex:commandButton styleclass="btn btn-success .navbar-right" value="Request on Behalf" action="{!gotoVFORMROB}" rendered="{!showROB}"/>-->
+                          
+                          </apex:outputPanel>
                 </div>
                 
                 

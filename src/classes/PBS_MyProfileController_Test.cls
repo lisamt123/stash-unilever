@@ -28,6 +28,8 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 @isTest
 private class PBS_MyProfileController_Test {
+
+private static final string STR_GUEST = 'Guest'; 
 static testMethod void testWithNoAchievements(){
 
         //Create admin users
@@ -97,7 +99,7 @@ static testMethod void testWithNoAchievements(){
 
                 PBS_MyProfileController_CC cont = new PBS_MyProfileController_CC();
                
-               // PBS_MyProfileController_CC.storeUserProfile('Guest', 'Guest', lmsUsers.get(0).id, 'Guest');
+               // PBS_MyProfileController_CC.storeUserProfile(STR_GUEST, STR_GUEST, lmsUsers.get(0).id, 'Guest');
                 ref.getParameters().put('aType','Certifications');
                 Test.setCurrentPageReference(ref);
 
@@ -134,9 +136,9 @@ static testMethod void testWithNoAchievements(){
         
         PBS_Profile__c objProfile = new PBS_Profile__c (User_Role__c = objPBS_Standard_Job_Profile.Id,
                                                          User__c = lmsUsers.get(0).id,
-                                                         Work_Level__c = 'Guest',
-                                                         Geography__c = 'Guest',
-                                                         Buddy__c = 'Guest');
+                                                         Work_Level__c = STR_GUEST,
+                                                         Geography__c = STR_GUEST,
+                                                         Buddy__c = STR_GUEST);
         insert objProfile ;
                 
         PageReference ref = Page.PBS_MyProfile;
@@ -152,7 +154,7 @@ static testMethod void testWithNoAchievements(){
                cont.getWorkLevelOptions();
                cont.getJobProfileOptions();
                cont.getProfile();
-               PBS_MyProfileController_CC.storeUserProfile('Guest', 'Guest', objPBS_Standard_Job_Profile.Id, 'Guest');
+               PBS_MyProfileController_CC.storeUserProfile(STR_GUEST, STR_GUEST, objPBS_Standard_Job_Profile.Id, 'Guest');
                 ref.getParameters().put('aType','Certifications');
                 Test.setCurrentPageReference(ref);
 

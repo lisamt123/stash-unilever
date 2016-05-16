@@ -130,3 +130,11 @@ src/workflows
 src/workflows/Vep_Visitor__c.workflow
 src/labels
 src/labels/CustomLabels.labels
+src/pages/VEP_VisitorPass_Dashboard.page
+src/pages/VEP_VisitorPass_Dashboard.page-meta.xml
+src/tabs/Visitor_Dashboard.tab
+src/staticresources/VEP_ProgressBar.resource
+src/staticresources/VEP_ProgressBar.resource-meta.xml
+src/staticresources/VEP_ProhibiteditemsImage.resource
+src/staticresources/VEP_ProhibiteditemsImage.resource-meta.xml
+src/objects/VEP_TravelDesk__c.object

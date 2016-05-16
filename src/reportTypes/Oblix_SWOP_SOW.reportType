@@ -695,6 +695,11 @@
             <field>Asset_summary_page_name__c</field>
             <table>Marketing_SOW__c.Marketing_Projects__r.Agency_Project_Assets__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Category_Trimmed__c</field>
+            <table>Marketing_SOW__c.Marketing_Projects__r.Agency_Project_Assets__r</table>
+        </columns>
         <masterLabel>SWOP Project Assets</masterLabel>
     </sections>
 </ReportType>
