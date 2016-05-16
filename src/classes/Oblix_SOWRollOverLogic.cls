@@ -11,6 +11,8 @@
 *
 ******************************************************************************************/
 public with sharing class Oblix_SOWRollOverLogic {
+
+    private static final String ERROR_SETPROCESSINGFLAG = 'ERROR IN setProcessingFlag() - ';
     
 
     public Oblix_SOWRollOverLogic() {
@@ -158,15 +160,15 @@ public with sharing class Oblix_SOWRollOverLogic {
             
         }
         catch(QueryException queryEx){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN setProcessingFlag() - ', queryEx.getMessage() + STACK_TRACE + queryEx.getStackTraceString());
+            Oblix_SyncBatchJob.addEvent(ERROR_SETPROCESSINGFLAG, queryEx.getMessage() + STACK_TRACE + queryEx.getStackTraceString());
             is_success = false;
         }
         catch(DmlException dmlEx){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN setProcessingFlag() - ', dmlEx.getMessage() + STACK_TRACE + dmlEx.getStackTraceString());
+            Oblix_SyncBatchJob.addEvent(ERROR_SETPROCESSINGFLAG, dmlEx.getMessage() + STACK_TRACE + dmlEx.getStackTraceString());
             is_success = false;
         }
         catch(Exception ex){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN setProcessingFlag() - ', ex.getMessage() + STACK_TRACE + ex.getStackTraceString());
+            Oblix_SyncBatchJob.addEvent(ERROR_SETPROCESSINGFLAG, ex.getMessage() + STACK_TRACE + ex.getStackTraceString());
             is_success = false;
         }
         return is_success;   
@@ -195,15 +197,15 @@ public with sharing class Oblix_SOWRollOverLogic {
             
         }
         catch(QueryException queryEx){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN setProcessingFlag() - ', queryEx.getMessage() + STACK_TRACE + queryEx.getStackTraceString());
+            Oblix_SyncBatchJob.addEvent(ERROR_SETPROCESSINGFLAG, queryEx.getMessage() + STACK_TRACE + queryEx.getStackTraceString());
             is_success = false;
         }
         catch(DmlException dmlEx){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN setProcessingFlag() - ', dmlEx.getMessage() + STACK_TRACE + dmlEx.getStackTraceString());
+            Oblix_SyncBatchJob.addEvent(ERROR_SETPROCESSINGFLAG, dmlEx.getMessage() + STACK_TRACE + dmlEx.getStackTraceString());
             is_success = false;
         }
         catch(Exception ex){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN setProcessingFlag() - ', ex.getMessage() + STACK_TRACE + ex.getStackTraceString());
+            Oblix_SyncBatchJob.addEvent(ERROR_SETPROCESSINGFLAG, ex.getMessage() + STACK_TRACE + ex.getStackTraceString());
             is_success = false;
         }
         return is_success;   
