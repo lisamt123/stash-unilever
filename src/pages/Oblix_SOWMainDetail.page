@@ -8,7 +8,7 @@
         </apex:define>
         
         <apex:define name="header_text">
-            {!selected_sow.Name} &nbsp; --> Is Agency Approval - {!isAgencyApproval}
+            {!selected_sow.Name} 
         </apex:define>
 
         <apex:define name="top_option_links">
@@ -200,7 +200,7 @@
                     <div class="modal-content submit_for_approval_modal">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h1 class="modal_window_title" id="gridSystemModalLabel">'{!selected_sow.Name} has been approved</h1>
+                            <h1 class="modal_window_title" id="gridSystemModalLabel">{!selected_sow.Name} has been approved</h1>
                         </div>
                         <div class="modal-body">
                             <div class="row">
@@ -211,7 +211,7 @@
                         </div>
                         <div class="modal-footer">
                             <div class="modal_button_align">
-                                <button type="button" class="btn btn-danger btn_check btn_yes_delete" html-data-dismiss="modal" onclick="blockme();" oncomplete="$.unblockUI();window.location.href='{!URLFOR($Page.Oblix_SOWMain)}';" >Proceed</button>
+                                <button type="button" class="btn btn-danger btn_check btn_yes_delete" html-data-dismiss="modal" onclick="blockme();window.location.href='{!URLFOR($Page.Oblix_SOWMain)}';" >Proceed</button>
                             </div>
                         </div>
                     </div><!-- /.modal-content -->

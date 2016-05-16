@@ -74,20 +74,12 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
         }
     }
 
-    public Boolean is_sole_editor{
-        get{
-            return Oblix_PermissionHandler.isOnlyBrandCatEditor(selected_sow.OblixBrand__c, selected_sow.SmallProductCategory__c, UserInfo.getUserId());
-        }
-    }
-
-    public Boolean is_with_ul2{
-        get{
-            return (selected_sow.SOW_Status__c == Oblix_Utils.SOW_STATUS_REJECTED_BY_AGENCY) || (selected_sow.SOW_Status__c == Oblix_Utils.SOW_STATUS_REJECTED_BY_UNILEVER) || (selected_sow.SOW_Status__c == Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER );
-        }
-    }
-
     public Boolean show_submit{
         get{
+
+            Boolean is_sole_editor = Oblix_PermissionHandler.isOnlyBrandCatEditor(selected_sow.OblixBrand__c, selected_sow.SmallProductCategory__c, UserInfo.getUserId());
+            Boolean is_with_ul2 = (selected_sow.SOW_Status__c == Oblix_Utils.SOW_STATUS_REJECTED_BY_AGENCY) || (selected_sow.SOW_Status__c == Oblix_Utils.SOW_STATUS_REJECTED_BY_UNILEVER) || (selected_sow.SOW_Status__c == Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER );
+
             return can_submit_for_approval && ( !( Oblix_PermissionHandler.hasUL1permissionSet() && is_with_ul2) || is_sole_editor);
         }
     }
@@ -98,15 +90,10 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
         }
     }
 
-    public String reportDeveloperName{
-        get{
-            return Oblix_Utils.SWOP_DASHBOARD_REPORT_CAMPAIGNS_PER_BOX;
-        }
-    }
     //Hide Submit for approval button if the Financial year hasn't been updated
     public Boolean submitForApprovalFX{
         get{
-            Date fxDate = null;
+            //Date fxDate = null;
             Oblix_FX_Change__c orgFY = Oblix_FX_Change__c.getInstance(UserInfo.getOrganizationId());
             Integer sowFY = Oblix_SOWHandlerLogic.getFinancialYear(selected_sow);
             
@@ -157,7 +144,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
             // get campaigns
             for(Oblix_SOW_Projects__c campaign : [SELECT Id, Name, OblixRegion__c, Selected_Countries__c, First_3_selected_countries__c, Campaign_Status__c, Total_Fees_for_Project__c, Value_to_be_paid_in_Current_FY__c, 
                 Projected_Stage_CFY__c, Completed_Stage_CFY__c, Projected_Stage_PFY__c, Completed_Stage_PFY__c, Value_To_BePaid_Manual_Override__c, Campaign_Total_Fees__c, Percentage_of_Fee_for_this_FY__c, 
-                Sync_Required_NFY__c, Stage_Projected_CFY__c, Stage_Completed_CFY__c, Campaign_PFY__c  
+                Sync_Required_NFY__c, Stage_Projected_CFY__c, Stage_Completed_CFY__c, Campaign_PFY__c, Percentage_of_Fees_PFY__c, Fees_PFY_Paid_Using_CFY_Calc__c  
                 FROM Oblix_SOW_Projects__c 
                 WHERE Financial_Year__c = :selected_sow.Id LIMIT 500]){
                 li_campaign_and_non_campaign_items.add(new CampaignNonCampaignItems('Campaign', campaign, can_edit));
@@ -192,11 +179,6 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
         }
         
     }
-
-    public void setFee(){
-        system.debug('fee set');
-    }
-
 
     public PageReference deleteAction(){
 
