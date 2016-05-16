@@ -81,6 +81,6 @@
     <showDetails>true</showDetails>
     <timeFrameFilter>
         <dateColumn>Account.Stocked_Products__r$UID_Start_Date__c</dateColumn>
-        <interval>INTERVAL_PREVCURY</interval>
+        <interval>INTERVAL_CURY</interval>
     </timeFrameFilter>
 </Report>
