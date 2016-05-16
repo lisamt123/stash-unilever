@@ -26,21 +26,21 @@ public class EA_ControllerClass_Test{
             Everyday_Activity__c  event=new Everyday_Activity__c();
             event.Active__c=true;
             event.Activity_Points__c=44;
-            event.Description__c='test.Description';
+            event.Description__c='test.Description1';
             event.Minutes_to_Complete_Action__c=4;
             event.Participants_Required__c=5;
             event.Rating__c=5;
-            event.Top_Tip__c='dummyvalue';
+            event.Top_Tip__c='dummyvalue1';
             insert event;
-            System.assertEquals('test.Description', event.Description__c);
+            System.assertEquals('test.Description1', event.Description__c);
             EA_Team_Member__c Team =new EA_Team_Member__c();
             team.Activity_Due_Date__c=datetime.newInstance(2014, 9, 15, 13, 30, 0);
             team.Activity_Due_Day__c='Today';
             team.Activity_Points__c=5;
             team.Everyday_Activity__c=event.id;
-            team.Feedback_Comments__c='test.feedback';
+            team.Feedback_Comments__c='test.feedback1';
             team.Invitation_Status__c='Accepted';
-            team.Invitation_Text__c='test.inv';
+            team.Invitation_Text__c='test.inv1';
             team.Invited_By__c=localUser.id;
             team.Participant__c=localUser.id;
             team.Rating_By_Participant__c=4;
@@ -52,9 +52,9 @@ public class EA_ControllerClass_Test{
             testObject2.Activity_Due_Day__c='Today';
             testObject2.Activity_Points__c=5;
             testObject2.Everyday_Activity__c=event.id;
-            testObject2.Feedback_Comments__c='test.feedback';
+            testObject2.Feedback_Comments__c='test.feedback2';
             testObject2.Invitation_Status__c='Invited';
-            testObject2.Invitation_Text__c='test.inv';
+            testObject2.Invitation_Text__c='test.inv2';
             testObject2.Invited_By__c=localUser.id;
             testObject2.Participant__c=localUser.id;
             testObject2.Rating_By_Participant__c=4;
@@ -65,16 +65,16 @@ public class EA_ControllerClass_Test{
             userList.add(testObject2);
             insert userList;
             
-            System.assertEquals('test.feedback', team.Feedback_Comments__c);
+            System.assertEquals('test.feedback2', team.Feedback_Comments__c);
             FeedItem post = new FeedItem();
             post.ParentId = event.id; 
-            post.Body = 'test.Body';
+            post.Body = 'test.Body1';
             insert post;
             
             EA_ThemesDetails__c ea=new EA_ThemesDetails__c();
             ea.name='ThemesDetails';
-            ea.ThemeColorCode__c='test.color';
-            ea.ThemeDescription__c='Description';
+            ea.ThemeColorCode__c='test.color1';
+            ea.ThemeDescription__c='Description1';
             insert ea;
             
             EA_BadgeDetails__c badge=new EA_BadgeDetails__c();
@@ -107,15 +107,15 @@ public class EA_ControllerClass_Test{
             
             EA_ReportingGA__c report=new EA_ReportingGA__c();
             report.name='ReportEA';
-            report.Text_value__c='dummyvalue';
+            report.Text_value__c='dummyvalue2';
             insert report;
          
             
-            FeedItem chatterPost1 = new FeedItem(ParentId = event.id , Body = 'chatterPostComment', CreatedById = localUser.id);     
+            FeedItem chatterPost1 = new FeedItem(ParentId = event.id , Body = 'chatterPostComment1', CreatedById = localUser.id);     
             insert chatterPost1;            
-            FeedItem chatterPost2 = new FeedItem(ParentId = event.id , Body = 'chatterPostComment', CreatedById = localUser.id);     
+            FeedItem chatterPost2 = new FeedItem(ParentId = event.id , Body = 'chatterPostComment2', CreatedById = localUser.id);     
             insert chatterPost2;            
-            FeedItem chatterPost3 = new FeedItem(ParentId = event.id , Body = 'chatterPostComment', CreatedById = localUser.id);     
+            FeedItem chatterPost3 = new FeedItem(ParentId = event.id , Body = 'chatterPostComment3', CreatedById = localUser.id);     
             insert chatterPost3;
             
             Test.startTest();
@@ -139,7 +139,7 @@ public class EA_ControllerClass_Test{
             EA_ControllerClass.insertteamrecord(event.id); 
             EA_ControllerClass.getActivityParticipantCount(event.id);
             
-            EA_ControllerClass.insertfeeditem(event.id,'comment');             
+            EA_ControllerClass.insertfeeditem(event.id,'comment1');             
             EA_ControllerClass.getbooleanvalue();                                          
             EA_ControllerClass.getToDoTimeline();
             List<EA_Team_Member__c > temp211=EA_ControllerClass.getinvitelist(event.id);
@@ -190,11 +190,11 @@ public class EA_ControllerClass_Test{
     static testMethod void negative() {
         ID adminProfileID = [SELECT Id FROM Profile WHERE Name = 'System Administrator'].ID;
         user  localUser= new User(username='localuserforUnitTest@20110308test.com',
-                                  alias = 'testu',
+                                  alias = 'testuser',
                                   email='localuserforUnitTest@20110308test.com',
                                   emailencodingkey='UTF-8',
-                                  lastname='Syngenta',
-                                  CommunityNickname ='mahi45678',
+                                  lastname='Syngentaa',
+                                  CommunityNickname ='mahi456789',
                                   languagelocalekey='en_US',
                                   localesidkey='en_US',                                            
                                   profileid = adminProfileID,
@@ -206,29 +206,29 @@ public class EA_ControllerClass_Test{
             Everyday_Activity__c  event=new Everyday_Activity__c();
             event.Active__c=true;
             event.Activity_Points__c=4;
-            event.Description__c='test.Description';
+            event.Description__c='test.Description2';
             event.Minutes_to_Complete_Action__c=4;
             event.Participants_Required__c=5;
             event.Rating__c=5;
-            event.Top_Tip__c='dummyvalue';
+            event.Top_Tip__c='dummyvalue3';
             insert event;
-            System.assertEquals('test.Description', event.Description__c);
+            System.assertEquals('test.Description2', event.Description__c);
             EA_Team_Member__c Team =new EA_Team_Member__c();
             team.Activity_Due_Day__c='Today';
             team.Activity_Points__c=5;
             team.Everyday_Activity__c=event.id;
-            team.Feedback_Comments__c='test.feedback';
+            team.Feedback_Comments__c='test.feedback3';
             team.Invitation_Status__c='Declined';
-            team.Invitation_Text__c='test.inv';
+            team.Invitation_Text__c='test.inv3';
             team.Invited_By__c=localUser.id;
             //team.Participant__c=localUser.id;
             team.Rating_By_Participant__c=4;
             team.Type__c='Participant';
             insert team;
-            System.assertEquals('test.feedback', team.Feedback_Comments__c);
+            System.assertEquals('test.feedback3', team.Feedback_Comments__c);
             FeedItem post = new FeedItem();
             post.ParentId = event.id; 
-            post.Body = 'test.Body';
+            post.Body = 'test.Body2';
             insert post;
             
             
@@ -240,8 +240,8 @@ public class EA_ControllerClass_Test{
             
             EA_ThemesDetails__c ea=new EA_ThemesDetails__c();
             ea.name='test11';
-            ea.ThemeColorCode__c='test.color';
-            ea.ThemeDescription__c='Description';
+            ea.ThemeColorCode__c='test.color2';
+            ea.ThemeDescription__c='Description2';
             insert ea;
             EA_BadgeDetails__c badge=new EA_BadgeDetails__c();
             badge.name='Bronze';
@@ -251,11 +251,11 @@ public class EA_ControllerClass_Test{
             insert badge;
            
             EA_ReportingGA__c re=new EA_ReportingGA__c();
-            re.Name='testreport';
+            re.Name='testreport1';
             re.Text_value__c =' EA_System_User_ID';
             insert re;
              EA_ReportingGA__c re1=new EA_ReportingGA__c();
-            re1.Name='testreport';
+            re1.Name='testreport2';
             re1.Text_value__c ='GA_Id';
             insert re1;
             Test.startTest();
@@ -276,7 +276,7 @@ public class EA_ControllerClass_Test{
             }catch(exception e){
                 System.debug('Exception caught: ' + e.getMessage());}
               
-            EA_ControllerClass.insertfeeditem(event.id,'comment');
+            EA_ControllerClass.insertfeeditem(event.id,'comment2');
             EA_ControllerClass.getbooleanvalue();                                 
             List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper>temp12=EA_ControllerClass.getcommentDetail(event.id);          
             EA_ControllerClass.getToDoTimeline();
