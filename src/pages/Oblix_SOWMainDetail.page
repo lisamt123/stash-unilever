@@ -8,7 +8,7 @@
         </apex:define>
         
         <apex:define name="header_text">
-            {!selected_sow.Name}
+            {!selected_sow.Name} &nbsp; --> Is Agency Approval - {!isAgencyApproval}
         </apex:define>
 
         <apex:define name="top_option_links">
@@ -186,11 +186,34 @@
                             <div class="modal-footer">
                                 <div class="modal_button_align">
                                     <button type="button" class="btn btn_cross btn_cancel" data-dismiss="modal">CANCEL</button>
-                                        <apex:commandButton rendered="{!isAgencyApproval}" action="{!approveSOW}" onclick="blockme();" styleClass="btn btn-danger btn_check btn_yes_submit" value="YES, APPROVE" reRender="top_right_panel,sow_details" html-data-dismiss="modal" oncomplete="$.unblockUI();alert('{!selected_sow.Name} has been approved successfully by Unilever and Agency.\nAn \'open for updates\' version will be available shortly to allow Unilever to reflect any changes during the year.');window.location.href='{!URLFOR($Page.Oblix_SOWMain)}';"/>
+                                        <!--apex:commandButton rendered="{!isAgencyApproval}" action="{!approveSOW}" onclick="blockme();" styleClass="btn btn-danger btn_check btn_yes_submit" value="YES, APPROVE" reRender="top_right_panel,sow_details" html-data-dismiss="modal" oncomplete="$.unblockUI();alert('{!selected_sow.Name} has been approved successfully by Unilever and Agency.\nAn \'open for updates\' version will be available shortly to allow Unilever to reflect any changes during the year.');window.location.href='{!URLFOR($Page.Oblix_SOWMain)}';"/-->
+                                        <apex:commandButton rendered="{!isAgencyApproval}" action="{!approveSOW}" onclick="blockme();" styleClass="btn btn-danger btn_check btn_yes_submit" value="YES, APPROVE" reRender="top_right_panel,sow_details" html-data-dismiss="modal" oncomplete="$('#moveToMainPage').modal({backdrop: 'static', keyboard: false});"/>
                                         <apex:commandButton rendered="{!!isAgencyApproval}" action="{!approveSOW}" reRender="top_right_panel,sow_details,page_message_id" styleClass="btn btn-danger btn_check btn_yes_approve" value="YES, APPROVE" html-data-dismiss="modal"  onclick="blockme()" oncomplete="$.unblockUI()"/>
                                 </div>
                             </div>
                         </apex:actionRegion>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="moveToMainPage" id="moveToMainPage">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content submit_for_approval_modal">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h1 class="modal_window_title" id="gridSystemModalLabel">'{!selected_sow.Name} has been approved</h1>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    {!selected_sow.Name} has been approved successfully by Unilever and Agency. An open for updates version will be available shortly to allow Unilever to reflect any changes during the year.
+                                </div>   
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="modal_button_align">
+                                <button type="button" class="btn btn-danger btn_check btn_yes_delete" html-data-dismiss="modal" onclick="blockme();" oncomplete="$.unblockUI();window.location.href='{!URLFOR($Page.Oblix_SOWMain)}';" >Proceed</button>
+                            </div>
+                        </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->

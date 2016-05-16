@@ -328,9 +328,11 @@ public without sharing class Oblix_CalculatorLogic {
     * @description  This is the main method which can distribute to other methods depending
     				on the "recalculate" booleans passed-in. Depending on these flags it recalculates
     				parts or all of the fee related attributes and returns a map of campaign id and fees
+
+    				Updated - allow a parameter to get the project total score from CFY or PFY
     ********************************************************************************/
 	public static Map<Id, Long> getCampaignFee(Map<Id, Oblix_SOW_Projects__c> map_projects, List<Oblix_AssetOfferingWrapper.AssetWrapper> assets_in_basket
-		, Boolean recalculate_project_driver_score, Boolean recalculate_total_project_score, Boolean recalculate_total_asset_score){
+		, Boolean recalculate_project_driver_score, Boolean recalculate_total_project_score, Boolean recalculate_total_asset_score, String total_project_score_field){
 
 		Map<Id, Long> map_campaign_id_campaign_fee = new Map<Id,Long>();
 
@@ -380,7 +382,7 @@ public without sharing class Oblix_CalculatorLogic {
 				Oblix_SOW_Projects__c project = map_projects.get(campaign_id);
 
 				// get the value from project attribute if already calculated
-				midd_project_total_score.put(campaign_id, project.Total_Project_Score__c);
+				midd_project_total_score.put(campaign_id,(Decimal) project.get(total_project_score_field));
 			}
 		}
 

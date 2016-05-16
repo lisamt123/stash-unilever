@@ -2,7 +2,7 @@
 private class Oblix_SOWNonCampaignCreateCtrl_Test {
 
     private static final String SOW_ID_PAGE_PARAMETER = 'sowId';
-    private static final String PRESELECTED_ITEM_PAGE_PARAMETER = 'preSelectedSection';
+    //private static final String PRESELECTED_ITEM_PAGE_PARAMETER = 'preSelectedSection';
 
     private static Marketing_SOW__c sow = new Marketing_SOW__c();
 
@@ -47,12 +47,31 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
 
         List <Oblix_Calculator__c> countriesNames = new List <Oblix_Calculator__c>();
         countriesNames =[select Financial_Year__c,Oblix_Agency__c, OblixCountry__c, OblixCountry__r.Name 
-                        from Oblix_Calculator__c ];
+                        from Oblix_Calculator__c  LIMIT 50000];
 
 
         List<Marketing_Basics__c> nonCampaigns = Oblix_TestUtils.createMarketingBasics(sow.Id, 7);
 
         //[0,1] - Activity / Brandbook
+        setFirstNonCampaignsSet(nonCampaigns, countriesNames);
+
+        //[2,3] - Activity / Brandbook
+        setSecondNonCampaignsSet(nonCampaigns, countriesNames);
+
+        //[4] - Activity / Brandbook
+        setThirdNonCampaignsSet(nonCampaigns, countriesNames);
+
+        //[5,6] - Activity / Brandbook
+        setFourthNonCampaignsSet(nonCampaigns, countriesNames);
+
+        insert nonCampaigns;
+
+
+
+    }
+
+    private static void setFirstNonCampaignsSet(List<Marketing_Basics__c> nonCampaigns, List <Oblix_Calculator__c> countriesNames){
+
         for (Integer i = 0; i < 2; i++) {
             Marketing_Basics__c nonCampaignItem = nonCampaigns[i];
             
@@ -75,7 +94,10 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
                                     nonCampaignItem.Role_Title__c;   
         }
 
-        //[2,3] - Activity / Brandbook
+    }
+
+    private static void setSecondNonCampaignsSet(List<Marketing_Basics__c> nonCampaigns, List <Oblix_Calculator__c> countriesNames){
+
         for (Integer i = 2; i < 4; i++) {
             Marketing_Basics__c nonCampaignItem = nonCampaigns[i];
             
@@ -98,7 +120,10 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
                                     nonCampaignItem.Role_Title__c;   
         }
 
-        //[4] - Activity / Brandbook
+    }
+
+    private static void setThirdNonCampaignsSet(List<Marketing_Basics__c> nonCampaigns, List <Oblix_Calculator__c> countriesNames){
+
         for (Integer i = 4; i < 5; i++) {
             Marketing_Basics__c nonCampaignItem = nonCampaigns[i];
             
@@ -121,7 +146,11 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
                                     nonCampaignItem.Role_Title__c;   
         }
 
-        //[5,6] - Activity / Brandbook
+    }
+
+
+    private static void setFourthNonCampaignsSet(List<Marketing_Basics__c> nonCampaigns, List <Oblix_Calculator__c> countriesNames){
+
         for (Integer i = 5; i < 7; i++) {
             Marketing_Basics__c nonCampaignItem = nonCampaigns[i];
             
@@ -143,8 +172,6 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
                                     countriesNames[0].OblixCountry__r.Name + nonCampaignItem.Agency_Department__c + 
                                     nonCampaignItem.Role_Title__c;   
         }
-
-        insert nonCampaigns;
 
     }
 

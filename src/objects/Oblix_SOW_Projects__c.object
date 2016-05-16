@@ -81,6 +81,26 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
+            <field>Fees_Paid_PFY__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Percentage_of_Fees_Paid_To_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Fees_PFY_Total_By_CFY_Calculator__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Fees_PFY_Paid_Using_CFY_Calc__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
             <field>Timescale_Notes__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>

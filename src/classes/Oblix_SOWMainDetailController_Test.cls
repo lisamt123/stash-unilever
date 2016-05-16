@@ -14,6 +14,8 @@
 @isTest
 private class Oblix_SOWMainDetailController_Test {
 
+    private static final String SOW_ID_PARAMETER_STRING = 'sowId';
+
 	//private static final String PROJECT_TXT = 'Project';
 	private enum Permission {CAN_EDIT, CAN_DELETE, CAN_APPROVE, CAN_REJECT, CAN_SUBMIT, CAN_DELETE_ATTACHMENT, CAN_ADD_ATTACHMENT, CAN_MANAGE_CAMPAIGN, CAN_MANAGE_NON_CAMPAIGN}
 
@@ -28,7 +30,7 @@ private class Oblix_SOWMainDetailController_Test {
 
 		initTestData();
 
-        ApexPAges.currentPage().getParameters().put('sowId', mSow.Id);
+        ApexPAges.currentPage().getParameters().put(SOW_ID_PARAMETER_STRING, mSow.Id);
         Oblix_SowMainDetailController controllerInstance = new Oblix_SowMainDetailController();
 
         Test.startTest();
@@ -86,7 +88,7 @@ private class Oblix_SOWMainDetailController_Test {
 
         initTestData();
 
-        ApexPAges.currentPage().getParameters().put('sowId', mSow.Id);
+        ApexPAges.currentPage().getParameters().put(SOW_ID_PARAMETER_STRING, mSow.Id);
         Oblix_SowMainDetailController controllerInstance = new Oblix_SowMainDetailController();
 
         controllerInstance.pageAttachment.Name='Unit Test Attachment';
@@ -116,7 +118,7 @@ private class Oblix_SOWMainDetailController_Test {
 
         initTestData();
 
-        ApexPAges.currentPage().getParameters().put('sowId', mSow.Id);
+        ApexPAges.currentPage().getParameters().put(SOW_ID_PARAMETER_STRING, mSow.Id);
         Oblix_SowMainDetailController controllerInstance = new Oblix_SowMainDetailController();
 
         User currentUser = new User(Id = UserInfo.getUserId());
@@ -149,7 +151,7 @@ private class Oblix_SOWMainDetailController_Test {
 
         insert Oblix_TestUtils.createOblixFXChangeCustomSetting();
 
-        ApexPAges.currentPage().getParameters().put('sowId', mSow.Id);
+        ApexPAges.currentPage().getParameters().put(SOW_ID_PARAMETER_STRING, mSow.Id);
         Oblix_SowMainDetailController controllerInstance = new Oblix_SowMainDetailController();
 
         User currentUser = new User(Id = UserInfo.getUserId());
@@ -180,7 +182,7 @@ private class Oblix_SOWMainDetailController_Test {
      @isTest static void testSyncCampaigns() {
         initTestData();
 
-        ApexPAges.currentPage().getParameters().put('sowId', mSow.Id);
+        ApexPAges.currentPage().getParameters().put(SOW_ID_PARAMETER_STRING, mSow.Id);
         Oblix_SowMainDetailController controllerInstance = new Oblix_SowMainDetailController();
 
         Test.startTest();

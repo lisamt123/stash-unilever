@@ -21,6 +21,8 @@ public with sharing class Oblix_SOWRollOverLogic {
 
     public static final String SELECT_SOQL = 'SELECT ';
 
+    public static final String SOQL_AND = '\' AND ';
+
 
     /********************************************************************
     * @author       Execloud ©
@@ -141,7 +143,7 @@ public with sharing class Oblix_SOWRollOverLogic {
             //##########################################################################################
 
             String query_string = 'SELECT ' + job_component.attrib_5 + ' FROM ' + job_component.attrib_4 + ' WHERE Sync_Status__c =\'' + job_component.attrib_1; 
-            query_string += '\' AND ' + job_component.attrib_6 + ' = \'' + job_component.attrib_3 + '\'';
+            query_string += SOQL_AND + job_component.attrib_6 + ' = \'' + job_component.attrib_3 + '\'';
             query_string += ' AND ' + job_component.attrib_5 + ' <>  ' + job_component.attrib_2 + ' ORDER BY Id LIMIT ' + job_component.query_limit; 
             
 
@@ -227,7 +229,7 @@ public with sharing class Oblix_SOWRollOverLogic {
             
             if (String.isNotBlank(job_component.attrib_5)){
                 String query_string2 = 'SELECT Sync_Status__c FROM '+ job_component.attrib_3 +' WHERE Sync_Status__c =\'' + job_component.attrib_1 
-                    + '\' AND '+ job_component.attrib_5 +' in : set_original_ids AND Id NOT in: set_original_ids ' 
+                    + SOQL_AND + job_component.attrib_5 +' in : set_original_ids AND Id NOT in: set_original_ids ' 
                     + ' ORDER BY Id LIMIT ' + job_component.query_limit; 
                 for (SObject obj: database.query(query_string)){
                     obj.put('Sync_Status__c',job_component.attrib_2);
@@ -551,7 +553,7 @@ public with sharing class Oblix_SOWRollOverLogic {
 
             String query_string = SELECT_SOQL;
             query_string += String.join(Oblix_Utils.getfieldsByObject('Marketing_SOW__c'),',');
-            query_string += ' FROM  Marketing_SOW__c WHERE Sync_Status__c =\'' + job_component.attrib_3 + '\' AND ' + job_component.attrib_2 + ' = NULL ORDER BY Id LIMIT ' + job_component.query_limit; 
+            query_string += ' FROM  Marketing_SOW__c WHERE Sync_Status__c =\'' + job_component.attrib_3 + SOQL_AND + job_component.attrib_2 + ' = NULL ORDER BY Id LIMIT ' + job_component.query_limit; 
             
             List<Marketing_SOW__c> list_sows_to_clone = new List<Marketing_SOW__c>();
             Map<Id, Marketing_SOW__c> map_original_id_original_campaign = new Map<Id,Marketing_SOW__c>((List<Marketing_SOW__c>)database.query(query_string));
@@ -647,7 +649,7 @@ public with sharing class Oblix_SOWRollOverLogic {
             query_string += ', (SELECT ';
             query_string += String.join(Oblix_Utils.getfieldsByObject('Oblix_Marketing_SOW_Project_Splits__c'),',');
             query_string += ' FROM Marketing_SOW_Project_Splits__r)';
-            query_string += ' FROM  Oblix_SOW_Projects__c WHERE Financial_Year__r.Sync_Status__c =\'' + job_component.attrib_3 + '\' AND ' + job_component.attrib_4 + ' = NULL ORDER BY Id LIMIT ' + job_component.query_limit; 
+            query_string += ' FROM  Oblix_SOW_Projects__c WHERE Financial_Year__r.Sync_Status__c =\'' + job_component.attrib_3 + SOQL_AND + job_component.attrib_4 + ' = NULL ORDER BY Id LIMIT ' + job_component.query_limit; 
             
 
             List<Oblix_SOW_Projects__c> list_campaigns_to_clone = new List<Oblix_SOW_Projects__c>();
@@ -1082,7 +1084,7 @@ public with sharing class Oblix_SOWRollOverLogic {
 
             String query_string = SELECT_SOQL;
             query_string += String.join(Oblix_Utils.getfieldsByObject('Oblix_Project_Assets__c'),',');
-            query_string += ' FROM  Oblix_Project_Assets__c WHERE Agency_Projects__r.Sync_Status__c =\'' + job_component.attrib_3 + '\' AND ' + job_component.attrib_4 + ' = NULL '; 
+            query_string += ' FROM  Oblix_Project_Assets__c WHERE Agency_Projects__r.Sync_Status__c =\'' + job_component.attrib_3 + SOQL_AND + job_component.attrib_4 + ' = NULL '; 
             query_string += ' AND ' + job_component.attrib_2 + ' <> NULL ORDER BY Id LIMIT ' + job_component.query_limit; 
 
             result_msg += '\n\n\n query_string: ' + query_string;

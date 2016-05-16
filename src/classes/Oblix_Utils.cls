@@ -18,11 +18,11 @@
 
 public with sharing class Oblix_Utils {
 
-    private static final String PROJECT_ASSET_NAME = 'Oblix_Project_Assets__c';
-    private static final String DIGITAL = 'digital';
-    private static final String AUDIO_VISUAL = 'Audio_Visual';
-    private static final String EXPERIENTIAL = 'Experiential';
-    private static final String STATIC_IMAGERY = 'Static_Imagery';
+    //private static final String PROJECT_ASSET_NAME = 'Oblix_Project_Assets__c';
+    //private static final String DIGITAL = 'digital';
+    //private static final String AUDIO_VISUAL = 'Audio_Visual';
+    //private static final String EXPERIENTIAL = 'Experiential';
+    //private static final String STATIC_IMAGERY = 'Static_Imagery';
     private static Map<String, List<String>> ms_lis_fields_in_fieldset = new  Map<String, List<String>>();
     private static Map<String, Map<String, Schema.SObjectField>> fieldsByObject = new Map<String, Map<String, Schema.SObjectField>>();
 
@@ -493,6 +493,8 @@ public with sharing class Oblix_Utils {
 
     public static final String APPROVAL_PROCESS_NAME = 'Oblix_SOW_Approval_Process_v7';
 
+    public static final String TOTAL_PROJECT_SCORE_CFY_FILED = 'Total_Project_Score__c';
+    public static final String TOTAL_PROJECT_SCORE_PFY_FILED = 'Total_Project_Score_PFY__c';
     public static final String SOW_STATUS_APPROVED_BY_AGENCY = 'Approved';
     public static final String SOW_STATUS_AWAITING_UNILEVER_APPROVAL = 'Awaiting Unilever Approval';
     public static final String SOW_STATUS_AWAITING_AGENCY_APPROVAL = 'Awaiting Agency Approval';
