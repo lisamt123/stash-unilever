@@ -2,7 +2,5 @@ src
 src/classes
 src/classes/IPM_BD_BB_Report_Batch.cls
 src/classes/IPM_BD_BB_Report_Batch.cls-meta.xml
-src/classes/IPM_ProjectCountryDetails.cls
-src/classes/IPM_ProjectCountryDetails.cls-meta.xml
 src/objects
 src/objects/IPM_Financial__c.object
