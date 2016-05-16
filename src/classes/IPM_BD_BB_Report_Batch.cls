@@ -107,7 +107,8 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                                                                                   Misaligned__c,
                                                                                   IPM_Auto_Aligned_Fin_TLD__c,
                                                                                   IPM_Project_Rollout__r.id,
-                                                                                  IPM_CPP_Regional__c                                                                                  
+                                                                                  IPM_CPP_Regional__c,
+                                                                                  IPM_CPP_Local__c                                                                                  
                                                                                   FROM IPM_Financial__c WHERE isActive__c=true AND (Parent_Project__r.Id IN: projectIdMap.keyset() or Regional_Project__r.id IN:projectIdMap.keyset() or Local_Project__r.id IN: projectIdMap.keyset())  Limit 50000]);
         
             for(IPM_Financial__c fi:projectFinancialList){
@@ -311,6 +312,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                                                                                             Regional_Project__c,
                                                                                             Regional_Project__r.id, 
                                                                                             IPM_CPP_Regional__c,
+                                                                                            IPM_CPP_Local__c,
                                                                                             Year_1_iTO_Global__c,
                                                                                             Year_1_iTO_Regional__c
                                                                                             FROM IPM_Financial__c 
@@ -510,7 +512,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
             if(projFinmap.containskey(p.Id)){ 
                 a.IPM_Business_Impact_BD__c = projFinMap.get(p.id).Business_Impact_Global__c; 
                 a.IPM_Auto_Aligned_Fin_TLD_for_financial__c = projFinMap.get(p.id).Misaligned__c;                  
-                a.IPM_Company_Priority__c = p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)?projFinMap.get(p.id).IPM_CPP_Regional__c:null;
+                a.IPM_Company_Priority__c = p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)?projFinMap.get(p.id).IPM_CPP_Local__c:null;
             }  
             
             // Copying Milestone related fields 
