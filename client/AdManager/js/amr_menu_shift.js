@@ -17,10 +17,16 @@ function isCurrency(evt) {
 	if ((charCode > 31 && (charCode < 48 || charCode > 57))&&(charCode !== 46)&&(charCode !== 44)) {
 		return false;
 	}
-	if (((CurrValue[CurrValue.length-1] == ',')&&(charCode == 44 || charCode == 46 ))||((CurrValue[CurrValue.length-1] == '.')&&(charCode == 44 || charCode == 46 ))||( ((CurrValue.indexOf('.') > -1)) && ( charCode == 46 ))) {
+	if((CurrValue[CurrValue.length-1] == ',')&&(charCode == 44 || charCode == 46 )) {
 		return false;
 	}
-	return true;
+	if((CurrValue[CurrValue.length-1] == '.')&&(charCode == 44 || charCode == 46 )) {
+		return false;
+	}
+	if(((CurrValue.indexOf('.') > -1)) && ( charCode == 46 )) {
+		return false;
+	}
+	return true; 	 	
 }
 
 function parseCurrency(localValue) {
