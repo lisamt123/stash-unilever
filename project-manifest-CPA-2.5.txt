@@ -406,11 +406,9 @@ src/objects/CPA_HLE_Request__c.object
 src/objects/CPA_HLE_Request_SLAs__c.object
 src/objects/CPA_Key_Contacts__c.object
 src/objects/CPA_LOI__c.object
-src/objects/CPA_LOIMandatoryMessages__c.object
 src/objects/CPA_project_work_order__c.object
 src/objects/CPA_PWORF__c.object
 src/objects/CPA_PWORF_Ageing__c.object
-src/objects/CPA_PWORFMandatoryMessages__c.object
 src/objects/CPA_Queries__c.object
 src/objects/CPA_Query_comment__c.object
 src/objects/CPA_Requirements_and_Deliverables__c.object
