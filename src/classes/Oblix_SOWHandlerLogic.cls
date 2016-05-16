@@ -97,7 +97,8 @@ public with sharing class Oblix_SOWHandlerLogic {
                                                             FROM Oblix_User_Permission__c 
                                                             WHERE CategoryBrand_id__r.Brand_id__c IN :brandIds 
                                                                 AND CategoryBrand_id__r.Product_Category_Id__c IN :bigCIds 
-                                                                AND Level_of_Access__c = :Oblix_Utils.USER_PERMISSION_APPROVER];
+                                                                AND Level_of_Access__c = :Oblix_Utils.USER_PERMISSION_APPROVER
+                                                                AND User_id__r.IsActive = true];
 
         // build a map of brandId_bigcategoryId as keys and list of approver ids as values, which we will use to populate approver fields on SOWs
         for(Oblix_User_Permission__c up : userPermissions){

@@ -58,7 +58,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
 
     public Boolean can_submit_for_approval{
         get{
-            return Oblix_PermissionHandler.canSubmitForApproval(selected_sow.SOW_Status__c);
+            return Oblix_PermissionHandler.canSubmitForApproval(selected_sow.SOW_Status__c,selected_sow.SOW_PFY__r.SOW_Status__c, selected_sow.Sync_Status__c);
         }
     }
 
@@ -103,25 +103,48 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
             return Oblix_Utils.SWOP_DASHBOARD_REPORT_CAMPAIGNS_PER_BOX;
         }
     }
-
+    //Hide Submit for approval button if the Financial year hasn't been updated
     public Boolean submitForApprovalFX{
         get{
             Date fxDate = null;
-            Oblix_FX_Change__c orgDate = Oblix_FX_Change__c.getInstance(UserInfo.getOrganizationId());
-            if(null != orgDate)
-                fxDate = orgDate.Org_FX_Date__c;
-            if(fxDate != null && date.today() <= fxDate.addMonths(12)){
+            Oblix_FX_Change__c orgFY = Oblix_FX_Change__c.getInstance(UserInfo.getOrganizationId());
+            Integer sowFY = Oblix_SOWHandlerLogic.getFinancialYear(selected_sow);
+            
+            if(orgFY != null && orgFY.Financial_Year__c != null && sowFY != null && 
+                orgFY.Financial_Year__c >= sowFY){
                 return false;
             }else{
                 return true;
             }
     }set;}
+    
+    //Hide Submit for approval button if the Financial year hasn't been updated
+    public Boolean isFXApprovedForFY{
+        get{
+            Oblix_FX_Change__c orgFY = Oblix_FX_Change__c.getInstance(UserInfo.getOrganizationId());
+            Integer sowFY = Oblix_SOWHandlerLogic.getFinancialYear(selected_sow);
+            
+            if(orgFY != null && orgFY.Financial_Year__c != null && sowFY != null && 
+                orgFY.Financial_Year__c >= sowFY){
+                return true;
+            }else{
+                return false;
+            }
+    }set;}
+
+    public Boolean canSeeDashboard{
+        get{
+            return Oblix_PermissionHandler.canSeeDashboards();
+        }
+    }
+
+    public Boolean hasCampaigns {get; set;}
 
 
     public Oblix_SOWMainDetailController() {
 
         String sow_id = ApexPAges.currentPage().getParameters().get('sowId');
-        selected_sow = getSOW(sow_id, Oblix_Utils.getAllFieldsInFieldsSet(OBJECT_SOW_TO_QUERY, FIELD_SET_SOW_MAIN_DETAIL), null);
+        selected_sow = getSOW(sow_id, Oblix_Utils.getAllFieldsInFieldsSet(OBJECT_SOW_TO_QUERY, FIELD_SET_SOW_MAIN_DETAIL), NULL);
         pageAttachment = new Attachment();
         map_att_locale = new Map <Id, String>();
         last_updated = '';
@@ -140,6 +163,8 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
                 li_campaign_and_non_campaign_items.add(new CampaignNonCampaignItems('Campaign', campaign, can_edit));
             }
 
+            hasCampaigns = !li_campaign_and_non_campaign_items.isEmpty();
+
             // get non-campaigns
             /*for(Marketing_Basics__c nonCampaign : [SELECT Id, Name, OblixCountry__r.Name, OblixOtherItemFee__c FROM Marketing_Basics__c WHERE Oblix_SOWMarketing__c = : selected_sow.Id LIMIT 500]){
                 li_campaign_and_non_campaign_items.add(new CampaignNonCampaignItems('Non Campaign', nonCampaign, can_edit));
@@ -152,13 +177,6 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
             
             // get attachments
             liso_attachments = getSOWAttachments(selected_sow.Id);
-
-            if (selected_sow.Cloning_failed__c) {
-                ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'Error. Please contact System Administrator'));
-            }
-            if(selected_sow.Marked_for_cloning__c) {
-                ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Info, 'Open for Updates version is being created.'));
-            }
 
             if(!liso_attachments.isEmpty()){
                 for(Attachment att:liso_attachments){
@@ -190,7 +208,8 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
 
         // not a DML exception
         } catch (Exception e){
-            ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'There was an issue while trying to delete this SOW: ' + e.getMessage()));
+            ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'You are not allowed to delete this SOW'));
+            return null;
         }
 
         return sow_details_page;
@@ -267,7 +286,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
                 selected_sow.Unilever_SOW_Approver_Name__c == null) {
 
             selected_sow.Unilever_SOW_Approver_Name__c = UserInfo.getUserId();
-            update selected_sow;
+            //update selected_sow;
         }
 
         //update selected_sow;
@@ -385,8 +404,21 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
         List<ProcessInstanceWorkitem> workItems = [Select p.Id from ProcessInstanceWorkitem p where p.ProcessInstance.TargetObjectId = :selected_sow.Id];
         // S.M 20160209 adding checks and removing else to fix sonar issue
         if(NULL != workItems && workItems.size() == 1){
-            //Once it's already approved by Unilever skip the step if it's rejected by agencies
 
+            if(selected_sow.SOW_Status__c == Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL){
+
+                // reload SOW to get new sow status
+                selected_sow = getSOW(selected_sow.Id, Oblix_Utils.getAllFieldsInFieldsSet(OBJECT_SOW_TO_QUERY, FIELD_SET_SOW_MAIN_DETAIL) , ', (SELECT Name_Suffix__c FROM Marketing_Projects__r)');
+ 
+                // set the sync status to clone requested to allow batch job to process it
+                updateSyncStatusAndNameSuffix();
+                
+                // show appropriate notification to user
+                showNotificationToUser(selected_sow);
+
+            }
+
+            //Once it's already approved by Unilever skip the step if it's rejected by agencies
             // 21/04 DE351: For SysAdmin and SU set them as designated Agency approvers if no Agency approver was previously assigned to prevent error message
             //              All other users won't be able to complete Unilever Approval if no Agency approver is assigned (handled by try-catch bellow)
             if (selected_sow.SOW_Status__c == Oblix_Utils.SOW_STATUS_AWAITING_UNILEVER_APPROVAL &&
@@ -394,22 +426,9 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
                     selected_sow.Agency_SOW_Approver_Name__c == null ) {
                     
                     selected_sow.Agency_SOW_Approver_Name__c = UserInfo.getUserId();
-                    update selected_sow;
             }
 
-            if(selected_sow.SOW_Status__c == Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL){
-
-                // reload SOW to get new sow status
-                selected_sow = getSOW(selected_sow.Id, Oblix_Utils.getAllFieldsInFieldsSet(OBJECT_SOW_TO_QUERY, FIELD_SET_SOW_MAIN_DETAIL) , null);
- 
-                //selected_sow.Marked_for_cloning__c = true;
-                // set the sync status to clone requested to allow batch job to process it
-                updateSyncStatusAndNameSuffix();
-                
-                update selected_sow;
-                ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Info, 'SOW will be cloned shortly. Please refresh SOW list in a few minutes.'));
-
-            }
+            update selected_sow;
 
             try {
                 ProcessInstanceWorkitem wi = workItems[0];
@@ -455,21 +474,64 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
     /*******************************************************************************
     * @author       Execloud ©
     * @date         2016-05-07
-    * @description  Depending on the type of approval update the name suffix 
-                    or set the sync status to a value to be picked up by the job
+    * @description  depending on if SOW initial approved or not show appropriate message to user
     ********************************************************************************/
-    private void updateSyncStatusAndNameSuffix(){
+    public void showNotificationToUser(Marketing_SOW__c selected_sow){
 
         // is it Initial Approval or EOY approval?
         if (selected_sow.Initial_Approval_Complete__c){
-            selected_sow.Name_Suffix__c = Oblix_Utils.NAME_SUFFIX_FINALISED;
+            
+            ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Info, 'SOW finalised successfully!'));
+            
         }else{
-            // mark as clone requested to let the batch job pick this up 
-            selected_sow.Sync_Status__c = Oblix_Utils.JOB_STATUS_CLONE_REQUESTED;
+
+            ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Info, 'SOW will be cloned shortly. Please refresh SOW list in a few minutes.'));        
         }
 
 
     }
+
+    /*******************************************************************************
+    * @author       Execloud ©
+    * @date         2016-05-07
+    * @description  Depending on the type of approval update the name suffix 
+                    or set the sync status to a value to be picked up by the job
+    ********************************************************************************/
+    public void updateSyncStatusAndNameSuffix(){
+
+        // is it Initial Approval or EOY approval?
+        if (selected_sow.Initial_Approval_Complete__c){
+            selected_sow.Name_Suffix__c = Oblix_Utils.NAME_SUFFIX_FINALISED;
+            // also update all related campaigns to be finalised
+            updateCampaignNameSuffix();
+            // enforce full campaign update 
+            // S.M. 2016-05-17 taken out as the user can only submit for approval once sync is complete
+            //selected_sow.Sync_Status__c = Oblix_Utils.JOB_STATUS_SYNC_REQUESTED;
+        }else{
+            // mark as clone requested to let the batch job pick this up 
+            selected_sow.Sync_Status__c = Oblix_Utils.JOB_STATUS_CLONE_REQUESTED;
+        }
+    }
+
+    /*******************************************************************************
+    * @author       Execloud ©
+    * @date         2016-05-07
+    * @description  Set the name suffix for campaigns below SOW being finalised
+    ********************************************************************************/
+    public void updateCampaignNameSuffix(){
+
+        List<Oblix_SOW_Projects__c> list_campaigns_to_update = new List<Oblix_SOW_Projects__c>();
+
+        // is it Initial Approval or EOY approval?
+        for (Oblix_SOW_Projects__c campaign : selected_sow.Marketing_Projects__r){
+            campaign.Name_Suffix__c = Oblix_Utils.NAME_SUFFIX_FINALISED;
+            list_campaigns_to_update.add(campaign);
+        }
+
+        update list_campaigns_to_update;
+    }
+
+
     /*******************************************************************************
     * @author       Ignacio Llorca
     * @date         2016-04-25
@@ -595,5 +657,31 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
         return null;
     }
 
+    /******************************************************************************************
+    * @author       makepositive
+    * @date         2016-05-05
+    * @description  If min 1 campaign is sync required then send true otherwise false
+    *******************************************************************************************/
+    public Boolean shouldSyncAllCampaigns{
+
+        get{
+            Boolean sync_required = false;
+
+            try{
+                if ([SELECT count() FROM Oblix_SOW_Projects__c WHERE Financial_Year__c =:selected_sow.SOW_PFY__c AND Sync_Status__c =: Oblix_Utils.JOB_STATUS_SYNC_REQUIRED] > 0){
+                    sync_required = true;
+                }
+                else
+                {
+                    sync_required = false;
+                }
+
+                return sync_required;
+            }catch (DmlException e){
+                ApexPages.addMessage(new ApexPages.message(ApexPages.SEVERITY.ERROR, 'Could not fetch campaign sync status'));
+                return sync_required;
+            }
+        }
+    }
     
 }

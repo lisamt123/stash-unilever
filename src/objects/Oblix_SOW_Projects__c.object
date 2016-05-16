@@ -10,9 +10,7 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Clone</actionName>
-        <content>Oblix_VF04OverrideProjectNew</content>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Visualforce</type>
+        <type>Default</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Delete</actionName>
@@ -32,9 +30,7 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>New</actionName>
-        <content>Oblix_VF04OverrideProjectNew</content>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Visualforce</type>
+        <type>Default</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>SaveEdit</actionName>
@@ -364,6 +360,11 @@
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
+        <displayedFields>
+            <field>Percentage_of_Fees_PFY__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
         <label>Oblix_Campaign_Summary</label>
     </fieldSets>
     <fieldSets>
@@ -556,6 +557,16 @@
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>Campaign_Attributes_Updated__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This flag is set via campaign create VF page. It is used during the sync process to determine if an overwrite to NFY campaign fields are required. This is to ensure updating the assets alone does not overwrite the campaign attributes.</description>
+        <externalId>false</externalId>
+        <label>Campaign Attributes Updated</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Campaign_Countries__c</fullName>
         <description>List of countries selected for this campaign</description>
         <externalId>false</externalId>
@@ -680,7 +691,7 @@
         <label>Campaign PFY</label>
         <referenceTo>Oblix_SOW_Projects__c</referenceTo>
         <relationshipLabel>SWOP Campaigns (Campaign PFY)</relationshipLabel>
-        <relationshipName>Campaign_PFY</relationshipName>
+        <relationshipName>Campaigns_PFY</relationshipName>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1517,7 +1528,7 @@ ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Returned by Agency&quot;)
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Multiple countries (5-10), multiple language (5-10)</fullName>
+                <fullName>Multiple countries (6-10), multiple language (6-10)</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -2091,6 +2102,19 @@ ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Returned by Agency&quot;)
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Unique_key__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>Field used to prevent creation of campaigns with the same name within the context of the SOW.</description>
+        <externalId>false</externalId>
+        <label>Unique key</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
         <fullName>Value_To_BePaid_Manual_Override__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -2104,7 +2128,7 @@ ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Returned by Agency&quot;)
         <description>Value to be paid in Current FY
 Was originally Percentage_of_Fee_for_this_FY__c * Campaign_Total_Fees__c but amended for rollover process</description>
         <externalId>false</externalId>
-        <formula>(Percentage_of_Fees_Paid_To_Date__c * Campaign_Total_Fees__c) - Fees_Paid_PFY__c</formula>
+        <formula>(Percentage_of_Fees_Paid_To_Date__c * Campaign_Total_Fees__c) -  Fees_PFY_Paid_Using_CFY_Calc__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Fees To Be Paid In Current FY</label>
         <precision>18</precision>
@@ -2137,7 +2161,7 @@ Was originally Percentage_of_Fee_for_this_FY__c * Campaign_Total_Fees__c but ame
         <fullName>Lock_Campaign_Record_if_Campaign_Sync</fullName>
         <active>true</active>
         <description>Lock Campaign Record if Campaign Sync  in Progress.</description>
-        <errorConditionFormula>IF( $Profile.Name &lt;&gt; &apos;System Administrator&apos; &amp;&amp; (TEXT( Sync_Status__c ) == &apos;Sync In Progress&apos; ||  Sync_Required_NFY__c  == &apos;Sync In Progress&apos; || TEXT( Sync_Status__c ) == &apos;Sync Requested&apos; ||  Sync_Required_NFY__c  == &apos;Sync Requested&apos;),true,false)</errorConditionFormula>
+        <errorConditionFormula>IF($Setup.Oblix_Job_Orchestration__c.Job_Is_Running__c == true &amp;&amp; $Profile.Name &lt;&gt; &apos;System Administrator&apos; &amp;&amp; (TEXT( Sync_Status__c ) == &apos;Sync In Progress&apos; ||  Sync_Required_NFY__c  == &apos;Sync In Progress&apos; || TEXT( Sync_Status__c ) == &apos;Sync Requested&apos; ||  Sync_Required_NFY__c  == &apos;Sync Requested&apos;),true,false)</errorConditionFormula>
         <errorMessage>Sync in Progress. Record Locked</errorMessage>
     </validationRules>
     <validationRules>

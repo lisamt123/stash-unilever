@@ -96,12 +96,12 @@ public with sharing class Oblix_CampaignStageLogic{
 
     public Set<String> projectedValueSet {
         get {
-            if (projectedValueSet == null) {    
-                String currentProjectedValue = (String)sow_project_in_scope.get(CAMPIGN_PROJECTED_STAGE_CFY_FIELD_NAME);
-                currentProjectedValue = (currentProjectedValue == null) ? '' : currentProjectedValue;
-                List<String> projectedValueList = currentProjectedValue.split(';');
-                projectedValueSet = new Set<String>(projectedValueList);
-            }
+    
+            String currentProjectedValue = (String)sow_project_in_scope.get(CAMPIGN_PROJECTED_STAGE_CFY_FIELD_NAME);
+            currentProjectedValue = (currentProjectedValue == null) ? '' : currentProjectedValue;
+            List<String> projectedValueList = currentProjectedValue.split(';');
+            projectedValueSet = new Set<String>(projectedValueList);
+        
             return projectedValueSet;
         }
         set;
@@ -110,12 +110,12 @@ public with sharing class Oblix_CampaignStageLogic{
 
     public Set<String> completedValueSet {
         get {
-            if (completedValueSet == null) {
-                String currentCompletedValue = (String)sow_project_in_scope.get(CAMPIGN_COMPLETED_STAGE_CFY_FIELD_NAME);
-                currentCompletedValue = (currentCompletedValue == null) ? '' : currentCompletedValue;
-                List<String> completedValueList = currentCompletedValue.split(';');
-                completedValueSet = new Set<String>(completedValueList);
-            }
+
+            String currentCompletedValue = (String)sow_project_in_scope.get(CAMPIGN_COMPLETED_STAGE_CFY_FIELD_NAME);
+            currentCompletedValue = (currentCompletedValue == null) ? '' : currentCompletedValue;
+            List<String> completedValueList = currentCompletedValue.split(';');
+            completedValueSet = new Set<String>(completedValueList);
+
             return completedValueSet;
         }
         set;
@@ -124,12 +124,12 @@ public with sharing class Oblix_CampaignStageLogic{
 
     public Set<String> pastFYProjectedValueSet {
         get {
-            if (pastFYProjectedValueSet == null) {
-                String pastFYProjectedValue = (String)sow_project_in_scope.get(CAMPIGN_PROJECTED_STAGE_PFY_FIELD_NAME);
-                pastFYProjectedValue = (pastFYProjectedValue == null) ? '' : pastFYProjectedValue;
-                List<String> pastFYprojectedValueList = pastFYProjectedValue.split(';');
-                pastFYProjectedValueSet = new Set<String>(pastFYprojectedValueList);
-            }
+
+            String pastFYProjectedValue = (String)sow_project_in_scope.get(CAMPIGN_PROJECTED_STAGE_PFY_FIELD_NAME);
+            pastFYProjectedValue = (pastFYProjectedValue == null) ? '' : pastFYProjectedValue;
+            List<String> pastFYprojectedValueList = pastFYProjectedValue.split(';');
+            pastFYProjectedValueSet = new Set<String>(pastFYprojectedValueList);
+
             return pastFYProjectedValueSet;
         }
         set;
@@ -138,12 +138,12 @@ public with sharing class Oblix_CampaignStageLogic{
 
     public Set<String> pastFYCompletedValueSet {
         get {
-            if (pastFYCompletedValueSet == null) {
-                String pastFYCompletedValue = (String)sow_project_in_scope.get(CAMPIGN_COMPLETED_STAGE_PFY_FIELD_NAME);
-                pastFYCompletedValue = (pastFYCompletedValue == null) ? '' : pastFYCompletedValue;
-                List<String> pastFYCompletedValueList = pastFYCompletedValue.split(';');
-                pastFYCompletedValueSet = new Set<String>(pastFYCompletedValueList);
-            }
+
+            String pastFYCompletedValue = (String)sow_project_in_scope.get(CAMPIGN_COMPLETED_STAGE_PFY_FIELD_NAME);
+            pastFYCompletedValue = (pastFYCompletedValue == null) ? '' : pastFYCompletedValue;
+            List<String> pastFYCompletedValueList = pastFYCompletedValue.split(';');
+            pastFYCompletedValueSet = new Set<String>(pastFYCompletedValueList);
+
             return pastFYCompletedValueSet;
         }
         set;
@@ -288,6 +288,10 @@ public with sharing class Oblix_CampaignStageLogic{
         i_percentage_of_fee_this_year = 0;
         i_agency_Percentage_of_fees_this_year = 0;
 
+        //Resetting stage wrappers
+        projected_stages = null;
+        completed_stages = null;
+
 
         for (Integer i : projected_stages.keySet()) {
             Stage projectedStage = projected_stages.get(i);
@@ -300,10 +304,13 @@ public with sharing class Oblix_CampaignStageLogic{
 
         if (b_manual_override_on || b_cancelled_campaign) {
             i_percentage_of_fee_this_year = sow_project_in_scope.Percentage_of_Fee_for_this_FY__c;
-            cancelCampaignManualPercent = i_percentage_of_fee_this_year;
-        } else {
+            //cancelCampaignManualPercent = i_percentage_of_fee_this_year;
+        } /*else {
             cancelCampaignManualPercent = i_agency_Percentage_of_fees_this_year;
-        }
+        }*/
+        
+        //cancelCampaignManualPercent should always default to Projected % value when opening Cancel Modal
+        cancelCampaignManualPercent = i_percentage_of_fee_this_year;
 
         system.debug('### after - initStages - projected : '+projected_stages);
         system.debug('### after - initStages - completed : '+completed_stages);
@@ -492,9 +499,9 @@ public with sharing class Oblix_CampaignStageLogic{
             currentCompletedValueSet.remove(val);
         }
 
-        //if (!b_manual_override_on) {
-        //    cancelCampaignManualPercent = i_agency_Percentage_of_fees_this_year;
-        //}
+        if (!b_manual_override_on) {
+            cancelCampaignManualPercent = i_percentage_of_fee_this_year;
+        }
 
         calculateFeesForThisYear();
 
@@ -526,6 +533,10 @@ public with sharing class Oblix_CampaignStageLogic{
         currentValue = (currentValue == null) ? '' : currentValue;
         List<String> currentValueList = currentValue.split(';');
         Set<String> currentValueSet = new Set<String>(currentValueList);
+        System.debug('### toggleCompletionStage - before');
+        System.debug('### currentValue: ' + currentValue);
+        System.debug('### currentValueList: ' + currentValueList);
+        System.debug('### currentValueSet: ' + currentValueSet);
 
         Integer stage_number = Integer.valueOf(stagesByLabel.get(val).Attribute_1__c);
         Stage stage_wrapper = completed_stages.get(stage_number);
@@ -543,6 +554,9 @@ public with sharing class Oblix_CampaignStageLogic{
             stage_wrapper.selected = true;
         }
 
+        currentValueSet.remove('');
+        currentValueSet.remove(null);
+
         //if (!b_manual_override_on) {
         //    cancelCampaignManualPercent = i_agency_Percentage_of_fees_this_year;
         //}
@@ -557,6 +571,9 @@ public with sharing class Oblix_CampaignStageLogic{
 
         String newValue = String.join(new List<String>(currentValueSet), ';');
         sow_project_in_scope.put(CAMPIGN_COMPLETED_STAGE_CFY_FIELD_NAME, newValue);
+        System.debug('### toggleCompletionStage - after');
+        System.debug('### currentValueSet: ' + currentValueSet);
+        System.debug('### newValue: ' + newValue);
 
         s_selected_completed_stage = newValue;
 

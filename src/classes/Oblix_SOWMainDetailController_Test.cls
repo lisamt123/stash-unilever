@@ -95,6 +95,8 @@ private class Oblix_SOWMainDetailController_Test {
         Test.startTest();
 
         controllerInstance.uploadAttachment();
+        List<Attachment> uploadedAtt = [SELECT Id FROM Attachment limit 1];
+        controllerInstance.deleteAttachmentId = uploadedAtt[0].Id;
         controllerInstance.deleteAtt();
 
         PageReference deleteAction = controllerInstance.deleteAction();
@@ -172,6 +174,36 @@ private class Oblix_SOWMainDetailController_Test {
         PageReference sow_details_page = Page.oblix_sowmain;
         System.assertEquals(sow_details_page.getUrl(), submitForApproval.getUrl());
         System.assertEquals(sow_details_page.getUrl(), rejectSOW.getUrl());
+
+    }
+
+     @isTest static void testSyncCampaigns() {
+        initTestData();
+
+        ApexPAges.currentPage().getParameters().put('sowId', mSow.Id);
+        Oblix_SowMainDetailController controllerInstance = new Oblix_SowMainDetailController();
+
+        Test.startTest();
+        
+        PageReference initiateRO = controllerInstance.initiateRollOver();
+
+        List<Oblix_SOW_Projects__c> lst_sowp = [SELECT Id, Sync_Status__c FROM Oblix_SOW_Projects__c limit 1];
+
+        lst_sowp[0].Sync_Status__c = Oblix_Utils.JOB_STATUS_SYNC_REQUIRED;
+
+        update lst_sowp;
+
+        PageReference syncCamp = controllerInstance.syncCampaigns();
+
+        controllerInstance.updateSyncStatusAndNameSuffix();
+        
+
+        Boolean shouldSync = controllerInstance.shouldSyncAllCampaigns;
+            
+        Test.stopTest();    
+
+        PageReference sow_details_page = Page.oblix_sowmain;
+        
 
     }
 

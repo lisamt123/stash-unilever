@@ -1,6 +1,161 @@
 @isTest
 private class Oblix_SOWNonCampaignCreateCtrl_Test {
 
+    private static final String SOW_ID_PAGE_PARAMETER = 'sowId';
+    private static final String PRESELECTED_ITEM_PAGE_PARAMETER = 'preSelectedSection';
+
+    private static Marketing_SOW__c sow = new Marketing_SOW__c();
+
+
+    @testSetup static void initCommonData() {
+        User u = Oblix_TestUtils.createTestUser();
+        System.runAs(u) {  
+            insert Oblix_TestUtils.createOblixCustomSettings();
+            insert Oblix_TestUtils.createBoxRangeCalculatorRecords();
+            insert Oblix_TestUtils.createCountryCalculatorRecords();
+        }
+    }
+
+
+    @isTest private static void testBasketInit() {
+        createBaselineSOW();
+
+        //Init controller with existing assets
+        PageReference pageRef = Page.Oblix_SOWNonCampaignCreate;
+        Test.setCurrentPage(pageRef);
+        ApexPages.currentPage().getParameters().put(SOW_ID_PAGE_PARAMETER, sow.Id);
+        Oblix_SOWNonCampaignCreateController controller = new Oblix_SOWNonCampaignCreateController();
+
+        //Check whether controller was initiated with 3 item groupings
+        System.assertEquals(4 ,controller.helper.basket.keySet().size());
+
+        // When
+        //Test.startTest();
+    }
+
+
+    private static void createBaselineSOW() {
+
+        //Creating SOW
+        sow.Active__c = true;
+        sow.Name = 'Marketing Sow Approval';
+        sow.SOW_Status__c = 'Open';
+        sow.Financial_Year__c = 'FY2016';
+        //sow.Oblix_AgencyEstimate__c = myAccount.Id;
+        insert sow;
+
+
+        List <Oblix_Calculator__c> countriesNames = new List <Oblix_Calculator__c>();
+        countriesNames =[select Financial_Year__c,Oblix_Agency__c, OblixCountry__c, OblixCountry__r.Name 
+                        from Oblix_Calculator__c ];
+
+
+        List<Marketing_Basics__c> nonCampaigns = Oblix_TestUtils.createMarketingBasics(sow.Id, 7);
+
+        //[0,1] - Activity / Brandbook
+        for (Integer i = 0; i < 2; i++) {
+            Marketing_Basics__c nonCampaignItem = nonCampaigns[i];
+            
+            nonCampaignItem.Name = 'Brand Book';
+            nonCampaignItem.Non_campaign_title__c = 'Brand Book';
+            nonCampaignItem.Activities__c = 'Brand Book';
+            nonCampaignItem.OblixCountry__c = countriesNames[0].OblixCountry__c;
+            nonCampaignItem.Agency_Department__c = 'Digital Account Management';
+            nonCampaignItem.Role_Title__c = ((i == 0) ? 'Digital Junior Account Manager' : 'Head of Digital');
+            nonCampaignItem.Description__c = ((i == 0) ? 'Test description' : '');
+
+            nonCampaignItem.No_of_Hours_Required__c = 22;
+            //nonCampaignItem.Oblix_Hourly_Rate__c = 46;
+            nonCampaignItem.OblixOtherItemFee__c = 1001;
+
+            nonCampaignItem.RecordTypeId = Oblix_Utils.RT_NON_CAMPAIGN_ACTIVITY_ID;
+
+            nonCampaignItem.Non_Campaign_Key__c = nonCampaignItem.Oblix_SOWMarketing__c + nonCampaignItem.Activities__c + 
+                                    countriesNames[0].OblixCountry__r.Name + nonCampaignItem.Agency_Department__c + 
+                                    nonCampaignItem.Role_Title__c;   
+        }
+
+        //[2,3] - Activity / Brandbook
+        for (Integer i = 2; i < 4; i++) {
+            Marketing_Basics__c nonCampaignItem = nonCampaigns[i];
+            
+            nonCampaignItem.Name = 'Other test';
+            nonCampaignItem.Non_campaign_title__c = 'Other';
+            nonCampaignItem.Activities__c = 'Other';
+            nonCampaignItem.OblixCountry__c = countriesNames[0].OblixCountry__c;
+            nonCampaignItem.Agency_Department__c = 'Digital Account Management';
+            nonCampaignItem.Role_Title__c = ((i == 2) ? 'Digital Junior Account Manager' : 'Head of Digital');
+            nonCampaignItem.Description__c = ((i == 2) ? 'Test description' : '');
+
+            nonCampaignItem.No_of_Hours_Required__c = 22;
+            //nonCampaignItem.Oblix_Hourly_Rate__c = 46;
+            nonCampaignItem.OblixOtherItemFee__c = 1001;
+
+            nonCampaignItem.RecordTypeId = Oblix_Utils.RT_NON_CAMPAIGN_ACTIVITY_ID;
+
+            nonCampaignItem.Non_Campaign_Key__c = nonCampaignItem.Oblix_SOWMarketing__c + nonCampaignItem.Activities__c + nonCampaignItem.Name + 
+                                    countriesNames[0].OblixCountry__r.Name + nonCampaignItem.Agency_Department__c + 
+                                    nonCampaignItem.Role_Title__c;   
+        }
+
+        //[4] - Activity / Brandbook
+        for (Integer i = 4; i < 5; i++) {
+            Marketing_Basics__c nonCampaignItem = nonCampaigns[i];
+            
+            nonCampaignItem.Name = 'Brand Communication Idea';
+            nonCampaignItem.Non_campaign_title__c = 'Brand Communication Idea';
+            nonCampaignItem.Activities__c = 'Brand Communication Idea';
+            nonCampaignItem.OblixCountry__c = countriesNames[0].OblixCountry__c;
+            nonCampaignItem.Agency_Department__c = 'Digital Account Management';
+            nonCampaignItem.Role_Title__c = 'Head of Digital';
+            nonCampaignItem.Description__c = '';
+
+            nonCampaignItem.No_of_Hours_Required__c = 33.5;
+            //nonCampaignItem.Oblix_Hourly_Rate__c = 36.5;
+            nonCampaignItem.OblixOtherItemFee__c = 1222.75;
+
+            nonCampaignItem.RecordTypeId = Oblix_Utils.RT_NON_CAMPAIGN_ACTIVITY_ID;
+
+            nonCampaignItem.Non_Campaign_Key__c = nonCampaignItem.Oblix_SOWMarketing__c + nonCampaignItem.Activities__c + 
+                                    countriesNames[0].OblixCountry__r.Name + nonCampaignItem.Agency_Department__c + 
+                                    nonCampaignItem.Role_Title__c;   
+        }
+
+        //[5,6] - Activity / Brandbook
+        for (Integer i = 5; i < 7; i++) {
+            Marketing_Basics__c nonCampaignItem = nonCampaigns[i];
+            
+            nonCampaignItem.Name = 'DedicatedResource1';
+            nonCampaignItem.Non_campaign_title__c = '';
+            nonCampaignItem.Activities__c = '';
+            nonCampaignItem.OblixCountry__c = countriesNames[0].OblixCountry__c;
+            nonCampaignItem.Agency_Department__c = 'Creative';
+            nonCampaignItem.Role_Title__c = ((i == 5) ? 'Creative Director' : 'Associate Creative Director');
+            nonCampaignItem.Description__c = ((i == 5) ? 'Test description' : '');
+
+            nonCampaignItem.No_of_Hours_Required__c = 22;
+            //nonCampaignItem.Oblix_Hourly_Rate__c = 46;
+            nonCampaignItem.OblixOtherItemFee__c = 1001;
+
+            nonCampaignItem.RecordTypeId = Oblix_Utils.RT_NON_CAMPAIGN_RESOURCE_ID;
+
+            nonCampaignItem.Non_Campaign_Key__c = nonCampaignItem.Oblix_SOWMarketing__c + nonCampaignItem.Name + 
+                                    countriesNames[0].OblixCountry__r.Name + nonCampaignItem.Agency_Department__c + 
+                                    nonCampaignItem.Role_Title__c;   
+        }
+
+        insert nonCampaigns;
+
+    }
+
+
+
+
+
+
+
+
+/*
     static Marketing_Basics__c globalAct; 
 
     @isTest private static void createMaketingSow (){
@@ -140,5 +295,5 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
          }
         
     }
- 
+ */
 }

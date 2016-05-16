@@ -58,8 +58,13 @@ public with sharing class Oblix_AddAssetPageHelper {
             map_campaign_for_calculator = 
             	new Map<Id, Oblix_SOW_Projects__c>((List<Oblix_SOW_Projects__c>)(
             		[SELECT 
+                        Financial_Year__c,
             			Financial_Year__r.Financial_Year__c, 
             			Financial_Year__r.Name,
+                        Financial_Year__r.SOW_Status__c,
+                        Campaign_PFY__c, 
+                        Campaign_PFY__r.Financial_Year__r.SOW_Status__c,
+                        Campaign_Status__c,
             			Brand_Led_Growth__c, 
             			Project_Scale_1__c, 
             			Project_Scale_2__c, 

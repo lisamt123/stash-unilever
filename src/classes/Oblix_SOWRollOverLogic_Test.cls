@@ -16,6 +16,7 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
         	insert list_of_asset_scoring;
 
         	insert Oblix_TestUtils.createOblixCustomSettings();
+        	insert Oblix_TestUtils.createOblixJobOrchestrationCustomSetting();
         	insert Oblix_TestUtils.createBoxRangeCalculatorRecords();
         	insert Oblix_TestUtils.createCountryCalculatorRecords();
 
@@ -86,7 +87,8 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
 			mSow.Sync_Status__c = Oblix_Utils.JOB_STATUS_SYNC_REQUESTED;
 			mSow.Initial_Approval_Complete__c = true;
 			mSow.Name_Suffix__c = Oblix_Utils.NAME_SUFFIX_LIVE;
-
+			mSow.SOW_Status__c = Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES;
+			
 			update mSow;
 
 			mSow = [SELECT Sync_Status__c, Name, Name_Prefix__c, Name_Suffix__c,Marketing_SOW__c.Financial_Year__c FROM Marketing_SOW__c WHERE Id =: mSow.Id];
@@ -133,6 +135,7 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
 
 		System.runAs(admin_super_user) {
 
+
 			Oblix_SyncBatchJob job_process_batch = new Oblix_SyncBatchJob(sow_requested_clone_size,sow_requested_sync_size,campaign_requested_sync_size);
 	    	
 	        system.assertEquals(9, job_process_batch.list_job_components.size(), 'Incorrect number of job components populated!');
@@ -151,7 +154,7 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
 	    		WHERE Name_Prefix__c =: Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME AND Name_Suffix__c =: Oblix_Utils.NAME_SUFFIX_LIVE AND Financial_Year__c = 'FY2016'];
 
 	    	Marketing_SOW__c sow_cloned = [SELECT Name, Original_SOW__c, Cloned_SOW__c, SOW_PFY__c, SOW_NFY__c FROM Marketing_SOW__c 
-	    		WHERE Name_Prefix__c =: Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME AND Name_Suffix__c =:  Oblix_Utils.NAME_SUFFIX_LIVE  AND Financial_Year__c = 'FY2017'];
+	    		WHERE Name_Prefix__c =: Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME AND Name_Suffix__c = ''  AND Financial_Year__c = 'FY2017'];
 
 
 	    	system.assertEquals(sow_cloned.Id, sow_original.SOW_NFY__c, 'Expecing NFY SOW Id to be populated');
@@ -188,15 +191,15 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
 	    	system.debug('##### CAMPAIGNS ORIGINAL: ' + JSON.serialize(list_campaign_original));
 	    	system.debug('##### CAMPAIGNS CLONED: ' + JSON.serialize(list_campaign_cloned));
 
-	    	system.assertEquals(3, list_campaign_original.size(), 'Expecing #of original campaign to be 3 actual: ' + list_campaign_original.size());
-	    	system.assertEquals(1, list_campaign_cloned.size(), 'Expecing #of cloned campaign to be 3 actual: ' + list_campaign_cloned.size());
+	    	system.assertEquals(3, list_campaign_original.size(), 'Expected #of original campaign not matching actuals!');
+	    	system.assertEquals(1, list_campaign_cloned.size(), 'Expected #of cloned campaign not matching actuals!');
 
 	    	for (Oblix_SOW_Projects__c orig: list_campaign_original){
-				system.assertEquals(5, orig.Marketing_SOW_Project_Splits__r.size(), 'Expecing #of original splits to be 5 actual: ' + orig.Marketing_SOW_Project_Splits__r.size());
+				system.assertEquals(5, orig.Marketing_SOW_Project_Splits__r.size(), 'Expected #of original splits not matching actual');
 	    	}
 
 	    	for (Oblix_SOW_Projects__c cloned: list_campaign_cloned){
-				system.assertEquals(5, cloned.Marketing_SOW_Project_Splits__r.size(), 'Expecing #of cloned splits to be 5 actual: ' + cloned.Marketing_SOW_Project_Splits__r.size());
+				system.assertEquals(5, cloned.Marketing_SOW_Project_Splits__r.size(), 'Expected #of cloned splits not matching actual');
 	    	}
 
 
@@ -205,8 +208,8 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
 	    	List<Oblix_Project_Assets__c> list_assets_cloned = [SELECT Name, Original_Asset__c, Cloned_Asset__c, Asset_PFY__c, Asset_NFY__c FROM Oblix_Project_Assets__c WHERE Agency_Projects__r.Financial_Year__r.Sync_Status__c = NULL ];
 
 
-	    	system.assertEquals(60, list_assets_original.size(), 'Expecing #of original assets to be 60 actual: ' + list_assets_original.size());
-	    	system.assertEquals(20, list_assets_cloned.size(), 'Expecing #of cloned assets to be 60 actual: ' + list_assets_cloned.size());
+	    	system.assertEquals(60, list_assets_original.size(), 'Expected #of original assets not matching actual');
+	    	system.assertEquals(20, list_assets_cloned.size(), 'Expected #of cloned assets not matching actual');
 	    }
 
 
@@ -218,6 +221,8 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
 
     	Test.startTest();
 	        Oblix_SyncBatchJob.addEvent('******************************STARTED EXECUTING JOB STEPS STEPS******************************',NULL);
+	        Oblix_SyncBatchJob batch_job = new Oblix_SyncBatchJob(1,1,1);
+	        batch_job.updateJobRunningCustomSetting(true);
 
 	        for (Oblix_SyncBatchJob.jobComponent job_component : job_components){
 	            system.assertNotEquals(job_component.process_name, NULL, 'process name cannot be null! ');
@@ -232,6 +237,8 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
 	                Oblix_SOWRolloverLogic.processStep(job_component);
 	            }
 	        }
+	        batch_job.updateJobRunningCustomSetting(false);
+
 	        Oblix_SyncBatchJob.addEvent('******************************COMPLETED EXECUTING JOB STEPS******************************',NULL);
 	    Test.stopTest();
     }
