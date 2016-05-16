@@ -762,6 +762,15 @@ CASE(MOD(  dat_Delivered_Date__c  - DATE(1985,6,24),7),
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>eml_SMT_group_email__c</fullName>
+        <externalId>false</externalId>
+        <label>SMT group email</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>eml_TNF_Unilever_Contact_Email__c</fullName>
         <description>TNF Unilever Contact Email*</description>
         <externalId>false</externalId>
@@ -809,6 +818,15 @@ CASE(MOD(  dat_Delivered_Date__c  - DATE(1985,6,24),7),
         <description>Unilever project manager Email</description>
         <externalId>false</externalId>
         <label>Unilever project manager Email</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>eml_VDM_group_email__c</fullName>
+        <externalId>false</externalId>
+        <label>VDM group email</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Email</type>
@@ -890,7 +908,7 @@ CASE(MOD(  dat_Delivered_Date__c  - DATE(1985,6,24),7),
     <fields>
         <fullName>fml_Unilever_Project_Name_on_PWORF__c</fullName>
         <externalId>false</externalId>
-        <formula>PWORF_ID__r.txta_Title__c</formula>
+        <formula>IF(ISBLANK(PWORF_ID__r.txta_Title__c), txt_Unilever_Project_Name__c ,PWORF_ID__r.txta_Title__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Unilever Project Name on PWORF</label>
         <required>false</required>
@@ -931,9 +949,31 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>fur_PWORFRecord_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>PWORF_ID__r.RecordType.DeveloperName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>PWORFRecord Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>fur_Project_Scale__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(PWORF_ID__r.pkl_Project_Scale__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Project Scale</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>fur_Unilever_Project_Name__c</fullName>
         <externalId>false</externalId>
-        <formula>PWORF_ID__r.txta_Title__c</formula>
+        <formula>IF(ISBLANK(PWORF_ID__r.txta_Title__c), txt_Unilever_Project_Name__c ,PWORF_ID__r.txta_Title__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Unilever Project Name</label>
         <required>false</required>
@@ -2538,6 +2578,8 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
         <language>en_US</language>
         <sharedTo>
             <group>CAP_SMT_Group</group>
+            <group>CAP_ULFT_Group</group>
+            <group>CAP_ULPT_Group</group>
         </sharedTo>
     </listViews>
     <listViews>

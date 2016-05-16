@@ -375,7 +375,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$EffectiveDate</groupingColumn>
-            <header>Monthly Primary Sales Value Growth</header>
+            <header>Monthly Primary Sales Value Growth %</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_01_Home_View/Monthly_Primary_Sales_Value_Growth_PRD</report>
             <showPercentage>false</showPercentage>

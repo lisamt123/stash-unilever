@@ -1,102 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
-    <actionOverrides>
-        <actionName>Accept</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Clone</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Delete</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Edit</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>List</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>New</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Tab</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>View</actionName>
-        <type>Default</type>
-    </actionOverrides>
     <deploymentStatus>Deployed</deploymentStatus>
-    <enableActivities>false</enableActivities>
-    <enableFeeds>false</enableFeeds>
-    <enableHistory>false</enableHistory>
-    <enableReports>false</enableReports>
     <fields>
         <fullName>BrandCategoryPosition__c</fullName>
-        <externalId>false</externalId>
         <formula>BrandPosition__r.Name + Brand__r.Name + ProductCategory__r.Name</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>BrandCategoryPosition</label>
-        <required>false</required>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>BrandPosition__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
         <label>BrandPosition</label>
         <referenceTo>MDO_BrandPosition__c</referenceTo>
         <relationshipLabel>Amr JobBudgetThresholds</relationshipLabel>
         <relationshipName>Amr_JobBudgetThresholds</relationshipName>
-        <required>false</required>
         <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Brand__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
         <label>Brand</label>
         <referenceTo>MDO_Brand__c</referenceTo>
         <relationshipLabel>Amr JobBudgetThresholds</relationshipLabel>
         <relationshipName>Amr_JobBudgetThresholds_del</relationshipName>
-        <required>false</required>
         <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Budget_Limit__c</fullName>
-        <externalId>false</externalId>
         <label>Budget Limit</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>3</scale>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>ProductCategory__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
         <label>ProductCategory</label>
         <referenceTo>MDO_Category__c</referenceTo>
         <relationshipLabel>Amr JobBudgetThresholds</relationshipLabel>
         <relationshipName>Amr_JobBudgetThresholds</relationshipName>
-        <required>false</required>
         <type>Lookup</type>
     </fields>
     <fields>
         <fullName>UserEmailId__c</fullName>
-        <externalId>false</externalId>
         <label>UserEmailId</label>
-        <required>false</required>
         <type>Email</type>
-        <unique>false</unique>
     </fields>
     <label>Amr JobBudgetThreshold</label>
     <listViews>
@@ -110,7 +56,6 @@
         <columns>UserEmailId__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
-        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>All1</fullName>

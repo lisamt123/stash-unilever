@@ -1,116 +1,100 @@
 .job-portfolio-container {
-	background: #FFFFFF none repeat scroll 0 0;
-	font-family: "dinOffPro", sans-serif;
-	margin: 0 auto;
+    background: #FFFFFF none repeat scroll 0 0;
+    font-family: "dinOffPro", sans-serif;
+    margin: 0 auto;
 }
-
 .job-portfolio-container a {
-	color: #3399cc !important;
+    color: #3399cc !important;
 }
-
 .leftbar {
-	float: left;
-	width: 22%;
+    float: left;
+    width: 22%;
 }
-
 .rightbar {
-	float: right;
-	width: 76%;
+    float: right;
+    width: 76%;
 }
-
 .leftbar-container {
-	min-height: 325px;
-	height: 100%;
+    min-height: 325px;
+    height: 100%;
 }
-
 .leftbar-container1 {
-	min-height: 455px;
-	height: 100%;
+    min-height: 455px;
+    height: 100%;
 }
-
 .data2Col {
-	padding: 0px !important;
-	border: medium none !important;
-}        
+    padding: 0px !important;
+    border: medium none !important;
+}
 .rich-tabpanel-content-position {
-	table-layout: fixed !important;
+    table-layout: fixed !important;
 }
-
 .apexp .bPageBlock .detailList {
-	table-layout: fixed;
+    table-layout: fixed;
 }
-
 .apexp .bPageBlock .detailList .apexp {
-	overflow-x: auto;
+    overflow-x: auto;
 }
-
 .advance-search-popup {
-	left: 20%;
-	width: 900px;
-	height: 400px;
-	top: 20%;
-	background-color: white;
-	border: 1px solid #333333;
-	z-index: 10;
-	position: fixed;
-	overflow-y: auto;
+    left: 20%;
+    width: 900px;
+    height: 400px;
+    top: 20%;
+    background-color: white;
+    border: 1px solid #333333;
+    z-index: 10;
+    position: fixed;
+    overflow-y: auto;
 }
-
 .mask {
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	top: 0px;
-	left: 0px;
-	background-color: rgba(0, 0, 0, 0.3);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.3);
 }
 /*scrollable table css*/
 
 .scrollbar-table-parent table.list tbody {
-	overflow-y: auto;
-	max-height: 300px;
-	display: -moz-grid;
-	display: run-in;
-	display: -webkit-box;
-	width: 100%;
+    overflow-y: auto;
+    max-height: 300px;
+    display: -moz-grid;
+    display: run-in;
+    display: -webkit-box;
+    width: 100%;
 }
-
-.scrollbar-table-parent table.list thead {         
-	display: inline-flex;
-	width: 100%;
-	table-layout: fixed !important;
+.scrollbar-table-parent table.list thead {
+    display: inline-flex;
+    width: 100%;
+    table-layout: fixed !important;
 }
-
 .scrollbar-table-parent table.list tbody td,
 .scrollbar-table-parent table.list thead th {
-	width: 6em;
+    width: 6em;
 }
-
 .scrollbar-table-parent tr.dataRow td {
-	padding: 11px 0 11px 5px !important;
+    padding: 11px 0 11px 5px !important;
 }
-
 .scrollbar-table-parent {
-	overflow-x: auto;
+    overflow-x: auto;
 }
-
 .scrollbar-table-parent2 table.list tbody {
-	overflow-y: auto;
-	max-height: 300px;
-	display: -moz-grid;
-	display: run-in;
-	display: -webkit-box;
-	width: 100%;
+    overflow-y: auto;
+    max-height: 300px;
+    display: -moz-grid;
+    display: run-in;
+    display: -webkit-box;
+    width: 100%;
 }
-
 .scrollbar-table-parent2 table.list thead {
-	/*display: inline-table; */
-	display: inline-flex;
-	width: 100%;
-	table-layout: fixed !important;
+    /*display: inline-table; */
+    
+    display: inline-flex;
+    width: 100%;
+    table-layout: fixed !important;
 }
-
 .scrollbar-table-parent2 table.list tbody td,
 .scrollbar-table-parent2 table.list thead th {
-	width: 6em;
+    width: 6em;
 }

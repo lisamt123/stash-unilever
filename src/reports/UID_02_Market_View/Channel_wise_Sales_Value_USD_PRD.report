@@ -77,6 +77,6 @@
     <showDetails>true</showDetails>
     <timeFrameFilter>
         <dateColumn>Account.Orders__r$EffectiveDate</dateColumn>
-        <interval>INTERVAL_PREVCURFY</interval>
+        <interval>INTERVAL_CURY</interval>
     </timeFrameFilter>
 </Report>
