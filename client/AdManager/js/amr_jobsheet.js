@@ -54,12 +54,12 @@ function calculate() {
             localValue = parseCurrency(localValue);
             var finalValue = localValue / selectedValue;
             finalValue = finalValue.toFixed(2);
-            $j('.outputIdClass').val(finalValue);
+            $j('.outputIdClass').val('\u20AC'+' '+finalValue);
         } else {
-            $j('.outputIdClass').val(0);
+            $j('.outputIdClass').val('\u20AC'+' '+0);
         }
     } else {
-        $j('.outputIdClass').val(0);
+        $j('.outputIdClass').val('\u20AC'+' '+0);
     }
 }
 
@@ -159,44 +159,8 @@ function closeLoadingCategoryJobSheet() {
 	$j('.loading').hide();
 }
 
-$j(document).ready(function() {
-
-    $j('body').attr('style', 'pointer-events:auto;');
-	
-	$j('.setinactivemask').attr('class','setinactivemask');
-	
-    showPopupJobsheet();
-    var defaultParam = urlParam('defaultPage');
-
-    if (defaultParam) {
-        $j('.main_inner_sectionh4[hashId=' + defaultParam + ']').find('div').attr('class', 'commonall foldclass');
-        var data_id_selected = $j('.main_inner_sectionh4[hashId=' + defaultParam + ']').find('div').attr('data-id');
-        if (data_id_selected) {
-            $j('.' + data_id_selected).show();
-        }
-    } else if ($j('.loadErrorParent').length > 0 || $j('.job_detail_main .messageText').length > 0) {
-        $j('.main_inner_sectionh4[hashId=jobdetails]').find('div').attr('class', 'commonall foldclass');
-
-        var data_id_selected = $j('.main_inner_sectionh4[hashId=jobdetails]').find('div').attr('data-id');
-        if (data_id_selected) {
-            $j('.' + data_id_selected).show();
-        }
-    } else if ($j('.compulsory-validation select').val() !== '' || $j('.tabsection .messageText').length > 0) {		
-        $j('.main_inner_sectionh4[hashId=new_saving]').find('div').attr('class', 'commonall foldclass');
-
-        var data_id_selected = $j('.main_inner_sectionh4[hashId=new_saving]').find('div').attr('data-id');
-        if (data_id_selected) {
-            $j('.' + data_id_selected).show();
-        }		
-
-    }
-    if ($j('.projecttextProjDetail').val().length > 0) {
-        var projDeatVal = $j('.projecttextProjDetail').val();
-        $j('.projectpick').val(projDeatVal);
-    }
-    hideOnPageLoad();
-
-    $j('.unshare').click(function() {
+function commonfnCall() {
+	$j('.unshare').click(function() {
         var id = $j(this).find('input').val();
         $j(this).parent().hide();
         unshareRapJob(id);
@@ -253,6 +217,115 @@ $j(document).ready(function() {
         $j('.change-status-popup').hide();
         $j("div").remove('.mask');
     });
+	
+	$j(".reallocatepopupstatus select option[value='Pending']").remove();
+	$j(".reallocatepopupstatus select option[value='']").remove(); 
+	
+	if($j('.loadErrorParent').length) {
+		$j('html,body').animate({scrollTop: $j('.loadErrorParent').offset().top},'slow');
+	} else if($j(".errorM3").length){
+		$j('html,body').animate({scrollTop: $j('.errorM3').offset().top},'slow');
+	}
+}
+
+function defaultParamCall() {
+	var defaultParam = urlParam('defaultPage');
+	
+	var isJobdetail = false;
+	isJobdetail 	= ($j('.loadErrorParent').length > 0 || (($j('.job_detail_main .messageText').length > 0)&& $j('.job_detail_main_error_visibility').is(":visible"))|| ($j('.job_detail_main .message').length > 0 && $j('.tabsection .messageText').is(':hidden')));
+    if (defaultParam) {
+        $j('.main_inner_sectionh4[hashId=' + defaultParam + ']').find('div').attr('class', 'commonall foldclass');
+        var data_id_selected = $j('.main_inner_sectionh4[hashId=' + defaultParam + ']').find('div').attr('data-id');
+        if (data_id_selected) {
+            $j('.' + data_id_selected).show();
+        }
+    } else if($j('.form-field2 .errorMsg').length > 0 || $j('.production-activity-sub-section .errorM3').length > 0){
+		$j('.main_inner_sectionh4[hashId=jobdetails]').find('div').attr('class', 'commonall foldclass');
+
+        var data_id_selected = $j('.main_inner_sectionh4[hashId=jobdetails]').find('div').attr('data-id');
+        if (data_id_selected) {
+            $j('.' + data_id_selected).show();
+        }
+		/*
+		if($j('.loadErrorParent').length) {
+			$j('html,body').animate({scrollTop: $j('.loadErrorParent').offset().top},'slow');
+		} else if($j(".errorM3").length){
+			$j('html,body').animate({scrollTop: $j('.errorM3').offset().top},'slow');
+		}
+		*/
+	}else if (($j('.compulsory-validation select').val() == '' && $j('.tabsection .errorM3').length == 0)&&(isJobdetail)) {
+        $j('.main_inner_sectionh4[hashId=jobdetails]').find('div').attr('class', 'commonall foldclass');
+
+        var data_id_selected = $j('.main_inner_sectionh4[hashId=jobdetails]').find('div').attr('data-id');
+        if (data_id_selected) {
+            $j('.' + data_id_selected).show();
+        }
+		/*
+		if($j('.loadErrorParent').length) {
+			$j('html,body').animate({scrollTop: $j('.loadErrorParent').offset().top},'slow');
+		} else if($j(".errorM3").length){
+			$j('html,body').animate({scrollTop: $j('.errorM3').offset().top},'slow');
+		}
+		*/
+    } else if ($j('.compulsory-validation select').val() !== '' || $j('.tabsection .messageText').length > 0) {		
+        $j('.main_inner_sectionh4[hashId=new_saving]').find('div').attr('class', 'commonall foldclass');
+
+        var data_id_selected = $j('.main_inner_sectionh4[hashId=new_saving]').find('div').attr('data-id');
+        if (data_id_selected) {
+            $j('.' + data_id_selected).show();
+        }		
+
+    }
+	loadErrorParentCall();
+}
+
+function loadErrorParentCall() {
+    /*Load Error code*/ 
+
+    $j('.loadError').each(function() {
+        var lengthOfParent = $j(this).attr('data-width');
+        if (lengthOfParent) {
+            $j(this).closest('.form-field-parent').addClass('loadErrorParent width70percent');
+        } else {
+            $j(this).closest('.form-field-parent').addClass('loadErrorParent');
+        }
+    });
+
+    /*End of load error code*/
+
+    if ($j(".loadErrorParent").length) {
+		$j('html,body').animate({
+			scrollTop: $j(".loadErrorParent").offset().top
+		}, 'slow');
+	} else if ($j(".production-activity-section .errorM3").length) {		    	 
+		$j('html,body').animate({
+			scrollTop: $j(".production-activity-section").offset().top
+		}, 'slow');
+	} else if ($j(".errorM3").length) {		    	 
+		$j('html,body').animate({
+			scrollTop: $j(".errorM3").offset().top
+		}, 'slow');
+	}
+}
+$j(document).ready(function() {
+	
+	commonfnCall();
+	defaultParamCall();
+	
+	var outputIdClassValue = $j('.outputIdClass').val();
+	$j('.outputIdClass').val('\u20AC'+' '+outputIdClassValue);
+	
+    $j('body').attr('style', 'pointer-events:auto;');
+	
+	$j('.setinactivemask').attr('class','setinactivemask');
+	
+    showPopupJobsheet();
+    
+    if ($j('.projecttextProjDetail').val().length > 0) {
+        var projDeatVal = $j('.projecttextProjDetail').val();
+        $j('.projectpick').val(projDeatVal);
+    }
+    hideOnPageLoad();
 
     // Agency logic
     var agencyFlag = true;
@@ -312,14 +385,4 @@ $j(document).ready(function() {
 
 		}
 	});
-
-    $j(".reallocatepopupstatus select option[value='Pending']").remove();
-	$j(".reallocatepopupstatus select option[value='']").remove(); 
-	
-	if($j('.loadErrorParent').length) {
-		$j('html,body').animate({scrollTop: $j('.loadErrorParent').offset().top},'slow');
-	} else if($j(".errorM3").length){
-		$j('html,body').animate({scrollTop: $j('.errorM3').offset().top},'slow');
-	}
-	
 });

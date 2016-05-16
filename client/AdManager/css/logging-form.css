@@ -1,7 +1,7 @@
 body {
     background: #fff;
     margin: 0 auto;
-	font-family: "dinOffPro", Verdana, "Open Sans", sans-serif !important;
+    font-family: "dinOffPro", Verdana, "Open Sans", sans-serif !important;
 }
 body {
     background: #fff;
@@ -148,7 +148,7 @@ section.description ul li {
     font-size: 0.9em;
     color: #0B2F4D;
 }
-.star {    
+.star {
     display: block;
     float: left;
     padding-left: 15px;
@@ -182,7 +182,7 @@ div.form-field {
     text-align: right;
     width: 298px;
 }
-label strong {    
+label strong {
     display: block;
     height: 1px;
     overflow: hidden;
@@ -192,7 +192,7 @@ label strong {
     top: 0px;
     width: 15px;
 }
-label div {    
+label div {
     cursor: pointer;
     height: 1px;
     overflow: hidden;
@@ -257,7 +257,7 @@ textarea {
     height: 90px;
     width: 420px !important;
 }
-.starfield {    
+.starfield {
     display: block;
 }
 #productionactivitytypegroup ul {
@@ -323,6 +323,7 @@ input[type="radio"] {
     font-family: "dinOffPro", Verdana, "Open Sans", sans-serif !important;
 }
 */
+
 footer a {
     text-decoration: none;
     color: #3399CC !important;
@@ -424,9 +425,8 @@ label {
     //border-left:1px solid #1796BE;
     padding-left: 20px;
 }
-
 .mediamasterdiv {
-    height: 35px;    
+    height: 35px;
     padding-top: 10px;
     width: 230px;
     padding-left: 12px;
@@ -543,13 +543,6 @@ input[type=checkbox] {
 .summary span {} label dfn {
     font-style: normal;
 }
-.dfn-selected {
-    background: #E6E6E6 none repeat scroll 0 0;
-    font-style: normal;
-    padding: 4px 0px;
-    border-radius: 6px;
-    height: auto !important;
-}
 .orclass {
     color: #333333;
     font-size: 12px;
@@ -563,7 +556,8 @@ input[type="text"]:focus {
     border-color: #66CCFF;
 }
 input[type=checkbox] {
-    vertical-align: sub; /*this is for IE11*/
+    vertical-align: sub;
+    /*this is for IE11*/
 }
 .asterisk {
     color: red;
@@ -601,105 +595,116 @@ div.form-field-multiselect {
     padding: 0px 10px 5px 10px;
 }
 .errorM3 {
-	border:3px solid red;
-	border-radius:0px !important;
-	margin:0 !important;
-	color:red !important;
-	background-color:#FFFFFF !important;
-	width:40%;
+    border: 3px solid red;
+    border-radius: 0px !important;
+    margin: 0 !important;
+    color: red !important;
+    background-color: #FFFFFF !important;
+    width: 40%;
 }
 .errorM3 span {
-	color:red !important;
+    color: red !important;
 }
 .errorM2 .messageText {
-	color:red !important;
+    color: red !important;
 }
 #AllTab_Tab {
-	display:none;
+    display: none;
 }
 .loadError {
-	color:red !important;
-	position:absolute !important;
-	top:0px !important;
-	left: 5px !important;
-	width:auto !important;
+    color: red !important;
+    position: absolute !important;
+    top: 0px !important;
+    left: 5px !important;
+    width: auto !important;
 }
 .loadErrorParent {
-	border:2px solid red;	
-	padding: 25px 0 10px 0;
-	position:relative;
-	margin: 12px 0;
-	border-radius: 6px;
+    border: 2px solid red;
+    padding: 25px 0 10px 0;
+    position: relative;
+    margin: 12px 0;
+    border-radius: 6px;
 }
 .form-field-level1 {
-	background:#FFFFFF;
+    background: #FFFFFF;
 }
 .fl-dn {
-	float:left;
-	display:none;
+    float: left;
+    display: none;
 }
 .loading-category-image {
-	display:none;width:30px;border:none;margin-bottom:5px;
+    display: none;
+    width: 30px;
+    border: none;
+    margin-bottom: 5px;
 }
 .w100ac {
-	width :100%; 
-	align:center;
+    width: 100%;
+    align: center;
 }
 .production-activity-sub-section {
-	margin-left:20px;margin-bottom:15px;
+    margin-left: 20px;
+    margin-bottom: 15px;
 }
 .left121 {
-	left:121px;
+    left: 121px;
 }
 .right208 {
-	right:208px;
+    right: 208px;
 }
 .flw26 {
-	float:left; width:26%;
+    float: left;
+    width: 26%;
 }
 .production-activity-help-text {
-	font-size: 12px; font-family: dinOffPro;
+    font-size: 12px;
+    font-family: dinOffPro;
 }
 .h50mt20 {
-	height:50px;margin-top:20px;
+    height: 50px;
+    margin-top: 20px;
 }
 .summary {
-	visibility:none;border-bottom:1px solid #E6E6E6;
+    visibility: none;
+    border-bottom: 1px solid #E6E6E6;
 }
 .right-8 {
-	right:-8px;
+    right: -8px;
 }
 .checkboxrmt {
-	margin-left:-39px;
+    margin-left: -39px;
 }
 .checkboxrmt-label {
-	margin-right: 44px !important;padding: 4px 5px 4px 0 !important;width: 306px !important;
+    margin-right: 44px !important;
+    padding: 4px 5px 4px 0 !important;
+    width: 306px !important;
 }
 .footer-c {
-	color: #95A4B6 !important;
+    color: #95A4B6 !important;
 }
 .ht41 {
-	height:41px !important;
+    height: 41px !important;
 }
 .bgbnone {
-	background:none !important;border:none !important;
+    background: none !important;
+    border: none !important;
 }
 .height258 {
-	height:258px;
+    height: 258px;
 }
 .errorM3 .msgIcon {
-	display:none;
+    display: none;
 }
-.success-message{
-	color:#53853D;
-	padding:12px 20px;
-	width:70%;
-	border:1px solid #74C366;
-	margin-top:20px;
-	background:#CCEBC9;
+.success-message {
+    color: #53853D;
+    padding: 12px 20px;
+    width: 70%;
+    border: 1px solid #74C366;
+    margin-top: 20px;
+    background: #CCEBC9;
 }
 .success-message label {
-	font-size:14px !important;
+    font-size: 14px !important;
 }
 .right202 {
     right: 202px;
