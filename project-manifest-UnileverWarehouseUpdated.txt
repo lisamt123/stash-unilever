@@ -88,30 +88,24 @@ src/flows/WU_MasterWarehouseUpdationChanges-4.flow
 src/dashboards
 src/dashboards/WU_Warehouse_Excellence_Team
 src/dashboards/WU_Warehouse_Excellence_Team/Home_Page_for_warehouse_excellence_Team.dashboard
-src/dashboards/WU_Warehouse_Leadership_Team
-src/dashboards/WU_Warehouse_Leadership_Team/Global_View_Dashboard1.dashboard
 src/dashboards/WU_Warehouse_Excellence_Team-meta.xml
 src/dashboards/WU_Warehouse_Leadership_Team-meta.xml
 src/sharingRules
 src/sharingRules/WU_Master_Warehouse__c.sharingRules
 src/profiles
 src/profiles/Unilever - Force MultiApp Standard.profile
+src/profiles/Unilever - Chatter Only.profile
 src/reports
 src/reports/WU_Warehouse_Excellence_Team
 src/reports/WU_Warehouse_Excellence_Team/Average_Utilization_by_Day.report
 src/reports/WU_Warehouse_Excellence_Team/Average_Utilization_by_Month.report
 src/reports/WU_Warehouse_Excellence_Team/Average_Utilization_by_Week.report
 src/reports/WU_Warehouse_Excellence_Team/Committed_vs_Current_by_Country.report
-src/reports/WU_Warehouse_Excellence_Team/Committed_vs_Current_by_MCO.report
-src/reports/WU_Warehouse_Excellence_Team/Committed_vs_Current_by_Network.report
-src/reports/WU_Warehouse_Excellence_Team/Committed_vs_Current_by_Region.report
-src/reports/WU_Warehouse_Excellence_Team/Master_Warehouse_Report_ToExport.report
 src/reports/WU_Warehouse_Leadership_Team
 src/reports/WU_Warehouse_Leadership_Team/Global_View_Report_by_Day.report
 src/reports/WU_Warehouse_Leadership_Team/Global_View_Report_By_Month.report
 src/reports/WU_Warehouse_Leadership_Team/Global_View_Report_by_Week.report
 src/reports/WU_Warehouse_Leadership_Team/Global_View_Report1.report
-src/reports/WU_Warehouse_Leadership_Team/Global_View.report
 src/reports/WU_Warehouse_Excellence_Team-meta.xml
 src/reports/WU_Warehouse_Leadership_Team-meta.xml
 
