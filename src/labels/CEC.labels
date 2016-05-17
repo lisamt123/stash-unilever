@@ -39,6 +39,13 @@
         <value>The fulfilment cannot be created without an Account attached to the Case</value>
     </labels>
     <labels>
+        <fullName>CEC_CaseAccountMissing_retrieval</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_CaseAccountMissing_retrieval</shortDescription>
+        <value>The retrieval request cannot be created without an Account attached to the Case</value>
+    </labels>
+    <labels>
         <fullName>CEC_CaseAccountPersonDetailsError</fullName>
         <categories>CEC:Case_Error</categories>
         <language>en_US</language>
@@ -198,6 +205,13 @@
         <value>Create</value>
     </labels>
     <labels>
+        <fullName>CEC_Delisted_Product</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC Delisted Product</shortDescription>
+        <value>* DELISTED PRODUCT *</value>
+    </labels>
+    <labels>
         <fullName>CEC_Detail_Request_Info</fullName>
         <categories>CEC: VF Page Global Display</categories>
         <language>en_US</language>
@@ -228,6 +242,13 @@
         <protected>false</protected>
         <shortDescription>CEC_Email_Label</shortDescription>
         <value>Email</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Email_Subject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC Email Subject</shortDescription>
+        <value>Consumer Services Case #:</value>
     </labels>
     <labels>
         <fullName>CEC_FirstName</fullName>
@@ -519,6 +540,14 @@
         <protected>false</protected>
         <shortDescription>CEC_Title</shortDescription>
         <value>Title</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Unilever_Opt_In</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Unilever_Opt_In</shortDescription>
+        <value>Unilever Opt-In</value>
     </labels>
     <labels>
         <fullName>CEC_ValidEmailTemplate</fullName>
