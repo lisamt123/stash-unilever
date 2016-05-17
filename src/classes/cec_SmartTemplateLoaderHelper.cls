@@ -46,7 +46,7 @@ global class cec_SmartTemplateLoaderHelper implements Support.EmailTemplateSelec
                 WHERE Market__c =: c.Market__c AND Brand__c =: c.Brand__c AND Default_Outbound_Email__c = True  
                 ORDER BY Default_Outbound_Email__c,LastModifiedDate DESC ];*/
 
-                if(c.Case_Market__c!=null || c.Case_Market__c !=''){       
+                if(c.Case_Market__c!=null && c.Case_Market__c !=''){       
                     confs = [SELECT id, Default_Template_Name__c, Brand__c, Brand_Market__c FROM cec_Case_Brand_Mapping__c 
                              WHERE Brand_Market__c =: c.Case_Market__c AND Brand__c =: c.Case_Brand__c AND Default_Outbound_Email__c = True  
                              ORDER BY Default_Outbound_Email__c,LastModifiedDate DESC ];
