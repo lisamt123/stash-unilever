@@ -58,6 +58,7 @@ src/permissionsets/CEC_User.permissionset
 src/queues/CEC_ANZ_Escalation_Queue.queue
 src/queues/CEC_ANZ_Quality_Check.queue
 src/queues/CEC_ANZ_Queue.queue
+src/queues/CEC_South_Africa_Queue.queue
 src/queues/CEC_South_Africa_Escalation_Queue.queue
 src/queues/CEC_South_Africa_Food_Queue.queue
 src/queues/CEC_South_Africa_Home_and_Personal_Queue.queue
