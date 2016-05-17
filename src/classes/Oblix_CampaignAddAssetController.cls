@@ -2,6 +2,16 @@ public with sharing class Oblix_CampaignAddAssetController extends Oblix_SWOPpar
     
     public Oblix_AddAssetPageHelper helper { get; set; }
 
+    public Boolean can_manage_asset{
+        get{
+            String pfy_sow_status = null;
+            if (selected_project.Campaign_PFY__c != null) {
+                pfy_sow_status = selected_project.Campaign_PFY__r.Financial_Year__r.SOW_Status__c;
+            }
+            return Oblix_PermissionHandler.canManageAssetBasket(selected_project.Financial_Year__r.SOW_Status__c, selected_project.Financial_Year__c, selected_project.Campaign_Status__c, pfy_sow_status);
+        }
+    }
+
 
     public Oblix_CampaignAddAssetController() {
         System.debug('### projectId: ' + ApexPages.currentPage().getParameters().get('projectId'));
