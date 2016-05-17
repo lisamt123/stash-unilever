@@ -153,9 +153,8 @@ public class EA_ControllerClass_Test{
             
             //["005c00000024XSZAA2","005E0000006cowkIAA"]
             
-            string jsonStr = '[' + '\"'+ localUser.id +'\"'+','+'\"'+ localUser.id +'\"'+']';
+            string jsonStr = '[' + '\"'+ localUser.id +'\"'+','+'\"'+ localUser.id +'\"'+']';            
             
-            system.debug('jsonStr=========>'+jsonStr);
             string result1 =EA_ControllerClass.callSubmitToDoAction(event.id, jsonStr,'Today');
             string result2 =EA_ControllerClass.callSubmitToDoAction(event.id, jsonStr,'Tomorrow');
             string result3 =EA_ControllerClass.callSubmitToDoAction(event.id, jsonStr,'Next Week');
