@@ -206,7 +206,7 @@ public with sharing class TriggerFactory
         {
             return new VEP_Visitor_TriggerHandler();
         }
-	*/
+	
         if (soType == AF_Agency_Estimate__c.sObjectType)
         {
             return new AF_Agency_EstimateHandler();
