@@ -24,6 +24,7 @@ public with sharing class Oblix_SOWRollOverLogic {
     private static final String SOQL_AND = '\' AND ';
     private static final String EXCLUDE_SYNC_STEP_SOQL = '\' AND Sync_Step__c <> \'';
     private static final String ORDER_BY_SOQL = '\' ORDER BY Id LIMIT ';
+    private static final String RESULT_MSG_PREFIX = '\n\n\n to update: ';
     /********************************************************************
     * @author       Execloud ©
     * @date         2016-05-04
@@ -1093,7 +1094,7 @@ public with sharing class Oblix_SOWRollOverLogic {
 
                     map_campaigns_to_update.put(cloned_campaign.Id, cloned_campaign);
                     
-                    result_msg += '\n\n\n to update: ' + cloned_campaign.name;
+                    result_msg += RESULT_MSG_PREFIX + cloned_campaign.name;
 
                 }
 
@@ -1102,7 +1103,7 @@ public with sharing class Oblix_SOWRollOverLogic {
 
             }
 
-            //result_msg += '\n\n\n to update: ' + map_campaigns_to_update.size() + ' - to clone: ' + list_campaigns_to_clone.size() 
+            //result_msg += RESULT_MSG_PREFIX + map_campaigns_to_update.size() + ' - to clone: ' + list_campaigns_to_clone.size() 
             //    + ' - to delete: ' + map_campaigns_to_delete.size() + ' - splits to delete: ' + map_splits_to_delete.size()
             //    + ' - map_original_id_splits_to_clone: ' + map_original_id_splits_to_clone.size()
             //    + ' - splits to insert: ' + list_splits_to_clone.size();
@@ -1117,7 +1118,7 @@ public with sharing class Oblix_SOWRollOverLogic {
             // update the original Campaigns with the id of cloned Campaigns and set the id on hub split records
             populateClonedRecordsWithIds('Campaign_NFY__c','Campaign_PFY__c',map_original_id_splits_to_clone, map_original_id_original_campaign,list_splits_to_clone);
 
-            result_msg += '\n\n\n to update: ' + map_campaigns_to_update.size() + ' - to clone: ' + list_campaigns_to_clone.size() 
+            result_msg += RESULT_MSG_PREFIX + map_campaigns_to_update.size() + ' - to clone: ' + list_campaigns_to_clone.size() 
                 + ' - to delete: ' + map_campaigns_to_delete.size() + ' - splits to delete: ' + map_splits_to_delete.size()
                 + ' - map_original_id_splits_to_clone: ' + map_original_id_splits_to_clone.size()
                 + ' - splits to insert: ' + list_splits_to_clone.size();
@@ -1334,7 +1335,9 @@ public with sharing class Oblix_SOWRollOverLogic {
 
             String query_string = SELECT_SOQL;
             query_string += String.join(Oblix_Utils.getfieldsByObject('Oblix_Project_Assets__c'),',');
-            query_string += ' FROM Oblix_Project_Assets__c WHERE Agency_Projects__r.Sync_Status__c =\'' + job_component.attrib_3 + '\' AND Agency_Projects__r.Financial_Year__r.SOW_Status__c = \'' + Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES + '\' AND Agency_Projects__r.Sync_Step__c <> \'' + step_name + ORDER_BY_SOQL + job_component.query_limit; 
+            query_string += ' FROM Oblix_Project_Assets__c WHERE Agency_Projects__r.Sync_Status__c =\'' + job_component.attrib_3; 
+            query_string += '\' AND Agency_Projects__r.Financial_Year__r.SOW_Status__c = \'' + Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES ;
+            query_string +=  '\' AND Agency_Projects__r.Sync_Step__c <> \'' + step_name + ORDER_BY_SOQL + job_component.query_limit; 
 
             result_msg += '\n\n\n query_string: ' + query_string;
 
@@ -1410,14 +1413,14 @@ public with sharing class Oblix_SOWRollOverLogic {
 
                     map_assets_to_update.put(cloned_asset.Id, cloned_asset);
                     
-                    result_msg += '\n\n\n to update: ' + cloned_asset.name;
+                    result_msg += RESULT_MSG_PREFIX + cloned_asset.name;
 
                 }
 
                 asset.Sync_Step__c = step_name;
             }
 
-            result_msg += '\n\n\n to update: ' + map_assets_to_update.size() + ' - to clone: ' + list_assets_to_clone.size() 
+            result_msg += RESULT_MSG_PREFIX + map_assets_to_update.size() + ' - to clone: ' + list_assets_to_clone.size() 
                 + ' - to delete: ' + map_assets_to_delete.size();
             Oblix_SyncBatchJob.addEvent('DEBUG IN syncAssetsDuringTransitionPeriod() - result_msg: ' + result_msg,NULL);
 
@@ -1447,7 +1450,7 @@ public with sharing class Oblix_SOWRollOverLogic {
 
             
 
-            result_msg += '\n\n\n to update: ' + map_assets_to_update.size() + ' - to clone: ' + list_assets_to_clone.size() 
+            result_msg += RESULT_MSG_PREFIX + map_assets_to_update.size() + ' - to clone: ' + list_assets_to_clone.size() 
                 + ' - to delete: ' + map_assets_to_delete.size();
 
 
