@@ -319,7 +319,6 @@ src/email/Agency_Fees/AF_Email_To_CatFinance_ToEnterActualsAnnual_HTML.email-met
 src/labels
 src/labels/AF.labels
 src/permissionsets
-src/permissionsets/AF_CMCO_Super_User.permissionset
 src/sharingRules
 src/sharingRules/User.sharingRules
 src/pages
