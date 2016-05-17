@@ -2,8 +2,8 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
 		<members>Test_AFBrandEstimateStCtrlExtSummary</members>
-		<members>Test_AF_AdjustQuater_Homepage_lightbox	</members>
-		<members>Test_AF_BonusQuaterlyEmailToCatFinance	</members>
+		<members>Test_AF_AdjustQuater_Homepage_lightbox</members>
+		<members>Test_AF_BonusQuaterlyEmailToCatFinance</members>
 		<members>Test_AFCallingSchedulable_BrandEstimates</members>	
 		<members>Test_AFCustomSetting</members>
 		<members>Test_AF_AfterInsertUpdateBonusResults</members>
