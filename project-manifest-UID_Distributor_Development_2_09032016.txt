@@ -13,12 +13,14 @@ src/layouts/UID_Order_Product__c-Order Product Layout.layout
 src/layouts/UID_Performance_Line_Item__c-IOP Detail Layout.layout
 src/layouts/UID_Performance__c-IOP Layout.layout
 src/layouts/UID_Stocked_Product_Summary__c-Stocked Product Summary Layout.layout
+src/layouts/UID_Stocked_Product__c-Stocked Product Layout.layout
 src/objects
 src/objects/Order.object
 src/objects/UID_Order_Product__c.object
 src/objects/UID_Performance_Line_Item__c.object
 src/objects/UID_Performance__c.object
 src/objects/UID_Stocked_Product_Summary__c.object
+src/objects/UID_Stocked_Product__c.object
 src/permissionsets
 src/permissionsets/UID_Distributor_Manager_Permission_Set.permissionset
 src/permissionsets/UID_Partner_Community_User_Permission_Set.permissionset
@@ -37,6 +39,7 @@ src/reports/UID_01_Home_View/Monthly_Primary_Sales_Value_Growth_PRD.report
 src/reports/UID_01_Home_View/Monthly_Secondary_Sales_Value_Growth_PRD.report
 src/reports/UID_01_Home_View/Monthly_Secondary_Sales_Value_USDMil_PRD.report
 src/reports/UID_01_Home_View/Monthly_Secondary_SalesvsLastYearVal_PRD.report
+src/reports/UID_01_Home_View/Monthly_Stock_Cover_Days_PRD.report
 src/reports/UID_02_Market_View
 src/reports/UID_02_Market_View/Channel_wise_Sales_Value_USD_PRD.report
 src/reports/UID_02_Market_View/Channel_wise_Sales_Volume_Cases_PRD.report
@@ -71,6 +74,8 @@ src/reports/UID_Inventory_and_Stock_Cover_View/Trend_Report_Inventory_Q_V_2_Fina
 src/reports/UID_Inventory_and_Stock_Cover_View/Trend_Report_Inventory_Q_V_3_Final.report
 src/reports/UID_Inventory_and_Stock_Cover_View/Trend_Report_Inventory_YTD_Q_2_Final.report
 src/reports/UID_Inventory_and_Stock_Cover_View/Trend_Report_Inventory_YTD_V_2_Final.report
+src/workflows
+src/workflows/UID_Stocked_Product__c.workflow
 src/pages
 src/pages/UID_Currency_Button.page
 src/pages/UID_Currency_Button.page-meta.xml
@@ -107,3 +112,20 @@ src/classes/UID_Switch_User_Currency.cls
 src/classes/UID_Switch_User_Currency.cls-meta.xml
 src/classes/UID_Switch_User_Currency_Test.cls
 src/classes/UID_Switch_User_Currency_Test.cls-meta.xml
+src/classes/UID_StockCoverTriggerHandler.cls
+src/classes/UID_StockCoverTriggerHandler.cls-meta.xml
+src/classes/UID_StockCoverTriggerHelper_Test.cls
+src/classes/UID_StockCoverTriggerHelper_Test.cls-meta.xml
+src/classes/UID_StockCoverTriggerHelper.cls
+src/classes/UID_StockCoverTriggerHelper.cls-meta.xml
+src/classes/UID_StockCoverTriggerHelperQueue.cls
+src/classes/UID_StockCoverTriggerHelperQueue.cls-meta.xml
+src/classes/UID_StockCoverTriggerHelperRankingQueue.cls
+src/classes/UID_StockCoverTriggerHelperRankingQueue.cls-meta.xml
+src/classes/UID_StockedProductSummaryHandler.cls
+src/classes/UID_StockedProductSummaryHandler.cls-meta.xml
+src/classes/UID_StockedProductSummaryTriggerHelper.cls
+src/classes/UID_StockedProductSummaryTriggerHelper.cls-meta.xml
+src/triggers
+src/triggers/UID_StockedProductSummaryTrigger.trigger
+src/triggers/UID_StockedProductSummaryTrigger.trigger-meta.xml
