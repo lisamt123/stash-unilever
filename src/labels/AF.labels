@@ -1,0 +1,1410 @@
+    <labels>
+        <fullName>AF_Action</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Action</shortDescription>
+        <value>Action</value>
+    </labels>
+    <labels>
+        <fullName>AF_Adapation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Adapation</shortDescription>
+        <value>Adaptation</value>
+    </labels>
+    <labels>
+        <fullName>AF_Adaptation_Value</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Adaptation_Value</shortDescription>
+        <value>Adaptation:</value>
+    </labels>
+    <labels>
+        <fullName>AF_Add_Comment</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Add_Comment</shortDescription>
+        <value>Add Comments is mandatory,Please Enter Description</value>
+    </labels>
+    <labels>
+        <fullName>AF_Adjust_BonusableFees</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Adjust_BonusableFees</shortDescription>
+        <value>Manaul adjustment to Bonusablefees must reconcile back to Base Fee Matrix.</value>
+    </labels>
+    <labels>
+        <fullName>AF_Adjust_Quarters</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF Adjust Quarters</shortDescription>
+        <value>Select the Quarter(s) you wish to adjust and press continue</value>
+    </labels>
+    <labels>
+        <fullName>AF_AgencyChatter</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_AgencyChatter</shortDescription>
+        <value>https://unilever.my.salesforce.com/0F9E00000009IuP?fromEmail=1</value>
+    </labels>
+    <labels>
+        <fullName>AF_AgencyEstimateSuccess</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_AgencyEstimateSuccess</shortDescription>
+        <value>Agency Estimate Successfully Saved</value>
+    </labels>
+    <labels>
+        <fullName>AF_AgencyEstimate_Entity_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_AgencyEstimate_Entity_Message</shortDescription>
+        <value>Sorry no combination exists. Please contact CMCO users</value>
+    </labels>
+    <labels>
+        <fullName>AF_AgencyUrlLink</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_AgencyUrlLink</shortDescription>
+        <value>https://cogdeployt-unilever.cs42.force.com/AgencyFees</value>
+    </labels>
+    <labels>
+        <fullName>AF_Agency_Base_Fee</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Agency_Base_Fee</shortDescription>
+        <value>Agency Base Fee</value>
+    </labels>
+    <labels>
+        <fullName>AF_Agency_Base_Fees</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Agency_Base_Fees</shortDescription>
+        <value>Agency Base Fees</value>
+    </labels>
+    <labels>
+        <fullName>AF_Agency_Bonus_Access</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Agency Bonus Access</shortDescription>
+        <value>Date and Fiscal year should be provided every year so that this will be served as a reference date for the agency users to access the quaterly bonus</value>
+    </labels>
+    <labels>
+        <fullName>AF_Agency_Brand_Created</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Agency_Brand_Created</shortDescription>
+        <value>The Brand/Agency Combination has been successfully created</value>
+    </labels>
+    <labels>
+        <fullName>AF_Agency_Brand_Exists</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Agency_Brand_Exists</shortDescription>
+        <value>This Brand/Agency Combination already exists,please restart the PO process using the&quot;Raise New PO&quot; button on the home page</value>
+    </labels>
+    <labels>
+        <fullName>AF_Agency_Entities</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Agency_Entities</shortDescription>
+        <value>Agency Entities</value>
+    </labels>
+    <labels>
+        <fullName>AF_Agency_Entity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Agency_Entity</shortDescription>
+        <value>Agency Entity</value>
+    </labels>
+    <labels>
+        <fullName>AF_AnnualBonus_Qual</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_AnnualBonus_Qual</shortDescription>
+        <value>This is used for calculate qualitative annual bonus.</value>
+    </labels>
+    <labels>
+        <fullName>AF_Annual_Bonus</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Annual_Bonus</shortDescription>
+        <value>Please submit the Annual Bonus,and proceed</value>
+    </labels>
+    <labels>
+        <fullName>AF_Annual_Bonus_Fees</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Bonusable_Fees</shortDescription>
+        <value>Bonusable Fees</value>
+    </labels>
+    <labels>
+        <fullName>AF_Approval_Process</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Approval_Process</shortDescription>
+        <value>You cannot edit as its in Approval process</value>
+    </labels>
+    <labels>
+        <fullName>AF_Approve_record</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Approve_record</shortDescription>
+        <value>You are not allowed to Approve the record</value>
+    </labels>
+    <labels>
+        <fullName>AF_Attach_File</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Attach_File</shortDescription>
+        <value>Please attach a file and then try to upload</value>
+    </labels>
+    <labels>
+        <fullName>AF_BFML_Label_4k7g</fullName>
+        <categories>Base Fee Matrix Lightbox,BF Matrix</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_BFML-Label_4k7g</shortDescription>
+        <value>Enter full year fees , only whole numbers. Based on the agency entity the tool converts to local currency using Unilever average exchange rates.</value>
+    </labels>
+    <labels>
+        <fullName>AF_BFMX_General_feedback</fullName>
+        <categories>Base Fee Matrix,Add Comment,Hover</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_BFMX-General_feedback</shortDescription>
+        <value>This lets you add General feedback and comments to this estimate</value>
+    </labels>
+    <labels>
+        <fullName>AF_BNMXLB_Override</fullName>
+        <categories>Bonus Matrix Lightbox,Bonus Matrix</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_BNMXLB-Override</shortDescription>
+        <value>Lets you override the annual bonus value. Input a revised figure into the “Override Bonus Value” and click on Save.</value>
+    </labels>
+    <labels>
+        <fullName>AF_Base_Fee</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Base_Fee</shortDescription>
+        <value>Base Fees</value>
+    </labels>
+    <labels>
+        <fullName>AF_Base_Fee_Matrix</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Base_Fee_Matrix</shortDescription>
+        <value>Base Fee Matrix</value>
+    </labels>
+    <labels>
+        <fullName>AF_Base_Fee_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Base_Fee_Name</shortDescription>
+        <value>Please select current base fee name,Which you want to update</value>
+    </labels>
+    <labels>
+        <fullName>AF_Base_Fee_Quarter</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Base_Fee_Quarter</shortDescription>
+        <value>Please select current base fee name quarter,like Q1,Q2,Q3,Q4</value>
+    </labels>
+    <labels>
+        <fullName>AF_Base_Fee_Updated</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Base_Fee_Updated</shortDescription>
+        <value>Selected current base fee name has been updated</value>
+    </labels>
+    <labels>
+        <fullName>AF_Base_Fees</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Base_Fees</shortDescription>
+        <value>please check the base fees</value>
+    </labels>
+    <labels>
+        <fullName>AF_BonusMatrixHelp</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_BonusMatrixHelp</shortDescription>
+        <value>First , click on Annual Bonus to manually enter the quantitative bonus scores for each country , save and submit  the results. If you  have an agreement with the agency to bill the bonus out of one central entity go back to the matrix and  click on any cell to amend the value. The system performs an ongoing check to ensure the values in the matrix reconcile back to the total bonus results you initially saved.</value>
+    </labels>
+    <labels>
+        <fullName>AF_BonusQuarterly</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_BonusQuarterly</shortDescription>
+        <value>Enter the date the Cat finance should enter the Bonus Quarterly results</value>
+    </labels>
+    <labels>
+        <fullName>AF_BonusSummaryId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_BonusSummaryId</shortDescription>
+        <value>a3a</value>
+    </labels>
+    <labels>
+        <fullName>AF_BonusThershold_Mismatch</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_BonusThershold_Mismatch</shortDescription>
+        <value>The Thresholds entered do not match the Unilever entity/entities in the Base Fees matrix. Please resolve the following mismatches by setting Bonus Threshold for Unilever entities:</value>
+    </labels>
+    <labels>
+        <fullName>AF_Bonus_Matrix</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Bonus_Matrix</shortDescription>
+        <value>Bonus Matrix</value>
+    </labels>
+    <labels>
+        <fullName>AF_Bonus_Quarterly</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Bonus_Quarterly</shortDescription>
+        <value>Bonus Quarterly</value>
+    </labels>
+    <labels>
+        <fullName>AF_Bonus_Value</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Bonus_Value</shortDescription>
+        <value>Bonus Value</value>
+    </labels>
+    <labels>
+        <fullName>AF_Bonus_threshold_error_message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Bonus threshold error message</shortDescription>
+        <value>Please add bonus thresholds,then save it.</value>
+    </labels>
+    <labels>
+        <fullName>AF_Bonusable_Fee</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Bonusable_Fees</shortDescription>
+        <value>Bonusable Fee</value>
+    </labels>
+    <labels>
+        <fullName>AF_Bonusable_Fees</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Bonusable_Fees</shortDescription>
+        <value>Bonusable Fees</value>
+    </labels>
+    <labels>
+        <fullName>AF_BrandEstimateDisplayText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_BrandEstimateDisplayText</shortDescription>
+        <value>Please enter your brand targets for the financial year displayed. This data will not be visible to agency users.</value>
+    </labels>
+    <labels>
+        <fullName>AF_BrandEstimateId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_BrandEstimateId</shortDescription>
+        <value>a3d</value>
+    </labels>
+    <labels>
+        <fullName>AF_BrandEstimate_TriggerDate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_BrandEstimate_TriggerDate</shortDescription>
+        <value>This holds the Brand Estimate Trigger date</value>
+    </labels>
+    <labels>
+        <fullName>AF_Brand_Remuneration</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Brand_Remuneration</shortDescription>
+        <value>You have confirmed that your Brand Estimates is on the remuneration Pilot Model and that Quant Bonus tracking is therefore not applicable</value>
+    </labels>
+    <labels>
+        <fullName>AF_Brandestimate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Brandestimate</shortDescription>
+        <value>Are you sure you wish to submit these Base Fee splits, the associated Agency will be notified to input their base fee estimates?</value>
+    </labels>
+    <labels>
+        <fullName>AF_Brandestimate_Archived</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Brandestimate_Archived</shortDescription>
+        <value>BrandEstimate are archived and new Quarters are created</value>
+    </labels>
+    <labels>
+        <fullName>AF_Brandestimate_Status</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Brandestimate_Status</shortDescription>
+        <value>You Can not Submit Approval ,Beacuse your Agency Fee user type  is Different with Brand Estimate status</value>
+    </labels>
+    <labels>
+        <fullName>AF_CMCO_Rights</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_CMCO_Rights</shortDescription>
+        <value>This Specifies the CMCO user Rights</value>
+    </labels>
+    <labels>
+        <fullName>AF_CatFinanceThreshold</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_CatFinanceThreshold</shortDescription>
+        <value>This custom setting is used to input the dates which the category Finance user should input the Bonus Threshold values</value>
+    </labels>
+    <labels>
+        <fullName>AF_Category</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Category</shortDescription>
+        <value>Please select another category. This category is already associated with this user</value>
+    </labels>
+    <labels>
+        <fullName>AF_Central_Billing_Hub</fullName>
+        <categories>Central billing hub</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Central Billing Hub</shortDescription>
+        <value>You have selected to raise a PO with Unilever&apos;s UK entity. You are required to provide further breakdown of the fee on the Country Breakdown tab.</value>
+    </labels>
+    <labels>
+        <fullName>AF_Check_Base_Fees</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Check_Base_Fees</shortDescription>
+        <value>please check the base fees</value>
+    </labels>
+    <labels>
+        <fullName>AF_Comment</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Comment</shortDescription>
+        <value>Comment cannot be Changed</value>
+    </labels>
+    <labels>
+        <fullName>AF_Comments</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Comments</shortDescription>
+        <value>Please enter the comments</value>
+    </labels>
+    <labels>
+        <fullName>AF_CommunityLink</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_CommunityLink</shortDescription>
+        <value>This holds the Community URL</value>
+    </labels>
+    <labels>
+        <fullName>AF_ControllerReview</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_ControllerReview</shortDescription>
+        <value>a2T</value>
+    </labels>
+    <labels>
+        <fullName>AF_Country_Breakdown</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Country_Breakdown</shortDescription>
+        <value>Please indicate the country breakdown percentage within UK</value>
+    </labels>
+    <labels>
+        <fullName>AF_Country_breakdown_percentage</fullName>
+        <categories>Country breakdown percentage should be equal to 100 percent.</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Country breakdown percentage</shortDescription>
+        <value>Country breakdown percentage should be equal to 100 percent.</value>
+    </labels>
+    <labels>
+        <fullName>AF_Country_selected</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Country_selected</shortDescription>
+        <value>Selected country already exists</value>
+    </labels>
+    <labels>
+        <fullName>AF_Cross_Border_Po</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Cross_Border_Po</shortDescription>
+        <value>Cross Border PO</value>
+    </labels>
+    <labels>
+        <fullName>AF_Currency</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Currency</shortDescription>
+        <value>Currency</value>
+    </labels>
+    <labels>
+        <fullName>AF_Current_Base_Fee</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Current_Base_Fee</shortDescription>
+        <value>Current Base Fee Name</value>
+    </labels>
+    <labels>
+        <fullName>AF_Delete</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Delete</shortDescription>
+        <value>delete operation failed</value>
+    </labels>
+    <labels>
+        <fullName>AF_Digital</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Digital</shortDescription>
+        <value>Digital</value>
+    </labels>
+    <labels>
+        <fullName>AF_Digital_Value</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Digital_Value</shortDescription>
+        <value>Digital:</value>
+    </labels>
+    <labels>
+        <fullName>AF_DocumentId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>To store the document id for the help page for Agency Fee Application</shortDescription>
+        <value>015E0000005I1mE</value>
+    </labels>
+    <labels>
+        <fullName>AF_Document_Saved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Document_Saved</shortDescription>
+        <value>The document has been successfully uploaded</value>
+    </labels>
+    <labels>
+        <fullName>AF_DummyUserID</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_DummyUserID</shortDescription>
+        <value>This holds the Dummy user id for Approval process</value>
+    </labels>
+    <labels>
+        <fullName>AF_Dummy_User</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Dummy User</shortDescription>
+        <value>005E0000006K6h2</value>
+    </labels>
+    <labels>
+        <fullName>AF_EX_Rate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_EX_Rate</shortDescription>
+        <value>Ex Rate</value>
+    </labels>
+    <labels>
+        <fullName>AF_Email_To_CatFinance</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Email To CatFinance</shortDescription>
+        <value>You are triggering the start of the Creative Agency Fees alignment process for the current financial year. An email will now be sent to all relevant Category Finance users asking them to enter their Brand Targets. 
+
+Are you sure you wish to proceed?</value>
+    </labels>
+    <labels>
+        <fullName>AF_Enter_Qual</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Enter_Qual</shortDescription>
+        <value>Please enter qual value between 1-5</value>
+    </labels>
+    <labels>
+        <fullName>AF_EntityException</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_EntityException</shortDescription>
+        <value>Country Breakdown saved successfully</value>
+    </labels>
+    <labels>
+        <fullName>AF_Financial_Year</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Financial_Year</shortDescription>
+        <value>Financial Year:</value>
+    </labels>
+    <labels>
+        <fullName>AF_Flag_Record</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Flag_Record</shortDescription>
+        <value>You cannot flag the record</value>
+    </labels>
+    <labels>
+        <fullName>AF_Insert</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Insert</shortDescription>
+        <value>insert operation failed</value>
+    </labels>
+    <labels>
+        <fullName>AF_LP_2nyf</fullName>
+        <categories>Landing Page,Bonus Quarterley Link,Hover</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_LP-2nyf</shortDescription>
+        <value>Click to enter quarterly bonus results - Q1-Q3 only</value>
+    </labels>
+    <labels>
+        <fullName>AF_LP_Action_Pending</fullName>
+        <categories>Landing Page,Brand Box Action Icons,Hover</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_LP-Action_Pending</shortDescription>
+        <value>Indicates if there is an action.</value>
+    </labels>
+    <labels>
+        <fullName>AF_LP_Annual_Base_Fee_Target</fullName>
+        <categories>Landing Page,Unilever Base Fee Link,Tool Tip</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_LP_Annual_Base_Fee_Target</shortDescription>
+        <value>This is your annual base fees target</value>
+    </labels>
+    <labels>
+        <fullName>AF_LP_Base_Fee_Targets</fullName>
+        <categories>Landing Page,Unilever Base Fee Link,Hover / Tool tip</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_LP_Base_Fee_Targets</shortDescription>
+        <value>Click to enter base fee targets and bonus thresholds</value>
+    </labels>
+    <labels>
+        <fullName>AF_LP_Can_Rename</fullName>
+        <categories>Landing Page,Adjust Quarters</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_LP_Can_Rename</shortDescription>
+        <value>Click to re-name base fee matrix for additional quarters</value>
+    </labels>
+    <labels>
+        <fullName>AF_LP_Enter_BF_estimates</fullName>
+        <categories>Landing Page,Base Fee Link,Hover</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_LP-Enter_BF_estimates</shortDescription>
+        <value>Click to enter full year billing splits on the brand scope of work,</value>
+    </labels>
+    <labels>
+        <fullName>AF_LP_Naming_Convention</fullName>
+        <categories>Landing Page,Base Fee Link,Tool Tip</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_LP-Naming_Convention</shortDescription>
+        <value>Each matrix will be named according to the quarters for which the purchase order should be raised.</value>
+    </labels>
+    <labels>
+        <fullName>AF_LP_New_PO_Hover</fullName>
+        <categories>Landing Page,Raise New PO,Hover</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_LP-New_PO_Hover</shortDescription>
+        <value>Click to roll-over base fee matrix to new quarters</value>
+    </labels>
+    <labels>
+        <fullName>AF_LP_Running_Total</fullName>
+        <categories>Landing Page,Agency Base Fee Link ,Tool Tip</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_LP_Running_Total</shortDescription>
+        <value>This is a running total of the base fee matrix</value>
+    </labels>
+    <labels>
+        <fullName>AF_LP_ey31</fullName>
+        <categories>Landing Page,Bonus Link,Hover</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_LP-ey31</shortDescription>
+        <value>Click to enter full year bonus results and approve the bonus billing splits</value>
+    </labels>
+    <labels>
+        <fullName>AF_LP_y81a</fullName>
+        <categories>Landing Page,OOPS Link,Hover</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_LP-y81a</shortDescription>
+        <value>Click to enter full year out of pocket expense targets</value>
+    </labels>
+    <labels>
+        <fullName>AF_Local_value</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Local_value</shortDescription>
+        <value>You cannot enter amount greater than local value</value>
+    </labels>
+    <labels>
+        <fullName>AF_Lock</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Lock Records</shortDescription>
+        <value>You cannot update previous year records</value>
+    </labels>
+    <labels>
+        <fullName>AF_Mandatory_Fields</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Mandatory Fields</shortDescription>
+        <value>Please complete all mandatory fields</value>
+    </labels>
+    <labels>
+        <fullName>AF_Missing_Quarters</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Missing_Quarters</shortDescription>
+        <value>Quarters are missing</value>
+    </labels>
+    <labels>
+        <fullName>AF_NoBonus</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_NoBonus</shortDescription>
+        <value>No Bonus</value>
+    </labels>
+    <labels>
+        <fullName>AF_No_Bonus</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF No Bonus</shortDescription>
+        <value>By ticking this option you are confirming that this brands agency fees will not be subject to a bonus</value>
+    </labels>
+    <labels>
+        <fullName>AF_No_Records_To_Notify</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_No_Records_To_Notify</shortDescription>
+        <value>No records to notify</value>
+    </labels>
+    <labels>
+        <fullName>AF_Note</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Note</shortDescription>
+        <value>Note: On Submit, these records will be locked. Please contact to CMCO Super User to unlock.</value>
+    </labels>
+    <labels>
+        <fullName>AF_OOPS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_OOPS</shortDescription>
+        <value>OOPS</value>
+    </labels>
+    <labels>
+        <fullName>AF_OOPSMX_General_feedback</fullName>
+        <categories>OOPS Matrix,Add Comment,Hover</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_OOPSMX-General_feedback</shortDescription>
+        <value>This lets you add general feedback and comments to this estimate</value>
+    </labels>
+    <labels>
+        <fullName>AF_OOPSMX_Override</fullName>
+        <categories>OOPs Matrix Lightbox,OOPs Matrix</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_OOPSMX-Override</shortDescription>
+        <value>To set a target against one entity or to a value that is not linked to a “% of base fees”, enter a revised figure into the “Override OOPS Estimate” and save. You can revert back to the original view at any time by putting an OOPs % in the main matrix and hitting refresh</value>
+    </labels>
+    <labels>
+        <fullName>AF_OOPSMX_Percentage</fullName>
+        <categories>OOPs Matrix,OOP&apos;s Percentage,Hover</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_OOPSMX-Percentage</shortDescription>
+        <value>Change this percentage to update the values in the matrix.</value>
+    </labels>
+    <labels>
+        <fullName>AF_OOPS_Approval</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_OOPS_Approval</shortDescription>
+        <value>You are approving this record. Are you sure you wish to proceed?</value>
+    </labels>
+    <labels>
+        <fullName>AF_OOPS_Donot_Exist</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_OOPS_Donot_Exist</shortDescription>
+        <value>Successfully Refreshed, There are entities in the OOPS matrix that do not exist in the base fee.</value>
+    </labels>
+    <labels>
+        <fullName>AF_OOPS_Estimate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_OOPS_Estimate</shortDescription>
+        <value>OOPS Estimate</value>
+    </labels>
+    <labels>
+        <fullName>AF_OOPS_Help</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_OOPS_Help</shortDescription>
+        <value>The OOP matrix pre-populates to the same footprint as the Base Fees. Default values are 4% of FY fees. Changing the % automatically re-calculates the value in each cell. Cells can be over-ridden to allow a target to be set against just one    
+entity or to a value that is not linked to a “% of base fees”.</value>
+    </labels>
+    <labels>
+        <fullName>AF_OOPS_Matrix</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_OOPS_Matrix</shortDescription>
+        <value>OOPS Matrix</value>
+    </labels>
+    <labels>
+        <fullName>AF_OOPS_Override</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_OOPS_Override</shortDescription>
+        <value>Override OOPS Estimate</value>
+    </labels>
+    <labels>
+        <fullName>AF_OOPS_Reject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_OOPS_Reject</shortDescription>
+        <value>You are rejecting this record. Are you sure you wish to proceed?</value>
+    </labels>
+    <labels>
+        <fullName>AF_OOPS_RejectWithComments</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_OOPS_RejectWithComments</shortDescription>
+        <value>You are rejecting this record. Please provide comments before proceeding.</value>
+    </labels>
+    <labels>
+        <fullName>AF_OOPS_Submit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_OOPS_Submit</shortDescription>
+        <value>You are approving this record. Are you sure you wish to proceed?</value>
+    </labels>
+    <labels>
+        <fullName>AF_OopsPercentage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_OopsPercentage</shortDescription>
+        <value>This holds the oops percentage</value>
+    </labels>
+    <labels>
+        <fullName>AF_OverAll_Bonus</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_OverAll_Bonus</shortDescription>
+        <value>Overall Bonus Percentage</value>
+    </labels>
+    <labels>
+        <fullName>AF_Override_Bonus</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Override_Bonus</shortDescription>
+        <value>Override Bonus Value can not be more than Total Bonus. Override Bonus:</value>
+    </labels>
+    <labels>
+        <fullName>AF_Override_Bonus_Value</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Override_Bonus</shortDescription>
+        <value>Override Bonus Value</value>
+    </labels>
+    <labels>
+        <fullName>AF_PONumberTab_Header</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_PONumberTab_Header</shortDescription>
+        <value>If your purchase order has been raised to a different value than advised in the PO Report, please amend below</value>
+    </labels>
+    <labels>
+        <fullName>AF_POOveride_Warning</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_POOveride_Warning</shortDescription>
+        <value>WARNING: If you have raised your PO to a different local currency than advised in the PO report, you cannot use this functionality.Press X to reject or Confirm to proceed.</value>
+    </labels>
+    <labels>
+        <fullName>AF_PO_Number</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_PO_Number</shortDescription>
+        <value>PO Number</value>
+    </labels>
+    <labels>
+        <fullName>AF_PO_Override</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_PO_Override</shortDescription>
+        <value>PO Amount Override</value>
+    </labels>
+    <labels>
+        <fullName>AF_PO_OverrideHelp</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_PO_OverrideHelp</shortDescription>
+        <value>Enter the PO number of the purchase order you have raised. In addition and if required , the tool allows you to override the PO amount indicated in the tool.</value>
+    </labels>
+    <labels>
+        <fullName>AF_PiliotError_message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PiliotError message</shortDescription>
+        <value>Approval process is not yet completed</value>
+    </labels>
+    <labels>
+        <fullName>AF_Pilot_Model</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Pilot_Model</shortDescription>
+        <value>Please uncheck the pilot Model flag and delete all the Bonus Thresholds</value>
+    </labels>
+    <labels>
+        <fullName>AF_Pilot_Model_Bonus</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Pilot_Model_Bonus</shortDescription>
+        <value>Pilot Model</value>
+    </labels>
+    <labels>
+        <fullName>AF_Pilot_Model_Instructions</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Pilot Model Instructions</shortDescription>
+        <value>Please select the box if your brand is part of the pilot renumeration model</value>
+    </labels>
+    <labels>
+        <fullName>AF_Pooveride</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Pooveride</shortDescription>
+        <value>POOverride value cannot be more than the BaseFee</value>
+    </labels>
+    <labels>
+        <fullName>AF_Process</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Process</shortDescription>
+        <value>Process</value>
+    </labels>
+    <labels>
+        <fullName>AF_Qualitative_Bonus</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Qualitative_Bonus</shortDescription>
+        <value>Qualitative Bonus</value>
+    </labels>
+    <labels>
+        <fullName>AF_Quant</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Quant</shortDescription>
+        <value>Please enter the Quant fields</value>
+    </labels>
+    <labels>
+        <fullName>AF_Quant_Fields</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Quant_Fields</shortDescription>
+        <value>Please enter the Quant and Qual fields</value>
+    </labels>
+    <labels>
+        <fullName>AF_Quantative_Bonus</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Quantative_Bonus</shortDescription>
+        <value>You have confirmed that your Brand is on the Pilot Model and that Quantitative Bonus Tracking is therefore not applicable</value>
+    </labels>
+    <labels>
+        <fullName>AF_Quantitative_Bonus</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Quantitative_Bonus</shortDescription>
+        <value>Quantitative Bonus</value>
+    </labels>
+    <labels>
+        <fullName>AF_Quantitative_Result</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Quantitative_Result</shortDescription>
+        <value>Enter Quantitative Results</value>
+    </labels>
+    <labels>
+        <fullName>AF_Quantitative_Results</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Quantitative_Results</shortDescription>
+        <value>Please complete all Quantitative results before submitting</value>
+    </labels>
+    <labels>
+        <fullName>AF_Quarter_Below</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Quarter_Below</shortDescription>
+        <value>Please select Quarter below:</value>
+    </labels>
+    <labels>
+        <fullName>AF_QuarterlyBonus</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_QuarterlyBonus</shortDescription>
+        <value>This holds the bonus values for calculations</value>
+    </labels>
+    <labels>
+        <fullName>AF_QueryFailed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_QueryFailed</shortDescription>
+        <value>query execution failed</value>
+    </labels>
+    <labels>
+        <fullName>AF_RaiseNewPOConfirmMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_RaiseNewPOConfirmMsg</shortDescription>
+        <value>Are you sure you want to raise a new PO for the Base Fees selected? This will result in the selected Base Fee names being automatically archived and a new copy of them being created for the selected quarters in this financial year. You will be notified by email when the process is finished</value>
+    </labels>
+    <labels>
+        <fullName>AF_RaiseNewPO_ValidRecords</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_RaiseNewPO_ValidRecords</shortDescription>
+        <value>There are no valid records to raise a new PO</value>
+    </labels>
+    <labels>
+        <fullName>AF_Raise_New_PO</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF Raise New PO</shortDescription>
+        <value>Select the Quarter you wish to Raise New PO &apos;s for and press continue</value>
+    </labels>
+    <labels>
+        <fullName>AF_Reconcile</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Reconcile</shortDescription>
+        <value>Manual adjustment to Bonusable fees must reconcile back to Base Fee Matrix.</value>
+    </labels>
+    <labels>
+        <fullName>AF_Record_Locked</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Record_Locked</shortDescription>
+        <value>Record is locked, CMCO Super user can only edit this records</value>
+    </labels>
+    <labels>
+        <fullName>AF_Record_Save</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Record_Save</shortDescription>
+        <value>Record has been successfully Saved</value>
+    </labels>
+    <labels>
+        <fullName>AF_Record_Submitted</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Record_Submitted</shortDescription>
+        <value>Record has been successfully Submitted</value>
+    </labels>
+    <labels>
+        <fullName>AF_Record_Success</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Record_Success</shortDescription>
+        <value>Record has been successfully saved</value>
+    </labels>
+    <labels>
+        <fullName>AF_Record_Unsaved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Record_Unsaved</shortDescription>
+        <value>Record Can not be saved</value>
+    </labels>
+    <labels>
+        <fullName>AF_Record_saved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Record_saved</shortDescription>
+        <value>Record successfully saved</value>
+    </labels>
+    <labels>
+        <fullName>AF_Records_Processing</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Records_Processing</shortDescription>
+        <value>Records have been submitted for processsing</value>
+    </labels>
+    <labels>
+        <fullName>AF_Records_saved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Records_saved</shortDescription>
+        <value>Records successfully saved</value>
+    </labels>
+    <labels>
+        <fullName>AF_Refreshed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Refreshed</shortDescription>
+        <value>Successfully Refreshed</value>
+    </labels>
+    <labels>
+        <fullName>AF_Required_Result</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Required_Result</shortDescription>
+        <value>Please complete all Required results before Draft</value>
+    </labels>
+    <labels>
+        <fullName>AF_Review_Completed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Review_Completed</shortDescription>
+        <value>Reviews Complete</value>
+    </labels>
+    <labels>
+        <fullName>AF_Reviews</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Reviews</shortDescription>
+        <value>Reviews</value>
+    </labels>
+    <labels>
+        <fullName>AF_Select_Agency</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Select_Agency</shortDescription>
+        <value>The Agency/Please Select Agency</value>
+    </labels>
+    <labels>
+        <fullName>AF_Select_Brand</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Select_Brand</shortDescription>
+        <value>The Brand/Please Select Brand</value>
+    </labels>
+    <labels>
+        <fullName>AF_Select_Country</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Select_Country</shortDescription>
+        <value>Please select the country</value>
+    </labels>
+    <labels>
+        <fullName>AF_Select_Current_BaseFee</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Select_Current_BaseFee</shortDescription>
+        <value>Please select Current base fee name,Which you want to Archive</value>
+    </labels>
+    <labels>
+        <fullName>AF_Select_Quarter</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Select_Quarter</shortDescription>
+        <value>Please select the Coresponding Quarter also</value>
+    </labels>
+    <labels>
+        <fullName>AF_Select_Trad_Digital</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Select_Trad_Digital</shortDescription>
+        <value>Please select \&apos;Traditional\&apos; or \&apos;Digital\&apos;</value>
+    </labels>
+    <labels>
+        <fullName>AF_Select_Type</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Select_Type</shortDescription>
+        <value>Type is mandatory,Please Select Type</value>
+    </labels>
+    <labels>
+        <fullName>AF_Sent_Email</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Sent_Email</shortDescription>
+        <value>Email is sent successfully</value>
+    </labels>
+    <labels>
+        <fullName>AF_Status</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Status</shortDescription>
+        <value>Status</value>
+    </labels>
+    <labels>
+        <fullName>AF_Submitted</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Submitted</shortDescription>
+        <value>Submitted for approval. Please approve.</value>
+    </labels>
+    <labels>
+        <fullName>AF_Success</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Success</shortDescription>
+        <value>Category and brand is updated successfully</value>
+    </labels>
+    <labels>
+        <fullName>AF_System_Admin</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_System_Admin</shortDescription>
+        <value>Please contact to System Administrator</value>
+    </labels>
+    <labels>
+        <fullName>AF_Thershold_Entity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Thershold_Entity</shortDescription>
+        <value>Bonus Thresholds are not created for all Unilever Entity Countries</value>
+    </labels>
+    <labels>
+        <fullName>AF_Thershold_Failing</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Thershold_Failing</shortDescription>
+        <value>Unique threshold failing</value>
+    </labels>
+    <labels>
+        <fullName>AF_Thershold_Fields</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Thershold_Fields</shortDescription>
+        <value>Please ensure the values entered in the target threshold fields are ascending from minimum to outstanding</value>
+    </labels>
+    <labels>
+        <fullName>AF_Thershold_Mismatch</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Thershold_Mismatch</shortDescription>
+        <value>The Thresholds entered do not match the Unilever entity/entities in the Base Fees matrix. Please resolve the following mismatches by setting Bonus Threshold for Unilever entities:</value>
+    </labels>
+    <labels>
+        <fullName>AF_Thershold_Setting</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Thershold_Setting</shortDescription>
+        <value>The Thresholds entered do not match the Unilever entity/entities in the Base Fees matrix. Please resolve the following mismatches by setting Bonus Threshold for Unilever entities:{</value>
+    </labels>
+    <labels>
+        <fullName>AF_Thershold_Used</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Thershold_Used</shortDescription>
+        <value>This Threshold is in use by Matrix and cannot be deleted</value>
+    </labels>
+    <labels>
+        <fullName>AF_Total</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Total</shortDescription>
+        <value>Total</value>
+    </labels>
+    <labels>
+        <fullName>AF_Traditional</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Traditional</shortDescription>
+        <value>Traditional</value>
+    </labels>
+    <labels>
+        <fullName>AF_Traditional_Value</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Traditional_Value</shortDescription>
+        <value>Traditional:</value>
+    </labels>
+    <labels>
+        <fullName>AF_TriggerDate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_TriggerDate</shortDescription>
+        <value>This setting is used to store the Trigger Date</value>
+    </labels>
+    <labels>
+        <fullName>AF_UBFLB_Thresholds</fullName>
+        <categories>Unilever Base Fee Light Box,Bonus Thresholds,Tool Tip</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_UBFLB-Thresholds</shortDescription>
+        <value>Thresholds must be added for each country where fees will be paid. For each country select which type of fees will be included in the Bonus calculations</value>
+    </labels>
+    <labels>
+        <fullName>AF_UBFLB_Type_of_Fees</fullName>
+        <categories>Unilever Base Fee Light Box,Bonus Threshold,Tool Tip</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_UBFLB-Type_of_Fees</shortDescription>
+        <value>Now select which type of fees will be included in the Bonus calculations</value>
+    </labels>
+    <labels>
+        <fullName>AF_Uncheck_pilot</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Uncheck_pilot</shortDescription>
+        <value>the record owner can uncheck the pilot Model</value>
+    </labels>
+    <labels>
+        <fullName>AF_Unilever_Base_Fees</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Unilever_Base_Fees</shortDescription>
+        <value>Unilever Base Fees</value>
+    </labels>
+    <labels>
+        <fullName>AF_Unilever_Entity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Unilever_Entity</shortDescription>
+        <value>Unilever Entity</value>
+    </labels>
+    <labels>
+        <fullName>AF_Unilever_Estimate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Unilever_Estimate</shortDescription>
+        <value>Unilever Estimate:</value>
+    </labels>
+    <labels>
+        <fullName>AF_Unilever_Targets</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Unilever_Targets</shortDescription>
+        <value>Unilever Targets</value>
+    </labels>
+    <labels>
+        <fullName>AF_Update</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Update</shortDescription>
+        <value>update operation failed</value>
+    </labels>
+    <labels>
+        <fullName>AF_Updated_successfully</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Updated_successfully</shortDescription>
+        <value>Successfully updated</value>
+    </labels>
+    <labels>
+        <fullName>AF_Upsert</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Upsert</shortDescription>
+        <value>Upsert operation failed</value>
+    </labels>
+    <labels>
+        <fullName>AF_UrlLink</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_UrlLink</shortDescription>
+        <value>https://unilever--cogdeployt.cs42.content.force.com</value>
+    </labels>
+    <labels>
+        <fullName>AF_User_Access</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_User_Access</shortDescription>
+        <value>User does not have access</value>
+    </labels>
+    <labels>
+        <fullName>AF_Users_Brand</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Users_Brand</shortDescription>
+        <value>There are no user records with this Brand</value>
+    </labels>
+    <labels>
+        <fullName>AF_ViewAllHistory_AgencyEstimates</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ViewAllHistory_AgencyEstimates</shortDescription>
+        <value>a3V</value>
+    </labels>
+    <labels>
+        <fullName>AF_ViewAllHistory_BonusEstimate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ViewAllHistory_BonusEstimate</shortDescription>
+        <value>a3Y</value>
+    </labels>
+    <labels>
+        <fullName>AF_ViewAllHistory_oopEstimate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ViewAllHistory_oopEstimate</shortDescription>
+        <value>a3p</value>
+    </labels>
+    <labels>
+        <fullName>AF_YTG</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_YTG</shortDescription>
+        <value>YTG</value>
+    </labels>
+    <labels>
+        <fullName>AF_Yes_Bonus</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF Yes Bonus</shortDescription>
+        <value>By unticking this option you are confirming that this brands agency fees will be subject to a bonus</value>
+    </labels>
+    <labels>
+        <fullName>AF_brand</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_brand</shortDescription>
+        <value>Please select another brand. This brand is already associated with this user</value>
+    </labels>
+    <labels>
+        <fullName>AF_isBonusLinkForAgency</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_isBonusLinkForAgency</shortDescription>
+        <value>This will store date information whether to show Bonus link or not</value>
+    </labels>
+    <labels>
+        <fullName>AF_oopsActualId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_oopsActualId</shortDescription>
+        <value>a3o</value>
+    </labels>
+    <labels>
+        <fullName>Agency_Email_Alerts</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Agency Email Alerts</shortDescription>
+        <value>This holds the each quarter date for OOps</value>
+    </labels>
+    <labels>
+        <fullName>Agency_Fee_Title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Agency Fee Title</shortDescription>
+        <value>Agency Fees Online</value>
+    </labels>
+    <labels>
+        <fullName>af_lp_AgencyFeeTarget</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>af_lp_AgencyFeeTarget</shortDescription>
+        <value>This is the sum of the latest base fee matrix for the category</value>
+    </labels>
+    <labels>
+        <fullName>af_lp_UnileverBaseFee</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>af_lp_UnileverBaseFee</shortDescription>
+        <value>This is the sum of annual base fee targets for the category</value>
+    </labels>   

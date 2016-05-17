@@ -297,8 +297,8 @@ Search functionality is implemented and SOQL is built dynamically so can not bre
         Datetime startdate = jobDetails.Start_Date__c;
         String dateTimeFormat = startdate.format(Amr_ConstantForAdManager.DATEFORMAT);
         
-        soql += ' and AM_Job_Detail__r.createdDate ' +  ' >= '+  dateTimeFormat ;
-        soqlForCancel +=' and AM_Job_Detail__r.createdDate ' +  ' >= '+ dateTimeFormat;
+        soql += Amr_ConstantForAdManager.CREATED_DATE +  ' >= '+  dateTimeFormat ;
+        soqlForCancel += Amr_ConstantForAdManager.CREATED_DATE +  ' >= '+ dateTimeFormat;
           
     }
     
@@ -306,8 +306,8 @@ Search functionality is implemented and SOQL is built dynamically so can not bre
         Datetime endate  = jobDetails.End_Date__c;
          String dateTimeFormat1 = endate.format(Amr_ConstantForAdManager.DATEFORMAT);
         
-         soql += ' and AM_Job_Detail__r.createdDate ' +  ' < '+  dateTimeFormat1 ;
-         soqlForCancel +=' and AM_Job_Detail__r.createdDate ' +  ' < '+ dateTimeFormat1;
+         soql += Amr_ConstantForAdManager.CREATED_DATE +  ' < '+  dateTimeFormat1 ;
+         soqlForCancel += Amr_ConstantForAdManager.CREATED_DATE +  ' < '+ dateTimeFormat1;
           
     }
     
@@ -512,19 +512,42 @@ Search functionality is implemented and SOQL is built dynamically so can not bre
                system.debug('inside start date');
                String[] startDateSplitQuote = startDate.split(' ');
                String[] startDateSplitSlash = startDateSplitQuote[0].split('/');
-               Integer myIntDate = integer.valueOf(startDateSplitSlash[1]);
-               Integer myIntMonth = integer.valueOf(startDateSplitSlash[0]);
+               Integer myIntDate = integer.valueOf(startDateSplitSlash[0]);
+               Integer myIntMonth = integer.valueOf(startDateSplitSlash[1]);
                Integer myIntYear = integer.valueOf(startDateSplitSlash[2]);
                Date d = Date.newInstance(myIntYear, myIntMonth, myIntDate);
                DateTime startDateFinal = DateTime.newInstance(d.year(), d.month(), d.day(), 0, 0, 0);
                 DateTime endDateFinal = DateTime.newInstance(d.year(), d.month(), d.day(), 0, 0, 0).addDays(1);
          
-               soql += ' and createdDate'+  ' >= '+ startDateFinal.formatGMT(Amr_ConstantForAdManager.SECDATEFORMAT) + ' and createdDate'+  ' < '+ endDateFinal.formatGMT(Amr_ConstantForAdManager.SECDATEFORMAT) ;
-               soqlForCancel += ' and createdDate'+  ' = '+ startDateFinal.formatGMT(Amr_ConstantForAdManager.DATEFORMAT) ;
-             
+      //         soql += ' and createdDate'+  ' >= '+ startDateFinal.formatGMT(Amr_ConstantForAdManager.SECDATEFORMAT) + ' and createdDate'+  ' < '+ endDateFinal.formatGMT(Amr_ConstantForAdManager.SECDATEFORMAT) ;
+        //       soqlForCancel += ' and createdDate'+  ' = '+ startDateFinal.formatGMT(Amr_ConstantForAdManager.DATEFORMAT) ;
+          soql += Amr_ConstantForAdManager.CREATED_DATE +  ' >= '+ startDateFinal.formatGMT(Amr_ConstantForAdManager.SECDATEFORMAT) ; 
+          soqlForCancel += Amr_ConstantForAdManager.CREATED_DATE +  ' >= '+ startDateFinal.formatGMT(Amr_ConstantForAdManager.SECDATEFORMAT) ;   
                
                system.debug('soql created date'+soql);
     }
+    
+    //END DATE
+    
+    
+    if (String.isNotBlank(endDate)){
+    //end date creation
+   String[] endDateSplitQuote = endDate.split(' ');
+   String[] endDateSplitSlash = endDateSplitQuote[0].split(Amr_ConstantForAdManager.BACK_SLASH);
+   Integer myIntDate1 = integer.valueOf(endDateSplitSlash[0]);
+   Integer myIntMonth1 = integer.valueOf(endDateSplitSlash[1]);
+   Integer myIntYear1 = integer.valueOf(endDateSplitSlash[2]);
+   Date d1 = Date.newInstance(myIntYear1, myIntMonth1, myIntDate1);
+   DateTime endDateDateFinal = DateTime.newInstance(d1.year(), d1.month(), d1.day(), 0, 0, 0);
+  
+           soql += Amr_ConstantForAdManager.CREATED_DATE +  ' < '+ endDateDateFinal.addDays(1).formatGMT(Amr_ConstantForAdManager.SECDATEFORMAT );
+           soqlForCancel += Amr_ConstantForAdManager.CREATED_DATE +  ' < '+ endDateDateFinal.addDays(1).formatGMT(Amr_ConstantForAdManager.SECDATEFORMAT );
+           
+           system.debug('soql end date'+soql);
+    }
+    
+    System.debug('START DATE ->  ' + startDate +  'END DATE   '+  endDate);
+    
        System.debug('CATEOGRYYYY -> ' + selectedSortJobsOption);
      if(String.isNotBlank(selectedSortJobsOption) && selectedSortJobsOption!=NONE){
          if(selectedSortJobsOption == Label.Amr_Query_Category){

@@ -26,9 +26,14 @@ private class VEP_Visitor_Trigger_Test{
         
         VEP_FactoryVisit__c Fsetting = new VEP_FactoryVisit__c();
         Fsetting.Name = 'Factory1';
-        Fsetting.Travel_Desk_Email__c='Veptestuser@test.com';
+        //Fsetting.Travel_Desk_Email__c='Veptestuser@test.com';
         Fsetting.Lodging_Desk_Email__c='Veptestuser@test.com';
         insert Fsetting;
+        
+        VEP_TravelDesk__c vtraveldesk = new VEP_TravelDesk__c();
+        vtraveldesk.name = 'Bangalore';
+        vtraveldesk.travel_desk_email__c = 'Veptestuser@test.com';
+        insert vtraveldesk;
         
         List<VEP_Visitor__c> listVisitor = new List<VEP_Visitor__c>();
         VEP_Visitor__c visitor = new VEP_Visitor__c();
@@ -44,7 +49,8 @@ private class VEP_Visitor_Trigger_Test{
         visitor.recordtypeid = rRecordTypeId;
         visitor.status__c= 'Pending Approval';
         visitor.Factory_to_visit__c='Factory1';  
-        visitor.person_to_meet__c = u.id;           
+        visitor.person_to_meet__c = u.id;  
+        visitor.base_location__c = 'Bangalore';         
         listVisitor.add(visitor); 
         
         
@@ -56,6 +62,7 @@ private class VEP_Visitor_Trigger_Test{
         visitor1.lodging__c=true; 
         visitor1.pickup__c=true;
         visitor1.Factory_to_visit__c='Factory1';
+        visitor1.base_location__c = 'Bangalore';
         //visitor1.person_to_meet__c = userinfo.getuserid(); 
         listVisitor.add(visitor1);    
         insert listVisitor;         

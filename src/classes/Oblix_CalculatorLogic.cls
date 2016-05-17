@@ -10,7 +10,7 @@
 *    Execloud ©            	2016-02-19          Created
 *
 ******************************************************************************************/
-public with sharing class Oblix_CalculatorLogic {
+public without sharing class Oblix_CalculatorLogic {
 
 
 	private static Map<Id, Decimal> getScoreInnovationBrandGrowth(List<Oblix_SOW_Projects__c> li_projects){
