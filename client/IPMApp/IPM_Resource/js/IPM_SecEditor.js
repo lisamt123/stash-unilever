@@ -346,7 +346,7 @@ jq(function(){
     }
 });
     
-function unloadPage_secEditor()
+function unloadPageseceditor()
 { 
 if((ckedited === true || inputchanged === true) && editorunsaved === true)
 {
@@ -358,7 +358,7 @@ function saveChanges(){
 editorunsaved = false;
 }
 
-window.onbeforeunload = unloadPage_secEditor;
+window.onbeforeunload = unloadPageseceditor;
 
 /* Below code is to redirect to a page on cancel*/
 function gotoPageNew() {

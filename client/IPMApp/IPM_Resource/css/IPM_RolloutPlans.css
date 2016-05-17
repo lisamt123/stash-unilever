@@ -748,11 +748,9 @@ input[type=text]::-ms-clear {display: none; width:0; height:0;}
 .rollouttable .rollsubhead{float:left;}
 .deleteButtoncontainer{width:189px;}
 th div.proLeaderColumn span:last-child{width:87%;}
-.misaligned{border-color: #ff0000 ;}
+.calendar.misaligned{border-color: #ff0000;}
 
 .removeapprpopup{padding: 15px;}
 .remvButtonContainer{margin-top: 20px;margin-bottom: 10px;}
-.remvButtonContainer .buttonMarginRight:last-child {
-    margin-right: 0px;
-}
+.remvButtonContainer .buttonMarginRight:last-child { margin-right: 0px;}
 

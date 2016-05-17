@@ -168,6 +168,8 @@ jq(document).ready(function() {
     jq(".ipmAcrdnExpand:first, .ipmAcrdnExpand:first .ipmAcrdnExpand").not(':empty').show();
     ipmAccordion.find(".pHead span.expico").removeClass("fa-minus");
     ipmAccordion.find(".pHead span.expico").addClass("fa-plus");
+    ipmAccordion.find(".pHead:first span.expico").removeClass("fa-plus");
+    ipmAccordion.find(".pHead:first span.expico").addClass("fa-minus");
     ipmAccordion.find(".ipmAcrdnExpand:first .pHead span.expico").removeClass("fa-plus");
     ipmAccordion.find(".ipmAcrdnExpand:first .pHead span.expico").addClass("fa-minus");
     ipmAccordion.find(".pHead .recCount").removeClass("expanded");
