@@ -41,6 +41,7 @@ src/objects/cec_Alert_Action__c.object
 src/objects/cec_Alert_Rule__c.object
 src/objects/cec_Enclosure__c.object
 src/objects/cec_Fulfilment__c.object
+src/objects/CEC_Case_Market_Mapping__c
 src/objects/CEC_Retrieval_Request__c.object
 src/objects/mdm_Case_Product__c.object
 src/objects/User.object
