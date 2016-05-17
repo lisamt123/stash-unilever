@@ -69,6 +69,8 @@ public with sharing class Oblix_SyncBatchJob implements Database.Batchable<JobCo
     public static final String PARENT_SOW_STATUS_FIELD = 'Financial_Year__r.SOW_Status__c';
     public static final String SYNC_FIELD = 'Sync_Status__c';
     public static final String CAMPAIGN_ATTRIBUTE_UPDATE = 'Campaign_Attributes_Updated__c';
+    public static final String SYNC_STEP_FIELD = 'Sync_Step__c';
+    public static final String SYNC_STEP_COMPLETED = 'Completed';
 
     public static final String ORIGINAL_CAMPAIGN = 'Original_Campaign__c';
     public static final String CLONED_CAMPAIGN = 'Cloned_Campaign__c';
@@ -518,8 +520,28 @@ public with sharing class Oblix_SyncBatchJob implements Database.Batchable<JobCo
 
         number_of_chunks = getNumberOfChuncks(total_assets,Oblix_Utils.MAX_ASSETS_PER_CONTEXT);
 
-        addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_CLONE_ASSETS, Oblix_Utils.MAX_ASSETS_PER_CONTEXT
+        addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_SYNC_ASSETS, Oblix_Utils.MAX_ASSETS_PER_CONTEXT
             , CAMPAIGN_PFY,CAMPAIGN_NFY,Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS,ASSET_NFY ,ASSET_PFY,NULL);
+
+
+
+        //#################################################
+        //  ADD JOB COMPONENT FOR SETTING SYNC STEP
+        //	BACK TO BLANK FOR CAMPAIGNS WHICH ALREADY BEEN PROCESSED
+        //#################################################
+        // how many attachments?
+            // job component attribute list
+            //      attrib_1: sync status
+            //      attrib_2: value to be set BLANK
+            //      attrib_3: original status
+            //      attrib_4: object type
+            //      attrib_5: field used for flag        
+            //      attrib_6: field used for checking sow status (either Financial_Year__r.SOW_Status__c or SOW_Status__c)
+        
+        number_of_chunks = getNumberOfChuncks(total_campaigns,Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT);
+
+        addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_SET_PROCESSING_FLAG, Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT
+            , Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS ,SYNC_STEP_COMPLETED,Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES, OBJECT_CAMPAIGN, SYNC_STEP_FIELD,PARENT_SOW_STATUS_FIELD);
 
 
 
@@ -562,10 +584,28 @@ public with sharing class Oblix_SyncBatchJob implements Database.Batchable<JobCo
             //      attrib_5: field used for flag        
             //      attrib_6: field used for checking sow status (either Financial_Year__r.SOW_Status__c or SOW_Status__c)
         
+        addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_SET_PROCESSING_FLAG, Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT
+            , Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS ,FALSE_VALUE,Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES, OBJECT_CAMPAIGN, CAMPAIGN_ATTRIBUTE_UPDATE,PARENT_SOW_STATUS_FIELD);
+
+
+
+        //#################################################
+        //  ADD JOB COMPONENT FOR SETTING SYNC STEP
+        //	BACK TO BLANK FOR CAMPAIGNS WHICH ALREADY BEEN PROCESSED
+        //#################################################
+        // how many attachments?
+            // job component attribute list
+            //      attrib_1: sync status
+            //      attrib_2: value to be set BLANK
+            //      attrib_3: original status
+            //      attrib_4: object type
+            //      attrib_5: field used for flag        
+            //      attrib_6: field used for checking sow status (either Financial_Year__r.SOW_Status__c or SOW_Status__c)
+        
         number_of_chunks = getNumberOfChuncks(total_campaigns,Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT);
 
         addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_SET_PROCESSING_FLAG, Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT
-            , Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS ,FALSE_VALUE,Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES, OBJECT_CAMPAIGN, CAMPAIGN_ATTRIBUTE_UPDATE,PARENT_SOW_STATUS_FIELD);
+            , Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS ,SYNC_STEP_COMPLETED,NULL, OBJECT_CAMPAIGN, SYNC_STEP_FIELD,NULL);
 
 
         //#################################################

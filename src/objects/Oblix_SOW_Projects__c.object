@@ -2004,6 +2004,18 @@ ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Returned by Agency&quot;)
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Sync_Step__c</fullName>
+        <description>Stamps the record with the processed step to ensure the next batch does not pick up the same record. DO NOT EDIT as this field is set by automated job</description>
+        <externalId>false</externalId>
+        <label>Sync Step</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Timescale_Notes__c</fullName>
         <description>Notes relating to timescale</description>
         <externalId>false</externalId>

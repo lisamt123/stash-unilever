@@ -1612,12 +1612,12 @@ table tbody tr td {
 .add_assets_chevron_percentage_values h1 {
     margin:0;
     font-family: 'UldinproB', Arial, sans-serif;
-    font-size: 22px;
+    font-size: 28px;
 
 }
 
 .add_assets_chevron_percentage_values p.red_text {
-    font-size: 9pt;
+    font-size: 10pt;
 }
 
 .campaign_fee_percentage {
@@ -1865,7 +1865,7 @@ table tbody tr td {
 }
 
 .modal-body h1.campaign_fee_percentage {
-    font-size: 22px;
+    font-size: 28px;
 }
 
 .adjust_allocation_box {
@@ -2360,6 +2360,7 @@ p.percentage_paid div.popover {
     height: 46%;
     padding-left: 3.5%;
     display: inline-block;
+    margin-left: 5px;
 }
 /*.bar-chart-col .oblix_chart {
     padding-left: 6.5%;

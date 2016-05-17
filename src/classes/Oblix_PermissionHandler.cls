@@ -125,6 +125,7 @@ public with sharing class Oblix_PermissionHandler {
             || Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL == sow_status
             || Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL_TBC == sow_status
             || Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES == sow_status
+            || Oblix_Utils.SOW_STATUS_FINALISED == sow_status
             || null != sow_approved_version){
     		
     		return true;
@@ -345,9 +346,13 @@ public with sharing class Oblix_PermissionHandler {
         // 4- if it needs to be submitted for EOY approval
         if ((hasUL2permissionSet() || hasUL1permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin())
             && 
-            (Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES == sow_status || Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER == sow_status)
+            (Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES == sow_status || Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER == sow_status || Oblix_Utils.SOW_STATUS_REJECTED_BY_AGENCY == sow_status|| Oblix_Utils.SOW_STATUS_REJECTED_BY_UNILEVER == sow_status)
             &&
             (
+                (Oblix_Utils.SOW_STATUS_REJECTED_BY_UNILEVER == sow_status && Oblix_Utils.JOB_STATUS_SYNC_COMPLETED == sow_sync_status)
+                ||
+                (Oblix_Utils.SOW_STATUS_REJECTED_BY_AGENCY == sow_status && Oblix_Utils.JOB_STATUS_SYNC_COMPLETED == sow_sync_status)
+                ||
                 (Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES == sow_status && Oblix_Utils.JOB_STATUS_SYNC_COMPLETED == sow_sync_status)
                 ||
                 (Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER == sow_status && (String.isBlank(pfy_sow_status) || (String.isNotBlank(pfy_sow_status) && Oblix_Utils.SOW_STATUS_FINALISED == pfy_sow_status)))

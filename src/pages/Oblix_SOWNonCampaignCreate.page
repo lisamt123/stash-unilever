@@ -342,7 +342,9 @@
                                                             <td onclick="openResourceForUpdate('{!item.key}');">{!item.selectedAgencyDepartment}</td>
                                                             <td onclick="openResourceForUpdate('{!item.key}');">{!item.selectedRole}</td>
                                                             <td onclick="openResourceForUpdate('{!item.key}');">
-                                                                <apex:outputText rendered="{!can_see_financial_fields}">{!item.roundedRate}</apex:outputText>
+                                                                <apex:outputText value="{0, number,###,###,##0}" rendered="{!can_see_financial_fields}">
+                                                                    <apex:param value="{!VALUE(item.roundedRate)}"/>
+                                                                </apex:outputText>
                                                                 <apex:outputText rendered="{!can_see_financial_fields == false}"> --- </apex:outputText>
                                                             </td>
                                                             <td onclick="openResourceForUpdate('{!item.key}');">{!item.hoursSelected}</td>

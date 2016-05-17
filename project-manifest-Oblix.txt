@@ -260,7 +260,6 @@ src/reports/SWOP_Reporting_Super_Users/SWOP_Campaign_Report_Full_Detail_v2.repor
 src/reports/SWOP_Reporting_Super_Users/SWOP_Pick_Lists_v2.report
 src/reports/SWOP_Reporting_Super_Users/SWOP_Role_Rates_Non_Campaign_v2.report
 src/reports/SWOP_Reporting_Super_Users/SWOP_SOW_Report_Full_Export_v2.report
-src/reports/SWOP_Reporting_Super_Users/SWOP_Scope_of_Work_Status.report
 src/reports/SWOP_Reporting_Agencies
 src/reports/SWOP_Reporting_Agencies-meta.xml
 src/reports/SWOP_Reporting_Agencies/SWOP_Agency_SOW_Report_Full_Export.report
@@ -275,6 +274,10 @@ src/components/Oblix_leaseGanttChart.component
 src/components/Oblix_leaseGanttChart.component-meta.xml
 src/labels
 src/labels/CustomLabels.labels
+src/layouts
+src/layouts/Asset_Scoring__c-Asset Scoring Layout.layout
+src/layouts/Marketing_SOW__c-Marketing SOW Layout.layout
+src/layouts/Oblix_SOW_Projects__c-Agency Projects Layout.layout
 src/objects
 src/objects/Asset_Scoring__c.object
 src/objects/Marketing_Basics__c.object

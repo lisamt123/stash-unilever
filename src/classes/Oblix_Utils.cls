@@ -491,7 +491,7 @@ public with sharing class Oblix_Utils {
 
     public static final String CAMPAIGN_STAGES_ALL = 'Briefing;Strategy & Planning;Creative Ideation;Creative Execution;Production';
 
-    public static final String APPROVAL_PROCESS_NAME = 'Oblix_SOW_Approval_Process_v7';
+    public static final String APPROVAL_PROCESS_NAME = 'Oblix_SOW_Approval_Process_v8';
 
     public static final String TOTAL_PROJECT_SCORE_CFY_FILED = 'Total_Project_Score__c';
     public static final String TOTAL_PROJECT_SCORE_PFY_FILED = 'Total_Project_Score_PFY__c';
@@ -539,6 +539,7 @@ public with sharing class Oblix_Utils {
     public static final String JOB_PROCESS_CLONE_NON_CAMPAIGN = 'Clone Non Campaigns';
     public static final String JOB_PROCESS_CLONE_ATTACHMENTS = 'Clone Attachments';
     public static final String JOB_PROCESS_CLONE_ASSETS = 'Clone Assets';
+    public static final String JOB_PROCESS_SYNC_ASSETS = 'Sync Assets';
     public static final String JOB_PROCESS_CLONE_ATTACHMENT_FLAG = 'Set Clone Attachment Flag';
     public static final String JOB_PROCESS_SET_PROCESSING_FLAG = 'Set sync job flag';
     public static final String JOB_PROCESS_RECALCULATE_FEES_PFY = 'Recalculate PFY fees using CFY calculator';

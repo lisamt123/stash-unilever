@@ -148,11 +148,22 @@ validateTotalAdjustFee = function(item, panelId) {
 
 function calculateFee(){
     var percentageElement = $('input[id$=manualPercentage]');
+    var percentageFeePFY = $('input[id$=percentageFeePFY]').val();
+    var feesPFYwithFXadjustment = $('input[id$=feesPFYwithFXadjustment]').val();
+
+    if($.isNumeric(percentageFeePFY) == false){
+        percentageFeePFY = 0;
+    }
+
+    if($.isNumeric(feesPFYwithFXadjustment) == false){
+        feesPFYwithFXadjustment = 0;
+    }
+
     if($.isNumeric(percentageElement.val()) == false){
         $('#calculatedFee').html('#Error');
     } else {
         var fullFee = $(percentageElement).data('fullfee');
-        var calculatedfee = Math.round(fullFee * percentageElement.val() / 100);
+        var calculatedfee = Math.round(((parseFloat(percentageElement.val()) + parseFloat(percentageFeePFY)) * parseFloat(fullFee) / 100) - parseFloat(feesPFYwithFXadjustment));
 
         var formatter = new Intl.NumberFormat({
           maximumFractionDigits: 0,

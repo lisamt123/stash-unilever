@@ -80,6 +80,13 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
             Boolean is_sole_editor = Oblix_PermissionHandler.isOnlyBrandCatEditor(selected_sow.OblixBrand__c, selected_sow.SmallProductCategory__c, UserInfo.getUserId());
             Boolean is_with_ul2 = (selected_sow.SOW_Status__c == Oblix_Utils.SOW_STATUS_REJECTED_BY_AGENCY) || (selected_sow.SOW_Status__c == Oblix_Utils.SOW_STATUS_REJECTED_BY_UNILEVER) || (selected_sow.SOW_Status__c == Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER );
 
+            System.debug('### show_submit');
+            System.debug('### is_sole_editor: ' + is_sole_editor);
+            System.debug('### selected_sow.SOW_Status__c: ' + selected_sow.SOW_Status__c);
+            System.debug('### is_with_ul2: ' + is_with_ul2);
+            System.debug('### can_submit_for_approval: ' + can_submit_for_approval);
+            System.debug('### Oblix_PermissionHandler.hasUL1permissionSet(): ' + Oblix_PermissionHandler.hasUL1permissionSet());
+
             return can_submit_for_approval && ( !( Oblix_PermissionHandler.hasUL1permissionSet() && is_with_ul2) || is_sole_editor);
         }
     }

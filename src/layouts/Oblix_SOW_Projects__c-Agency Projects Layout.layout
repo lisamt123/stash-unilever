@@ -35,6 +35,10 @@
                 <behavior>Edit</behavior>
                 <field>Campaign_Attributes_Updated__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Sync_Step__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -245,6 +249,14 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Fees_Paid_PFY__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Fees_PFY_Paid_Using_CFY_Calc__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Fees_PFY_Total_By_CFY_Calculator__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
