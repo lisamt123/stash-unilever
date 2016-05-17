@@ -1,6 +1,3 @@
 src
-src/classes
-src/classes/IPM_BD_BB_Report_Batch.cls
-src/classes/IPM_BD_BB_Report_Batch.cls-meta.xml
-src/objects
-src/objects/IPM_Financial__c.object
+src/permissionsets
+src/permissionsets/IPM_Business_Partners.permissionset
