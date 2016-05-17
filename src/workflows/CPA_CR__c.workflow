@@ -307,7 +307,7 @@
         <lookupValue>CAP_ULPM</lookupValue>
         <lookupValueType>Queue</lookupValueType>
         <name>Update Approver</name>
-        <notifyAssignee>true</notifyAssignee>
+        <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
         <protected>false</protected>
     </fieldUpdates>

@@ -1088,7 +1088,7 @@ null)),null)</formula>
         <lookupValue>CAP_ULPM</lookupValue>
         <lookupValueType>Queue</lookupValueType>
         <name>CPA Update Owner</name>
-        <notifyAssignee>true</notifyAssignee>
+        <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
         <protected>false</protected>
         <reevaluateOnChange>true</reevaluateOnChange>

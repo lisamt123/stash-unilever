@@ -231,7 +231,7 @@
         <lookupValue>CPA_SMT</lookupValue>
         <lookupValueType>Queue</lookupValueType>
         <name>CPA LOI Owner Update to SMT</name>
-        <notifyAssignee>true</notifyAssignee>
+        <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
         <protected>false</protected>
     </fieldUpdates>

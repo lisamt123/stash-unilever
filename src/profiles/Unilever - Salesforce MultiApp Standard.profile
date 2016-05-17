@@ -1581,15 +1581,15 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Vep_Visitor__c-ROB Visitor layout</layout>
+        <recordType>Vep_Visitor__c.Request_on_Behalf</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Vep_Visitor__c-Visitor Layout</layout>
         <recordType>Vep_Visitor__c.Request</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Vep_Visitor__c-ROB Visitor layout</layout>
+        <layout>Vep_Visitor__c-Visitor ReadOnly Layout</layout>
         <recordType>Vep_Visitor__c.Request_Readonly</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Vep_Visitor__c-ROB Visitor layout</layout>
-        <recordType>Vep_Visitor__c.Request_on_Behalf</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>WU_Master_Warehouse__c-New Warehouse Capacity Layout</layout>
