@@ -19,6 +19,7 @@ src/objects/UID_Order_Product__c.object
 src/objects/UID_Performance_Line_Item__c.object
 src/objects/UID_Performance__c.object
 src/objects/UID_Stocked_Product_Summary__c.object
+src/objects/UID_Stocked_Product__c.object
 src/permissionsets
 src/permissionsets/UID_Distributor_Manager_Permission_Set.permissionset
 src/permissionsets/UID_Partner_Community_User_Permission_Set.permissionset
