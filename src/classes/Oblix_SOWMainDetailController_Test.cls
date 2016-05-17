@@ -14,6 +14,8 @@
 @isTest
 private class Oblix_SOWMainDetailController_Test {
 
+    private static final String SOW_ID_PARAMETER_STRING = 'sowId';
+
 	//private static final String PROJECT_TXT = 'Project';
 	private enum Permission {CAN_EDIT, CAN_DELETE, CAN_APPROVE, CAN_REJECT, CAN_SUBMIT, CAN_DELETE_ATTACHMENT, CAN_ADD_ATTACHMENT, CAN_MANAGE_CAMPAIGN, CAN_MANAGE_NON_CAMPAIGN}
 
@@ -28,7 +30,7 @@ private class Oblix_SOWMainDetailController_Test {
 
 		initTestData();
 
-        ApexPAges.currentPage().getParameters().put('sowId', mSow.Id);
+        ApexPAges.currentPage().getParameters().put(SOW_ID_PARAMETER_STRING, mSow.Id);
         Oblix_SowMainDetailController controllerInstance = new Oblix_SowMainDetailController();
 
         Test.startTest();
@@ -86,7 +88,7 @@ private class Oblix_SOWMainDetailController_Test {
 
         initTestData();
 
-        ApexPAges.currentPage().getParameters().put('sowId', mSow.Id);
+        ApexPAges.currentPage().getParameters().put(SOW_ID_PARAMETER_STRING, mSow.Id);
         Oblix_SowMainDetailController controllerInstance = new Oblix_SowMainDetailController();
 
         controllerInstance.pageAttachment.Name='Unit Test Attachment';
@@ -95,6 +97,8 @@ private class Oblix_SOWMainDetailController_Test {
         Test.startTest();
 
         controllerInstance.uploadAttachment();
+        List<Attachment> uploadedAtt = [SELECT Id FROM Attachment limit 1];
+        controllerInstance.deleteAttachmentId = uploadedAtt[0].Id;
         controllerInstance.deleteAtt();
 
         PageReference deleteAction = controllerInstance.deleteAction();
@@ -114,7 +118,7 @@ private class Oblix_SOWMainDetailController_Test {
 
         initTestData();
 
-        ApexPAges.currentPage().getParameters().put('sowId', mSow.Id);
+        ApexPAges.currentPage().getParameters().put(SOW_ID_PARAMETER_STRING, mSow.Id);
         Oblix_SowMainDetailController controllerInstance = new Oblix_SowMainDetailController();
 
         User currentUser = new User(Id = UserInfo.getUserId());
@@ -147,7 +151,7 @@ private class Oblix_SOWMainDetailController_Test {
 
         insert Oblix_TestUtils.createOblixFXChangeCustomSetting();
 
-        ApexPAges.currentPage().getParameters().put('sowId', mSow.Id);
+        ApexPAges.currentPage().getParameters().put(SOW_ID_PARAMETER_STRING, mSow.Id);
         Oblix_SowMainDetailController controllerInstance = new Oblix_SowMainDetailController();
 
         User currentUser = new User(Id = UserInfo.getUserId());
@@ -172,6 +176,43 @@ private class Oblix_SOWMainDetailController_Test {
         PageReference sow_details_page = Page.oblix_sowmain;
         System.assertEquals(sow_details_page.getUrl(), submitForApproval.getUrl());
         System.assertEquals(sow_details_page.getUrl(), rejectSOW.getUrl());
+
+    }
+
+     @isTest static void testSyncCampaigns() {
+        initTestData();
+
+        ApexPAges.currentPage().getParameters().put(SOW_ID_PARAMETER_STRING, mSow.Id);
+        Oblix_SowMainDetailController controllerInstance = new Oblix_SowMainDetailController();
+
+        Test.startTest();
+        
+        PageReference initiateRO = controllerInstance.initiateRollOver();
+
+        List<Oblix_SOW_Projects__c> lst_sowp = [SELECT Id, Sync_Status__c FROM Oblix_SOW_Projects__c limit 1];
+
+        //lst_sowp[0].Sync_Status__c = Oblix_Utils.JOB_STATUS_SYNC_REQUIRED;
+        controllerInstance.selected_sow.Initial_Approval_Complete__c = true;
+
+        update lst_sowp;
+
+        PageReference syncCamp = controllerInstance.syncCampaigns();
+
+        controllerInstance.updateSyncStatusAndNameSuffix();
+        
+
+        Boolean shouldSync = controllerInstance.shouldSyncAllCampaigns;
+            
+        Test.stopTest();    
+
+        PageReference sow_details_page = Page.oblix_sowmain;
+
+        //List<Marketing_SOW__c> sowRecord = [SELECT Id, Name_Suffix__c FROM Marketing_SOW__c LIMIT 1];
+
+        System.assertNotEquals(null, controllerInstance.selected_sow);
+        System.assertEquals(mSow.Id, controllerInstance.selected_sow.Id);
+
+        System.assertEquals(Oblix_Utils.NAME_SUFFIX_FINALISED, controllerInstance.selected_sow.Name_Suffix__c);
 
     }
 
@@ -228,7 +269,8 @@ private class Oblix_SOWMainDetailController_Test {
         User currentUser = new User(Id = UserInfo.getUserId());
         System.runAs(currentUser) {
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
-            mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
+            //mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
+            mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER, brand.id);
             Map<Id, Oblix_SOW_Projects__c> map_campaigns_to_test = Oblix_TestUtils.insertCampaignsWithRelatedRecords(3,5,5,mSow.Id,'Total turnover >€400m', 'Global campaign (all market clusters)', 'Up to 4 locations', 'New – Multi channel');
             Oblix_TestUtils.createMarketingBasics(mSow.Id);
         }

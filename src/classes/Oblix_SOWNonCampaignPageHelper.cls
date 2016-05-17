@@ -243,11 +243,11 @@ public with sharing class Oblix_SOWNonCampaignPageHelper extends Oblix_SOWNonCam
         if (isActivity) {
             currentActivity = workList.get(currentTab).items.get(currentItemKey).clone();
             currentActivity.replaceSObjectWithClone();
-            //refreshSelectionPicklists();
+            refreshSelectionPicklists();
         } else {
             currentResource = workList.get(currentTab).items.get(currentItemKey).clone();
             currentResource.replaceSObjectWithClone();
-            //refreshSelectionPicklists();
+            refreshSelectionPicklists();
         }
     }
 

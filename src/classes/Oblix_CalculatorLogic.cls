@@ -13,6 +13,13 @@
 public without sharing class Oblix_CalculatorLogic {
 
 
+
+    /*******************************************************************************
+    * @author       Execloud ©
+    * @date         2016-05-16
+    * @description  for the given campaigns return the score innovation brand growth
+    				by looking at the custom settings
+    ********************************************************************************/
 	private static Map<Id, Decimal> getScoreInnovationBrandGrowth(List<Oblix_SOW_Projects__c> li_projects){
 
 		Map<Id, Decimal> midd_project_innovation_score = new Map<Id,Decimal>();
@@ -28,6 +35,12 @@ public without sharing class Oblix_CalculatorLogic {
 	}
 
 
+    /*******************************************************************************
+    * @author       Execloud ©
+    * @date         2016-05-16
+    * @description  for the given campaigns return the score innovation market
+    				by looking at the custom settings
+    ********************************************************************************/
 	private static Map<Id, Decimal> getScoreInnovationMarket(List<Oblix_SOW_Projects__c> li_projects){
 
 		Map<Id, Decimal> midd_project_market_score = new Map<Id,Decimal>();
@@ -42,6 +55,12 @@ public without sharing class Oblix_CalculatorLogic {
 		return midd_project_market_score;
 	}
 
+    /*******************************************************************************
+    * @author       Execloud ©
+    * @date         2016-05-16
+    * @description  for the given campaigns return the score innovation hub
+    				by looking at the custom settings
+    ********************************************************************************/
 	private static Map<Id, Decimal> getScoreInnovationHub(List<Oblix_SOW_Projects__c> li_projects){
 
 		Map<Id, Decimal> midd_project_hub_score = new Map<Id,Decimal>();
@@ -57,6 +76,12 @@ public without sharing class Oblix_CalculatorLogic {
 	}
 
 
+    /*******************************************************************************
+    * @author       Execloud ©
+    * @date         2016-05-16
+    * @description  for the given campaigns return the score innovation Idea
+    				by looking at the custom settings
+    ********************************************************************************/
 	private static Map<Id, Decimal> getScoreInnovationIdea(List<Oblix_SOW_Projects__c> li_projects){
 
 		Map<Id, Decimal> midd_project_idea_score = new Map<Id,Decimal>();
@@ -71,6 +96,12 @@ public without sharing class Oblix_CalculatorLogic {
 		return midd_project_idea_score;
 	}
 
+    /*******************************************************************************
+    * @author       Execloud ©
+    * @date         2016-05-16
+    * @description  for the given campaigns return business driver score by taking
+    				into account 4 attributes making up the business driver score
+    ********************************************************************************/
 	public static Map<Id, Decimal> getTotalBusinessDriverScore(Map<Id,Oblix_SOW_Projects__c> map_projects){
 
 		Map<Id, Decimal> midd_project_business_drive_score = new Map<Id, Decimal>();
@@ -93,6 +124,12 @@ public without sharing class Oblix_CalculatorLogic {
 		return midd_project_business_drive_score;
 	}
 
+    /*******************************************************************************
+    * @author       Execloud ©
+    * @date         2016-05-16
+    * @description  for the given campaigns return total project score by taking 
+    				business driver score and also total asset score
+    ********************************************************************************/
 	public static Map<Id, Decimal> getTotalProjectScore(Map<Id, Decimal> map_project_driver_score, Map<Id, Decimal> map_total_asset_score){
 		Map<Id, Decimal> midd_project_total_score = new Map<Id, Decimal>();
 
@@ -115,6 +152,12 @@ public without sharing class Oblix_CalculatorLogic {
 		return midd_project_total_score;
 	}
 
+    /*******************************************************************************
+    * @author       Execloud ©
+    * @date         2016-05-16
+    * @description  for the given campaigns return total asset score by taking 
+    				asset score, quantity and also the hub and splits 
+    ********************************************************************************/
 	public static Map<Id, Decimal> calculateTotalAssetScore(Map<Id, Oblix_SOW_Projects__c> map_projects){
 
 		Map<Id, Decimal> midd_project_asset_total = new Map<Id, Decimal>();
@@ -148,6 +191,12 @@ public without sharing class Oblix_CalculatorLogic {
 		return midd_project_asset_total;
 	}
 
+    /*******************************************************************************
+    * @author       Execloud ©
+    * @date         2016-05-16
+    * @description  for the given assets in basket calculate total asset score by taking
+    				quantity of assets and the score
+    ********************************************************************************/
 	public static Map<Id, Decimal> calculateTotalAssetScore(List<Oblix_AssetOfferingWrapper.AssetWrapper> assets_in_basket){
 
 		Map<Id, Decimal> midd_project_asset_total = new Map<Id, Decimal>();
@@ -168,6 +217,12 @@ public without sharing class Oblix_CalculatorLogic {
 		return midd_project_asset_total;
 	}
 
+    /*******************************************************************************
+    * @author       Execloud ©
+    * @date         2016-05-16
+    * @description  for the given projects loop through the hub and splits to work out
+    				campaign fee for each
+    ********************************************************************************/
 	public static Map<Id, Long> calculateFeeByHubs(Map<Id, Oblix_SOW_Projects__c> map_projects, Map<Id, String> map_campaign_id_box_number){
 		Map<Id, Long> midd_project_total_fee = new Map<Id, Long>();
 
@@ -215,6 +270,12 @@ public without sharing class Oblix_CalculatorLogic {
 		return midd_project_total_fee;
 	}
 
+    /*******************************************************************************
+    * @author       Execloud ©
+    * @date         2016-05-16
+    * @description  for the given projects find out the box number based on the 
+    				total project score
+    ********************************************************************************/
 	public static Map<Id, String> getBoxNumber(Map<Id, Oblix_SOW_Projects__c> map_projects, Map<Id, Decimal> map_project_total_score){
 
 		Map<Id, String> map_campaign_id_box_number = new Map<Id, String>();
@@ -244,6 +305,12 @@ public without sharing class Oblix_CalculatorLogic {
 		return map_campaign_id_box_number;
 	}
 
+    /*******************************************************************************
+    * @author       Execloud ©
+    * @date         2016-05-16
+    * @description  get the fee for split by getting the poin score and percentage 
+    				applicable to hub and split
+    ********************************************************************************/
 	@TestVisible
 	private static Decimal calculateFeeBySplitAndPointScore(Decimal point_score, Decimal split_percentage ){
 		
@@ -255,8 +322,17 @@ public without sharing class Oblix_CalculatorLogic {
 		return fee_for_split;
 	}
 
+    /*******************************************************************************
+    * @author       Execloud ©
+    * @date         2016-05-16
+    * @description  This is the main method which can distribute to other methods depending
+    				on the "recalculate" booleans passed-in. Depending on these flags it recalculates
+    				parts or all of the fee related attributes and returns a map of campaign id and fees
+
+    				Updated - allow a parameter to get the project total score from CFY or PFY
+    ********************************************************************************/
 	public static Map<Id, Long> getCampaignFee(Map<Id, Oblix_SOW_Projects__c> map_projects, List<Oblix_AssetOfferingWrapper.AssetWrapper> assets_in_basket
-		, Boolean recalculate_project_driver_score, Boolean recalculate_total_project_score, Boolean recalculate_total_asset_score){
+		, Boolean recalculate_project_driver_score, Boolean recalculate_total_project_score, Boolean recalculate_total_asset_score, String total_project_score_field){
 
 		Map<Id, Long> map_campaign_id_campaign_fee = new Map<Id,Long>();
 
@@ -306,7 +382,7 @@ public without sharing class Oblix_CalculatorLogic {
 				Oblix_SOW_Projects__c project = map_projects.get(campaign_id);
 
 				// get the value from project attribute if already calculated
-				midd_project_total_score.put(campaign_id, project.Total_Project_Score__c);
+				midd_project_total_score.put(campaign_id,(Decimal) project.get(total_project_score_field));
 			}
 		}
 
@@ -324,6 +400,12 @@ public without sharing class Oblix_CalculatorLogic {
 
 	private static CalculatorRangeWrapper financial_year_calculator;
 
+    /*******************************************************************************
+    * @author       Execloud ©
+    * @date         2016-05-16
+    * @description  This method makes use of financial year calculator org cache to return 
+    				an instance of CalculatorRangeWrapper
+    ********************************************************************************/
 	public static CalculatorRangeWrapper getFinancialYearCalculator(){
 
 		//Map<Id,Oblix_Calculator__c> map_calculator = getCalculatorRecords();
@@ -357,6 +439,12 @@ public without sharing class Oblix_CalculatorLogic {
 	// execution cotext
     private static CalculatorCountryBoxWrapper country_box_calculator;
 
+    /*******************************************************************************
+    * @author       Execloud ©
+    * @date         2016-05-16
+    * @description  This method makes use of financial year calculator org cache to return 
+    				an instance of CalculatorCountryBoxWrapper
+    ********************************************************************************/
 	public static CalculatorCountryBoxWrapper getCountryBoxCalculator(){
 
 		//Map<Id,Oblix_Calculator__c> map_calculator = getCalculatorRecords();
@@ -390,6 +478,13 @@ public without sharing class Oblix_CalculatorLogic {
 
 	private static Map<Id,Oblix_Calculator__c> map_calculator;
 
+
+    /*******************************************************************************
+    * @author       Execloud ©
+    * @date         2016-05-16
+    * @description  This method makes use of financial year calculator org cache to return 
+    				the collection of calculator records
+    ********************************************************************************/
 	public static Map<Id,Oblix_Calculator__c> getCalculatorRecords(){
 
 		// check the map in static variable first
@@ -415,6 +510,12 @@ public without sharing class Oblix_CalculatorLogic {
 		return map_calculator;
 	}
 
+
+    /*******************************************************************************
+    * @author       Execloud ©
+    * @date         2016-05-16
+    * @description  This class handles the collection of calculator records for country box wrapper
+    ********************************************************************************/
 	public class CalculatorCountryBoxWrapper{
 		public Map<String,Oblix_Calculator__c> map_oblix_calculator {get;set;}
 
@@ -458,6 +559,11 @@ public without sharing class Oblix_CalculatorLogic {
 
 	}
 
+    /*******************************************************************************
+    * @author       Execloud ©
+    * @date         2016-05-16
+    * @description  This class handles the collection of calculator records for CalculatorRangeWrapper
+    ********************************************************************************/
 	public class CalculatorRangeWrapper{
 
 		public List<CalculatorRecordWrapper> li_calculator_range {get;set;}
@@ -505,6 +611,11 @@ public without sharing class Oblix_CalculatorLogic {
 		}
 	}
 
+    /*******************************************************************************
+    * @author       Execloud ©
+    * @date         2016-05-16
+    * @description  This class handles the collection of calculator records for CalculatorRecordWrapper
+    ********************************************************************************/
 	public class CalculatorRecordWrapper{
 
 		public Decimal point_low_value;

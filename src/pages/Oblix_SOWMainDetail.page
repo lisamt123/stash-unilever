@@ -1,27 +1,14 @@
 <apex:page sidebar="false" controller="Oblix_SOWMainDetailController" docType="html-5.0" showHeader="false" standardStylesheets="true" action="{!checkUserHasPermissionToSOW}">
 
-<style type="text/css">
-    /*.oblix_chart{
-        position:absolute !important;
-        left:690px;
-        top:230px;
-    }*/
-    .oblix_chart .analyticsEmbeddedReportChart .outerbound{
-        border-width:0px;
-    }
-    .oblix_chart .asOfDate, .auraErrorMessage{
-        display: none;
-    }
-</style>
-
     <apex:composition template="Oblix_OuterPageTemplate">
 
         <apex:define name="top_breadcrumb">
             <!-- <a href="/apex/oblix_sowmain">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;{!selected_sow.Name} -->
             <a href="{!URLFOR($Page.oblix_sowmain)}">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;{!selected_sow.Name}
         </apex:define>
+        
         <apex:define name="header_text">
-            {!selected_sow.Name}
+            {!selected_sow.Name} 
         </apex:define>
 
         <apex:define name="top_option_links">
@@ -30,13 +17,13 @@
             </apex:outputPanel>
             <apex:actionRegion >
                 <apex:outputPanel rendered="{!IF(can_delete_sow,true,false)}">
-                    <a href="#" data-toggle="modal" data-target="#sowDelete">Delete SOW</a>&nbsp;&nbsp;| &nbsp;
+                    <a href="#" data-toggle="modal" data-target="#sowDelete">Delete SOW</a>&nbsp;&nbsp;
                 </apex:outputPanel>
             </apex:actionRegion>
             <apex:outputPanel id="initiateRollOverLink" >
                 <apex:actionRegion >
-                    <apex:outputPanel rendered="{!IF(can_edit,true,false)}">
-                        <apex:outputLink value="#" onclick="blockme();initiateRollOver();" disabled="{!NOT(ISBLANK(selected_sow.Sync_Status__c))}" >{!IF(ISBLANK(selected_sow.Sync_Status__c),'Initiate Rollover','Rollover Initiated')}</apex:outputLink>&nbsp;&nbsp;
+                    <apex:outputPanel rendered="{!IF(can_edit && selected_sow.Initial_Approval_Complete__c,true,false)}">
+                        <apex:outputLink value="#" onclick="blockme();initiateRollOver();" disabled="{!NOT(ISBLANK(selected_sow.Sync_Status__c))}" >| &nbsp;{!IF(ISBLANK(selected_sow.Sync_Status__c),'Initiate Rollover','Rollover Initiated')}</apex:outputLink>&nbsp;&nbsp;
                     </apex:outputPanel>
                     <apex:actionFunction name="initiateRollOver" action="{!initiateRollOver}"  oncomplete="$.unblockUI();" reRender="initiateRollOverLink"/>
                     <apex:actionFunction name="syncCampaigns" action="{!syncCampaigns}" oncomplete="$.unblockUI();location.reload();" reRender="relatedItems">
@@ -44,10 +31,10 @@
                     <apex:actionFunction name="assignCampaignId" oncomplete="$.unblockUI();"><apex:param id="campaignIDSync" name="campaignIDSync" assignTo="{!campaignIDSync}" value="{!campaignIDSync}"/></apex:actionFunction>
                 </apex:actionRegion>
             </apex:outputPanel>
-            <apex:outputPanel rendered="{!IF(selected_sow.Sync_Status__c == 'Sync In Progress',true,false)}">
+            <apex:outputPanel rendered="{!IF(selected_sow.Sync_Status__c  == 'Sync In Progress' || selected_sow.Sync_Status_PFY__c == 'Sync In Progress' || selected_sow.Sync_Status__c  == 'Sync Requested' || selected_sow.Sync_Status_PFY__c == 'Sync Requested',true,false)}">
                 <br/>
                 <br/>
-                <apex:outputText styleClass="label-danger" value="Sync in Progress. This SOW is READ ONLY. No updates allowed"/>
+                <apex:outputText style="color:red;font-weight: bold;" value="Sync in Progress. This SOW is READ ONLY. No updates allowed"/>
             </apex:outputPanel>
             <!--            confirm delete sow modal-->
             <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="sowDelete" id="sowDelete">
@@ -68,23 +55,54 @@
                             <div class="modal_button_align">
                             <apex:actionRegion >
                                 <button type="button" class="btn btn_cross btn_cancel" data-dismiss="modal">CANCEL</button>
-                                <apex:commandButton action="{!deleteAction}" reRender="top_right_panel,sow_details" styleClass="btn btn-danger btn_check btn_yes_delete" value="YES, DELETE" html-data-dismiss="modal" onclick="blockme()" oncomplete="$.unblockUI()"/>
+                                <apex:commandButton action="{!deleteAction}" reRender="page_message_id" styleClass="btn btn-danger btn_check btn_yes_delete" value="YES, DELETE" html-data-dismiss="modal" />
                             </apex:actionRegion>
+                      <!--          <button class="btn btn-danger btn_check btn_yes_delete" html-data-dismiss="modal" onclick="blockme();delAction1();" oncomplete="$.unblockUI();rerenAct();">YES, DELETE</button> -->
                             </div>
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
+
+            
         </apex:define>
 
         <apex:define name="top_right_panel">
+
+            <!-- Sync Process Notification modal-->
+            <apex:outputText rendered="{!is_going_through_rollover}">
+                <div class="modal-backdrop fade in syncProcessNotification"></div>
+                <div class="modal show syncProcessNotification" tabindex="-1" role="dialog" aria-labelledby="syncProcessNotification" id="syncProcessNotification">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content submit_for_approval_modal">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="$('.syncProcessNotification').addClass('hidden');"><span aria-hidden="true">&times;</span></button>
+                                <h1 class="modal_window_title" id="gridSystemModalLabel">Sync Process Notification</h1>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        Please note that you cannot modify the attributes or assets of the rolled-over campaigns. You will need to make the changes to the campaigns under the original SOW from previous financial year. You can then sync these changes forward. The only exception is for the campaign Projected Stage which can be edited and used for planning and calculation purposes. Syncing campaign will overwrite the Projected Stage.
+                                    </div>   
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="modal_button_align">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="$('.syncProcessNotification').addClass('hidden');">Accept and continue</button>
+                                </div>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+            </apex:outputText>
+
             <apex:outputPanel id="top_right_panel">
                 <table class="SOW_header_value_summary">
                     <tr>
-                        <td class="header_approval_button" rowspan="3"><apex:outputPanel rendered="{!show_submit}"><button type="button" class="btn btn-danger btn-xs create_SOW_button btn_check btn_submit_approval" data-toggle="modal"  data-target="#submitApproval">SUBMIT FOR APPROVAL</button></apex:outputPanel></td>
+                        <td class="header_approval_button" rowspan="3"><apex:outputPanel rendered="{!show_submit && isFXApprovedForFY}"><button type="button" class="btn btn-danger btn-xs create_SOW_button btn_check btn_submit_approval" data-toggle="modal"  data-target="#submitApproval">SUBMIT FOR APPROVAL</button></apex:outputPanel></td>
                         <td class="header_approval_button" rowspan="3"><apex:outputPanel rendered="{!can_reject_sow}"><button type="button" class="btn btn-danger btn-xs two_button_header btn_return btn_send_back" data-toggle="modal"  data-target="#sendBack">RETURN SOW</button></apex:outputPanel></td>
                         <td class="header_approval_button" rowspan="3"><apex:outputPanel rendered="{!can_approve_sow}"><button type="button" class="btn btn-danger btn-xs create_SOW_button btn_check btn_approve_sow"  data-toggle="modal"  data-target="#sowApprove">APPROVE SOW</button></apex:outputPanel></td>
-                        <td class="SOW_header_value_title">SOW total (including risk adjustment)</td>
+                        <td class="SOW_header_value_title">SOW total (incl. risk adjustment)</td>
                         <td class="SOW_header_value">
                             <h2>
                                 <apex:outputText value="€ {0, number,###,###,##0}" rendered="{!can_see_financial_fields}">
@@ -196,11 +214,45 @@
                             <div class="modal-footer">
                                 <div class="modal_button_align">
                                     <button type="button" class="btn btn_cross btn_cancel" data-dismiss="modal">CANCEL</button>
-                                        <apex:commandButton rendered="{!isAgencyApproval}" action="{!approveSOW}" onclick="blockme();" styleClass="btn btn-danger btn_check btn_yes_submit" value="YES, APPROVE" reRender="top_right_panel,sow_details" html-data-dismiss="modal" oncomplete="$.unblockUI();alert('{!selected_sow.Name} has been approved successfully by Unilever and Agency.\nAn \'open for updates\' version will be available shortly to allow Unilever reflect any changes during the year.');window.location.href='{!URLFOR($Page.Oblix_SOWMain)}';"/>
+                                        <!--apex:commandButton rendered="{!isAgencyApproval}" action="{!approveSOW}" onclick="blockme();" styleClass="btn btn-danger btn_check btn_yes_submit" value="YES, APPROVE" reRender="top_right_panel,sow_details" html-data-dismiss="modal" oncomplete="$.unblockUI();alert('{!selected_sow.Name} has been approved successfully by Unilever and Agency.\nAn \'open for updates\' version will be available shortly to allow Unilever to reflect any changes during the year.');window.location.href='{!URLFOR($Page.Oblix_SOWMain)}';"/-->
+                                        <apex:commandButton rendered="{!isAgencyApproval}" action="{!approveSOW}" onclick="blockme();" styleClass="btn btn-danger btn_check btn_yes_submit" value="YES, APPROVE" reRender="top_right_panel,sow_details" html-data-dismiss="modal" oncomplete="$('#moveToMainPage').modal({backdrop: 'static', keyboard: false});"/>
                                         <apex:commandButton rendered="{!!isAgencyApproval}" action="{!approveSOW}" reRender="top_right_panel,sow_details,page_message_id" styleClass="btn btn-danger btn_check btn_yes_approve" value="YES, APPROVE" html-data-dismiss="modal"  onclick="blockme()" oncomplete="$.unblockUI()"/>
                                 </div>
                             </div>
                         </apex:actionRegion>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="moveToMainPage" id="moveToMainPage">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content submit_for_approval_modal">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h1 class="modal_window_title" id="gridSystemModalLabel">{!selected_sow.Name} has been approved</h1>
+                        </div>
+                        <apex:outputPanel id="initialApprvalComplete" rendered="{!selected_sow.Initial_Approval_Complete__c}">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        !-- Initial Approval Complete Section --! {!selected_sow.Name} has been approved successfully by Unilever and Agency. An open for updates version will be available shortly to allow Unilever to reflect any changes during the year.
+                                    </div>   
+                                </div>
+                            </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel id="initialApprvalNotComplete" rendered="{!NOT(selected_sow.Initial_Approval_Complete__c)}">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        !-- Initial Approval Not Complete Section --! {!selected_sow.Name} has been approved successfully by Unilever and Agency. An open for updates version will be available shortly to allow Unilever to reflect any changes during the year.
+                                    </div>   
+                                </div>
+                            </div>
+                        </apex:outputPanel>
+                        <div class="modal-footer">
+                            <div class="modal_button_align">
+                                <button type="button" class="btn btn-danger btn_check btn_yes_delete" html-data-dismiss="modal" onclick="blockme();window.location.href='{!URLFOR($Page.Oblix_SOWMain)}';" >Proceed</button>
+                            </div>
+                        </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
@@ -219,6 +271,7 @@
                             </div>
                         </div>
                         <apex:actionFunction action="{!deleteAtt}" name="delAtt"/>
+                        <apex:actionFunction action="{!deleteAction}" name="delAction"/>
                         <apex:actionFunction reRender="top_right_panel,sow_details" name="rerenAtt"/>
                         <div class="modal-footer">
                             <div class="modal_button_align">
@@ -282,7 +335,7 @@
             <!-- SOW details: -->
             <apex:outputPanel id="sow_details">
                     <hr class="divider" />
-                    <div class="col-lg-8">
+                    <div class="col-lg-7">
                         <table class="SOW_name_status_info" >
                             <tr>
                                 <td class="SOW_name_status_info_titles">Status</td>
@@ -317,23 +370,21 @@
                         </table>
                     </div>
                     <div class="col-lg-4 bar-chart-col">
-                        <div class="oblix_chart" id="charts" style="display:inline-block;float:right;width:500px;margin-top:-15px;">
-                            <!-- <div class="SOW_name_status_info_titles" style="padding-left:30px;">Spend by Outcome Priority</div> -->
-                            <!-- <analytics:reportChart developerName="{!reportDeveloperName}" filter="{!reportFilter}" size="tiny" showRefreshButton="false"/> -->
-                            <!-- <apex:actionRegion> -->
-                            <!-- <apex:outputPanel id="chartPanel"> -->
-                            <div id="chart_div_fy_fee" class="chartHolder" data-chart-data="{!scoresFYFeeDashboard.graphData}"></div>
-                            <div id="chart_div_full_fee" class="chartHolder" data-chart-data="{!scoresFullFeeDashboard.graphData}" style="display:none"></div>
-                            <a href="#" onclick="$('.chartHolder').toggle();">Full Fee</a>&nbsp;|&nbsp;<a href="#" onclick="$('.chartHolder').toggle();">Full Fee</a>
-                            <!-- </apex:outputPanel> -->
-                            <!-- <apex:commandLink value="Full Fee" action="{!setFee}" reRender="chartPanel">
-                                <apex:param value="FULL_FEE" assignTo="{!scoresDashboard.instanceFeeType}"/>
-                            </apex:commandLink>
-                            &nbsp;|&nbsp;
-                            <apex:commandLink value="FY Fee" action="{!setFee}" reRender="chartPanel">
-                            <apex:param value="FY_FEE" assignTo="{!scoresDashboard.instanceFeeType}"/>
-                            </apex:commandLink>
-                            </apex:actionRegion> -->
+                        <div class="oblix_chart ms-container" id="charts" style="display:inline-block;/*float:right;width:500px;*/margin-top:-15px;">
+                            <apex:outputPanel rendered="{!canSeeDashboard && hasCampaigns}">
+                                <!-- <analytics:reportChart developerName="{!reportDeveloperName}" filter="{!reportFilter}" size="tiny" showRefreshButton="false"/> -->
+                                <div class="SOW_name_status_info_titles dashboard_title">Spend by Outcome Priority (%)</div>
+                                <div id="chart_div_fy_fee" class="chartHolder" data-chart-data="{!scoresFYFeeDashboard.graphData}"></div>
+                                <div id="chart_div_full_fee" class="chartHolder" data-chart-data="{!scoresFullFeeDashboard.graphData}" style="display:none"></div>
+                                <svg height="20" width="50">
+                                    <text id="FullFeeButton" x="0" y="15" class="dasboard_button dasboard_button__disabled" onclick="$('.chartHolder').toggle(); $('#FYFeeButton').attr('class', 'dasboard_button'); $(this).attr('class', 'dasboard_button dasboard_button__disabled');">Full fee</text>
+                                </svg>
+                                <svg height="20" width="20"><text x="7" y="15">|</text></svg>
+                                <svg height="20" width="50">
+                                    <text id="FYFeeButton" x="0" y="15" class="dasboard_button" onclick="$('.chartHolder').toggle();  $('#FullFeeButton').attr('class', 'dasboard_button'); $(this).attr('class', 'dasboard_button dasboard_button__disabled');">FY fee</text>
+                                </svg>
+                                <!-- <a href="#" onclick="$('.chartHolder').toggle(); $('.dasboard_button').toggleClass('dasboard_button__disabled');" class="dasboard_button dasboard_button__disabled">Full fee</a>&nbsp;|&nbsp;<a href="#" onclick="$('.chartHolder').toggle(); $('.dasboard_button').toggleClass('dasboard_button__disabled');" class="dasboard_button">FY fee</a> -->
+                            </apex:outputPanel>
                         </div>
                     </div>
                 </apex:outputPanel>
@@ -367,7 +418,7 @@
                     <apex:outputPanel rendered="{!can_manage_campaign}"><a class="btn btn-primary btn-xs pull-right btn_plus btn_add_campaign" href="{!$Page.Oblix_CampaignCreate + '?sowId=' + selected_sow.Id}">ADD CAMPAIGN</a></apex:outputPanel>
                     <apex:outputPanel rendered="{!can_manage_campaign}"><a class="btn btn-primary btn-xs pull-right btn_plus btn_add_non_campaign" href="{!$Page.Oblix_SOWNonCampaignCreate + '?sowId=' + selected_sow.Id}">ADD NON-CAMPAIGN</a></apex:outputPanel>
                     <apex:actionRegion >
-                        <apex:outputPanel rendered="{!IF(can_edit && selected_sow.Sync_Required_NFY__c = 'Campaign Sync Required',true,false)}">
+                        <apex:outputPanel rendered="{!IF(can_edit && shouldSyncAllCampaigns,true,false)}">
                             <apex:outputLink value="#" styleClass="btn btn-danger btn-xs btn_sync pull-right btn_sync_campaign" onclick="" html-data-toggle="modal"  html-data-target="#syncAllCampaigns">Sync All Campaigns</apex:outputLink>
                         </apex:outputPanel>
                     </apex:actionRegion>
@@ -413,7 +464,7 @@
                                                     <td style="display:none;width:0px !important">{!campaign_and_non_campaign.dynamic_object['Id']}</td>
                                                     <td>
                                                     
-                                                        <apex:outputLink title="Sync this Campaign with Previous FY Campaign" value="#" styleClass="ind_btn_sync_static pull-right" onclick="blockme();assignCampaignId('{!campaign_and_non_campaign.dynamic_object['Campaign_PFY__c']}');" rendered="{!campaign_and_non_campaign.dynamic_object['Sync_Required_NFY__c'] == 'Sync Required'}" html-data-toggle="modal"  html-data-target="#syncSingleCampaign"></apex:outputLink>
+                                                        <apex:outputLink title="Sync this Campaign with Previous FY Campaign" value="#" styleClass="ind_btn_sync_static pull-right" onclick="blockme();assignCampaignId('{!campaign_and_non_campaign.dynamic_object['Campaign_PFY__c']}');" rendered="{!campaign_and_non_campaign.dynamic_object['Sync_Required_NFY__c'] == 'Sync Required' && can_edit}" html-data-toggle="modal"  html-data-target="#syncSingleCampaign"></apex:outputLink>
                                                     
                                                     {!campaign_and_non_campaign.dynamic_object['Name']}</td>
                                                     <td>{!campaign_and_non_campaign.s_object_type}</td>
@@ -532,9 +583,9 @@
                                         <apex:actionRegion >
                                         <apex:commandButton styleClass="btn btn-primary btn_plus btn_asset_add" action="{!uploadAttachment}" value="ADD" rerender="" rendered="{!IF(can_add_attachment,true,false)}"></apex:commandButton>
                                         <br/>
-                                        Description (Optional)
+                                        Description
                                         &nbsp;
-                                        <apex:inputField value="{!pageAttachment.Description}" id="attDesc" styleclass="form-control multi_line_form_style" style="width:350px"/>
+                                        <apex:inputField value="{!pageAttachment.Description}" id="attDesc" styleclass="form-control multi_line_form_style" style="width:350px;height:50px !important"/>
                                     </apex:actionRegion>
                                 </apex:outputPanel>
                                 <div class="pull-right SOW_homepage_find">
@@ -565,7 +616,7 @@
                                                         <td style="display: none;"></td>
                                                         <td>
                                                             <apex:actionRegion >
-                                                                <apex:outputPanel rendered="{!IF(can_delete_attachment,true,false)}">
+                                                                <apex:outputPanel rendered="{!IF(can_delete_attachment || eachAttachment.OwnerId == $User.Id,true,false)}">
                                                                     <apex:outputLink onclick="assignP('{!eachAttachment.Id}');" value="#" styleClass="attachment_item"  html-data-toggle="modal"  html-data-target="#attDelete">&nbsp;
                                                                         
                                                                     </apex:outputLink>
@@ -577,7 +628,7 @@
                                                             <apex:outputText value="{!map_att_locale[eachAttachment.Id]}" /> 
                                                         </td>
                                                         <td>
-                                                           <a href="/servlet/servlet.FileDownload?file={!eachAttachment.Id}" target="_blank"> {!eachAttachment.Name}</a>
+                                                           <a href="{!URLFOR($Action.Attachment.Download, eachAttachment.Id)}" target="_blank"> {!eachAttachment.Name}</a>
                                                         </td>
                                                         <td>{!eachAttachment.Description}</td>
                                                         <td>{!eachAttachment.CreatedBy.Name}</td>
@@ -592,7 +643,7 @@
                     </div>
                 </div>
             </apex:outputPanel>
-            <apex:actionFunction name="deleteSOW" action="{!DeleteAction}" oncomplete="unblockUI();"/>
+            <!-- <apex:actionFunction name="deleteSOW" action="{!DeleteAction}" oncomplete="unblockUI();"/> -->
             
             
         </apex:define>

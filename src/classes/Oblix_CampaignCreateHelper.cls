@@ -322,6 +322,15 @@ public with sharing class Oblix_CampaignCreateHelper extends Oblix_SWOPparentCon
         set;
     }
 
+
+    public Boolean onlyShowProjectedChevron {
+        get {
+            return !doClone && is_NFY_campaign_in_the_middle_of_rollover;
+        }
+    }
+
+    
+
     public String selectedBrandBrand {get;set;}
 
     public String selectedBrandInnovation {get;set;}
@@ -331,13 +340,29 @@ public with sharing class Oblix_CampaignCreateHelper extends Oblix_SWOPparentCon
             selectedProject = [SELECT ID, Name, Brand_Led_Growth__c, Innovation_Projects__c, Financial_Year__r.Financial_Year__c, Financial_Year__r.Name, Campaign_Idea__c,
                 OblixRegion__c, Campaign_Countries__c, Selected_Countries__c, First_3_selected_countries__c, Project_Scale_1__c, Project_Scale_2__c, Project_Priority__c,
                 Project_Start_Date__c, Projected_Stage_CFY__c, Completed_Stage_CFY__c, Projected_Stage_PFY__c, Completed_Stage_PFY__c, Value_To_BePaid_Manual_Override__c,
-                First_Air_Date__c, Preview_Date__c, Project_Completion_Date__c, BET_first_release__c, Value_to_be_paid_in_Current_FY__c,
-                Final_release__c, Campaign_Total_Fees__c, Description__c, Platform__c, Jobs_to_be_Done__c, Percentage_of_Fee_for_this_FY__c, Campaign_Status__c, Name_Prefix__c FROM Oblix_SOW_Projects__c WHERE ID = : projectId
+                First_Air_Date__c, Preview_Date__c, Project_Completion_Date__c, BET_first_release__c, Value_to_be_paid_in_Current_FY__c, Campaign_Attributes_Updated__c,
+                Final_release__c, Campaign_Total_Fees__c, Description__c, Platform__c, Jobs_to_be_Done__c, Percentage_of_Fee_for_this_FY__c, Campaign_Status__c, Name_Prefix__c, 
+                Campaign_PFY__c,Oblix_ProjectBoxNumber_PFY__c, Percentage_of_Fees_PFY__c, Fees_Paid_PFY__c, Fees_PFY_Paid_Using_CFY_Calc__c, Total_Project_Score_PFY__c, Campaign_PFY__r.Financial_Year__r.SOW_Status__c FROM Oblix_SOW_Projects__c WHERE ID = : projectId
             ];
+
+        // if we are cloning, blank out the PFY fields in case the campaign is being cloned from a rolled-over campaign
+        if (doClone){
+            selectedProject.Campaign_PFY__c = NULL;
+            selectedProject.Oblix_ProjectBoxNumber_PFY__c = NULL;
+            selectedProject.Completed_Stage_PFY__c = NULL;
+            selectedProject.Projected_Stage_PFY__c = NULL;
+            selectedProject.Total_Project_Score_PFY__c = NULL;
+            selectedProject.Percentage_of_Fees_PFY__c = NULL;
+            selectedProject.Fees_Paid_PFY__c = NULL;
+        }
+
         } else {
             selectedProject = new Oblix_SOW_Projects__c();
             selectedProject.Financial_Year__c = sowId;
         }
+
+        //Update Parent controller link to Campaign to leverage existing methods.
+        selected_project = selectedProject;
 
 
         if (selectedProject.Innovation_Projects__c == Oblix_Utils.getOblixSettingValueByName('INNOVATION_LABEL')) {

@@ -6,8 +6,6 @@ src/classes/Oblix_AssetHandler.cls
 src/classes/Oblix_AssetHandler.cls-meta.xml
 src/classes/Oblix_DashboardsHandler.cls
 src/classes/Oblix_DashboardsHandler.cls-meta.xml
-src/classes/Oblix_AddAssetPageHelper.cls
-src/classes/Oblix_AddAssetPageHelper.cls-meta.xml
 src/classes/Oblix_AssetOfferingWrapper.cls
 src/classes/Oblix_AssetOfferingWrapper.cls-meta.xml
 src/classes/Oblix_CampaignAddAssetController.cls
@@ -38,6 +36,8 @@ src/classes/Oblix_Constants.cls
 src/classes/Oblix_Constants.cls-meta.xml
 src/classes/Oblix_Constants_Test.cls
 src/classes/Oblix_Constants_Test.cls-meta.xml
+src/classes/Oblix_Ctrl11AuditTracking_Cmp.cls
+src/classes/Oblix_Ctrl11AuditTracking_Cmp.cls-meta.xml
 src/classes/Oblix_Ctrl001DeepCloneSOW_CC.cls
 src/classes/Oblix_Ctrl001DeepCloneSOW_CC.cls-meta.xml
 src/classes/Oblix_Ctrl001DeepCloneSOW_CC_Test.cls
@@ -106,6 +106,8 @@ src/classes/Oblix_SOWHandlerLogic.cls
 src/classes/Oblix_SOWHandlerLogic.cls-meta.xml
 src/classes/Oblix_SOWMainDetailController.cls
 src/classes/Oblix_SOWMainDetailController.cls-meta.xml
+src/classes/Oblix_SOWMainDetalControllerExt.cls
+src/classes/Oblix_SOWMainDetalControllerExt.cls-meta.xml
 src/classes/Oblix_SOWMainDetailController_Test.cls
 src/classes/Oblix_SOWMainDetailController_Test.cls-meta.xml
 src/classes/Oblix_SOWNonCampaignCreateController.cls
@@ -174,8 +176,6 @@ src/classes/Oblix_wrapper_NonCamp.cls
 src/classes/Oblix_wrapper_NonCamp.cls-meta.xml
 src/classes/Oblix_SWOPredirectController.cls
 src/classes/Oblix_SWOPredirectController.cls-meta.xml
-src/classes/TestDataFactory.cls
-src/classes/TestDataFactory.cls-meta.xml
 src/classes/Oblix_DashboardsController.cls
 src/classes/Oblix_DashboardsController.cls-meta.xml
 src/classes/Oblix_SOWNonCampaignPageHelper.cls
@@ -260,7 +260,6 @@ src/reports/SWOP_Reporting_Super_Users/SWOP_Campaign_Report_Full_Detail_v2.repor
 src/reports/SWOP_Reporting_Super_Users/SWOP_Pick_Lists_v2.report
 src/reports/SWOP_Reporting_Super_Users/SWOP_Role_Rates_Non_Campaign_v2.report
 src/reports/SWOP_Reporting_Super_Users/SWOP_SOW_Report_Full_Export_v2.report
-src/reports/SWOP_Reporting_Super_Users/SWOP_Scope_of_Work_Status.report
 src/reports/SWOP_Reporting_Agencies
 src/reports/SWOP_Reporting_Agencies-meta.xml
 src/reports/SWOP_Reporting_Agencies/SWOP_Agency_SOW_Report_Full_Export.report
@@ -271,23 +270,30 @@ src/reports/SWOP_Reporting_Agencies/SWOP_Approval_Flow.report
 src/components
 src/components/Oblix_CampaignStage.component
 src/components/Oblix_CampaignStage.component-meta.xml
+src/components/Oblix_CmpAuditTracking.component
+src/components/Oblix_CmpAuditTracking.component-meta.xml
 src/components/Oblix_leaseGanttChart.component
 src/components/Oblix_leaseGanttChart.component-meta.xml
 src/labels
 src/labels/CustomLabels.labels
+src/layouts
+src/layouts/Asset_Scoring__c-Asset Scoring Layout.layout
+src/layouts/Marketing_SOW__c-Marketing SOW Layout.layout
+src/layouts/Oblix_SOW_Projects__c-Agency Projects Layout.layout
 src/objects
 src/objects/Asset_Scoring__c.object
 src/objects/Marketing_Basics__c.object
 src/objects/Marketing_SOW__c.object
 src/objects/Oblix_Calculator__c.object
+src/objects/Oblix_FX_Change__c.object
+src/objects/Oblix_Job_Orchestration__c.object
 src/objects/Oblix_Marketing_Agency_Hubs__c.object
 src/objects/Oblix_Marketing_SOW_Project_Splits__c.object
 src/objects/Oblix_Project_Assets__c.object
 src/objects/Oblix_SOW_Projects__c.object
 src/objects/Oblix_User_Permission__c.object
 src/objects/Oblix_Settings__c.object
-src/objects/Oblix_FX_Change__c.object
-src/objects/Oblix_Job_Orchestration__c.object
+src/objects/Oblix_URLs__c.object
 src/staticresources
 src/staticresources/Oblix_HightChartJS.resource
 src/staticresources/Oblix_JQueryBlockUI.resource
@@ -315,6 +321,7 @@ src/workflows
 src/workflows/Marketing_SOW__c.workflow
 src/workflows/Oblix_SOW_Projects__c.workflow
 src/approvalProcesses
+src/approvalProcesses/Marketing_SOW__c.Oblix_SOW_Approval_Process_v8.approvalProcess
 src/approvalProcesses/Marketing_SOW__c.Oblix_SOW_Approval_Process_v6.approvalProcess
 src/approvalProcesses/Marketing_SOW__c.Oblix_SOW_Approval_Process_v5.approvalProcess
 src/email

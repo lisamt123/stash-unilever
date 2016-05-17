@@ -33,9 +33,9 @@ public with sharing class Oblix_ProjectHandlerLogic {
         //set_campaign_ids_with_related_splits_not_adding_up = new Set<Id>();
 
         //Decimal total_percentage;
-        for (Oblix_SOW_Projects__c campaign : [SELECT Financial_Year__r.Financial_Year__c, Brand_Led_Growth__c, Project_Scale_1__c, Project_Scale_2__c, Campaign_Idea__c,
+        for (Oblix_SOW_Projects__c campaign : [SELECT Financial_Year__c, Financial_Year__r.Financial_Year__c, Brand_Led_Growth__c, Project_Scale_1__c, Project_Scale_2__c, Campaign_Idea__c,
             Total_Value_Driver__c, ProjectTotalAssetscore__c,Total_Project_Score__c, Name, Campaign_Hub_Summary__c, OblixProjectSplitPercentage_Comment__c,
-            Name_Suffix__c, Name_Prefix__c
+            Name_Suffix__c, Name_Prefix__c, Unique_key__c
             , (SELECT Id, Name, Project_Splits__c, Percentage__c, OblixCountry__r.Name FROM Marketing_SOW_Project_Splits__r)
             , (SELECT Location__c, Asset_Picklist__c, Asset_name__c, Quantity__c, Sub_Category__c, Asset_Score__c, Asset_Type__c FROM Agency_Project_Assets__r) 
             FROM Oblix_SOW_Projects__c WHERE ID in :list_projects]){
@@ -112,6 +112,9 @@ public with sharing class Oblix_ProjectHandlerLogic {
 
         // set campaign name made up of prefix and suffix
         campaign_to_adjust.Name = buildCampaignName(campaign_to_adjust.Name_Prefix__c, campaign_to_adjust.Name_Suffix__c);
+
+        //Populate campaign Unique Key in case Name changed, or Campaig was cloned and now belongs to another SOW.
+        campaign_to_adjust.Unique_Key__c = campaign_to_adjust.Financial_Year__c+'_'+campaign_to_adjust.Name;
         
         //system.debug('### adjusted campaign name prepopulated_campaign - prefix: '+ campaign_to_adjust.Name_Prefix__c 
         //    + ' - suffix: ' + campaign_to_adjust.Name_Suffix__c + ' - name: ' + campaign_to_adjust.Name);

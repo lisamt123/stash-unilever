@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
-    <active>false</active>
+    <active>true</active>
     <allowRecall>true</allowRecall>
     <allowedSubmitters>
         <type>owner</type>
@@ -26,6 +26,14 @@
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Marketing_SOW__c.SOW_Status__c</field>
+                <operation>equals</operation>
+                <value>Awaiting Unilever Approval</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
         <label>UL to review</label>
         <name>UL_to_review</name>
         <rejectionActions>
@@ -40,7 +48,7 @@
         </rejectionActions>
     </approvalStep>
     <approvalStep>
-        <allowDelegate>true</allowDelegate>
+        <allowDelegate>false</allowDelegate>
         <approvalActions>
             <action>
                 <name>Update_SOW_Status_to_Approved</name>
@@ -54,8 +62,17 @@
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
-        <label>AG to review</label>
-        <name>AG_to_review</name>
+        <description>Agency to review - initial approval then stamp SOW_Status with Approved</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Marketing_SOW__c.Initial_Approval_Complete__c</field>
+                <operation>equals</operation>
+                <value>False</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>AG to review (Initial Approval)</label>
+        <name>AG_to_review_Initial_Approval</name>
         <rejectBehavior>
             <type>RejectRequest</type>
         </rejectBehavior>
@@ -70,19 +87,68 @@
             </action>
         </rejectionActions>
     </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <approvalActions>
+            <action>
+                <name>Update_SOW_Status_to_Finalised</name>
+                <type>FieldUpdate</type>
+            </action>
+        </approvalActions>
+        <assignedApprover>
+            <approver>
+                <name>Agency_SOW_Approver_Name__c</name>
+                <type>relatedUserField</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>Agency to review - If already completed initial approval then stamp SOW_Status with Finalise</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Marketing_SOW__c.Initial_Approval_Complete__c</field>
+                <operation>equals</operation>
+                <value>True</value>
+            </criteriaItems>
+        </entryCriteria>
+        <label>AG to review (EOY approval)</label>
+        <name>AG_to_review_EOY_Approval</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+        <rejectionActions>
+            <action>
+                <name>SOW_Returned_by_Agency_Fin</name>
+                <type>Alert</type>
+            </action>
+            <action>
+                <name>Update_SOW_Status_Returned_by_Agency_Fin</name>
+                <type>FieldUpdate</type>
+            </action>
+        </rejectionActions>
+    </approvalStep>
     <emailTemplate>Oblix_SOW_Email/SOW_for_Unilever_Approval</emailTemplate>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <entryCriteria>
-        <booleanFilter>1</booleanFilter>
+        <booleanFilter>1 OR (2 AND 3)</booleanFilter>
         <criteriaItems>
             <field>Marketing_SOW__c.SOW_Status__c</field>
             <operation>equals</operation>
             <value>Awaiting Unilever Approval</value>
         </criteriaItems>
+        <criteriaItems>
+            <field>Marketing_SOW__c.SOW_Status__c</field>
+            <operation>equals</operation>
+            <value>Awaiting Agency Approval</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Marketing_SOW__c.SOW_Creator_is_Approver__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
     </entryCriteria>
     <finalApprovalRecordLock>true</finalApprovalRecordLock>
     <finalRejectionRecordLock>false</finalRejectionRecordLock>
-    <label>Oblix SOW Approval Process v6</label>
+    <label>Oblix SOW Approval Process v8</label>
     <recallActions>
         <action>
             <name>Update_SOW_Status_to_Draft</name>

@@ -2,8 +2,8 @@
     <style type="text/css">
         .oblix_chart {
             position: absolute !important;
-            left: 690px;
-            top: 230px;
+            /*left: 690px;
+            top: 230px;*/
         }
         .oblix_chart .analyticsEmbeddedReportChart .outerbound {
             border-width: 0px;
@@ -15,12 +15,18 @@
             position: absolute;
             text-align: center;
             top: 158px;
-            left: 175px;      
+            left: 49.5%;      
         }
     </style>
     <apex:composition template="Oblix_OuterPageTemplate">
         <apex:define name="top_breadcrumb">
             <a href="{!URLFOR($Page.oblix_sowmain)}">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="{!URLFOR($Page.oblix_sowmaindetail)}?sowId={!selected_sow.Id}">{!selected_sow.Name}</a>&nbsp;<span>&#9658;</span>&nbsp;{!selected_project.Name}
+        </apex:define>
+
+        <apex:define name="header_top_warning_text">
+            <apex:outputText rendered="{!is_NFY_campaign_in_the_middle_of_rollover}">
+                <div class="alert alert-danger" role="alert">Please update campaign attributes via: <a href="/apex/Oblix_CampaignSummary?projectId={!selected_project.Campaign_PFY__c}">{!selected_project.Campaign_PFY__r.Name}</a> and <b>sync</b></div>
+            </apex:outputText>
         </apex:define>
 
         <apex:define name="header_text">
@@ -37,24 +43,24 @@
             </apex:outputPanel>
             <apex:outputPanel rendered="{!IF(can_edit_campaign,true,false)}">
                 <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#cancelCampaign">Cancel Campaign</button> -->
-                <a href="#" data-toggle="modal" data-target="#cancelCampaignModal" onClick="refreshPopUpStageIdentifier();">Cancel Campaign</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                <a href="#" data-toggle="modal" data-target="#cancelCampaignModal" >Cancel Campaign</a>&nbsp;&nbsp;|&nbsp;&nbsp;
                 <!-- <a href="#" onclick="if (confirm('are you sure you want to delete this campaign?')){deleteCampaign();blockme();}">Cancel Campaign</a> -->
             </apex:outputPanel>
             <apex:outputPanel rendered="{!IF(can_edit_campaign,true,false)}">
                 <!-- <button class="btn btn-danger btn-xs create_SOW_button btn_check btn_submit_approval" data-toggle="modal" data-target="#cancelCampaign">Clone Campaign</button>&nbsp;&nbsp;|&nbsp;&nbsp; -->
                 <apex:outputLink value="/apex/Oblix_CampaignCreate?sowId={!selected_sow.Id}">New Campaign</apex:outputLink>
             </apex:outputPanel>
-            <apex:outputPanel rendered="{!IF(selected_project.Sync_Status__c == 'Sync In Progress' || selected_project.Sync_Required_NFY__c == 'Sync In Progress',true,false)}">
+            <apex:outputPanel rendered="{!IF(selected_project.Sync_Status__c  == 'Sync In Progress' || selected_project.Sync_Required_NFY__c == 'Sync In Progress' || selected_project.Sync_Status__c  == 'Sync Requested' || selected_project.Sync_Required_NFY__c == 'Sync Requested',true,false)}">
                 <br/>
                 <br/>
-                <apex:outputText styleClass="label-danger" value="Sync in Progress. This Campaign is READ ONLY. No updates allowed" />
+                <apex:outputText style="color:red;font-weight: bold;" value="Sync in Progress. This Campaign is READ ONLY. No updates allowed" />
             </apex:outputPanel>
-            <apex:actionFunction action="{!refreshPopUpStageIdentifier}" name="refreshPopUpStageIdentifier" rerender="cancel_campaign_campaign_stage_component_projected,cancel_campaign_campaign_stage_component_completed, campaign_stage_component_adjust_fee, calculatedFeePanel, adjustmentFeePanel"></apex:actionFunction>
+            <apex:actionFunction action="{!refreshPopUpStageIdentifier}" name="refreshPopUpStageIdentifier" onComplete="unblockCancelModal();" rerender="cancel_campaign_campaign_stage_component_projected,cancel_campaign_campaign_stage_component_completed, campaign_stage_component_adjust_fee, calculatedFeePanel, adjustmentFeePanel, cancelCampaignFeeWarningMessage"></apex:actionFunction>
         </apex:define>
         <apex:define name="top_right_panel">
             <table class="SOW_header_value_summary">
                 <tr>
-                    <apex:outputPanel rendered="{!IF(selected_project.Sync_Required_NFY__c == 'Sync Required' &&  selected_project.Campaign_PFY__c <> null,true,false)}">
+                    <apex:outputPanel rendered="{!IF(can_edit_campaign && (selected_project.Sync_Required_NFY__c == 'Sync Required' &&  selected_project.Campaign_PFY__c <> null),true,false)}">
                         <td rowspan="2">
 
                             <apex:outputLink value="#" styleClass="btn btn-danger btn-xs btn_sync pull-right btn_sync_campaign_summary" onclick="" html-data-toggle="modal" html-data-target="#syncSingleCampaign">Sync Campaign</apex:outputLink>
@@ -134,17 +140,21 @@
                                             </apex:outputText>
                                         </p>
                                         <apex:outputPanel id="calculatedFeePanel">
-                                            <apex:inputText html-type="number" html-step="0.01" onkeyup="calculateFee();" html-onPaste="return false;" onkeypress="return onKeyPress_IsDigitAndDecimalValidation(event, this);" id="manualPercentage" html-data-fullfee="{!stage_identifier_pop_up.sow_project_in_scope.Campaign_Fees_Total__c}" value="{!stage_identifier_pop_up.cancelCampaignManualPercent}" />
-                                            <p class="bold_font cancel_campaign_values" id="calculatedFee" html-data-calculatedfee="{!stage_identifier_pop_up.sow_project_in_scope.Campaign_Fees_Total__c * stage_identifier_pop_up.cancelCampaignManualPercent / 100.0 }">
+                                            <apex:inputText html-type="number" html-step="0.01" onkeyup="calculateFee(); validateTotalAdjustFee(this, 'adjustFeeExcessWarningOnCancel');" html-onPaste="return false;" onkeypress="return onKeyPress_IsDigitAndDecimalValidation(event, this);" id="manualPercentage" html-data-fullfee="{!stage_identifier_pop_up.sow_project_in_scope.Campaign_Fees_Total__c}" value="{!stage_identifier_pop_up.cancelCampaignManualPercent}" />
+                                            <apex:inputHidden id="percentageFeePFY" value="{!stage_identifier_pop_up.sow_project_in_scope.Percentage_of_Fees_PFY__c}" />
+                                            <apex:inputHidden id="feesPFYwithFXadjustment" value="{!stage_identifier_pop_up.sow_project_in_scope.Fees_PFY_Paid_Using_CFY_Calc__c}" />
+                                            <p class="bold_font cancel_campaign_values" id="calculatedFee" html-data-calculatedfee="{! ((stage_identifier_pop_up.cancelCampaignManualPercent + stage_identifier_pop_up.sow_project_in_scope.Percentage_of_Fees_PFY__c) * stage_identifier_pop_up.sow_project_in_scope.Campaign_Fees_Total__c / 100.0) - stage_identifier_pop_up.sow_project_in_scope.Fees_PFY_Paid_Using_CFY_Calc__c }">
                                                 <apex:outputText value="€ {0, number,###,###,##0}">
-                                                    <apex:param value="{!stage_identifier_pop_up.sow_project_in_scope.Campaign_Fees_Total__c * stage_identifier_pop_up.cancelCampaignManualPercent / 100.0 }" />
+                                                    <apex:param value="{! ((stage_identifier_pop_up.cancelCampaignManualPercent + stage_identifier_pop_up.sow_project_in_scope.Percentage_of_Fees_PFY__c) * stage_identifier_pop_up.sow_project_in_scope.Campaign_Fees_Total__c / 100.0) - stage_identifier_pop_up.sow_project_in_scope.Fees_PFY_Paid_Using_CFY_Calc__c }" />
                                                 </apex:outputText>
                                             </p>
                                         </apex:outputPanel>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 gbvp_adjustment">
-                                    <!--<p>% (Override % if required)</p>-->
+                                    <apex:outputText id="cancelCampaignFeeWarningMessage" >
+                                        <div class="alert alert-danger {! IF(stage_identifier_pop_up.cancelCampaignManualPercent <= maxAllowedAdjustValue, 'hidden', '')}" id="adjustFeeExcessWarningOnCancel" role="alert">Total campaign fee exceeds 100%. Do you wish to continue?</div>
+                                    </apex:outputText>
                                 </div>
                             </div>
                             <div class="row" style="padding-top:20px;">
@@ -225,11 +235,20 @@
                                             <div class="col-lg-4">
                                                 <p class="modal_adjust_text">Adjust % allocation for this FY to</p>
                                             </div>
-                                            <div class="col-lg-8">
+                                            <div class="col-lg-3">
                                                 <h1>
-                                            <apex:input type="number" id="AdjustPercentage" styleClass="adjust_allocation_box"  value="{!PercentToAdjust}" html-step="0.01" html-onPaste="return false;" onkeypress="return onKeyPress_IsDigitAndDecimalValidation(event, this);"/>
-                                            
-                                            %</h1>
+                                                    <apex:input type="number" 
+                                                        id="AdjustPercentage" 
+                                                        styleClass="adjust_allocation_box"  
+                                                        value="{!PercentToAdjust}" 
+                                                        html-step="0.01" 
+                                                        html-onPaste="return false;" 
+                                                        onkeypress="return onKeyPress_IsDigitAndDecimalValidation(event, this);"/> %
+                                                </h1>
+                                                <input type="hidden" id="maxAllowedAdjustValue" value="{!maxAllowedAdjustValue}" />
+                                            </div>
+                                            <div class="col-lg-5">
+                                                <div class="alert alert-danger hidden" id="adjustFeeExcessWarning" role="alert">Total campaign fee exceeds 100%. Do you wish to continue?</div>
                                             </div>
                                         </div>
                                     </div>
@@ -287,7 +306,7 @@
 
             <hr class="divider" />
             <div class="row">
-                <div class="col-lg-9 confirm_assets_accordion">
+                <div class="confirm_assets_accordion">
                     <div class="chevron_width_control {!if(selected_project.Campaign_Status__c == 'Cancelled', 'project_cancelled','')}">
                         <apex:outputText rendered="{!selected_project.Campaign_Status__c == 'Cancelled'}">
                             <p class="red_text {!if(selected_project.Campaign_Status__c == 'Cancelled', 'project_cancelled_text', '')}">
@@ -298,10 +317,6 @@
                         <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier}" AutoSave="true" Id="campaign_stage_component" displayMode="2" />
 
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-8">
                     <div class="campaign_summary_info_table">
                         <table class="campaign_summary_information camp_sum_table_left_width">
                             <tr>
@@ -492,10 +507,11 @@
                     </div>
 
                     <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier}" AutoSave="true" Id="campaign_stage_component_bottom" displayMode="4" showTotalPercentage="false" reRenderIds="cancel_campaign_campaign_stage_component_completed,cancel_campaign_campaign_stage_component_projected" />
+                    
                 </div>
-                <div class="col-lg-4 oblix_chart">
+                <div class="oblix_chart oblix_donut_chart">
                     <!--div id="chart_div" style="width: 300px; height: 300px;"></div-->
-                    <div id="chart_div" style="width: 375px; height: 375px;" data-chart-data="{!scoresDashboard.graphData}"></div>
+                    <div id="chart_div" style="width: 375px; height: 375px;" data-chart-total-assets="{!totalAssets}" data-chart-data="{!scoresDashboard.graphData}"></div>
                      <div class="overlay">
                         <apex:outputPanel rendered="{!IF(totalAssets == 1, true, false)}">
                           <div style="color: #888888; font-family:'Arial'; font-size: 32px; margin-left:5px;">{!totalAssets}</div>
@@ -510,13 +526,15 @@
                           <div style="color: #888888; font-family:'Arial'; font-size: 16px; margin-left:5px;">Assets</div>
                         </apex:outputPanel>
                     </div>
-                    <ul class="donut_chart_list">
-                        <li class="stimulus_material_key"><span class="donut_point_align">&#9679;</span><span>Stimulus Material</span></li>
-                        <li class="audio_visual_key"><span class="donut_point_align">&#9679;</span><span>Audio Visual</span></li>
-                        <li class="digital_key"><span class="donut_point_align">&#9679;</span><span>Digital</span></li>
-                        <li class="experimental_key"><span class="donut_point_align">&#9679;</span><span>Experimental</span></li>
-                        <li class="static_imagery_key"><span class="donut_point_align">&#9679;</span><span>Static Imagery</span></li>
-                    </ul>
+                    <apex:outputPanel rendered="{!totalAssets > 0}">
+                        <ul class="donut_chart_list">
+                            <li class="stimulus_material_key"><span class="donut_point_align">&#9679;</span><span>Stimulus Material</span></li>
+                            <li class="audio_visual_key"><span class="donut_point_align">&#9679;</span><span>Audio Visual</span></li>
+                            <li class="digital_key"><span class="donut_point_align">&#9679;</span><span>Digital</span></li>
+                            <li class="experimental_key"><span class="donut_point_align">&#9679;</span><span>Experiential</span></li>
+                            <li class="static_imagery_key"><span class="donut_point_align">&#9679;</span><span>Static Imagery</span></li>
+                        </ul>
+                    </apex:outputPanel>
                 </div>
             </div>
             <hr class="divider" />
@@ -525,7 +543,7 @@
                     <div class="col-lg-12 ">
                         <p id="campaign_asset_heading" class="page_bold_subheading">Campaign Assets</p>
                         <apex:outputPanel id="addAssetButtonPanel">
-                            <apex:commandButton rendered="{!can_edit_campaign}" value="{!If(can_manage_asset,'ADD ASSET','VIEW BASKET')}" action="{!addAssetAction}" styleClass="btn btn-primary btn-xs pull-right  btn_plus btn_campaign_add_asset" onclick="blockme()" />
+                            <apex:commandButton rendered="{!can_edit_campaign && can_manage_asset}" value="ADD ASSET" action="{!addAssetAction}" styleClass="btn btn-primary btn-xs pull-right  btn_plus btn_campaign_add_asset" onclick="blockme()" />
                         </apex:outputPanel>
                         <div class="Oblix_table" id="Oblix_DashId">
                             <table class="table table-striped" id="sowListTable">
@@ -550,7 +568,7 @@
                                         <tr>
                                             <apex:repeat value="{!$ObjectType.Oblix_Project_Assets__c.FieldSets.Oblix_Campaign_Summary}" var="field_name">
                                                 <!-- <td style="{!IF(field_name.Label == 'Record ID','display:none;','')}" onclick="viewAssetFunction('{!asset_id}'); blockme();"> -->
-                                                <td style="{!IF(field_name.Label == 'Record ID','display:none;','')}" class="redirect_td">
+                                                <td style="{!IF(field_name.Label == 'Record ID','display:none;','')}" class="{!IF(can_manage_asset, 'redirect_td', '')}">
                                                     <apex:outputText value="{0, number, ###,###.##}" rendered="{!(asset[field_name] != null && field_name.Type =='double')}">
                                                         <apex:param value="{!asset[field_name]}" />
                                                     </apex:outputText>
