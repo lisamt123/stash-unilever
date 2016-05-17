@@ -53,6 +53,7 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
@@ -456,7 +457,7 @@ Case__r.Account.PersonContact.MailingCountry</formula>
         <relationshipLabel>Retrieval Requests (Product Factory)</relationshipLabel>
         <relationshipName>Retrieval_Requests1</relationshipName>
         <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -546,7 +547,7 @@ Case__r.Account.PersonContact.MailingCountry</formula>
         <description>CEC Retrieval Message. To capture any error message from the downstream system</description>
         <externalId>false</externalId>
         <label>Retrieval Message</label>
-        <length>100</length>
+        <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -570,7 +571,7 @@ Case__r.Account.PersonContact.MailingCountry</formula>
         <externalId>false</externalId>
         <label>Retrieval Quantity</label>
         <precision>10</precision>
-        <required>true</required>
+        <required>false</required>
         <scale>0</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -694,7 +695,7 @@ Case__r.Account.PersonContact.MailingCountry</formula>
         <relationshipLabel>Retrieval Requests</relationshipLabel>
         <relationshipName>Retrieval_Requests</relationshipName>
         <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>

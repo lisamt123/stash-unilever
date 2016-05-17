@@ -5033,25 +5033,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>es</language>
         <queue>CEC_Spain_Queue</queue>
     </listViews>
-    <listViews>
-        <fullName>test_CSC_3987</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>L0_Product_Reporting__c</columns>
-        <columns>L1_Product_Reporting__c</columns>
-        <columns>L2_Product_Reporting__c</columns>
-        <columns>L3_Product_Reporting__c</columns>
-        <columns>L4_Product_Reporting__c</columns>
-        <columns>L5_Product_Reporting__c</columns>
-        <columns>L6_Product_Reporting__c</columns>
-        <columns>L7_Product_Reporting__c</columns>
-        <columns>CEC_Product_Reporting_Name_no_size__c</columns>
-        <columns>CEC_Product_Reporting_Name__c</columns>
-        <columns>CPG_Code_Reporting__c</columns>
-        <columns>Brand_Reporting__c</columns>
-        <filterScope>Mine</filterScope>
-        <label>test CSC 3987</label>
-        <language>en_US</language>
-    </listViews>
     <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
@@ -5646,25 +5627,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             </values>
             <values>
                 <fullName>George</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Test123__c</picklist>
-            <values>
-                <fullName>5</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>6</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>7</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>8</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -6290,25 +6252,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             </values>
             <values>
                 <fullName>George</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Test123__c</picklist>
-            <values>
-                <fullName>5</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>6</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>7</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>8</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
