@@ -1,0 +1,41 @@
+{
+    "name": "Lens_PS_Overall_Enrollment_by_country",
+    "label": "Lens: PS Overall (Enrollment by country)",
+    "visualizationType": "vbar",
+    "state": {
+        "query": {
+            "groups": [
+                "Country"
+            ],
+            "filters": [
+                [
+                    "Date_of_audit",
+                    [
+                        [
+                            [
+                                "month",
+                                -6
+                            ],
+                            [
+                                "month",
+                                -6
+                            ]
+                        ]
+                    ],
+                    ">=<="
+                ]
+            ],
+            "measures": [
+                [
+                    "count",
+                    "*"
+                ]
+            ]
+        }
+    },
+    "dataset": {
+        "id": "0Fb8A0000000SSDSA2",
+        "name": "PS_ENROLLED_STORE",
+        "url": "/services/data/v37.0/wave/datasets/0Fb8A0000000SSDSA2"
+    }
+}

@@ -2,7 +2,7 @@
     <!-- javascript -->
     <apex:includeScript value="{!URLFOR($Resource.PCResources, '/js/jquery-1.12.0.min.js')}" />
     <apex:includeScript value="{!URLFOR($Resource.PCResources, '/js/pc_container_js.js')}" />
-
+    
     <!-- sylesheets -->
     <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/bootstrap.min.css')}" />
     <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/PC_Container.css')}" />
@@ -23,7 +23,7 @@
             <div class="menuTabs">
                 <ul>
                     <li><a onclick="setActiveLink('home');" id="home" href="{!$Page.PC_Home}" target="innerFrame" class="active"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
-                    <li><a onclick="setActiveLink('pbs');" id="pbs" href="{!$Page.PBS_WelcomePage}" target="innerFrame">PBS</a></li>
+                    <li><a onclick="setActiveLink('pbs');" id="pbs" href="{!$Page.PBS_WelcomePage}" target="_new" >PBS</a></li>
                     <li><a onclick="setActiveLink('forum');" id="forum" href="{!$Page.PC_Forum}" target="innerFrame">Collaborate!</a></li>
                     <li><a href="http://www.quizup.com" target ="_new"><span class="text-muted">Games</span></a></li>
                     <li><a onclick="setActiveLink('profile');" id="profile" href="{!$Page.PBS_MyProfile}" target="innerFrame">My Profile</a></li>

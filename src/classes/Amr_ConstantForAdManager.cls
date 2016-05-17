@@ -92,6 +92,7 @@ public class Amr_ConstantForAdManager{
      public static final String AMR_REPORT = 'Amr_Report';
      public static final String STAGE_ONEANDTWOCOUNT = 'stageOneandTwoCount';
      public static final String ALL_COUNT = 'allCount';
+     public static final String CREATED_DATE =  ' and AM_Job_Detail__r.createdDate ';
      
    
 }
