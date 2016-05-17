@@ -52,7 +52,7 @@ public class EA_ControllerClass_Test{
             testObject2.Activity_Due_Day__c='Today';
             testObject2.Activity_Points__c=5;
             testObject2.Everyday_Activity__c=event.id;
-            testObject2.Feedback_Comments__c='test.feedback2';
+            testObject2.Feedback_Comments__c='test.fback2';
             testObject2.Invitation_Status__c='Invited';
             testObject2.Invitation_Text__c='test.inv2';
             testObject2.Invited_By__c=localUser.id;
@@ -65,7 +65,7 @@ public class EA_ControllerClass_Test{
             userList.add(testObject2);
             insert userList;
             
-            System.assertEquals('test.feedback2', team.Feedback_Comments__c);
+            System.assertEquals('test.fback2', testObject2.Feedback_Comments__c);
             FeedItem post = new FeedItem();
             post.ParentId = event.id; 
             post.Body = 'test.Body1';
@@ -73,7 +73,7 @@ public class EA_ControllerClass_Test{
             
             EA_ThemesDetails__c ea=new EA_ThemesDetails__c();
             ea.name='ThemesDetails';
-            ea.ThemeColorCode__c='test.color1';
+            ea.ThemeColorCode__c='teslor1';
             ea.ThemeDescription__c='Description1';
             insert ea;
             
@@ -240,7 +240,7 @@ public class EA_ControllerClass_Test{
             
             EA_ThemesDetails__c ea=new EA_ThemesDetails__c();
             ea.name='test11';
-            ea.ThemeColorCode__c='test.color2';
+            ea.ThemeColorCode__c='terget';
             ea.ThemeDescription__c='Description2';
             insert ea;
             EA_BadgeDetails__c badge=new EA_BadgeDetails__c();
