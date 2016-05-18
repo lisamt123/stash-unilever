@@ -1,0 +1,17 @@
+<apex:page standardController="VPM_PurchasingRequests__c" standardStylesheets="true" sidebar="false" extensions="VPM_GoldenDataController2">
+   <apex:form >
+          <apex:pageBlock title="Golden Data Screen 2">
+             <apex:pageBlockButtons >
+                 <apex:commandButton action="{!saveRecord}" value="Save and Exit"/>
+                 
+             </apex:pageBlockButtons>
+          
+            <apex:pageBlockSection columns="1">
+                <apex:inputField value="{!contact1.VPM_Vendor_Type__c}" required="true"/>
+                
+                <apex:inputField value="{!contact1.VPM_Authorisation_Group__c}" required="true"/>
+                <apex:inputField value="{!contact2.VPM_TradePartnerType__c}" required="true"/>
+            </apex:pageBlockSection>      
+          </apex:pageBlock>
+   </apex:form>  
+</apex:page>

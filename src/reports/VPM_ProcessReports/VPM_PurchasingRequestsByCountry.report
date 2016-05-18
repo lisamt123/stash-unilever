@@ -10,9 +10,6 @@
         <field>VPM_PurchasingRequests__c.VPM_City__c</field>
     </columns>
     <columns>
-        <field>VPM_PurchasingRequests__c.VPM_CommodityName__c</field>
-    </columns>
-    <columns>
         <field>VPM_PurchasingRequests__c.VPM_WhatAreYouBuying__c</field>
     </columns>
     <description>VPM Report on the requests logged per Requestor team country</description>

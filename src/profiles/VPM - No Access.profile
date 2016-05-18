@@ -6,7 +6,27 @@
         <visible>false</visible>
     </applicationVisibilities>
     <classAccesses>
+        <apexClass>GoldenDataController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>VPM_CreateVendorFetchFieldDetails</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>VPM_CreateVendorFieldDetailsWrapper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>VPM_CreateVendorServiceHelper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>VPM_FetchVendorsDetails</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>VPM_GoldenDataController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -25,10 +45,24 @@
         <apexClass>VPM_VendorDetailsType</apexClass>
         <enabled>false</enabled>
     </classAccesses>
+    <classAccesses>
+        <apexClass>flowController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
     <custom>true</custom>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Commodity_Code__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>VPM_CommodityCode__c.VPM_Authorisation_Group__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_CommodityCode__c.VPM_Commodity_Class__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -218,7 +252,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>VPM_PurchasingRequests__c.VPM_AnnualEstimatedSpend__c</field>
+        <field>VPM_PurchasingRequests__c.VPM_AnnualEstimatedSpend_del__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -447,23 +481,13 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>VPM_PurchasingRequests__c.VPM_CommodityClass__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>VPM_PurchasingRequests__c.VPM_CommodityFamily__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_CommodityNameIfKnown__c</field>
+        <field>VPM_PurchasingRequests__c.VPM_CommodityNameIfKnown_del__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>VPM_PurchasingRequests__c.VPM_CommodityName__c</field>
+        <field>VPM_PurchasingRequests__c.VPM_CommodityName_del__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -764,6 +788,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_ExternalMFG__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>VPM_PurchasingRequests__c.VPM_FLSInCountryReqVendor__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1423,7 +1452,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>VPM_PurchasingRequests__c.VPM_RapidFormComments__c</field>
+        <field>VPM_PurchasingRequests__c.VPM_RapidFormComments_del__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1568,12 +1597,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_SerRegNo__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_ServiceAgent__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ServicesItemsToPurchase__c</field>
+        <field>VPM_PurchasingRequests__c.VPM_ServicesItemsToPurchase_del__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1713,7 +1747,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>VPM_PurchasingRequests__c.VPM_SupportingDocumentsGuidelines__c</field>
+        <field>VPM_PurchasingRequests__c.VPM_SupportingDocumentsGuidelines_del__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1974,6 +2008,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_VendorType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_VendordoesntExistFlag__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2324,6 +2363,10 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
+        <recordType>VPM_CommodityCode__c.VPM_Non_Ariba</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_CommodityCode__c-Commodity Code Layout</layout>
         <recordType>VPM_CommodityCode__c.VPM_Occupational_Health</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -2568,10 +2611,6 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>VPM_AdvancedFormForBR</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>VPM_AdvancedForm_V1</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
@@ -2581,6 +2620,18 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>VPM_AttachmentSectionPopUp</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>VPM_GoldenData1</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>VPM_GoldenData2</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>VPM_SendToSAP</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <recordTypeVisibilities>
@@ -2845,6 +2896,11 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+        <recordType>VPM_CommodityCode__c.VPM_Non_Ariba</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
         <recordType>VPM_CommodityCode__c.VPM_Occupational_Health</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -3089,6 +3145,10 @@
         <recordType>VPM_PurchasingRequests__c.VPM_VendorReqMaintain</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
+    <tabVisibilities>
+        <tab>VPM_CommodityCode__c</tab>
+        <visibility>DefaultOff</visibility>
+    </tabVisibilities>
     <tabVisibilities>
         <tab>VPM_PurchasingRequests__c</tab>
         <visibility>DefaultOff</visibility>

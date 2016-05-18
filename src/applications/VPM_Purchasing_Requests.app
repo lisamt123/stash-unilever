@@ -8,4 +8,5 @@
     <tab>standard-report</tab>
     <tab>standard-Dashboard</tab>
     <tab>standard-Chatter</tab>
+    <tab>VPM_CommodityCode__c</tab>
 </CustomApplication>

@@ -140,9 +140,19 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>VPM_Commodity_Class__c</fullName>
+        <externalId>false</externalId>
+        <label>Commodity Class</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_Commodity_Code__c</fullName>
         <description>Field to hold Commodity Code details</description>
-        <externalId>false</externalId>
+        <externalId>true</externalId>
         <label>Commodity Code</label>
         <length>255</length>
         <required>false</required>
@@ -208,6 +218,10 @@
                 <fullName>69 - Out of Scope Procurement</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>0 - Non - Ariba</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackTrending>false</trackTrending>
@@ -233,8 +247,17 @@
         <type>Picklist</type>
     </fields>
     <label>Commodity Code</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>VPM_Commodity_Code__c</columns>
+        <columns>VPM_Commodity_Family__c</columns>
+        <columns>VPM_Vendor_Type__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
     <nameField>
-        <label>Commodity Name</label>
+        <label>Commodity Code Name</label>
         <type>Text</type>
     </nameField>
     <pluralLabel>Commodity Codes</pluralLabel>
@@ -1719,6 +1742,157 @@
             <values>
                 <fullName>SCS - Supply Chain Services</fullName>
                 <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_Non_Ariba</fullName>
+        <active>true</active>
+        <description>VPM Non- Ariba Commodity</description>
+        <label>Non - Ariba</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--HR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MBS--IT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MBS--Innovation %26 Professional Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MBS--Marketing Materials</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MBS--Marketing Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MBS--Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MBS--Workplace %26 Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-CAPEX EU AM LATAM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-Logistics - SEAA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-Logistics AM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-Logistics Africa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-Logistics EU</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-Logistics NA %28North Asia%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-Logistics NAME</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-Logistics RUB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-Logistics SA %28South Asia%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS-Logistics TUII</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Commodity_Family__c</picklist>
+            <values>
+                <fullName>0 - Non - Ariba</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>50 - Equipment %26 MRO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>54 - IT %26 Telecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>56 - Logistics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>57 - Market Research</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>58 - Marketing Promotional and Sales Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>60 - Marketing Agencies and Media</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>62 - Media %28Placement%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>63 - Innovation Sourcing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>64 - Professional Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>66 - Human Resources</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>67 - Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>69 - Out of Scope Procurement</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS - Supply Chain Services</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>

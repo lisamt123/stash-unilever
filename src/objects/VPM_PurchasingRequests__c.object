@@ -56,7 +56,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Private</externalSharingModel>
+    <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>Exception_Details__c</fullName>
         <externalId>false</externalId>
@@ -449,9 +449,9 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>VPM_AnnualEstimatedSpend__c</fullName>
+        <fullName>VPM_AnnualEstimatedSpend_del__c</fullName>
         <externalId>false</externalId>
-        <label>Annual Estimated Spend</label>
+        <label>Annual Estimated Spend_del</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
@@ -511,13 +511,29 @@
         <fullName>VPM_Authorization__c</fullName>
         <externalId>false</externalId>
         <label>Authorization</label>
-        <length>4</length>
-        <required>false</required>
+        <picklist>
+            <picklistValues>
+                <fullName>Authorzation 1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Authorzation 2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Authorzation 3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Authorzation 4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>VPM_AutoEvalGRSetmtDel__c</fullName>
@@ -1048,31 +1064,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>VPM_CommodityClass__c</fullName>
-        <externalId>false</externalId>
-        <label>Commodity Class</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>VPM_CommodityFamily__c</fullName>
-        <externalId>false</externalId>
-        <label>Commodity Family</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>VPM_CommodityNameIfKnown__c</fullName>
+        <fullName>VPM_CommodityNameIfKnown_del__c</fullName>
         <description>Entered by the Business Requestor as free text. This will be checked and recorded according to the SAP requirements in the &apos;VPM_CommodityName__c&apos; field by the FLS. No interface with SAP for this field.</description>
         <externalId>false</externalId>
         <inlineHelpText>If you know the Commodity name, enter it here.</inlineHelpText>
@@ -1086,10 +1078,10 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>VPM_CommodityName__c</fullName>
+        <fullName>VPM_CommodityName_del__c</fullName>
         <description>Used by Advanced Users to accurately record the Commodity Name vs SAP values. Field interfaced with SAP.</description>
         <externalId>false</externalId>
-        <label>Commodity Name</label>
+        <label>Commodity Name_del</label>
         <picklist>
             <picklistValues>
                 <fullName>12160000 - Additives</fullName>
@@ -1123,7 +1115,7 @@
                 <fullName>81140000 - Laboratory services</fullName>
                 <default>false</default>
             </picklistValues>
-            <sorted>true</sorted>
+            <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -3325,13 +3317,29 @@
         <description>Field to hold details of ECC relating to Vendor</description>
         <externalId>false</externalId>
         <label>ECC</label>
-        <length>255</length>
-        <required>false</required>
+        <picklist>
+            <picklistValues>
+                <fullName>Sirius</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cordillera</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fusion</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>U2K2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>VPM_Email2__c</fullName>
@@ -3527,6 +3535,16 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_FLSInCountryReqVendor__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISPICKVAL(VPM_CountryRequestingVendor__c,&quot;Algeria&quot;),TRUE,FALSE)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>FLSInCountryReqVendor</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>VPM_FaxExtension__c</fullName>
@@ -5332,9 +5350,9 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>VPM_RapidFormComments__c</fullName>
+        <fullName>VPM_RapidFormComments_del__c</fullName>
         <externalId>false</externalId>
-        <label>Rapid Form Comments</label>
+        <label>Rapid Form Comments_del</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -5421,13 +5439,37 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
         <fullName>VPM_Region__c</fullName>
         <externalId>false</externalId>
         <label>Region</label>
-        <length>10</length>
-        <required>false</required>
+        <picklist>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>6</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>VPM_RelevantForPriceDet__c</fullName>
@@ -5730,6 +5772,18 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>VPM_SerRegNo__c</fullName>
+        <externalId>false</externalId>
+        <label>Ser. Reg. No.</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_ServiceAgent__c</fullName>
         <externalId>false</externalId>
         <label>Service Agent</label>
@@ -5750,9 +5804,9 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>VPM_ServicesItemsToPurchase__c</fullName>
+        <fullName>VPM_ServicesItemsToPurchase_del__c</fullName>
         <externalId>false</externalId>
-        <label>Item/Services To Purchase</label>
+        <label>Item/Services To Purchase_del</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -6300,9 +6354,9 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>VPM_SupportingDocumentsGuidelines__c</fullName>
+        <fullName>VPM_SupportingDocumentsGuidelines_del__c</fullName>
         <externalId>false</externalId>
-        <label>Supporting Documents &amp; Guidelines</label>
+        <label>Supporting Documents &amp; Guidelines_del</label>
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -6377,13 +6431,29 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
         <description>VPM - specifies the Vendor Tax Jurisdiction details.</description>
         <externalId>false</externalId>
         <label>Tax Jurisdiction Code</label>
-        <length>15</length>
-        <required>false</required>
+        <picklist>
+            <picklistValues>
+                <fullName>Tax Jurisdiction Code 1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tax Jurisdiction Code 2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tax Jurisdiction Code 3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tax Jurisdiction Code 4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>VPM_TaxNumAtResponsibleTaxAuthority__c</fullName>
@@ -7047,6 +7117,26 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>VPM_VendordoesntExistFlag__c</fullName>
+        <externalId>false</externalId>
+        <label>VendordoesntExistFlag</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>VPM_WhatAreYouBuying__c</fullName>
         <description>Free text option to allow the Business Requestor completing a rapid form to enter a short description of the items buying. This helps the Advanced Users assess the request. No interface with SAP.</description>
         <externalId>false</externalId>
@@ -7141,16 +7231,16 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
         <columns>VPM_Rework__c</columns>
         <columns>VPM_AccountHolderName__c</columns>
         <columns>NAME</columns>
-        <columns>OBJECT_ID</columns>
         <columns>VPM_ApprovalsCompleted__c</columns>
         <columns>VPM_Comments__c</columns>
-        <columns>VPM_CommodityName__c</columns>
+        <columns>VPM_CommodityName_del__c</columns>
         <columns>VPM_Finance_Team_Section__c</columns>
         <columns>VPM_ProcurementSection__c</columns>
         <columns>VPM_FinanceSubmitted__c</columns>
         <columns>VPM_ProcurementSubmitted__c</columns>
         <columns>VPM_ProcurementApprovalRequired__c</columns>
         <columns>VPM_FinanceApprovalRequired__c</columns>
+        <columns>OBJECT_ID</columns>
         <filterScope>Everything</filterScope>
         <label>All Requests</label>
         <language>en_US</language>
@@ -7249,6 +7339,25 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_Authorization__c</picklist>
+            <values>
+                <fullName>Authorzation 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Authorzation 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Authorzation 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Authorzation 4</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_BankCountryKey__c</picklist>
             <values>
                 <fullName>BCK-1</fullName>
@@ -7311,7 +7420,7 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_CommodityName__c</picklist>
+            <picklist>VPM_CommodityName_del__c</picklist>
             <values>
                 <fullName>12160000 - Additives</fullName>
                 <default>false</default>
@@ -9036,6 +9145,25 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_ECC__c</picklist>
+            <values>
+                <fullName>Cordillera</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fusion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sirius</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U2K2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_ExceptionType__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -9424,6 +9552,33 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_Region__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_RequestLastWithGroup__c</picklist>
             <values>
                 <fullName>Business Requestor</fullName>
@@ -9742,6 +9897,25 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_TaxJurisdictionCode__c</picklist>
+            <values>
+                <fullName>Tax Jurisdiction Code 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tax Jurisdiction Code 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tax Jurisdiction Code 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tax Jurisdiction Code 4</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_TaxNumberType__c</picklist>
             <values>
                 <fullName>1</fullName>
@@ -9850,6 +10024,17 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
             <values>
                 <fullName>SCS - Supply Chain Services</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_VendordoesntExistFlag__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -9948,6 +10133,25 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_Authorization__c</picklist>
+            <values>
+                <fullName>Authorzation 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Authorzation 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Authorzation 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Authorzation 4</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_BankCountryKey__c</picklist>
             <values>
                 <fullName>BCK-1</fullName>
@@ -10010,7 +10214,7 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_CommodityName__c</picklist>
+            <picklist>VPM_CommodityName_del__c</picklist>
             <values>
                 <fullName>12160000 - Additives</fullName>
                 <default>false</default>
@@ -11735,6 +11939,25 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_ECC__c</picklist>
+            <values>
+                <fullName>Cordillera</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fusion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sirius</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U2K2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_ExceptionType__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -12123,6 +12346,33 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_Region__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_RequestLastWithGroup__c</picklist>
             <values>
                 <fullName>Business Requestor</fullName>
@@ -12441,6 +12691,25 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_TaxJurisdictionCode__c</picklist>
+            <values>
+                <fullName>Tax Jurisdiction Code 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tax Jurisdiction Code 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tax Jurisdiction Code 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tax Jurisdiction Code 4</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_TaxNumberType__c</picklist>
             <values>
                 <fullName>1</fullName>
@@ -12549,6 +12818,17 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
             <values>
                 <fullName>SCS - Supply Chain Services</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_VendordoesntExistFlag__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -12647,6 +12927,25 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_Authorization__c</picklist>
+            <values>
+                <fullName>Authorzation 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Authorzation 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Authorzation 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Authorzation 4</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_BankCountryKey__c</picklist>
             <values>
                 <fullName>BCK-1</fullName>
@@ -12709,7 +13008,7 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_CommodityName__c</picklist>
+            <picklist>VPM_CommodityName_del__c</picklist>
             <values>
                 <fullName>12160000 - Additives</fullName>
                 <default>false</default>
@@ -14434,6 +14733,25 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_ECC__c</picklist>
+            <values>
+                <fullName>Cordillera</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fusion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sirius</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U2K2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_ExceptionType__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -14822,6 +15140,33 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_Region__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_RequestLastWithGroup__c</picklist>
             <values>
                 <fullName>Business Requestor</fullName>
@@ -15140,6 +15485,25 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_TaxJurisdictionCode__c</picklist>
+            <values>
+                <fullName>Tax Jurisdiction Code 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tax Jurisdiction Code 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tax Jurisdiction Code 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tax Jurisdiction Code 4</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_TaxNumberType__c</picklist>
             <values>
                 <fullName>1</fullName>
@@ -15248,6 +15612,17 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
             <values>
                 <fullName>SCS - Supply Chain Services</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_VendordoesntExistFlag__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -15346,6 +15721,25 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_Authorization__c</picklist>
+            <values>
+                <fullName>Authorzation 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Authorzation 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Authorzation 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Authorzation 4</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_BankCountryKey__c</picklist>
             <values>
                 <fullName>BCK-1</fullName>
@@ -15408,7 +15802,7 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_CommodityName__c</picklist>
+            <picklist>VPM_CommodityName_del__c</picklist>
             <values>
                 <fullName>12160000 - Additives</fullName>
                 <default>false</default>
@@ -17133,6 +17527,25 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_ECC__c</picklist>
+            <values>
+                <fullName>Cordillera</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fusion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sirius</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U2K2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_ExceptionType__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -17521,6 +17934,33 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_Region__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_RequestLastWithGroup__c</picklist>
             <values>
                 <fullName>Business Requestor</fullName>
@@ -17839,6 +18279,25 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_TaxJurisdictionCode__c</picklist>
+            <values>
+                <fullName>Tax Jurisdiction Code 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tax Jurisdiction Code 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tax Jurisdiction Code 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tax Jurisdiction Code 4</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_TaxNumberType__c</picklist>
             <values>
                 <fullName>1</fullName>
@@ -17947,6 +18406,17 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
             <values>
                 <fullName>SCS - Supply Chain Services</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_VendordoesntExistFlag__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -18045,6 +18515,25 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_Authorization__c</picklist>
+            <values>
+                <fullName>Authorzation 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Authorzation 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Authorzation 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Authorzation 4</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_BankCountryKey__c</picklist>
             <values>
                 <fullName>BCK-1</fullName>
@@ -18107,7 +18596,7 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_CommodityName__c</picklist>
+            <picklist>VPM_CommodityName_del__c</picklist>
             <values>
                 <fullName>12160000 - Additives</fullName>
                 <default>false</default>
@@ -19832,6 +20321,25 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_ECC__c</picklist>
+            <values>
+                <fullName>Cordillera</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fusion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sirius</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U2K2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_ExceptionType__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -20220,6 +20728,33 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_Region__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_RequestLastWithGroup__c</picklist>
             <values>
                 <fullName>Business Requestor</fullName>
@@ -20538,6 +21073,25 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_TaxJurisdictionCode__c</picklist>
+            <values>
+                <fullName>Tax Jurisdiction Code 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tax Jurisdiction Code 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tax Jurisdiction Code 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tax Jurisdiction Code 4</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_TaxNumberType__c</picklist>
             <values>
                 <fullName>1</fullName>
@@ -20646,6 +21200,17 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
             <values>
                 <fullName>SCS - Supply Chain Services</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_VendordoesntExistFlag__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -20744,6 +21309,25 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_Authorization__c</picklist>
+            <values>
+                <fullName>Authorzation 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Authorzation 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Authorzation 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Authorzation 4</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_BankCountryKey__c</picklist>
             <values>
                 <fullName>BCK-1</fullName>
@@ -20806,7 +21390,7 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_CommodityName__c</picklist>
+            <picklist>VPM_CommodityName_del__c</picklist>
             <values>
                 <fullName>12160000 - Additives</fullName>
                 <default>false</default>
@@ -22531,6 +23115,25 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_ECC__c</picklist>
+            <values>
+                <fullName>Cordillera</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fusion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sirius</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U2K2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_ExceptionType__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -22919,6 +23522,33 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_Region__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_RequestLastWithGroup__c</picklist>
             <values>
                 <fullName>Business Requestor</fullName>
@@ -23237,6 +23867,25 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_TaxJurisdictionCode__c</picklist>
+            <values>
+                <fullName>Tax Jurisdiction Code 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tax Jurisdiction Code 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tax Jurisdiction Code 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tax Jurisdiction Code 4</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_TaxNumberType__c</picklist>
             <values>
                 <fullName>1</fullName>
@@ -23345,6 +23994,17 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
             <values>
                 <fullName>SCS - Supply Chain Services</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_VendordoesntExistFlag__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -23443,6 +24103,25 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_Authorization__c</picklist>
+            <values>
+                <fullName>Authorzation 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Authorzation 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Authorzation 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Authorzation 4</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_BankCountryKey__c</picklist>
             <values>
                 <fullName>BCK-1</fullName>
@@ -23505,7 +24184,7 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_CommodityName__c</picklist>
+            <picklist>VPM_CommodityName_del__c</picklist>
             <values>
                 <fullName>12160000 - Additives</fullName>
                 <default>false</default>
@@ -25230,6 +25909,25 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_ECC__c</picklist>
+            <values>
+                <fullName>Cordillera</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fusion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sirius</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U2K2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_ExceptionType__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -25618,6 +26316,33 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_Region__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_RequestLastWithGroup__c</picklist>
             <values>
                 <fullName>Business Requestor</fullName>
@@ -25936,6 +26661,25 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_TaxJurisdictionCode__c</picklist>
+            <values>
+                <fullName>Tax Jurisdiction Code 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tax Jurisdiction Code 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tax Jurisdiction Code 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tax Jurisdiction Code 4</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_TaxNumberType__c</picklist>
             <values>
                 <fullName>1</fullName>
@@ -26044,6 +26788,17 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
             <values>
                 <fullName>SCS - Supply Chain Services</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_VendordoesntExistFlag__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -26142,6 +26897,25 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_Authorization__c</picklist>
+            <values>
+                <fullName>Authorzation 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Authorzation 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Authorzation 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Authorzation 4</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_BankCountryKey__c</picklist>
             <values>
                 <fullName>BCK-1</fullName>
@@ -26204,7 +26978,7 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_CommodityName__c</picklist>
+            <picklist>VPM_CommodityName_del__c</picklist>
             <values>
                 <fullName>12160000 - Additives</fullName>
                 <default>false</default>
@@ -27929,6 +28703,25 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_ECC__c</picklist>
+            <values>
+                <fullName>Cordillera</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fusion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sirius</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U2K2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_ExceptionType__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -28317,6 +29110,33 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_Region__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_RequestLastWithGroup__c</picklist>
             <values>
                 <fullName>Business Requestor</fullName>
@@ -28635,6 +29455,25 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_TaxJurisdictionCode__c</picklist>
+            <values>
+                <fullName>Tax Jurisdiction Code 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tax Jurisdiction Code 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tax Jurisdiction Code 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tax Jurisdiction Code 4</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_TaxNumberType__c</picklist>
             <values>
                 <fullName>1</fullName>
@@ -28747,6 +29586,17 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_VendordoesntExistFlag__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_WithholdingTaxCode__c</picklist>
             <values>
                 <fullName>Withholding Tax Code1</fullName>
@@ -28775,7 +29625,7 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
         <customTabListAdditionalFields>CREATEDBY_USER</customTabListAdditionalFields>
         <customTabListAdditionalFields>UPDATEDBY_USER</customTabListAdditionalFields>
     </searchLayouts>
-    <sharingModel>Private</sharingModel>
+    <sharingModel>ReadWrite</sharingModel>
     <validationRules>
         <fullName>VPM_VendorEmailorVendorPhoneMandatory</fullName>
         <active>true</active>
@@ -28792,7 +29642,7 @@ ISBLANK(VPM_VendorPhone__c)
         <description>VPM - Validate to check only  Numeric character allowed</description>
         <errorConditionFormula>AND(NOT(ISBLANK(VPM_VendorPhone__c)), 
 NOT(REGEX(VPM_VendorPhone__c, &quot;\\(?\\d{3}\\)?-? *\\d{3}-? *-?\\d{4}&quot;)))</errorConditionFormula>
-        <errorMessage>Please enter Valid phone Number Only</errorMessage>
+        <errorMessage>Please Enter Valid Phone Number.</errorMessage>
     </validationRules>
     <webLinks>
         <fullName>VPM_AdvancedForm</fullName>
@@ -28819,18 +29669,6 @@ NOT(REGEX(VPM_VendorPhone__c, &quot;\\(?\\d{3}\\)?-? *\\d{3}-? *-?\\d{4}&quot;))
         <protected>false</protected>
     </webLinks>
     <webLinks>
-        <fullName>VPM_AdvancedFormForBR</fullName>
-        <availability>online</availability>
-        <description>Button to send the Advanced Business Requestor user to the Advanced form.</description>
-        <displayType>button</displayType>
-        <height>600</height>
-        <linkType>page</linkType>
-        <masterLabel>Advanced Form for BR</masterLabel>
-        <openType>noSidebar</openType>
-        <page>VPM_AdvancedFormForBR</page>
-        <protected>false</protected>
-    </webLinks>
-    <webLinks>
         <fullName>VPM_BusinessReqSubmit</fullName>
         <availability>online</availability>
         <description>Button to trigger the record updates via Process Builder necessary when the Business Requestor has submitted the form</description>
@@ -28845,16 +29683,23 @@ var pur = new sforce.SObject(&quot;VPM_PurchasingRequests__c&quot;);
 pur.id=&quot;{!VPM_PurchasingRequests__c.Id}&quot;; 
 var currentstatus=&quot;{!VPM_PurchasingRequests__c.VPM_Status__c}&quot;; 
 var Rework=&quot;{!VPM_PurchasingRequests__c.VPM_Rework__c}&quot;; 
-
-if(currentstatus.indexOf(&apos;Draft&apos;) &gt;= 0 ) 
+var FLSinCountry=&quot;{!VPM_PurchasingRequests__c.VPM_FLSInCountryReqVendor__c }&quot;;
+if(FLSinCountry==false)
+{
+	window.location = &apos;apex/VPM_AdvancedForm?id={!VPM_PurchasingRequests__c.Id}&apos;;
+}
+else if(currentstatus.indexOf(&apos;Draft&apos;) &gt;= 0 ) 
 { 
 pur.VPM_BusinessRequestorSubmitted__c=&apos;Yes&apos;; 
 pur.VPM_Rework__c=&apos;No&apos;;
-result = sforce.connection.update([pur]); 
+result = sforce.connection.update([pur]);
+var res = sforce.connection.describeSObjects([&apos;VPM_PurchasingRequests__c&apos;]);
+									var newId = res[0].keyPrefix;
+									window.location.href = &quot;/&quot;+newId;
+ 
 }
 
-if (currentstatus.indexOf(&apos;FLS Requested Re-Work&apos;) &gt;=0 &amp;&amp; Rework==&apos;Yes&apos;) 
-
+ else if (currentstatus.indexOf(&apos;FLS Requested Re-Work&apos;) &gt;=0 &amp;&amp; Rework==&apos;Yes&apos;) 
 { 
 
 pur.VPM_Status__c= &apos;FLS Review&apos;;
@@ -28866,10 +29711,14 @@ var result = sforce.connection.query(&quot;Select Id, SobjectType, QueueId, Queu
 												 
                                                 pur.OwnerId=queue_records[&apos;QueueId&apos;];
                                 } 
-result = sforce.connection.update([pur]); 
+result = sforce.connection.update([pur]);
+var res = sforce.connection.describeSObjects([&apos;VPM_PurchasingRequests__c&apos;]);
+									var newId = res[0].keyPrefix;
+									window.location.href = &quot;/&quot;+newId;
+ 
 
 } 
-if (currentstatus.indexOf(&apos;Procurement Requested Re-Work&apos;) &gt;=0 &amp;&amp; Rework==&apos;Yes&apos;) 
+ else if (currentstatus.indexOf(&apos;Procurement Requested Re-Work&apos;) &gt;=0 &amp;&amp; Rework==&apos;Yes&apos;) 
 { 
 
 
@@ -28883,9 +29732,13 @@ var result = sforce.connection.query(&quot;Select Id, SobjectType, QueueId, Queu
                                                 pur.OwnerId=queue_records[&apos;QueueId&apos;];
                                 }
 result = sforce.connection.update([pur]); 
+var res = sforce.connection.describeSObjects([&apos;VPM_PurchasingRequests__c&apos;]);
+									var newId = res[0].keyPrefix;
+									window.location.href = &quot;/&quot;+newId;
+
 } 
 
-if (currentstatus.indexOf(&apos;Finance Requested Re-Work&apos;) &gt;=0 &amp;&amp; Rework==&apos;Yes&apos;) 
+else if (currentstatus.indexOf(&apos;Finance Requested Re-Work&apos;) &gt;=0 &amp;&amp; Rework==&apos;Yes&apos;) 
 { 
 
 
@@ -28899,9 +29752,13 @@ var result = sforce.connection.query(&quot;Select Id, SobjectType, QueueId, Queu
                                                 pur.OwnerId=queue_records[&apos;QueueId&apos;];
                                 } 
 result = sforce.connection.update([pur]); 
+var res = sforce.connection.describeSObjects([&apos;VPM_PurchasingRequests__c&apos;]);
+									var newId = res[0].keyPrefix;
+									window.location.href = &quot;/&quot;+newId;
+
 } 
 
-if (currentstatus.indexOf(&apos;FLS Review&apos;)&gt;=0) 
+ else if (currentstatus.indexOf(&apos;FLS Review&apos;)&gt;=0) 
 { 
 
 var result = sforce.connection.query(&quot;Select QueueId, Queue.Name From QueueSobject where Queue.Name = &apos;FLS&apos; Limit 1&quot;); 
@@ -28910,10 +29767,11 @@ var queue_records = result[&apos;records&apos;];
 pur.OwnerId=queue_records[&apos;QueueId&apos;]; 
 result = sforce.connection.update([pur]); 
 } 
-} 
 var res = sforce.connection.describeSObjects([&apos;VPM_PurchasingRequests__c&apos;]);
 									var newId = res[0].keyPrefix;
 									window.location.href = &quot;/&quot;+newId;
+
+} 
 }</url>
     </webLinks>
     <webLinks>
@@ -29167,5 +30025,17 @@ alert(&quot;Rework Cancelled&quot;);
 
 
 }</url>
+    </webLinks>
+    <webLinks>
+        <fullName>VPM_SendToSAP</fullName>
+        <availability>online</availability>
+        <description>Send to SAP</description>
+        <displayType>button</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Send to SAP</masterLabel>
+        <openType>sidebar</openType>
+        <page>VPM_SendToSAP</page>
+        <protected>false</protected>
     </webLinks>
 </CustomObject>

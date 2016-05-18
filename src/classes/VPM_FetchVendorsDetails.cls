@@ -2,11 +2,11 @@ global class VPM_FetchVendorsDetails {
     
     global class InputVariables {
         @InvocableVariable(label='Vendor Code')
-        public String vendorCodeInput;        
+        public String vendorCodeInput;
         @InvocableVariable(label='ECC')
         public String ecc;
         @InvocableVariable(label='Company Code')
-        public String compnayCode;        
+        public String compnayCode;
     }
     
     global class OutputVariables {

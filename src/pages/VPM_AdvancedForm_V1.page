@@ -334,7 +334,7 @@
     }
     </script>
    
-    <flow:interview name="VPM_PurchasingRequestAdvancedForm" finishLocation="/{!VPM_PurchasingRequests__c.Id}" rendered="{!VPM_PurchasingRequests__c.VPM_Status__c != 'FLS Review'}" >    
+    <flow:interview name="VPM_PurchasingRequestAdvanceForm" finishLocation="/{!VPM_PurchasingRequests__c.Id}" rendered="{!VPM_PurchasingRequests__c.VPM_Status__c != 'FLS Review'}" >    
         <apex:param name="VPM_PurchasingRequestID" value="{!VPM_PurchasingRequests__c.Id}"/>    
     </flow:interview>
 

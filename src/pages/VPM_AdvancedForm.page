@@ -1,52 +1,77 @@
-<apex:page standardController="VPM_PurchasingRequests__c" standardStylesheets="true" sidebar="false" 
-           extensions="VPM_PurchaseRequestsControllerExtension">
+<apex:page standardController="VPM_PurchasingRequests__c"  extensions="flowController,VPM_PurchaseRequestsControllerExtension" standardStylesheets="true" sidebar="false" >
 <apex:stylesheet value="{!URLFOR($Resource.vpmbootstrapresources, 'vpmbootstrapresources/bootstrap.css')}" />
 <apex:stylesheet value="{!URLFOR($Resource.vpmstyles, 'vpmstyles.css')}" />
 <apex:stylesheet value="{!URLFOR($Resource.vpmadvancedformcss)}" />
 <apex:includeScript value="{!$Resource.vpmjqueryresources}"/>
 <apex:includeScript value="{!URLFOR($Resource.vpmjqueryresources, 'vpmjqueryresources/jquery-1.12.2.min.js')}"/>
 <script type = "text/javascript">
-    
-     $(document).ready(function(){
-        var flag = false;
+      $(document).ready(function(){
+        var flag;
         var criteria1 = "{!VPM_PurchasingRequests__c.VPM_Status__c}"; 
         var criteriaId = "{!VPM_PurchasingRequests__c.Id}";
-         var flsInCountry = "{!VPM_PurchasingRequests__c.VPM_FLSInCountryReqVendor__c}";
-         console.log(criteriaId);
+        var flsInCountry = "{!VPM_PurchasingRequests__c.VPM_FLSInCountryReqVendor__c}";
         var Islock = "{!VPM_PurchasingRequests__c.VPM_IsLock__c}";
         $('input[type="submit"],input[type="button"]').css('background-color','#0275d8 !important');
-         /* if(criteria1!="FLS Approved" && criteria1!="Draft Request"){
-            $('link[href*="vpmadvancedformcss"]').remove();
-            $('link[href*="bootstrap"]').remove();
-            $('link[href*="vpmstyles"]').remove();
-         }*/
-        if(criteria1=="FLS Review") {
-            $('link[href*="vpmadvancedformcss"]').remove();
-            $('link[href*="bootstrap"]').remove();
-            $('link[href*="vpmstyles"]').remove();
-            alert("Please Approve / Reject the Request before completing the Advanced Form.");
-        }
-         if(flsInCountry == "true") {
-            $('link[href*="vpmadvancedformcss"]').remove();
-            $('link[href*="bootstrap"]').remove();
-            $('link[href*="vpmstyles"]').remove();
-            flag = confirm("Please note if you complete and submit the Advanced Form, you will bypass your Front Line Services team and the request will route straight to approver/s.");
-             //document.getElementById('{!$Component.theForm}').elements['{!$Component.hiddenField}'].value = flag;
-			 alert(flag);
-             //$('input[id*="hdnField"]').value = flag;
-           
-        }
-        else if (!Islock)
-        {
-            alert('Record is in Approval...');
-            //return false;
-        }
-         //else if(criteria1=='FLS Approved' || criteria1 =='Draft Request') {  
-         else if(criteria1!="FLS Review"){
-        //window.location = 'apex/VPM_AdvancedForm';
+         /* Remoting Manager Methods*/
+         /*Visualforce.remoting.Manager.invokeAction('VPM_PurchaseRequestsControllerExtension.checkLoggedInUserRole',
+            function(userRole, event){
+               debugger;
+            });*/
+         Visualforce.remoting.Manager.invokeAction('VPM_PurchaseRequestsControllerExtension.checkForBusinessReqUser',
+            function(results, event){
+               if(results.userRole=="FLS" && criteria1=="FLS Review") {
+                     debugger;
+                    removeStyleSheets();
+                    $("#detailPage").show();
+                    alert("Please Approve / Reject the Request before completing the Advanced Form.");
+                 }
+                 else if(flsInCountry=="true" && results.brUser=="true")
+                 {
+                     debugger;
+                    //document.getElementById('{!$Component.theForm}').elements['{!$Component.hiddenField}'].value = flag;
+                    //$($('input[id*="hdnField"]')[0]).attr("value",flag);
+                     if(document.referrer.indexOf('apex/VPM_AdvancedForm') == -1 || localStorage.getItem("cancelClicked"))
+                        {
+                            debugger;
+                         flag = confirm("Please note if you complete and submit the Advanced Form, you will bypass your Front Line Services team and the request will route straight to approver/s.");
+                    
+                         if(flag){
+                              localStorage.removeItem("cancelClicked");
+                             $("#advForm").show();
+                             domManipulations();
+                             }
+                        else{
+                            debugger;
+                              localStorage.setItem("cancelClicked",true);
+                            removeStyleSheets();
+                            $("#detailPage2").show();
+                            }
+                        }
+                        else
+                        {
+                            debugger;
+                         $("#advForm").show();
+                         domManipulations();
+                        }
+                }
+                else if (!Islock)
+                {
+                    alert('Record is in Approval...');
+                    //return false;
+                }
+                else if(criteria1!="FLS Review"){
                     domManipulations();
-        }
+                    $("#advForm").show(); 
+                    //$("#detailPage").hide();
+               
+                } 
+           });
     });
+    function removeStyleSheets(){
+          $('link[href*="vpmadvancedformcss"]').remove();
+            $('link[href*="bootstrap"]').remove();
+            $('link[href*="vpmstyles"]').remove();
+    }
     function domManipulations(){
         var el = $('tr>td.pbTitle');
         var savedRow = '';
@@ -63,6 +88,7 @@
         $(vendorDetailHeader).find("b").addClass('emphasizeHeader');
         $(maintainVendorHeader).find("b").addClass('emphasizeHeader');
         $(".FlowPageBlockBtns").siblings().remove();
+        $('span[id*="VPM_UnBlockUndeleteMessage"]').closest('tr').css("display","grid");
         /*  to align status and type side by side instead of one stacking both one above the other  */
         $(spanToAlign).css("float","left");
         var allDivs =$(spanToAlign).find('div');
@@ -126,22 +152,34 @@
         return false;
     }
     function showAttachments(id){
-        //alert(id);
         window.open('/apex/VPM_AttachFiles?id='+id,'Table','toolbar=yes, scrollbars=no, toolbar=no, menubar=no, height=500,width=1230, top=70, left=70'); 
     }
     </script>
-    
-
-    
-    <flow:interview name="VPM_PurchasingRequestAdvanceForm" finishLocation="/{!VPM_PurchasingRequests__c.Id}" 
-                    rendered="{!VPM_PurchasingRequests__c.VPM_Status__c != 'FLS Review'} && flsInCountryFlag" >
+   <div id="advForm" style="display: none;">
+    <flow:interview name="VPM_PurchasingRequestAdvanceForm" interview="{!flBatch}" finishLocation="{!prFinishLocation}">
         <apex:param name="VPM_PurchasingRequestID" value="{!VPM_PurchasingRequests__c.Id}"/>    
     </flow:interview>
+       <br/>
+       <apex:outputLink onclick="showAttachments('{!VPM_PurchasingRequests__c.Id}'); return false;"
+         rendered="{!VPM_PurchasingRequests__c.Id != null && VPM_PurchasingRequests__c.Id != '' && 
+                   VPM_PurchasingRequests__c.VPM_Status__c != 'FLS Review'}">Supporting Documents</apex:outputLink>
+       <br/>
+       <apex:outputLink onclick="openPopup('{!$Page.VPM_AttachmentSectionPopUp}');return false;"
+                         rendered="{!VPM_PurchasingRequests__c.VPM_Status__c != 'FLS Review'}">Help for uploading documents</apex:outputLink>
+   
+    </div>
+    <div id="detailPage" style="display:none;">
+        <!--apex:detail subject="{!VPM_PurchasingRequests__c.Id}"  showChatter="true" /-->
+        <apex:detail subject="{!VPM_PurchasingRequests__c.Id}" rendered="{!VPM_PurchasingRequests__c.VPM_Status__c == 'FLS Review'}"/>
+    </div>
+    <div id="detailPage2" style="display:none;">
+        <apex:detail subject="{!VPM_PurchasingRequests__c.Id}" />
+    </div>    
     
     <!-- rendered="{!(VPM_PurchasingRequests__c.VPM_Status__c == 'FLS Approved' ||
                               VPM_PurchasingRequests__c.VPM_Status__c == 'Draft Request')}" -->
 
-    <div>
+    <!--div>
         <apex:outputLink onclick="showAttachments('{!VPM_PurchasingRequests__c.Id}'); return false;"
          rendered="{!VPM_PurchasingRequests__c.Id != null && VPM_PurchasingRequests__c.Id != '' && 
                    VPM_PurchasingRequests__c.VPM_Status__c != 'FLS Review'}">Supporting Documents</apex:outputLink>
@@ -150,18 +188,16 @@
     <div>
         <apex:outputLink onclick="openPopup('{!$Page.VPM_AttachmentSectionPopUp}');return false;"
                          rendered="{!VPM_PurchasingRequests__c.VPM_Status__c != 'FLS Review'}">Help for uploading documents</apex:outputLink>
-    </div>
+    </div-->
     <!--apex:relatedList subject="{!VPM_PurchasingRequests__c}" list="CombinedAttachments">
     <apex:facet name="footer">
         <apex:outputLink onclick="openPopup('{!$Page.VPM_AttachmentSectionPopUp}');return false;">Help for uploading documents</apex:outputLink>
     </apex:facet>
     </apex:relatedList-->
     
-    <apex:detail subject="{!VPM_PurchasingRequests__c.Id}" rendered="{!VPM_PurchasingRequests__c.VPM_Status__c == 'FLS Review'}" 
-                 showChatter="true"/>
-    <apex:form id="theForm">
-		<apex:inputHidden id="hdnField" value="{!flsInCountryFlag}"/>
-    </apex:form>
+    <!--apex:form >
+        <apex:inputHidden id="hdnField" value="{!flsInCountryFlag}"/>
+    </apex:form-->
     
     <!--apex:detail subject="{!VPM_PurchasingRequests__c.Id}" showChatter="true"
                  rendered="{!(VPM_PurchasingRequests__c.VPM_Status__c != 'FLS Approved' &&

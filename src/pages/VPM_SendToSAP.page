@@ -1,0 +1,6 @@
+<apex:page standardController="VPM_PurchasingRequests__c" extensions="VPM_PurchaseRequestsControllerExtension" 
+ action="{!callCreateVendorAPI}">
+    <!--apex:form >
+        <apex:commandButton value="Send to SAP" action="{!callCreateVendorAPI}"/>
+    </apex:form-->
+</apex:page>

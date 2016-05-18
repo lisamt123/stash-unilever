@@ -26,6 +26,10 @@
                 <behavior>Edit</behavior>
                 <field>VPM_Authorisation_Group__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>VPM_Commodity_Class__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

@@ -34,6 +34,10 @@
                 <behavior>Edit</behavior>
                 <field>VPM_Commodity__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>VPM_Interestcalculationindicator__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -59,7 +63,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>VPM_CommodityNameIfKnown__c</field>
+                <field>VPM_CommodityNameIfKnown_del__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

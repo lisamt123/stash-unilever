@@ -1,7 +1,8 @@
 global class VPM_VendorDetailsServicesHelper {
     global static VPM_VendorDetailsType callVendorDetailsService(String venCode, String eccVal, String compCode) {
         System.debug('----------input parameters passed are----------' + venCode + '  ' + eccVal + '  ' + compCode);
-        String url = 'https://vendor-bpm.eu.cloudhub.io/vendor-api/vendor/ecc?client_id=3485ee8279af458abc58065291e188d4&client_secret=ca16126215ea409498F4296ADB25EAB5';
+        //String url = 'https://vendor-bpm.eu.cloudhub.io/vendor-api/vendor/ecc?client_id=3485ee8279af458abc58065291e188d4&client_secret=ca16126215ea409498F4296ADB25EAB5';
+        String url = 'https://vendor-bpm-uat.eu.cloudhub.io/vendor-api/vendor/ecc?client_id=3485ee8279af458abc58065291e188d4&client_secret=ca16126215ea409498F4296ADB25EAB5';
         Map<String, Object> results;
         List<boolean> flagResults;
         VPM_VendorDetailsType vendorDetails;
