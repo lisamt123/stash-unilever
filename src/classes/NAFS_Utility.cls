@@ -1,5 +1,11 @@
+/**********************************************************************
+Purpose: Utility class for Food Solution (NAFS).
+History :
+VERSION AUTHOR         DATE          DETAIL Description
+1.0     Accenture    11/May/2016     Created for accountInsert 
+***********************************************************************/
 public Class NAFS_Utility{
-    /*Static variable and method are used in Opportunity trigger to avoid recursion*/
+    //Purpose: Used in Opportunity trigger to avoid recursion. Class NAFS_OpportunityHelper, update Opp with Opp Line Item Value
     private static boolean run = true;
     public static boolean runOnce(){
         if(run){
@@ -9,13 +15,14 @@ public Class NAFS_Utility{
             return run;
         }
     }
-    private static boolean run1 = true;
-    public static boolean runOnce1(){
-        if(run1){
-            run1=false;
+    //Purpose: Used in Opportunity trigger to avoid recursion. Class NAFS_OpportunityHelper, update parent opportunity
+    private static boolean check = true;
+    public static boolean checkOnce(){
+        if(check){
+            check =false;
             return true;
         }else{
-            return run1;
+            return check;
         }
     }
 }
