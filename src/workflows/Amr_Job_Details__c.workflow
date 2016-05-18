@@ -2,10 +2,11 @@
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
         <fullName>AMR_CAPNotificationAlert</fullName>
+        <ccEmails>swarup.swarup@gmail.com</ccEmails>
         <description>AMR_CAPNotificationAlert</description>
         <protected>false</protected>
         <recipients>
-            <recipient>vaibhav.vora@unilever.com</recipient>
+            <recipient>michael.tun@unilever.com.cap</recipient>
             <type>user</type>
         </recipients>
         <senderType>CurrentUser</senderType>

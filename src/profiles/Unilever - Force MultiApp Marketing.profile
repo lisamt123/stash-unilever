@@ -98,6 +98,9 @@
         <layout>AF_Sub_Result__c-Sub Result Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>AM_Test__c-AM Test Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Account-Account Layout</layout>
     </layoutAssignments>
     <layoutAssignments>

@@ -27,6 +27,15 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
+    <fieldUpdates>
+        <fullName>UID_UpdateSummarizedInvoiceRankingFlag</fullName>
+        <field>UID_Summarized_Invoice_Ranking_Flag__c</field>
+        <literalValue>1</literalValue>
+        <name>UID UpdateSummarizedInvoiceRankingFlag</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
     <rules>
         <fullName>DEL_UID_UpdateStockedProductFlag</fullName>
         <active>false</active>
@@ -64,7 +73,7 @@
     </rules>
     <rules>
         <fullName>UID_UpdateStockedProductFlag</fullName>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>UID_Stocked_Product__c.UID_Stock_Cover_Calculation_Flag__c</field>
             <operation>equals</operation>
@@ -73,11 +82,19 @@
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
             <actions>
-                <name>UID_UpdateStockedProductFlagField</name>
+                <name>UID_UpdateSummarizedInvoiceRankingFlag</name>
                 <type>FieldUpdate</type>
             </actions>
             <timeLength>1</timeLength>
             <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+        <workflowTimeTriggers>
+            <actions>
+                <name>UID_UpdateStockedProductFlagField</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <timeLength>12</timeLength>
+            <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
         </workflowTimeTriggers>
     </rules>
     <rules>
