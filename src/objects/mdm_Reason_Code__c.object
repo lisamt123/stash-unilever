@@ -280,6 +280,25 @@
         <unique>true</unique>
     </fields>
     <label>Reason Code</label>
+    <listViews>
+        <fullName>LATAM_Reasons</fullName>
+        <columns>NAME</columns>
+        <columns>Active__c</columns>
+        <columns>Global_Listening_Tree__c</columns>
+        <columns>ISO_Country__c</columns>
+        <columns>L4_Desc__c</columns>
+        <columns>L5_Desc__c</columns>
+        <columns>L5_Short_Desc__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ISO_Country__c</field>
+            <operation>equals</operation>
+            <value>AR,CL,PY</value>
+        </filters>
+        <label>LATAM Reasons</label>
+        <language>en_US</language>
+    </listViews>
     <nameField>
         <label>Reason Code Name</label>
         <type>Text</type>
