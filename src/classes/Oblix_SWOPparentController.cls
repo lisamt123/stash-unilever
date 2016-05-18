@@ -59,6 +59,14 @@ public with sharing virtual class Oblix_SWOPparentController {
         }
     }
 
+    //Identifies NFY campaign that is in the middle of Roll Over process for which only
+    //Projected stages chevron should be editable. Above does not apply if that campaign is cloned.
+    public Boolean is_NFY_campaign_in_the_middle_of_rollover {
+        get {
+            return selected_project.Campaign_PFY__c <> NULL && selected_project.Campaign_PFY__r.Financial_Year__r.SOW_Status__c == Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES;
+        }
+    }
+
     public Oblix_SWOPparentController() {
 
     }
@@ -155,7 +163,7 @@ public with sharing virtual class Oblix_SWOPparentController {
     * @description  retrieves attachments attached to this SOW
     ********************************************************************************/
     public List<Attachment> getSOWAttachments(Id sowId){
-        return [SELECT Name, ParentId, Parent.Name, CreatedBy.Name, CreatedDate, Description FROM Attachment WHERE ParentId = :sowId order by CreatedDate DESC];
+        return [SELECT Name, ParentId, Parent.Name, CreatedBy.Name, CreatedDate, Description, OwnerId FROM Attachment WHERE ParentId = :sowId order by CreatedDate DESC];
     }
 
     /*******************************************************************************

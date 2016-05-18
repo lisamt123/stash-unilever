@@ -10,7 +10,11 @@
     
 }
 .THIS .back_image_icon{
-    margin-left:15px;
+    
+    margin-left: 15px;
+    width: 77px;
+    display: block;
+    
 }
 .THIS .chat_icon ul li{
     width:33%;
@@ -27,7 +31,7 @@
     font-size:1.4rem;
 }
 .THIS .td_img_icon {
-    width: 6%;
+    width: 7%;
 }
 .THIS .imageBorder {
    
@@ -44,8 +48,8 @@
     display: inline-block;
 }
 .THIS .img_icon_size{
-    width:10px;
-    height:10px;
+    width:12px;
+    height:12px;
 }
 
 .THIS .min-sec{
@@ -72,9 +76,10 @@
 .THIS .tdFont{
   color: #4F6A92;
   font-weight: 300;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   line-height: 1.25;
   width:28%;  
+    vertical-align:bottom;
 }
 .THIS .slds-tabs--default.chat_icon {
     border-top: 1px solid #e9eaea;
@@ -90,24 +95,21 @@
     height:100%;
 }
 .THIS .desc {
-  font-size: 1.5rem;
   padding: 4px;
   margin-left: 5px;
   line-height: 1.25;
-  font-weight: normal;
   margin-left: 2.5%;
   width: 95%;
   color: black;
   width: 90%;
   margin-left: 5%;
+    font-size:1.4rem;
 }
 
 .THIS .desc {
-  font-size: 1.5rem;
   padding: 4px;
   margin-left: 5px;
   line-height: 1.25;
-  font-weight: normal;
   margin-left: 2.5%;
   width: 95%;
   color: black;

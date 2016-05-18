@@ -172,8 +172,10 @@
                                                                                                         <input type="text" name="assetNotes" value="" class="assetNotes" />
                                                                                                         <br/>
 
-                                                                                                        <button id="addButton-{!optionSelector}" class="btn btn-primary btn_plus btn_asset_add" onclick="checkAddValuesForBasket(this); return false;">ADD</button>
-                                                                                                        <button id="updateButton-{!optionSelector}" class="btn btn-primary hidden" onclick="checkUpdateValuesForBasket(this); return false;">UPDATE</button>
+                                                                                                        <apex:outputText rendered="{!can_manage_asset}">
+                                                                                                            <button id="addButton-{!optionSelector}" class="btn btn-primary btn_plus btn_asset_add" onclick="checkAddValuesForBasket(this); return false;">ADD</button>
+                                                                                                            <button id="updateButton-{!optionSelector}" class="btn btn-primary hidden" onclick="checkUpdateValuesForBasket(this); return false;">UPDATE</button>
+                                                                                                        </apex:outputText>
                                                                                                     </apex:actionRegion>
                                                                                                 </apex:outputPanel>
 
@@ -211,26 +213,23 @@
                                 <apex:variable value="{!basketAssetWrapper.type_index}_{!basketAssetWrapper.sub_category_index}_{!basketAssetWrapper.option_index}" var="indexSelector" />
                                 <div class="asset_shopping_basket_item">
                                     <div class="campaign_create_agency_hub_split_table_subtitle" id="{!indexSelector}">
-                                        <apex:outputPanel rendered="{!IF(can_edit,true,false)}">
-                                            <div class="row">
-                                                <div class="col-sm-1">
-                                                    <apex:commandButton action="{!removeAssetFromBasket}" reRender="campaignBasket, campaignBasketSummary, page_message_id" onclick="blockBasket(); assetToBeRemovedMDMId = '{!basketItemMDMID}';" oncomplete="unblockBasket(); handleBasketChange()" styleClass="removeAssetCss btn" style="width:12px;height:12px" value="">
-                                                        <apex:param name="selectedAssetMDMId" assignTo="{!helper.selectedAssetMDMId}" value="{!basketItemMDMID}" />
-                                                    </apex:commandButton>
-                                                </div>
-                                                <div class="col-sm-10">
-                                                    <apex:commandLink onclick="focusOnAsset('{!basketItemMDMID}'); return false;" reRender=""> {!basketAssetWrapper.sub_category_name} / {!basketAssetWrapper.option_name} / {!basketAssetWrapper.asset_name}{! IF(LEN(TRIM(basketAssetWrapper.other_name))=0, '', ' - ' + basketAssetWrapper.other_name) }
-                                                    </apex:commandLink>
-                                                </div>
-                                                <div class="col-sm-1">
-                                                    <apex:commandLink onclick="focusOnAsset('{!basketItemMDMID}'); return false;" reRender="">
-                                                        {!basketAssetWrapper.quantity_in_basket}
-                                                    </apex:commandLink>
-                                                </div>
+                                        <div class="row">
+                                            <div class="col-sm-1">
+                                                <apex:commandButton action="{!removeAssetFromBasket}" rendered="{!can_manage_asset}" reRender="campaignBasket, campaignBasketSummary, page_message_id" onclick="blockBasket(); assetToBeRemovedMDMId = '{!basketItemMDMID}';" oncomplete="unblockBasket(); handleBasketChange()" styleClass="removeAssetCss btn" style="width:12px;height:12px" value="">
+                                                    <apex:param name="selectedAssetMDMId" assignTo="{!helper.selectedAssetMDMId}" value="{!basketItemMDMID}" />
+                                                </apex:commandButton>
                                             </div>
-                                        </apex:outputPanel>
-                                        <apex:commandLink onclick="focusOnAsset('{!basketItemMDMID}'); return false;" reRender="">
-                                        </apex:commandLink>
+                                            <div class="col-sm-10">
+                                                <apex:commandLink onclick="focusOnAsset('{!basketItemMDMID}'); return false;" reRender=""> {!basketAssetWrapper.sub_category_name} / {!basketAssetWrapper.option_name} / {!basketAssetWrapper.asset_name}{! IF(LEN(TRIM(basketAssetWrapper.other_name))=0, '', ' - ' + basketAssetWrapper.other_name) }
+                                                </apex:commandLink>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <apex:commandLink onclick="focusOnAsset('{!basketItemMDMID}'); return false;" reRender="">
+                                                    {!basketAssetWrapper.quantity_in_basket}
+                                                </apex:commandLink>
+                                            </div>
+                                        </div>
+                                        <apex:commandLink onclick="focusOnAsset('{!basketItemMDMID}'); return false;" reRender=""></apex:commandLink>
                                     </div>
                                 </div>
                             </apex:repeat>
