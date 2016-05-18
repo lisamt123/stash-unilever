@@ -151,7 +151,7 @@
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>VPM_CommodityName__c</field>
+            <field>VPM_CommodityName_del__c</field>
         </inputAssignments>
         <inputAssignments>
             <field>VPM_PaymentTerms__c</field>
