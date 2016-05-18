@@ -225,9 +225,10 @@ ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;))
     </fields>
     <fields>
         <fullName>Description__c</fullName>
+        <description>Field was not being used, so has been relabelled for use in Non Campaign table</description>
         <externalId>false</externalId>
         <inlineHelpText>Please enter a full description of the Tasks / Activities required</inlineHelpText>
-        <label>Description</label>
+        <label>Other Info</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -320,7 +321,7 @@ ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;))
 OR( 
 ISPICKVAL( Oblix_SOWMarketing__r.SOW_Status__c  , &quot;Awaiting Unilever Approval&quot;), 
 ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Draft - with Unilever&quot;), 
-ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;)), NULL ,Oblix_Hourly_Rate__c)</formula>
+ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;)), NULL , Hourly_Rate_or_FTE__c)</formula>
         <label>Hourly Rate</label>
         <precision>18</precision>
         <required>false</required>
@@ -328,6 +329,19 @@ ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;))
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Hourly_Rate_or_FTE__c</fullName>
+        <description>Field for storing actual hourly rate or FTE (not calculated from &quot;Total Amount&quot; divided by &quot;Hours required&quot;) from Calculator Role Rate record.</description>
+        <externalId>false</externalId>
+        <label>Hourly Rate or FTE</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>No_of_Hours_Required__c</fullName>
