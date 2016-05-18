@@ -153,6 +153,9 @@
       deployRoot="src"
       pollWaitMillis="${sfdc.pollWaitMillis}"
       maxPoll="${sfdc.maxPoll}">
+		  <runTest>UID_StockCoverTriggerHelper_Test</runTest>
+		  <runTest>UID_StockProductUtility_Test</runTest>
+		  <runTest>UID_Switch_User_Currency_Test</runTest>
           <runTest>Oblix_AssetHandler_Test</runTest>
 		  <runTest>Oblix_CampaignStageController_Test</runTest>
 		  <runTest>Oblix_CampaignStageLogic_Test</runTest>
