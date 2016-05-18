@@ -38,7 +38,7 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
         //Test.startTest();
     }
 
-    @isTest private static void testAddToWorklist() {
+    /*@isTest private static void testAddToWorklist() {
         createBaselineSOW(false);
 
         //Init controller with existing assets
@@ -63,7 +63,7 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
         //Test.startTest();
     }
 
-    /*@isTest private static void testRemoveItem() {
+    @isTest private static void testRemoveItem() {
         createBaselineSOW(false);
 
         //Init controller with existing assets
