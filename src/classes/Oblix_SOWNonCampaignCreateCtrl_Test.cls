@@ -4,9 +4,9 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
     private static final String SOW_ID_PAGE_PARAMETER = 'sowId';
     private static final String PRESELECTED_ITEM_PAGE_PARAMETER = 'preSelectedSection';
 
-    private static final String NON_CAMPAIGN_ITEM_WORKLIST_JSON_FIRST_PART = '{"selectedCountry":"Argentina","selectedActivity":"Brand Communication Idea","selectedAgencyDepartment":"Creative","selectedRole":"Copywriter","otherName":"","description":"","hourlyRate":"45.502","hoursSelected":"5","totalAmount":227.51000000000002,"key":"';
+    //private static final String NON_CAMPAIGN_ITEM_WORKLIST_JSON_FIRST_PART = '{"selectedCountry":"Argentina","selectedActivity":"Brand Communication Idea","selectedAgencyDepartment":"Creative","selectedRole":"Copywriter","otherName":"","description":"","hourlyRate":"45.502","hoursSelected":"5","totalAmount":227.51000000000002,"key":"';
 
-    private static final String NON_CAMPAIGN_ITEM_WORKLIST_JSON_SECOND_PART = 'Brand Communication IdeaArgentinaCreativeCopywriter","isActivity":true}';
+    //private static final String NON_CAMPAIGN_ITEM_WORKLIST_JSON_SECOND_PART = 'Brand Communication IdeaArgentinaCreativeCopywriter","isActivity":true}';
 
     private static Marketing_SOW__c sow = new Marketing_SOW__c();
 
