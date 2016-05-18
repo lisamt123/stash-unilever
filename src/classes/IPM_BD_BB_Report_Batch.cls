@@ -793,13 +793,13 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     
     public string calculateCPP(Decimal year1BDNumber, Decimal companyCardTurnOver){
     	if(companyCardTurnOver != null && year1BDNumber != null){
-    		if((companyCardTurnOver/1000000 > 200) || (year1BDNumber/1000 >= 10) || ( (year1BDNumber/1000) >= ((companyCardTurnOver/1000000) *0.005))){
+    		if((companyCardTurnOver/1000 > 200) || (year1BDNumber/1000 >= 10) || ( (year1BDNumber/1000) >= ((companyCardTurnOver/1000) *0.005))){
 	    		return GOLD;
 	    	}
-	    	else if(((year1BDNumber/1000) >= (companyCardTurnOver/1000000)*0.001) && ((year1BDNumber/1000) < (companyCardTurnOver/1000000)*0.005)){
+	    	else if(((year1BDNumber/1000) >= (companyCardTurnOver/1000)*0.001) && ((year1BDNumber/1000) < (companyCardTurnOver/1000)*0.005)){
 	    		return SILVER;
 	    	}
-	    	else if(((year1BDNumber/1000) < (companyCardTurnOver/1000000)*0.001)){
+	    	else if(((year1BDNumber/1000) < (companyCardTurnOver/1000)*0.001)){
 	    		return BRONZE;
 	    	}	    	
 	    	else{
