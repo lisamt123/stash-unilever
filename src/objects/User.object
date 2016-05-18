@@ -219,6 +219,14 @@
         <type>TextArea</type>
     </fields>
     <fields>
+        <fullName>CannotChangeMC__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>CannotChangeMC</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Edit_Article_Template_Front_End__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Ability to change the article content in the front end (the button Edit will be visible)</description>
