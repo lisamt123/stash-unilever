@@ -1,0 +1,41 @@
+{
+    "name": "Lens_PS_Overall_Enroll_4p5p6p",
+    "label": "Lens: PS Overall (Enroll 4p5p6p)",
+    "visualizationType": "hbar",
+    "state": {
+        "query": {
+            "groups": [
+                "X4P_5P_6P"
+            ],
+            "filters": [
+                [
+                    "Date_of_audit",
+                    [
+                        [
+                            [
+                                "month",
+                                -6
+                            ],
+                            [
+                                "month",
+                                -6
+                            ]
+                        ]
+                    ],
+                    ">=<="
+                ]
+            ],
+            "measures": [
+                [
+                    "count",
+                    "*"
+                ]
+            ]
+        }
+    },
+    "dataset": {
+        "id": "0Fb8A0000000SSDSA2",
+        "name": "PS_ENROLLED_STORE",
+        "url": "/services/data/v37.0/wave/datasets/0Fb8A0000000SSDSA2"
+    }
+}

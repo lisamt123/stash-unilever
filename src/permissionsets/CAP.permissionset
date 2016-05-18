@@ -2055,7 +2055,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Amr_Saving__c.No_of_Masters_List__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>

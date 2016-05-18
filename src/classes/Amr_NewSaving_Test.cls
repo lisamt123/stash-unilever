@@ -50,6 +50,9 @@ public class Amr_NewSaving_Test{
         
         List<FeedItem> fIList = new List<FeedItem>();
         fIList.add(feedObj);
+        
+        List<Amr_Saving__Feed> savingFeedList =  [select id from Amr_Saving__Feed where parentId = :jobDetailsObj.id];
+         List<Amr_Quote__Feed> feedItemListQuote = [select id from Amr_Quote__Feed where parentId = :jobDetailsObj.id];
        
         Document testDoc = new Document(name = Amr_ConstantForAdManager.TEST, body = Blob.valueOf('Test Doc Bory'));
         
@@ -71,8 +74,8 @@ public class Amr_NewSaving_Test{
         savingObject.document = testDoc;
         savingObject.IdDeleted = feedObj.id;
         savingObject.IdDeletedSaving = feedObjSec.id; 
-        savingObject.attachedListSaving = feedItemList;
-        savingObject.attachedList = fIList ; 
+        savingObject.attachedListSaving = savingFeedList;
+        savingObject.attachedList = feedItemListQuote; 
         savingObject.pcTimeMangCategoryValue  = 1;
         savingObject.pcCostMangCategoryValue  = 1;
         savingObject.pcProcessMangCategoryValue = 1;
@@ -142,7 +145,7 @@ public class Amr_NewSaving_Test{
           savingObject.savingObj = savingObjTest1;
           savingObject.acceptedQuote = QuoteObj;
           savingObject.SaveQuoteAndSavingData();
-        	
+            
           Amr_Job_Details__c jobDet = [select Project_Description__c from Amr_Job_Details__c where id = :jobDetailsObj.Id];
           system.assertEquals(jobDet.Project_Description__c, Amr_ConstantForAdManager.EXECUTION);
         

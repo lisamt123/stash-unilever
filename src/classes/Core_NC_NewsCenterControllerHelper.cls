@@ -81,7 +81,6 @@ public with sharing class Core_NC_NewsCenterControllerHelper {
     public static Integer putLikeForNews(String NewsId) {
         NewsArticleLike__c newsLike=new NewsArticleLike__c();
         newsLike.News_Article__c=NewsId;
-        //newsLike.CreatedById=Userinfo.getUserId();
         insert newsLike;
         Integer LikeCount=[SELECT count() FROM NewsArticleLike__c WHERE News_Article__c = :NewsId];
         return LikeCount;
@@ -204,7 +203,6 @@ public with sharing class Core_NC_NewsCenterControllerHelper {
             feedItemsToInsert.add(new FeedItem( Type = 'LinkPost', Body = FeedBody, ParentId =Userinfo.getUserId(),
                                 LinkURL = NewsLink, Title = NewsTitle));
         }
-        //Insert FeedItem.
         if(!feedItemsToInsert.isEmpty()){
             Database.insert(feedItemsToInsert, false);
         }Success=true;
@@ -218,12 +216,12 @@ public with sharing class Core_NC_NewsCenterControllerHelper {
     */  
     public static String getGroupNames() {//String GroupName
        
-        List<CollaborationGroup> lstGroup=[SELECT Name FROM CollaborationGroup WHERE IsArchived = false];//Name LIKE :strGroupName and 
+        List<CollaborationGroup> lstGroup=[SELECT Name FROM CollaborationGroup WHERE IsArchived = false];
         String strGrp='';
         for(CollaborationGroup grp : lstGroup){  
             strGrp=strGrp+grp.Name+',';
         }
-        if(strGrp!=''&&strGrp!=null){ strGrp=strGrp.substring(0,strGrp.length()-1); //thestring.substring(0,thestring.length()-1);
+        if(strGrp!=''&&strGrp!=null){ strGrp=strGrp.substring(0,strGrp.length()-1); 
         }return strGrp;
     }
     
@@ -232,7 +230,7 @@ public with sharing class Core_NC_NewsCenterControllerHelper {
     * @param 
     * @return Core_NC_NewsGAWrapperClass 
     */ 
-    public static Core_NC_NewsGAWrapperClass getGAInfo() {//String GroupName
+    public static Core_NC_NewsGAWrapperClass getGAInfo() {
         Core_NC_NewsGAWrapperClass wrapper=new Core_NC_NewsGAWrapperClass();
         wrapper.UserId=Userinfo.getUserId();
             wrapper.GAId=CORE_NEWS_ARTICLE__c.getInstance('GoogleAnalyticsId').Text_Value__c;
@@ -244,7 +242,7 @@ public with sharing class Core_NC_NewsCenterControllerHelper {
     * @param 
     * @return List<CORE_NEWS_ARTICLE__c>
     */ 
-    public static List<String> getTopicNames() {//String TopicName
+    public static List<String> getTopicNames() {
         Set<String> newsArticleSet=new Set<String>();
         newsArticleSet.add('Show All');
         for(News_Article__c newsArticle: [SELECT News_Article_Topics__c FROM News_Article__c WHERE Archived__c=false and Hidden__c=false and Video_Article__c=false]){
