@@ -1,6 +1,4 @@
 src
 src/classes
-src/classes/IPM_ProjectResourceTriggerHandler.cls
-src/classes/IPM_ProjectResourceTriggerHandler.cls-meta.xml
-src/classes/IPM_ProjectTriggerHandler.cls
-src/classes/IPM_ProjectTriggerHandler.cls-meta.xml
+src/classes/IPM_GroupManagement.cls
+src/classes/IPM_GroupManagement.cls-meta.xml
