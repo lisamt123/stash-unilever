@@ -62,6 +62,12 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
         }
     }
 
+    public Boolean can_see_submit_for_approval_button{
+        get{
+            return Oblix_PermissionHandler.canSeeSubmitForApprovalButton(selected_sow.SOW_Status__c,selected_sow.SOW_PFY__r.SOW_Status__c, selected_sow.Sync_Status__c);
+        }
+    }
+
     public Boolean can_reject_sow{
         get{
             return Oblix_PermissionHandler.canRejectSOW(selected_sow.SOW_Status__c, selected_sow.Id);
@@ -87,7 +93,7 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
             System.debug('### can_submit_for_approval: ' + can_submit_for_approval);
             System.debug('### Oblix_PermissionHandler.hasUL1permissionSet(): ' + Oblix_PermissionHandler.hasUL1permissionSet());
 
-            return can_submit_for_approval && ( !( Oblix_PermissionHandler.hasUL1permissionSet() && is_with_ul2) || is_sole_editor);
+            return can_see_submit_for_approval_button && ( !( Oblix_PermissionHandler.hasUL1permissionSet() && is_with_ul2) || is_sole_editor);
         }
     }
 

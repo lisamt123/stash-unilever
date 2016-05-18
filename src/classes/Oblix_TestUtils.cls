@@ -162,6 +162,7 @@ public with sharing class Oblix_TestUtils {
         Marketing_Basics__c mbasics = new Marketing_Basics__c();
         mbasics.Oblix_SOWMarketing__c = marketingSowId;
         mbasics.RecordTypeId = Oblix_Utils.RT_NON_CAMPAIGN_RESOURCE_ID;
+        mbasics.Hourly_Rate_or_FTE__c = 10;
         insert mbasics;
         return mbasics;
     }

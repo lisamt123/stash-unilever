@@ -250,6 +250,24 @@ public with sharing class Oblix_SyncBatchJob implements Database.Batchable<JobCo
             , ORIGINAL_SOW ,CLONED_SOW,Oblix_Utils.JOB_STATUS_CLONE_IN_PROGRESS, Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY, NULL,NULL);
 
 
+
+        //#################################################
+        //  ADD JOB COMPONENT FOR SETTING ATTACHMENT CLONED
+        //	AGAINST THE PARENT SOWS
+        //#################################################
+        // how many attachments?
+            // job component attribute list
+            //      attrib_1: sync status
+            //      attrib_2: attachment_cloned/attribute updated? value to be set true/false
+            //      attrib_3: original status
+            //      attrib_4: object type
+            //      attrib_5: field used for flag        
+            //      attrib_6: field used for checking sow status (either Financial_Year__r.SOW_Status__c or SOW_Status__c)
+        
+        addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_SET_PROCESSING_FLAG, Oblix_Utils.MAX_SOWS_PER_CONTEXT
+            , Oblix_Utils.JOB_STATUS_CLONE_IN_PROGRESS ,TRUE_VALUE,Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY, OBJECT_SOW, ATTACHMENT_CLONED,SOW_STATUS_FIELD);
+
+
         //#################################################
         //  ADD JOB COMPONENT FOR CLONING NON-CAMPAIGNS
         //#################################################
@@ -407,6 +425,23 @@ public with sharing class Oblix_SyncBatchJob implements Database.Batchable<JobCo
 
         addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_CLONE_ATTACHMENTS, Oblix_Utils.MAX_ATTACHMENTS_PER_CONTEXT
             , SOW_PFY,SOW_NFY,Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS, Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES, NULL, NULL);
+
+
+        //#################################################
+        //  ADD JOB COMPONENT FOR SETTING ATTACHMENT CLONED
+        //	AGAINST THE PARENT SOWS
+        //#################################################
+        // how many attachments?
+            // job component attribute list
+            //      attrib_1: sync status
+            //      attrib_2: attachment_cloned/attribute updated? value to be set true/false
+            //      attrib_3: original status
+            //      attrib_4: object type
+            //      attrib_5: field used for flag        
+            //      attrib_6: field used for checking sow status (either Financial_Year__r.SOW_Status__c or SOW_Status__c)
+        
+        addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_SET_PROCESSING_FLAG, Oblix_Utils.MAX_SOWS_PER_CONTEXT
+            , Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS ,TRUE_VALUE,Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES, OBJECT_SOW, ATTACHMENT_CLONED,SOW_STATUS_FIELD);
 
 
 
