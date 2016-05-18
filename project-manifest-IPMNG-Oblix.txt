@@ -183,8 +183,12 @@ src/classes/Oblix_UserPermissionHandlerTest.cls
 src/classes/Oblix_UserPermissionHandlerTest.cls-meta.xml
 src/classes/Oblix_VersionControl.cls
 src/classes/Oblix_VersionControl.cls-meta.xml
-src/classes/Oblix_SyncBatchJob.clssrc/classes/Oblix_SyncBatchJob.cls-meta.xml
-src/classes/Oblix_SOWRollOverLogic_Test.clssrc/classes/Oblix_SOWRollOverLogic_Test.cls-meta.xmlsrc/classes/Oblix_SOWRollOverLogic.clssrc/classes/Oblix_SOWRollOverLogic.cls-meta.xml
+src/classes/Oblix_SyncBatchJob.cls
+src/classes/Oblix_SyncBatchJob.cls-meta.xml
+src/classes/Oblix_SOWRollOverLogic_Test.cls
+src/classes/Oblix_SOWRollOverLogic_Test.cls-meta.xml
+src/classes/Oblix_SOWRollOverLogic.cls
+src/classes/Oblix_SOWRollOverLogic.cls-meta.xml
 src/classes/Oblix_Utils.cls
 src/classes/Oblix_Utils.cls-meta.xml
 src/classes/Oblix_Utils_Test.cls
@@ -244,7 +248,8 @@ src/pages/Oblix_VF08_ProjectEdit.page
 src/pages/Oblix_VF08_ProjectEdit.page-meta.xml
 src/pages/Oblix_VF09_nonCampaignEdit.page
 src/pages/Oblix_VF09_nonCampaignEdit.page-meta.xml
-src/pages/Oblix_SOWChatterFeedWrapper.pagesrc/pages/Oblix_SOWChatterFeedWrapper.page-meta.xml
+src/pages/Oblix_SOWChatterFeedWrapper.page
+src/pages/Oblix_SOWChatterFeedWrapper.page-meta.xml
 src/reportTypes
 src/reportTypes/Oblix_Assets.reportType
 src/reportTypes/Oblix_Marketing_SOW.reportType
@@ -292,7 +297,7 @@ src/components/Oblix_CmpAuditTracking.component-meta.xml
 src/components/Oblix_leaseGanttChart.component
 src/components/Oblix_leaseGanttChart.component-meta.xml
 src/labels
-src/labels/CustomLabels.labels
+src/labels/Oblix.labels
 src/layouts
 src/layouts/Asset_Scoring__c-Asset Scoring Layout.layout
 src/layouts/Marketing_SOW__c-Marketing SOW Layout.layout
