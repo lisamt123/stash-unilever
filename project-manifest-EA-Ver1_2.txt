@@ -62,10 +62,11 @@ src/labels
 src/labels/EA.labels
 src/objects
 src/objects/EA_Team_Member__c.object
-client
-client/EA Resources/
-client/EA Resources/EA_Badges/
-client/EA Resources/EA_StaticResource/
+src/staticresources
+src/staticresources/EA_Badges.resource
+src/staticresources/EA_StaticResource.resource
+staticresources/EA_Badges.resource-meta.xml
+staticresources/EA_StaticResource.resource-meta.xml
 src/classes
 src/classes/EA_ControllerClass_Test.cls
 src/classes/EA_ControllerClass_Test.cls-meta.xml
