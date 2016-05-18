@@ -7,6 +7,7 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
     private static final String NON_CAMPAIGN_ITEM_WORKLIST_JSON_FIRST_PART = '{"selectedCountry":"Argentina","selectedActivity":"Brand Communication Idea","selectedAgencyDepartment":"Creative","selectedRole":"Copywriter","otherName":"","description":"","hourlyRate":"45.502","hoursSelected":"5","totalAmount":227.51000000000002,"key":"';
 
     private static final String NON_CAMPAIGN_ITEM_WORKLIST_JSON_SECOND_PART = 'Brand Communication IdeaArgentinaCreativeCopywriter","isActivity":true}';
+    private static final String BRAND_BOOK = 'brand book';
 
     private static Marketing_SOW__c sow = new Marketing_SOW__c();
 
@@ -29,7 +30,7 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
         PageReference pageRef = Page.Oblix_SOWNonCampaignCreate;
         Test.setCurrentPage(pageRef);
         ApexPages.currentPage().getParameters().put(SOW_ID_PAGE_PARAMETER, sow.Id);
-        ApexPages.currentPage().getParameters().put(PRESELECTED_ITEM_PAGE_PARAMETER, 'BRAND BOOK');
+        ApexPages.currentPage().getParameters().put(PRESELECTED_ITEM_PAGE_PARAMETER, BRAND_BOOK);
         Oblix_SOWNonCampaignCreateController controller = new Oblix_SOWNonCampaignCreateController();
 
         Test.stopTest();
@@ -48,7 +49,7 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
         PageReference pageRef = Page.Oblix_SOWNonCampaignCreate;
         Test.setCurrentPage(pageRef);
         ApexPages.currentPage().getParameters().put(SOW_ID_PAGE_PARAMETER, sow.Id);
-        ApexPages.currentPage().getParameters().put(PRESELECTED_ITEM_PAGE_PARAMETER, 'BRAND BOOK');
+        ApexPages.currentPage().getParameters().put(PRESELECTED_ITEM_PAGE_PARAMETER, BRAND_BOOK);
         Oblix_SOWNonCampaignCreateController controller = new Oblix_SOWNonCampaignCreateController();
 
         //Check whether controller was initiated with 3 item groupings
@@ -75,7 +76,7 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
         PageReference pageRef = Page.Oblix_SOWNonCampaignCreate;
         Test.setCurrentPage(pageRef);
         ApexPages.currentPage().getParameters().put(SOW_ID_PAGE_PARAMETER, sow.Id);
-        ApexPages.currentPage().getParameters().put(PRESELECTED_ITEM_PAGE_PARAMETER, 'BRAND BOOK');
+        ApexPages.currentPage().getParameters().put(PRESELECTED_ITEM_PAGE_PARAMETER, BRAND_BOOK);
         Oblix_SOWNonCampaignCreateController controller = new Oblix_SOWNonCampaignCreateController();
 
         //Check whether controller was initiated with 3 item groupings
@@ -104,7 +105,7 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
         PageReference pageRef = Page.Oblix_SOWNonCampaignCreate;
         Test.setCurrentPage(pageRef);
         ApexPages.currentPage().getParameters().put(SOW_ID_PAGE_PARAMETER, sow.Id);
-        ApexPages.currentPage().getParameters().put(PRESELECTED_ITEM_PAGE_PARAMETER, 'BRAND BOOK');
+        ApexPages.currentPage().getParameters().put(PRESELECTED_ITEM_PAGE_PARAMETER, BRAND_BOOK);
         Oblix_SOWNonCampaignCreateController controller = new Oblix_SOWNonCampaignCreateController();
 
         //Check whether controller was initiated with 3 item groupings
@@ -133,7 +134,7 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
         PageReference pageRef = Page.Oblix_SOWNonCampaignCreate;
         Test.setCurrentPage(pageRef);
         ApexPages.currentPage().getParameters().put(SOW_ID_PAGE_PARAMETER, sow.Id);
-        ApexPages.currentPage().getParameters().put(PRESELECTED_ITEM_PAGE_PARAMETER, 'BRAND BOOK');
+        ApexPages.currentPage().getParameters().put(PRESELECTED_ITEM_PAGE_PARAMETER, BRAND_BOOK);
         Oblix_SOWNonCampaignCreateController controller = new Oblix_SOWNonCampaignCreateController();
 
         //Check whether controller was initiated with 3 item groupings
@@ -164,7 +165,7 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
         PageReference pageRef = Page.Oblix_SOWNonCampaignCreate;
         Test.setCurrentPage(pageRef);
         ApexPages.currentPage().getParameters().put(SOW_ID_PAGE_PARAMETER, sow.Id);
-        ApexPages.currentPage().getParameters().put(PRESELECTED_ITEM_PAGE_PARAMETER, 'BRAND BOOK');
+        ApexPages.currentPage().getParameters().put(PRESELECTED_ITEM_PAGE_PARAMETER, BRAND_BOOK);
         Oblix_SOWNonCampaignCreateController controller = new Oblix_SOWNonCampaignCreateController();
 
         //Check whether controller was initiated with 3 item groupings
@@ -197,7 +198,7 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
         PageReference pageRef = Page.Oblix_SOWNonCampaignCreate;
         Test.setCurrentPage(pageRef);
         ApexPages.currentPage().getParameters().put(SOW_ID_PAGE_PARAMETER, sow.Id);
-        ApexPages.currentPage().getParameters().put(PRESELECTED_ITEM_PAGE_PARAMETER, 'BRAND BOOK');
+        ApexPages.currentPage().getParameters().put(PRESELECTED_ITEM_PAGE_PARAMETER, BRAND_BOOK);
         Oblix_SOWNonCampaignCreateController controller = new Oblix_SOWNonCampaignCreateController();
 
         //Check whether controller was initiated with 3 item groupings
@@ -268,9 +269,9 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
         for (Integer i = 0; i < 2; i++) {
             Marketing_Basics__c nonCampaignItem = nonCampaigns[i];
             
-            nonCampaignItem.Name = 'Brand Book';
-            nonCampaignItem.Non_campaign_title__c = 'Brand Book';
-            nonCampaignItem.Activities__c = 'Brand Book';
+            nonCampaignItem.Name = BRAND_BOOK;
+            nonCampaignItem.Non_campaign_title__c = BRAND_BOOK;
+            nonCampaignItem.Activities__c = BRAND_BOOK;
             nonCampaignItem.OblixCountry__c = countriesNames[0].OblixCountry__c;
             nonCampaignItem.Agency_Department__c = 'Digital Account Management';
             nonCampaignItem.Role_Title__c = ((i == 0) ? 'Digital Junior Account Manager' : 'Head of Digital');

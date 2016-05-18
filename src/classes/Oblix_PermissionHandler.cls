@@ -160,6 +160,21 @@ public with sharing class Oblix_PermissionHandler {
 
 
     /*******************************************************************************
+    * @author       Ivan Ribakov
+    * @date         2016-05-18
+    * @description  Depending on the assigned permission sets 
+                    determine if the user can edit key SOW fields
+    ********************************************************************************/
+    public static Boolean canEditKeySOWFields() {
+        if (isSystemAdmin() || hasSuperUserpermissionSet()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    /*******************************************************************************
     * @author       Shahin Movahedi
     * @date         2016-02-02
     * @description  Depending on the assigned permission sets and status of SOW
