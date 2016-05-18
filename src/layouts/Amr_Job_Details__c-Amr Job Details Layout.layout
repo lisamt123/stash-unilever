@@ -76,6 +76,13 @@
         <fields>NAME</fields>
         <relatedList>Amr_Job_Allocation__c.AM_Job_Detail__c</relatedList>
     </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>UPDATEDBY_USER</fields>
+        <fields>CREATEDBY_USER</fields>
+        <fields>Display__c</fields>
+        <relatedList>Amr_Saving__c.Job_Details__c</relatedList>
+    </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
     <showInteractionLogPanel>false</showInteractionLogPanel>
