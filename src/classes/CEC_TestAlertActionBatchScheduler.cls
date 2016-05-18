@@ -93,7 +93,7 @@ private class CEC_TestAlertActionBatchScheduler {
             database.executeBatch(scheduler);
             Test.stopTest();
             
-            cec_Alert_Tracker__c finalAlertTracker = [SELECT Trigger_Batch__c FROM cec_Alert_Tracker__c];
+            cec_Alert_Tracker__c finalAlertTracker = [SELECT Trigger_Batch__c FROM cec_Alert_Tracker__c limit 100];
             System.assertEquals(finalAlertTracker.Trigger_Batch__c,false);
 
             // Assert Chatter Alert Action : Check the Group id is populated in Alert Action record

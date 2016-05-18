@@ -14,7 +14,7 @@ VERSION    AUTHOR            DATE            DETAIL
 ***********************************************************************/
 @isTest(seealldata=false)
 public with sharing class CEC_CaseTriggerHelperTest {
-
+    
     @testSetup static void setUpTestData() {
         User u = CEC_TestDataFactory.createStandardCECTestUser();
         System.runAs(u) {
@@ -23,17 +23,17 @@ public with sharing class CEC_CaseTriggerHelperTest {
             
             mdm_Reason_Code__c reasonObj = new mdm_Reason_Code__c(name='Test Reason');
             insert reasonobj;
-
+            
             List<mdm_Global_Listening_Tree__c> globalListeningTreeList = 
-                                                CEC_TestDataFactory.createGlobalListeningTree(1);
+                CEC_TestDataFactory.createGlobalListeningTree(1);
             insert globalListeningTreeList;
             
             List<mdm_Reason_Code__c> reasonCodeList = 
-                                                CEC_TestDataFactory.createReasonCode(1, globalListeningTreeList.get(0).Id);
+                CEC_TestDataFactory.createReasonCode(1, globalListeningTreeList.get(0).Id);
             insert reasonCodeList;
             
-
-
+            
+            
             List<CEC_Case_Market_Mapping__c> cmmList = CEC_TestDataFactory.createMasterCaseMarketMapping();
             CEC_Case_Market_Mapping__c cmmUK;
             for(CEC_Case_Market_Mapping__c cmm : cmmList) {
@@ -42,34 +42,34 @@ public with sharing class CEC_CaseTriggerHelperTest {
                     break;
                 }
             }
-
+            
             mdm_Geography__c  geographyUK = [SELECT Id FROM mdm_Geography__c WHERE Name = 'United Kingdom' LIMIT 1];
-
-
+            
+            
             cec_Case_QC_Mapping__c caseQCMappingObj = new cec_Case_QC_Mapping__c(QC_Type__c = 'Spam',Status__c = 'New',
-                                                            Verbatim__c = 'Test description', 
-                                                            Product__c = productObj.id,
-                                                            Reason_Code__c = reasonObj.id,
-                                                            Country__c = geographyUK.id);
+                                                                                 Verbatim__c = 'Test description', 
+                                                                                 Product__c = productObj.id,
+                                                                                 Reason_Code__c = reasonObj.id,
+                                                                                 Country__c = geographyUK.id);
             insert caseQCMappingObj;
-
-
+            
+            
             List<Account> masterAccountList = new List<Account>();
             masterAccountList.addAll(CEC_TestDataFactory.createTestAccounts(1, 'Test Account1', 
-                                                        '1cecTestForCase@UnileverTest.com', null, null, null, null, null));
-
+                                                                            '1cecTestForCase@UnileverTest.com', null, null, null, null, null));
+            
             masterAccountList.addAll(CEC_TestDataFactory.createTestAccounts(1, 'Test Account2', 
-                                                        '2cecTestForCase@UnileverTest.com', null, null, null, null, null));
+                                                                            '2cecTestForCase@UnileverTest.com', null, null, null, null, null));
             insert masterAccountList;
-
+            
             List<Case> caseList = CEC_TestDataFactory.createTestCases(2, 'New', 'Email', 'L1234', '1234',
-                                                        productObj.Id, reasonObj.Id, 
-                                                        null, cmmUK.Id , true);
+                                                                      productObj.Id, reasonObj.Id, 
+                                                                      null, cmmUK.Id , true);
             insert caseList;
-
+            
         }
     }
-
+    
     static testMethod void emailToCaseNoAccountTest(){
         
         User u = CEC_TestDataFactory.getStandardCECTestUser();
@@ -77,7 +77,7 @@ public with sharing class CEC_CaseTriggerHelperTest {
         System.runAs(u) {
             Test.startTest(); 
             // The new account is created when the case is of orign 'Email' and no existing acconts matching the email. 
-            List<Case> caseList = [SELECT Id, AccountId FROM Case]; 
+            List<Case> caseList = [SELECT Id, AccountId FROM Case limit 100]; 
             CEC_Case_Market_Mapping__c cmmUK = [SELECT Id FROM CEC_Case_Market_Mapping__c 
                                                 WHERE  Market__c = 'United Kingdom' Limit 1];
             for(Case caseObj: caseList){
@@ -91,7 +91,7 @@ public with sharing class CEC_CaseTriggerHelperTest {
             }
         }
     }
-
+    
     static testMethod void emailToCaseWithExistingAccountTest(){
         User u = CEC_TestDataFactory.getStandardCECTestUser();
         
@@ -110,12 +110,12 @@ public with sharing class CEC_CaseTriggerHelperTest {
     }
     
     static testMethod void updateCaseDetailsRecordIDSpam(){
-       
+        
         User u = CEC_TestDataFactory.getStandardCECTestUser();
         
         System.runAs(u) {
             Test.startTest(); 
-            List<Case> caseList = [SELECT Id, Reason_Code__c FROM Case]; 
+            List<Case> caseList = [SELECT Id, Reason_Code__c FROM Case limit 100]; 
             Id noneRecordTypeId = [SELECT id,name FROM RecordType WHERE name = 'None'].Id;
             Id spamRecordTypeId = [SELECT id,name FROM RecordType WHERE name = 'Spam'].Id;
             CEC_Case_Market_Mapping__c cmmUK = [SELECT Id FROM CEC_Case_Market_Mapping__c 
@@ -133,7 +133,7 @@ public with sharing class CEC_CaseTriggerHelperTest {
             newcase.RecordTypeId = spamRecordTypeId;
             update newcase;
             casesMap1.put(newcase.Id,newcase);
-
+            
             CEC_CaseTriggerHelper caseHelper=new CEC_CaseTriggerHelper();
             caseHelper.updateCaseDetailsIfRecordTypeIsSpam(casesMap,casesMap1);
             caseHelper.identifyDateOfManufacture(newcase);
@@ -156,7 +156,7 @@ public with sharing class CEC_CaseTriggerHelperTest {
             
             cec_Org_Settings__c custSetting = new cec_Org_Settings__c(PII_Email_Check__c = true);
             insert custSetting; 
-
+            
             Case tempCase = new  Case();
             tempCase.Description='TheoWalcott@gmail.com';
             tempCase.SuppliedEmail = 'abcd@abcdasdsad.com';
@@ -252,7 +252,7 @@ public with sharing class CEC_CaseTriggerHelperTest {
     }
     
     //Acconut Detail Check 
-     static testMethod void setPIIWarningAccountDetailsTest(){
+    static testMethod void setPIIWarningAccountDetailsTest(){
         User u = CEC_TestDataFactory.getStandardCECTestUser();
         
         System.runAs(u) {
@@ -274,7 +274,7 @@ public with sharing class CEC_CaseTriggerHelperTest {
             Case resultCase = [SELECT Id, PII_Warning_Check__c,Description FROM Case WHERE Id = :tempCase.Id];
             System.debug('SetPIIWarningforEmailIdTest Case  ~~~~~~~~'+ resultCase);
             System.assertEquals(True, resultCase.PII_Warning_Check__c);
-  
+            
             
             // Update Scenario without PII content
             tempCase.Description='No Account Name at all';
@@ -289,14 +289,14 @@ public with sharing class CEC_CaseTriggerHelperTest {
             resultCase = [SELECT Id, PII_Warning_Check__c,Description FROM Case WHERE Id = :tempCase.Id];
             System.debug('SetPIIWarningforEmailIdTest Case ~~~~~~~~'+ resultCase);
             System.assertEquals(True, resultCase.PII_Warning_Check__c);    
-
+            
             // Update Scenario with PII content for Address - Street
             tempCase.Description='Test lives in London in a street called Hounslow East near to the tube station';
             update tempCase;
             resultCase = [SELECT Id, PII_Warning_Check__c,Description FROM Case WHERE Id = :tempCase.Id];
             System.debug('SetPIIWarningforEmailIdTest Case ~~~~~~~~'+ resultCase);
             System.assertEquals(True, resultCase.PII_Warning_Check__c);
-
+            
             // Update Scenario with PII content for Address - PostalCode
             tempCase.Description='Test lives in London whose area code is 400 706. This is zone 3.';
             update tempCase;
@@ -361,7 +361,7 @@ public with sharing class CEC_CaseTriggerHelperTest {
             Map<Id,Case> caseMap1 = new Map<Id,Case>();
             List<Case> caseList = new List<Case>();
             List<Id> caseLstIds = new List<Id>();
-                 
+            
             newcase.Country__c = cmmUK.Id;
             newcase.Subject ='test';
             newcase.Status= 'Closed';
@@ -418,17 +418,17 @@ public with sharing class CEC_CaseTriggerHelperTest {
         testCaseList[3].Description = 'FIRSTNAME : Naga \n LASTNAME : Raaju \n EMAIL: nagaRaaju@caseparsing.com \n BRAND :TESTBRAND \n ADDRESS1:121 ABCD Street \n CITY: London] \n [STATE: VA] \n ZIP: 572014 \n COUNTRY: US \n STORE NAME: WindowMart \n UPC: TestUPC \n';
         
         Test.StartTest();
-            insert testCaseList;
+        insert testCaseList;
         Test.StopTest();
         
         list<Account> assertAccount = [SELECT id, PersonEmail, LastName, FirstName, PersonMailingPostalCode, PersonMailingCountry, PersonMailingState,
-                    (SELECT id, Brand__c, CEC_Product__c, Store__c, Origin FROM Cases) FROM Account WHERE PersonEmail LIKE '%caseparsing%' LIMIT 5000];
+                                       (SELECT id, Brand__c, CEC_Product__c, Store__c, Origin FROM Cases) FROM Account WHERE PersonEmail LIKE '%caseparsing%' LIMIT 5000];
         list<Case> assertCase = [Select Id, Origin, caseNumber FROM Case WHERE SuppliedEmail LIKE '%caseparsing%' LIMIT 5000];
         
         //System.assertEquals('Web', assertCase[0].Origin);
         System.assertEquals(4, assertAccount.size());
         System.assertEquals(4, assertCase.size());
-system.debug('assertAccount :'+assertAccount);
+        system.debug('assertAccount :'+assertAccount);
         for(Account acc :assertAccount){
             if(acc.PersonEmail == 'nagaRaju@caseparsing.com'){
                 System.assertEquals('Raju',acc.LastName);
@@ -440,7 +440,63 @@ system.debug('assertAccount :'+assertAccount);
                 System.assertEquals('VA',acc.PersonMailingState);
             }
         }
-         
+        
     }
-    
+    static testMethod void testupdateCaseBrandAndSkill(){
+        User u = CEC_TestDataFactory.getStandardCECTestUser();  
+        System.runAs(u) {
+            Test.startTest();
+            
+            Account accountObj = [SELECT Id FROM Account WHERE PersonEmail='1cecTestForCase@UnileverTest.com' LIMIT 1];
+            
+            CEC_Case_Market_Mapping__c cmmUK = [SELECT Id FROM CEC_Case_Market_Mapping__c 
+                                                WHERE Name = 'United Kingdom' LIMIT 1];
+            cec_Case_Brand_Mapping__c cbm = new cec_Case_Brand_Mapping__c(Country__c=cmmUK.id,Brand__c='Knorr',Inbound_Email__c='unitedkingdom.knorr@unilever.com',Skill__c='Coffee & Snacks');
+            insert cbm;
+            
+            
+            Case newcase= new Case();
+            newcase.SuppliedEmail='test@abc.com';
+            newcase.SuppliedName='Test Abc';
+            newcase.Status='New';
+            newcase.Origin='Web';
+            newcase.AccountId = accountObj.Id;  
+            newcase.Brand__c ='Knorr';
+            newcase.Country__c = cmmUK.id;
+            insert newcase;
+            
+            System.debug('@@@@newcase' + newcase);
+            
+        }
+    }
+    static testMethod void testupdateCaseBrandAndSkillOnUpdate(){
+        User u = CEC_TestDataFactory.getStandardCECTestUser();  
+        System.runAs(u) {
+            Test.startTest();
+            
+            Account accountObj = [SELECT Id FROM Account WHERE PersonEmail='1cecTestForCase@UnileverTest.com' LIMIT 1];
+            
+            CEC_Case_Market_Mapping__c cmmUK = [SELECT Id FROM CEC_Case_Market_Mapping__c 
+                                                WHERE Name = 'United Kingdom' LIMIT 1];
+            cec_Case_Brand_Mapping__c cbm = new cec_Case_Brand_Mapping__c(Country__c=cmmUK.id,Brand__c='Knorr',Inbound_Email__c='unitedkingdom.knorr@unilever.com',Skill__c='Coffee & Snacks');
+            insert cbm;
+            
+            
+            Case newcase= new Case();
+            newcase.SuppliedEmail='test@abc.com';
+            newcase.SuppliedName='Test Abc';
+            newcase.Status='New';
+            newcase.Origin='Web';
+            newcase.AccountId = accountObj.Id;  
+            newcase.Brand__c ='Ben';
+            newcase.Country__c = cmmUK.id;
+            insert newcase;
+            
+            newcase.Brand__c ='Knorr';
+            update newcase;
+            
+            System.debug('@@@@newcase' + newcase);
+            
+        }
+    }
 }

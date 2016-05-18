@@ -634,7 +634,7 @@ This method selects all distinct categories from ProductCategory table
             categoryOptions.add(new SelectOption('None','None'));
         }
         /* selecting all distinct categories from ProductCategory table */
-        AggregateResult[] productCategoryList = [select L2_Product_Category__c from mdm_Product_Category__c GROUP BY L2_Product_Category__c ];
+        AggregateResult[] productCategoryList = [select L2_Product_Category__c from mdm_Product_Category__c GROUP BY L2_Product_Category__c limit 20000 ];
         if (productCategoryList != null && productCategoryList.size() > 0){
             Integer increment = 0;
             for (AggregateResult ar : productCategoryList ){

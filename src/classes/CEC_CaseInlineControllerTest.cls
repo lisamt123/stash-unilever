@@ -251,7 +251,7 @@ Test method for getCategoryValues method
             
             Case caseObj = new Case();
             insert caseObj;
-            List<mdm_Product_Category__c> prodCategoryList = [SELECT Id FROM mdm_Product_Category__c];
+            List<mdm_Product_Category__c> prodCategoryList = [SELECT Id FROM mdm_Product_Category__c limit 100];
 
             ApexPages.StandardController stdController = new ApexPages.StandardController(caseObj);
             CEC_CaseInlineController caseControllerObj = new CEC_CaseInlineController(stdController);

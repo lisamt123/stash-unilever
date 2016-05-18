@@ -13,7 +13,7 @@ VERSION    AUTHOR            DATE            DETAIL
 1.1      Sathish           MAR-2016        Code Refactoring.
 ***********************************************************************/
 @isTest(SeeAllData = false)
-public class CEC_AnonymiseConsumerBatchScheduler_Test {
+public with sharing class CEC_AnonymiseConsumerBatchScheduler_Test {
    
     @testSetup static void setUpTestData() {
         User u = CEC_TestDataFactory.createStandardCECTestUser();
@@ -49,7 +49,7 @@ public class CEC_AnonymiseConsumerBatchScheduler_Test {
             List<account> resultAccountList = [ SELECT id,Anonymise_check__c, Date_Anonymized__c, 
                                                 Salutation,FirstName,LastName,PersonEmail,Phone,
                                                 BillingStreet, PersonMailingStreet, ShippingStreet, 
-                                                Retention_Date__c from Account];
+                                                Retention_Date__c from Account limit 10];
             
             for (Account accountObj : resultAccountList) {
                 if (accountObj.Anonymise_check__c == false && accountObj.Date_Anonymized__c == null) {

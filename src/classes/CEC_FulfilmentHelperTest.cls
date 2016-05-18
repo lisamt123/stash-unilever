@@ -235,7 +235,7 @@ Test method for beforeInsert() method
             update oldFulfilmentObj;
             
             
-            Integer fulfilmentEnclosureCount = [SELECT count() FROM CEC_Fulfilment_Enclosure__c];
+            Integer fulfilmentEnclosureCount = [SELECT count() FROM CEC_Fulfilment_Enclosure__c limit 100];
             System.assertEquals(fulfilmentEnclosureCount,5);
             
             List<cec_Fulfilment__c>  newFulfilmentList1 = [SELECT ID,Enclosure1_Quantity__c,Enclosure2_Quantity__c,
@@ -252,7 +252,7 @@ Test method for beforeInsert() method
             oldFulfilmentMap.put(oldFulfilmentObj.Id, oldFulfilmentObj);
             fulfilmentHelper.upsertFulfilmentEnclosure(newFulfilmentList1,oldFulfilmentMap);
             
-            Integer fulfilmentEnclosureCount1 = [select count() from CEC_Fulfilment_Enclosure__c];
+            Integer fulfilmentEnclosureCount1 = [select count() from CEC_Fulfilment_Enclosure__c limit 100];
             System.assertEquals(fulfilmentEnclosureCount1,5);          
             
             
@@ -277,7 +277,7 @@ Test method for beforeInsert() method
             Test.startTest();
             fulfilmentHelper.deleteFulfilmentEnclosure(newFulfilmentList2,oldFulfilmentMap2);
             Test.stopTest();
-            Integer fulfilmentEnclosureCount2 = [select count() from CEC_Fulfilment_Enclosure__c];
+            Integer fulfilmentEnclosureCount2 = [select count() from CEC_Fulfilment_Enclosure__c limit 100];
             System.assertEquals(fulfilmentEnclosureCount2, 2);   
         }
         
@@ -394,7 +394,7 @@ Test method for beforeInsert() method
             System.assertEquals(fulfilmenttemp.Enclosure4_Quantity__c,'1');
             System.assertEquals(fulfilmenttemp.Enclosure5_Quantity__c,'1');
             
-            integer ffENCount = [select count() from CEC_Fulfilment_Enclosure__c ];
+            integer ffENCount = [select count() from CEC_Fulfilment_Enclosure__c limit 100];
             System.assertEquals(5,ffENCount);
             
         }
