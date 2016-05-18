@@ -30,6 +30,8 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     private static string SILVER = 'Silver';
     private static string BRONZE = 'Bronze';
     private static string N_A = 'NA';
+    private static string YES = 'YES';
+    private static string NO = 'NO';    
     private static string EMPTY_STRING = '';
     public static final Id REGIONAL_ROLLOUT_RECTYPE = Schema.SObjectType.IPM_Project_Rollout__c.RecordTypeInfosByName.get('Regional Rollout').RecordTypeId;
     public static final Id LOCAL_ROLLOUT_RECORDTYPE = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get('Local Rollouts').getRecordTypeId();
@@ -255,6 +257,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                                                                                                     Regional_Rollout__r.id,
                                                                                                     IPM_Global_OR_Regional__c,
                                                                                                     IPM_Parent_Project_Name__c,
+                                                                                                    IPM_Regional_PL__c,
                                                                                                     IPM_Regional_PL__r.Name,
                                                                                                     Regional_Project__r.IPM_Phase__c,
                                                                                                     IPM_Project__R.IPM_Phase__c,
@@ -264,8 +267,8 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                                                                                                     //WHERE IPM_Project__r.id IN:rolloutprojectIdSet Limit 50000]);
                                                                                                     WHERE isActive__c=true AND (IPM_Project__r.id IN:projectIdMap.keyset() or Regional_Project__r.Id IN:projectIdMap.keyset()) Limit 50000]);
             for(IPM_Project_Rollout__c pr:projRolloutList){
-                  
-                  if(pr.IPM_Project_Job_Status__c!=IPM_ConstantUtils.JOB_STATUS_COMPLETED){
+                   
+                  if(pr.IPM_Project_Job_Status__c!=IPM_ConstantUtils.JOB_STATUS_COMPLETED || String.isBlank(pr.IPM_Regional_PL__c)){
                     if(pr.IPM_Project__r.id != null && !projRolloutMap.containskey(pr.IPM_Project__r.id)){
                         projRolloutMap.put(pr.IPM_Project__r.id, new List<IPM_Project_Rollout__c>{pr});                              
                     }else if(pr.IPM_Project__r.id != null && projRolloutMap.containskey(pr.IPM_Project__r.id)){                            
@@ -464,7 +467,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
             //a.IPM_Company_Priority__c = p.IPM_CPP__c; 
             a.IPM_Fast_Track_Project__c = p.IPM_Fast_Track_Project__c?IPM_ConstantUtils.OTIF_YES:IPM_ConstantUtils.OTIF_NO;             
             a.IPM_Exempt_from_Threshold__c = p.Exempt_from_Threshold__c; 
-            a.IPM_Auto_Aligned_Fin_TLD__c = p.IPM_Misalligned__c; // Auto_Aligned will only be checked for local projects
+            //a.IPM_Auto_Aligned_Fin_TLD__c = p.IPM_Misalligned__c; // Auto_Aligned will only be checked for local projects
             a.IPM_Stopped__c= p.Is_Archieved__c?IPM_ConstantUtils.OTIF_YES:'';
             
             if(String.isNotBlank(p.IPMProject_Span__c) && !p.IPMProject_Span__c.equalsignorecase(IPM_Utils.valueGlobal) && String.isNotBlank(p.IPM_Project_Type__c) && (!p.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Original) && p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional)) &&  String.isNotBlank(p.IPM_Phase__c) && p.IPM_Phase__c.equalsignorecase(IPM_ConstantUtils.PHASE_IDEAS)){
@@ -511,7 +514,8 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
             //Global Project Business Impact Global will be copy to Global,Regional & Local project
             if(projFinmap.containskey(p.Id)){ 
                 a.IPM_Business_Impact_BD__c = projFinMap.get(p.id).Business_Impact_Global__c; 
-                a.IPM_Auto_Aligned_Fin_TLD_for_financial__c = projFinMap.get(p.id).Misaligned__c;                  
+                a.IPM_Auto_Aligned_Fin_TLD_for_financial__c = projFinMap.get(p.id).Misaligned__c; 
+                a.IPM_Auto_Aligned_Fin_TLD__c = p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)?(projFinMap.get(p.id).Misaligned__c? NO:((p.IPM_Misalligned__c== YES) ? YES : NO)):null ; // Auto_Aligned will only be checked for local projects                  
                 a.IPM_Company_Priority__c = p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)?projFinMap.get(p.id).IPM_CPP_Local__c:null;
             }  
             
