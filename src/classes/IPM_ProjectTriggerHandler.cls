@@ -101,7 +101,7 @@ public with sharing class IPM_ProjectTriggerHandler
             if(projideset != null && !projideset.isEmpty())
             {
                 projectmap = new Map<id,IPM_Project__c>([select id from IPM_Project__c where Id IN: projideset]);
-                if(projectmap != null && !projectmap.isEmpty() &&  !IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED)
+                if(projectmap != null && !projectmap.isEmpty())
                 {  
                     IPM_GroupManagement.groupmemberupdate(projectmap.keyset());  
                 }  
