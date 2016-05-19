@@ -99,7 +99,16 @@
             <apex:outputPanel id="top_right_panel">
                 <table class="SOW_header_value_summary">
                     <tr>
-                        <td class="header_approval_button" rowspan="3"><apex:outputPanel rendered="{!show_submit && isFXApprovedForFY}"><button type="button" class="btn btn-danger btn-xs create_SOW_button btn_check btn_submit_approval" data-toggle="modal"  data-target="#submitApproval">SUBMIT FOR APPROVAL</button></apex:outputPanel></td>
+                        <td class="header_approval_button" rowspan="3">
+                            <apex:outputPanel rendered="{!show_submit && isFXApprovedForFY}">
+                                <apex:outputPanel rendered="{!can_submit_for_approval}">
+                                    <button type="button" class="btn btn-danger btn-xs create_SOW_button btn_check btn_submit_approval" data-toggle="modal"  data-target="#submitApproval">SUBMIT FOR APPROVAL</button>
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{!NOT(can_submit_for_approval)}">
+                                    <button type="button" disabled="disabled" class="btn btn-danger btn-xs create_SOW_button btn_check btn_submit_approval" data-toggle="modal"  data-target="#submitApproval" title="All campaigns must be synced before the Scope of Work can be approved.">SUBMIT FOR APPROVAL</button>
+                                </apex:outputPanel>
+                            </apex:outputPanel>
+                        </td>
                         <td class="header_approval_button" rowspan="3"><apex:outputPanel rendered="{!can_reject_sow}"><button type="button" class="btn btn-danger btn-xs two_button_header btn_return btn_send_back" data-toggle="modal"  data-target="#sendBack">RETURN SOW</button></apex:outputPanel></td>
                         <td class="header_approval_button" rowspan="3"><apex:outputPanel rendered="{!can_approve_sow}"><button type="button" class="btn btn-danger btn-xs create_SOW_button btn_check btn_approve_sow"  data-toggle="modal"  data-target="#sowApprove">APPROVE SOW</button></apex:outputPanel></td>
                         <td class="SOW_header_value_title">SOW total (incl. risk adjustment)</td>
@@ -230,20 +239,20 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h1 class="modal_window_title" id="gridSystemModalLabel">{!selected_sow.Name} has been approved</h1>
                         </div>
-                        <apex:outputPanel id="initialApprvalComplete" rendered="{!selected_sow.Initial_Approval_Complete__c}">
+                        <apex:outputPanel id="initialApprovalComplete" rendered="{!NOT(selected_sow.Initial_Approval_Complete__c)}">
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        !-- Initial Approval Complete Section --! {!selected_sow.Name} has been approved successfully by Unilever and Agency. An open for updates version will be available shortly to allow Unilever to reflect any changes during the year.
+                                    {!selected_sow.Name} has been approved successfully by Unilever and Agency. An open for updates version will be available shortly to allow Unilever to reflect any changes during the year.
                                     </div>   
                                 </div>
                             </div>
                         </apex:outputPanel>
-                        <apex:outputPanel id="initialApprvalNotComplete" rendered="{!NOT(selected_sow.Initial_Approval_Complete__c)}">
+                        <apex:outputPanel id="initialApprovalNotComplete" rendered="{!selected_sow.Initial_Approval_Complete__c}">
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        !-- Initial Approval Not Complete Section --! {!selected_sow.Name} has been approved successfully by Unilever and Agency. An open for updates version will be available shortly to allow Unilever to reflect any changes during the year.
+                                        Scope of Work {!selected_sow.Name} is now finalised. This is the final version for the year approved by Unilever and Agency.
                                     </div>   
                                 </div>
                             </div>

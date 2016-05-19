@@ -304,6 +304,8 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
 
         system.debug('###PercentToAdjust : '+PercentToAdjust);
         system.debug('###selected_project.Percentage_of_Fee_for_this_FY__c : '+selected_project.Percentage_of_Fee_for_this_FY__c);
+        selected_project.Campaign_Attributes_Updated__c = true;
+
         update selected_project;
         
         /* Doesn't make sense

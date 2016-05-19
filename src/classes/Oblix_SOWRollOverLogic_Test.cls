@@ -77,7 +77,7 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
 			Map<Id, Oblix_SOW_Projects__c> map_campaigns_to_test = Oblix_TestUtils.insertCampaignsWithRelatedRecords(3,20,5,mSow.Id,'Total turnover >€400m', 'Global campaign (all market clusters)', 'Up to 4 locations', 'New – Multi channel');
 
 			// insert attachment
-			insert Oblix_TestUtils.createAttachment(mSow.Id, 10);
+			insert Oblix_TestUtils.createAttachment(mSow.Id, 30);
 
 
 			// insert non-campaign
@@ -138,7 +138,7 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
 
 			Oblix_SyncBatchJob job_process_batch = new Oblix_SyncBatchJob(sow_requested_clone_size,sow_requested_sync_size,campaign_requested_sync_size);
 	    	
-	        system.assertEquals(13, job_process_batch.list_job_components.size(), 'Incorrect number of job components populated!');
+	        system.assertEquals(18, job_process_batch.list_job_components.size(), 'Incorrect number of job components populated!');
 	    	//***** EXECUTE JOB COMPONENTS
 	    	processJobComponents(job_process_batch.list_job_components);
 
@@ -174,8 +174,8 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
 	    	List<Attachment> list_orignal_attachments = [SELECT Name FROM Attachment WHERE ParentId =: sow_original.Id ];
 	    	List<Attachment> list_cloned_attachments = [SELECT Name FROM Attachment WHERE ParentId =: sow_cloned.Id ];
 
-	    	system.assertEquals(10, list_orignal_attachments.size(), 'Expected #of original attachments dont match!');
-	    	system.assertEquals(10, list_cloned_attachments.size(), 'Expected #of cloned attachments dont match!');
+	    	system.assertEquals(30, list_orignal_attachments.size(), 'Expected #of original attachments dont match!');
+	    	system.assertEquals(30, list_cloned_attachments.size(), 'Expected #of cloned attachments dont match!');
 
 
 	    	// check campaigns cloned
@@ -191,15 +191,15 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
 	    	system.debug('##### CAMPAIGNS ORIGINAL: ' + JSON.serialize(list_campaign_original));
 	    	system.debug('##### CAMPAIGNS CLONED: ' + JSON.serialize(list_campaign_cloned));
 
-	    	//system.assertEquals(3, list_campaign_original.size(), 'Expected #of original campaign not matching actuals!');
-	    	//system.assertEquals(1, list_campaign_cloned.size(), 'Expected #of cloned campaign not matching actuals!');
+	    	system.assertEquals(3, list_campaign_original.size(), 'Expected #of original campaign not matching actuals!');
+	    	system.assertEquals(1, list_campaign_cloned.size(), 'Expected #of cloned campaign not matching actuals!');
 
 	    	for (Oblix_SOW_Projects__c orig: list_campaign_original){
-				//system.assertEquals(5, orig.Marketing_SOW_Project_Splits__r.size(), 'Expected #of original splits not matching actual');
+				system.assertEquals(5, orig.Marketing_SOW_Project_Splits__r.size(), 'Expected #of original splits not matching actual');
 	    	}
 
 	    	for (Oblix_SOW_Projects__c cloned: list_campaign_cloned){
-				//system.assertEquals(5, cloned.Marketing_SOW_Project_Splits__r.size(), 'Expected #of cloned splits not matching actual');
+				system.assertEquals(5, cloned.Marketing_SOW_Project_Splits__r.size(), 'Expected #of cloned splits not matching actual');
 	    	}
 
 
@@ -208,8 +208,8 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
 	    	List<Oblix_Project_Assets__c> list_assets_cloned = [SELECT Name, Original_Asset__c, Cloned_Asset__c, Asset_PFY__c, Asset_NFY__c FROM Oblix_Project_Assets__c WHERE Agency_Projects__r.Financial_Year__r.Sync_Status__c = NULL ];
 
 
-	    	//system.assertEquals(60, list_assets_original.size(), 'Expected #of original assets not matching actual');
-	    	//system.assertEquals(20, list_assets_cloned.size(), 'Expected #of cloned assets not matching actual');
+	    	system.assertEquals(60, list_assets_original.size(), 'Expected #of original assets not matching actual');
+	    	system.assertEquals(20, list_assets_cloned.size(), 'Expected #of cloned assets not matching actual');
 	    }
 
 
@@ -260,7 +260,7 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
 			Map<Id, Oblix_SOW_Projects__c> map_campaigns_to_test = Oblix_TestUtils.insertCampaignsWithRelatedRecords(3,20,5,mSow.Id,'Total turnover >€400m', 'Global campaign (all market clusters)', 'Up to 4 locations', 'New – Multi channel');
 
 			// insert attachment
-			insert Oblix_TestUtils.createAttachment(mSow.Id, 10);
+			insert Oblix_TestUtils.createAttachment(mSow.Id, 40);
 
 
 			// insert non-campaign
@@ -287,7 +287,7 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
 
 			Oblix_SyncBatchJob job_process_batch = new Oblix_SyncBatchJob(sow_requested_clone_size,sow_requested_sync_size,campaign_requested_sync_size);
 
-	        system.assertEquals(9, job_process_batch.list_job_components.size(), 'Expected #of job components dont match!');
+	        system.assertEquals(16, job_process_batch.list_job_components.size(), 'Expected #of job components dont match!');
 
 	    	//***** EXECUTE JOB COMPONENTS
 	    	processJobComponents(job_process_batch.list_job_components);
@@ -315,8 +315,8 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
 	    	List<Attachment> list_orignal_attachments = [SELECT Name FROM Attachment WHERE ParentId =: sow_original.Id ];
 	    	List<Attachment> list_cloned_attachments = [SELECT Name FROM Attachment WHERE ParentId =: sow_cloned.Id ];
 
-	    	system.assertEquals(10, list_orignal_attachments.size(), 'Expected #of original attachments dont match!');
-	    	system.assertEquals(10, list_cloned_attachments.size(), 'Expected #of cloned attachments dont match');
+	    	system.assertEquals(40, list_orignal_attachments.size(), 'Expected #of original attachments dont match!');
+	    	system.assertEquals(40, list_cloned_attachments.size(), 'Expected #of cloned attachments dont match');
 
 
 	    	// check campaigns cloned
