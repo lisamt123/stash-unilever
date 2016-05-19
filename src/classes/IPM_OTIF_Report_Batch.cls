@@ -338,7 +338,6 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                     if(mile.IPM_Actual_Target_Launch_Month__c != 'None' && mile.IPM_Actual_Target_Launch_Month__c != '' ){
                        otifAnalyticObj.IPM_Actual_Launch_Month__c = mile.IPM_Actual_Target_Launch_Month__c;
                     }
-                    //a.IPM_Actual_Launch_Date__c = mile.IPM_Completed_on__c; 
                     if(mile.IPM_Due_Date_Idea__c != null ){
                         otifAnalyticObj = setValuesForDueDateIdea(mile, otifAnalyticObj, p);
                     }
@@ -442,16 +441,10 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
       public map<Id,list<IPM_Project_Resource__c>> fetchTeamMembers(map<id,IPM_Project__c> projectIdMap){
        
         map<Id,list<IPM_Project_Resource__c>> projResourceMap = new map<id,list<IPM_Project_Resource__c>>();  // this map will hold project id and corresponding project resource
-        try{   
-        list<IPM_Project_Resource__c> projectResourceList = new list<IPM_Project_Resource__c>([SELECT Id,
-        																					   IPM_Project__c,
-        																					   IPM_Project__r.id,
-        																					   IPM_Role_Type__c,
-                                                                                  			   IPM_User__r.Name                                                                                 
-                                                                                 			   FROM IPM_Project_Resource__c WHERE IPM_Project__r.id IN:projectIdMap.keyset() Limit 50000]);
-        
-        for(IPM_Project_Resource__c projResource : projectResourceList){
-        	 if(!projResourceMap.containskey(projResource.IPM_Project__r.id)){
+        try{ 
+        for(IPM_Project_Resource__c projResource : [SELECT Id,IPM_Project__c,IPM_Project__r.id,IPM_Role_Type__c,IPM_User__r.Name                                                                                 
+                                                              FROM IPM_Project_Resource__c WHERE IPM_Project__r.id IN:projectIdMap.keyset() Limit 50000]){
+           if(!projResourceMap.containskey(projResource.IPM_Project__r.id)){
                         projResourceMap.put(projResource.IPM_Project__r.id, new List<IPM_Project_Resource__c>{projResource});   
                 }else{
                     List<IPM_Project_Resource__c> resourceList = projResourceMap.get(projResource.IPM_Project__r.id);
@@ -478,23 +471,21 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
         financialIdSet = new set<id>();
         Map<Id, IPM_Financial__c> projFinMap = new map<Id,IPM_Financial__c>();  // this map will hold project id and corresponding Consolidated financial records
         try{   
-        list<IPM_Financial__c> projectFinancialList = new list<IPM_Financial__c>([SELECT id,
-                                                                                  name,
-                                                                                  Financial_External_ID__c,
-                                                                                  Business_Impact_Global__c,
-                                                                                  Business_Impact_Regional__c,
-                                                                                  Business_Impact_Local__c, 
-                                                                                  Parent_Project__r.Name,
-                                                                                  Regional_Project__r.id, 
-                                                                                  Local_Project__r.id,
-                                                                                  Parent_Project__r.id, 
-                                                                                  Regional_Project__r.Name, 
-                                                                                  Local_Project__r.Name,
-                                                                                  IPM_Auto_Aligned_Fin_TLD__c,
-                                                                                  IPM_Project_Rollout__r.id                                                                                  
-                                                                                  FROM IPM_Financial__c WHERE Parent_Project__r.Id IN: projectIdMap.keyset() or Regional_Project__r.id IN:projectIdMap.keyset() or Local_Project__r.id IN: projectIdMap.keyset()  Limit 50000]);
-        
-            for(IPM_Financial__c fi:projectFinancialList){
+             for(IPM_Financial__c fi:[SELECT id,
+                                          name,
+                                          Financial_External_ID__c,
+                                          Business_Impact_Global__c,
+                                          Business_Impact_Regional__c,
+                                          Business_Impact_Local__c, 
+                                          Parent_Project__r.Name,
+                                          Regional_Project__r.id, 
+                                          Local_Project__r.id,
+                                          Parent_Project__r.id, 
+                                          Regional_Project__r.Name, 
+                                          Local_Project__r.Name,
+                                          IPM_Auto_Aligned_Fin_TLD__c,
+                                          IPM_Project_Rollout__r.id                                                                                  
+                                          FROM IPM_Financial__c WHERE Parent_Project__r.Id IN: projectIdMap.keyset() or Regional_Project__r.id IN:projectIdMap.keyset() or Local_Project__r.id IN: projectIdMap.keyset()  Limit 50000]){
                 if(fi.Local_Project__r.id !=null && fi.Local_Project__r.Name == fi.Financial_External_ID__c){
                     projFinMap.put(fi.Local_Project__r.id,fi);
                     financialIdSet.add(fi.id);
@@ -519,39 +510,37 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
      *********************************************************************************************************************/     
     public Map<Id, List<IPM_Financial_Year__c>> fetchFinancialYearRecords(set<Id> financialIdSet){
         Map<Id, List<IPM_Financial_Year__c>> projFinYrMap = new map<Id, List<IPM_Financial_Year__c>>();  //This map will hold project id and financial year records
-        try{ 
-        list<IPM_Financial_Year__c> projectFinancialYrList = new list<IPM_Financial_Year__c>([SELECT id,
-                                                                                              name,
-                                                                                              Financial_External_ID__c,
-                                                                                              IPM_Financial__r.Parent_Project__r.Id,
-                                                                                              IPM_Financial__r.Regional_Project__r.Id,
-                                                                                              IPM_Financial__r.Local_Project__r.Id,
-                                                                                              IPM_Financial__r.Id,
-                                                                                              IPM_Financial__r.Business_Impact_Global__c,
-                                                                                              Year__c,
-                                                                                              Gross_Profit_Global__c,
-                                                                                              Gross_Profit_Regional__c,
-                                                                                              Gross_Profit_Local__c,
-                                                                                              Turnover_Global__c,
-                                                                                              Turnover_Local__c,
-                                                                                              Turnover_Regional__c,
-                                                                                              Turnover_Charter__c,
-                                                                                              Turnover_Contract__c,
-                                                                                              Turnover_MD__c,
-                                                                                              Turnover_MR__c,
-                                                                                              Year_Type__c,
-                                                                                              GM_of_TO_Charter__c,
-                                                                                              GM_of_TO_Contract__c,
-                                                                                              GM_of_TO_MD__c,
-                                                                                              GM_of_TO_MR__c,
-                                                                                              GM_of_TO_Local__c,
-                                                                                              GM_of_TO_Global__c,
-                                                                                              GM_of_TO_Regional__c,
-                                                                                              PL_Type__c FROM IPM_Financial_Year__C 
-                                                                                              //WHERE IPM_Financial__r.Parent_Project__r.Id IN: projectIdMap.keyset() or IPM_Financial__r.Regional_Project__r.id IN: projectIdMap.keyset() or IPM_Financial__r.Local_Project__r.id IN: projectIdMap.keyset() Limit 50000]);
-                                                                                              WHERE IPM_Financial__c IN:financialIdSet Limit 50000]);
-        
-            for(IPM_Financial_Year__c fy:projectFinancialYrList){
+        try{              
+            for(IPM_Financial_Year__c fy:[SELECT id,
+                                                name,
+                                                Financial_External_ID__c,
+                                                IPM_Financial__r.Parent_Project__r.Id,
+                                                IPM_Financial__r.Regional_Project__r.Id,
+                                                IPM_Financial__r.Local_Project__r.Id,
+                                                IPM_Financial__r.Id,
+                                                IPM_Financial__r.Business_Impact_Global__c,
+                                                Year__c,
+                                                Gross_Profit_Global__c,
+                                                Gross_Profit_Regional__c,
+                                                Gross_Profit_Local__c,
+                                                Turnover_Global__c,
+                                                Turnover_Local__c,
+                                                Turnover_Regional__c,
+                                                Turnover_Charter__c,
+                                                Turnover_Contract__c,
+                                                Turnover_MD__c,
+                                                Turnover_MR__c,
+                                                Year_Type__c,
+                                                GM_of_TO_Charter__c,
+                                                GM_of_TO_Contract__c,
+                                                GM_of_TO_MD__c,
+                                                GM_of_TO_MR__c,
+                                                GM_of_TO_Local__c,
+                                                GM_of_TO_Global__c,
+                                                GM_of_TO_Regional__c,
+                                                PL_Type__c FROM IPM_Financial_Year__C 
+                                                //WHERE IPM_Financial__r.Parent_Project__r.Id IN: projectIdMap.keyset() or IPM_Financial__r.Regional_Project__r.id IN: projectIdMap.keyset() or IPM_Financial__r.Local_Project__r.id IN: projectIdMap.keyset() Limit 50000]);
+                                                WHERE IPM_Financial__c IN:financialIdSet Limit 50000]){
                 
                 //For Local Projects 
                 if(fy.IPM_Financial__r.Local_Project__r.id != null){
@@ -605,28 +594,26 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
     public map<Id,list<IPM_Milestone__c>> fetchMilestoneRecords(map<id,IPM_Project__c> projectIdMap){
         map<Id,list<IPM_Milestone__c>> projMilestoneMap = new map<id,list<IPM_Milestone__c>>();
         try{
-        list<IPM_Milestone__c> projMilestoneList = new list<IPM_Milestone__c>([SELECT id,
-                                                                               Name,
-                                                                               IPM_Type_of_gate__c,
-                                                                               IPM_Name__c,
-                                                                               IPM_Due_Date__c,                                                                            
-                                                                               IPM_Completed_on__c,
-                                                                               IPM_Proposed_Date__c,                                                                           
-                                                                               IPM_Target_Launch_Year__c,
-                                                                               IPM_Target_Launch_Month__c,
-                                                                               IPM_Actual_Target_Launch_Year__c,
-                                                                               IPM_Actual_Target_Launch_Month__c,
-                                                                               IPM_Project__r.id,
-                                                                               IPM_Type_of_Milestone__c,
-                                                                               IPM_Project__r.Name,
-                                                                               IPM_Due_Date_Capability__c,
-                                                                               IPM_Due_Date_Feasibility__c,
-                                                                               IPM_Due_Date_Idea__c,
-                                                                               IPM_Due_Date_Market_Deployment__c,
-                                                                               IPM_Due_Date_Market_Ready__c 
-                                                                               FROM IPM_Milestone__c WHERE IPM_Project__r.id IN:projectIdMap.keyset() Limit 50000]);
-    
-            for(IPM_Milestone__c im:projMilestoneList){
+              for(IPM_Milestone__c im:[SELECT id,
+                                           Name,
+                                           IPM_Type_of_gate__c,
+                                           IPM_Name__c,
+                                           IPM_Due_Date__c,                                                                            
+                                           IPM_Completed_on__c,
+                                           IPM_Proposed_Date__c,                                                                           
+                                           IPM_Target_Launch_Year__c,
+                                           IPM_Target_Launch_Month__c,
+                                           IPM_Actual_Target_Launch_Year__c,
+                                           IPM_Actual_Target_Launch_Month__c,
+                                           IPM_Project__r.id,
+                                           IPM_Type_of_Milestone__c,
+                                           IPM_Project__r.Name,
+                                           IPM_Due_Date_Capability__c,
+                                           IPM_Due_Date_Feasibility__c,
+                                           IPM_Due_Date_Idea__c,
+                                           IPM_Due_Date_Market_Deployment__c,
+                                           IPM_Due_Date_Market_Ready__c 
+                                           FROM IPM_Milestone__c WHERE IPM_Project__r.id IN:projectIdMap.keyset() Limit 50000]){
                 if(String.isNotBlank(im.IPM_Type_of_Milestone__c) && (im.IPM_Type_of_Milestone__c.equalsignorecase(IPM_Utils.Standard) || im.IPM_Type_of_Milestone__c.equalsignorecase(IPM_ConstantUtils.STRING_BET))){            
                     if(!projMilestoneMap.containskey(im.IPM_Project__r.id)){
                         projMilestoneMap.put(im.IPM_Project__r.id, new List<IPM_Milestone__c>{im});  
@@ -652,15 +639,13 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
     public map<Id,list<IPM_Project_Document__c>> fetchGateDocumentRecords(map<id,IPM_Project__c> projectIdMap){
         map<Id,list<IPM_Project_Document__c>> projGateDocMap = new map<id,list<IPM_Project_Document__c>>();
         try{
-        list<IPM_Project_Document__c> projGateDocList = new list<IPM_Project_Document__c>([SELECT id,
-                                                                               IPM_GateDocuments__c,
-                                                                               IPM_Approval_Date__c,
-                                                                               IPM_Project__c,
-                                                                               IPM_Project__r.id,
-                                                                               IPM_Document_Status__c
-                                                                               FROM IPM_Project_Document__c WHERE IPM_Project__r.id IN:projectIdMap.keyset() Limit 50000]);
-    
-            for(IPM_Project_Document__c im:projGateDocList){
+               for(IPM_Project_Document__c im:[SELECT id,
+                                                   IPM_GateDocuments__c,
+                                                   IPM_Approval_Date__c,
+                                                   IPM_Project__c,
+                                                   IPM_Project__r.id,
+                                                   IPM_Document_Status__c
+                                                   FROM IPM_Project_Document__c WHERE IPM_Project__r.id IN:projectIdMap.keyset() Limit 50000]){
                 if(!projGateDocMap.containskey(im.IPM_Project__r.id)){
                     projGateDocMap.put(im.IPM_Project__r.id, new List<IPM_Project_Document__c>{im});  
                 }else{
@@ -684,34 +669,33 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
         map<id,list<IPM_Project_Rollout__c>> projRolloutMap = new map<id,list<IPM_Project_Rollout__c>>();
         regionalRolloutset = new set<id> ();
         try{
-            list<IPM_Project_Rollout__c> projRolloutList = new list<IPM_Project_Rollout__c>([SELECT id,
-                                                                                                    name,
-                                                                                                    IPM_Project__r.id,
-                                                                                                    Market_Cluster_Name__c,
-                                                                                                    RecordTypeId,
-                                                                                                    MCO_Name__c,
-                                                                                                    Regional_Project__c,
-                                                                                                    IPM_Status__c,
-                                                                                                    KeyMCO__c,
-                                                                                                    IPM_Company_Card__r.Name,
-                                                                                                    Target_Launch_Year__c,
-                                                                                                    Regional_Rollout_Phase__c,
-                                                                                                    Local_Rollout_Phase__c,
-                                                                                                    IPM_Project_Job_Status__c,
-                                                                                                    Target_LaunchMonth__c,
-                                                                                                    Target_LaunchYear__c,
-                                                                                                    Regional_Rollout__r.id,
-                                                                                                    IPM_Global_OR_Regional__c,
-                                                                                                    IPM_Parent_Project_Name__c,
-                                                                                                    IPM_Regional_PL__r.Name,
-                                                                                                    Regional_Project__r.IPM_SourceProjectType__c,
-                                                                                                    Regional_Project__r.Id,
-                                                                                                    Regional_Project__r.IPM_Phase__c,
-                                                                                                    IPM_Rollout_Span__c
-                                                                                                    FROM IPM_Project_Rollout__c 
-                                                                                                    //WHERE IPM_Project__r.id IN:rolloutprojectIdSet Limit 50000]);
-                                                                                                    WHERE IPM_Project__r.id IN:projectIdMap.keyset() or Regional_Project__r.Id IN:projectIdMap.keyset() Limit 50000]);
-            for(IPM_Project_Rollout__c pr:projRolloutList){
+            for(IPM_Project_Rollout__c pr:[SELECT id,
+                                                  name,
+                                                  IPM_Project__r.id,
+                                                  Market_Cluster_Name__c,
+                                                  RecordTypeId,
+                                                  MCO_Name__c,
+                                                  Regional_Project__c,
+                                                  IPM_Status__c,
+                                                  KeyMCO__c,
+                                                  IPM_Company_Card__r.Name,
+                                                  Target_Launch_Year__c,
+                                                  Regional_Rollout_Phase__c,
+                                                  Local_Rollout_Phase__c,
+                                                  IPM_Project_Job_Status__c,
+                                                  Target_LaunchMonth__c,
+                                                  Target_LaunchYear__c,
+                                                  Regional_Rollout__r.id,
+                                                  IPM_Global_OR_Regional__c,
+                                                  IPM_Parent_Project_Name__c,
+                                                  IPM_Regional_PL__r.Name,
+                                                  Regional_Project__r.IPM_SourceProjectType__c,
+                                                  Regional_Project__r.Id,
+                                                  Regional_Project__r.IPM_Phase__c,
+                                                  IPM_Rollout_Span__c
+                                                  FROM IPM_Project_Rollout__c 
+                                                  //WHERE IPM_Project__r.id IN:rolloutprojectIdSet Limit 50000]);
+                                                  WHERE IPM_Project__r.id IN:projectIdMap.keyset() or Regional_Project__r.Id IN:projectIdMap.keyset() Limit 50000]){
                   if(pr.IPM_Project_Job_Status__c!=IPM_ConstantUtils.JOB_STATUS_COMPLETED){
                     if(pr.IPM_Project__r.id != null && !projRolloutMap.containskey(pr.IPM_Project__r.id)){
                         projRolloutMap.put(pr.IPM_Project__r.id, new List<IPM_Project_Rollout__c>{pr});                              
@@ -751,19 +735,17 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
         map<id,list<IPM_Project_Document_Section_Content__c>> projDocSecContentMap = new map<id,list<IPM_Project_Document_Section_Content__c>>();
         try
         {
-            list<IPM_Project_Document_Section_Content__c> projectDocumentSectionContentList = new list<IPM_Project_Document_Section_Content__c>([SELECT id,
-                                                                                              IPM_Section_Name__c,
-                                                                                              IPM_OTIF_Measure__c,
-                                                                                              IPM_OTIF_Status__c,
-                                                                                              IPM_Project_Document_Section__r.IPM_Gate_Document_Summary__c,
-                                                                                              IPM_Project_Document_Section__r.IPM_Gate_Document__c,
-                                                                                              IPM_Project_Document_Section__r.IPM_Section_Name__c,
-                                                                                              IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c,
-                                                                                              IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.Name
-                                                                                              from IPM_Project_Document_Section_Content__c
-                                                                                              WHERE IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c IN: projectIdMap.keyset()  Limit 50000]);        
-                
-            for(IPM_Project_Document_Section_Content__c pDocSecContent :projectDocumentSectionContentList){                                                                                       
+            for(IPM_Project_Document_Section_Content__c pDocSecContent :[SELECT id,
+                                                                                  IPM_Section_Name__c,
+                                                                                  IPM_OTIF_Measure__c,
+                                                                                  IPM_OTIF_Status__c,
+                                                                                  IPM_Project_Document_Section__r.IPM_Gate_Document_Summary__c,
+                                                                                  IPM_Project_Document_Section__r.IPM_Gate_Document__c,
+                                                                                  IPM_Project_Document_Section__r.IPM_Section_Name__c,
+                                                                                  IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c,
+                                                                                  IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.Name
+                                                                                  from IPM_Project_Document_Section_Content__c
+                                                                                  WHERE IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c IN: projectIdMap.keyset()  Limit 50000]){                                                                                       
                 if(!projDocSecContentMap.containskey(pDocSecContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c)){
                     projDocSecContentMap.put(pDocSecContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c, new List<IPM_Project_Document_Section_Content__c>{pDocSecContent});  
                 }else{
@@ -788,15 +770,13 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
         map<id,list<IPM_Financial__c>> rolloutFinancialmap = new map<id,list<IPM_Financial__c>> ();
         rolloutFinIdSet = new set<id>();
         try{
-            list<IPM_Financial__c> projRolloutFinList = new list<IPM_Financial__c>([SELECT  id,
-                                                                                            name,
-                                                                                            RecordTypeId,  
-                                                                                            Financial_External_ID__c,
-                                                                                            IPM_Project_Rollout__r.Id
-                                                                                            FROM IPM_Financial__c 
-                                                                                            WHERE IPM_Project_Rollout__c IN: regionalRolloutset Limit 50000]);
-                                                
-            for(IPM_Financial__c fir:projRolloutFinList){
+            for(IPM_Financial__c fir:[SELECT  id,
+                                            name,
+                                            RecordTypeId,  
+                                            Financial_External_ID__c,
+                                            IPM_Project_Rollout__r.Id
+                                            FROM IPM_Financial__c 
+                                            WHERE IPM_Project_Rollout__c IN: regionalRolloutset Limit 50000]){
                 if(!rolloutFinancialmap.containskey(fir.IPM_Project_Rollout__r.Id)){
                     rolloutFinancialmap.put(fir.IPM_Project_Rollout__r.Id, new List<IPM_Financial__c>{fir});  
                 }else{
@@ -819,39 +799,37 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
      *********************************************************************************************************************/             
     public map<string,list<IPM_Financial_Year__c>> fetchRolloutFinancialYear(set<Id> finIdSet){
         map<string,list<IPM_Financial_Year__c>> rolloutFinancialYearmap = new map<string,list<IPM_Financial_Year__c>> ();
-        try{
-            list<IPM_Financial_Year__c> projRolloutFinYearList = new list<IPM_Financial_Year__c>([SELECT    id,   
-                                                                                                            name,
-                                                                                                            Financial_External_ID__c,
-                                                                                                            IPM_Financial__r.Parent_Project__r.Id,
-                                                                                                            IPM_Financial__r.Regional_Project__r.Id,
-                                                                                                            IPM_Financial__r.Local_Project__r.Id,
-                                                                                                            IPM_Financial__r.Id,
-                                                                                                            IPM_Financial__r.Business_Impact_Global__c,
-                                                                                                            Year__c,
-                                                                                                            Gross_Profit_Global__c,
-                                                                                                            Gross_Profit_Regional__c,
-                                                                                                            Gross_Profit_Local__c,
-                                                                                                            Turnover_Global__c,
-                                                                                                            Turnover_Local__c,
-                                                                                                            Turnover_Regional__c,
-                                                                                                            Year_Type__c,
-                                                                                                            PL_Type__c,
-                                                                                                            Turnover_Charter__c,
-                                                                                                            Turnover_Contract__c,
-                                                                                                            Turnover_MD__c,
-                                                                                                            Turnover_MR__c,
-                                                                                                            GM_of_TO_Charter__c,
-                                                                                                            GM_of_TO_Contract__c,
-                                                                                                            GM_of_TO_MD__c,
-                                                                                                            GM_of_TO_MR__c,
-                                                                                                            GM_of_TO_Local__c,
-                                                                                                            GM_of_TO_Global__c,
-                                                                                                            GM_of_TO_Regional__c                                                                                                            
-                                                                                                            FROM IPM_Financial_Year__C 
-                                                                                                            WHERE IPM_Financial__c IN: finIdSet Limit 50000]);
-                                                
-            for(IPM_Financial_Year__c fiyr:projRolloutFinYearList){
+        try{                                  
+            for(IPM_Financial_Year__c fiyr:[SELECT    id,   
+                                                    name,
+                                                    Financial_External_ID__c,
+                                                    IPM_Financial__r.Parent_Project__r.Id,
+                                                    IPM_Financial__r.Regional_Project__r.Id,
+                                                    IPM_Financial__r.Local_Project__r.Id,
+                                                    IPM_Financial__r.Id,
+                                                    IPM_Financial__r.Business_Impact_Global__c,
+                                                    Year__c,
+                                                    Gross_Profit_Global__c,
+                                                    Gross_Profit_Regional__c,
+                                                    Gross_Profit_Local__c,
+                                                    Turnover_Global__c,
+                                                    Turnover_Local__c,
+                                                    Turnover_Regional__c,
+                                                    Year_Type__c,
+                                                    PL_Type__c,
+                                                    Turnover_Charter__c,
+                                                    Turnover_Contract__c,
+                                                    Turnover_MD__c,
+                                                    Turnover_MR__c,
+                                                    GM_of_TO_Charter__c,
+                                                    GM_of_TO_Contract__c,
+                                                    GM_of_TO_MD__c,
+                                                    GM_of_TO_MR__c,
+                                                    GM_of_TO_Local__c,
+                                                    GM_of_TO_Global__c,
+                                                    GM_of_TO_Regional__c                                                                                                            
+                                                    FROM IPM_Financial_Year__C 
+                                                    WHERE IPM_Financial__c IN: finIdSet Limit 50000]){
                 if(!rolloutFinancialYearmap.containskey(fiyr.Financial_External_ID__c)){
                     rolloutFinancialYearmap.put(fiyr.Financial_External_ID__c, new List<IPM_Financial_Year__c>{fiyr});  
                 }else{
@@ -874,18 +852,16 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
     public Map<Id, String> fetchCountryRecords(map<id,IPM_Project__c> projectIdMap){
         Map<Id, String> ipmCountryMap = new map<Id, String>();
         try{
-        List<IPM_Country__c> ipmCountryList= new list<IPM_Country__c>([SELECT Country_Code__c,
-                                                                       Country_Name__c,
-                                                                       IPM_Project__r.id,
-                                                                       IPM_Project__r.IPMProject_Span__c,
-                                                                       IPM_Local_Project__r.Id,
-                                                                       IPM_Local_Project__r.IPMProject_Span__c,
-                                                                       IPM_Regional_Project__r.Id,
-                                                                       IPM_Regional_Project__r.IPMProject_Span__c,
-                                                                       Local_Rollout__r.id
-                                                                       FROM IPM_Country__c WHERE (IPM_Local_Project__r.Id IN : projectIdMap.keyset() or Local_Rollout__r.id IN: localRolloutIDSet) Limit 50000]);
-            
-            for(IPM_Country__c ic:ipmCountryList){
+           for(IPM_Country__c ic:[SELECT Country_Code__c,
+                                           Country_Name__c,
+                                           IPM_Project__r.id,
+                                           IPM_Project__r.IPMProject_Span__c,
+                                           IPM_Local_Project__r.Id,
+                                           IPM_Local_Project__r.IPMProject_Span__c,
+                                           IPM_Regional_Project__r.Id,
+                                           IPM_Regional_Project__r.IPMProject_Span__c,
+                                           Local_Rollout__r.id
+                                           FROM IPM_Country__c WHERE (IPM_Local_Project__r.Id IN : projectIdMap.keyset() or Local_Rollout__r.id IN: localRolloutIDSet) Limit 50000]){
                 if(ic.Country_Name__c != null){ 
                         if(ic.IPM_Local_Project__r.Id != null){
                             if(ipmCountryMap.containsKey(ic.IPM_Local_Project__r.Id)){
