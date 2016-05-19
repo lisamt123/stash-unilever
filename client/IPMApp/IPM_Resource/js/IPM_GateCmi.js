@@ -319,4 +319,22 @@ function clikevnts(){
         }
     });    
 }
+function deletCMI(cmiId,openAccord)
+{
+    delCMI(cmiId,openAccord);
+}
+function deleteContry(cmiId,country,openAccord)
+{
+    delContry(cmiId,country,openAccord);
+}
+function skipComment(cmiId,reason,typeval)
+{
+    var gate=typeval.split(" ");
+    skipTestComment(cmiId,reason,gate[0]);
+}
+function updateTiming(timingDate,cId,country,isComm,overallComm,gId,typeval)
+{
+    var gate=typeval.split(" ");
+    updateResultTime(timingDate,cId,country,isComm,overallComm,gId,gate[0]);
+}
 

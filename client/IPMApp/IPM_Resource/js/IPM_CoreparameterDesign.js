@@ -17,9 +17,9 @@ jq(document).ready(function() {
 /* Below function performs a page reload. It removes a attribute from the url when this function is called. */
 function updateAdditional() {
     if(window.parent.location.href.indexOf("&BETOptions=1") > -1){
-        window.parent.location.href = window.parent.location + "&BETOptions=1";
+     window.parent.location.reload();
     }else{
-        window.parent.location.href = window.parent.location;
+       window.location.href = IPMProAppCP.projectUrl + '?id=' + IPMProAppCP.projectName;
     }
 }
 /* Below function performs a page reload. It reloads the page when reset is clicked for first question. */
@@ -41,9 +41,9 @@ function resetqthree() {
 function checkCoreParam() {
     if (IPMProAppCP.coreParameter === 'true') {
         if(window.parent.location.href.indexOf("&BETOptions=1") > -1){
-            window.parent.location.href = window.parent.location + "&BETOptions=1";
+         window.parent.location.reload();
         }else{
-            window.parent.location.href = window.parent.location;
+           window.location.href = IPMProAppCP.projectUrl + '?id=' + IPMProAppCP.projectName;
         }
     }
 }
@@ -95,7 +95,11 @@ var newInputval = "";
 jq(function(){ /* DOM ready */
    OldBosscardNameVal = jq(".BosscardNameInputBox ").val();
    jq(":input").change(function() {
+        if((jq(this).attr('id') === "full") || (jq(this).attr('id') === "lite") || (jq(this).attr('id') === "displayTasksChkBox")){
+            cppageunsaved = false;
+        }else{
         cppageunsaved = true;
+        }
     });             
      
 });

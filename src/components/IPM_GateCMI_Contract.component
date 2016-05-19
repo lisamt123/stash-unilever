@@ -398,28 +398,10 @@ function skipTestScript(cmiId,skipTest,typeval)
 {
     skipTestConcept(cmiId,skipTest,typeval);
 }
-function deletCMI(cmiId,openAccord)
-{
-    delCMI(cmiId,openAccord);
-}
-function deleteContry(cmiId,country,openAccord)
-{
-    delContry(cmiId,country,openAccord);
-}    
 function updateCMIContent(cId,resCMI,commCMI,isComments,isAction,gId,typeval)
 {
     var gate=typeval.split(" ");
     updateContent(cId,resCMI,commCMI,isComments,isAction,gId,gate[0]);
-}
-function skipComment(cmiId,reason,typeval)
-{
-    var gate=typeval.split(" ");
-    skipTestComment(cmiId,reason,gate[0]);
-}
-function updateTiming(timingDate,cId,country,isComm,overallComm,gId,typeval)
-{
-    var gate=typeval.split(" ");
-    updateResultTime(timingDate,cId,country,isComm,overallComm,gId,gate[0]);
 }
 </script>
 <apex:actionFunction name="updateOverall" status="Loading" action="{!updateOverallScore}" onComplete="skipTestrender('{!openAccordian}','addNew','{!gateCMIId}');" reRender="showCMIArea,refreshid">
