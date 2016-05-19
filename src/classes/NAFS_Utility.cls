@@ -15,14 +15,4 @@ public Class NAFS_Utility{
             return run;
         }
     }
-    //Purpose: Used in Opportunity trigger to avoid recursion. Class NAFS_OpportunityHelper, update parent opportunity
-    private static boolean check = true;
-    public static boolean checkOnce(){
-        if(check){
-            check =false;
-            return true;
-        }else{
-            return check;
-        }
-    }
 }
