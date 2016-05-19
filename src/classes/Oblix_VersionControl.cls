@@ -11,11 +11,7 @@ global with sharing class Oblix_VersionControl implements Schedulable {
 
         // if there is no other batch job currently running and we have some records to process
         // then initiate the batch job
-
-        Set<string> set_async_status = new Set<string>{'Queued','Processing','Preparing','Holding'};
-        Integer running_job = [SELECT count() From AsyncApexJob WHERE  ApexClass.Name = 'Oblix_SyncBatchJob' AND JobType = 'BatchApex' AND Status in: set_async_status];
-
-        if (running_job == 0){
+        if (!checkIsJobRunning()){
             // how many SOWs require Cloning? 
             Integer sow_requested_clone_size = [SELECT count() FROM Marketing_SOW__c 
                 WHERE Sync_Status__c =: Oblix_Utils.JOB_STATUS_CLONE_REQUESTED OR Sync_Status__c =: Oblix_Utils.JOB_STATUS_CLONE_IN_PROGRESS];
@@ -41,6 +37,21 @@ global with sharing class Oblix_VersionControl implements Schedulable {
         }
     }
 
+    public static Boolean checkIsJobRunning(){
+        // if there is no other batch job currently running and we have some records to process
+        // then initiate the batch job
+
+        Set<string> set_async_status = new Set<string>{'Queued','Processing','Preparing','Holding'};
+        Integer running_job = [SELECT count() From AsyncApexJob WHERE  ApexClass.Name = 'Oblix_SyncBatchJob' AND JobType = 'BatchApex' AND Status in: set_async_status];
+
+        if (running_job == 0){
+            
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
 
     public static void scheduleJobs() {
         System.schedule('Clone SOW Job 1', '0 1 * * * ?', new Oblix_VersionControl());

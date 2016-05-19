@@ -141,10 +141,11 @@ public with sharing class Oblix_SOWHandlerLogic {
         }
         
         List<Oblix_User_Permission__c> userPermissions = [SELECT Id, CategoryBrand_id__r.Brand_id__c, CategoryBrand_id__r.Product_Category_Id__c, User_id__c, RecordTypeId, Level_of_Access__c,
-                                                                User_id__r.Contact.AccountId
+                                                                User_id__r.Contact.AccountId, User_id__r.IsActive
                                                             FROM Oblix_User_Permission__c 
                                                             WHERE CategoryBrand_id__r.Brand_id__c IN :brandIds 
-                                                                AND CategoryBrand_id__r.Product_Category_Id__c IN :bigCIds];
+                                                                AND CategoryBrand_id__r.Product_Category_Id__c IN :bigCIds
+                                                                AND User_id__r.IsActive = TRUE];
 
         // build a map of brandId_bigcategoryId as keys and list of approver ids as values, which we will use to populate approver fields on SOWs
         for(Oblix_User_Permission__c up : userPermissions){
@@ -180,7 +181,7 @@ public with sharing class Oblix_SOWHandlerLogic {
 
                 for(Oblix_User_Permission__c userPermission : brandCatKey_UserIds_map.get(brandCatKey)){
 
-                    if(sow.OwnerId != userPermission.User_id__c &&
+                    if(sow.OwnerId != userPermission.User_id__c && userPermission.User_id__r.IsActive &&
                         ( (userPermission.RecordTypeId == Oblix_Utils.RT_USER_PERMISSION_UNILEVER_USER) 
                             || 
                           (userPermission.RecordTypeId == Oblix_Utils.RT_USER_PERMISSION_AGENCY_USER && userPermission.User_id__r.Contact.AccountId == sow.Oblix_AgencyEstimate__c) )){

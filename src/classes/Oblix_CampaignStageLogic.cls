@@ -449,6 +449,7 @@ public with sharing class Oblix_CampaignStageLogic{
     *********************************************************************/
     public void saveStage(){
         system.debug('## saving stage for campaign: '  + sow_project_in_scope.name);
+        sow_project_in_scope.Campaign_Attributes_Updated__c = true;
         upsert sow_project_in_scope;
     }
 
