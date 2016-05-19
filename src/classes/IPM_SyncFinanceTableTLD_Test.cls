@@ -644,7 +644,7 @@ private class IPM_SyncFinanceTableTLD_Test
             IPM_Financial__c fin1=new IPM_Financial__c();
             String defaultRecordTypeId=[Select Id From RecordType Where SobjectType='IPM_Financial__c' and Name='Default'].Id;
             fin1.RecordTypeId=defaultRecordTypeId;
-            fin1.Financial_External_ID__c='TestProject001_REG_NONKEY';
+            fin1.Financial_External_ID__c='TestProject001_REG_NONKEY1';
             fin1.Regional_Project__c=rolloutProject.id;
             fin1.Local_Project__c=localProject.id;
             fin1.Volume_Unit__c=IPM_ConstantUtils.VOLUME_UNIT_TONS;
@@ -679,11 +679,11 @@ private class IPM_SyncFinanceTableTLD_Test
             ipmFinancials2.isActive__c=true;
             financials.add(ipmFinancials2);
     
-            IPM_Financial__c ipmFinancials3 = [select id from IPM_Financial__c where Financial_External_ID__c=:TESTPROJECT001_REG_LOC1 limit 1];
+         /*   IPM_Financial__c ipmFinancials3 = [select id from IPM_Financial__c where Financial_External_ID__c=:TESTPROJECT001_REG_LOC1 limit 1];
             ipmFinancials3.Regional_Project__c=rolloutProject.id;
             ipmFinancials3.Local_Project__c=localProject.id;
             ipmFinancials3.isActive__c=true;
-            financials.add(ipmFinancials3);
+            financials.add(ipmFinancials3); */
    
             update financials;
             Test.stopTest();
@@ -708,7 +708,7 @@ private class IPM_SyncFinanceTableTLD_Test
             System.assertEquals(IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT, regionalProjList[0].IPM_Project_Type__c,'Project type should be Rollout');
             System.assertEquals(globalProjList[0].id, regionalProjList[0].IPM_Parent_Project__c,'Project id should match with parent project');
             // 1 Consolidated, 2 Nonkey, 1 local
-            System.assertEquals(4,regionalProjList[0].IPM_Financials_Regional__r.size(),'Project(s) size should be 3');
+            System.assertEquals(3,regionalProjList[0].IPM_Financials_Regional__r.size(),'Project(s) size should be 3');
             
             List<IPM_Project_Rollout__c>  regionalRolloutList=[SELECT Name, Target_Launch_Date__c, IPM_Project_Job_Status__c, IPM_RolloutJobType__c, IPM_Rollout_Span__c, IPM_Rollout_Type__c,IPM_Project__c, RecordTypeId, (Select Name, Financial_External_ID__c, Target_Launch_Date__c From IPM_Financials__r)   FROM IPM_Project_Rollout__c WHERE name=:TESTPROJECT001_REG limit 2];
             System.assertEquals(regionalRolloutList.size(), 1,PROJ_ROLLOUT_SIZE_MSG);
@@ -729,7 +729,7 @@ private class IPM_SyncFinanceTableTLD_Test
             System.assertEquals(rolloutProject.ID, localProjList[0].IPM_Parent_Project__c,'Project rollout project id should match with parent project');
             System.assertEquals(regionalProjectRollout.ID, localProjList[0].IPM_Project_Rollout__c,'Project rollout id should match with rollout project');
             // 1 loal
-            System.assertEquals(2,localProjList[0].IPM_Financials_Local__r.size(),'Project financial(s) size should be 1');
+            System.assertEquals(1,localProjList[0].IPM_Financials_Local__r.size(),'Project financial(s) size should be 1');
         }
     }
     

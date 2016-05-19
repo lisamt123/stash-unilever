@@ -198,15 +198,7 @@ function skipTestrender(elem1,elem2,elem3) {
             });
         }
     });
-    
-    /* Below function checks the checkboxes value. If the condition is true the checkboxes will be checked. */
-    jq('.ccListbox').each(function() {
-        if (jq(this).val() === 'true') {
-            jq(this).attr('checked', 'checked');
-            jq(this).next().addClass('selected');
-        }
-    });   
-    
+        
     if(elem2 !== 'addNew'){
         jq(".ipmAccordianDiv").find(".aHead span.expico").removeClass("fa-minus");
         jq(".ipmAccordianDiv").find(".aHead span.expico").addClass("fa-plus");
@@ -270,6 +262,13 @@ function skipTestrender(elem1,elem2,elem3) {
     }
 
 function clikevnts(){
+    /* Below function checks the checkboxes value. If the condition is true the checkboxes will be checked. */
+    jq('.ccListbox').each(function() {
+        if (jq(this).val() === 'true') {
+            jq(this).attr('checked', 'checked');
+            jq(this).next().addClass('selected');
+        }
+    }); 
 /* Below script works on click event. It checks whether the checkbox is checked or not. If it is checked it sets the status to 'True' else 'False' */
     jq(".ccListbox").click(function() {
         var status;

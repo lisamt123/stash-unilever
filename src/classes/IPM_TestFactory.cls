@@ -417,7 +417,6 @@ public without sharing class IPM_TestFactory {
                     {
                         finalValue = String.valueOf(finalValue).substring(0,maxfieldChar-1);
                     }
-                    
                 }
                 else if(fieldDescObj.getType() == Schema.DisplayType.Email)
                 {
@@ -444,7 +443,7 @@ public without sharing class IPM_TestFactory {
             if (fieldDescObj.getType() == Schema.DisplayType.base64) {
                 obj.put(fieldApiName, blob.valueOf(fieldLabel + finalValue ) );
             } 
-            else if (fieldDescObj.getType() == Schema.DisplayType.Boolean)  {
+            else if (fieldDescObj.getType() == Schema.DisplayType.Boolean)  {  
                 
                 obj.put(fieldApiName, Boolean.valueOf(finalValue));
             } 

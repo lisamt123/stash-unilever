@@ -1430,6 +1430,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 ipmCountry.IPM_Regional_Project__c = project.Id;
                 ipmCountry.Local_Rollout__r = new IPM_Project_Rollout__c(IPM_Rollout_Project__c = countryRolloutName);
                 ipmCountry.IPM_Rollout_Status__c = IPM_ConstantUtils.ROLLOUT_STATUS_SEPERATE;
+                ipmCountry.IPM_Local_Project__c=null;//added to cover the source data for DEF3821
                 
                 if(project.IPM_Project_Type__c != IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
                 {
