@@ -52,7 +52,7 @@
         <active>true</active>
         <description>set the status on individual campaigns to &quot;Sync Required&quot;  - 
 Condition - parent SOW has sync status &quot;Sync Complete&quot;</description>
-        <formula>(TEXT(Financial_Year__r.Sync_Status__c) == &apos;Sync Completed&apos; ||  TEXT(Financial_Year__r.Sync_Status__c)== &apos;Campaign Sync Required&apos;) &amp;&amp; Financial_Year__r.Initial_Approval_Complete__c == true &amp;&amp; TEXT(Sync_Status__c) == &apos;Sync Completed&apos; &amp;&amp;  PRIORVALUE(Sync_Status__c) &lt;&gt; &apos;Sync In Progress&apos;</formula>
+        <formula>$Setup.Oblix_Job_Orchestration__c.Job_Is_Running__c == false  &amp;&amp;  ((TEXT(Financial_Year__r.Sync_Status__c) == &apos;Sync Completed&apos; || TEXT(Financial_Year__r.Sync_Status__c)== &apos;Campaign Sync Required&apos;)  &amp;&amp; Financial_Year__r.Initial_Approval_Complete__c == true &amp;&amp; (TEXT(Sync_Status__c) == &apos;Sync Completed&apos; || ISBLANK(TEXT(Sync_Status__c))) &amp;&amp; PRIORVALUE(Sync_Status__c) &lt;&gt; &apos;Sync In Progress&apos;)</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>

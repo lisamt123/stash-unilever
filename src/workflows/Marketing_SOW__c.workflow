@@ -75,6 +75,17 @@
         <template>Oblix_SOW_Email/SOW_returned_to_Marketeer_by_Agency_2</template>
     </alerts>
     <alerts>
+        <fullName>SOW_Returned_by_Agency_Fin</fullName>
+        <description>SOW Returned by Agency</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Approval_Submitter__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Oblix_SOW_Email/SOW_returned_to_Marketeer_by_Agency_2</template>
+    </alerts>
+    <alerts>
         <fullName>SOW_Returned_to_Unilever</fullName>
         <description>SOW Returned to Unilever</description>
         <protected>false</protected>
@@ -140,6 +151,16 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>Update_SOW_Status_Returned_by_Agency_Fin</fullName>
+        <description>SOW Returned by Agency</description>
+        <field>SOW_Status__c</field>
+        <literalValue>Returned by Agency</literalValue>
+        <name>Update SOW Status Returned by Agency</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Update_SOW_Status_to_Approved</fullName>
         <field>SOW_Status__c</field>
         <literalValue>Approved</literalValue>
@@ -153,6 +174,16 @@
         <field>SOW_Status__c</field>
         <literalValue>Draft - with Unilever</literalValue>
         <name>Update SOW Status to Draft</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_SOW_Status_to_Finalised</fullName>
+        <description>Set the SOW status to finalised</description>
+        <field>SOW_Status__c</field>
+        <literalValue>Finalised</literalValue>
+        <name>Update SOW Status to Finalised</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
