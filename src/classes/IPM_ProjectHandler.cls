@@ -13,6 +13,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                                                                                 
     public static Map<String, Schema.SObjectField> projectFieldDesc = IPM_Project__c.getSObjectType().getDescribe().fields.getMap();                                                                            
   	public static Boolean stopProjExecute = true;
+    public static Boolean SKIP_TRANSACTION_MNG = false;
    
     // Constructor
     public IPM_ProjectHandler() 
@@ -929,7 +930,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
     */    
     public void andFinally()
     {
-        if( (Trigger.isInsert || Trigger.isUpdate) && Trigger.isAfter)
+        if( (Trigger.isInsert || Trigger.isUpdate) && Trigger.isAfter && !SKIP_TRANSACTION_MNG)
         {
             if(!phaseChangeProjects.isEmpty())
             {
@@ -937,6 +938,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                 phaseChangeAsyncHandler.initializeProjectData(phaseChangeProjects); 
                 Id asyncJobId = System.enqueueJob(phaseChangeAsyncHandler); 
                 IPM_ProjectHelper.udpateAsyncJobId(phaseChangeProjects,asyncJobId);
+                SKIP_TRANSACTION_MNG = true;
             }           
         }
         

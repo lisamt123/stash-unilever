@@ -66,7 +66,7 @@ public with sharing class IPM_ProjectResourceTriggerHandler
         trackProjectResourceAuditHistory(lstPrjResourceHisWrapper, IPM_ConstantUtils.HISTORY_INSERTED);
 
         //@@Design Review - Data Sharing Code for assigning project resource to queue.
-        if(!system.isBatch() && !system.isFuture() && !IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED ){ 
+        if(!system.isBatch() && !system.isFuture()){ 
           map<id,IPM_Project_Resource__c>oldProjectResourcesmap = new map<id,IPM_Project_Resource__c>();
           updateGroupMember(newProjectResources,oldProjectResourcesmap);
       }
@@ -152,10 +152,7 @@ public with sharing class IPM_ProjectResourceTriggerHandler
         if(!system.isBatch() && !system.isFuture())
         {
             map<id,IPM_Project_Resource__c>oldProjectResourcesmap = new map<id,IPM_Project_Resource__c>();
-            if(!IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED)
-            {
                 updateGroupMember(oldProjectResources,oldProjectResourcesmap);
-            }
         }
     }
     
