@@ -176,7 +176,8 @@ public with sharing class IPM_CountryHandler implements ITrigger{
         
         if(trigger.isUpdate)
         {
-            countryListIds=new Set<Id>();
+            IPM_ProjectCountryDetails.assignCompanyCardLocal((Map<id,IPM_Country__c>) Trigger.newMap);
+			countryListIds=new Set<Id>();
             oldCountriesMap = ((Map<Id,IPM_Country__c>)Trigger.OldMap);
             projectIdSet.clear();
             for(IPM_Country__c coun:(List<IPM_Country__c>)Trigger.New)
