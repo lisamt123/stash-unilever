@@ -1,4 +1,3 @@
 src
-src/classes
-src/classes/IPM_CountryHandler.cls
-src/classes/IPM_CountryHandler.cls-meta.xml
+src/permissionsets
+src/permissionsets/IPM_Business_Partners.permissionset
