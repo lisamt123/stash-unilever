@@ -294,7 +294,7 @@
         <filters>
             <field>ISO_Country__c</field>
             <operation>equals</operation>
-            <value>AR,CL,PY</value>
+            <value>FR</value>
         </filters>
         <label>LATAM Reasons</label>
         <language>en_US</language>

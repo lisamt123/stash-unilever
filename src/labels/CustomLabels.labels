@@ -26,7 +26,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>AF_AgencyUrlLink</shortDescription>
-        <value>https://cogdeployt-unilever.cs42.force.com/AgencyFees</value>
+        <value>https://unilever.force.com/AgencyFees</value>
     </labels>
     <labels>
         <fullName>AF_Agency_Bonus_Access</fullName>
@@ -477,7 +477,7 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>AF_UrlLink</shortDescription>
-        <value>https://unilever--cogdeployt.cs42.content.force.com</value>
+        <value>https://unilever--c.na9.content.force.com</value>
     </labels>
     <labels>
         <fullName>AF_ViewAllHistory_AgencyEstimates</fullName>
