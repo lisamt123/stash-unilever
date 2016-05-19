@@ -644,7 +644,7 @@ private class IPM_SyncFinanceTableTLD_Test
             IPM_Financial__c fin1=new IPM_Financial__c();
             String defaultRecordTypeId=[Select Id From RecordType Where SobjectType='IPM_Financial__c' and Name='Default'].Id;
             fin1.RecordTypeId=defaultRecordTypeId;
-            fin1.Financial_External_ID__c='TestProject001_REG_NONKEY';
+            fin1.Financial_External_ID__c='TestProject001_REG_NONKEY1';
             fin1.Regional_Project__c=rolloutProject.id;
             fin1.Local_Project__c=localProject.id;
             fin1.Volume_Unit__c=IPM_ConstantUtils.VOLUME_UNIT_TONS;
