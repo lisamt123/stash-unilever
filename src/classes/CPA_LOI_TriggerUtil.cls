@@ -10,7 +10,7 @@ Purpose: This Class is used to perform operation on before update event of LOI T
 History
 -------
 VERSION     AUTHOR                     DATE            DETAIL Description
-1.0     Pooja     11/01/2016     INITIAL DEVELOPMENT CSR:
+1.0     Pooja  Kanani   11/01/2016     INITIAL DEVELOPMENT CSR:
 ***********************************************************************/
 public with sharing class CPA_LOI_TriggerUtil{
     public static boolean isSubmitted=false;
