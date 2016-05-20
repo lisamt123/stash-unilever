@@ -755,7 +755,7 @@
     <fieldUpdates>
         <fullName>CPA_PWORF_SMT_group_email</fullName>
         <field>eml_SMT_group_email__c</field>
-        <formula>&quot;Vivek.Kalidoss@unilever.com&quot;</formula>
+        <formula>&quot;ApplicationSupplier.PM@unilever.com&quot;</formula>
         <name>CPA PWORF SMT group email</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
@@ -879,7 +879,7 @@ null)),null)</formula>
     <fieldUpdates>
         <fullName>CPA_PWORF_VDM_group_mail</fullName>
         <field>eml_VDM_group_email__c</field>
-        <formula>&quot;Sameer.Vaidya@unilever.com&quot;</formula>
+        <formula>&quot;Demand.Unilever@accenture.com&quot;</formula>
         <name>CPA PWORF VDM group mail</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
