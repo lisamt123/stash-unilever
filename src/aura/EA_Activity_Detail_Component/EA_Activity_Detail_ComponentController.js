@@ -41,9 +41,7 @@
         
         component.set("v.ActivityDesc",trunc);
         
-        
-      
-        
+       
        /*end*/ 
        
         var rectype=component.get("v.themerecordtype");
@@ -109,7 +107,7 @@
     },
     commentspage2 :function(component, event, helper) {
         
-        //helper.scrollToLocation(component, "top");
+        helper.scrollToLocation(component, "top");
         var activity = component.get("v.activity");
         var pagename='swipe';
         var index=component.get("v.index");
@@ -128,7 +126,7 @@
     },
     callfeedback:function(cmp,event,helper){
         
-        //helper.scrollToLocation(cmp, "top");
+        helper.scrollToLocation(cmp, "top");
         var activity = cmp.get("v.activity");
         var feedbacevent=$A.get("e.c:EA_Feedback_Event");
         var pagename='swipe'; 
@@ -138,11 +136,11 @@
         cmp.set("v.pageIndex",currentSlide);
         console.log("CurrentSlide"+ currentSlide);
         feedbacevent.setParams({"activityId":activity.activityId,"pagename":pagename,"index":index,"navigatePageIndex":currentSlide});
-        //feedbacevent.setParams({"activityId":activity.Id,"pagename":pagename,"index":pageIndex});
+        feedbacevent.setParams({"activityId":activity.Id,"pagename":pagename,"index":pageIndex});
         feedbacevent.fire();
     },
     calltodoactivity:function(cmp,event,helper){
-       //helper.scrollToLocation(cmp, "top");
+       helper.scrollToLocation(cmp, "top");
         var page='swipe';
         var activity = cmp.get("v.activity");
         // Get the current slide

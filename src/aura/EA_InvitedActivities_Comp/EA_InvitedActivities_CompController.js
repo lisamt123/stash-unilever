@@ -1,6 +1,6 @@
 ({
 	gotoDetail : function(component, event, helper) {
-        //helper.scrollToLocation(component, "top"); 
+        helper.scrollToLocation(component, "top"); 
         var actvity=component.get("v.activity");
         var id=actvity.acivityId; 
         var detailpageEvent=$A.get("e.c:EA_Detailpage_Event");
@@ -9,7 +9,7 @@
 	},
     
      gotoInvitation :function(component, event, helper) {
-         //helper.scrollToLocation(component, "top");
+         helper.scrollToLocation(component, "top");
         var member=component.get("v.activity");       
         var feedbackevent=$A.get("e.c:EA_Accept_Event");
         feedbackevent.setParams({"activityId":member.acivityId,"teamId":member.member_Id});
