@@ -138,7 +138,7 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
-        <visibleLines>5</visibleLines>
+        <visibleLines>3</visibleLines>
     </fields>
     <label>Everyday Activity</label>
     <listViews>
