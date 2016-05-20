@@ -281,10 +281,10 @@ public with sharing class Amr_NewSaving_CC {
                 system.debug('size'+masterSize); 
                 
                 for(integer i=1;i<=50;i++){
-                    String fieldNameNumOfMaster = 'Number_Of_Masters_'+i+'__c' ;
-                    String fieldNameDurationOfMaster = 'Duration_of_Masters_'+i+'__c' ;
-                    String fieldNameNumOfAdditionalFilm = 'No_of_Additional_Films_'+i+'__c' ;
-                    String fieldNameValueDurationOfAdditionalFilm = 'Duration_of_Additional_Films_'+i+'__c' ;
+                    String fieldNameNumOfMaster = 'Number_Of_Masters_'+i+ Amr_ConstantForAdManager.SFOBJECTSUFFIX ;
+                    String fieldNameDurationOfMaster = 'Duration_of_Masters_'+i+ Amr_ConstantForAdManager.SFOBJECTSUFFIX ;
+                    String fieldNameNumOfAdditionalFilm = 'No_of_Additional_Films_'+i+ Amr_ConstantForAdManager.SFOBJECTSUFFIX ;
+                    String fieldNameValueDurationOfAdditionalFilm = 'Duration_of_Additional_Films_'+i+ Amr_ConstantForAdManager.SFOBJECTSUFFIX ;
                     savingObj.put(fieldNameNumOfMaster,0);
                     savingObj.put(fieldNameDurationOfMaster,0);
                     savingObj.put(fieldNameNumOfAdditionalFilm,0);
@@ -292,26 +292,26 @@ public with sharing class Amr_NewSaving_CC {
                 }
                 
                 for(integer i=0;i<masterSize;i++){
-                    String fieldName = 'Number_Of_Masters_'+(i+1)+'__c' ;
+                    String fieldName = 'Number_Of_Masters_'+(i+1)+ Amr_ConstantForAdManager.SFOBJECTSUFFIX ;
                     system.debug('field name=='+fieldName);
                     savingObj.put(fieldName,Integer.valueOf(masterLength.get(i)));
                 }
                 
                 for(integer i=0;i<masterDurationSize;i++){
-                    String fieldNameValue = 'Duration_of_Masters_'+(i+1)+'__c' ;
+                    String fieldNameValue = 'Duration_of_Masters_'+(i+1)+ Amr_ConstantForAdManager.SFOBJECTSUFFIX ;
                     system.debug('field name=='+fieldNameValue);
                     savingObj.put(fieldNameValue,Integer.valueOf(masterLengthDuration.get(i)));
                 } 
                 
                 
                 for(integer i=0;i<masterSizeAdditionalFilms;i++){
-                    String fieldName = 'No_of_Additional_Films_'+(i+1)+'__c' ;
+                    String fieldName = 'No_of_Additional_Films_'+(i+1)+ Amr_ConstantForAdManager.SFOBJECTSUFFIX ;
                     system.debug('field name=='+fieldName);
                     savingObj.put(fieldName,Integer.valueOf(masterLengthAdditionalFilm.get(i)));
                 }
                 
                 for(integer i=0;i<masterAdditionalDurationSize;i++){
-                    String fieldNameValue = 'Duration_of_Additional_Films_'+(i+1)+'__c' ;
+                    String fieldNameValue = 'Duration_of_Additional_Films_'+(i+1)+ Amr_ConstantForAdManager.SFOBJECTSUFFIX ;
                     system.debug('field name=='+fieldNameValue);
                     savingObj.put(fieldNameValue,Integer.valueOf(masterLengthAdditionalDuration.get(i)));
                 }   
