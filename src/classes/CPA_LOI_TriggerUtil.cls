@@ -165,7 +165,7 @@ public with sharing class CPA_LOI_TriggerUtil{
                 //string AllrecordType = CPA_PWORF_Record_type__c.getValues('All').Record_type_id__c;
                 Id AllrecordType = Schema.SObjectType.CPA_PWORF__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_PWORF_ALL_RECORDTYPE).getRecordTypeId();
               
-                if(objPWORFTemp.RecordTypeId == AllrecordType && objNewLOI.mpkl_Phases_covered_by_WAR__c!=null && !objNewLOI.mpkl_Phases_covered_by_WAR__c.containsOnly(objPWORFTemp.pkl_Phases_covered_by_the_WAR__c)) 
+                if(objPWORFTemp.pkl_Phases_covered_by_the_WAR__c != null && objPWORFTemp.RecordTypeId == AllrecordType && objNewLOI.mpkl_Phases_covered_by_WAR__c!=null && !objNewLOI.mpkl_Phases_covered_by_WAR__c.containsOnly(objPWORFTemp.pkl_Phases_covered_by_the_WAR__c)) 
                         objNewLOI.addError('Only ' + objPWORFTemp.pkl_Phases_covered_by_the_WAR__c.replaceAll(';', ', ') + ' Project Phases are allow');
             }
         }
