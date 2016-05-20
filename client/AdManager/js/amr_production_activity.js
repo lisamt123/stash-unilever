@@ -250,10 +250,17 @@ function enableAdditionalPAValues() {
 }
 
 function loadDefaultAmr() {
-    $j('select.agencypick option[value=""]').html('None of the above');
+ //   $j('select.agencypick option[value=""]').html('None of the above');
+	$j('.inputIdClass').attr('placeholder','Local Currency (Example '+'\u20AC'+'123,456.00)');
+	
     $j('.defaultTv').attr('disabled', 'disabled');
     $j('.defaultCinema').attr('disabled', 'disabled');
     $j('.defaultRadio').attr('disabled', 'disabled');
     $j('.defaultPrint').attr('disabled', 'disabled');
     $j('.defaultInternalVideo').attr('disabled', 'disabled');
+	
+	var finalValue = $j('.outputIdClass').val();
+	if(finalValue) {
+		$j('.outputIdClass').val('\u20AC'+' '+finalValue);
+	}	
 }

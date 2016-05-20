@@ -39,7 +39,8 @@ function calculateOnChangenKP(onchange) {
 	}               
 }
 
-function enableText() {  
+function enableText() {
+		
 	$j('.setinactivemask').addClass('inactivemask');
 	$j('.outputIdClass').removeAttr('disabled');             
 	$j('.defaultTv').removeAttr('disabled');
@@ -74,6 +75,9 @@ function transferCategoryValue(categoryValue){
 }
 
 function enableText1() {    
+	
+	var outputIdClassValue = $j('.outputIdClass').val().replace(/[^0-9.]/g, '');	
+	$j('.outputIdClass').val(outputIdClassValue);	
 	
 	$j('.setinactivemask').addClass('inactivemask');
 	$j('body').attr('style', 'pointer-events:none;');
