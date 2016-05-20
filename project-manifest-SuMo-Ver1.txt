@@ -1,0 +1,13 @@
+src/classes/SuMoSuMo_Job_CoursesTriggerTest.cls
+src/classes/SuMoSuMo_Job_CoursesTriggerTest.cls-meta.xml
+src/classes/SuMoSuMo_PBS_CourseTriggerTest.cls
+src/classes/SuMoSuMo_PBS_CourseTriggerTest.cls-meta.xml
+src/objects/SuMo_Job_Courses__c.object
+src/objects/SuMo_PBS_Course__c.object
+src/triggers/SuMoPBS_ProfileTrigger.trigger
+src/triggers/SuMoPBS_ProfileTrigger.trigger-meta.xml
+src/triggers/SuMoSuMo_Job_CoursesTrigger.trigger
+src/triggers/SuMoSuMo_Job_CoursesTrigger.trigger-meta.xml
+src/triggers/SuMoSuMo_PBS_CourseTrigger.trigger
+src/triggers/SuMoSuMo_PBS_CourseTrigger.trigger-meta.xml
+src/workflows/PBS_Learning_Assignment__c.workflow
