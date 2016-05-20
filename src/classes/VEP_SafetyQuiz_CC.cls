@@ -186,7 +186,7 @@ public with sharing class VEP_SafetyQuiz_CC {
              try{
              insert vPass1;
              if(vPass1!=null){
-                 vpass = [Select id,name,visitor__r.date_from__c,Visitor__r.Name,visitor__r.date_to__c,visitor__r.Reason_for_Visit__c,visitor__r.Factory_to_visit__c from Vep_Visitor_Pass__c where id=:vpass1.id];
+                 vpass = [Select id,name,visitor__r.date_from__c,Visitor__r.Name,visitor__r.date_to__c,visitor__r.Reason_for_Visit__c,visitor__r.Factory_to_visit__c,visitor__r.Person_to_meet__r.name from Vep_Visitor_Pass__c where id=:vpass1.id];
              }
              VisitorRec.status__c = 'Pending Visit';
              Update VisitorRec;

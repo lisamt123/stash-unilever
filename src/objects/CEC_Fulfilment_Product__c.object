@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>CEC Fulfilment Product is used to capture the product details and quantity.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>Brand__c</fullName>
+        <description>CEC: Used in replacement product</description>
+        <externalId>false</externalId>
+        <formula>Product__r.Brand__c</formula>
+        <label>Brand</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Consumer_Product_Descriptor_Local_Lang__c</fullName>
+        <description>CEC: Used in replacement product reports</description>
+        <externalId>false</externalId>
+        <formula>Product__r.Consumer_Product_Descriptor_Local_Lang__c</formula>
+        <label>Consumer Product Descriptor (Local Lang)</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Fulfilment_Id__c</fullName>
+        <description>CEC Fulfilment Id is a master detail to fulfilment.</description>
+        <externalId>false</externalId>
+        <label>Fulfilment Id</label>
+        <referenceTo>cec_Fulfilment__c</referenceTo>
+        <relationshipLabel>Fulfilment Products</relationshipLabel>
+        <relationshipName>Fulfilment_Product_s</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Pack_Size_Net_Content__c</fullName>
+        <description>CEC: Used in Replacement product report</description>
+        <externalId>false</externalId>
+        <formula>Product__r.Pack_Size_Net_Content__c</formula>
+        <label>Pack Size / Net Content</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Product_CU_Description_English__c</fullName>
+        <description>CEC: Used in replacement product reporting</description>
+        <externalId>false</externalId>
+        <formula>Product__r.Product_CU_Description_English__c</formula>
+        <label>Product CU Description (English)</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Product_CU_MRDR_Code__c</fullName>
+        <description>CEC: Used for replacement product report</description>
+        <externalId>false</externalId>
+        <formula>Product__r.Product_CU_MRDR_Code__c</formula>
+        <label>Product CU MRDR Code</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Product_Quantity__c</fullName>
+        <description>CEC Product Quantity is used to capture the quantitiy of the product.</description>
+        <externalId>false</externalId>
+        <label>Product Quantity</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Product__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <description>CEC Product is used to capture the product information</description>
+        <externalId>false</externalId>
+        <label>Product</label>
+        <referenceTo>mdm_Case_Product__c</referenceTo>
+        <relationshipLabel>Fulfilment Product&apos;s</relationshipLabel>
+        <relationshipName>Fulfilment_Product_s</relationshipName>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Fulfilment Product</label>
+    <nameField>
+        <displayFormat>FP-{000000}</displayFormat>
+        <label>Fulfilment Product Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Fulfilment Products</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

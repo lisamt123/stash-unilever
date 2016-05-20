@@ -1,0 +1,85 @@
+{
+	"organizations": [],
+	"labels": {
+		"dimensions": {
+			"Date_Day": "Date_Day",
+			"Date_Quarter": "Date_Quarter",
+			"Date_Month": "Date_Month",
+			"Cluster": "Cluster",
+			"Country": "Country",
+			"Date_Minute": "Date_Minute",
+			"Date_Second": "Date_Second",
+			"Region": "Region",
+			"Date_Week": "Date_Week",
+			"Date_Hour": "Date_Hour",
+			"Date": "Date",
+			"Date_Year": "Date_Year"
+		},
+		"measures": {
+			"Compliance_Target": "Compliance Target (%)",
+			"Enrollment_Target": "Enrollment Target",
+			"Date_day_epoch": "Date_day_epoch",
+			"Date_sec_epoch": "Date_sec_epoch"
+		},
+		"measure_filters": {},
+		"keys": {}
+	},
+	"formats": {
+		"measures": {
+			"comp": [
+				"#,##.00%",
+				"100"
+			],
+			"ps": [
+				"#,##.00%",
+				"100"
+			],
+			"Compliance_Target": [
+				"",
+				1
+			],
+			"Enrollment_Target": [
+				"",
+				1
+			],
+			"Measure": [
+				"#,##.00%",
+				"100"
+			],
+			"ps_comp": [
+				"#,##.00%",
+				"1"
+			]
+		}
+	},
+	"types": {
+		"Date": {
+			"dims": {
+				"week": "Date_Week",
+				"hour": "Date_Hour",
+				"month": "Date_Month",
+				"year": "Date_Year",
+				"day": "Date_Day",
+				"fullField": "Date",
+				"minute": "Date_Minute",
+				"quarter": "Date_Quarter",
+				"second": "Date_Second"
+			},
+			"meas": {
+				"epoch_second": "Date_sec_epoch",
+				"epoch_day": "Date_day_epoch"
+			},
+			"type": "date"
+		}
+	},
+	"colors": {
+		"+-": {
+			"+": "#008B00",
+			"-": "#FF3030"
+		}
+	},
+	"values_query_columns": [],
+	"hide_dimensions": [],
+	"hide_measures": [],
+	"dimensions": []
+}

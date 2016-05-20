@@ -95,8 +95,8 @@
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>OwnerId</field>
+                <behavior>Edit</behavior>
+                <field>lkp_Owner__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -183,10 +183,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>txt_otherProcessOfficeAreaE2E__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>txta_High_Level_Estimate__c</field>
             </layoutItems>
             <layoutItems>
@@ -216,7 +212,8 @@
                 <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
-                <emptySpace>true</emptySpace>
+                <behavior>Edit</behavior>
+                <field>txt_otherProcessOfficeAreaE2E__c</field>
             </layoutItems>
             <layoutItems>
                 <emptySpace>true</emptySpace>
@@ -569,6 +566,8 @@
         <sortOrder>Asc</sortOrder>
     </relatedLists>
     <relatedLists>
+        <customButtons>btn_New_User_Defined_Attribute</customButtons>
+        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>pkl_Attribute_Type__c</fields>
         <fields>txt_Value__c</fields>
@@ -602,7 +601,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h18000000RSvT</masterLabel>
+        <masterLabel>00h56000000IvQF</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

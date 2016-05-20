@@ -219,6 +219,14 @@
         <type>TextArea</type>
     </fields>
     <fields>
+        <fullName>CannotChangeMC__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>CannotChangeMC</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Edit_Article_Template_Front_End__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Ability to change the article content in the front end (the button Edit will be visible)</description>
@@ -2253,6 +2261,16 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
         <label>isll SME</label>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>SessionId__c</fullName>
+        <externalId>false</externalId>
+        <label>SessionId</label>
+        <length>250</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <listViews>
         <fullName>ActiveUsers</fullName>

@@ -6,7 +6,7 @@
     <letterhead>SWOP_Letterhead</letterhead>
     <name>SOW for Unilever Approval</name>
     <style>freeForm</style>
-    <subject>SOW Awaiting Unilever Approval : {!Marketing_SOW__c.Name}</subject>
+    <subject>SOW Awaiting Approval : {!Marketing_SOW__c.Name}</subject>
     <textOnly>The following SOW is ready for approval:
 
 SOW Name: {!Marketing_SOW__c.Name}

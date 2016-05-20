@@ -134,7 +134,7 @@ Good Receipt postings must reflect Actual deliveries of Goods and Services</inli
     <listViews>
         <fullName>CAP_ULPM_Requirements_and_Deliverables</fullName>
         <filterScope>Queue</filterScope>
-        <label>CPA ULPM</label>
+        <label>ULPM</label>
         <queue>CAP_ULPM</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -143,7 +143,7 @@ Good Receipt postings must reflect Actual deliveries of Goods and Services</inli
     <listViews>
         <fullName>CAP_VDM_Queue_Requirements_and_Deliverables</fullName>
         <filterScope>Queue</filterScope>
-        <label>CPA VDM Queue</label>
+        <label>VDM</label>
         <queue>CAP_VDM_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -152,7 +152,7 @@ Good Receipt postings must reflect Actual deliveries of Goods and Services</inli
     <listViews>
         <fullName>CPA_SMT_Requirements_and_Deliverables</fullName>
         <filterScope>Queue</filterScope>
-        <label>CPA SMT</label>
+        <label>SMT</label>
         <queue>CPA_SMT</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -192,7 +192,7 @@ alert(&quot;New Requirements and Deliverables can be created before Associated P
 { 
 alert(&quot;New Requirements and Deliverables cannot be created as Associated PWORF is Cancelled.&quot;); 
 }else{ 
-window.open(&quot;/&quot;+&quot;{!$Label.CPA_RaD_Object_Id}/e?{!$Label.CPA_PWORF_Rad_Name_Filed_Id}={!CPA_PWORF__c.Name}&amp;{!$Label.CPA_PWORF_Rad_Name_Filed_Id}_lkid={!CPA_PWORF__c.Id}&amp;retURL=%2F{!CPA_PWORF__c.Id}&quot;,&quot;_self&quot;); 
+window.open(&quot;/&quot;+&quot;{!$Label.CPA_RaD_Object_Id}/e?{!$Label.CPA_PWORF_Rad_Name_Filed_Id}={!CPA_PWORF__c.Name}&amp;{!$Label.CPA_PWORF_Rad_Name_Filed_Id}_lkid={!CPA_PWORF__c.Id}&amp;retURL=%2F{!CPA_PWORF__c.Id}&quot;,&quot;_parent&quot;); 
 } 
 
 }else if(permissionSetName == &quot;CPA_SMT&quot;){ 
@@ -200,7 +200,7 @@ if(&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Cancelled&quot;)
 { 
 alert(&quot;New Requirements and Deliverables cannot be created as Associated PWORF is Cancelled.&quot;); 
 }else{ 
-window.open(&quot;/&quot;+&quot;{!$Label.CPA_RaD_Object_Id}/e?{!$Label.CPA_PWORF_Rad_Name_Filed_Id}={!CPA_PWORF__c.Name}&amp;{!$Label.CPA_PWORF_Rad_Name_Filed_Id}_lkid={!CPA_PWORF__c.Id}&amp;retURL=%2F{!CPA_PWORF__c.Id}&quot;,&quot;_self&quot;);	
+window.open(&quot;/&quot;+&quot;{!$Label.CPA_RaD_Object_Id}/e?{!$Label.CPA_PWORF_Rad_Name_Filed_Id}={!CPA_PWORF__c.Name}&amp;{!$Label.CPA_PWORF_Rad_Name_Filed_Id}_lkid={!CPA_PWORF__c.Id}&amp;retURL=%2F{!CPA_PWORF__c.Id}&quot;,&quot;_parent&quot;);	
 } 
 }</url>
     </webLinks>

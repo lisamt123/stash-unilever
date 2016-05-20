@@ -258,19 +258,21 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
     }
 
     public void setCampaignStages() {
-        campaignHelper.selectedProject.Stage_Completed_CFY__c = stage_identifier.s_selected_completed_stage;
-        campaignHelper.selectedProject.Stage_Projected_CFY__c = stage_identifier.s_selected_projected_stage;
+        campaignHelper.selectedProject.Completed_Stage_CFY__c = stage_identifier.s_selected_completed_stage;
+        campaignHelper.selectedProject.Projected_Stage_CFY__c = stage_identifier.s_selected_projected_stage;
         campaignHelper.selectedProject.Percentage_of_Fee_for_this_FY__c = stage_identifier.sow_project_in_scope.Percentage_of_Fee_for_this_FY__c;
 
     }
 
     public void setInvestmentPriority() {
+        
         if (campaignHelper.selectedBrandInnovation != null) {
-            campaignHelper.selectedProject.Innovation_Projects__c = Label.Oblix_Lbl_Innovation_Projects_Innovation;
+            campaignHelper.selectedProject.Innovation_Projects__c = Oblix_Utils.getOblixSettingValueByName('INNOVATION_LABEL');
         } else {
-            campaignHelper.selectedProject.Innovation_Projects__c = Label.Oblix_Lbl_Innovation_Projects_BrandLedGrowth;
+            campaignHelper.selectedProject.Innovation_Projects__c = Oblix_Utils.getOblixSettingValueByName('BRAND_LED_GROWTH_LABEL');
         }
-        if (campaignHelper.selectedProject.Innovation_Projects__c == Label.Oblix_Lbl_Innovation_Projects_Innovation) {
+
+        if (campaignHelper.selectedProject.Innovation_Projects__c == Oblix_Utils.getOblixSettingValueByName('INNOVATION_LABEL')) {
             campaignHelper.selectedProject.Brand_Led_Growth__c = campaignHelper.selectedBrandInnovation;
         } else {
             campaignHelper.selectedProject.Brand_Led_Growth__c = campaignHelper.selectedBrandBrand;
@@ -291,10 +293,23 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
             //setAgencyHubSplit();
             setCampaignStages();
             //setCountriesRegions();
-            setInvestmentPriority();
 
-            if (campaignHelper.isEdit && !campaignHelper.doClone) {
+            //Skip setting investment priority if this campaign is for NFY and in the middle of rollover
+            //because then only Projected Chevron is editable and no other fields appear on the page
+            //Should still execute if that cmapaign is cloned!
+            if (!campaignHelper.onlyShowProjectedChevron) {
+                setInvestmentPriority();
+            }
 
+            System.debug('### saveProjectAction');
+            System.debug('### campaignHelper.isEdit: ' + campaignHelper.isEdit);
+            System.debug('### campaignHelper.doClone: ' + campaignHelper.doClone);
+            System.debug('### campaignHelper.is_NFY_campaign_in_the_middle_of_rollover: ' + campaignHelper.is_NFY_campaign_in_the_middle_of_rollover);
+
+            if (campaignHelper.isEdit && !campaignHelper.doClone && !campaignHelper.is_NFY_campaign_in_the_middle_of_rollover) { //Editing campaign that is not NFY and in the middle of Roll Over
+                // set Campaign_Attributes_Updated__c to highlight that the campaign has been manually updated and overwrite of 
+                // attributes in NFY campaign is required
+                campaignHelper.selectedProject.Campaign_Attributes_Updated__c = true;
                 update campaignHelper.selectedProject;
 
                 setProjectInAgencyHubSplitList(campaignHelper.selectedProject.Id);
@@ -304,7 +319,8 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
 
                 return reDirectToCampaignSummary();
 
-            } else if(!campaignHelper.doClone){
+            } else if(!campaignHelper.doClone && !campaignHelper.is_NFY_campaign_in_the_middle_of_rollover){ //New campaign
+                System.debug('### New campaign');
 
                 insert campaignHelper.selectedProject;
 
@@ -313,14 +329,15 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
 
                 return reDirectToAddAsset();
 
-            } else {
+            } else if (campaignHelper.doClone) { //Clone
+                System.debug('### Clone');
 
                 if(campaignHelper.selectedProject.Name.equals(cloneName.trim())){
                     ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'Please enter a new unique name for campaign'));
                     return null;
                 }
                 Oblix_SOW_Projects__c projectClone = campaignHelper.selectedProject.clone(false, true, false, false);
-                projectClone.Name = cloneName;
+                projectClone.Name_Prefix__c = cloneName;
                 insert projectClone;
 
                 setProjectInAgencyHubSplitList(projectClone.Id);
@@ -331,10 +348,16 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
                 insert assets;
                 campaignHelper.selectedProject = projectClone;
                 return reDirectToCampaignSummary();
+
+            } else { //Editing NFY campaign in the middle of Roll Over
+                System.debug('### Editing NFY campaign in the middle of Roll Over');
+
+                update campaignHelper.selectedProject;
+                return reDirectToCampaignSummary();
             }
 
         } catch (DMLException le) {
-            if (le.getMessage().contains('DUPLICATES_DETECTED')) {
+            if (le.getMessage().contains('DUPLICATES_DETECTED') || le.getMessage().contains('DUPLICATE_VALUE')) {
                 ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'Duplicate Value Found with the same Campaign Name'));
             }
             else{

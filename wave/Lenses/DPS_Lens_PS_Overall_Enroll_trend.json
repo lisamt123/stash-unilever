@@ -1,0 +1,23 @@
+{
+    "name": "Lens_PS_Overall_Enroll_trend",
+    "label": "Lens: PS Overall (Enroll trend)",
+    "visualizationType": "hbar",
+    "state": {
+        "query": {
+            "groups": [
+                "Date_of_audit_Month"
+            ],
+            "measures": [
+                [
+                    "count",
+                    "*"
+                ]
+            ]
+        }
+    },
+    "dataset": {
+        "id": "0Fb8A0000000SSDSA2",
+        "name": "PS_ENROLLED_STORE",
+        "url": "/services/data/v37.0/wave/datasets/0Fb8A0000000SSDSA2"
+    }
+}
