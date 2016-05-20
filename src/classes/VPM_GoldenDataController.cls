@@ -11,6 +11,8 @@ public class VPM_GoldenDataController {
        inputCountry = pr.VPM_Country__c;
        this.newController = controller;
        purid = pr.id;   
+       VPM_PurchasingRequests__c  vendorQuery = [select Id, VPM_CompanyCode__r.ecc__c from VPM_PurchasingRequests__c where id = : purid];
+       pr.VPM_ECC__c = vendorQuery.VPM_CompanyCode__r.ecc__c;
        system.debug('@@@After Input Country ' +  pr.VPM_Country__c);
        IF(pr.VPM_Country__c == 'Brazil')
       {

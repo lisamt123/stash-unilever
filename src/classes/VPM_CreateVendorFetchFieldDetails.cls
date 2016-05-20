@@ -58,7 +58,13 @@ public class VPM_CreateVendorFetchFieldDetails {
             VPM_InterfaceFieldDetails.detailsofPlannedActivitesSour = vendorList.get(0).VPM_DetailsofPlannedActivitiesSour__c==null?'':vendorList.get(0).VPM_DetailsofPlannedActivitiesSour__c;
             VPM_InterfaceFieldDetails.supplierAuditSourcing = vendorList.get(0).VPM_SupplierAuditSourcing__c==null?'':vendorList.get(0).VPM_SupplierAuditSourcing__c;
             VPM_InterfaceFieldDetails.detailsOfPlannedActivitiesSour2 = vendorList.get(0).VPM_DetailsOfPlannedActivitiesSour2__c==null?'':vendorList.get(0).VPM_DetailsOfPlannedActivitiesSour2__c;
-            VPM_InterfaceFieldDetails.supplierAudit='';        
+            VPM_InterfaceFieldDetails.supplierAudit='';
+            VPM_InterfaceFieldDetails.achillesRegistrationCode = vendorList.get(0).VPM_AchillesRegistrationCode__c==null?'':vendorList.get(0).VPM_AchillesRegistrationCode__c;
+            VPM_InterfaceFieldDetails.detailsTypeCheck = vendorList.get(0).VPM_DetailsTypeCheck__c==null?'':vendorList.get(0).VPM_DetailsTypeCheck__c;
+            VPM_InterfaceFieldDetails.dunsHierarchyRequired = vendorList.get(0).VPM_DUNSHierarchyInvestigationReq__c==null?'No': String.valueOf(vendorList.get(0).VPM_DUNSHierarchyInvestigationReq__c);
+            VPM_InterfaceFieldDetails.groupKey = vendorList.get(0).VPM_GroupingKey__c==null?'':vendorList.get(0).VPM_GroupingKey__c;
+            VPM_InterfaceFieldDetails.smeComment = vendorList.get(0).VPM_SMEComment__c==null?'':vendorList.get(0).VPM_SMEComment__c;
+            VPM_InterfaceFieldDetails.vatRegistrationNumber = vendorList.get(0).VPM_VATRegistrationNumber__c==null?'':vendorList.get(0).VPM_VATRegistrationNumber__c;
             VPM_InterfaceFieldDetailsJSON = JSON.serialize(VPM_InterfaceFieldDetails);
         }
         return VPM_InterfaceFieldDetailsJSON;

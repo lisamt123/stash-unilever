@@ -44,4 +44,9 @@ public class VPM_CreateVendorFieldDetailsWrapper {
     public string detailsOfPlannedActivitiesSour2 {get; set;}
     public string supplierAudit {get; set;}
     public string achillesRegistrationCode {get; set;}
+    public string detailsTypeCheck {get; set;}
+    public string dunsHierarchyRequired {get; set;}
+    public string groupKey {get; set;}
+    public string smeComment {get; set;}
+    public string vatRegistrationNumber {get; set;}
 }

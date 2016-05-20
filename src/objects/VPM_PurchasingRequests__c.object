@@ -4166,6 +4166,26 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>VPM_Interestcalculationindicator__c</fullName>
+        <externalId>false</externalId>
+        <label>Interest calculation indicator</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Interest calculation indicator1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Interest calculation indicator2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>VPM_InternationalVersion__c</fullName>
         <externalId>false</externalId>
         <label>International Version</label>
@@ -9297,6 +9317,17 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_Interestcalculationindicator__c</picklist>
+            <values>
+                <fullName>Interest calculation indicator1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interest calculation indicator2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_IsVendorException__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -12087,6 +12118,17 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
             <values>
                 <fullName>3</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Interestcalculationindicator__c</picklist>
+            <values>
+                <fullName>Interest calculation indicator1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interest calculation indicator2</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -14885,6 +14927,17 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_Interestcalculationindicator__c</picklist>
+            <values>
+                <fullName>Interest calculation indicator1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interest calculation indicator2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_IsVendorException__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -17675,6 +17728,17 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
             <values>
                 <fullName>3</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Interestcalculationindicator__c</picklist>
+            <values>
+                <fullName>Interest calculation indicator1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interest calculation indicator2</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -20473,6 +20537,17 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_Interestcalculationindicator__c</picklist>
+            <values>
+                <fullName>Interest calculation indicator1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interest calculation indicator2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_IsVendorException__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -23263,6 +23338,17 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
             <values>
                 <fullName>3</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Interestcalculationindicator__c</picklist>
+            <values>
+                <fullName>Interest calculation indicator1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interest calculation indicator2</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -26061,6 +26147,17 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_Interestcalculationindicator__c</picklist>
+            <values>
+                <fullName>Interest calculation indicator1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interest calculation indicator2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_IsVendorException__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -28851,6 +28948,17 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
             <values>
                 <fullName>3</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Interestcalculationindicator__c</picklist>
+            <values>
+                <fullName>Interest calculation indicator1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interest calculation indicator2</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

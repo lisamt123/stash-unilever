@@ -30,6 +30,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>VPM_GoldenDataController2</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>VPM_PurchaseRequestsControllerExtension</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -1018,6 +1022,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_InterestFrequency__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_Interestcalculationindicator__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2628,6 +2637,10 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>VPM_GoldenData2</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>VPM_PageLayoutRequirement</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>

@@ -43,6 +43,7 @@ public flowController(ApexPages.StandardController stdController) {
  if(flBatch != null) {
      reDirect = string.valueOf(flBatch.getVariableValue('vpm_redirecttolaunchvar')); 
      strTemp = string.valueOf(flBatch.getVariableValue('VPM_PurchasingRequestID'));
+     System.debug('Alsana ----'+reDirect);
      if(reDirect == 'Create')
      {
           Url='/apex/VPM_GoldenData1?ID='+ strTemp;

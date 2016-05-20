@@ -19,18 +19,19 @@
             });*/
          Visualforce.remoting.Manager.invokeAction('VPM_PurchaseRequestsControllerExtension.checkForBusinessReqUser',
             function(results, event){
-               if(results.userRole=="FLS" && criteria1=="FLS Review") {
+                debugger;
+                if(results.userRole=="FLS" && criteria1=="FLS Review") {
                      debugger;
                     removeStyleSheets();
                     $("#detailPage").show();
                     alert("Please Approve / Reject the Request before completing the Advanced Form.");
                  }
-                 else if(flsInCountry=="true" && results.brUser=="true")
+                 else if(flsInCountry=="true" && results.brUser=="true" && criteria1=="Draft Request")
                  {
                      debugger;
                     //document.getElementById('{!$Component.theForm}').elements['{!$Component.hiddenField}'].value = flag;
                     //$($('input[id*="hdnField"]')[0]).attr("value",flag);
-                     if(document.referrer.indexOf('apex/VPM_AdvancedForm') == -1 || localStorage.getItem("cancelClicked"))
+                     if((document.referrer.indexOf('apex/VPM_AdvancedForm') == -1 && document.referrer.indexOf('VPM_GoldenData1') == -1)|| localStorage.getItem("cancelClicked"))
                         {
                             debugger;
                          flag = confirm("Please note if you complete and submit the Advanced Form, you will bypass your Front Line Services team and the request will route straight to approver/s.");
@@ -59,7 +60,7 @@
                     alert('Record is in Approval...');
                     //return false;
                 }
-                else if(criteria1!="FLS Review"){
+                    else{ //if(criteria1!="FLS Review")
                     domManipulations();
                     $("#advForm").show(); 
                     //$("#detailPage").hide();
@@ -88,7 +89,6 @@
         $(vendorDetailHeader).find("b").addClass('emphasizeHeader');
         $(maintainVendorHeader).find("b").addClass('emphasizeHeader');
         $(".FlowPageBlockBtns").siblings().remove();
-        $('span[id*="VPM_UnBlockUndeleteMessage"]').closest('tr').css("display","grid");
         /*  to align status and type side by side instead of one stacking both one above the other  */
         $(spanToAlign).css("float","left");
         var allDivs =$(spanToAlign).find('div');
