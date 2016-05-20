@@ -68,6 +68,8 @@ src/permissionsets/WU_Logistics_Leadership_Team.permissionset
 src/permissionsets/WU_Warehouse_Excellence_Operations.permissionset
 src/permissionsets/WU_Warehouse_Excellence_Operations_Chatter_Only.permissionset
 src/permissionsets/WU_Logistics_Leadership_Team_for_Chatter_Only.permissionset
+src/profiles
+src/profiles/Unilever - Force MultiApp Standard.profile
 src/reportTypes
 src/reportTypes/Warehouse_Utilization.reportType
 src/reportTypes/WU_Warehouse_Capacity_Detail.reportType
@@ -92,8 +94,6 @@ src/dashboards/WU_Warehouse_Excellence_Team-meta.xml
 src/dashboards/WU_Warehouse_Leadership_Team-meta.xml
 src/sharingRules
 src/sharingRules/WU_Master_Warehouse__c.sharingRules
-src/profiles
-src/profiles/Unilever - Force MultiApp Standard.profile
 src/reports
 src/reports/WU_Warehouse_Excellence_Team
 src/reports/WU_Warehouse_Excellence_Team/Average_Utilization_by_Day.report
