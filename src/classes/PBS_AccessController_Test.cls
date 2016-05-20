@@ -38,7 +38,10 @@
 @isTest
 private class PBS_AccessController_Test{
 
+     public static final string LastName = 'LastName'; // Added this to avoid duplication of string literal LastName
+     
     static testMethod void testAccessControl() {
+   
         Contact c = new Contact();
         c.LastName = 'ESAPI Test Spu8UY&thuCrUzAPa2ASTaC7rA$Ra3'; // We add this long random to make sure we will not conflict with any real last name
         String errStr;
@@ -47,7 +50,7 @@ private class PBS_AccessController_Test{
             PBS_ESAPI_CC.accessController().setOperationMode(PBS_SFDCAccessController_CC.OperationMode.ALL_OR_NONE);
             PBS_ESAPI_CC.accessController().setSharingMode(PBS_SFDCAccessController_CC.SharingMode.WITH);
 
-            c = (Contact)PBS_ESAPI_CC.accessController().insertAsUser(c, new List<String>{'LastName'});
+            c = (Contact)PBS_ESAPI_CC.accessController().insertAsUser(c, new List<String>{LastName});
             c = (Contact)PBS_ESAPI_CC.accessController().insertAsUser(c, new List<Schema.SObjectField>{Contact.LastName});
 
             PBS_ESAPI_CC.accessController().getCreatableFields(c);
@@ -60,9 +63,12 @@ private class PBS_AccessController_Test{
             PBS_ESAPI_CC.accessController().getViewableFields(Contact.getSObjectType());
                 
             PBS_ESAPI_CC.accessController().isAuthorizedToView(Contact.getSObjectType(),PBS_ESAPI_CC.accessController().getViewableFields(c));
-                
+            PBS_ESAPI_CC.accessController().isAuthorizedToUpdate(Contact.getSObjectType(),PBS_ESAPI_CC.accessController().getViewableFields(c));
+            PBS_ESAPI_CC.accessController().isAuthorizedToCreate(Contact.getSObjectType(),PBS_ESAPI_CC.accessController().getViewableFields(c));
+            
+               
             c.LastName = 'ESAPI Test Spu8UY&thuCrUzAPa2ASTaC7rA$Ra3 updated';
-            PBS_ESAPI_CC.accessController().updateAsUser(c, new List<String>{'LastName'});
+            PBS_ESAPI_CC.accessController().updateAsUser(c, new List<String>{LastName});
             PBS_ESAPI_CC.accessController().updateAsUser(c, new List<Schema.SObjectField>{Contact.LastName});
             PBS_ESAPI_CC.accessController().deleteAsUser(c);
 
@@ -71,10 +77,10 @@ private class PBS_AccessController_Test{
 
             PBS_ESAPI_CC.accessController().setOperationMode(PBS_SFDCAccessController_CC.OperationMode.BEST_EFFORT);
             PBS_ESAPI_CC.accessController().setSharingMode(PBS_SFDCAccessController_CC.SharingMode.WITHOUT);
-            c = (Contact)PBS_ESAPI_CC.accessController().insertAsUser(c, new List<String>{'LastName'});
+            c = (Contact)PBS_ESAPI_CC.accessController().insertAsUser(c, new List<String>{LastName});
 
             c.LastName = 'ESAPI Test2 Spu8UY&thuCrUzAPa2ASTaC7rA$Ra3 updated';
-            PBS_ESAPI_CC.accessController().updateAsUser(c, new List<String>{'LastName'});
+            PBS_ESAPI_CC.accessController().updateAsUser(c, new List<String>{LastName});
             PBS_ESAPI_CC.accessController().deleteAsUser(c);
 
             c = new Contact();
@@ -82,10 +88,10 @@ private class PBS_AccessController_Test{
 
             PBS_ESAPI_CC.accessController().setOperationMode(PBS_SFDCAccessController_CC.OperationMode.BEST_EFFORT);
             PBS_ESAPI_CC.accessController().setSharingMode(PBS_SFDCAccessController_CC.SharingMode.INHERIT);
-            c = (Contact)PBS_ESAPI_CC.accessController().insertAsUser(c, new List<String>{'LastName'});
+            c = (Contact)PBS_ESAPI_CC.accessController().insertAsUser(c, new List<String>{LastName});
 
             c.LastName = 'ESAPI Test3 Spu8UY&thuCrUzAPa2ASTaC7rA$Ra3 updated';
-            PBS_ESAPI_CC.accessController().updateAsUser(c, new List<String>{'LastName'});
+            PBS_ESAPI_CC.accessController().updateAsUser(c, new List<String>{LastName});
             PBS_ESAPI_CC.accessController().deleteAsUser(c);
 
         } catch (PBS_SFDCAccessControlException e) {
@@ -102,6 +108,7 @@ private class PBS_AccessController_Test{
             System.assert(false, 'Should never get here');
         } catch (Exception e) {
             // should fail - so all good
+            errStr = e.getMessage();
         }
 
         try {
@@ -109,6 +116,7 @@ private class PBS_AccessController_Test{
             System.assert(false, 'Should never get here');
         } catch (Exception e) {
             // should fail - so all good
+             errStr = e.getMessage();
         }
 
         try {
@@ -136,7 +144,7 @@ private class PBS_AccessController_Test{
         Contact tmp4;
         Contact c1 = new Contact();
         c1.LastName = 'ESAPI Test Spu8UY&thuCrUzAPa2ASTaC7rA$Ra3 c1'; // We add this long random to make sure we will not conflict with any real last name
-        tmp = (Contact)PBS_ESAPI_CC.accessController().insertAsUser(c1, new List<String>{'LastName'});
+        tmp = (Contact)PBS_ESAPI_CC.accessController().insertAsUser(c1, new List<String>{LastName});
         tmp2 = [select LastName, Id from Contact where LastName = 'ESAPI Test Spu8UY&thuCrUzAPa2ASTaC7rA$Ra3 c1' limit 1];
         tmp3 = [select LastName, Id from Contact where Id =: tmp.Id limit 1];
 
@@ -148,7 +156,7 @@ private class PBS_AccessController_Test{
         System.assert(tmp.id == tmp3.id, 'select with tmp.id after insertAsUser returned id which is not equal to id from returned object');
 
         tmp.LastName = 'ESAPI Test Spu8UY&thuCrUzAPa2ASTaC7rA$Ra3 c1 updated';
-        tmp4 = (Contact)PBS_ESAPI_CC.accessController().updateAsUser(tmp, new List<String>{'LastName'});
+        tmp4 = (Contact)PBS_ESAPI_CC.accessController().updateAsUser(tmp, new List<String>{LastName});
         tmp3 = [select LastName, Id from Contact where Id =: tmp.Id limit 1];
 
         System.assert(tmp4 != null, 'updateAsUser returned null');
@@ -203,13 +211,14 @@ private class PBS_AccessController_Test{
             PBS_ESAPI_CC.accessController().setOperationMode(PBS_SFDCAccessController_CC.OperationMode.ALL_OR_NONE);
             PBS_ESAPI_CC.accessController().setArrayOperationMode(PBS_SFDCAccessController_CC.OperationMode.ALL_OR_NONE);
             PBS_ESAPI_CC.accessController().setSharingMode(PBS_SFDCAccessController_CC.SharingMode.WITH);
-            results = PBS_ESAPI_CC.accessController().insertAsUser(arr, new List<String>{'LastName'}).getResults();
+            results = PBS_ESAPI_CC.accessController().insertAsUser(arr, new List<String>{LastName}).getResults();
             results = PBS_ESAPI_CC.accessController().insertAsUser(arr, new List<Schema.SObjectField>{Contact.LastName}).getResults();
 
             System.assert(results.size() == 2, 'Could not insert two objects into db #1');
-            System.assert(results[0].isSuccess() == true, 'Could not insert first object into db #1 [0] - ' + results[0].getErrors());
-            System.assert(results[0].isSuccess() == true, 'Could not insert first object into db #1 [1] - ' + results[0].getErrors());
-
+            /*System.assert(results[0].isSuccess() == true, 'Could not insert first object into db #1 [0] - ' + results[0].getErrors());*/
+            System.assertEquals(true, results[0].isSuccess(), 'Could not insert first object into db #1 [0] - ' + results[0].getErrors());
+            /*.assert(results[0].isSuccess() == true, 'Could not insert first object into db #1 [1] - ' + results[0].getErrors());*/
+            System.assertEquals(true, results[0].isSuccess(), 'Could not insert first object into db #1 [1] - ' + results[0].getErrors());
             arr = [select LastName,id from Contact where Id=:results[0].getId() or Id=:results[1].getId()];
 
             System.assert(arr.size() == 2, 'Could not get two objects from db #1');
@@ -217,7 +226,7 @@ private class PBS_AccessController_Test{
             arr[0].LastName = 'ESAPI TestArray1 Spu8UY&thuCrUzAPa2ASTaC7rA$Ra3 updated';
             arr[1].LastName = 'ESAPI TestArray2 Spu8UY&thuCrUzAPa2ASTaC7rA$Ra3 updated';
 
-            PBS_ESAPI_CC.accessController().updateAsUser(new Map<ID, Contact>(arr), new List<String>{'LastName'});
+            PBS_ESAPI_CC.accessController().updateAsUser(new Map<ID, Contact>(arr), new List<String>{LastName});
             PBS_ESAPI_CC.accessController().updateAsUser(new Map<ID, Contact>(arr), new List<Schema.SObjectField>{Contact.LastName});
             PBS_ESAPI_CC.accessController().deleteAsUser(arr);
 
@@ -231,7 +240,7 @@ private class PBS_AccessController_Test{
             PBS_ESAPI_CC.accessController().setOperationMode(PBS_SFDCAccessController_CC.OperationMode.BEST_EFFORT);
             PBS_ESAPI_CC.accessController().setArrayOperationMode(PBS_SFDCAccessController_CC.OperationMode.BEST_EFFORT);
             PBS_ESAPI_CC.accessController().setSharingMode(PBS_SFDCAccessController_CC.SharingMode.WITHOUT);
-            results = PBS_ESAPI_CC.accessController().insertAsUser(arr, new List<String>{'LastName'}).getResults();
+            results = PBS_ESAPI_CC.accessController().insertAsUser(arr, new List<String>{LastName}).getResults();
 
             arr = [select LastName,id from Contact where Id=:results[0].getId() or Id=:results[1].getId()];
 
@@ -240,7 +249,7 @@ private class PBS_AccessController_Test{
             arr[0].LastName = 'ESAPI TestArray3 Spu8UY&thuCrUzAPa2ASTaC7rA$Ra3 updated';
             arr[1].LastName = 'ESAPI TestArray4 Spu8UY&thuCrUzAPa2ASTaC7rA$Ra3 updated';
 
-            PBS_ESAPI_CC.accessController().updateAsUser(new Map<ID, Contact>(arr), new List<String>{'LastName'});
+            PBS_ESAPI_CC.accessController().updateAsUser(new Map<ID, Contact>(arr), new List<String>{LastName});
             PBS_ESAPI_CC.accessController().deleteAsUser(arr);
 
             // test inherit sharing
@@ -253,7 +262,7 @@ private class PBS_AccessController_Test{
             PBS_ESAPI_CC.accessController().setOperationMode(PBS_SFDCAccessController_CC.OperationMode.BEST_EFFORT);
             PBS_ESAPI_CC.accessController().setArrayOperationMode(PBS_SFDCAccessController_CC.OperationMode.BEST_EFFORT);
             PBS_ESAPI_CC.accessController().setSharingMode(PBS_SFDCAccessController_CC.SharingMode.INHERIT);
-            results = PBS_ESAPI_CC.accessController().insertAsUser(arr, new List<String>{'LastName'}).getResults();
+            results = PBS_ESAPI_CC.accessController().insertAsUser(arr, new List<String>{LastName}).getResults();
 
             arr = [select LastName,id from Contact where Id=:results[0].getId() or Id=:results[1].getId()];
 
@@ -262,7 +271,7 @@ private class PBS_AccessController_Test{
             arr[0].LastName = 'ESAPI TestArray5 Spu8UY&thuCrUzAPa2ASTaC7rA$Ra3 updated';
             arr[1].LastName = 'ESAPI TestArray6 Spu8UY&thuCrUzAPa2ASTaC7rA$Ra3 updated';
 
-            PBS_ESAPI_CC.accessController().updateAsUser(new Map<ID, Contact>(arr), new List<String>{'LastName'});
+            PBS_ESAPI_CC.accessController().updateAsUser(new Map<ID, Contact>(arr), new List<String>{LastName});
             PBS_ESAPI_CC.accessController().deleteAsUser(arr);
 
             // test results class
@@ -279,9 +288,10 @@ private class PBS_AccessController_Test{
              PBS_SFDCAccessControlResults_CC.InsertResults insertResults;
             sObject [] insertedObjects;
 
-            insertResults = PBS_ESAPI_CC.accessController().insertAsUser(arr, new List<String>{'LastName'});
+            insertResults = PBS_ESAPI_CC.accessController().insertAsUser(arr, new List<String>{LastName});
 
-            System.assert(insertResults.wasSuccessful() == true, 'insertResults.wasSuccessful() == true');
+/*            System.assert(insertResults.wasSuccessful() == true, 'insertResults.wasSuccessful() == true'); */
+            System.assertEquals(true, insertResults.wasSuccessful(), 'insertResults.wasSuccessful() == true');
 
             results = insertResults.getResults();
             System.assert(results.size() == 2, 'results.size() == 2');
@@ -301,9 +311,10 @@ private class PBS_AccessController_Test{
             PBS_SFDCAccessControlResults_CC.UpdateResults updateResults;
             sObject [] updatedObjects;
 
-            updateResults = PBS_ESAPI_CC.accessController().updateAsUser(new Map<ID, Contact>(arr), new List<String>{'LastName'});
+            updateResults = PBS_ESAPI_CC.accessController().updateAsUser(new Map<ID, Contact>(arr), new List<String>{LastName});
 
-            System.assert(updateResults.wasSuccessful() == true, 'updateResults.wasSuccessful() == true');
+            /*System.assert(updateResults.wasSuccessful() == true, 'updateResults.wasSuccessful() == true');*/
+            System.assertEquals(true, updateResults.wasSuccessful(), 'updateResults.wasSuccessful() == true');
 
             results = updateResults.getResults();
             System.assert(results.size() == 2, 'results.size() == 2');
@@ -316,7 +327,8 @@ private class PBS_AccessController_Test{
             PBS_SFDCAccessControlResults_CC.DeleteResults deleteResults;
             deleteResults = PBS_ESAPI_CC.accessController().deleteAsUser(arr);
 
-            System.assert(deleteResults.wasSuccessful() == true, 'deleteResults.wasSuccessful() == true');
+            /*System.assert(deleteResults.wasSuccessful() == true, 'deleteResults.wasSuccessful() == true');*/
+            System.assertEquals(true, deleteResults.wasSuccessful(), 'deleteResults.wasSuccessful() == true');
 
             Database.DeleteResult [] delResults = deleteResults.getResults();
             System.assert(delResults.size() == 2, 'delResults.size() == 2');

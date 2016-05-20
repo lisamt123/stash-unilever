@@ -51,7 +51,7 @@ public class PBS_LearningDeleteSharedAsgmtsExt_Test {
         update sampleSharedTask;
 
 
-        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c];
+        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c limit:integer.valueof(System.Label.PBS_soqllimit)];
         System.assertEquals(1,tplan.size());
         Id tplanId = tplan.get(0).Id;
         Set<Id> selectedUserIds = new Set<Id>();
@@ -64,7 +64,7 @@ public class PBS_LearningDeleteSharedAsgmtsExt_Test {
             PBS_LMSService_CC.upsertAssignments(selectedUserIds,tplanId,null);
         }
 
-        List<PBS_Learning_Assignment__c> las = [select id,Shared_Learning_Assignment__c,User__c from PBS_Learning_Assignment__c];
+        List<PBS_Learning_Assignment__c> las = [select id,Shared_Learning_Assignment__c,User__c from PBS_Learning_Assignment__c limit:integer.valueof(System.Label.PBS_soqllimit)];
 
         List<PBS_Learning_Assignment__c> taskLearningAssignments = [select id,Shared_Learning_Assignment__c
             from PBS_Learning_Assignment__c

@@ -41,9 +41,9 @@ private class PBS_TrainingTrackExportController_Test {
 
         PBS_TrainingTrackData_Test.createSampleData();
 
-        List<PBS_Training_Track__c> tracks = [select id,name from PBS_Training_Track__c];
-        List<PBS_Training_Track_Level_Item__c> trackItems = [select id,name from PBS_Training_Track_Level_Item__c];
-        System.assertEquals(1,tracks.size());
+        List<PBS_Training_Track__c> tracks = [select id,name from PBS_Training_Track__c limit :integer.valueof(System.Label.PBS_soqllimit)];
+        List<PBS_Training_Track_Level_Item__c> trackItems = [select id,name from PBS_Training_Track_Level_Item__c limit :integer.valueof(System.Label.PBS_soqllimit)];
+        System.assertEquals(1,tracks.size()); 
         System.assert(trackItems.size()>0);
         Id ttrackId = tracks.get(0).Id;
 

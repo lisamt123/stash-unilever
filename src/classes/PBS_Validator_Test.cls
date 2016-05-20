@@ -37,7 +37,17 @@
  */
 @isTest
 private class PBS_Validator_Test {
-
+    //String variables to avoid code containing duplicate String literals
+    public Static final string valid1 = 'valid #1';
+    public Static final string valid2 = 'valid #2';
+    public Static final string valid3 = 'valid #3';
+    public Static final string valid4 = 'valid #4';
+    public Static final string valid5 = 'valid #5';
+    public Static final string valid6 = 'valid #6';
+    public Static final string valid7 = 'valid #7';
+    public Static final string valid8 = 'valid #8';
+    public Static final string invalid1 ='invalid #1';
+    
     private class CreditCardTest {
         public String cardStr;
         public String errText;
@@ -110,7 +120,7 @@ private class PBS_Validator_Test {
             try {
                 String ret = PBS_ESAPI_CC.validator().getValidCreditCard(t.cardStr, t.allowNull);
                 // if no exception - check if we are expecting a valid test
-                System.assert(t.expectedResult == true, t.errText);
+                System.assertEquals(true,t.expectedResult, t.errText);
                 // also make sure return value is equal to input unless null if input was empty and that is allowed
                 if (ret != null)
                     System.assert(ret.equals(t.cardStr), t.errText);
@@ -118,7 +128,7 @@ private class PBS_Validator_Test {
                     System.assert(t.allowNull && t.cardStr == null, t.errText);
             } catch (Exception e) {
                 // if exception - check if we are expecting an invalid test
-                System.assert(t.expectedResult == false, t.errText);
+                System.assertEquals(false,t.expectedResult, t.errText);
             }
         }
     }
@@ -198,7 +208,7 @@ private class PBS_Validator_Test {
             try {
                 String ret = PBS_ESAPI_CC.validator().SFDC_getValidDate(t.dateStr, t.dateFormat, t.allowNull);
                 // if no exception - check if we are expecting a valid test
-                System.assert(t.expectedResult == true, t.errText);
+                System.assertEquals(true,t.expectedResult, t.errText);
                 // also make sure return value is equal to input unless null if input was empty and that is allowed
                 if (ret != null)
                     System.assert(ret.equals(t.dateStr), t.errText);
@@ -206,7 +216,7 @@ private class PBS_Validator_Test {
                     System.assert(t.allowNull && t.dateStr == null, t.errText);
             } catch (Exception e) {
                 // if exception - check if we are expecting an invalid test
-                System.assert(t.expectedResult == false, t.errText);
+                System.assertEquals(false,t.expectedResult, t.errText);
             }
         }
     }
@@ -232,14 +242,14 @@ private class PBS_Validator_Test {
     private static final DoubleTest [] doubleTests = new DoubleTest[]{};
 
     static {
-        doubleTests.add(new DoubleTest('1.964', (Double)(-2.0), (Double)(2.0), 'Valid #1', false, true));
-        doubleTests.add(new DoubleTest('+1.964', (Double)(-2.0), (Double)(2.0), 'Valid #2', false, true));
-        doubleTests.add(new DoubleTest('-3.38475', (Double)(-5.0), (Double)(-2.0), 'Valid #3', false, true));
-        doubleTests.add(new DoubleTest('1', (Double)(0), (Double)(2), 'Valid #4', false, true));
-        doubleTests.add(new DoubleTest('0', (Double)(-2.0), (Double)(0), 'Valid #5', false, true));
-        doubleTests.add(new DoubleTest('0', (Double)(0), (Double)(0), 'Valid #6', false, true));
-        doubleTests.add(new DoubleTest(null, (Double)(1.0), (Double)(2.0), 'Valid #7', true, true));
-        doubleTests.add(new DoubleTest('1.0E+3', (Double)(500), (Double)(2000), 'Valid #8', false, true));
+        doubleTests.add(new DoubleTest('1.964', (Double)(-2.0), (Double)(2.0), valid1, false, true));
+        doubleTests.add(new DoubleTest('+1.964', (Double)(-2.0), (Double)(2.0), valid2, false, true));
+        doubleTests.add(new DoubleTest('-3.38475', (Double)(-5.0), (Double)(-2.0), valid3, false, true));
+        doubleTests.add(new DoubleTest('1', (Double)(0), (Double)(2), valid4, false, true));
+        doubleTests.add(new DoubleTest('0', (Double)(-2.0), (Double)(0), valid5, false, true));
+        doubleTests.add(new DoubleTest('0', (Double)(0), (Double)(0), valid6, false, true));
+        doubleTests.add(new DoubleTest(null, (Double)(1.0), (Double)(2.0), valid7, true, true));
+        doubleTests.add(new DoubleTest('1.0E+3', (Double)(500), (Double)(2000), valid8, false, true));
 
         doubleTests.add(new DoubleTest('1.964', (Double)(2.0), (Double)(1.0), 'Invalid #1', false, false));
         doubleTests.add(new DoubleTest(null, (Double)(1.0), (Double)(2.0), 'Invalid #2', false, false));
@@ -264,7 +274,7 @@ private class PBS_Validator_Test {
             try {
                 Double ret = PBS_ESAPI_CC.validator().getValidDouble(t.inputStr, t.minValue, t.maxValue, t.allowNull);
                 // if no exception - check if we are expecting a valid test
-                System.assert(t.expectedResult == true, t.errText);
+                System.assertEquals(true,t.expectedResult, t.errText);
                 // also make sure return value is equal to Double.valueOf(input) unless null if input was empty and that is allowed
                 if (ret != null)
                     System.assert(ret == Double.valueOf(t.inputStr), t.errText);
@@ -272,7 +282,7 @@ private class PBS_Validator_Test {
                     System.assert(t.allowNull && (t.inputStr == null || t.inputStr.length() == 0), t.errText);
             } catch (Exception e) {
                 // if exception - check if we are expecting an invalid test
-                System.assert(t.expectedResult == false, t.errText);
+                System.assertEquals(false,t.expectedResult, t.errText);
             }
         }
     }
@@ -298,14 +308,14 @@ private class PBS_Validator_Test {
     private static final IntTest [] intTests = new IntTest[]{};
 
     static {
-        intTests.add(new IntTest('1', -2, 2, 'Valid #1', false, true));
-        intTests.add(new IntTest('-3', -5, -2, 'Valid #2', false, true));
-        intTests.add(new IntTest('1', 0, 2, 'Valid #3', false, true));
-        intTests.add(new IntTest('0', -2, 0, 'Valid #4', false, true));
-        intTests.add(new IntTest('0', 0, 0, 'Valid #5', false, true));
-        intTests.add(new IntTest(null, 1, 2, 'Valid #6', true, true));
-        intTests.add(new IntTest('1000000', 500000, 2000000, 'Valid #7', false, true));
-        intTests.add(new IntTest('906842624', 906842623, 906842625, 'Valid #8', false, true));
+        intTests.add(new IntTest('1', -2, 2, valid1, false, true));
+        intTests.add(new IntTest('-3', -5, -2, valid2, false, true));
+        intTests.add(new IntTest('1', 0, 2, valid3, false, true));
+        intTests.add(new IntTest('0', -2, 0, valid4, false, true));
+        intTests.add(new IntTest('0', 0, 0, valid5, false, true));
+        intTests.add(new IntTest(null, 1, 2, valid6, true, true));
+        intTests.add(new IntTest('1000000', 500000, 2000000, valid7, false, true));
+        intTests.add(new IntTest('906842624', 906842623, 906842625, valid8, false, true));
         intTests.add(new IntTest('+1', -2, 2, 'Valid #9', false, true));
 
         intTests.add(new IntTest('1', 2, 1, 'Invalid #1', false, false));
@@ -331,7 +341,7 @@ private class PBS_Validator_Test {
             try {
                 Integer ret = PBS_ESAPI_CC.validator().getValidInteger(t.inputStr, t.minValue, t.maxValue, t.allowNull);
                 // if no exception - check if we are expecting a valid test
-                System.assert(t.expectedResult == true, t.errText);
+                System.assertEquals(true,t.expectedResult, t.errText);
                 // also make sure return value is equal to Integer.valueOf(input) unless null if input was empty and that is allowed
                 if (ret != null)
                     System.assert(ret == Integer.valueOf(t.inputStr), t.errText);
@@ -339,7 +349,7 @@ private class PBS_Validator_Test {
                     System.assert(t.allowNull && (t.inputStr == null || t.inputStr.length() == 0), t.errText);
             } catch (Exception e) {
                 // if exception - check if we are expecting an invalid test
-                System.assert(t.expectedResult == false, t.errText);
+                System.assertEquals(false,t.expectedResult, t.errText);
             }
         }
     }
@@ -365,14 +375,14 @@ private class PBS_Validator_Test {
     private static final NumberTest [] numberTests = new NumberTest[]{};
 
     static {
-        numberTests.add(new NumberTest('1', -2, 2, 'Valid #1', false, true));
-        numberTests.add(new NumberTest('-3', -5, -2, 'Valid #2', false, true));
-        numberTests.add(new NumberTest('1', 0, 2, 'Valid #3', false, true));
-        numberTests.add(new NumberTest('0', -2, 0, 'Valid #4', false, true));
-        numberTests.add(new NumberTest('0', 0, 0, 'Valid #5', false, true));
-        numberTests.add(new NumberTest(null, 1, 2, 'Valid #6', true, true));
-        numberTests.add(new NumberTest('1000000', 500000, 2000000, 'Valid #7', false, true));
-        numberTests.add(new NumberTest('1125899906842624', 1125899906842623L, 1125899906842625L, 'Valid #8', false, true));
+        numberTests.add(new NumberTest('1', -2, 2, valid1, false, true));
+        numberTests.add(new NumberTest('-3', -5, -2, valid2, false, true));
+        numberTests.add(new NumberTest('1', 0, 2, valid3, false, true));
+        numberTests.add(new NumberTest('0', -2, 0, valid4, false, true));
+        numberTests.add(new NumberTest('0', 0, 0, valid5, false, true));
+        numberTests.add(new NumberTest(null, 1, 2, valid6, true, true));
+        numberTests.add(new NumberTest('1000000', 500000, 2000000, valid7, false, true));
+        numberTests.add(new NumberTest('1125899906842624', 1125899906842623L, 1125899906842625L, valid8, false, true));
 
         numberTests.add(new NumberTest('1', 2, 1, 'Invalid #1', false, false));
         numberTests.add(new NumberTest(null, 1, 2, 'Invalid #2', false, false));
@@ -396,7 +406,7 @@ private class PBS_Validator_Test {
             try {
                 Double ret = PBS_ESAPI_CC.validator().getValidNumber(t.inputStr, t.minValue, t.maxValue, t.allowNull);
                 // if no exception - check if we are expecting a valid test
-                System.assert(t.expectedResult == true, t.errText);
+                System.assertEquals(true,t.expectedResult, t.errText);
                 // also make sure return value is equal to Double.valueOf(input) unless null if input was empty and that is allowed
                 if (ret != null)
                     System.assert(ret == Double.valueOf(t.inputStr), t.errText);
@@ -404,7 +414,7 @@ private class PBS_Validator_Test {
                     System.assert(t.allowNull && (t.inputStr == null || t.inputStr.length() == 0), t.errText);
             } catch (Exception e) {
                 // if exception - check if we are expecting an invalid test
-                System.assert(t.expectedResult == false, t.errText);
+                System.assertEquals(false,t.expectedResult, t.errText);
             }
         }
     }
@@ -430,13 +440,13 @@ private class PBS_Validator_Test {
     private static final Set<String> listItems4 = new Set<String>{'', null};
 
     static {
-        listItemTests.add(new ListItemTest('US', listItems1, 'Valid #1', true));
-        listItemTests.add(new ListItemTest('US', listItems2, 'Valid #2', true));
-        listItemTests.add(new ListItemTest('CANADA', listItems1, 'Valid #3', true));
-        listItemTests.add(new ListItemTest('MEXICO', listItems1, 'Valid #4', true));
-        listItemTests.add(new ListItemTest('ksjdfhg^$ \t%^DSFGs', listItems1, 'Valid #5', true));
-        listItemTests.add(new ListItemTest('', listItems4, 'Valid #6', true));
-        listItemTests.add(new ListItemTest(null, listItems4, 'Valid #7', true));
+        listItemTests.add(new ListItemTest('US', listItems1, valid1, true));
+        listItemTests.add(new ListItemTest('US', listItems2, valid2, true));
+        listItemTests.add(new ListItemTest('CANADA', listItems1, valid3, true));
+        listItemTests.add(new ListItemTest('MEXICO', listItems1, valid4, true));
+        listItemTests.add(new ListItemTest('ksjdfhg^$ \t%^DSFGs', listItems1, valid5, true));
+        listItemTests.add(new ListItemTest('', listItems4, valid6, true));
+        listItemTests.add(new ListItemTest(null, listItems4, valid7, true));
 
         listItemTests.add(new ListItemTest('', listItems1, 'Invalid #1', false));
         listItemTests.add(new ListItemTest(null, listItems1, 'Invalid #2', false));
@@ -466,7 +476,7 @@ private class PBS_Validator_Test {
             try {
                 String ret = PBS_ESAPI_CC.validator().getValidListItem(t.inputStr, t.validItems);
                 // if no exception - check if we are expecting a valid test
-                System.assert(t.expectedResult == true, t.errText);
+                System.assertEquals(true,t.expectedResult, t.errText);
                 // also make sure return value is equal to input unless null if input was also null
                 if (ret != null)
                     System.assert(ret.equals(t.inputStr), t.errText);
@@ -474,7 +484,7 @@ private class PBS_Validator_Test {
                     System.assert(ret == t.inputStr, t.errText);
             } catch (Exception e) {
                 // if exception - check if we are expecting an invalid test
-                System.assert(t.expectedResult == false, t.errText);
+                System.assertEquals(false,t.expectedResult, t.errText);
             }
         }
     }
@@ -498,11 +508,11 @@ private class PBS_Validator_Test {
     private static final FileContentTest [] fileContentTests = new FileContentTest[]{};
 
     static {
-        fileContentTests.add(new FileContentTest('1', 1, 'Valid #1', false, true));
-        fileContentTests.add(new FileContentTest('abc', 3, 'Valid #2', false, true));
-        fileContentTests.add(new FileContentTest('abc', 300, 'Valid #3', false, true));
-        fileContentTests.add(new FileContentTest(null, 1, 'Valid #4', true, true));
-        fileContentTests.add(new FileContentTest('', 1, 'Valid #5', true, true));
+        fileContentTests.add(new FileContentTest('1', 1, valid1, false, true));
+        fileContentTests.add(new FileContentTest('abc', 3, valid2, false, true));
+        fileContentTests.add(new FileContentTest('abc', 300, valid3, false, true));
+        fileContentTests.add(new FileContentTest(null, 1, valid4, true, true));
+        fileContentTests.add(new FileContentTest('', 1, valid5, true, true));
 
         fileContentTests.add(new FileContentTest('abc', 2, 'Invalid #1', false, false));
         fileContentTests.add(new FileContentTest(null, 1, 'Invalid #2', false, false));
@@ -520,7 +530,7 @@ private class PBS_Validator_Test {
             try {
                 String ret = PBS_ESAPI_CC.validator().getValidFileContent(t.inputStr, t.maxBytes, t.allowNull);
                 // if no exception - check if we are expecting a valid test
-                System.assert(t.expectedResult == true, t.errText);
+                System.assertEquals(true,t.expectedResult, t.errText);
                 // also make sure return value is equal to input unless null if input was empty and that is allowed
                 if (ret != null)
                     System.assert(ret.equals(t.inputStr), t.errText);
@@ -528,7 +538,7 @@ private class PBS_Validator_Test {
                     System.assert(t.allowNull && (t.inputStr == null || t.inputStr.length() == 0), t.errText);
             } catch (Exception e) {
                 // if exception - check if we are expecting an invalid test
-                System.assert(t.expectedResult == false, t.errText);
+                System.assertEquals(false,t.expectedResult, t.errText);
             }
         }
     }
@@ -552,21 +562,21 @@ private class PBS_Validator_Test {
     private static final PrintableTest [] printableTests = new PrintableTest[]{};
 
     static {
-        printableTests.add(new PrintableTest('1', 1, 'Valid #1', false, true));
-        printableTests.add(new PrintableTest('abc', 3, 'Valid #2', false, true));
-        printableTests.add(new PrintableTest('abc', 300, 'Valid #3', false, true));
-        printableTests.add(new PrintableTest(null, 1, 'Valid #4', true, true));
-        printableTests.add(new PrintableTest('', 1, 'Valid #5', true, true));
-        printableTests.add(new PrintableTest('ab487sjhdg$%^#$%^&L>PO:c ~', 100, 'Valid #6', false, true));
-        printableTests.add(new PrintableTest(EncodingUtil.urlDecode('%20', 'UTF-8'), 10, 'Valid #7', false, true));
-        printableTests.add(new PrintableTest(EncodingUtil.urlDecode('%7E', 'UTF-8'), 10, 'Valid #8', false, true));
+        printableTests.add(new PrintableTest('1', 1, valid1, false, true));
+        printableTests.add(new PrintableTest('abc', 3, valid2, false, true));
+        printableTests.add(new PrintableTest('abc', 300, valid3, false, true));
+        printableTests.add(new PrintableTest(null, 1, valid4, true, true));
+        printableTests.add(new PrintableTest('', 1, valid5, true, true));
+        printableTests.add(new PrintableTest('ab487sjhdg$%^#$%^&L>PO:c ~', 100, valid6, false, true));
+        printableTests.add(new PrintableTest(EncodingUtil.urlDecode('%20', 'UTF-8'), 10, valid7, false, true));
+        printableTests.add(new PrintableTest(EncodingUtil.urlDecode('%7E', 'UTF-8'), 10, valid8, false, true));
 
         printableTests.add(new PrintableTest('abc', 2, 'Invalid #1', false, false));
         printableTests.add(new PrintableTest(null, 1, 'Invalid #2', false, false));
         printableTests.add(new PrintableTest('', 1, 'Invalid #3', false, false));
         printableTests.add(new PrintableTest('\r', 1, 'Invalid #4', false, false));
         printableTests.add(new PrintableTest(EncodingUtil.urlDecode('%1F', 'UTF-8'), 10, 'Invalid #5', false, false));
-        printableTests.add(new PrintableTest(EncodingUtil.urlDecode('%7F', 'UTF-8'), 10, 'Valid #8', false, false));
+        printableTests.add(new PrintableTest(EncodingUtil.urlDecode('%7F', 'UTF-8'), 10, valid8, false, false));
         printableTests.add(new PrintableTest(EncodingUtil.urlDecode('%C2%80', 'UTF-8'), 10, 'Valid #9', false, false)); // ascii 0x80
         printableTests.add(new PrintableTest(EncodingUtil.urlDecode('%C3%BF', 'UTF-8'), 10, 'Valid #10', false, false)); // ascii 0xFF
         printableTests.add(new PrintableTest(EncodingUtil.urlDecode('%D7%A9', 'UTF-8'), 10, 'Valid #11', false, false)); // unicode U+05E9
@@ -583,7 +593,7 @@ private class PBS_Validator_Test {
             try {
                 String ret = PBS_ESAPI_CC.validator().getValidPrintable(t.inputStr, t.maxBytes, t.allowNull);
                 // if no exception - check if we are expecting a valid test
-                System.assert(t.expectedResult == true, t.errText);
+                System.assertEquals(true,t.expectedResult, t.errText);
                 // also make sure return value is equal to input unless null if input was empty and that is allowed
                 if (ret != null)
                     System.assert(ret.equals(t.inputStr), t.errText);
@@ -591,7 +601,7 @@ private class PBS_Validator_Test {
                     System.assert(t.allowNull && (t.inputStr == null || t.inputStr.length() == 0), t.errText);
             } catch (Exception e) {
                 // if exception - check if we are expecting an invalid test
-                System.assert(t.expectedResult == false, t.errText);
+                System.assertEquals(false,t.expectedResult, t.errText);
             }
         }
     }
@@ -614,11 +624,11 @@ private class PBS_Validator_Test {
 
     static {
 
-        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest('1.txt', 'Valid #1', false, true));
-        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest(null, 'Valid #2', true, true));
-        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest('', 'Valid #3', true, true));
-        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest('()+. \'&,-=_0123456789abcdefhhijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.zip', 'Valid #4', false, true));
-        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest('1.TXT', 'Valid #5', false, true));
+        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest('1.txt', valid1, false, true));
+        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest(null, valid2, true, true));
+        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest('', valid3, true, true));
+        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest('()+. \'&,-=_0123456789abcdefhhijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.zip', valid4, false, true));
+        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest('1.TXT', valid5, false, true));
 
         fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest(null, 'Invalid #1', false, false));
         fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest('', 'Invalid #2', false, false));
@@ -650,7 +660,7 @@ private class PBS_Validator_Test {
             try {
                 String ret = PBS_ESAPI_CC.validator().SFDC_getValidFileName(t.inputStr, t.allowNull);
                 // if no exception - check if we are expecting a valid test
-                System.assert(t.expectedResult == true, t.errText);
+                System.assertEquals(true,t.expectedResult, t.errText);
                 // also make sure return value is equal to input unless null if input was empty and that is allowed
                 if (ret != null)
                     System.assert(ret.equals(t.inputStr), t.errText);
@@ -658,7 +668,7 @@ private class PBS_Validator_Test {
                     System.assert(t.allowNull && (t.inputStr == null || t.inputStr.length() == 0), t.errText);
             } catch (Exception e) {
                 // if exception - check if we are expecting an invalid test
-                System.assert(t.expectedResult == false, t.errText);
+                System.assertEquals(false,t.expectedResult, t.errText);
             }
         }
     }
@@ -686,14 +696,14 @@ private class PBS_Validator_Test {
     private static final List<String> fileExtensions4 = new List<String>{'', null};
 
     static {
-        fileNameTests.add(new FileNameTest('1.txt', fileExtensions1, 'Valid #1', false, true));
-        fileNameTests.add(new FileNameTest('1.TXT', fileExtensions1, 'Valid #2', false, true));
-        fileNameTests.add(new FileNameTest('1.txt', fileExtensions2, 'Valid #3', false, true));
-        fileNameTests.add(new FileNameTest('1.TXT', fileExtensions2, 'Valid #4', false, true));
-        fileNameTests.add(new FileNameTest('1.JPG', fileExtensions1, 'Valid #5', false, true));
-        fileNameTests.add(new FileNameTest('1.ZIP', fileExtensions1, 'Valid #6', false, true));
-        fileNameTests.add(new FileNameTest('', fileExtensions4, 'Valid #7', true, true));
-        fileNameTests.add(new FileNameTest(null, fileExtensions4, 'Valid #8', true, true));
+        fileNameTests.add(new FileNameTest('1.txt', fileExtensions1, valid1, false, true));
+        fileNameTests.add(new FileNameTest('1.TXT', fileExtensions1, valid2, false, true));
+        fileNameTests.add(new FileNameTest('1.txt', fileExtensions2, valid3, false, true));
+        fileNameTests.add(new FileNameTest('1.TXT', fileExtensions2, valid4, false, true));
+        fileNameTests.add(new FileNameTest('1.JPG', fileExtensions1, valid5, false, true));
+        fileNameTests.add(new FileNameTest('1.ZIP', fileExtensions1, valid6, false, true));
+        fileNameTests.add(new FileNameTest('', fileExtensions4, valid7, true, true));
+        fileNameTests.add(new FileNameTest(null, fileExtensions4, valid8, true, true));
         fileNameTests.add(new FileNameTest('', fileExtensions1, 'Valid #9', true, true));
         fileNameTests.add(new FileNameTest(null, fileExtensions1, 'Valid #10', true, true));
         fileNameTests.add(new FileNameTest('', fileExtensions3, 'Valid #11', true, true));
@@ -728,7 +738,7 @@ private class PBS_Validator_Test {
             try {
                 String ret = PBS_ESAPI_CC.validator().SFDC_getValidFileName(t.inputStr, t.fileExtensions, t.allowNull);
                 // if no exception - check if we are expecting a valid test
-                System.assert(t.expectedResult == true, t.errText);
+                System.assertEquals(true,t.expectedResult, t.errText);
                 // also make sure return value is equal to input unless null if input was empty and that is allowed
                 if (ret != null)
                     System.assert(ret.equals(t.inputStr), t.errText);
@@ -736,7 +746,7 @@ private class PBS_Validator_Test {
                     System.assert(t.allowNull && (t.inputStr == null || t.inputStr.length() == 0), t.errText);
             } catch (Exception e) {
                 // if exception - check if we are expecting an invalid test
-                System.assert(t.expectedResult == false, t.errText);
+                System.assertEquals(false,t.expectedResult, t.errText);
             }
         }
     }
@@ -768,14 +778,14 @@ private class PBS_Validator_Test {
     private static final Set<String> optionalParams3 = new Set<String>{};
 
     static {
-        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?USER=def&PASS=jfg&PARAM1=ud847', requiredParams1, optionalParams1, 'Valid #1', true));
-        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?USER=def&PASS=jfg&PARAM1=ud847&OPTUSER=jhd6532', requiredParams1, optionalParams1, 'Valid #2', true));
-        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?USER=def&PASS=jfg&PARAM1=ud847&OPTUSER=jhd6532&OPTPASS=hdf&OPTPARAM1=g7345sfg', requiredParams1, optionalParams1, 'Valid #3', true));
-        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?USER=def&OPTUSER=123', requiredParams2, optionalParams1, 'Valid #4', true));
-        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html', requiredParams3, optionalParams3, 'Valid #5', true));
-        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html', requiredParams3, optionalParams1, 'Valid #6', true));
-        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?', requiredParams3, optionalParams3, 'Valid #7', true));
-        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?', requiredParams3, optionalParams1, 'Valid #8', true));
+        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?USER=def&PASS=jfg&PARAM1=ud847', requiredParams1, optionalParams1, valid1, true));
+        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?USER=def&PASS=jfg&PARAM1=ud847&OPTUSER=jhd6532', requiredParams1, optionalParams1, valid2, true));
+        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?USER=def&PASS=jfg&PARAM1=ud847&OPTUSER=jhd6532&OPTPASS=hdf&OPTPARAM1=g7345sfg', requiredParams1, optionalParams1, valid3, true));
+        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?USER=def&OPTUSER=123', requiredParams2, optionalParams1, valid4, true));
+        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html', requiredParams3, optionalParams3, valid5, true));
+        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html', requiredParams3, optionalParams1, valid6, true));
+        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?', requiredParams3, optionalParams3, valid7, true));
+        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?', requiredParams3, optionalParams1, valid8, true));
         httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?OPTUSER=ksjfdhg', requiredParams3, optionalParams2, 'Valid #9', true));
         httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?OPTUSER=ksjfdhg', requiredParams3, optionalParams1, 'Valid #10', true));
         httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?OPTPARAM1=ksjfdhg', requiredParams3, optionalParams1, 'Valid #11', true));
@@ -811,10 +821,10 @@ private class PBS_Validator_Test {
                     pr = new PageReference(t.inputStr);
                 PBS_ESAPI_CC.validator().assertValidHTTPRequestParameterSet(pr, t.requiredParams, t.optionalParams);
                 // if no exception - check if we are expecting a valid test
-                System.assert(t.expectedResult == true, t.errText);
+                System.assertEquals(true,t.expectedResult, t.errText);
             } catch (Exception e) {
                 // if exception - check if we are expecting an invalid test
-                System.assert(t.expectedResult == false, t.errText);
+                System.assertEquals(false,t.expectedResult, t.errText);
             }
         }
     }
@@ -834,14 +844,14 @@ private class PBS_Validator_Test {
     private static final RedirectDefaultDomainTest [] redirectDefaultDomainTests = new RedirectDefaultDomainTest[]{};
 
     static {
-        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('/test.html', 'Valid #1', true));
-        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('/test.html?', 'Valid #2', true));
-        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('/test.html?USER=def', 'Valid #3', true));
-        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('https://na7.salesforce.com/test.html?USER=def&OPTUSER=123', 'Valid #4', true));
-        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('http://na7.salesforce.com/test.html', 'Valid #5', true));
-        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('https://na7.salesforce.com', 'Valid #6', true));
-        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('http://na7.salesforce.com', 'Valid #7', true));
-        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('https://na7.salesforce.com/', 'Valid #8', true));
+        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('/test.html', valid1, true));
+        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('/test.html?', valid2, true));
+        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('/test.html?USER=def', valid3, true));
+        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('https://na7.salesforce.com/test.html?USER=def&OPTUSER=123', valid4, true));
+        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('http://na7.salesforce.com/test.html', valid5, true));
+        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('https://na7.salesforce.com', valid6, true));
+        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('http://na7.salesforce.com', valid7, true));
+        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('https://na7.salesforce.com/', valid8, true));
         redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('http://na7.salesforce.com/', 'Valid #9', true));
         redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('https://na7.salesforce.com/www.google.com', 'Valid #10', true));
         redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('http://na7.salesforce.com/www.google.com', 'Valid #11', true));
@@ -903,12 +913,12 @@ private class PBS_Validator_Test {
             try {
                 String ret = PBS_ESAPI_CC.validator().SFDC_getValidRedirectLocation(t.inputStr);
                 // if no exception - check if we are expecting a valid test
-                System.assert(t.expectedResult == true, t.errText);
+                System.assertEquals(true,t.expectedResult, t.errText);
                 // also make sure return value is equal to input
                 System.assert(ret.equals(t.inputStr), t.errText);
             } catch (Exception e) {
                 // if exception - check if we are expecting an invalid test
-                System.assert(t.expectedResult == false, t.errText);
+                System.assertEquals(false,t.expectedResult, t.errText);
             }
         }
     }
@@ -930,14 +940,14 @@ private class PBS_Validator_Test {
     private static final RedirectTest [] redirectTests = new RedirectTest[]{};
 
     static {
-        redirectTests.add(new RedirectTest('/test.html', 'na7.salesforce.com', 'Valid #1', true));
-        redirectTests.add(new RedirectTest('/test.html?', 'na7.salesforce.com', 'Valid #2', true));
-        redirectTests.add(new RedirectTest('/test.html?USER=def', 'na7.salesforce.com', 'Valid #3', true));
-        redirectTests.add(new RedirectTest('https://na7.salesforce.com/test.html?USER=def&OPTUSER=123', 'na7.salesforce.com', 'Valid #4', true));
-        redirectTests.add(new RedirectTest('http://na7.salesforce.com/test.html', 'na7.salesforce.com', 'Valid #5', true));
-        redirectTests.add(new RedirectTest('https://na7.salesforce.com', 'na7.salesforce.com', 'Valid #6', true));
-        redirectTests.add(new RedirectTest('http://na7.salesforce.com', 'na7.salesforce.com', 'Valid #7', true));
-        redirectTests.add(new RedirectTest('https://na7.salesforce.com/', 'na7.salesforce.com', 'Valid #8', true));
+        redirectTests.add(new RedirectTest('/test.html', 'na7.salesforce.com', valid1, true));
+        redirectTests.add(new RedirectTest('/test.html?', 'na7.salesforce.com', valid2, true));
+        redirectTests.add(new RedirectTest('/test.html?USER=def', 'na7.salesforce.com', valid3, true));
+        redirectTests.add(new RedirectTest('https://na7.salesforce.com/test.html?USER=def&OPTUSER=123', 'na7.salesforce.com', valid4, true));
+        redirectTests.add(new RedirectTest('http://na7.salesforce.com/test.html', 'na7.salesforce.com', valid5, true));
+        redirectTests.add(new RedirectTest('https://na7.salesforce.com', 'na7.salesforce.com', valid6, true));
+        redirectTests.add(new RedirectTest('http://na7.salesforce.com', 'na7.salesforce.com', valid7, true));
+        redirectTests.add(new RedirectTest('https://na7.salesforce.com/', 'na7.salesforce.com', valid8, true));
         redirectTests.add(new RedirectTest('http://na7.salesforce.com/', 'na7.salesforce.com', 'Valid #9', true));
         redirectTests.add(new RedirectTest('https://na7.salesforce.com/www.google.com', 'na7.salesforce.com', 'Valid #10', true));
         redirectTests.add(new RedirectTest('http://na7.salesforce.com/www.google.com', 'na7.salesforce.com', 'Valid #11', true));
@@ -996,12 +1006,12 @@ private class PBS_Validator_Test {
             try {
                 String ret = PBS_ESAPI_CC.validator().SFDC_getValidRedirectLocation(t.inputStr, t.currentDomain);
                 // if no exception - check if we are expecting a valid test
-                System.assert(t.expectedResult == true, t.errText);
+                System.assertEquals(true,t.expectedResult, t.errText);
                 // also make sure return value is equal to input
                 System.assert(ret.equals(t.inputStr), t.errText);
             } catch (Exception e) {
                 // if exception - check if we are expecting an invalid test
-                System.assert(t.expectedResult == false, t.errText);
+                System.assertEquals(false,t.expectedResult, t.errText);
             }
         }
     }

@@ -249,7 +249,7 @@ public with sharing class PBS_TaskViewerController_CC extends PBS_LMSBaseControl
     }
 
     private PageReference finalRedirection(){
-        PageReference ref = Page.PBS_MyTraining_Test;
+        PageReference ref = Page.PBS_MyTraining;
         if(isPreviewMode){
             ref = new PageReference('/'+assignment.Learning__c);
         }else{

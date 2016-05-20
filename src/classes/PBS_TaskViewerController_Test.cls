@@ -28,24 +28,30 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 @isTest
 private class PBS_TaskViewerController_Test{
+  //String constants to avoid code containing duplicate String literals
+   public Static final string systemAdministrator = 'System Administrator';
+   public Static final string standardUser = 'Standard User';
+   public Static final string LMSAdmin = 'LMS_Admin';
+   public Static final string LMSUser = 'LMS_User';
+   public Static final string aid = 'aid';
    
     static testMethod void testSimpleTask(){
 
         //Create admin users
-        List<User> adminUsers = PBS_UtilClass_Test.createUsers(1,'System Administrator');
-        List<User> lmsUsers = PBS_UtilClass_Test.createUsers(1,'Standard User');
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(1,systemAdministrator);
+        List<User> lmsUsers = PBS_UtilClass_Test.createUsers(1,standardUser);
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
-            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,LMSAdmin);
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,LMSUser);
         }
 
         Id learningAssignmentId = createTaskViewerData(adminUsers,lmsUsers,false);
 
             //Test Insert
             PageReference pageRef = Page.PBS_TaskViewer;
-            pageRef.getParameters().put('aid',learningAssignmentId);
+            pageRef.getParameters().put(aid,learningAssignmentId);
             Test.setCurrentPage(pageRef);
             Test.startTest();
                 System.runAs(lmsUsers.get(0)){
@@ -71,20 +77,20 @@ private class PBS_TaskViewerController_Test{
     static testMethod void testTaskWithApprovers(){
 
         //Create admin users
-        List<User> adminUsers = PBS_UtilClass_Test.createUsers(1,'System Administrator');
-        List<User> lmsUsers = PBS_UtilClass_Test.createUsers(1,'Standard User');
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(1,systemAdministrator);
+        List<User> lmsUsers = PBS_UtilClass_Test.createUsers(1,standardUser);
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
-            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,LMSAdmin);
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,LMSUser);
         }
 
         Id learningAssignmentId = createTaskViewerData(adminUsers,lmsUsers,true);
 
             //Test Insert
             PageReference pageRef = Page.PBS_TaskViewer;
-            pageRef.getParameters().put('aid',learningAssignmentId);
+            pageRef.getParameters().put(aid,learningAssignmentId);
             Test.setCurrentPage(pageRef);
             Test.startTest();
             System.runAs(lmsUsers.get(0)){
@@ -106,20 +112,20 @@ private class PBS_TaskViewerController_Test{
     static testMethod void testTaskWithAttachment(){
 
         //Create admin users
-        List<User> adminUsers = PBS_UtilClass_Test.createUsers(1,'System Administrator');
-        List<User> lmsUsers = PBS_UtilClass_Test.createUsers(1,'Standard User');
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(1,systemAdministrator);
+        List<User> lmsUsers = PBS_UtilClass_Test.createUsers(1,standardUser);
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
-            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,LMSAdmin);
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,LMSUser);
         }
 
         Id learningAssignmentId = createTaskViewerData(adminUsers,lmsUsers,false);
 
             //Test Insert
             PageReference pageRef = Page.PBS_TaskViewer;
-            pageRef.getParameters().put('aid',learningAssignmentId);
+            pageRef.getParameters().put(aid,learningAssignmentId);
             Test.setCurrentPage(pageRef);
             Test.startTest();
             System.runAs(lmsUsers.get(0)){
@@ -141,13 +147,13 @@ private class PBS_TaskViewerController_Test{
     static testMethod void testLoadingCompletedTask(){
 
         //Create admin users
-        List<User> adminUsers = PBS_UtilClass_Test.createUsers(1,'System Administrator');
-        List<User> lmsUsers = PBS_UtilClass_Test.createUsers(1,'Standard User');
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(1,systemAdministrator);
+        List<User> lmsUsers = PBS_UtilClass_Test.createUsers(1,standardUser);
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
-            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,LMSAdmin);
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,LMSUser);
         }
 
         Id learningAssignmentId = createTaskViewerData(adminUsers,lmsUsers,false);
@@ -156,12 +162,12 @@ private class PBS_TaskViewerController_Test{
         update theAssignment.get(0);
 
             PageReference pageRef = Page.PBS_TaskViewer;
-            pageRef.getParameters().put('aid',learningAssignmentId);
+            pageRef.getParameters().put(aid,learningAssignmentId);
             Test.setCurrentPage(pageRef);
             Test.startTest();
             System.runAs(lmsUsers.get(0)){
                 PBS_TaskViewerController_CC cont = new PBS_TaskViewerController_CC();
-                System.assert(cont.taskCompleted == true);
+                System.assertEquals(true,cont.taskCompleted);
             }
 
         Test.stopTest();
@@ -170,13 +176,13 @@ private class PBS_TaskViewerController_Test{
     static testMethod void testLoadingInReviewTask(){
 
         //Create admin users
-        List<User> adminUsers = PBS_UtilClass_Test.createUsers(1,'System Administrator');
-        List<User> lmsUsers = PBS_UtilClass_Test.createUsers(1,'Standard User');
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(1,systemAdministrator);
+        List<User> lmsUsers = PBS_UtilClass_Test.createUsers(1,standardUser);
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
-            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,LMSAdmin);
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,LMSUser);
         }
 
         Id learningAssignmentId = createTaskViewerData(adminUsers,lmsUsers,false);
@@ -185,13 +191,13 @@ private class PBS_TaskViewerController_Test{
         update theAssignment.get(0);
 
             PageReference pageRef = Page.PBS_TaskViewer;
-            pageRef.getParameters().put('aid',learningAssignmentId);
+            pageRef.getParameters().put(aid,learningAssignmentId);
             Test.setCurrentPage(pageRef);
             Test.startTest();
             System.runAs(lmsUsers.get(0)){
                 PBS_TaskViewerController_CC cont = new PBS_TaskViewerController_CC();
-                System.assert(cont.taskCompleted == true);
-                System.assert(cont.taskInReview == true);
+                System.assertEquals(true,cont.taskCompleted);
+                System.assertEquals(true,cont.taskInReview);
             }
 
         Test.stopTest();
@@ -201,20 +207,20 @@ private class PBS_TaskViewerController_Test{
     static testMethod void testUndoTask(){
 
         //Create admin users
-        List<User> adminUsers = PBS_UtilClass_Test.createUsers(1,'System Administrator');
-        List<User> lmsUsers = PBS_UtilClass_Test.createUsers(1,'Standard User');
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(1,systemAdministrator);
+        List<User> lmsUsers = PBS_UtilClass_Test.createUsers(1,standardUser);
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
-            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,LMSAdmin);
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,LMSUser);
         }
 
         Id learningAssignmentId = createTaskViewerData(adminUsers,lmsUsers,false);
 
         //Test Insert
         PageReference pageRef = Page.PBS_TaskViewer;
-        pageRef.getParameters().put('aid',learningAssignmentId);
+        pageRef.getParameters().put(aid,learningAssignmentId);
         Test.setCurrentPage(pageRef);
         Test.startTest();
         System.runAs(lmsUsers.get(0)){
@@ -248,9 +254,9 @@ private class PBS_TaskViewerController_Test{
         List<PBS_Task__c> ttasks = PBS_LearningData_Test.createTestTask(taskLearnings);
 
         if(hasApprovers){
-            List<User> approvers = PBS_UtilClass_Test.createUsers(1,'Standard User');
+            List<User> approvers = PBS_UtilClass_Test.createUsers(1,standardUser);
             System.runAs(adminUsers.get(0)){
-                PBS_UtilClass_Test.addPermissionSet(approvers,'LMS_User');
+                PBS_UtilClass_Test.addPermissionSet(approvers,LMSUser);
             }
 
             //Enable manager approval in the task
@@ -276,7 +282,7 @@ private class PBS_TaskViewerController_Test{
         //Create training plan section items for quizzes
         List<PBS_Training_Plan_Section_Item__c> tplan1SectionItems1 = PBS_TrainingPlanData_Test.createTrainingPlanSectionItems(tplanSections1.get(0).Id,taskLearnings);
 
-        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c];
+        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c limit :integer.valueof(System.Label.PBS_soqllimit)];
         System.assertEquals(1,tplan.size());
         Id tplanId = tplan.get(0).Id;
 

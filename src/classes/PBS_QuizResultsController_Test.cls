@@ -28,12 +28,13 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 @isTest
 private class PBS_QuizResultsController_Test{
-
+public static final string aid = 'aid';
     static testMethod void testPassingResults(){
 
         //Create admin users
         List<User> adminUsers = PBS_UtilClass_Test.createUsers(1,'System Administrator');
         List<User> lmsUsers = PBS_UtilClass_Test.createUsers(1,'Standard User');
+        
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
@@ -63,7 +64,7 @@ private class PBS_QuizResultsController_Test{
                 PageReference pageRef = Page.PBS_QuizViewer;
                 Test.setCurrentPage(pageRef);
                 pageRef.getHeaders().put('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:25.0) Gecko/20100101 Firefox/25.0');
-                pageRef.getParameters().put('aid', learningAssignmentId);
+                pageRef.getParameters().put(aid , learningAssignmentId);
                 PBS_QuizViewerController_CC controller = new PBS_QuizViewerController_CC();
                 controller.initializeQuestions();
 
@@ -99,7 +100,7 @@ private class PBS_QuizResultsController_Test{
         System.runAs(lmsUsers.get(0)){
             //Switch to quiz results page
             PageReference pageRef = Page.PBS_QuizResults;
-            pageRef.getParameters().put('aid',learningAssignmentId);
+            pageRef.getParameters().put(aid ,learningAssignmentId);
             Test.setCurrentPage(pageRef);
             PBS_QuizResultsController_CC cont = new PBS_QuizResultsController_CC();
             System.assertEquals(PBS_LMSConstants_CC.ASSIGNMENT_EVAL_PASSED,cont.evalResult);
@@ -171,7 +172,7 @@ private class PBS_QuizResultsController_Test{
             System.runAs(lmsUsers.get(0)){
                 PageReference pageRef = Page.PBS_QuizViewer;
                 Test.setCurrentPage(pageRef);
-                pageRef.getParameters().put('aid', learningAssignmentId);
+                pageRef.getParameters().put(aid , learningAssignmentId);
                 PBS_QuizViewerController_CC controller = new PBS_QuizViewerController_CC();
                 controller.initializeQuestions();
                 //first section
@@ -186,7 +187,7 @@ private class PBS_QuizResultsController_Test{
         System.runAs(lmsUsers.get(0)){
             //Switch to quiz results page
             PageReference pageRef = Page.PBS_QuizResults;
-            pageRef.getParameters().put('aid',learningAssignmentId);
+            pageRef.getParameters().put(aid ,learningAssignmentId);
             Test.setCurrentPage(pageRef);
             PBS_QuizResultsController_CC cont = new PBS_QuizResultsController_CC();
             System.assertEquals(PBS_LMSConstants_CC.ASSIGNMENT_EVAL_FAILED,cont.evalResult);
@@ -256,7 +257,7 @@ private class PBS_QuizResultsController_Test{
             System.runAs(lmsUsers.get(0)){
                 PageReference pageRef = Page.PBS_QuizViewer;
                 Test.setCurrentPage(pageRef);
-                pageRef.getParameters().put('aid', learningAssignmentId);
+                pageRef.getParameters().put(aid , learningAssignmentId);
                 PBS_QuizViewerController_CC controller = new PBS_QuizViewerController_CC();
                 controller.initializeQuestions();
 
@@ -273,7 +274,7 @@ private class PBS_QuizResultsController_Test{
         System.runAs(lmsUsers.get(0)){
             //Switch to quiz results page
             PageReference pageRef = Page.PBS_QuizResults;
-            pageRef.getParameters().put('aid',learningAssignmentId);
+            pageRef.getParameters().put(aid ,learningAssignmentId);
             Test.setCurrentPage(pageRef);
             PBS_QuizResultsController_CC cont = new PBS_QuizResultsController_CC();
             System.assertEquals(PBS_LMSConstants_CC.ASSIGNMENT_EVAL_PASSED,cont.evalResult);
@@ -322,7 +323,7 @@ private class PBS_QuizResultsController_Test{
                 PageReference pageRef = Page.PBS_QuizViewer;
                 Test.setCurrentPage(pageRef);
                 pageRef.getHeaders().put('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:25.0) Gecko/20100101 Firefox/25.0');
-                pageRef.getParameters().put('aid', learningAssignmentId);
+                pageRef.getParameters().put(aid , learningAssignmentId);
                 PBS_QuizViewerController_CC controller = new PBS_QuizViewerController_CC();
                 controller.initializeQuestions();
 
@@ -358,7 +359,7 @@ private class PBS_QuizResultsController_Test{
         System.runAs(lmsUsers.get(0)){
             //Switch to quiz results page
             PageReference pageRef = Page.PBS_QuizResults;
-            pageRef.getParameters().put('aid',learningAssignmentId);
+            pageRef.getParameters().put(aid ,learningAssignmentId);
             Test.setCurrentPage(pageRef);
             PBS_QuizResultsController_CC cont = new PBS_QuizResultsController_CC();
             System.assertEquals(PBS_LMSConstants_CC.ASSIGNMENT_EVAL_PASSED,cont.evalResult);
@@ -408,7 +409,7 @@ private class PBS_QuizResultsController_Test{
         //Create training plan section items for quizzes
         List<PBS_Training_Plan_Section_Item__c> tplan1SectionItems1 = PBS_TrainingPlanData_Test.createTrainingPlanSectionItems(tplanSections1.get(0).Id,quizLearnings);
 
-        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c];
+        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c limit:integer.valueof(System.Label.PBS_soqllimit)];
         System.assertEquals(1,tplan.size());
         Id tplanId = tplan.get(0).Id;
 

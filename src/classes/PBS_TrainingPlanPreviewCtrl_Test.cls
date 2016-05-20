@@ -45,7 +45,7 @@ private class PBS_TrainingPlanPreviewCtrl_Test extends PBS_LMSBaseController_CC{
         List<PBS_Training_Plan__c> tplans = [select id
                                             ,Enable_Self_Registration__c
                                             ,Self_Registration_Access__c
-                                            from PBS_Training_Plan__c];
+                                            from PBS_Training_Plan__c limit :integer.valueof(System.Label.PBS_soqllimit)];
 
         System.assertEquals(1,tplans.size());
         PBS_Training_Plan__c tplan = tplans.get(0);
@@ -85,7 +85,7 @@ private class PBS_TrainingPlanPreviewCtrl_Test extends PBS_LMSBaseController_CC{
         List<PBS_Training_Plan__c> tplans = [select id
                                             ,Enable_Self_Registration__c
                                             ,Self_Registration_Access__c
-                                            from PBS_Training_Plan__c];
+                                            from PBS_Training_Plan__c limit :integer.valueof(System.Label.PBS_soqllimit)];
 
         System.assertEquals(1,tplans.size());
         PBS_Training_Plan__c tplan = tplans.get(0);
@@ -128,7 +128,7 @@ private class PBS_TrainingPlanPreviewCtrl_Test extends PBS_LMSBaseController_CC{
         List<PBS_Training_Plan__c> tplans = [select id
                                             ,Enable_Self_Registration__c
                                             ,Self_Registration_Access__c
-                                            from PBS_Training_Plan__c];
+                                            from PBS_Training_Plan__c limit :integer.valueof(System.Label.PBS_soqllimit)];
 
         System.assertEquals(1,tplans.size());
         PBS_Training_Plan__c tplan = tplans.get(0);
@@ -166,5 +166,42 @@ private class PBS_TrainingPlanPreviewCtrl_Test extends PBS_LMSBaseController_CC{
 
     private static Integer getTrainingPlanAccessRequestCount(Id tplanId){
         return [select count() from PBS_Training_Plan_Access_Request__c where Training_Plan__c = :tplanId];
+    }
+    
+    //checking for fail condition
+    static testMethod void testPreviewRedirectionFail(){
+
+        //Create admin users
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,'System Administrator');
+        List<User> lmsUsers = PBS_UtilClass_Test.createUsers(2,'Standard User');
+
+        System.runAs(adminUsers.get(0)){
+            //Assign corresponding perm sets
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
+        }
+
+        PBS_TrainingPlanData_Test.createSampleData();
+        List<PBS_Training_Plan__c> tplans = [select id
+                                            ,Enable_Self_Registration__c
+                                            ,Self_Registration_Access__c
+                                            from PBS_Training_Plan__c where Id=:'1'];
+        
+        System.assertEquals(0,tplans.size());
+        PBS_Training_Plan__c tplan = new PBS_Training_Plan__c();
+        for(PBS_Training_Plan__c t : tplans){
+        tplan = t;
+        }
+        
+        
+        Test.startTest();
+            System.runAs(lmsUsers.get(0)){
+                PBS_TrainingPlanPreviewController_CC cont = new PBS_TrainingPlanPreviewController_CC();
+                System.assert(cont.tPlan == null);
+                System.assert(cont.checkAssignment()==null);
+                System.assertEquals(true,cont.hasMessages);
+            }
+        Test.stopTest();
+
     }
 }

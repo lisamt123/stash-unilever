@@ -29,16 +29,27 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 @isTest
 public class PBS_QuestionNewController_Test {
 
+        public static final string SYSTEM_ADMINISTRATOR = 'system administrator';
+        public static final string LMS_ADMIN= 'lms_admin';
+        public static final string QUIZ1= 'quiz';
+        public static final string RETURL= 'returl';
+        public static final string EXTENSION_QUETION_IS_NOT_INITIALIZED = 'extension.question is not initialized';
+        public static final string THIS_IS_A_TEST_OF_BOOLEAN= 'this is a test of boolean?';
+        public static final string PB_BOOLEAN= 'boolean';
+        public static final string ISSUE_WITH_QUESTION_SIZE = 'issues with question, size = ';
+        public static final string SELECTMULTIPLEQUESTION= 'selectmultiplequestion';
+        
+        
     static testmethod void testCreateBooleanQuestion(){
         //Create admin users
-        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,'System Administrator');
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,SYSTEM_ADMINISTRATOR );
         //Assign corresponding perm sets
-        PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
+        PBS_UtilClass_Test.addPermissionSet(adminUsers,LMS_ADMIN);
 
         System.runAs(adminUsers.get(0)){
 
             //Create quiz learnings
-            List<PBS_Learning__c> quizLearnings = PBS_LearningData_Test.createTestLearning(1, 'Quiz', true);
+            List<PBS_Learning__c> quizLearnings = PBS_LearningData_Test.createTestLearning(1, QUIZ1, true);
             //create quiz
             List<PBS_Quiz__c> quiz = PBS_LearningData_Test.createTestQuiz(quizLearnings);
             //create question line
@@ -47,22 +58,22 @@ public class PBS_QuestionNewController_Test {
             //go to QuestionNew page
             PageReference pageRef = Page.PBS_QuestionNew;
             Test.setCurrentPage(pageRef);
-            pageRef.getParameters().put('retURL', '/'+qline.get(0).Id);
+            pageRef.getParameters().put(RETURL, '/'+qline.get(0).Id);
             ApexPages.Standardcontroller stdcontroller = new ApexPages.StandardController(new PBS_Question__c());
             PBS_QuestionNewController_CC extension = new PBS_QuestionNewController_CC(stdcontroller);
-            System.assert(extension.question != null, 'extension.question is not initialized');
-            extension.question.Description__c = 'This is a test of boolean?';
-            extension.question.Type__c = 'Boolean';
+            System.assert(extension.question != null, EXTENSION_QUETION_IS_NOT_INITIALIZED);
+            extension.question.Description__c = THIS_IS_A_TEST_OF_BOOLEAN;
+            extension.question.Type__c = PB_BOOLEAN;
             extension.question.Order__c = 1;
-            extension.questiontype = 'Boolean';
+            extension.questiontype = PB_BOOLEAN;
             extension.answerseqenabler();
             extension.question.Correct_Boolean__c = 'true';
             extension.c_save();
 
             List<PBS_Question__c> lquestions = [select Id, Description__c, Type__c, Order__c, Correct_Boolean__c  from PBS_Question__c where Question_Line__c =: qline.get(0).Id];
-            System.assert(lquestions.size() == 1, 'issues with question, size = ' + lquestions.size());
-            System.assert(lquestions.get(0).Description__c == 'This is a test of boolean?');
-            System.assert(lquestions.get(0).Type__c == 'Boolean');
+            System.assert(lquestions.size() == 1, ISSUE_WITH_QUESTION_SIZE + lquestions.size());
+            System.assert(lquestions.get(0).Description__c == THIS_IS_A_TEST_OF_BOOLEAN);
+            System.assert(lquestions.get(0).Type__c == PB_BOOLEAN);
             System.assert(lquestions.get(0).Order__c == 1);
             System.assert(lquestions.get(0).Correct_Boolean__c == 'true');
         }
@@ -70,15 +81,15 @@ public class PBS_QuestionNewController_Test {
 
     static testmethod void testCreateNumberQuestion(){
         //Create admin users
-        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,'System Administrator');
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,SYSTEM_ADMINISTRATOR );
 
         //Assign corresponding perm sets
-        PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
+        PBS_UtilClass_Test.addPermissionSet(adminUsers,LMS_ADMIN);
 
         System.runAs(adminUsers.get(0)){
 
             //Create quiz learnings
-            List<PBS_Learning__c> quizLearnings = PBS_LearningData_Test.createTestLearning(1, 'Quiz', true);
+            List<PBS_Learning__c> quizLearnings = PBS_LearningData_Test.createTestLearning(1, QUIZ1, true);
             //create quiz
             List<PBS_Quiz__c> quiz = PBS_LearningData_Test.createTestQuiz(quizLearnings);
             //create question line
@@ -87,10 +98,10 @@ public class PBS_QuestionNewController_Test {
             //go to QuestionNew page
             PageReference pageRef = Page.PBS_QuestionNew;
             Test.setCurrentPage(pageRef);
-            pageRef.getParameters().put('retURL', '/'+qline.get(0).Id);
+            pageRef.getParameters().put(RETURL, '/'+qline.get(0).Id);
             ApexPages.Standardcontroller stdcontroller = new ApexPages.StandardController(new PBS_Question__c());
             PBS_QuestionNewController_CC extension = new PBS_QuestionNewController_CC(stdcontroller);
-            System.assert(extension.question != null, 'extension.question is not initialized');
+            System.assert(extension.question != null, EXTENSION_QUETION_IS_NOT_INITIALIZED);
             extension.question.Description__c = 'What is the age of the kid?';
             extension.question.Type__c = 'Number';
             extension.question.Order__c = 1;
@@ -100,7 +111,7 @@ public class PBS_QuestionNewController_Test {
             extension.c_save();
 
             List<PBS_Question__c> lquestions = [select Id, Description__c, Type__c, Order__c, Correct_Number__c  from PBS_Question__c where Question_Line__c =: qline.get(0).Id];
-            System.assert(lquestions.size() == 1, 'issues with question, size = ' + lquestions.size());
+            System.assert(lquestions.size() == 1, ISSUE_WITH_QUESTION_SIZE + lquestions.size());
             System.assert(lquestions.get(0).Description__c == 'What is the age of the kid?');
             System.assert(lquestions.get(0).Type__c == 'Number');
             System.assert(lquestions.get(0).Order__c == 1);
@@ -110,14 +121,14 @@ public class PBS_QuestionNewController_Test {
 
     static testmethod void testCreateTextQuestion(){
         //Create admin users
-        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,'System Administrator');
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,SYSTEM_ADMINISTRATOR );
         //Assign corresponding perm sets
-        PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
+        PBS_UtilClass_Test.addPermissionSet(adminUsers,LMS_ADMIN);
 
         System.runAs(adminUsers.get(0)){
 
             //Create quiz learnings
-            List<PBS_Learning__c> quizLearnings = PBS_LearningData_Test.createTestLearning(1, 'Quiz', true);
+            List<PBS_Learning__c> quizLearnings = PBS_LearningData_Test.createTestLearning(1, QUIZ1, true);
             //create quiz
             List<PBS_Quiz__c> quiz = PBS_LearningData_Test.createTestQuiz(quizLearnings);
             //create question line
@@ -126,10 +137,10 @@ public class PBS_QuestionNewController_Test {
             //go to QuestionNew page
             PageReference pageRef = Page.PBS_QuestionNew;
             Test.setCurrentPage(pageRef);
-            pageRef.getParameters().put('retURL', '/'+qline.get(0).Id);
+            pageRef.getParameters().put(RETURL, '/'+qline.get(0).Id);
             ApexPages.Standardcontroller stdcontroller = new ApexPages.StandardController(new PBS_Question__c());
             PBS_QuestionNewController_CC extension = new PBS_QuestionNewController_CC(stdcontroller);
-            System.assert(extension.question != null, 'extension.question is not initialized');
+            System.assert(extension.question != null, EXTENSION_QUETION_IS_NOT_INITIALIZED);
             extension.question.Description__c = 'What is love?';
             extension.question.Type__c = 'Text';
             extension.question.Order__c = 1;
@@ -138,7 +149,7 @@ public class PBS_QuestionNewController_Test {
             extension.c_save();
 
             List<PBS_Question__c> lquestions = [select Id, Description__c, Type__c, Order__c from PBS_Question__c where Question_Line__c =: qline.get(0).Id];
-            System.assert(lquestions.size() == 1, 'issues with question, size = ' + lquestions.size());
+            System.assert(lquestions.size() == 1, ISSUE_WITH_QUESTION_SIZE + lquestions.size());
             System.assert(lquestions.get(0).Description__c == 'What is love?');
             System.assert(lquestions.get(0).Type__c == 'Text');
             System.assert(lquestions.get(0).Order__c == 1);
@@ -147,14 +158,14 @@ public class PBS_QuestionNewController_Test {
 
     static testmethod void testCreateSelectOneQuestion(){
         //Create admin users
-        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,'System Administrator');
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,SYSTEM_ADMINISTRATOR );
         //Assign corresponding perm sets
-        PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
+        PBS_UtilClass_Test.addPermissionSet(adminUsers,LMS_ADMIN);
 
         System.runAs(adminUsers.get(0)){
 
             //Create quiz learnings
-            List<PBS_Learning__c> quizLearnings = PBS_LearningData_Test.createTestLearning(1, 'Quiz', true);
+            List<PBS_Learning__c> quizLearnings = PBS_LearningData_Test.createTestLearning(1, QUIZ1, true);
             //create quiz
             List<PBS_Quiz__c> quiz = PBS_LearningData_Test.createTestQuiz(quizLearnings);
             //create question line
@@ -163,10 +174,10 @@ public class PBS_QuestionNewController_Test {
             //go to QuestionNew page
             PageReference pageRef = Page.PBS_QuestionNew;
             Test.setCurrentPage(pageRef);
-            pageRef.getParameters().put('retURL', '/'+qline.get(0).Id);
+            pageRef.getParameters().put(RETURL, '/'+qline.get(0).Id);
             ApexPages.Standardcontroller stdcontroller = new ApexPages.StandardController(new PBS_Question__c());
             PBS_QuestionNewController_CC extension = new PBS_QuestionNewController_CC(stdcontroller);
-            System.assert(extension.question != null, 'extension.question is not initialized');
+            System.assert(extension.question != null, EXTENSION_QUETION_IS_NOT_INITIALIZED);
             extension.question.Description__c = 'What is the best Blur song?';
             extension.question.Type__c = 'SelectOneQuestion';
             extension.question.Order__c = 1;
@@ -186,7 +197,7 @@ public class PBS_QuestionNewController_Test {
 
             extension.c_save();
 
-            List<PBS_Answer_Sequence__c> lansseq = [select id from PBS_Answer_Sequence__c];
+            List<PBS_Answer_Sequence__c> lansseq = [select id from PBS_Answer_Sequence__c limit:integer.valueof(System.Label.PBS_soqllimit)];
             System.assert(lansseq.size() == 1, 'Answer Sequence is wrong, size = ' + lansseq.size());
 
             List<PBS_Answer_Sequence_Item__c> lasitem = [select id from PBS_Answer_Sequence_Item__c where Answer_Sequence__c = :lansseq.get(0).Id];
@@ -198,7 +209,7 @@ public class PBS_QuestionNewController_Test {
                                                 Order__c from PBS_Question__c
                                                 where Question_Line__c =: qline.get(0).Id and Answer_Sequence__c =: lansseq.get(0).Id];
 
-            System.assert(lquestions.size() == 1, 'issues with question, size = ' + lquestions.size());
+            System.assert(lquestions.size() == 1, ISSUE_WITH_QUESTION_SIZE + lquestions.size());
             System.assert(lquestions.get(0).Description__c == 'What is the best Blur song?');
             System.assert(lquestions.get(0).Type__c == 'SelectOneQuestion');
             System.assert(lquestions.get(0).Order__c == 1);
@@ -207,14 +218,14 @@ public class PBS_QuestionNewController_Test {
 
     static testmethod void testCreateSelectMultipleQuestion(){
         //Create admin users
-        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,'System Administrator');
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,SYSTEM_ADMINISTRATOR );
         //Assign corresponding perm sets
-        PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
+        PBS_UtilClass_Test.addPermissionSet(adminUsers,LMS_ADMIN);
 
         System.runAs(adminUsers.get(0)){
 
             //Create quiz learnings
-            List<PBS_Learning__c> quizLearnings = PBS_LearningData_Test.createTestLearning(1, 'Quiz', true);
+            List<PBS_Learning__c> quizLearnings = PBS_LearningData_Test.createTestLearning(1, QUIZ1, true);
             //create quiz
             List<PBS_Quiz__c> quiz = PBS_LearningData_Test.createTestQuiz(quizLearnings);
             //create question line
@@ -223,14 +234,14 @@ public class PBS_QuestionNewController_Test {
             //go to QuestionNew page
             PageReference pageRef = Page.PBS_QuestionNew;
             Test.setCurrentPage(pageRef);
-            pageRef.getParameters().put('retURL', '/'+qline.get(0).Id);
+            pageRef.getParameters().put(RETURL, '/'+qline.get(0).Id);
             ApexPages.Standardcontroller stdcontroller = new ApexPages.StandardController(new PBS_Question__c());
             PBS_QuestionNewController_CC extension = new PBS_QuestionNewController_CC(stdcontroller);
-            System.assert(extension.question != null, 'extension.question is not initialized');
+            System.assert(extension.question != null, EXTENSION_QUETION_IS_NOT_INITIALIZED);
             extension.question.Description__c = 'What Blur songs are part of The Great Escape?';
-            extension.question.Type__c = 'SelectMultipleQuestion';
+            extension.question.Type__c = SELECTMULTIPLEQUESTION;
             extension.question.Order__c = 1;
-            extension.questiontype = 'SelectMultipleQuestion';
+            extension.questiontype = SELECTMULTIPLEQUESTION;
             extension.answerseqenabler();
 
             extension.lanswerseqitems.get(0).Item_Id__c = '#ans1';
@@ -252,7 +263,7 @@ public class PBS_QuestionNewController_Test {
 
             extension.c_save();
 
-            List<PBS_Answer_Sequence__c> lansseq = [select id from PBS_Answer_Sequence__c];
+            List<PBS_Answer_Sequence__c> lansseq = [select id from PBS_Answer_Sequence__c limit:integer.valueof(System.Label.PBS_soqllimit)];
             System.assert(lansseq.size() == 1, 'Answer Sequence is wrong, size = ' + lansseq.size());
 
             List<PBS_Answer_Sequence_Item__c> lasitem = [select id from PBS_Answer_Sequence_Item__c where Answer_Sequence__c = :lansseq.get(0).Id];
@@ -264,23 +275,23 @@ public class PBS_QuestionNewController_Test {
                                                 Order__c from PBS_Question__c
                                                 where Question_Line__c =: qline.get(0).Id and Answer_Sequence__c =: lansseq.get(0).Id];
 
-            System.assert(lquestions.size() == 1, 'issues with question, size = ' + lquestions.size());
+            System.assert(lquestions.size() == 1, ISSUE_WITH_QUESTION_SIZE + lquestions.size());
             System.assert(lquestions.get(0).Description__c == 'What Blur songs are part of The Great Escape?');
-            System.assert(lquestions.get(0).Type__c == 'SelectMultipleQuestion');
+            System.assert(lquestions.get(0).Type__c == SELECTMULTIPLEQUESTION);
             System.assert(lquestions.get(0).Order__c == 1);
         }
     }
 
     static testmethod void testCancelCreateQuestion(){
         //Create admin users
-        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,'System Administrator');
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,SYSTEM_ADMINISTRATOR );
         //Assign corresponding perm sets
-        PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
+        PBS_UtilClass_Test.addPermissionSet(adminUsers,LMS_ADMIN);
 
         System.runAs(adminUsers.get(0)){
 
             //Create quiz learnings
-            List<PBS_Learning__c> quizLearnings = PBS_LearningData_Test.createTestLearning(1, 'Quiz', true);
+            List<PBS_Learning__c> quizLearnings = PBS_LearningData_Test.createTestLearning(1, QUIZ1, true);
             //create quiz
             List<PBS_Quiz__c> quiz = PBS_LearningData_Test.createTestQuiz(quizLearnings);
             //create question line
@@ -289,33 +300,33 @@ public class PBS_QuestionNewController_Test {
             //go to QuestionNew page
             PageReference pageRef = Page.PBS_QuestionNew;
             Test.setCurrentPage(pageRef);
-            pageRef.getParameters().put('retURL', '/'+qline.get(0).Id);
+            pageRef.getParameters().put(RETURL, '/'+qline.get(0).Id);
             ApexPages.Standardcontroller stdcontroller = new ApexPages.StandardController(new PBS_Question__c());
             PBS_QuestionNewController_CC extension = new PBS_QuestionNewController_CC(stdcontroller);
-            System.assert(extension.question != null, 'extension.question is not initialized');
-            extension.question.Description__c = 'This is a test of boolean?';
-            extension.question.Type__c = 'Boolean';
+            System.assert(extension.question != null, EXTENSION_QUETION_IS_NOT_INITIALIZED);
+            extension.question.Description__c = THIS_IS_A_TEST_OF_BOOLEAN;
+            extension.question.Type__c = PB_BOOLEAN;
             extension.question.Order__c = 1;
-            extension.questiontype = 'Boolean';
+            extension.questiontype = PB_BOOLEAN;
             extension.answerseqenabler();
             extension.question.Correct_Boolean__c = 'true';
             extension.cancel();
 
             List<PBS_Question__c> lquestions = [select Id, Description__c, Type__c, Order__c, Correct_Boolean__c  from PBS_Question__c where Question_Line__c =: qline.get(0).Id];
-            System.assert(lquestions.size() == 0, 'issues with question, size = ' + lquestions.size());
+            System.assert(lquestions.size() == 0, ISSUE_WITH_QUESTION_SIZE + lquestions.size());
         }
     }
 
     static testmethod void testCreateBooleanQuestionAndEdit(){
         //Create admin users
-        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,'System Administrator');
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,SYSTEM_ADMINISTRATOR );
         //Assign corresponding perm sets
-        PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
+        PBS_UtilClass_Test.addPermissionSet(adminUsers,LMS_ADMIN);
 
         System.runAs(adminUsers.get(0)){
 
             //Create quiz learnings
-            List<PBS_Learning__c> quizLearnings = PBS_LearningData_Test.createTestLearning(1, 'Quiz', true);
+            List<PBS_Learning__c> quizLearnings = PBS_LearningData_Test.createTestLearning(1, QUIZ1, true);
             //create quiz
             List<PBS_Quiz__c> quiz = PBS_LearningData_Test.createTestQuiz(quizLearnings);
             //create question line
@@ -324,14 +335,14 @@ public class PBS_QuestionNewController_Test {
             //go to QuestionNew page
             PageReference pageRef = Page.PBS_QuestionNew;
             Test.setCurrentPage(pageRef);
-            pageRef.getParameters().put('retURL', '/'+qline.get(0).Id);
+            pageRef.getParameters().put(RETURL, '/'+qline.get(0).Id);
             ApexPages.Standardcontroller stdcontroller = new ApexPages.StandardController(new PBS_Question__c());
             PBS_QuestionNewController_CC extension = new PBS_QuestionNewController_CC(stdcontroller);
-            System.assert(extension.question != null, 'extension.question is not initialized');
-            extension.question.Description__c = 'This is a test of boolean?';
-            extension.question.Type__c = 'Boolean';
+            System.assert(extension.question != null, EXTENSION_QUETION_IS_NOT_INITIALIZED);
+            extension.question.Description__c = THIS_IS_A_TEST_OF_BOOLEAN;
+            extension.question.Type__c = PB_BOOLEAN;
             extension.question.Order__c = 1;
-            extension.questiontype = 'Boolean';
+            extension.questiontype = PB_BOOLEAN;
             extension.answerseqenabler();
             extension.question.Correct_Boolean__c = 'true';
             extension.c_save();
@@ -341,12 +352,12 @@ public class PBS_QuestionNewController_Test {
 
             PageReference pageRef2 = Page.PBS_QuestionNew;
             Test.setCurrentPage(pageRef2);
-            pageRef2.getParameters().put('retURL', '/'+qline.get(0).Id);
+            pageRef2.getParameters().put(RETURL, '/'+qline.get(0).Id);
             ApexPages.Standardcontroller stdcontroller2 = new ApexPages.StandardController(lquestions.get(0));
             PBS_QuestionNewController_CC extension2 = new PBS_QuestionNewController_CC(stdcontroller2);
 
-            System.assert(extension2.question.Description__c == 'This is a test of boolean?');
-            System.assert(extension2.question.Type__c == 'Boolean');
+            System.assert(extension2.question.Description__c == THIS_IS_A_TEST_OF_BOOLEAN);
+            System.assert(extension2.question.Type__c == PB_BOOLEAN);
             System.assert(extension2.question.Order__c == 1);
             System.assert(extension2.question.Correct_Boolean__c == 'true');
 
@@ -362,14 +373,14 @@ public class PBS_QuestionNewController_Test {
 
     static testmethod void testCreateSelectMultipleQuestionAndEdit(){
         //Create admin users
-        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,'System Administrator');
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,SYSTEM_ADMINISTRATOR );
         //Assign corresponding perm sets
-        PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
+        PBS_UtilClass_Test.addPermissionSet(adminUsers,LMS_ADMIN);
 
         System.runAs(adminUsers.get(0)){
 
             //Create quiz learnings
-            List<PBS_Learning__c> quizLearnings = PBS_LearningData_Test.createTestLearning(1, 'Quiz', true);
+            List<PBS_Learning__c> quizLearnings = PBS_LearningData_Test.createTestLearning(1, QUIZ1, true);
             //create quiz
             List<PBS_Quiz__c> quiz = PBS_LearningData_Test.createTestQuiz(quizLearnings);
             //create question line
@@ -378,14 +389,14 @@ public class PBS_QuestionNewController_Test {
             //go to QuestionNew page
             PageReference pageRef = Page.PBS_QuestionNew;
             Test.setCurrentPage(pageRef);
-            pageRef.getParameters().put('retURL', '/'+qline.get(0).Id);
+            pageRef.getParameters().put(RETURL, '/'+qline.get(0).Id);
             ApexPages.Standardcontroller stdcontroller = new ApexPages.StandardController(new PBS_Question__c());
             PBS_QuestionNewController_CC extension = new PBS_QuestionNewController_CC(stdcontroller);
-            System.assert(extension.question != null, 'extension.question is not initialized');
+            System.assert(extension.question != null, EXTENSION_QUETION_IS_NOT_INITIALIZED);
             extension.question.Description__c = 'What Blur songs are part of The Great Escape?';
-            extension.question.Type__c = 'SelectMultipleQuestion';
+            extension.question.Type__c = SELECTMULTIPLEQUESTION;
             extension.question.Order__c = 1;
-            extension.questiontype = 'SelectMultipleQuestion';
+            extension.questiontype = SELECTMULTIPLEQUESTION;
             extension.answerseqenabler();
 
             extension.lanswerseqitems.get(0).Item_Id__c = '#ans1';
@@ -407,7 +418,7 @@ public class PBS_QuestionNewController_Test {
 
             extension.c_save();
 
-            List<PBS_Answer_Sequence__c> lansseq = [select id from PBS_Answer_Sequence__c];
+            List<PBS_Answer_Sequence__c> lansseq = [select id from PBS_Answer_Sequence__c limit:integer.valueof(System.Label.PBS_soqllimit)];
             System.assert(lansseq.size() == 1, 'Answer Sequence is wrong, size = ' + lansseq.size());
 
             List<PBS_Question__c> lquestions = [select Id,
@@ -422,12 +433,12 @@ public class PBS_QuestionNewController_Test {
             //go to QuestionNew page
             PageReference pageRef2 = Page.PBS_QuestionNew;
             Test.setCurrentPage(pageRef2);
-            pageRef2.getParameters().put('retURL', '/'+qline.get(0).Id);
+            pageRef2.getParameters().put(RETURL, '/'+qline.get(0).Id);
             ApexPages.Standardcontroller stdcontroller2 = new ApexPages.StandardController(lquestions.get(0));
             PBS_QuestionNewController_CC extension2 = new PBS_QuestionNewController_CC(stdcontroller2);
 
             System.assert(extension2.question.Description__c == 'What Blur songs are part of The Great Escape?');
-            System.assert(extension2.question.Type__c == 'SelectMultipleQuestion');
+            System.assert(extension2.question.Type__c == SELECTMULTIPLEQUESTION);
             System.assert(extension2.question.Order__c == 1);
 
             List<PBS_Answer_Sequence_Item__c> lasitem = [select id from PBS_Answer_Sequence_Item__c where Answer_Sequence__c = :lansseq.get(0).Id];

@@ -95,8 +95,8 @@ private class PBS_AchievementAssignmentsWorkCom_Test{
         ach.Work_Badge_Image_URL__c = wb.ImageUrl;
         ach.Work_Badge_Giver__c = adminUsers.get(0).Id;
         update ach;
-
-        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c];
+        
+        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c limit:integer.valueof(System.Label.PBS_soqllimit)]; // Set Limit of 50000
         System.assertEquals(1,tplan.size());
         Id tplanId = tplan.get(0).Id;
 

@@ -43,7 +43,7 @@ private class PBS_TPlanSectionAsgmtsDelExtension_Test{
 
         PBS_TrainingPlanData_Test.createSampleData();
 
-        List<PBS_Training_Plan__c> tplans = [select id from PBS_Training_Plan__c];
+        List<PBS_Training_Plan__c> tplans = [select id from PBS_Training_Plan__c limit :integer.valueof(System.Label.PBS_soqllimit)];
         System.assertEquals(1,tplans.size());
         PBS_Training_Plan__c tplan  = tplans.get(0);
         Set<Id> selectedUserIds = new Set<Id>();

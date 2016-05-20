@@ -229,7 +229,7 @@ public class PBS_TrainingPlanData_Test {
     public static void createExternalSampleData(){
         createSampleData();
 
-        List<PBS_Training_Plan__c> tplans = [select id,Enable_Self_Registration__c,Self_Registration_Access__c from PBS_Training_Plan__c ];
+        List<PBS_Training_Plan__c> tplans = [select id,Enable_Self_Registration__c,Self_Registration_Access__c from PBS_Training_Plan__c limit :integer.valueof(System.Label.PBS_soqllimit)];
         for(PBS_Training_Plan__c tp : tplans){
             tp.Enable_Self_Registration__c = true;
             tp.Self_Registration_Access__c = 'External';

@@ -42,7 +42,7 @@ public class PBS_MyTraining_Test {
         }
 
         PBS_TrainingPlanData_Test.createSampleData();
-        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c];
+        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c limit:integer.valueof(System.Label.PBS_soqllimit)];
         System.assertEquals(1,tplan.size());
 
         List<PBS_Achievement_Category__c> lAchieveCat = PBS_AchievementData_Test.createAchievementCategories(1);
@@ -97,7 +97,7 @@ public class PBS_MyTraining_Test {
         }
 
         PBS_TrainingPlanData_Test.createSampleData();
-        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c];
+        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c limit:integer.valueof(System.Label.PBS_soqllimit)];
         System.assertEquals(1,tplan.size());
 
         List<PBS_Achievement_Category__c> lAchieveCat = PBS_AchievementData_Test.createAchievementCategories(1);
@@ -166,7 +166,7 @@ public class PBS_MyTraining_Test {
         }
 
         PBS_TrainingPlanData_Test.createSampleData();
-        List<PBS_Training_Plan__c> tplan = [select id,Start_Date__c,End_Date__c,Hide_After_End_Date__c from PBS_Training_Plan__c];
+        List<PBS_Training_Plan__c> tplan = [select id,Start_Date__c,End_Date__c,Hide_After_End_Date__c from PBS_Training_Plan__c limit:integer.valueof(System.Label.PBS_soqllimit)];
         System.assertEquals(1,tplan.size());
 
         //Update date configuration

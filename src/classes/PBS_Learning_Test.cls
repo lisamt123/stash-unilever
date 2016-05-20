@@ -29,11 +29,20 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 @isTest
 public class PBS_Learning_Test {
 
+        public static final string System_Administrator ='System Administrator';
+        public static final string LMS_Admin= 'LMS_Admin';
+        public static final string SELECTEDCONTENT_IS_WRONG = 'selectedcontent is wrong';
+        public static final string CURRENTRECORDTYPE_IS_WRONG= 'currentrecordtype is wrong';
+        public static final string GETCONTENTS_IS_WRONG= 'getcontents is wrong';
+        public static final string LEARNING_TASK= 'Task';
+
     static testmethod void testLearningQuizAndPreview(){
+    
+    
 
         //create users
-        List<User> systemUsers = PBS_UtilClass_Test.createUsers(1,'System Administrator');
-        PBS_UtilClass_Test.addPermissionSet(systemUsers, 'LMS_Admin');
+        List<User> systemUsers = PBS_UtilClass_Test.createUsers(1,System_Administrator);
+        PBS_UtilClass_Test.addPermissionSet(systemUsers, LMS_Admin);
 
         System.runAs(systemUsers.get(0)){
 
@@ -62,9 +71,9 @@ public class PBS_Learning_Test {
             PBS_Learning_Preview_Ext_CC extension = new PBS_Learning_Preview_Ext_CC(stdcontroller);
             extension.selectedContent = quiz.get(0).Id;
             List<sObject> lsobjects = extension.getContents();
-            System.assert(String.isNotBlank(extension.selectedContent), 'selectedContent is wrong');
-            System.assert(extension.currentRecordType == 'Quiz', 'currentRecordType is wrong');
-            System.assert(lsobjects.size() == 1, 'getContents is wrong');
+            System.assert(String.isNotBlank(extension.selectedContent), SELECTEDCONTENT_IS_WRONG);
+            System.assert(extension.currentRecordType == 'Quiz', CURRENTRECORDTYPE_IS_WRONG);
+            System.assert(lsobjects.size() == 1, GETCONTENTS_IS_WRONG);
 
             extension.previewContent();
 
@@ -86,8 +95,8 @@ public class PBS_Learning_Test {
     static testmethod void testLearningTrainingResourceAndPreview(){
 
         //create users
-        List<User> systemUsers = PBS_UtilClass_Test.createUsers(1,'System Administrator');
-        PBS_UtilClass_Test.addPermissionSet(systemUsers, 'LMS_Admin');
+        List<User> systemUsers = PBS_UtilClass_Test.createUsers(1,System_Administrator);
+        PBS_UtilClass_Test.addPermissionSet(systemUsers, LMS_Admin);
 
         System.runAs(systemUsers.get(0)){
 
@@ -110,9 +119,9 @@ public class PBS_Learning_Test {
             PBS_Learning_Preview_Ext_CC extension = new PBS_Learning_Preview_Ext_CC(stdcontroller);
             extension.selectedContent = tresource.get(0).Id;
             List<sObject> lsobjects = extension.getContents();
-            System.assert(String.isNotBlank(extension.selectedContent), 'selectedContent is wrong');
-            System.assert(extension.currentRecordType == 'Resource', 'currentRecordType is wrong');
-            System.assert(lsobjects.size() == 1, 'getContents is wrong');
+            System.assert(String.isNotBlank(extension.selectedContent), SELECTEDCONTENT_IS_WRONG);
+            System.assert(extension.currentRecordType == 'Resource', CURRENTRECORDTYPE_IS_WRONG);
+            System.assert(lsobjects.size() == 1, GETCONTENTS_IS_WRONG);
 
             extension.previewContent();
 
@@ -134,13 +143,13 @@ public class PBS_Learning_Test {
     static testmethod void testLearningTaskAndPreview(){
 
         //create users
-        List<User> systemUsers = PBS_UtilClass_Test.createUsers(1,'System Administrator');
-        PBS_UtilClass_Test.addPermissionSet(systemUsers, 'LMS_Admin');
+        List<User> systemUsers = PBS_UtilClass_Test.createUsers(1,System_Administrator);
+        PBS_UtilClass_Test.addPermissionSet(systemUsers, LMS_Admin);
 
         System.runAs(systemUsers.get(0)){
 
             //create learning
-            List<PBS_Learning__c> learning = PBS_LearningData_Test.createTestLearning(1, 'Task', false);
+            List<PBS_Learning__c> learning = PBS_LearningData_Test.createTestLearning(1, LEARNING_TASK, false);
 
             //create task
             List<PBS_Task__c> task = PBS_LearningData_Test.createTestTask(learning);
@@ -157,9 +166,9 @@ public class PBS_Learning_Test {
             PBS_Learning_Preview_Ext_CC extension = new PBS_Learning_Preview_Ext_CC(stdcontroller);
             extension.selectedContent = task.get(0).Id;
             List<sObject> lsobjects = extension.getContents();
-            System.assert(String.isNotBlank(extension.selectedContent), 'selectedContent is wrong');
-            System.assert(extension.currentRecordType == 'Task', 'currentRecordType is wrong');
-            System.assert(lsobjects.size() == 1, 'getContents is wrong');
+            System.assert(String.isNotBlank(extension.selectedContent), SELECTEDCONTENT_IS_WRONG);
+            System.assert(extension.currentRecordType == LEARNING_TASK, CURRENTRECORDTYPE_IS_WRONG);
+            System.assert(lsobjects.size() == 1, GETCONTENTS_IS_WRONG);
 
             extension.previewContent();
 
@@ -181,8 +190,8 @@ public class PBS_Learning_Test {
     static testmethod void testExistingLearningPreview(){
 
         //create users
-        List<User> systemUsers = PBS_UtilClass_Test.createUsers(2,'System Administrator');
-        PBS_UtilClass_Test.addPermissionSet(systemUsers, 'LMS_Admin');
+        List<User> systemUsers = PBS_UtilClass_Test.createUsers(2,System_Administrator);
+        PBS_UtilClass_Test.addPermissionSet(systemUsers, LMS_Admin);
 
         List<PBS_Learning__c> learning;
         List<PBS_Task__c> task;
@@ -190,7 +199,7 @@ public class PBS_Learning_Test {
         System.runAs(systemUsers.get(0)){
 
             //create learning
-            learning = PBS_LearningData_Test.createTestLearning(1, 'Task', false);
+            learning = PBS_LearningData_Test.createTestLearning(1, LEARNING_TASK, false);
 
             //create task
             task = PBS_LearningData_Test.createTestTask(learning);
@@ -208,9 +217,9 @@ public class PBS_Learning_Test {
             PBS_Learning_Preview_Ext_CC extension = new PBS_Learning_Preview_Ext_CC(stdcontroller);
             extension.selectedContent = task.get(0).Id;
             List<sObject> lsobjects = extension.getContents();
-            System.assert(String.isNotBlank(extension.selectedContent), 'selectedContent is wrong');
-            System.assert(extension.currentRecordType == 'Task', 'currentRecordType is wrong');
-            System.assert(lsobjects.size() == 1, 'getContents is wrong');
+            System.assert(String.isNotBlank(extension.selectedContent), SELECTEDCONTENT_IS_WRONG);
+            System.assert(extension.currentRecordType == LEARNING_TASK, CURRENTRECORDTYPE_IS_WRONG);
+            System.assert(lsobjects.size() == 1, GETCONTENTS_IS_WRONG);
 
             extension.previewContent();
 
@@ -225,6 +234,7 @@ public class PBS_Learning_Test {
                                                                     and Is_Test_Assignment__c = true];
 
             //System.assert(previewAssignments.size() == 1, 'previewAssignments failed, size = ' + previewAssignments.size());
+             System.assert(extension.doRedirection()== null);
         }
 
         System.runAs(systemUsers.get(1)){
@@ -239,8 +249,8 @@ public class PBS_Learning_Test {
             ApexPages.Standardcontroller stdcontroller = New ApexPages.StandardController(learning.get(0));
             PBS_Learning_Preview_Ext_CC extension = new PBS_Learning_Preview_Ext_CC(stdcontroller);
             extension.selectedContent = task.get(0).Id;
-            System.assert(String.isNotBlank(extension.selectedContent), 'selectedContent is wrong');
-            System.assert(extension.currentRecordType == 'Task', 'currentRecordType is wrong');
+            System.assert(String.isNotBlank(extension.selectedContent), SELECTEDCONTENT_IS_WRONG);
+            System.assert(extension.currentRecordType == LEARNING_TASK, CURRENTRECORDTYPE_IS_WRONG);
 
             extension.previewContent();
 
@@ -258,14 +268,14 @@ public class PBS_Learning_Test {
     static testmethod void testLearningPreviewFail(){
 
         //create users
-        List<User> systemUsers = PBS_UtilClass_Test.createUsers(1,'System Administrator');
+        List<User> systemUsers = PBS_UtilClass_Test.createUsers(1,System_Administrator);
 
-        PBS_UtilClass_Test.addPermissionSet(systemUsers, 'LMS_Admin');
+        PBS_UtilClass_Test.addPermissionSet(systemUsers, LMS_Admin);
 
         System.runAs(systemUsers.get(0)){
 
             //create learning
-            List<PBS_Learning__c> learning = PBS_LearningData_Test.createTestLearning(1, 'Task', false);
+            List<PBS_Learning__c> learning = PBS_LearningData_Test.createTestLearning(1, LEARNING_TASK, false);
 
             //create task
             List<PBS_Task__c> task = PBS_LearningData_Test.createTestTask(learning);
@@ -282,9 +292,9 @@ public class PBS_Learning_Test {
             PBS_Learning_Preview_Ext_CC extension = new PBS_Learning_Preview_Ext_CC(stdcontroller);
             //extension.selectedContent = task.get(0).Id;
             List<sObject> lsobjects = extension.getContents();
-            System.assert(String.isBlank(extension.selectedContent), 'selectedContent is wrong');
-            System.assert(extension.currentRecordType == 'Task', 'currentRecordType is wrong');
-            System.assert(lsobjects.size() == 1, 'getContents is wrong');
+            System.assert(String.isBlank(extension.selectedContent), SELECTEDCONTENT_IS_WRONG);
+            System.assert(extension.currentRecordType == LEARNING_TASK, CURRENTRECORDTYPE_IS_WRONG);
+            System.assert(lsobjects.size() == 1, GETCONTENTS_IS_WRONG);
 
             extension.previewContent();
 
@@ -308,8 +318,8 @@ public class PBS_Learning_Test {
     static testmethod void testLearningQuizAndPublish(){
 
         //create users
-        List<User> systemUsers = PBS_UtilClass_Test.createUsers(1,'System Administrator');
-        PBS_UtilClass_Test.addPermissionSet(systemUsers, 'LMS_Admin');
+        List<User> systemUsers = PBS_UtilClass_Test.createUsers(1,System_Administrator);
+        PBS_UtilClass_Test.addPermissionSet(systemUsers, LMS_Admin);
 
         System.runAs(systemUsers.get(0)){
 
@@ -337,7 +347,7 @@ public class PBS_Learning_Test {
             PBS_Learning_Publish_Ext_CC extension = new PBS_Learning_Publish_Ext_CC(stdcontroller);
             extension.dummyLearningVersion.Version_selection_behavior__c = 'Update version on launch';
             List<sObject> lsobjects = extension.getContents();
-            //System.assert(lsobjects.size() == 1, 'getContents is wrong');
+            //System.assert(lsobjects.size() == 1, GETCONTENTS_IS_WRONG);
             extension.publishContent();
 
             List<PBS_Learning_Version__c> learningversions2 = [select id from PBS_Learning_Version__c
@@ -357,8 +367,8 @@ public class PBS_Learning_Test {
     static testmethod void testLearningTrainingResourceAndPublish(){
 
         //create users
-        List<User> systemUsers = PBS_UtilClass_Test.createUsers(1,'System Administrator');
-        PBS_UtilClass_Test.addPermissionSet(systemUsers, 'LMS_Admin');
+        List<User> systemUsers = PBS_UtilClass_Test.createUsers(1,System_Administrator);
+        PBS_UtilClass_Test.addPermissionSet(systemUsers, LMS_Admin);
 
         System.runAs(systemUsers.get(0)){
 
@@ -380,7 +390,7 @@ public class PBS_Learning_Test {
             PBS_Learning_Publish_Ext_CC extension = new PBS_Learning_Publish_Ext_CC(stdcontroller);
             extension.dummyLearningVersion.Version_selection_behavior__c = 'Update version on launch';
             List<sObject> lsobjects = extension.getContents();
-            //System.assert(lsobjects.size() == 1, 'getContents is wrong');
+            //System.assert(lsobjects.size() == 1, GETCONTENTS_IS_WRONG);
             extension.publishContent();
 
             List<PBS_Learning_Version__c> learningversions2 = [select id from PBS_Learning_Version__c
@@ -398,13 +408,13 @@ public class PBS_Learning_Test {
 
     static testmethod void testLearningTaskAndPublish(){
         //create users
-        List<User> systemUsers = PBS_UtilClass_Test.createUsers(1,'System Administrator');
-        PBS_UtilClass_Test.addPermissionSet(systemUsers, 'LMS_Admin');
+        List<User> systemUsers = PBS_UtilClass_Test.createUsers(1,System_Administrator);
+        PBS_UtilClass_Test.addPermissionSet(systemUsers, LMS_Admin);
 
         System.runAs(systemUsers.get(0)){
 
             //create learning
-            List<PBS_Learning__c> learning = PBS_LearningData_Test.createTestLearning(1, 'Task', false);
+            List<PBS_Learning__c> learning = PBS_LearningData_Test.createTestLearning(1, LEARNING_TASK, false);
 
             //create task
             List<PBS_Task__c> task = PBS_LearningData_Test.createTestTask(learning);
@@ -421,7 +431,7 @@ public class PBS_Learning_Test {
             PBS_Learning_Publish_Ext_CC extension = new PBS_Learning_Publish_Ext_CC(stdcontroller);
             extension.dummyLearningVersion.Version_selection_behavior__c = 'Update version on launch';
             List<sObject> lsobjects = extension.getContents();
-            //System.assert(lsobjects.size() == 1, 'getContents is wrong');
+            //System.assert(lsobjects.size() == 1, GETCONTENTS_IS_WRONG);
             extension.publishContent();
 
             List<PBS_Learning_Version__c> learningversions2 = [select id from PBS_Learning_Version__c
@@ -440,8 +450,8 @@ public class PBS_Learning_Test {
     static testmethod void testLearningTaskRePublish(){
 
         //create users
-        List<User> systemUsers = PBS_UtilClass_Test.createUsers(2,'System Administrator');
-        PBS_UtilClass_Test.addPermissionSet(systemUsers, 'LMS_Admin');
+        List<User> systemUsers = PBS_UtilClass_Test.createUsers(2,System_Administrator);
+        PBS_UtilClass_Test.addPermissionSet(systemUsers, LMS_Admin);
 
         List<PBS_Learning__c> learning;
         List<PBS_Task__c> task;
@@ -449,7 +459,7 @@ public class PBS_Learning_Test {
         System.runAs(systemUsers.get(0)){
 
             //create learning
-            learning = PBS_LearningData_Test.createTestLearning(1, 'Task', false);
+            learning = PBS_LearningData_Test.createTestLearning(1, LEARNING_TASK, false);
 
             //create task
             task = PBS_LearningData_Test.createTestTask(learning);
@@ -466,7 +476,7 @@ public class PBS_Learning_Test {
             PBS_Learning_Publish_Ext_CC extension = new PBS_Learning_Publish_Ext_CC(stdcontroller);
             extension.dummyLearningVersion.Version_selection_behavior__c = 'Update version on launch';
             List<sObject> lsobjects = extension.getContents();
-            //System.assert(lsobjects.size() == 1, 'getContents is wrong');
+            //System.assert(lsobjects.size() == 1, GETCONTENTS_IS_WRONG);
             extension.publishContent();
 
             List<PBS_Learning_Version__c> learningversions2 = [select id from PBS_Learning_Version__c
@@ -478,6 +488,8 @@ public class PBS_Learning_Test {
             List<PBS_Learning__c> pub_learning = [select Id, Published__c, Current_Published_Version__c from PBS_Learning__c where Id =:learning.get(0).Id  ];
             //System.assert(pub_learning.get(0).Published__c == true, 'Learning was not published');
             //System.assert(pub_learning.get(0).Current_Published_Version__c == learningversions2.get(0).Id, 'Learning was not published');
+            
+           
         }
 
         System.runAs(systemUsers.get(1)){
@@ -493,7 +505,7 @@ public class PBS_Learning_Test {
             PBS_Learning_Publish_Ext_CC extension = new PBS_Learning_Publish_Ext_CC(stdcontroller);
             extension.dummyLearningVersion.Version_selection_behavior__c = 'Ask user for version selection';
             List<sObject> lsobjects = extension.getContents();
-            //System.assert(lsobjects.size() == 1, 'getContents is wrong');
+            //System.assert(lsobjects.size() == 1, GETCONTENTS_IS_WRONG);
             extension.publishContent();
 
             List<PBS_Learning_Version__c> learningversions2 = [select id from PBS_Learning_Version__c
@@ -503,4 +515,25 @@ public class PBS_Learning_Test {
             //System.assert(learningversions2.size() == 2, 'Learning has not been published, size = ' + learningversions2.size());
         }
     }
+   static testmethod void testExcpt(){
+
+       List<User> systemUsers = PBS_UtilClass_Test.createUsers(1,System_Administrator);
+        PBS_UtilClass_Test.addPermissionSet(systemUsers, LMS_Admin);
+       
+        System.runAs(systemUsers.get(0)){
+
+            //create learning
+            List<PBS_Learning__c> learning = PBS_LearningData_Test.createTestLearning(1, LEARNING_TASK, false);
+
+            //create task
+             ApexPages.Standardcontroller stdcontroller = New ApexPages.StandardController(learning.get(0));
+           PBS_Learning_Preview_Ext_CC extension = new PBS_Learning_Preview_Ext_CC(stdcontroller);
+           System.assert(extension.getContents()!=null);
+              
+            }
+        
+       
+        }
+     
+            
 }

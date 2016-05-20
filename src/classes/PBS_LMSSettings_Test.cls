@@ -42,9 +42,11 @@ private class PBS_LMSSettings_Test {
             String headerTextHoverColor = PBS_LMSSettings_CC.getHeaderTextHoverColor();
             System.assert(headerTextHoverColor != null);
             Boolean disableTrackAchievements = PBS_LMSSettings_CC.getDisableTrackAchievements();
-            System.assert(disableTrackAchievements == false);
+            /*System.assert(disableTrackAchievements == false);*/
+            System.assertEquals(false, disableTrackAchievements );
             Boolean disableFutureProgressCalcs = PBS_LMSSettings_CC.getDisableFutureProgressCalculation();
-            System.assert(disableFutureProgressCalcs == false);
+            /*System.assert(disableFutureProgressCalcs == false); */
+            System.assertEquals(false, disableFutureProgressCalcs );
             String backToSFURL = PBS_LMSSettings_CC.getBacktoSFUrl();
             System.assert(backToSFURL != null);
             String customHeaderName = PBS_LMSSettings_CC.getCustomHeaderName();
@@ -69,9 +71,11 @@ private class PBS_LMSSettings_Test {
           String headerTextHoverColor = PBS_LMSSettings_CC.getHeaderTextHoverColor();
           System.assert(headerTextHoverColor != null);
           Boolean disableTrackAchievements = PBS_LMSSettings_CC.getDisableTrackAchievements();
-          System.assert(disableTrackAchievements == true);
+         /* System.assert(disableTrackAchievements == true); */
+          System.assertEquals(true, disableTrackAchievements );
           Boolean disableFutureProgressCalcs = PBS_LMSSettings_CC.getDisableFutureProgressCalculation();
-          System.assert(disableFutureProgressCalcs == true);
+         /* System.assert(disableFutureProgressCalcs == true);*/
+          System.assertEquals(true, disableFutureProgressCalcs );
           String backToSFURL = PBS_LMSSettings_CC.getBacktoSFUrl();
           System.assert(backToSFURL != null);
           String customHeaderName = PBS_LMSSettings_CC.getCustomHeaderName();

@@ -37,13 +37,13 @@ private class PBS_LearningAssignmentApproveExt_Test {
 
     createTestDataForApproval(adminUsers,lmsUsers);
 
-    List<PBS_Learning_Assignment__c> learningAssignments = [select id,approved__c from PBS_Learning_Assignment__c];
+    List<PBS_Learning_Assignment__c> learningAssignments = [select id,approved__c from PBS_Learning_Assignment__c limit:integer.valueof(System.Label.PBS_soqllimit)];
 
     Test.startTest();
 
       PBS_LearningAssignmentApproveExt_CC asgmtApproveExt = new PBS_LearningAssignmentApproveExt_CC(new ApexPages.StandardController(learningAssignments.get(0)));
       asgmtApproveExt.approveAssignment();
-
+	  System.assert(asgmtApproveExt != null);	
     Test.stopTest();
   }
 
@@ -59,7 +59,7 @@ private class PBS_LearningAssignmentApproveExt_Test {
 
       System.runAs(lmsUsers.get(1)){
 
-        List<PBS_Learning_Assignment__c> learningAssignments = [select id,approved__c from PBS_Learning_Assignment__c];
+        List<PBS_Learning_Assignment__c> learningAssignments = [select id,approved__c from PBS_Learning_Assignment__c limit:integer.valueof(System.Label.PBS_soqllimit)];
         System.assert(learningAssignments.size() == 1);
         PBS_LearningAssignmentApproveExt_CC asgmtApproveExt = new PBS_LearningAssignmentApproveExt_CC(new ApexPages.StandardController(learningAssignments.get(0)));
         asgmtApproveExt.approveAssignment();
@@ -114,7 +114,7 @@ private class PBS_LearningAssignmentApproveExt_Test {
     List<PBS_Training_Plan_Section_Item__c> tplanSectionItmes1 = PBS_TrainingPlanData_Test.createTrainingPlanSectionItems(tplanSections.get(0).Id,taskLearnings);
 
     //Assign the user to the trainign plan
-    List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c];
+    List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c limit:integer.valueof(System.Label.PBS_soqllimit)];
     System.assertEquals(1,tplan.size());
     Id tplanId = tplan.get(0).Id;
 
@@ -123,7 +123,7 @@ private class PBS_LearningAssignmentApproveExt_Test {
       PBS_LMSService_CC.upsertAssignments(selectedUserIds,tplanId,null);
     }
 
-    List<PBS_Learning_Assignment__c> learningAssignments = [select id,Approved__c,Progress__c from PBS_Learning_Assignment__c];
+    List<PBS_Learning_Assignment__c> learningAssignments = [select id,Approved__c,Progress__c from PBS_Learning_Assignment__c limit:integer.valueof(System.Label.PBS_soqllimit)];
     System.assertEquals(1,learningAssignments.size());
 
     PBS_Learning_Assignment__c la = learningAssignments.get(0);

@@ -69,7 +69,7 @@ private class PBS_TrainingCatalogHomeCtrl_Test {
         List<PBS_Training_Plan__c> tplans = [select id
                                             ,Enable_Self_Registration__c
                                             ,Self_Registration_Access__c
-                                            from PBS_Training_Plan__c];
+                                            from PBS_Training_Plan__c limit :integer.valueof(System.Label.PBS_soqllimit)];
 
         System.assertEquals(1,tplans.size());
         PBS_Training_Plan__c tplan = tplans.get(0);

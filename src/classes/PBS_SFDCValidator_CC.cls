@@ -84,7 +84,7 @@ global with sharing class PBS_SFDCValidator_CC {
    * 
    * Example:<br>
    * <PRE>
-   * if (ESAPI.validator().SFDC_isValidDate(unsafe_text, PBS_SFDCPatterns_CC.Date1, false) == false)
+   * if (ESAPI.validator().SFDC_isValidDate(unsafe_text, SFDCPatterns.Date1, false) == false)
    *     // error handling
    * </PRE>
    */
@@ -104,7 +104,7 @@ global with sharing class PBS_SFDCValidator_CC {
    * Example:<br>
    * <PRE>
    * try {
-   *     datestr = ESAPI.validator().SFDC_getValidDate(unsafe_text, PBS_SFDCPatterns_CC.Date1, false);
+   *     datestr = ESAPI.validator().SFDC_getValidDate(unsafe_text, SFDCPatterns.Date1, false);
    * } catch () {
    *     // error handling
    * }
@@ -113,7 +113,7 @@ global with sharing class PBS_SFDCValidator_CC {
    * @param input 
    *     The actual user input data to validate.
    * @param format 
-   *     Required formatting of date inputed (In RegEx - some basic patterns can be found in the PBS_SFDCPatterns_CC class).
+   *     Required formatting of date inputed (In RegEx - some basic patterns can be found in the SFDCPatterns class).
    * @param allowNull 
    *     If allowNull is true then an input that is NULL or an empty string will be legal. If allowNull is false then NULL or an empty String will throw an exception.
    * 

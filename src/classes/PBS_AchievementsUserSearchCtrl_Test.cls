@@ -48,14 +48,19 @@ public class PBS_AchievementsUserSearchCtrl_Test {
             System.runAs(lmsUsers.get(0)){
                 PBS_AchievementsUserSearchController_CC cont = new PBS_AchievementsUserSearchController_CC();
                 System.assert(cont.getSearchResults().size()>0);
-                System.assert(cont.hasMessages == false);
-                System.assert(cont.getHasPrevious() == false);
-                System.assert(cont.getHasNext() == false);
+                
+                //System.assert(cont.hasMessages == false);
+                System.assertEquals(false,cont.hasMessages);
+                //System.assert(cont.getHasPrevious() == false);
+                System.assertEquals(false,cont.getHasPrevious());
+                //System.assert(cont.getHasNext() == false);
+                System.assertEquals(false,cont.getHasNext());
                 System.assert(cont.getPageNumber() == 1);
                 System.assert(cont.getTotalPages() == 1);
                 cont.doNext();
                 cont.doPrevious();
-                System.assert(cont.hasMessages == false);
+                //System.assert(cont.hasMessages == false);
+                System.assertEquals(false,cont.hasMessages);
             }
 
         Test.stopTest();

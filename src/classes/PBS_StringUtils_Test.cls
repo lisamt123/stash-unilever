@@ -42,14 +42,14 @@ private class PBS_StringUtils_Test {
         String a = 'abc';
         String b = ' ';
 
-        System.assert(PBS_SFDCStringUtils_CC.isEmpty(a) == false, 'Should be true - SFDCStringUtils.isEmpty(a)');
-        System.assert(PBS_SFDCStringUtils_CC.notNullOrEmpty(a, false) == true, 'Should be true - SFDCStringUtils.notNullOrEmpty(a, false)');
-        System.assert(PBS_SFDCStringUtils_CC.notNullOrEmpty(b, true) == false, 'Should be false - SFDCStringUtils.notNullOrEmpty(b, true)');
+        System.assertEquals(false,PBS_SFDCStringUtils_CC.isEmpty(a), 'Should be true - SFDCStringUtils.isEmpty(a)');
+        System.assertEquals(true,PBS_SFDCStringUtils_CC.notNullOrEmpty(a, false), 'Should be true - SFDCStringUtils.notNullOrEmpty(a, false)');
+        System.assertEquals(false,PBS_SFDCStringUtils_CC.notNullOrEmpty(b, true), 'Should be false - SFDCStringUtils.notNullOrEmpty(b, true)');
 
         String[] digit_arr = new String[]{ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
         Set<Integer> digits = PBS_SFDCStringUtils_CC.stringArrayToIntegerSet(digit_arr);
         System.assert(digits.size() == 10, 'Should be 10 - digits.size()');
-        System.assert(digits.contains(48) == true, 'Should be true - digits.contains(48)');
+        System.assertEquals(true,digits.contains(48), 'Should be true - digits.contains(48)');
 
         String[] arr1 = new String[]{ '0', '1'};
         String[] arr2 = new String[]{ '2', '3'};

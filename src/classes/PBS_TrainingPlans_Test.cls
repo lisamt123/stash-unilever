@@ -28,19 +28,21 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 @isTest
 public class PBS_TrainingPlans_Test {
-
+    // String variables to avoid code containing duplicate String literals
+    public Static final string systemAdministrator = 'System Administrator';
+    public Static final string LMSAdmin = 'LMS_Admin';
     static testmethod void testOptionalSectionsValidations(){
 
         //Create admin users
-        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,'System Administrator');
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,systemAdministrator);
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,LMSAdmin);
         }
 
         PBS_TrainingPlanData_Test.createSampleData();
-        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c];
+        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c limit :integer.valueof(System.Label.PBS_soqllimit)];
         System.assertEquals(1,tplan.size());
         Id tplanId = tplan.get(0).Id;
         List<PBS_Training_Plan_Section__c> tplanSections = [select id,Optional__c from PBS_Training_Plan_Section__c where Training_Plan__c = :tplanId];
@@ -64,17 +66,17 @@ public class PBS_TrainingPlans_Test {
     static testmethod void testUpsertTrainingPlanAssignment(){
 
         //Create admin users
-        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,'System Administrator');
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,systemAdministrator);
         List<User> lmsUsers = PBS_UtilClass_Test.createUsers(5,'Standard User');
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,LMSAdmin);
             PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
         }
 
         PBS_TrainingPlanData_Test.createSampleData();
-        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c];
+        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c limit :integer.valueof(System.Label.PBS_soqllimit)];
         System.assertEquals(1,tplan.size());
         Id tplanId = tplan.get(0).Id;
         Set<Id> selectedUserIds = new Set<Id>();
@@ -122,17 +124,17 @@ public class PBS_TrainingPlans_Test {
     static testmethod void testUpsertTrainingPlanAssignmentWithAchievements(){
 
         //Create admin users
-        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,'System Administrator');
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,systemAdministrator);
         List<User> lmsUsers = PBS_UtilClass_Test.createUsers(5,'Standard User');
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,LMSAdmin);
             PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
         }
 
         PBS_TrainingPlanData_Test.createSampleData();
-        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c];
+        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c limit :integer.valueof(System.Label.PBS_soqllimit)];
         System.assertEquals(1,tplan.size());
 
         List<PBS_Achievement_Category__c> lAchieveCat = PBS_AchievementData_Test.createAchievementCategories(1);
@@ -186,17 +188,17 @@ public class PBS_TrainingPlans_Test {
     static testmethod void testUpsertAndDeleteTrainingPlanAssignment(){
 
         //Create admin users
-        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,'System Administrator');
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,systemAdministrator);
         List<User> lmsUsers = PBS_UtilClass_Test.createUsers(5,'Standard User');
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,LMSAdmin);
             PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
         }
 
         PBS_TrainingPlanData_Test.createSampleData();
-        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c];
+        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c limit :integer.valueof(System.Label.PBS_soqllimit)];
         System.assertEquals(1,tplan.size());
         Id tplanId = tplan.get(0).Id;
         Set<Id> selectedUserIds = new Set<Id>();
@@ -232,7 +234,7 @@ public class PBS_TrainingPlans_Test {
     static testMethod void testTrainingPlanAchievementUpdates(){
 
         PBS_TrainingPlanData_Test.createSampleData();
-        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c];
+        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c limit :integer.valueof(System.Label.PBS_soqllimit)];
         System.assertEquals(1,tplan.size());
         List<PBS_Training_Plan_Section__c> tplanSections = [select id,Training_Plan__c from PBS_Training_Plan_Section__c where Training_Plan__c = :tplan.get(0).id];
 
@@ -261,18 +263,18 @@ public class PBS_TrainingPlans_Test {
     static testmethod void testTPlansWithSharedLearningAssignments(){
 
         //Create admin users
-        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,'System Administrator');
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,systemAdministrator);
         List<User> lmsUsers = PBS_UtilClass_Test.createUsers(3,'Standard User');
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,LMSAdmin);
             PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
         }
 
         PBS_TrainingPlanData_Test.createSampleDataWithSharedLearnings();
 
-        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c];
+        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c limit :integer.valueof(System.Label.PBS_soqllimit)];
         System.assertEquals(2,tplan.size());
 
         List<PBS_Achievement_Category__c> lAchieveCat = PBS_AchievementData_Test.createAchievementCategories(1);
@@ -302,7 +304,7 @@ public class PBS_TrainingPlans_Test {
                                                     where RecordType.DeveloperName = 'Task'];
 
             PBS_Learning__c sharedLearning = sharedLearningSample.get(0);
-            System.assert(sharedLearning.Sync_progress__c == true);
+            System.assertEquals(true,sharedLearning.Sync_progress__c);
 
 
             List<PBS_Learning_Assignment__c> tplan1LearningAsgmts = [select id

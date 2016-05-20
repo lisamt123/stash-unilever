@@ -43,7 +43,7 @@ public class PBS_TrainingPlanFeedback_Test {
 
         PBS_TrainingPlanData_Test.createSampleData();
         //Select the sample trainign plan
-        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c];
+        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c limit :integer.valueof(System.Label.PBS_soqllimit)];
         System.assertEquals(1,tplan.size());
 
         //Add an achievement to the trainign plan
@@ -74,7 +74,7 @@ public class PBS_TrainingPlanFeedback_Test {
             Test.setCurrentPage(pageRef);
 
             PBS_TrainingPlanFeedbackController_CC cont = new PBS_TrainingPlanFeedbackController_CC();
-            System.assert(cont.isAllowedToView == true);
+            System.assertEquals(true,cont.isAllowedToView);
             System.assert(cont.tPlan != null);
             System.assert(cont.setCon != null);
             System.assert(cont.existingFeedback == null);
@@ -98,7 +98,7 @@ public class PBS_TrainingPlanFeedback_Test {
 
             //Try submitting without comments
             PageReference ref = cont.submitFeedback();
-            System.assert(cont.hasMessages == true);
+            System.assertEquals(true,cont.hasMessages);
 
             //Add comments and try again
             feedback.Comments__c = 'testing';
@@ -126,7 +126,7 @@ public class PBS_TrainingPlanFeedback_Test {
         List<PBS_Training_Plan__c> tplans = [select id
                                             ,Enable_Self_Registration__c
                                             ,Self_Registration_Access__c
-                                            from PBS_Training_Plan__c];
+                                            from PBS_Training_Plan__c limit :integer.valueof(System.Label.PBS_soqllimit)];
 
         System.assertEquals(1,tplans.size());
         PBS_Training_Plan__c tplan = tplans.get(0);
@@ -155,7 +155,7 @@ public class PBS_TrainingPlanFeedback_Test {
             Test.setCurrentPage(pageRef);
 
             PBS_TrainingPlanFeedbackController_CC cont = new PBS_TrainingPlanFeedbackController_CC();
-            System.assert(cont.isAllowedToView == true);
+            System.assertEquals(true,cont.isAllowedToView);
             System.assert(cont.tPlan != null);
             System.assert(cont.setCon != null);
             System.assert(cont.existingFeedback == null);

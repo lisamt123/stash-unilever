@@ -42,7 +42,7 @@ private class PBS_TrainingPlanExportController_Test {
         }
 
         PBS_TrainingPlanData_Test.createSampleData();
-        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c];
+        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c limit :integer.valueof(System.Label.PBS_soqllimit)];
         System.assertEquals(1,tplan.size());
         Id tplanId = tplan.get(0).Id;
         List<PBS_Achievement_Category__c > lAchieveCat = PBS_AchievementData_Test.createAchievementCategories(1);

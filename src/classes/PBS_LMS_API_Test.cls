@@ -42,7 +42,7 @@ public class PBS_LMS_API_Test {
         }
 
         PBS_TrainingPlanData_Test.createSampleData();
-        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c];
+        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c limit:integer.valueof(System.Label.PBS_soqllimit)];
         System.assertEquals(1,tplan.size());
         Id tplanId = tplan.get(0).Id;
         Set<Id> selectedUserIds = new Set<Id>();
@@ -100,7 +100,7 @@ public class PBS_LMS_API_Test {
         }
 
         PBS_TrainingPlanData_Test.createSampleData();
-        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c];
+        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c limit:integer.valueof(System.Label.PBS_soqllimit)];
         System.assertEquals(1,tplan.size());
 
         List<PBS_Achievement_Category__c> lAchieveCat = PBS_AchievementData_Test.createAchievementCategories(1);
@@ -184,7 +184,7 @@ public class PBS_LMS_API_Test {
         }
 
         PBS_TrainingPlanData_Test.createSampleData();
-        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c];
+        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c limit:integer.valueof(System.Label.PBS_soqllimit)];
         System.assertEquals(1,tplan.size());
         Id tplanId = tplan.get(0).Id;
 
@@ -209,8 +209,8 @@ public class PBS_LMS_API_Test {
 
         PBS_TrainingTrackData_Test.createSampleData();
 
-        List<PBS_Training_Track__c> tracks = [select id,name from PBS_Training_Track__c];
-        List<PBS_Training_Track_Level_Item__c> trackItems = [select id,name from PBS_Training_Track_Level_Item__c];
+        List<PBS_Training_Track__c> tracks = [select id,name from PBS_Training_Track__c limit:integer.valueof(System.Label.PBS_soqllimit)];
+        List<PBS_Training_Track_Level_Item__c> trackItems = [select id,name from PBS_Training_Track_Level_Item__c limit:integer.valueof(System.Label.PBS_soqllimit)];
         System.assertEquals(1,tracks.size());
         System.assert(trackItems.size()>0);
         Id ttrackId = tracks.get(0).Id;
@@ -225,11 +225,11 @@ public class PBS_LMS_API_Test {
     }
 
     static Integer getTrainingPlanCount(){
-        return [select count() from PBS_Training_Plan__c];
+        return [select count() from PBS_Training_Plan__c limit:integer.valueof(System.Label.PBS_soqllimit)];
     }
 
     static Integer getTrainingTrackCount(){
-        return [select count() from PBS_Training_Track__c];
+        return [select count() from PBS_Training_Track__c limit:integer.valueof(System.Label.PBS_soqllimit)];
     }
 
 

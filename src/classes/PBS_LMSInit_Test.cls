@@ -54,7 +54,8 @@ public class PBS_LMSInit_Test {
     }
 
     static Integer getTrainingPlanCount(){
-        return [select count() from PBS_Training_Plan__c];
+        return [select count() from PBS_Training_Plan__c limit:integer.valueof(System.Label.PBS_soqllimit)];
+
     }
 
 }

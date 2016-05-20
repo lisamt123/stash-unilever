@@ -87,7 +87,7 @@ private class PBS_ResourceViewerController_Test{
         //Create training plan section items for quizzes
         List<PBS_Training_Plan_Section_Item__c> tplan1SectionItems1 = PBS_TrainingPlanData_Test.createTrainingPlanSectionItems(tplanSections1.get(0).Id,resourceLearnings);
 
-        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c];
+        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c limit:integer.valueof(System.Label.PBS_soqllimit)];
         System.assertEquals(1,tplan.size());
         Id tplanId = tplan.get(0).Id;
 
