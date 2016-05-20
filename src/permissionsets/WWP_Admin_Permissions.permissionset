@@ -28,6 +28,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>WWP_Loss_Tree__c.DC_Loss_Value__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>WWP_Loss_Tree__c.Loss_Description__c</field>
         <readable>true</readable>
@@ -60,6 +65,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>WWP_Loss_Tree__c.Loss_Updated_in_Salesforce__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WWP_Loss_Tree__c.MRP_Loss_Value__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WWP_Loss_Tree__c.OR_Loss_Value__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
