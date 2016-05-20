@@ -66,7 +66,7 @@
         <script type="text/javascript">
             showPopupJobsheet();
         </script>
-        <div class="absolute padding10-10-0-0 pointer" id="showAlertPopup" style="right:25px;top:260px;display:{!IF(strTabName<>null,'none','')}">                  
+        <div class="absolute padding10-10-0-0 pointer" id="showAlertPopup" style="right:25px;top:130px;display:{!IF(strTabName<>null,'none','')}">                  
             <div class="left bold bell-text-label">
                 {!totalAlertCount}
             </div>
@@ -191,7 +191,7 @@
                     
     <div class="allocation-main"> <!-- margin-btwn-container12 -->  
         <!-- start of CAP section -->
-        <div id="newDiv" style="display:{!IF(permissionSetName != 'CAP' , 'None', '')}" class="margin-top20">                        
+        <div id="newDiv" style="display:{!IF(permissionSetName != 'CAP' , 'None', '')}" class="padding-top20">                        
             <div class="box_content filteralert jobsallocation allocation-id">
                 <div class="subbox margin-btwn-container12">
                     <div class="subbox-first left margin-right12" >
@@ -215,7 +215,7 @@
         <!-- End of CAP section -->
         
         <!-- Start of RAP section -->
-        <div id="rapDivNew" style="position: absolute; right: 100px; top: 265px; width: 45%;display:{!IF(permissionSetName != 'RAP' , 'None', '')}">
+        <div id="rapDivNew" style="position: absolute; right: 100px; top: 135px; width: 45%;display:{!IF(permissionSetName != 'RAP' , 'None', '')}">
             <div>
                 <div>    <!-- style="display:{!IF(jobStatus == 'Accepted' || jobCancelled  , 'None', '')}" -->
                     <apex:commandButton styleClass="commonbtn-modified right" value="Cancel Job" action="{!cancelRapJob}" onclick="return confirm('Are you sure you want to cancel this job?')"/>

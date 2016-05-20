@@ -9,6 +9,9 @@ function openDefaultEmailClientCall(subject, emailTo) {
 
 function enableTextJobSheet() {
 	
+	var outputIdClassValue = $j('.outputIdClass').val().replace(/[^0-9.]/g, '');
+	$j('.outputIdClass').val(outputIdClassValue);
+	
 	$j('.setinactivemask').addClass('inactivemask');
 	$j('body').attr('style', 'pointer-events:none;');
 
@@ -312,8 +315,8 @@ $j(document).ready(function() {
 	commonfnCall();
 	defaultParamCall();
 	
-	var outputIdClassValue = $j('.outputIdClass').val();
-	$j('.outputIdClass').val('\u20AC'+' '+outputIdClassValue);
+	//var outputIdClassValue = $j('.outputIdClass').val();
+	//$j('.outputIdClass').val('\u20AC'+' '+outputIdClassValue);
 	
     $j('body').attr('style', 'pointer-events:auto;');
 	

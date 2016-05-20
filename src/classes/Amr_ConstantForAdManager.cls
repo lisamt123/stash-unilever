@@ -93,6 +93,6 @@ public class Amr_ConstantForAdManager{
      public static final String STAGE_ONEANDTWOCOUNT = 'stageOneandTwoCount';
      public static final String ALL_COUNT = 'allCount';
      public static final String CREATED_DATE =  ' and AM_Job_Detail__r.createdDate ';
-     
+     public static final String SFOBJECTSUFFIX = '__c';
    
 }

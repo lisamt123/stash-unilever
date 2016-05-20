@@ -1,244 +1,396 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>true</enableActivities>
+    <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
     <fields>
         <fullName>Achievement_BB__c</fullName>
+        <externalId>false</externalId>
         <formula>if(Plan_BB__c != 0, ( Actual_BB__c   /  Plan_BB__c ), 0)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Achievement BB</label>
         <precision>18</precision>
+        <required>false</required>
         <scale>0</scale>
+        <trackHistory>false</trackHistory>
         <type>Percent</type>
     </fields>
     <fields>
         <fullName>Achievement_BD__c</fullName>
+        <externalId>false</externalId>
         <formula>if(Plan_BD__c != 0, ( Actual_BD__c /  Plan_BD__c ), 0)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Achievement BD</label>
         <precision>18</precision>
+        <required>false</required>
         <scale>0</scale>
+        <trackHistory>false</trackHistory>
         <type>Percent</type>
     </fields>
     <fields>
         <fullName>Actual_BB_And_BB__c</fullName>
+        <externalId>false</externalId>
         <label>Actual BB And BB</label>
         <precision>18</precision>
+        <required>false</required>
         <scale>0</scale>
+        <trackHistory>false</trackHistory>
         <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Actual_BB__c</fullName>
         <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
         <label>Actual BB</label>
         <precision>18</precision>
+        <required>false</required>
         <scale>0</scale>
+        <trackHistory>false</trackHistory>
         <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Actual_BD__c</fullName>
         <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
         <label>Actual BD</label>
         <precision>18</precision>
+        <required>false</required>
         <scale>0</scale>
+        <trackHistory>false</trackHistory>
         <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Actual_Total_UL_Job__c</fullName>
+        <externalId>false</externalId>
         <formula>Actual_BB__c  +  Actual_BD__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Actual Total UL Job</label>
         <precision>18</precision>
+        <required>false</required>
         <scale>0</scale>
+        <trackHistory>false</trackHistory>
         <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>AfricaBB__c</fullName>
+        <externalId>false</externalId>
         <label>AfricaBB</label>
         <precision>18</precision>
+        <required>false</required>
         <scale>0</scale>
+        <trackHistory>false</trackHistory>
         <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>AfricaBD__c</fullName>
+        <externalId>false</externalId>
         <label>AfricaBD</label>
         <precision>18</precision>
+        <required>false</required>
         <scale>0</scale>
+        <trackHistory>false</trackHistory>
         <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Big_C__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
         <label>Big C</label>
         <referenceTo>MDO_Category__c</referenceTo>
         <relationshipLabel>Amr Summary Plans (Big C)</relationshipLabel>
         <relationshipName>Amr_Summary_Plans1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
         <type>Lookup</type>
     </fields>
     <fields>
         <fullName>EuropeBB__c</fullName>
+        <externalId>false</externalId>
         <label>EuropeBB</label>
         <precision>18</precision>
+        <required>false</required>
         <scale>0</scale>
+        <trackHistory>false</trackHistory>
         <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>EuropeBD__c</fullName>
+        <externalId>false</externalId>
         <label>EuropeBD</label>
         <precision>18</precision>
+        <required>false</required>
         <scale>0</scale>
+        <trackHistory>false</trackHistory>
         <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>In_Good_Time_BB__c</fullName>
+        <externalId>false</externalId>
         <label>BB</label>
         <precision>10</precision>
+        <required>false</required>
         <scale>0</scale>
+        <trackHistory>false</trackHistory>
         <type>Percent</type>
     </fields>
     <fields>
         <fullName>In_Good_Time_BD_BB__c</fullName>
+        <externalId>false</externalId>
         <label>BD + BB</label>
         <precision>16</precision>
+        <required>false</required>
         <scale>0</scale>
+        <trackHistory>false</trackHistory>
         <type>Percent</type>
     </fields>
     <fields>
         <fullName>In_Good_Time_BD__c</fullName>
+        <externalId>false</externalId>
         <label>BD</label>
         <precision>10</precision>
+        <required>false</required>
         <scale>0</scale>
+        <trackHistory>false</trackHistory>
         <type>Percent</type>
     </fields>
     <fields>
         <fullName>Latin_AmericaBB__c</fullName>
+        <externalId>false</externalId>
         <label>Latin AmericaBB</label>
         <precision>18</precision>
+        <required>false</required>
         <scale>0</scale>
+        <trackHistory>false</trackHistory>
         <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Latin_AmericaBD__c</fullName>
+        <externalId>false</externalId>
         <label>Latin AmericaBD</label>
         <precision>18</precision>
+        <required>false</required>
         <scale>0</scale>
+        <trackHistory>false</trackHistory>
         <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>NAMET_RUB_BB__c</fullName>
+        <externalId>false</externalId>
         <label>NAMET RUB BB</label>
         <precision>18</precision>
+        <required>false</required>
         <scale>0</scale>
+        <trackHistory>false</trackHistory>
         <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>NAMET_RUB_BD__c</fullName>
+        <externalId>false</externalId>
         <label>NAMET RUB BD</label>
         <precision>18</precision>
+        <required>false</required>
         <scale>0</scale>
+        <trackHistory>false</trackHistory>
         <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>North_America_BB__c</fullName>
+        <externalId>false</externalId>
         <label>North America BB</label>
         <precision>18</precision>
+        <required>false</required>
         <scale>0</scale>
+        <trackHistory>false</trackHistory>
         <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>North_America_BD__c</fullName>
+        <externalId>false</externalId>
         <label>North America BD</label>
         <precision>18</precision>
+        <required>false</required>
         <scale>0</scale>
+        <trackHistory>false</trackHistory>
         <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>North_Asia_BB__c</fullName>
+        <externalId>false</externalId>
         <label>North Asia BB</label>
         <precision>18</precision>
+        <required>false</required>
         <scale>0</scale>
+        <trackHistory>false</trackHistory>
         <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>North_Asia_BD__c</fullName>
+        <externalId>false</externalId>
         <label>North Asia BD</label>
         <precision>18</precision>
+        <required>false</required>
         <scale>0</scale>
+        <trackHistory>false</trackHistory>
         <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Plan_BB__c</fullName>
         <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
         <label>Plan BB</label>
         <precision>18</precision>
+        <required>false</required>
         <scale>0</scale>
+        <trackHistory>false</trackHistory>
         <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Plan_BD__c</fullName>
         <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
         <label>Plan BD</label>
         <precision>18</precision>
+        <required>false</required>
         <scale>0</scale>
+        <trackHistory>false</trackHistory>
         <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>ProductCategory__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
         <label>Small C</label>
         <referenceTo>MDO_Category__c</referenceTo>
         <relationshipLabel>Amr Summary Plans</relationshipLabel>
         <relationshipName>Amr_Summary_Plans</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
         <type>Lookup</type>
     </fields>
     <fields>
         <fullName>SEAA_BB__c</fullName>
+        <externalId>false</externalId>
         <label>SEAA BB</label>
         <precision>18</precision>
+        <required>false</required>
         <scale>0</scale>
+        <trackHistory>false</trackHistory>
         <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>SEAA_BD__c</fullName>
+        <externalId>false</externalId>
         <label>SEAA BD</label>
         <precision>18</precision>
+        <required>false</required>
         <scale>0</scale>
+        <trackHistory>false</trackHistory>
         <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>South_Asia_BB__c</fullName>
+        <externalId>false</externalId>
         <label>South Asia BB</label>
         <precision>18</precision>
+        <required>false</required>
         <scale>0</scale>
+        <trackHistory>false</trackHistory>
         <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>South_Asia_BD__c</fullName>
+        <externalId>false</externalId>
         <label>South Asia BD</label>
         <precision>18</precision>
+        <required>false</required>
         <scale>0</scale>
+        <trackHistory>false</trackHistory>
         <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Total_Achievment__c</fullName>
+        <externalId>false</externalId>
         <formula>IF(Total_UL_Plan__c != 0, (Actual_Total_UL_Job__c )/ Total_UL_Plan__c, 0)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Total Achievment</label>
         <precision>18</precision>
+        <required>false</required>
         <scale>0</scale>
+        <trackHistory>false</trackHistory>
         <type>Percent</type>
     </fields>
     <fields>
         <fullName>Total_UL_Plan__c</fullName>
+        <externalId>false</externalId>
         <formula>Plan_BB__c  +  Plan_BD__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Total UL Plan</label>
         <precision>18</precision>
+        <required>false</required>
         <scale>0</scale>
+        <trackHistory>false</trackHistory>
         <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Year__c</fullName>
+        <externalId>false</externalId>
         <label>Year</label>
         <picklist>
             <picklistValues>
@@ -367,6 +519,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <label>Amr Summary Plan</label>
@@ -389,12 +542,15 @@
         <columns>NAME</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
+        <language>en_US</language>
     </listViews>
     <nameField>
         <label>Amr Summary Plan Name</label>
+        <trackHistory>false</trackHistory>
         <type>Text</type>
     </nameField>
     <pluralLabel>Amr Summary Plans</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
         <fullName>Actual</fullName>
         <active>true</active>

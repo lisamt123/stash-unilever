@@ -731,7 +731,13 @@
                                                     </div>
                                                 </apex:outputText>                                          
                                             </apex:column>-->
-                                                    <apex:column value="{!job.sObjRec.AM_Job_Detail__r.Allocated_Budget_euro__c}" headerValue="Allocated Budget(euro)" title="{!job.sObjRec.AM_Job_Detail__r.Allocated_Budget_euro__c}" />
+                                                    <apex:column headerValue="Allocated Budget(euro)" title="{!job.sObjRec.AM_Job_Detail__r.Allocated_Budget_euro__c}" >
+                                                    	<apex:outputText >
+                                                            <div class="td-overflow width60">
+                                                               &euro;{!job.sObjRec.AM_Job_Detail__r.Allocated_Budget_euro__c}
+                                                            </div>
+                                                        </apex:outputText>
+                                                    </apex:column>
                                                     <apex:column headerValue="RAP Allocated" title="{!job.sObjRec.user__r.name}">
 
                                                         <apex:outputText >
