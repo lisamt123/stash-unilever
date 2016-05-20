@@ -13,17 +13,17 @@
         <enabled>true</enabled>
     </classAccesses>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WWP_Loss_Tree__c.Actual_Dispatch__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WWP_Loss_Tree__c.Actual_Production__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WWP_Loss_Tree__c.Actual_Receipt__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -43,7 +43,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WWP_Loss_Tree__c.Loss_Recorded_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -78,52 +78,52 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WWP_Loss_Tree__c.PO__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WWP_Loss_Tree__c.PR__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WWP_Loss_Tree__c.Planned_Dispatch__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WWP_Loss_Tree__c.Planned_Production__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WWP_Loss_Tree__c.Planned_Receipt__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WWP_Loss_Tree__c.Plant_Code__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WWP_Loss_Tree__c.RegionId__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WWP_Loss_Tree__c.SKU_Description__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WWP_Loss_Tree__c.SKU__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WWP_Loss_Tree__c.STO_SO__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -132,7 +132,7 @@
         <field>WWP_Loss_Tree__c.Week__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <label>WWP User Permissions</label>
+    <label>WWP Super Admin Permissions</label>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
@@ -152,6 +152,6 @@
     </tabSettings>
     <tabSettings>
         <tab>WWP_Loss_Tree__c</tab>
-        <visibility>None</visibility>
+        <visibility>Visible</visibility>
     </tabSettings>
 </PermissionSet>
