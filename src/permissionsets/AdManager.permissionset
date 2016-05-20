@@ -1913,11 +1913,6 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Amr_Quote__c.Saving__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>Amr_Quote__c.Service_Company_Name__c</field>
         <readable>true</readable>

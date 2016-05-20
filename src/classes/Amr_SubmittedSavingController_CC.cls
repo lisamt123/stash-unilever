@@ -403,10 +403,10 @@ Checking mandatory object field validation, which can not be break down into mul
           
           
           for(integer i=1;i<=50;i++){
-                    String fieldNameNumOfMaster = 'Number_Of_Masters_'+i+ SFOBJECTSUFFIX ;
-                    String fieldNameDurationOfMaster = 'Duration_of_Masters_'+i+ SFOBJECTSUFFIX ;
-                    String fieldNameNumOfAdditionalFilm = 'No_of_Additional_Films_'+i+ SFOBJECTSUFFIX ;
-                    String fieldNameValueDurationOfAdditionalFilm = 'Duration_of_Additional_Films_'+i+ SFOBJECTSUFFIX ;
+                    String fieldNameNumOfMaster = 'Number_Of_Masters_'+i+ Amr_ConstantForAdManager.SFOBJECTSUFFIX ;
+                    String fieldNameDurationOfMaster = 'Duration_of_Masters_'+i+ Amr_ConstantForAdManager.SFOBJECTSUFFIX ;
+                    String fieldNameNumOfAdditionalFilm = 'No_of_Additional_Films_'+i+ Amr_ConstantForAdManager.SFOBJECTSUFFIX ;
+                    String fieldNameValueDurationOfAdditionalFilm = 'Duration_of_Additional_Films_'+i+ Amr_ConstantForAdManager.SFOBJECTSUFFIX ;
                     savObj.put(fieldNameNumOfMaster,0);
                     savObj.put(fieldNameDurationOfMaster,0);
                     savObj.put(fieldNameNumOfAdditionalFilm,0);
@@ -414,26 +414,26 @@ Checking mandatory object field validation, which can not be break down into mul
                 }
                 
                 for(integer i=0;i<masterSize;i++){
-                    String fieldName = 'Number_Of_Masters_'+(i+1)+ SFOBJECTSUFFIX ;
+                    String fieldName = 'Number_Of_Masters_'+(i+1)+ Amr_ConstantForAdManager.SFOBJECTSUFFIX ;
                     system.debug('field name=='+fieldName);
                     savObj.put(fieldName,Integer.valueOf(masterLength.get(i)));
                 }
                 
                 for(integer i=0;i<masterDurationSize;i++){
-                    String fieldNameValue = 'Duration_of_Masters_'+(i+1)+ SFOBJECTSUFFIX ;
+                    String fieldNameValue = 'Duration_of_Masters_'+(i+1)+ Amr_ConstantForAdManager.SFOBJECTSUFFIX ;
                     system.debug('field name=='+fieldNameValue);
                     savObj.put(fieldNameValue,Integer.valueOf(masterLengthDuration.get(i)));
                 } 
                 
                 
                 for(integer i=0;i<masterSizeAdditionalFilms;i++){
-                    String fieldName = 'No_of_Additional_Films_'+(i+1)+ SFOBJECTSUFFIX ;
+                    String fieldName = 'No_of_Additional_Films_'+(i+1)+ Amr_ConstantForAdManager.SFOBJECTSUFFIX ;
                     system.debug('field name=='+fieldName);
                     savObj.put(fieldName,Integer.valueOf(masterLengthAdditionalFilm.get(i)));
                 }
                 
                 for(integer i=0;i<masterAdditionalDurationSize;i++){
-                    String fieldNameValue = 'Duration_of_Additional_Films_'+(i+1)+ SFOBJECTSUFFIX ;
+                    String fieldNameValue = 'Duration_of_Additional_Films_'+(i+1)+ Amr_ConstantForAdManager.SFOBJECTSUFFIX ;
                     system.debug('field name=='+fieldNameValue);
                     savObj.put(fieldNameValue,Integer.valueOf(masterLengthAdditionalDuration.get(i)));
                 } 
