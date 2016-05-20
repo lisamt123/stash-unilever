@@ -261,8 +261,64 @@ public with sharing class Amr_NewSaving_CC {
                                 Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Saving_Accepted_Quote_Euro__c, 
                                 Production_Type__c,No_of_Masters__c,No_of_Masters_List__c,Duration_of_Masters__c,No_of_Additional_Films__c,No_of_Additional_Films_List__c,Duration_of_Additional_Films__c,
                                 No_of_shoot_days__c,Stage_RAP_engaged__c,Script_Title__c,Scope_re_brief__c,Number_Of_Quotes__c,Average_Total_Opening_Quotes__c,Shoot_Location__c
-                                 from Amr_Saving__c where id =:savingObj.id];
-            savingObj = savingObjInserted;
+                                from Amr_Saving__c where id =:savingObj.id];
+                                
+            //Spliting logic
+             
+                List<String> masterLength = savingObj.No_of_Masters_List__c.split(',');
+                List<String> masterLengthDuration = savingObj.Duration_of_Masters__c.split(',');
+                
+                
+                List<String> masterLengthAdditionalFilm = savingObj.No_of_Additional_Films_List__c.split(',');
+                List<String> masterLengthAdditionalDuration = savingObj.Duration_of_Additional_Films__c.split(',');
+                
+                Integer masterSize = masterLength.size();
+                Integer masterDurationSize = masterLengthDuration.size();
+                
+                Integer masterSizeAdditionalFilms = masterLengthAdditionalFilm.size();
+                Integer masterAdditionalDurationSize = masterLengthAdditionalDuration.size();
+                
+                system.debug('size'+masterSize); 
+                
+                for(integer i=1;i<=50;i++){
+                    String fieldNameNumOfMaster = 'Number_Of_Masters_'+i+'__c' ;
+                    String fieldNameDurationOfMaster = 'Duration_of_Masters_'+i+'__c' ;
+                    String fieldNameNumOfAdditionalFilm = 'No_of_Additional_Films_'+i+'__c' ;
+                    String fieldNameValueDurationOfAdditionalFilm = 'Duration_of_Additional_Films_'+i+'__c' ;
+                    savingObj.put(fieldNameNumOfMaster,0);
+                    savingObj.put(fieldNameDurationOfMaster,0);
+                    savingObj.put(fieldNameNumOfAdditionalFilm,0);
+                    savingObj.put(fieldNameValueDurationOfAdditionalFilm,0);
+                }
+                
+                for(integer i=0;i<masterSize;i++){
+                    String fieldName = 'Number_Of_Masters_'+(i+1)+'__c' ;
+                    system.debug('field name=='+fieldName);
+                    savingObj.put(fieldName,Integer.valueOf(masterLength.get(i)));
+                }
+                
+                for(integer i=0;i<masterDurationSize;i++){
+                    String fieldNameValue = 'Duration_of_Masters_'+(i+1)+'__c' ;
+                    system.debug('field name=='+fieldNameValue);
+                    savingObj.put(fieldNameValue,Integer.valueOf(masterLengthDuration.get(i)));
+                } 
+                
+                
+                for(integer i=0;i<masterSizeAdditionalFilms;i++){
+                    String fieldName = 'No_of_Additional_Films_'+(i+1)+'__c' ;
+                    system.debug('field name=='+fieldName);
+                    savingObj.put(fieldName,Integer.valueOf(masterLengthAdditionalFilm.get(i)));
+                }
+                
+                for(integer i=0;i<masterAdditionalDurationSize;i++){
+                    String fieldNameValue = 'Duration_of_Additional_Films_'+(i+1)+'__c' ;
+                    system.debug('field name=='+fieldNameValue);
+                    savingObj.put(fieldNameValue,Integer.valueOf(masterLengthAdditionalDuration.get(i)));
+                }   
+                    
+                update savingObj;
+                
+                savingObj = savingObjInserted;
             
             
             return null;
