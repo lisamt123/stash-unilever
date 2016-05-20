@@ -3,6 +3,15 @@ src/approvalProcesses/CPA_HLE_Request__c.CPA_VDM_HLE_Request_Approval_Process.ap
 src/classes
 src/classes/CPA_LOI_TriggerUtil.cls
 src/classes/CPA_LOI_TriggerUtil.cls-meta.xml
+src/objects
+src/objects/CPA_HLE_Request__c.object
+src/permissionsets
+src/permissionsets/CPA_ADM.permissionset
+src/permissionsets/CPA_SMT.permissionset
+src/permissionsets/CPA_SystemAdmin.permissionset
+src/permissionsets/CPA_ULFT.permissionset
+src/permissionsets/CPA_ULPM.permissionset
+src/permissionsets/CPA_ULPT.permissionset
 src/email
 src/email/CPA_Email_Template-meta.xml
 src/email/CPA_Email_Template
