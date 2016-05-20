@@ -23,50 +23,59 @@
             	<div class="col-lg-4 col-md-4">
                     <div class="form-group" id="SOWName">
                         <label for="SOWName" class="create_SOW_form_titles">SOW Name*</label>
-                        <apex:inputField value="{!selected_sow.Name_Prefix__c}"  styleClass="form-control" required="true" id="sowName"/>
+                        <apex:inputField value="{!selected_sow.Name_Prefix__c}"  styleClass="form-control" required="true" id="sowName" rendered="{!can_edit_key_sow_fields}"/>
+                        <div class="SOW_create_display_flex">
+                            <apex:outputField value="{!selected_sow.Name_Prefix__c}" id="output_sowName" rendered="{!NOT(can_edit_key_sow_fields)}"/>
+                        </div>
                     </div>
                     <apex:actionRegion >
 	                    <div class="form-group " id="Brand">
 	                        <label for="SOWName" class="create_SOW_form_titles">Brand*</label>
 	                        <div class="SOW_create_display_flex">
 	                            <!--input type="text" class="form-control" id="Brand" placeholder="" /-->
-	                            <apex:inputField value="{!selected_sow.OblixBrand__c}"  required="true" id="oblixBrand">
+	                            <apex:inputField value="{!selected_sow.OblixBrand__c}"  required="true" id="oblixBrand" rendered="{!can_edit_key_sow_fields}">
 	                            	<apex:actionSupport event="onchange" action="{!getCategoryBrand}" rerender="sowNewIdWrapper"/>
 	                            </apex:inputField>
+                                <apex:outputField value="{!selected_sow.OblixBrand__r.name}" id="output_oblixBrand" rendered="{!NOT(can_edit_key_sow_fields)}" />
 	                        </div>
 	                    </div>
 	                    <apex:outputPanel id="sowNewIdWrapper">
 		                    <div class="form-group" id="BigCategory">
 		                        <p class="create_SOW_form_titles">Big Category*</p>
 		                        <div class="SOW_create_display_flex">
-		                            <apex:inputField value="{!selected_sow.BigOblixProductCategory__c}" id="bigC"/>
+		                            <apex:inputField value="{!selected_sow.BigOblixProductCategory__c}" id="bigC" rendered="{!can_edit_key_sow_fields}"/>
+                                    <apex:outputField value="{!selected_sow.BigOblixProductCategory__r.Name}" id="output_bigC" rendered="{!NOT(can_edit_key_sow_fields)}"/>
 		                        </div>
 		                    </div>
 		                    <div class="form-group" id="SmallCategory" >
 		                        <p class="create_SOW_form_titles">Small Category*</p>
 		                        <div class="SOW_create_display_flex">
-		                            <apex:inputField value="{!selected_sow.SmallProductCategory__c}" id="smallC"/>
+		                            <apex:inputField value="{!selected_sow.SmallProductCategory__c}" id="smallC" rendered="{!can_edit_key_sow_fields}"/>
+                                    <apex:outputField value="{!selected_sow.SmallProductCategory__r.Name}" id="output_smallC" rendered="{!NOT(can_edit_key_sow_fields)}"/>
 		                        </div>
 		                    </div>
 	    				</apex:outputPanel>
     				</apex:actionRegion>
                     <div class="form-group" id="FinancialYear" >
                         <p class="create_SOW_form_titles">Financial Year*</p>
-                        <apex:selectList size="1" value="{!selected_sow.Financial_Year__c}" html-placeholder="{!$ObjectType.Marketing_SOW__c.fields.Financial_Year__c.label}" id="financialYear" styleClass="Oblix_picklist">
+                        <apex:selectList size="1" value="{!selected_sow.Financial_Year__c}" html-placeholder="{!$ObjectType.Marketing_SOW__c.fields.Financial_Year__c.label}" id="financialYear" styleClass="Oblix_picklist" rendered="{!can_edit_key_sow_fields}">
                             <apex:selectOptions value="{!FYSelectOptions}"></apex:selectOptions>
                         </apex:selectList>
+                        <apex:outputField value="{!selected_sow.Financial_Year__c}" id="output_financialYear" rendered="{!NOT(can_edit_key_sow_fields)}" />
                     </div>
             	</div>
 	            <div class="col-lg-4 col-md-4">
                     <div class="form-group " id="agency">
                         <label for="Agency" class="create_SOW_form_titles">Agency*</label>
                         <div class="SOW_create_display_flex">
-                            <apex:inputField value="{!selected_sow.Oblix_AgencyEstimate__c}" id="agencyField" styleClass="" required="true" />
+                            <apex:inputField value="{!selected_sow.Oblix_AgencyEstimate__c}" id="agencyField" styleClass="" required="true" rendered="{!can_edit_key_sow_fields}"/>
+                            <apex:outputField value="{!selected_sow.Oblix_AgencyEstimate__r.Name}" id="output_agencyField" styleClass="" rendered="{!NOT(can_edit_key_sow_fields)}"/>
                         </div>
                     </div>
                     <div class="form-group " id="inlineRadioBD">
                         <label for="BDBB" class="create_SOW_form_titles SOW_create_display_block">BD/BB*</label>
-                        <apex:inputField value="{!selected_sow.BB_or_BD__c}" id="bdbb" />
+                        <apex:inputField value="{!selected_sow.BB_or_BD__c}" id="bdbb" rendered="{!can_edit_key_sow_fields}"/>
+                        <apex:outputField value="{!selected_sow.BB_or_BD__c}" id="output_bdbb" rendered="{!NOT(can_edit_key_sow_fields)}"/>
                     </div>
                     <div class="form-group" id="AgencyContact" >
                         <p>Agency Contact&nbsp;<span class="form_bracket_text">(Optional)</span>

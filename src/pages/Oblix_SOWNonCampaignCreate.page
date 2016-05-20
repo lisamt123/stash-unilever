@@ -156,7 +156,7 @@
                                     <div class="row">
                                         <div class="col-lg-4 non_camp_description_spacing">
                                             <p class="create_SOW_form_titles">Other info (optional)</p>
-                                            <apex:inputField id="activityDescription" value="{!helper.currentActivity.nonCampaignItem.Description__c}" html-rows="3" html-cols="35"/>
+                                            <apex:inputField id="activityDescription" value="{!helper.currentActivity.nonCampaignItem.Description__c}" html-rows="3" style="width: 100%;"/>
                                         </div>
                                         <div class="col-lg-4 non_camp_dropdown_spacing">
                                             <p class="create_SOW_form_titles">Role*</p>
@@ -277,7 +277,7 @@
                                         <div class="row">
                                             <div class="col-lg-4 non_camp_description_spacing">
                                                 <p class="create_SOW_form_titles">Other info (optional)</p>
-                                                <apex:inputField id="resourceDescription" value="{!helper.currentResource.nonCampaignItem.Description__c}" html-rows="3" html-cols="35"/>
+                                                <apex:inputField id="resourceDescription" value="{!helper.currentResource.nonCampaignItem.Description__c}" html-rows="3" style="width: 100%;"/>
                                             </div>
                                             <div class="col-lg-4 non_camp_dropdown_spacing">
                                                 <p class="create_SOW_form_titles">Role*</p>
@@ -342,7 +342,9 @@
                                                             <td onclick="openResourceForUpdate('{!item.key}');">{!item.selectedAgencyDepartment}</td>
                                                             <td onclick="openResourceForUpdate('{!item.key}');">{!item.selectedRole}</td>
                                                             <td onclick="openResourceForUpdate('{!item.key}');">
-                                                                <apex:outputText rendered="{!can_see_financial_fields}">{!item.roundedRate}</apex:outputText>
+                                                                <apex:outputText value="{0, number,###,###,##0}" rendered="{!can_see_financial_fields}">
+                                                                    <apex:param value="{!VALUE(item.roundedRate)}"/>
+                                                                </apex:outputText>
                                                                 <apex:outputText rendered="{!can_see_financial_fields == false}"> --- </apex:outputText>
                                                             </td>
                                                             <td onclick="openResourceForUpdate('{!item.key}');">{!item.hoursSelected}</td>

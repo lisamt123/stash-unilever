@@ -105,6 +105,16 @@
         <fullName>Oblix_SOW_Main_Detail</fullName>
         <description>SOW Main Detail Create</description>
         <displayedFields>
+            <field>SOW_PFY__r.Sync_Status__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>SOW_PFY__r.SOW_Status__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
             <field>Initial_Approval_Complete__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -275,22 +285,12 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>Cloning_failed__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>Marked_for_cloning__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
             <field>Approved_version__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>Sync_Required_NFY__c</field>
+            <field>Sync_Status_PFY__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -460,6 +460,17 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Attachments_Cloned__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>During clone/sync rollover process, attachments get cloned under a new parent. This flag is set when the attachments successfully get cloned. DO NOT CHANGE as set programatically by sync_job</description>
+        <externalId>false</externalId>
+        <label>Attachments Cloned</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>BB_or_BD__c</fullName>
         <externalId>false</externalId>
         <label>BB or BD</label>
@@ -532,28 +543,6 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Cloning_failed__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Flag used to indicate to user presence of any errors that occurred during asynchronous SOW clone.</description>
-        <externalId>false</externalId>
-        <label>Cloning failed</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Cloning_in_Progress__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Hidden field that controls info message when SOW was approved and it&apos;s Open for Updates version is being created by shceduler</description>
-        <externalId>false</externalId>
-        <label>Cloning in Progress</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Currency__c</fullName>
@@ -648,17 +637,6 @@
         <description>Determines if the SOW has already been through the initial approval. This field is used in Apex logic to determine state between Initial Approval / EOY approval</description>
         <externalId>false</externalId>
         <label>Initial Approval Complete</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Marked_for_cloning__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Field to indicate that record needs to be processed by schedulable class. Work around for Community users not being able to see internal users.</description>
-        <externalId>false</externalId>
-        <label>Marked for cloning</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -994,7 +972,7 @@ ISPICKVAL(SOW_Status__c , &quot;Returned by Agency&quot;)
         <label>SOW PFY</label>
         <referenceTo>Marketing_SOW__c</referenceTo>
         <relationshipLabel>SWOP (SOW PFY)</relationshipLabel>
-        <relationshipName>SOW_PFY</relationshipName>
+        <relationshipName>SOW_PFYs</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -1078,11 +1056,11 @@ ISPICKVAL(SOW_Status__c , &quot;Returned by Agency&quot;)
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Sync_Required_NFY__c</fullName>
+        <fullName>Sync_Status_PFY__c</fullName>
         <externalId>false</externalId>
         <formula>TEXT( SOW_PFY__r.Sync_Status__c )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Sync Required NFY</label>
+        <label>Sync Status PFY</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1121,6 +1099,10 @@ ISPICKVAL(SOW_Status__c , &quot;Returned by Agency&quot;)
             </picklistValues>
             <picklistValues>
                 <fullName>Sync Completed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Clone Completed</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -1469,6 +1451,10 @@ OblixTotalOtherItemsFees__c)</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Clone Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Clone In Progress</fullName>
                 <default>false</default>
             </values>
@@ -1636,6 +1622,10 @@ OblixTotalOtherItemsFees__c)</formula>
         <picklistValues>
             <picklist>Sync_Status__c</picklist>
             <values>
+                <fullName>Clone Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Clone In Progress</fullName>
                 <default>false</default>
             </values>
@@ -1698,7 +1688,7 @@ OblixTotalOtherItemsFees__c)</formula>
         <fullName>Lock_Record_if_Sync_in_Progress</fullName>
         <active>true</active>
         <description>Lock the SWOP record if a roll over sync is in progress</description>
-        <errorConditionFormula>IF(  $Profile.Name &lt;&gt; &apos;System Administrator&apos; &amp;&amp; TEXT( Sync_Status__c ) == &apos;Sync In Progress&apos;,true,false)</errorConditionFormula>
+        <errorConditionFormula>IF($Setup.Oblix_Job_Orchestration__c.Job_Is_Running__c == true &amp;&amp; $Profile.Name &lt;&gt; &apos;System Administrator&apos; &amp;&amp; (TEXT( Sync_Status__c ) == &apos;Sync In Progress&apos; || Sync_Status_PFY__c == &apos;Sync In Progress&apos; || TEXT( Sync_Status__c ) == &apos;Sync Requested&apos; || Sync_Status_PFY__c == &apos;Sync Requested&apos;),true,false)</errorConditionFormula>
         <errorDisplayField>Sync_Status__c</errorDisplayField>
         <errorMessage>Sync in Progress. Record Locked</errorMessage>
     </validationRules>

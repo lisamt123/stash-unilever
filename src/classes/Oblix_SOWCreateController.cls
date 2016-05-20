@@ -25,6 +25,12 @@ public with sharing class Oblix_SOWCreateController extends Oblix_SWOPparentCont
     //}
     public Boolean isEdit {get; private set;}
 
+    public Boolean can_edit_key_sow_fields {
+        get {
+            return Oblix_PermissionHandler.canEditKeySOWFields();
+        }
+    }
+
     /*******************************************************************************
     * @author       Slavko Skular
     * @date         2016-02-26

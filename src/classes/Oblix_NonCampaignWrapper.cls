@@ -71,8 +71,8 @@ public with sharing class Oblix_NonCampaignWrapper {
         this.selectedCountry = nonCampaign.OblixCountry__c;
         this.selectedAgencyDepartment = nonCampaign.Agency_Department__c;
         this.selectedRole = nonCampaign.Role_Title__c;
-        this.hourlyRate = String.valueOf(nonCampaign.Oblix_Hourly_Rate__c);
-        this.roundedRate = String.valueOf(Math.round(Decimal.valueOf(this.hourlyRate)));
+        this.hourlyRate = String.valueOf(nonCampaign.Hourly_Rate_or_FTE__c);
+        this.roundedRate = String.isBlank(this.hourlyRate) ? '' : String.valueOf(Math.round(Decimal.valueOf(this.hourlyRate)));
         this.hoursSelected = nonCampaign.No_of_Hours_Required__c;
         this.totalAmount = nonCampaign.OblixOtherItemFee__c;
         this.activityId = nonCampaign.Id;
@@ -187,6 +187,7 @@ public with sharing class Oblix_NonCampaignWrapper {
         //}else{
             nonCampaignItem.No_of_Hours_Required__c = this.hoursSelected;
             nonCampaignItem.OblixOtherItemFee__c = Decimal.valueOf(this.totalAmount);
+            nonCampaignItem.Hourly_Rate_or_FTE__c = Decimal.valueOf(this.hourlyRate);
         //}
 
         nonCampaignItem.Activities__c = this.selectedActivity;

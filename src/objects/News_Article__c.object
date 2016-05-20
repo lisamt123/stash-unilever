@@ -1289,13 +1289,6 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>News Articles</pluralLabel>
-    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
-    <recordTypeTrackHistory>false</recordTypeTrackHistory>
-    <recordTypes>
-        <fullName>Core_Create</fullName>
-        <active>true</active>
-        <label>Core_Create</label>
-    </recordTypes>
     <searchLayouts>
         <lookupDialogsAdditionalFields>Title__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>Sharepoint_URL__c</lookupDialogsAdditionalFields>

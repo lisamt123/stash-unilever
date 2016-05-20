@@ -161,7 +161,8 @@ public with sharing class Oblix_TestUtils {
     public static Marketing_Basics__c createMarketingBasics(Id marketingSowId){
         Marketing_Basics__c mbasics = new Marketing_Basics__c();
         mbasics.Oblix_SOWMarketing__c = marketingSowId;
-		mbasics.RecordTypeId = Oblix_Utils.RT_NON_CAMPAIGN_RESOURCE_ID;
+        mbasics.RecordTypeId = Oblix_Utils.RT_NON_CAMPAIGN_RESOURCE_ID;
+        mbasics.Hourly_Rate_or_FTE__c = 10;
         insert mbasics;
         return mbasics;
     }
@@ -268,6 +269,19 @@ public with sharing class Oblix_TestUtils {
         
         return retList;
     }
+
+    public static List<Oblix_Job_Orchestration__c> createOblixJobOrchestrationCustomSetting(){
+        List<Oblix_Job_Orchestration__c> retList = new List<Oblix_Job_Orchestration__c>();
+
+        Oblix_Job_Orchestration__c csRec = new Oblix_Job_Orchestration__c();
+
+        csRec.SetupOwnerId = UserInfo.getOrganizationId();
+        csRec.Job_Is_Running__c = false;
+        retList.add(csRec);
+        
+        return retList;
+    }
+
 
     public static Map<Id, Oblix_SOW_Projects__c> insertCampaignsWithRelatedRecords(Integer number_of_campaigns,Integer  number_of_assets,Integer  number_of_hubs, Id sow_id,String brand_led_growth, String scale_1, String scale_2, String campaign_idea ){
 

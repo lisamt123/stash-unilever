@@ -32,7 +32,7 @@
 }
 
 body {
-    min-width: 1280px !important;
+    min-width: 1390px !important;
     max-width: 1920px !important;
 }       
 
@@ -736,6 +736,9 @@ table tbody tr td {
     margin-bottom: 25px;
     margin-left: 15px;
     margin-right: 15px;
+    margin-top: -20px;
+    display: inline-block;
+    width: 97.5%;
 }
 
 .sow_tab_style.nav li a {
@@ -838,14 +841,35 @@ table tbody tr td {
 
 .SOW_name_status_info  td {
     padding-right: 15px;
+    padding-top: 2px;
 }
 
 .SOW_name_status_info_margin {
-    padding-left: 70px;
+    padding-left: 50px;
 }
 
 .SOW_name_status_info_titles {
     font-family: 'UldinproB', Arial, sans-serif; 
+}
+.dashboard_title {
+    margin-left: 135px;
+}
+.dasboard_button, .dasboard_button:hover, .dasboard_button:focus{
+    fill: #e56DB1;
+    text-decoration: none;
+    cursor: pointer;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;           /* Non-prefixed version, currently
+                                  not supported by any browser */
+}
+.dasboard_button__disabled, .dasboard_button__disabled:hover, .dasboard_button__disabled:focus {
+    text-decoration: underline;
+    cursor: default;
+    pointer-events: none;
 }
 /*Chatter fix*/
 .publishercontainer .bottombar {
@@ -1212,7 +1236,7 @@ table tbody tr td {
     margin-top: 10px;
 }
 .investment_project_dropdowns_right {
-    width: 94%;
+    width: 100%;
     margin-bottom: 1px;
     margin-top: 8px;
 }
@@ -1356,6 +1380,12 @@ table tbody tr td {
 .confirm_assets_accordion .panel-collapse {
     background-color: #f3f3f3;
     padding-bottom: 15px;
+}
+.confirm_assets_accordion {
+    width: 58%;
+    display: inline-block;
+    min-width: 770px;
+    padding-left: 15px;
 }
 .accordion_body_options {
     padding-left: 15px;
@@ -1568,7 +1598,7 @@ table tbody tr td {
 
 .add_assets_chevron_percentage_values {
     padding:0;
-    width:17%;
+    width:12%;
     display:inline-block;
 }
 
@@ -1582,6 +1612,12 @@ table tbody tr td {
 .add_assets_chevron_percentage_values h1 {
     margin:0;
     font-family: 'UldinproB', Arial, sans-serif;
+    font-size: 28px;
+
+}
+
+.add_assets_chevron_percentage_values p.red_text {
+    font-size: 10pt;
 }
 
 .campaign_fee_percentage {
@@ -1619,6 +1655,7 @@ table tbody tr td {
 
 .campaign_summary_info_table {
     padding: 5px;
+    max-width: 1020px
 }
 
 .campaign_summary_information {
@@ -1694,6 +1731,11 @@ table tbody tr td {
     width: 770px !important;
 }
 
+.adjust_fee_modal #adjustFeeExcessWarning {
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
+
 .cancel_campaign_modal {
     
 }
@@ -1729,6 +1771,13 @@ table tbody tr td {
     padding-left: 0; 
     margin-left: -80px;
     padding-top: 45px;
+    position: relative;
+}
+
+.gbvp_adjustment #adjustFeeExcessWarningOnCancel {
+    position: absolute;
+    top: 25px;
+    width: 270px;
 }
 
 .cancel_campaign_totals p,
@@ -1815,6 +1864,10 @@ table tbody tr td {
     font-size: 40px;
 }
 
+.modal-body h1.campaign_fee_percentage {
+    font-size: 28px;
+}
+
 .adjust_allocation_box {
     width: 75px;
     padding-right: 3px;
@@ -1870,6 +1923,10 @@ table tbody tr td {
     margin-bottom: 30px;
 }
 
+.non-campaign_hourly_rate_section {
+    position: relative;
+}
+
 .non-campaign_hourly_rate_section p, .non-campaign_hourly_rate_section .hourly_rate_box{
     display: inline-block;
 }
@@ -1884,7 +1941,9 @@ table tbody tr td {
 }
 
 .non-campaign_hourly_rate_section .btn {
-    margin-left: 30px;
+    position: absolute;
+    bottom: 5px;
+    margin-left: 5px;
     padding: 3px 10px;
     margin-top: -2px;
 }
@@ -2285,4 +2344,75 @@ p.percentage_paid div.popover {
 
 .error-input-border {
     border: 2px solid #FF0000;
+}
+
+.oblix_chart {
+/*  left: 790px;*/
+    border-left: 1px solid #ddd;
+    margin-top -2px !important;
+    height: 40%;
+    padding-left: 3.5%;
+}
+.oblix_donut_chart {
+    left: 60%;
+    border-left: 1px solid #ddd;
+    margin-top -2px !important;
+    height: 46%;
+    padding-left: 3.5%;
+    display: inline-block;
+    margin-left: 5px;
+}
+/*.bar-chart-col .oblix_chart {
+    padding-left: 6.5%;
+}*/
+.bar-chart-col {
+    z-index: 1000; 
+}    
+    
+/*Donut Chart List  */
+    
+.donut_chart_list .audio_visual_key span.donut_point_align {
+    color: rgb(177, 135, 184);
+    margin-right: 8px;
+    font-size: 18px;
+    vertical-align: middle;
+}
+.donut_chart_list .digital_key span.donut_point_align {
+    color: rgb(206, 220, 2);
+    margin-right: 8px;
+    font-size: 18px;
+    vertical-align: middle;
+}
+.donut_chart_list .experimental_key span.donut_point_align {
+    color: rgb(228, 108, 176);
+    margin-right: 8px;
+    font-size: 18px;
+    vertical-align: middle;
+}
+.donut_chart_list .static_imagery_key span.donut_point_align {
+    color: rgb(5, 177, 169);
+    margin-right: 8px;
+    font-size: 18px;
+    vertical-align: middle;
+}
+.donut_chart_list .stimulus_material_key span.donut_point_align {
+    color: rgb(255, 198, 44);
+    margin-right: 8px;
+    font-size: 18px;
+    vertical-align: middle;
+}
+.donut_chart_list li span {
+    color: #000000;
+    margin-right: 5px;
+}
+ul.donut_chart_list li {
+    line-height: 16px;
+    margin-top: 0px;
+    list-style: none;
+    list-style-type: none;
+    font-size: 9pt;
+    font-family: 'UldinproB', Arial, sans-serif;
+}
+.donut_chart_list {
+    margin-left: 19%;    
 }
