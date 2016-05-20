@@ -94,7 +94,6 @@ src/sharingRules
 src/sharingRules/WU_Master_Warehouse__c.sharingRules
 src/profiles
 src/profiles/Unilever - Force MultiApp Standard.profile
-src/profiles/Unilever - Chatter Only.profile
 src/reports
 src/reports/WU_Warehouse_Excellence_Team
 src/reports/WU_Warehouse_Excellence_Team/Average_Utilization_by_Day.report
