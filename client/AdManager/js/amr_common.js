@@ -443,7 +443,7 @@ function additionalFilmProcess() {
 					removeMasterDurationRows();
 					noOfmasterdurationkeypress();        		
 				} else {
-					alert('maximum 50 masters can be added');
+					alert('Maximum 50 masters can be added');
 				}
         	});
         }
@@ -457,7 +457,7 @@ function additionalFilmProcess() {
 					removeAdditionalFilmDurationRows();
 					noOfAdditionalFilmdurationkeypress();
 				} else {
-					alert('maximum 50 additional films can be added');
+					alert('Maximum 50 additional films can be added');
 				}       		
         	});
         }
