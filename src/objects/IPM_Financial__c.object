@@ -1043,56 +1043,35 @@ IF( OR(Year_3_iTO_Global__c=0.00, ISNULL(Year_3_iTO_Global__c)),
         <unique>false</unique>
     </fields>
 	<fields>
-	        <fullName>IPM_CPP_Local__c</fullName>
-	        <description>Project Priority Local</description>
-	        <externalId>false</externalId>
-	        <formula>IF(OR((Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000&gt;200),(Year_1_iTO_Regional__c/1000&gt;=10),(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.005))) , &quot;Gold&quot;,  
-	
-	IF( AND((Year_1_iTO_Regional__c/1000&lt;(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.005)),
-	(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.001))) , &quot;Silver&quot;,  
-	
-	IF((Year_1_iTO_Regional__c/1000&lt;(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.001)), &quot;Bronze&quot;,&quot;NA&quot; )))</formula>
-	        <inlineHelpText>Capture Local Projects CPP value based on the BD numbers</inlineHelpText>
-	        <label>IPM CPP Local</label>
-	        <required>false</required>
-	        <trackHistory>false</trackHistory>
-	        <trackTrending>false</trackTrending>
-	        <type>Text</type>
-	        <unique>false</unique>
+        <fullName>IPM_CPP_Local__c</fullName>
+        <description>Project Priority Local</description>
+        <externalId>false</externalId>
+        <formula>IF( (Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000) &gt;=200, 
+
+ IF(OR(Year_1_iTO_Local__c/1000&gt;=10, Year_1_iTO_Local__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.005))
+, &quot;Gold&quot;,  
+IF(OR(Year_1_iTO_Local__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.001), Year_1_iTO_Local__c/1000&lt;(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.005)), &quot;Silver&quot;,  IF(Year_1_iTO_Local__c/1000&lt;(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.001), &quot;Bronze&quot;, &quot;NA&quot;) ) ) 
+  ,  IF((Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000) &lt;200, 
+ IF(Year_1_iTO_Local__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.001), &quot;Silver&quot;, &quot;Bronze&quot;) , &quot;NA&quot;) )</formula>
+        <inlineHelpText>Capture Local Projects CPP value based on the BB numbers</inlineHelpText>
+        <label>IPM CPP Local</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_CPP_Regional__c</fullName>
+        <description>To Calculate the CPP on local Projects based on BD Numbers</description>
         <externalId>false</externalId>
-        <formula>IF(OR( 
-   Regional_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000&gt;200,
-   AND(Regional_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000=200,
-   Year_1_iTO_Regional__c/1000 &gt;=10),
-   AND(Regional_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000=200,   
-   Year_1_iTO_Regional__c &gt;=          
-  (Regional_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c *0.005) ) ), 
-  &quot;Gold&quot;, 
-IF(AND(
-  Regional_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000=200, 
-  Year_1_iTO_Regional__c &gt;= (OpCo_Regional__c *0.001), Year_1_iTO_Regional__c &lt; (OpCo_Regional__c *0.005) ), 
-  &quot;Silver&quot;, 
-IF(AND(
-  Regional_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000=200,
-  Year_1_iTO_Regional__c &lt; (OpCo_Regional__c *0.001) ), 
-  &quot;Bronze&quot;, 
-IF(AND(
-  Regional_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000&lt;200,
-  Year_1_iTO_Regional__c &gt;= (OpCo_Regional__c *0.001) ),
-  &quot;Silver&quot;,
-IF(AND(
-  Regional_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000&lt;200,
-  Year_1_iTO_Regional__c &lt; (OpCo_Regional__c *0.001) ),
-  &quot;Bronze&quot;,
-&quot;NA&quot; 
-) 
-) 
-)
-)
-)</formula>
+        <formula>IF( (Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000) &gt;=200, 
+
+ IF(OR( Year_1_iTO_Regional__c /1000&gt;=10, Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.005))
+, &quot;Gold&quot;,  
+IF(OR(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.001), Year_1_iTO_Regional__c/1000&lt;(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.005)), &quot;Silver&quot;,  IF(Year_1_iTO_Regional__c/1000&lt;(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.001), &quot;Bronze&quot;, &quot;NA&quot;) ) ) 
+  ,  IF((Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000) &lt;200, 
+ IF(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.001), &quot;Silver&quot;, &quot;Bronze&quot;) , &quot;NA&quot;) )</formula>
         <label>IPM CPP Regional</label>
         <required>false</required>
         <trackHistory>false</trackHistory>

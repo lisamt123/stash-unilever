@@ -516,7 +516,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                 a.IPM_Business_Impact_BD__c = projFinMap.get(p.id).Business_Impact_Global__c; 
                 a.IPM_Auto_Aligned_Fin_TLD_for_financial__c = projFinMap.get(p.id).Misaligned__c; 
                 a.IPM_Auto_Aligned_Fin_TLD__c = p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)?(projFinMap.get(p.id).Misaligned__c? NO:((p.IPM_Misalligned__c== YES) ? YES : NO)):null ; // Auto_Aligned will only be checked for local projects                  
-                a.IPM_Company_Priority__c = p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)?projFinMap.get(p.id).IPM_CPP_Local__c:null;
+                a.IPM_Company_Priority__c = p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)?projFinMap.get(p.id).IPM_CPP_Regional__c:null;
             }  
             
             // Copying Milestone related fields 
@@ -797,17 +797,26 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     
     public string calculateCPP(Decimal year1BDNumber, Decimal companyCardTurnOver){
     	if(companyCardTurnOver != null && year1BDNumber != null){
-    		if((companyCardTurnOver/1000 > 200) || (year1BDNumber/1000 >= 10) || ( (year1BDNumber/1000) >= ((companyCardTurnOver/1000) *0.005))){
+    		if((companyCardTurnOver/1000 >= 200))
+    		{
+    			if ((year1BDNumber/1000 >= 10) || ( (year1BDNumber/1000) >= ((companyCardTurnOver/1000) *0.005))){
 	    		return GOLD;
-	    	}
-	    	else if(((year1BDNumber/1000) >= (companyCardTurnOver/1000)*0.001) && ((year1BDNumber/1000) < (companyCardTurnOver/1000)*0.005)){
-	    		return SILVER;
-	    	}
-	    	else if(((year1BDNumber/1000) < (companyCardTurnOver/1000)*0.001)){
+    			}    		  
+	    	   	else if(((year1BDNumber/1000) >= (companyCardTurnOver/1000)*0.001) && ((year1BDNumber/1000) < (companyCardTurnOver/1000)*0.005)){
+	    		  return SILVER;
+	    		}
+	    		else if(((year1BDNumber/1000) < (companyCardTurnOver/1000)*0.001)){
 	    		return BRONZE;
-	    	}	    	
+	    		}
+    		}	    	
 	    	else{
-	    		return N_A;
+	    		if((year1BDNumber/1000) >= (companyCardTurnOver/1000)*0.001)
+	    		{
+	    			return SILVER;
+	    		}
+	    		else if((year1BDNumber/1000) < (companyCardTurnOver/1000)*0.001){
+	    			return BRONZE;
+	    		}
 	    	}
     	}
     	return EMPTY_STRING;
