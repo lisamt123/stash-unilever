@@ -35115,20 +35115,6 @@
     <layoutAssignments>
         <layout>uw_Terms_Conditions__c-Terms %26 Conditions Layout</layout>
     </layoutAssignments>
-	<layoutAssignments>
-        <layout>WU_Master_Warehouse__c-New Warehouse Capacity Layout</layout>
-        <recordType>WU_Master_Warehouse__c.New_Warehouse_Capacity</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>WU_Master_Warehouse__c-Warehouse Capacity CustomLayout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>WU_Master_Warehouse__c-Warehouse Capacity CustomLayout</layout>
-        <recordType>WU_Master_Warehouse__c.Edit_Warehouse_Capacity</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>WU_Warehouse_Capacity_Detail__c-Custom Warehouse Capacity Utilizaion Layout</layout>
-    </layoutAssignments>
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
