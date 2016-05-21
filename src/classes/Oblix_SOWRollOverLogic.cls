@@ -23,6 +23,7 @@ public with sharing class Oblix_SOWRollOverLogic {
     private static final String SELECT_SOQL = 'SELECT ';
     private static final String SOQL_AND = '\' AND ';
     private static final String EXCLUDE_SYNC_STEP_SOQL = '\' AND Sync_Step__c <> \'';
+    private static final String EXCLUDE_SYNC_STEP_SOQL_NO_START_COMA = ' AND Sync_Step__c <> \'';
     private static final String ORDER_BY_SOQL = '\' ORDER BY Id LIMIT ';
     private static final String RESULT_MSG_PREFIX = '\n\n\n to update: ';
     /********************************************************************
@@ -1032,7 +1033,8 @@ public with sharing class Oblix_SOWRollOverLogic {
             query_string += ' FROM Marketing_SOW_Project_Splits__r)';
             query_string += ' FROM  Oblix_SOW_Projects__c WHERE Sync_Status__c = \'' + job_component.attrib_3 + '\''; 
             // exclude the cloned campaigns here Financual
-            query_string += ' AND Financial_Year__r.SOW_Status__c = \'' + Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES + EXCLUDE_SYNC_STEP_SOQL  + step_name +  ORDER_BY_SOQL + job_component.query_limit; 
+            query_string += ' AND (Financial_Year__r.SOW_Status__c = \'' + Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES + '\' OR Financial_Year__r.SOW_Status__c = \'' + Oblix_Utils.SOW_STATUS_REJECTED_BY_AGENCY;
+            query_string += '\' OR Financial_Year__r.SOW_Status__c = \'' + Oblix_Utils.SOW_STATUS_REJECTED_BY_UNILEVER + '\') ' + EXCLUDE_SYNC_STEP_SOQL_NO_START_COMA  + step_name +  ORDER_BY_SOQL + job_component.query_limit; 
             
             // get the matching cloned campaigns to perform the sync
 
@@ -1394,8 +1396,10 @@ public with sharing class Oblix_SOWRollOverLogic {
             String query_string = SELECT_SOQL;
             query_string += String.join(Oblix_Utils.getfieldsByObject('Oblix_Project_Assets__c'),',');
             query_string += ' FROM Oblix_Project_Assets__c WHERE Agency_Projects__r.Sync_Status__c =\'' + job_component.attrib_3; 
-            query_string += '\' AND Agency_Projects__r.Financial_Year__r.SOW_Status__c = \'' + Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES ;
-            query_string +=  '\' AND Agency_Projects__r.Sync_Step__c <> \'' + step_name + ORDER_BY_SOQL + job_component.query_limit; 
+            query_string += '\' AND (Agency_Projects__r.Financial_Year__r.SOW_Status__c = \'' + Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES ;
+            query_string += '\' OR Agency_Projects__r.Financial_Year__r.SOW_Status__c = \'' + Oblix_Utils.SOW_STATUS_REJECTED_BY_AGENCY; 
+            query_string += '\' OR Agency_Projects__r.Financial_Year__r.SOW_Status__c =  \'' + Oblix_Utils.SOW_STATUS_REJECTED_BY_UNILEVER;
+            query_string +=  '\') AND Agency_Projects__r.Sync_Step__c <> \'' + step_name + ORDER_BY_SOQL + job_component.query_limit; 
 
             result_msg += '\n\n\n query_string: ' + query_string;
 
@@ -1536,7 +1540,7 @@ public with sharing class Oblix_SOWRollOverLogic {
             List<Oblix_SOW_Projects__c> list_campaigns_to_set_processed_flag = [SELECT Sync_Step__c FROM Oblix_SOW_Projects__c WHERE Id in: set_original_parent_ids];
             setProcessingFlag(list_campaigns_to_set_processed_flag,Oblix_syncBatchJob.SYNC_STEP_FIELD, step_name );
 
-            //Oblix_SyncBatchJob.addEvent('DEBUG IN syncCampaignDuringTransitionPeriod() - result_msg: ' + result_msg,NULL);
+            Oblix_SyncBatchJob.addEvent('DEBUG IN syncCampaignDuringTransitionPeriod() - result_msg: ' + result_msg,NULL);
             
         }
         catch(QueryException queryEx){  

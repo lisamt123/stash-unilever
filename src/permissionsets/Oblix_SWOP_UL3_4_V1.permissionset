@@ -469,6 +469,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Marketing_SOW__c.B_Fwd_Campaign_count__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Marketing_SOW__c.BigOblixProductCategory__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1271,6 +1276,11 @@
         <editable>false</editable>
         <field>Oblix_SOW_Projects__c.Innovation_Projects__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Is_B_Fwd_Campaign__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>

@@ -137,6 +137,7 @@ public with sharing class Oblix_BasketSectionWrapper {
         for (String key : wrapper.items.keySet()) {
             wrapper.items.put(key, wrapper.items.get(key).clone());
         }
+        System.debug(this.sowId);
         return wrapper;
     }
 }

@@ -155,6 +155,11 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
+            <field>B_Fwd_Campaign_count__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
             <field>Initial_Approval_Complete__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -548,6 +553,22 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>B_Fwd_Campaign_count__c</fullName>
+        <description>Number of campaigns that were brought forward from the PFY SOW</description>
+        <externalId>false</externalId>
+        <label>B/Fwd Campaign count</label>
+        <summaryFilterItems>
+            <field>Oblix_SOW_Projects__c.Is_B_Fwd_Campaign__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Oblix_SOW_Projects__c.Financial_Year__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
     </fields>
     <fields>
         <fullName>BigOblixProductCategory__c</fullName>

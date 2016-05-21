@@ -461,16 +461,12 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
             List<Marketing_Basics__c> nonCampaigns = Oblix_TestUtils.createMarketingBasics(sow.Id, 7);
 
             //[0,1] - Activity / Brandbook
+            //[2,3] - Activity / Brandbook
             setFirstNonCampaignsSet(nonCampaigns, country);
 
-            //[2,3] - Activity / Brandbook
-            setSecondNonCampaignsSet(nonCampaigns, country);
-
             //[4] - Activity / Brandbook
-            setThirdNonCampaignsSet(nonCampaigns, country);
-
             //[5,6] - Activity / Brandbook
-            setFourthNonCampaignsSet(nonCampaigns, country);
+            setSecondNonCampaignsSet(nonCampaigns, country);
 
             insert nonCampaigns;
         }
@@ -501,10 +497,6 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
                                     nonCampaignItem.Role_Title__c;   
         }
 
-    }
-
-    private static void setSecondNonCampaignsSet(List<Marketing_Basics__c> nonCampaigns, MDO_Geography__c country){
-
         for (Integer i = 2; i < 4; i++) {
             Marketing_Basics__c nonCampaignItem = nonCampaigns[i];
             
@@ -529,7 +521,7 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
 
     }
 
-    private static void setThirdNonCampaignsSet(List<Marketing_Basics__c> nonCampaigns, MDO_Geography__c country){
+    private static void setSecondNonCampaignsSet(List<Marketing_Basics__c> nonCampaigns, MDO_Geography__c country){
 
         for (Integer i = 4; i < 5; i++) {
             Marketing_Basics__c nonCampaignItem = nonCampaigns[i];
@@ -552,11 +544,6 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
                                     country.Name + nonCampaignItem.Agency_Department__c + 
                                     nonCampaignItem.Role_Title__c;   
         }
-
-    }
-
-
-    private static void setFourthNonCampaignsSet(List<Marketing_Basics__c> nonCampaigns, MDO_Geography__c country){
 
         for (Integer i = 5; i < 7; i++) {
             Marketing_Basics__c nonCampaignItem = nonCampaigns[i];
