@@ -665,7 +665,7 @@
                                                         <td style="display: none;"></td>
                                                         <td>
                                                             <apex:actionRegion >
-                                                                <apex:outputPanel rendered="{!IF(can_delete_attachment || eachAttachment.OwnerId == $User.Id,true,false)}">
+                                                                <apex:outputPanel rendered="{!IF(isAdmin || can_delete_attachment && eachAttachment.OwnerId == $User.Id,true,false)}">
                                                                     <apex:outputLink onclick="assignP('{!eachAttachment.Id}');" value="#" styleClass="attachment_item"  html-data-toggle="modal"  html-data-target="#attDelete">&nbsp;
                                                                         
                                                                     </apex:outputLink>

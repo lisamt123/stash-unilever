@@ -590,9 +590,9 @@ public with sharing class Oblix_PermissionHandler {
     public static Boolean canDeleteAttachment(String sow_status){
     	// only UL1, UL2, SuperUser and Sysadmin can delete other people's attachments on SOW 
     	// if not already approved
-    	if ( hasSuperUserpermissionSet() || isSystemAdmin() ||  ( hasUL1permissionSet() || hasUL2permissionSet() || hasAG1permissionSet() || hasAG2permissionSet() )
-    		&& 
-    		(Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status && Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY != sow_status && Oblix_Utils.SOW_STATUS_FINALISED != sow_status)){
+    	if ( hasSuperUserpermissionSet() || isSystemAdmin() ||  hasUL1permissionSet() || hasUL2permissionSet() || hasAG1permissionSet() ){
+    		//&& 
+    		//(Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status && Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY != sow_status && Oblix_Utils.SOW_STATUS_FINALISED != sow_status)){
     		return true;
     	}
     	else{

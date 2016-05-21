@@ -116,6 +116,8 @@ src/classes/Oblix_SOWNonCampaignCreateController.cls
 src/classes/Oblix_SOWNonCampaignCreateController.cls-meta.xml
 src/classes/Oblix_SOWNonCampaignCreateCtrl_Test.cls
 src/classes/Oblix_SOWNonCampaignCreateCtrl_Test.cls-meta.xml
+src/classes/Oblix_SOWNonCampaignCreateCtrl_Test2.cls
+src/classes/Oblix_SOWNonCampaignCreateCtrl_Test2.cls-meta.xml
 src/classes/Oblix_SWOPparentController.cls
 src/classes/Oblix_SWOPparentController.cls-meta.xml
 src/classes/Oblix_SowMainController.cls

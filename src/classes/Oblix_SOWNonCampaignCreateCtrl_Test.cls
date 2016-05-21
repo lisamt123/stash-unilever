@@ -1,16 +1,16 @@
 @isTest
-private class Oblix_SOWNonCampaignCreateCtrl_Test {
+public class Oblix_SOWNonCampaignCreateCtrl_Test {
 
-    private static final String SOW_ID_PAGE_PARAMETER = 'sowId';
-    private static final String PRESELECTED_ITEM_PAGE_PARAMETER = 'preSelectedSection';
+    public static final String SOW_ID_PAGE_PARAMETER = 'sowId';
+    public static final String PRESELECTED_ITEM_PAGE_PARAMETER = 'preSelectedSection';
 
-    private static final String NON_CAMPAIGN_ITEM_WORKLIST_JSON_FIRST_PART = '{"selectedCountry":"Argentina","selectedActivity":"Brand Communication Idea","selectedAgencyDepartment":"Creative","selectedRole":"Copywriter","otherName":"","description":"","hourlyRate":"45.502","hoursSelected":"5","totalAmount":227.51000000000002,"key":"';
-    private static final String NON_CAMPAIGN_ITEM_WORKLIST_JSON_SECOND_PART = 'Brand Communication IdeaArgentinaCreativeCopywriter","isActivity":true}';
+    public static final String NON_CAMPAIGN_ITEM_WORKLIST_JSON_FIRST_PART = '{"selectedCountry":"Argentina","selectedActivity":"Brand Communication Idea","selectedAgencyDepartment":"Creative","selectedRole":"Copywriter","otherName":"","description":"","hourlyRate":"45.502","hoursSelected":"5","totalAmount":227.51000000000002,"key":"';
+    public static final String NON_CAMPAIGN_ITEM_WORKLIST_JSON_SECOND_PART = 'Brand Communication IdeaArgentinaCreativeCopywriter","isActivity":true}';
     private static final String NON_CAMPAIGN_RESOURCE_WORKLIST_JSON_FIRST_PART = '{"name":"testResource","selectedCountry":"Argentina","selectedActivity":"","selectedAgencyDepartment":"Creative","selectedRole":"Copywriter","otherName":"","description":"","hourlyRate":"45.502","hoursSelected":"5","totalAmount":227.51000000000002,"key":"';
     private static final String NON_CAMPAIGN_RESOURCE_WORKLIST_JSON_SECOND_PART = 'testResourceArgentinaCreativeCopywriter","isActivity":false}';
 
-    private static final String BRAND_BOOK = 'BRAND BOOK';
-    private static final String ACTIVITY = 'ACTIVITY';
+    public static final String BRAND_BOOK = 'BRAND BOOK';
+    public static final String ACTIVITY = 'ACTIVITY';
     private static final String TEST_RESOURCE_NAME = 'DedicatedResource1';
 
     private static Marketing_SOW__c sow = new Marketing_SOW__c();
@@ -101,152 +101,7 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
     //}
 
 
-    @isTest private static void testBasketInit() {
-        initCommonData(true);
-
-        //Init controller with existing assets
-        PageReference pageRef = Page.Oblix_SOWNonCampaignCreate;
-        Test.setCurrentPage(pageRef);
-        ApexPages.currentPage().getParameters().put(SOW_ID_PAGE_PARAMETER, sow.Id);
-        ApexPages.currentPage().getParameters().put(PRESELECTED_ITEM_PAGE_PARAMETER, BRAND_BOOK);
-
-        Test.startTest();
-
-            Oblix_SOWNonCampaignCreateController controller = new Oblix_SOWNonCampaignCreateController();
-
-        Test.stopTest();
-
-        //Check whether controller was initiated with 3 item groupings
-        System.assertEquals(4 ,controller.helper.basket.keySet().size());
-
-    }
-
-
-
-    @isTest private static void testAddToWorklist() {
-        initCommonData(false);
-
-        //Init controller with existing assets
-        PageReference pageRef = Page.Oblix_SOWNonCampaignCreate;
-        Test.setCurrentPage(pageRef);
-        ApexPages.currentPage().getParameters().put(SOW_ID_PAGE_PARAMETER, sow.Id);
-        ApexPages.currentPage().getParameters().put(PRESELECTED_ITEM_PAGE_PARAMETER, BRAND_BOOK);
-        Oblix_SOWNonCampaignCreateController controller = new Oblix_SOWNonCampaignCreateController();
-
-        //Check whether controller was initiated wihtout any grouping
-        System.assertEquals(0 ,controller.helper.basket.keySet().size());
-        //Check that ACtivity Tab worklist doesn't contain any items
-        System.assertEquals(0,controller.helper.worklist.get(controller.helper.currentTab).items.size());
-
-        Test.startTest();
-
-            controller.nonCampaignItemToAddJSON = NON_CAMPAIGN_ITEM_WORKLIST_JSON_FIRST_PART + sow.Id + NON_CAMPAIGN_ITEM_WORKLIST_JSON_SECOND_PART;
-            controller.addToWorkList();
-
-            controller.nonCampaignItemToAddJSON = NON_CAMPAIGN_ITEM_WORKLIST_JSON_FIRST_PART + sow.Id + NON_CAMPAIGN_ITEM_WORKLIST_JSON_SECOND_PART;
-            controller.addToWorkList();
-
-        Test.stopTest();
-
-        //Check that ACtivity Tab worklist contain 1 item        
-        System.assertEquals(1,controller.helper.worklist.get(controller.helper.currentTab).items.size());
-
-
-    }
-
-    @isTest private static void testRemoveItem() {
-        initCommonData(false);
-
-        //Init controller with existing assets
-        PageReference pageRef = Page.Oblix_SOWNonCampaignCreate;
-        Test.setCurrentPage(pageRef);
-        ApexPages.currentPage().getParameters().put(SOW_ID_PAGE_PARAMETER, sow.Id);
-        ApexPages.currentPage().getParameters().put(PRESELECTED_ITEM_PAGE_PARAMETER, BRAND_BOOK);
-        Oblix_SOWNonCampaignCreateController controller = new Oblix_SOWNonCampaignCreateController();
-
-        controller.nonCampaignItemToAddJSON = NON_CAMPAIGN_ITEM_WORKLIST_JSON_FIRST_PART + sow.Id + NON_CAMPAIGN_ITEM_WORKLIST_JSON_SECOND_PART;
-        controller.addToWorkList();
-
-        System.assertEquals(1,controller.helper.worklist.get(ACTIVITY).itemCount);
-        System.assertEquals(1,controller.helper.worklist.get(ACTIVITY).items.size());
-        System.assertNotEquals(0,controller.helper.worklist.get(ACTIVITY).totalValue);
-
-        Test.startTest();
-
-            controller.helper.itemToRemove = sow.Id + 'Brand Communication IdeaArgentinaCreativeCopywriter';
-            controller.removeItem();
-
-        Test.stopTest();
-
-        //System.DEBUG('Worklist After Remove :' + controller.helper.worklist);
-        System.assertEquals(0,controller.helper.worklist.get(ACTIVITY).itemCount);
-        System.assertEquals(0,controller.helper.worklist.get(ACTIVITY).items.size());
-        System.assertEquals(0,controller.helper.worklist.get(ACTIVITY).totalValue);
-
-        
-    }
-
-
-    @isTest private static void testRemoveSection() {
-        initCommonData(true);
-
-        //Init controller with existing assets
-        PageReference pageRef = Page.Oblix_SOWNonCampaignCreate;
-        Test.setCurrentPage(pageRef);
-        ApexPages.currentPage().getParameters().put(SOW_ID_PAGE_PARAMETER, sow.Id);
-        ApexPages.currentPage().getParameters().put(PRESELECTED_ITEM_PAGE_PARAMETER, BRAND_BOOK);
-        Oblix_SOWNonCampaignCreateController controller = new Oblix_SOWNonCampaignCreateController();
-
-        controller.helper.currentSection = BRAND_BOOK;
-        controller.helper.openBasketSection();
-
-        System.assertEquals(2,controller.helper.worklist.get(ACTIVITY).itemCount);
-        System.assertEquals(2,controller.helper.worklist.get(ACTIVITY).items.size());
-        System.assertNotEquals(0,controller.helper.worklist.get(ACTIVITY).totalValue);
-
-        Test.startTest();
-
-            controller.helper.sectionToRemove = BRAND_BOOK;
-            controller.removeSection();
-
-        Test.stopTest();
-
-        //System.DEBUG('Worklist After Remove :' + controller.helper.worklist);
-        System.assertEquals(0, controller.helper.worklist.get(ACTIVITY).itemCount);
-        System.assertEquals(0, controller.helper.worklist.get(ACTIVITY).items.size());
-        System.assertEquals(0, controller.helper.worklist.get(ACTIVITY).totalValue);
-
-        System.assertEquals(null, controller.helper.basket.get(BRAND_BOOK));
-
-        
-    }
     
-
-    @isTest private static void testSaveWorkList() {
-        initCommonData(false);
-
-        //Init controller with existing assets
-        PageReference pageRef = Page.Oblix_SOWNonCampaignCreate;
-        Test.setCurrentPage(pageRef);
-        ApexPages.currentPage().getParameters().put(SOW_ID_PAGE_PARAMETER, sow.Id);
-        ApexPages.currentPage().getParameters().put(PRESELECTED_ITEM_PAGE_PARAMETER, BRAND_BOOK);
-        Oblix_SOWNonCampaignCreateController controller = new Oblix_SOWNonCampaignCreateController();
-
-
-        controller.nonCampaignItemToAddJSON = NON_CAMPAIGN_ITEM_WORKLIST_JSON_FIRST_PART + sow.Id + NON_CAMPAIGN_ITEM_WORKLIST_JSON_SECOND_PART;
-
-        controller.addToWorkList();
-        System.assertEquals(1,controller.helper.worklist.get(ACTIVITY).itemCount);
-
-        Test.startTest();
-            
-            controller.saveWorkList();
-
-        Test.stopTest();
-
-        System.debug('### basket keyset: ' + controller.helper.basket.keySet());
-        System.assertEquals(1,controller.helper.basket.get('BRAND COMMUNICATION IDEA').itemCount);
-    }
 
 
     @isTest private static void testOpenActivityForUpdate() {
@@ -502,7 +357,7 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
 
     }
 
-    private static void setFirstNonCampaignsSet(List<Marketing_Basics__c> nonCampaigns, MDO_Geography__c country){
+    public static void setFirstNonCampaignsSet(List<Marketing_Basics__c> nonCampaigns, MDO_Geography__c country){
 
         for (Integer i = 0; i < 2; i++) {
             Marketing_Basics__c nonCampaignItem = nonCampaigns[i];
@@ -564,7 +419,7 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
 
     }
 
-    private static void setSecondNonCampaignsSet(List<Marketing_Basics__c> nonCampaigns, MDO_Geography__c country){
+    public static void setSecondNonCampaignsSet(List<Marketing_Basics__c> nonCampaigns, MDO_Geography__c country){
 
         for (Integer i = 4; i < 5; i++) {
             Marketing_Basics__c nonCampaignItem = nonCampaigns[i];

@@ -149,6 +149,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Oblix_SOWNonCampaignCreateCtrl_Test2</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Oblix_SOWNonCampaignPageHelper</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -470,7 +474,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_SOW__c.B_Fwd_Campaign_count__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -1280,7 +1284,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Oblix_SOW_Projects__c.Is_B_Fwd_Campaign__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -1480,7 +1484,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Oblix_SOW_Projects__c.Record_Locked_Sync__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>

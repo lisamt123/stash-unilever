@@ -149,6 +149,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Oblix_SOWNonCampaignCreateCtrl_Test2</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Oblix_SOWNonCampaignPageHelper</apexClass>
         <enabled>false</enabled>
     </classAccesses>

@@ -19,6 +19,12 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
 
     public Id campaignIDSync { get; set; }
 
+    public Boolean isAdmin {
+    	get{
+    		return Oblix_PermissionHandler.isSystemAdmin() || Oblix_PermissionHandler.hasSuperUserpermissionSet();
+    	}
+    }
+
     public Boolean can_delete_sow{
         get{
             return Oblix_PermissionHandler.canDeleteSOW(selected_sow.SOW_Status__c, selected_sow.Id);
