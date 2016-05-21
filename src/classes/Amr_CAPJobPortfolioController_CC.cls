@@ -86,7 +86,6 @@ global with sharing class Amr_CAPJobPortfolioController_CC {
         for(Amr_Project_Details__c i : projNameList){
             listString.add(i.name);
         }
-        system.debug('listString!!'+listString);
         
          Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
         categoryString = new list<string>();
@@ -124,8 +123,7 @@ Returns: It will return category records in JSON format.
 ************************************************************************************************************************************/  
         
    public String getCategoryList(){ 
-        System.debug('cATE ->' +  JSON.serialize(categoryString));
-        return JSON.serialize(categoryString);
+       return JSON.serialize(categoryString);
     }
    
     
@@ -207,7 +205,6 @@ Returns: It will return list of RAP users.
              listOfUser.add(new selectOption(permissionObj.Assignee.id,permissionObj.Assignee.Name));
          } 
       }
-    system.debug('listOfUser!!'+listOfUser);
          return listOfUser;
          }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -268,19 +265,18 @@ N-Path :
 Search functionality is implemented and SOQL is built dynamically so can not break 'if' decision points from this method
 ************************************************************************************************************************************/   
     public Pagereference getJobSearchDetails(){
-    System.debug('EMAILLLL --->>>  ' + jobDetails.Unilever_Project_Leader_Email__c);
         try{
-    system.debug('categoryName!!'+categoryName);
+
     //job list
     jobDetailList = new list<Amr_Job_Allocation__c>();
     acceptedString='Accepted';
     cancelledString='Cancelled';
     string soql ='select AM_Job_Detail__r.Lead_Agency_Name_Other__c,AM_Job_Detail__r.ProductionActivityTextArea__c,AM_Job_Detail__r.Campaign_Name__c,Started__c,AM_Job_Detail__r.Project_Name_Other__c,Started_Image__c,User__r.email,User__r.Name,Reported__c,Job_Shared__c,Job_Status__c,Job_Allocated_Image__c,Reported_Image__c ,Job_Allocated__c,Job_Status_Image__c,User__c,AM_Job_Detail__r.Project_Details__r.Name,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Job_Status__c ,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.ProductCategory__r.Name,AM_Job_Detail__r.Brand_Position__r.Name,AM_Job_Detail__r.Brand_Final__r.Name,AM_Job_Detail__r.Stage_of_Production_Activity__c,id from Amr_Job_Allocation__c where Job_Status__c != '+'\'Cancelled\' AND AM_Job_Detail__r.Job_Cancelled__c = false ';
-    system.debug('soql !!'+soql);
+    
     //cancellation
     jobDetailCancellationList = new list<Amr_Job_Allocation__c>();
     string soqlForCancel ='select AM_Job_Detail__r.Lead_Agency_Name_Other__c,AM_Job_Detail__r.ProductionActivityTextArea__c,AM_Job_Detail__r.Campaign_Name__c,Started__c,AM_Job_Detail__r.Project_Name_Other__c,Started_Image__c,User__r.email,User__r.Name,Reported__c,Job_Shared__c,Job_Status__c,Job_Allocated_Image__c,Reported_Image__c ,Job_Allocated__c,Job_Status_Image__c,User__c,AM_Job_Detail__r.Project_Details__r.Name,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Job_Status__c ,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.ProductCategory__r.Name,AM_Job_Detail__r.Brand_Position__r.Name,AM_Job_Detail__r.Brand_Final__r.Name,AM_Job_Detail__r.Stage_of_Production_Activity__c,id from Amr_Job_Allocation__c where Job_Status__c= '+'\'Cancelled\'AND AM_Job_Detail__r.Job_Cancelled__c = true ';
-    system.debug('soqlForCancel !!'+soqlForCancel );
+
     
     //search
      String   addNumber = jobDetails.AdManagerText__c;
@@ -370,7 +366,6 @@ Search functionality is implemented and SOQL is built dynamically so can not bre
     soqlForCancel += ' and AM_Job_Detail__r.Unilever_Project_Leader_Email__c LIKE \''+String.escapeSingleQuotes(jobDetails.Unilever_Project_Leader_Email__c)+PERCENT;
      }
      if(String.isNotBlank(jobDetails.Project_Details__c)){
-        system.debug('***jobDetails.Project_Details__c****'+jobDetails.Project_Details__c);
     soql += ' and AM_Job_Detail__r.Project_Details__c = \''+String.escapeSingleQuotes(jobDetails.Project_Details__c)+Amr_ConstantForAdManager.SLASH;
     soqlForCancel +=' and AM_Job_Detail__r.Project_Details__c = \''+String.escapeSingleQuotes(jobDetails.Project_Details__c)+Amr_ConstantForAdManager.SLASH;
            
@@ -475,7 +470,6 @@ Search functionality is implemented and SOQL is built dynamically so can not bre
          
          if(String.isNotBlank(acceptedAndEmailSend) &&  acceptedAndEmailSend != Amr_ConstantForAdManager.NONE){
         
-            System.debug('ACCEPPPTEEDD _> ' + acceptedAndEmailSend);
             if(acceptedAndEmailSend == 'Yes'){
                 soql += ' and Job_Status__c = \''+String.escapeSingleQuotes(Label.Amr_Accepted)+Amr_ConstantForAdManager.SLASH;
                 soqlForCancel += ' and Job_Status__c = \''+String.escapeSingleQuotes(Label.Amr_Accepted)+Amr_ConstantForAdManager.SLASH;
@@ -499,17 +493,15 @@ Search functionality is implemented and SOQL is built dynamically so can not bre
              soqlForCancel += ' and AM_Job_Detail__r.Allocated_Budget_Euro_Text__c LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+ String.escapeSingleQuotes(allocatedBudget)+Amr_ConstantForAdManager.PERCENTAGESLASH;
         }
          
-         System.debug('Broad Cast name -> '+ broadcastMarket); /*
+         /*
          if(String.isNotBlank(broadcastMarket)){
        
         soql += ' and AM_Job_Detail__r.Brodcast_Market__c = \''+String.escapeSingleQuotes(broadcastMarket)+Amr_ConstantForAdManager.SLASH ;  //'\'';
          soqlForCancel += ' and AM_Job_Detail__r.Brodcast_Market__c = \''+String.escapeSingleQuotes(broadcastMarket)+Amr_ConstantForAdManager.SLASH ; //'\'';      
         
          }    */
-          System.debug('SOQL HERE  -> '+ soql );
          if (String.isNotBlank(startDate)){
    //start date creation
-               system.debug('inside start date');
                String[] startDateSplitQuote = startDate.split(' ');
                String[] startDateSplitSlash = startDateSplitQuote[0].split('/');
                Integer myIntDate = integer.valueOf(startDateSplitSlash[0]);
@@ -524,7 +516,6 @@ Search functionality is implemented and SOQL is built dynamically so can not bre
           soql += Amr_ConstantForAdManager.CREATED_DATE +  ' >= '+ startDateFinal.formatGMT(Amr_ConstantForAdManager.SECDATEFORMAT) ; 
           soqlForCancel += Amr_ConstantForAdManager.CREATED_DATE +  ' >= '+ startDateFinal.formatGMT(Amr_ConstantForAdManager.SECDATEFORMAT) ;   
                
-               system.debug('soql created date'+soql);
     }
     
     //END DATE
@@ -543,12 +534,9 @@ Search functionality is implemented and SOQL is built dynamically so can not bre
            soql += Amr_ConstantForAdManager.CREATED_DATE +  ' < '+ endDateDateFinal.addDays(1).formatGMT(Amr_ConstantForAdManager.SECDATEFORMAT );
            soqlForCancel += Amr_ConstantForAdManager.CREATED_DATE +  ' < '+ endDateDateFinal.addDays(1).formatGMT(Amr_ConstantForAdManager.SECDATEFORMAT );
            
-           system.debug('soql end date'+soql);
     }
     
-    System.debug('START DATE ->  ' + startDate +  'END DATE   '+  endDate);
     
-       System.debug('CATEOGRYYYY -> ' + selectedSortJobsOption);
      if(String.isNotBlank(selectedSortJobsOption) && selectedSortJobsOption!=NONE){
          if(selectedSortJobsOption == Label.Amr_Query_Category){
               soql += ' ORDER BY AM_Job_Detail__r.ProductCategory__r.Name ASC';   
@@ -573,7 +561,6 @@ Search functionality is implemented and SOQL is built dynamically so can not bre
           soql += ' ORDER BY '+String.escapeSingleQuotes(selectedSortJobsOption)+' ASC';
          }  
      }
-         System.debug('BRAND POS -> ' + selectedSortCancelOption);
      if(String.isNotBlank(selectedSortCancelOption) && selectedSortCancelOption!=NONE){
          if(selectedSortCancelOption == Label.Amr_Query_Category){
               soqlForCancel += ' ORDER BY AM_Job_Detail__r.ProductCategory__r.Name ASC';   
@@ -597,11 +584,9 @@ Search functionality is implemented and SOQL is built dynamically so can not bre
           soqlForCancel += ' ORDER BY '+String.escapeSingleQuotes(selectedSortCancelOption)+' ASC';
          }  
      }
-     system.debug('soql created date'+soql);
    
      soql+=' limit 50000';
      soqlForCancel+=' limit 50000';
-     system.debug('soql !!'+soql +'soqlForCancel!!'+soqlForCancel);
       
     Set<String> setJobAllocationId = new Set<String>();
      
@@ -735,9 +720,8 @@ Returns:
                 activeJobsToShow.add(jobListToDisplay.get(i));
             }
         }
-        system.debug('activeJobsToShow!!'+activeJobsToShow);
         
-        TotalActiveJobPages = (totalSizeForActiveJobs/limitSizeForActiveJobs)+1;
+        TotalActiveJobPages = Math.ceil((decimal.valueOf(totalSizeForActiveJobs))/(decimal.valueOf(limitSizeForActiveJobs))).intValue();
         CurrentActivePageNumber         = (counterForActiveJobs/limitSizeForActiveJobs)+1;
                        
         //getTotalActiveJobPages(totalSizeForActiveJobs/limitSizeForActiveJobs);
@@ -761,7 +745,7 @@ Returns:
             }       
         }
         
-        TotalActiveJobPages = (totalSizeForActiveJobs/limitSizeForActiveJobs)+1;
+        TotalActiveJobPages = Math.ceil((decimal.valueOf(totalSizeForActiveJobs))/(decimal.valueOf(limitSizeForActiveJobs))).intValue();
         CurrentActivePageNumber = (counterForActiveJobs/limitSizeForActiveJobs)+1;
         }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -784,7 +768,7 @@ Returns:
             }
         }
         
-        TotalActiveJobPages = (totalSizeForActiveJobs/limitSizeForActiveJobs)+1;
+        TotalActiveJobPages = Math.ceil((decimal.valueOf(totalSizeForActiveJobs))/(decimal.valueOf(limitSizeForActiveJobs))).intValue();
         CurrentActivePageNumber = (counterForActiveJobs/limitSizeForActiveJobs)+1;
         
         }catch(Exception ex){
@@ -801,7 +785,7 @@ Returns:
             activeJobsToShow.add(jobDetailList.get(i));
         }
         
-        TotalActiveJobPages = (totalSizeForActiveJobs/limitSizeForActiveJobs)+1;
+        TotalActiveJobPages = Math.ceil((decimal.valueOf(totalSizeForActiveJobs))/(decimal.valueOf(limitSizeForActiveJobs))).intValue();
         CurrentActivePageNumber = (counterForActiveJobs/limitSizeForActiveJobs)+1;
         }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -821,7 +805,7 @@ Returns:
                 activeJobsToShow.add(jobDetailList.get(i));
         }
         
-        TotalActiveJobPages = (totalSizeForActiveJobs/limitSizeForActiveJobs)+1;
+        TotalActiveJobPages = Math.ceil((decimal.valueOf(totalSizeForActiveJobs))/(decimal.valueOf(limitSizeForActiveJobs))).intValue();
         CurrentActivePageNumber = (counterForActiveJobs/limitSizeForActiveJobs)+1;
         }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -870,9 +854,8 @@ Returns:
             }
            
         }
-        totalCancelJobPages = (totalSizeForCancelJobs/limitSizeForCancelJobs)+1;
+        totalCancelJobPages = Math.ceil((decimal.valueOf(totalSizeForCancelJobs))/(decimal.valueOf(limitSizeForCancelJobs))).intValue();
         currentCancelPageNumber =(counterForCancelJobs / limitSizeForCancelJobs)+1;
-         system.debug('cancelJobsToShow!!'+cancelJobsToShow);
          }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
@@ -892,7 +875,7 @@ Returns:
                 cancelJobsToShow.add(WrapperList.get(i));
             }       
         }
-        totalCancelJobPages = (totalSizeForCancelJobs/limitSizeForCancelJobs)+1;
+        totalCancelJobPages = Math.ceil((decimal.valueOf(totalSizeForCancelJobs))/(decimal.valueOf(limitSizeForCancelJobs))).intValue();
         currentCancelPageNumber =(counterForCancelJobs / limitSizeForCancelJobs)+1;
         }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -913,7 +896,7 @@ Returns:
                 cancelJobsToShow.add(WrapperList.get(i));
             }
         }
-        totalCancelJobPages = (totalSizeForCancelJobs/limitSizeForCancelJobs)+1;
+        totalCancelJobPages = Math.ceil((decimal.valueOf(totalSizeForCancelJobs))/(decimal.valueOf(limitSizeForCancelJobs))).intValue();
         currentCancelPageNumber =(counterForCancelJobs / limitSizeForCancelJobs)+1;
         }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -928,7 +911,7 @@ Returns:
             for(Integer i=counterForCancelJobs;i<(counterForCancelJobs +limitSizeForCancelJobs); i++){
             cancelJobsToShow.add(WrapperList.get(i));
         }
-        totalCancelJobPages = (totalSizeForCancelJobs/limitSizeForCancelJobs)+1;
+        totalCancelJobPages = Math.ceil((decimal.valueOf(totalSizeForCancelJobs))/(decimal.valueOf(limitSizeForCancelJobs))).intValue();
         currentCancelPageNumber =(counterForCancelJobs / limitSizeForCancelJobs)+1;
         }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -947,7 +930,7 @@ Returns:
         for(Integer i=counterForCancelJobs -1;i<totalSizeForCancelJobs -1;i++){
                 cancelJobsToShow.add(WrapperList.get(i));
         }
-        totalCancelJobPages = (totalSizeForCancelJobs/limitSizeForCancelJobs)+1;
+        totalCancelJobPages = Math.ceil((decimal.valueOf(totalSizeForCancelJobs))/(decimal.valueOf(limitSizeForCancelJobs))).intValue();
         currentCancelPageNumber =(counterForCancelJobs / limitSizeForCancelJobs)+1;
         }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));

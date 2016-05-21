@@ -61,7 +61,7 @@ public with sharing class Amr_RAPJobPortfolioController_CC{
         public Integer limitSizeForDormantJobs = 100;
         public Integer totalSizeForDormantJobs =0;
         public Integer counterForLiveJobs = 0;
-        public Integer limitSizeForLiveJobs = 200;
+        public Integer limitSizeForLiveJobs = 200; 
         public Integer totalSizeForLiveJobs =0;
         public Integer TotalJobs {get; set;}
         public Integer totalAlertCount  {get; set;}
@@ -134,7 +134,6 @@ public with sharing class Amr_RAPJobPortfolioController_CC{
                   priorityJobsToShow = new list<Amr_Job_Allocation__c>();
                   dormantJobsToShow = new list<Amr_Job_Allocation__c>();
                   liveJobsToShow = new List<Amr_Job_Allocation__c>();
-                system.debug('mindtree ltd');
           rapJobPortFolioHelper = new Amr_RAPJobPortfolioHelper_CC();
             loggedInUserId = UserInfo.getUserId();
             jobDetails  = new Amr_Job_Details__c();
@@ -222,7 +221,6 @@ Returns:
         TotalJobs =0;
         TotalJobs = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null and Job_Allocated__c = 'Yes'  and AM_Job_Detail__r.Job_Cancelled__c = false  limit 50000];
         List<Amr_Job_Allocation__c> listDisplay =[SELECT AM_Job_Detail__r.Job_Status__c,AM_Job_Detail__c  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null and Job_Allocated__c = 'Yes' and AM_Job_Detail__r.Job_Cancelled__c = false  limit 50000];
-        system.debug('listDisplay!!'+listDisplay);
         for(Amr_Job_Allocation__c objJobAlloction : [SELECT AM_Job_Detail__c FROM  Amr_Job_Allocation__c where  AM_Job_Detail__c != null and Job_Allocated__c = 'Yes' and AM_Job_Detail__r.Job_Cancelled__c = false limit 50000] ){
                jobDetailsId.add(objJobAlloction.AM_Job_Detail__c);
         }        
@@ -311,7 +309,7 @@ Returns: It will return submitted saving data.
             DateTime currentDay = DateTime.now();
             //loggedIn user
             AggregateResult[] groupedResults = [SELECT Sum(Saving_Average_of_Quotes__c)averQuote,Sum(Saving_Accepted_Quote_Euro__c) acceptQuote FROM Amr_Saving__c Where  Job_Details__c IN : jobDetailsId and (CreatedById = :loggedInUserId OR LastModifiedById = :loggedInUserId) and CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
-            System.debug('YTD PIEEE ->>> ' + groupedResults );
+
                     savingSubmitted = 0;
                    
                     if(groupedResults[0].get(AVERAGE_QUOTE) != null ){
@@ -320,7 +318,6 @@ Returns: It will return submitted saving data.
                     }
            //total savings
            AggregateResult[] groupedResultsAll = [SELECT Sum(Saving_Average_of_Quotes__c)averQuote,Sum(Saving_Accepted_Quote_Euro__c) acceptQuote FROM Amr_Saving__c where Job_Details__c IN : jobDetailsId and CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
-            system.debug('Global YTD!!'+groupedResultsAll);
               savingSubmittedAll = 0;
               if(groupedResultsAll[0].get(AVERAGE_QUOTE) != null &&  groupedResultsAll[0].get(ACCEPT_QUOTE) != null){
                     savingSubmittedAll = Decimal.valueOf(String.valueOf(groupedResultsAll[0].get(AVERAGE_QUOTE)));
@@ -350,20 +347,17 @@ Returns: It will return submitted saving data of current month.
             Date startOfMonth = Date.today().toStartOfMonth();
             Date startOfNextMonth = startOfMonth.addMonths(1);
             AggregateResult[] groupedResults  = [SELECT Sum(Saving_Average_of_Quotes__c)averQuote ,Sum(Saving_Accepted_Quote_Euro__c) acceptQuote FROM Amr_Saving__c Where  Job_Details__c IN : jobDetailsId and (CreatedById = :loggedInUserId OR LastModifiedById = :loggedInUserId) and  Createddate >= :startOfMonth AND CreatedDate < :startOfNextMonth];
-            system.debug('monthly!!'+groupedResults );        
                     savingSubmitted = 0;
                     savingSubmittedMonth = 0;
                     if(groupedResults[0].get(AVERAGE_QUOTE) != null){
                     savingSubmitted = Decimal.valueOf(String.valueOf(groupedResults[0].get(AVERAGE_QUOTE)));
                    }
             AggregateResult[] groupedResultsAll  = [SELECT Sum(Saving_Average_of_Quotes__c)averQuote ,Sum(Saving_Accepted_Quote_Euro__c) acceptQuote FROM Amr_Saving__c Where  Job_Details__c IN : jobDetailsId and Createddate >= :startOfMonth AND CreatedDate < :startOfNextMonth];
-              system.debug(' global monthly!!'+groupedResultsAll );        
                    savingSubmittedAll = 0;
                     if(groupedResultsAll[0].get(AVERAGE_QUOTE) != null ){
                     
                     savingSubmittedAll = Decimal.valueOf(String.valueOf(groupedResultsAll[0].get(AVERAGE_QUOTE)));
                     }
-               system.debug(' savingSubmittedAll !!'+savingSubmittedAll );       
             data.add(new PieWedgeData('Your Monthly Saving',Integer.valueOf(savingSubmitted)));
              data.add(new PieWedgeData('Global Team Saving',Integer.valueOf(savingSubmittedAll)));
              
@@ -399,10 +393,8 @@ Returns:
             try{
             alertList = [select Id,Alert_Message__c,job_Id__r.AdManagerText__c,New_Alert__c,Job_Id__c from Amr_Alert__c where ownerId =:loggedInUserId AND Hide__c =:false AND New_Alert__c= today limit 50000];          
             totalAlertCount =  [select count() from Amr_Alert__c where ownerId =:loggedInUserId AND Hide__c =:false AND New_Alert__c= today limit 50000];
-            system.debug('alertList !!'+alertList);
             System.debug('ALert COUNT -> ' + totalAlertCount);
             alertListForUnhide= [select Id,New_Alert__c,Alert_Message__c from Amr_Alert__c where ownerId =:loggedInUserId AND Hide__c =:true limit 50000];
-              system.debug('alertList !!'+alertListForUnhide);
               }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
@@ -423,7 +415,6 @@ Returns: It will return category records in JSON format.
               for(MDO_Category__c mdCat : categorylst){
                 categoryString.add(mdCat.name);
             }
-            System.debug('cATE ->' +  JSON.serialize(categoryString));
             return JSON.serialize(categoryString);
         }
             catch(exception ex){
@@ -441,10 +432,8 @@ Returns:
 ************************************************************************************************************************************/      
       public PageReference  brandPositionListData(){    
           try{
-             System.debug('BBBBBBRANDDD ->'+ categoryName);  
              Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
              Set<MDO_BrandPositions__c> brandPositionlst = utiltyObj.brandPostitionValues(categoryName);
-             system.debug('brandPositionListttoo----->'+brandPositionlst );
              listOfBrandPosition = new List<SelectOption>();
              listOfBrandPosition.add(new selectOption(NONE,NONE));
              Set<String> brnadPosNameSet = new Set<String>();
@@ -457,7 +446,6 @@ Returns:
                  }
              }
      
-            system.debug('brandPositionListtt----->'+listOfBrandPosition);
          }
             catch(exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -493,7 +481,6 @@ Returns: It will return brand records.
                 system.debug(ex.getmessage());
                 return null;
           }
-          System.debug(categoryName +'   '+brandPos+ '      '+ listOfBrand);
 
         return listOfBrand;
     }
@@ -553,7 +540,6 @@ Search functionality is implemented and SOQL is built dynamically so can not bre
         if(String.isNotBlank(loggedInUserId)){
         
         soql += ' and ((AM_Job_Detail__r.OwnerId = \''+loggedInUserId+'\' AND User__c = \''+loggedInUserId+'\') or  User__c = \''+loggedInUserId+'\')';
-               system.debug('soql loggedInUserId'+soql);
         }
         
       /*
@@ -645,14 +631,12 @@ Search functionality is implemented and SOQL is built dynamically so can not bre
               
          }
    
-         System.debug('ALLOCATED BUDGET  ->  ' + allocatedBudget);     
         if(String.isNotBlank(allocatedBudget) ){
              soql += ' and AM_Job_Detail__r.Allocated_Budget_Euro_Text__c LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+ String.escapeSingleQuotes(allocatedBudget)+Amr_ConstantForAdManager.PERCENTAGESLASH;
         }
         
         if(String.isNotBlank(acceptedAndEmailSend) &&  acceptedAndEmailSend != Amr_ConstantForAdManager.NONE){
         
-            System.debug('ACCEPPPTEEDD _> ' + acceptedAndEmailSend);
             if(acceptedAndEmailSend == 'Yes'){
                 soql += ' and Job_Status__c = \''+String.escapeSingleQuotes(Label.Amr_Accepted)+Amr_ConstantForAdManager.SLASH;
             }
@@ -677,7 +661,6 @@ Search functionality is implemented and SOQL is built dynamically so can not bre
          }
          if (String.isNotBlank(startDate)){
    //start date creation
-               system.debug('inside start date');
                String[] startDateSplitQuote = startDate.split(' ');
                String[] startDateSplitSlash = startDateSplitQuote[0].split('/');
                Integer myIntDate = integer.valueOf(startDateSplitSlash[0]);
@@ -690,7 +673,6 @@ Search functionality is implemented and SOQL is built dynamically so can not bre
          //      soql += ' and AM_Job_Detail__r.createdDate '+  '< '+ refDate2.formatGMT(Amr_ConstantForAdManager.SECDATEFORMAT);
           soql += ' and AM_Job_Detail__r.createdDate'+  ' >= '+ startDateFinal.formatGMT(Amr_ConstantForAdManager.SECDATEFORMAT) ; 
                
-               system.debug('soql created date'+soql);
     }
     
        
@@ -708,10 +690,8 @@ Search functionality is implemented and SOQL is built dynamically so can not bre
   
            soql += ' and AM_Job_Detail__r.createdDate ' +  ' < '+ endDateDateFinal.addDays(1).formatGMT(Amr_ConstantForAdManager.SECDATEFORMAT );
            
-           system.debug('soql end date'+soql);
     }
     
-     System.debug('START DATE ->  ' + startDate +  'END DATE   '+  endDate);
         
          jobDetailList = Database.query(soql);
             getPriorityJobs();
@@ -785,7 +765,6 @@ Returns:
        
         //method to get sort priority list
         public pageReference getSortedPriorityList(){
-            system.debug('selectedSortPriorityOption!!!'+selectedSortPriorityOption);
             getPriorityJobs();
             return null;
         }
@@ -797,15 +776,12 @@ Returns:
 ************************************************************************************************************************************/      
        public void getPendingJobs(){
            
-           System.debug('DATA ->  ' + jobDetailList);
         try{
            List<Amr_Job_Allocation__c> pendingJobList = new List<Amr_Job_Allocation__c>();
            Set<Id>pendingJobIds = new Set<Id>();
            for(Amr_Job_Allocation__c jobId : jobDetailList){
-               System.debug('DATA ->  ' + jobId.AM_Job_Detail__r.Job_Status__c + 'IDDD ->  ' + jobId.AM_Job_Detail__r.id);
                if((jobId.AM_Job_Detail__r.Job_Status__c == 'Pending')  && jobId.Job_Status__c != 'Cancelled')
                {
-                    System.debug('DATA ->   INNN '    );
                    pendingJobIds.add(jobId.AM_Job_Detail__r.Id);
                }
            }
@@ -1003,7 +979,7 @@ Returns:
                 }
             }
            
-         totalPendingJobPages = (totalSizeForPendingJobs/limitSizeForPendingJobs)+1;
+         totalPendingJobPages = Math.ceil((decimal.valueOf(totalSizeForPendingJobs))/(decimal.valueOf(limitSizeForPendingJobs))).intValue();
         currentPendingPageNumber         = (counterForPendingJobs/limitSizeForPendingJobs)+1;
           }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -1026,7 +1002,7 @@ Returns:
                     pendingJobsToShow.add(lstPendingJobsNew.get(i));
                 }       
             }
-             totalPendingJobPages = (totalSizeForPendingJobs/limitSizeForPendingJobs)+1;
+             totalPendingJobPages = Math.ceil((decimal.valueOf(totalSizeForPendingJobs))/(decimal.valueOf(limitSizeForPendingJobs))).intValue();
         currentPendingPageNumber  = (counterForPendingJobs/limitSizeForPendingJobs)+1;
        }catch(Exception ex){
         ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -1054,7 +1030,7 @@ Returns:
                   
                 }
             }
-             totalPendingJobPages = (totalSizeForPendingJobs/limitSizeForPendingJobs)+1;
+             totalPendingJobPages = Math.ceil((decimal.valueOf(totalSizeForPendingJobs))/(decimal.valueOf(limitSizeForPendingJobs))).intValue();
         currentPendingPageNumber         = (counterForPendingJobs/limitSizeForPendingJobs)+1;
          }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -1069,7 +1045,7 @@ Returns:
                 for(Integer i=counterForPendingJobs;i<(counterForPendingJobs+limitSizeForPendingJobs); i++){
                 pendingJobsToShow.add(lstPendingJobsNew.get(i));
             }
-             totalPendingJobPages = (totalSizeForPendingJobs/limitSizeForPendingJobs)+1;
+             totalPendingJobPages = Math.ceil((decimal.valueOf(totalSizeForPendingJobs))/(decimal.valueOf(limitSizeForPendingJobs))).intValue();
         currentPendingPageNumber         = (counterForPendingJobs/limitSizeForPendingJobs)+1;
           }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -1088,7 +1064,7 @@ Returns:
             for(Integer i=counterForPendingJobs-1;i<totalSizeForPendingJobs-1;i++){
                     pendingJobsToShow.add(lstPendingJobsNew.get(i));
             }
-             totalPendingJobPages = (totalSizeForPendingJobs/limitSizeForPendingJobs)+1;
+             totalPendingJobPages = Math.ceil((decimal.valueOf(totalSizeForPendingJobs))/(decimal.valueOf(limitSizeForPendingJobs))).intValue();
         currentPendingPageNumber         = (counterForPendingJobs/limitSizeForPendingJobs)+1;
            }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -1150,7 +1126,7 @@ Returns:
                     priorityJobsToShow.add(lstpriorityJobsNew.get(i));
                 }
             }
-             totalPriorityJobPages = (totalSizeForPriorityJobs/limitSizeForPriorityJobs)+1;
+             totalPriorityJobPages = Math.ceil((decimal.valueOf(totalSizeForPriorityJobs))/(decimal.valueOf(limitSizeForPriorityJobs))).intValue();
         currentPriorityPageNumber         = (counterForPriorityJobs/limitSizeForPriorityJobs)+1;
            }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -1171,7 +1147,7 @@ Returns:
                     priorityJobsToShow.add(lstpriorityJobsNew.get(i));
                 }       
             }
-            totalPriorityJobPages = (totalSizeForPriorityJobs/limitSizeForPriorityJobs)+1;
+            totalPriorityJobPages = Math.ceil((decimal.valueOf(totalSizeForPriorityJobs))/(decimal.valueOf(limitSizeForPriorityJobs))).intValue();
         currentPriorityPageNumber         = (counterForPriorityJobs/limitSizeForPriorityJobs)+1;
            }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -1193,7 +1169,7 @@ Returns:
                     priorityJobsToShow.add(lstpriorityJobsNew.get(i));
                 }
             }
-            totalPriorityJobPages = (totalSizeForPriorityJobs/limitSizeForPriorityJobs)+1;
+            totalPriorityJobPages = Math.ceil((decimal.valueOf(totalSizeForPriorityJobs))/(decimal.valueOf(limitSizeForPriorityJobs))).intValue();
         currentPriorityPageNumber         = (counterForPriorityJobs/limitSizeForPriorityJobs)+1;
           }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -1208,7 +1184,7 @@ Returns:
                 for(Integer i=counterForPriorityJobs;i<(counterForPriorityJobs+limitSizeForPriorityJobs); i++){
                 priorityJobsToShow.add(lstpriorityJobsNew.get(i));
             }
-            totalPriorityJobPages = (totalSizeForPriorityJobs/limitSizeForPriorityJobs)+1;
+            totalPriorityJobPages = Math.ceil((decimal.valueOf(totalSizeForPriorityJobs))/(decimal.valueOf(limitSizeForPriorityJobs))).intValue();
         currentPriorityPageNumber         = (counterForPriorityJobs/limitSizeForPriorityJobs)+1;
            }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -1227,7 +1203,7 @@ Returns:
             for(Integer i=counterForPriorityJobs-1;i<totalSizeForPriorityJobs-1;i++){
                     priorityJobsToShow.add(lstpriorityJobsNew.get(i));
             }
-            totalPriorityJobPages = (totalSizeForPriorityJobs/limitSizeForPriorityJobs)+1;
+            totalPriorityJobPages = Math.ceil((decimal.valueOf(totalSizeForPriorityJobs))/(decimal.valueOf(limitSizeForPriorityJobs))).intValue();
         currentPriorityPageNumber         = (counterForPriorityJobs/limitSizeForPriorityJobs)+1;
            }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -1287,7 +1263,7 @@ Returns:
                     dormantJobsToShow.add(lstDormantJobsNew.get(i));
                 }
             }
-            totalDormantJobPages = (totalSizeForDormantJobs/limitSizeForDormantJobs)+1;
+            totalDormantJobPages = Math.ceil((decimal.valueOf(totalSizeForDormantJobs))/(decimal.valueOf(limitSizeForDormantJobs))).intValue();
         currentDormantPageNumber         = (counterForDormantJobs/limitSizeForDormantJobs)+1;
          }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -1308,7 +1284,7 @@ Returns:
                     dormantJobsToShow.add(lstDormantJobsNew.get(i));
                 }       
             }
-             totalDormantJobPages = (totalSizeForDormantJobs/limitSizeForDormantJobs)+1;
+             totalDormantJobPages = Math.ceil((decimal.valueOf(totalSizeForDormantJobs))/(decimal.valueOf(limitSizeForDormantJobs))).intValue();
         currentDormantPageNumber         = (counterForDormantJobs/limitSizeForDormantJobs)+1;
            }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -1329,7 +1305,7 @@ Returns:
                     dormantJobsToShow.add(lstDormantJobsNew.get(i));
                 }
             }
-             totalDormantJobPages = (totalSizeForDormantJobs/limitSizeForDormantJobs)+1;
+             totalDormantJobPages = Math.ceil((decimal.valueOf(totalSizeForDormantJobs))/(decimal.valueOf(limitSizeForDormantJobs))).intValue();
         currentDormantPageNumber         = (counterForDormantJobs/limitSizeForDormantJobs)+1;
            }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -1344,7 +1320,7 @@ Returns:
                 for(Integer i=counterForDormantJobs;i<(counterForDormantJobs+limitSizeForDormantJobs); i++){
                 dormantJobsToShow.add(lstDormantJobsNew.get(i));
             }
-             totalDormantJobPages = (totalSizeForDormantJobs/limitSizeForDormantJobs)+1;
+             totalDormantJobPages = Math.ceil((decimal.valueOf(totalSizeForDormantJobs))/(decimal.valueOf(limitSizeForDormantJobs))).intValue();
         currentDormantPageNumber         = (counterForDormantJobs/limitSizeForDormantJobs)+1;
            }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -1363,7 +1339,7 @@ Returns:
             for(Integer i=counterForDormantJobs-1;i<totalSizeForDormantJobs-1;i++){
                     dormantJobsToShow.add(lstDormantJobsNew.get(i));
             }
-             totalDormantJobPages = (totalSizeForDormantJobs/limitSizeForDormantJobs)+1;
+             totalDormantJobPages = Math.ceil((decimal.valueOf(totalSizeForDormantJobs))/(decimal.valueOf(limitSizeForDormantJobs))).intValue();
         currentDormantPageNumber         = (counterForDormantJobs/limitSizeForDormantJobs)+1;
             }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -1425,7 +1401,7 @@ Returns:
                     liveJobsToShow.add(lstLiveJobsNew.get(i));
                 }
             }
-             totalLiveJobPages = (totalSizeForLiveJobs/limitSizeForLiveJobs)+1;
+             totalLiveJobPages = Math.ceil((decimal.valueOf(totalSizeForLiveJobs))/(decimal.valueOf(limitSizeForLiveJobs))).intValue();
         currentLivePageNumber         = (counterForLiveJobs/limitSizeForLiveJobs)+1;
           }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -1446,7 +1422,7 @@ Returns:
                     liveJobsToShow.add(lstLiveJobsNew.get(i));
                 }       
             }
-             totalLiveJobPages = (totalSizeForLiveJobs/limitSizeForLiveJobs)+1;
+             totalLiveJobPages = Math.ceil((decimal.valueOf(totalSizeForLiveJobs))/(decimal.valueOf(limitSizeForLiveJobs))).intValue();
         currentLivePageNumber         = (counterForLiveJobs/limitSizeForLiveJobs)+1;
         }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -1467,7 +1443,7 @@ Returns:
                     liveJobsToShow.add(lstLiveJobsNew.get(i));
                 }
             }
-             totalLiveJobPages = (totalSizeForLiveJobs/limitSizeForLiveJobs)+1;
+             totalLiveJobPages = Math.ceil((decimal.valueOf(totalSizeForLiveJobs))/(decimal.valueOf(limitSizeForLiveJobs))).intValue();
         currentLivePageNumber         = (counterForLiveJobs/limitSizeForLiveJobs)+1;
            }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -1483,7 +1459,7 @@ Returns:
                     system.debug('i!!'+i);
                 liveJobsToShow.add(lstLiveJobsNew.get(i));
             }
-             totalLiveJobPages = (totalSizeForLiveJobs/limitSizeForLiveJobs)+1;
+             totalLiveJobPages = Math.ceil((decimal.valueOf(totalSizeForLiveJobs))/(decimal.valueOf(limitSizeForLiveJobs))).intValue();
         currentLivePageNumber         = (counterForLiveJobs/limitSizeForLiveJobs)+1;
           }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -1505,7 +1481,7 @@ Returns:
             for(Integer i=counterForLiveJobs-1;i<totalSizeForLiveJobs-1;i++){
                     liveJobsToShow.add(lstLiveJobsNew.get(i));
             }
-             totalLiveJobPages = (totalSizeForLiveJobs/limitSizeForLiveJobs)+1;
+             totalLiveJobPages = Math.ceil((decimal.valueOf(totalSizeForLiveJobs))/(decimal.valueOf(limitSizeForLiveJobs))).intValue();
         currentLivePageNumber         = (counterForLiveJobs/limitSizeForLiveJobs)+1;
            }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));

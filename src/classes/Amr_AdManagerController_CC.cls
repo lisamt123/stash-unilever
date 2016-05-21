@@ -124,8 +124,7 @@ public with sharing class Amr_AdManagerController_CC{
 
    ********************************************************************/ 
     
-    public String getMethodToPassProjectNames(){
-       
+    public String getMethodToPassProjectNames(){       
         return JSON.serialize(listString);
     }
     

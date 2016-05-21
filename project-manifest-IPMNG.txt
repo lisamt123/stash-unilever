@@ -6,8 +6,10 @@ src/classes/UserTrigger_Test.cls
 src/classes/UserTrigger_Test.cls-meta.xml
 src/classes/UserTriggerHelper.cls
 src/classes/UserTriggerHelper.cls-meta.xml
-src/classes/IPM_GroupManagement.cls
-src/classes/IPM_GroupManagement.cls-meta.xml
+src/classes/IPM_ProjectOverviewCtrl_Test.cls
+src/classes/IPM_ProjectOverviewCtrl_Test.cls-meta.xml
+src/classes/IPM_SyncFinanceTableTLD_Test.cls
+src/classes/IPM_SyncFinanceTableTLD_Test.cls-meta.xml
 src/objects
 src/objects/User.object
 src/permissionsets
