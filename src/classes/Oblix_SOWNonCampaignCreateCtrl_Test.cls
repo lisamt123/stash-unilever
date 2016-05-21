@@ -16,7 +16,8 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
     private static Marketing_SOW__c sow = new Marketing_SOW__c();
 
 
-    @testSetup static void initCommonData() {
+    //@testSetup static void initCommonData() {
+    static void initCommonData(Boolean createCampaignSet) {
         User u = Oblix_TestUtils.createTestUser();
         System.runAs(u) {  
             insert Oblix_TestUtils.createOblixCustomSettings();
@@ -25,18 +26,83 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
 
             List<MDO_Geography__c> list_mdo_geography = Oblix_TestUtils.createMDOgeography();
             insert list_mdo_geography;
-            list_mdo_geography = [SELECT Name FROM MDO_Geography__c WHERE geography_type__c = 'Country' AND Name = 'ARGENTINA'];
+            list_mdo_geography = [SELECT Name FROM MDO_Geography__c WHERE geography_type__c = 'Country' AND Name = 'ARGENTINA' LIMIT 1];
 
             Account agency = new Account(Name = 'Test Agency unique123');
             insert agency;
 
             insert Oblix_TestUtils.createRoleRateCalculatorRecords(list_mdo_geography[0].Id, agency.Id);
         }
+
+        Account agency = [SELECT Id FROM Account WHERE Name = 'Test Agency unique123' LIMIT 1];
+
+        //Creating SOW
+        sow.Active__c = true;
+        sow.Name = 'Marketing Sow Approval';
+        sow.SOW_Status__c = 'Open';
+        sow.Financial_Year__c = 'FY2016';
+        sow.Oblix_AgencyEstimate__c = agency.Id;
+        insert sow;
+
+
+        MDO_Geography__c country = [SELECT Id, Name FROM MDO_Geography__c WHERE geography_type__c = 'Country' AND Name = 'ARGENTINA' LIMIT 1];
+
+
+        if(createCampaignSet){
+
+            List<Marketing_Basics__c> nonCampaigns = Oblix_TestUtils.createMarketingBasics(sow.Id, 7);
+
+            //[0,1] - Activity / Brandbook
+            //[2,3] - Activity / Brandbook
+            setFirstNonCampaignsSet(nonCampaigns, country);
+
+            //[4] - Activity / Brandbook
+            //[5,6] - Activity / Brandbook
+            setSecondNonCampaignsSet(nonCampaigns, country);
+
+            insert nonCampaigns;
+        }
+
+
+
     }
+
+    //private static void createBaselineSOW(Boolean createCampaignSet) {
+
+    //    Account agency = [SELECT Id FROM Account WHERE Name = 'Test Agency unique123' LIMIT 1];
+
+    //    //Creating SOW
+    //    sow.Active__c = true;
+    //    sow.Name = 'Marketing Sow Approval';
+    //    sow.SOW_Status__c = 'Open';
+    //    sow.Financial_Year__c = 'FY2016';
+    //    sow.Oblix_AgencyEstimate__c = agency.Id;
+    //    insert sow;
+
+
+    //    MDO_Geography__c country = [SELECT Id, Name FROM MDO_Geography__c WHERE geography_type__c = 'Country' AND Name = 'ARGENTINA' LIMIT 1];
+
+
+    //    if(createCampaignSet){
+
+    //        List<Marketing_Basics__c> nonCampaigns = Oblix_TestUtils.createMarketingBasics(sow.Id, 7);
+
+    //        //[0,1] - Activity / Brandbook
+    //        //[2,3] - Activity / Brandbook
+    //        setFirstNonCampaignsSet(nonCampaigns, country);
+
+    //        //[4] - Activity / Brandbook
+    //        //[5,6] - Activity / Brandbook
+    //        setSecondNonCampaignsSet(nonCampaigns, country);
+
+    //        insert nonCampaigns;
+    //    }
+
+    //}
 
 
     @isTest private static void testBasketInit() {
-        createBaselineSOW(true);
+        initCommonData(true);
 
         //Init controller with existing assets
         PageReference pageRef = Page.Oblix_SOWNonCampaignCreate;
@@ -58,7 +124,7 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
 
 
     @isTest private static void testAddToWorklist() {
-        createBaselineSOW(false);
+        initCommonData(false);
 
         //Init controller with existing assets
         PageReference pageRef = Page.Oblix_SOWNonCampaignCreate;
@@ -89,7 +155,7 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
     }
 
     @isTest private static void testRemoveItem() {
-        createBaselineSOW(false);
+        initCommonData(false);
 
         //Init controller with existing assets
         PageReference pageRef = Page.Oblix_SOWNonCampaignCreate;
@@ -122,7 +188,7 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
 
 
     @isTest private static void testRemoveSection() {
-        createBaselineSOW(true);
+        initCommonData(true);
 
         //Init controller with existing assets
         PageReference pageRef = Page.Oblix_SOWNonCampaignCreate;
@@ -157,7 +223,7 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
     
 
     @isTest private static void testSaveWorkList() {
-        createBaselineSOW(false);
+        initCommonData(false);
 
         //Init controller with existing assets
         PageReference pageRef = Page.Oblix_SOWNonCampaignCreate;
@@ -184,7 +250,7 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
 
 
     @isTest private static void testOpenActivityForUpdate() {
-        createBaselineSOW(false);
+        initCommonData(false);
 
         //Init controller with existing assets
         PageReference pageRef = Page.Oblix_SOWNonCampaignCreate;
@@ -209,7 +275,7 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
     }
 
     @isTest private static void testOpenResourceForUpdate() {
-        createBaselineSOW(false);
+        initCommonData(false);
 
         //Init controller with existing assets
         PageReference pageRef = Page.Oblix_SOWNonCampaignCreate;
@@ -237,7 +303,7 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
 
     @isTest private static void testFinishBasket() {
 
-        createBaselineSOW(false);
+        initCommonData(false);
 
         //Init controller with existing assets
         PageReference pageRef = Page.Oblix_SOWNonCampaignCreate;
@@ -263,7 +329,7 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
 
     @isTest private static void testIsUpdateActivity() {
 
-        createBaselineSOW(true);
+        initCommonData(true);
 
         //Init controller with existing assets
         PageReference pageRef = Page.Oblix_SOWNonCampaignCreate;
@@ -299,7 +365,7 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
 
     @isTest private static void testIsUpdateResource() {
 
-        createBaselineSOW(true);
+        initCommonData(true);
 
         //Init controller with existing assets
         PageReference pageRef = Page.Oblix_SOWNonCampaignCreate;
@@ -336,7 +402,7 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
 
     @isTest private static void testFillPicklists() {
 
-        createBaselineSOW(true);
+        initCommonData(true);
 
         //Init controller with existing assets
         PageReference pageRef = Page.Oblix_SOWNonCampaignCreate;
@@ -366,7 +432,7 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
 
     @isTest private static void testRefreshActivitySelection() {
 
-        createBaselineSOW(true);
+        initCommonData(true);
 
         //Init controller with existing assets
         PageReference pageRef = Page.Oblix_SOWNonCampaignCreate;
@@ -403,7 +469,7 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
 
     @isTest private static void testOpenTab() {
 
-        createBaselineSOW(true);
+        initCommonData(true);
 
         //Init controller with existing assets
         PageReference pageRef = Page.Oblix_SOWNonCampaignCreate;
@@ -436,43 +502,6 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
 
     }
 
-
-
-
-
-    private static void createBaselineSOW(Boolean createCampaignSet) {
-
-        Account agency = [SELECT Id FROM Account WHERE Name = 'Test Agency unique123' LIMIT 1];
-
-        //Creating SOW
-        sow.Active__c = true;
-        sow.Name = 'Marketing Sow Approval';
-        sow.SOW_Status__c = 'Open';
-        sow.Financial_Year__c = 'FY2016';
-        sow.Oblix_AgencyEstimate__c = agency.Id;
-        insert sow;
-
-
-        MDO_Geography__c country = [SELECT Id, Name FROM MDO_Geography__c WHERE geography_type__c = 'Country' AND Name = 'ARGENTINA' LIMIT 1];
-
-
-        if(createCampaignSet){
-
-            List<Marketing_Basics__c> nonCampaigns = Oblix_TestUtils.createMarketingBasics(sow.Id, 7);
-
-            //[0,1] - Activity / Brandbook
-            //[2,3] - Activity / Brandbook
-            setFirstNonCampaignsSet(nonCampaigns, country);
-
-            //[4] - Activity / Brandbook
-            //[5,6] - Activity / Brandbook
-            setSecondNonCampaignsSet(nonCampaigns, country);
-
-            insert nonCampaigns;
-        }
-
-    }
-
     private static void setFirstNonCampaignsSet(List<Marketing_Basics__c> nonCampaigns, MDO_Geography__c country){
 
         for (Integer i = 0; i < 2; i++) {
@@ -483,8 +512,15 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
             nonCampaignItem.Activities__c = 'Brand Book';
             nonCampaignItem.OblixCountry__c = country.Id;
             nonCampaignItem.Agency_Department__c = 'Account Management';
-            nonCampaignItem.Role_Title__c = ((i == 0) ? 'Account Director' : 'Account Executive');
-            nonCampaignItem.Description__c = ((i == 0) ? 'Test description' : '');
+            if(i == 0){
+                nonCampaignItem.Role_Title__c = 'Account Director';
+                nonCampaignItem.Description__c = 'Test description';
+            } else {
+                nonCampaignItem.Role_Title__c = 'Account Executive';
+                nonCampaignItem.Description__c = '';
+            }
+            //nonCampaignItem.Role_Title__c = ((i == 0) ? 'Account Director' : 'Account Executive');
+            //nonCampaignItem.Description__c = ((i == 0) ? 'Test description' : '');
 
             nonCampaignItem.No_of_Hours_Required__c = 22;
             //nonCampaignItem.Oblix_Hourly_Rate__c = 46;
@@ -505,8 +541,15 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
             nonCampaignItem.Activities__c = 'Other';
             nonCampaignItem.OblixCountry__c = country.Id;
             nonCampaignItem.Agency_Department__c = 'Digital Account Management';
-            nonCampaignItem.Role_Title__c = ((i == 2) ? 'Digital Junior Account Manager' : 'Head of Digital');
-            nonCampaignItem.Description__c = ((i == 2) ? 'Test description' : '');
+            if(i == 2){
+                nonCampaignItem.Role_Title__c = 'Digital Junior Account Manager';
+                nonCampaignItem.Description__c = 'Test description';
+            } else {
+                nonCampaignItem.Role_Title__c = 'Head of Digital';
+                nonCampaignItem.Description__c = '';
+            }
+            //nonCampaignItem.Role_Title__c = ((i == 2) ? 'Digital Junior Account Manager' : 'Head of Digital');
+            //nonCampaignItem.Description__c = ((i == 2) ? 'Test description' : '');
 
             nonCampaignItem.No_of_Hours_Required__c = 22;
             //nonCampaignItem.Oblix_Hourly_Rate__c = 46;

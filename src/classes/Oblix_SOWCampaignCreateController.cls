@@ -306,11 +306,11 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
             System.debug('### campaignHelper.doClone: ' + campaignHelper.doClone);
             System.debug('### campaignHelper.is_NFY_campaign_in_the_middle_of_rollover: ' + campaignHelper.is_NFY_campaign_in_the_middle_of_rollover);
 
+            campaignHelper.selectedProject.Campaign_Attributes_Updated__c = true;
+
             if (campaignHelper.isEdit && !campaignHelper.doClone && !campaignHelper.is_NFY_campaign_in_the_middle_of_rollover) { //Editing campaign that is not NFY and in the middle of Roll Over
                 // set Campaign_Attributes_Updated__c to highlight that the campaign has been manually updated and overwrite of 
-                // attributes in NFY campaign is required
-                campaignHelper.selectedProject.Campaign_Attributes_Updated__c = true;
-                update campaignHelper.selectedProject;
+                // attributes in NFY campaign is required                update campaignHelper.selectedProject;
 
                 setProjectInAgencyHubSplitList(campaignHelper.selectedProject.Id);
                 if (agencyHubSplitListToDelete != null && !agencyHubSplitListToDelete.isEmpty()) delete agencyHubSplitListToDelete;
