@@ -29,7 +29,7 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
     }
     public Boolean can_adjust_fee{
         get{
-            return Oblix_PermissionHandler.canAdjustFee(selected_sow.SOW_Status__c, selected_sow.Id, selected_project.Campaign_Status__c);
+            return Oblix_PermissionHandler.canAdjustFee(selected_sow.SOW_Status__c, selected_sow.Id, selected_project.Campaign_Status__c, selected_project.Name_Suffix__c);
         }
     }
 
@@ -218,7 +218,7 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
                 delete [SELECT Id FROM Oblix_Project_Assets__c WHERE Id=:selected_asset_id];
 
                 // query the selected_project in scope from the super class
-                selected_project = getCampaign(project_id, Oblix_Utils.getAllFieldsInFieldsSet('Oblix_SOW_Projects__c','Oblix_Campaign_Summary'), ', (SELECT OblixCountry__r.Name, Percentage__c FROM Marketing_SOW_Project_Splits__r)');
+                selected_project = getCampaign(project_id, Oblix_Utils.getAllFieldsInFieldsSet('Oblix_SOW_Projects__c','Oblix_Campaign_Summary'), ', (SELECT OblixCountry__r.Name, Percentage__c FROM Marketing_SOW_Project_Splits__r), Campaign_PFY__r.Name, Campaign_PFY__r.Financial_Year__r.SOW_Status__c');
 
  
                 // get related stage identifier for the given selected project Id

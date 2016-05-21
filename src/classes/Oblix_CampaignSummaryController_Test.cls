@@ -59,6 +59,10 @@ private class Oblix_CampaignSummaryController_Test {
 			
             Pagereference exitAction = ctrl.exitSwop();
 			System.assert(exitAction != null);
+
+            System.assertEquals(null,ctrl.turn_over_size);
+            System.assertNotEquals(null,ctrl.maxAllowedAdjustValue);
+            System.assertNotEquals(null,ctrl.reportDeveloperName);
 			
             Test.stopTest();
         }
@@ -100,6 +104,38 @@ private class Oblix_CampaignSummaryController_Test {
 
 
 
+    @isTest static void Oblix_CampaignSummaryController_TestDeleteCampaignException(){
+        User u = Oblix_TestUtils.createTestUser();
+        insert Oblix_TestUtils.createOblixCustomSettings();
+        System.runAs(u) {
+            
+            Test.startTest();
+
+            MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
+            Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
+            Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_NAME + System.now().addDays(3), mSow.id);
+            Oblix_Project_Assets__c asset = Oblix_TestUtils.createProjectAssets(project.Id);
+            
+            ApexPages.currentPage().getParameters().put(PAGE_PROJECT_ID_PARAMETER_NAME,project.Id);
+            ApexPages.currentPage().getParameters().put(PAGE_SOW_ID_PARAMETER_NAME,mSow.Id);
+            Oblix_CampaignSummaryController ctrl = new Oblix_CampaignSummaryController();
+            
+            Oblix_SOW_Projects__c bckp = ctrl.selected_project;
+            ctrl.selected_project = null;
+            PageReference deleteCampaign = ctrl.deleteCampaign();
+
+            Test.stopTest();
+
+            List<Oblix_SOW_Projects__c> projects = [SELECT Id FROM Oblix_SOW_Projects__c WHERE Id =: project.Id];
+            System.assertEquals(1, projects.size());
+
+            System.assertEquals(null,deleteCampaign);
+
+        }
+    }
+
+
+
     @isTest static void Oblix_CampaignSummaryController_TestCancelCampaign(){
         User u = Oblix_TestUtils.createTestUser();
         insert Oblix_TestUtils.createOblixCustomSettings();
@@ -130,7 +166,7 @@ private class Oblix_CampaignSummaryController_Test {
         }
     }
 
-     @isTest static void Oblix_CampaignSummaryController_TestSyncCampaign(){
+    @isTest static void Oblix_CampaignSummaryController_TestSyncCampaign(){
         User u = Oblix_TestUtils.createTestUser();
         insert Oblix_TestUtils.createOblixCustomSettings();
         System.runAs(u) {
@@ -161,5 +197,33 @@ private class Oblix_CampaignSummaryController_Test {
 
         }
     }
+
+
+
+    @isTest static void Oblix_CampaignSummaryController_TestRefreshPopUpStageIdentifier(){
+        User u = Oblix_TestUtils.createTestUser();
+        insert Oblix_TestUtils.createOblixCustomSettings();
+        System.runAs(u) {
+
+            MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
+            Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
+            Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_NAME + System.now().addDays(2), mSow.id);
+
+            ApexPages.currentPage().getParameters().put(PAGE_PROJECT_ID_PARAMETER_NAME,project.Id);
+            ApexPages.currentPage().getParameters().put(PAGE_SOW_ID_PARAMETER_NAME,mSow.Id);
+            Oblix_CampaignSummaryController ctrl = new Oblix_CampaignSummaryController();
+
+            Test.startTest();
+        
+            ctrl.refreshPopUpStageIdentifier();            
+            
+            Test.stopTest();
+
+            System.assertEquals(ctrl.stage_identifier_pop_up.sow_project_in_scope.Projected_Stage_CFY__c, ctrl.stage_identifier.sow_project_in_scope.Projected_Stage_CFY__c);
+            System.assertEquals(ctrl.stage_identifier_pop_up.sow_project_in_scope.Completed_Stage_CFY__c, ctrl.stage_identifier.sow_project_in_scope.Completed_Stage_CFY__c);
+        }
+    }
+
+
 
 }

@@ -9,6 +9,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Oblix_AssetHandlerLogic</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Oblix_AssetHandler_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -605,6 +609,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Marketing_SOW__c.Record_Locked_Sync__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Marketing_SOW__c.SOW_Creator_is_Approver__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -995,6 +1004,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Oblix_Project_Assets__c.Enforce_Trigger_Update__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Oblix_Project_Assets__c.FULL_Description__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1195,8 +1209,18 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Enforce_Trigger_Update_Assets__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Oblix_SOW_Projects__c.Enforce_Trigger_Update__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Fees_Outstanding_between_CFY_PFY__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -1222,6 +1246,11 @@
         <editable>false</editable>
         <field>Oblix_SOW_Projects__c.Fees_To_Be_Paid_Next_Financial_Year__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Fees_Total_PFY__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -1437,6 +1466,11 @@
         <editable>false</editable>
         <field>Oblix_SOW_Projects__c.Projected_Stage__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Record_Locked_Sync__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>

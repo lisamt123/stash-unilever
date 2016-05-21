@@ -5,7 +5,6 @@ public with sharing class Oblix_NonCampaignWrapper {
 	public String selectedCountry { get; set; }
 	public String selectedCountryname { get; set; }
 	public String selectedActivity { get; set; }
-	public String selectedCountryActivity { get; set; }
 	public String selectedAgencyDepartment { get; set; }
 	public String selectedRole { get; set; }
 	public String hourlyRate { get; set; }

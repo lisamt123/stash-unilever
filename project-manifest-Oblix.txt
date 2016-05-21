@@ -1,5 +1,7 @@
 src
 src/classes
+src/classes/Oblix_AssetHandlerLogic.cls
+src/classes/Oblix_AssetHandlerLogic.cls-meta
 src/classes/Oblix_AddAssetPageHelper.cls
 src/classes/Oblix_AddAssetPageHelper.cls-meta.xml
 src/classes/Oblix_AssetHandler.cls
@@ -368,3 +370,5 @@ src/groups
 src/groups/Oblix_SWOP_Agency.group
 src/groups/Oblix_SWOP_All_UL1_UL2_UL3.group
 src/groups/Oblix_SWOP_Super_User.group
+src/sharingRules
+src/sharingRules/User.sharingRules

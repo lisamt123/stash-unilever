@@ -270,17 +270,22 @@ public with sharing class Oblix_PermissionHandler {
     * @description  Depending on the assigned permission sets and sow status
     				allow user to adjust fee
     ********************************************************************************/
-    public static Boolean canAdjustFee(String sow_status, Id sow_id, String campaign_status){
-    	// only UL1, UL2, SuperUser and Sysadmin can adjust fee
-    	// if not already approved
-    	if (isSystemAdmin() || (!isLocked(sow_id) && campaign_status != Oblix_Utils.CAMPAIGN_STATUS_CANCELLED && (hasUL1permissionSet() || hasUL2permissionSet()) || hasSuperUserpermissionSet())
-    		&& 
-    		(Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status) && (Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY != sow_status)){
-    		return true;
-    	}
-    	else{
-    		return false;
-    	}
+    public static Boolean canAdjustFee(String sow_status, Id sow_id, String campaign_status, String sow_nameSuffix){
+        // only UL1, UL2, SuperUser and Sysadmin can adjust fee
+        // if not already approved
+        if (isSystemAdmin() || 
+            (!isLocked(sow_id) 
+                && campaign_status != Oblix_Utils.CAMPAIGN_STATUS_CANCELLED 
+                && (hasUL1permissionSet() || hasUL2permissionSet()) || hasSuperUserpermissionSet())
+                && ((sow_nameSuffix != null && Oblix_Utils.NAME_SUFFIX_FINALISED != sow_nameSuffix))
+                && (Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status) 
+                && (Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY != sow_status))
+        {
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /*******************************************************************************
@@ -330,13 +335,13 @@ public with sharing class Oblix_PermissionHandler {
     public static Boolean canManageAssetBasket(String sow_status, Id sow_id, String campaign_status, String pfy_sow_status){
     	// only UL1, UL2, SuperUser and Sysadmin can manage asset basket
     	// if not already approved
-    	if (isSystemAdmin() || 
+    	if (isSystemAdmin() || hasSuperUserpermissionSet() ||  
                 (
                     !isLocked(sow_id) && 
                     (campaign_status != Oblix_Utils.CAMPAIGN_STATUS_CANCELLED)  && 
                     (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet()) && 
                     (Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status) && (Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY != sow_status) && 
-                    pfy_sow_status != Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES
+                    (pfy_sow_status == null || pfy_sow_status == Oblix_Utils.SOW_STATUS_FINALISED) 
                 )
             ) {
     		return true;
@@ -566,9 +571,9 @@ public with sharing class Oblix_PermissionHandler {
     public static Boolean canAddNewAttachment(String sow_status){
     	// only UL1, UL2, SuperUser, AG1, AG2 and Sysadmin can add attachment to SOW
     	// if not already approved
-    	if (hasUL1permissionSet() || hasUL2permissionSet() || hasAG1permissionSet() || hasAG2permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin()
+    	if ( hasSuperUserpermissionSet() || isSystemAdmin() ||  ( hasUL1permissionSet() || hasUL2permissionSet() || hasAG1permissionSet() || hasAG2permissionSet() )
     		&& 
-    		(Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status)){
+    		(Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status && Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY != sow_status && Oblix_Utils.SOW_STATUS_FINALISED != sow_status)){
     		return true;
     	}
     	else{
@@ -585,9 +590,9 @@ public with sharing class Oblix_PermissionHandler {
     public static Boolean canDeleteAttachment(String sow_status){
     	// only UL1, UL2, SuperUser and Sysadmin can delete other people's attachments on SOW 
     	// if not already approved
-    	if (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin()
+    	if ( hasSuperUserpermissionSet() || isSystemAdmin() ||  ( hasUL1permissionSet() || hasUL2permissionSet() || hasAG1permissionSet() || hasAG2permissionSet() )
     		&& 
-    		(Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status)){
+    		(Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status && Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY != sow_status && Oblix_Utils.SOW_STATUS_FINALISED != sow_status)){
     		return true;
     	}
     	else{

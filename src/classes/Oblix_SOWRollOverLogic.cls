@@ -489,18 +489,25 @@ public with sharing class Oblix_SOWRollOverLogic {
 
         // copy over the Progress Stage and box number to PFY
         cloned_campaign.Campaign_PFY__c = original_campaign.Id;
+
+
+        // S.M. 2016-05-19 - in a scenario where actual campaign attributes haven't been updated but an asset has been added to PFY campaign, we don't want to
+        // overwrite the chevron but should update other financial fields
+        if (original_campaign.Campaign_Attributes_Updated__c){
+            cloned_campaign.Projected_Stage_PFY__c = getUnionCurrentAndPastStages(original_campaign, 'Projected_Stage_CFY__c','Projected_Stage_PFY__c'); //original_campaign.Projected_Stage_CFY__c;
+        }
         cloned_campaign.Completed_Stage_PFY__c = getUnionCurrentAndPastStages(original_campaign, 'Completed_Stage_CFY__c','Completed_Stage_PFY__c'); // original_campaign.Completed_Stage_CFY__c;
-        cloned_campaign.Projected_Stage_PFY__c = getUnionCurrentAndPastStages(original_campaign, 'Projected_Stage_CFY__c','Projected_Stage_PFY__c'); //original_campaign.Projected_Stage_CFY__c;
+        
         cloned_campaign.Total_Project_Score_PFY__c = original_campaign.Total_Project_Score__c ;
         cloned_campaign.Fees_Paid_PFY__c = original_campaign.Value_to_be_paid_in_Current_FY__c;
-        
+        cloned_campaign.Fees_Total_PFY__c = original_campaign.Campaign_Total_Fees__c;
 
         cloned_campaign.Percentage_of_Fees_PFY__c = NULL != original_campaign.Percentage_of_Fees_PFY__c
             ? original_campaign.Percentage_of_Fee_for_this_FY__c + original_campaign.Percentage_of_Fees_PFY__c
             : original_campaign.Percentage_of_Fee_for_this_FY__c;
         
         // select all projected stages by default when initiating rollover process
-        cloned_campaign.Projected_Stage_CFY__c = Oblix_Utils.CAMPAIGN_STAGES_ALL;
+        cloned_campaign.Projected_Stage_CFY__c = getDeltaCurrentAndPastStages(cloned_campaign,'Projected_Stage_PFY__c');
     
         // set the remaining value for this FY
         if (NULL != cloned_campaign.Percentage_of_Fees_PFY__c){
@@ -510,6 +517,62 @@ public with sharing class Oblix_SOWRollOverLogic {
         }
 
         cloned_campaign.Oblix_ProjectBoxNumber_PFY__c = original_campaign.Oblix_ProjectBoxNumber__c ;
+    }
+
+    /********************************************************************
+    * @author       Execloud ©
+    * @date         2016-05-04
+    * @description  To maintain the logic for chevron, we need to combine the 
+                    stages from CFY and PFY and stamp on PFY field of the following
+                    financial year campaign - this is done for both completed and projected stage
+    *********************************************************************/
+    public static String getDeltaCurrentAndPastStages(Oblix_SOW_Projects__c cloned_campaign, String pfy_field){
+       
+        Set<String> set_delta = new Set<String>();
+        String delta_stages = '';
+        List<String> list_all_stages = new List<String>();
+        List<String> list_stages_retrieved = new List<String>();
+        String separator = ';';
+
+        String result = '';
+
+        // create a full list
+        if (String.isNotBlank(Oblix_Utils.CAMPAIGN_STAGES_ALL)){
+
+            list_all_stages = Oblix_Utils.CAMPAIGN_STAGES_ALL.split(separator);
+            result += '\nlist_all_stages: ' + JSON.serialize(list_all_stages);
+        }
+
+        set_delta.addAll(list_all_stages);
+
+
+        String past_stages = (String) cloned_campaign.get(pfy_field);
+        result += '\npast_stages: ' + past_stages;
+        // get completed stages for last year
+        if (String.isNotBlank(past_stages)){
+
+            list_stages_retrieved = past_stages.split(separator);
+            result += '\nlist_stages_retrieved: ' + JSON.serialize(list_stages_retrieved);
+
+            for (String stage_name: list_stages_retrieved){
+                result += '\nstage_name: ' + stage_name;
+                set_delta.remove(stage_name);
+            }
+        }
+
+        // copy to a list to allow building ';' separated string
+        List<String> list_delta_stages = new List<String>(); 
+        list_delta_stages.addAll(set_delta);
+        
+        result += '\nlist_union_stages: ' + JSON.serialize(list_delta_stages);
+
+        if (!list_delta_stages.isEmpty()){
+            // build the semi-colon separated values to re-assign
+            delta_stages = String.join(list_delta_stages, separator);
+        }
+        result += '\nunion_stages: ' + delta_stages;
+        //system.debug(result);
+        return delta_stages;
     }
 
     /********************************************************************
@@ -1067,7 +1130,7 @@ public with sharing class Oblix_SOWRollOverLogic {
                     
 
                 }
-                else if(NULL != map_original_ids_to_cloned && map_original_ids_to_cloned.containsKey(campaign.id) && campaign.Campaign_Attributes_Updated__c ){
+                else if(NULL != map_original_ids_to_cloned && map_original_ids_to_cloned.containsKey(campaign.id)){
                     //  3- PFY and NFY are created but require syncing
 
                     Oblix_SOW_Projects__c cloned_campaign = map_original_ids_to_cloned.get(campaign.id);
@@ -1146,7 +1209,7 @@ public with sharing class Oblix_SOWRollOverLogic {
                 insert list_splits_to_clone;
             //}
 
-            //Oblix_SyncBatchJob.addEvent('DEBUG IN syncCampaignDuringTransitionPeriod() - result_msg: ' + result_msg,NULL);
+            Oblix_SyncBatchJob.addEvent('DEBUG IN syncCampaignDuringTransitionPeriod() - result_msg: ' + result_msg,NULL);
 
 
         }catch(QueryException queryEx){  

@@ -9,7 +9,7 @@ public with sharing class Oblix_DashboardsHandler {
 	public final String SCORE_L = 'L';
 	public final String SCORE_TOTAL = 'TOTAL';
 	public final String TOTAL_ASSETS = 'TotalAssets';
-	public final Set<String> ASSET_TYPES_SET = new Set<String> { 'Stimulus Materials', 'Audio Visual' , 'Digital', 'Experiential', 'Static Imagery'};
+	public final Set<String> ASSET_TYPES_SET = new Set<String> {'Audio Visual' , 'Digital', 'Experiential', 'Static Imagery', 'Stimulus Materials'};
 	
 	public Integer totalAssets { 
 		get{
@@ -68,8 +68,10 @@ public with sharing class Oblix_DashboardsHandler {
 		List<AggregateResult> feeDistribution;
 		if(instanceType.equals(Type.SOW_SCORES_FY_FEE)){
 			feeDistribution = [SELECT SUM(Value_to_be_paid_in_Current_FY__c) amount, Brand_Led_Growth__c FROM Oblix_SOW_Projects__c WHERE Financial_Year__c =: recordId GROUP BY Brand_Led_Growth__c LIMIT 1000000];
+			System.DEBUG('feeDistribution : ' + feeDistribution);
 		} else if(instanceType.equals(Type.SOW_SCORES_FULL_FEE)){
 			feeDistribution = [SELECT SUM(Campaign_Fees_Total__c) amount, Brand_Led_Growth__c FROM Oblix_SOW_Projects__c WHERE Financial_Year__c =: recordId GROUP BY Brand_Led_Growth__c LIMIT 1000000];
+			System.DEBUG('feeDistribution : ' + feeDistribution);
 		} else{
 			return null;
 		}
@@ -118,8 +120,8 @@ public with sharing class Oblix_DashboardsHandler {
 			scoreFeeMap.put(SCORE_ML, 0);
 			scoreFeeMap.put(SCORE_L, 0);
 		}
-		System.debug('####### ' + JSON.serialize(scoreCountMap));
-		System.debug('####### ' + JSON.serialize(scoreFeeMap));
+		//System.debug('####### ' + JSON.serialize(scoreCountMap));
+		//System.debug('####### ' + JSON.serialize(scoreFeeMap));
 
 		// populate data records and add them to the google chart data
 		retVal.add(new List<Object>{SCORE_S, new DataSetupRecord(String.valueOf(scoreCountMap.get(SCORE_S)), String.valueOf(scoreCountMap.get(SCORE_S)) + '%'), new DataSetupRecord(String.valueOf(scoreFeeMap.get(SCORE_S)), String.valueOf(scoreFeeMap.get(SCORE_S)) + '%') });
@@ -139,8 +141,8 @@ public with sharing class Oblix_DashboardsHandler {
 
 	@TestVisible private List<List<Object>> generateCampaignAssetTypesData(){
 		List<List<Object>> retVal = new List<List<Object>>();
-		List<AggregateResult> assetTypes = [select count(id) num, Asset_Type__c assetType from Oblix_Project_Assets__c group by Asset_Type__c order by Asset_Type__c asc limit 10000000];
-		System.DEBUG(assetTypes);
+		//List<AggregateResult> assetTypes = [select count(id) num, Asset_Type__c assetType from Oblix_Project_Assets__c group by Asset_Type__c order by Asset_Type__c asc limit 10000000];
+		//System.DEBUG(assetTypes);
 		Map<String, Integer> assetCountToAddMap = new Map<String, Integer>();
 		//to maintain the order of the colours in the graph, google expects all possible types with a value 0 
 		for(String eachAssetType : ASSET_TYPES_SET){
@@ -175,7 +177,7 @@ public with sharing class Oblix_DashboardsHandler {
 			//this.totalAssets += (Decimal) assetCountToAddMap.get(assetType);
 		}
 		//retval.add(new List<String>{TOTAL_ASSETS,String.valueOf(totalAssets)});
-		System.DEBUG(JSON.serializePretty(retVal));
+		System.DEBUG('JSON : ' + JSON.serializePretty(retVal));
 		//System.DEBUG(this.totalAssets);
 		return retval;
 		

@@ -11,7 +11,7 @@ global with sharing class Oblix_VersionControl implements Schedulable {
 
         // if there is no other batch job currently running and we have some records to process
         // then initiate the batch job
-        if (!checkIsJobRunning()){
+        if (FALSE == checkIsJobRunning()){
             // how many SOWs require Cloning? 
             Integer sow_requested_clone_size = [SELECT count() FROM Marketing_SOW__c 
                 WHERE Sync_Status__c =: Oblix_Utils.JOB_STATUS_CLONE_REQUESTED OR Sync_Status__c =: Oblix_Utils.JOB_STATUS_CLONE_IN_PROGRESS];
