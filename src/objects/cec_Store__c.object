@@ -247,8 +247,14 @@
     </listViews>
     <listViews>
         <fullName>CEC_Southern_Cone_Queue_cec_Store</fullName>
+        <columns>NAME</columns>
+        <columns>Country__c</columns>
+        <columns>UPDATEDBY_USER.ALIAS</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
         <filterScope>Queue</filterScope>
         <label>CEC Southern Cone Queue</label>
+        <language>en_US</language>
         <queue>CEC_Southern_Cone_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>

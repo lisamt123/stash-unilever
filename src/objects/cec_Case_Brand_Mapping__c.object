@@ -392,8 +392,12 @@
     </listViews>
     <listViews>
         <fullName>CEC_Brazil_Queue_cec_Case_Brand_Mapping</fullName>
+        <columns>Brand__c</columns>
+        <columns>Country__c</columns>
+        <columns>Inbound_Email__c</columns>
         <filterScope>Queue</filterScope>
         <label>CEC Brazil Queue</label>
+        <language>en_US</language>
         <queue>CEC_Brazil_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
