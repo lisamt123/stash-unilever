@@ -5,13 +5,15 @@ src/classes/WWP_LossTree_CC.cls
 src/classes/WWP_LossTree_CC.cls-meta.xml
 src/classes/WWP_LossTree_Test.cls
 src/classes/WWP_LossTree_Test.cls-meta.xml
-src/layouts/WWP_Loss_Tree__c-Loss Tree Layout.layout
 src/objects/WWP_Loss_Tree__c.object
-src/objects/WWP_LossTree__c.object
-src/objects/WWP_PlantCode_User_Mapping__c.object
 src/pages/WWP_LossTreeUpdate_VF.page
 src/pages/WWP_LossTreeUpdate_VF.page-meta.xml
 src/permissionsets/WWP_User_Permissions.permissionset
 src/permissionsets/WWP_Admin_Permissions.permissionset
 src/permissionsets/WWP_Super_Admin_Permissions.permissionset
+<<<<<<< HEAD
 src/tabs/WWP_Loss_Tree__c.tab
+=======
+src/tabs/WWP_Loss_Tree__c.tab
+
+>>>>>>> develop
