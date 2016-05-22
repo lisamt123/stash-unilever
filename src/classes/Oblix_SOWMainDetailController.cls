@@ -157,7 +157,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SOWMainDet
                 pageAttachment = new Attachment();
                 return uploadedAtt;
             } catch(DmlException e){
-                ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR, 'There was an error while uploading the attachment ' + e.getMessage()));
+                ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR, 'There was an error while uploading the attachment. '));
                 return null;
             }
         }
