@@ -44,7 +44,7 @@
                 <field>Record_Locked_Sync__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Edit</behavior>
                 <field>Is_B_Fwd_Campaign__c</field>
             </layoutItems>
         </layoutColumns>

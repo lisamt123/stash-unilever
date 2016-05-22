@@ -1171,9 +1171,8 @@ ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Returned by Agency&quot;)
     </fields>
     <fields>
         <fullName>Is_B_Fwd_Campaign__c</fullName>
+        <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <formula>NOT(ISNULL(Campaign_PFY__c))</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Is B/Fwd Campaign</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -2078,7 +2077,7 @@ $Profile.Name &lt;&gt; &apos;System Administrator&apos;
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>

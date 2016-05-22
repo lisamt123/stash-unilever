@@ -20,18 +20,18 @@
         <apex:define name="top_option_links">
             <apex:outputPanel id="editLinksPanel">
                 <apex:outputPanel rendered="{!IF(can_edit && NOT(can_see_sync_requested_on_bfwd_sow || can_see_sync_in_progress || can_see_rollover_initiated_message_on_original_sow),true,false)}">
-                    <a href="{!$Page.Oblix_SowCreate + '?sowId=' + selected_sow.Id}">Edit SOW</a>&nbsp;&nbsp;|
+                    <a href="{!$Page.Oblix_SOWCreate + '?sowId=' + selected_sow.Id}">Edit SOW</a>
                 </apex:outputPanel>
                 <apex:actionRegion >
                     <apex:outputPanel rendered="{!IF(can_delete_sow && NOT(can_see_sync_requested_on_bfwd_sow || can_see_sync_in_progress || can_see_rollover_initiated_message_on_original_sow),true,false)}">
-                        <a href="#" data-toggle="modal" data-target="#sowDelete">Delete SOW</a>&nbsp;&nbsp;
+                        &nbsp;|&nbsp;&nbsp;<a href="#" data-toggle="modal" data-target="#sowDelete">Delete SOW</a>
                     </apex:outputPanel>
                 </apex:actionRegion>
             </apex:outputPanel>
             <apex:outputPanel id="initiateRollOverLink" >
                 <apex:actionRegion >
                     <apex:outputPanel rendered="{!IF(can_edit && selected_sow.Initial_Approval_Complete__c,true,false)}">
-                        <apex:outputLink value="#" onclick="blockme();initiateRollOver();" disabled="{!NOT(ISBLANK(selected_sow.Sync_Status__c))}" >| &nbsp;{!IF(ISBLANK(selected_sow.Sync_Status__c),'Initiate Rollover','Rollover Initiated')}</apex:outputLink>&nbsp;&nbsp;
+                        <apex:outputLink value="#" onclick="blockme();initiateRollOver();" disabled="{!NOT(ISBLANK(selected_sow.Sync_Status__c))}" >&nbsp;&nbsp;|&nbsp;&nbsp;{!IF(ISBLANK(selected_sow.Sync_Status__c),'Initiate Rollover','Rollover Initiated')}</apex:outputLink>&nbsp;&nbsp;
                     </apex:outputPanel>
                     <apex:actionFunction name="initiateRollOver" action="{!initiateRollOver}"  oncomplete="$.unblockUI();" reRender="initiateRollOverLink,sync_in_progress_panel,addCampaignButtons,editLinksPanel"/>
                     <!-- <apex:actionFunction name="syncCampaigns" action="{!syncCampaigns}" oncomplete="$.unblockUI();location.reload();" reRender="relatedItems"> -->
@@ -46,7 +46,7 @@
 
             <apex:outputPanel >
                 <apex:actionRegion >
-                    <apex:actionPoller interval="5" reRender="sync_in_progress_panel" action="{!getSOW}"/>
+                    <apex:actionPoller interval="5" reRender="sync_in_progress_panel,sync_all_campaigns_panel" action="{!getSOW}"/>
                 </apex:actionRegion>
             </apex:outputPanel>
             <apex:outputPanel id="sync_in_progress_panel">
@@ -466,11 +466,13 @@
                         <apex:outputPanel rendered="{!can_manage_campaign && NOT(can_see_sync_requested_on_bfwd_sow || can_see_sync_in_progress || can_see_rollover_initiated_message_on_original_sow)}"><a class="btn btn-primary btn-xs pull-right btn_plus btn_add_campaign" href="{!$Page.Oblix_CampaignCreate + '?sowId=' + selected_sow.Id}">ADD CAMPAIGN</a></apex:outputPanel>
                         <apex:outputPanel rendered="{!can_manage_campaign && NOT(can_see_sync_requested_on_bfwd_sow || can_see_sync_in_progress || can_see_rollover_initiated_message_on_original_sow)}"><a class="btn btn-primary btn-xs pull-right btn_plus btn_add_non_campaign" href="{!$Page.Oblix_SOWNonCampaignCreate + '?sowId=' + selected_sow.Id}">ADD NON-CAMPAIGN</a></apex:outputPanel>
                     </apex:outputPanel>
-                    <apex:actionRegion >
-                        <apex:outputPanel rendered="{!IF(can_edit && shouldSyncAllCampaigns,true,false)}">
-                            <apex:outputLink value="#" styleClass="btn btn-danger btn-xs btn_sync pull-right btn_sync_campaign" onclick="" html-data-toggle="modal"  html-data-target="#syncAllCampaigns">Sync All Campaigns</apex:outputLink>
-                        </apex:outputPanel>
-                    </apex:actionRegion>
+                    <apex:outputPanel id="sync_all_campaigns_panel">
+                        <apex:actionRegion >
+                            <apex:outputPanel rendered="{!IF(can_edit && shouldSyncAllCampaigns,true,false)}" >
+                                <apex:outputLink value="#" styleClass="btn btn-danger btn-xs btn_sync pull-right btn_sync_campaign" onclick="" html-data-toggle="modal"  html-data-target="#syncAllCampaigns">Sync All Campaigns</apex:outputLink>
+                            </apex:outputPanel>
+                        </apex:actionRegion>
+                    </apex:outputPanel>
                 </ul>
             </div>
             <!--            Welcome message to start building SOW -->

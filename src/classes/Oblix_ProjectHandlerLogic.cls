@@ -103,7 +103,7 @@ public with sharing class Oblix_ProjectHandlerLogic {
 
             // set the other campaign fields
             //campaign_to_adjust.OblixProjectSplitPercentage_Comment__c = prepopulated_campaign.OblixProjectSplitPercentage_Comment__c;
-            campaign_to_adjust.Project_Scale_2__c = prepopulated_campaign.Project_Scale_2__c;
+            //campaign_to_adjust.Project_Scale_2__c = prepopulated_campaign.Project_Scale_2__c;
             campaign_to_adjust.Campaign_Hub_Summary__c = prepopulated_campaign.Campaign_Hub_Summary__c;    
             campaign_to_adjust.Asset_Deliverables__c = prepopulated_campaign.Asset_Deliverables__c;
 
@@ -114,7 +114,7 @@ public with sharing class Oblix_ProjectHandlerLogic {
         campaign_to_adjust.Name = buildCampaignName(campaign_to_adjust.Name_Prefix__c, campaign_to_adjust.Name_Suffix__c);
 
         //Populate campaign Unique Key in case Name changed, or Campaig was cloned and now belongs to another SOW.
-        campaign_to_adjust.Unique_Key__c = campaign_to_adjust.Financial_Year__c+'_'+campaign_to_adjust.Name;
+        campaign_to_adjust.Unique_Key__c = campaign_to_adjust.Financial_Year__c+'_'+campaign_to_adjust.Name_Prefix__c;
         
         //system.debug('### adjusted campaign name prepopulated_campaign - prefix: '+ campaign_to_adjust.Name_Prefix__c 
         //    + ' - suffix: ' + campaign_to_adjust.Name_Suffix__c + ' - name: ' + campaign_to_adjust.Name);

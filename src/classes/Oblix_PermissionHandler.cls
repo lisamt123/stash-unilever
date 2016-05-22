@@ -277,7 +277,7 @@ public with sharing class Oblix_PermissionHandler {
             (!isLocked(sow_id) 
                 && campaign_status != Oblix_Utils.CAMPAIGN_STATUS_CANCELLED 
                 && (hasUL1permissionSet() || hasUL2permissionSet()) || hasSuperUserpermissionSet())
-                && ((sow_nameSuffix != null && Oblix_Utils.NAME_SUFFIX_FINALISED != sow_nameSuffix))
+                && (Oblix_Utils.NAME_SUFFIX_FINALISED != sow_nameSuffix)
                 && (Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status) 
                 && (Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY != sow_status))
         {

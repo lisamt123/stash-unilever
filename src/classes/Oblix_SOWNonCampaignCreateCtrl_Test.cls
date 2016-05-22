@@ -1,4 +1,5 @@
 @isTest
+// test continued on Oblix_SOWNonCampaignCreateCtrl_Test2 - which uses public attributes and methods from this class
 public class Oblix_SOWNonCampaignCreateCtrl_Test {
 
     public static final String SOW_ID_PAGE_PARAMETER = 'sowId';

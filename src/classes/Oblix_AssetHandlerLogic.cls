@@ -26,4 +26,16 @@ public with sharing class Oblix_AssetHandlerLogic {
         
             so_asset.Enforce_Trigger_Update__c = Integer.valueOf(datetime.now().format('dhmss'));
     }
+
+    /*******************************************************************************
+    * @author       Execloud ©
+    * @date         2016-05-22
+    * @description  populate the fields for assets which need to be adjusted
+    ********************************************************************************/
+    public static void adjustAssetFields(Oblix_Project_Assets__c asset_to_adjust){
+
+        // set asset campaign Id
+        asset_to_adjust.Campaign_ID__c = (String) asset_to_adjust.Agency_Projects__c;
+    }
+
 }

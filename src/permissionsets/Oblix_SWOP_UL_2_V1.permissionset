@@ -1282,7 +1282,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Oblix_SOW_Projects__c.Is_B_Fwd_Campaign__c</field>
         <readable>true</readable>
     </fieldPermissions>

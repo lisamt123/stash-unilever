@@ -354,6 +354,7 @@ src/flows/SOW_Approval_Process-1.flow
 src/flows/SOW_Approval_Process-2.flow
 src/flows/SOW_Approval_Process-3.flow
 src/permissionsets
+src/permissionsets/Oblix_SWOP_Readonly_User_V1.permissionset
 src/permissionsets/Oblix_SWOP_Readonly_User.permissionset
 src/permissionsets/Oblix_SWOP_Super_User_V1.permissionset
 src/permissionsets/Oblix_SWOP_UL_1_V1.permissionset

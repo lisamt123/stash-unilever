@@ -30,11 +30,13 @@ public with sharing class Oblix_AssetHandler implements ITrigger {
     public void beforeInsert(SObject so)
     {
         Oblix_AssetHandlerLogic.setEnforceTriggerUpdate((Oblix_Project_Assets__c) so);
+        Oblix_AssetHandlerLogic.adjustAssetFields((Oblix_Project_Assets__c) so);
     }
     
     public void beforeUpdate(SObject oldSo, SObject so)
     {
         Oblix_AssetHandlerLogic.setEnforceTriggerUpdate((Oblix_Project_Assets__c) so);
+        Oblix_AssetHandlerLogic.adjustAssetFields((Oblix_Project_Assets__c) so);
     }
      
 

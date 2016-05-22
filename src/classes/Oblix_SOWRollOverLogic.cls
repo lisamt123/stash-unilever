@@ -507,9 +507,13 @@ public with sharing class Oblix_SOWRollOverLogic {
             ? original_campaign.Percentage_of_Fee_for_this_FY__c + original_campaign.Percentage_of_Fees_PFY__c
             : original_campaign.Percentage_of_Fee_for_this_FY__c;
         
-        // select all projected stages by default when initiating rollover process
-        cloned_campaign.Projected_Stage_CFY__c = getDeltaCurrentAndPastStages(cloned_campaign,'Projected_Stage_PFY__c');
-    
+        // S.M. 2016-05-19 - in a scenario where actual campaign attributes haven't been updated but an asset has been added to PFY campaign, we don't want to
+        // overwrite the chevron but should update other financial fields
+        if (original_campaign.Campaign_Attributes_Updated__c){
+            // select all projected stages by default when initiating rollover process
+            cloned_campaign.Projected_Stage_CFY__c = getDeltaCurrentAndPastStages(cloned_campaign,'Projected_Stage_PFY__c');
+        }
+        
         // set the remaining value for this FY
         if (NULL != cloned_campaign.Percentage_of_Fees_PFY__c){
             cloned_campaign.Percentage_of_Fee_for_this_FY__c = 100 - cloned_campaign.Percentage_of_Fees_PFY__c;
@@ -1104,6 +1108,9 @@ public with sharing class Oblix_SOWRollOverLogic {
 
                     cloned_campaign.put(job_component.attrib_2,campaign.Id);
 
+                    // S.M. 2016-05-22 added a flag to replace the formula field due to platform issues
+                    cloned_campaign.Is_B_Fwd_Campaign__c = true;
+
                     // set campaign suffix
                     setCampaignNameSuffix(campaign,cloned_campaign, job_component);
 
@@ -1163,11 +1170,13 @@ public with sharing class Oblix_SOWRollOverLogic {
 
             }
 
-            //result_msg += RESULT_MSG_PREFIX + map_campaigns_to_update.size() + ' - to clone: ' + list_campaigns_to_clone.size() 
-            //    + ' - to delete: ' + map_campaigns_to_delete.size() + ' - splits to delete: ' + map_splits_to_delete.size()
-            //    + ' - map_original_id_splits_to_clone: ' + map_original_id_splits_to_clone.size()
-            //    + ' - splits to insert: ' + list_splits_to_clone.size();
+            result_msg += RESULT_MSG_PREFIX + map_campaigns_to_update.size() + ' - to clone: ' + list_campaigns_to_clone.size() 
+                + ' - to delete: ' + map_campaigns_to_delete.size() + ' - splits to delete: ' + map_splits_to_delete.size()
+                + ' - map_original_id_splits_to_clone: ' + map_original_id_splits_to_clone.size()
+                + ' - splits to insert: ' + list_splits_to_clone.size();
 
+
+            Oblix_SyncBatchJob.addEvent('DEBUG IN syncCampaignDuringTransitionPeriod() - result_msg: ' + result_msg,NULL);
 
             // insert new campaigns
             //if (!list_campaigns_to_clone.isEmpty()){

@@ -29,7 +29,7 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
     }
     public Boolean can_adjust_fee{
         get{
-            return Oblix_PermissionHandler.canAdjustFee(selected_sow.SOW_Status__c, selected_sow.Id, selected_project.Campaign_Status__c, selected_project.Name_Suffix__c);
+            return Oblix_PermissionHandler.canAdjustFee(selected_sow.SOW_Status__c, selected_sow.Id, selected_project.Campaign_Status__c, selected_sow.Name_Suffix__c);
         }
     }
 
@@ -115,7 +115,7 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
         
         if (NULL!=selected_project && NULL!=selected_project.Financial_Year__c){
             // query the selected sow in scope
-            selected_sow = getSOW(selected_project.Financial_Year__c,new List<String>{'Name','OwnerId','SOW_Status__c', 'Approved_version__c'}, null);
+            selected_sow = getSOW(selected_project.Financial_Year__c,new List<String>{'Name','OwnerId','SOW_Status__c', 'Approved_version__c', 'Name_Suffix__c'}, null);
         }
 
         if (NULL != selected_project && NULL!= selected_sow){
