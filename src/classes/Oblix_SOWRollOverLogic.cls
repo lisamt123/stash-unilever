@@ -22,7 +22,7 @@ public with sharing class Oblix_SOWRollOverLogic {
     private static final String STACK_TRACE = ' - STACK TRACE: ';
     private static final String SELECT_SOQL = 'SELECT ';
     private static final String SOQL_AND = '\' AND ';
-    private static final String EXCLUDE_SYNC_STEP_SOQL = '\' AND Sync_Step__c <> \'';
+    //private static final String EXCLUDE_SYNC_STEP_SOQL = '\' AND Sync_Step__c <> \'';
     private static final String ORDER_BY_SOQL = '\' ORDER BY Id LIMIT ';
     private static final String RESULT_MSG_PREFIX = '\n\n\n to update: ';
     /********************************************************************
