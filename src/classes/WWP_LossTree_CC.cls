@@ -56,7 +56,7 @@ public with sharing class WWP_LossTree_CC{
              message = label.WWP_NocodeAssigned_Err;
          }
          
-          List<WWP_Loss_Tree__c>   weeklistLossTree = [select id,name,Week__c from WWP_Loss_Tree__c];
+          List<WWP_Loss_Tree__c>   weeklistLossTree = [select id,name,Week__c from WWP_Loss_Tree__c  order by createddate Limit 50000];
            
            Map<String,String> weekMap = new Map<String,String>();
          
@@ -94,12 +94,13 @@ public with sharing class WWP_LossTree_CC{
         
         if(lossTree.Loss_Type__c!=null && lossTree.Plant_Code__c!=null && selectedWeek !=null){
             if(dispalyAll){
+            system.debug(lossTree.Loss_Type__c +'>>> '+selectedWeek +'>>>>>'+lossTree.Plant_Code__c );
             listLossTree = [select id,name,Loss_Type__c,PO__c,SKU__c,Plant_Code__c,Loss_Name__c,Loss_Sub_Family__c,createddate,
-                             Loss_Description__c,Planned_Receipt__c,actual_Receipt__c,MRP_Loss_Value__c,OR_Loss_Value__c,Planned_dispatch__c,Actual_dispatch__c,Actual_Production__c,Planned_Production__c,DC_Loss_Value__c,Week__c,PR__c,STO_So__c,SKU_description__c  from WWP_Loss_Tree__c where Loss_Type__c=: lossTree.Loss_Type__c and Week__c=: selectedWeek and Plant_Code__c=:lossTree.Plant_Code__c and Loss_Type__c!=null limit 1000];
+                             Loss_Description__c,Planned_Receipt__c,actual_Receipt__c,MRP_Loss_Value__c,OR_Loss_Value__c,Planned_dispatch__c,Actual_dispatch__c,Actual_Production__c,Planned_Production__c,DC_Loss_Value__c,Week__c,PR__c,STO_So__c,SKU_description__c  from WWP_Loss_Tree__c where  Week__c=:selectedWeek and Plant_Code__c=:lossTree.Plant_Code__c and Loss_Type__c=:losstree.loss_type__c  Limit 1000];
             }
-            if(!dispalyAll){
+            else{
             listLossTree = [select id,name,Loss_Type__c,PO__c,SKU__c,Plant_Code__c,Loss_Name__c,Loss_Sub_Family__c,createddate,
-                             Loss_Description__c,Planned_Receipt__c,actual_Receipt__c,MRP_Loss_Value__c,OR_Loss_Value__c,Planned_dispatch__c,Actual_dispatch__c,Actual_Production__c,Planned_Production__c,DC_Loss_Value__c,Week__c,PR__c,STO_So__c,SKU_description__c  from WWP_Loss_Tree__c where Loss_Type__c=: lossTree.Loss_Type__c and Week__c=: selectedWeek and Plant_Code__c=:lossTree.Plant_Code__c and Loss_Type__c!=null and Loss_Updated_in_Salesforce__c = false limit 1000];
+                             Loss_Description__c,Planned_Receipt__c,actual_Receipt__c,MRP_Loss_Value__c,OR_Loss_Value__c,Planned_dispatch__c,Actual_dispatch__c,Actual_Production__c,Planned_Production__c,DC_Loss_Value__c,Week__c,PR__c,STO_So__c,SKU_description__c  from WWP_Loss_Tree__c where Loss_Type__c=:lossTree.Loss_Type__c and Week__c=:selectedWeek and Plant_Code__c=:lossTree.Plant_Code__c and Loss_Type__c!=null and Loss_Updated_in_Salesforce__c = false limit 1000];
             }
             
           if(listLossTree.isEmpty()){

@@ -2,12 +2,14 @@
 <!-- Static Resources for CSS -->
     <!-- CSS Libs -->
     <script type="text/javascript" src="{!URLFOR($Resource.WWP_Jquery1, '/jquery-1.11.2/dist/jquery.min.js')}"></script>
+
+        <script type="text/javascript" src="{!URLFOR($Resource.WWP_dataTables, '/DataTables-1.10.11/media/js/jquery.dataTables.min.js')}"></script>
     <!--<apex:includeScript value="{!$Resource.WWP_Jquery}"/>-->
    <!--<script type="text/javascript" src="{!$Resource.WWP_Jquery}"></script>-->
     <link href="{!URLFOR($Resource.WWP_bootstrap, '/bootstrap-3.3.5/dist/css/bootstrap.min.css')}" rel="stylesheet"/> 
      <script type="text/javascript" src="{!URLFOR($Resource.WWP_bootstrap, '/bootstrap-3.3.5/dist/js/bootstrap.min.js')}"></script> 
     <link href="{!URLFOR($Resource.WWP_dataTables, '/DataTables-1.10.11/media/css/dataTables.bootstrap.min.css')}" rel="stylesheet"/>
-    <script type="text/javascript" src="{!URLFOR($Resource.WWP_dataTables, '/DataTables-1.10.11/media/js/jquery.dataTables.min.js')}"></script>
+
     <script type="text/javascript" src="{!URLFOR($Resource.WWP_dataTables, '/DataTables-1.10.11/media/js/dataTables.bootstrap.min.js')}"></script>
     
 <style>
@@ -109,7 +111,19 @@ alert('ssss');
           </div>
       </div>
         <div class="clearfix" style="height: 10px;clear: both;"></div>
-        <apex:commandButton styleclass="buttonstyle" value="Submit" action="{!fetchLossTree}" reRender="frm" oncomplete="refreshdata();" disabled="{!if(listPlantCodes.size>1,false,true)}"/>
+        <apex:commandButton styleclass="buttonstyle" value="Submit" action="{!fetchLossTree}" reRender="frm" oncomplete="refreshdata();" status="status" disabled="{!if(listPlantCodes.size>1,false,true)}">
+             <apex:actionStatus id="status">
+            <apex:facet name="start">
+            <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.75; z-index: 1000; background-color: black;">
+                &nbsp;
+            </div>
+            <div style="position: fixed; left: 0; top: 0; bottom: 0; right: 0; z-index: 1001; margin: 30% 50%">
+                <img src="/img/loading.gif" />
+            </div>
+            </apex:facet>
+        </apex:actionStatus>
+        </apex:commandButton>
+        
     </div>
     </div>
           
@@ -127,7 +141,7 @@ alert('ssss');
             
            <apex:outputPanel rendered="{!if(listLossTree!=null && listLossTree.size>0 && lossTree.Loss_Type__c='Output Reliability',true,false)}"  >
              <div class="table-responsive" >
-                    <table id="myTable" class="display table" width="100%" >
+                    <table id="myTable1" class="display table" width="100%" >
  
                         <thead>  
                         <tr> 
@@ -173,7 +187,23 @@ alert('ssss');
                      
                     </div>
                    <!-- <button styleclass="buttonstyle" onclick="tablerender();"/>-->
-            <apex:commandButton styleclass="buttonstyle" value="Update" action="{!updateLossTree}" rerender="frm" oncomplete="refreshdata('{!lossTree.Loss_Type__c}')"/> 
+            <apex:commandButton styleclass="buttonstyle" value="Update" action="{!updateLossTree}" status="status1" rerender="frm" oncomplete="refreshdata('{!lossTree.Loss_Type__c}')">
+            
+            
+            <apex:actionStatus id="status1">
+            <apex:facet name="start">
+            <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.75; z-index: 1000; background-color: black;">
+                &nbsp;
+            </div>
+            <div style="position: fixed; left: 0; top: 0; bottom: 0; right: 0; z-index: 1001; margin: 30% 50%">
+                <img src="/img/loading.gif" />
+            </div>
+            </apex:facet>
+        </apex:actionStatus>
+ 
+            
+            
+            </apex:commandButton> 
            </apex:outputPanel>
                                  
            <apex:outputPanel rendered="{!if(listLossTree!=null && listLossTree.size>0 && lossTree.Loss_Type__c=='MRP Compliance',true,false)}">
@@ -226,7 +256,7 @@ alert('ssss');
            
            <apex:outputPanel rendered="{!if(listLossTree!=null && listLossTree.size>0 && lossTree.Loss_Type__c=='Dispatch Compliance',true,false)}">
                  <div class="table-responsive" >
-                    <table id="myTable" class="display table" width="100%" >
+                    <table id="myTable2" class="display table" width="100%" >
 
  
                         <thead>  
@@ -311,13 +341,7 @@ alert('ssss');
     </apex:form>
     </body>
 
-                
-                
-                
-                
-                
-                
-                
+        
                 <!--Logic End---->
                 
                 
@@ -362,28 +386,21 @@ function resetAll(ite){
 </script>
 <script>
 j$ = jQuery.noConflict();
-j$(document).ready( function () {
-    
-});
-</script>
-<script>
-    
-j$(document).ready(function() {
- 
- 
- 
- var table = j$('[id$="myTable"]').dataTable();
 
-table.on('page.dt', function() {
-    var info = table.page.info();
-    var page = info.page+1;
-    alert('changed - page '+page+' out of '+info.pages+' is clicked');
-});
-    
-        
+
+j$(document).ready(function() {
+
+var table = j$('#myTable1').DataTable();
+ 
+j$('#myTable1').on( 'page.dt', function () {
+    alert("test");
 } );
-    
-    </script>
+
+
+} );
+
+</script>
+
 <script>
 function refreshdata(){
 var losstype = j$('[id$="lossT"]').val();
@@ -399,13 +416,25 @@ var losstype = j$('[id$="lossT"]').val();
         "columnDefs": [ { "orderable": false, "targets": [0,8,9,10]}]          
      });     
      }    
-     if(losstype == 'Output Reliability' || losstype == 'Dispatch Compliance'){
-    j$('[id$="myTable"]').dataTable({
+     if(losstype == 'Output Reliability'){
+    j$('[id$="myTable1"]').dataTable({
         "paging":   true,
         "ordering": true,
         "info":     false,
         "bFilter": false,
         "bSearchable":false,
+        "bLengthChange": false,
+        "order": [[ 4, "desc"]],
+        "columnDefs": [ { "orderable": false, "targets": [0,8,9,10,11]}  ]                         
+     });     
+     }
+     if(losstype == 'Dispatch Compliance'){
+    j$('[id$="myTable2"]').dataTable({
+        "paging":   true,
+        "ordering": true,
+        "info":     false,
+        "bFilter": false,
+        "bSearchable":true,
         "bLengthChange": false,
         "order": [[ 4, "desc"]],
         "columnDefs": [ { "orderable": false, "targets": [0,8,9,10,11]}  ]                         
