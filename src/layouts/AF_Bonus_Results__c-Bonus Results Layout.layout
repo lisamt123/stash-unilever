@@ -79,6 +79,10 @@
                 <behavior>Edit</behavior>
                 <field>AF_Qual_Per__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

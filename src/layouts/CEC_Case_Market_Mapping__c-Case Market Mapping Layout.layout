@@ -87,6 +87,10 @@
                 <behavior>Edit</behavior>
                 <field>Textile_Factory_Email_Template__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

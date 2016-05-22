@@ -36,6 +36,9 @@
             <layoutItems>
                 <field>Meta_Tags__c</field>
             </layoutItems>
+            <layoutItems>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <style>OneColumn</style>
     </layoutSections>

@@ -138,6 +138,10 @@
                 <behavior>Readonly</behavior>
                 <field>AF_CategoryView__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

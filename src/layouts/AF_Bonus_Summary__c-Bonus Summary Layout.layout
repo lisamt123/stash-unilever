@@ -35,6 +35,10 @@
                 <behavior>Readonly</behavior>
                 <field>AF_Fiscal_Year_Difference__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

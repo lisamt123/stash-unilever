@@ -120,6 +120,10 @@
         <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
+        <fullName>CurrencyIsoCode</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+    </fields>
+    <fields>
         <fullName>Day_Rate__c</fullName>
         <externalId>false</externalId>
         <label>Day Rate</label>

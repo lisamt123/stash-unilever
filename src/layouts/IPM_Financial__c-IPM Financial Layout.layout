@@ -71,6 +71,10 @@
                 <behavior>Edit</behavior>
                 <field>Target_Launch_Date_Updated_From__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

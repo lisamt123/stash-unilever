@@ -95,6 +95,10 @@
                 <behavior>Edit</behavior>
                 <field>Product_Tag__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
