@@ -77,14 +77,23 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger
         //Financials Hard Validations: Get all Financial External ID
         set<string> setFinExtId = new set<string>();
         list<IPM_Financial_Year__c> lstFinYr = new list<IPM_Financial_Year__c>();
-        if(Trigger.isInsert || Trigger.isUpdate){
+        if(Trigger.isInsert){
             lstFinYr = (list<IPM_Financial_Year__c>)Trigger.New;
         }
-        else{
+        else if(Trigger.isUpdate){
+            for(IPM_Financial_Year__c finYr: (list<IPM_Financial_Year__c>)Trigger.New){
+                if(finYr.Turnover_Global__c!=((IPM_Financial_Year__c) Trigger.Oldmap.get(finYr.id)).Turnover_Global__c || finYr.Turnover_Regional__c != ((IPM_Financial_Year__c) Trigger.Oldmap.get(finYr.id)).Turnover_Regional__c || finYr.Turnover_Local__c!=((IPM_Financial_Year__c)  Trigger.Oldmap.get(finYr.id)).Turnover_Local__c){
+                    lstFinYr.add(finYr);    
+                }   
+            }   
+        }
+        else if(Trigger.isDelete){
             lstFinYr = (list<IPM_Financial_Year__c>)Trigger.Old;    
         }
-        for(IPM_Financial_Year__c finYear: lstFinYr){
-            setFinExtId.add(finYear.Financial_External_ID__c);          
+        if(!lstFinYr.isEmpty()){
+            for(IPM_Financial_Year__c finYear: lstFinYr){
+                setFinExtId.add(finYear.Financial_External_ID__c);          
+            }
         }
         if(!setFinExtId.isEmpty()){
             IPM_FinancialYearHelper.validateDefaultFinancial(setFinExtId);
