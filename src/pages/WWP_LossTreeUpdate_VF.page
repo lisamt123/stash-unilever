@@ -409,6 +409,7 @@ var losstype = j$('[id$="lossT"]').val();
         "paging":   true,
         "ordering": true,
         "info":     false,
+        "bStateSave": true,
         "bFilter": false,        
         "bSearchable":false,
         "bLengthChange": false,
@@ -422,6 +423,7 @@ var losstype = j$('[id$="lossT"]').val();
         "ordering": true,
         "info":     false,
         "bFilter": false,
+        "bStateSave": true,
         "bSearchable":false,
         "bLengthChange": false,
         "order": [[ 4, "desc"]],
@@ -432,6 +434,7 @@ var losstype = j$('[id$="lossT"]').val();
     j$('[id$="myTable2"]').dataTable({
         "paging":   true,
         "ordering": true,
+        "bStateSave": true,
         "info":     false,
         "bFilter": false,
         "bSearchable":true,
