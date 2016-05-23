@@ -10745,7 +10745,7 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Case</object>
-        <viewAllRecords>false</viewAllRecords>
+        <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
@@ -10916,7 +10916,11 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>CEC_Product_Locator__c</object>
+<<<<<<< HEAD
         <viewAllRecords>false</viewAllRecords>
+=======
+        <viewAllRecords>true</viewAllRecords>
+>>>>>>> 8b42d133d94374438cc41485740bb280278672cf
     </objectPermissions>
     <objectPermissions>
         <allowCreate>false</allowCreate>
