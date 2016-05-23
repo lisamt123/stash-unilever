@@ -315,8 +315,6 @@ public class CEC_CaseTriggerHelper{
 This method identifies daycode from the production code
 */
     private void identifyDaycode(Case caseRecord){
-        
-        Boolean populateDayCode;
         String Daycode = '';
         caseRecord.Date_of_Manufacture_str__c = '';
         caseRecord.Date_of_Manufacture__c = null;

@@ -11,7 +11,7 @@
 This class acts as a test class for Issue creation controller.
 */
 
-@isTest(SeeAllData=true)
+@isTest()
 public class CEC_Test_IssueCreationPageController{
 
     /**
