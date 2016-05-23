@@ -1,7 +1,7 @@
 src
 src/classes
 src/classes/Oblix_AssetHandlerLogic.cls
-src/classes/Oblix_AssetHandlerLogic.cls-meta
+src/classes/Oblix_AssetHandlerLogic.cls-meta.xml
 src/classes/Oblix_AddAssetPageHelper.cls
 src/classes/Oblix_AddAssetPageHelper.cls-meta.xml
 src/classes/Oblix_AssetHandler.cls
