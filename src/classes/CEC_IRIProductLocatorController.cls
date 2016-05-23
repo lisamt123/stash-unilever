@@ -14,7 +14,7 @@ VERSION    AUTHOR            DATE             DETAIL
 *******************************************************************/
 
 
-public class CEC_IRIProductLocatorController {
+public with sharing class  CEC_IRIProductLocatorController {
 
     public String postCode {get;set;}
     public String prodCode {get;set;}
@@ -188,85 +188,85 @@ public class CEC_IRIProductLocatorController {
             XMLResp: xml response
   ********************************************************************/
   
-  public List<CEC_IRIWrapper.STORE> parseStoreInfo(String XMLResp){
-      
-      XmlStreamReader reader = new XmlStreamReader(XMLResp);
-      Boolean isNextElement = TRUE;
-      List<CEC_IRIWrapper.STORE> stores = new List<CEC_IRIWrapper.STORE>();
-      CEC_IRIWrapper.STORE store = new CEC_IRIWrapper.STORE();
-      
-      while(isNextElement){
-          
-          if(reader.getLocalName() == 'STORE' && reader.getEventType() == xmlTag.START_ELEMENT){
+    public List<CEC_IRIWrapper.STORE> parseStoreInfo(String XMLResp){
+        // to read xml stream
+        XmlStreamReader reader = new XmlStreamReader(XMLResp);
+        // control variable
+        Boolean isNextElement = TRUE;
+        List<CEC_IRIWrapper.STORE> stores = new List<CEC_IRIWrapper.STORE>();
+        CEC_IRIWrapper.STORE store = new CEC_IRIWrapper.STORE();
 
-              while(reader.hasNext()){
-                 
-                  if(reader.getEventType() == xmlTag.START_ELEMENT && reader.getLocalName() == 'STORE'){
-                      store = new CEC_IRIWrapper.STORE();      
-                  }                  
-                  if(reader.getEventType() == xmlTag.START_ELEMENT && reader.getLocalName()== 'STORE_ID'){
-                      reader.Next();
-                      store.STORE_ID = reader.getText();
-                  }
-                  if(reader.getEventType() == xmlTag.START_ELEMENT && reader.getLocalName()== 'PHONE'){
-                      reader.Next();
-                      store.PHONE = reader.getText();
-                  }
-                  if(reader.getEventType() == xmlTag.START_ELEMENT && reader.getLocalName()== 'ADDRESS'){
-                      reader.Next();
-                      store.ADDRESS = reader.getText();
-                  }
-                  if(reader.getEventType() == xmlTag.START_ELEMENT && reader.getLocalName()== 'DISTANCE'){
-                      reader.Next();
-                      store.DISTANCE = reader.getText();
-                  }
-                  if(reader.getEventType() == xmlTag.START_ELEMENT && reader.getLocalName()== 'LONGITUDE'){
-                      reader.Next();
-                      store.LONGITUDE = reader.getText();
-                  }
-                  if(reader.getEventType() == xmlTag.START_ELEMENT && reader.getLocalName()== 'CITY'){
-                      reader.Next();
-                      store.CITY = reader.getText();
-                  }
-                  if(reader.getEventType() == xmlTag.START_ELEMENT && reader.getLocalName()== 'NAME'){
-                      reader.Next();
-                      store.NAME = reader.getText();
-                  }
-                  if(reader.getEventType() == xmlTag.START_ELEMENT && reader.getLocalName()== 'STATE'){
-                      reader.Next();
-                      store.STATE = reader.getText();
-                  }
-                  if(reader.getEventType() == xmlTag.START_ELEMENT && reader.getLocalName()== 'ZIP'){
-                      reader.Next();
-                      store.ZIP = reader.getText();
-                  }
-                  if(reader.getEventType() == xmlTag.START_ELEMENT && reader.getLocalName()== 'UPC_CODE'){
-                      reader.Next();
-                      store.UPC_CODE = reader.getText();
-                  }
-                  if(reader.getEventType() == xmlTag.START_ELEMENT && reader.getLocalName()== 'LATITUDE'){
-                      reader.Next();
-                      store.LATITUDE = reader.getText();
-                  }
-                  if(reader.getEventType() == xmlTag.START_ELEMENT && reader.getLocalName()== 'NUMBER'){
-                      reader.Next();
-                      store.STORE_NUMBER = reader.getText();
-                  }
-                  
-                  if(reader.getEventType() == XmlTag.END_ELEMENT && reader.getLocalName() == 'STORE'){
+        while(isNextElement){
+            // fetch xml tag <store> where its start element
+            if(reader.getLocalName() == 'STORE' && reader.getEventType() == xmlTag.START_ELEMENT){
+                // parse till the end tag
+                while(reader.hasNext()){
+                    // extraxt store
+                    if(reader.getEventType() == xmlTag.START_ELEMENT && reader.getLocalName() == 'STORE'){
+                        store = new CEC_IRIWrapper.STORE();      
+                    }// extraxt store id
+                    if(reader.getEventType() == xmlTag.START_ELEMENT && reader.getLocalName()== 'STORE_ID'){
+                        reader.Next();
+                        store.STORE_ID = reader.getText();
+                    }// extraxt phone
+                    if(reader.getEventType() == xmlTag.START_ELEMENT && reader.getLocalName()== 'PHONE'){
+                        reader.Next();
+                        store.PHONE = reader.getText();
+                    }// extraxt Address
+                    if(reader.getEventType() == xmlTag.START_ELEMENT && reader.getLocalName()== 'ADDRESS'){
+                        reader.Next();
+                        store.ADDRESS = reader.getText();
+                    }// extraxt DISTANCE
+                    if(reader.getEventType() == xmlTag.START_ELEMENT && reader.getLocalName()== 'DISTANCE'){
+                        reader.Next();
+                        store.DISTANCE = reader.getText();
+                    }// extraxt LONGITUDE
+                    if(reader.getEventType() == xmlTag.START_ELEMENT && reader.getLocalName()== 'LONGITUDE'){
+                        reader.Next();
+                        store.LONGITUDE = reader.getText();
+                    }// extraxt city
+                    if(reader.getEventType() == xmlTag.START_ELEMENT && reader.getLocalName()== 'CITY'){
+                        reader.Next();
+                        store.CITY = reader.getText();
+                    }// extraxt name
+                    if(reader.getEventType() == xmlTag.START_ELEMENT && reader.getLocalName()== 'NAME'){
+                        reader.Next();
+                        store.NAME = reader.getText();
+                    }// extraxt state
+                    if(reader.getEventType() == xmlTag.START_ELEMENT && reader.getLocalName()== 'STATE'){
+                        reader.Next();
+                        store.STATE = reader.getText();
+                    }// extraxt Zip
+                    if(reader.getEventType() == xmlTag.START_ELEMENT && reader.getLocalName()== 'ZIP'){
+                        reader.Next();
+                        store.ZIP = reader.getText();
+                    }// extraxt UPC Code
+                    if(reader.getEventType() == xmlTag.START_ELEMENT && reader.getLocalName()== 'UPC_CODE'){
+                        reader.Next();
+                        store.UPC_CODE = reader.getText();
+                    }// extraxt Latitude
+                    if(reader.getEventType() == xmlTag.START_ELEMENT && reader.getLocalName()== 'LATITUDE'){
+                        reader.Next();
+                        store.LATITUDE = reader.getText();
+                    }// extraxt number
+                    if(reader.getEventType() == xmlTag.START_ELEMENT && reader.getLocalName()== 'NUMBER'){
+                        reader.Next();
+                        store.STORE_NUMBER = reader.getText();
+                    }// add the parsed data in the list
+                    if(reader.getEventType() == XmlTag.END_ELEMENT && reader.getLocalName() == 'STORE'){
                         store.ISSELECTED = False;
                         stores.add(store);
                         store = new CEC_IRIWrapper.STORE();
-                  }
-                  
-                  reader.Next();
-              }
-          }
-          if(reader.hasNext())
-              reader.Next();
-          else
-              isNextElement = False;
-      }
-      return stores;
-  }
+                    }
+                    reader.Next();
+                }
+            }
+            if(reader.hasNext())
+                reader.Next();
+            else
+                isNextElement = False;
+        }
+        //return store list
+        return stores;
+    }
 }
