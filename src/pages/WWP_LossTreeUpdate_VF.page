@@ -118,7 +118,7 @@ alert('ssss');
                 &nbsp;
             </div>
             <div style="position: fixed; left: 0; top: 0; bottom: 0; right: 0; z-index: 1001; margin: 30% 50%">
-                <img src="/img/loading.gif" />
+                <img src="/img/loading.gif" alt="In progress..."/>
             </div>
             </apex:facet>
         </apex:actionStatus>
@@ -196,7 +196,7 @@ alert('ssss');
                 &nbsp;
             </div>
             <div style="position: fixed; left: 0; top: 0; bottom: 0; right: 0; z-index: 1001; margin: 30% 50%">
-                <img src="/img/loading.gif" />
+                <img src="/img/loading.gif" alt="In progress..."/>
             </div>
             </apex:facet>
         </apex:actionStatus>
@@ -256,7 +256,7 @@ alert('ssss');
            
            <apex:outputPanel rendered="{!if(listLossTree!=null && listLossTree.size>0 && lossTree.Loss_Type__c=='Dispatch Compliance',true,false)}">
                  <div class="table-responsive" >
-                    <table id="myTable2" class="display table" width="100%" >
+                    <table id="myTable1" class="display table" width="100%" >
 
  
                         <thead>  
@@ -417,7 +417,7 @@ var losstype = j$('[id$="lossT"]').val();
         "columnDefs": [ { "orderable": false, "targets": [0,8,9,10]}]          
      });     
      }    
-     if(losstype == 'Output Reliability'){
+     if(losstype == 'Output Reliability' || losstype == 'Dispatch Compliance'){
     j$('[id$="myTable1"]').dataTable({
         "paging":   true,
         "ordering": true,
@@ -430,19 +430,7 @@ var losstype = j$('[id$="lossT"]').val();
         "columnDefs": [ { "orderable": false, "targets": [0,8,9,10,11]}  ]                         
      });     
      }
-     if(losstype == 'Dispatch Compliance'){
-    j$('[id$="myTable2"]').dataTable({
-        "paging":   true,
-        "ordering": true,
-        "bStateSave": true,
-        "info":     false,
-        "bFilter": false,
-        "bSearchable":true,
-        "bLengthChange": false,
-        "order": [[ 4, "desc"]],
-        "columnDefs": [ { "orderable": false, "targets": [0,8,9,10,11]}  ]                         
-     });     
-     }
+  
 }
 </script>
 </apex:page>
