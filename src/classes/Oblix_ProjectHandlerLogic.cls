@@ -53,7 +53,7 @@ public with sharing class Oblix_ProjectHandlerLogic {
 
             // depending on the number of splits set 
             // set Project_Scale_2__c  
-            adjustCampaignProjectScale(campaign);
+            //adjustCampaignProjectScale(campaign);
 
             // build the map of campaigns
             map_campaign_id_campaign_for_update.put(campaign.Id, campaign);
@@ -103,7 +103,7 @@ public with sharing class Oblix_ProjectHandlerLogic {
 
             // set the other campaign fields
             //campaign_to_adjust.OblixProjectSplitPercentage_Comment__c = prepopulated_campaign.OblixProjectSplitPercentage_Comment__c;
-            campaign_to_adjust.Project_Scale_2__c = prepopulated_campaign.Project_Scale_2__c;
+            //campaign_to_adjust.Project_Scale_2__c = prepopulated_campaign.Project_Scale_2__c;
             campaign_to_adjust.Campaign_Hub_Summary__c = prepopulated_campaign.Campaign_Hub_Summary__c;    
             campaign_to_adjust.Asset_Deliverables__c = prepopulated_campaign.Asset_Deliverables__c;
 
@@ -114,7 +114,7 @@ public with sharing class Oblix_ProjectHandlerLogic {
         campaign_to_adjust.Name = buildCampaignName(campaign_to_adjust.Name_Prefix__c, campaign_to_adjust.Name_Suffix__c);
 
         //Populate campaign Unique Key in case Name changed, or Campaig was cloned and now belongs to another SOW.
-        campaign_to_adjust.Unique_Key__c = campaign_to_adjust.Financial_Year__c+'_'+campaign_to_adjust.Name;
+        campaign_to_adjust.Unique_Key__c = campaign_to_adjust.Financial_Year__c+'_'+campaign_to_adjust.Name_Prefix__c;
         
         //system.debug('### adjusted campaign name prepopulated_campaign - prefix: '+ campaign_to_adjust.Name_Prefix__c 
         //    + ' - suffix: ' + campaign_to_adjust.Name_Suffix__c + ' - name: ' + campaign_to_adjust.Name);
@@ -242,35 +242,37 @@ public with sharing class Oblix_ProjectHandlerLogic {
     //    }
     //}
 
-    /*******************************************************************************
-    * @author       Execloud ©
-    * @date         2016-03-04
-    * @description  set comment against parent campaign if the percentage does not add
-                    up to 100% otherwise clear out the comments
-    ********************************************************************************/
-    private static void adjustCampaignProjectScale(Oblix_SOW_Projects__c campaign){
+    // S.M. 2016-05-20 as per requested by user, trigger should not be setting the dropdown value for 
+    // geographical scale
+    ///*******************************************************************************
+    //* @author       Execloud ©
+    //* @date         2016-03-04
+    //* @description  set comment against parent campaign if the percentage does not add
+    //                up to 100% otherwise clear out the comments
+    //********************************************************************************/
+    //private static void adjustCampaignProjectScale(Oblix_SOW_Projects__c campaign){
             
-        if (NULL != campaign.Marketing_SOW_Project_Splits__r && campaign.Marketing_SOW_Project_Splits__r.size() >0){
-            if (1 == campaign.Marketing_SOW_Project_Splits__r.size()){
-                campaign.Project_Scale_2__c = Oblix_Utils.getOblixSettingLabel('SCORE_INNOVATION_HUB_PARENTERS_1');    
-            }
-            else if (2 == campaign.Marketing_SOW_Project_Splits__r.size()){
-                campaign.Project_Scale_2__c = Oblix_Utils.getOblixSettingLabel('SCORE_INNOVATION_HUB_PARENTERS_2');    
-            }
-            else if (3 == campaign.Marketing_SOW_Project_Splits__r.size()){
-                campaign.Project_Scale_2__c = Oblix_Utils.getOblixSettingLabel('SCORE_INNOVATION_HUB_PARENTERS_3');    
-            }
-            else if (4 == campaign.Marketing_SOW_Project_Splits__r.size()){
-                campaign.Project_Scale_2__c = Oblix_Utils.getOblixSettingLabel('SCORE_INNOVATION_HUB_PARENTERS_4');    
-            }
-            else if (campaign.Marketing_SOW_Project_Splits__r.size() >= 5){
-                campaign.Project_Scale_2__c = Oblix_Utils.getOblixSettingLabel('SCORE_INNOVATION_HUB_PARENTERS_5');    
-            }
-        }
-        else{
-            campaign.Project_Scale_2__c = '';
-        }
-    }
+    //    if (NULL != campaign.Marketing_SOW_Project_Splits__r && campaign.Marketing_SOW_Project_Splits__r.size() >0){
+    //        if (1 == campaign.Marketing_SOW_Project_Splits__r.size()){
+    //            campaign.Project_Scale_2__c = Oblix_Utils.getOblixSettingLabel('SCORE_INNOVATION_HUB_PARENTERS_1');    
+    //        }
+    //        else if (2 == campaign.Marketing_SOW_Project_Splits__r.size()){
+    //            campaign.Project_Scale_2__c = Oblix_Utils.getOblixSettingLabel('SCORE_INNOVATION_HUB_PARENTERS_2');    
+    //        }
+    //        else if (3 == campaign.Marketing_SOW_Project_Splits__r.size()){
+    //            campaign.Project_Scale_2__c = Oblix_Utils.getOblixSettingLabel('SCORE_INNOVATION_HUB_PARENTERS_3');    
+    //        }
+    //        else if (4 == campaign.Marketing_SOW_Project_Splits__r.size()){
+    //            campaign.Project_Scale_2__c = Oblix_Utils.getOblixSettingLabel('SCORE_INNOVATION_HUB_PARENTERS_4');    
+    //        }
+    //        else if (campaign.Marketing_SOW_Project_Splits__r.size() >= 5){
+    //            campaign.Project_Scale_2__c = Oblix_Utils.getOblixSettingLabel('SCORE_INNOVATION_HUB_PARENTERS_5');    
+    //        }
+    //    }
+    //    else{
+    //        campaign.Project_Scale_2__c = '';
+    //    }
+    //}
     
 
     /*******************************************************************************
@@ -306,6 +308,7 @@ public with sharing class Oblix_ProjectHandlerLogic {
         String assetCategoryRemovedExamples = '';
 
         for (Oblix_Project_Assets__c project_asset : campaign_in_scope.Agency_Project_Assets__r){
+            
             
             assetCategoryRemovedExamples = '';
 

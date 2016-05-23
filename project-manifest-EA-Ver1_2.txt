@@ -56,7 +56,7 @@ src/aura/EA_InvitedActivities_Comp/EA_InvitedActivities_CompController.js
 src/aura/EA_InvitedActivities_Comp/EA_InvitedActivities_CompHelper.js
 src/aura/EA_MyAction_Component/EA_MyAction_Component.cmp
 src/aura/EA_MyAction_Component/EA_MyAction_Component.cmp-meta.xml
-src/aura/EA_MyAction_Component/EA_MyAction_Component.cmp
+src/aura/EA_MyAction_Component/EA_MyAction_ComponentController.js
 src/aura/EA_MyAction_Component/EA_MyAction_ComponentHelper.js
 src/aura/EA_RecentUsers_comp/EA_RecentUsers_comp.cmp
 src/aura/EA_RecentUsers_comp/EA_RecentUsers_comp.cmp-meta.xml
@@ -84,7 +84,7 @@ src/aura/EA_chatteEmail_component/EA_chatteEmail_component.cmp
 src/aura/EA_chatteEmail_component/EA_chatteEmail_component.css
 src/aura/EA_chatteEmail_component/EA_chatteEmail_component.design
 src/aura/EA_chatteEmail_component/EA_chatteEmail_componentController.js
-src/aura/EA_chatteEmail_component/EA_chatteEmail_component.cmp-meta
+src/aura/EA_chatteEmail_component/EA_chatteEmail_component.cmp-meta.xml
 src/aura/EA_chatteEmail_component/EA_chatteEmail_componentHelper.js
 src/aura/ImageComponent/ImageComponent.cmp
 src/aura/ImageComponent/ImageComponent.cmp-meta.xml
