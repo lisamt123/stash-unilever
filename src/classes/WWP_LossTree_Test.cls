@@ -17,28 +17,28 @@ public class WWP_LossTree_Test {
         WWP_LossTree__c setting3 = new WWP_LossTree__c();
         WWP_LossTree__c setting4 = new WWP_LossTree__c();
         setting1.name='OR1';
-        setting1.Loss_Type__c='OR';
+        setting1.Loss_Type__c='Output Reliability';
         setting1.Loss_Name__c=ORName1;
         setting1.Loss_Sub_Family__c=ORSubfamily1;
         setting1.Loss_Description__c='ORdesc11';
         ltreesetting.add(setting1);
         
         setting2.name='OR2';
-        setting2.Loss_Type__c='OR';
+        setting2.Loss_Type__c='Output Reliability';
         setting2.Loss_Name__c=ORName1;
         setting2.Loss_Sub_Family__c=ORSubfamily1;
         setting2.Loss_Description__c='ORdesc12';
         ltreesetting.add(setting2);
         
         setting3.name='OR3';
-        setting3.Loss_Type__c='OR';
+        setting3.Loss_Type__c='Output Reliability';
         setting3.Loss_Name__c=ORName1;
         setting3.Loss_Sub_Family__c=ORSubfamily1;
         setting3.Loss_Description__c='ORdesc21';
         ltreesetting.add(setting3);
         
         setting4.name='OR4';
-        setting4.Loss_Type__c='OR';
+        setting4.Loss_Type__c='Output Reliability';
         setting4.Loss_Name__c='ORName2';
         setting4.Loss_Sub_Family__c='ORSubfamily21';
         setting4.Loss_Description__c='ORdesc212';
@@ -48,17 +48,22 @@ public class WWP_LossTree_Test {
                 
         WWP_Loss_Tree__c ltree = new WWP_Loss_Tree__c();
         ltree.Loss_Updated_in_SCDG__c = false;
-        ltree.Loss_Type__c= 'OR';
+        ltree.Loss_Type__c= 'Output Reliability';
         ltree.Plant_Code__c= 'B100';
+        ltree.Week__c = '201512';
         ltree.Loss_Name__c=ORName1;
         ltree.Loss_Sub_Family__c=ORSubfamily1;
         ltree.Loss_Description__c='ORdesc11';
+        ltree.Planned_production__c = 234;
         insert ltree;
         
         Test.startTest();
         WWP_LossTree_CC wwp = new WWP_LossTree_CC();
-        wwp.lossTree.Loss_Type__c = 'OR';
+        //wwp.lossTree = ltree;
+        wwp.lossTree.Loss_Type__c = 'Output Reliability';
         wwp.lossTree.Plant_Code__c= 'B100';
+        wwp.selectedWeek= '201512';
+        wwp.dispalyAll = true;
         
         
         wwp.fetchLossTree();
