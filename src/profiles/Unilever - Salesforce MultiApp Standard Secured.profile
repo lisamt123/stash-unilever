@@ -25218,6 +25218,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>User.CannotChangeMC__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>User.Debit_Card_Refund_Limit__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -25334,6 +25339,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>User.Refund_Authorization_Limit__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>User.SessionId__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
