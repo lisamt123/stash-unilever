@@ -605,7 +605,8 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
               			
                  		 regionalrolloutid=pr.Regional_Project__c != null?pr.Regional_Project__r.id:pr.Regional_Rollout__r.id; 
                  		 Boolean bdGlobal=pr.IPM_Project__c != null?(pr.Regional_Project__c != null?false:true):false; 
-                 		 analyticObj = setRolloutFinancialdetails(analyticObj, regionalrolloutid, pr.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c,bdGlobal); 
+                 		 Boolean keyMCO=pr.KeyMCO__c;
+                 		 analyticObj = setRolloutFinancialdetails(analyticObj, regionalrolloutid, pr.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c,bdGlobal,keyMCO); 
                  	} 
               
                     string finExtId = '';
@@ -765,17 +766,20 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
      * @param1: IPM_Analytics__c, String, IPM_Project_Rollout__c
      * @return: IPM_Analytics__c Analytic object record  
      *********************************************************************************************************************/     
-    public IPM_Analytics__c setRolloutFinancialdetails(IPM_Analytics__c analyticObj,Id regionalrolloutid, Decimal companyCardTurnOver, Boolean bdGlobal){
+    public IPM_Analytics__c setRolloutFinancialdetails(IPM_Analytics__c analyticObj,Id regionalrolloutid, Decimal companyCardTurnOver, Boolean bdGlobal, Boolean keyMCO){
     	string CPP;
   	  	if(regionalrolloutid != null && rolloutFinancialmap.containsKey(regionalrolloutid)){
 	  		for(IPM_Financial__c tempFin : rolloutFinancialmap.get(regionalrolloutid)){
-	  			if(bdGlobal)
+	  			if(bdGlobal && keyMCO)
 	  			{
 	  				CPP =calculateCPP(tempFin.Year_1_iTO_Global__c, companyCardTurnOver);
 	  			}
-	  			else
+	  			else if(!bdGlobal && keyMCO)
 	  			{
 	  				CPP =calculateCPP(tempFin.Year_1_iTO_Regional__c, companyCardTurnOver);
+	  			}
+	  			else{
+	  				CPP=EMPTY_STRING;
 	  			}
 	  			
 	  			 
@@ -809,7 +813,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 	    		return BRONZE;
 	    		}
     		}	    	
-	    	else{
+	    	else if(companyCardTurnOver/1000 <200){
 	    		if((year1BDNumber/1000) >= (companyCardTurnOver/1000)*0.001)
 	    		{
 	    			return SILVER;
@@ -817,6 +821,9 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 	    		else if((year1BDNumber/1000) < (companyCardTurnOver/1000)*0.001){
 	    			return BRONZE;
 	    		}
+	    	}
+	    	else{
+	    		return N_A;
 	    	}
     	}
     	return EMPTY_STRING;
