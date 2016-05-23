@@ -14,6 +14,8 @@ src/classes/IPM_OTIF_Report_BatchSchedule.cls
 src/classes/IPM_OTIF_Report_BatchSchedule.cls-meta.xml
 src/classes/IPM_TestFactory_Helper.cls
 src/classes/IPM_TestFactory_Helper.cls-meta.xml
+src/classes/IPM_BD_BB_Report_BatchSchedule_Test.cls
+src/classes/IPM_BD_BB_Report_BatchSchedule_Test.cls-meta.xml
 src/objects
 src/objects/IPM_Financial__c.object
 src/objects/IPM_Analytics_OTIF__c.object
