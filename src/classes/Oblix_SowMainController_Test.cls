@@ -246,7 +246,7 @@ private class Oblix_SowMainController_Test {
         sowCiff = Oblix_TestUtils.createTestMarketingSow('Ciff SOW', Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER, cbCiffPC.brand_id__c, cbCiffPC.product_Category_Id__c, bc.Id, agency.Id);
         sowInvalidBrandCatComb = Oblix_TestUtils.createTestMarketingSow('SOW invalid', Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER, bCiff.Id, scOF.Id, bc.Id, agency.Id);
         insert new List<Marketing_SOW__c>{sowDove, sowKnorr, sowAmbrosia, sowCiff};
-
+        update new List<Marketing_SOW__c>{sowDove, sowKnorr, sowAmbrosia, sowCiff};
         system.assertNotEquals(NULL, sowInvalidBrandCatComb, 'Expecting sowInvalidBrandCatComb to be populated');
 
     }

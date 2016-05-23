@@ -93,6 +93,10 @@ Renamed to Other SOW items in reviews</description>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Brand Love Key</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Brand Technical &amp;/or Infrastructure Reviews</fullName>
                 <default>false</default>
             </picklistValues>
@@ -1036,6 +1040,10 @@ Oblix_FTE_Real_Price__c)</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Brand Love Key</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Brand Technical %26%2For Infrastructure Reviews</fullName>
                 <default>false</default>
             </values>
@@ -1679,6 +1687,10 @@ Oblix_FTE_Real_Price__c)</formula>
             <picklist>Activities__c</picklist>
             <values>
                 <fullName>Brand Book</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brand Love Key</fullName>
                 <default>false</default>
             </values>
             <values>

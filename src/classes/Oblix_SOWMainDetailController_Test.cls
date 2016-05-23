@@ -184,7 +184,6 @@ private class Oblix_SOWMainDetailController_Test {
 
         ApexPAges.currentPage().getParameters().put(SOW_ID_PARAMETER_STRING, mSow.Id);
         Oblix_SowMainDetailController controllerInstance = new Oblix_SowMainDetailController();
-
         Test.startTest();
         
         PageReference initiateRO = controllerInstance.initiateRollOver();
@@ -243,9 +242,75 @@ private class Oblix_SOWMainDetailController_Test {
         ApexPAges.currentPage().getParameters().put(SOW_ID_PARAMETER_STRING, mSow.Id);
         Oblix_SowMainDetailController controllerInstance = new Oblix_SowMainDetailController();
 
+        
+
         Test.stopTest(); 
 
         System.assertEquals(false, controllerInstance.is_going_through_rollover);
+
+        System.runAs(superuser){
+
+            if(controllerInstance.isAdmin == true){
+                System.assert(controllerInstance.isAdmin);
+            }
+
+            if(controllerInstance.sow_approvers_defined == true){
+                System.assert(controllerInstance.sow_approvers_defined );
+            }
+
+            if(controllerInstance.canSeeDashboard == true){
+                System.assert(controllerInstance.canSeeDashboard);
+            }
+
+            if(controllerInstance.is_initial_rollover_sync_requested == true){
+                System.assert(controllerInstance.is_initial_rollover_sync_requested);
+            }
+
+            if(controllerInstance.is_initial_sync_completed == true){
+                System.assert(controllerInstance.is_initial_sync_completed);
+            }
+
+            if(controllerInstance.is_rollover_in_progress == true){
+                System.assert(controllerInstance.is_rollover_in_progress);
+            }
+
+            if(controllerInstance.is_sync_complete == true){
+                System.assert(controllerInstance.is_sync_complete);
+            }
+
+            if(controllerInstance.is_approved_original_record == true){
+                System.assert(controllerInstance.is_approved_original_record);
+            }
+
+            if(controllerInstance.can_see_rollover_initiated_message_on_original_sow == true){
+                System.assert(controllerInstance.can_see_rollover_initiated_message_on_original_sow);
+            }
+
+            if(controllerInstance.can_see_sync_completed_on_original_sow == true){
+                System.assert(controllerInstance.can_see_sync_completed_on_original_sow);
+            }
+
+            if(controllerInstance.can_see_sync_in_progress == true){
+                System.assert(controllerInstance.can_see_sync_in_progress);
+            }
+
+            if(controllerInstance.can_see_sync_requested_on_bfwd_sow == true){
+                System.assert(controllerInstance.can_see_sync_requested_on_bfwd_sow);
+            }
+
+            if(controllerInstance.can_see_sync_completed_on_bfwd_sow_staying_on_the_page == true){
+                System.assert(controllerInstance.can_see_sync_completed_on_bfwd_sow_staying_on_the_page);
+            }
+
+            if(controllerInstance.can_see_link_to_cloned_record == true){
+                System.assert(controllerInstance.can_see_link_to_cloned_record);
+            }
+
+            if(controllerInstance.can_see_rollover_warning == true){
+                System.assert(controllerInstance.can_see_rollover_warning);
+            }
+
+        }
 
     }
 
