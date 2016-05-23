@@ -17,6 +17,8 @@
             function(userRole, event){
                debugger;
             });*/
+          
+          
          Visualforce.remoting.Manager.invokeAction('VPM_PurchaseRequestsControllerExtension.checkForBusinessReqUser',
             function(results, event){
                 debugger;
@@ -97,7 +99,7 @@
          
          if($(".interviewDisplayTextRow b").text().indexOf("Type") > -1){
                 savedRow = $(".interviewDisplayTextRow")[1];
-                $(".interviewDisplayTextRow")[1].remove();
+                savedRow && savedRow!=null ? $(".interviewDisplayTextRow")[1].remove():'';
              $(savedRow).insertBefore($(".interviewDisplayTextRow")[0]);
              $($(".interviewDisplayTextRow")[0]).css("display","table-cell");
             
@@ -131,11 +133,13 @@
 
             for(var j=0,i=2;j<remainingRows.length,i<=$('.detailList tr').length;j++,i++){
                  var row = ($('.detailList tr')[i]);
+                if(row && row!=[]){
                  $(row).find(".labelCol.last.empty").remove();
                  $(row).find(".dataCol.last.empty").remove();
                  if(remainingRows[j] && remainingRows[j].children()){
                     $(row).append(remainingRows[j].children());
                  }
+               }
             }
         }
         /*  *****  */
@@ -159,6 +163,7 @@
     <flow:interview name="VPM_PurchasingRequestAdvanceForm" interview="{!flBatch}" finishLocation="{!prFinishLocation}">
         <apex:param name="VPM_PurchasingRequestID" value="{!VPM_PurchasingRequests__c.Id}"/>    
     </flow:interview>
+       
        <br/>
        <apex:outputLink onclick="showAttachments('{!VPM_PurchasingRequests__c.Id}'); return false;"
          rendered="{!VPM_PurchasingRequests__c.Id != null && VPM_PurchasingRequests__c.Id != '' && 

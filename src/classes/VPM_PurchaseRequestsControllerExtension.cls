@@ -12,10 +12,13 @@ global class VPM_PurchaseRequestsControllerExtension {
     public boolean ManuallyMarkAsCompleteFlag {get;set;}
     
     public VPM_PurchaseRequestsControllerExtension (ApexPages.StandardController stdController) {
+        try{
         recId = stdController.getRecord().Id; 
         recId1 = stdController.getRecord().Id; 
         // callJavaScriptAlert='<script> func(); </script>';
         venReqStatus = fetchRecordStatus(recId);
+        list<VPM_PurchasingRequests__c> vendorDetailList =[select OwnerId from VPM_PurchasingRequests__c where id =: recId];
+        list<QueueSobject> QueueSobjectList =[Select Queue.Name From QueueSobject where QueueId =: vendorDetailList[0].OwnerId];
         System.debug('-------inside constructor of extn-------'+stdController.getRecord().Id + '  ' + venReqStatus);
         if(String.isNotBlank(venReqStatus) && (venReqStatus.equalsIgnoreCase('MDM Ops Review') || 
                                                venReqStatus.equalsIgnoreCase('MDM Ops Review - SAP BPM submit Failed'))){
@@ -30,10 +33,21 @@ global class VPM_PurchaseRequestsControllerExtension {
             RenderSAPBtn = true;
             ManuallyMarkasCompletebtn= true;
         }
-        else if(usrRole == 'Procurement' || usrRole ==  'Finance' || usrRole ==  'FLS') {
+        else if(usrRole ==  'FIN' && QueueSobjectList[0].Queue.Name.contains('Finance')) {
             ReworkBtn=true;
+              RenderSAPBtn = true;
+        }
+        else if(usrRole ==  'PRO' && QueueSobjectList[0].Queue.Name.contains('Procurement')) {
+            ReworkBtn=true;
+              RenderSAPBtn = true;
+        }
+         else if(usrRole ==  'FLS' && QueueSobjectList[0].Queue.Name.contains('FLS')) {
+            ReworkBtn=true;
+              RenderSAPBtn = true;
         }
         vendorReqId = stdController.getRecord().Id;
+    }
+    catch(exception ex){}
     }
     
     public void callCreateVendorAPI() {
@@ -182,9 +196,10 @@ global class VPM_PurchaseRequestsControllerExtension {
                                                                FROM VPM_PurchasingRequests__c WHERE id= : recId LIMIT 1];
               
               system.debug('@@@@'+VendorDetailList[0].VPM_RequestLastWithGroup__c);
-              system.debug(VendorDetailList[0].VPM_Status__c);
-              system.debug(VendorDetailList[0].VPM_ProcurementApprovalRequired__c);
-              system.debug(VendorDetailList[0].VPM_FinanceApprovalRequired__c);
+              system.debug('@@'+VendorDetailList[0].VPM_Status__c);
+              system.debug('@@@'+VendorDetailList[0].VPM_ProcurementApprovalRequired__c);
+              system.debug('@@@@'+VendorDetailList[0].VPM_FinanceApprovalRequired__c);
+              system.debug('##'+ (VendorDetailList[0].VPM_RequestLastWithGroup__c == 'FLS' && VendorDetailList[0].VPM_Status__c =='Approval Pending' && VendorDetailList[0].VPM_FinanceApprovalRequired__c ==true && VendorDetailList[0].VPM_ProcurementApprovalRequired__c== true ));
               
               
               
@@ -218,6 +233,7 @@ global class VPM_PurchaseRequestsControllerExtension {
             }
             else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == 'Business Requestor' && VendorDetailList[0].VPM_Status__c =='Approval Pending' && VendorDetailList[0].VPM_FinanceApprovalRequired__c ==true && VendorDetailList[0].VPM_ProcurementApprovalRequired__c== true )
             {
+          
                 VendorDetailList[0].VPM_Status__c = 'Procurement Requested Re-Work'; 
                 VendorDetailList[0].OwnerId = VendorDetailList[0].CreatedById; 
                 VendorDetailList[0].VPM_Rework__c='Yes'; 
@@ -229,7 +245,7 @@ global class VPM_PurchaseRequestsControllerExtension {
                 list<QueueSobject> queueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = 'FLS' Limit 1];
                 if (queueList.size() == 1){ 
                     VendorDetailList[0].VPM_Status__c = 'Finance Requested Re-Work'; 
-                    VendorDetailList[0].OwnerId=queueList[0].id; 
+                    VendorDetailList[0].OwnerId=queueList[0].QueueId; 
                     VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Finance'; 
                     VendorDetailList[0].VPM_Rework__c='Yes';   
                     update VendorDetailList;
@@ -240,7 +256,7 @@ global class VPM_PurchaseRequestsControllerExtension {
                 list<QueueSobject> queueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = 'FLS' Limit 1];
                 if (queueList.size() == 1){ 
                     VendorDetailList[0].VPM_Status__c = 'Procurement Requested Re-Work'; 
-                    VendorDetailList[0].OwnerId=queueList[0].id; 
+                    VendorDetailList[0].OwnerId=queueList[0].QueueId; 
                     VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Procurement'; 
                     VendorDetailList[0].VPM_Rework__c='Yes';  
                     update VendorDetailList;
@@ -251,7 +267,7 @@ global class VPM_PurchaseRequestsControllerExtension {
                 list<QueueSobject> queueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = 'FLS' Limit 1];
                 if (queueList.size() == 1){ 
                     VendorDetailList[0].VPM_Status__c = 'Procurement Requested Re-Work'; 
-                    VendorDetailList[0].OwnerId=queueList[0].id; 
+                    VendorDetailList[0].OwnerId=queueList[0].QueueId; 
                     VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Procurement'; 
                     VendorDetailList[0].VPM_Rework__c='Yes';   
                     update VendorDetailList;
@@ -263,9 +279,9 @@ global class VPM_PurchaseRequestsControllerExtension {
                 if (queueList.size() == 1){                     
                     VendorDetailList[0].VPM_Status__c = 'Finance Requested Re-Work';                   
                     VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Finance'; 
-                     VendorDetailList[0].OwnerId=queueList[0].id; 
+                     VendorDetailList[0].OwnerId=queueList[0].QueueId; 
                     VendorDetailList[0].VPM_Rework__c='Yes';  
-update VendorDetailList;                    
+                    update VendorDetailList;                    
                 } 
             } 
              else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == 'Finance' && VendorDetailList[0].VPM_Status__c == 'Approval Pending') 
@@ -273,7 +289,7 @@ update VendorDetailList;
                 list<QueueSobject> queueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = 'FLS' Limit 1];
                 if (queueList.size() == 1){                     
                     VendorDetailList[0].VPM_Status__c = 'Requested Re-Work'; 
-                    VendorDetailList[0].OwnerId=queueList[0].id;
+                    VendorDetailList[0].OwnerId=queueList[0].QueueId;
                     VendorDetailList[0].VPM_Rework__c='Yes';  
 update VendorDetailList;                    
                 } 
@@ -293,19 +309,20 @@ update VendorDetailList;
              list<VPM_PurchasingRequests__c> VendorDetailList =[SELECT  VPM_Status__c, VPM_FLSInCountryReqVendor__c, VPM_BusinessRequestorSubmitted__c, VPM_Rework__c, OwnerId
                                                                FROM VPM_PurchasingRequests__c WHERE id= : recId LIMIT 1];
                 
-                system.debug('VendorDetailList[0].VPM_FLSInCountryReqVendor__c');
-                system.debug(VendorDetailList[0].VPM_Status__c);
-                system.debug(VendorDetailList[0].VPM_Rework__c);
+                system.debug('@@'+VendorDetailList[0].VPM_FLSInCountryReqVendor__c);//true
+                system.debug('@@'+VendorDetailList[0].VPM_Status__c);//FLS Requested Re-Work
+                system.debug('@@'+VendorDetailList[0].VPM_Rework__c);// Yes
                 if(VendorDetailList[0].VPM_FLSInCountryReqVendor__c == false) 
 
                 { 
-                system.debug('page redirect'); 
+                 callJavaScriptAlert='<script> openAdvanceform(); </script>';
                 } 
             else if(VendorDetailList[0].VPM_Status__c.contains('Draft') ) 
                 { 
                 VendorDetailList[0].VPM_BusinessRequestorSubmitted__c='Yes'; 
                 VendorDetailList[0].VPM_Rework__c='No'; 
                 update VendorDetailList;
+                  callJavaScriptAlert='<script> PageReload(); </script>';
                }
             else if (VendorDetailList[0].VPM_Status__c.contains('FLS Requested Re-Work') && VendorDetailList[0].VPM_Rework__c=='Yes') 
                 { 
@@ -314,12 +331,14 @@ update VendorDetailList;
                 VendorDetailList[0].VPM_Rework__c='Completed'; 
                 VendorDetailList[0].VPM_RequestLastWithGroup__c='Business Requestor'; 
                 List<QueueSobject> QueueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = 'FLS' Limit 1];
+                 system.debug('@@ Condition one'+QueueList.size());// Yes
                 if (QueueList.size() == 1)
                     {           
 
-                    VendorDetailList[0].OwnerId=QueueList[0].Id; 
+                    VendorDetailList[0].OwnerId=QueueList[0].QueueId; 
                     } 
                  update VendorDetailList;
+                   callJavaScriptAlert='<script> PageReload(); </script>';
                 } 
                 else if (VendorDetailList[0].VPM_Status__c.contains('Procurement Requested Re-Work') && VendorDetailList[0].VPM_Rework__c=='Yes') 
                 { 
@@ -330,9 +349,10 @@ update VendorDetailList;
                     VendorDetailList[0].VPM_AdvancedFormSubmitted__c='No'; 
                     VendorDetailList[0].VPM_Rework__c='Completed'; 
                     VendorDetailList[0].VPM_RequestLastWithGroup__c='FLS'; 
-                   VendorDetailList[0].OwnerId=QueueList[0].Id;  
+                   VendorDetailList[0].OwnerId=QueueList[0].QueueId;  
                     } 
                     update VendorDetailList;
+                      callJavaScriptAlert='<script> PageReload(); </script>';
                 }
                 else if (VendorDetailList[0].VPM_Status__c.contains('Finance Requested Re-Work') && VendorDetailList[0].VPM_Rework__c=='Yes') 
                     { 
@@ -343,9 +363,10 @@ update VendorDetailList;
                         VendorDetailList[0].VPM_Rework__c='Completed'; 
                         VendorDetailList[0].VPM_AdvancedFormSubmitted__c='No'; 
                         VendorDetailList[0].VPM_RequestLastWithGroup__c='FLS'; 
-                         VendorDetailList[0].OwnerId=QueueList[0].Id; 
+                         VendorDetailList[0].OwnerId=QueueList[0].QueueId; 
                         } 
                     update VendorDetailList;
+                      callJavaScriptAlert='<script> PageReload(); </script>';
 
                     } 
                     else if (VendorDetailList[0].VPM_Status__c.contains('FLS Review')) 
@@ -354,12 +375,13 @@ update VendorDetailList;
                     List<QueueSobject> QueueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = 'FLS' Limit 1];
                    if (QueueList.size() == 1)
                         { 
-                       VendorDetailList[0].OwnerId=QueueList[0].Id; 
+                       VendorDetailList[0].OwnerId=QueueList[0].QueueId; 
                         } 
                         update VendorDetailList; 
+                          callJavaScriptAlert='<script> PageReload(); </script>';
 
                     }  
-                    callJavaScriptAlert='<script> PageReload(); </script>';
+                  
 
         }
         catch(exception ex){}

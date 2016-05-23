@@ -3525,6 +3525,27 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>VPM_ExtensionType__c</fullName>
+        <description>Field to distinguish between Global and Regional extends</description>
+        <externalId>false</externalId>
+        <label>Extension Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Regional</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>VPM_ExternalMFG__c</fullName>
         <externalId>false</externalId>
         <label>External MFG</label>
@@ -9195,6 +9216,17 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_ExtensionType__c</picklist>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_FinanceSubmitted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -11996,6 +12028,17 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
             <values>
                 <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_ExtensionType__c</picklist>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -14805,6 +14848,17 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_ExtensionType__c</picklist>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_FinanceSubmitted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -17606,6 +17660,17 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
             <values>
                 <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_ExtensionType__c</picklist>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -20415,6 +20480,17 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_ExtensionType__c</picklist>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_FinanceSubmitted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -23216,6 +23292,17 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
             <values>
                 <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_ExtensionType__c</picklist>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -26025,6 +26112,17 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_ExtensionType__c</picklist>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_FinanceSubmitted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -28826,6 +28924,17 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
             </values>
             <values>
                 <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_ExtensionType__c</picklist>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

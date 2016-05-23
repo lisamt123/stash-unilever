@@ -18,9 +18,12 @@ VERSION  AUTHOR            DATE              DETAIL                  Description
 public class flowController{
 // Instanciate the Flow for use by the Controller - linked by VF "interview" attribute
  
-public flowController(ApexPages.StandardController stdController) {
-}
-
+     //variable to check if record is create/ maintain
+     // public Boolean isCreate {get;set;}
+    
+    public flowController(ApexPages.StandardController stdController) {
+    }
+    
  public Flow.Interview.VPM_PurchasingRequestAdvanceForm  flBatch {get;set;}
  // Factor your PageReference as a full GET/SET
  public PageReference prFinishLocation {

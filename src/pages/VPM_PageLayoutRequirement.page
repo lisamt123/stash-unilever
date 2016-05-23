@@ -5,6 +5,13 @@
   {
   alert('Only relevant for Manual Blocks/Unblocks/Deletes/Undeletes'); 
   }
+  function openAdvanceform()
+  {
+  debugger;
+  window.location = 'apex/VPM_AdvancedForm?id={!VPM_PurchasingRequests__c.Id}'; 
+  var localhost = document.domain;
+  window.top.location='https://'+localhost+'/apex/VPM_AdvancedForm?id={!VPM_PurchasingRequests__c.Id}';
+  }
    function PageReload()
   {
   debugger;
@@ -55,7 +62,7 @@
         disabled="{!NOT(enableSendToSAPBtn)}" />
         <apex:commandButton value="Manually Mark as complete" rendered="{!ManuallyMarkasCompletebtn}" action="{!ManuallyMarkAsCompleteAction}" />
         <!--apex:commandButton value="Rework" rendered="{!ReworkBtn}" onclick='reworkBtnClick()'/-->  
-         <apex:commandButton value="Rework" onclick="reworkBtnClick();return false;"/> 
+         <apex:commandButton value="Rework"  disabled="{!NOT(ReworkBtn)}" onclick="reworkBtnClick();return false;"/> 
         <apex:commandButton value="Submit Request"  action="{!SubmitRequestAction}" />
       
         <apex:actionFunction name="ReworkAction" action="{!ReworkAction}" reRender="out" oncomplete="PageReload()"/>

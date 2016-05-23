@@ -22,6 +22,14 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>VPM_ExtendVendorFetchFieldDetails</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>VPM_ExtendVendorGlobalHelper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>VPM_FetchVendorsDetails</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -787,6 +795,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_ExtensionPhone__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_ExtensionType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
