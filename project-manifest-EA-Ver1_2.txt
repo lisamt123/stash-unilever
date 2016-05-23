@@ -56,7 +56,7 @@ src/aura/EA_InvitedActivities_Comp/EA_InvitedActivities_CompController.js
 src/aura/EA_InvitedActivities_Comp/EA_InvitedActivities_CompHelper.js
 src/aura/EA_MyAction_Component/EA_MyAction_Component.cmp
 src/aura/EA_MyAction_Component/EA_MyAction_Component.cmp-meta.xml
-src/aura/EA_MyAction_Component/EA_MyAction_Component.cmp
+src/aura/EA_MyAction_Component/EA_MyAction_ComponentController.js
 src/aura/EA_MyAction_Component/EA_MyAction_ComponentHelper.js
 src/aura/EA_RecentUsers_comp/EA_RecentUsers_comp.cmp
 src/aura/EA_RecentUsers_comp/EA_RecentUsers_comp.cmp-meta.xml
