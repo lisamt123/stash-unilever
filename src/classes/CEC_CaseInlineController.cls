@@ -218,7 +218,7 @@ Date_of_Manufacture_str__c,Subject,Description,Market__c From case Where Id = :c
             System.debug('productObj =' + productObj+'caseRecord.isFormKnown__c'+caseRecord.isFormKnown__c+'    caseRecord.isVariantKnown__c'+caseRecord.isVariantKnown__c+' caseRecord.isPacksizeKnown__c'+caseRecord.isPacksizeKnown__c);
             if (productObj.size()>0 && productObj != null && productObj[0] != null){
                 
-                if(!caseRecord.isFormKnown__c) { //If Form is false
+                if(!caseRecord.isFormKnown__c==false) { //If Form is false
                     isProductCategoryEnabled = true;
                     productHierarchy = productObj[0].Brand__c;
                     if (caseRecord.Case_product_category__c !=null && caseRecord.Case_product_category__c != ''){
@@ -660,10 +660,10 @@ This method updates the reason hierarchy
         String level1Desc = '', level2Desc = '';
         popupAlertCheck = false;
         questionnaireAlertCheck = false;
-		// If reasonId is updated and is not null, extract reason codes
+        // If reasonId is updated and is not null, extract reason codes
         if (reasonId != null && reasonId != '' && oldReasonId != reasonId){
             List<mdm_Reason_Code__c> rObjList = [select id, L1_Desc__c, L2_Desc__c, name from mdm_Reason_Code__c where id = :reasonId];
-			// if reason code exists, update reason hierarchy acordingly
+            // if reason code exists, update reason hierarchy acordingly
             if (rObjList != null && rObjList.size() > 0 && rObjList[0].name != null){
                 reasonName = rObjList[0].name;
                 if (rObjList[0].L1_Desc__c != null && rObjList[0].L1_Desc__c != null){
@@ -675,15 +675,15 @@ This method updates the reason hierarchy
                 
                 reasonHierarchy = level1Desc + ' ' +  level2Desc ;
             }
-			// set case fields
+            // set case fields
             caseRecord.Reason_Code__c = reasonId;
             caseRecord.CEC_Reason_Hierarchy__c = reasonHierarchy;
-			// Update case record
+            // Update case record
             try{
                 Database.update(caseRecord);
                 oldReasonId = reasonId;
                 knowledgeWrapperList.clear();
-				//fetch related reason and product knowledge articles 
+                //fetch related reason and product knowledge articles 
                 searchMatchingReasonKnowledgeArticles();
                 searchMatchingProductKnowledgeArticles();
                 if (productId != null && productId != ''){

@@ -13,7 +13,7 @@ VERSION  AUTHOR            DATE              DETAIL                  Description
    1.0 -   Aalokkumar       19/09/2014       INITIAL DEVELOPMENT       cec_SmartTemplateLoaderHelper
  ****************************************************************************/ 
 //Support.EmailTemplateSelector  
-global class cec_SmartTemplateLoaderHelper implements Support.EmailTemplateSelector{
+global with sharing class cec_SmartTemplateLoaderHelper implements Support.EmailTemplateSelector{
 
     global cec_SmartTemplateLoaderHelper (){}
 

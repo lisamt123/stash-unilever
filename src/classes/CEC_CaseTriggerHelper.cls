@@ -40,6 +40,7 @@ public class CEC_CaseTriggerHelper{
     //Code change to update the default Account Owner Id
     public void updateAccountOwner(List<Case> newCase){
         
+        System.debug('New Case $$$$$$$$$$$$$$' + newCase);
         for(Case c: newCase){
             if(c.CMMFlag__C && c.NewAccountFlag__C){
                 
@@ -86,7 +87,7 @@ public class CEC_CaseTriggerHelper{
             checkDupAccnt();
             
             for(Id caseId: caseMap.keySet()){
-				// If duplicate found, set Matching_Response__c field 
+                // If duplicate found, set Matching_Response__c field 
                 if(dupEmailSet.contains(caseMap.get(caseId))){
                     caseRecord = new Case(Id=caseId);
                     caseRecord.Matching_Response__c = Label.CEC_MatchingResponse_DuplicateAccount;
@@ -114,7 +115,7 @@ public class CEC_CaseTriggerHelper{
                     accnt = new Account();
                     suppName = newCaseMap.get(caseId).SuppliedName;
                     Lname=FName=null;
-					// split supplied name to obtain first and last name of account
+                    // split supplied name to obtain first and last name of account
                     if(suppName!=null){
                         if(suppName.contains(',')){
                             FName = suppName.split(',')[1];
@@ -179,7 +180,7 @@ public class CEC_CaseTriggerHelper{
                     failedCases = failedCases + '<B>Error Message</B>:&nbsp;&nbsp;' + error.getMessage();       
                 }
             }
-			// send error emails if case insertion fails
+            // send error emails if case insertion fails
             if(failedCases !=''){
                 msgString = '<Html><Body> This is an automated email<BR/><BR/>CEC Carelines case could not be updated. Please check the error message and take the necessary action.<BR/><BR/>'+ failedCases+'<BR/><BR/>Thank You</Body></Html>';  
                 emailSubject = '[ERR003] Case could not be updated';
@@ -695,13 +696,13 @@ This method identifies date of manufacture from the daycode
     public void updateStoreAndProductInfo(List<Case> caseList , Map<id,Case> oldMap){
         // to map Case and UPC code
         map<id, string> caseUPCMap = new map<id, string>();
-		// to map Case and store
+        // to map Case and store
         map<id, string> caseStoreMap = new map<id, string>();
-		// to map Case and country
+        // to map Case and country
         map<id, string> caseCountryMap = new map<id, string>();
-		// to map Case and ISO code
+        // to map Case and ISO code
         map<id, string> caseISOCodeMap = new map<id, string>();
-		
+        
         list<mdm_Case_Product__c> caseProdList  = new list<mdm_Case_Product__c>();
         list<cec_store__c> caseStoreList = new list<cec_store__c>();
         
