@@ -337,10 +337,10 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
             coreConfig=IPM_CoreParameter_Configration__c.getInstance(projectSubType);
             
             if(coreConfig!=null && !coreConfig.IPM_CPV__c){
-                IPM_Coreparameter.IPM_Answer_of_Q2__c=null;
+                IPM_Coreparameter.IPM_Answer_of_Q2__c=system.Label.IPM_Not_Applicable_Core;
             }
             if(coreConfig!=null && !coreConfig.IPM_ET__c){
-                IPM_Coreparameter.IPM_Answer_of_Q3__c=null;
+                IPM_Coreparameter.IPM_Answer_of_Q3__c=system.Label.IPM_Not_Applicable_Core;
             } 
       }
         
@@ -580,6 +580,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         IPM_Coreparameter.IPM_Answer_of_Q1__c=answerone_STR;
         IPM_Coreparameter.IPM_Answer_of_Q2__c=answertwo_STR;
         IPM_Coreparameter.IPM_Answer_of_Q3__c=answerthree_STR;
+        getCoreparameterConfig();
         updateCoreParameter();
     }
     /****************************************************************************
