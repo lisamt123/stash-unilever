@@ -1698,7 +1698,7 @@ margin-right:1px;
 .radioTooltip10::before
 {
   top: -8px;
-    left: 10px;
+    left: 32px;
     content: " ";
     position: absolute;
     border-top: 1px #c9c9c9 solid;
@@ -1715,7 +1715,7 @@ margin-right:1px;
 .radioTooltip11::before
 {
   top: -8px;
-    left: 237px;
+    left: 252px;
     content: " ";
     position: absolute;
     border-top: 1px #c9c9c9 solid;

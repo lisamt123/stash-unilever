@@ -14,6 +14,7 @@ private with sharing class IPM_PerformanceBreakdownController_Test {
     static List<IPM_Project_Rollout__c> localRolloutList; 
     static List<User> userList;
     static final String TEST_USER_EMAIL = 'globalUser@unilever.test.com';
+    static final string LOCALPROJECTNAME='TestRegionalComments1_UMCA';
 	
 //This method creates required global, regional and local projects and rollouts, also related financials. These records are then accessed across the testmethods.
     @testSetup static void financialSetUp() 
@@ -159,27 +160,37 @@ private with sharing class IPM_PerformanceBreakdownController_Test {
             insert countryList;  
             system.assert(!countryList.isEmpty(),'countries record not created');//Avoiding SOQL for further asserts
             
-            // initiate the phase change of the project 
-            for(IPM_Project_Rollout__c localRollout : localRolloutList)
-            {
-                localRollout.KeyMCO__c = true;
-                localRollout.IPM_Regional_PL__c = userList[1].Id;
-                localRollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
-                localRollout.IPM_RolloutJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_PHASECHANGE;  
-            }
-            update localRolloutList;
+            
             projectList[0].IPM_Phase__c = IPM_ConstantUtils.PHASE_FEASIBILITY;
             update projectList[0];
             
             
             ipm_project__c selP = [select IPM_Phase__c from ipm_project__c where id=:projectList[0].id];
             system.assert(selP!=null,'project did not update properly');
+            IPM_Project__c newProject=New IPM_Project__c();
+            newProject.IPM_Project_Rollout__c=localRolloutList[0].id;
+            newProject.IPM_Parent_Project__c=projectList[0].id;
+            newProject.IPMProject_Span__c='Local';
+            newProject.IPM_Project_Type__c='Rollout';
+            newProject.IPM_Project_Leader__c=userList[1].id;
+            newProject.IPM_Phase__c='Feasibility';
+            newProject.IPM_CompanyCardText__c='Global Company Card';
+            newProject.IPM_ProjectSubType__c='Innovation/Renovation';
+            newProject.Name=LOCALPROJECTNAME;
+            newProject.IPM_Project_Name__c=LOCALPROJECTNAME;
+            insert newProject;
+            List<IPM_Project__c>checkProjectList=[select IPM_Project_Name__c FROM IPM_Project__c WHERE ID=:newProject.ID LIMIT 1];   
+            system.assertEquals(checkProjectList[0].IPM_Project_Name__c,LOCALPROJECTNAME,'project name not matched');     
             IPM_TestFactory_Helper.createIPMCountryList(true,1);
             
             //Finance record for global project which is NON consolidate             
-             IPM_Financial__c localRolloutFin = [select id, Financial_External_ID__c, Target_Launch_Date__c, RecordTypeId, Regional_External_Id__c, 
+             IPM_Financial__c localRolloutFin = [SELECT id, Local_Project__c,Financial_External_ID__c, Target_Launch_Date__c, RecordTypeId, Regional_External_Id__c, 
              Project_Sustainability_Period__c, Status__c, isGateSubmissionDue__c from IPM_Financial__c where Financial_External_ID__c='TestRegionalComments1_UMCA'];
              system.assert(localRolloutFin!=null, 'Finance record for Local rollout project is not created.');
+             localRolloutFin.Local_Project__c=newProject.id;
+             update localRolloutFin;
+             IPM_Financial__c localRolloutFins = [SELECT id, Local_Project__c FROM IPM_Financial__c WHERE id=:localRolloutFin.id];
+             system.assertEquals(localRolloutFins.Local_Project__c,newProject.id, 'Finance record for Local rollout project is not UPDATED.');
             
             list<IPM_Exchange_Rate__c> liEX = new list<IPM_Exchange_Rate__c>();
             liEX.add(new IPM_Exchange_Rate__c(Name='EUR', Currency_Code__c='EUR',Exchange_Rate__c=1));
