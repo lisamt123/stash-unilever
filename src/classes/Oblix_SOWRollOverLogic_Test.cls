@@ -2,6 +2,7 @@
 public with sharing class Oblix_SOWRollOverLogic_Test {
 
 	private static List<Asset_Scoring__c> list_of_asset_scoring;
+    private static user admin_super_user_2;
 	private static user admin_super_user;
 	private static user qa1_user;
 	//private static user super_user;
@@ -9,6 +10,7 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
 	private static void initialiseTestClass(){
 
 		admin_super_user = Oblix_TestUtils.createAdminSuperUser();
+        admin_super_user_2 = Oblix_TestUtils.createTestUser();
         System.runAs(admin_super_user) {
 
 
@@ -229,12 +231,14 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
         
         initialiseTestClass();
 
+        Marketing_SOW__c mSow;
+
         System.runAs(qa1_user){
 
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
 
 
-            Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
+            mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
 
 
             Map<Id, Oblix_SOW_Projects__c> map_campaigns_to_test = Oblix_TestUtils.insertCampaignsWithRelatedRecords(3,20,5,mSow.Id,'Total turnover >€400m', 'Global campaign (all market clusters)', 'Up to 4 locations', 'New – Multi channel');
@@ -385,11 +389,13 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
 
         System.runAs(qa1_user){
 
+            mSow = [SELECT Id, Sync_Status__c, Name, Name_Prefix__c, Name_Suffix__c,Marketing_SOW__c.Financial_Year__c FROM Marketing_SOW__c WHERE Id =: mSow.Id];
+
             String query = 'SELECT ';
             for(Schema.FieldSetMember f : SObjectType.Oblix_SOW_Projects__c.FieldSets.Oblix_Campaign_Summary.getFields()) {
                 query += f.getFieldPath() + ', ';
             }
-            query += 'Id FROM Oblix_SOW_Projects__c WHERE Financial_Year__c = :mSow.Id';
+            query += 'Id FROM Oblix_SOW_Projects__c WHERE Financial_Year__c = \'' + mSow.Id + '\'';
             System.debug('### all Campaign Query: ' + query);
 
             Map<Id, Oblix_SOW_Projects__c> map_campaigns_to_test = new Map<Id, Oblix_SOW_Projects__c>((List<Oblix_SOW_Projects__c>)Database.query(query));
@@ -423,15 +429,35 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
         }
 
 
-        System.runAs(admin_super_user) {
+        System.runAs(admin_super_user_2) {
 
 
             Oblix_SyncBatchJob job_process_batch_secondary = new Oblix_SyncBatchJob(0,0,2);
             
-            system.assertEquals(6, job_process_batch_secondary.list_job_components.size(), 'Incorrect number of job components populated!');
+            system.assertEquals(9, job_process_batch_secondary.list_job_components.size(), 'Incorrect number of job components populated!');
             //***** EXECUTE JOB COMPONENTS
-            processJobComponents(job_process_batch_secondary.list_job_components);
+            
+            //processJobComponents(job_process_batch_secondary.list_job_components);
+            Oblix_SyncBatchJob.addEvent('******************************STARTED EXECUTING JOB STEPS STEPS******************************',NULL);
+            Oblix_SyncBatchJob batch_job = new Oblix_SyncBatchJob(1,1,1);
+            batch_job.updateJobRunningCustomSetting(true);
 
+            for (Oblix_SyncBatchJob.jobComponent job_component : job_process_batch_secondary.list_job_components){
+                system.assertNotEquals(job_component.process_name, NULL, 'process name cannot be null! ');
+                if (Oblix_SyncBatchJob.sync_job.job_has_error){
+
+                    Oblix_SyncBatchJob.addEvent('ERROR OCCURED ABORTING JOB!',NULL);
+                }
+                else{
+                    Oblix_SyncBatchJob.addEvent('EXECUTING PROCESS: ' + job_component.process_name + ' - CHUNK#: ' + job_component.chunk_number + ' - QUERY LIMIT: ' + job_component.query_limit
+                        + ' - ATTRIB1: ' + job_component.attrib_1 + ' - ATTRIB2: ' + job_component.attrib_2 + ' - ATTRIB3: ' + job_component.attrib_3
+                        + ' - ATTRIB4: ' + job_component.attrib_4 + ' - ATTRIB5: ' + job_component.attrib_5 + ' - ATTRIB6: ' + job_component.attrib_6,NULL);
+                    Oblix_SOWRolloverLogic.processStep(job_component);
+                }
+            }
+            batch_job.updateJobRunningCustomSetting(false);
+
+            Oblix_SyncBatchJob.addEvent('******************************COMPLETED EXECUTING JOB STEPS******************************',NULL);
 
 
             // check campaigns cloned

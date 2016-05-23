@@ -6,7 +6,7 @@ private class Oblix_DashboardsHandler_Test {
 
 	private static Marketing_SOW__c mSow;
     private static Oblix_SOW_Projects__c sowProject;
-	private static User ul1;
+	/*private static User ul1;
 	private static User ul2;
 	private static User ul3;
 	private static User superuser;
@@ -25,16 +25,16 @@ private class Oblix_DashboardsHandler_Test {
     	up.put(Permission.CAN_MANAGE_NON_CAMPAIGN, controllerInstance.can_manage_non_campaign);
 
     	return up;
-    }
+    }*/
 
 	// TODO: add user-brand UserPermission records that define approvers and test approval buttons
     private static void initTestData(){
 
-    	Map<String, User> testUsers = Oblix_TestUtils.createTestUsers();
+    	/*Map<String, User> testUsers = Oblix_TestUtils.createTestUsers();
     	ul1 = testUsers.get('UL1');
     	ul2 = testUsers.get('UL2');
     	ul3 = testUsers.get('UL3');
-    	superuser = testUsers.get('superuser');
+    	superuser = testUsers.get('superuser');*/
 
         insert Oblix_TestUtils.createOblixCustomSettings();
 

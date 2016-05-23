@@ -8,6 +8,8 @@ src/classes/Oblix_AssetHandler.cls
 src/classes/Oblix_AssetHandler.cls-meta.xml
 src/classes/Oblix_DashboardsHandler.cls
 src/classes/Oblix_DashboardsHandler.cls-meta.xml
+src/classes/Oblix_DashboardsHandler_Test.cls
+src/classes/Oblix_DashboardsHandler_Test.cls-meta.xml
 src/classes/Oblix_AssetOfferingWrapper.cls
 src/classes/Oblix_AssetOfferingWrapper.cls-meta.xml
 src/classes/Oblix_CampaignAddAssetController.cls
@@ -88,6 +90,8 @@ src/classes/Oblix_NonCampaignWrapper.cls
 src/classes/Oblix_NonCampaignWrapper.cls-meta.xml
 src/classes/Oblix_OuterPageTemplateController.cls
 src/classes/Oblix_OuterPageTemplateController.cls-meta.xml
+src/classes/Oblix_OuterPageTemplateControllerTest.cls
+src/classes/Oblix_OuterPageTemplateControllerTest.cls-meta.xml
 src/classes/Oblix_PermissionHandler.cls
 src/classes/Oblix_PermissionHandler.cls-meta.xml
 src/classes/Oblix_PermissionHandler_Test.cls
