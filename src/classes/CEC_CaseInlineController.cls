@@ -218,7 +218,7 @@ Date_of_Manufacture_str__c,Subject,Description,Market__c From case Where Id = :c
             System.debug('productObj =' + productObj+'caseRecord.isFormKnown__c'+caseRecord.isFormKnown__c+'    caseRecord.isVariantKnown__c'+caseRecord.isVariantKnown__c+' caseRecord.isPacksizeKnown__c'+caseRecord.isPacksizeKnown__c);
             if (productObj.size()>0 && productObj != null && productObj[0] != null){
                 
-                if(!caseRecord.isFormKnown__c==false) { //If Form is false
+                if(!caseRecord.isFormKnown__c) { //If Form is false
                     isProductCategoryEnabled = true;
                     productHierarchy = productObj[0].Brand__c;
                     if (caseRecord.Case_product_category__c !=null && caseRecord.Case_product_category__c != ''){
