@@ -126,7 +126,7 @@ public with sharing class PBS_LearningAssignmentApproveExt_CC {
                     Boolean requiresManagerAproval = assignment.Learning_Version__r.Task__r.Requires_Manager_Approval__c;
 
                     //Verify if the current user has access to approve the task
-                    if((requiresManagerAproval == true && isRunningUserAManager())
+                    if(((requiresManagerAproval) && isRunningUserAManager())
                     || (taskApprovers.size()>0 && taskApprovers.contains(UserInfo.getUserId()))){
 
                         //Bypass FLS permissions in the extension and update the approved checkbox

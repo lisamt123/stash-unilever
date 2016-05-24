@@ -46,7 +46,7 @@ public with sharing class PBS_LMSService_CC{
         public static final string TRAINING_PLAN_SECTION_C = 'Training_Plan_Section__c';
         public static final string TYPE_C = 'Type__c';
         public static final string ACHIEVEMENT_C = 'Achievement__c';
-        
+        public static final string COMMENTS_C = 'Comments__c';
 
 
 
@@ -1228,7 +1228,7 @@ public with sharing class PBS_LMSService_CC{
         relatedFieldsObjects.put(PBS_Training_Plan_Access_Request__c.sObjectType,new List<String>{
             'Id'
             ,STATUS_C
-            ,'Comments__c'
+            ,COMMENTS_C
         });
         PBS_LMS_ESAPI_CC.isAuthorizedToView(relatedFieldsObjects);
         //END Access Check
@@ -1242,7 +1242,7 @@ public with sharing class PBS_LMSService_CC{
         List<String> listSOQLFields = new List<String>{
             'Id'
             ,'toLabel(Status__c)'
-            ,'Comments__c'
+            ,COMMENTS_C
         };
 
         String soqlQuery = SELECT_C+String.join(listSOQLFields,',')+' from PBS_Training_Plan_Access_Request__c where User__c = :uId and Training_Plan__c = :tplanId';
@@ -1270,7 +1270,7 @@ public with sharing class PBS_LMSService_CC{
         Map<Schema.sObjectType,List<String>> relatedFieldsObjects = new Map<Schema.sObjectType,List<String>>();
         relatedFieldsObjects.put(PBS_Training_Plan_Access_Request__c.sObjectType,new List<String>{
             TRAINING_PLAN_C
-            ,'Comments__c'
+            ,COMMENTS_C
         });
         PBS_LMS_ESAPI_CC.isAuthorizedToCreate(relatedFieldsObjects);
         //END Access Check
@@ -1307,7 +1307,7 @@ public with sharing class PBS_LMSService_CC{
             'Id'
             ,'Name'
             ,'Rating__c'
-            ,'Comments__c'
+            ,COMMENTS_C
             ,USER_C
         });
         PBS_LMS_ESAPI_CC.isAuthorizedToView(relatedFieldsObjects);
@@ -1323,7 +1323,7 @@ public with sharing class PBS_LMSService_CC{
             'Id'
             ,'Name'
             ,'Rating__c'
-            ,'Comments__c'
+            ,COMMENTS_C
             ,USER_C
             ,'User__r.Name'
             ,'User__r.SmallPhotoUrl'
@@ -1378,7 +1378,7 @@ public with sharing class PBS_LMSService_CC{
     public static void insertTrainingPlanFeedback(List<PBS_Training_Plan_Feedback__c > feedback){
 
         //BEGIN Access Check
-        List<String> lvFields =  new List<String>{'Rating__c','Comments__c'};
+        List<String> lvFields =  new List<String>{'Rating__c',COMMENTS_C};
         Map<Schema.sObjectType,List<String>> relatedFieldsObjectsCreate = new Map<Schema.sObjectType,List<String>>();
         relatedFieldsObjectsCreate.put(PBS_Training_Plan_Feedback__c.sObjectType,lvFields);
 
@@ -2418,8 +2418,6 @@ public with sharing class PBS_LMSService_CC{
                                         from PBS_Learning_Version__c
                                         where id = :learningVersionId
                                         limit 1];
-            }else{
-
             }
 
             return learningVersion;

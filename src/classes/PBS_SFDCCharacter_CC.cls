@@ -57,7 +57,7 @@ global class PBS_SFDCCharacter_CC {
   }
 
   global static String toStr(Integer x) {
-    if(intToStr.containsKey(x) == false)
+    if(!(intToStr.containsKey(x)))
       // be carefull not to throw any user input value that might cause XSS if the developer will not catch and escape
       throw new SFDCInvalidCharacterException('Invalid charcter integer');
     return intToStr.get(x);
@@ -67,7 +67,7 @@ global class PBS_SFDCCharacter_CC {
     if(PBS_SFDCStringUtils_CC.isEmpty(x))
       throw new SFDCInvalidCharacterException('Invalid charcter string empty string');
 
-    if(strToInt.containsKey(x) == false)
+    if(!(strToInt.containsKey(x)))
       // be carefull not to throw any user input value that might cause XSS if the developer will not catch and escape
       throw new SFDCInvalidCharacterException('Invalid charcter string');
     return strToInt.get(x);

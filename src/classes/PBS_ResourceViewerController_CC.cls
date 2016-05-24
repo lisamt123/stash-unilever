@@ -29,10 +29,11 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 global with sharing class PBS_ResourceViewerController_CC{
 
     public Boolean continueRedirection{get;private set;}
-    private Boolean isPreviewMode{get;set;}{isPreviewMode = false;}
+    private Boolean isPreviewMode{get;set;}
     public transient String retURL{get;private set;}
 
     public PBS_ResourceViewerController_CC(){
+    isPreviewMode = false;
         init();
     }
 

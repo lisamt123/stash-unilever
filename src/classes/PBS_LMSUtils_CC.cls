@@ -246,7 +246,7 @@ public with sharing class PBS_LMSUtils_CC{
         String host = baseUrl.getHost();
         String vfDomain = '.visual.force.com';
         Boolean isVFContext = host.contains(vfDomain)?true:false;
-        String contextIndexOf = isVFContext==true?vfDomain:'.';
+        String contextIndexOf = isVFContext?vfDomain:'.'; //Removed unnecessary comparisons
         //String contextIndexOf = System.assertEquals(true, isVFContext, vfDomain:'.');
         String instance = host.substring(0,host.indexOf(contextIndexOf));
         if(isVFContext){

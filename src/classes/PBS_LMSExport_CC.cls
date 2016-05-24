@@ -27,7 +27,8 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
 public with sharing class PBS_LMSExport_CC{
-
+    public static final string DESCRIPTION_C = 'Description__c' ; 
+    public static final string ORDER_C = 'order__c';
     private Set<Id> trainingPlanIds;
     private Set<Id> trainingTrackIds;
     private PBS_LMSExport_CC.WithoutSharingOps wsops;
@@ -53,7 +54,7 @@ public with sharing class PBS_LMSExport_CC{
     //Export mappings
     private Map<String,String> quizMappings = new Map<String,String>{
         'Name' => 'name'
-        ,'Description__c' => description
+        ,DESCRIPTION_C => description
         ,'Passing_Score__c' => 'passing-score'
         ,'Max_Attempts__c' => 'max-attempts'
         ,'Delete_Responses_On_Submission__c' => 'delete-responses-on-submission'
@@ -63,18 +64,18 @@ public with sharing class PBS_LMSExport_CC{
         'Name' => 'name'
         ,'Duration__c' => 'duration'
         ,'Sync_progress__c' => 'sync-progress'
-        ,'Description__c' => description
+        ,DESCRIPTION_C => description
     };
 
     Map<String,String> questionLineMappings = new Map<String,String>{
         'Name' => 'name'
-        ,'Order__c' => Order
-        ,'Description__c' => description
+        ,ORDER_C => Order
+        ,DESCRIPTION_C => description
     };
 
     Map<String,String> questionMappings = new Map<String,String>{
-        'Order__c' => Order
-        ,'Description__c' => description
+        ORDER_C => Order
+        ,DESCRIPTION_C => description
         ,'Type__c' => Type
         ,'Correct_Boolean__c' => 'correct-boolean'
         ,'Correct_Number__c' => 'correct-number'
@@ -87,7 +88,7 @@ public with sharing class PBS_LMSExport_CC{
         ,'External_Resource_URL__c' => 'resource-url'
         ,'External_Resource_Target__c' => 'resource-target'
         ,'Add_training_parameters_to_URL__c' => 'training-params-url'
-        ,'Description__c' => description
+        ,DESCRIPTION_C => description
         ,'Description_RTA__c' => 'description-rta'
         ,'Enable_Image_Upload__c' => 'enable-image-upload'
         ,'Disable_Undo__c' => 'disable-undo'
@@ -98,12 +99,12 @@ public with sharing class PBS_LMSExport_CC{
         'Name' => 'name'
         ,'Resource_URL__c' => 'resource-url'
         ,'Add_training_parameters_to_URL__c' => 'training-params-url'
-        ,'Description__c' => description
+        ,DESCRIPTION_C => description
         ,'Display_in_Iframe__c' => 'display-in-iframe'
     };
 
     Map<String,String> answerSequenceMappings = new Map<String,String>{
-        'Order__c' => Order
+        ORDER_C => Order
         ,'Answer_Text__c' => 'answer-text'
         ,'Item_Id__c' => 'answer-id'
         ,'Is_Correct_Answer__c' => 'is-correct-answer'
@@ -124,7 +125,7 @@ public with sharing class PBS_LMSExport_CC{
 
     Map<String,String> trainingPlanMappings = new Map<String,String>{
         'Name' => 'name'
-        ,'Description__c' => description
+        ,DESCRIPTION_C => description
         ,'Status__c' => 'status'
         ,'Intro_Video_URL__c' => 'intro-video-url'
         ,'Background_Image_URL__c' => 'background-image-url'
@@ -144,34 +145,34 @@ public with sharing class PBS_LMSExport_CC{
 
     Map<String,String> trainingTrackMappings = new Map<String,String>{
         'Name' => 'name'
-        ,'Description__c' => description
+        ,DESCRIPTION_C => description
         ,'Status__c' => 'status'
         ,'Background_Color__c' => 'background-color'
         ,'Background_Image_URL__c' => 'background-image-url'
         ,'Text_Color__c' => 'text-color'
-        ,'Order__c' => Order
+        ,ORDER_C => Order
         ,'Enable_all_external_accounts__c' => 'enable-all-external-accounts'
         ,'$DATE_New_Until__c' => 'new-until'
     };
 
     Map<String,String> trainingTrackLevelMappings = new Map<String,String>{
         'Name' => 'name'
-        ,'Description__c' => description
-        ,'Order__c' => Order
+        ,DESCRIPTION_C => description
+        ,ORDER_C => Order
     };
 
     Map<String,String> trainingTrackLevelItemMappings = new Map<String,String>{
-        'Order__c' => Order
+        ORDER_C => Order
     };
 
     Map<String,String> trainingPlanSectionMappings = new Map<String,String>{
         'Name' => 'name'
-        ,'Order__c' => Order
+        ,ORDER_C => Order
         ,'Optional__c' => 'optional'
     };
 
     Map<String,String> trainingPlanSectionItemMappings = new Map<String,String>{
-        'Order__c' => Order,
+        ORDER_C => Order,
         'Optional__c' => 'optional'
     };
 
@@ -185,12 +186,12 @@ public with sharing class PBS_LMSExport_CC{
         ,'Logo__c' => 'logo'
         ,'Text_Color__c' => 'text-color'
         ,'Hide_From_Catalog_Home__c' => 'hide-from-catalog-home'
-        ,'Order__c' => Order
+        ,ORDER_C => Order
         ,'Is_Internal__c' => 'is-internal'
     };
 
     Map<String,String> trainingPlanCategoryMappings = new Map<String,String>{
-        'Order__c' => Order
+        ORDER_C => Order
     };
 
     Map<String,String> learningRTFieldMappings = new Map<String,String>{

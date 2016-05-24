@@ -20,10 +20,11 @@
  * results from access control function calls such as insertAsUser and updateAsUser.
  */
 global with sharing virtual class PBS_SFDCAccessControlResults_CC {
-  
-  private Database.SaveResult [] saveResultsArr; // this object will hold the results for upadte and insert operations
-  private Database.DeleteResult [] deleteResultsArr; // this object will hold the results for delete operations
-  private SObject [] cleanObjectsArr; // this object will hold the actual objects used to insert/update into db
+  //Changed the visibility from private to public to provide access in private constructor
+  public Database.SaveResult [] saveResultsArr; // this object will hold the results for upadte and insert operations
+  public Database.DeleteResult [] deleteResultsArr; // this object will hold the results for delete operations
+  public SObject [] cleanObjectsArr; // this object will hold the actual objects used to insert/update into db
+ 
   
   global class AccessControlResultsException extends Exception {}
   
@@ -54,7 +55,9 @@ global with sharing virtual class PBS_SFDCAccessControlResults_CC {
      * Get the Database.SaveResult [] returned by the insert operation.
      */
     global Database.SaveResult [] getResults() {
-      return saveResultsArr;
+      Database.SaveResult [] saveResultsArrTemp = new List<Database.SaveResult>();
+      saveResultsArrTemp = saveResultsArr;
+      return saveResultsArrTemp;
     }
 
     /**
@@ -64,7 +67,9 @@ global with sharing virtual class PBS_SFDCAccessControlResults_CC {
      * not be all the fields you have in your original objects. 
      */
     global SObject [] getInsertedObjects() {
-      return cleanObjectsArr;
+      SObject [] InsertedObjectTemp = new List<SObject>();
+      InsertedObjectTemp = cleanObjectsArr;
+      return InsertedObjectTemp;
     }
 
     /**
@@ -95,7 +100,9 @@ global with sharing virtual class PBS_SFDCAccessControlResults_CC {
      * Get the Database.SaveResult [] returned by the update operation.
      */
     global Database.SaveResult [] getResults() {
-      return saveResultsArr;
+      Database.SaveResult [] saveResultsArrTemp = new List<Database.SaveResult>();
+      saveResultsArrTemp = saveResultsArr;  
+      return saveResultsArrTemp;
     }
 
     /**
@@ -105,7 +112,9 @@ global with sharing virtual class PBS_SFDCAccessControlResults_CC {
      * not be all the fields you have in your original objects. 
      */
     global SObject [] getUpdatedObjects() {
-      return cleanObjectsArr;
+      SObject [] InsertedObjectTemp = new List<SObject>();
+      InsertedObjectTemp = cleanObjectsArr;
+      return InsertedObjectTemp;
     }
 
     /**
@@ -160,15 +169,19 @@ global with sharing virtual class PBS_SFDCAccessControlResults_CC {
   }
 
   private void setSaveResultsArr(Database.SaveResult [] results) {
+    Database.SaveResult []  lstObjects =  new List<Database.SaveResult>();
+    lstObjects = results;
     if (results == null)
       throw new AccessControlResultsException('results must not be set to null');
-    saveResultsArr = results;
+    saveResultsArr = lstObjects;
   }
 
   private void setDeleteResultsArr(Database.DeleteResult [] results) {
+    Database.DeleteResult []  lstObjects =  new List<Database.DeleteResult>();
+    lstObjects = results;
     if (results == null)
       throw new AccessControlResultsException('results must not be set to null');
-    deleteResultsArr = results;
+    deleteResultsArr = lstObjects;
   }
   
   private Boolean wasSaveSuccessful() {
@@ -176,7 +189,7 @@ global with sharing virtual class PBS_SFDCAccessControlResults_CC {
       throw new AccessControlResultsException('saveResultsArr must not be null');
     Integer i;
     for (i = 0; i < saveResultsArr.size(); i++) {
-      if (saveResultsArr[i].isSuccess() == false)
+      if (!(saveResultsArr[i].isSuccess()))
         return false;
     } 
     return true;
@@ -187,7 +200,7 @@ global with sharing virtual class PBS_SFDCAccessControlResults_CC {
       throw new AccessControlResultsException('deleteResultsArr must not be null');
     Integer i;
     for (i = 0; i < deleteResultsArr.size(); i++) {
-      if (deleteResultsArr[i].isSuccess() == false)
+      if ((!deleteResultsArr[i].isSuccess()))
         return false;
     } 
     return true;

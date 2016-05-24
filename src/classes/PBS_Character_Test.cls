@@ -46,6 +46,7 @@ private class PBS_Character_Test {
         } catch (PBS_SFDCCharacter_CC.SFDCInvalidCharacterException e) {
             // should fail - so all good
             errStr = e.getMessage();
+            System.debug(errStr);
         }
     }
 }

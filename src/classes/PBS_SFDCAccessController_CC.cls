@@ -993,7 +993,7 @@ global class PBS_SFDCAccessController_CC {
                 throw new AccessControlDmlException(NULL_OR_EMPTY_PARAMETER);
 
             Schema.DescribeSObjectResult d = devObj.getSObjectType().getDescribe();
-            if (d.isCreateable() == false)
+            if (!(d.isCreateable()))
                 throw new PBS_SFDCAccessControlException(ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionType.OBJECT_ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionReason.NO_CREATE,
@@ -1009,7 +1009,7 @@ global class PBS_SFDCAccessController_CC {
             // set all fields that were requested and the user has permission to set - throw an exception if a field was requested and user can't set and in ALL_OR_NONE mode
             for (String fieldName : fieldsToSet) {
                 fieldName = fieldName.toLowerCase();
-                if (creatableFields == null || creatableFields.contains(fieldName) == false) {
+                if (creatableFields == null || (!creatableFields.contains(fieldName))) {
                     // creatableFields is either null which means no fields are allowed to be set by user, or is not null but does not contain the current fieldName
                     if (omode == OperationMode.ALL_OR_NONE)
                         // if operation mode == ALL_OR_NONE - throw exception because user does not have permission to set fieldName
@@ -1043,7 +1043,7 @@ global class PBS_SFDCAccessController_CC {
                 throw new AccessControlDmlException(NULL_OR_EMPTY_PARAMETER);
 
             Schema.DescribeSObjectResult d = devObj.getSObjectType().getDescribe();
-            if (d.isCreateable() == false)
+            if ((!d.isCreateable()))
                 throw new PBS_SFDCAccessControlException(ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionType.OBJECT_ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionReason.NO_CREATE,
@@ -1055,7 +1055,7 @@ global class PBS_SFDCAccessController_CC {
 
             // set all fields that were requested and the user has permission to set - throw an exception if a field was requested and user can't set and in ALL_OR_NONE mode
             for (Schema.SObjectField field : fieldsToSet) {
-                if (field.getDescribe().isCreateable() == false) {
+                if (!(field.getDescribe().isCreateable())) {
                     // field is not allowed to be created by current user
                     if (omode == OperationMode.ALL_OR_NONE)
                         // if operation mode == ALL_OR_NONE - throw exception because user does not have permission to set fieldName
@@ -1097,7 +1097,7 @@ global class PBS_SFDCAccessController_CC {
                 throw new AccessControlDmlException(NULL_OR_EMPTY_PARAMETER);
 
             Schema.DescribeSObjectResult d = devObjs.getSObjectType().getDescribe();
-            if (d.isCreateable() == false)
+            if (!d.isCreateable())
                 throw new PBS_SFDCAccessControlException(ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionType.OBJECT_ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionReason.NO_CREATE,
@@ -1122,7 +1122,7 @@ global class PBS_SFDCAccessController_CC {
                 // set all fields that were requested and the user has permission to set - throw an exception if a field was requested and user can't set and in ALL_OR_NONE mode
                 for (String fieldName : fieldsToSet) {
                     fieldName = fieldName.toLowerCase();
-                    if (creatableFields == null || creatableFields.contains(fieldName) == false) {
+                    if (creatableFields == null || (!creatableFields.contains(fieldName))) {
                         // creatableFields is either null which means no fields are allowed to be set by user, or is not null but does not contain the current fieldName
                         if (omode == OperationMode.ALL_OR_NONE)
                             // if operation mode == ALL_OR_NONE - throw exception because user does not have permission to set fieldName
@@ -1161,7 +1161,7 @@ global class PBS_SFDCAccessController_CC {
                 throw new AccessControlDmlException(NULL_OR_EMPTY_PARAMETER);
 
             Schema.DescribeSObjectResult d = devObjs.getSObjectType().getDescribe();
-            if (d.isCreateable() == false)
+            if (!d.isCreateable())
                 throw new PBS_SFDCAccessControlException(ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionType.OBJECT_ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionReason.NO_CREATE,
@@ -1183,7 +1183,7 @@ global class PBS_SFDCAccessController_CC {
 
                 // set all fields that were requested and the user has permission to set - throw an exception if a field was requested and user can't set and in ALL_OR_NONE mode
                 for (Schema.SObjectField field : fieldsToSet) {
-                    if (field.getDescribe().isCreateable() == false) {
+                    if (!(field.getDescribe().isCreateable())) {
                         // field is not allowed to be created by current user
                         if (omode == OperationMode.ALL_OR_NONE)
                             // if operation mode == ALL_OR_NONE - throw exception because user does not have permission to set fieldName
@@ -1227,7 +1227,7 @@ global class PBS_SFDCAccessController_CC {
                 throw new AccessControlDmlException(NULL_OR_EMPTY_PARAMETER);
 
             Schema.DescribeSObjectResult d = devObj.getSObjectType().getDescribe();
-            if (d.isUpdateable() == false)
+            if (!d.isUpdateable())
                 throw new PBS_SFDCAccessControlException(ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionType.OBJECT_ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionReason.NO_UPDATE,
@@ -1250,7 +1250,7 @@ global class PBS_SFDCAccessController_CC {
             // set all fields that were requested and the user has permission to update - throw an exception if a field was requested and user can't update and in ALL_OR_NONE mode
             for (String fieldName : fieldsToUpdate) {
                 fieldName = fieldName.toLowerCase();
-                if (updateableFields == null || updateableFields.contains(fieldName) == false) {
+                if (updateableFields == null || (!updateableFields.contains(fieldName))) {
                     // updateableFields is either null which means no fields are allowed to be set by user, or is not null but does not contain the current fieldName
                     if (omode == OperationMode.ALL_OR_NONE)
                         // if operation mode == ALL_OR_NONE - throw exception because user does not have permission to update fieldName
@@ -1282,7 +1282,7 @@ global class PBS_SFDCAccessController_CC {
                 throw new AccessControlDmlException(NULL_OR_EMPTY_PARAMETER);
 
             Schema.DescribeSObjectResult d = devObj.getSObjectType().getDescribe();
-            if (d.isUpdateable() == false)
+            if (!d.isUpdateable())
                 throw new PBS_SFDCAccessControlException(ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionType.OBJECT_ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionReason.NO_UPDATE,
@@ -1300,7 +1300,7 @@ global class PBS_SFDCAccessController_CC {
 
             // set all fields that were requested and the user has permission to update - throw an exception if a field was requested and user can't update and in ALL_OR_NONE mode
             for (Schema.SObjectField field : fieldsToUpdate) {
-                if (field.getDescribe().isUpdateable() == false) {
+                if (!(field.getDescribe().isUpdateable())) {
                     // field is not allowed to be updated by current user
                     if (omode == OperationMode.ALL_OR_NONE)
                         // if operation mode == ALL_OR_NONE - throw exception because user does not have permission to update fieldName
@@ -1346,7 +1346,7 @@ global class PBS_SFDCAccessController_CC {
             // sobject value (in apex v16)
 
             Schema.DescribeSObjectResult d = devMap.getSObjectType().getDescribe();
-            if (d.isUpdateable() == false)
+            if (!d.isUpdateable())
                 throw new PBS_SFDCAccessControlException(ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionType.OBJECT_ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionReason.NO_UPDATE,
@@ -1368,7 +1368,7 @@ global class PBS_SFDCAccessController_CC {
 
             // for each object in the array set only updateable fields
             for (sObject cleanObj: cleanObjs) {
-                if (devMap.containsKey(cleanObj.id) == false)
+                if (!(devMap.containsKey(cleanObj.id)))
                     throw new PBS_SFDCAccessControlException('At least some record do not exist or are not shared with current user',
                                                             PBS_SFDCAccessControlException.ExceptionType.NO_RECORD_FOUND,
                                                             PBS_SFDCAccessControlException.ExceptionReason.GENERIC,
@@ -1380,7 +1380,7 @@ global class PBS_SFDCAccessController_CC {
                 // set all fields that were requested and the user has permission to update - throw an exception if a field was requested and user can't update and in ALL_OR_NONE mode
                 for (String fieldName : fieldsToUpdate) {
                     fieldName = fieldName.toLowerCase();
-                    if (updateableFields == null || updateableFields.contains(fieldName) == false) {
+                    if (updateableFields == null || (!updateableFields.contains(fieldName))) {
                         // updateableFields is either null which means no fields are allowed to be set by user, or is not null but does not contain the current fieldName
                         if (omode == OperationMode.ALL_OR_NONE)
                             // if operation mode == ALL_OR_NONE - throw exception because user does not have permission to update fieldName
@@ -1421,7 +1421,7 @@ global class PBS_SFDCAccessController_CC {
             // sobject value (in apex v16)
 
             Schema.DescribeSObjectResult d = devMap.getSObjectType().getDescribe();
-            if (d.isUpdateable() == false)
+            if (!d.isUpdateable())
                 throw new PBS_SFDCAccessControlException(ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionType.OBJECT_ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionReason.NO_UPDATE,
@@ -1439,7 +1439,7 @@ global class PBS_SFDCAccessController_CC {
 
             // for each object in the array set only updateable fields
             for (sObject cleanObj: cleanObjs) {
-                if (devMap.containsKey(cleanObj.id) == false)
+                if (!(devMap.containsKey(cleanObj.id)))
                     throw new PBS_SFDCAccessControlException('At least some record do not exist or are not shared with current user',
                                                             PBS_SFDCAccessControlException.ExceptionType.NO_RECORD_FOUND,
                                                             PBS_SFDCAccessControlException.ExceptionReason.GENERIC,
@@ -1450,7 +1450,7 @@ global class PBS_SFDCAccessController_CC {
 
                 // set all fields that were requested and the user has permission to update - throw an exception if a field was requested and user can't update and in ALL_OR_NONE mode
                 for (Schema.SObjectField field : fieldsToUpdate) {
-                    if (field.getDescribe().isUpdateable() == false) {
+                    if (!(field.getDescribe().isUpdateable())) {
                         // field is not allowed to be updated by current user
                         if (omode == OperationMode.ALL_OR_NONE)
                             // if operation mode == ALL_OR_NONE - throw exception because user does not have permission to update fieldName
@@ -1485,7 +1485,7 @@ global class PBS_SFDCAccessController_CC {
                 throw new AccessControlDmlException('null parameter');
 
             Schema.DescribeSObjectResult d = devObj.getSObjectType().getDescribe();
-            if (d.isDeletable() == false)
+            if (!d.isDeletable())
                 throw new PBS_SFDCAccessControlException(ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionType.OBJECT_ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionReason.NO_DELETE,
@@ -1510,7 +1510,7 @@ global class PBS_SFDCAccessController_CC {
                 throw new AccessControlDmlException('null parameter');
 
             Schema.DescribeSObjectResult d = devObjs.getSObjectType().getDescribe();
-            if (d.isDeletable() == false)
+            if (!d.isDeletable())
                 throw new PBS_SFDCAccessControlException(ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionType.OBJECT_ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionReason.NO_DELETE,
@@ -1557,7 +1557,7 @@ global class PBS_SFDCAccessController_CC {
                 throw new AccessControlDmlException('Failed to query object',e);
             }
 
-            if (res.isEmpty() == True) {
+            if (res.isEmpty()) {
                 return null;
             }
             else {
@@ -1580,7 +1580,7 @@ global class PBS_SFDCAccessController_CC {
 
             // add all Ids
             for (SObject obj : objArray) {
-                if (emptyIds == false)
+                if (!emptyIds)
                     Soql += ' or ';
                 else
                     emptyIds = false;

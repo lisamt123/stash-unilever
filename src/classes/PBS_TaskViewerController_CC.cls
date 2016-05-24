@@ -31,7 +31,7 @@ public with sharing class PBS_TaskViewerController_CC extends PBS_LMSBaseControl
     public PBS_Task__c task{get;set;}
     public PBS_Learning_Version__c learningVersion{get;set;}
     public PBS_Learning_Assignment__c assignment {get;private set;}
-    private Boolean isPreviewMode{get;set;}{isPreviewMode = false;}
+    private Boolean isPreviewMode{get;set;}
     public Boolean hasMessages{get{return ApexPages.hasMessages();}}
     public String externalResourceURL{get;private set;}
     public Boolean taskCompleted{get;private set;}
@@ -51,6 +51,7 @@ public with sharing class PBS_TaskViewerController_CC extends PBS_LMSBaseControl
     }
 
     public PBS_TaskViewerController_CC(){
+    isPreviewMode = false;
         init();
         PageReference cancelRef = finalRedirection();
         cancelURL = PBS_LMSUtils_CC.updateURLCommunityPath(cancelRef.getUrl());

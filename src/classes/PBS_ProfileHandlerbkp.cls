@@ -98,11 +98,11 @@ public with sharing class PBS_ProfileHandlerbkp implements PBS_Trigger
         PBS_Profile__c obj    = (PBS_Profile__c) so;
 
         // skip if nothing important changed
-        if ( PBS_ProfileService.isUpdateRequired(obj, oldObj) ) {
-          /*  PBS_ProfileService.PBS_ProfileWithoutSharing serviceClass = new PBS_ProfileService.PBS_ProfileWithoutSharing();
+      /*  if ( PBS_ProfileService.isUpdateRequired(obj, oldObj) ) {
+            PBS_ProfileService.PBS_ProfileWithoutSharing serviceClass = new PBS_ProfileService.PBS_ProfileWithoutSharing();
             toAdd.addAll(serviceClass.getNewSharingForProfile(obj));
-            toRemove.addAll(serviceClass.getExistingSharingForProfile(oldObj));*/
-        }
+            toRemove.addAll(serviceClass.getExistingSharingForProfile(oldObj));
+        }*/
     }
 
     /**

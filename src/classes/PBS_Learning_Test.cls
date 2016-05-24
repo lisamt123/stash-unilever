@@ -223,9 +223,10 @@ public class PBS_Learning_Test {
 
             extension.previewContent();
 
-            List<PBS_Learning_Version__c> learningversions2 = [select id from PBS_Learning_Version__c
+          /* List<PBS_Learning_Version__c> learningversions2 = [select id from PBS_Learning_Version__c
                                                                 where Type__c = 'Preview'
-                                                                and Learning__c = :learning.get(0).Id];
+                                                                and Learning__c = :learning.get(0).Id];*/
+          
 
             //System.assert(learningversions2.size() == 1, 'Learning has not been previewed, size = ' + learningversions2.size());
 
@@ -454,7 +455,7 @@ public class PBS_Learning_Test {
         PBS_UtilClass_Test.addPermissionSet(systemUsers, LMS_Admin);
 
         List<PBS_Learning__c> learning;
-        List<PBS_Task__c> task;
+       // List<PBS_Task__c> task;
 
         System.runAs(systemUsers.get(0)){
 
@@ -462,7 +463,7 @@ public class PBS_Learning_Test {
             learning = PBS_LearningData_Test.createTestLearning(1, LEARNING_TASK, false);
 
             //create task
-            task = PBS_LearningData_Test.createTestTask(learning);
+           // task = PBS_LearningData_Test.createTestTask(learning);
 
             List<PBS_Learning_Version__c> learningversions = [select id from PBS_Learning_Version__c
                                                                 where Type__c = 'Published'
@@ -475,13 +476,13 @@ public class PBS_Learning_Test {
             ApexPages.Standardcontroller stdcontroller = New ApexPages.StandardController(learning.get(0));
             PBS_Learning_Publish_Ext_CC extension = new PBS_Learning_Publish_Ext_CC(stdcontroller);
             extension.dummyLearningVersion.Version_selection_behavior__c = 'Update version on launch';
-            List<sObject> lsobjects = extension.getContents();
+           // List<sObject> lsobjects = extension.getContents();
             //System.assert(lsobjects.size() == 1, GETCONTENTS_IS_WRONG);
             extension.publishContent();
 
-            List<PBS_Learning_Version__c> learningversions2 = [select id from PBS_Learning_Version__c
+          /*  List<PBS_Learning_Version__c> learningversions2 = [select id from PBS_Learning_Version__c
                                                                 where Type__c = 'Published'
-                                                                and Learning__c = :learning.get(0).Id];
+                                                                and Learning__c = :learning.get(0).Id];*/
 
             //System.assert(learningversions2.size() == 1, 'Learning has not been published, size = ' + learningversions2.size());
 
