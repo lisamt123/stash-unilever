@@ -790,6 +790,34 @@
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
+        <fullName>CPA PWO Accepted</fullName>
+        <actions>
+            <name>CPA_Project_Work_Order_Submitted_Email_Alert</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>CPA_project_work_order__c.pkl_Status__c</field>
+            <operation>equals</operation>
+            <value>Accepted</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>CPA PWO CNF  Accepted</fullName>
+        <actions>
+            <name>CPA_PWO_CNF_email_alert</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>CPA_project_work_order__c.CNF_Status__c</field>
+            <operation>equals</operation>
+            <value>Accepted</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
         <fullName>CPA PWO CNF Send for signature</fullName>
         <actions>
             <name>CPA_PWO_CNF_email_alert</name>
@@ -840,6 +868,20 @@
         <criteriaItems>
             <field>CPA_project_work_order__c.TNF_Status__c</field>
             <operation>equals</operation>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>CPA PWO TNF  Accepted</fullName>
+        <actions>
+            <name>CPA_PWO_TNF_email_alert</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>CPA_project_work_order__c.TNF_Status__c</field>
+            <operation>equals</operation>
+            <value>Accepted</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
