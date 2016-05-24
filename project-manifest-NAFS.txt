@@ -1,4 +1,7 @@
 src
+src/layouts
+src/layouts/Distributor.layout
+src/layouts/Operators.layout
 src/objects
 src/objects/Account.object
 src/objects/Product2.object
