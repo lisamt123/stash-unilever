@@ -39,17 +39,21 @@ public with sharing class PBS_LMSInit_CC{
     
     
 
-    public static String fetchInitData(String resourceName){
+     public static String fetchInitData(String resourceName){
+        String tempResourceName = resourceName;
         if(UserInfo.getLanguage() != 'en_US'){
             String translatedResourceName = resourceName+'_'+UserInfo.getLanguage();
             List<StaticResource> sResources = [select id from StaticResource where Name = :translatedResourceName];
             if(sResources.size()>0){
-              resourceName = translatedResourceName;
+              tempResourceName = '';
+              tempResourceName = translatedResourceName;
+              //resourceName = translatedResourceName;
             }
         }
-        Blob body = [select body from StaticResource where Name = :resourceName limit 1].body;
+        Blob body = [select body from StaticResource where Name = :tempResourceName limit 1].body;
         return body.toString();
     }
+
 
     public static void initData(String jsonData, Boolean addTimeStamp){
 
