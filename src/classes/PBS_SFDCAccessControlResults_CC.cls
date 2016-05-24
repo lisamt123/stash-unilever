@@ -151,7 +151,10 @@ global with sharing virtual class PBS_SFDCAccessControlResults_CC {
   // main class private functions
   
   private void setCleanObjectsArr(SObject [] objects) {
-    if (objects == null)
+    SObject []  lstObjects =  new List<SObject>();
+    lstObjects = objects;
+    if (lstObjects == null)
+    //if (objects == null)
       throw new AccessControlResultsException('objects must not be set to null');
     cleanObjectsArr = objects;
   }
