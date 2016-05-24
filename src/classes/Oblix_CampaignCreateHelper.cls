@@ -366,7 +366,9 @@ public with sharing class Oblix_CampaignCreateHelper extends Oblix_SWOPparentCon
                 selectedProject.Fees_PFY_Total_By_CFY_Calculator__c = NULL;
 
                 // make sure we set the campaign attributes updated to true to include in the next batch job
-                selectedProject.Campaign_Attributes_Updated__c = true;            
+                selectedProject.Campaign_Attributes_Updated__c = true; 
+
+                selectedProject.Value_To_BePaid_Manual_Override__c = false;           
             }
 
         }else{
