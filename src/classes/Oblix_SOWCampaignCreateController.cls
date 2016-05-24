@@ -174,11 +174,11 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
             campaignHelper.selectedProject.Project_Scale_2__c = 'Up to 3 locations';
         } else if (campaignHelper.numberOFSelectedCountries > 3 && campaignHelper.numberOFSelectedCountries <= 4) {
             campaignHelper.selectedProject.Project_Scale_2__c = 'Up to 4 locations';
-        } else if (campaignHelper.numberOFSelectedCountries > 4 && campaignHelper.numberOFSelectedCountries <= 5) {
+        } else {// if (campaignHelper.numberOFSelectedCountries > 4 && campaignHelper.numberOFSelectedCountries <= 5) {
             campaignHelper.selectedProject.Project_Scale_2__c = 'Up to 5 locations';
-        } else if (campaignHelper.numberOFSelectedCountries > 5) {
-            campaignHelper.selectedProject.Project_Scale_2__c = 'More than 5 locations';
-        }
+        } //} else if (campaignHelper.numberOFSelectedCountries > 5) {
+        //    campaignHelper.selectedProject.Project_Scale_2__c = 'More than 5 locations';
+        //}
         System.DEBUG('Project Scale : ' + campaignHelper.selectedProject.Project_Scale_2__c);
     }
 

@@ -35,6 +35,11 @@ private class Oblix_SowMainController_Test {
     private static User ul2;
     private static User ul3;
     private static User superuser;
+    private static User ul1_2;
+
+    private static Oblix_User_Permission__c up1Dove;
+    //private static Oblix_User_Permission__c up1Knorr;
+    private static Oblix_User_Permission__c up1_2Knorr;
     
     
     @isTest static void testGetAllSOWRecords() {
@@ -169,6 +174,39 @@ private class Oblix_SowMainController_Test {
     /*******************************************************************************
     * @author       Slavko Skular
     * @date         2016-02-23
+    * @description  test approval reassignment
+    ********************************************************************************/
+    @isTest static void testApprovalReassignment(){
+
+        initTestData();
+
+        Test.setCurrentPageReference(new PageReference('Page.Oblix_SOWMainDetail'));
+        System.currentPageReference().getParameters().put('sowId', sowKnorr.Id);
+        Oblix_SowMainDetailController controller = new Oblix_SowMainDetailController();
+
+        controller.submitForApproval();
+
+        Test.startTest();
+
+        up1_2Knorr.CategoryBrand_id__c = cbDovePC.Id;
+        update up1_2Knorr;
+
+        up1Dove.CategoryBrand_id__c = cbKnorrOF.Id;
+        update up1Dove;
+
+        Test.stopTest();
+
+        List<ProcessInstanceWorkItem> pendingApprovals = [Select Id, ActorId, ProcessInstance.TargetObjectId From ProcessInstanceWorkItem WHERE ProcessInstance.TargetObjectId = :sowKnorr.Id];
+
+        System.assertEquals(1, pendingApprovals.size());
+        System.assertEquals(ul1.Id, pendingApprovals[0].ActorId);
+
+    }
+
+
+    /*******************************************************************************
+    * @author       Slavko Skular
+    * @date         2016-02-23
     * @description  initialize test data
     ********************************************************************************/
     private static void initTestData(){
@@ -202,7 +240,8 @@ private class Oblix_SowMainController_Test {
             ul2 = Oblix_TestUtils.createMarketingUser('UL2');
             ul3 = Oblix_TestUtils.createMarketingUser('UL3');
             superuser = Oblix_TestUtils.createMarketingUser('superu');
-            insert new List<User>{ul1, ul2, ul3, superuser};
+            ul1_2 = Oblix_TestUtils.createMarketingUser('UL1_1');
+            insert new List<User>{ul1, ul2, ul3, superuser, ul1_2};
 
             // assign permission sets (step 1. get permission set ids, verify they exist)
             Map<String, Id> oblixPermissionSets = Oblix_TestUtils.getOblixPermissionSets();
@@ -216,7 +255,8 @@ private class Oblix_SowMainController_Test {
             PermissionSetAssignment ul2PSA = Oblix_TestUtils.createPermissionSetAssignment(ul2.Id, oblixPermissionSets.get(Oblix_Utils.PERMISSIONSETNAME_UL2));
             PermissionSetAssignment ul3PSA = Oblix_TestUtils.createPermissionSetAssignment(ul3.Id, oblixPermissionSets.get(Oblix_Utils.PERMISSIONSETNAME_UL3));
             PermissionSetAssignment superuserPSA = Oblix_TestUtils.createPermissionSetAssignment(superuser.Id, oblixPermissionSets.get(Oblix_Utils.PERMISSIONSETNAME_SUPERUSER));
-            insert new List<PermissionSetAssignment>{ul1PSA, ul2PSA, ul3PSA, superuserPSA};
+            PermissionSetAssignment ul1_2PSA = Oblix_TestUtils.createPermissionSetAssignment(ul1_2.Id, oblixPermissionSets.get(Oblix_Utils.PERMISSIONSETNAME_UL1));
+            insert new List<PermissionSetAssignment>{ul1PSA, ul2PSA, ul3PSA, superuserPSA, ul1_2PSA};
         }
 
         // insert oblix user permission (user permissions to brand-category)
@@ -224,7 +264,8 @@ private class Oblix_SowMainController_Test {
         // UL2 Dove Edit, Knorr read only, Ambrosia no access, Ciff no access
         // UL3 Dove Read only, Knorr no access, Ambrosia no access, Ciff edit (should have read regardless)
         // superuser Dove approver, Knorr edit, Ambrosia read only, Diff no access
-        Oblix_User_Permission__c up1Dove = Oblix_TestUtils.createUserPermission(ul1.Id, cbDovePC.Id, Oblix_Utils.USER_PERMISSION_APPROVER, Oblix_Utils.RT_USER_PERMISSION_UNILEVER_USER);
+        // UL1_2 Knorr approver
+        up1Dove = Oblix_TestUtils.createUserPermission(ul1.Id, cbDovePC.Id, Oblix_Utils.USER_PERMISSION_APPROVER, Oblix_Utils.RT_USER_PERMISSION_UNILEVER_USER);
         Oblix_User_Permission__c up1Knorr = Oblix_TestUtils.createUserPermission(ul1.Id, cbKnorrOF.Id, Oblix_Utils.USER_PERMISSION_ACCESS_EDIT, Oblix_Utils.RT_USER_PERMISSION_UNILEVER_USER);
         Oblix_User_Permission__c up1Ambrosia = Oblix_TestUtils.createUserPermission(ul1.Id, cbAmbrosiaOF.Id, Oblix_Utils.USER_PERMISSION_READ_ONLY, Oblix_Utils.RT_USER_PERMISSION_UNILEVER_USER);
 
@@ -237,7 +278,10 @@ private class Oblix_SowMainController_Test {
         Oblix_User_Permission__c superuserDove = Oblix_TestUtils.createUserPermission(superuser.Id, cbDovePC.Id, Oblix_Utils.USER_PERMISSION_APPROVER, Oblix_Utils.RT_USER_PERMISSION_UNILEVER_USER);
         Oblix_User_Permission__c superuserKnorr = Oblix_TestUtils.createUserPermission(superuser.Id, cbKnorrOF.Id, Oblix_Utils.USER_PERMISSION_ACCESS_EDIT, Oblix_Utils.RT_USER_PERMISSION_UNILEVER_USER);
         Oblix_User_Permission__c superuserAmbrosia = Oblix_TestUtils.createUserPermission(superuser.Id, cbAmbrosiaOF.Id, Oblix_Utils.USER_PERMISSION_READ_ONLY, Oblix_Utils.RT_USER_PERMISSION_UNILEVER_USER);
-        insert new List<Oblix_User_Permission__c>{up1Dove, up1Knorr, up1Ambrosia, up2Dove, up2Knorr, up3Dove, up3Ciff, superuserDove, superuserKnorr, superuserAmbrosia};
+
+        up1_2Knorr = Oblix_TestUtils.createUserPermission(ul1_2.Id, cbKnorrOF.Id, Oblix_Utils.USER_PERMISSION_APPROVER, Oblix_Utils.RT_USER_PERMISSION_UNILEVER_USER);
+
+        insert new List<Oblix_User_Permission__c>{up1Dove, up1Knorr, up1Ambrosia, up2Dove, up2Knorr, up3Dove, up3Ciff, superuserDove, superuserKnorr, superuserAmbrosia, up1_2Knorr};
 
         Account agency = Oblix_TestUtils.createAccount();
         sowDove = Oblix_TestUtils.createTestMarketingSow('Dove SOW', Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER, cbDovePC.brand_id__c, cbDovePC.product_Category_Id__c, bc.Id, agency.Id);

@@ -258,58 +258,6 @@ private class Oblix_SOWMainDetailController_Test {
                 System.assert(controllerInstance.sow_approvers_defined );
             }
 
-            if(controllerInstance.canSeeDashboard){
-                System.assert(controllerInstance.canSeeDashboard);
-            }
-
-            if(controllerInstance.is_initial_rollover_sync_requested){
-                System.assert(controllerInstance.is_initial_rollover_sync_requested);
-            }
-
-            if(controllerInstance.is_initial_sync_completed){
-                System.assert(controllerInstance.is_initial_sync_completed);
-            }
-
-            if(controllerInstance.is_rollover_in_progress){
-                System.assert(controllerInstance.is_rollover_in_progress);
-            }
-
-            if(controllerInstance.is_sync_complete){
-                System.assert(controllerInstance.is_sync_complete);
-            }
-
-            if(controllerInstance.is_approved_original_record){
-                System.assert(controllerInstance.is_approved_original_record);
-            }
-
-            if(controllerInstance.can_see_rollover_initiated_message_on_original_sow){
-                System.assert(controllerInstance.can_see_rollover_initiated_message_on_original_sow);
-            }
-
-            if(controllerInstance.can_see_sync_completed_on_original_sow){
-                System.assert(controllerInstance.can_see_sync_completed_on_original_sow);
-            }
-
-            if(controllerInstance.can_see_sync_in_progress){
-                System.assert(controllerInstance.can_see_sync_in_progress);
-            }
-
-            if(controllerInstance.can_see_sync_requested_on_bfwd_sow){
-                System.assert(controllerInstance.can_see_sync_requested_on_bfwd_sow);
-            }
-
-            if(controllerInstance.can_see_sync_completed_on_bfwd_sow_staying_on_the_page){
-                System.assert(controllerInstance.can_see_sync_completed_on_bfwd_sow_staying_on_the_page);
-            }
-
-            if(controllerInstance.can_see_link_to_cloned_record ){
-                System.assert(controllerInstance.can_see_link_to_cloned_record);
-            }
-
-            if(controllerInstance.can_see_rollover_warning ){
-                System.assert(controllerInstance.can_see_rollover_warning);
-            }
-
         }
 
     }

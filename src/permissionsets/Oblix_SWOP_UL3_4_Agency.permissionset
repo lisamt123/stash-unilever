@@ -149,6 +149,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Oblix_SOWMainDetalControllerExt_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Oblix_SOWNonCampaignCreateController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -242,6 +246,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Oblix_VersionControl</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Oblix_VersionControl_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
