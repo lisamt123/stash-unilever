@@ -646,7 +646,7 @@ public with sharing class IPM_TaskHelper {
 			            	for(IPM_Document_Template__c docTemplate : IPM_ProjectHelper.complexitySpecificDocumentTemplates.get(template.Id))
 		                    {
 		                        // If project Gate Matches Document Type Gate, Get the corresponding document Template and associated Sections 
-		                        if(projectCurrentGate == docTemplate.IPM_Document_Type__c)
+		                        if(projectCurrentGate!=null && projectCurrentGate == docTemplate.IPM_Document_Type__c)
 		                        {
 		                             if(IPM_ProjectHelper.documentTemplateSpecificSectionMap.containsKey(docTemplate.Id) && IPM_ProjectHelper.documentTemplateSpecificSectionMap.get(docTemplate.Id)!=null)
 		                             {
