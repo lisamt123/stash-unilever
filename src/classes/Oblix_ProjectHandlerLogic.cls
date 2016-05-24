@@ -31,7 +31,7 @@ public with sharing class Oblix_ProjectHandlerLogic {
 
         map_campaign_id_campaign_for_update = new Map<Id, Oblix_SOW_Projects__c>();
         //set_campaign_ids_with_related_splits_not_adding_up = new Set<Id>();
-        Map<Id, Oblix_SOW_Projects__c> map_original_campaign;
+        Map<Id, Oblix_SOW_Projects__c> map_original_campaign = null;
 
         if (!is_new){
             map_original_campaign = new Map<Id, Oblix_SOW_Projects__c>(list_projects);
