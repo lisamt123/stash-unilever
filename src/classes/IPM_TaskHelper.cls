@@ -195,13 +195,17 @@ public with sharing class IPM_TaskHelper {
                 Map<Id,IPM_Section__c> associatedTemplateSectionMap = projectToTemplateSectionMap.get(project.Id);
                 
                 // Validate whehter Approach is internal.If it is internal then only Manage Tasks for that project.    
-                if(associatedProjectType!=null && projectToNewTaskList.containsKey(project.Id))
+                if(associatedProjectType!=null )
                 {
                 	List<IPM_Task__c> projectExistingCurrentGateTasks = currentProjectGateExistingTaskMap.get(project.Id);
                     List<IPM_Task__c> projectExsitingpreviousGateTasks = previousProjectGateExistingTaskMap.get(project.Id);
+                    List<IPM_Task__c> newTaskList = new List<IPM_Task__c> ();
                         
                     // Master list of Tasks based on template
-                    List<IPM_Task__c> newTaskList = projectToNewTaskList.get(project.id);
+                    if(projectToNewTaskList != null && projectToNewTaskList.containsKey(project.Id))
+                    {
+                    	newTaskList = projectToNewTaskList.get(project.id);
+                    }	
                    
                     manageTaskCopyOverKey(associatedTemplateSectionMap,projectDetail,projectExistingCurrentGateTasks,newTaskList,upsertTaskList);
                     
@@ -917,6 +921,8 @@ public with sharing class IPM_TaskHelper {
     */
    	private static void manageTaskCopyOverKey(Map<Id,IPM_Section__c> associatedTemplateSectionMap,IPM_Project__c projectDetail,List<IPM_Task__c> projectExistingCurrentGateTasks,List<IPM_Task__c> newTaskList,List<IPM_Task__c> upsertTaskList)
 	{
+	  if(newTaskList != null)
+	  {
 		for(IPM_Task__c newTask :newTaskList)
         {
             String associatedSectionNumber = IPM_ConstantUtils.BLANK;
@@ -952,6 +958,7 @@ public with sharing class IPM_TaskHelper {
 	        	
 	        }        	
       		upsertTaskList.add(newTask);  
+        }
         }
     }
     

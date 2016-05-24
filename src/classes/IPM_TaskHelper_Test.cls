@@ -377,30 +377,33 @@ private class IPM_TaskHelper_Test{
             update updateProjectList;
         
 		   //Get the project list where complexity is changed
-            list<IPM_Project__c> projDetailResult = [select Id,Name,IPM_Complexity__c FROM IPM_Project__c where Id in:projIdSet];
+            list<IPM_Project__c> projDetailResult = [select Id,IPM_Phase__c,Name,IPM_Complexity__c FROM IPM_Project__c where Id in:projIdSet];
             //Check if the complexity of project is chnaged 
             for(IPM_Project__c project : projDetailResult)
             {   
                 system.assertEquals(project.IPM_Complexity__c,IPM_ConstantUtils.COMPLEXITY_LITE,'Complexity of project is not chnaged');
             }
             //get task of the projects, where the project's complexity is changed
-            list<IPM_Task__c> taskList = [SELECT Id,Name,IsSystemGenerated__c,IPM_Task_Complexity__c,IPM_Project__c,IPM_Project__r.IPM_Project_Leader__c,IPM_Function__c,IPM_Section__c,IPM_Type_of_Gate__c,IPM_Assignee__c,IPM_Active__c 
+            list<IPM_Task__c> taskList = [SELECT Id,Name,IPM_Type_of_Task__c,IsSystemGenerated__c,IPM_Task_Name__c,IPM_Phase__c,IPM_Task_Complexity__c,IPM_Project__c,IPM_Project__r.IPM_Project_Leader__c,IPM_Function__c,IPM_Section__c,IPM_Type_of_Gate__c,IPM_Assignee__c,IPM_Active__c 
                                           FROM IPM_Task__c WHERE IPM_Project__c IN:projIdSet ];
             
-            for(IPM_Task__c task :taskList)
+            for(IPM_Project__c project :projectDetailList)
             {
-                //check if the tasks with different complexity as that of project's complxity are inactive 
-                if(task.IsSystemGenerated__c && task.IPM_Task_Complexity__c == IPM_ConstantUtils.COMPLEXITY_FULL)
-                {
-                	system.assertEquals(task.IPM_Active__c,true, 'IPM_Active__c Is UnChecked');
-                }
-                //check if the tasks with same complexity as that of project's complxity are active 
-                if(task.IPM_Task_Complexity__c == IPM_ConstantUtils.COMPLEXITY_LITE)
-                {
-                    system.assertEquals(task.IPM_Active__c,false, 'IPM_Active__c Is Checked');
-                }
-                
-            }   
+	            for(IPM_Task__c task :taskList)
+	            {
+	                //check if the tasks with different complexity as that of project's complxity are inactive 
+	                if(task.IsSystemGenerated__c && task.IPM_Task_Complexity__c == IPM_ConstantUtils.COMPLEXITY_FULL)
+	                {
+	                	system.assertEquals(task.IPM_Active__c,false, 'IPM_Active__c Is Checked');
+	                }
+	                //check if the tasks with same complexity as that of project's complxity are active 
+	                if(task.IPM_Task_Complexity__c == IPM_ConstantUtils.COMPLEXITY_LITE && task.IPM_Phase__c == project.IPM_Phase__c)
+	                {
+	                   system.assertEquals(task.IPM_Active__c,true, 'IPM_Active__c Is UnChecked');
+	                }
+	                
+	            }
+            }         
             
         }
         Test.stopTest();
