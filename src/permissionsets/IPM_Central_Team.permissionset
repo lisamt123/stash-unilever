@@ -7298,4 +7298,8 @@
         <tab>IPM_My_To_Do_List</tab>
         <visibility>Visible</visibility>
     </tabSettings>
+	<tabSettings>
+        <tab>IPM_Clusters__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
 </PermissionSet>
