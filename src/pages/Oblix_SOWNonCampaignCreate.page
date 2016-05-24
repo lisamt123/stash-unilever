@@ -26,7 +26,7 @@
             <apex:param name="campaignItem" assignTo="{!helper.currentTab}" value="" />
         </apex:actionFunction>
 
-        <apex:actionFunction action="{!saveWorkList}" oncomplete="$.unblockUI()" name="saveWorkList" reRender="shoppingBasketPanel,activitySelectionTable, resourceSelectionTable,campaignTotalPanel,shoppingBasketPanel" >
+        <apex:actionFunction action="{!saveWorkList}" oncomplete="$.unblockUI()" name="saveWorkList" reRender="activity_resource_input_field_panel,shoppingBasketPanel,activitySelectionTable, resourceSelectionTable,campaignTotalPanel,shoppingBasketPanel" >
         </apex:actionFunction>
 
         
@@ -248,7 +248,7 @@
                                             </tbody>
                                         </table>
                                         <apex:outputPanel rendered="{!IF(can_manage_non_campaign,true,false)}">
-                                            <apex:commandButton value="ADD SELECTION TO BASKET" styleClass="btn btn-primary btn-xs pull-right btn_plus btn_add_selection" onclick="saveWorkList();blockme(); return false;" />
+                                            <apex:commandButton value="ADD SELECTION TO BASKET" styleClass="btn btn-primary btn-xs pull-right btn_plus btn_add_selection" onclick="blockme();saveWorkList(); return false;" />
                                         </apex:outputPanel>
                                     </apex:outputPanel>
                                 </apex:outputPanel>
@@ -365,7 +365,7 @@
                                                 </tbody>
                                             </table>
                                             <apex:outputPanel rendered="{!IF(can_manage_non_campaign,true,false)}">
-                                                <apex:commandButton value="ADD SELECTION TO BASKET" styleClass="btn btn-primary btn-xs pull-right btn_plus btn_add_selection" onclick="saveWorkList();blockme(); return false;" />
+                                                <apex:commandButton value="ADD SELECTION TO BASKET" styleClass="btn btn-primary btn-xs pull-right btn_plus btn_add_selection" onclick="blockme();saveWorkList(); return false;" />
                                             </apex:outputPanel>
                                         </apex:outputPanel>
                                     </apex:outputPanel>

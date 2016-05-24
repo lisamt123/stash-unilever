@@ -449,6 +449,22 @@ public with sharing class Oblix_Utils {
         return map_string_settings.get(label_value).Attribute_1__c;
     }
 
+    public static Boolean is_sync_job_running{
+
+        get{
+            Boolean job_is_running = false;
+
+            Oblix_Job_Orchestration__c jobIsRunning = Oblix_Job_Orchestration__c.getInstance(UserInfo.getOrganizationId());
+
+            if (NULL!=jobIsRunning){
+                job_is_running = jobIsRunning.Job_Is_Running__c;
+            }
+            system.debug('## checking job is running: ' + job_is_running);
+            //checkJobIsRunning = Oblix_VersionControl.checkIsJobRunning();
+            return job_is_running;
+        }
+
+    }
 
     public static List<Oblix_Settings__c> getOblixSettingsListNameStartsWith(String setting_name_prefix){
         
@@ -533,6 +549,7 @@ public with sharing class Oblix_Utils {
     public static final Integer MAX_ASSETS_PER_CONTEXT = 200;
     public static final Integer MAX_ATTACHMENTS_PER_CONTEXT = 10;
 
+    public static final String JOB_PROCESS_SET_SYNC_REQUESTED = 'Sync Requested';
     public static final String JOB_PROCESS_SET_STATUS = 'Set Job Status';
     public static final String JOB_PROCESS_CLONE_SOW = 'Clone SOW';
     public static final String JOB_PROCESS_CLONE_CAMPAIGN = 'Clone Campaigns';

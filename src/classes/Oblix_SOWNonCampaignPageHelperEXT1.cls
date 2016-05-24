@@ -1,6 +1,42 @@
 public with sharing virtual class Oblix_SOWNonCampaignPageHelperEXT1 extends Oblix_SOWNonCampaignPageHelperParent{
 
 
+    public void updateBasketStats() {
+        totalBasketSize = 0;
+        totalBasketValue = 0;
+
+        List<Oblix_NonCampaignWrapper> items = new List<Oblix_NonCampaignWrapper>();
+
+        for (String key : basket.keySet()) {
+            items.addAll(basket.get(key).items.values());
+        }
+
+        for (Oblix_NonCampaignWrapper item : items) {
+            totalBasketSize++;
+            if(item.totalAmount != null)
+                totalBasketValue += item.totalAmount;
+        }
+    }
+
+
+    public void openItemForUpdate(Boolean isActivity) {
+
+        System.debug('### currentSection: ' + currentSection);
+        System.debug('### currentItemKey: ' + currentItemKey);
+        System.debug('### workList.get(currentTab).items.keySet(): ' + workList.get(currentTab).items.keySet());
+
+        if (isActivity) {
+            currentActivity = workList.get(currentTab).items.get(currentItemKey).clone();
+            currentActivity.replaceSObjectWithClone();
+            refreshSelectionPicklists();
+        } else {
+            currentResource = workList.get(currentTab).items.get(currentItemKey).clone();
+            currentResource.replaceSObjectWithClone();
+            refreshSelectionPicklists();
+        }
+    }
+
+
     public void openBasketSection() {
         if (currentSection == RESOURCE_DEV_NAME) {
             currentTab = RESOURCE_DEV_NAME;

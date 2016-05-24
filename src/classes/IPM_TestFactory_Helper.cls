@@ -2206,11 +2206,12 @@ public class IPM_TestFactory_Helper
 	* @description Create reporting custom setting records
 	**************************************************************************************************/
     
-    public static IPM_Reporting__c createIPMReportingCustomSetting() {
+    public static IPM_Reporting__c createIPMReportingCustomSetting(String strName, Boolean doInsert) {
         
-        IPM_Reporting__c RP = new IPM_Reporting__c(Name='BD BB Report', Last_Batch_RunDate__c= System.now(), Y1__c = 1, Y2__c=2, Y3__c=3, Y4__c=4, Y5__c=5, Y_1__c = -1, Y_2__c=-2, Y_3__c=-3);  
-        
-        insert RP;
+        IPM_Reporting__c RP = new IPM_Reporting__c(Name = strName, Last_Batch_RunDate__c= System.now(), Y1__c = 1, Y2__c=2, Y3__c=3, Y4__c=4, Y5__c=5, Y_1__c = -1, Y_2__c=-2, Y_3__c=-3);  
+        if(doInsert){
+        	insert RP;
+        }
         return RP;
     } 
     

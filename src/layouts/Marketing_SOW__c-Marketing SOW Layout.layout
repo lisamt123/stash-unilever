@@ -63,6 +63,14 @@
                 <behavior>Edit</behavior>
                 <field>Attachments_Cloned__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Record_Locked_Sync__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>B_Fwd_Campaign_count__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

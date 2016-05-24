@@ -347,6 +347,8 @@ public with sharing class Oblix_CampaignCreateHelper extends Oblix_SWOPparentCon
 
         // if we are cloning, blank out the PFY fields in case the campaign is being cloned from a rolled-over campaign
         if (doClone){
+            selectedProject.Box_Number_PFY__c = NULL;
+            selectedProject.Box_Number_PFY_Project_Score_CFY_Calc__c = NULL;
             selectedProject.Campaign_PFY__c = NULL;
             selectedProject.Oblix_ProjectBoxNumber_PFY__c = NULL;
             selectedProject.Completed_Stage_PFY__c = NULL;
@@ -354,6 +356,14 @@ public with sharing class Oblix_CampaignCreateHelper extends Oblix_SWOPparentCon
             selectedProject.Total_Project_Score_PFY__c = NULL;
             selectedProject.Percentage_of_Fees_PFY__c = NULL;
             selectedProject.Fees_Paid_PFY__c = NULL;
+            selectedProject.Fees_Total_PFY__c = NULL;
+            selectedProject.Fees_PFY_Paid_Using_CFY_Calc__c = NULL;
+            selectedProject.Fees_PFY_Total_By_CFY_Calculator__c = NULL;
+
+            // make sure we set the campaign attributes updated to true to include in the next batch job
+            selectedProject.Campaign_Attributes_Updated__c = true;            
+
+
         }
 
         } else {

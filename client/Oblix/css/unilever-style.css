@@ -1382,7 +1382,7 @@ table tbody tr td {
     padding-bottom: 15px;
 }
 .confirm_assets_accordion {
-    width: 58%;
+    width: 75%;
     display: inline-block;
     min-width: 770px;
     padding-left: 15px;
@@ -2375,31 +2375,31 @@ p.percentage_paid div.popover {
     color: rgb(177, 135, 184);
     margin-right: 8px;
     font-size: 18px;
-    vertical-align: text-bottom;
+    vertical-align: middle;
 }
 .donut_chart_list .digital_key span.donut_point_align {
     color: rgb(206, 220, 2);
     margin-right: 8px;
     font-size: 18px;
-    vertical-align: text-bottom;
+    vertical-align: middle;
 }
 .donut_chart_list .experimental_key span.donut_point_align {
     color: rgb(228, 108, 176);
     margin-right: 8px;
     font-size: 18px;
-    vertical-align: text-bottom;
+    vertical-align: middle;
 }
 .donut_chart_list .static_imagery_key span.donut_point_align {
     color: rgb(5, 177, 169);
     margin-right: 8px;
     font-size: 18px;
-    vertical-align: text-bottom;
+    vertical-align: middle;
 }
 .donut_chart_list .stimulus_material_key span.donut_point_align {
     color: rgb(255, 198, 44);
     margin-right: 8px;
     font-size: 18px;
-    vertical-align: text-bottom;
+    vertical-align: middle;
 }
 .donut_chart_list li span {
     color: #000000;

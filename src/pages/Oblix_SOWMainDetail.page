@@ -11,30 +11,95 @@
             {!selected_sow.Name} 
         </apex:define>
 
+        <apex:define name="header_top_warning_text">
+            <apex:outputText rendered="{!can_see_rollover_warning}">
+                <div class="alert alert-danger" role="alert"><b>IMPORTANT: This Scope of Work has campaigns brought forward from a previous financial year. Please make changes to these campaigns via:</b>&nbsp;<a href="/apex/Oblix_SOWMainDetail?sowId={!selected_sow.SOW_PFY__c}">{!selected_sow.SOW_PFY__r.Name}</a> <b> and use Sync to reflect the changes below</b></div>
+            </apex:outputText>
+        </apex:define>
+
         <apex:define name="top_option_links">
-            <apex:outputPanel rendered="{!IF(can_edit,true,false)}">
-                <a href="{!$Page.Oblix_SowCreate + '?sowId=' + selected_sow.Id}">Edit SOW</a>&nbsp;&nbsp;|
-            </apex:outputPanel>
-            <apex:actionRegion >
-                <apex:outputPanel rendered="{!IF(can_delete_sow,true,false)}">
-                    <a href="#" data-toggle="modal" data-target="#sowDelete">Delete SOW</a>&nbsp;&nbsp;
+            <apex:outputPanel id="editLinksPanel">
+                <apex:outputPanel rendered="{!IF(can_edit && NOT(can_see_sync_requested_on_bfwd_sow || can_see_sync_in_progress || can_see_rollover_initiated_message_on_original_sow),true,false)}">
+                    <a href="{!$Page.Oblix_SOWCreate + '?sowId=' + selected_sow.Id}">Edit SOW</a>
                 </apex:outputPanel>
-            </apex:actionRegion>
+                <apex:actionRegion >
+                    <apex:outputPanel rendered="{!IF(can_delete_sow && NOT(can_see_sync_requested_on_bfwd_sow || can_see_sync_in_progress || can_see_rollover_initiated_message_on_original_sow),true,false)}">
+                        &nbsp;|&nbsp;&nbsp;<a href="#" data-toggle="modal" data-target="#sowDelete">Delete SOW</a>
+                    </apex:outputPanel>
+                </apex:actionRegion>
+            </apex:outputPanel>
             <apex:outputPanel id="initiateRollOverLink" >
                 <apex:actionRegion >
                     <apex:outputPanel rendered="{!IF(can_edit && selected_sow.Initial_Approval_Complete__c,true,false)}">
-                        <apex:outputLink value="#" onclick="blockme();initiateRollOver();" disabled="{!NOT(ISBLANK(selected_sow.Sync_Status__c))}" >| &nbsp;{!IF(ISBLANK(selected_sow.Sync_Status__c),'Initiate Rollover','Rollover Initiated')}</apex:outputLink>&nbsp;&nbsp;
+                        <apex:outputLink value="#" onclick="blockme();initiateRollOver();" disabled="{!NOT(ISBLANK(selected_sow.Sync_Status__c))}" >&nbsp;&nbsp;|&nbsp;&nbsp;{!IF(ISBLANK(selected_sow.Sync_Status__c),'Initiate Rollover','Rollover Initiated')}</apex:outputLink>&nbsp;&nbsp;
                     </apex:outputPanel>
-                    <apex:actionFunction name="initiateRollOver" action="{!initiateRollOver}"  oncomplete="$.unblockUI();" reRender="initiateRollOverLink"/>
-                    <apex:actionFunction name="syncCampaigns" action="{!syncCampaigns}" oncomplete="$.unblockUI();location.reload();" reRender="relatedItems">
+                    <apex:actionFunction name="initiateRollOver" action="{!initiateRollOver}"  oncomplete="$.unblockUI();" reRender="initiateRollOverLink,sync_in_progress_panel,addCampaignButtons,editLinksPanel"/>
+                    <!-- <apex:actionFunction name="syncCampaigns" action="{!syncCampaigns}" oncomplete="$.unblockUI();location.reload();" reRender="relatedItems"> -->
+                    <apex:actionFunction name="syncCampaigns" action="{!syncCampaigns}" >
                             </apex:actionFunction>
                     <apex:actionFunction name="assignCampaignId" oncomplete="$.unblockUI();"><apex:param id="campaignIDSync" name="campaignIDSync" assignTo="{!campaignIDSync}" value="{!campaignIDSync}"/></apex:actionFunction>
                 </apex:actionRegion>
             </apex:outputPanel>
-            <apex:outputPanel rendered="{!IF(selected_sow.Sync_Status__c  == 'Sync In Progress' || selected_sow.Sync_Status_PFY__c == 'Sync In Progress' || selected_sow.Sync_Status__c  == 'Sync Requested' || selected_sow.Sync_Status_PFY__c == 'Sync Requested',true,false)}">
-                <br/>
-                <br/>
-                <apex:outputText style="color:red;font-weight: bold;" value="Sync in Progress. This SOW is READ ONLY. No updates allowed"/>
+
+
+                    
+
+            <apex:outputPanel >
+                <apex:actionRegion >
+                    <apex:actionPoller interval="5" reRender="sync_in_progress_panel,sync_all_campaigns_panel" action="{!getSOW}"/>
+                </apex:actionRegion>
+            </apex:outputPanel>
+            <apex:outputPanel id="sync_in_progress_panel">
+                <apex:actionRegion >
+
+                   <!--  <apex:outputPanel rendered="{!can_see_sync_completed_on_original_sow}" >
+
+                        
+                        <div class="alert alert-success" role="alert">Here is the <a href="/apex/Oblix_SOWMainDetail?sowId={!selected_sow.SOW_NFY__c}">link to your brought forward record</a></div>
+                        
+                    </apex:outputPanel> -->
+                    <apex:outputPanel rendered="{!can_see_rollover_initiated_message_on_original_sow}" >
+
+                        <br/>
+                        <br/>
+                        <apex:outputText style="color:red;font-weight: bold;" value="Rollover in Progress. This Scope of Work is currently Read Only."/>
+                    </apex:outputPanel>
+
+ 
+                    <apex:outputPanel rendered="{!can_see_sync_requested_on_bfwd_sow}" >
+
+                        <br/>
+                        <br/>
+                        <apex:outputText style="color:red;font-weight: bold;" value="Sync in progress, this may take a few minutes" />
+                    </apex:outputPanel>
+
+
+                    <apex:outputPanel rendered="{!can_see_sync_in_progress}" >
+
+                        <br/>
+                        <br/>
+                        <apex:outputText style="color:red;font-weight: bold;" value="Sync in Progress. This SOW is READ ONLY. No updates allowed"/>
+                        <!-- <apex:outputText styleClass="alert alert-danger" value="Rollover in Progress. This Scope of Work is currently Read Only" /> -->
+                    </apex:outputPanel>
+
+
+                    <apex:outputPanel rendered="{!can_see_sync_completed_on_bfwd_sow_staying_on_the_page}" >
+
+                        <br/>
+                        <br/>
+                        <div class="alert alert-success" role="alert">Sync Completed! Please <a href="/apex/Oblix_SOWMainDetail?sowId={!selected_sow.Id}">click here</a> to refresh the page with latest changes</div>
+                        <!-- <apex:outputText styleClass="alert alert-success" value="Sync Completed! Please refresh this page to see the latest changes" /> -->
+                    </apex:outputPanel>
+
+
+                    <!-- <apex:outputPanel rendered="{!can_see_link_to_cloned_record}" >
+
+                        <br/>
+                        <br/>
+                        <apex:outputText styleClass="alert alert-success" value="Here is the link to your live SOW:" />&nbsp;<a href="/apex/Oblix_SOWMainDetail?sowId={!selected_sow.Cloned_SOW__c}">{!selected_sow.Cloned_SOW__r.Name}</a>
+                    </apex:outputPanel> -->
+
+                </apex:actionRegion>    
             </apex:outputPanel>
             <!--            confirm delete sow modal-->
             <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="sowDelete" id="sowDelete">
@@ -68,40 +133,21 @@
         </apex:define>
 
         <apex:define name="top_right_panel">
-
-            <!-- Sync Process Notification modal-->
-            <apex:outputText rendered="{!is_going_through_rollover}">
-                <div class="modal-backdrop fade in syncProcessNotification"></div>
-                <div class="modal show syncProcessNotification" tabindex="-1" role="dialog" aria-labelledby="syncProcessNotification" id="syncProcessNotification">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content submit_for_approval_modal">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="$('.syncProcessNotification').addClass('hidden');"><span aria-hidden="true">&times;</span></button>
-                                <h1 class="modal_window_title" id="gridSystemModalLabel">Sync Process Notification</h1>
-                            </div>
-                            <div class="modal-body">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        Please note that you cannot modify the attributes or assets of the rolled-over campaigns. You will need to make the changes to the campaigns under the original SOW from previous financial year. You can then sync these changes forward. The only exception is for the campaign Projected Stage which can be edited and used for planning and calculation purposes. Syncing campaign will overwrite the Projected Stage.
-                                    </div>   
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <div class="modal_button_align">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="$('.syncProcessNotification').addClass('hidden');">Accept and continue</button>
-                                </div>
-                            </div>
-                        </div><!-- /.modal-content -->
-                    </div><!-- /.modal-dialog -->
-                </div><!-- /.modal -->
-            </apex:outputText>
-
             <apex:outputPanel id="top_right_panel">
                 <table class="SOW_header_value_summary">
                     <tr>
-                        <td class="header_approval_button" rowspan="3"><apex:outputPanel rendered="{!show_submit && isFXApprovedForFY}"><button type="button" class="btn btn-danger btn-xs create_SOW_button btn_check btn_submit_approval" data-toggle="modal"  data-target="#submitApproval">SUBMIT FOR APPROVAL</button></apex:outputPanel></td>
-                        <td class="header_approval_button" rowspan="3"><apex:outputPanel rendered="{!can_reject_sow}"><button type="button" class="btn btn-danger btn-xs two_button_header btn_return btn_send_back" data-toggle="modal"  data-target="#sendBack">RETURN SOW</button></apex:outputPanel></td>
-                        <td class="header_approval_button" rowspan="3"><apex:outputPanel rendered="{!can_approve_sow}"><button type="button" class="btn btn-danger btn-xs create_SOW_button btn_check btn_approve_sow"  data-toggle="modal"  data-target="#sowApprove">APPROVE SOW</button></apex:outputPanel></td>
+                        <td class="header_approval_button" rowspan="3">
+                            <apex:outputPanel rendered="{!show_submit && isFXApprovedForFY}">
+                                <apex:outputPanel rendered="{!can_submit_for_approval}">
+                                    <button type="button" class="btn btn-danger btn-xs create_SOW_button btn_check btn_submit_approval" data-toggle="modal"  data-target="#submitApproval">SUBMIT FOR APPROVAL</button>
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{!NOT(can_submit_for_approval)}">
+                                    <button type="button" disabled="disabled" class="btn btn-danger btn-xs create_SOW_button btn_check btn_submit_approval" data-toggle="modal"  data-target="#submitApproval" title="All campaigns must be synced before the Scope of Work can be approved.">SUBMIT FOR APPROVAL</button>
+                                </apex:outputPanel>
+                            </apex:outputPanel>
+                        </td>
+                        <td class="header_approval_button" rowspan="3"><apex:outputPanel rendered="{!can_reject_sow }"><button type="button" class="btn btn-danger btn-xs two_button_header btn_return btn_send_back" data-toggle="modal"  data-target="#sendBack">RETURN SOW</button></apex:outputPanel></td>
+                        <td class="header_approval_button" rowspan="3"><apex:outputPanel rendered="{!can_approve_sow }"><button type="button" class="btn btn-danger btn-xs create_SOW_button btn_check btn_approve_sow"  data-toggle="modal"  data-target="#sowApprove">APPROVE SOW</button></apex:outputPanel></td>
                         <td class="SOW_header_value_title">SOW total (incl. risk adjustment)</td>
                         <td class="SOW_header_value">
                             <h2>
@@ -230,20 +276,20 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h1 class="modal_window_title" id="gridSystemModalLabel">{!selected_sow.Name} has been approved</h1>
                         </div>
-                        <apex:outputPanel id="initialApprvalComplete" rendered="{!selected_sow.Initial_Approval_Complete__c}">
+                        <apex:outputPanel id="initialApprovalComplete" rendered="{!NOT(selected_sow.Initial_Approval_Complete__c)}">
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        !-- Initial Approval Complete Section --! {!selected_sow.Name} has been approved successfully by Unilever and Agency. An open for updates version will be available shortly to allow Unilever to reflect any changes during the year.
+                                    {!selected_sow.Name} has been approved successfully by Unilever and Agency. An open for updates version will be available shortly to allow Unilever to reflect any changes during the year.
                                     </div>   
                                 </div>
                             </div>
                         </apex:outputPanel>
-                        <apex:outputPanel id="initialApprvalNotComplete" rendered="{!NOT(selected_sow.Initial_Approval_Complete__c)}">
+                        <apex:outputPanel id="initialApprovalNotComplete" rendered="{!selected_sow.Initial_Approval_Complete__c}">
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        !-- Initial Approval Not Complete Section --! {!selected_sow.Name} has been approved successfully by Unilever and Agency. An open for updates version will be available shortly to allow Unilever to reflect any changes during the year.
+                                        Scope of Work {!selected_sow.Name} is now finalised. This is the final version for the year approved by Unilever and Agency.
                                     </div>   
                                 </div>
                             </div>
@@ -299,7 +345,8 @@
                         <div class="modal-footer">
                             <div class="modal_button_align">
                                 <button type="button" class="btn btn_cross btn_cancel" data-dismiss="modal">CANCEL</button>
-                                <button type="button" class="btn btn-danger btn_check btn_yes_delete" html-data-dismiss="modal" onclick="blockme();syncCampaigns();" oncomplete="$.unblockUI();" >SYNC</button>
+                                <apex:commandButton styleClass="btn btn-danger btn_check btn_yes_delete" action="{!syncCampaigns}" value="SYNC"  />
+                                <!-- <button type="button" class="btn btn-danger btn_check btn_yes_delete" html-data-dismiss="modal" onclick="blockme();syncCampaigns();" oncomplete="$.unblockUI();" >SYNC</button> -->
                             </div>
                         </div>
                     </div><!-- /.modal-content -->
@@ -415,13 +462,17 @@
                     
                     
                     <!--a class="btn btn-danger btn-xs btn_check pull-right btn_sync_campaign" href="#">Sync All Campaigns</a-->
-                    <apex:outputPanel rendered="{!can_manage_campaign}"><a class="btn btn-primary btn-xs pull-right btn_plus btn_add_campaign" href="{!$Page.Oblix_CampaignCreate + '?sowId=' + selected_sow.Id}">ADD CAMPAIGN</a></apex:outputPanel>
-                    <apex:outputPanel rendered="{!can_manage_campaign}"><a class="btn btn-primary btn-xs pull-right btn_plus btn_add_non_campaign" href="{!$Page.Oblix_SOWNonCampaignCreate + '?sowId=' + selected_sow.Id}">ADD NON-CAMPAIGN</a></apex:outputPanel>
-                    <apex:actionRegion >
-                        <apex:outputPanel rendered="{!IF(can_edit && shouldSyncAllCampaigns,true,false)}">
-                            <apex:outputLink value="#" styleClass="btn btn-danger btn-xs btn_sync pull-right btn_sync_campaign" onclick="" html-data-toggle="modal"  html-data-target="#syncAllCampaigns">Sync All Campaigns</apex:outputLink>
-                        </apex:outputPanel>
-                    </apex:actionRegion>
+                    <apex:outputPanel id="addCampaignButtons">
+                        <apex:outputPanel rendered="{!can_manage_campaign && NOT(can_see_sync_requested_on_bfwd_sow || can_see_sync_in_progress || can_see_rollover_initiated_message_on_original_sow)}"><a class="btn btn-primary btn-xs pull-right btn_plus btn_add_campaign" href="{!$Page.Oblix_CampaignCreate + '?sowId=' + selected_sow.Id}">ADD CAMPAIGN</a></apex:outputPanel>
+                        <apex:outputPanel rendered="{!can_manage_campaign && NOT(can_see_sync_requested_on_bfwd_sow || can_see_sync_in_progress || can_see_rollover_initiated_message_on_original_sow)}"><a class="btn btn-primary btn-xs pull-right btn_plus btn_add_non_campaign" href="{!$Page.Oblix_SOWNonCampaignCreate + '?sowId=' + selected_sow.Id}">ADD NON-CAMPAIGN</a></apex:outputPanel>
+                    </apex:outputPanel>
+                    <apex:outputPanel id="sync_all_campaigns_panel">
+                        <apex:actionRegion >
+                            <apex:outputPanel rendered="{!IF(can_edit && shouldSyncAllCampaigns,true,false)}" >
+                                <apex:outputLink value="#" styleClass="btn btn-danger btn-xs btn_sync pull-right btn_sync_campaign" onclick="" html-data-toggle="modal"  html-data-target="#syncAllCampaigns">Sync All Campaigns</apex:outputLink>
+                            </apex:outputPanel>
+                        </apex:actionRegion>
+                    </apex:outputPanel>
                 </ul>
             </div>
             <!--            Welcome message to start building SOW -->
@@ -578,7 +629,7 @@
                             <div class="{!IF(uploadedAtt=='true', 'tab-pane active','tab-pane')}" id="blue">
                                 <apex:outputPanel >
                                     <apex:actionRegion >
-                                        <apex:inputFile value="{!pageAttachment.body}" filename="{!pageAttachment.name}" id="file" styleclass="v3 add_attachment_input" />
+                                        <apex:inputFile value="{!pageAttachment.body}" filename="{!pageAttachment.name}" id="file" styleclass="v3 add_attachment_input" contentType="{!pageAttachment.ContentType}"/>
                                     </apex:actionRegion>
                                         <apex:actionRegion >
                                         <apex:commandButton styleClass="btn btn-primary btn_plus btn_asset_add" action="{!uploadAttachment}" value="ADD" rerender="" rendered="{!IF(can_add_attachment,true,false)}"></apex:commandButton>
@@ -616,7 +667,7 @@
                                                         <td style="display: none;"></td>
                                                         <td>
                                                             <apex:actionRegion >
-                                                                <apex:outputPanel rendered="{!IF(can_delete_attachment || eachAttachment.OwnerId == $User.Id,true,false)}">
+                                                                <apex:outputPanel rendered="{!IF(isAdmin || can_delete_attachment && eachAttachment.OwnerId == $User.Id,true,false)}">
                                                                     <apex:outputLink onclick="assignP('{!eachAttachment.Id}');" value="#" styleClass="attachment_item"  html-data-toggle="modal"  html-data-target="#attDelete">&nbsp;
                                                                         
                                                                     </apex:outputLink>

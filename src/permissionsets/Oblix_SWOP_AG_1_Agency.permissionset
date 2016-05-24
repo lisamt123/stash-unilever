@@ -9,6 +9,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Oblix_AssetHandlerLogic</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Oblix_AssetHandler_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -142,6 +146,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Oblix_SOWNonCampaignCreateCtrl_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Oblix_SOWNonCampaignCreateCtrl_Test2</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -335,6 +343,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Marketing_Basics__c.Hourly_Rate_or_FTE__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Marketing_Basics__c.No_of_Hours_Required__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -456,6 +469,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_SOW__c.BB_or_BD__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Marketing_SOW__c.B_Fwd_Campaign_count__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -596,6 +614,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_SOW__c.Percentage_of_Total_Fee_Non_Campaign__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Marketing_SOW__c.Record_Locked_Sync__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -990,6 +1013,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Oblix_Project_Assets__c.Enforce_Trigger_Update__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Oblix_Project_Assets__c.FULL_Description__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1036,7 +1064,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Oblix_Project_Assets__c.Sync_Step__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -1190,7 +1218,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Enforce_Trigger_Update_Assets__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Oblix_SOW_Projects__c.Enforce_Trigger_Update__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Fees_Outstanding_between_CFY_PFY__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1220,6 +1258,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Fees_Total_PFY__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Oblix_SOW_Projects__c.Final_release__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1236,6 +1279,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Oblix_SOW_Projects__c.Innovation_Projects__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Is_B_Fwd_Campaign__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1435,6 +1483,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Record_Locked_Sync__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Oblix_SOW_Projects__c.Region__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1501,7 +1554,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Oblix_SOW_Projects__c.Sync_Step__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -1685,7 +1738,7 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>Oblix_SOWChatterFeedWrapper</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Oblix_SOWCreate</apexPage>

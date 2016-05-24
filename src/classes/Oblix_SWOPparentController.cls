@@ -63,7 +63,20 @@ public with sharing virtual class Oblix_SWOPparentController {
     //Projected stages chevron should be editable. Above does not apply if that campaign is cloned.
     public Boolean is_NFY_campaign_in_the_middle_of_rollover {
         get {
-            return selected_project.Campaign_PFY__c <> NULL && selected_project.Campaign_PFY__r.Financial_Year__r.SOW_Status__c == Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES;
+            return selected_project.Campaign_PFY__c <> NULL && selected_project.Campaign_PFY__r.Financial_Year__r.SOW_Status__c != Oblix_Utils.SOW_STATUS_FINALISED;
+        }
+    }
+
+    public Boolean can_see_advanced_links_during_rollover {
+        get {
+            return !is_NFY_campaign_in_the_middle_of_rollover || 
+                    (
+                        is_NFY_campaign_in_the_middle_of_rollover && 
+                        (
+                            Oblix_PermissionHandler.isSystemAdmin() || 
+                            Oblix_PermissionHandler.hasSuperUserpermissionSet()
+                        )
+                    ); 
         }
     }
 
