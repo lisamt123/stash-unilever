@@ -66,6 +66,11 @@
         <fields>TASK.LAST_UPDATE</fields>
         <relatedList>RelatedHistoryList</relatedList>
     </relatedLists>
+	<relatedLists>
+        <fields>NAME</fields>
+        <relatedList>IPM_Project__c.IPM_Cluster__c</relatedList>
+    </relatedLists>
+    <relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
     <showInteractionLogPanel>false</showInteractionLogPanel>

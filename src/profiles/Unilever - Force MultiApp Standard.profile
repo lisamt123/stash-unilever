@@ -20620,7 +20620,7 @@
         <layout>IdeaTheme-Idea Theme Layout</layout>
     </layoutAssignments>
 	<layoutAssignments>
-        <layout>IPM_Clusters__c-IPM_Clusters_Layout</layout>
+        <layout>IPM_Clusters__c-IPM Project Clusters Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Lead-Lead Layout</layout>
