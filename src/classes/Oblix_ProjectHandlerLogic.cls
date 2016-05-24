@@ -27,10 +27,15 @@ public with sharing class Oblix_ProjectHandlerLogic {
                     these maps are then used to check overall percentage and total splits
                     as well as other fields required to be adjusted
     ********************************************************************************/
-    public static void retrieveCampaignForAdjustment(List<Oblix_SOW_Projects__c> list_projects){
+    public static void retrieveCampaignForAdjustment(List<Oblix_SOW_Projects__c> list_projects, Boolean is_new){
 
         map_campaign_id_campaign_for_update = new Map<Id, Oblix_SOW_Projects__c>();
         //set_campaign_ids_with_related_splits_not_adding_up = new Set<Id>();
+        Map<Id, Oblix_SOW_Projects__c> map_original_campaign;
+
+        if (!is_new){
+            map_original_campaign = new Map<Id, Oblix_SOW_Projects__c>(list_projects);
+        }
 
         //Decimal total_percentage;
         for (Oblix_SOW_Projects__c campaign : [SELECT Financial_Year__c, Financial_Year__r.Financial_Year__c, Brand_Led_Growth__c, Project_Scale_1__c, Project_Scale_2__c, Campaign_Idea__c,
@@ -40,6 +45,9 @@ public with sharing class Oblix_ProjectHandlerLogic {
             , (SELECT Location__c, Asset_Picklist__c, Asset_name__c, Quantity__c, Sub_Category__c, Asset_Score__c, Asset_Type__c FROM Agency_Project_Assets__r) 
             FROM Oblix_SOW_Projects__c WHERE ID in :list_projects]){
 
+            if (!is_new){
+                setProjectBusinessDriverScoreValues(campaign,map_original_campaign);
+            }
 
             // set campaign summary            
             adjustCampaignHubSummary(campaign);
@@ -76,6 +84,20 @@ public with sharing class Oblix_ProjectHandlerLogic {
 
     }
 
+    private static void setProjectBusinessDriverScoreValues(Oblix_SOW_Projects__c campaign_to_adjust, Map<Id,Oblix_SOW_Projects__c> map_projects_with_new_values){
+
+        if (NULL != map_projects_with_new_values && map_projects_with_new_values.containsKey(campaign_to_adjust.Id) 
+            && NULL != map_projects_with_new_values.get(campaign_to_adjust.Id)){
+
+            Oblix_SOW_Projects__c original_project = map_projects_with_new_values.get(campaign_to_adjust.Id);
+
+            campaign_to_adjust.Project_Scale_1__c = original_project.Project_Scale_1__c;
+            campaign_to_adjust.Project_Scale_2__c = original_project.Project_Scale_2__c;
+            campaign_to_adjust.Campaign_Idea__c = original_project.Campaign_Idea__c;
+            campaign_to_adjust.Brand_Led_Growth__c = original_project.Brand_Led_Growth__c;     
+        }
+    
+    }
 
     /*******************************************************************************
     * @author       Execloud ©

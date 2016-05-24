@@ -2,7 +2,7 @@
 public with sharing class Oblix_SOWRollOverLogic_Test {
 
 	private static List<Asset_Scoring__c> list_of_asset_scoring;
-    private static user admin_super_user_2;
+    //private static user admin_super_user_2;
 	private static user admin_super_user;
 	private static user qa1_user;
 	//private static user super_user;
@@ -10,7 +10,7 @@ public with sharing class Oblix_SOWRollOverLogic_Test {
 	private static void initialiseTestClass(){
 
 		admin_super_user = Oblix_TestUtils.createAdminSuperUser();
-        admin_super_user_2 = Oblix_TestUtils.createTestUser();
+        //admin_super_user_2 = Oblix_TestUtils.createTestUser();
         System.runAs(admin_super_user) {
 
 
