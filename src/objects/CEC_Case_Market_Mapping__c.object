@@ -522,8 +522,12 @@
     </listViews>
     <listViews>
         <fullName>CEC_Middle_Americas_Queue_CEC_Case_Market_Mapping</fullName>
+        <columns>NAME</columns>
+        <columns>DefaultAccountOwnerId__c</columns>
+        <columns>CaseOrigin__c</columns>
         <filterScope>Queue</filterScope>
         <label>CEC Middle Americas Queue</label>
+        <language>en_US</language>
         <queue>CEC_Middle_Americas_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -580,8 +584,12 @@
     </listViews>
     <listViews>
         <fullName>CEC_Southern_Cone_Queue_CEC_Case_Market_Mapping</fullName>
+        <columns>NAME</columns>
+        <columns>DefaultAccountOwnerId__c</columns>
+        <columns>CaseOrigin__c</columns>
         <filterScope>Queue</filterScope>
         <label>CEC Southern Cone Queue</label>
+        <language>en_US</language>
         <queue>CEC_Southern_Cone_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>

@@ -17,12 +17,12 @@ public with sharing class Core_NC_NewsCenterControllerHelper {
         DateTime dt;
             dt=System.now().addDays(-Integer.valueof(CORE_NEWS_ARTICLE__c.getinstance('GlobalNewsDaysNumber').Text_Value__c));
         if(NewsType=='GlobalNews'){
-            lstNews=[SELECT Id,Comment_Count__c,CreatedDate,Like_Count_RSF__c,Name,Title__c,News_Article_Topics__c,News_Body__c,Sub_Title__c,Site_Name__c,News_Publish_Date__c FROM News_Article__c Where News_Publish_Date__c >:dt and News_Publish_Date__c<=:System.now() and Site_Type__c='News Centre' ORDER BY News_Publish_Date__c DESC];
+            lstNews=[SELECT Id,Comment_Count__c,CreatedDate,Like_Count_RSF__c,Name,Title__c,News_Article_Topics__c,News_Body__c,Sub_Title__c,Site_Name__c,News_Publish_Date__c FROM News_Article__c Where News_Publish_Date__c >:dt and News_Publish_Date__c<=:System.now() and Site_Type__c='News Centre' and Archived__c=false and Hidden__c=false and Video_Article__c=false ORDER BY News_Publish_Date__c DESC];
         }else if(NewsType=='PaulsBlog'){
-            lstNews=[SELECT Id,Comment_Count__c,CreatedDate,Like_Count_RSF__c,Name,Title__c,News_Article_Topics__c,News_Body__c,Sub_Title__c,Site_Name__c,News_Publish_Date__c FROM News_Article__c Where News_Publish_Date__c >:dt and News_Publish_Date__c<=:System.now() and Site_Type__c='Paul\'s Blog' ORDER BY News_Publish_Date__c DESC];
+            lstNews=[SELECT Id,Comment_Count__c,CreatedDate,Like_Count_RSF__c,Name,Title__c,News_Article_Topics__c,News_Body__c,Sub_Title__c,Site_Name__c,News_Publish_Date__c FROM News_Article__c Where News_Publish_Date__c >:dt and News_Publish_Date__c<=:System.now() and Site_Type__c='Paul\'s Blog' and Archived__c=false and Hidden__c=false and Video_Article__c=false ORDER BY News_Publish_Date__c DESC];
         } else if(NewsType=='MyNews'){
             User usr=[SELECT Function__c,MCO__c FROM User where id=:Userinfo.getuserId()];    
-            lstNews=[SELECT Id,Comment_Count__c,CreatedDate,Like_Count_RSF__c,Name,Title__c,News_Article_Topics__c,News_Body__c,Sub_Title__c,Site_Name__c,News_Publish_Date__c FROM News_Article__c Where News_Publish_Date__c >:dt and News_Publish_Date__c<=:System.now() and (Site_Name__c =: usr.Function__c or Site_Name__c =: usr.MCO__c) ORDER BY News_Publish_Date__c DESC];
+            lstNews=[SELECT Id,Comment_Count__c,CreatedDate,Like_Count_RSF__c,Name,Title__c,News_Article_Topics__c,News_Body__c,Sub_Title__c,Site_Name__c,News_Publish_Date__c FROM News_Article__c Where News_Publish_Date__c >:dt and News_Publish_Date__c<=:System.now() and (Site_Name__c =: usr.Function__c or Site_Name__c =: usr.MCO__c) and Archived__c=false and Hidden__c=false and Video_Article__c=false ORDER BY News_Publish_Date__c DESC];
         }
         return getWrapperData(lstNews);
     }
@@ -38,15 +38,15 @@ public with sharing class Core_NC_NewsCenterControllerHelper {
         DateTime dt;
             dt=System.now().addDays(-Integer.valueof(CORE_NEWS_ARTICLE__c.getinstance('TrendingNewsDaysNumber').Text_Value__c));
         if(NewsType=='GlobalNews'){
-            if(SortType=='View'){ lstNews=[SELECT Id,Comment_Count__c,CreatedDate,Like_Count_RSF__c,Name,Title__c,News_Article_Topics__c,News_Body__c,Sub_Title__c,Site_Name__c,News_Publish_Date__c FROM News_Article__c Where News_Publish_Date__c >:dt and News_Publish_Date__c<=:System.now() and Site_Type__c='News Centre' and View_Count__c>0 ORDER BY View_Count__c DESC,News_Publish_Date__c DESC];
-            } else if(SortType=='Like'){ lstNews=[SELECT Id,Comment_Count__c,CreatedDate,Like_Count_RSF__c,Name,Title__c,News_Article_Topics__c,News_Body__c,Sub_Title__c,Site_Name__c,News_Publish_Date__c FROM News_Article__c Where News_Publish_Date__c >:dt and News_Publish_Date__c<=:System.now() and Site_Type__c='News Centre' and Like_Count_RSF__c>0 ORDER BY Like_Count_RSF__c DESC,News_Publish_Date__c DESC];
-            }else if(SortType=='Comment') lstNews=[SELECT Id,Comment_Count__c,CreatedDate,Like_Count_RSF__c,Name,Title__c,News_Article_Topics__c,News_Body__c,Sub_Title__c,Site_Name__c,News_Publish_Date__c FROM News_Article__c Where News_Publish_Date__c >:dt and News_Publish_Date__c<=:System.now() and Site_Type__c='News Centre' and Comment_Count__c>0 ORDER BY Comment_Count__c DESC,News_Publish_Date__c DESC];
+            if(SortType=='View'){ lstNews=[SELECT Id,Comment_Count__c,CreatedDate,Like_Count_RSF__c,Name,Title__c,News_Article_Topics__c,News_Body__c,Sub_Title__c,Site_Name__c,News_Publish_Date__c FROM News_Article__c Where News_Publish_Date__c >:dt and News_Publish_Date__c<=:System.now() and Site_Type__c='News Centre' and View_Count__c>0 and Archived__c=false and Hidden__c=false and Video_Article__c=false ORDER BY View_Count__c DESC,News_Publish_Date__c DESC];
+            } else if(SortType=='Like'){ lstNews=[SELECT Id,Comment_Count__c,CreatedDate,Like_Count_RSF__c,Name,Title__c,News_Article_Topics__c,News_Body__c,Sub_Title__c,Site_Name__c,News_Publish_Date__c FROM News_Article__c Where News_Publish_Date__c >:dt and News_Publish_Date__c<=:System.now() and Site_Type__c='News Centre' and Like_Count_RSF__c>0 and Archived__c=false and Hidden__c=false and Video_Article__c=false ORDER BY Like_Count_RSF__c DESC,News_Publish_Date__c DESC];
+            }else if(SortType=='Comment') lstNews=[SELECT Id,Comment_Count__c,CreatedDate,Like_Count_RSF__c,Name,Title__c,News_Article_Topics__c,News_Body__c,Sub_Title__c,Site_Name__c,News_Publish_Date__c FROM News_Article__c Where News_Publish_Date__c >:dt and News_Publish_Date__c<=:System.now() and Site_Type__c='News Centre' and Comment_Count__c>0 and Archived__c=false and Hidden__c=false and Video_Article__c=false ORDER BY Comment_Count__c DESC,News_Publish_Date__c DESC];
         }
         else if(NewsType=='MyNews'){
             User usr=[SELECT Function__c,MCO__c FROM User where id=:Userinfo.getuserId()];
-        if(SortType=='View') {lstNews=[SELECT Id,Comment_Count__c,CreatedDate,Like_Count_RSF__c,Name,Title__c,News_Article_Topics__c,News_Body__c,Sub_Title__c,Site_Name__c,News_Publish_Date__c FROM News_Article__c Where News_Publish_Date__c >:dt and News_Publish_Date__c<=:System.now() and (Site_Name__c =: usr.Function__c or Site_Name__c =: usr.MCO__c) and View_Count__c>0 ORDER BY View_Count__c DESC,News_Publish_Date__c DESC];
-        } else if(SortType=='Like'){ lstNews=[SELECT Id,Comment_Count__c,CreatedDate,Like_Count_RSF__c,Name,Title__c,News_Article_Topics__c,News_Body__c,Sub_Title__c,Site_Name__c,News_Publish_Date__c FROM News_Article__c Where News_Publish_Date__c >:dt and News_Publish_Date__c<=:System.now() and (Site_Name__c =: usr.Function__c or Site_Name__c =: usr.MCO__c) and Like_Count_RSF__c>0 ORDER BY Like_Count_RSF__c DESC,News_Publish_Date__c DESC];
-        }else if(SortType=='Comment') {lstNews=[SELECT Id,Comment_Count__c,CreatedDate,Like_Count_RSF__c,Name,Title__c,News_Article_Topics__c,News_Body__c,Sub_Title__c,Site_Name__c,News_Publish_Date__c FROM News_Article__c Where News_Publish_Date__c >:dt and News_Publish_Date__c<=:System.now() and (Site_Name__c =: usr.Function__c or Site_Name__c =: usr.MCO__c) and Comment_Count__c>0 ORDER BY Comment_Count__c DESC,News_Publish_Date__c DESC];
+        if(SortType=='View') {lstNews=[SELECT Id,Comment_Count__c,CreatedDate,Like_Count_RSF__c,Name,Title__c,News_Article_Topics__c,News_Body__c,Sub_Title__c,Site_Name__c,News_Publish_Date__c FROM News_Article__c Where News_Publish_Date__c >:dt and News_Publish_Date__c<=:System.now() and (Site_Name__c =: usr.Function__c or Site_Name__c =: usr.MCO__c) and View_Count__c>0 and Archived__c=false and Hidden__c=false and Video_Article__c=false ORDER BY View_Count__c DESC,News_Publish_Date__c DESC];
+        } else if(SortType=='Like'){ lstNews=[SELECT Id,Comment_Count__c,CreatedDate,Like_Count_RSF__c,Name,Title__c,News_Article_Topics__c,News_Body__c,Sub_Title__c,Site_Name__c,News_Publish_Date__c FROM News_Article__c Where News_Publish_Date__c >:dt and News_Publish_Date__c<=:System.now() and (Site_Name__c =: usr.Function__c or Site_Name__c =: usr.MCO__c) and Like_Count_RSF__c>0 and Archived__c=false and Hidden__c=false and Video_Article__c=false ORDER BY Like_Count_RSF__c DESC,News_Publish_Date__c DESC];
+        }else if(SortType=='Comment') {lstNews=[SELECT Id,Comment_Count__c,CreatedDate,Like_Count_RSF__c,Name,Title__c,News_Article_Topics__c,News_Body__c,Sub_Title__c,Site_Name__c,News_Publish_Date__c FROM News_Article__c Where News_Publish_Date__c >:dt and News_Publish_Date__c<=:System.now() and (Site_Name__c =: usr.Function__c or Site_Name__c =: usr.MCO__c) and Comment_Count__c>0 and Archived__c=false and Hidden__c=false and Video_Article__c=false ORDER BY Comment_Count__c DESC,News_Publish_Date__c DESC];
           }
         }
         return getWrapperData(lstNews);
@@ -81,7 +81,6 @@ public with sharing class Core_NC_NewsCenterControllerHelper {
     public static Integer putLikeForNews(String NewsId) {
         NewsArticleLike__c newsLike=new NewsArticleLike__c();
         newsLike.News_Article__c=NewsId;
-        //newsLike.CreatedById=Userinfo.getUserId();
         insert newsLike;
         Integer LikeCount=[SELECT count() FROM NewsArticleLike__c WHERE News_Article__c = :NewsId];
         return LikeCount;
@@ -109,7 +108,7 @@ public with sharing class Core_NC_NewsCenterControllerHelper {
         for(News_Article__c news:lstNews){
             Core_NC_NewsWrapperClass wrapper=new Core_NC_NewsWrapperClass();
             String strNewsBanner='';
-            wrapper.Name=news.Name;
+            wrapper.Name=news.Title__c;
             wrapper.PublishedDate=news.News_Publish_Date__c.format('d MMM yyyy');
             Id attachid;
             if(mapAttachment.get(news.Id)!=null) {attachid=mapAttachment.get(news.Id)[0];
@@ -139,7 +138,7 @@ public with sharing class Core_NC_NewsCenterControllerHelper {
         Core_NC_NewsDetailWrapperClass wrapper=new Core_NC_NewsDetailWrapperClass();
         String strNewsBanner='';
         Boolean bolDefaultImage=false;
-        wrapper.Name=news.Name;
+        wrapper.Name=news.Title__c;
         wrapper.PublishedDate=news.News_Publish_Date__c.format('d MMM yyyy');
         List<Attachment> lstAttachment=[SELECT Id FROM Attachment where parentId=:news.Id];
         List<Document> lstDocument;
@@ -167,7 +166,7 @@ public with sharing class Core_NC_NewsCenterControllerHelper {
             RelatedNewsArticle=strRelatedNews.split(',');
             for(string strId:RelatedNewsArticle) setNewsId.add(Id.valueof(strId));
         }
-        List<News_Article__c> lstNews=[SELECT Id,Comment_Count__c,CreatedDate,Like_Count_RSF__c,Name,Title__c,News_Body__c,News_Article_Topics__c,Sub_Title__c,Site_Name__c,Related_News_Article__c,News_Publish_Date__c FROM News_Article__c Where Id in:setNewsId];
+        List<News_Article__c> lstNews=[SELECT Id,Comment_Count__c,CreatedDate,Like_Count_RSF__c,Name,Title__c,News_Body__c,News_Article_Topics__c,Sub_Title__c,Site_Name__c,Related_News_Article__c,News_Publish_Date__c FROM News_Article__c Where Id in:setNewsId and Archived__c=false and Hidden__c=false and Video_Article__c=false ];
         wrapper.RelatedNewsDetail=getWrapperData(lstNews);
            wrapper.CarouselLimit=Integer.valueOf(CORE_NEWS_ARTICLE__c.getInstance('CarouselLimit').Text_Value__c);
         wrapper.SharepointURL=news.Sharepoint_URL__c;
@@ -204,7 +203,6 @@ public with sharing class Core_NC_NewsCenterControllerHelper {
             feedItemsToInsert.add(new FeedItem( Type = 'LinkPost', Body = FeedBody, ParentId =Userinfo.getUserId(),
                                 LinkURL = NewsLink, Title = NewsTitle));
         }
-        //Insert FeedItem.
         if(!feedItemsToInsert.isEmpty()){
             Database.insert(feedItemsToInsert, false);
         }Success=true;
@@ -218,12 +216,12 @@ public with sharing class Core_NC_NewsCenterControllerHelper {
     */  
     public static String getGroupNames() {//String GroupName
        
-        List<CollaborationGroup> lstGroup=[SELECT Name FROM CollaborationGroup WHERE IsArchived = false];//Name LIKE :strGroupName and 
+        List<CollaborationGroup> lstGroup=[SELECT Name FROM CollaborationGroup WHERE IsArchived = false];
         String strGrp='';
         for(CollaborationGroup grp : lstGroup){  
             strGrp=strGrp+grp.Name+',';
         }
-        if(strGrp!=''&&strGrp!=null){ strGrp=strGrp.substring(0,strGrp.length()-1); //thestring.substring(0,thestring.length()-1);
+        if(strGrp!=''&&strGrp!=null){ strGrp=strGrp.substring(0,strGrp.length()-1); 
         }return strGrp;
     }
     
@@ -232,10 +230,24 @@ public with sharing class Core_NC_NewsCenterControllerHelper {
     * @param 
     * @return Core_NC_NewsGAWrapperClass 
     */ 
-    public static Core_NC_NewsGAWrapperClass getGAInfo() {//String GroupName
+    public static Core_NC_NewsGAWrapperClass getGAInfo() {
         Core_NC_NewsGAWrapperClass wrapper=new Core_NC_NewsGAWrapperClass();
         wrapper.UserId=Userinfo.getUserId();
             wrapper.GAId=CORE_NEWS_ARTICLE__c.getInstance('GoogleAnalyticsId').Text_Value__c;
         return wrapper;
+    }
+    
+     /*******************************************************************************************************
+    * @description This method used to get list of news article topic names
+    * @param 
+    * @return List<CORE_NEWS_ARTICLE__c>
+    */ 
+    public static List<String> getTopicNames() {
+        Set<String> newsArticleSet=new Set<String>();
+        newsArticleSet.add('Show All');
+        for(News_Article__c newsArticle: [SELECT News_Article_Topics__c FROM News_Article__c WHERE Archived__c=false and Hidden__c=false and Video_Article__c=false]){
+            newsArticleSet.add(newsArticle.News_Article_Topics__c);
+        }
+        return new List<String>(newsArticleSet);
     }
 }

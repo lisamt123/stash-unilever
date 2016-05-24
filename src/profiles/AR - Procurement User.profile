@@ -22962,6 +22962,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>News_Article__c.Hidden__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>News_Article__c.Image_URL__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -23054,6 +23059,11 @@
         <editable>false</editable>
         <field>News_Article__c.Title__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>News_Article__c.Video_Article__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
