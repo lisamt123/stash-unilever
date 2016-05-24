@@ -203,8 +203,8 @@ public with sharing class PBS_TrainingPlanDetailController_CC extends PBS_LMSBas
         String currentRecordType = learning.RecordType.DeveloperName;
         
         if(currentRecordType == PBS_LMSConstants_CC.RT_TASK){
-            //changed to PBS_TaskViewer_Test
-            lPR = Page.PBS_TaskViewer_Test;
+            //changed to PBS_TaskViewer
+            lPR = Page.PBS_TaskViewer;
             learningTarget = '_self';
         }else if(currentRecordType == PBS_LMSConstants_CC.RT_TRAINING_RESOURCE){
             //Not necessary to enforce CRUD/FLS here, this is just to determine how to handle the content no data is exposed to the user

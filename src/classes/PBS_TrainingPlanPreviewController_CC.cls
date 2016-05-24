@@ -132,7 +132,7 @@ public with sharing class PBS_TrainingPlanPreviewController_CC extends PBS_LMSBa
         if(PBS_LMSUtils_CC.getPackageNamespace() != null){
             namespace = PBS_LMSUtils_CC.getPackageNamespace();
         }
-        PageReference ref = new PageReference(PBS_LMSUtils_CC.updateURLCommunityPath('/apex/'+namespace+'PBS_TrainingPlanDetail_Test'));
+        PageReference ref = new PageReference(PBS_LMSUtils_CC.updateURLCommunityPath('/apex/'+namespace+'PBS_TrainingPlanDetail'));
         ref.getParameters().put('id',trainingPlanId);
         ref.setRedirect(true);
         return ref;

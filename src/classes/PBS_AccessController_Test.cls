@@ -98,6 +98,7 @@ private class PBS_AccessController_Test{
             errStr = 'Access control violation - Type: ' + e.getExceptionType() + ' Reason: '
                 + e.getExceptionReason() + ' Object: ' + e.getExceptionObject() + ' Field: '
                 + e.getExceptionField() + ' Text: ' + e.getText();
+                 throw new PBS_SFDCValidator_CC.SFDCValidationException(errStr);
         }
 
         PBS_SFDCAccessController_CC ac = new PBS_SFDCAccessController_CC(PBS_SFDCAccessController_CC.SharingMode.WITHOUT, PBS_SFDCAccessController_CC.OperationMode.ALL_OR_NONE);
@@ -109,6 +110,7 @@ private class PBS_AccessController_Test{
         } catch (Exception e) {
             // should fail - so all good
             errStr = e.getMessage();
+            
         }
 
         try {
@@ -117,6 +119,7 @@ private class PBS_AccessController_Test{
         } catch (Exception e) {
             // should fail - so all good
              errStr = e.getMessage();
+             
         }
 
         try {
@@ -133,6 +136,7 @@ private class PBS_AccessController_Test{
             errStr = 'Access control violation - Type: ' + e.getExceptionType() + ' Reason: '
                 + e.getExceptionReason() + ' Object: ' + e.getExceptionObject() + ' Field: '
                 + e.getExceptionField() + ' Text: ' + e.getText();
+           
         }
     }
 
@@ -337,6 +341,8 @@ private class PBS_AccessController_Test{
             errStr = 'Access control violation - Type: ' + e.getExceptionType() + ' Reason: '
                 + e.getExceptionReason() + ' Object: ' + e.getExceptionObject() + ' Field: '
                 + e.getExceptionField() + ' Text: ' + e.getText();
+                throw new PBS_SFDCValidator_CC.SFDCValidationException(errStr);
+               
         }
     }
 
@@ -350,6 +356,7 @@ private class PBS_AccessController_Test{
             errStr = 'Access control violation - Type: ' + e.getExceptionType() + ' Reason: '
                 + e.getExceptionReason() + ' Object: ' + e.getExceptionObject() + ' Field: '
                 + e.getExceptionField() + ' Text: ' + e.getText();
+                
         }
     }
 

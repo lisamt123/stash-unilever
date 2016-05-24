@@ -29,10 +29,10 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 @isTest
 public class PBS_LearningData_Test 
 {
-	public static final string dummy_description = 'dummy description'; // Added this to avoid duplication of string literal LastName
+    public static final string DUMMY_DESCRIPTION = 'dummy description'; // Added this to avoid duplication of string literal LastName
     
-    public static final string SelectOneQuestion = 'SelectOneQuestion';
-    public static final string SelectMultipleQuestion = 'SelectMultipleQuestion';
+    public static final string SELECTONEQUESTION = 'SelectOneQuestion';
+    public static final string SELECTMULTIPLEQUESTION = 'SelectMultipleQuestion';
         
     public static List<PBS_Learning__c> createTestLearning(Integer iNum, String recordType, Boolean bSyncProgress){
         List<PBS_Learning__c> lResult = new List<PBS_Learning__c>();
@@ -41,7 +41,7 @@ public class PBS_LearningData_Test
 
         for(Integer i = 0; i < iNum; i++){
             PBS_Learning__c olearning = new PBS_Learning__c();
-            olearning.Description__c = dummy_description;
+            olearning.Description__c = DUMMY_DESCRIPTION;
             olearning.Duration__c = PBS_UtilClass_Test.getRandomInteger(5, 200); //minutes
             olearning.Sync_progress__c = bSyncProgress;
             olearning.RecordTypeId = learningRT.get(0).Id;
@@ -71,7 +71,7 @@ public class PBS_LearningData_Test
 
         for(PBS_Learning__c ol : learnings){
             PBS_Quiz__c oquiz = new PBS_Quiz__c();
-            oquiz.Description__c = dummy_description;
+            oquiz.Description__c = DUMMY_DESCRIPTION;
             oquiz.Learning__c = ol.Id;
             oquiz.Max_Attempts__c = PBS_UtilClass_Test.getRandomInteger(0, 20);
             oquiz.Passing_Score__c = 70;
@@ -88,7 +88,7 @@ public class PBS_LearningData_Test
 
         for(PBS_Learning__c ol : learnings){
             PBS_Quiz__c oquiz = new PBS_Quiz__c();
-            oquiz.Description__c = dummy_description;
+            oquiz.Description__c = DUMMY_DESCRIPTION;
             oquiz.Learning__c = ol.Id;
             oquiz.Max_Attempts__c = PBS_UtilClass_Test.getRandomInteger(0, 20);
             oquiz.Passing_Score__c = (Decimal)params.get('Passing_Score__c');
@@ -105,7 +105,7 @@ public class PBS_LearningData_Test
         for(PBS_Quiz__c oquiz : lquiz){
             for(Integer i = 0; i < iNum; i++){
                 PBS_Question_Line__c oql = new PBS_Question_Line__c();
-                oql.Description__c = dummy_description;
+                oql.Description__c = DUMMY_DESCRIPTION;
                 oql.Order__c = i;
                 oql.Quiz__c = oquiz.Id;
 
@@ -138,7 +138,7 @@ public class PBS_LearningData_Test
                     oq.Correct_Number__c = PBS_UtilClass_Test.getRandomInteger(1, 100);
                 }
 
-                oq.Description__c = dummy_description;
+                oq.Description__c = DUMMY_DESCRIPTION;
                 oq.Description_RTA__c = 'dummy large description';
                 oq.Order__c = i;
                 oq.Question_Line__c = oql.Id;
@@ -152,21 +152,21 @@ public class PBS_LearningData_Test
 
         //handle select one & select multiple
         //iterate result maps and create answer sequence
-        List<PBS_Question__c> lselectone = mResult.get(SelectOneQuestion);
-        List<PBS_Question__c> lselectmultiple = mResult.get(SelectMultipleQuestion);
+        List<PBS_Question__c> lselectone = mResult.get(SELECTONEQUESTION);
+        List<PBS_Question__c> lselectmultiple = mResult.get(SELECTMULTIPLEQUESTION);
 
         if(lselectone != null && !lselectone.isEmpty()){
-            List<PBS_Answer_Sequence__c> aseq = createTestAnswerSequences(lselectone.size(), SelectOneQuestion);
+            List<PBS_Answer_Sequence__c> aseq = createTestAnswerSequences(lselectone.size(), SELECTONEQUESTION);
             Integer countSelOne = lselectone.size() - 1;
 
-            for(PBS_Question__c qst : mResult.get(SelectOneQuestion)){
+            for(PBS_Question__c qst : mResult.get(SELECTONEQUESTION)){
                 qst.Answer_Sequence__c = aseq.get(countSelOne).Id;
                 countSelOne--;
             }
         }
 
         if(lselectmultiple != null && !lselectmultiple.isEmpty()){
-            List<PBS_Answer_Sequence__c> aseqM = createTestAnswerSequences(lselectmultiple.size(), SelectMultipleQuestion);
+            List<PBS_Answer_Sequence__c> aseqM = createTestAnswerSequences(lselectmultiple.size(), SELECTMULTIPLEQUESTION);
             Integer countSelMult = lselectmultiple.size() - 1;
 
             for(PBS_Question__c qst : lselectmultiple){
@@ -216,11 +216,11 @@ public class PBS_LearningData_Test
                 lResultInt.add(oasi);
             }
 
-            if(qtype == SelectOneQuestion){
+            if(qtype == SELECTONEQUESTION){
                 lResultInt.get(PBS_UtilClass_Test.getRandomInteger(0, iNum)).Is_Correct_Answer__c = true;
             }
 
-            if(qtype == SelectMultipleQuestion){
+            if(qtype == SELECTMULTIPLEQUESTION){
                 for(Integer i = 0; i < PBS_UtilClass_Test.getRandomInteger(1, iNum); i++){
                     lResultInt.get(PBS_UtilClass_Test.getRandomInteger(0, iNum)).Is_Correct_Answer__c = true;
                 }
@@ -267,7 +267,7 @@ public class PBS_LearningData_Test
             }
         }
 
-        Set<String> typeTwo = new Set<String>{SelectOneQuestion, SelectMultipleQuestion};
+        Set<String> typeTwo = new Set<String>{SELECTONEQUESTION, SELECTMULTIPLEQUESTION};
         List<PBS_Question__c> lquestions2 = [select Id,
                                             Answer_Sequence__c,
                                             Correct_Boolean__c,
@@ -300,12 +300,12 @@ public class PBS_LearningData_Test
 
             for(PBS_Question__c q2: lquestions2){
                 PBS_Response__c response = new PBS_Response__c();
-                if(q2.Type__c == SelectOneQuestion){
+                if(q2.Type__c == SELECTONEQUESTION){
                     response.Response_Answer_Sequence_Label__c = mAnsSeqItem.get(q2.Answer_Sequence__c).get(0).Answer_Text__c;
                     response.Response_Answer_Sequence_Long__c = mAnsSeqItem.get(q2.Answer_Sequence__c).get(0).Item_Id__c;
                 }
 
-                if(q2.Type__c == SelectMultipleQuestion){
+                if(q2.Type__c == SELECTMULTIPLEQUESTION){
                     String labels = '';
                     String longs = '';
                     for(PBS_Answer_Sequence_Item__c oasi : mAnsSeqItem.get(q2.Answer_Sequence__c)){

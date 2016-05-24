@@ -191,7 +191,9 @@ public with sharing class PBS_LMSUtils_CC{
             if(networkCount > 0){
                 return true;
             }
-        }catch(Exception e){}
+        }catch(Exception e){
+        System.debug(e.getMessage());
+        }
         return false;
     }
 
@@ -245,6 +247,7 @@ public with sharing class PBS_LMSUtils_CC{
         String vfDomain = '.visual.force.com';
         Boolean isVFContext = host.contains(vfDomain)?true:false;
         String contextIndexOf = isVFContext==true?vfDomain:'.';
+        //String contextIndexOf = System.assertEquals(true, isVFContext, vfDomain:'.');
         String instance = host.substring(0,host.indexOf(contextIndexOf));
         if(isVFContext){
             String vfNameSpace = getVisualforceNamespace();

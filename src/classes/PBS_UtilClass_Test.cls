@@ -29,7 +29,8 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 @isTest
 public class PBS_UtilClass_Test {
     //String variables to avoid code containing duplicate String literals
-    public Static final String enUS = 'en_US';
+    public static final String EN_US = 'en_US';
+    
     public static String getTimeStamp(){
         DateTime dtimenow = DateTime.now();
         String ts = dtimenow.second()+''+dtimenow.millisecond();
@@ -95,10 +96,10 @@ public class PBS_UtilClass_Test {
             oUser.CommunityNickname = getTimeStamp()+''+i;
             oUser.Alias = 't'+getTimeStamp()+''+i;
             oUser.TimeZoneSidKey = 'America/El_Salvador';
-            oUser.LocaleSidKey = enUS;
+            oUser.LocaleSidKey = EN_US;
             oUser.EmailEncodingKey = 'UTF-8';
             oUser.ProfileId = oProfile.Id;
-            oUser.LanguageLocaleKey = enUS;
+            oUser.LanguageLocaleKey = EN_US;
             oUser.IsActive = true;
 
             lResults.add(oUser);
@@ -130,7 +131,7 @@ public class PBS_UtilClass_Test {
     }
 
     private static String getLocalizedProfileName(String profileName){
-        if(UserInfo.getLanguage() == enUS){
+        if(UserInfo.getLanguage() == EN_US){
             return profileName;
         }else if(profileName == 'System Administrator'){
             return System.Label.ALMS_Sys_Admin_Profile;
@@ -156,8 +157,8 @@ public class PBS_UtilClass_Test {
             Database.insert(r);
 
             userWithRole = new User(alias = 'rl'+getTimeStamp(), email='userwithrole'+getTimeStamp()+'@roletest1.com', userroleid = r.id,
-                                emailencodingkey='UTF-8', lastname='Testing', languagelocalekey=enUS,
-                                localesidkey=enUS, profileid = UserInfo.getProfileId(),
+                                emailencodingkey='UTF-8', lastname='Testing', languagelocalekey=EN_US,
+                                localesidkey=EN_US, profileid = UserInfo.getProfileId(),
                                 timezonesidkey='America/Los_Angeles', username='userwithrole'+getTimeStamp()+'@testorg.com');
         } else {
             userWithRole = new User(Id = UserInfo.getUserId(), UserRoleId = UserInfo.getUserRoleId());
@@ -181,8 +182,8 @@ public class PBS_UtilClass_Test {
 
         String testemail = 'puser'+getTimeStamp()+'@amamama.com';
         User pu = new User(profileId = p.id, username = testemail, email = testemail,
-                           emailencodingkey = 'UTF-8', localesidkey = enUS,
-                           languagelocalekey = enUS, timezonesidkey = 'America/Los_Angeles',
+                           emailencodingkey = 'UTF-8', localesidkey = EN_US,
+                           languagelocalekey = EN_US, timezonesidkey = 'America/Los_Angeles',
                            alias='cspu', lastname='lastname', contactId = c.id);
 
         Database.insert(pu);

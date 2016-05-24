@@ -29,16 +29,16 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 @isTest
 public class PBS_TrainingPlans_Test {
     // String variables to avoid code containing duplicate String literals
-    public Static final string systemAdministrator = 'System Administrator';
-    public Static final string LMSAdmin = 'LMS_Admin';
+    public Static final string SYSTEMADMINISTRATOR = 'System Administrator';
+    public Static final string LMS_ADMIN = 'LMS_Admin';
     static testmethod void testOptionalSectionsValidations(){
 
         //Create admin users
-        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,systemAdministrator);
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,SYSTEMADMINISTRATOR);
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,LMSAdmin);
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,LMS_ADMIN);
         }
 
         PBS_TrainingPlanData_Test.createSampleData();
@@ -66,12 +66,12 @@ public class PBS_TrainingPlans_Test {
     static testmethod void testUpsertTrainingPlanAssignment(){
 
         //Create admin users
-        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,systemAdministrator);
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,SYSTEMADMINISTRATOR);
         List<User> lmsUsers = PBS_UtilClass_Test.createUsers(5,'Standard User');
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,LMSAdmin);
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,LMS_ADMIN);
             PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
         }
 
@@ -124,12 +124,12 @@ public class PBS_TrainingPlans_Test {
     static testmethod void testUpsertTrainingPlanAssignmentWithAchievements(){
 
         //Create admin users
-        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,systemAdministrator);
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,SYSTEMADMINISTRATOR);
         List<User> lmsUsers = PBS_UtilClass_Test.createUsers(5,'Standard User');
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,LMSAdmin);
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,LMS_ADMIN);
             PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
         }
 
@@ -188,12 +188,12 @@ public class PBS_TrainingPlans_Test {
     static testmethod void testUpsertAndDeleteTrainingPlanAssignment(){
 
         //Create admin users
-        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,systemAdministrator);
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,SYSTEMADMINISTRATOR);
         List<User> lmsUsers = PBS_UtilClass_Test.createUsers(5,'Standard User');
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,LMSAdmin);
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,LMS_ADMIN);
             PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
         }
 
@@ -263,12 +263,12 @@ public class PBS_TrainingPlans_Test {
     static testmethod void testTPlansWithSharedLearningAssignments(){
 
         //Create admin users
-        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,systemAdministrator);
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,SYSTEMADMINISTRATOR);
         List<User> lmsUsers = PBS_UtilClass_Test.createUsers(3,'Standard User');
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,LMSAdmin);
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,LMS_ADMIN);
             PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
         }
 

@@ -31,7 +31,13 @@ public with sharing class PBS_LMSExport_CC{
     private Set<Id> trainingPlanIds;
     private Set<Id> trainingTrackIds;
     private PBS_LMSExport_CC.WithoutSharingOps wsops;
-
+    
+    private static final string description = 'description'; // Added this to avoid duplication of string literal LastName
+    private static final string Order = 'order';
+    private static final string Type = 'type';
+    private static final string content = 'content';
+    
+    
     //Learning aux collections
     private Map<Id,PBS_Learning__c> learningsMap;
     private Map<String,List<Id>> learningIdsByType;
@@ -47,7 +53,7 @@ public with sharing class PBS_LMSExport_CC{
     //Export mappings
     private Map<String,String> quizMappings = new Map<String,String>{
         'Name' => 'name'
-        ,'Description__c' => 'description'
+        ,'Description__c' => description
         ,'Passing_Score__c' => 'passing-score'
         ,'Max_Attempts__c' => 'max-attempts'
         ,'Delete_Responses_On_Submission__c' => 'delete-responses-on-submission'
@@ -57,19 +63,19 @@ public with sharing class PBS_LMSExport_CC{
         'Name' => 'name'
         ,'Duration__c' => 'duration'
         ,'Sync_progress__c' => 'sync-progress'
-        ,'Description__c' => 'description'
+        ,'Description__c' => description
     };
 
     Map<String,String> questionLineMappings = new Map<String,String>{
         'Name' => 'name'
-        ,'Order__c' => 'order'
-        ,'Description__c' => 'description'
+        ,'Order__c' => Order
+        ,'Description__c' => description
     };
 
     Map<String,String> questionMappings = new Map<String,String>{
-        'Order__c' => 'order'
-        ,'Description__c' => 'description'
-        ,'Type__c' => 'type'
+        'Order__c' => Order
+        ,'Description__c' => description
+        ,'Type__c' => Type
         ,'Correct_Boolean__c' => 'correct-boolean'
         ,'Correct_Number__c' => 'correct-number'
         ,'Description_RTA__c' => 'description-rta'
@@ -81,7 +87,7 @@ public with sharing class PBS_LMSExport_CC{
         ,'External_Resource_URL__c' => 'resource-url'
         ,'External_Resource_Target__c' => 'resource-target'
         ,'Add_training_parameters_to_URL__c' => 'training-params-url'
-        ,'Description__c' => 'description'
+        ,'Description__c' => description
         ,'Description_RTA__c' => 'description-rta'
         ,'Enable_Image_Upload__c' => 'enable-image-upload'
         ,'Disable_Undo__c' => 'disable-undo'
@@ -92,12 +98,12 @@ public with sharing class PBS_LMSExport_CC{
         'Name' => 'name'
         ,'Resource_URL__c' => 'resource-url'
         ,'Add_training_parameters_to_URL__c' => 'training-params-url'
-        ,'Description__c' => 'description'
+        ,'Description__c' => description
         ,'Display_in_Iframe__c' => 'display-in-iframe'
     };
 
     Map<String,String> answerSequenceMappings = new Map<String,String>{
-        'Order__c' => 'order'
+        'Order__c' => Order
         ,'Answer_Text__c' => 'answer-text'
         ,'Item_Id__c' => 'answer-id'
         ,'Is_Correct_Answer__c' => 'is-correct-answer'
@@ -105,7 +111,7 @@ public with sharing class PBS_LMSExport_CC{
 
     Map<String,String> achievementMappings = new Map<String,String>{
         'Name' => 'name'
-        ,'Type__c' => 'type'
+        ,'Type__c' => Type
         ,'Acquired_Image__c' => 'acquired-image'
         ,'Eligible_Image__c' => 'eligible-image'
         ,'Hidden__c' => 'hidden'
@@ -118,7 +124,7 @@ public with sharing class PBS_LMSExport_CC{
 
     Map<String,String> trainingPlanMappings = new Map<String,String>{
         'Name' => 'name'
-        ,'Description__c' => 'description'
+        ,'Description__c' => description
         ,'Status__c' => 'status'
         ,'Intro_Video_URL__c' => 'intro-video-url'
         ,'Background_Image_URL__c' => 'background-image-url'
@@ -138,34 +144,34 @@ public with sharing class PBS_LMSExport_CC{
 
     Map<String,String> trainingTrackMappings = new Map<String,String>{
         'Name' => 'name'
-        ,'Description__c' => 'description'
+        ,'Description__c' => description
         ,'Status__c' => 'status'
         ,'Background_Color__c' => 'background-color'
         ,'Background_Image_URL__c' => 'background-image-url'
         ,'Text_Color__c' => 'text-color'
-        ,'Order__c' => 'order'
+        ,'Order__c' => Order
         ,'Enable_all_external_accounts__c' => 'enable-all-external-accounts'
         ,'$DATE_New_Until__c' => 'new-until'
     };
 
     Map<String,String> trainingTrackLevelMappings = new Map<String,String>{
         'Name' => 'name'
-        ,'Description__c' => 'description'
-        ,'Order__c' => 'order'
+        ,'Description__c' => description
+        ,'Order__c' => Order
     };
 
     Map<String,String> trainingTrackLevelItemMappings = new Map<String,String>{
-        'Order__c' => 'order'
+        'Order__c' => Order
     };
 
     Map<String,String> trainingPlanSectionMappings = new Map<String,String>{
         'Name' => 'name'
-        ,'Order__c' => 'order'
+        ,'Order__c' => Order
         ,'Optional__c' => 'optional'
     };
 
     Map<String,String> trainingPlanSectionItemMappings = new Map<String,String>{
-        'Order__c' => 'order',
+        'Order__c' => Order,
         'Optional__c' => 'optional'
     };
 
@@ -179,12 +185,12 @@ public with sharing class PBS_LMSExport_CC{
         ,'Logo__c' => 'logo'
         ,'Text_Color__c' => 'text-color'
         ,'Hide_From_Catalog_Home__c' => 'hide-from-catalog-home'
-        ,'Order__c' => 'order'
+        ,'Order__c' => Order
         ,'Is_Internal__c' => 'is-internal'
     };
 
     Map<String,String> trainingPlanCategoryMappings = new Map<String,String>{
-        'Order__c' => 'order'
+        'Order__c' => Order
     };
 
     Map<String,String> learningRTFieldMappings = new Map<String,String>{
@@ -439,7 +445,7 @@ public with sharing class PBS_LMSExport_CC{
         for(PBS_Training_Resource__c tr : resourcesMap.values()){
             Map<String,Object> learningObject = initLearningObject(learningsMap.get(tr.Learning__c));
             Map<String,Object> resourceObject = mapSObject(tr,resourceMappings);
-            learningObject.put('content', resourceObject);
+            learningObject.put(content, resourceObject);
             result.add(learningObject);
         }
 
@@ -465,7 +471,7 @@ public with sharing class PBS_LMSExport_CC{
         for(PBS_Task__c t : tasksMap.values()){
             Map<String,Object> learningObject = initLearningObject(learningsMap.get(t.Learning__c));
             Map<String,Object> taskObject = mapSObject(t,taskMappings);
-            learningObject.put('content', taskObject);
+            learningObject.put(content, taskObject);
             result.add(learningObject);
         }
 
@@ -526,7 +532,7 @@ public with sharing class PBS_LMSExport_CC{
             List<Id> questionLineIds = questionLinesForQuiz.get(q.Id);
 
             if(questionLineIds == null){
-                learningObject.put('content', quizObject);
+                learningObject.put(content, quizObject);
                 continue;
             }
 
@@ -553,7 +559,7 @@ public with sharing class PBS_LMSExport_CC{
             }
 
             quizObject.put('question-lines',questionLineObjects);
-            learningObject.put('content', quizObject);
+            learningObject.put(content, quizObject);
             result.add(learningObject);
         }
 
@@ -588,9 +594,9 @@ public with sharing class PBS_LMSExport_CC{
                                             from PBS_Achievement_Category__c
                                             where id in :achievementCategoryIds]){
             Map<String,Object> acObject = new Map<String,Object>();
-            acObject.put('type','achievement-category');
+            acObject.put(Type,'achievement-category');
             acObject.put('name', ac.Name);
-            acObject.put('content',new Map<String,Object>());
+            acObject.put(content,new Map<String,Object>());
             results.add(acObject);
         }
 
@@ -624,7 +630,7 @@ public with sharing class PBS_LMSExport_CC{
 
         for(PBS_Answer_Sequence__c aseq : answerSequenceMap.values()){
             Map<String,Object> asObject = new Map<String,Object>();
-            asObject.put('type','answer-sequence');
+            asObject.put(Type,'answer-sequence');
             asObject.put('name', aseq.Id);
 
             Map<String,Object> asOptions = new Map<String,Object>();
@@ -641,7 +647,7 @@ public with sharing class PBS_LMSExport_CC{
                 asItems.add(mapSObject(asi, answerSequenceMappings));
             }
             asOptions.put('options',asItems);
-            asObject.put('content',asOptions);
+            asObject.put(content,asOptions);
             results.add(asObject);
         }
 
@@ -664,7 +670,7 @@ public with sharing class PBS_LMSExport_CC{
                                             from PBS_Learning_Category__c where id in :learningCategoryIds]){
 
             Map<String,Object> learningCategoryObject = mapSObject(lc, categoryMappings);
-            learningCategoryObject.put('type','learning-category');
+            learningCategoryObject.put(Type,'learning-category');
             results.add(learningCategoryObject);
         }
 

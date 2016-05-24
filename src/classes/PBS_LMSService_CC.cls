@@ -28,12 +28,34 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 public with sharing class PBS_LMSService_CC{
 
+        public static final string TRAINING_PLAN_C ='Training_Plan__c';
+        public static final string DESCRIPTION_C = 'Description__c';
+        public static final string STATUS_C= 'Status__c';
+        public static final string BACKGROUND_IMAGE_URL_C= 'Background_Image_URL__c';
+        public static final string BACKGROUND_COLOR_C= 'Background_Color__c';
+        public static final string TEXT_COLOR_C= 'Text_Color__c';
+        public static final string SELECT_C= 'select ';
+        public static final string ORDER_BY_CREATEDDATE_DESC_C = ' order by CreatedDate desc';
+        public static final string ORDER_C = 'Order__c';
+        public static final string OPTIONAL_C = 'Optional__c';
+        public static final string USER_C = 'User__c';
+        public static final string LEARNING_C = 'Learning__c';
+        public static final string LEARNING_VERSION_C = 'Learning_Version__c';
+        public static final string PROGRESS_C = 'Progress__c';
+        public static final string PROGRESS_PERCENTAGE_C = 'Progress_Percentage__c';
+        public static final string TRAINING_PLAN_SECTION_C = 'Training_Plan_Section__c';
+        public static final string TYPE_C = 'Type__c';
+        public static final string ACHIEVEMENT_C = 'Achievement__c';
+        
+
+
+
     //Return a list of aggregate plan progress results for the specified progress filters and user based on Plan Assignments
     public static List<AggregateResult> getTrainingPlansAssignmentStatus(Set<String> statusFilter,String userId){
         //BEGIN Access Check
         Map<Schema.sObjectType,List<String>> relatedFieldsObjects = new Map<Schema.sObjectType,List<String>>();
             relatedFieldsObjects.put(PBS_Training_Plan_Assignment__c.sObjectType,new List<String>{
-                'Training_Plan__c'
+                TRAINING_PLAN_C
             });
             PBS_LMS_ESAPI_CC.isAuthorizedToView(relatedFieldsObjects);
         //END Access Check
@@ -54,7 +76,7 @@ public with sharing class PBS_LMSService_CC{
 
         for (AggregateResult ar : groupedResultsNotStarted)  {
             if((Integer)ar.get('cnt') > 0){
-                trainingPlanIds.add((String)ar.get(ns+'Training_Plan__c'));
+                trainingPlanIds.add((String)ar.get(ns+TRAINING_PLAN_C));
             }
         }
         return getTrainingPlans(trainingPlanIds, isPortalUser);
@@ -67,7 +89,7 @@ public with sharing class PBS_LMSService_CC{
         Set<Id> trainingPlanIds = new Set<Id>();
         for (AggregateResult ar : groupedResults)  {
             if((Integer)ar.get('cnt') > 0){
-                trainingPlanIds.add((String)ar.get(ns+'Training_Plan__c'));
+                trainingPlanIds.add((String)ar.get(ns+TRAINING_PLAN_C));
             }
         }
         return getTrainingPlans(trainingPlanIds, isPortalUser);
@@ -80,7 +102,7 @@ public with sharing class PBS_LMSService_CC{
         Set<Id> trainingPlanIds = new Set<Id>();
         for (AggregateResult ar : groupedResultsCompleted)  {
             if((Integer)ar.get('cnt') > 0){
-                trainingPlanIds.add((String)ar.get(ns+'Training_Plan__c'));
+                trainingPlanIds.add((String)ar.get(ns+TRAINING_PLAN_C));
             }
         }
         return getTrainingPlans(trainingPlanIds, isPortalUser);
@@ -92,17 +114,17 @@ public with sharing class PBS_LMSService_CC{
         List<String> baseFields = new List<String>{
             'Id'
             ,'Name'
-            ,'Description__c'
+            ,DESCRIPTION_C
             ,'Enable_Self_Registration__c'
             ,'Self_Registration_Access__c'
             ,'Enforce_Sequence__c'
-            ,'Status__c'
+            ,STATUS_C
             ,'Start_Date__c'
             ,'End_Date__c'
-            ,'Background_Image_URL__c'
+            ,BACKGROUND_IMAGE_URL_C
             ,'Intro_Video_URL__c'
-            ,'Background_Color__c'
-            ,'Text_Color__c'
+            ,BACKGROUND_COLOR_C
+            ,TEXT_COLOR_C
             ,'Training_Plan_Rating__c'
             ,'Hide_Chatter_Photos__c'
             ,'Optional_Feedback_Comments__c'
@@ -126,7 +148,7 @@ public with sharing class PBS_LMSService_CC{
             tpIds = commwsops.filterTrainingPlansForAccount(tpIds,PBS_LMSUtils_CC.getUserAccountId());
         }
 
-        String soqlQuery = 'select '+String.join(baseFields,',')+' from PBS_Training_Plan__c where Id in :tpIds';
+        String soqlQuery = SELECT_C+String.join(baseFields,',')+' from PBS_Training_Plan__c where Id in :tpIds';
         soqlQuery += ' order by End_Date__c asc, SystemModStamp desc';
 
         if(isPortalUser){
@@ -146,17 +168,17 @@ public with sharing class PBS_LMSService_CC{
         List<String> baseFields = new List<String>{
             'Id'
             ,'Name'
-            ,'Description__c'
+            ,DESCRIPTION_C
             ,'Enable_Self_Registration__c'
             ,'Self_Registration_Access__c'
             ,'Enforce_Sequence__c'
-            ,'Status__c'
+            ,STATUS_C
             ,'Start_Date__c'
             ,'End_Date__c'
-            ,'Background_Image_URL__c'
+            ,BACKGROUND_IMAGE_URL_C
             ,'Intro_Video_URL__c'
-            ,'Background_Color__c'
-            ,'Text_Color__c'
+            ,BACKGROUND_COLOR_C
+            ,TEXT_COLOR_C
             ,'Training_Plan_Rating__c'
             ,'Hide_Chatter_Photos__c'
             ,'Optional_Feedback_Comments__c'
@@ -175,7 +197,7 @@ public with sharing class PBS_LMSService_CC{
         Set<Id> tpIds = trainingPlanIds;
 
         String registrationAccess = PBS_LMSConstants_CC.TPLAN_PUBLIC_EXTERNAL;
-        String soqlQuery = 'select '+String.join(baseFields,',')+' from PBS_Training_Plan__c where Id in :tpIds';
+        String soqlQuery = SELECT_C+String.join(baseFields,',')+' from PBS_Training_Plan__c where Id in :tpIds';
         soqlQuery += ' and Enable_Self_Registration__c = true';
 
         if(isPortalUser){
@@ -186,7 +208,7 @@ public with sharing class PBS_LMSService_CC{
             }
         }
 
-        soqlQuery += ' order by CreatedDate desc';
+        soqlQuery += ORDER_BY_CREATEDDATE_DESC_C;
 
         if(isPortalUser){
             PBS_LMSService_CC.WithoutSharingOps wsops = new PBS_LMSService_CC.WithoutSharingOps();
@@ -317,9 +339,9 @@ public with sharing class PBS_LMSService_CC{
         relatedFieldsObjects.put(PBS_Training_Plan_Section__c.sObjectType,new List<String>{
             'Id'
             ,'Name'
-            ,'Order__c'
-            ,'Optional__c'
-            ,'Training_Plan__c'
+            ,ORDER_C
+            ,OPTIONAL_C
+            ,TRAINING_PLAN_C
         });
         PBS_LMS_ESAPI_CC.isAuthorizedToView(relatedFieldsObjects);
         //END Access Check
@@ -332,12 +354,12 @@ public with sharing class PBS_LMSService_CC{
         List<String> listSOQLFields = new List<String>{
             'Id'
             ,'Name'
-            ,'Order__c'
-            ,'Optional__c'
-            ,'Training_Plan__c'
+            ,ORDER_C
+            ,OPTIONAL_C
+            ,TRAINING_PLAN_C
         };
 
-        String soqlQuery = 'select '+String.join(listSOQLFields,',')+' from PBS_Training_Plan_Section__c where Training_Plan__c in :tpIds';
+        String soqlQuery = SELECT_C+String.join(listSOQLFields,',')+' from PBS_Training_Plan_Section__c where Training_Plan__c in :tpIds';
         soqlQuery += ' order by Order__c asc,CreatedDate desc';
 
         List<PBS_Training_Plan_Section__c> tpSections = new List<PBS_Training_Plan_Section__c>();
@@ -368,28 +390,28 @@ public with sharing class PBS_LMSService_CC{
         relatedFieldsObjects.put(PBS_Learning_Assignment__c.sObjectType,new List<String>{
             'Id'
             ,'Name'
-            ,'User__c'
+            ,USER_C
             ,'OwnerId'
-            ,'Learning__c'
-            ,'Learning_Version__c'
-            ,'Progress__c'
-            ,'Progress_Percentage__c'
+            ,LEARNING_C
+            ,LEARNING_VERSION_C
+            ,PROGRESS_C
+            ,PROGRESS_PERCENTAGE_C
             ,'Approved__c'
             ,'Approved_By__c'
             ,'Evaluation_Result__c'
             ,'Evaluation_Score__c'
             ,'Evaluation_Times_Taken__c'
-            ,'Training_Plan__c'
-            ,'Training_Plan_Section__c'
+            ,TRAINING_PLAN_C
+            ,TRAINING_PLAN_SECTION_C
             ,'Training_Plan_Section_Item__c'
             ,'Last_Published_Learning_Version__c'
             ,'Last_Published_Learning_Version_Decision__c'
             ,'Shared_Learning_Assignment__c'
         });
         relatedFieldsObjects.put(PBS_Shared_Learning_Assignment__c.sObjectType,new List<String>{
-            'Progress__c'
-            ,'Progress_Percentage__c'
-            ,'Learning_Version__c'
+            PROGRESS_C
+            ,PROGRESS_PERCENTAGE_C
+            ,LEARNING_VERSION_C
         });
 
         PBS_LMS_ESAPI_CC.isAuthorizedToView(relatedFieldsObjects);
@@ -406,20 +428,20 @@ public with sharing class PBS_LMSService_CC{
             'Id'
             ,'Name'
             ,'Contact__c'
-            ,'User__c'
+            ,USER_C
             ,'OwnerId'
-            ,'Learning__c'
-            ,'Learning_Version__c'
-            ,'Progress__c'
-            ,'Progress_Percentage__c'
+            ,LEARNING_C
+            ,LEARNING_VERSION_C
+            ,PROGRESS_C
+            ,PROGRESS_PERCENTAGE_C
             ,'Approved__c'
             ,'Approved_By__c'
-            ,'Optional__c'
+            ,OPTIONAL_C
             ,'Evaluation_Result__c'
             ,'Evaluation_Score__c'
             ,'Evaluation_Times_Taken__c'
-            ,'Training_Plan__c'
-            ,'Training_Plan_Section__c'
+            ,TRAINING_PLAN_C
+            ,TRAINING_PLAN_SECTION_C
             ,'Training_Plan_Section_Item__c'
             ,'Last_Published_Learning_Version__c'
             ,'Last_Published_Learning_Version_Decision__c'
@@ -430,11 +452,11 @@ public with sharing class PBS_LMSService_CC{
             ,'Training_Plan_Section_Assignment__r.Training_Plan_Assignment__c'
         };
 
-        String soqlQuery = 'select '+String.join(listSOQLFields,',')+' from PBS_Learning_Assignment__c where User__c in :uIds and Learning__c in :lIds';
+        String soqlQuery = SELECT_C+String.join(listSOQLFields,',')+' from PBS_Learning_Assignment__c where User__c in :uIds and Learning__c in :lIds';
         if(trainingPlanFilter != null){
             soqlQuery +=' and (Training_Plan__c = :tpId) ';
         }
-        soqlQuery += ' order by CreatedDate desc';
+        soqlQuery += ORDER_BY_CREATEDDATE_DESC_C;
 
         List<PBS_Learning_Assignment__c> assignments = (List<PBS_Learning_Assignment__c>)Database.query(soqlQuery);
         for(PBS_Learning_Assignment__c a : assignments){
@@ -459,11 +481,11 @@ public with sharing class PBS_LMSService_CC{
             'Id'
             ,'Name'
             ,'OwnerId'
-            ,'User__c'
-            ,'Learning__c'
-            ,'Learning_Version__c'
-            ,'Progress__c'
-            ,'Progress_Percentage__c'
+            ,USER_C
+            ,LEARNING_C
+            ,LEARNING_VERSION_C
+            ,PROGRESS_C
+            ,PROGRESS_PERCENTAGE_C
             ,'Evaluation_Result__c'
             ,'Evaluation_Score__c'
             ,'Evaluation_Times_Taken__c'
@@ -484,11 +506,11 @@ public with sharing class PBS_LMSService_CC{
             ,'Name'
             ,'Contact__c'
             ,'OwnerId'
-            ,'User__c'
-            ,'Learning__c'
-            ,'Learning_Version__c'
-            ,'Progress__c'
-            ,'Progress_Percentage__c'
+            ,USER_C
+            ,LEARNING_C
+            ,LEARNING_VERSION_C
+            ,PROGRESS_C
+            ,PROGRESS_PERCENTAGE_C
             ,'Evaluation_Result__c'
             ,'Evaluation_Score__c'
             ,'Evaluation_Times_Taken__c'
@@ -498,8 +520,8 @@ public with sharing class PBS_LMSService_CC{
             ,'Last_Published_Learning_Version_Decision__c'
         };
 
-        String soqlQuery = 'select '+String.join(listSOQLFields,',')+' from PBS_Shared_Learning_Assignment__c where User__c in :uIds and Learning__c in :lIds';
-        soqlQuery += ' order by CreatedDate desc';
+        String soqlQuery = SELECT_C+String.join(listSOQLFields,',')+' from PBS_Shared_Learning_Assignment__c where User__c in :uIds and Learning__c in :lIds';
+        soqlQuery += ORDER_BY_CREATEDDATE_DESC_C;
 
         List<PBS_Shared_Learning_Assignment__c> sharedAssignments = (List<PBS_Shared_Learning_Assignment__c>)Database.query(soqlQuery);
         for(PBS_Shared_Learning_Assignment__c a : sharedAssignments){
@@ -520,9 +542,9 @@ public with sharing class PBS_LMSService_CC{
         Map<Schema.sObjectType,List<String>> relatedFieldsObjects = new Map<Schema.sObjectType,List<String>>();
         relatedFieldsObjects.put(PBS_Training_Plan_Assignment__c.sObjectType,new List<String>{
             'Id'
-            ,'User__c'
-            ,'Status__c'
-            ,'Training_Plan__c'
+            ,USER_C
+            ,STATUS_C
+            ,TRAINING_PLAN_C
         });
         PBS_LMS_ESAPI_CC.isAuthorizedToView(relatedFieldsObjects);
         //END Access Check
@@ -535,12 +557,12 @@ public with sharing class PBS_LMSService_CC{
 
         List<String> listSOQLFields = new List<String>{
             'Id'
-            ,'User__c'
-            ,'Status__c'
-            ,'Training_Plan__c'
+            ,USER_C
+            ,STATUS_C
+            ,TRAINING_PLAN_C
         };
 
-        String soqlQuery = 'select '+String.join(listSOQLFields,',')+' from PBS_Training_Plan_Assignment__c where User__c in :uIds and Training_Plan__c in :tpIds';
+        String soqlQuery = SELECT_C+String.join(listSOQLFields,',')+' from PBS_Training_Plan_Assignment__c where User__c in :uIds and Training_Plan__c in :tpIds';
         soqlQuery += ' order by CreatedDate asc';
 
         List<PBS_Training_Plan_Assignment__c> planAssignments = (List<PBS_Training_Plan_Assignment__c>)Database.query(soqlQuery);
@@ -565,9 +587,9 @@ public with sharing class PBS_LMSService_CC{
         Map<Schema.sObjectType,List<String>> relatedFieldsObjects = new Map<Schema.sObjectType,List<String>>();
         relatedFieldsObjects.put(PBS_Training_Plan_Section_Assignment__c.sObjectType,new List<String>{
             'Id'
-            ,'User__c'
-            ,'Status__c'
-            ,'Training_Plan_Section__c'
+            ,USER_C
+            ,STATUS_C
+            ,TRAINING_PLAN_SECTION_C
         });
         PBS_LMS_ESAPI_CC.isAuthorizedToView(relatedFieldsObjects);
         //END Access Check
@@ -580,12 +602,12 @@ public with sharing class PBS_LMSService_CC{
 
         List<String> listSOQLFields = new List<String>{
             'Id'
-            ,'User__c'
-            ,'Status__c'
-            ,'Training_Plan_Section__c'
+            ,USER_C
+            ,STATUS_C
+            ,TRAINING_PLAN_SECTION_C
         };
 
-        String soqlQuery = 'select '+String.join(listSOQLFields,',')+' from PBS_Training_Plan_Section_Assignment__c where User__c in :uIds and Training_Plan_Section__c in :sIds';
+        String soqlQuery = SELECT_C+String.join(listSOQLFields,',')+' from PBS_Training_Plan_Section_Assignment__c where User__c in :uIds and Training_Plan_Section__c in :sIds';
         soqlQuery += ' order by CreatedDate asc';
 
         List<PBS_Training_Plan_Section_Assignment__c> sectionAssignments = (List<PBS_Training_Plan_Section_Assignment__c>)Database.query(soqlQuery);
@@ -611,11 +633,11 @@ public with sharing class PBS_LMSService_CC{
         relatedFieldsObjects.put(PBS_Training_Plan_Achievement__c.sObjectType,new List<String>{
             'Id'
             ,'Name'
-            ,'Training_Plan__c'
-            ,'Training_Plan_Section__c'
-            ,'Type__c'
+            ,TRAINING_PLAN_C
+            ,TRAINING_PLAN_SECTION_C
+            ,TYPE_C
             ,'Main_Achievement__c'
-            ,'Achievement__c'
+            ,ACHIEVEMENT_C
         });
         relatedFieldsObjects.put(PBS_Achievement__c.sObjectType,new List<String>{
             'Id'
@@ -640,11 +662,11 @@ public with sharing class PBS_LMSService_CC{
         List<String> listSOQLFields = new List<String>{
             'Id'
             ,'Name'
-            ,'Training_Plan__c'
-            ,'Training_Plan_Section__c'
-            ,'Type__c'
+            ,TRAINING_PLAN_C
+            ,TRAINING_PLAN_SECTION_C
+            ,TYPE_C
             ,'Main_Achievement__c'
-            ,'Achievement__c'
+            ,ACHIEVEMENT_C
             ,'Achievement__r.Id'
             ,'Achievement__r.Acquired_Image__c'
             ,'Achievement__r.Eligible_Image__c'
@@ -652,8 +674,8 @@ public with sharing class PBS_LMSService_CC{
             ,'Achievement__r.Work_Badge_Image_URL__c'
         };
 
-        String soqlQuery = 'select '+String.join(listSOQLFields,',')+' from PBS_Training_Plan_Achievement__c where Training_Plan__c in :tplIds and Type__c = :tpaType';
-        soqlQuery += ' order by CreatedDate desc';
+        String soqlQuery = SELECT_C+String.join(listSOQLFields,',')+' from PBS_Training_Plan_Achievement__c where Training_Plan__c in :tplIds and Type__c = :tpaType';
+        soqlQuery += ORDER_BY_CREATEDDATE_DESC_C;
 
         PBS_LMSService_CC.WithoutSharingOps wsops = new PBS_LMSService_CC.WithoutSharingOps();
         List<PBS_Training_Plan_Achievement__c> tplanAchievements = wsops.queryTrainingPlanAchievements(soqlQuery, tplIds, tpaType);
@@ -676,11 +698,11 @@ public with sharing class PBS_LMSService_CC{
         relatedFieldsObjects.put(PBS_Training_Plan_Achievement__c.sObjectType,new List<String>{
             'Id'
             ,'Name'
-            ,'Training_Plan__c'
-            ,'Training_Plan_Section__c'
-            ,'Type__c'
+            ,TRAINING_PLAN_C
+            ,TRAINING_PLAN_SECTION_C
+            ,TYPE_C
             ,'Main_Achievement__c'
-            ,'Achievement__c'
+            ,ACHIEVEMENT_C
         });
         relatedFieldsObjects.put(PBS_Achievement__c.sObjectType,new List<String>{
             'Id'
@@ -705,11 +727,11 @@ public with sharing class PBS_LMSService_CC{
         List<String> listSOQLFields = new List<String>{
             'Id'
             ,'Name'
-            ,'Training_Plan__c'
-            ,'Training_Plan_Section__c'
-            ,'Type__c'
+            ,TRAINING_PLAN_C
+            ,TRAINING_PLAN_SECTION_C
+            ,TYPE_C
             ,'Main_Achievement__c'
-            ,'Achievement__c'
+            ,ACHIEVEMENT_C
             ,'Achievement__r.Id'
             ,'Achievement__r.Acquired_Image__c'
             ,'Achievement__r.Eligible_Image__c'
@@ -717,8 +739,8 @@ public with sharing class PBS_LMSService_CC{
             ,'Achievement__r.Work_Badge_Image_URL__c'
         };
 
-        String soqlQuery = 'select '+String.join(listSOQLFields,',')+' from PBS_Training_Plan_Achievement__c where Training_Plan_Section__c in :tpsIds and Type__c = :tpaType';
-        soqlQuery += ' order by CreatedDate desc';
+        String soqlQuery = SELECT_C+String.join(listSOQLFields,',')+' from PBS_Training_Plan_Achievement__c where Training_Plan_Section__c in :tpsIds and Type__c = :tpaType';
+        soqlQuery += ORDER_BY_CREATEDDATE_DESC_C;
 
         PBS_LMSService_CC.WithoutSharingOps wsops = new PBS_LMSService_CC.WithoutSharingOps();
         List<PBS_Training_Plan_Achievement__c> tplanAchievements = wsops.queryTrainingPlanSectionAchievements(soqlQuery, tpsIds, tpaType);
@@ -741,14 +763,14 @@ public with sharing class PBS_LMSService_CC{
         relatedFieldsObjects.put(PBS_Achievement_Assignment__c.sObjectType,new List<String>{
             'Id'
             ,'Name'
-            ,'Status__c'
-            ,'User__c'
+            ,STATUS_C
+            ,USER_C
             ,'Training_Plan_Achievement__c'
-            ,'Achievement__c'
+            ,ACHIEVEMENT_C
         });
         relatedFieldsObjects.put(PBS_Training_Plan_Achievement__c.sObjectType,new List<String>{
-            'Training_Plan__c'
-            ,'Training_Plan_Section__c'
+            TRAINING_PLAN_C
+            ,TRAINING_PLAN_SECTION_C
         });
         relatedFieldsObjects.put(PBS_Achievement__c.sObjectType,new List<String>{
             'Override_Completed_Status__c'
@@ -765,16 +787,16 @@ public with sharing class PBS_LMSService_CC{
         List<String> listSOQLFields = new List<String>{
             'Id'
             ,'Name'
-            ,'Status__c'
-            ,'User__c'
+            ,STATUS_C
+            ,USER_C
             ,'Contact__c'
             ,'Training_Plan_Achievement__c'
-            ,'Achievement__c'
+            ,ACHIEVEMENT_C
             ,'Achievement__r.Override_Completed_Status__c'
         };
 
-        String soqlQuery = 'select '+String.join(listSOQLFields,',')+' from PBS_Achievement_Assignment__c where Training_Plan_Achievement__c in :tplanIds and User__c in :uIds';
-        soqlQuery += ' order by CreatedDate desc';
+        String soqlQuery = SELECT_C+String.join(listSOQLFields,',')+' from PBS_Achievement_Assignment__c where Training_Plan_Achievement__c in :tplanIds and User__c in :uIds';
+        soqlQuery += ORDER_BY_CREATEDDATE_DESC_C;
 
 
         List<PBS_Achievement_Assignment__c> achievementAssignments = (List<PBS_Achievement_Assignment__c>)Database.query(soqlQuery);
@@ -832,7 +854,7 @@ public with sharing class PBS_LMSService_CC{
             ,'UserType'
         };
 
-        String soqlQuery = 'select '+String.join(listSOQLFields,',')+' from User where Id in :userIds';
+        String soqlQuery = SELECT_C+String.join(listSOQLFields,',')+' from User where Id in :userIds';
         if(onlyActiveUsers){
             soqlQuery += ' and IsActive = true';
         }
@@ -849,7 +871,7 @@ public with sharing class PBS_LMSService_CC{
         Map<Schema.sObjectType,List<String>> relatedFieldsObjects = new Map<Schema.sObjectType,List<String>>();
         relatedFieldsObjects.put(PBS_Achievement_Assignment__c.sObjectType,new List<String>{
             'Id'
-            ,'User__c'
+            ,USER_C
         });
         PBS_LMS_ESAPI_CC.isAuthorizedToView(relatedFieldsObjects);
         //END Access Check
@@ -1156,7 +1178,7 @@ public with sharing class PBS_LMSService_CC{
         Map<Schema.sObjectType,List<String>> relatedFieldsObjects = new Map<Schema.sObjectType,List<String>>();
         relatedFieldsObjects.put(PBS_Training_Plan_Assignment__c.sObjectType,new List<String>{
             'Id'
-            ,'Training_Plan__c'
+            ,TRAINING_PLAN_C
         });
         relatedFieldsObjects.put(PBS_Training_Plan__c.sObjectType,new List<String>{
             'Id'
@@ -1205,7 +1227,7 @@ public with sharing class PBS_LMSService_CC{
         Map<Schema.sObjectType,List<String>> relatedFieldsObjects = new Map<Schema.sObjectType,List<String>>();
         relatedFieldsObjects.put(PBS_Training_Plan_Access_Request__c.sObjectType,new List<String>{
             'Id'
-            ,'Status__c'
+            ,STATUS_C
             ,'Comments__c'
         });
         PBS_LMS_ESAPI_CC.isAuthorizedToView(relatedFieldsObjects);
@@ -1223,12 +1245,12 @@ public with sharing class PBS_LMSService_CC{
             ,'Comments__c'
         };
 
-        String soqlQuery = 'select '+String.join(listSOQLFields,',')+' from PBS_Training_Plan_Access_Request__c where User__c = :uId and Training_Plan__c = :tplanId';
+        String soqlQuery = SELECT_C+String.join(listSOQLFields,',')+' from PBS_Training_Plan_Access_Request__c where User__c = :uId and Training_Plan__c = :tplanId';
 
         if(statuses != null && statuses.size()>0){
             soqlQuery += ' and Status__c in :statuses';
         }
-        soqlQuery += ' order by CreatedDate desc';
+        soqlQuery += ORDER_BY_CREATEDDATE_DESC_C;
 
         if(isPortalUser){
             PBS_LMSService_CC.WithoutSharingOps wsops = new PBS_LMSService_CC.WithoutSharingOps();
@@ -1247,7 +1269,7 @@ public with sharing class PBS_LMSService_CC{
         //BEGIN Access Check
         Map<Schema.sObjectType,List<String>> relatedFieldsObjects = new Map<Schema.sObjectType,List<String>>();
         relatedFieldsObjects.put(PBS_Training_Plan_Access_Request__c.sObjectType,new List<String>{
-            'Training_Plan__c'
+            TRAINING_PLAN_C
             ,'Comments__c'
         });
         PBS_LMS_ESAPI_CC.isAuthorizedToCreate(relatedFieldsObjects);
@@ -1286,7 +1308,7 @@ public with sharing class PBS_LMSService_CC{
             ,'Name'
             ,'Rating__c'
             ,'Comments__c'
-            ,'User__c'
+            ,USER_C
         });
         PBS_LMS_ESAPI_CC.isAuthorizedToView(relatedFieldsObjects);
         //END Access Check
@@ -1302,18 +1324,18 @@ public with sharing class PBS_LMSService_CC{
             ,'Name'
             ,'Rating__c'
             ,'Comments__c'
-            ,'User__c'
+            ,USER_C
             ,'User__r.Name'
             ,'User__r.SmallPhotoUrl'
 
         };
 
-        String soqlQuery = 'select '+String.join(listSOQLFields,',')+' from PBS_Training_Plan_Feedback__c  where User__c = :uId and Training_Plan__c = :tplanId';
+        String soqlQuery = SELECT_C+String.join(listSOQLFields,',')+' from PBS_Training_Plan_Feedback__c  where User__c = :uId and Training_Plan__c = :tplanId';
 
         if(ratingOnly){
             soqlQuery+=' and Rating__c > 0';
         }
-        soqlQuery+=' order by CreatedDate desc';
+        soqlQuery+=ORDER_BY_CREATEDDATE_DESC_C;
 
         results = (List<PBS_Training_Plan_Feedback__c >)Database.query(soqlQuery);
         return results;
@@ -1380,11 +1402,11 @@ public with sharing class PBS_LMSService_CC{
         relatedFieldsObjects.put(PBS_Learning_Category__c.sObjectType,new List<String>{
             'Id'
             ,'Name'
-            ,'Background_Image_URL__c'
+            ,BACKGROUND_IMAGE_URL_C
             ,'Logo__c'
-            ,'Text_Color__c'
+            ,TEXT_COLOR_C
             ,'Hide_From_Catalog_Home__c'
-            ,'Order__c'
+            ,ORDER_C
             ,'Is_Internal__c'
         });
         PBS_LMS_ESAPI_CC.isAuthorizedToView(relatedFieldsObjects);
@@ -1393,16 +1415,16 @@ public with sharing class PBS_LMSService_CC{
         List<String> listSOQLFields = new List<String>{
             'Id'
             ,'Name'
-            ,'Background_Image_URL__c'
+            ,BACKGROUND_IMAGE_URL_C
             ,'Logo__c'
-            ,'Text_Color__c'
+            ,TEXT_COLOR_C
             ,'Total_Training_Plans__c'
             ,'Hide_From_Catalog_Home__c'
-            ,'Order__c'
+            ,ORDER_C
             ,'Is_Internal__c'
         };
 
-        String soqlQuery = 'select '+String.join(listSOQLFields,',')+' from PBS_Learning_Category__c';
+        String soqlQuery = SELECT_C+String.join(listSOQLFields,',')+' from PBS_Learning_Category__c';
         if(catId != null){
             soqlQuery+= ' where id = :catId';
         }else{
@@ -1432,11 +1454,11 @@ public with sharing class PBS_LMSService_CC{
         relatedFieldsObjects.put(PBS_Training_Track__c.sObjectType,new List<String>{
             'Id'
             ,'Name'
-            ,'Background_Color__c'
-            ,'Background_Image_URL__c'
-            ,'Description__c'
-            ,'Text_Color__c'
-            ,'Status__c'
+            ,BACKGROUND_COLOR_C
+            ,BACKGROUND_IMAGE_URL_C
+            ,DESCRIPTION_C
+            ,TEXT_COLOR_C
+            ,STATUS_C
             ,'New_Until__c'
         });
         relatedFieldsObjects.put(PBS_Achievement__c.sObjectType,new List<String>{
@@ -1451,20 +1473,20 @@ public with sharing class PBS_LMSService_CC{
         List<String> listSOQLFields = new List<String>{
             'Id'
             ,'Name'
-            ,'Background_Color__c'
-            ,'Background_Image_URL__c'
-            ,'Description__c'
-            ,'Text_Color__c'
-            ,'Status__c'
+            ,BACKGROUND_COLOR_C
+            ,BACKGROUND_IMAGE_URL_C
+            ,DESCRIPTION_C
+            ,TEXT_COLOR_C
+            ,STATUS_C
             ,'New_Until__c'
-            ,'Achievement__c'
+            ,ACHIEVEMENT_C
             ,'Achievement__r.Acquired_Image__c'
             ,'Achievement__r.Eligible_Image__c'
             ,'Achievement__r.Work_Badge_Id__c'
             ,'Achievement__r.Work_Badge_Image_URL__c'
         };
 
-        String soqlQuery = 'select '+String.join(listSOQLFields,',')+' from PBS_Training_Track__c where Status__c = :filterStatus';
+        String soqlQuery = SELECT_C+String.join(listSOQLFields,',')+' from PBS_Training_Track__c where Status__c = :filterStatus';
 
         if(trackFilter != 'All'){
             if(isPortalUser){
@@ -1508,26 +1530,26 @@ public with sharing class PBS_LMSService_CC{
         relatedFieldsObjects.put(PBS_Training_Track_Level__c.sObjectType,new List<String>{
             'Id'
             ,'Name'
-            ,'Order__c'
-            ,'Description__c'
+            ,ORDER_C
+            ,DESCRIPTION_C
         });
         relatedFieldsObjects.put(PBS_Training_Track_Level_Item__c.sObjectType,new List<String>{
             'Id'
             ,'Name'
-            ,'Training_Plan__c'
+            ,TRAINING_PLAN_C
         });
         relatedFieldsObjects.put(PBS_Training_Plan__c.sObjectType,new List<String>{
             'Name'
-            ,'Description__c'
+            ,DESCRIPTION_C
             ,'Enable_Self_Registration__c'
             ,'Self_Registration_Access__c'
-            ,'Status__c'
+            ,STATUS_C
             ,'Start_Date__c'
             ,'End_Date__c'
-            ,'Background_Image_URL__c'
+            ,BACKGROUND_IMAGE_URL_C
             ,'Intro_Video_URL__c'
-            ,'Background_Color__c'
-            ,'Text_Color__c'
+            ,BACKGROUND_COLOR_C
+            ,TEXT_COLOR_C
             ,'New_Until__c'
             ,'Hide_After_End_Date__c'
         });
@@ -1537,15 +1559,15 @@ public with sharing class PBS_LMSService_CC{
         List<String> listLevelSOQLFields = new List<String>{
             'Id'
             ,'Name'
-            ,'Order__c'
-            ,'Description__c'
+            ,ORDER_C
+            ,DESCRIPTION_C
             ,'Training_Track__c'
         };
 
         List<String> listItemSOQLFields = new List<String>{
             'Id'
             ,'Name'
-            ,'Training_Plan__c'
+            ,TRAINING_PLAN_C
             ,'Training_Track_Level__c'
             ,'Training_Plan__r.Name'
             ,'Training_Plan__r.Description__c'
@@ -1564,7 +1586,7 @@ public with sharing class PBS_LMSService_CC{
 
         Id trId = trackId;
 
-        String soqlQuery = 'select '+String.join(listLevelSOQLFields,',')+',(select '+String.join(listItemSOQLFields,',')+' from Training_Track_Level_Items__r order by Order__c asc) from PBS_Training_Track_Level__c where Training_Track__c = :trId';
+        String soqlQuery = SELECT_C+String.join(listLevelSOQLFields,',')+',(select '+String.join(listItemSOQLFields,',')+' from Training_Track_Level_Items__r order by Order__c asc) from PBS_Training_Track_Level__c where Training_Track__c = :trId';
         soqlQuery+=' order by Order__c asc';
 
         if(isPortalUser){
@@ -1589,10 +1611,10 @@ public with sharing class PBS_LMSService_CC{
         relatedFieldsObjects.put(PBS_Learning_Assignment__c.sObjectType,new List<String>{
             'Id'
             ,'Name'
-            ,'User__c'
-            ,'Learning__c'
-            ,'Progress__c'
-            ,'Training_Plan__c'
+            ,USER_C
+            ,LEARNING_C
+            ,PROGRESS_C
+            ,TRAINING_PLAN_C
             ,'Shared_Learning_Assignment__c'
         });
         PBS_LMS_ESAPI_CC.isAuthorizedToView(relatedFieldsObjects);
@@ -1774,16 +1796,16 @@ public with sharing class PBS_LMSService_CC{
             relatedFieldsObjects.put(PBS_Training_Plan_Section_Item__c.sObjectType,new List<String>{
                 'Id'
                 ,'Name'
-                ,'Training_Plan_Section__c'
-                ,'Order__c'
-                ,'Optional__c'
+                ,TRAINING_PLAN_SECTION_C
+                ,ORDER_C
+                ,OPTIONAL_C
                 ,'Duration__c'
                 ,'Duration_hours__c'
-                ,'Learning__c'
+                ,LEARNING_C
             });
             relatedFieldsObjects.put(PBS_Learning__c.sObjectType,new List<String>{
                 'Name'
-                ,'Description__c'
+                ,DESCRIPTION_C
                 ,'Custom_Preview_URL__c'
                 ,'Sync_progress__c'
                 ,'Current_Published_Version__c'
@@ -1804,12 +1826,12 @@ public with sharing class PBS_LMSService_CC{
             List<String> listSOQLFields = new List<String>{
                 'Id'
                 ,'Name'
-                ,'Training_Plan_Section__c'
-                ,'Order__c'
-                ,'Optional__c'
+                ,TRAINING_PLAN_SECTION_C
+                ,ORDER_C
+                ,OPTIONAL_C
                 ,'Duration__c'
                 ,'Duration_hours__c'
-                ,'Learning__c'
+                ,LEARNING_C
                 ,'Learning__r.Name'
                 ,'Learning__r.Description__c'
                 ,'Learning__r.RecordType.DeveloperName'
@@ -1821,7 +1843,7 @@ public with sharing class PBS_LMSService_CC{
                 ,'Learning__r.Current_Published_Version__r.Version_selection_behavior__c'
             };
 
-            String soqlQuery = 'select '+String.join(listSOQLFields,',')+' from PBS_Training_Plan_Section_Item__c where Training_Plan_Section__c in :tpsIds';
+            String soqlQuery = SELECT_C+String.join(listSOQLFields,',')+' from PBS_Training_Plan_Section_Item__c where Training_Plan_Section__c in :tpsIds';
             soqlQuery += ' order by Order__c asc,CreatedDate desc';
 
             List<PBS_Training_Plan_Section_Item__c> sectionItems = (List<PBS_Training_Plan_Section_Item__c>)Database.query(soqlQuery);
@@ -1850,19 +1872,19 @@ public with sharing class PBS_LMSService_CC{
             relatedFieldsObjects.put(PBS_Training_Plan_Section_Item__c.sObjectType,new List<String>{
                 'Id'
                 ,'Name'
-                ,'Training_Plan_Section__c'
-                ,'Order__c'
+                ,TRAINING_PLAN_SECTION_C
+                ,ORDER_C
                 ,'Duration__c'
-                ,'Learning__c'
-                ,'Optional__c'
+                ,LEARNING_C
+                ,OPTIONAL_C
             });
             relatedFieldsObjects.put(PBS_Training_Plan_Section__c.sObjectType,new List<String>{
-                'Training_Plan__c'
-                ,'Optional__c'
+                TRAINING_PLAN_C
+                ,OPTIONAL_C
             });
             relatedFieldsObjects.put(PBS_Learning__c.sObjectType,new List<String>{
                 'Name'
-                ,'Description__c'
+                ,DESCRIPTION_C
                 ,'Custom_Preview_URL__c'
                 ,'Sync_progress__c'
                 ,'Current_Published_Version__c'
@@ -1882,13 +1904,13 @@ public with sharing class PBS_LMSService_CC{
             List<String> listSOQLFields = new List<String>{
                 'Id'
                 ,'Name'
-                ,'Training_Plan_Section__c'
+                ,TRAINING_PLAN_SECTION_C
                 ,'Training_Plan_Section__r.Training_Plan__c'
                 ,'Training_Plan_Section__r.Optional__c'
-                ,'Order__c'
+                ,ORDER_C
                 ,'Duration__c'
-                ,'Optional__c'
-                ,'Learning__c'
+                ,OPTIONAL_C
+                ,LEARNING_C
                 ,'Learning__r.Name'
                 ,'Learning__r.Description__c'
                 ,'Learning__r.RecordType.DeveloperName'
@@ -1898,7 +1920,7 @@ public with sharing class PBS_LMSService_CC{
                 ,'Learning__r.Current_Published_Version__r.Learning_Content_ID__c'
             };
 
-            String soqlQuery = 'select '+String.join(listSOQLFields,',')+' from PBS_Training_Plan_Section_Item__c where Training_Plan_Section__r.Training_Plan__c in :tpIds';
+            String soqlQuery = SELECT_C+String.join(listSOQLFields,',')+' from PBS_Training_Plan_Section_Item__c where Training_Plan_Section__r.Training_Plan__c in :tpIds';
             soqlQuery += ' order by Training_Plan_Section__c desc';
 
             List<PBS_Training_Plan_Section_Item__c> sectionItems = (List<PBS_Training_Plan_Section_Item__c>)Database.query(soqlQuery);
@@ -1920,15 +1942,15 @@ public with sharing class PBS_LMSService_CC{
             relatedFieldsObjects.put(PBS_Training_Plan_Section_Item__c.sObjectType,new List<String>{
                 'Id'
                 ,'Name'
-                ,'Learning__c'
-                ,'Training_Plan_Section__c'
+                ,LEARNING_C
+                ,TRAINING_PLAN_SECTION_C
             });
             relatedFieldsObjects.put(PBS_Learning__c.sObjectType,new List<String>{
                 'Id'
                 ,'Name'
             });
             relatedFieldsObjects.put(PBS_Training_Plan_Section__c.sObjectType,new List<String>{
-                'Training_Plan__c'
+                TRAINING_PLAN_C
             });
             PBS_LMS_ESAPI_CC.isAuthorizedToView(relatedFieldsObjects);
             //END Access Check
@@ -1941,12 +1963,12 @@ public with sharing class PBS_LMSService_CC{
             List<String> listSOQLFields = new List<String>{
                 'Id'
                 ,'Name'
-                ,'Learning__c'
+                ,LEARNING_C
                 ,'Training_Plan_Section__r.Training_Plan__c'
             };
 
-            String soqlQuery = 'select '+String.join(listSOQLFields,',')+' from PBS_Training_Plan_Section_Item__c where Training_Plan_Section__r.Training_Plan__c in :tpIds';
-            soqlQuery += ' order by CreatedDate desc';
+            String soqlQuery = SELECT_C+String.join(listSOQLFields,',')+' from PBS_Training_Plan_Section_Item__c where Training_Plan_Section__r.Training_Plan__c in :tpIds';
+            soqlQuery += ORDER_BY_CREATEDDATE_DESC_C;
 
             List<PBS_Training_Plan_Section_Item__c> items = (List<PBS_Training_Plan_Section_Item__c>)Database.query(soqlQuery);
 
@@ -2032,8 +2054,8 @@ public with sharing class PBS_LMSService_CC{
             relatedFieldsObjects.put(PBS_Question_Line__c.sObjectType,new List<String>{
                 'Id'
                 ,'Name'
-                ,'Order__c'
-                ,'Description__c'
+                ,ORDER_C
+                ,DESCRIPTION_C
             });
             PBS_LMS_ESAPI_CC.isAuthorizedToView(relatedFieldsObjects);
             //END Access Check
@@ -2059,7 +2081,7 @@ public with sharing class PBS_LMSService_CC{
             relatedFieldsObjects.put(PBS_Question_Line__c.sObjectType,new List<String>{
                 'Id'
                 ,'Name'
-                ,'Order__c'
+                ,ORDER_C
                 ,'Quiz__c'
             });
             PBS_LMS_ESAPI_CC.isAuthorizedToView(relatedFieldsObjects);
@@ -2087,8 +2109,8 @@ public with sharing class PBS_LMSService_CC{
             relatedFieldsObjects.put(PBS_Question_Line__c.sObjectType,new List<String>{
                 'Id'
                 ,'Name'
-                ,'Order__c'
-                ,'Description__c'
+                ,ORDER_C
+                ,DESCRIPTION_C
             });
             PBS_LMS_ESAPI_CC.isAuthorizedToView(relatedFieldsObjects);
             //END Access Check
@@ -2114,8 +2136,8 @@ public with sharing class PBS_LMSService_CC{
                 'Id'
                 ,'Name'
                 ,'Description_RTA__c'
-                ,'Description__c'
-                ,'Type__c'
+                ,DESCRIPTION_C
+                ,TYPE_C
             });
             PBS_LMS_ESAPI_CC.isAuthorizedToView(relatedFieldsObjects);
             //END Access Check
@@ -2143,7 +2165,7 @@ public with sharing class PBS_LMSService_CC{
             relatedFieldsObjects.put(PBS_Question__c.sObjectType,new List<String>{
                 'Id'
                 ,'Name'
-                ,'Type__c'
+                ,TYPE_C
             });
             PBS_LMS_ESAPI_CC.isAuthorizedToView(relatedFieldsObjects);
             //END Access Check
@@ -2178,7 +2200,7 @@ public with sharing class PBS_LMSService_CC{
                 ,'Name'
                 ,'Question__c'
                 ,'Question_Type__c'
-                ,'User__c'
+                ,USER_C
                 ,'Number_Response__c'
                 ,'Boolean_Response__c'
                 ,'Response_Answer_Sequence_Long__c'
@@ -2199,12 +2221,12 @@ public with sharing class PBS_LMSService_CC{
                 ,'Response_Answer_Sequence_Long__c'
                 ,'Response_Answer_Sequence_Label__c'
                 ,'Response_Text_Long__c'
-                ,'User__c'
+                ,USER_C
                 ,'Contact__c'
                 ,'Correct_Response__c'
             };
 
-            String soqlQuery = 'select '+String.join(listSOQLFields,',')+' from PBS_Response__c where';
+            String soqlQuery = SELECT_C+String.join(listSOQLFields,',')+' from PBS_Response__c where';
 
             if(said != null){
                 soqlQuery+= ' Shared_Learning_Assignment__c = :said';
@@ -2330,7 +2352,7 @@ public with sharing class PBS_LMSService_CC{
 
             Set<Id> lIds = learningIds;
 
-            String soqlQuery = 'select '+String.join(listSOQLFields,',')+' from PBS_Learning_Version__c where Learning__c in :lIds';
+            String soqlQuery = SELECT_C+String.join(listSOQLFields,',')+' from PBS_Learning_Version__c where Learning__c in :lIds';
             List<PBS_Learning_Version__c> versions = (List<PBS_Learning_Version__c>)Database.query(soqlQuery);
             for(PBS_Learning_Version__c lv : versions){
                 results.put(lv.Id,lv);
@@ -2410,7 +2432,7 @@ public with sharing class PBS_LMSService_CC{
             relatedFieldsObjects.put(PBS_Learning__c.sObjectType,new List<String>{
                 'Id'
                 ,'Name'
-                ,'Description__c'
+                ,DESCRIPTION_C
                 ,'Current_Published_Version__c'
             });
             PBS_LMS_ESAPI_CC.isAuthorizedToView(relatedFieldsObjects);

@@ -26,36 +26,18 @@ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISE
 OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
-public with sharing class PBS_TrainingTrackItem_CC{
+public with sharing class PBS_TrainingTrackLevel_MT{
 
-    public PBS_Training_Track_Level_Item__c trackItem{get;set;}
-    public PBS_Achievement__c mainAchievement{get;set;}
-    public PBS_Training_Plan_Assignment__c tplanAssignment{get;set;}
-    public Boolean isExpired{get;set;}
+    public String name{get;set;}
+    public String description{get;set;}
+    public Double order{get;set;}
+    public List<PBS_TrainingTrackItem_MT> trackItems{get;set;}
 
-    public PBS_TrainingTrackItem_CC(){
-        trackItem = null;
-        mainAchievement = null;
-        tplanAssignment = null;
-        isExpired = false;
+    public PBS_TrainingTrackLevel_MT(){
+        name = null;
+        description = null;
+        order = 0;
+        trackItems = new List<PBS_TrainingTrackItem_MT>();
     }
 
-    public String getItemURL(){
-        String result = null;
-        if(trackItem != null & trackItem.Training_Plan__c != null){
-            PageReference tmp = null;
-            if(tplanAssignment != null){
-                //tmp = Page.PBS_TrainingPlanDetail;
-                tmp = Page.PBS_TrainingPlanDetail;
-            }else if(trackItem.Training_Plan__r.Enable_Self_Registration__c){
-                //tmp = Page.PBS_TrainingPlanPreview;
-                tmp = Page.PBS_TrainingPlanPreview;
-            }
-            if(tmp != null){
-                tmp.getParameters().put('id',trackItem.Training_Plan__c);
-                result = PBS_LMSUtils_CC.updateURLCommunityPath(tmp.getUrl());
-            }
-        }
-        return result;
-    }
 }

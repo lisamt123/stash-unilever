@@ -83,7 +83,7 @@ global with sharing class PBS_SFDCNumberValidationRule_CC extends PBS_SFDCBaseVa
         svrule.assertValid(input);
       } catch (Exception e) {
         // String did not match the regex pattern or other basic string rule checks
-        throw new PBS_SFDCValidator_CC.SFDCValidationException('Invalid number input');
+        throw new PBS_SFDCValidator_CC.SFDCValidationException('Invalid number input',e);
       }
       
     // RegEx is ok , so try to convert string to double
@@ -91,7 +91,7 @@ global with sharing class PBS_SFDCNumberValidationRule_CC extends PBS_SFDCBaseVa
     try {
       d = Double.valueOf(input);
     } catch (Exception e) {
-      throw new PBS_SFDCValidator_CC.SFDCValidationException('Invalid number input');
+      throw new PBS_SFDCValidator_CC.SFDCValidationException('Invalid number input',e);
     }
     
     // validate min and max

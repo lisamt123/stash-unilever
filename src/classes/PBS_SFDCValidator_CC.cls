@@ -129,7 +129,7 @@ global with sharing class PBS_SFDCValidator_CC {
         svr = new PBS_SFDCStringValidationRule_CC( 'Date', format);
       } catch (Exception e) {
         // format seems to be invalid
-        throw new SFDCValidationException('Invalid date format');
+        throw new SFDCValidationException('Invalid date format',e);
       }
 
     svr.setAllowNull(allowNull);
@@ -139,7 +139,7 @@ global with sharing class PBS_SFDCValidator_CC {
         svr.assertValid(input);
       } catch (Exception e) {
         // Date did not match the regex pattern or other basic string rule checks
-        throw new SFDCValidationException('Invalid date input');
+        throw new SFDCValidationException('Invalid date input',e);
       }
     
     return input;
@@ -453,7 +453,7 @@ global with sharing class PBS_SFDCValidator_CC {
         try {
             c = PBS_SFDCCharacter_CC.toInt(input.substring(i, i + 1));
         } catch (Exception e) {
-          throw new SFDCValidationException('Invalid non-ASCII input bytes');
+          throw new SFDCValidationException('Invalid non-ASCII input bytes',e);
         }
           if (c < 32 || c > 126) {
             throw new SFDCValidationException('Invalid non-ASCII input bytes');
@@ -547,20 +547,20 @@ global with sharing class PBS_SFDCValidator_CC {
       svr.addWhitelistPattern(PBS_SFDCPatterns_CC.FileName);
     } catch (Exception e) {
         // format seems to be invalid
-        throw new SFDCValidationException('Invalid file name format');
+        throw new SFDCValidationException('Invalid file name format',e);
     }
     svr.setMaximumLength(255);
     svr.setAllowNull(allowNull);
     try {
       svr.assertValid(input);
     } catch (Exception e) {
-        throw new SFDCValidationException('Invalid file name input');
+        throw new SFDCValidationException('Invalid file name input',e);
     }
 
     // verify extensions
     for (Integer i = 0; i < allowedExtensions.size(); ++i) {
       // check if the input file name ends with one of the allowed file extensions. However, make sure we only compare it to non empty file extensions 
-      if (PBS_SFDCStringUtils_CC.isEmpty(allowedExtensions[i]) == false && 
+      if (!(PBS_SFDCStringUtils_CC.isEmpty(allowedExtensions[i])) && 
           input.toLowerCase().endsWith(allowedExtensions[i].toLowerCase())) {
         return input;
       }
@@ -803,7 +803,7 @@ global with sharing class PBS_SFDCValidator_CC {
     } else if (input.toLowerCase().startsWith('https://')) {
       // remove https:// by setting startPos to after it
       startPos = 8;
-    } else if (input.startsWith('/') == false) {
+    } else if (!(input.startsWith('/'))) {
       throw new SFDCValidationException('Invalid input URL');
     }
     
@@ -838,12 +838,12 @@ global with sharing class PBS_SFDCValidator_CC {
         svr.setAllowNull(false);
         svr.assertValid(tmp);
       } catch (Exception e) {
-        throw new SFDCValidationException('Input domain in URL is invalid');
+        throw new SFDCValidationException('Input domain in URL is invalid',e);
       }
       
       // valid domain format - now check that it is *.salesforce.com or matches current domain
-      if (tmp.endsWith('.salesforce.com') == false && 
-          (PBS_SFDCStringUtils_CC.isEmpty(currentDomain) == true || tmp.equals(currentDomain) == false)) {
+      if (!(tmp.endsWith('.salesforce.com')) && 
+          ((PBS_SFDCStringUtils_CC.isEmpty(currentDomain)) || (!tmp.equals(currentDomain)))) {
         throw new SFDCValidationException('Input domain in URL must match *.salesforce.com or current domain');
       }
       
@@ -867,7 +867,7 @@ global with sharing class PBS_SFDCValidator_CC {
       svr.setAllowNull(allowEmptyURI);
       svr.assertValid(tmp);
     } catch (Exception e) {
-      throw new SFDCValidationException('Input URL is invalid');
+      throw new SFDCValidationException('Input URL is invalid',e);
     }
 
     return input;

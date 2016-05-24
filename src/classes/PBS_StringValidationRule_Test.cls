@@ -63,6 +63,7 @@ private class PBS_StringValidationRule_Test {
             System.assert(false, 'Should never get here - 405');
         } catch (PBS_SFDCValidator_CC.SFDCValidationException e) {
             // should fail - so all good
+            System.debug(e.getMessage());            
         }
 
         try {
@@ -70,6 +71,7 @@ private class PBS_StringValidationRule_Test {
             System.assert(false, 'Should never get here - abc');
         } catch (PBS_SFDCValidator_CC.SFDCValidationException e) {
             // should fail - so all good
+            System.debug(e.getMessage());
         }
 
         try {
@@ -77,6 +79,7 @@ private class PBS_StringValidationRule_Test {
             System.assert(false, 'Should never get here - 1');
         } catch (PBS_SFDCValidator_CC.SFDCValidationException e) {
             // should fail - so all good
+            System.debug(e.getMessage());
         }
 
         try {
@@ -84,6 +87,7 @@ private class PBS_StringValidationRule_Test {
             System.assert(false, 'Should never get here - 123456789123456789123456789');
         } catch (PBS_SFDCValidator_CC.SFDCValidationException e) {
             // should fail - so all good
+            System.debug(e.getMessage());            
         }
 
         svr.assertValid(null);
@@ -96,6 +100,7 @@ private class PBS_StringValidationRule_Test {
             System.assert(false, 'Should never get here - null');
         } catch (PBS_SFDCValidator_CC.SFDCValidationException e) {
             // should fail - so all good
+            System.debug(e.getMessage());            
         }
 
         try {
@@ -104,6 +109,7 @@ private class PBS_StringValidationRule_Test {
             System.assert(false, 'Should never get here');
         } catch (PBS_SFDCValidator_CC.SFDCValidationException e) {
             // should fail - so all good
+            System.debug(e.getMessage());            
         }
 
         try {
@@ -112,6 +118,7 @@ private class PBS_StringValidationRule_Test {
             System.assert(false, 'Should never get here');
         } catch (PBS_SFDCValidator_CC.SFDCValidationException e) {
             // should fail - so all good
+            System.debug(e.getMessage());            
         }
 
         try {
@@ -120,6 +127,7 @@ private class PBS_StringValidationRule_Test {
             System.assert(false, 'Should never get here');
         } catch (PBS_SFDCValidator_CC.SFDCValidationException e) {
             // should fail - so all good
+            System.debug(e.getMessage());            
         }
 
         try {
@@ -128,6 +136,7 @@ private class PBS_StringValidationRule_Test {
             System.assert(false, 'Should never get here');
         } catch (PBS_SFDCValidator_CC.SFDCValidationException e) {
             // should fail - so all good
+            System.debug(e.getMessage());            
         }
     }
     

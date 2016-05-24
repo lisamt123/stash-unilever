@@ -28,6 +28,8 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 public with sharing class PBS_QuestionNewController_CC{
 
+    public static final string ORDER_C = 'Order__c';
+
     public PBS_Question__c question{get;set;}
     private PBS_Answer_Sequence__c answerSequence {get;set;}
     public List<PBS_Answer_Sequence_Item__c> lanswerseqitems {get;set;}
@@ -50,7 +52,7 @@ public with sharing class PBS_QuestionNewController_CC{
 
             if(!Test.isRunningTest()){
                 //add all Question__c fields used on vf page
-                controller.addFields(new List<String>{'Name','Description__c','Description_RTA__c','Type__c', 'Order__c', 'Correct_Number__c' , 'Correct_Boolean__c', 'Answer_Sequence__c'});
+                controller.addFields(new List<String>{'Name','Description__c','Description_RTA__c','Type__c', ORDER_C, 'Correct_Number__c' , 'Correct_Boolean__c', 'Answer_Sequence__c'});
             }
 
             //record id
@@ -95,7 +97,7 @@ public with sharing class PBS_QuestionNewController_CC{
             'Description__c'
             ,'Description_RTA__c'
             ,'Type__c'
-            ,'Order__c'
+            ,ORDER_C
             ,'Correct_Number__c'
             ,'Correct_Boolean__c'
         });
@@ -108,7 +110,7 @@ public with sharing class PBS_QuestionNewController_CC{
             ,'Item_Id__c'
             ,'Answer_Text__c'
             ,'Is_Correct_Answer__c'
-            ,'Order__c'
+            ,ORDER_C
             ,'Answer_Sequence__c'
         });
         PBS_LMS_ESAPI_CC.isAuthorizedToView(relatedFieldsObjects);
@@ -180,14 +182,14 @@ public with sharing class PBS_QuestionNewController_CC{
                 'Description__c'
                 ,'Description_RTA__c'
                 ,'Type__c'
-                ,'Order__c'
+                ,ORDER_C
                 ,'Correct_Number__c'
                 ,'Correct_Boolean__c'
             });
             relatedFieldsObjects.put(PBS_Answer_Sequence_Item__c.sObjectType,new List<String>{
                 'Answer_Text__c'
                 ,'Is_Correct_Answer__c'
-                ,'Order__c'
+                ,ORDER_C
                 ,'Answer_Sequence__c'
             });
             relatedFieldsObjects.put(PBS_Question__c.sObjectType,new List<String>{

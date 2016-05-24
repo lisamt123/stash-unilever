@@ -38,6 +38,21 @@
 @isTest
 private class PBS_Encoder_Test {
 
+    public static final string VALID_1 = 'Valid #1';
+    public static final string VALID_2 = 'Valid #1';
+    public static final string VALID_3 = 'Valid #3';
+    public static final string VALID_4 = 'Valid #4';
+    public static final string ABCDEF = 'abc\'def';
+    public static final string ABC_DEF = 'abc"def';
+    public static final string ABC_RDEF = 'abc\rdef';
+    public static final string VALID_8 = 'Valid #8';
+    public static final string VALID_9 = 'Valid #9';
+    
+    public static final string UTF8= 'UTF-8';
+    public static final string UTF16= 'UTF-16';
+    
+    
+    
     private class EncodeTest {
         public String inputStr;
         public String expectedOutput;
@@ -68,68 +83,68 @@ private class PBS_Encoder_Test {
     private static final EncodeTest [] urlEncodeWithEncodingTests = new EncodeTest[]{};
 
     static {
-        htmlEncodeTests.add(new EncodeTest('abc', 'abc', 'Valid #1', true));
-        htmlEncodeTests.add(new EncodeTest('abc<b>test</b>def', 'abc&lt;b&gt;test&lt;/b&gt;def', 'Valid #2', true));
-        htmlEncodeTests.add(new EncodeTest('abc&lt;def', 'abc&amp;lt;def', 'Valid #3', true));
-        htmlEncodeTests.add(new EncodeTest('abc<fghgfh&lt;<sfdg>&amp;def', 'abc&lt;fghgfh&amp;lt;&lt;sfdg&gt;&amp;amp;def', 'Valid #4', true));
-        htmlEncodeTests.add(new EncodeTest('abc\'def', 'abc&#39;def', 'Valid #5', true));
-        htmlEncodeTests.add(new EncodeTest('abc"def', 'abc&quot;def', 'Valid #6', true));
+        htmlEncodeTests.add(new EncodeTest('abc', 'abc', VALID_1, true));
+        htmlEncodeTests.add(new EncodeTest('abc<b>test</b>def', 'abc&lt;b&gt;test&lt;/b&gt;def', VALID_2, true));
+        htmlEncodeTests.add(new EncodeTest('abc&lt;def', 'abc&amp;lt;def', VALID_3, true));
+        htmlEncodeTests.add(new EncodeTest('abc<fghgfh&lt;<sfdg>&amp;def', 'abc&lt;fghgfh&amp;lt;&lt;sfdg&gt;&amp;amp;def', VALID_4, true));
+        htmlEncodeTests.add(new EncodeTest(ABCDEF, 'abc&#39;def', 'Valid #5', true));
+        htmlEncodeTests.add(new EncodeTest(ABC_DEF, 'abc&quot;def', 'Valid #6', true));
 
-        jsEncodeTests.add(new EncodeTest('abc', 'abc', 'Valid #1', true));
-        jsEncodeTests.add(new EncodeTest('abc<b>test</b>def', 'abc\\u003Cb\\u003Etest\\u003C\\/b\\u003Edef', 'Valid #2', true));
-        jsEncodeTests.add(new EncodeTest('abc&lt;def', 'abc&lt;def', 'Valid #3', true));
-        jsEncodeTests.add(new EncodeTest('abc<fghgfh&lt;<sfdg>&amp;def', 'abc\\u003Cfghgfh&lt;\\u003Csfdg\\u003E&amp;def', 'Valid #4', true));
+        jsEncodeTests.add(new EncodeTest('abc', 'abc', VALID_1, true));
+        jsEncodeTests.add(new EncodeTest('abc<b>test</b>def', 'abc\\u003Cb\\u003Etest\\u003C\\/b\\u003Edef', VALID_2, true));
+        jsEncodeTests.add(new EncodeTest('abc&lt;def', 'abc&lt;def', VALID_3, true));
+        jsEncodeTests.add(new EncodeTest('abc<fghgfh&lt;<sfdg>&amp;def', 'abc\\u003Cfghgfh&lt;\\u003Csfdg\\u003E&amp;def', VALID_4, true));
         jsEncodeTests.add(new EncodeTest('abc\\def', 'abc\\\\def', 'Valid #5', true));
-        jsEncodeTests.add(new EncodeTest('abc\'def', 'abc\\\'def', 'Valid #6', true));
-        jsEncodeTests.add(new EncodeTest('abc\rdef', 'abc\\rdef', 'Valid #7', true));
-        jsEncodeTests.add(new EncodeTest('abc\ndef', 'abc\\ndef', 'Valid #8', true));
-        jsEncodeTests.add(new EncodeTest('abc"def', 'abc\\"def', 'Valid #9', true));
+        jsEncodeTests.add(new EncodeTest(ABCDEF, 'abc\\\'def', 'Valid #6', true));
+        jsEncodeTests.add(new EncodeTest(ABC_RDEF, 'abc\\rdef', 'Valid #7', true));
+        jsEncodeTests.add(new EncodeTest('abc\ndef', 'abc\\ndef', VALID_8, true));
+        jsEncodeTests.add(new EncodeTest(ABC_DEF, 'abc\\"def', VALID_9, true));
         jsEncodeTests.add(new EncodeTest('abc!--def', 'abc\\!--def', 'Valid #10', true));
         jsEncodeTests.add(new EncodeTest('abc<!--def', 'abc\\u003C\\!--def', 'Valid #11', true));
         jsEncodeTests.add(new EncodeTest('abc/def', 'abc\\/def', 'Valid #12', true));
 
-        jsInHtmlEncodeTests.add(new EncodeTest('abc', 'abc', 'Valid #1', true));
-        jsInHtmlEncodeTests.add(new EncodeTest('abc<b>test</b>def', 'abc&lt;b&gt;test&lt;/b&gt;def', 'Valid #2', true));
-        jsInHtmlEncodeTests.add(new EncodeTest('abc&lt;def', 'abc\\\\&amp;lt;def', 'Valid #3', true));
-        jsInHtmlEncodeTests.add(new EncodeTest('abc<fghgfh&lt;<sfdg>&amp;def', 'abc&lt;fghgfh\\\\&amp;lt;&lt;sfdg&gt;\\\\&amp;amp;def', 'Valid #4', true));
-        jsInHtmlEncodeTests.add(new EncodeTest('abc\'def', 'abc\\&#39;def', 'Valid #5', true));
-        jsInHtmlEncodeTests.add(new EncodeTest('abc"def', 'abc\\&quot;def', 'Valid #6', true));
+        jsInHtmlEncodeTests.add(new EncodeTest('abc', 'abc', VALID_1, true));
+        jsInHtmlEncodeTests.add(new EncodeTest('abc<b>test</b>def', 'abc&lt;b&gt;test&lt;/b&gt;def', VALID_2, true));
+        jsInHtmlEncodeTests.add(new EncodeTest('abc&lt;def', 'abc\\\\&amp;lt;def', VALID_3, true));
+        jsInHtmlEncodeTests.add(new EncodeTest('abc<fghgfh&lt;<sfdg>&amp;def', 'abc&lt;fghgfh\\\\&amp;lt;&lt;sfdg&gt;\\\\&amp;amp;def', VALID_4, true));
+        jsInHtmlEncodeTests.add(new EncodeTest(ABCDEF, 'abc\\&#39;def', 'Valid #5', true));
+        jsInHtmlEncodeTests.add(new EncodeTest(ABC_DEF, 'abc\\&quot;def', 'Valid #6', true));
         jsInHtmlEncodeTests.add(new EncodeTest('abc&def', 'abc\\\\&amp;def', 'Valid #7', true));
-        jsInHtmlEncodeTests.add(new EncodeTest('abc\\def', 'abc\\\\def', 'Valid #8', true));
-        jsInHtmlEncodeTests.add(new EncodeTest('abc\rdef', 'abc\\rdef', 'Valid #9', true));
+        jsInHtmlEncodeTests.add(new EncodeTest('abc\\def', 'abc\\\\def', VALID_8, true));
+        jsInHtmlEncodeTests.add(new EncodeTest(ABC_RDEF, 'abc\\rdef', VALID_9, true));
         jsInHtmlEncodeTests.add(new EncodeTest('abc\ndef', 'abc\\ndef', 'Valid #10', true));
         jsInHtmlEncodeTests.add(new EncodeTest('abc<def', 'abc&lt;def', 'Valid #11', true));
         jsInHtmlEncodeTests.add(new EncodeTest('abc>def', 'abc&gt;def', 'Valid #12', true));
 
-        urlEncodeTests.add(new EncodeTest('abc', 'abc', 'Valid #1', true));
-        urlEncodeTests.add(new EncodeTest('abc<b>test</b>def', 'abc%3Cb%3Etest%3C%2Fb%3Edef', 'Valid #2', true));
-        urlEncodeTests.add(new EncodeTest('abc&lt;def', 'abc%26lt%3Bdef', 'Valid #3', true));
-        urlEncodeTests.add(new EncodeTest('abc<fghgfh&lt;<sfdg>&amp;def', 'abc%3Cfghgfh%26lt%3B%3Csfdg%3E%26amp%3Bdef', 'Valid #4', true));
-        urlEncodeTests.add(new EncodeTest('abc\'def', 'abc%27def', 'Valid #5', true));
-        urlEncodeTests.add(new EncodeTest('abc"def', 'abc%22def', 'Valid #6', true));
-        urlEncodeTests.add(new EncodeTest('abc\rdef', 'abc%0Ddef', 'Valid #7', true));
-        urlEncodeTests.add(new EncodeTest('abc\ndef', 'abc%0Adef', 'Valid #8', true));
-        urlEncodeTests.add(new EncodeTest('abc' + EncodingUtil.urlDecode('%D7%A9', 'UTF-8') + 'def', 'abc%D7%A9def', 'Valid #9', true));
+        urlEncodeTests.add(new EncodeTest('abc', 'abc', VALID_1, true));
+        urlEncodeTests.add(new EncodeTest('abc<b>test</b>def', 'abc%3Cb%3Etest%3C%2Fb%3Edef', VALID_2, true));
+        urlEncodeTests.add(new EncodeTest('abc&lt;def', 'abc%26lt%3Bdef', VALID_3, true));
+        urlEncodeTests.add(new EncodeTest('abc<fghgfh&lt;<sfdg>&amp;def', 'abc%3Cfghgfh%26lt%3B%3Csfdg%3E%26amp%3Bdef', VALID_4, true));
+        urlEncodeTests.add(new EncodeTest(ABCDEF, 'abc%27def', 'Valid #5', true));
+        urlEncodeTests.add(new EncodeTest(ABC_DEF, 'abc%22def', 'Valid #6', true));
+        urlEncodeTests.add(new EncodeTest(ABC_RDEF, 'abc%0Ddef', 'Valid #7', true));
+        urlEncodeTests.add(new EncodeTest('abc\ndef', 'abc%0Adef', VALID_8, true));
+        urlEncodeTests.add(new EncodeTest('abc' + EncodingUtil.urlDecode('%D7%A9', UTF8) + 'def', 'abc%D7%A9def', VALID_9, true));
 
-        urlEncodeWithEncodingTests.add(new EncodeTest('abc', 'UTF-8', 'abc', 'Valid #1', true));
-        urlEncodeWithEncodingTests.add(new EncodeTest('abc<b>test</b>def', 'UTF-8', 'abc%3Cb%3Etest%3C%2Fb%3Edef', 'Valid #2', true));
-        urlEncodeWithEncodingTests.add(new EncodeTest('abc&lt;def', 'UTF-8', 'abc%26lt%3Bdef', 'Valid #3', true));
-        urlEncodeWithEncodingTests.add(new EncodeTest('abc<fghgfh&lt;<sfdg>&amp;def', 'UTF-8', 'abc%3Cfghgfh%26lt%3B%3Csfdg%3E%26amp%3Bdef', 'Valid #4', true));
-        urlEncodeWithEncodingTests.add(new EncodeTest('abc\'def', 'UTF-8', 'abc%27def', 'Valid #5', true));
-        urlEncodeWithEncodingTests.add(new EncodeTest('abc"def', 'UTF-8', 'abc%22def', 'Valid #6', true));
-        urlEncodeWithEncodingTests.add(new EncodeTest('abc\rdef', 'UTF-8', 'abc%0Ddef', 'Valid #7', true));
-        urlEncodeWithEncodingTests.add(new EncodeTest('abc\ndef', 'UTF-8', 'abc%0Adef', 'Valid #8', true));
-        urlEncodeWithEncodingTests.add(new EncodeTest('abc' + EncodingUtil.urlDecode('%D7%A9', 'UTF-8') + 'def', 'UTF-8', 'abc%D7%A9def', 'Valid #9', true));
+        urlEncodeWithEncodingTests.add(new EncodeTest('abc', UTF8, 'abc', VALID_1, true));
+        urlEncodeWithEncodingTests.add(new EncodeTest('abc<b>test</b>def', UTF8, 'abc%3Cb%3Etest%3C%2Fb%3Edef', VALID_2, true));
+        urlEncodeWithEncodingTests.add(new EncodeTest('abc&lt;def', UTF8, 'abc%26lt%3Bdef', VALID_3, true));
+        urlEncodeWithEncodingTests.add(new EncodeTest('abc<fghgfh&lt;<sfdg>&amp;def', UTF8, 'abc%3Cfghgfh%26lt%3B%3Csfdg%3E%26amp%3Bdef', VALID_4, true));
+        urlEncodeWithEncodingTests.add(new EncodeTest(ABCDEF, UTF8, 'abc%27def', 'Valid #5', true));
+        urlEncodeWithEncodingTests.add(new EncodeTest(ABC_DEF, UTF8, 'abc%22def', 'Valid #6', true));
+        urlEncodeWithEncodingTests.add(new EncodeTest(ABC_RDEF, UTF8, 'abc%0Ddef', 'Valid #7', true));
+        urlEncodeWithEncodingTests.add(new EncodeTest('abc\ndef', UTF8, 'abc%0Adef', VALID_8, true));
+        urlEncodeWithEncodingTests.add(new EncodeTest('abc' + EncodingUtil.urlDecode('%D7%A9', UTF8) + 'def', UTF8, 'abc%D7%A9def', VALID_9, true));
 
-        urlEncodeWithEncodingTests.add(new EncodeTest('abc', 'UTF-16', 'abc', 'Valid #1', true));
-        urlEncodeWithEncodingTests.add(new EncodeTest('abc<b>test</b>def', 'UTF-16', 'abc%FE%FF%00%3Cb%FE%FF%00%3Etest%FE%FF%00%3C%00%2Fb%FE%FF%00%3Edef', 'Valid #2', true));
-        urlEncodeWithEncodingTests.add(new EncodeTest('abc&lt;def', 'UTF-16', 'abc%FE%FF%00%26lt%FE%FF%00%3Bdef', 'Valid #3', true));
-        urlEncodeWithEncodingTests.add(new EncodeTest('abc<fghgfh&lt;<sfdg>&amp;def', 'UTF-16', 'abc%FE%FF%00%3Cfghgfh%FE%FF%00%26lt%FE%FF%00%3B%00%3Csfdg%FE%FF%00%3E%00%26amp%FE%FF%00%3Bdef', 'Valid #4', true));
-        urlEncodeWithEncodingTests.add(new EncodeTest('abc\'def', 'UTF-16', 'abc%FE%FF%00%27def', 'Valid #5', true));
-        urlEncodeWithEncodingTests.add(new EncodeTest('abc"def', 'UTF-16', 'abc%FE%FF%00%22def', 'Valid #6', true));
-        urlEncodeWithEncodingTests.add(new EncodeTest('abc\rdef', 'UTF-16', 'abc%FE%FF%00%0Ddef', 'Valid #7', true));
-        urlEncodeWithEncodingTests.add(new EncodeTest('abc\ndef', 'UTF-16', 'abc%FE%FF%00%0Adef', 'Valid #8', true));
-        urlEncodeWithEncodingTests.add(new EncodeTest('abc' + EncodingUtil.urlDecode('%D7%A9', 'UTF-8') + 'def', 'UTF-16', 'abc%FE%FF%05%E9def', 'Valid #9', true));
+        urlEncodeWithEncodingTests.add(new EncodeTest('abc', UTF16, 'abc', VALID_1, true));
+        urlEncodeWithEncodingTests.add(new EncodeTest('abc<b>test</b>def', UTF16, 'abc%FE%FF%00%3Cb%FE%FF%00%3Etest%FE%FF%00%3C%00%2Fb%FE%FF%00%3Edef', VALID_2, true));
+        urlEncodeWithEncodingTests.add(new EncodeTest('abc&lt;def', UTF16, 'abc%FE%FF%00%26lt%FE%FF%00%3Bdef', VALID_3, true));
+        urlEncodeWithEncodingTests.add(new EncodeTest('abc<fghgfh&lt;<sfdg>&amp;def', UTF16, 'abc%FE%FF%00%3Cfghgfh%FE%FF%00%26lt%FE%FF%00%3B%00%3Csfdg%FE%FF%00%3E%00%26amp%FE%FF%00%3Bdef', VALID_4, true));
+        urlEncodeWithEncodingTests.add(new EncodeTest(ABCDEF, UTF16, 'abc%FE%FF%00%27def', 'Valid #5', true));
+        urlEncodeWithEncodingTests.add(new EncodeTest(ABC_DEF, UTF16, 'abc%FE%FF%00%22def', 'Valid #6', true));
+        urlEncodeWithEncodingTests.add(new EncodeTest(ABC_RDEF, UTF16, 'abc%FE%FF%00%0Ddef', 'Valid #7', true));
+        urlEncodeWithEncodingTests.add(new EncodeTest('abc\ndef', UTF16, 'abc%FE%FF%00%0Adef', VALID_8, true));
+        urlEncodeWithEncodingTests.add(new EncodeTest('abc' + EncodingUtil.urlDecode('%D7%A9', UTF8) + 'def', UTF16, 'abc%FE%FF%05%E9def', VALID_9, true));
     }
 
     static testMethod void testEncoderHtmlEncode() {
@@ -137,12 +152,14 @@ private class PBS_Encoder_Test {
             try {
                 String ret = PBS_ESAPI_CC.encoder().SFDC_HTMLENCODE(t.inputStr);
                 // if no exception - check if we are expecting a valid test
-                System.assert(t.expectedResult == true, t.errText);
+                /*System.assert(t.expectedResult == true, t.errText);*/
+                System.assertEquals(true,t.expectedResult, t.errText);
                 // also make sure return value is equal to input
                 System.assert(ret.equals(t.expectedOutput), t.errText);
             } catch (Exception e) {
                 // if exception - check if we are expecting an invalid test
-                System.assert(t.expectedResult == false, t.errText);
+/*                System.assert(t.expectedResult == false, t.errText); */
+                System.assertEquals(false, t.expectedResult, t.errText);
             }
         }
     }
@@ -152,12 +169,14 @@ private class PBS_Encoder_Test {
             try {
                 String ret = PBS_ESAPI_CC.encoder().SFDC_JSENCODE(t.inputStr);
                 // if no exception - check if we are expecting a valid test
-                System.assert(t.expectedResult == true, t.errText);
+                /*System.assert(t.expectedResult == true, t.errText);*/
+                System.assertEquals(true,t.expectedResult, t.errText);
                 // also make sure return value is equal to input
                 System.assert(ret.equals(t.expectedOutput), t.errText);
             } catch (Exception e) {
                 // if exception - check if we are expecting an invalid test
-                System.assert(t.expectedResult == false, t.errText);
+               /* System.assert(t.expectedResult == false, t.errText);*/
+                System.assertEquals(false, t.expectedResult, t.errText);
             }
         }
     }
@@ -167,14 +186,16 @@ private class PBS_Encoder_Test {
             try {
                 String ret = PBS_ESAPI_CC.encoder().SFDC_JSINHTMLENCODE(t.inputStr);
                 // if no exception - check if we are expecting a valid test
-                System.assert(t.expectedResult == true, t.errText);
+                //System.assert(t.expectedResult == true, t.errText);
+                System.assertEquals(true,t.expectedResult, t.errText);
                 // also make sure return value is equal to input
                 System.debug('expected: ' + t.expectedOutput);
                 System.debug('observed: ' + ret);
                 System.assert(ret.equals(t.expectedOutput), t.errText);
             } catch (Exception e) {
                 // if exception - check if we are expecting an invalid test
-                System.assert(t.expectedResult == false, t.errText);
+                //System.assert(t.expectedResult == false, t.errText);
+                System.assertEquals(false, t.expectedResult, t.errText);
             }
         }
     }
@@ -184,12 +205,14 @@ private class PBS_Encoder_Test {
             try {
                 String ret = PBS_ESAPI_CC.encoder().SFDC_URLENCODE(t.inputStr);
                 // if no exception - check if we are expecting a valid test
-                System.assert(t.expectedResult == true, t.errText);
+                //System.assert(t.expectedResult == true, t.errText);
+                System.assertEquals(true,t.expectedResult, t.errText);
                 // also make sure return value is equal to input
                 System.assert(ret.equals(t.expectedOutput), t.errText);
             } catch (Exception e) {
                 // if exception - check if we are expecting an invalid test
-                System.assert(t.expectedResult == false, t.errText);
+                //System.assert(t.expectedResult == false, t.errText);
+                System.assertEquals(false, t.expectedResult, t.errText);
             }
         }
     }
@@ -199,12 +222,14 @@ private class PBS_Encoder_Test {
             try {
                 String ret = PBS_ESAPI_CC.encoder().SFDC_URLENCODE(t.inputStr, t.encoding);
                 // if no exception - check if we are expecting a valid test
-                System.assert(t.expectedResult == true, t.errText);
+                //System.assert(t.expectedResult == true, t.errText);
+                System.assertEquals(true,t.expectedResult, t.errText);
                 // also make sure return value is equal to input
                 System.assert(ret.equals(t.expectedOutput), t.errText);
             } catch (Exception e) {
                 // if exception - check if we are expecting an invalid test
-                System.assert(t.expectedResult == false, t.errText);
+                //System.assert(t.expectedResult == false, t.errText);
+                System.assertEquals(false, t.expectedResult, t.errText);
             }
         }
     }

@@ -66,11 +66,12 @@ public with sharing class PBS_SFDCCreditCardValidationRule_CC extends PBS_SFDCBa
         ccrule.assertValid(input);
       } catch (Exception e) {
         // Card did not match the regex pattern or other basic string rule checks
-        throw new PBS_SFDCValidator_CC.SFDCValidationException('Invalid credit card input');
+        throw new PBS_SFDCValidator_CC.SFDCValidationException('Invalid credit card input',e);
       }
 
     if( ! validCreditCardFormat(input)) {
       throw new PBS_SFDCValidator_CC.SFDCValidationException('Invalid credit card input');
+       
     }
     
     // all tests passed

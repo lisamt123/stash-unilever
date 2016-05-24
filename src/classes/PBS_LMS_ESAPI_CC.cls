@@ -30,7 +30,10 @@ public with sharing class PBS_LMS_ESAPI_CC {
 
     public static void isAuthorizedToView(Map<Schema.sObjectType,List<String>> objectMap){
         for(Schema.sObjectType oType : objectMap.keySet()){
+        
+                 
             if(!PBS_ESAPI_CC.accessController().isAuthorizedToView(oType,objectMap.get(oType))){
+               
                 throw new PBS_LMSException(System.Label.ALMS_CRUD_FLS_View+' - '+System.Label.ALMS_Insufficient_CRUD_FLS);
             }
         }

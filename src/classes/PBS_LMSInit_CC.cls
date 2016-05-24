@@ -29,6 +29,15 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 public with sharing class PBS_LMSInit_CC{
 
     public class LMSInitException extends Exception{}
+    
+    public static final string ANSWER_SEQUENCE = 'answer-sequence';
+    public static final string LEARNING_CATEGORY= 'learning-category';
+    public static final string ACHIEVEMENT_CATEGORY= 'achievement-category';
+    public static final string ORDER= 'order';
+    public static final string RECORD_TYPE= 'record-type';
+    public static final string DESCRIPTION= 'description';
+    
+    
 
     public static String fetchInitData(String resourceName){
         if(UserInfo.getLanguage() != 'en_US'){
@@ -105,24 +114,24 @@ public with sharing class PBS_LMSInit_CC{
                 existingRecordsMap.get(type).put(name,null);
 
                 // Always create answer sequence lookups
-                if(type == 'answer-sequence'){
+                if(type == ANSWER_SEQUENCE){
                     PBS_Answer_Sequence__c aseq = new PBS_Answer_Sequence__c();
                     answerSequences.put(name,aseq);
-                }else if(type == 'learning-category'){
+                }else if(type == LEARNING_CATEGORY){
                     learningCategoryObjectsMap.put(name, lHeader);
                 }
             }
 
             //Insert missing lookups
-            if(existingRecordsMap.get('achievement-category') != null){
+            if(existingRecordsMap.get(ACHIEVEMENT_CATEGORY) != null){
                 Map<String,PBS_Achievement_Category__c> acMap = new Map<String,PBS_Achievement_Category__c>();
                 //Look for existing achievement categories
-                for(PBS_Achievement_Category__c extAC : [select id,name from PBS_Achievement_Category__c where Name = :existingRecordsMap.get('achievement-category').keySet()]){
-                    existingRecordsMap.get('achievement-category').put(extAC.name, extAC.id);
+                for(PBS_Achievement_Category__c extAC : [select id,name from PBS_Achievement_Category__c where Name = :existingRecordsMap.get(ACHIEVEMENT_CATEGORY).keySet()]){
+                    existingRecordsMap.get(ACHIEVEMENT_CATEGORY).put(extAC.name, extAC.id);
                 }
                 //Insert missing values
-                for(String acKey : existingRecordsMap.get('achievement-category').keySet()){
-                    if(existingRecordsMap.get('achievement-category').get(acKey) == null){
+                for(String acKey : existingRecordsMap.get(ACHIEVEMENT_CATEGORY).keySet()){
+                    if(existingRecordsMap.get(ACHIEVEMENT_CATEGORY).get(acKey) == null){
                       PBS_Achievement_Category__c ac = new PBS_Achievement_Category__c();
                       ac.Name = acKey;
                       acMap.put(ac.name,ac);
@@ -132,20 +141,20 @@ public with sharing class PBS_LMSInit_CC{
                 if(acMap.size()>0){
                     insert acMap.values();
                     for(PBS_Achievement_Category__c ac : acMap.values()){
-                        existingRecordsMap.get('achievement-category').put(ac.name, ac.id);
+                        existingRecordsMap.get(ACHIEVEMENT_CATEGORY).put(ac.name, ac.id);
                     }
                 }
             }
 
-            if(existingRecordsMap.get('learning-category') != null){
+            if(existingRecordsMap.get(LEARNING_CATEGORY) != null){
                 Map<String,PBS_Learning_Category__c> lcMap = new Map<String,PBS_Learning_Category__c>();
                 //Look for existing learning categories
-                for(PBS_Learning_Category__c extLC : [select id,name from PBS_Learning_Category__c where Name = :existingRecordsMap.get('learning-category').keySet()]){
-                    existingRecordsMap.get('learning-category').put(extLC.name, extLC.id);
+                for(PBS_Learning_Category__c extLC : [select id,name from PBS_Learning_Category__c where Name = :existingRecordsMap.get(LEARNING_CATEGORY).keySet()]){
+                    existingRecordsMap.get(LEARNING_CATEGORY).put(extLC.name, extLC.id);
                 }
                 //Insert missing values
-                for(String lcKey : existingRecordsMap.get('learning-category').keySet()){
-                    if(existingRecordsMap.get('learning-category').get(lcKey) == null){
+                for(String lcKey : existingRecordsMap.get(LEARNING_CATEGORY).keySet()){
+                    if(existingRecordsMap.get(LEARNING_CATEGORY).get(lcKey) == null){
                         Map<String,Object> lcObj = (Map<String,Object>)learningCategoryObjectsMap.get(lcKey);
                         PBS_Learning_Category__c lc = new PBS_Learning_Category__c();
                         lc.Name = lcKey;
@@ -153,7 +162,7 @@ public with sharing class PBS_LMSInit_CC{
                         lc.Logo__c = getStringValue(lcObj.get('logo'),null);
                         lc.Text_Color__c = getStringValue(lcObj.get('text-color'),null);
                         lc.Hide_From_Catalog_Home__c = getBooleanValue(lcObj.get('hide-from-catalog-home'),false);
-                        lc.Order__c = getIntegerValue(lcObj.get('order'),null);
+                        lc.Order__c = getIntegerValue(lcObj.get(ORDER),null);
                         lc.Is_Internal__c = getBooleanValue(lcObj.get('is-internal'),false);
                         lcMap.put(lc.name,lc);
                     }
@@ -162,7 +171,7 @@ public with sharing class PBS_LMSInit_CC{
                 if(lcMap.size()>0){
                     insert lcMap.values();
                     for(PBS_Learning_Category__c lc : lcMap.values()){
-                        existingRecordsMap.get('learning-category').put(lc.name, lc.id);
+                        existingRecordsMap.get(LEARNING_CATEGORY).put(lc.name, lc.id);
                     }
                 }
             }
@@ -183,13 +192,13 @@ public with sharing class PBS_LMSInit_CC{
                 Map<String,Object> lHeader = (Map<String,Object>)lo;
                 String headerName = addTimeStamp?(String)lHeader.get('name')+ts:(String)lHeader.get('name');
                 String type = (String)lHeader.get('type');
-                if(type == 'answer-sequence'){
+                if(type == ANSWER_SEQUENCE){
                     Map<String,Object> lookUpContent = (Map<String,Object>)lHeader.get('content');
                     List<Object> sequenceItems = getObjectList(lookUpContent,'options');
                     for(Object sit : sequenceItems){
                         Map<String,Object> it = (Map<String,Object>)sit;
                         PBS_Answer_Sequence_Item__c asi = new PBS_Answer_Sequence_Item__c();
-                        asi.Order__c = getIntegerValue(it.get('order'),null);
+                        asi.Order__c = getIntegerValue(it.get(ORDER),null);
                         asi.Answer_Text__c = getStringValue(it.get('answer-text'),null);
                         asi.Item_Id__c = getStringValue(it.get('answer-id'),'');
                         asi.Is_Correct_Answer__c = getBooleanValue(it.get('is-correct-answer'),false);
@@ -210,9 +219,9 @@ public with sharing class PBS_LMSInit_CC{
                 PBS_Learning__c l = new PBS_Learning__c();
                 String lName = addTimeStamp?(String)lHeader.get('name')+ts:(String)lHeader.get('name');
                 l.Name = lName;
-                l.RecordTypeId = learningRTMap.get((String)lHeader.get('record-type'));
+                l.RecordTypeId = learningRTMap.get((String)lHeader.get(RECORD_TYPE));
                 l.Duration__c = getIntegerValue(lHeader.get('duration'),null);
-                l.Description__c = getStringValue(lHeader.get('description'),null);
+                l.Description__c = getStringValue(lHeader.get(DESCRIPTION),null);
                 l.Sync_progress__c = getBooleanValue(lHeader.get('sync-progress'),false);
                 learnings.put(l.Name,l);
             }
@@ -228,35 +237,35 @@ public with sharing class PBS_LMSInit_CC{
                 Map<String,Object> lContent = (Map<String,Object>)lHeader.get('content');
                 String headerName = addTimeStamp?(String)lHeader.get('name')+ts:(String)lHeader.get('name');
 
-                if((String)lHeader.get('record-type') == 'Resource'){
+                if((String)lHeader.get(RECORD_TYPE) == 'Resource'){
                     PBS_Training_Resource__c tr = new PBS_Training_Resource__c();
                     tr.Name = (String)lContent.get('name');
                     tr.Resource_URL__c = getStringValue(lContent.get('resource-url'),null);
                     tr.Add_training_parameters_to_URL__c = getBooleanValue(lContent.get('training-params-url'),false);
-                    tr.Description__c = getStringValue(lContent.get('description'),null);
+                    tr.Description__c = getStringValue(lContent.get(DESCRIPTION),null);
                     tr.Display_in_Iframe__c = getBooleanValue(lContent.get('display-in-iframe'),false);
                     tr.Learning__c = learnings.get(headerName).Id;
                     resources.put(tr.Learning__c,tr);
-                }else if((String)lHeader.get('record-type') == 'Task'){
+                }else if((String)lHeader.get(RECORD_TYPE) == 'Task'){
                     PBS_Task__c tk = new PBS_Task__c();
                     tk.Name = (String)lContent.get('name');
                     tk.External_Resource_Name__c = getStringValue(lContent.get('resource-name'),null);
                     tk.External_Resource_URL__c = getStringValue(lContent.get('resource-url'),null);
                     tk.External_Resource_Target__c = getStringValue(lContent.get('resource-target'),null);
                     tk.Add_training_parameters_to_URL__c = getBooleanValue(lContent.get('training-params-url'),false);
-                    tk.Description__c = getStringValue(lContent.get('description'),null);
+                    tk.Description__c = getStringValue(lContent.get(DESCRIPTION),null);
                     tk.Description_RTA__c = getStringValue(lContent.get('description-rta'),null);
                     tk.Learning__c = learnings.get(headerName).Id;
                     tk.Enable_Image_Upload__c = getBooleanValue(lContent.get('enable-image-upload'),false);
                     tk.Disable_Undo__c = getBooleanValue(lContent.get('disable-undo'),false);
                     tk.Disable_Comments__c = getBooleanValue(lContent.get('disable-comments'),false);
                     tasks.put(tk.Learning__c ,tk);
-                }else if((String)lHeader.get('record-type') == 'Quiz'){
+                }else if((String)lHeader.get(RECORD_TYPE) == 'Quiz'){
                     PBS_Quiz__c qz = new PBS_Quiz__c();
                     qz.Name = (String)lContent.get('name');
                     qz.Passing_Score__c = getDoubleValue(lContent.get('passing-score'),null);
                     qz.Max_Attempts__c = getIntegerValue(lContent.get('max-attempts'),null);
-                    qz.Description__c = getStringValue(lContent.get('description'),null);
+                    qz.Description__c = getStringValue(lContent.get(DESCRIPTION),null);
                     qz.Learning__c = learnings.get(headerName).Id;
                     qz.Delete_Responses_On_Submission__c = getBooleanValue(lContent.get('delete-responses-on-submission'),false);
                     quizzes.put(qz.Learning__c,qz);
@@ -280,7 +289,7 @@ public with sharing class PBS_LMSInit_CC{
 
                 Map<String,Object> lHeader = (Map<String,Object>)lo;
 
-                if((String)lHeader.get('record-type') == 'Quiz'){
+                if((String)lHeader.get(RECORD_TYPE) == 'Quiz'){
                     Map<String,Object> lContent = (Map<String,Object>)lHeader.get('content');
                     List<Object> qLineObjects = getObjectList(lContent,'question-lines');
                     String headerName = addTimeStamp?(String)lHeader.get('name')+ts:(String)lHeader.get('name');
@@ -290,8 +299,8 @@ public with sharing class PBS_LMSInit_CC{
                         String qlHeaderName = headerName+(String)qlHeader.get('name');
                         PBS_Question_Line__c ql = new PBS_Question_Line__c();
                         ql.Name = (String)qlHeader.get('name');
-                        ql.Order__c = getIntegerValue(qlHeader.get('order'),null);
-                        ql.Description__c = getStringValue(qlHeader.get('description'),null);
+                        ql.Order__c = getIntegerValue(qlHeader.get(ORDER),null);
+                        ql.Description__c = getStringValue(qlHeader.get(DESCRIPTION),null);
                         PBS_Learning__c l = learnings.get(headerName);
                         ql.Quiz__c = quizzes.get(l.id).Id;
                         questionLines.put(qlHeaderName,ql);
@@ -308,7 +317,7 @@ public with sharing class PBS_LMSInit_CC{
 
                 Map<String,Object> lHeader = (Map<String,Object>)lo;
 
-                if((String)lHeader.get('record-type') == 'Quiz'){
+                if((String)lHeader.get(RECORD_TYPE) == 'Quiz'){
                     Map<String,Object> lContent = (Map<String,Object>)lHeader.get('content');
                     List<Object> qLineObjects = getObjectList(lContent,'question-lines');
                     String headerName = addTimeStamp?(String)lHeader.get('name')+ts:(String)lHeader.get('name');
@@ -323,11 +332,11 @@ public with sharing class PBS_LMSInit_CC{
                             Map<String,Object> qHeader = (Map<String,Object>)qo;
                             PBS_Question__c q = new PBS_Question__c();
                             q.Type__c = (String)qHeader.get('type');
-                            q.Order__c = getIntegerValue(qHeader.get('order'),null);
-                            q.Description__c = getStringValue(qHeader.get('description'),null);
+                            q.Order__c = getIntegerValue(qHeader.get(ORDER),null);
+                            q.Description__c = getStringValue(qHeader.get(DESCRIPTION),null);
                             q.Description_RTA__c = getStringValue(qHeader.get('description-rta'),null);
-                            if(qHeader.get('answer-sequence') != null){
-                                String aswSeqName = addTimeStamp?(String)qHeader.get('answer-sequence')+ts:(String)qHeader.get('answer-sequence');
+                            if(qHeader.get(ANSWER_SEQUENCE) != null){
+                                String aswSeqName = addTimeStamp?(String)qHeader.get(ANSWER_SEQUENCE)+ts:(String)qHeader.get(ANSWER_SEQUENCE);
                                 q.Answer_Sequence__c = answerSequences.get(aswSeqName).Id;
                             }else if(qHeader.get('correct-boolean') != null){
                                 q.Correct_Boolean__c = (String)qHeader.get('correct-boolean');
@@ -431,10 +440,10 @@ public with sharing class PBS_LMSInit_CC{
                     a.Eligible_Image__c = a.Eligible_Image__c.replace('almond_uilib',uiLibNS);
                     a.Acquired_Image__c = a.Acquired_Image__c.replace('almond_uilib',uiLibNS);
                 }
-                String categoryName = (String)achievementHeader.get('achievement-category');
+                String categoryName = (String)achievementHeader.get(ACHIEVEMENT_CATEGORY);
                 categoryName = addTimeStamp?categoryName+ts:categoryName;
-                if(existingRecordsMap.get('achievement-category') != null && existingRecordsMap.get('achievement-category').get(categoryName) != null){
-                    a.Achievement_Category__c = existingRecordsMap.get('achievement-category').get(categoryName);
+                if(existingRecordsMap.get(ACHIEVEMENT_CATEGORY) != null && existingRecordsMap.get(ACHIEVEMENT_CATEGORY).get(categoryName) != null){
+                    a.Achievement_Category__c = existingRecordsMap.get(ACHIEVEMENT_CATEGORY).get(categoryName);
                 }
                 achievements.put(a.Name,a);
             }
@@ -452,7 +461,7 @@ public with sharing class PBS_LMSInit_CC{
                 PBS_Training_Plan__c tp = new PBS_Training_Plan__c();
                 String tplanName = addTimeStamp?(String)pHeader.get('name')+ts:(String)pHeader.get('name');
                 tp.Name = tplanName;
-                tp.Description__c = getStringValue(pHeader.get('description'),null);
+                tp.Description__c = getStringValue(pHeader.get(DESCRIPTION),null);
                 tp.Status__c = getStringValue(pHeader.get('status'),null);
                 tp.Start_Date__c = getDateValue(pHeader.get('start-date'),(Date.today()).addDays(-1));
                 tp.End_Date__c = getDateValue(pHeader.get('end-date'),(Date.today()).addDays(365));
@@ -488,7 +497,7 @@ public with sharing class PBS_LMSInit_CC{
                     String planSectionName = addTimeStamp?(String)soHeader.get('name')+ts:(String)soHeader.get('name');
                     tps.Name = planSectionName;
                     tps.Training_Plan__c = plans.get(planName).Id;
-                    tps.Order__c = getIntegerValue(soHeader.get('order'),null);
+                    tps.Order__c = getIntegerValue(soHeader.get(ORDER),null);
                     tps.Optional__c = getBooleanValue(soHeader.get('optional'),false);
                     sections.put(planName+'_'+tps.Name,tps);
                 }
@@ -517,7 +526,7 @@ public with sharing class PBS_LMSInit_CC{
                         Map<String,Object> siHeader = (Map<String,Object>)si;
 
                         PBS_Training_Plan_Section_Item__c tpsi = new PBS_Training_Plan_Section_Item__c();
-                        tpsi.Order__c = getIntegerValue(siHeader.get('order'),null);
+                        tpsi.Order__c = getIntegerValue(siHeader.get(ORDER),null);
                         tpsi.Optional__c = getBooleanValue(siHeader.get('optional'),false);
                         tpsi.Training_Plan_Section__c = sections.get(soHeaderName).Id;
                         String learningName = addTimeStamp?(String)siHeader.get('learning')+ts:(String)siHeader.get('learning');
@@ -561,7 +570,7 @@ public with sharing class PBS_LMSInit_CC{
                     planAchievements.put(planName+'_'+achievementName,tpa);
                 }
 
-                Map<String,String> categoriesMap = existingRecordsMap.get('learning-category');
+                Map<String,String> categoriesMap = existingRecordsMap.get(LEARNING_CATEGORY);
                 if(categoriesMap != null){
                     for(Object pc : tplanCategoryObjects){
                         Map<String,Object> tpcHeader = (Map<String,Object>)pc;
@@ -570,7 +579,7 @@ public with sharing class PBS_LMSInit_CC{
 
                         PBS_Training_Plan_Category__c tpc = new PBS_Training_Plan_Category__c();
                         tpc.Training_Plan__c = plans.get(planName).Id;
-                        tpc.Order__c = (Integer)tpcHeader.get('order');
+                        tpc.Order__c = (Integer)tpcHeader.get(ORDER);
 
                         if(categoriesMap.get(categoryName) != null){
                             tpc.Learning_Category__c = categoriesMap.get(categoryName);
@@ -606,9 +615,9 @@ public with sharing class PBS_LMSInit_CC{
                     PBS_Training_Track__c tk = new PBS_Training_Track__c();
                     String trackName = addTimeStamp?(String)pHeader.get('name')+ts:(String)pHeader.get('name');
                     tk.Name = trackName;
-                    tk.Description__c = getStringValue(pHeader.get('description'),null);
+                    tk.Description__c = getStringValue(pHeader.get(DESCRIPTION),null);
                     tk.Status__c = getStringValue(pHeader.get('status'),'Draft');
-                    tk.Order__c = getIntegerValue(pHeader.get('order'),null);
+                    tk.Order__c = getIntegerValue(pHeader.get(ORDER),null);
                     tk.Background_Image_URL__c = getStringValue(pHeader.get('background-image-url'),null);
                     tk.Text_Color__c = getStringValue(pHeader.get('text-color-url'),null);
                     tk.Background_Color__c = getStringValue(pHeader.get('background-color'),null);
@@ -645,8 +654,8 @@ public with sharing class PBS_LMSInit_CC{
                         String levelName = addTimeStamp?(String)lvHeader.get('name')+ts:(String)lvHeader.get('name');
                         ttl.Name = levelName;
                         ttl.Training_Track__c = tracks.get(trackName).Id;
-                        ttl.Description__c = getStringValue(lvHeader.get('description'),null);
-                        ttl.Order__c = getIntegerValue(lvHeader.get('order'),null);
+                        ttl.Description__c = getStringValue(lvHeader.get(DESCRIPTION),null);
+                        ttl.Order__c = getIntegerValue(lvHeader.get(ORDER),null);
                         levels.put(trackName+'_'+ttl.Name,ttl);
                     }
                 }
@@ -673,7 +682,7 @@ public with sharing class PBS_LMSInit_CC{
                         for(Object ti : itemObjects){
                             Map<String,Object> tiHeader = (Map<String,Object>)ti;
                             PBS_Training_Track_Level_Item__c ttli = new PBS_Training_Track_Level_Item__c();
-                            ttli.Order__c = getIntegerValue(tiHeader.get('order'),null);
+                            ttli.Order__c = getIntegerValue(tiHeader.get(ORDER),null);
                             ttli.Training_Track_Level__c = levels.get(lvHeaderName).Id;
                             String planName = addTimeStamp?(String)tiHeader.get('plan')+ts:(String)tiHeader.get('plan');
                             ttli.Training_Plan__c = plans.get(planName).Id;

@@ -230,7 +230,7 @@ global with sharing class PBS_MyProfileController_CC extends PBS_LMSBaseControll
             FROM
                 PBS_Standard_Job_Profile__c
             ORDER BY
-                Name
+                Name limit:integer.valueof(System.Label.PBS_soqllimit)
         ];
     }
 

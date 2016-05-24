@@ -28,6 +28,9 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 public with sharing class PBS_QuizViewerController_CC extends PBS_LMSBaseController_CC{
 
+    public static final string AID_1 = 'aid';
+    public static final string QUIZVIEWERCONTROLLER= 'QuizViewerController';
+
     public PBS_Quiz__c quiz{get;set;}
     public PBS_Question_Line__c questionLine{get; private set;}
     public PBS_Question_Line__c startQuestionLine{get;private set;}
@@ -69,7 +72,7 @@ public with sharing class PBS_QuizViewerController_CC extends PBS_LMSBaseControl
     private void initQuiz(){
 
         //Retrieve assignment id
-        String aid = Apexpages.currentPage().getParameters().get('aid');
+        String aid = Apexpages.currentPage().getParameters().get(AID_1);
         //Retrieve quiz id
         String qid = Apexpages.currentPage().getParameters().get('qid');
         //Retrieve preview mode flag
@@ -118,7 +121,7 @@ public with sharing class PBS_QuizViewerController_CC extends PBS_LMSBaseControl
             }
 
         }catch(Exception e){
-            PBS_LMSUtils_CC.logException(e,'QuizViewerController');
+            PBS_LMSUtils_CC.logException(e,QUIZVIEWERCONTROLLER);
             PBS_LMSUtils_CC.addGenericUnknownErrorMessage('QuizViewerController - initQuiz (1)');
         }
 
@@ -176,7 +179,7 @@ public with sharing class PBS_QuizViewerController_CC extends PBS_LMSBaseControl
             }
 
         }catch(Exception e){
-            PBS_LMSUtils_CC.logException(e,'QuizViewerController');
+            PBS_LMSUtils_CC.logException(e,QUIZVIEWERCONTROLLER);
             PBS_LMSUtils_CC.addGenericUnknownErrorMessage('QuizViewerController - initializeQuestions (2)');
         }
 
@@ -199,7 +202,7 @@ public with sharing class PBS_QuizViewerController_CC extends PBS_LMSBaseControl
     public PageReference reset() {
         PageReference ret = Page.PBS_QuizViewer;
         ret.setRedirect( true );
-        ret.getParameters().put('aid',Apexpages.currentPage().getParameters().get('aid'));
+        ret.getParameters().put(AID_1,Apexpages.currentPage().getParameters().get(AID_1));
         return ret;
     }
 
@@ -218,7 +221,7 @@ public with sharing class PBS_QuizViewerController_CC extends PBS_LMSBaseControl
             PBS_LMSUtils_CC.addErrorMessage(qe.getMessage());
         }catch(Exception e) {
             showBackNoSaveMessage = true;
-            PBS_LMSUtils_CC.logException(e,'QuizViewerController');
+            PBS_LMSUtils_CC.logException(e,QUIZVIEWERCONTROLLER);
             PBS_LMSUtils_CC.addGenericUnknownErrorMessage('QuizViewerController - previous (3)');
         }
         return null;
@@ -261,7 +264,7 @@ public with sharing class PBS_QuizViewerController_CC extends PBS_LMSBaseControl
         }catch(QuizException qe){
             PBS_LMSUtils_CC.addErrorMessage(qe.getMessage());
         } catch(Exception e) {
-            PBS_LMSUtils_CC.logException(e,'QuizViewerController');
+            PBS_LMSUtils_CC.logException(e,QUIZVIEWERCONTROLLER);
             PBS_LMSUtils_CC.addGenericUnknownErrorMessage('QuizViewerController - next (4)');
         }
         return null;
@@ -281,7 +284,7 @@ public with sharing class PBS_QuizViewerController_CC extends PBS_LMSBaseControl
         }catch(QuizException qe){
             PBS_LMSUtils_CC.addErrorMessage(qe.getMessage());
         }catch(Exception e) {
-            PBS_LMSUtils_CC.logException(e,'QuizViewerController');
+            PBS_LMSUtils_CC.logException(e,QUIZVIEWERCONTROLLER);
             PBS_LMSUtils_CC.addGenericUnknownErrorMessage('QuizViewerController - done (5)');
         }
         return null;
@@ -300,7 +303,7 @@ public with sharing class PBS_QuizViewerController_CC extends PBS_LMSBaseControl
             ret = new PageReference('/'+networkName+'/apex/'+namespace+'QuizResults');
         }
         ret.setRedirect( true );
-        ret.getParameters().put('aid',Apexpages.currentPage().getParameters().get('aid') );
+        ret.getParameters().put(AID_1,Apexpages.currentPage().getParameters().get(AID_1) );
 
         if(isPreviewMode){
             ret.getParameters().put('pMode','true');

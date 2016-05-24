@@ -29,26 +29,27 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 @isTest
 public class PBS_TrainingPlanDetail_Test {
     // String variables to avoid code containing duplicate String literals
-    public Static final string systemAdministrator = 'System Administrator';
-    public Static final string standardUser = 'Standard User';
-    public Static final string LMSAdmin = 'LMS_Admin';
-    public Static final string LMSUser = 'LMS_User';
-    public Static final string achievements = 'Achievements';
-    public Static final string userAgent = 'User-Agent';
-    public Static final string TrainingPlanSectionItemIssuesSize = 'Training Plan Section Item issues, size = ';
-    public Static final string ErrorOnSelectedItemStatusLabel = 'Error on selectedItemStatusLabel, label = ';
-    public Static final string completed= 'completed' ;
+    public static final string SYSTEMADMINISTRATOR = 'System Administrator';
+    public static final string STANDARDUSER = 'Standard User';
+    public static final string LMS_ADMIN = 'LMS_Admin';
+    public static final string LMS_USER = 'LMS_User';
+    public static final string ACHIEVEMENTS = 'Achievements';
+    public static final string USERAGENT = 'User-Agent';
+    public static final string TRAININGPLANSECTIONITEMISSUESSIZE = 'Training Plan Section Item issues, size = ';
+    public static final string ERRORONSELECTEDITEMSTATUSLABEL = 'Error on selectedItemStatusLabel, label = ';
+    public static final string COMPLETED= 'completed' ;
+    public static final string IPHONE = 'iphone';
     
     static testmethod void testTrainingPlanDetailMobile(){
 
         //Create admin users
-        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,systemAdministrator);
-        List<User> lmsUsers = PBS_UtilClass_Test.createUsers(5,standardUser);
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,SYSTEMADMINISTRATOR);
+        List<User> lmsUsers = PBS_UtilClass_Test.createUsers(5,STANDARDUSER);
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,LMSAdmin);
-            PBS_UtilClass_Test.addPermissionSet(lmsUsers,LMSUser);
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,LMS_ADMIN);
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,LMS_USER);
         }
 
         PBS_TrainingPlanData_Test.createSampleData();
@@ -56,7 +57,7 @@ public class PBS_TrainingPlanDetail_Test {
         System.assertEquals(1,tplan.size());
 
         List<PBS_Achievement_Category__c> lAchieveCat = PBS_AchievementData_Test.createAchievementCategories(1);
-        List<PBS_Achievement__c> lAchievement = PBS_AchievementData_Test.createAchievements(1, lAchieveCat.get(0).Id, achievements);
+        List<PBS_Achievement__c> lAchievement = PBS_AchievementData_Test.createAchievements(1, lAchieveCat.get(0).Id, ACHIEVEMENTS);
         List<PBS_Training_Plan_Achievement__c> lTPlanAchievement = PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, lAchievement);
 
         Id tplanId = tplan.get(0).Id;
@@ -76,7 +77,7 @@ public class PBS_TrainingPlanDetail_Test {
         System.runAs(lmsUsers.get(0)){
             PageReference pageRef = Page.PBS_TrainingPlanDetail;
             Test.setCurrentPage(pageRef);
-            pageRef.getHeaders().put(userAgent, 'iPhone');
+            pageRef.getHeaders().put(USERAGENT, IPHONE);
             ApexPages.Standardcontroller stdcontroller = New ApexPages.StandardController(tplan.get(0));
             PBS_TrainingPlanDetailController_CC extension = new PBS_TrainingPlanDetailController_CC(stdcontroller);
 
@@ -84,13 +85,13 @@ public class PBS_TrainingPlanDetail_Test {
             System.assert(ltpsec.size() == 3);
 
             List<PBS_Training_Plan_Section_Item__c> ltpsitem = [select id from PBS_Training_Plan_Section_Item__c where Training_Plan_Section__c =: ltpsec.get(0).Id order by Order__c asc];
-            System.assert(ltpsitem.size() == 1, TrainingPlanSectionItemIssuesSize + ltpsitem.size());
+            System.assert(ltpsitem.size() == 1, TRAININGPLANSECTIONITEMISSUESSIZE + ltpsitem.size());
 
             extension.selectedSectionId = ltpsec.get(0).Id;
             extension.selectedItemId = ltpsitem.get(0).Id;
             extension.retrieveItemDetails();
             extension.launchLearning();
-            System.assert(extension.selectedItemStatusLabel == 'label-default', ErrorOnSelectedItemStatusLabel + extension.selectedItemStatusLabel);
+            System.assert(extension.selectedItemStatusLabel == 'label-default', ERRORONSELECTEDITEMSTATUSLABEL + extension.selectedItemStatusLabel);
 
             List<PBS_Learning_Assignment__c> lassignment = [select Id,
                                                             Progress__c from PBS_Learning_Assignment__c
@@ -108,10 +109,10 @@ public class PBS_TrainingPlanDetail_Test {
             extension.selectedItemId = ltpsitem.get(0).Id;
             extension.retrieveItemDetails();
             extension.launchLearning();
-            System.assert(extension.selectedItemStatusLabel == 'label-warning', ErrorOnSelectedItemStatusLabel + extension.selectedItemStatusLabel);
+            System.assert(extension.selectedItemStatusLabel == 'label-warning', ERRORONSELECTEDITEMSTATUSLABEL + extension.selectedItemStatusLabel);
 
             for(PBS_Learning_Assignment__c oa : lassignment){
-                oa.Progress__c = completed;
+                oa.Progress__c = COMPLETED;
             }
 
             upsert lassignment;
@@ -121,10 +122,10 @@ public class PBS_TrainingPlanDetail_Test {
             extension.selectedItemId = ltpsitem.get(0).Id;
             extension.retrieveItemDetails();
             extension.launchLearning();
-            System.assert(extension.selectedItemStatusLabel == 'label-success', ErrorOnSelectedItemStatusLabel + extension.selectedItemStatusLabel);
+            System.assert(extension.selectedItemStatusLabel == 'label-success', ERRORONSELECTEDITEMSTATUSLABEL + extension.selectedItemStatusLabel);
 
             List<PBS_Training_Plan_Section_Item__c> ltpsitem2 = [select id from PBS_Training_Plan_Section_Item__c where Training_Plan_Section__c =: ltpsec.get(1).Id order by Order__c asc];
-            System.assert(ltpsitem2.size() == 3, TrainingPlanSectionItemIssuesSize + ltpsitem2.size());
+            System.assert(ltpsitem2.size() == 3, TRAININGPLANSECTIONITEMISSUESSIZE + ltpsitem2.size());
 
             extension.selectedSectionId = ltpsec.get(1).Id;
             extension.selectedItemId = ltpsitem2.get(0).Id;
@@ -137,13 +138,13 @@ public class PBS_TrainingPlanDetail_Test {
                                                             and Training_Plan_Section__c =:ltpsec.get(1).Id
                                                             and User__c =: lmsUsers.get(0).Id];
             for(PBS_Learning_Assignment__c oa2 : lassignment2){
-                oa2.Progress__c = completed;
+                oa2.Progress__c = COMPLETED;
             }
 
             upsert lassignment2;
 
             List<PBS_Training_Plan_Section_Item__c> ltpsitem3 = [select id from PBS_Training_Plan_Section_Item__c where Training_Plan_Section__c =: ltpsec.get(2).Id order by Order__c asc];
-            System.assert(ltpsitem3.size() == 3, TrainingPlanSectionItemIssuesSize + ltpsitem3.size());
+            System.assert(ltpsitem3.size() == 3, TRAININGPLANSECTIONITEMISSUESSIZE + ltpsitem3.size());
 
             extension.selectedSectionId = ltpsec.get(2).Id;
             extension.selectedItemId = ltpsitem3.get(0).Id;
@@ -156,7 +157,7 @@ public class PBS_TrainingPlanDetail_Test {
                                                             and Training_Plan_Section__c =:ltpsec.get(2).Id
                                                             and User__c =: lmsUsers.get(0).Id];
             for(PBS_Learning_Assignment__c oa3 : lassignment3){
-                oa3.Progress__c = completed;
+                oa3.Progress__c = COMPLETED;
             }
             upsert lassignment3;
 
@@ -166,13 +167,13 @@ public class PBS_TrainingPlanDetail_Test {
     static testmethod void testTrainingPlanDetailWeb(){
 
         //Create admin users
-        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,systemAdministrator);
-        List<User> lmsUsers = PBS_UtilClass_Test.createUsers(5,standardUser);
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,SYSTEMADMINISTRATOR);
+        List<User> lmsUsers = PBS_UtilClass_Test.createUsers(5,STANDARDUSER);
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,LMSAdmin);
-            PBS_UtilClass_Test.addPermissionSet(lmsUsers,LMSUser);
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,LMS_ADMIN);
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,LMS_USER);
         }
 
         PBS_TrainingPlanData_Test.createSampleData();
@@ -180,7 +181,7 @@ public class PBS_TrainingPlanDetail_Test {
         System.assertEquals(1,tplan.size());
 
         List<PBS_Achievement_Category__c> lAchieveCat = PBS_AchievementData_Test.createAchievementCategories(1);
-        List<PBS_Achievement__c> lAchievement = PBS_AchievementData_Test.createAchievements(1, lAchieveCat.get(0).Id, achievements);
+        List<PBS_Achievement__c> lAchievement = PBS_AchievementData_Test.createAchievements(1, lAchieveCat.get(0).Id, ACHIEVEMENTS);
         List<PBS_Training_Plan_Achievement__c> lTPlanAchievement = PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, lAchievement);
 
         Id tplanId = tplan.get(0).Id;
@@ -200,7 +201,7 @@ public class PBS_TrainingPlanDetail_Test {
         System.runAs(lmsUsers.get(0)){
             PageReference pageRef = Page.PBS_TrainingPlanDetail;
             Test.setCurrentPage(pageRef);
-            pageRef.getHeaders().put(userAgent, 'Mozilla');
+            pageRef.getHeaders().put(USERAGENT, 'Mozilla');
             ApexPages.Standardcontroller stdcontroller = New ApexPages.StandardController(tplan.get(0));
             PBS_TrainingPlanDetailController_CC extension = new PBS_TrainingPlanDetailController_CC(stdcontroller);
 
@@ -208,13 +209,13 @@ public class PBS_TrainingPlanDetail_Test {
             System.assert(ltpsec.size() == 3);
 
             List<PBS_Training_Plan_Section_Item__c> ltpsitem = [select id from PBS_Training_Plan_Section_Item__c where Training_Plan_Section__c =: ltpsec.get(0).Id order by Order__c asc];
-            System.assert(ltpsitem.size() == 1, TrainingPlanSectionItemIssuesSize + ltpsitem.size());
+            System.assert(ltpsitem.size() == 1, TRAININGPLANSECTIONITEMISSUESSIZE + ltpsitem.size());
 
             extension.selectedSectionId = ltpsec.get(0).Id;
             extension.selectedItemId = ltpsitem.get(0).Id;
             extension.retrieveItemDetails();
             extension.launchLearning();
-            System.assert(extension.selectedItemStatusLabel == 'label-default', ErrorOnSelectedItemStatusLabel + extension.selectedItemStatusLabel);
+            System.assert(extension.selectedItemStatusLabel == 'label-default', ERRORONSELECTEDITEMSTATUSLABEL + extension.selectedItemStatusLabel);
 
             List<PBS_Learning_Assignment__c> lassignment = [select Id,
                                                             Progress__c from PBS_Learning_Assignment__c
@@ -232,10 +233,10 @@ public class PBS_TrainingPlanDetail_Test {
             extension.selectedItemId = ltpsitem.get(0).Id;
             extension.retrieveItemDetails();
             extension.launchLearning();
-            System.assert(extension.selectedItemStatusLabel == 'label-warning', ErrorOnSelectedItemStatusLabel + extension.selectedItemStatusLabel);
+            System.assert(extension.selectedItemStatusLabel == 'label-warning', ERRORONSELECTEDITEMSTATUSLABEL + extension.selectedItemStatusLabel);
 
             for(PBS_Learning_Assignment__c oa : lassignment){
-                oa.Progress__c = completed;
+                oa.Progress__c = COMPLETED;
             }
 
             upsert lassignment;
@@ -245,10 +246,10 @@ public class PBS_TrainingPlanDetail_Test {
             extension.selectedItemId = ltpsitem.get(0).Id;
             extension.retrieveItemDetails();
             extension.launchLearning();
-            System.assert(extension.selectedItemStatusLabel == 'label-success', ErrorOnSelectedItemStatusLabel + extension.selectedItemStatusLabel);
+            System.assert(extension.selectedItemStatusLabel == 'label-success', ERRORONSELECTEDITEMSTATUSLABEL + extension.selectedItemStatusLabel);
 
             List<PBS_Training_Plan_Section_Item__c> ltpsitem2 = [select id from PBS_Training_Plan_Section_Item__c where Training_Plan_Section__c =: ltpsec.get(1).Id order by Order__c asc];
-            System.assert(ltpsitem2.size() == 3, TrainingPlanSectionItemIssuesSize + ltpsitem2.size());
+            System.assert(ltpsitem2.size() == 3, TRAININGPLANSECTIONITEMISSUESSIZE + ltpsitem2.size());
 
             extension.selectedSectionId = ltpsec.get(1).Id;
             extension.selectedItemId = ltpsitem2.get(0).Id;
@@ -261,13 +262,13 @@ public class PBS_TrainingPlanDetail_Test {
                                                             and Training_Plan_Section__c =:ltpsec.get(1).Id
                                                             and User__c =: lmsUsers.get(0).Id];
             for(PBS_Learning_Assignment__c oa2 : lassignment2){
-                oa2.Progress__c = completed;
+                oa2.Progress__c = COMPLETED;
             }
 
             upsert lassignment2;
 
             List<PBS_Training_Plan_Section_Item__c> ltpsitem3 = [select id from PBS_Training_Plan_Section_Item__c where Training_Plan_Section__c =: ltpsec.get(2).Id order by Order__c asc];
-            System.assert(ltpsitem3.size() == 3, TrainingPlanSectionItemIssuesSize + ltpsitem3.size());
+            System.assert(ltpsitem3.size() == 3, TRAININGPLANSECTIONITEMISSUESSIZE + ltpsitem3.size());
 
             extension.selectedSectionId = ltpsec.get(2).Id;
             extension.selectedItemId = ltpsitem3.get(0).Id;
@@ -280,7 +281,7 @@ public class PBS_TrainingPlanDetail_Test {
                                                             and Training_Plan_Section__c =:ltpsec.get(2).Id
                                                             and User__c =: lmsUsers.get(0).Id];
             for(PBS_Learning_Assignment__c oa3 : lassignment3){
-                oa3.Progress__c = completed;
+                oa3.Progress__c = COMPLETED;
             }
             upsert lassignment3;
 
@@ -290,13 +291,13 @@ public class PBS_TrainingPlanDetail_Test {
     static testmethod void testTrainingPlanDetailChangesOnLearning_KeepNewVersion(){
 
         //Create admin users
-        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,systemAdministrator);
-        List<User> lmsUsers = PBS_UtilClass_Test.createUsers(5,standardUser);
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,SYSTEMADMINISTRATOR);
+        List<User> lmsUsers = PBS_UtilClass_Test.createUsers(5,STANDARDUSER);
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,LMSAdmin);
-            PBS_UtilClass_Test.addPermissionSet(lmsUsers,LMSUser);
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,LMS_ADMIN);
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,LMS_USER);
         }
 
         PBS_TrainingPlanData_Test.createSampleData();
@@ -304,7 +305,7 @@ public class PBS_TrainingPlanDetail_Test {
         System.assertEquals(1,tplan.size());
 
         List<PBS_Achievement_Category__c> lAchieveCat = PBS_AchievementData_Test.createAchievementCategories(1);
-        List<PBS_Achievement__c> lAchievement = PBS_AchievementData_Test.createAchievements(1, lAchieveCat.get(0).Id, achievements);
+        List<PBS_Achievement__c> lAchievement = PBS_AchievementData_Test.createAchievements(1, lAchieveCat.get(0).Id, ACHIEVEMENTS);
         List<PBS_Training_Plan_Achievement__c> lTPlanAchievement = PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, lAchievement);
 
         Id tplanId = tplan.get(0).Id;
@@ -324,7 +325,7 @@ public class PBS_TrainingPlanDetail_Test {
         System.runAs(lmsUsers.get(0)){
             PageReference pageRef = Page.PBS_TrainingPlanDetail;
             Test.setCurrentPage(pageRef);
-            pageRef.getHeaders().put(userAgent, 'iPhone');
+            pageRef.getHeaders().put(USERAGENT, IPHONE);
             ApexPages.Standardcontroller stdcontroller = New ApexPages.StandardController(tplan.get(0));
             PBS_TrainingPlanDetailController_CC extension = new PBS_TrainingPlanDetailController_CC(stdcontroller);
 
@@ -332,13 +333,13 @@ public class PBS_TrainingPlanDetail_Test {
             System.assert(ltpsec.size() == 3);
 
             List<PBS_Training_Plan_Section_Item__c> ltpsitem = [select id from PBS_Training_Plan_Section_Item__c where Training_Plan_Section__c =: ltpsec.get(0).Id order by Order__c asc];
-            System.assert(ltpsitem.size() == 1, TrainingPlanSectionItemIssuesSize + ltpsitem.size());
+            System.assert(ltpsitem.size() == 1, TRAININGPLANSECTIONITEMISSUESSIZE + ltpsitem.size());
 
             extension.selectedSectionId = ltpsec.get(0).Id;
             extension.selectedItemId = ltpsitem.get(0).Id;
             extension.retrieveItemDetails();
             extension.launchLearning();
-            System.assert(extension.selectedItemStatusLabel == 'label-default', ErrorOnSelectedItemStatusLabel + extension.selectedItemStatusLabel);
+            System.assert(extension.selectedItemStatusLabel == 'label-default', ERRORONSELECTEDITEMSTATUSLABEL + extension.selectedItemStatusLabel);
 
             List<PBS_Learning_Assignment__c> lassignment = [select Id,
                                                             Progress__c from PBS_Learning_Assignment__c
@@ -347,7 +348,7 @@ public class PBS_TrainingPlanDetail_Test {
                                                             and User__c =: lmsUsers.get(0).Id];
 
             for(PBS_Learning_Assignment__c oa : lassignment){
-                oa.Progress__c = completed;
+                oa.Progress__c = COMPLETED;
             }
 
             upsert lassignment;
@@ -368,7 +369,7 @@ public class PBS_TrainingPlanDetail_Test {
         System.runAs(lmsUsers.get(0)){
             PageReference pageRef = Page.PBS_TrainingPlanDetail;
             Test.setCurrentPage(pageRef);
-            pageRef.getHeaders().put(userAgent, 'iPhone');
+            pageRef.getHeaders().put(USERAGENT, IPHONE);
             ApexPages.Standardcontroller stdcontroller = New ApexPages.StandardController(tplan.get(0));
             PBS_TrainingPlanDetailController_CC extension = new PBS_TrainingPlanDetailController_CC(stdcontroller);
 
@@ -376,7 +377,7 @@ public class PBS_TrainingPlanDetail_Test {
             System.assert(ltpsec.size() == 3);
 
             List<PBS_Training_Plan_Section_Item__c> ltpsitem = [select id from PBS_Training_Plan_Section_Item__c where Training_Plan_Section__c =: ltpsec.get(0).Id order by Order__c asc];
-            System.assert(ltpsitem.size() == 1, TrainingPlanSectionItemIssuesSize + ltpsitem.size());
+            System.assert(ltpsitem.size() == 1, TRAININGPLANSECTIONITEMISSUESSIZE + ltpsitem.size());
 
             extension.selectedSectionId = ltpsec.get(0).Id;
             extension.selectedItemId = ltpsitem.get(0).Id;
@@ -385,7 +386,7 @@ public class PBS_TrainingPlanDetail_Test {
             extension.updateToNewVersionAndLaunch();
 
             List<PBS_Training_Plan_Section_Item__c> ltpsitem2 = [select id from PBS_Training_Plan_Section_Item__c where Training_Plan_Section__c =: ltpsec.get(1).Id order by Order__c asc];
-            System.assert(ltpsitem2.size() == 3, TrainingPlanSectionItemIssuesSize + ltpsitem2.size());
+            System.assert(ltpsitem2.size() == 3, TRAININGPLANSECTIONITEMISSUESSIZE + ltpsitem2.size());
 
             extension.init();
             extension.selectedSectionId = ltpsec.get(1).Id;
@@ -400,13 +401,13 @@ public class PBS_TrainingPlanDetail_Test {
     static testmethod void testTrainingPlanDetailChangesOnLearning_KeepOldVersion(){
 
         //Create admin users
-        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,systemAdministrator);
-        List<User> lmsUsers = PBS_UtilClass_Test.createUsers(5,standardUser);
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,SYSTEMADMINISTRATOR);
+        List<User> lmsUsers = PBS_UtilClass_Test.createUsers(5,STANDARDUSER);
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,LMSAdmin);
-            PBS_UtilClass_Test.addPermissionSet(lmsUsers,LMSUser);
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,LMS_ADMIN);
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,LMS_USER);
         }
 
         PBS_TrainingPlanData_Test.createSampleData();
@@ -414,7 +415,7 @@ public class PBS_TrainingPlanDetail_Test {
         System.assertEquals(1,tplan.size());
 
         List<PBS_Achievement_Category__c> lAchieveCat = PBS_AchievementData_Test.createAchievementCategories(1);
-        List<PBS_Achievement__c> lAchievement = PBS_AchievementData_Test.createAchievements(1, lAchieveCat.get(0).Id, achievements);
+        List<PBS_Achievement__c> lAchievement = PBS_AchievementData_Test.createAchievements(1, lAchieveCat.get(0).Id, ACHIEVEMENTS);
         List<PBS_Training_Plan_Achievement__c> lTPlanAchievement = PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, lAchievement);
 
         Id tplanId = tplan.get(0).Id;
@@ -434,7 +435,7 @@ public class PBS_TrainingPlanDetail_Test {
         System.runAs(lmsUsers.get(0)){
             PageReference pageRef = Page.PBS_TrainingPlanDetail;
             Test.setCurrentPage(pageRef);
-            pageRef.getHeaders().put(userAgent, 'iPhone');
+            pageRef.getHeaders().put(USERAGENT, IPHONE);
             ApexPages.Standardcontroller stdcontroller = New ApexPages.StandardController(tplan.get(0));
             PBS_TrainingPlanDetailController_CC extension = new PBS_TrainingPlanDetailController_CC(stdcontroller);
 
@@ -442,13 +443,13 @@ public class PBS_TrainingPlanDetail_Test {
             System.assert(ltpsec.size() == 3);
 
             List<PBS_Training_Plan_Section_Item__c> ltpsitem = [select id from PBS_Training_Plan_Section_Item__c where Training_Plan_Section__c =: ltpsec.get(0).Id order by Order__c asc];
-            System.assert(ltpsitem.size() == 1, TrainingPlanSectionItemIssuesSize + ltpsitem.size());
+            System.assert(ltpsitem.size() == 1, TRAININGPLANSECTIONITEMISSUESSIZE + ltpsitem.size());
 
             extension.selectedSectionId = ltpsec.get(0).Id;
             extension.selectedItemId = ltpsitem.get(0).Id;
             extension.retrieveItemDetails();
             extension.launchLearning();
-            System.assert(extension.selectedItemStatusLabel == 'label-default', ErrorOnSelectedItemStatusLabel + extension.selectedItemStatusLabel);
+            System.assert(extension.selectedItemStatusLabel == 'label-default', ERRORONSELECTEDITEMSTATUSLABEL + extension.selectedItemStatusLabel);
 
             List<PBS_Learning_Assignment__c> lassignment = [select Id,
                                                             Progress__c from PBS_Learning_Assignment__c
@@ -457,7 +458,7 @@ public class PBS_TrainingPlanDetail_Test {
                                                             and User__c =: lmsUsers.get(0).Id];
 
             for(PBS_Learning_Assignment__c oa : lassignment){
-                oa.Progress__c = completed;
+                oa.Progress__c = COMPLETED;
             }
 
             upsert lassignment;
@@ -480,7 +481,7 @@ public class PBS_TrainingPlanDetail_Test {
         System.runAs(lmsUsers.get(0)){
             PageReference pageRef = Page.PBS_TrainingPlanDetail;
             Test.setCurrentPage(pageRef);
-            pageRef.getHeaders().put(userAgent, 'iPhone');
+            pageRef.getHeaders().put(USERAGENT, IPHONE);
             ApexPages.Standardcontroller stdcontroller = New ApexPages.StandardController(tplan.get(0));
             PBS_TrainingPlanDetailController_CC extension = new PBS_TrainingPlanDetailController_CC(stdcontroller);
 
@@ -488,7 +489,7 @@ public class PBS_TrainingPlanDetail_Test {
             System.assert(ltpsec.size() == 3);
 
             List<PBS_Training_Plan_Section_Item__c> ltpsitem = [select id from PBS_Training_Plan_Section_Item__c where Training_Plan_Section__c =: ltpsec.get(0).Id order by Order__c asc];
-            System.assert(ltpsitem.size() == 1, TrainingPlanSectionItemIssuesSize + ltpsitem.size());
+            System.assert(ltpsitem.size() == 1, TRAININGPLANSECTIONITEMISSUESSIZE + ltpsitem.size());
 
             extension.selectedSectionId = ltpsec.get(0).Id;
             extension.selectedItemId = ltpsitem.get(0).Id;
@@ -497,7 +498,7 @@ public class PBS_TrainingPlanDetail_Test {
             extension.keepOldVersionAndLaunch();
 
             List<PBS_Training_Plan_Section_Item__c> ltpsitem2 = [select id from PBS_Training_Plan_Section_Item__c where Training_Plan_Section__c =: ltpsec.get(1).Id order by Order__c asc];
-            System.assert(ltpsitem2.size() == 3, TrainingPlanSectionItemIssuesSize + ltpsitem2.size());
+            System.assert(ltpsitem2.size() == 3, TRAININGPLANSECTIONITEMISSUESSIZE + ltpsitem2.size());
 
             extension.init();
             extension.selectedSectionId = ltpsec.get(1).Id;
@@ -511,13 +512,13 @@ public class PBS_TrainingPlanDetail_Test {
     static testmethod void testTrainingPlanDetailWebnNoMainAchievement(){
 
         //Create admin users
-        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,systemAdministrator);
-        List<User> lmsUsers = PBS_UtilClass_Test.createUsers(5,standardUser);
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,SYSTEMADMINISTRATOR);
+        List<User> lmsUsers = PBS_UtilClass_Test.createUsers(5,STANDARDUSER);
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,LMSAdmin);
-            PBS_UtilClass_Test.addPermissionSet(lmsUsers,LMSUser);
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,LMS_ADMIN);
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,LMS_USER);
         }
 
         PBS_TrainingPlanData_Test.createSampleData();
@@ -527,7 +528,7 @@ public class PBS_TrainingPlanDetail_Test {
 
 
         List<PBS_Achievement_Category__c> lAchieveCat = PBS_AchievementData_Test.createAchievementCategories(1);
-        List<PBS_Achievement__c> lAchievement = PBS_AchievementData_Test.createAchievements(1, lAchieveCat.get(0).Id, achievements);
+        List<PBS_Achievement__c> lAchievement = PBS_AchievementData_Test.createAchievements(1, lAchieveCat.get(0).Id, ACHIEVEMENTS);
         List<PBS_Training_Plan_Achievement__c> lTPlanSectionAchievements = PBS_TrainingPlanData_Test.createTrainingPlanSectionAchievements(new List<PBS_Training_Plan_Section__c>{tplanSections.get(0)},lAchievement);
 
         Id tplanId = tplan.get(0).Id;
@@ -547,7 +548,7 @@ public class PBS_TrainingPlanDetail_Test {
         System.runAs(lmsUsers.get(0)){
             PageReference pageRef = Page.PBS_TrainingPlanDetail;
             Test.setCurrentPage(pageRef);
-            pageRef.getHeaders().put(userAgent, 'Mozilla');
+            pageRef.getHeaders().put(USERAGENT, 'Mozilla');
             ApexPages.Standardcontroller stdcontroller = New ApexPages.StandardController(tplan.get(0));
             PBS_TrainingPlanDetailController_CC extension = new PBS_TrainingPlanDetailController_CC(stdcontroller);
 
@@ -557,13 +558,13 @@ public class PBS_TrainingPlanDetail_Test {
     static testmethod void testTrainingPlanDetailWithMultipleAchievements(){
 
         //Create admin users
-        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,systemAdministrator);
-        List<User> lmsUsers = PBS_UtilClass_Test.createUsers(5,standardUser);
+        List<User> adminUsers = PBS_UtilClass_Test.createUsers(2,SYSTEMADMINISTRATOR);
+        List<User> lmsUsers = PBS_UtilClass_Test.createUsers(5,STANDARDUSER);
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,LMSAdmin);
-            PBS_UtilClass_Test.addPermissionSet(lmsUsers,LMSUser);
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,LMS_ADMIN);
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,LMS_USER);
         }
 
         PBS_TrainingPlanData_Test.createSampleData();
@@ -574,8 +575,8 @@ public class PBS_TrainingPlanDetail_Test {
 
         List<PBS_Achievement_Category__c> lAchieveCat = PBS_AchievementData_Test.createAchievementCategories(1);
         //Create multiple achievments tied to the plan
-        List<PBS_Achievement__c> lAchievement = PBS_AchievementData_Test.createAchievements(2, lAchieveCat.get(0).Id, achievements);
-        List<PBS_Achievement__c> lSectionAchievements = PBS_AchievementData_Test.createAchievements(2, lAchieveCat.get(0).Id, achievements);
+        List<PBS_Achievement__c> lAchievement = PBS_AchievementData_Test.createAchievements(2, lAchieveCat.get(0).Id, ACHIEVEMENTS);
+        List<PBS_Achievement__c> lSectionAchievements = PBS_AchievementData_Test.createAchievements(2, lAchieveCat.get(0).Id, ACHIEVEMENTS);
         List<PBS_Training_Plan_Achievement__c> lTPlanAchievement1 = PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, new List<PBS_Achievement__c>{lAchievement.get(0)});
         List<PBS_Training_Plan_Achievement__c> lTPlanAchievement2 = PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, new List<PBS_Achievement__c>{lAchievement.get(1)});
         List<PBS_Training_Plan_Achievement__c> lTPlanSectionAchievements1 = PBS_TrainingPlanData_Test.createTrainingPlanSectionAchievements(new List<PBS_Training_Plan_Section__c>{tplanSections.get(0)},new List<PBS_Achievement__c>{lSectionAchievements.get(0)});
@@ -598,7 +599,7 @@ public class PBS_TrainingPlanDetail_Test {
         System.runAs(lmsUsers.get(0)){
             PageReference pageRef = Page.PBS_TrainingPlanDetail;
             Test.setCurrentPage(pageRef);
-            pageRef.getHeaders().put(userAgent, 'Mozilla');
+            pageRef.getHeaders().put(USERAGENT, 'Mozilla');
             ApexPages.Standardcontroller stdcontroller = New ApexPages.StandardController(tplan.get(0));
             PBS_TrainingPlanDetailController_CC extension = new PBS_TrainingPlanDetailController_CC(stdcontroller);
 

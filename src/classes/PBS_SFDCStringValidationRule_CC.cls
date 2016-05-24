@@ -44,7 +44,7 @@ global with sharing class PBS_SFDCStringValidationRule_CC extends PBS_SFDCBaseVa
         try {
             whitelistPatterns.add( Pattern.compile( p ) );
         } catch( Exception e ) {
-            throw new PBS_SFDCValidator_CC.SFDCValidationException( 'Validation misconfiguration, problem with specified pattern');
+            throw new PBS_SFDCValidator_CC.SFDCValidationException( 'Validation misconfiguration, problem with specified pattern',e);
         }
     }
 
@@ -69,7 +69,7 @@ global with sharing class PBS_SFDCStringValidationRule_CC extends PBS_SFDCBaseVa
         try {
             blacklistPatterns.add( Pattern.compile( p ) );
         } catch( Exception e ) {
-            throw new PBS_SFDCValidator_CC.SFDCValidationException( 'Validation misconfiguration, problem with specified pattern');
+            throw new PBS_SFDCValidator_CC.SFDCValidationException( 'Validation misconfiguration, problem with specified pattern',e);
         }
     }
 

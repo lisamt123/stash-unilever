@@ -38,15 +38,37 @@
 @isTest
 private class PBS_Validator_Test {
     //String variables to avoid code containing duplicate String literals
-    public Static final string valid1 = 'valid #1';
-    public Static final string valid2 = 'valid #2';
-    public Static final string valid3 = 'valid #3';
-    public Static final string valid4 = 'valid #4';
-    public Static final string valid5 = 'valid #5';
-    public Static final string valid6 = 'valid #6';
-    public Static final string valid7 = 'valid #7';
-    public Static final string valid8 = 'valid #8';
-    public Static final string invalid1 ='invalid #1';
+    public static final string VALID1 = 'valid #1';
+    public static final string VALID2 = 'valid #2';
+    public static final string VALID3 = 'valid #3';
+    public static final string VALID4 = 'valid #4';
+    public static final string VALID5 = 'valid #5';
+    public static final string VALID6 = 'valid #6';
+    public static final string VALID7 = 'valid #7';
+    public static final string VALID8 = 'valid #8';
+    public static final string VALID9 = 'valid #9';
+    public static final string VALID10 = 'valid #10';
+    public static final string VALID11 = 'valid #11';
+    public static final string INVALID1 ='invalid #1';
+    public static final string INVALID2 ='invalid #2';
+    public static final string INVALID3 ='invalid #3';
+    public static final string INVALID4 ='invalid #4';
+    public static final string INVALID5 ='invalid #5';
+    public static final string INVALID6 ='invalid #6';
+    public static final string INVALID7 ='invalid #7';
+    public static final string INVALID8 ='invalid #8';
+    public static final string INVALID9 ='invalid #9';
+    public static final string INVALID10 ='invalid #10';
+    public static final string INVALID11 ='invalid #11';
+    public static final string INVALID13 ='invalid #13';
+    public static final string ABC ='abc';
+    public static final string UTF8 = 'utf-8';
+    public static final string C280 = '%c2%80';
+    public static final string ZEROTONINE = '01234567890123456789012345678901234567890123456789';
+    public static final string GOOGLE = 'www.google.com';
+    public static final string SALESFORCE = 'na7.salesforce.com';
+    public static final string CSALESFORCE = 'c.na7.salesforce.com';
+    public static final string ZEROTONINE_10 = '0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789';
     
     private class CreditCardTest {
         public String cardStr;
@@ -242,25 +264,25 @@ private class PBS_Validator_Test {
     private static final DoubleTest [] doubleTests = new DoubleTest[]{};
 
     static {
-        doubleTests.add(new DoubleTest('1.964', (Double)(-2.0), (Double)(2.0), valid1, false, true));
-        doubleTests.add(new DoubleTest('+1.964', (Double)(-2.0), (Double)(2.0), valid2, false, true));
-        doubleTests.add(new DoubleTest('-3.38475', (Double)(-5.0), (Double)(-2.0), valid3, false, true));
-        doubleTests.add(new DoubleTest('1', (Double)(0), (Double)(2), valid4, false, true));
-        doubleTests.add(new DoubleTest('0', (Double)(-2.0), (Double)(0), valid5, false, true));
-        doubleTests.add(new DoubleTest('0', (Double)(0), (Double)(0), valid6, false, true));
-        doubleTests.add(new DoubleTest(null, (Double)(1.0), (Double)(2.0), valid7, true, true));
-        doubleTests.add(new DoubleTest('1.0E+3', (Double)(500), (Double)(2000), valid8, false, true));
+        doubleTests.add(new DoubleTest('1.964', (Double)(-2.0), (Double)(2.0), VALID1, false, true));
+        doubleTests.add(new DoubleTest('+1.964', (Double)(-2.0), (Double)(2.0), VALID2, false, true));
+        doubleTests.add(new DoubleTest('-3.38475', (Double)(-5.0), (Double)(-2.0), VALID3, false, true));
+        doubleTests.add(new DoubleTest('1', (Double)(0), (Double)(2), VALID4, false, true));
+        doubleTests.add(new DoubleTest('0', (Double)(-2.0), (Double)(0), VALID5, false, true));
+        doubleTests.add(new DoubleTest('0', (Double)(0), (Double)(0), VALID6, false, true));
+        doubleTests.add(new DoubleTest(null, (Double)(1.0), (Double)(2.0), VALID7, true, true));
+        doubleTests.add(new DoubleTest('1.0E+3', (Double)(500), (Double)(2000), VALID8, false, true));
 
-        doubleTests.add(new DoubleTest('1.964', (Double)(2.0), (Double)(1.0), 'Invalid #1', false, false));
-        doubleTests.add(new DoubleTest(null, (Double)(1.0), (Double)(2.0), 'Invalid #2', false, false));
-        doubleTests.add(new DoubleTest('', (Double)(1.0), (Double)(2.0), 'Invalid #3', false, false));
-        doubleTests.add(new DoubleTest('1.0', (Double)(2.0), (Double)(3.0), 'Invalid #4', false, false));
-        doubleTests.add(new DoubleTest('5.0', (Double)(2.0), (Double)(3.0), 'Invalid #5', false, false));
-        doubleTests.add(new DoubleTest('2.5a', (Double)(2.0), (Double)(3.0), 'Invalid #6', false, false));
-        doubleTests.add(new DoubleTest('2e', (Double)(2.0), (Double)(3.0), 'Invalid #7', false, false));
-        doubleTests.add(new DoubleTest('1.e+50', (Double)(2.0), (Double)(3.0), 'Invalid #8', false, false));
-        doubleTests.add(new DoubleTest('7.237005577332262213973186563043e+75', (Double)(2.0), (Double)(3.0), 'Invalid #9', false, false));
-        doubleTests.add(new DoubleTest('10+10', (Double)(500), (Double)(2000), 'Invalid #10', false, false));
+        doubleTests.add(new DoubleTest('1.964', (Double)(2.0), (Double)(1.0), INVALID1, false, false));
+        doubleTests.add(new DoubleTest(null, (Double)(1.0), (Double)(2.0), INVALID2, false, false));
+        doubleTests.add(new DoubleTest('', (Double)(1.0), (Double)(2.0), INVALID3, false, false));
+        doubleTests.add(new DoubleTest('1.0', (Double)(2.0), (Double)(3.0), INVALID4, false, false));
+        doubleTests.add(new DoubleTest('5.0', (Double)(2.0), (Double)(3.0), INVALID5, false, false));
+        doubleTests.add(new DoubleTest('2.5a', (Double)(2.0), (Double)(3.0), INVALID6, false, false));
+        doubleTests.add(new DoubleTest('2e', (Double)(2.0), (Double)(3.0), INVALID7, false, false));
+        doubleTests.add(new DoubleTest('1.e+50', (Double)(2.0), (Double)(3.0), INVALID8, false, false));
+        doubleTests.add(new DoubleTest('7.237005577332262213973186563043e+75', (Double)(2.0), (Double)(3.0), INVALID9, false, false));
+        doubleTests.add(new DoubleTest('10+10', (Double)(500), (Double)(2000), INVALID10, false, false));
     }
 
     static testMethod void testValidatorIsValidDouble() {
@@ -308,26 +330,26 @@ private class PBS_Validator_Test {
     private static final IntTest [] intTests = new IntTest[]{};
 
     static {
-        intTests.add(new IntTest('1', -2, 2, valid1, false, true));
-        intTests.add(new IntTest('-3', -5, -2, valid2, false, true));
-        intTests.add(new IntTest('1', 0, 2, valid3, false, true));
-        intTests.add(new IntTest('0', -2, 0, valid4, false, true));
-        intTests.add(new IntTest('0', 0, 0, valid5, false, true));
-        intTests.add(new IntTest(null, 1, 2, valid6, true, true));
-        intTests.add(new IntTest('1000000', 500000, 2000000, valid7, false, true));
-        intTests.add(new IntTest('906842624', 906842623, 906842625, valid8, false, true));
-        intTests.add(new IntTest('+1', -2, 2, 'Valid #9', false, true));
+        intTests.add(new IntTest('1', -2, 2, VALID1, false, true));
+        intTests.add(new IntTest('-3', -5, -2, VALID2, false, true));
+        intTests.add(new IntTest('1', 0, 2, VALID3, false, true));
+        intTests.add(new IntTest('0', -2, 0, VALID4, false, true));
+        intTests.add(new IntTest('0', 0, 0, VALID5, false, true));
+        intTests.add(new IntTest(null, 1, 2, VALID6, true, true));
+        intTests.add(new IntTest('1000000', 500000, 2000000, VALID7, false, true));
+        intTests.add(new IntTest('906842624', 906842623, 906842625, VALID8, false, true));
+        intTests.add(new IntTest('+1', -2, 2, VALID9, false, true));
 
-        intTests.add(new IntTest('1', 2, 1, 'Invalid #1', false, false));
-        intTests.add(new IntTest(null, 1, 2, 'Invalid #2', false, false));
-        intTests.add(new IntTest('', 1, 2, 'Invalid #3', false, false));
-        intTests.add(new IntTest('1', 2, 3, 'Invalid #4', false, false));
-        intTests.add(new IntTest('5', 2, 3, 'Invalid #5', false, false));
-        intTests.add(new IntTest('2a', 1, 3, 'Invalid #6', false, false));
-        intTests.add(new IntTest('2.0', 1, 3, 'Invalid #7', false, false));
-        intTests.add(new IntTest(' 10', 5, 20, 'Invalid #10', false, false));
-        intTests.add(new IntTest('10 ', 5, 20, 'Invalid #11', false, false));
-        intTests.add(new IntTest('5899906842624', 906842623, 906842625, 'Invalid #13', false, false));
+        intTests.add(new IntTest('1', 2, 1, INVALID1, false, false));
+        intTests.add(new IntTest(null, 1, 2, INVALID2, false, false));
+        intTests.add(new IntTest('', 1, 2, INVALID3, false, false));
+        intTests.add(new IntTest('1', 2, 3, INVALID4, false, false));
+        intTests.add(new IntTest('5', 2, 3, INVALID5, false, false));
+        intTests.add(new IntTest('2a', 1, 3, INVALID6, false, false));
+        intTests.add(new IntTest('2.0', 1, 3, INVALID7, false, false));
+        intTests.add(new IntTest(' 10', 5, 20, INVALID10, false, false));
+        intTests.add(new IntTest('10 ', 5, 20, INVALID11, false, false));
+        intTests.add(new IntTest('5899906842624', 906842623, 906842625, INVALID13, false, false));
     }
 
     static testMethod void testValidatorIsValidInteger() {
@@ -375,24 +397,24 @@ private class PBS_Validator_Test {
     private static final NumberTest [] numberTests = new NumberTest[]{};
 
     static {
-        numberTests.add(new NumberTest('1', -2, 2, valid1, false, true));
-        numberTests.add(new NumberTest('-3', -5, -2, valid2, false, true));
-        numberTests.add(new NumberTest('1', 0, 2, valid3, false, true));
-        numberTests.add(new NumberTest('0', -2, 0, valid4, false, true));
-        numberTests.add(new NumberTest('0', 0, 0, valid5, false, true));
-        numberTests.add(new NumberTest(null, 1, 2, valid6, true, true));
-        numberTests.add(new NumberTest('1000000', 500000, 2000000, valid7, false, true));
-        numberTests.add(new NumberTest('1125899906842624', 1125899906842623L, 1125899906842625L, valid8, false, true));
+        numberTests.add(new NumberTest('1', -2, 2, VALID1, false, true));
+        numberTests.add(new NumberTest('-3', -5, -2, VALID2, false, true));
+        numberTests.add(new NumberTest('1', 0, 2, VALID3, false, true));
+        numberTests.add(new NumberTest('0', -2, 0, VALID4, false, true));
+        numberTests.add(new NumberTest('0', 0, 0, VALID5, false, true));
+        numberTests.add(new NumberTest(null, 1, 2, VALID6, true, true));
+        numberTests.add(new NumberTest('1000000', 500000, 2000000, VALID7, false, true));
+        numberTests.add(new NumberTest('1125899906842624', 1125899906842623L, 1125899906842625L, VALID8, false, true));
 
-        numberTests.add(new NumberTest('1', 2, 1, 'Invalid #1', false, false));
-        numberTests.add(new NumberTest(null, 1, 2, 'Invalid #2', false, false));
-        numberTests.add(new NumberTest('', 1, 2, 'Invalid #3', false, false));
-        numberTests.add(new NumberTest('1', 2, 3, 'Invalid #4', false, false));
-        numberTests.add(new NumberTest('5', 2, 3, 'Invalid #5', false, false));
-        numberTests.add(new NumberTest('2a', 1, 3, 'Invalid #6', false, false));
-        //numberTests.add(new NumberTest('2.0', 1, 3, 'Invalid #7', false, false)); // number is internally a double - so this is valid.
-        numberTests.add(new NumberTest(' 10', 5, 20, 'Invalid #8', false, false));
-        numberTests.add(new NumberTest('10 ', 5, 20, 'Invalid #9', false, false));
+        numberTests.add(new NumberTest('1', 2, 1, INVALID1, false, false));
+        numberTests.add(new NumberTest(null, 1, 2, INVALID2, false, false));
+        numberTests.add(new NumberTest('', 1, 2, INVALID3, false, false));
+        numberTests.add(new NumberTest('1', 2, 3, INVALID4, false, false));
+        numberTests.add(new NumberTest('5', 2, 3, INVALID5, false, false));
+        numberTests.add(new NumberTest('2a', 1, 3, INVALID6, false, false));
+        //numberTests.add(new NumberTest('2.0', 1, 3, INVALID7, false, false)); // number is internally a double - so this is valid.
+        numberTests.add(new NumberTest(' 10', 5, 20, INVALID8, false, false));
+        numberTests.add(new NumberTest('10 ', 5, 20, INVALID9, false, false));
     }
 
     static testMethod void testValidatorIsValidNumber() {
@@ -440,27 +462,27 @@ private class PBS_Validator_Test {
     private static final Set<String> listItems4 = new Set<String>{'', null};
 
     static {
-        listItemTests.add(new ListItemTest('US', listItems1, valid1, true));
-        listItemTests.add(new ListItemTest('US', listItems2, valid2, true));
-        listItemTests.add(new ListItemTest('CANADA', listItems1, valid3, true));
-        listItemTests.add(new ListItemTest('MEXICO', listItems1, valid4, true));
-        listItemTests.add(new ListItemTest('ksjdfhg^$ \t%^DSFGs', listItems1, valid5, true));
-        listItemTests.add(new ListItemTest('', listItems4, valid6, true));
-        listItemTests.add(new ListItemTest(null, listItems4, valid7, true));
+        listItemTests.add(new ListItemTest('US', listItems1, VALID1, true));
+        listItemTests.add(new ListItemTest('US', listItems2, VALID2, true));
+        listItemTests.add(new ListItemTest('CANADA', listItems1, VALID3, true));
+        listItemTests.add(new ListItemTest('MEXICO', listItems1, VALID4, true));
+        listItemTests.add(new ListItemTest('ksjdfhg^$ \t%^DSFGs', listItems1, VALID5, true));
+        listItemTests.add(new ListItemTest('', listItems4, VALID6, true));
+        listItemTests.add(new ListItemTest(null, listItems4, VALID7, true));
 
-        listItemTests.add(new ListItemTest('', listItems1, 'Invalid #1', false));
-        listItemTests.add(new ListItemTest(null, listItems1, 'Invalid #2', false));
-        listItemTests.add(new ListItemTest('', listItems2, 'Invalid #3', false));
-        listItemTests.add(new ListItemTest(null, listItems2, 'Invalid #4', false));
-        listItemTests.add(new ListItemTest('', listItems3, 'Invalid #5', false));
-        listItemTests.add(new ListItemTest(null, listItems3, 'Invalid #6', false));
-        listItemTests.add(new ListItemTest('', null, 'Invalid #7', false));
-        listItemTests.add(new ListItemTest(null, null, 'Invalid #8', false));
-        listItemTests.add(new ListItemTest('EU', listItems1, 'Invalid #9', false));
-        listItemTests.add(new ListItemTest('us', listItems1, 'Invalid #10', false));
-        listItemTests.add(new ListItemTest('ksjdfhg^$  %^DSFGs', listItems1, 'Invalid #11', false));
+        listItemTests.add(new ListItemTest('', listItems1, INVALID1, false));
+        listItemTests.add(new ListItemTest(null, listItems1, INVALID2, false));
+        listItemTests.add(new ListItemTest('', listItems2, INVALID3, false));
+        listItemTests.add(new ListItemTest(null, listItems2, INVALID4, false));
+        listItemTests.add(new ListItemTest('', listItems3, INVALID5, false));
+        listItemTests.add(new ListItemTest(null, listItems3, INVALID6, false));
+        listItemTests.add(new ListItemTest('', null, INVALID7, false));
+        listItemTests.add(new ListItemTest(null, null, INVALID8, false));
+        listItemTests.add(new ListItemTest('EU', listItems1, INVALID9, false));
+        listItemTests.add(new ListItemTest('us', listItems1, INVALID10, false));
+        listItemTests.add(new ListItemTest('ksjdfhg^$  %^DSFGs', listItems1, INVALID11, false));
         listItemTests.add(new ListItemTest('USA', listItems1, 'Invalid #12', false));
-        listItemTests.add(new ListItemTest('AUS', listItems1, 'Invalid #13', false));
+        listItemTests.add(new ListItemTest('AUS', listItems1, INVALID13, false));
         listItemTests.add(new ListItemTest(' US', listItems1, 'Invalid #14', false));
         listItemTests.add(new ListItemTest('US ', listItems1, 'Invalid #15', false));
     }
@@ -508,15 +530,15 @@ private class PBS_Validator_Test {
     private static final FileContentTest [] fileContentTests = new FileContentTest[]{};
 
     static {
-        fileContentTests.add(new FileContentTest('1', 1, valid1, false, true));
-        fileContentTests.add(new FileContentTest('abc', 3, valid2, false, true));
-        fileContentTests.add(new FileContentTest('abc', 300, valid3, false, true));
-        fileContentTests.add(new FileContentTest(null, 1, valid4, true, true));
-        fileContentTests.add(new FileContentTest('', 1, valid5, true, true));
+        fileContentTests.add(new FileContentTest('1', 1, VALID1, false, true));
+        fileContentTests.add(new FileContentTest(ABC, 3, VALID2, false, true));
+        fileContentTests.add(new FileContentTest(ABC, 300, VALID3, false, true));
+        fileContentTests.add(new FileContentTest(null, 1, VALID4, true, true));
+        fileContentTests.add(new FileContentTest('', 1, VALID5, true, true));
 
-        fileContentTests.add(new FileContentTest('abc', 2, 'Invalid #1', false, false));
-        fileContentTests.add(new FileContentTest(null, 1, 'Invalid #2', false, false));
-        fileContentTests.add(new FileContentTest('', 1, 'Invalid #3', false, false));
+        fileContentTests.add(new FileContentTest(ABC, 2, INVALID1, false, false));
+        fileContentTests.add(new FileContentTest(null, 1, INVALID2, false, false));
+        fileContentTests.add(new FileContentTest('', 1, INVALID3, false, false));
     }
 
     static testMethod void testValidatorIsValidfileContent() {
@@ -562,24 +584,24 @@ private class PBS_Validator_Test {
     private static final PrintableTest [] printableTests = new PrintableTest[]{};
 
     static {
-        printableTests.add(new PrintableTest('1', 1, valid1, false, true));
-        printableTests.add(new PrintableTest('abc', 3, valid2, false, true));
-        printableTests.add(new PrintableTest('abc', 300, valid3, false, true));
-        printableTests.add(new PrintableTest(null, 1, valid4, true, true));
-        printableTests.add(new PrintableTest('', 1, valid5, true, true));
-        printableTests.add(new PrintableTest('ab487sjhdg$%^#$%^&L>PO:c ~', 100, valid6, false, true));
-        printableTests.add(new PrintableTest(EncodingUtil.urlDecode('%20', 'UTF-8'), 10, valid7, false, true));
-        printableTests.add(new PrintableTest(EncodingUtil.urlDecode('%7E', 'UTF-8'), 10, valid8, false, true));
+        printableTests.add(new PrintableTest('1', 1, VALID1, false, true));
+        printableTests.add(new PrintableTest(ABC, 3, VALID2, false, true));
+        printableTests.add(new PrintableTest(ABC, 300, VALID3, false, true));
+        printableTests.add(new PrintableTest(null, 1, VALID4, true, true));
+        printableTests.add(new PrintableTest('', 1, VALID5, true, true));
+        printableTests.add(new PrintableTest('ab487sjhdg$%^#$%^&L>PO:c ~', 100, VALID6, false, true));
+        printableTests.add(new PrintableTest(EncodingUtil.urlDecode('%20', UTF8), 10, VALID7, false, true));
+        printableTests.add(new PrintableTest(EncodingUtil.urlDecode('%7E', UTF8), 10, VALID8, false, true));
 
-        printableTests.add(new PrintableTest('abc', 2, 'Invalid #1', false, false));
-        printableTests.add(new PrintableTest(null, 1, 'Invalid #2', false, false));
-        printableTests.add(new PrintableTest('', 1, 'Invalid #3', false, false));
-        printableTests.add(new PrintableTest('\r', 1, 'Invalid #4', false, false));
-        printableTests.add(new PrintableTest(EncodingUtil.urlDecode('%1F', 'UTF-8'), 10, 'Invalid #5', false, false));
-        printableTests.add(new PrintableTest(EncodingUtil.urlDecode('%7F', 'UTF-8'), 10, valid8, false, false));
-        printableTests.add(new PrintableTest(EncodingUtil.urlDecode('%C2%80', 'UTF-8'), 10, 'Valid #9', false, false)); // ascii 0x80
-        printableTests.add(new PrintableTest(EncodingUtil.urlDecode('%C3%BF', 'UTF-8'), 10, 'Valid #10', false, false)); // ascii 0xFF
-        printableTests.add(new PrintableTest(EncodingUtil.urlDecode('%D7%A9', 'UTF-8'), 10, 'Valid #11', false, false)); // unicode U+05E9
+        printableTests.add(new PrintableTest(ABC, 2, INVALID1, false, false));
+        printableTests.add(new PrintableTest(null, 1, INVALID2, false, false));
+        printableTests.add(new PrintableTest('', 1, INVALID3, false, false));
+        printableTests.add(new PrintableTest('\r', 1, INVALID4, false, false));
+        printableTests.add(new PrintableTest(EncodingUtil.urlDecode('%1F', UTF8), 10, INVALID5, false, false));
+        printableTests.add(new PrintableTest(EncodingUtil.urlDecode('%7F', UTF8), 10, VALID8, false, false));
+        printableTests.add(new PrintableTest(EncodingUtil.urlDecode(C280, UTF8), 10, VALID9, false, false)); // ascii 0x80
+        printableTests.add(new PrintableTest(EncodingUtil.urlDecode('%C3%BF', UTF8), 10, VALID10, false, false)); // ascii 0xFF
+        printableTests.add(new PrintableTest(EncodingUtil.urlDecode('%D7%A9', UTF8), 10, VALID11, false, false)); // unicode U+05E9
     }
 
     static testMethod void testValidatorIsValidPrintable() {
@@ -624,28 +646,28 @@ private class PBS_Validator_Test {
 
     static {
 
-        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest('1.txt', valid1, false, true));
-        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest(null, valid2, true, true));
-        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest('', valid3, true, true));
-        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest('()+. \'&,-=_0123456789abcdefhhijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.zip', valid4, false, true));
-        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest('1.TXT', valid5, false, true));
+        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest('1.txt', VALID1, false, true));
+        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest(null, VALID2, true, true));
+        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest('', VALID3, true, true));
+        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest('()+. \'&,-=_0123456789abcdefhhijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.zip', VALID4, false, true));
+        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest('1.TXT', VALID5, false, true));
 
-        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest(null, 'Invalid #1', false, false));
-        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest('', 'Invalid #2', false, false));
-        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest('\r', 'Invalid #3', false, false));
-        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest(EncodingUtil.urlDecode('%1F', 'UTF-8'), 'Invalid #4', false, false));
-        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest(EncodingUtil.urlDecode('%7F', 'UTF-8'), 'Invalid #5', false, false));
-        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest(EncodingUtil.urlDecode('%C2%80', 'UTF-8'), 'Invalid #6', false, false)); // ascii 0x80
-        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest(EncodingUtil.urlDecode('%C3%BF', 'UTF-8'), 'Invalid #7', false, false)); // ascii 0xFF
-        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest(EncodingUtil.urlDecode('%D7%A9', 'UTF-8'), 'Invalid #8', false, false)); // unicode U+05E9
-        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest('ab487sjhdg$%^#$%^&L>PO:c ~', 'Invalid #9', false, false));
-        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest('01234567890123456789012345678901234567890123456789'
-            + '01234567890123456789012345678901234567890123456789'
-            + '01234567890123456789012345678901234567890123456789'
-            + '01234567890123456789012345678901234567890123456789'
-            + '01234567890123456789012345678901234567890123456789'
+        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest(null, INVALID1, false, false));
+        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest('', INVALID2, false, false));
+        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest('\r', INVALID3, false, false));
+        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest(EncodingUtil.urlDecode('%1F', UTF8), INVALID4, false, false));
+        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest(EncodingUtil.urlDecode('%7F', UTF8), INVALID5, false, false));
+        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest(EncodingUtil.urlDecode(C280, UTF8), INVALID6, false, false)); // ascii 0x80
+        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest(EncodingUtil.urlDecode('%C3%BF', UTF8), INVALID7, false, false)); // ascii 0xFF
+        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest(EncodingUtil.urlDecode('%D7%A9', UTF8), INVALID8, false, false)); // unicode U+05E9
+        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest('ab487sjhdg$%^#$%^&L>PO:c ~', INVALID9, false, false));
+        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest(ZEROTONINE
+            + ZEROTONINE
+            + ZEROTONINE
+            + ZEROTONINE
+            + ZEROTONINE
             + '01234567890123456789012345678901234567890123456789.txt', 'Invalid #10 (too long)', false, false));
-        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest('1.exe', 'Valid #10', false, false));
+        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest('1.exe', VALID10, false, false));
 
     }
 
@@ -696,33 +718,33 @@ private class PBS_Validator_Test {
     private static final List<String> fileExtensions4 = new List<String>{'', null};
 
     static {
-        fileNameTests.add(new FileNameTest('1.txt', fileExtensions1, valid1, false, true));
-        fileNameTests.add(new FileNameTest('1.TXT', fileExtensions1, valid2, false, true));
-        fileNameTests.add(new FileNameTest('1.txt', fileExtensions2, valid3, false, true));
-        fileNameTests.add(new FileNameTest('1.TXT', fileExtensions2, valid4, false, true));
-        fileNameTests.add(new FileNameTest('1.JPG', fileExtensions1, valid5, false, true));
-        fileNameTests.add(new FileNameTest('1.ZIP', fileExtensions1, valid6, false, true));
-        fileNameTests.add(new FileNameTest('', fileExtensions4, valid7, true, true));
-        fileNameTests.add(new FileNameTest(null, fileExtensions4, valid8, true, true));
-        fileNameTests.add(new FileNameTest('', fileExtensions1, 'Valid #9', true, true));
-        fileNameTests.add(new FileNameTest(null, fileExtensions1, 'Valid #10', true, true));
-        fileNameTests.add(new FileNameTest('', fileExtensions3, 'Valid #11', true, true));
+        fileNameTests.add(new FileNameTest('1.txt', fileExtensions1, VALID1, false, true));
+        fileNameTests.add(new FileNameTest('1.TXT', fileExtensions1, VALID2, false, true));
+        fileNameTests.add(new FileNameTest('1.txt', fileExtensions2, VALID3, false, true));
+        fileNameTests.add(new FileNameTest('1.TXT', fileExtensions2, VALID4, false, true));
+        fileNameTests.add(new FileNameTest('1.JPG', fileExtensions1, VALID5, false, true));
+        fileNameTests.add(new FileNameTest('1.ZIP', fileExtensions1, VALID6, false, true));
+        fileNameTests.add(new FileNameTest('', fileExtensions4, VALID7, true, true));
+        fileNameTests.add(new FileNameTest(null, fileExtensions4, VALID8, true, true));
+        fileNameTests.add(new FileNameTest('', fileExtensions1, VALID9, true, true));
+        fileNameTests.add(new FileNameTest(null, fileExtensions1, VALID10, true, true));
+        fileNameTests.add(new FileNameTest('', fileExtensions3, VALID11, true, true));
         fileNameTests.add(new FileNameTest(null, fileExtensions3, 'Valid #12', true, true));
         fileNameTests.add(new FileNameTest('1.exe.txt', fileExtensions1, 'Valid #13', false, true));
 
-        fileNameTests.add(new FileNameTest('1.JPG', fileExtensions2, 'Invalid #1', false, false));
-        fileNameTests.add(new FileNameTest('1.ZIP', fileExtensions2, 'Invalid #2', false, false));
-        fileNameTests.add(new FileNameTest('1.JPG', fileExtensions3, 'Invalid #3', false, false));
-        fileNameTests.add(new FileNameTest('1.ZIP', fileExtensions3, 'Invalid #4', false, false));
-        fileNameTests.add(new FileNameTest('1.JPG', fileExtensions4, 'Invalid #5', false, false));
-        fileNameTests.add(new FileNameTest('1.ZIP', fileExtensions4, 'Invalid #6', false, false));
-        fileNameTests.add(new FileNameTest('', fileExtensions1, 'Invalid #7', false, false));
-        fileNameTests.add(new FileNameTest(null, fileExtensions1, 'Invalid #8', false, false));
-        fileNameTests.add(new FileNameTest('', fileExtensions3, 'Invalid #9', false, false));
-        fileNameTests.add(new FileNameTest(null, fileExtensions3, 'Invalid #10', false, false));
-        fileNameTests.add(new FileNameTest('', fileExtensions4, 'Invalid #11', false, false));
+        fileNameTests.add(new FileNameTest('1.JPG', fileExtensions2, INVALID1, false, false));
+        fileNameTests.add(new FileNameTest('1.ZIP', fileExtensions2, INVALID2, false, false));
+        fileNameTests.add(new FileNameTest('1.JPG', fileExtensions3, INVALID3, false, false));
+        fileNameTests.add(new FileNameTest('1.ZIP', fileExtensions3, INVALID4, false, false));
+        fileNameTests.add(new FileNameTest('1.JPG', fileExtensions4, INVALID5, false, false));
+        fileNameTests.add(new FileNameTest('1.ZIP', fileExtensions4, INVALID6, false, false));
+        fileNameTests.add(new FileNameTest('', fileExtensions1, INVALID7, false, false));
+        fileNameTests.add(new FileNameTest(null, fileExtensions1, INVALID8, false, false));
+        fileNameTests.add(new FileNameTest('', fileExtensions3, INVALID9, false, false));
+        fileNameTests.add(new FileNameTest(null, fileExtensions3, INVALID10, false, false));
+        fileNameTests.add(new FileNameTest('', fileExtensions4, INVALID11, false, false));
         fileNameTests.add(new FileNameTest(null, fileExtensions4, 'Invalid #12', false, false));
-        fileNameTests.add(new FileNameTest('1.exe', fileExtensions1, 'Invalid #13', false, false));
+        fileNameTests.add(new FileNameTest('1.exe', fileExtensions1, INVALID13, false, false));
         fileNameTests.add(new FileNameTest('1.exetxt', fileExtensions1, 'Invalid #14', false, false));
         fileNameTests.add(new FileNameTest('1.txt.exe', fileExtensions1, 'Invalid #15', false, false));
     }
@@ -778,30 +800,30 @@ private class PBS_Validator_Test {
     private static final Set<String> optionalParams3 = new Set<String>{};
 
     static {
-        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?USER=def&PASS=jfg&PARAM1=ud847', requiredParams1, optionalParams1, valid1, true));
-        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?USER=def&PASS=jfg&PARAM1=ud847&OPTUSER=jhd6532', requiredParams1, optionalParams1, valid2, true));
-        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?USER=def&PASS=jfg&PARAM1=ud847&OPTUSER=jhd6532&OPTPASS=hdf&OPTPARAM1=g7345sfg', requiredParams1, optionalParams1, valid3, true));
-        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?USER=def&OPTUSER=123', requiredParams2, optionalParams1, valid4, true));
-        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html', requiredParams3, optionalParams3, valid5, true));
-        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html', requiredParams3, optionalParams1, valid6, true));
-        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?', requiredParams3, optionalParams3, valid7, true));
-        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?', requiredParams3, optionalParams1, valid8, true));
-        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?OPTUSER=ksjfdhg', requiredParams3, optionalParams2, 'Valid #9', true));
-        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?OPTUSER=ksjfdhg', requiredParams3, optionalParams1, 'Valid #10', true));
-        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?OPTPARAM1=ksjfdhg', requiredParams3, optionalParams1, 'Valid #11', true));
+        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?USER=def&PASS=jfg&PARAM1=ud847', requiredParams1, optionalParams1, VALID1, true));
+        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?USER=def&PASS=jfg&PARAM1=ud847&OPTUSER=jhd6532', requiredParams1, optionalParams1, VALID2, true));
+        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?USER=def&PASS=jfg&PARAM1=ud847&OPTUSER=jhd6532&OPTPASS=hdf&OPTPARAM1=g7345sfg', requiredParams1, optionalParams1, VALID3, true));
+        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?USER=def&OPTUSER=123', requiredParams2, optionalParams1, VALID4, true));
+        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html', requiredParams3, optionalParams3, VALID5, true));
+        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html', requiredParams3, optionalParams1, VALID6, true));
+        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?', requiredParams3, optionalParams3, VALID7, true));
+        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?', requiredParams3, optionalParams1, VALID8, true));
+        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?OPTUSER=ksjfdhg', requiredParams3, optionalParams2, VALID9, true));
+        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?OPTUSER=ksjfdhg', requiredParams3, optionalParams1, VALID10, true));
+        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?OPTPARAM1=ksjfdhg', requiredParams3, optionalParams1, VALID11, true));
         httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?PASS=fdgg&USER=def&PARAM1=ud847', requiredParams1, optionalParams1, 'Valid #12', true));
 
-        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?abc=def', requiredParams1, optionalParams1, 'Invalid #1', false));
-        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?USER=abc', requiredParams1, optionalParams1, 'Invalid #2', false));
-        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?USER=abc&PASS=gg', requiredParams1, optionalParams1, 'Invalid #3', false));
-        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?PASS=gg&PARAM1=dfg', requiredParams1, optionalParams1, 'Invalid #4', false));
-        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?USER=abc&PARAM1=dfg', requiredParams1, optionalParams1, 'Invalid #5', false));
-        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?user=abc&PASS=gg&PARAM1=dfg', requiredParams1, optionalParams1, 'Invalid #6', false));
-        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?USER=abc&PASS=gg&PARAM1=dfg&extra=sdfgfg', requiredParams1, optionalParams1, 'Invalid #7', false));
-        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?extra=sdfgfg&USER=abc&PASS=gg&PARAM1=dfg', requiredParams1, optionalParams1, 'Invalid #8', false));
-        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?extra=sdfgfg&USER=abc&PASS=gg&PARAM1=dfg', null, optionalParams1, 'Invalid #9', false));
-        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?extra=sdfgfg&USER=abc&PASS=gg&PARAM1=dfg', requiredParams1, null, 'Invalid #10', false));
-        httpRequestParamsTests.add(new HttpRequestParamsTest(null, requiredParams1, optionalParams1, 'Invalid #11', false));
+        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?abc=def', requiredParams1, optionalParams1, INVALID1, false));
+        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?USER=abc', requiredParams1, optionalParams1, INVALID2, false));
+        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?USER=abc&PASS=gg', requiredParams1, optionalParams1, INVALID3, false));
+        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?PASS=gg&PARAM1=dfg', requiredParams1, optionalParams1, INVALID4, false));
+        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?USER=abc&PARAM1=dfg', requiredParams1, optionalParams1, INVALID5, false));
+        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?user=abc&PASS=gg&PARAM1=dfg', requiredParams1, optionalParams1, INVALID6, false));
+        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?USER=abc&PASS=gg&PARAM1=dfg&extra=sdfgfg', requiredParams1, optionalParams1, INVALID7, false));
+        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?extra=sdfgfg&USER=abc&PASS=gg&PARAM1=dfg', requiredParams1, optionalParams1, INVALID8, false));
+        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?extra=sdfgfg&USER=abc&PASS=gg&PARAM1=dfg', null, optionalParams1, INVALID9, false));
+        httpRequestParamsTests.add(new HttpRequestParamsTest('test.html?extra=sdfgfg&USER=abc&PASS=gg&PARAM1=dfg', requiredParams1, null, INVALID10, false));
+        httpRequestParamsTests.add(new HttpRequestParamsTest(null, requiredParams1, optionalParams1, INVALID11, false));
     }
 
     static testMethod void testValidatorIsValidHttpRequestParams() {
@@ -844,17 +866,17 @@ private class PBS_Validator_Test {
     private static final RedirectDefaultDomainTest [] redirectDefaultDomainTests = new RedirectDefaultDomainTest[]{};
 
     static {
-        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('/test.html', valid1, true));
-        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('/test.html?', valid2, true));
-        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('/test.html?USER=def', valid3, true));
-        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('https://na7.salesforce.com/test.html?USER=def&OPTUSER=123', valid4, true));
-        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('http://na7.salesforce.com/test.html', valid5, true));
-        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('https://na7.salesforce.com', valid6, true));
-        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('http://na7.salesforce.com', valid7, true));
-        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('https://na7.salesforce.com/', valid8, true));
-        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('http://na7.salesforce.com/', 'Valid #9', true));
-        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('https://na7.salesforce.com/www.google.com', 'Valid #10', true));
-        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('http://na7.salesforce.com/www.google.com', 'Valid #11', true));
+        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('/test.html', VALID1, true));
+        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('/test.html?', VALID2, true));
+        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('/test.html?USER=def', VALID3, true));
+        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('https://na7.salesforce.com/test.html?USER=def&OPTUSER=123', VALID4, true));
+        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('http://na7.salesforce.com/test.html', VALID5, true));
+        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('https://na7.salesforce.com', VALID6, true));
+        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('http://na7.salesforce.com', VALID7, true));
+        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('https://na7.salesforce.com/', VALID8, true));
+        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('http://na7.salesforce.com/', VALID9, true));
+        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('https://na7.salesforce.com/www.google.com', VALID10, true));
+        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('http://na7.salesforce.com/www.google.com', VALID11, true));
         redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('https://kjfhfg.salesforce.com/www.google.com', 'Valid #12', true));
         redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('http://le4t98whw.salesforce.com/www.google.com', 'Valid #13', true));
         redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('/javascript%3Atest', 'Valid #14', true));
@@ -865,38 +887,38 @@ private class PBS_Validator_Test {
         redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('/%D7%A9', 'Valid #20', true));
         redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('https://c.na7.salesforce.com/apex/testPage?id=8435987435987435&value=1&param=2', 'Valid #21', true));
 
-        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('test.html?abc=def', 'Invalid #1', false));
-        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('test.html', 'Invalid #2', false));
-        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('www.salesforce.com', 'Invalid #3', false));
-        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('www.google.com', 'Invalid #4', false));
-        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('na7.salesforce.com', 'Invalid #5', false));
-        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('javascript:eval', 'Invalid #6', false));
-        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest(null, 'Invalid #7', false));
-        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('', 'Invalid #8', false));
+        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('test.html?abc=def', INVALID1, false));
+        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('test.html', INVALID2, false));
+        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('www.salesforce.com', INVALID3, false));
+        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest(GOOGLE, INVALID4, false));
+        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest(SALESFORCE, INVALID5, false));
+        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('javascript:eval', INVALID6, false));
+        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest(null, INVALID7, false));
+        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('', INVALID8, false));
         redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('http://na7.salesforce.com/'
-            + '0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789'
-            + '0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789'
-            + '0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789'
-            + '0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789'
-            + '0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789', 'Invalid #9', false));
-        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('https://c.na7.salesforce.com.c/', 'Invalid #10', false));
-        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('https://c.na7.salesforce.comc/', 'Invalid #11', false));
+            + ZEROTONINE_10
+            + ZEROTONINE_10
+            + ZEROTONINE_10
+            + ZEROTONINE_10
+            + ZEROTONINE_10, INVALID9, false));
+        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('https://c.na7.salesforce.com.c/', INVALID10, false));
+        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('https://c.na7.salesforce.comc/', INVALID11, false));
         redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('https://c.na7.salesforcec.com/', 'Invalid #12', false));
-        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('https://c.na7.salesforcecom/', 'Invalid #13', false));
+        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('https://c.na7.salesforcecom/', INVALID13, false));
         redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('https:///', 'Invalid #14', false));
         redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('https://.salesforce.com/', 'Invalid #15', false));
         redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('https://salesforce.com/', 'Invalid #16', false));
         redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('https://0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789.salesforce.com/', 'Invalid #17', false));
         redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('/javascript:test', 'Invalid #18', false));
         redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('/javascript%GGtest', 'Invalid #19', false));
-        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('/' + EncodingUtil.urlDecode('%D7%A9', 'UTF-8'), 'Invalid #20', false));
-        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('/' + EncodingUtil.urlDecode('%C2%80', 'UTF-8'), 'Invalid #21', false));
-        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('https://na1.salesforce.com/' + EncodingUtil.urlDecode('%C2%80', 'UTF-8'), 'Invalid #22', false));
+        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('/' + EncodingUtil.urlDecode('%D7%A9', UTF8), 'Invalid #20', false));
+        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('/' + EncodingUtil.urlDecode(C280, UTF8), 'Invalid #21', false));
+        redirectDefaultDomainTests.add(new RedirectDefaultDomainTest('https://na1.salesforce.com/' + EncodingUtil.urlDecode(C280, UTF8), 'Invalid #22', false));
     }
 
     static testMethod void testValidatorIsValidRedirectDefaultDomain() {
         PageReference pr = new PageReference('https://c.na7.salesforce.com');
-        pr.getHeaders().put('Host', 'c.na7.salesforce.com');
+        pr.getHeaders().put('Host', CSALESFORCE);
         Test.setCurrentPage(pr);
 
         for (RedirectDefaultDomainTest t : redirectDefaultDomainTests) {
@@ -906,7 +928,7 @@ private class PBS_Validator_Test {
 
     static testMethod void testValidatorGetValidRedirectDefaultDomain() {
         PageReference pr = new PageReference('https://c.na7.salesforce.com');
-        pr.getHeaders().put('Host', 'c.na7.salesforce.com');
+        pr.getHeaders().put('Host', CSALESFORCE);
         Test.setCurrentPage(pr);
 
         for (RedirectDefaultDomainTest t : redirectDefaultDomainTests) {
@@ -940,59 +962,59 @@ private class PBS_Validator_Test {
     private static final RedirectTest [] redirectTests = new RedirectTest[]{};
 
     static {
-        redirectTests.add(new RedirectTest('/test.html', 'na7.salesforce.com', valid1, true));
-        redirectTests.add(new RedirectTest('/test.html?', 'na7.salesforce.com', valid2, true));
-        redirectTests.add(new RedirectTest('/test.html?USER=def', 'na7.salesforce.com', valid3, true));
-        redirectTests.add(new RedirectTest('https://na7.salesforce.com/test.html?USER=def&OPTUSER=123', 'na7.salesforce.com', valid4, true));
-        redirectTests.add(new RedirectTest('http://na7.salesforce.com/test.html', 'na7.salesforce.com', valid5, true));
-        redirectTests.add(new RedirectTest('https://na7.salesforce.com', 'na7.salesforce.com', valid6, true));
-        redirectTests.add(new RedirectTest('http://na7.salesforce.com', 'na7.salesforce.com', valid7, true));
-        redirectTests.add(new RedirectTest('https://na7.salesforce.com/', 'na7.salesforce.com', valid8, true));
-        redirectTests.add(new RedirectTest('http://na7.salesforce.com/', 'na7.salesforce.com', 'Valid #9', true));
-        redirectTests.add(new RedirectTest('https://na7.salesforce.com/www.google.com', 'na7.salesforce.com', 'Valid #10', true));
-        redirectTests.add(new RedirectTest('http://na7.salesforce.com/www.google.com', 'na7.salesforce.com', 'Valid #11', true));
-        redirectTests.add(new RedirectTest('/javascript%3Atest', 'na7.salesforce.com', 'Valid #12', true));
-        redirectTests.add(new RedirectTest('/http%3A//na1.salesforce.com', 'na7.salesforce.com', 'Valid #13', true));
-        redirectTests.add(new RedirectTest('/http%3a//www.google.com', 'na7.salesforce.com', 'Valid #14', true));
-        redirectTests.add(new RedirectTest('https://c.na7.salesforce.com/', 'c.na7.salesforce.com', 'Valid #16', true));
+        redirectTests.add(new RedirectTest('/test.html', SALESFORCE, VALID1, true));
+        redirectTests.add(new RedirectTest('/test.html?', SALESFORCE, VALID2, true));
+        redirectTests.add(new RedirectTest('/test.html?USER=def', SALESFORCE, VALID3, true));
+        redirectTests.add(new RedirectTest('https://na7.salesforce.com/test.html?USER=def&OPTUSER=123', SALESFORCE, VALID4, true));
+        redirectTests.add(new RedirectTest('http://na7.salesforce.com/test.html', SALESFORCE, VALID5, true));
+        redirectTests.add(new RedirectTest('https://na7.salesforce.com', SALESFORCE, VALID6, true));
+        redirectTests.add(new RedirectTest('http://na7.salesforce.com', SALESFORCE, VALID7, true));
+        redirectTests.add(new RedirectTest('https://na7.salesforce.com/', SALESFORCE, VALID8, true));
+        redirectTests.add(new RedirectTest('http://na7.salesforce.com/', SALESFORCE, VALID9, true));
+        redirectTests.add(new RedirectTest('https://na7.salesforce.com/www.google.com', SALESFORCE, VALID10, true));
+        redirectTests.add(new RedirectTest('http://na7.salesforce.com/www.google.com', SALESFORCE, VALID11, true));
+        redirectTests.add(new RedirectTest('/javascript%3Atest', SALESFORCE, 'Valid #12', true));
+        redirectTests.add(new RedirectTest('/http%3A//na1.salesforce.com', SALESFORCE, 'Valid #13', true));
+        redirectTests.add(new RedirectTest('/http%3a//www.google.com', SALESFORCE, 'Valid #14', true));
+        redirectTests.add(new RedirectTest('https://c.na7.salesforce.com/', CSALESFORCE, 'Valid #16', true));
         redirectTests.add(new RedirectTest('https://sdfgdfgfsdg.c.na7.salesforce.com/', 'sdfgdfgfsdg.c.na7.salesforce.com', 'Valid #17', true));
-        redirectTests.add(new RedirectTest('/%D7%A9', 'na7.salesforce.com', 'Valid #18', true));
-        redirectTests.add(new RedirectTest('https://c.na7.salesforce.com/apex/testPage?id=8435987435987435&value=1&param=2', 'c.na7.salesforce.com', 'Valid #19', true));
-        redirectTests.add(new RedirectTest('https://www.google.com/', 'www.google.com', 'Valid #20', true));
+        redirectTests.add(new RedirectTest('/%D7%A9', SALESFORCE, 'Valid #18', true));
+        redirectTests.add(new RedirectTest('https://c.na7.salesforce.com/apex/testPage?id=8435987435987435&value=1&param=2', CSALESFORCE, 'Valid #19', true));
+        redirectTests.add(new RedirectTest('https://www.google.com/', GOOGLE, 'Valid #20', true));
         redirectTests.add(new RedirectTest('https://1.2.google.com/', '1.2.google.com', 'Valid #21', true));
-        redirectTests.add(new RedirectTest('https://na1.salesforce.com/', 'www.google.com', 'Valid #22', true));
+        redirectTests.add(new RedirectTest('https://na1.salesforce.com/', GOOGLE, 'Valid #22', true));
 
-        redirectTests.add(new RedirectTest('test.html?abc=def', 'na7.salesforce.com', 'Invalid #1', false));
-        redirectTests.add(new RedirectTest('test.html', 'na7.salesforce.com', 'Invalid #2', false));
-        redirectTests.add(new RedirectTest('www.salesforce.com', 'www.salesforce.com', 'Invalid #3', false));
-        redirectTests.add(new RedirectTest('www.google.com', 'www.google.com', 'Invalid #4', false));
-        redirectTests.add(new RedirectTest('na7.salesforce.com', 'na7.salesforce.com', 'Invalid #5', false));
-        redirectTests.add(new RedirectTest('javascript:eval', 'na7.salesforce.com', 'Invalid #6', false));
-        redirectTests.add(new RedirectTest(null, 'na7.salesforce.com', 'Invalid #7', false));
-        redirectTests.add(new RedirectTest('', 'na7.salesforce.com', 'Invalid #8', false));
+        redirectTests.add(new RedirectTest('test.html?abc=def', SALESFORCE, INVALID1, false));
+        redirectTests.add(new RedirectTest('test.html', SALESFORCE, INVALID2, false));
+        redirectTests.add(new RedirectTest('www.salesforce.com', 'www.salesforce.com', INVALID3, false));
+        redirectTests.add(new RedirectTest(GOOGLE, 'www.google.com', INVALID4, false));
+        redirectTests.add(new RedirectTest(SALESFORCE, 'na7.salesforce.com', INVALID5, false));
+        redirectTests.add(new RedirectTest('javascript:eval', SALESFORCE, INVALID6, false));
+        redirectTests.add(new RedirectTest(null, SALESFORCE, INVALID7, false));
+        redirectTests.add(new RedirectTest('', SALESFORCE, INVALID8, false));
         redirectTests.add(new RedirectTest('http://na7.salesforce.com/'
-            + '0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789'
-            + '0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789'
-            + '0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789'
-            + '0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789'
-            + '0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789', 'na7.salesforce.com', 'Invalid #9', false));
-        redirectTests.add(new RedirectTest('https://c.na7.salesforce.com.c/', 'c.na7.salesforce.com', 'Invalid #10', false));
-        redirectTests.add(new RedirectTest('https://c.na7.salesforce.comc/', 'c.na7.salesforce.com', 'Invalid #11', false));
-        redirectTests.add(new RedirectTest('https://c.na7.salesforcec.com/', 'c.na7.salesforce.com', 'Invalid #12', false));
-        redirectTests.add(new RedirectTest('https://c.na7.salesforcecom/', 'c.na7.salesforce.com', 'Invalid #13', false));
-        redirectTests.add(new RedirectTest('https:///', 'na7.salesforce.com', 'Invalid #14', false));
+            + ZEROTONINE_10
+            + ZEROTONINE_10
+            + ZEROTONINE_10
+            + ZEROTONINE_10
+            + ZEROTONINE_10, SALESFORCE, INVALID9, false));
+        redirectTests.add(new RedirectTest('https://c.na7.salesforce.com.c/', CSALESFORCE, INVALID10, false));
+        redirectTests.add(new RedirectTest('https://c.na7.salesforce.comc/', CSALESFORCE, INVALID11, false));
+        redirectTests.add(new RedirectTest('https://c.na7.salesforcec.com/', CSALESFORCE, 'Invalid #12', false));
+        redirectTests.add(new RedirectTest('https://c.na7.salesforcecom/', CSALESFORCE, INVALID13, false));
+        redirectTests.add(new RedirectTest('https:///', SALESFORCE, 'Invalid #14', false));
         redirectTests.add(new RedirectTest('https://.salesforce.com/', 'salesforce.com', 'Invalid #15', false));
         redirectTests.add(new RedirectTest('https://0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789.salesforce.com/', 'salesforce.com', 'Invalid #16', false));
-        redirectTests.add(new RedirectTest('/javascript:test', 'c.na7.salesforce.com', 'Invalid #17', false));
-        redirectTests.add(new RedirectTest('/javascript%GGtest', 'c.na7.salesforce.com', 'Invalid #18', false));
-        redirectTests.add(new RedirectTest('/' + EncodingUtil.urlDecode('%D7%A9', 'UTF-8'), 'c.na7.salesforce.com', 'Invalid #19', false));
-        redirectTests.add(new RedirectTest('/' + EncodingUtil.urlDecode('%C2%80', 'UTF-8'), 'c.na7.salesforce.com', 'Invalid #20', false));
-        redirectTests.add(new RedirectTest('https://na1.salesforce.com/' + EncodingUtil.urlDecode('%C2%80', 'UTF-8'), 'na1.salesforce.com', 'Invalid #21', false));
+        redirectTests.add(new RedirectTest('/javascript:test', CSALESFORCE, 'Invalid #17', false));
+        redirectTests.add(new RedirectTest('/javascript%GGtest', CSALESFORCE, 'Invalid #18', false));
+        redirectTests.add(new RedirectTest('/' + EncodingUtil.urlDecode('%D7%A9', UTF8), CSALESFORCE, 'Invalid #19', false));
+        redirectTests.add(new RedirectTest('/' + EncodingUtil.urlDecode(C280, UTF8), CSALESFORCE, 'Invalid #20', false));
+        redirectTests.add(new RedirectTest('https://na1.salesforce.com/' + EncodingUtil.urlDecode(C280, UTF8), 'na1.salesforce.com', 'Invalid #21', false));
         redirectTests.add(new RedirectTest('https://c.na7.salesforcecom/', null, 'Invalid #22', false));
         redirectTests.add(new RedirectTest('https://www.google.com/', 'login.google.com', 'Invalid #23', false));
         redirectTests.add(new RedirectTest('https://1.2.google.com/', '', 'Invalid #24', false));
         redirectTests.add(new RedirectTest('https:///', '', 'Invalid #25', false));
-        redirectTests.add(new RedirectTest('https://abc/', 'abc', 'Invalid #26', false));
+        redirectTests.add(new RedirectTest('https://abc/', ABC, 'Invalid #26', false));
     }
 
     static testMethod void testValidatorIsValidRedirect() {

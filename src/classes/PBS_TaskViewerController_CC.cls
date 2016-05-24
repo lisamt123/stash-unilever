@@ -257,7 +257,7 @@ public with sharing class PBS_TaskViewerController_CC extends PBS_LMSBaseControl
             if(!String.isBlank(retURL)){
                 ref= new PageReference(retURL);
             }else{
-                ref = Page.PBS_TrainingPlanDetail_Test;
+                ref = Page.PBS_TrainingPlanDetail;
                 ref.getParameters().put('id',assignment.Training_Plan__c);
                 ref.getParameters().put('section',assignment.Training_Plan_Section__c);
             }
@@ -269,7 +269,7 @@ public with sharing class PBS_TaskViewerController_CC extends PBS_LMSBaseControl
 
     public Boolean getIsTaskValidForReset(){
 
-        if(learningVersion.Task__r.Disable_Undo__c == true){
+        if(learningVersion.Task__r.Disable_Undo__c){
             return false;
         }
 
@@ -287,7 +287,7 @@ public with sharing class PBS_TaskViewerController_CC extends PBS_LMSBaseControl
 
         if(tplanStatus != null && tplanStatus != PBS_LMSConstants_CC.TPLAN_STATUS_COMPLETED && assignment.Progress__c == PBS_LMSConstants_CC.ASSIGNMENT_STATUS_COMPLETED){
             Set<Id> taskApprovers = getTaskApprovers();
-            if(task.Requires_Manager_Approval__c == false && taskApprovers.size() == 0){
+            if((!task.Requires_Manager_Approval__c) && taskApprovers.size() == 0){
                 return true;
             }
         }

@@ -83,7 +83,7 @@ global with sharing class PBS_SFDCIntegerValidationRule_CC extends PBS_SFDCBaseV
         svrule.assertValid(input);
       } catch (Exception e) {
         // String did not match the regex pattern or other basic string rule checks
-        throw new PBS_SFDCValidator_CC.SFDCValidationException('Invalid integer input');
+        throw new PBS_SFDCValidator_CC.SFDCValidationException('Invalid integer input',e);
       }
       
     // RegEx is ok , so try to convert string to integer
@@ -91,7 +91,7 @@ global with sharing class PBS_SFDCIntegerValidationRule_CC extends PBS_SFDCBaseV
     try {
       i = Integer.valueOf(input);
     } catch (Exception e) {
-      throw new PBS_SFDCValidator_CC.SFDCValidationException('Invalid integer input format');
+      throw new PBS_SFDCValidator_CC.SFDCValidationException('Invalid integer input format',e);
     }
     
     // validate min and max
