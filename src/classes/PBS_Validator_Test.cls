@@ -38,37 +38,38 @@
 @isTest
 private class PBS_Validator_Test {
     //String variables to avoid code containing duplicate String literals
-    public static final string VALID1 = 'valid #1';
-    public static final string VALID2 = 'valid #2';
-    public static final string VALID3 = 'valid #3';
-    public static final string VALID4 = 'valid #4';
-    public static final string VALID5 = 'valid #5';
-    public static final string VALID6 = 'valid #6';
-    public static final string VALID7 = 'valid #7';
-    public static final string VALID8 = 'valid #8';
-    public static final string VALID9 = 'valid #9';
-    public static final string VALID10 = 'valid #10';
-    public static final string VALID11 = 'valid #11';
-    public static final string INVALID1 ='invalid #1';
-    public static final string INVALID2 ='invalid #2';
-    public static final string INVALID3 ='invalid #3';
-    public static final string INVALID4 ='invalid #4';
-    public static final string INVALID5 ='invalid #5';
-    public static final string INVALID6 ='invalid #6';
-    public static final string INVALID7 ='invalid #7';
-    public static final string INVALID8 ='invalid #8';
-    public static final string INVALID9 ='invalid #9';
-    public static final string INVALID10 ='invalid #10';
-    public static final string INVALID11 ='invalid #11';
-    public static final string INVALID13 ='invalid #13';
-    public static final string ABC ='abc';
-    public static final string UTF8 = 'utf-8';
-    public static final string C280 = '%c2%80';
-    public static final string ZEROTONINE = '01234567890123456789012345678901234567890123456789';
+    private static final string VALID1 = 'valid #1';
+    private static final string VALID2 = 'valid #2';
+    private static final string VALID3 = 'valid #3';
+    private static final string VALID4 = 'valid #4';
+    private static final string VALID5 = 'valid #5';
+    private static final string VALID6 = 'valid #6';
+    private static final string VALID7 = 'valid #7';
+    private static final string VALID8 = 'valid #8';
+    private static final string VALID9 = 'valid #9';
+    private static final string VALID10 = 'valid #10';
+    private static final string VALID11 = 'valid #11';
+    private static final string INVALID1 ='invalid #1';
+    private static final string INVALID2 ='invalid #2';
+    private static final string INVALID3 ='invalid #3';
+    private static final string INVALID4 ='invalid #4';
+    private static final string INVALID5 ='invalid #5';
+    private static final string INVALID6 ='invalid #6';
+    private static final string INVALID7 ='invalid #7';
+    private static final string INVALID8 ='invalid #8';
+    private static final string INVALID9 ='invalid #9';
+    private static final string INVALID10 ='invalid #10';
+    private static final string INVALID11 ='invalid #11';
+    private static final string INVALID13 ='invalid #13';
+    private static final string ABC ='abc';
+    private static final string UTF8 = 'utf-8';
+    private static final string C280 = '%c2%80';
+    private static final string ZEROTONINE = '01234567890123456789012345678901234567890123456789';
     public static final string GOOGLE = 'www.google.com';
-    public static final string SALESFORCE = 'na7.salesforce.com';
-    public static final string CSALESFORCE = 'c.na7.salesforce.com';
-    public static final string ZEROTONINE_10 = '0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789';
+    private static final string SALESFORCE = 'na7.salesforce.com';
+    private static final string CSALESFORCE = 'c.na7.salesforce.com';
+    private static final string ZEROTONINE_10 = '0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789';
+    private static final string ONE_TXT = '1.txt';
     
     private class CreditCardTest {
         public String cardStr;
@@ -646,11 +647,11 @@ private class PBS_Validator_Test {
 
     static {
 
-        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest('1.txt', VALID1, false, true));
+        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest(ONE_TXT, VALID1, false, true));
         fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest(null, VALID2, true, true));
         fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest('', VALID3, true, true));
         fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest('()+. \'&,-=_0123456789abcdefhhijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.zip', VALID4, false, true));
-        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest('1.TXT', VALID5, false, true));
+        fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest(ONE_TXT, VALID5, false, true));
 
         fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest(null, INVALID1, false, false));
         fileNameDefaultExtensionsTests.add(new FileNameDefaultExtensionsTest('', INVALID2, false, false));
@@ -718,10 +719,10 @@ private class PBS_Validator_Test {
     private static final List<String> fileExtensions4 = new List<String>{'', null};
 
     static {
-        fileNameTests.add(new FileNameTest('1.txt', fileExtensions1, VALID1, false, true));
-        fileNameTests.add(new FileNameTest('1.TXT', fileExtensions1, VALID2, false, true));
-        fileNameTests.add(new FileNameTest('1.txt', fileExtensions2, VALID3, false, true));
-        fileNameTests.add(new FileNameTest('1.TXT', fileExtensions2, VALID4, false, true));
+        fileNameTests.add(new FileNameTest(ONE_TXT, fileExtensions1, VALID1, false, true));
+        fileNameTests.add(new FileNameTest(ONE_TXT, fileExtensions1, VALID2, false, true));
+        fileNameTests.add(new FileNameTest(ONE_TXT, fileExtensions2, VALID3, false, true));
+        fileNameTests.add(new FileNameTest(ONE_TXT, fileExtensions2, VALID4, false, true));
         fileNameTests.add(new FileNameTest('1.JPG', fileExtensions1, VALID5, false, true));
         fileNameTests.add(new FileNameTest('1.ZIP', fileExtensions1, VALID6, false, true));
         fileNameTests.add(new FileNameTest('', fileExtensions4, VALID7, true, true));
