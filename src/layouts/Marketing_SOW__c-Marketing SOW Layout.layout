@@ -63,6 +63,14 @@
                 <behavior>Edit</behavior>
                 <field>Attachments_Cloned__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Record_Locked_Sync__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>B_Fwd_Campaign_count__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -255,6 +263,7 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Project_Stage__c</fields>
         <fields>Value_to_be_paid_in_Current_FY__c</fields>
         <fields>Total_Fees_for_Project__c</fields>
         <fields>Campaign_NFY__c</fields>
@@ -262,8 +271,6 @@
         <fields>Percentage_of_Fee_for_this_FY__c</fields>
         <fields>Campaign_Status__c</fields>
         <fields>Sync_Status__c</fields>
-        <fields>Brand_Led_Growth__c</fields>
-        <fields>Innovation_Projects__c</fields>
         <relatedList>Oblix_SOW_Projects__c.Financial_Year__c</relatedList>
         <sortField>NAME</sortField>
         <sortOrder>Asc</sortOrder>
@@ -325,7 +332,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hE000000SCiBH</masterLabel>
+        <masterLabel>00hM0000000KYLf</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
