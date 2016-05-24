@@ -302,7 +302,9 @@ public with sharing class WWP_LossTree_CC{
             if(lt.loss_type__c == 'Dispatch Compliance' && lt.Planned_Dispatch__c== 0){
                lossdiff = 100;
            }
-           if(lossdiff < 0.95)
+                    
+                   
+           if(lossdiff <= 0.05)
            {
            isdisabled =true;
            }
@@ -310,7 +312,6 @@ public with sharing class WWP_LossTree_CC{
            {
            isdisabled=false;
            }
-           
            
             //lossdiff = 0;
            

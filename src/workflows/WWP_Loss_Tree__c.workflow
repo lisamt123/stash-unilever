@@ -150,7 +150,7 @@
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <booleanFilter>((1 AND 5)  OR (2 OR 6)) AND ((3 OR 7) AND (4 OR 8))</booleanFilter>
+        <booleanFilter>((1 AND 5)  OR (2 AND 6)) AND ((3 OR 7) AND (4 OR 8))</booleanFilter>
         <criteriaItems>
             <field>WWP_Loss_Tree__c.Actual_Dispatch__c</field>
             <operation>notEqual</operation>
