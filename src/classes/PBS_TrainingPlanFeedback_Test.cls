@@ -99,11 +99,11 @@ public class PBS_TrainingPlanFeedback_Test {
             //Try submitting without comments
             PageReference ref = cont.submitFeedback();
             System.assertEquals(true,cont.hasMessages);
-
+            
             //Add comments and try again
             feedback.Comments__c = 'testing';
             ref = cont.submitFeedback();
-
+            System.assert(ref != null);
         }
 
         System.assertEquals(1,getFeedbackCount(tplanId));
