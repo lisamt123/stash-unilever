@@ -9,20 +9,8 @@ src/approvalProcesses/VPM_PurchasingRequests__c.VPM_RecallApproval.approvalProce
 src/profiles/ReadOnly.profile
 src/flows
 src/profiles
-src/flows/VPM_CheckAdvancedBusinessRequestorFlow-1.flow
-src/flows/VPM_CreateLaunchScreen-17.flow
-src/flows/VPM_Fetch_Vendor_Details_Service_Call_Flow-1.flow
 src/flows/VPM_PurchasingRequestAdvanceForm-122.flow
-src/flows/VPM_PurchasingRequestsExtendLaunchScreen-4.flow
-src/flows/VPM_PurchasingRequestsMaintainLaunchScreen-44.flow
 src/flows/VPM_PurchasingRequestsRegionalSpecificFieldsOutcome-32.flow
-src/flows/VPM_PurchasingRequestVendorDetails-39.flow
-src/flows/VPM_Purchasing_Requests_FinanciallySpecificFieldsScreen-11.flow
-src/flows/VPM_Purchasing_Request_Bank_Details-11.flow
-src/flows/VPM_Purchasing_Request_Brief-16.flow
-src/flows/VPM_Purchasing_request_Payment_terms-7.flow
-src/flows/VPM_Purchasing_Request_Vendor_Match-9.flow
-src/flows/VPM_SendRendWebformRequest-54.flow
 src/profiles/ReadOnly.profile
 src/applications
 src/classes
@@ -90,7 +78,6 @@ src/layouts/VPM_PurchasingRequests__c-Finance.layout
 src/layouts/VPM_PurchasingRequests__c-FLS.layout
 src/layouts/VPM_PurchasingRequests__c-MDM Ops.layout
 src/letterhead/VPM_BlankLetter.letter
-src/objects/Core_Approval_Details__c.object
 src/objects/mdm_Vendors__c.object
 src/objects/VPM_CommodityCode__c.object
 src/objects/VPM_CompanyCode__c.object
@@ -154,5 +141,4 @@ src/flows/VPM_PurchasingRequestsStages-74.flow
 src/profiles/ReadOnly.profile
 src/flows
 src/profiles
-src/flows/VPM_RequestTimewithGroup-12.flow
 src/profiles/ReadOnly.profile
