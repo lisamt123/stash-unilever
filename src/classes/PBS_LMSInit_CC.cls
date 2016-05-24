@@ -701,7 +701,8 @@ public with sharing class PBS_LMSInit_CC{
 
         }catch(Exception e){
             Database.rollback(sp);
-            throw new LMSInitException(e.getMessage());
+            String strException = e.getMessage();
+            throw new LMSInitException(strException);
         }
 
     }
