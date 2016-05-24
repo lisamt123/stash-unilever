@@ -130,6 +130,9 @@
         <field>IPM_Analytics__c$IPM_Business_Impact_BD__c</field>
     </columns>
     <columns>
+        <field>IPM_Analytics__c$IPM_Company_Priority__c</field>
+    </columns>
+    <columns>
         <field>IPM_Analytics__c$IPM_1st_Full_Year_Gross_TO_BD__c</field>
     </columns>
     <columns>

@@ -215,6 +215,7 @@ public with sharing class Oblix_AddAssetPageHelper {
 
 
 	public void addAssetToBasket() {
+        Integer initialItemCount = list_order_added.size();
         try {
     		Oblix_AssetOfferingWrapper.AssetWrapper asset_to_add_to_basket = 
     			Oblix_AssetOfferingWrapper.initialiseAssetWrapper(projectId,
@@ -238,7 +239,9 @@ public with sharing class Oblix_AddAssetPageHelper {
             ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR, 'Failed to add asset to basket: ' + e.getMessage()));
 
             //Revert all changes to in-memory basket
-            list_order_added.remove(list_order_added.size()-1);
+            if (list_order_added.size() > initialItemCount) {
+                list_order_added.remove(list_order_added.size()-1);
+            }
             map_assets_in_basket.remove(selectedAssetMDMId);
             applySortToBasket(null);
             map_assets_in_basket_json = JSON.serialize(map_assets_in_basket);
@@ -283,9 +286,12 @@ public with sharing class Oblix_AddAssetPageHelper {
 
 	public void removeAssetFromBasket() {
 
-        Oblix_AssetOfferingWrapper.AssetWrapper oldAsset = map_assets_in_basket.get(selectedAssetMDMId);
+        Oblix_AssetOfferingWrapper.AssetWrapper oldAsset;
+        List<String> list_order_added_BCKP = list_order_added.clone();
 
         try {
+            oldAsset = map_assets_in_basket.get(selectedAssetMDMId); 
+
             Oblix_AssetOfferingWrapper.AssetWrapper removedItem = map_assets_in_basket.remove(selectedAssetMDMId);
             applySortToBasket(removedItem.mdm_id);
             
@@ -300,6 +306,9 @@ public with sharing class Oblix_AddAssetPageHelper {
             //Revert all changes to in-memory basket
             if (oldAsset != null) {
                 map_assets_in_basket.put(selectedAssetMDMId, oldAsset);
+                if (list_order_added_BCKP != null) {
+                    list_order_added = list_order_added_BCKP;
+                }
                 applySortToBasket(null);
                 map_assets_in_basket_json = JSON.serialize(map_assets_in_basket);
 
