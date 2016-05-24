@@ -15,9 +15,9 @@ private class Oblix_SowMainController_Test {
 
     private static Marketing_SOW__c sowDove;
     private static Marketing_SOW__c sowKnorr;
-    private static Marketing_SOW__c sowAmbrosia;
-    private static Marketing_SOW__c sowCiff;
-    private static Marketing_SOW__c sowInvalidBrandCatComb;
+    //private static Marketing_SOW__c sowAmbrosia;
+    //private static Marketing_SOW__c sowCiff;
+    //private static Marketing_SOW__c sowInvalidBrandCatComb;
 
     private static MDO_CategoryBrands__c cbDovePC;
     private static MDO_CategoryBrands__c cbKnorrOF;
@@ -38,7 +38,6 @@ private class Oblix_SowMainController_Test {
     private static User ul1_2;
 
     private static Oblix_User_Permission__c up1Dove;
-    //private static Oblix_User_Permission__c up1Knorr;
     private static Oblix_User_Permission__c up1_2Knorr;
     
     
@@ -286,9 +285,9 @@ private class Oblix_SowMainController_Test {
         Account agency = Oblix_TestUtils.createAccount();
         sowDove = Oblix_TestUtils.createTestMarketingSow('Dove SOW', Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER, cbDovePC.brand_id__c, cbDovePC.product_Category_Id__c, bc.Id, agency.Id);
         sowKnorr = Oblix_TestUtils.createTestMarketingSow('Knorr SOW', Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER, cbKnorrOF.brand_id__c, cbKnorrOF.product_Category_Id__c, bc.Id, agency.Id);
-        sowAmbrosia = Oblix_TestUtils.createTestMarketingSow('Ambrosia SOW', Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER, cbAmbrosiaOF.brand_id__c, cbAmbrosiaOF.product_Category_Id__c, bc.Id, agency.Id);
-        sowCiff = Oblix_TestUtils.createTestMarketingSow('Ciff SOW', Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER, cbCiffPC.brand_id__c, cbCiffPC.product_Category_Id__c, bc.Id, agency.Id);
-        sowInvalidBrandCatComb = Oblix_TestUtils.createTestMarketingSow('SOW invalid', Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER, bCiff.Id, scOF.Id, bc.Id, agency.Id);
+        Marketing_SOW__c sowAmbrosia = Oblix_TestUtils.createTestMarketingSow('Ambrosia SOW', Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER, cbAmbrosiaOF.brand_id__c, cbAmbrosiaOF.product_Category_Id__c, bc.Id, agency.Id);
+        Marketing_SOW__c sowCiff = Oblix_TestUtils.createTestMarketingSow('Ciff SOW', Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER, cbCiffPC.brand_id__c, cbCiffPC.product_Category_Id__c, bc.Id, agency.Id);
+        Marketing_SOW__c sowInvalidBrandCatComb = Oblix_TestUtils.createTestMarketingSow('SOW invalid', Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER, bCiff.Id, scOF.Id, bc.Id, agency.Id);
         insert new List<Marketing_SOW__c>{sowDove, sowKnorr, sowAmbrosia, sowCiff};
         update new List<Marketing_SOW__c>{sowDove, sowKnorr, sowAmbrosia, sowCiff};
         system.assertNotEquals(NULL, sowInvalidBrandCatComb, 'Expecting sowInvalidBrandCatComb to be populated');

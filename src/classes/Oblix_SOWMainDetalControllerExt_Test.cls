@@ -6,9 +6,6 @@ private class Oblix_SOWMainDetalControllerExt_Test {
 	private enum Permission {CAN_EDIT, CAN_DELETE, CAN_APPROVE, CAN_REJECT, CAN_SUBMIT, CAN_DELETE_ATTACHMENT, CAN_ADD_ATTACHMENT, CAN_MANAGE_CAMPAIGN, CAN_MANAGE_NON_CAMPAIGN}
 
 	private static Marketing_SOW__c mSow;
-	private static User ul1;
-	private static User ul2;
-	private static User ul3;
 	private static User superuser;
 
     @isTest static void testAdminAndApprover() {
@@ -159,11 +156,8 @@ private class Oblix_SOWMainDetalControllerExt_Test {
     private static void initTestData() {
 
         Map < String, User > testUsers = Oblix_TestUtils.createTestUsers();
-        ul1 = testUsers.get('UL1');
-        ul2 = testUsers.get('UL2');
-        ul3 = testUsers.get('UL3');
+        
         superuser = testUsers.get('superuser');
-
         insert Oblix_TestUtils.createOblixCustomSettings();
 
         User currentUser = new User(Id = UserInfo.getUserId());

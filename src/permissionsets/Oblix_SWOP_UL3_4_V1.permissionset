@@ -252,10 +252,6 @@
         <apexClass>Oblix_VersionControl_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>Oblix_wrapper_NonCamp</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
     <description>Access to the Swop Application for marketer based on brand</description>
     <fieldPermissions>
         <editable>false</editable>
