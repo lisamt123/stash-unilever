@@ -452,6 +452,10 @@
     <rules>
         <fullName>CPA HLE Accepted</fullName>
         <actions>
+            <name>CAP_Email_HLE_Request_is_Submitted</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
             <name>CPA_HLE_Accepted</name>
             <type>FieldUpdate</type>
         </actions>
@@ -623,6 +627,10 @@
     </rules>
     <rules>
         <fullName>CPA HLE Returned</fullName>
+        <actions>
+            <name>CAP_Email_HLE_Request_is_Submitted</name>
+            <type>Alert</type>
+        </actions>
         <actions>
             <name>CPA_HLE_Returned</name>
             <type>FieldUpdate</type>
