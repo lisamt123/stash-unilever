@@ -54,26 +54,22 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger
         {
             IPM_FinancialYearHelper.createMarketPerformance((Map<Id, IPM_Financial_Year__c>)Trigger.newMap);
         }
-        
-        if(Trigger.isUpdate)
+        else if(Trigger.isUpdate)
         {
             Map<Id,IPM_Financial_Year__c> oldFinancialMap = (Map<Id,IPM_Financial_Year__c>) Trigger.oldMap;
             IPM_FinancialYearHelper.updateFinancialActionStandard((Map<Id,IPM_Financial_Year__c>) Trigger.newMap);
             IPM_FinancialYearHelper.updateGlobalFinancialActionStandards((Map<Id,IPM_Financial_Year__c>) Trigger.newMap);
             IPM_FinancialYearHelper.initialiseFYConsolidation((List<IPM_Financial_Year__c>)Trigger.new,oldFinancialMap,null,upsertconsolidatedFinancialYearMap);
         }
-        else if(Trigger.isDelete) 
-        {
-            if(!deleteFinancialYearMap.isEmpty()) 
-            {
-                IPM_FinancialYearHelper.initialiseFYConsolidation(deleteFinancialYearMap.values(),null,deleteFinancialYearMap,upsertconsolidatedFinancialYearMap);
-            }   
+        else if(Trigger.isDelete && !deleteFinancialYearMap.isEmpty()) 
+        { 			   			IPM_FinancialYearHelper.initialiseFYConsolidation(deleteFinancialYearMap.values(),null,deleteFinancialYearMap,upsertconsolidatedFinancialYearMap);
         }
         
         if(!upsertconsolidatedFinancialYearMap.isEmpty())
         {
             upsert upsertconsolidatedFinancialYearMap.values() External_Id__c;
         }
+		
         //Financials Hard Validations: Get all Financial External ID
         set<string> setFinExtId = new set<string>();
         list<IPM_Financial_Year__c> lstFinYr = new list<IPM_Financial_Year__c>();
@@ -90,14 +86,19 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger
         else if(Trigger.isDelete){
             lstFinYr = (list<IPM_Financial_Year__c>)Trigger.Old;    
         }
-        if(!lstFinYr.isEmpty()){
+		
+		
+        if(!lstFinYr.isEmpty())
+		{
             for(IPM_Financial_Year__c finYear: lstFinYr){
                 setFinExtId.add(finYear.Financial_External_ID__c);          
             }
-        }
-        if(!setFinExtId.isEmpty()){
+			
+			if(!setFinExtId.isEmpty()){
             IPM_FinancialYearHelper.validateDefaultFinancial(setFinExtId);
+			}
         }
+        
     }
     /**
     * @description:beforeInsert

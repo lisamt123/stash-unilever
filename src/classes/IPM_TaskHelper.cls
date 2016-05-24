@@ -564,16 +564,22 @@ public with sharing class IPM_TaskHelper {
      	{
      		Id parentProject = IPM_ProjectHelper.childToParentProject.get(projectDetail.id);
      		List<IPM_Task__c> parentProjectTaskList = IPM_ProjectHelper.DBprojectSpecificTasksMap.get(parentProject);
-     		Map<Id,IPM_Task__c> parentProjectTaskMap = new Map<Id,IPM_Task__c>(parentProjectTaskList);
-     		completeTasksMap.putAll(parentProjectTaskMap);
+     		if(parentProjectTaskList != null)
+     		{
+	     		Map<Id,IPM_Task__c> parentProjectTaskMap = new Map<Id,IPM_Task__c>(parentProjectTaskList);
+	     		completeTasksMap.putAll(parentProjectTaskMap);
+     		}	
      	
      		// Get Grand Parent Tasks 
     		if(IPM_ProjectHelper.childToParentProject.containsKey(parentProject) &&  IPM_ProjectHelper.childToParentProject.get(parentProject) != null)
 	     	{
 	     		Id grandParentProject = IPM_ProjectHelper.childToParentProject.get(parentProject);
 	     		List<IPM_Task__c> grantParentProjectTaskList = IPM_ProjectHelper.DBprojectSpecificTasksMap.get(grandParentProject);
-	     		Map<Id,IPM_Task__c> grandParentProjectTaskMap = new Map<Id,IPM_Task__c>(grantParentProjectTaskList);
-	     		completeTasksMap.putAll(grandParentProjectTaskMap);
+	     		if(grantParentProjectTaskList != null)
+	     		{
+		     		Map<Id,IPM_Task__c> grandParentProjectTaskMap = new Map<Id,IPM_Task__c>(grantParentProjectTaskList);
+		     		completeTasksMap.putAll(grandParentProjectTaskMap);
+	     		}	
 	     	}
      	}
      	
@@ -614,9 +620,12 @@ public with sharing class IPM_TaskHelper {
  		for(IPM_Project__c project : incomingProjectMap.values())
 	 	{
 	 		IPM_Project_Type__c associatedProjectType = IPM_Utils.retrieveProjectType(project);
-	 		
+	 		String projectCurrentGate;
 	 		// Get the Project Gate and Phase. 
-	 		String projectCurrentGate = associatedProjectType.IPM_Gate_Document__c;
+	 		if(associatedProjectType != null)
+	 		{
+	 			projectCurrentGate = associatedProjectType.IPM_Gate_Document__c;
+	 		}	
 	 		
 	 		
 	 		if(!String.isblank(project.IPM_Complexity__c) )
@@ -637,7 +646,7 @@ public with sharing class IPM_TaskHelper {
 			            	for(IPM_Document_Template__c docTemplate : IPM_ProjectHelper.complexitySpecificDocumentTemplates.get(template.Id))
 		                    {
 		                        // If project Gate Matches Document Type Gate, Get the corresponding document Template and associated Sections 
-		                        if(projectCurrentGate == docTemplate.IPM_Document_Type__c)
+		                        if(projectCurrentGate!=null && projectCurrentGate == docTemplate.IPM_Document_Type__c)
 		                        {
 		                             if(IPM_ProjectHelper.documentTemplateSpecificSectionMap.containsKey(docTemplate.Id) && IPM_ProjectHelper.documentTemplateSpecificSectionMap.get(docTemplate.Id)!=null)
 		                             {
@@ -725,11 +734,15 @@ public with sharing class IPM_TaskHelper {
  		for(IPM_Project__c project : incomingProjectMap.values())
  		{
  			IPM_Project_Type__c associatedProjectType = IPM_Utils.retrieveProjectType(project);
-
- 			// Project Current Phase and Gate
-            String projectCurrentGate = associatedProjectType.IPM_Gate_Document__c;
-            
-            // Get Previous Phases and validate whether the tasks associated with previous Phases are closed or not.
+			String projectCurrentGate;
+			
+			// Project Current Phase and Gate
+ 			if(associatedProjectType != null)
+ 			{
+            	projectCurrentGate = associatedProjectType.IPM_Gate_Document__c;
+ 			}
+ 			
+ 			// Get Previous Phases and validate whether the tasks associated with previous Phases are closed or not.
             List<IPM_Project_Type__c> previousPhasesList = IPM_Utils.getPreviousPhases(associatedProjectType,true);
             
             Set<String> previousPhases = new Set<String>();
