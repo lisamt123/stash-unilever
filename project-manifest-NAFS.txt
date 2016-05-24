@@ -1,0 +1,9 @@
+src
+src/objects
+src/objects/Account.object
+src/objects/Product2.object
+src/workflows
+src/workflows/NAFS_Update Operator Account Number.workflow
+src/permissionsets
+src/permissionsets/NAFS_Integration_User.permissionset
+
