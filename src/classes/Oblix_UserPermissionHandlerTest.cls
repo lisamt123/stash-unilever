@@ -145,6 +145,8 @@ private class Oblix_UserPermissionHandlerTest {
 		up.CategoryBrand_id__c = cb.Id;
 		up.User_id__c = u.Id;
 		insert up;
+		
+		update up;
 
 		Oblix_UserPermissionHandler handler = new Oblix_UserPermissionHandler();
 
