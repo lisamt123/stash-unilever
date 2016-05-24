@@ -3,10 +3,5 @@
     <apiVersion>36.0</apiVersion>
     <availableInTouch>false</availableInTouch>
     <confirmationTokenRequired>false</confirmationTokenRequired>
-    <label>PBS_LMS_Template_Test</label>
-    <packageVersions>
-        <majorNumber>2</majorNumber>
-        <minorNumber>32</minorNumber>
-        <namespace>almond</namespace>
-    </packageVersions>
+    <label>PC_ContainerTest</label>
 </ApexPage>

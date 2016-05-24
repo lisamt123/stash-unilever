@@ -98,10 +98,11 @@ private class PBS_AccessController_Test{
             errStr = 'Access control violation - Type: ' + e.getExceptionType() + ' Reason: '
                 + e.getExceptionReason() + ' Object: ' + e.getExceptionObject() + ' Field: '
                 + e.getExceptionField() + ' Text: ' + e.getText();
-                 throw new PBS_SFDCValidator_CC.SFDCValidationException(errStr);
+                 throw new PBS_SFDCValidator_CC.SFDCValidationException(errStr,e);
         }
-
-        PBS_SFDCAccessController_CC ac = new PBS_SFDCAccessController_CC(PBS_SFDCAccessController_CC.SharingMode.WITHOUT, PBS_SFDCAccessController_CC.OperationMode.ALL_OR_NONE);
+        
+        PBS_SFDCAccessController_CC ac =  new PBS_SFDCAccessController_CC();
+        ac = new PBS_SFDCAccessController_CC(PBS_SFDCAccessController_CC.SharingMode.WITHOUT, PBS_SFDCAccessController_CC.OperationMode.ALL_OR_NONE);
         PBS_ESAPI_CC.accessController().setOperationMode(PBS_SFDCAccessController_CC.OperationMode.BEST_EFFORT);
 
         try {
@@ -141,6 +142,7 @@ private class PBS_AccessController_Test{
     }
 
     static testMethod void testReturnedObjects() {
+        Test.startTest();
          /* test return object and id with strings */
         Contact tmp;
         Contact tmp2;
@@ -198,6 +200,7 @@ private class PBS_AccessController_Test{
 
         System.assert(tmp.LastName == tmp3.LastName, 'c1.LastName == tmp3.LastName');
         System.assert(tmp.LastName == tmp4.LastName, 'c1.LastName == tmp4.LastName');
+        Test.stopTest();
     }
 
     static testMethod void testAccessControlArray() {
@@ -341,14 +344,14 @@ private class PBS_AccessController_Test{
             errStr = 'Access control violation - Type: ' + e.getExceptionType() + ' Reason: '
                 + e.getExceptionReason() + ' Object: ' + e.getExceptionObject() + ' Field: '
                 + e.getExceptionField() + ' Text: ' + e.getText();
-                throw new PBS_SFDCValidator_CC.SFDCValidationException(errStr);
+                throw new PBS_SFDCValidator_CC.SFDCValidationException(errStr,e);
                
         }
     }
 
     static testMethod void testAccessControlConstructor() {
         String errStr;
-
+        Test.startTest();
         try {
             PBS_SFDCAccessController_CC ac = new PBS_SFDCAccessController_CC(PBS_SFDCAccessController_CC.SharingMode.WITHOUT, PBS_SFDCAccessController_CC.OperationMode.ALL_OR_NONE, PBS_SFDCAccessController_CC.OperationMode.ALL_OR_NONE);
             System.assert(true);
@@ -356,8 +359,9 @@ private class PBS_AccessController_Test{
             errStr = 'Access control violation - Type: ' + e.getExceptionType() + ' Reason: '
                 + e.getExceptionReason() + ' Object: ' + e.getExceptionObject() + ' Field: '
                 + e.getExceptionField() + ' Text: ' + e.getText();
-                
+              throw new PBS_SFDCValidator_CC.SFDCValidationException(errStr,e);  
         }
+        Test.stopTest();
     }
 
     static testMethod void testLimits() {

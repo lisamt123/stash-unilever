@@ -24,6 +24,11 @@
      div.body{
     font-family: "Helvetica Neue" !important;
 }
+
+.imagechange img {
+    border: 0 none;
+    width: 100% !important;
+}
      </style>
    <knowledge:articleRendererToolBar canVote="true"  articleId="{!objpbs.KnowledgeArticleId}"
 
@@ -47,7 +52,7 @@
   <a href= "#idOfRA"><li>Related Articles</li></a>
 </ol>   -->
 <div class="btmsection"></div>
-<div class="body" >
+<div class="body imagechange">
 <h4></h4>
 <apex:outputField value="{!objpbs.Wiki_Content__c}"/>
 

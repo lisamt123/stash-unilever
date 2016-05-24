@@ -25,11 +25,19 @@ LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
 OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
-<apex:page controller="PBS_TrainingPlanFeedbackController_CC" docType="html-5.0" sidebar="false" showHeader="{!showSFHeader}" standardStylesheets="false" >
+<apex:page controller="PBS_TrainingPlanFeedbackController_CC" docType="html-5.0" sidebar="false" showHeader="true" standardStylesheets="false" >
 
 
     <apex:outputPanel layout="none" rendered="{!isAllowedToView}">
-
+        <apex:composition template="PBS_Header_Template"></apex:composition>
+        <div class="row bodyRow">
+        <div class=" col-xs-4"><div class="home-title">WELCOME TO </div><div class="home-title-bold">PLANCRAFT</div></div>
+        <div class="col-xs-4 home-detail">
+            <ul>
+            <li>{!$User.FirstName} {!$User.LastName}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="{!$Page.PBS_EditProfile}" target="_self">EDIT PROFILE</a></li>
+            </ul>
+        </div>
+        </div>
         <apex:composition template="PBS_LMS_HeroTemplate">
 
                 <apex:define name="head">
@@ -94,9 +102,9 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
                     <apex:form id="feedbackForm">
 
                         <apex:outputPanel layout="none" rendered="{!isAssignedToTrainingPlan}">
-                        <div class="row">
+                        <div class="row feedback-row">
                             <div class="col-md-2 col-md-offset-2 tplan-feedback-photo" style="text-align:center;padding:0 0 10px 0;">
-                                <div><img src="{!currentUser.SmallPhotoUrl}" class="profilePic-header-45"/></div>
+                                <div><img src="{!currentUser.SmallPhotoUrl}" alt="Profile picture" class="profilePic-header-45"/></div>
                                 <div><span class="feedback-username">{!currentUser.Name}</span></div>
                             </div>
                             <div class="col-md-6">
@@ -132,7 +140,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
                                     <div class="row">
                                         <div class="col-md-2 col-md-offset-2" style="text-align:center;padding:0 0 10px 0;margin-bottom:10px;">
                                             <a href="javascript:almond.redirectHandlerWithStatus('{!$Page.PBS_MyProfile}?id={!c.User__c}',true)">
-                                              <img src="{!c.User__r.SmallPhotoUrl}" class="profilePic-header-45"/>
+                                              <img src="{!c.User__r.SmallPhotoUrl}" alt="Profile picture" class="profilePic-header-45"/>
                                             </a>
                                             <div><span class="feedback-username">{!c.User__r.Name}</span></div>
                                             <apex:outputPanel layout="none" rendered="{!c.Rating__c != null && c.Rating__c > 0 }">

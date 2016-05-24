@@ -4,4 +4,9 @@
     <availableInTouch>false</availableInTouch>
     <confirmationTokenRequired>false</confirmationTokenRequired>
     <label>PBS_AchievementsUserSearch</label>
+    <packageVersions>
+        <majorNumber>2</majorNumber>
+        <minorNumber>32</minorNumber>
+        <namespace>almond</namespace>
+    </packageVersions>
 </ApexPage>

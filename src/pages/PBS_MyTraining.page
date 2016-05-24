@@ -25,9 +25,17 @@ LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
 OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
-<apex:page controller="PBS_MyTrainingController_CC" readOnly="true" docType="html-5.0" sidebar="false" showHeader="{!showSFHeader}" standardStylesheets="false">
-
-    <apex:composition template="PBS_LMS_Template">
+<apex:page controller="PBS_MyTrainingController_CC" readOnly="true" docType="html-5.0" sidebar="false" showHeader="true" standardStylesheets="false">
+    <apex:composition template="PBS_Header_Template"></apex:composition>
+    <div class="row bodyRow">
+        <div class=" col-xs-4"><div class="home-title">WELCOME TO </div><div class="home-title-bold">PLANCRAFT</div></div>
+        <div class="col-xs-4 home-detail">
+            <ul>
+            <li>{!$User.FirstName} {!$User.LastName}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="{!$Page.PBS_EditProfile}" target="_self">EDIT PROFILE</a></li>
+            </ul>
+        </div>
+        </div>
+    <apex:composition template="PBS_LMS_Template_Test">
 
         <apex:define name="head">
             <title>{!$Label.ALMS_My_Training}</title>

@@ -1,0 +1,72 @@
+<apex:page controller="PC_ContainerController_CC" sidebar="false" showHeader="true" standardStylesheets="false">
+    <!-- javascript -->
+<!--    <apex:includeScript value="{!URLFOR($Resource.PCResources, '/js/jquery-1.12.0.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.PCResources, '/js/pc_container_js.js')}" /> -->
+    
+    <!-- sylesheets -->
+    <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/bootstrap.min.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/PC_Container.css')}" />
+
+    <div class="mainContainer group row"></div>
+
+    <div class="row bodyRow group">
+        <div class="col-xs-12 headerDiv group">
+            <div class="leftheader">
+                <apex:image id="UnileverLogo" url="{!URLFOR($Resource.PCResources, 'img/UnileverLogo.jpg')}" width="81" height="85" />
+            </div>
+            <div class="leftheader">
+                <!--<img id="mainLogo" src="{!profilePic}" />-->
+            </div>
+            <div class="leftheader">
+                <!--{!$User.FirstName}&nbsp;{!$User.LastName}<br />-->
+            </div>
+            <div class="menuTabs">
+                <ul>
+                    <li><a onclick="setActiveLink('home');" id="home" href="{!$Page.PC_Home}" target="innerFrame" class="active"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+                    <li><a onclick="setActiveLink('pbs');" id="pbs" href="{!$Page.PBS_Welcome_Home}" target="_self" >PBS</a></li>
+                    <li><a onclick="setActiveLink('forum');" id="forum" href="{!$Page.PC_Forum_Test}" target="_self">Collaborate!</a></li>
+                    <li><a href="http://www.quizup.com" target ="_new"><span class="text-muted">Games</span></a></li>
+                    <li><a onclick="setActiveLink('profile');" id="profile" href="{!$Page.PBS_MyProfile}" target="innerFrame">My Profile</a></li>
+                    <!--<apex:image value="{!loggedUsernameImageUrl}" styleClass="profilePic-header"/>-->
+                </ul>
+            </div>
+        </div>
+        <div class=" col-xs-4"><div class="home-title">WELCOME TO </div><div class="home-title-bold">PLANCRAFT</div></div>
+        <div class="col-xs-4 home-detail">
+            <ul>
+            <li>{!$User.FirstName} {!$User.LastName}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="{!$Page.PBS_MyProfile}" target="innerFrame">EDIT PROFILE</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row bodyRow">
+        <div class="col-xs-12 bodyDiv bodydiv-subpart">
+            <div class="bodyWrapper" id="bodyWrapper">
+                <div class="headerArea">
+                    <div class="heading">
+                    </div>
+                    <div class="headingRight">
+                    </div>
+
+                    <!-- <div class="subheading">
+                        insert text here
+                    </div> -->
+                </div>
+
+               <!-- Iframe will be inserted here .... -->
+            </div>
+        </div>
+    </div>
+
+    <div class="row bodyRow">
+       <div class="col-xs-12 footer">
+            
+        </div>
+    </div>
+
+  <!--  <script type="text/javascript">
+        jQuery(document).ready(function() {
+            initContainer('{!$Component.UnileverLogo}');
+        });
+    </script> -->
+</apex:page>
