@@ -163,7 +163,7 @@ alert('ssss');
                         <tbody> 
                          
                             <apex:repeat value="{!listLossTreeW}" var="w" id="resetor">
-                                <tr style="background-color:{!if(w.wlt.createddate+7<=now(),'red','')};">
+                                <tr style="background-color:{!if(w.wlt.createddate+7<=now(),'#ff9999','')};">
                                     
                                     <td><apex:inputCheckbox value="{!w.checkbox1}" id="inputId"/>  
                                     </td>
@@ -232,7 +232,7 @@ alert('ssss');
                         
                             <apex:repeat value="{!listLossTreeW}" var="w" id="resetm">
                             
-                                <tr style="background-color:{!if(w.wlt.createddate+7<=now(),'red','')};">
+                                <tr style="background-color:{!if(w.wlt.createddate+7<=now(),'#ff9999','')};">
                                     <td><apex:inputCheckbox value="{!w.checkbox1}" id="inputId"/>  </td>
                                     <td>{!w.wlt.PR__c}</td>
                                     <td>{!w.wlt.SKU__c}</td>
@@ -277,7 +277,7 @@ alert('ssss');
                         </thead>  
                         <tbody> 
                             <apex:repeat value="{!listLossTreeW}" var="w" id="ds">
-                                <tr style="background-color:{!if(w.wlt.createddate+7<=now(),'red','')};">
+                                <tr style="background-color:{!if(w.wlt.createddate+7<=now(),'#ff9999','')};">
                                     <td><apex:inputCheckbox value="{!w.checkbox1}" id="inputId"/>  </td>
                                     <td>{!w.wlt.SKU__c}</td>
                                     <td>{!w.wlt.SKU_Description__c}</td>
