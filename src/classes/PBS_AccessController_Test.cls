@@ -101,8 +101,8 @@ private class PBS_AccessController_Test{
                  throw new PBS_SFDCValidator_CC.SFDCValidationException(errStr,e);
         }
         
-        PBS_SFDCAccessController_CC ac =  new PBS_SFDCAccessController_CC();
-        ac = new PBS_SFDCAccessController_CC(PBS_SFDCAccessController_CC.SharingMode.WITHOUT, PBS_SFDCAccessController_CC.OperationMode.ALL_OR_NONE);
+        
+        new PBS_SFDCAccessController_CC(PBS_SFDCAccessController_CC.SharingMode.WITHOUT, PBS_SFDCAccessController_CC.OperationMode.ALL_OR_NONE);
         PBS_ESAPI_CC.accessController().setOperationMode(PBS_SFDCAccessController_CC.OperationMode.BEST_EFFORT);
 
         try {

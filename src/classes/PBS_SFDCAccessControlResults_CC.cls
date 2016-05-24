@@ -156,7 +156,7 @@ global with sharing virtual class PBS_SFDCAccessControlResults_CC {
     if (lstObjects == null)
     //if (objects == null)
       throw new AccessControlResultsException('objects must not be set to null');
-    cleanObjectsArr = objects;
+    cleanObjectsArr = lstObjects;
   }
 
   private void setSaveResultsArr(Database.SaveResult [] results) {
