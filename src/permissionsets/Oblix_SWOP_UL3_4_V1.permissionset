@@ -340,6 +340,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Marketing_Basics__c.FTE_report__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Marketing_Basics__c.Financial_Year__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -356,6 +361,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_Basics__c.Hourly_Rate_or_FTE__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Marketing_Basics__c.No_of_Hours_Required_Activity__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

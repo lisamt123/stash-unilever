@@ -251,6 +251,18 @@ ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;))
         <type>Percent</type>
     </fields>
     <fields>
+        <fullName>FTE_report__c</fullName>
+        <description>For use in non campaign reports only</description>
+        <externalId>false</externalId>
+        <formula>IF( RecordType.DeveloperName = &quot;Activity&quot;, NULL, TEXT(No_of_Hours_Required__c)+&quot;%&quot;)</formula>
+        <label>FTE</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Financial_Year__c</fullName>
         <externalId>false</externalId>
         <formula>TEXT( Oblix_SOWMarketing__r.Financial_Year__c )</formula>
@@ -339,6 +351,20 @@ ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;))
         <description>Field for storing actual hourly rate or FTE (not calculated from &quot;Total Amount&quot; divided by &quot;Hours required&quot;) from Calculator Role Rate record.</description>
         <externalId>false</externalId>
         <label>Hourly Rate or FTE</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>No_of_Hours_Required_Activity__c</fullName>
+        <description>Used in Non Campaign reports in order to exclude the field value from any records that are of type dedicated resource, since they should have a value for FTE not no of hours</description>
+        <externalId>false</externalId>
+        <formula>IF(RecordType.DeveloperName = &quot;Activity&quot;,  No_of_Hours_Required__c   , NULL)</formula>
+        <label>No of Hours Required</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
