@@ -525,6 +525,7 @@
         <columns>NAME</columns>
         <columns>DefaultAccountOwnerId__c</columns>
         <columns>CaseOrigin__c</columns>
+        <columns>Default_From_Address__c</columns>
         <filterScope>Queue</filterScope>
         <label>CEC Middle Americas Queue</label>
         <language>en_US</language>
@@ -587,6 +588,7 @@
         <columns>NAME</columns>
         <columns>DefaultAccountOwnerId__c</columns>
         <columns>CaseOrigin__c</columns>
+        <columns>Default_From_Address__c</columns>
         <filterScope>Queue</filterScope>
         <label>CEC Southern Cone Queue</label>
         <language>en_US</language>
