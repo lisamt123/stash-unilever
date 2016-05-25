@@ -71,15 +71,6 @@ src/components/IPM_GateCMI_Contract.component
 src/components/IPM_GateCMI_Contract.component-meta.xml
 src/components/IPM_Image_Hover.component
 src/components/IPM_Image_Hover.component-meta.xml
-src/flows
-src/flows/IPM_Financial_Global_To_Local-3.flow
-src/flows/IPM_Financial_Global_To_Regional-4.flow
-src/flows/IPM_Financial_Local_To_Regional-3.flow
-src/flows/IPM_Financial_Regional_To_Local-5.flow
-src/flows/IPM_Financial_Year_Global_To_Local-3.flow
-src/flows/IPM_Financial_Year_Global_To_Regional-3.flow
-src/flows/IPM_Financial_Year_Local_To_Regional-4.flow
-src/flows/IPM_Financial_Year_Regional_To_Local-4.flow
 src/layouts
 src/layouts/IPM_Clusters__c-IPM Project Clusters Layout.layout
 src/layouts/IPM_Project__c-IPM Project Layout.layout
