@@ -262,7 +262,8 @@ public with sharing class IPM_ProjectDocumentHelper
                                         IPM_Project_Document_Section__c projDocSect = new IPM_Project_Document_Section__c();
                                         // If there is an existing Product document Template associated,we assume sections are already associated with them.
                                         // In that case we need to update references to those project document section to point to proper master sec.
-                                        
+                                        /* the below condition filters out the document template specific sections, since Project document is a lookup field hence we need to check for null first 
+                                        / and then check wheter the section exists in the map, this logic helps in precisely picking on the required section   */                                   
                                         if(existingProjectDocument!=null && IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.containsKey(existingProjectDocument.Id))
                                         {
                                             for(IPM_Project_Document_Section__c existingProjectDocSec : IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(existingProjectDocument.Id) )
