@@ -284,58 +284,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
                     </apex:outputPanel>
 
                     <script>
-                        var $jk = jQuery.noConflict();
-
-                        $jk(document).ready(function(){
-                            //color change on banner
-                            var bkcolor = "{!JSENCODE(tPlan.trainingPlan.Background_Color__c)}";
-                            var txtcolor = "{!JSENCODE(tPlan.trainingPlan.Text_Color__c)}";
-                            var bkimage = "url('{!JSENCODE(tPlan.trainingPlan.Background_Image_URL__c)}')";
-                            $jk('#hero-banner').css('background-color',bkcolor);
-                            $jk('#hero-banner').css('color',txtcolor);
-                            $jk('#hero-banner').css('background-image', bkimage);
-
-                        });
-
-                        function doRedirection(){
-                            var retUrl = document.getElementById('{!$Component.redirectURL}').value;
-                            if(retUrl && retUrl.length > 0){
-                                almond.redirectHandlerWithStatus(retUrl,false);
-                            }
-                        }
-
-                        function showModal(){
-                            $jk(".modal-backdrop").appendTo("#lms-template-wrapper");
-                            $jk('#myModal').modal('show');
-                        }
-                        function hideModal(){
-                            $jk('#myModal').modal('hide');
-                        }
-
-                        function doRegistration(){
-                            if({!isApprovalRequired}){
-                                fetchPlanInfo();
-                            }else{
-                                registerForTraining();
-                            }
-                        }
-                        function launchLearning(learningURL,target){
-                            hideModal();
-                            if(target == 'iframe'){
-                                $jk('#contentLink').unbind('click');
-                                $jk('#contentLink').click(function() {
-                                    almond.redirectHandler(learningURL);
-                                });
-                                $jk('#contentIframe').prop('src',learningURL);
-                                $jk(".modal-backdrop").appendTo("#lms-template-wrapper");
-                                $jk('#myContentModal').modal('show');
-                            }else{
-                                almond.redirectHandler(learningURL);
-                            }
-                        }
-                        $jk('#myContentModal').on('hidden.bs.modal', function () {
-                            $jk('#contentIframe').prop('src','');
-                        });
+                  function doRedirection(){var n=document.getElementById("{!$Component.redirectURL}").value;n&&n.length>0&&almond.redirectHandlerWithStatus(n,!1)}function showModal(){$jk(".modal-backdrop").appendTo("#lms-template-wrapper"),$jk("#myModal").modal("show")}function hideModal(){$jk("#myModal").modal("hide")}function doRegistration(){{!isApprovalRequired}?fetchPlanInfo():registerForTraining()}function launchLearning(n,o){hideModal(),"iframe"==o?($jk("#contentLink").unbind("click"),$jk("#contentLink").click(function(){almond.redirectHandler(n)}),$jk("#contentIframe").prop("src",n),$jk(".modal-backdrop").appendTo("#lms-template-wrapper"),$jk("#myContentModal").modal("show")):almond.redirectHandler(n)}var $jk=jQuery.noConflict();$jk(document).ready(function(){var n="{!JSENCODE(tPlan.trainingPlan.Background_Color__c)}",o="{!JSENCODE(tPlan.trainingPlan.Text_Color__c)}",a="url('{!JSENCODE(tPlan.trainingPlan.Background_Image_URL__c)}')";$jk("#hero-banner").css("background-color",n),$jk("#hero-banner").css("color",o),$jk("#hero-banner").css("background-image",a)}),$jk("#myContentModal").on("hidden.bs.modal",function(){$jk("#contentIframe").prop("src","")});
                     </script>
 
                     <apex:actionStatus id="status">
