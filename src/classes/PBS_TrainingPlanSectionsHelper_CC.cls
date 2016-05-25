@@ -50,6 +50,7 @@ public with sharing class PBS_TrainingPlanSectionsHelper_CC {
 
             if(oldSec == null){
                     //Inserts are ignored for now
+                     oldSec = null;
                 }else{
                     if(!oldSec.Optional__c){
                         //Only validate if value is changing from required to Optional

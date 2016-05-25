@@ -33,10 +33,9 @@ public with sharing class PBS_TrainingPlanAchievementMngmtExt_CC{
 
     public PBS_TrainingPlanAchievementMngmtExt_CC(ApexPages.StandardController cont){
         trainingPlanId = cont.getRecord().Id;
-        init();
+        //init();
     }
-
-    private void init(){}
+    
 
     public PageReference upsertAchievementAssignments(){
 
