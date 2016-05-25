@@ -226,8 +226,8 @@
                                                                                         <apex:selectOptions value="{!Allcompanycard}" />
                                                                                     </apex:selectList>
                                                                                 </apex:outputPanel>
-                                                                                <apex:actionfunction name="callCompanyCard" onComplete="callBrandPos();selectNextTabone();selectNextTabtwo();" action="{!populateCategory}" reRender="ProjectSubTypePanel,WhiteSpaceFastTrackPanel,fastTrackPanel,whiteSpacePanel,gateKeepingPanel,questionCharter,categoryPanel,BrandPositionPanel,pos,selectNextTabScript,multiBPositions" status="refreshCategory" />
-                                                                                <apex:actionfunction name="callBrandPos" onComplete="selectNextTabone();selectNextTabtwo();" action="{!none}" reRender="BrandPositionPanel,multiBPositions,selectNextTabScript" status="refreshPos" />
+                                                                                <apex:actionfunction name="callCompanyCard" onComplete="callBrandPos();selectNextTabone();selectNextTabtwo();selectNextTabthree();" action="{!populateCategory}" reRender="ProjectSubTypePanel,WhiteSpaceFastTrackPanel,fastTrackPanel,whiteSpacePanel,gateKeepingPanel,questionCharter,categoryPanel,BrandPositionPanel,pos,selectNextTabScript,multiBPositions" status="refreshCategory" />
+                                                                                <apex:actionfunction name="callBrandPos" onComplete="selectNextTabone();selectNextTabtwo();selectNextTabthree();" action="{!none}" reRender="BrandPositionPanel,multiBPositions,selectNextTabScript" status="refreshPos" />
                                                                                 
                                                                             </apex:actionRegion>
                                                                         </label>
@@ -243,7 +243,7 @@
                                                                         <label class="ipmSelect custSelectWidth">
                                                                           <apex:actionStatus startText="" id="refreshCategory" startStyleClass="proInit"/>
                                                                           <apex:selectList value="{!project.IPM_Category_Text__c}" multiselect="false" size="1" id="cat" disabled="{!!isEditable}" styleClass="selCategory">
-                                                                              <apex:actionSupport event="onchange" action="{!none}" oncomplete="selectNextTabone();selectNextTabtwo();" reRender="BrandPositionPanel,selectNextTabScript" status="refreshPos" />  
+                                                                              <apex:actionSupport event="onchange" action="{!none}" oncomplete="selectNextTabone();selectNextTabtwo();selectNextTabthree();" reRender="BrandPositionPanel,selectNextTabScript" status="refreshPos" />  
                                                                                
                                                                               <apex:selectOptions value="{!Category}"></apex:selectOptions>
                                                                           </apex:selectList>
@@ -264,7 +264,7 @@
                                                                             <apex:outputPanel layout="inline" styleClass="mandatorycolor"></apex:outputPanel>                                                                      
                                                                             <div class="ipmRadioButton oprtnRadiobtn">                                                                                      
                                                                                 <apex:selectRadio styleClass="{!IF(AND(isEditable,NOT(project.IPM_IsSaved__c)),'','disable')}"  value="{!project.IPM_ProjectSubType__c}"  disabled="{!OR(project.IPM_IsSaved__c,NOT(isEditable))}" > 
-                                                                                    <apex:actionSupport event="onchange" action="{!populateProjectInformation}" oncomplete="selectNextTabone();selectNextTabtwo();" reRender="BrandPositionPanel,gateKeepingPanel,questionCharter,WhiteSpaceFastTrackPanel,selectNextTabScript" status="refreshPos" />  
+                                                                                    <apex:actionSupport event="onchange" action="{!populateProjectInformation}" oncomplete="selectNextTabone();selectNextTabtwo();selectNextTabthree();" reRender="BrandPositionPanel,gateKeepingPanel,questionCharter,WhiteSpaceFastTrackPanel,selectNextTabScript" status="refreshPos" />  
                                                                                     <span><apex:selectOptions value="{!projectSubTypes}"></apex:selectOptions></span>
                                                                                 </apex:selectRadio>
                                                                             </div> 
@@ -490,9 +490,9 @@
                                                 <div class="pull-right proSetupButton renderBtnset txtAlignright">
                                                     <apex:actionStatus startText="" id="Loading" startStyleClass="proInit"/>
                                                     <!-- To display below commandLink when current user has edit access on page, project is saved and phase is not empty    -->
-                                                    <apex:commandLink value="Save and continue" action="{!saveProceed}" styleClass="coreparameters custMarginbottom ipmButton primary"  reRender="CompanyCardPanel,ProjectNamePanel,Container5, refreshquit,miles,selectNextTabScript,categoryPanel,ProjectSubTypePanel,gateKeepingPanel,questionCharter,WhiteSpaceFastTrackPanel,CompanyCardPanel,BrandPositionPanel,TargetDatePanel,formMessage" rendered="{! AND(isEditable,isSavedDB,NOT(ISNULL(project.IPM_Phase__c)),NOT(ISBLANK(project.IPM_Phase__c)) )}" oncomplete="goTocoreparameters();selectNextTabone();selectNextTabtwo();" onClick="skipValidation();"/>
+                                                    <apex:commandLink value="Save and continue" action="{!saveProceed}" styleClass="coreparameters custMarginbottom ipmButton primary"  reRender="CompanyCardPanel,ProjectNamePanel,Container5, refreshquit,miles,selectNextTabScript,categoryPanel,ProjectSubTypePanel,gateKeepingPanel,questionCharter,WhiteSpaceFastTrackPanel,CompanyCardPanel,BrandPositionPanel,TargetDatePanel,formMessage" rendered="{! AND(isEditable,isSavedDB,NOT(ISNULL(project.IPM_Phase__c)),NOT(ISBLANK(project.IPM_Phase__c)) )}" oncomplete="goTocoreparameters();selectNextTabone();selectNextTabtwo();selectNextTabthree();" onClick="skipValidation();"/>
                                                     <!-- To display below commandLink when current user has edit access on page and project is not saved.   -->
-                                                    <apex:commandLink value="{!$Label.IPM_SubmitProjectCreation}" action="{!saveProceed}" styleClass="coreparameters custMarginbottom ipmButton primary"  reRender="CompanyCardPanel,ProjectNamePanel,Container5,buttonPanel,refreshquit,miles,selectNextTabScript,categoryPanel,ProjectSubTypePanel,gateKeepingPanel,questionCharter,WhiteSpaceFastTrackPanel,CompanyCardPanel,BrandPositionPanel,TargetDatePanel,formMessage" rendered="{!AND(isEditable,NOT(isSavedDB)) }" oncomplete="goToHomePage();selectNextTabone();selectNextTabtwo();" onClick="skipValidation();"/>
+                                                    <apex:commandLink value="{!$Label.IPM_SubmitProjectCreation}" action="{!saveProceed}" styleClass="coreparameters custMarginbottom ipmButton primary"  reRender="CompanyCardPanel,ProjectNamePanel,Container5,buttonPanel,refreshquit,miles,selectNextTabScript,categoryPanel,ProjectSubTypePanel,gateKeepingPanel,questionCharter,WhiteSpaceFastTrackPanel,CompanyCardPanel,BrandPositionPanel,TargetDatePanel,formMessage" rendered="{!AND(isEditable,NOT(isSavedDB)) }" oncomplete="goToHomePage();selectNextTabone();selectNextTabtwo();selectNextTabthree();" onClick="skipValidation();"/>
                                                 </div>
                                             </apex:outputpanel>
                                         </apex:outputPanel>
@@ -795,28 +795,7 @@
     <apex:repeat value="{!listofprojectname}" var="proList">          
         apexAccountList.push('{!proList}');         
     </apex:repeat>
-
-                    
-                           
-                           
-                           
-                           
-                            
-                           
-
-    
-    
-    
-    
-    
-        
-    
-    
-    
-    </script>  
-            
-        
-        
+    </script>
 </apex:outputPanel> 
 <script>
 function quit(qelem){
