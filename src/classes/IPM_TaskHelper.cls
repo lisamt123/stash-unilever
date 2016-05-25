@@ -624,7 +624,7 @@ public with sharing class IPM_TaskHelper {
  		for(IPM_Project__c project : incomingProjectMap.values())
 	 	{
 	 		IPM_Project_Type__c associatedProjectType = IPM_Utils.retrieveProjectType(project);
-	 		String projectCurrentGate;
+	 		String projectCurrentGate = null;
 	 		// Get the Project Gate and Phase. 
 	 		if(associatedProjectType != null)
 	 		{
@@ -738,7 +738,7 @@ public with sharing class IPM_TaskHelper {
  		for(IPM_Project__c project : incomingProjectMap.values())
  		{
  			IPM_Project_Type__c associatedProjectType = IPM_Utils.retrieveProjectType(project);
-			String projectCurrentGate;
+			String projectCurrentGate = null ;
 			
 			// Project Current Phase and Gate
  			if(associatedProjectType != null)
