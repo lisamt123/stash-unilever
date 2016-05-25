@@ -262,9 +262,9 @@ public with sharing class IPM_ProjectDocumentHelper
                                         IPM_Project_Document_Section__c projDocSect = new IPM_Project_Document_Section__c();
                                         // If there is an existing Product document Template associated,we assume sections are already associated with them.
                                         // In that case we need to update references to those project document section to point to proper master sec.
-                                        
-                                        if(existingProjectDocument!=null && IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.containsKey(existingProjectDocument.Id) 
-                                        && IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.containsKey(existingProjectDocument.Id)  )
+                                        /* the below condition filters out the document template specific sections, since Project document is a lookup field hence we need to check for null first 
+                                        / and then check wheter the section exists in the map, this logic helps in precisely picking on the required section   */                                   
+                                        if(existingProjectDocument!=null && IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.containsKey(existingProjectDocument.Id))
                                         {
                                             for(IPM_Project_Document_Section__c existingProjectDocSec : IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(existingProjectDocument.Id) )
                                             {
@@ -289,6 +289,7 @@ public with sharing class IPM_ProjectDocumentHelper
                                         projDocSect.IPM_Section__c = section.Id;
                                         projDocSect.IPM_Section_Sequence_Number__c = section.IPM_Section_Sequence__c;
                                         projDocSect.IPM_FunctionalRole__c = section.IPM_FunctionalRole__c;
+                                        // for the local operational project need to have the functional role set for BD to be re-assigned to PL
 										if(IPM_ConstantUtils.PROJECT_SPAN_LOCAL.Equals(project.IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL.Equals(project.IPM_Project_Type__c) && IPM_ConstantUtils.FUNCTIONAL_ROLE_BD.Equals(section.IPM_FunctionalRole__c)){
 											projDocSect.IPM_FunctionalRole__c = IPM_ConstantUtils.FUNCTIONAL_ROLE_PL;
 										}
@@ -303,9 +304,8 @@ public with sharing class IPM_ProjectDocumentHelper
                                         initiateCopyOverLogic(associatedGate,projDocSect,section.External_ID__c,currentProject,parentProject);
                                         
                                         String summary=projDocSect.IPM_Gate_Document_Summary__c; 
-                                        if(String.isNotBlank(summary)){
-                                            summary=summary.replaceAll(IPM_ConstantUtils.SPECIAL_CHARACTERS,'');
-                                         }  
+                                        summary=String.isNotBlank(summary)? summary.replaceAll(IPM_ConstantUtils.SPECIAL_CHARACTERS,''):summary;                                                                    
+ 
                                          
                                          // the below logic is required because from Bosscard RTF field data needs to be copied into RTF field of Section with Character Limit 
                                          if(associatedGate==IPM_ConstantUtils.CHARTER_GATE && String.isNotBlank(projDocSect.IPM_Gate_Document_Summary__c) && summary.length()>(Integer)section.IPM_Character_Limit__c){

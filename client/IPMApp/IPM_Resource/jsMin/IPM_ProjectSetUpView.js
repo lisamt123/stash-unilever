@@ -3,6 +3,7 @@ jq(document).ready(function()
 {
     selectNextTabone();
     selectNextTabtwo();
+    selectNextTabthree();
     createNewProject();
 }); 
 
@@ -39,39 +40,6 @@ function selectNextTabone(){
     jq(document).on('click', '.brandposList input[type="checkbox"], .brandposList li', function(e){
        e.stopPropagation();
     });
-    jq('.oprtnRadiobtn  input[type=radio]').each(function(e){ 
-       jq(this).click(function()
-            {
-                var selectedSubProjectType =  jq(this).attr("value");        
-                jq(".oprtnToolTipMsg").hide();
-                jq('.oprtnRadiobtn').parents('.oprtnRadioContainer').children('.oprtnToolTipMsg').each(function(e){
-                if(jq(this).attr('selectedValue') === selectedSubProjectType){
-                    jq(this).show(); 
-                }
-            });
-        });  
-    }); 
-    jq('.oprtnRadiobtn input[type=radio]').each(function(){             
-       var selectedSubProjectType = jq('.oprtnRadiobtn input[type=radio]:checked').attr("value");
-       jq('.oprtnRadiobtn').parents('.oprtnRadioContainer').children('.oprtnToolTipMsg').each(function(e){
-           if(jq(this).attr('selectedValue') === selectedSubProjectType){
-               jq(this).show(); 
-           }
-       });
-    });   
-    jq('.gateKeepingModel  input[type=radio]').each(function(e){ 
-        jq(this).click(function(){
-            var selectedGKModel =  jq(this).attr("value");      
-            jq(".gateKModel").hide();
-            jq('.gateKeepingModel').parents('.oprtnRadioContainer').children('.gateKModel').each(function(e)
-            {
-                if(jq(this).attr('selectedValue') === selectedGKModel)
-                {
-                    jq(this).show(); 
-                }
-            });
-        });  
-    }); 
     jq('.proRoute input[type=radio]').each(function(e){ 
         jq(this).click(function(){
             var redData1 = jq(this).attr("value").split(" ");
@@ -117,30 +85,7 @@ function selectNextTabtwo(){
     else
     {
         jq('#lite').prop('checked', true);
-    }
-    jq('.gateKeepingModel input[type=radio]').each(function(){            
-       var selectedGKModel = jq('.gateKeepingModel input[type=radio]:checked').attr("value");
-       jq('.gateKeepingModel').parents('.oprtnRadioContainer').children('.gateKModel').each(function(e){
-           if(jq(this).attr('selectedValue') === selectedGKModel){
-               jq(this).show(); 
-           }
-       });
-    });
-      
-    jq('.gcltquestions input[type=radio]').each(function(){            
-       var selectedSubProjectType = jq('.gcltquestions input[type=radio]:checked').attr("value");
-       jq('.gcltquestions').parents('.oprtnRadioContainer').children('.charterTipMsg').each(function(e){
-           if(jq(this).attr('selectedValue') === selectedSubProjectType){
-               jq(this).show(); 
-           }
-       });
-    });    
-   
-    jq('.yellowBox .ipmRadioButton input[type=radio]').each(function(i){                   
-        var rdChecked = jq('.yellowBox .ipmRadioButton input[type=radio]:checked').attr("value").split(" ");
-        var rdData = rdChecked[0];
-        jq("#"+rdData).show(); 
-    });                          
+    }                   
     jq(document).on('show.bs.dropdown', '.brandposListContainer', function(){
         jq(this).find('.brandposList').show(); 
     });
@@ -200,6 +145,64 @@ function selectNextTabtwo(){
         }
     }
 }    
+function selectNextTabthree(){
+    jq('.oprtnRadiobtn  input[type=radio]').each(function(e){ 
+       jq(this).click(function()
+            {
+                var selectedSubProjectType =  jq(this).attr("value");        
+                jq(".oprtnToolTipMsg").hide();
+                jq('.oprtnRadiobtn').parents('.oprtnRadioContainer').children('.oprtnToolTipMsg').each(function(e){
+                if(jq(this).attr('selectedValue') === selectedSubProjectType){
+                    jq(this).show(); 
+                }
+            });
+        });  
+    }); 
+    jq('.oprtnRadiobtn input[type=radio]').each(function(){             
+       var selectedSubProjectType = jq('.oprtnRadiobtn input[type=radio]:checked').attr("value");
+       jq('.oprtnRadiobtn').parents('.oprtnRadioContainer').children('.oprtnToolTipMsg').each(function(e){
+           if(jq(this).attr('selectedValue') === selectedSubProjectType){
+               jq(this).show(); 
+           }
+       });
+    });   
+    jq('.gateKeepingModel  input[type=radio]').each(function(e){ 
+        jq(this).click(function(){
+            var selectedGKModel =  jq(this).attr("value");      
+            jq(".gateKModel").hide();
+            jq('.gateKeepingModel').parents('.oprtnRadioContainer').children('.gateKModel').each(function(e)
+            {
+                if(jq(this).attr('selectedValue') === selectedGKModel)
+                {
+                    jq(this).show(); 
+                }
+            });
+        });  
+    }); 
+    jq('.gateKeepingModel input[type=radio]').each(function(){            
+       var selectedGKModel = jq('.gateKeepingModel input[type=radio]:checked').attr("value");
+       jq('.gateKeepingModel').parents('.oprtnRadioContainer').children('.gateKModel').each(function(e){
+           if(jq(this).attr('selectedValue') === selectedGKModel){
+               jq(this).show(); 
+           }
+       });
+    });
+      
+    jq('.gcltquestions input[type=radio]').each(function(){            
+       var selectedSubProjectType = jq('.gcltquestions input[type=radio]:checked').attr("value");
+       jq('.gcltquestions').parents('.oprtnRadioContainer').children('.charterTipMsg').each(function(e){
+           if(jq(this).attr('selectedValue') === selectedSubProjectType){
+               jq(this).show(); 
+           }
+       });
+    });    
+   
+    jq('.yellowBox .ipmRadioButton input[type=radio]').each(function(i){                   
+        var rdChecked = jq('.yellowBox .ipmRadioButton input[type=radio]:checked').attr("value").split(" ");
+        var rdData = rdChecked[0];
+        jq("#"+rdData).show(); 
+    });       
+}
 function reload()
 {
     window.location.reload();

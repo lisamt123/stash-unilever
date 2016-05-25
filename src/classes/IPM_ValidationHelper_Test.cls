@@ -26,8 +26,6 @@ private class IPM_ValidationHelper_Test {
     private static final String TLD_MATCH_MSG='Target launch date should be set correctly';
     private static final String PROJ_ROLLOUT_SIZE_MSG='Project rollout(s) size should be 1';
     private static final String PROJ_PHASE_FEASIBILITY_MSG='Project phase should be FEASIBILITY';
-    private static final String TESTPROJECT001_CONSOLIDATED='TestProject001_CONSOLIDATED';
-    private static final String NOT_STARTED='Not Started';
     private static final String INVALID_PROJECT = 'The passed project must be invalid';
     private static final String CUSTOM_SETTING_NOT_CREATED='Project Type custom setting data not created';
     private static final String GLOBAL_PL = 'GLOBAL_PL';
@@ -142,33 +140,6 @@ private class IPM_ValidationHelper_Test {
             rollouts.add(localKeyProjectRollout1);
             insert rollouts;
             
-            List<IPM_Financial__c> fins=new List<IPM_Financial__c>();
-            
-            IPM_Financial__c fin1=new IPM_Financial__c();
-            String consolidatedRecordTypeId=[Select Id From RecordType Where SobjectType='IPM_Financial__c' and Name='Consolidated'].Id;
-            fin1.RecordTypeId=consolidatedRecordTypeId;
-            fin1.Financial_External_ID__c=TESTPROJECT001_REG+'_CONSOLIDATED';
-            fin1.Regional_Project__c=projectList[0].id;
-            fin1.Volume_Unit__c=IPM_ConstantUtils.VOLUME_UNIT_TONS;
-            fin1.Status__c=NOT_STARTED;
-            fin1.Project_Sustainability_Period__c=IPM_ConstantUtils.YEAR_3;//YEAR_5
-            fin1.Target_Launch_Date__c = targetLaunchDate;
-            fin1.isActive__c=true;
-            fins.add(fin1);
-            
-            IPM_Financial__c fin2=new IPM_Financial__c();
-            String defaultRecordTypeId=[Select Id From RecordType Where SobjectType='IPM_Financial__c' and Name='Default'].Id;
-            fin2.RecordTypeId=defaultRecordTypeId;
-            fin2.Financial_External_ID__c=TESTPROJECT001_REG+'_NONKEY';
-            fin2.Regional_Project__c=projectList[0].id;
-            fin2.Volume_Unit__c=IPM_ConstantUtils.VOLUME_UNIT_TONS;
-            fin2.Status__c=NOT_STARTED;
-            fin2.Project_Sustainability_Period__c=IPM_ConstantUtils.YEAR_3;//YEAR_5
-            fin2.Target_Launch_Date__c = targetLaunchDate;
-            fin2.isActive__c = true;
-            fins.add(fin2);
-            insert fins;
-            
             IPM_Milestone__c milestone = IPM_TestFactory_Helper.createIPMMilestone(dbProjectList[0].id,false);
             milestone.IPM_Active__c=true;
             milestone.IPM_Name__c=IPM_ConstantUtils.CHARTER_GATE_APPROVAL_MILESTONE;
@@ -177,17 +148,6 @@ private class IPM_ValidationHelper_Test {
             
             test.stopTest();
         }
-        
-        List<IPM_Financial__c> finList=[SELECT Name,Financial_External_ID__c FROM IPM_Financial__c WHERE Financial_External_ID__c like 'TestProject001_REG%' limit 5];
-            
-        Set<String> finExtIds = new Set<String>();
-        for(IPM_Financial__c financial:  finList) {
-            finExtIds.add(financial.Financial_External_ID__c);
-        }
-        
-        System.assert(finExtIds.contains('TestProject001_REG_CONSOLIDATED'),'The Financials list should contain TestProject001_REG_CONSOLIDATED');
-        System.assert(finExtIds.contains('TestProject001_REG_NONKEY'),'The Financials list should contain TestProject001_REG_NONKEY');
-        
         
         List<IPM_Project__c> projlList=[SELECT Name,IPM_Phase__c, IPM_Project_Job_Status__c,IPM_Target_Launch_Dates__c FROM IPM_Project__c WHERE name=: TESTPROJECT001_REG limit 1];
         System.assertEquals(projlList.size(), 1,PROJ_SIZE_MSG);
@@ -404,11 +364,9 @@ private class IPM_ValidationHelper_Test {
         
             test.startTest();
             List<IPM_Project__c> projectList = IPM_TestFactory_Helper.projectSetUp(3,globalProjectLeader);
-            projectList[0].IPM_Target_Launch_Dates__c = targetLaunchDate;
+            projectList[0].IPM_Target_Launch_Dates__c = targetLaunchDate;            
+            projectList[0].IPM_Project_Name__c=TESTPROJECT001;
             insert projectList;
-            
-            projectList[0].Name=TESTPROJECT001;
-            update projectList;
             
             IPM_Project_Type__c associatedProjectType = IPM_Utils.retrieveProjectType(projectList[0]);
             System.assert(associatedProjectType != null,CUSTOM_SETTING_NOT_CREATED);
@@ -427,22 +385,24 @@ private class IPM_ValidationHelper_Test {
             regionalProjectRollout.IPM_RolloutJobType__c=IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_PHASECHANGE;
             regionalProjectRollout.IPM_Rollout_Type__c=IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
             regionalProjectRollout.IPM_Regional_PL__c=regionalProjectLeader.id;
+            regionalProjectRollout.KeyMCO__c = false;
             regionalProjectRollout.isActive__c=true;
             insert regionalProjectRollout;
-    
-            List<IPM_Project__c> rolloutProject = IPM_TestFactory_Helper.createRegionalProjectList(false,1);
-            insert rolloutProject; 
             
-            rolloutProject[0].Name=TESTPROJECT001_REG;
+            List<IPM_Project__c> rolloutProject = IPM_TestFactory_Helper.createIPMProjectList(false,1);
             rolloutProject[0].IPM_CompanyCardText__c=IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_GLOBAL;
             rolloutProject[0].IPM_Project_Gatekeeper__c = UserInfo.getUserId();
             rolloutProject[0].IPM_Target_Launch_Dates__c = targetLaunchDate;
             rolloutProject[0].IPM_Project_Name__c=TESTPROJECT001_REG;
+            rolloutProject[0].Name=TESTPROJECT001_REG;
             rolloutProject[0].IPM_Parent_Project__c=projectList[0].ID;
             rolloutProject[0].IPM_ProjectJobType__c=PROJECT_CREATION;
+            rolloutProject[0].IPM_Phase__c = IPM_ConstantUtils.FEASIBILITY_PHASE;
+            rolloutProject[0].IPM_Project_Rollout__c = regionalProjectRollout.id;
             rolloutProject[0].IPM_Project_Job_Status__c=IPM_ConstantUtils.JOB_STATUS_COMPLETED;
             rolloutProject[0].IPM_Project_Type__c=IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
-            update rolloutProject;
+            rolloutProject[0].IPMProject_Span__c= IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
+            insert rolloutProject; 
             
             List<IPM_Project_Rollout__c> rollouts = new List<IPM_Project_Rollout__c>();
             String rolloutLocalRecordTypeId=[Select Id From RecordType Where SobjectType='IPM_Project_Rollout__c' and Name=:IPM_ConstantUtils.LOCAL_ROLLOUT_RT].Id;
@@ -485,7 +445,7 @@ private class IPM_ValidationHelper_Test {
             insert rollouts;
     
             IPM_Project__c localProject = IPM_TestFactory_Helper.createIPMProject(false);
-            localProject.Name=TESTPROJECT001_REG_LOC1;
+            localProject.IPM_Project_Name__c=TESTPROJECT001_REG_LOC1;
             localProject.Sustainability_Period__c=IPM_ConstantUtils.YEAR_3;
             localProject.IPM_Project_Leader__c=localProjectLeader.id;
             localProject.IPM_Project_Type__c=IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
@@ -501,51 +461,21 @@ private class IPM_ValidationHelper_Test {
             localProject.IPM_ProjectJobType__c=PROJECT_CREATION;
             localProject.IPM_Project_Job_Status__c=IPM_ConstantUtils.JOB_STATUS_COMPLETED;
             insert localProject; 
-    		
-    		IPM_Project_Type__c associatedLocalProjectType = IPM_Utils.retrieveProjectType(localProject);
-    		System.assert(associatedLocalProjectType != null,CUSTOM_SETTING_NOT_CREATED);
-    		
-    		Test.stopTest();
-    		
-    		List<IPM_Financial__c> financials = new List<IPM_Financial__c>();
-            IPM_Financial__c fin1=new IPM_Financial__c();
-            String defaultRecordTypeId=[Select Id From RecordType Where SobjectType='IPM_Financial__c' and Name='Default'].Id;
-            fin1.RecordTypeId=defaultRecordTypeId;
-            fin1.Financial_External_ID__c='TestProject001_REG_NONKEY1';
-            fin1.Regional_Project__c=rolloutProject[0].id;
-            fin1.Local_Project__c=localProject.id;
-            fin1.Volume_Unit__c=IPM_ConstantUtils.VOLUME_UNIT_TONS;
-            fin1.Status__c=IPM_ConstantUtils.STATUS_IN_PROGRESS;
-            fin1.Project_Sustainability_Period__c=IPM_ConstantUtils.YEAR_3;//YEAR_5
-            fin1.Target_Launch_Date__c = targetLaunchDate;
-            fin1.isActive__c=true;
-            financials.add(fin1);
             
-            IPM_Financial__c fin3=new IPM_Financial__c();
-            String consolidatedRecordTypeId=[Select Id From RecordType Where SobjectType='IPM_Financial__c' and Name='Consolidated'].Id;
-            fin3.RecordTypeId=consolidatedRecordTypeId;
-            fin3.Financial_External_ID__c=TESTPROJECT001_CONSOLIDATED;
-            fin3.Parent_Project__c=projectList[0].id;
-            fin3.Volume_Unit__c=IPM_ConstantUtils.VOLUME_UNIT_TONS;
-            fin3.Status__c=NOT_STARTED;
-            fin3.Project_Sustainability_Period__c=IPM_ConstantUtils.YEAR_3;//YEAR_5
-            fin3.Target_Launch_Date__c = targetLaunchDate;
-            fin3.isActive__c=true;
-            financials.add(fin3);
-            insert financials;
+            localNonkeyProjectRollout1.Local_Project__c=localProject.id;
+            update localNonkeyProjectRollout1;
             
-            financials = new List<IPM_Financial__c>();
+            IPM_Project_Type__c associatedLocalProjectType = IPM_Utils.retrieveProjectType(localProject);
+            System.assert(associatedLocalProjectType != null,CUSTOM_SETTING_NOT_CREATED);
+            
+            Test.stopTest();
+            
+            List<IPM_Financial__c> financials = new List<IPM_Financial__c>();
             IPM_Financial__c ipmFinancials1 = [select id from IPM_Financial__c where Financial_External_ID__c='TestProject001_REG_CONSOLIDATED' limit 1];
             ipmFinancials1.Regional_Project__c = rolloutProject[0].id;
             ipmFinancials1.isActive__c=true;
             financials.add(ipmFinancials1);
-            
-            IPM_Financial__c ipmFinancials2 = [select id from IPM_Financial__c where Financial_External_ID__c='TestProject001_REG_NONKEY' limit 1];
-            ipmFinancials2.Regional_Project__c = rolloutProject[0].id;
-            ipmFinancials2.IPM_Project_Rollout__c = regionalProjectRollout.id;
-            ipmFinancials2.isActive__c=true;
-            financials.add(ipmFinancials2);
-    
+        
             update financials;
 
 			IPM_Milestone__c milestone = IPM_TestFactory_Helper.createIPMMilestone(projectList[0].id,false);
@@ -574,9 +504,6 @@ private class IPM_ValidationHelper_Test {
             System.assertEquals(IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT, regionalProjList[0].IPM_Project_Type__c,'Project type should be Rollout');
             System.assertEquals(globalProjList[0].id, regionalProjList[0].IPM_Parent_Project__c,'Project id should match with parent project');
             
-            // 1 Consolidated, 2 Nonkey, 1 local
-            System.assertEquals(3,regionalProjList[0].IPM_Financials_Regional__r.size(),'Project(s) size should be 3');
-            
             List<IPM_Project_Rollout__c>  regionalRolloutList=[SELECT Name, Target_Launch_Date__c, IPM_Project_Job_Status__c, IPM_RolloutJobType__c, IPM_Rollout_Span__c, IPM_Rollout_Type__c,IPM_Project__c, RecordTypeId, (Select Name, Financial_External_ID__c, Target_Launch_Date__c From IPM_Financials__r)   FROM IPM_Project_Rollout__c WHERE name=:TESTPROJECT001_REG limit 2];
             System.assertEquals(regionalRolloutList.size(), 1,PROJ_ROLLOUT_SIZE_MSG);
             
@@ -586,16 +513,12 @@ private class IPM_ValidationHelper_Test {
             System.assertEquals('Rollout', regionalRolloutList[0].IPM_Rollout_Type__c,'Project rollout type should be Rollout');
             System.assertEquals(globalProjList[0].id, regionalRolloutList[0].IPM_Project__c,'Project rollout project id should match with parent project');
             System.assertEquals(rolloutRegionlaRecordTypeId, regionalRolloutList[0].RecordTypeId,'Record Id should match');
-            // 1 Consolidated, 1 Nonkey
-            System.assertEquals(2,regionalRolloutList[0].IPM_Financials__r.size(),'Project rollout(s) size should be 2');
             
                 
             List<IPM_Project__c> localProjList=[SELECT IPM_Project_Rollout__c,Name,IPM_Phase__c, IPM_Project_Job_Status__c, IPM_Target_Launch_Dates__c, IPM_ProjectJobType__c, IPMProject_Span__c, IPM_Project_Type__c,IPM_Parent_Project__c, (Select id, name, Financial_External_ID__c, Target_Launch_Date__c From IPM_Financials_Local__r)   FROM IPM_Project__c WHERE name=:TESTPROJECT001_REG_LOC1 limit 2];
             System.assertEquals(localProjList.size(), 1,'Project(s) size should be 3');
             System.assertEquals(rolloutProject[0].ID, localProjList[0].IPM_Parent_Project__c,'Project rollout project id should match with parent project');
             System.assertEquals(localNonkeyProjectRollout1.ID, localProjList[0].IPM_Project_Rollout__c,'Project rollout id should match with rollout project');
-            // 1 loal
-            System.assertEquals(1,localProjList[0].IPM_Financials_Local__r.size(),'Project financial(s) size should be 1'); 
         }
     }
     
