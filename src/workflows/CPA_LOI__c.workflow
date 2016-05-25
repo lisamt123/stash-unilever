@@ -405,6 +405,20 @@
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
+        <fullName>CPA LOI Accepted New</fullName>
+        <actions>
+            <name>CPA_LOI_Record_Submitted</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>CPA_LOI__c.pkl_Status__c</field>
+            <operation>equals</operation>
+            <value>Accepted</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
         <fullName>CPA LOI Cancelled</fullName>
         <actions>
             <name>CPA_LOI_cancelled_Email_Alert</name>

@@ -1597,7 +1597,7 @@
         <recordType>WU_Master_Warehouse__c.Edit_Warehouse_Capacity</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>WU_Warehouse_Capacity_Detail__c-Custom Warehouse Capacity Utilizaion Layout</layout>
+        <layout>WU_Warehouse_Capacity_Detail__c-WU Warehouse Capacity Utilizaion Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>WWP_Loss_Tree__c-Loss Tree Layout</layout>

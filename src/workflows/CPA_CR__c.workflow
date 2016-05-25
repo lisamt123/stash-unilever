@@ -326,6 +326,20 @@
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
+        <fullName>CPA CR Accepted</fullName>
+        <actions>
+            <name>CPA_Notify_Unilever_Team_about_CR_submission</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>CPA_CR__c.pkl_Status__c</field>
+            <operation>equals</operation>
+            <value>Accepted</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
         <fullName>CPA CR Cloned%2FCreated</fullName>
         <actions>
             <name>CPA_CR_Create</name>
@@ -370,10 +384,6 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <criteriaItems>
-            <field>CPA_CR__c.dat_Sent_for_Signature_Date__c</field>
-            <operation>notEqual</operation>
-        </criteriaItems>
         <criteriaItems>
             <field>CPA_CR__c.pkl_Status__c</field>
             <operation>equals</operation>
