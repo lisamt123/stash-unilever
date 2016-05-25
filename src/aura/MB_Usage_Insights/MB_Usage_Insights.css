@@ -1,0 +1,25 @@
+.THIS .linechart{
+            height: 10px;
+            width: 120px;
+            background: #D1D1D1;
+            display: inline-block;
+            margin: 0 16px;
+ }
+.THIS .line_bar_data,.THIS .line_bar_calls,.THIS .line_bar_SMS,.THIS .line_bar_iPass{
+            height: 10px;
+            display: inline-block;
+            position: absolute;
+            background: #68CAE3;
+            max-width: 100px;
+ }
+.THIS .line_bars_data,.THIS .line_bars_calls,.THIS .line_bars_SMS,.THIS .line_bars_iPass{
+            height: 10px;
+            display: inline-block;
+            position: absolute;
+            background: orange;
+            max-width: 100px;
+}
+.THIS .bar_chart{
+    width: 40px;
+    display: inline-block;
+}

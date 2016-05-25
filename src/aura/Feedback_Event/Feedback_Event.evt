@@ -1,0 +1,5 @@
+<aura:event type="APPLICATION" description="Event template" >
+    <aura:attribute name="appName" type="string"></aura:attribute>
+    <aura:attribute name="Pagename" type="string"></aura:attribute>
+    <aura:attribute name="isFeedback" type="boolean"></aura:attribute>
+</aura:event>

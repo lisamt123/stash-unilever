@@ -1,0 +1,141 @@
+<aura:component implements="force:appHostable">
+    <ltng:require styles="/resource/CFTA_Style/styles/salesforce-lightning-design-system.css"/>
+    <ltng:require styles="/resource/EA_StaticResource/assets/fonts" />   
+    <style>
+        body{
+        background:#D1D1D1;
+        }
+        .head_a-1{
+        float:left;
+        width:60%;
+        color:#033A69;
+        }
+        .head_b-1{
+        float:left;
+        width:40%;
+        color:#033A69;
+        }
+        .head_a{
+        float:left;
+        width:70%;
+        color:#033A69;
+        }
+        .head_b{
+        float:left;
+        width:30%;
+        color:#033A69;
+        text-align: right;	
+        }
+        .head_d{
+            float: left;
+            margin-left: 12px;
+            margin-top: 0px;
+            margin-bottom: 4px;
+        }
+        .head_e{
+        float: right;
+        text-align: right;
+        }
+        .trend{
+        width: 20px;
+        margin-right:10px;
+        }
+        .section_a{
+        padding: 0.5rem 1.5rem;
+        border-bottom: 1px solid #eef1f6;
+        }
+        .icon-style-1{
+        width: 56px;
+        float: left;
+        background: white;
+        border: 1px solid grey;
+        padding: 5px 18px;
+        border-radius: 5px 0px 0px 5px;
+        }
+        .icon-style-2{
+            width: 56px;
+            float: left;
+            background: transparent;
+            border: 1px solid grey;
+            padding: 5px 18.5px;
+            border-left: 0px;
+            border-radius: 0px 5px 5px 0px;
+        }	
+    </style>
+    
+    <aura:attribute name="deviceName" type="String"/>
+    <aura:attribute name="CurrentMonth" type="String"/>
+    <aura:attribute name="deviceId" type="String"/>
+    <div>
+                <img class="back-button" src="/resource/EA_StaticResource/assets/icons/utility/back_60.png"></img>
+         <div class="sectiona_a">
+            <div class="slds-text-heading--small head_c-1">{!v.deviceName}</div>
+            <div class="head_d-1">
+                <div>
+                    <div onclick="{!c.gotoSummary_charts}"><img class="icon-style-1" src="/resource/TEM_icons/TEM_Icons/chart_60.png" /></div>
+                    <div><img class="icon-style-2" src="/resource/TEM_icons/TEM_Icons/list_60.png" /></div>
+                </div>
+            </div><div style="clear:both"></div>
+        </div>
+        <div class="section_a" style="padding:1.5rem;">
+            <div class="slds-text-body--regular head_a">Total</div>
+            <div class="slds-text-body--regular head_b">
+                <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Down.svg" />
+                </span>$19.00</div>
+        </div>
+        <div class="section_a">
+            <div class="slds-text-body--regular head_a">Calls</div>
+            <div class="slds-text-body--regular head_b">
+                <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Down.svg" />
+                </span>$19.00</div>
+            <div class="slds-text-body--small head_d">Domestic Outgoing</div>
+            <div class="slds-text-body--small head_e">$19.00</div><div style="clear:both"></div>
+            
+            <div class="slds-text-body--small head_d">Voicemail</div>
+            <div class="slds-text-body--small head_e">$19.00</div>  <div style="clear:both"></div> 
+            
+            <div class="slds-text-body--small head_d">Roaming Outgoing</div>
+            <div class="slds-text-body--small head_e">$19.00</div><div style="clear:both"></div>
+            
+            <div class="slds-text-body--small head_d">Roaming incoming</div>
+            <div class="slds-text-body--small head_e">$19.00</div><div style="clear:both"></div>
+            
+        </div>
+        <div class="section_a">
+            <div class="slds-text-body--regular head_a">Data</div>
+            <div class="slds-text-body--regular head_b">
+                <span><img class="trend trend-down" src="/resource/TEM_icons/TEM_Icons/Trend_Down.svg" />
+                </span>$XX.YY</div>
+            <div class="slds-text-body--small head_d">Roaming Data</div>
+            <div class="slds-text-body--small head_e">$19.00</div><div style="clear:both"></div>
+            
+            <div class="slds-text-body--small head_d">Domestic Data</div>
+            <div class="slds-text-body--small head_e">$19.00</div>  <div style="clear:both"></div> 
+            
+        </div>
+        <div class="section_a">
+            <div class="slds-text-body--regular head_a">Messaging</div>
+            <div class="slds-text-body--regular head_b">
+                <span><img class="trend trend-up" src="/resource/TEM_icons/TEM_Icons/Trend_Up.svg" />
+                </span>$XX.YY</div>
+            <div class="slds-text-body--small head_d">Premium</div>
+            <div class="slds-text-body--small head_e">$19.00</div><div style="clear:both"></div>
+            
+            <div class="slds-text-body--small head_d">Domestic outgoing</div>
+            <div class="slds-text-body--small head_e">$19.00</div>  <div style="clear:both"></div> 
+            
+            
+        </div>
+        <div class="section_a">
+            <div class="slds-text-body--regular head_a">Non usage total</div>
+            <div class="slds-text-body--regular head_b">
+                <span><img class="trend trend-up" src="/resource/TEM_icons/TEM_Icons/Trend_Up.svg" />
+                </span>$XX.YY</div>
+            <div class="slds-text-body--small head_d">Tax</div>
+            <div class="slds-text-body--small head_e">$19.00</div><div style="clear:both"></div>
+            
+            <div class="slds-text-body--small head_d">Recurring</div>
+            <div class="slds-text-body--small head_e">$19.00</div> <div style="clear:both"></div>  
+        </div> 
+    </div>
+</aura:component>
