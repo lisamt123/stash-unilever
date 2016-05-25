@@ -1,0 +1,10 @@
+.THIS {
+}
+
+.THIS .notified-users .slds-pill_container{
+    display: inline-block;
+}
+
+.THIS .notified-users .slds-form-element__label{
+    display: block;
+}

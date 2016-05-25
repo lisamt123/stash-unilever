@@ -1,0 +1,189 @@
+<aura:component controller="AA_AgentAppService" >
+    
+    <aura:attribute name="objGetAgentDataResponse" type="AA_WrapperClass.AgentAppDataResponse" />
+    <aura:attribute name="objGetAgentDataResponseCompetitor" type="AA_WrapperClass.AgentAppDataResponse" description="values for all competitorReport"/>
+    <aura:attribute name="clusterList" type="Object" description="List of Cluster values" />
+    <aura:attribute name="allCountryList" type="Object" description="List of all Countries values which will be used while selection based on the cluster list"/>
+    <aura:attribute name="countryList" type="Object" description="List of the countries values which we will display in the country drop down list "/>
+    <aura:attribute name="filterRecordType" type="String" description="controls the view of the filter page"/>
+    <aura:attribute name="reportingOnList" type="String[]" description="list of reportingOn values"/>
+    <aura:attribute name="check" type="boolean" default="false" description="To enable and disable the country drop down when global cluster value is selected"/>
+    <aura:attribute name="allCompetitorNameList" type="Object" description="List of the names of the competitor  which will be used while selection based on the Competitor Brand list"/>
+    <aura:attribute name="competitorNameList" type="Object" description="List of the names of the competitor  which we will display in the competitor Name down list"/>
+    <aura:attribute name="allCategoryList" type="Object" description="List of the categories which will be used while selection based on the Competitor Brand list"/>
+    <aura:attribute name="categoryList" type="Object" description="List of categories which we will display in the categories  down list"/>
+    <aura:attribute name="topicList" type="Object" description="List of topics"/>
+    <aura:attribute name="unileverBrandId" type="Id" default="null" description="Id of the selected Unilever Brand name"/>
+    <aura:attribute name="retailerId" type="Id" default="null" description="Id of the selected Retailer"/>
+    <aura:attribute name="competitorBrandId" type="Id" default="null" description="Id of the selected Competitor Brand name"/>
+    <aura:attribute name="globalClusterId" type="Id" description="Id of the 'global' Cluster"/>
+    
+    <aura:attribute name="filterType" type="String" />
+    <aura:attribute name="sortType" type="String"/>
+    <aura:attribute name="applyFilter" type="String"/>
+    <aura:attribute name="limitRecords" type="Integer" />
+    <aura:attribute name="offSet" type="Integer"/>
+    <aura:attribute name="countryId" type="String" />
+    <aura:attribute name="clusterId" type="String" />
+    <aura:attribute name="deviceId" type="String" />
+    
+    <aura:registerEvent name="clearLookupIdEvent" type="c:AA_ClearLookupId"/> 
+    <aura:handler name="updateLookupIdEvent" event="c:AA_UpdateLookupId" action="{!c.handleIdUpdate}"/>
+    <aura:handler name="change" value="{!v.competitorBrandId}" action="{!c.handleCompetitorBrandChange}"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    
+    <div class="container">
+        <div class="row">
+            <table>
+                <tr>
+                    <td class="leftAlign">
+                        <!--<span>
+                            <ui:button label="Cancel" press="{!c.cancelFilter}"/>
+                        </span>-->
+                        <button class="slds-button slds-button--neutral" onclick="{!c.cancelFilter}">Cancel</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="filtePannel slds-text-body--regular">
+            
+            <div class="slds-form-element">
+                <span>
+                    <label class="slds-form-element__label" >Report Type</label>
+                    <div class="slds-form-element__control">
+                        <div class="slds-select_container" >
+                            <ui:inputSelect aura:id="reportType" change="{!c.onSelectChangeView}" class="slds-select ">
+                                <ui:inputSelectOption text="All" label="All"/>
+                                <ui:inputSelectOption text="Unilever Report" label="Unilever Report"/>
+                                <ui:inputSelectOption text="Competitor Report" label="Competitor Report"/>
+                            </ui:inputSelect>
+                        </div>
+                    </div>
+                </span>
+            </div>
+            <div class="slds-form-element">
+                <span>
+                    <label class="slds-form-element__label"> Cluster </label>
+                    <div class="slds-form-element__control">
+                        <div class="slds-select_container">
+                            <ui:inputSelect aura:id="clusterId" change="{!c.onSelectChangeCountry}" class="slds-select inputWidth">
+                                <ui:inputSelectOption text="Select a Cluster" label="Select Cluster" value="true"/>
+                                <aura:iteration var="cluster" items="{!v.clusterList}">
+                                    <ui:inputSelectOption text="{!cluster.Id}" label="{!cluster.Name}" />
+                                </aura:iteration>
+                            </ui:inputSelect>
+                        </div>
+                    </div>
+                </span>
+            </div>
+            <div class="slds-form-element" >
+                <span>
+                    <label class="slds-form-element__label"> Country </label>
+                    <div class="slds-form-element__control">
+                        <div class="slds-select_container">
+                            <ui:inputSelect aura:id="countryId" disabled="{!v.check}" class="slds-select">
+                                <ui:inputSelectOption text="Select a Country" label="Select Country" value="true"/>
+                                <aura:iteration var="country" items="{!v.countryList}">
+                                    <ui:inputSelectOption text="{!country.Id}" label="{!country.Name}" />
+                                </aura:iteration>
+                            </ui:inputSelect>
+                        </div>
+                    </div>
+                </span>
+            </div>
+            
+            <!-- Unilever Report filter View-->
+            <aura:if isTrue="{!v.filterRecordType == 'Unilever Report'}">
+                <div >
+                    <div aura:id="uBrandAutoComplete" >
+                        <c:AA_AutoComplete label="Unilever brand" pluralLabel="Unilever brands" placeholderValue="E.g Dove" sObjAttributeName="unileverBrandId" sObjectRecordType="Unilever Brand" sObjectAPIName="aa_Agent_App_Competitor_Brand__c" />               
+                    </div>
+                    <div aura:id="retailerAutoComplete">
+                        <c:AA_AutoComplete label="Retailer" pluralLabel="Retailers" placeholderValue="E.g Marks and Spencers" sObjAttributeName="retailerId" sObjectRecordType="null" sObjectAPIName="aa_Agent_Retailer__c" />               
+                    </div>
+                    
+                    <div class="slds-form-element" >
+                        <label class="slds-form-element__label" > Reporting On </label>
+                        <div  class="slds-form-element__control">
+                            <div class="slds-select_container">
+                                <ui:inputSelect aura:id="reportingOnId"  class="slds-select">
+                                    <ui:inputSelectOption text="Reporting on" label="Select Reporting On" value="true"/>
+                                    <aura:iteration var="reporting" items="{!v.reportingOnList}">
+                                        <ui:inputSelectOption text="{!reporting}" label="{!reporting}"/>
+                                    </aura:iteration>
+                                </ui:inputSelect>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </aura:if>
+            
+            <!-- Competitor Report filter View-->
+            <aura:if isTrue="{!v.filterRecordType == 'Competitor Report'}">
+                <div>
+                    <div aura:id="cBrandAutoComplete">
+                        <c:AA_AutoComplete label="Competitor Brand" pluralLabel="Competitor Brands" placeholderValue="E.g Tide"  sObjAttributeName="competitorBrandId" sObjectRecordType="Competitor Brand" sObjectAPIName="aa_Agent_App_Competitor_Brand__c"/>               
+                    </div>
+                    <div class="slds-form-element" >
+                        <label class="slds-form-element__label"> Competitor Name </label>
+                        <div  class="slds-form-element__control">
+                            <div class="slds-select_container">
+                                <ui:inputSelect aura:id="competitorName"  class="slds-select">
+                                    <ui:inputSelectOption text="Select Competitor Name" label="Select Competitor Name" value="true"/>
+                                    <aura:iteration var="competitorName" items="{!v.competitorNameList}">
+                                        <ui:inputSelectOption text="{!competitorName.Id}" label="{!competitorName.Name}"/>
+                                    </aura:iteration>
+                                </ui:inputSelect>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="slds-form-element" >
+                        <label class="slds-form-element__label"> Category </label>
+                        <div  class="slds-form-element__control">
+                            <div class="slds-select_container">
+                                <ui:inputSelect aura:id="category"  class="slds-select">
+                                    <ui:inputSelectOption text="Select Category" label="Select Category" value="true"/>
+                                    <aura:iteration var="category" items="{!v.categoryList}">
+                                        <ui:inputSelectOption text="{!category.Id}" label="{!category.Name}"/>
+                                    </aura:iteration>
+                                </ui:inputSelect>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-form-element" >
+                        <label class="slds-form-element__label"> Topic </label>
+                        <div class="slds-form-element__control">
+                            <div class="slds-select_container">
+                                <ui:inputSelect aura:id="topic" class="slds-select">
+                                    <ui:inputSelectOption text="Select Topic" label="Select Topic" value="true"/>
+                                    <aura:iteration var="topic" items="{!v.topicList}">
+                                        <ui:inputSelectOption text="{!topic.Id}" label="{!topic.Name}"/>
+                                    </aura:iteration>
+                                </ui:inputSelect>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aura:if>
+        </div>
+        
+        <div class="filter-botton-container">
+            <div class="filter-btns-bottom">
+                <!--<span >
+                    <ui:button label="clear" press="{!c.clearFilter}"/>
+                </span>-->
+                <button class="slds-button slds-button--neutral" onclick="{!c.clearFilter}">Clear</button>
+                <!--<span >
+                    <ui:button label="Apply" press="{!c.applyFilter}"/>
+                </span>-->
+                <button class="slds-button slds-button--brand" onclick="{!c.applyFilter}">Apply</button>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+</aura:component>

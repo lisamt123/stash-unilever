@@ -1,0 +1,121 @@
+.THIS {
+    
+}
+
+/*Filter option page header bar left align the content*/
+.THIS .leftAlign {
+    padding: 10px;   
+}
+/*Filter option page header bar Cancel button style*/
+.THIS .cancelButton{
+    padding: 5px 20px;
+    background: #D1D1D4;
+    border-radius: 5px;
+    autofocus:true;
+}
+.THIS li.active_class {
+    box-sizing: border-box;
+    border-radius: 0;
+    text-align: center;
+    width: 50%;
+    position: relative;
+    display: block;
+    padding-top: 0.7rem;
+    color: #337ab7;
+    text-decoration: none;
+    height: 2.8rem;
+    font-weight: 600;
+    border: 1px #2e91cf solid;
+}
+.THIS li.inactive_class {
+    box-sizing: border-box;
+    border-radius: 0;
+    text-align: center;
+    width: 50%;
+    position: relative;
+    display: block;
+    padding-top: 0.7rem;
+    color: white;
+    text-decoration: none;
+    background: #1767a7;
+    height: 2.8rem;
+    font-size: 1rem;
+}
+
+.THIS div.fileinputs {
+	position: relative;
+}
+
+.THIS div.fakefile {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 1;
+}
+
+.THIS input.file {
+	position: relative;
+	text-align: right;
+	-moz-opacity:0 ;
+	filter:alpha(opacity: 0);
+	opacity: 0;
+	z-index: 2;
+}
+.THIS.container {
+    padding-bottom: 10px;
+    max-width: 1200px;
+    margin: 0 auto;   
+}
+.THIS .competitor-content{
+    position: relative;
+    padding: 15px 15px 20px 15px;
+    border-top: 2px solid #cfd7e6;
+}
+
+.THIS .slds-form-element {
+    margin-bottom: .75rem;
+}
+
+.THIS .competitor-submit-btn{
+	margin-left: 15px;
+}
+
+.THIS .competitor-submit-btn .slds-button{
+    width: 98%;
+}
+
+.THIS .insert-img-file{
+    border: 1px solid #d1d1d4;
+    border-radius: 3px;
+}
+
+.THIS .insert-img-file .slds-col{
+   text-align: center; 
+}
+/* CSS to identify mobile or desktop view */
+
+/* Portrait */
+@media only screen and (max-device-width: 480px) {
+	.THIS .desktop-view {display:none}
+}
+
+@media only screen and (max-device-width: 1024px){
+	.THIS .desktop-view {display:none}
+}
+
+@media only screen and (min-device-width: 1025px) {
+	.THIS .mobile-view {display:none; border:none;}
+}
+
+.THIS .form-element-cust .slds-select_container:after {
+    	border-top: none;
+    }
+
+.THIS .slds-select_container:before {
+        border-bottom: none;
+        top: 0;
+    }
+
+.THIS .desktop-view div:first-child{
+        border-right: 1px solid #e6e6e6;
+}

@@ -1,0 +1,287 @@
+<aura:component implements="force:appHostable" controller="AA_AgentAppService_Bharath">
+   
+    <aura:attribute name="sortType" type="String" />
+    <aura:attribute name="cancelType" type="String"/>
+    <aura:attribute name="subTopicList" type="string[]" />
+    <aura:attribute name="SubTopicNull" type="boolean" default="true"/>
+    <aura:attribute name="disableOnBrandChange" type="boolean" default="true"/>
+    <aura:attribute name="Brand" type="boolean" default="true"/>
+    <aura:attribute name="others" type="boolean" default="false"/>
+    <aura:attribute name="otherCompetitorBrandId" type="Id"  description="Id of the other competitor brand Id" />
+    <aura:attribute name="SubTopiccheck" type="boolean" default="true"/>
+    <aura:attribute name="competitorBrandId" type="Id" default="" description="Id of the selected Competitor Brand name"/>
+    <aura:attribute name="allCompetitorNameList" type="Object" description="List of the names of the competitor  which will be used while selection based on the Competitor Brand list"/>
+    <aura:attribute name="competitorNameList" type="Object" description="List of the names of the competitor  which we will display in the competitor Name down list"/>
+    <aura:attribute name="allCategoryList" type="Object" description="List of the categories which will be used while selection based on the Competitor Brand list"/>
+    <aura:attribute name="categoryList" type="Object" description="List of categories which we will display in the categories  down list"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="imageId" type="String" description="Id of the selected Image uploaded"/>
+    <aura:attribute name="clusterId" type="String" description="Id of the selected Cluster"/>
+    <aura:attribute name="countryId" type="String" description="Id of the selected Country"/>
+    <aura:attribute name="townId" type="String" description="Id of the selected Town"/>
+    <aura:attribute name="reportTitle" type="String" description="Id of the selected reportTitle"/>
+    <aura:attribute name="ReportDescription" type="String" description="Id of the selected ReportDescription"/>
+    <aura:attribute name="AddNotifyUser" type="String" description="Id of the selected AddNotifyUser"/>
+    <aura:attribute name="Source" type="String" description="Id of the selected Source"/>
+    <aura:attribute name="CompetitorBrand" type="String" description="Id of the selected CompetitorBrand"/>
+    <aura:attribute name="CompetitorName" type="String" description="Id of the selected CompetitorName"/>
+    <aura:attribute name="Category" type="String" description="Id of the selected Category"/>
+    <aura:attribute name="Retailer" type="String" description="Id of the selected Retailer"/>
+    <aura:attribute name="Topic" type="String" description="Id of the selected Topic"/>
+    <aura:attribute name="SubTopic" type="String" description="Id of the selected SubTopic"/>
+    <aura:attribute name="retailerId" type="Id" description="Id of the selected Retailer"/>
+    <aura:handler name="change" value="{!v.competitorBrandId}" action="{!c.handleCompetitorBrandChange}"/>
+    <aura:registerEvent name="clearLookupIdEvent" type="c:AA_ClearLookupId"/> 
+    <aura:handler name="updateLookupIdEvent" event="c:AA_UpdateLookupId" action="{!c.handleIdUpdate}"/>
+    <aura:attribute name="parentId" type="Id"/>
+    <aura:attribute name="cafeteriaMenuDetail" type="String"/>
+    <aura:attribute name="globalClusterId" type="Id" description="Id of the 'global' Cluster"/>
+	<aura:attribute name="selectedUsers" type="Object[]" description="List of selected users"/>
+    <aura:handler name="updateUserListEvent" event="c:AA_UpdateUserList" action="{!c.handleSelectedUsers}"/>
+    <aura:attribute name="otherBrandName" type="String" default=" " description="Name of the other brand"/>
+    <aura:attribute name="otherCompetitorName" type="String" default=" " description="Name of the other competitor name"/>
+    <!--<aura:attribute name="CompetitorReport" type="AA_WrapperUtility.AgentAppDataRequest[]" />-->
+    
+    <style>
+    	
+    </style>
+    <div class="container slds-text-body--regular">
+        
+        <div class="row">
+            <table>
+                <tr>
+                    <td class="leftAlign">
+                        <!--<span>
+                            <ui:button label="Cancel" press="{!c.cancelFilter}"/>
+                        </span>-->
+                        <button class="slds-button slds-button--neutral" onclick="{!c.cancel}">Cancel</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="competitor-content">
+            
+            <label class="slds-form-element__label">Insert image or file </label>
+            <!-- <div class="slds-grid slds-wrap insert-img-file">
+                <div class="slds-col slds-size-1-of-2">
+                    <c:svg class="slds-icon-large" 
+                           xlinkHref="/resource/Lightning_designing_style/assets/icons/utility-sprite/svg/symbols.svg#image"  />
+                    <input type="file" accept="image/*;capture=camera" onchange="{!c.saveImage}" aura:id="fileCam" />  
+                </div>
+                <div class="slds-col slds-size-1-of-2">
+                    <c:svg class="slds-icon-large" 
+                           xlinkHref="/resource/Lightning_designing_style/assets/icons/utility-sprite/svg/symbols.svg#attach"  /> 
+                    <input type="file" accept="image/*" onchange="{!c.saveFile}" aura:id="fileImg"/> 
+                </div>
+            </div> -->
+            
+            <div class="slds-grid slds-wrap insert-img-file desktop-view insert-img-file">
+                <div class="slds-col slds-size--1-of-2 slds-p-vertical--small">
+                    <c:svg class="slds-icon--large" 
+                           xlinkHref="/resource/Lightning_designing_style/assets/icons/utility-sprite/svg/symbols.svg#image"  />
+                    <input type="file" accept="image/*;capture=camera" onchange="{!c.saveImage}" aura:id="fileCam" />  
+                	
+                    <!--<span href="#" class="center-block imageIcon cameraImg">
+                    	<input type="file" accept="image/*;capture=camera" onchange="{!c.saveImage}" aura:id="fileCam" />    
+                    </span>-->
+                </div>
+                <div class="slds-col slds-size--1-of-2 slds-p-vertical--small">
+                    <c:svg class="slds-icon--large" 
+                           xlinkHref="/resource/Lightning_designing_style/assets/icons/utility-sprite/svg/symbols.svg#attach"  /> 
+                    <input type="file" accept="image/*" onchange="{!c.saveFile}" aura:id="fileImg"/> 
+                </div>
+            </div>
+                
+            <div class="slds-grid slds-wrap insert-img-file mobile-view insert-img-file">
+                <div class="slds-col slds-size--1-of-1 slds-p-vertical--small">
+                    <c:svg class="slds-icon--large" 
+                           xlinkHref="/resource/Lightning_designing_style/assets/icons/utility-sprite/svg/symbols.svg#photo"  />
+                    <input type="file" accept="image/*;capture=camera" onchange="{!c.saveImage}" aura:id="fileCam" />  
+                </div>
+            </div>
+            
+            <div>
+                <img id="menuDetail" src="{!v.cafeteriaMenuDetail}" height="100" width="100"/>          
+            </div>     
+            
+            <div class="slds-form-element ">
+                <div class="slds-form-element__control">
+            		<ui:inputCheckbox aura:id="checkbox" label="Use my location "/>
+                </div>
+            </div>
+            
+    		<div class="slds-form-element ">
+                <span>
+                    <label class="slds-form-element__label"> Cluster </label>
+                    <div class="slds-form-element__control">
+                        <div class="slds-select_container">
+                            <ui:inputSelect aura:id="clusterId" change="{!c.onSelectChangeCountry}" class="slds-select inputWidth">
+                                <ui:inputSelectOption text="Select a Cluster" label="Select Cluster" value="true"/>
+                                <aura:iteration var="cluster" items="{!v.clusterList}">
+                                    <ui:inputSelectOption text="{!cluster.Id}" label="{!cluster.Name}" />
+                                </aura:iteration>
+                            </ui:inputSelect>
+                        </div>
+                    </div>
+                </span>
+            </div>
+        	<div class="slds-form-element" >
+                <span>
+                    <label class="slds-form-element__label"> Country </label>
+                    <div class="slds-form-element__control">
+                        <div class="slds-select_container">
+                            <ui:inputSelect aura:id="countryId"  disabled="{!v.check}" class="slds-select">
+                                <ui:inputSelectOption text="Select a Country" label="Select Country" value="true"/>
+                                <aura:iteration var="country" items="{!v.countryList}">
+                                    <ui:inputSelectOption text="{!country.Id}" label="{!country.Name}" />
+                                </aura:iteration>
+                            </ui:inputSelect>
+                        </div>
+                    </div>
+                </span>
+            </div>
+       		<div>
+        <div class="slds-form-element" >
+            <label class="slds-form-element__label"> Town </label>
+            <div class="slds-form-element__control">
+                <div class="slds-select_container">
+                    <ui:inputText aura:id="towns" disabled="{!v.check}" class="slds-input" placeholder="Town" value="{!v.townName}" />
+                </div>
+            </div>
+        </div>
+           
+            <div class="slds-form-element" >
+                <label class="slds-form-element__label"> Report title* </label>
+                <div class="slds-form-element__control">
+                    <div class="slds-select_container">
+                        <ui:inputText aura:id="reportTitles" class="slds-input" placeholder="Add brand,location and activity in the report Title " value="{!v.reportTitle}" required="true" />
+                    </div>
+                </div>
+            </div>
+            <div class="slds-form-element" >
+                <label class="slds-form-element__label">Report Description</label>
+                <div class="slds-form-element__control">
+                    <div class="slds-select_container">
+                        <ui:inputTextArea aura:id="reportDesc" class="slds-input"  value="{!v.reportDescription}" rows="3" required="true"/>
+                    </div>
+                </div>
+            </div>
+           <div class="slds-form-element form-element-cust" >
+               <div class="slds-form-element__control">
+                   <div class="slds-select_container">
+                       <c:AA_NotifyUser />
+                   </div>
+               </div>
+           </div>
+           
+           <div class="slds-form-element" >
+                            <label class="slds-form-element__label" > Source </label>
+                            <div  class="slds-form-element__control">
+                                <div class="slds-select_container">
+                                    <ui:inputSelect aura:id="Source" class="slds-select">
+                                        <ui:inputSelectOption text="Source" label="Select a source" value="true"/>
+                                        <aura:iteration var="Source" items="{!v.sourceList}">
+                                            <ui:inputSelectOption text="{!Source}" label="{!Source}"/>
+                                        </aura:iteration>
+                                    </ui:inputSelect>
+                                </div>
+                            </div>
+                        </div>
+                     <div>
+                        <c:AA_AutoComplete label="Competitor Brand" pluralLabel="Competitor Brands" placeholderValue="Type to search competitor Brand"  sObjAttributeName="competitorBrandId" sObjectRecordType="Competitor Brand" sObjectAPIName="aa_Agent_App_Competitor_Brand__c"/>
+                         
+                    </div>
+                    <aura:if isTrue="{!v.Brand}">
+                    <div class="slds-form-element" >
+                        <label class="slds-form-element__label"> Competitor Name </label>
+                        <div  class="slds-form-element__control">
+                            <div class="slds-select_container">
+                                <ui:inputSelect aura:id="competitorName"  class="slds-select">
+                                    <aura:if isTrue="{!v.disableOnBrandChange}">
+                                    <ui:inputSelectOption text="Select Competitor Name" label="Select Competitor Name" value="true"/>
+                                    </aura:if>
+                                    <aura:iteration var="competitorName" items="{!v.competitorNameList}">
+                                        <ui:inputSelectOption text="{!competitorName.Id}" label="{!competitorName.Name}"/>
+                                    </aura:iteration>
+                                </ui:inputSelect>
+                            </div>
+                       </div>                        
+                    </div>
+                    </aura:if>
+                    
+                <aura:if isTrue="{!v.others}">
+                    <div class="slds-form-element" >
+                        <label class="slds-form-element__label"> Enter Other Brand Name:</label>
+                        <div class="slds-form-element__control">
+                            <div class="slds-select_container">
+                                <ui:inputText aura:id="otherBrandNameId" class="slds-input"  value="{!v.otherBrandName}" required="true" />
+                            </div>
+                        </div>                 
+                    </div> 
+                    
+                    
+                    <div class="slds-form-element" >
+                        <label class="slds-form-element__label"> Enter Other Competitor Name:</label>
+                        <div class="slds-form-element__control">
+                            <div class="slds-select_container">
+                                <ui:inputText aura:id="otherCompetitorNameId" class="slds-input"  value="{!v.otherCompetitorName}" required="true" />
+                            </div>
+                        </div>               
+                    </div>  
+                    
+                </aura:if>
+                    <div class="slds-form-element" >
+                        <label class="slds-form-element__label"> Category </label>
+                        <div  class="slds-form-element__control">
+                            <div class="slds-select_container">
+                                <ui:inputSelect aura:id="category"  class="slds-select">
+                                    <aura:if isTrue="{!v.disableOnBrandChange}">
+                                    <ui:inputSelectOption text="Select Category" label="Select Category" value="true"/>
+                                    </aura:if>
+                                    <aura:iteration var="category" items="{!v.categoryList}">
+                                        <ui:inputSelectOption text="{!category.Id}" label="{!category.Name}"/>
+                                    </aura:iteration>
+                                </ui:inputSelect>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <c:AA_AutoComplete label="Retailer" pluralLabel="Retailers" placeholderValue="E.g Walmart" sObjAttributeName="retailerId" sObjectRecordType="null" sObjectAPIName="aa_Agent_Retailer__c" />               
+                    </div>
+                    <div class="slds-form-element" >
+                        <label class="slds-form-element__label"> Topic </label>
+                        <div class="slds-form-element__control">
+                            <div class="slds-select_container">
+                                <ui:inputSelect aura:id="topic" class="slds-select" change="{!c.onSelectTopic}">
+                                    <ui:inputSelectOption text="Select Topic" label="Select Topic" value="true"/>
+                                    <aura:iteration var="topic" items="{!v.topicList}">
+                                        <ui:inputSelectOption text="{!topic.Id}" label="{!topic.Name}"/>
+                                    </aura:iteration>
+                                </ui:inputSelect>
+                            </div>
+                        </div>
+                    </div>
+           <div class="slds-form-element" >
+                        <label class="slds-form-element__label"> Sub-topic </label>
+                        <div class="slds-form-element__control">
+                            <div class="slds-select_container">
+                                <ui:inputSelect aura:id="Subtopic" disabled="{!v.SubTopiccheck}" class="slds-select">
+                                    <aura:if isTrue="{!v.SubTopicNull}">
+                                    <!--<ui:inputSelectOption text="Select SubTopic" label="Select SubTopic" value="true" />-->
+                                    </aura:if>
+                                    <aura:iteration var="topic" items="{!v.subTopicList}">
+                                       <ui:inputSelectOption text="{!topic}" label="{!topic}" /> 
+                                    </aura:iteration>                                  
+                                </ui:inputSelect>
+                            </div>
+                        </div>
+                    </div>
+           </div>
+        </div>
+    
+        <div class="competitor-submit-btn">
+            <button class="slds-button slds-button--brand" onclick="{!c.submitReport}">Submit this Report</button>
+        </div>
+	</div>
+</aura:component>

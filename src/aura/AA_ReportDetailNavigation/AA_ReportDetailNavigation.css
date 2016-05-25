@@ -1,0 +1,43 @@
+.THIS .slds-has-dividers--right>.slds-list__item:after{
+	background-color: inherit;
+}
+
+.THIS .like-btn-reports{
+    width: 20px;
+    height: 20px;
+}
+
+.THIS .place-likes{
+	/* color: #d1d1d4; */
+    color: #4F6A92;
+    vertical-align: bottom;
+}
+
+.THIS .caption-likes{
+	vertical-align: bottom;
+}
+
+.THIS .place-region{
+    /*color: #d1d1d4;
+    background: white;
+    padding: 0 8px 8px 8px;*/
+    color: #4F6A92;
+    padding-left: 9px;
+}
+
+.THIS .report-titles{
+    padding-right: 10px;
+    padding-left: 9px;
+}
+
+.THIS .caption-media{
+    padding: 9px;
+}
+
+.THIS .comment-num{
+	width: 64%;
+}
+
+.THIS .reporter-name{
+	color: #0070D2;
+}

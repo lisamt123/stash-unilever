@@ -1,0 +1,64 @@
+<aura:component controller="AA_AutoCompleteController" >
+      <!-- Attributes -->
+    
+    <aura:attribute name="searchString" type="String"
+                    description="The search string to find." />
+    <aura:attribute name="selectedUser" type="Object[]"
+                    description="Collection of selected Users"/>
+   
+    <aura:attribute name="showTag" type="Boolean" default="false"/>
+    
+    
+    <!-- Events -->
+    <aura:registerEvent name="updateUserListEvent" type="c:AA_UpdateUserList"/>  
+    <aura:handler name="change" value="{!v.selectedUser}" action="{!c.sendUsers}"/>
+        
+    <!-- Lookup Markup : See https://www.lightningdesignsystem.com/components/lookups -->
+    <div > 
+        <div aura:id="lookup-div" class="slds-lookup slds-has-selection" data-select="multi" data-scope="single" data-typeahead="true">
+            <!-- This is the Input form markup -->
+            <div class="slds-form-element">
+                <label class="slds-form-element__label">Add Notify User</label>
+                    <ui:inputText aura:id="lookup" value="{!v.searchString}" placeholder="Type @ followed by user name" class="slds" updateOn="keyup" keyup="{!c.search}" />
+                    <!-- This markup is for when searching for a string -->
+            </div>
+            <!-- This is the lookup list markup. Initially it's hidden -->
+            
+            <div aura:id="lookuplist"  >
+                
+                <ul aura:id="lookuplist-items" class="hide">
+                    <aura:iteration items="{!v.matches}" var="match">
+                        <li >
+                            <a id="{!globalId + '_id_' + match.SObjectId}" onclick="{!c.select}">
+                                {!match.SObjectLabel}
+                            </a>
+                        </li>
+                    </aura:iteration>
+                </ul>
+                
+            </div>
+            
+            
+            <div class="slds-form-element notified-users">
+            <aura:if isTrue="{!v.showTag}">
+                <label class="slds-form-element__label">Users</label>
+                <aura:iteration var="selectedUser" items="{!v.selectedUser}">
+                    <div class="slds-pill_container slds-m-right--x-small slds-m-bottom--x-small">
+                        <a href="#void" class="slds-pill" >
+                           <!-- <ui:outputText class="slds-pill__label" value="{!selectedUser.Name}" />-->
+                            <span class="slds-pill__label">{!selectedUser.Name}</span> 
+                            <button class="slds-button slds-button--icon-bare slds-pill__remove" data-record="{!selectedUser.Id}"  label="{!selectedUser.Id}" onclick="{!c.remove}">
+                                <c:svg class="slds-button__icon" 
+                                       xlinkHref="/resource/Lightning_designing_style/assets/icons/utility-sprite/svg/symbols.svg#close"  />
+                               <span class="slds-assistive-text"  >Remove</span>
+                            </button>
+                        </a>
+                        
+                    </div>
+                </aura:iteration>  
+            </aura:if>
+            </div>
+        </div>
+    </div>
+    
+</aura:component>

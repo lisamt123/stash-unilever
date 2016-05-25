@@ -1,0 +1,27 @@
+/*Filter option page header bar left align the content*/
+.THIS .leftAlign {
+    padding-top: 10px;   
+    padding-left: 10px; 
+}
+/*Filter option page header bar Cancel button style*/
+.THIS .cancelButton{
+    padding: 5px 20px;
+    background: #D1D1D4;
+    border-radius: 5px;
+    autofocus:true;
+}
+
+.THIS.container {
+    padding-bottom: 10px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #f0f0f0;
+}
+.THIS .formHeader{
+    font-weight: normal; 
+    font-size: 15px; 
+    background: #FFFFFF;
+    width:100%;
+    height:50px;
+    border-bottom: 1px solid #D1D1D4;
+}

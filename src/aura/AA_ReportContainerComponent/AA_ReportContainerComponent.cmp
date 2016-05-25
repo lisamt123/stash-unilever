@@ -1,0 +1,10 @@
+<aura:component controller="AA_AgentAppService">
+    <aura:attribute name="objPassAgentReportsToNG" type="AA_WrapperClass.agentReportDetail" />
+    <div class="slds-grid slds-wrap slds-grow slds-scrollable--y reports-container">
+        <aura:iteration items="{!v.objPassAgentReportsToNG}" var="objReport" > 
+            <div class="slds-col slds-size--1-of-2 slds-small-size--1-of-2 slds-medium-size--1-of-3 slds-large-size--1-of-4">
+            	<c:AA_ReportDetailNavigation objReport="{!objReport}"/> 
+            </div>
+        </aura:iteration>
+	</div>
+</aura:component>

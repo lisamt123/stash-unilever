@@ -1,0 +1,81 @@
+.THIS .img-banner{
+	max-width: 100%;
+    max-height: 100%;
+    margin-bottom: 5px;
+    text-align: center;
+    position: relative;
+}
+
+.THIS .show-more-rslt-btn{
+    width: 100%;
+}
+
+.THIS .show-more-btn-div{
+	margin: 10px;
+}
+
+.THIS .all-report-filter img{
+	width: 30px;
+}
+.THIS .all-report-filter-other{
+	text-align: right;
+}
+.THIS .all-report-filter-other > img{
+	padding-left: 10px;
+}
+.THIS .report-detail{
+    padding: 4px;
+    background-color: #fff;
+    border: 5px solid #f0f0f0;
+    border-radius: 10px;
+}
+.THIS .user-image{
+    background:white;
+}
+.THIS .report-type-image{
+    position: relative;
+    width: 25px;
+    top: 25px;
+}
+.THIS .place{
+    /*font-size:1.2rem !important;*/
+    color: #D1D1D4;
+    background:white;
+    padding:0 8px 8px 8px;
+    /*border-bottom:1px solid #f0f0f0;*/
+}
+.THIS .caption{
+    background:white;
+    padding:8px;
+}
+.THIS .comment-num{
+	text-align:right;
+}
+.THIS .profile-detail{
+     margin-top: 2px;
+}
+.THIS .logo { position:absolute; left:0; top:0;width:10%;}
+
+/*toggleCss.css*/
+.THIS .toggle {
+    display: none;
+}
+
+.THIS .all-report-filter{
+    left: 67px;
+}
+
+.THIS .sort-filter-filters{
+    display: flex;
+}
+
+.THIS .sort-filter-cust .slds-dropdown{
+    top: 24px;
+}
+
+.THIS .sort-bold{
+    font-weight:bold;
+}
+.THIS .rest-body{
+    margin-bottom: -7px;
+}
