@@ -72,6 +72,7 @@ private class PBS_TPlanImportAssignmentsExt_Test{
                 cont.selectedFolderId = selectedFolderId;
                 PageReference ref;
                 ref = cont.loadReports();
+                System.assert(ref != null);
                 List<SelectOption> importReports = cont.importReports;
                 System.assert(importReports.size()>0);
                 List<Report> reports = [select id from Report where DeveloperName = 'Users_Logged_In_Last_Month']; // 'LMS_User_Import_Template'];
@@ -85,6 +86,7 @@ private class PBS_TPlanImportAssignmentsExt_Test{
 
                 try{
                     ref = cont.importRecords();
+                    
                     List<PBS_Training_Plan_Batch_Operation__c> tpbops = [select id from PBS_Training_Plan_Batch_Operation__c  where Training_Plan__c = :tplan.Id];
                     System.assertEquals(0,tpbops.size());
                     PBS_Training_Plan_Batch_Operation__c tpbo = tpbops.get(0);
@@ -136,6 +138,7 @@ private class PBS_TPlanImportAssignmentsExt_Test{
                     PBS_Training_Plan_Batch_Operation__c tpbo = tpbops.get(0);
                     List<PBS_Batch_Operation_Record__c> bops = [select id from PBS_Batch_Operation_Record__c where Training_Plan_Batch_Operation__c = :tpbo.Id];
                     System.assert(bops.size()>0);
+                     System.assert(ref != null);
                 }catch(Exception e){
                     //Eat the exception if this test fails, this could be to high data volumnes or incorrect data
                     System.debug(e.getMessage());
@@ -208,6 +211,7 @@ private class PBS_TPlanImportAssignmentsExt_Test{
                     PBS_Training_Plan_Batch_Operation__c tpbo = tpbops.get(0);
                     List<PBS_Batch_Operation_Record__c> bops = [select id from PBS_Batch_Operation_Record__c where Training_Plan_Batch_Operation__c = :tpbo.Id];
                     System.assert(bops.size()>0);
+                     System.assert(ref != null);
                 }catch(Exception e){
                     //Eat the exception if this test fails, this could be to high data volumnes or incorrect data
                     System.debug(e.getMessage());

@@ -67,7 +67,7 @@ private class PBS_TPlanAsgnmtExtensionNew_Test{
 
                 users = cont.users;
                 System.assert(users.size()>=12, 'User size is: ' + String.valueOf(users.size()) + ' lms : ' + String.valueOf(lmsUsers.size()));
-
+                System.assert(ref != null);
                 //Test import Assignmentes reference
                 PageReference importPage = cont.goToImportAssignments();
                 System.assert(importPage != null);
@@ -124,10 +124,11 @@ private class PBS_TPlanAsgnmtExtensionNew_Test{
                 //Do assignment
                 try{
                     ref = cont.assignUsers();
+                    System.assert(ref != null);
                 }catch(Exception e){
                     System.assert(false,'Assignment failed');
                 }
-
+                
             }
 
 
@@ -171,8 +172,10 @@ private class PBS_TPlanAsgnmtExtensionNew_Test{
                     ref = cont.assignSingleUser();
                     List<PBS_Training_Plan_Assignment__c> userTPlanAssignment = [select id from PBS_Training_Plan_Assignment__c where User__c = :lmsUsers.get(0).Id];
                     System.assert(userTPlanAssignment.size()>0, 'Assignment was not created');
+                    System.assert(ref != null);
                 }catch(Exception e){
                     System.assert(false,'Assignment failed');
+                    System.assert(ref != null);
                 }
 
             }
@@ -212,6 +215,7 @@ private class PBS_TPlanAsgnmtExtensionNew_Test{
                     ref = cont.assignSingleUser();
                     List<PBS_Training_Plan_Assignment__c> userTPlanAssignment = [select id from PBS_Training_Plan_Assignment__c where User__c = :lmsUsers.get(0).Id];
                     System.assert(userTPlanAssignment.size() == 0, 'Assignment was created for invalid user');
+                    System.assert(ref != null);
                 }catch(Exception e){
                     System.assert(false,'Assignment failed');
                 }

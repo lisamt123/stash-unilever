@@ -230,44 +230,11 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
                     </apex:outputPanel>
 
                     <script>
-                      var $jk = jQuery.noConflict();
-
-                      $jk(document).ready(function(){
-                          //color change on banner
-                          var bkcolor = "{!JSENCODE(tPlan.trainingPlan.Background_Color__c)}";
-                          var txtcolor = "{!JSENCODE(tPlan.trainingPlan.Text_Color__c)}";
-                          var bkimage = "url('{!JSENCODE(tPlan.trainingPlan.Background_Image_URL__c)}')";
-                          $jk('#hero-banner').css('background-color',bkcolor);
-                          $jk('#hero-banner').css('color',txtcolor);
-                          $jk('#hero-banner').css('background-image', bkimage);
-                          $jk('#feedback-rating').bind('rated', function() {
-                              var ratingValue = $jk(this).rateit('value');
-                              document.getElementById('{!$Component.feedbackForm.feedbackRating}').value = ratingValue;
-                          });
-                          $jk('#feedback-rating').bind('reset', function() {
-                              document.getElementById('{!$Component.feedbackForm.feedbackRating}').value = "";
-                          });
-                      });
-
-                        function launchLearning(learningURL,target){
-                            if(target == 'iframe'){
-                                $jk('#contentLink').unbind('click');
-                                $jk('#contentLink').click(function() {
-                                    almond.redirectHandlerWithTarget(learningURL,'_blank');
-                                });
-                                $jk('#contentIframe').prop('src',learningURL);
-                                $jk(".modal-backdrop").appendTo("#lms-template-wrapper");
-                                $jk('#myContentModal').modal('show');
-                            }else{
-                                almond.redirectHandler(learningURL);
-                            }
-                        }
-
-                        $jk('#myContentModal').on('hidden.bs.modal', function () {
-                            $jk('#contentIframe').prop('src','');
-                        });
-                    </script>
-
+                    
+                    <script>
+function launchLearning(n,e){"iframe"==e?($jk("#contentLink").unbind("click"),$jk("#contentLink").click(function(){almond.redirectHandlerWithTarget(n,"_blank")}),$jk("#contentIframe").prop("src",n),$jk(".modal-backdrop").appendTo("#lms-template-wrapper"),$jk("#myContentModal").modal("show")):almond.redirectHandler(n)}var $jk=jQuery.noConflict();$jk(document).ready(function(){var n="{!JSENCODE(tPlan.trainingPlan.Background_Color__c)}",e="{!JSENCODE(tPlan.trainingPlan.Text_Color__c)}",a="url('{!JSENCODE(tPlan.trainingPlan.Background_Image_URL__c)}')";$jk("#hero-banner").css("background-color",n),$jk("#hero-banner").css("color",e),$jk("#hero-banner").css("background-image",a),$jk("#feedback-rating").bind("rated",function(){var n=$jk(this).rateit("value");document.getElementById("{!$Component.feedbackForm.feedbackRating}").value=n}),$jk("#feedback-rating").bind("reset",function(){document.getElementById("{!$Component.feedbackForm.feedbackRating}").value=""})}),$jk("#myContentModal").on("hidden.bs.modal",function(){$jk("#contentIframe").prop("src","")});
+</script>
+                   
 
               </apex:define>
 

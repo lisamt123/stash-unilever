@@ -110,13 +110,14 @@ global with sharing class PBS_SFDCEncoder_CC {
     }
 
     private String ENCODE(String input, String[] fromArr, String[] toArr) {
-        if (input == null || input.length() == 0)
-            return input;
+        String strInput = input;
+        if (input == null || input.length() == 0){
+            return input;}
 
         for (Integer i = 0; i < fromArr.size(); ++i) {
-            input = input.replace(fromArr[i], toArr[i]);
+            strInput = input.replace(fromArr[i], toArr[i]);
         }
 
-        return input;
+        return strInput;
     }
 }
