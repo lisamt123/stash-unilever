@@ -11056,10 +11056,6 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Category</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>Category_Brands</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
