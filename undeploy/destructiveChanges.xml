@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
 	<types>
-		<members>NewArticleLikeHandler</members>
-		<members>NewsArticleCommentCount</members>
-		<members>NewsArticleHandler</members>
+		<members>WWP_LossTree_CC</members>
 		<name>ApexClass</name>
     </types>
 	<types>
-		<members>NewsArticleLike_after_insert</members>
-		<members>NewsArticleFeedComment_Trigger</members>
-		<members>NewsArticle_Before_After</members>
-		<members>NewsArticleFeedItem_Trigger</members>
-		<name>ApexTrigger</name>
+		<members>WWP_LossTreeUpdate_VF</members>
+		<name>ApexPage</name>
 	</types>
+	
 </Package>
