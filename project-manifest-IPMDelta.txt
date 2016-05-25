@@ -60,10 +60,6 @@ src/classes/IPM_UpdateGlobalProjectName_Test.cls
 src/classes/IPM_UpdateGlobalProjectName_Test.cls-meta.xml
 src/classes/IPM_ValidationHelper_Test.cls
 src/classes/IPM_ValidationHelper_Test.cls-meta.xml
-src/classes/UserTrigger_Test.cls
-src/classes/UserTrigger_Test.cls-meta.xml
-src/classes/UserTriggerHelper.cls
-src/classes/UserTriggerHelper.cls-meta.xml
 src/components
 src/components/IPM_Consumer_Evidence.component
 src/components/IPM_Consumer_Evidence.component-meta.xml
