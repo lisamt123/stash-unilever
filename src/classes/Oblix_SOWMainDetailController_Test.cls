@@ -184,7 +184,6 @@ private class Oblix_SOWMainDetailController_Test {
 
         ApexPAges.currentPage().getParameters().put(SOW_ID_PARAMETER_STRING, mSow.Id);
         Oblix_SowMainDetailController controllerInstance = new Oblix_SowMainDetailController();
-
         Test.startTest();
         
         PageReference initiateRO = controllerInstance.initiateRollOver();
@@ -243,9 +242,23 @@ private class Oblix_SOWMainDetailController_Test {
         ApexPAges.currentPage().getParameters().put(SOW_ID_PARAMETER_STRING, mSow.Id);
         Oblix_SowMainDetailController controllerInstance = new Oblix_SowMainDetailController();
 
+        
+
         Test.stopTest(); 
 
         System.assertEquals(false, controllerInstance.is_going_through_rollover);
+
+        System.runAs(superuser){
+            
+            if(controllerInstance.isAdmin ){
+                System.assert(controllerInstance.isAdmin);
+            }
+
+            if(controllerInstance.sow_approvers_defined ){
+                System.assert(controllerInstance.sow_approvers_defined );
+            }
+
+        }
 
     }
 

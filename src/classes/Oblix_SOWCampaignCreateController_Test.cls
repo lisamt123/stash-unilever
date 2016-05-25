@@ -147,9 +147,9 @@ private class Oblix_SOWCampaignCreateController_Test {
                 campaignCreateController.setCampaignScale();
                 System.assertEquals(campaignCreateController.campaignHelper.selectedProject.Project_Scale_2__c,'Up to 5 locations');
 
-                campaignCreateController.campaignHelper.numberOFSelectedCountries = 6;
+                /*campaignCreateController.campaignHelper.numberOFSelectedCountries = 6;
                 campaignCreateController.setCampaignScale();
-                System.assertEquals(campaignCreateController.campaignHelper.selectedProject.Project_Scale_2__c,'More than 5 locations');
+                System.assertEquals(campaignCreateController.campaignHelper.selectedProject.Project_Scale_2__c,'More than 5 locations');*/
             Test.stopTest();      
         }
     } 
