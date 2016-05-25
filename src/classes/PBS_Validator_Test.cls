@@ -72,10 +72,10 @@ private class PBS_Validator_Test {
     private static final string ONE_TXT = '1.txt';
     
     private class CreditCardTest {
-        public String cardStr;
-        public String errText;
-        public Boolean allowNull;
-        public Boolean expectedResult;
+        private String cardStr;
+        private String errText;
+        private Boolean allowNull;
+        private Boolean expectedResult;
 
         public CreditCardTest(String cardStr, String errText, Boolean allowNull, Boolean expectedResult) {
             this.cardStr = cardStr;
@@ -145,10 +145,10 @@ private class PBS_Validator_Test {
                 // if no exception - check if we are expecting a valid test
                 System.assertEquals(true,t.expectedResult, t.errText);
                 // also make sure return value is equal to input unless null if input was empty and that is allowed
-                if (ret != null)
-                    System.assert(ret.equals(t.cardStr), t.errText);
-                else
-                    System.assert(t.allowNull && t.cardStr == null, t.errText);
+                if (ret != null){
+                    System.assert(ret.equals(t.cardStr), t.errText);}
+                else{
+                    System.assert(t.allowNull && t.cardStr == null, t.errText);}
             } catch (Exception e) {
                 // if exception - check if we are expecting an invalid test
                 System.assertEquals(false,t.expectedResult, t.errText);
@@ -157,11 +157,11 @@ private class PBS_Validator_Test {
     }
 
     private class DateTest {
-        public String dateStr;
-        public String dateFormat;
-        public String errText;
-        public Boolean allowNull;
-        public Boolean expectedResult;
+        private String dateStr;
+        private String dateFormat;
+        private String errText;
+        private Boolean allowNull;
+        private Boolean expectedResult;
 
         public DateTest(String dateStr, String dateFormat, String errText, Boolean allowNull, Boolean expectedResult) {
             this.dateStr = dateStr;
@@ -233,10 +233,10 @@ private class PBS_Validator_Test {
                 // if no exception - check if we are expecting a valid test
                 System.assertEquals(true,t.expectedResult, t.errText);
                 // also make sure return value is equal to input unless null if input was empty and that is allowed
-                if (ret != null)
-                    System.assert(ret.equals(t.dateStr), t.errText);
-                else
-                    System.assert(t.allowNull && t.dateStr == null, t.errText);
+                if (ret != null){
+                    System.assert(ret.equals(t.dateStr), t.errText);}
+                else{
+                    System.assert(t.allowNull && t.dateStr == null, t.errText);}
             } catch (Exception e) {
                 // if exception - check if we are expecting an invalid test
                 System.assertEquals(false,t.expectedResult, t.errText);
@@ -245,12 +245,12 @@ private class PBS_Validator_Test {
     }
 
     private class DoubleTest {
-        public String inputStr;
-        public Double minValue;
-        public Double maxValue;
-        public String errText;
-        public Boolean allowNull;
-        public Boolean expectedResult;
+        private String inputStr;
+        private Double minValue;
+        private Double maxValue;
+        private String errText;
+        private Boolean allowNull;
+        private Boolean expectedResult;
 
         public DoubleTest(String inputStr, Double minValue, Double maxValue, String errText, Boolean allowNull, Boolean expectedResult) {
             this.inputStr = inputStr;
@@ -299,10 +299,10 @@ private class PBS_Validator_Test {
                 // if no exception - check if we are expecting a valid test
                 System.assertEquals(true,t.expectedResult, t.errText);
                 // also make sure return value is equal to Double.valueOf(input) unless null if input was empty and that is allowed
-                if (ret != null)
-                    System.assert(ret == Double.valueOf(t.inputStr), t.errText);
-                else
-                    System.assert(t.allowNull && (t.inputStr == null || t.inputStr.length() == 0), t.errText);
+                if (ret != null){
+                    System.assert(ret == Double.valueOf(t.inputStr), t.errText);}
+                else{
+                    System.assert(t.allowNull && (t.inputStr == null || t.inputStr.length() == 0), t.errText);}
             } catch (Exception e) {
                 // if exception - check if we are expecting an invalid test
                 System.assertEquals(false,t.expectedResult, t.errText);
@@ -311,12 +311,12 @@ private class PBS_Validator_Test {
     }
 
     private class IntTest {
-        public String inputStr;
-        public Integer minValue;
-        public Integer maxValue;
-        public String errText;
-        public Boolean allowNull;
-        public Boolean expectedResult;
+        private String inputStr;
+        private Integer minValue;
+        private Integer maxValue;
+        private String errText;
+        private Boolean allowNull;
+        private Boolean expectedResult;
 
         public IntTest(String inputStr, Integer minValue, Integer maxValue, String errText, Boolean allowNull, Boolean expectedResult) {
             this.inputStr = inputStr;
@@ -366,10 +366,10 @@ private class PBS_Validator_Test {
                 // if no exception - check if we are expecting a valid test
                 System.assertEquals(true,t.expectedResult, t.errText);
                 // also make sure return value is equal to Integer.valueOf(input) unless null if input was empty and that is allowed
-                if (ret != null)
-                    System.assert(ret == Integer.valueOf(t.inputStr), t.errText);
-                else
-                    System.assert(t.allowNull && (t.inputStr == null || t.inputStr.length() == 0), t.errText);
+                if (ret != null){
+                    System.assert(ret == Integer.valueOf(t.inputStr), t.errText);}
+                else{
+                    System.assert(t.allowNull && (t.inputStr == null || t.inputStr.length() == 0), t.errText);}
             } catch (Exception e) {
                 // if exception - check if we are expecting an invalid test
                 System.assertEquals(false,t.expectedResult, t.errText);
@@ -378,12 +378,12 @@ private class PBS_Validator_Test {
     }
 
     private class NumberTest {
-        public String inputStr;
-        public Long minValue;
-        public Long maxValue;
-        public String errText;
-        public Boolean allowNull;
-        public Boolean expectedResult;
+        private String inputStr;
+        private Long minValue;
+        private Long maxValue;
+        private String errText;
+        private Boolean allowNull;
+        private Boolean expectedResult;
 
         public NumberTest(String inputStr, Long minValue, Long maxValue, String errText, Boolean allowNull, Boolean expectedResult) {
             this.inputStr = inputStr;
@@ -431,10 +431,10 @@ private class PBS_Validator_Test {
                 // if no exception - check if we are expecting a valid test
                 System.assertEquals(true,t.expectedResult, t.errText);
                 // also make sure return value is equal to Double.valueOf(input) unless null if input was empty and that is allowed
-                if (ret != null)
-                    System.assert(ret == Double.valueOf(t.inputStr), t.errText);
-                else
-                    System.assert(t.allowNull && (t.inputStr == null || t.inputStr.length() == 0), t.errText);
+                if (ret != null){
+                    System.assert(ret == Double.valueOf(t.inputStr), t.errText);}
+                else{
+                    System.assert(t.allowNull && (t.inputStr == null || t.inputStr.length() == 0), t.errText);}
             } catch (Exception e) {
                 // if exception - check if we are expecting an invalid test
                 System.assertEquals(false,t.expectedResult, t.errText);
@@ -443,10 +443,10 @@ private class PBS_Validator_Test {
     }
 
     private class ListItemTest {
-        public String inputStr;
-        public Set<String> validItems;
-        public String errText;
-        public Boolean expectedResult;
+        private String inputStr;
+        private Set<String> validItems;
+        private String errText;
+        private Boolean expectedResult;
 
         public ListItemTest(String inputStr, Set<String> validItems, String errText, Boolean expectedResult) {
             this.inputStr = inputStr;
@@ -501,10 +501,10 @@ private class PBS_Validator_Test {
                 // if no exception - check if we are expecting a valid test
                 System.assertEquals(true,t.expectedResult, t.errText);
                 // also make sure return value is equal to input unless null if input was also null
-                if (ret != null)
-                    System.assert(ret.equals(t.inputStr), t.errText);
-                else
-                    System.assert(ret == t.inputStr, t.errText);
+                if (ret != null){
+                    System.assert(ret.equals(t.inputStr), t.errText);}
+                else{
+                    System.assert(ret == t.inputStr, t.errText);}
             } catch (Exception e) {
                 // if exception - check if we are expecting an invalid test
                 System.assertEquals(false,t.expectedResult, t.errText);
@@ -513,11 +513,11 @@ private class PBS_Validator_Test {
     }
 
     private class FileContentTest {
-        public String inputStr;
-        public Integer maxBytes;
-        public String errText;
-        public Boolean allowNull;
-        public Boolean expectedResult;
+        private String inputStr;
+        private Integer maxBytes;
+        private String errText;
+        private Boolean allowNull;
+        private Boolean expectedResult;
 
         public FileContentTest(String inputStr, Integer maxBytes, String errText, Boolean allowNull, Boolean expectedResult) {
             this.inputStr = inputStr;
@@ -555,10 +555,10 @@ private class PBS_Validator_Test {
                 // if no exception - check if we are expecting a valid test
                 System.assertEquals(true,t.expectedResult, t.errText);
                 // also make sure return value is equal to input unless null if input was empty and that is allowed
-                if (ret != null)
-                    System.assert(ret.equals(t.inputStr), t.errText);
-                else
-                    System.assert(t.allowNull && (t.inputStr == null || t.inputStr.length() == 0), t.errText);
+                if (ret != null){
+                    System.assert(ret.equals(t.inputStr), t.errText);}
+                else{
+                    System.assert(t.allowNull && (t.inputStr == null || t.inputStr.length() == 0), t.errText);}
             } catch (Exception e) {
                 // if exception - check if we are expecting an invalid test
                 System.assertEquals(false,t.expectedResult, t.errText);
@@ -567,11 +567,11 @@ private class PBS_Validator_Test {
     }
 
     private class PrintableTest {
-        public String inputStr;
-        public Integer maxBytes;
-        public String errText;
-        public Boolean allowNull;
-        public Boolean expectedResult;
+        private String inputStr;
+        private Integer maxBytes;
+        private String errText;
+        private Boolean allowNull;
+        private Boolean expectedResult;
 
         public PrintableTest(String inputStr, Integer maxBytes, String errText, Boolean allowNull, Boolean expectedResult) {
             this.inputStr = inputStr;
@@ -618,10 +618,10 @@ private class PBS_Validator_Test {
                 // if no exception - check if we are expecting a valid test
                 System.assertEquals(true,t.expectedResult, t.errText);
                 // also make sure return value is equal to input unless null if input was empty and that is allowed
-                if (ret != null)
-                    System.assert(ret.equals(t.inputStr), t.errText);
-                else
-                    System.assert(t.allowNull && (t.inputStr == null || t.inputStr.length() == 0), t.errText);
+                if (ret != null){
+                    System.assert(ret.equals(t.inputStr), t.errText);}
+                else{
+                    System.assert(t.allowNull && (t.inputStr == null || t.inputStr.length() == 0), t.errText);}
             } catch (Exception e) {
                 // if exception - check if we are expecting an invalid test
                 System.assertEquals(false,t.expectedResult, t.errText);
@@ -630,10 +630,10 @@ private class PBS_Validator_Test {
     }
 
     private class FileNameDefaultExtensionsTest {
-        public String inputStr;
-        public String errText;
-        public Boolean allowNull;
-        public Boolean expectedResult;
+        private String inputStr;
+        private String errText;
+        private Boolean allowNull;
+        private Boolean expectedResult;
 
         public FileNameDefaultExtensionsTest(String inputStr, String errText, Boolean allowNull, Boolean expectedResult) {
             this.inputStr = inputStr;
@@ -685,10 +685,10 @@ private class PBS_Validator_Test {
                 // if no exception - check if we are expecting a valid test
                 System.assertEquals(true,t.expectedResult, t.errText);
                 // also make sure return value is equal to input unless null if input was empty and that is allowed
-                if (ret != null)
-                    System.assert(ret.equals(t.inputStr), t.errText);
-                else
-                    System.assert(t.allowNull && (t.inputStr == null || t.inputStr.length() == 0), t.errText);
+                if (ret != null){
+                    System.assert(ret.equals(t.inputStr), t.errText);}
+                else{
+                    System.assert(t.allowNull && (t.inputStr == null || t.inputStr.length() == 0), t.errText);}
             } catch (Exception e) {
                 // if exception - check if we are expecting an invalid test
                 System.assertEquals(false,t.expectedResult, t.errText);
@@ -697,11 +697,11 @@ private class PBS_Validator_Test {
     }
 
     private class FileNameTest {
-        public String inputStr;
-        public List<String> fileExtensions;
-        public String errText;
-        public Boolean allowNull;
-        public Boolean expectedResult;
+        private String inputStr;
+        private List<String> fileExtensions;
+        private String errText;
+        private Boolean allowNull;
+        private Boolean expectedResult;
 
         public FileNameTest(String inputStr, List<String> fileExtensions, String errText, Boolean allowNull, Boolean expectedResult) {
             this.inputStr = inputStr;
@@ -763,10 +763,10 @@ private class PBS_Validator_Test {
                 // if no exception - check if we are expecting a valid test
                 System.assertEquals(true,t.expectedResult, t.errText);
                 // also make sure return value is equal to input unless null if input was empty and that is allowed
-                if (ret != null)
-                    System.assert(ret.equals(t.inputStr), t.errText);
-                else
-                    System.assert(t.allowNull && (t.inputStr == null || t.inputStr.length() == 0), t.errText);
+                if (ret != null){
+                    System.assert(ret.equals(t.inputStr), t.errText);}
+                else{
+                    System.assert(t.allowNull && (t.inputStr == null || t.inputStr.length() == 0), t.errText);}
             } catch (Exception e) {
                 // if exception - check if we are expecting an invalid test
                 System.assertEquals(false,t.expectedResult, t.errText);
@@ -775,11 +775,11 @@ private class PBS_Validator_Test {
     }
 
     private class HttpRequestParamsTest {
-        public String inputStr;
-        public Set<String> requiredParams;
-        public Set<String> optionalParams;
-        public String errText;
-        public Boolean expectedResult;
+        private String inputStr;
+        private Set<String> requiredParams;
+        private Set<String> optionalParams;
+        private String errText;
+        private Boolean expectedResult;
 
         public HttpRequestParamsTest(String inputStr, Set<String> requiredParams, Set<String> optionalParams, String errText, Boolean expectedResult) {
             this.inputStr = inputStr;
@@ -830,8 +830,8 @@ private class PBS_Validator_Test {
     static testMethod void testValidatorIsValidHttpRequestParams() {
         for (HttpRequestParamsTest t : httpRequestParamsTests) {
                 PageReference pr = null;
-                if (t.inputStr != null)
-                    pr = new PageReference(t.inputStr);
+                if (t.inputStr != null){
+                    pr = new PageReference(t.inputStr);}
             System.assertEquals(t.expectedResult, PBS_ESAPI_CC.validator().isValidHTTPRequestParameterSet(pr, t.requiredParams, t.optionalParams), t.errText);
         }
     }
@@ -840,8 +840,8 @@ private class PBS_Validator_Test {
         for (HttpRequestParamsTest t : httpRequestParamsTests) {
             try {
                 PageReference pr = null;
-                if (t.inputStr != null)
-                    pr = new PageReference(t.inputStr);
+                if (t.inputStr != null){
+                    pr = new PageReference(t.inputStr);}
                 PBS_ESAPI_CC.validator().assertValidHTTPRequestParameterSet(pr, t.requiredParams, t.optionalParams);
                 // if no exception - check if we are expecting a valid test
                 System.assertEquals(true,t.expectedResult, t.errText);
@@ -853,9 +853,9 @@ private class PBS_Validator_Test {
     }
 
     private class RedirectDefaultDomainTest {
-        public String inputStr;
-        public String errText;
-        public Boolean expectedResult;
+        private String inputStr;
+        private String errText;
+        private Boolean expectedResult;
 
         public RedirectDefaultDomainTest(String inputStr, String errText, Boolean expectedResult) {
             this.inputStr = inputStr;
@@ -947,10 +947,10 @@ private class PBS_Validator_Test {
     }
 
     private class RedirectTest {
-        public String inputStr;
-        public String currentDomain;
-        public String errText;
-        public Boolean expectedResult;
+        private String inputStr;
+        private String currentDomain;
+        private String errText;
+        private Boolean expectedResult;
 
         public RedirectTest(String inputStr, String currentDomain, String errText, Boolean expectedResult) {
             this.inputStr = inputStr;
