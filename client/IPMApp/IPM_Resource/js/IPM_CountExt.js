@@ -137,11 +137,11 @@ jq(document).ready(function() {
             }
         }
     }
-    var walk_the_DOM = function walk(node, func) {
+    var walk_the_DOM = function (node, func) {
         func(node);
         node = node.firstChild;
         while (node) {
-            walk(node, func);
+            walk_the_DOM(node, func);
             node = node.nextSibling;
         }
     };
