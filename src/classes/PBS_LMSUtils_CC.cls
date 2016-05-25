@@ -211,20 +211,22 @@ public with sharing class PBS_LMSUtils_CC{
     }
 
     public static String updateURLCommunityPath(String urlPath){
+        String strURLPath = urlPath;
         if(getCurrentNetworkId() != null){
             String networkURLPath = getCurrentNetworkURLPath();
             if(!String.isBlank(networkURLPath)){
-                urlPath = '/'+getCurrentNetworkURLPath()+urlPath;
+                strURLPath = '/'+getCurrentNetworkURLPath()+urlPath;
             }
         }
-        return urlPath;
+        return strURLPath;
     }
 
     public static String updateURLCommunityPath(String urlPath, String communityName){
+        String strURLPath = urlPath;
         if(!String.isBlank(communityName)){
-            urlPath = '/'+communityName+urlPath;
+            strURLPath = '/'+communityName+urlPath;
         }
-        return urlPath;
+        return strURLPath;
     }
 
     public static String getTrainingPlanDetailRetURL(Map<String, String> params){
