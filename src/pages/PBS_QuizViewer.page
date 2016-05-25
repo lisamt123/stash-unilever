@@ -69,40 +69,10 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
                     <apex:outputPanel id="mainPanel" rendered="{!assignment.id != null}">
 
-                        <script>
+                      <script>
+function setFocusOnLoad(){}function strcontains(e,n){for(var t=e.split(";"),m=0;m<t.length;m++)if(t[m]==n)return!0;return!1}function multiset(e,n,t){for(var m=document.getElementsByName(e)[0],a=document.getElementsByName(n)[0],u=document.getElementsByName(t.name),l=document.getElementsByName(t.name+"label"),o="",c="",r=0;r<u.length;r++)u[r].checked&&(o=o+u[r].value+";",c=c+l[r].innerHTML+";");m.value=o,a.value=c}
+</script>
 
-                            function setFocusOnLoad(){}
-
-                            function strcontains(aa,bbb) {
-                                var a = aa.split(';');
-                                for ( var i = 0;i<a.length; i++){
-                                    if (a[i] == bbb){
-                                        return true;
-                                    }
-                                }
-                                return false;
-                            }
-
-                            function multiset( which,selectresponse, ele ) {
-                                var target = document.getElementsByName(which)[0];
-                                var targetSelectResponse = document.getElementsByName(selectresponse)[0];
-                                var source = document.getElementsByName(ele.name); // list of checkboxes
-                                var sourceLabels = document.getElementsByName(ele.name+'label'); // list of labels
-
-                                var st ='';
-                                var stLabel = '';
-                                for (var i =0; i < source.length; i++) {
-                                    if (source[i].checked){
-                                        st = st+source[i].value+';';
-                                        stLabel = stLabel+sourceLabels[i].innerHTML+';';
-                                    }
-                                }
-
-                                target.value = st;
-                                targetSelectResponse.value = stLabel;
-                            }
-
-                        </script>
 
                         <h3>{!questionLine.Quiz__r.Name} - {!questionLine.Name}</h3>
                         <apex:outputPanel layout="none" rendered="{!questionLine.Description__c != null}">
