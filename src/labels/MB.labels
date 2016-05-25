@@ -1,49 +1,47 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
-    <labels>
-        <fullName>MB_Domestic</fullName>
-        <categories>Chart labels</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>MB_Domestic</shortDescription>
-        <value>DOMESTIC</value>
-    </labels>
-    <labels>
-        <fullName>MB_International</fullName>
-        <categories>Chart labels</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>MB_International</shortDescription>
-        <value>INTERNATIONAL</value>
-    </labels>
-    <labels>
-        <fullName>MB_Mobile_billing</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>MB Mobile billing</shortDescription>
-        <value>Mobile Billing</value>
-    </labels>
-    <labels>
-        <fullName>MB_Username</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Current User Name</shortDescription>
-        <value>$user.name</value>
-    </labels>
-    <labels>
-        <fullName>MB_You</fullName>
-        <categories>Chart labels</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>MB_You</shortDescription>
-        <value>YOU</value>
-    </labels>
-    <labels>
-        <fullName>MB_Your_Colle</fullName>
-        <categories>Chart labels</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>MB_Your_Colleagues</shortDescription>
-        <value>YOUR COLLEAGUES</value>
-    </labels>
-</CustomLabels>
+<labels>
+	<fullName>MB_Domestic</fullName>
+	<categories>Chart labels</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>MB_Domestic</shortDescription>
+	<value>DOMESTIC</value>
+</labels>
+<labels>
+	<fullName>MB_International</fullName>
+	<categories>Chart labels</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>MB_International</shortDescription>
+	<value>INTERNATIONAL</value>
+</labels>
+<labels>
+	<fullName>MB_Mobile_billing</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>MB Mobile billing</shortDescription>
+	<value>Mobile Billing</value>
+</labels>
+<labels>
+	<fullName>MB_Username</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>Current User Name</shortDescription>
+	<value>$user.name</value>
+</labels>
+<labels>
+	<fullName>MB_You</fullName>
+	<categories>Chart labels</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>MB_You</shortDescription>
+	<value>YOU</value>
+</labels>
+<labels>
+	<fullName>MB_Your_Colle</fullName>
+	<categories>Chart labels</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>MB_Your_Colleagues</shortDescription>
+	<value>YOUR COLLEAGUES</value>
+</labels>
+
