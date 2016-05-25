@@ -29,6 +29,7 @@ src/tabs/Amr_Summary_Plan__c.tab
 src/tabs/Admin.tab
 src/tabs/CAP_Jobs_Portfolio.tab
 src/tabs/RAP_Jobs_Portfolio.tab
+src/tabs/Saving_Summary.tab
 src
 src/documents
 src/documents/Amr_AdManager_Image
