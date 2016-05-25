@@ -174,11 +174,11 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
             campaignHelper.selectedProject.Project_Scale_2__c = 'Up to 3 locations';
         } else if (campaignHelper.numberOFSelectedCountries > 3 && campaignHelper.numberOFSelectedCountries <= 4) {
             campaignHelper.selectedProject.Project_Scale_2__c = 'Up to 4 locations';
-        } else if (campaignHelper.numberOFSelectedCountries > 4 && campaignHelper.numberOFSelectedCountries <= 5) {
+        } else {// if (campaignHelper.numberOFSelectedCountries > 4 && campaignHelper.numberOFSelectedCountries <= 5) {
             campaignHelper.selectedProject.Project_Scale_2__c = 'Up to 5 locations';
-        } else if (campaignHelper.numberOFSelectedCountries > 5) {
-            campaignHelper.selectedProject.Project_Scale_2__c = 'More than 5 locations';
-        }
+        } //} else if (campaignHelper.numberOFSelectedCountries > 5) {
+        //    campaignHelper.selectedProject.Project_Scale_2__c = 'More than 5 locations';
+        //}
         System.DEBUG('Project Scale : ' + campaignHelper.selectedProject.Project_Scale_2__c);
     }
 
@@ -300,6 +300,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
             if (!campaignHelper.onlyShowProjectedChevron) {
                 setInvestmentPriority();
             }
+<<<<<<< HEAD
 
             System.debug('### saveProjectAction');
             System.debug('### campaignHelper.isEdit: ' + campaignHelper.isEdit);
@@ -311,12 +312,24 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
                 // attributes in NFY campaign is required
                 campaignHelper.selectedProject.Campaign_Attributes_Updated__c = true;
                 update campaignHelper.selectedProject;
+=======
+
+            System.debug('### saveProjectAction');
+            System.debug('### campaignHelper.isEdit: ' + campaignHelper.isEdit);
+            System.debug('### campaignHelper.doClone: ' + campaignHelper.doClone);
+            System.debug('### campaignHelper.is_NFY_campaign_in_the_middle_of_rollover: ' + campaignHelper.is_NFY_campaign_in_the_middle_of_rollover);
+
+            campaignHelper.selectedProject.Campaign_Attributes_Updated__c = true;
+
+            if (campaignHelper.isEdit && !campaignHelper.doClone && !campaignHelper.is_NFY_campaign_in_the_middle_of_rollover) { //Editing campaign that is not NFY and in the middle of Roll Over
+>>>>>>> develop
 
                 setProjectInAgencyHubSplitList(campaignHelper.selectedProject.Id);
                 if (agencyHubSplitListToDelete != null && !agencyHubSplitListToDelete.isEmpty()) delete agencyHubSplitListToDelete;
                 if (agencyHubSplitListToUpdate != null && !agencyHubSplitListToUpdate.isEmpty()) update agencyHubSplitListToUpdate;
                 if (agencyHubSplitListToInsert != null && !agencyHubSplitListToInsert.isEmpty()) insert agencyHubSplitListToInsert;
 
+                update campaignHelper.selectedProject;
                 return reDirectToCampaignSummary();
 
             } else if(!campaignHelper.doClone && !campaignHelper.is_NFY_campaign_in_the_middle_of_rollover){ //New campaign

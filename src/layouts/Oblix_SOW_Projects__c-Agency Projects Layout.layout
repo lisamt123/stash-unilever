@@ -18,6 +18,7 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Campaign_Status__c</field>
+<<<<<<< HEAD
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -38,6 +39,36 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Sync_Step__c</field>
+=======
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Percentage_of_Fee_for_Next_FY__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Asset_Deliverables__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Campaign_Countries__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Campaign_Attributes_Updated__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Sync_Step__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Record_Locked_Sync__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Is_B_Fwd_Campaign__c</field>
+>>>>>>> develop
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -248,9 +279,23 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+<<<<<<< HEAD
                 <field>Fees_Paid_PFY__c</field>
             </layoutItems>
             <layoutItems>
+=======
+                <field>Fees_Total_PFY__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Fees_Paid_PFY__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Fees_Outstanding_between_CFY_PFY__c</field>
+            </layoutItems>
+            <layoutItems>
+>>>>>>> develop
                 <behavior>Edit</behavior>
                 <field>Fees_PFY_Paid_Using_CFY_Calc__c</field>
             </layoutItems>
@@ -353,7 +398,7 @@
     </layoutSections>
     <layoutSections>
         <customLabel>false</customLabel>
-        <detailHeading>false</detailHeading>
+        <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
         <label>System Information</label>
         <layoutColumns>
@@ -362,8 +407,13 @@
                 <field>Enforce_Trigger_Update__c</field>
             </layoutItems>
             <layoutItems>
+<<<<<<< HEAD
                 <behavior>Edit</behavior>
                 <field>Campaign_Hub_Summary__c</field>
+=======
+                <behavior>Readonly</behavior>
+                <field>Enforce_Trigger_Update_Assets__c</field>
+>>>>>>> develop
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -371,6 +421,13 @@
                 <behavior>Readonly</behavior>
                 <field>Total_Locations__c</field>
             </layoutItems>
+<<<<<<< HEAD
+=======
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Campaign_Hub_Summary__c</field>
+            </layoutItems>
+>>>>>>> develop
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
@@ -440,6 +497,10 @@
         <fields>Option_Name__c</fields>
         <fields>Quantity__c</fields>
         <fields>Asset_Score__c</fields>
+<<<<<<< HEAD
+=======
+        <fields>Enforce_Trigger_Update__c</fields>
+>>>>>>> develop
         <relatedList>Oblix_Project_Assets__c.Agency_Projects__c</relatedList>
     </relatedLists>
     <relatedLists>

@@ -29,7 +29,11 @@ function drawChart() {
             console.log(JSON.stringify(data));
             var options = {
                 pieHole: 0.5,
+<<<<<<< HEAD
                 colors: ['#FFC62C', '#B187B8', '#CEDC02', '#E46CB0', '#05B1A9'],
+=======
+                colors: ['#B187B8', '#CEDC02', '#E46CB0', '#05B1A9','#FFC62C'],
+>>>>>>> develop
                 legend: {position : 'none', alignment : 'center'},
                 chartArea: {width: '75%', height: '75%'},
                 fontSize: 15

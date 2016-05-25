@@ -1,38 +1,25 @@
 <apex:page controller="Amr_CommonController_CC">    
     <apex:stylesheet value="{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/css/common-header.css')}" />
     
-    <style type='text/css'>
-        /*
-        .inactivemask {
-            height: 100%;
-            position: absolute;
-            width: 100%;
-            z-index:9999;
-            background-color:#F8F8F8;
-            opacity:0.5;
-        }
-        */
+    <style type='text/css'>        
         @media all and (-ms-high-contrast: none),(-ms-high-contrast: active) {
             .done-for-today {
                 line-height:20px;
-            }
-            /*.inactivemask {           
-                opacity:0.8 !important;
-                 background:#FFFFFF !important; 
-                 filter:alpha(opacity=0.8) !important;
-            }
-            */
+            }            
         }
+        .lower-container-logo {
+           	display:none;
+         }
+         .lower-container {
+		    height: 20px !important;
+		}
     </style>
     
     <!--[if IE]>
     <style type='text/css'>
         .done-for-today {
             line-height:20px;
-        }
-      //  .inactivemask {           
-        //    opacity:1 !important;
-    //  }
+        }      
     </style>
     <![endif]-->
     
@@ -82,42 +69,7 @@
         .bodyDiv {        
             background-image: url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/pattern-2.png')}");            
         }                  
-        .holder-class label {
-            float: left;
-            margin: 0;
-        }     
-        .holder-class-star {
-            line-height:40px;
-        }
-        .margin-top3 {
-        	margin-top:3px;
-        }
-        .margin-top2 {
-        	margin-top:2px;
-        }
-        .margin-top40imp {
-        	margin-top:40px !important;
-        }
-        .margin-top40 {
-        	margin-top:40px;
-        }
-        .height90 {
-        	height:90px;
-        }
-        .zen .zen-noTabOrganizer .zen-tabMenu {
-		    padding-bottom: 0px !important;
-		}		
-		#Maintab {
-		    background: #FFF none repeat scroll 0 0;
-		    margin-left: 0px !important;
-		    padding-left: 10px;
-		}
-		.padding-top15 {
-			padding-top:15px;
-		}
-		.padding-top30 {
-			padding-top:30px;
-		}
+        
     </style>
     <apex:form >
     <div class="header-container">

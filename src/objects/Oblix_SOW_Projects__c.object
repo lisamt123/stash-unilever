@@ -385,6 +385,24 @@
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
+<<<<<<< HEAD
+=======
+        <displayedFields>
+            <field>Financial_Year__r.Sync_Status__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Name_Suffix__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Record_Locked_Sync__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+>>>>>>> develop
         <label>Oblix_Campaign_Summary</label>
     </fieldSets>
     <fieldSets>
@@ -965,6 +983,18 @@
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
+        <fullName>Enforce_Trigger_Update_Assets__c</fullName>
+        <description>In order to enforce trigger on SWOP Campaign, there is a rollup summary field created to aggregate this field. This ensure before trigger on SWOP Campaign collects information about the children and update accordingly.</description>
+        <externalId>false</externalId>
+        <label>Enforce Trigger Update Assets</label>
+        <summarizedField>Oblix_Project_Assets__c.Enforce_Trigger_Update__c</summarizedField>
+        <summaryForeignKey>Oblix_Project_Assets__c.Agency_Projects__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
         <fullName>Enforce_Trigger_Update__c</fullName>
         <description>This dummy rollup summary ensures the before update trigger is fired on SWOP Campaign if the campaign swop splits country changes for the same percentage value.</description>
         <externalId>false</externalId>
@@ -975,6 +1005,22 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Fees_Outstanding_between_CFY_PFY__c</fullName>
+        <description>The difference between what the new paid amount is (using CFY calculator) and the amount actually paid in PFY</description>
+        <externalId>false</externalId>
+        <formula>Fees_PFY_Total_By_CFY_Calculator__c -  Fees_Paid_PFY__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>The difference between what the new paid amount is (using CFY calculator) and the amount actually paid in PFY</inlineHelpText>
+        <label>Fees Outstanding between CFY PFY</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Fees_PFY_Paid_Using_CFY_Calc__c</fullName>
@@ -1047,6 +1093,19 @@ ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Returned by Agency&quot;)
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>Fees_Total_PFY__c</fullName>
+        <description>total campaign fee from PFY</description>
+        <externalId>false</externalId>
+        <label>Fees Total PFY</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Final_release__c</fullName>
         <description>Final release date</description>
         <externalId>false</externalId>
@@ -1112,6 +1171,15 @@ ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Returned by Agency&quot;)
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Is_B_Fwd_Campaign__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is B/Fwd Campaign</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Is_this_High_Risk__c</fullName>
@@ -1741,6 +1809,19 @@ ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Returned by Agency&quot;)
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Record_Locked_Sync__c</fullName>
+        <description>Used in visualforce page to show/hide edit button in swop</description>
+        <externalId>false</externalId>
+        <formula>IF( 
+$Profile.Name &lt;&gt; &apos;System Administrator&apos; 
+&amp;&amp; (TEXT( Sync_Status__c ) == &apos;Sync In Progress&apos; || Sync_Required_NFY__c == &apos;Sync In Progress&apos; || TEXT( Sync_Status__c ) == &apos;Sync Requested&apos; || Sync_Required_NFY__c == &apos;Sync Requested&apos; || TEXT(Financial_Year__r.Sync_Status__c) == &apos;Sync Requested&apos;),true,false)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Record Locked Sync</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Region__c</fullName>
         <description>The project regional selection</description>
         <externalId>false</externalId>
@@ -1999,7 +2080,7 @@ ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Returned by Agency&quot;)
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -2193,8 +2274,17 @@ Was originally Percentage_of_Fee_for_this_FY__c * Campaign_Total_Fees__c but ame
         <fullName>Lock_Campaign_Record_if_Campaign_Sync</fullName>
         <active>true</active>
         <description>Lock Campaign Record if Campaign Sync  in Progress.</description>
+<<<<<<< HEAD
         <errorConditionFormula>IF($Setup.Oblix_Job_Orchestration__c.Job_Is_Running__c == true &amp;&amp; $Profile.Name &lt;&gt; &apos;System Administrator&apos; &amp;&amp; (TEXT( Sync_Status__c ) == &apos;Sync In Progress&apos; ||  Sync_Required_NFY__c  == &apos;Sync In Progress&apos; || TEXT( Sync_Status__c ) == &apos;Sync Requested&apos; ||  Sync_Required_NFY__c  == &apos;Sync Requested&apos;),true,false)</errorConditionFormula>
         <errorMessage>Sync in Progress. Record Locked</errorMessage>
+=======
+        <errorConditionFormula>IF(
+NOT(ISCHANGED(Sync_Status__c)) &amp;&amp; 
+NOT(ISCHANGED(Sync_Required_NFY__c)) &amp;&amp; 
+$Profile.Name &lt;&gt; &apos;System Administrator&apos;
+&amp;&amp; (TEXT( Sync_Status__c ) == &apos;Sync In Progress&apos; || Sync_Required_NFY__c == &apos;Sync In Progress&apos; || TEXT( Sync_Status__c ) == &apos;Sync Requested&apos; || Sync_Required_NFY__c == &apos;Sync Requested&apos; || TEXT(Financial_Year__r.Sync_Status__c) == &apos;Sync Requested&apos;),true,false)</errorConditionFormula>
+        <errorMessage>Sync in Progress. Record Locked. Campaign Locked.</errorMessage>
+>>>>>>> develop
     </validationRules>
     <validationRules>
         <fullName>Oblix_Campaign_Splits_Should_Add_To_100</fullName>

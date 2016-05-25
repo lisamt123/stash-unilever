@@ -201,8 +201,12 @@ public with sharing class TriggerFactory
 		 if (soType == CFC_Attendee__c.sObjectType){
             return new CFC_Attendee_Handler();
         } 
+<<<<<<< HEAD
        /* commented by Jayant for DMS temporary build fix. IMP : Please uncomment while merge with Develop
 	  if (soType == VEP_Visitor__c.sObjectType)
+=======
+		if (soType == VEP_Visitor__c.sObjectType)
+>>>>>>> develop
         {
             return new VEP_Visitor_TriggerHandler();
         }

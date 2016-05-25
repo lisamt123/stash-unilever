@@ -184,7 +184,10 @@ private class Oblix_SOWMainDetailController_Test {
 
         ApexPAges.currentPage().getParameters().put(SOW_ID_PARAMETER_STRING, mSow.Id);
         Oblix_SowMainDetailController controllerInstance = new Oblix_SowMainDetailController();
+<<<<<<< HEAD
 
+=======
+>>>>>>> develop
         Test.startTest();
         
         PageReference initiateRO = controllerInstance.initiateRollOver();
@@ -200,8 +203,20 @@ private class Oblix_SOWMainDetailController_Test {
 
         controllerInstance.updateSyncStatusAndNameSuffix();
         
+<<<<<<< HEAD
 
         Boolean shouldSync = controllerInstance.shouldSyncAllCampaigns;
+=======
+        Boolean shouldSync = controllerInstance.shouldSyncAllCampaigns;
+
+        System.assertNotEquals(null, controllerInstance.selected_sow);
+        System.assertEquals(mSow.Id, controllerInstance.selected_sow.Id);
+
+        System.assertEquals(Oblix_Utils.NAME_SUFFIX_FINALISED, controllerInstance.selected_sow.Name_Suffix__c);
+
+        controllerInstance.campaignIDSync = lst_sowp[0].Id;
+        controllerInstance.syncCampaigns();
+>>>>>>> develop
             
         Test.stopTest();    
 
@@ -209,6 +224,7 @@ private class Oblix_SOWMainDetailController_Test {
 
         //List<Marketing_SOW__c> sowRecord = [SELECT Id, Name_Suffix__c FROM Marketing_SOW__c LIMIT 1];
 
+<<<<<<< HEAD
         System.assertNotEquals(null, controllerInstance.selected_sow);
         System.assertEquals(mSow.Id, controllerInstance.selected_sow.Id);
 
@@ -216,6 +232,57 @@ private class Oblix_SOWMainDetailController_Test {
 
     }
 
+=======
+        
+
+    }
+
+    @isTest static void testIsFXApprovedForFY() {
+        initTestData();
+
+        Test.startTest();
+
+        ApexPAges.currentPage().getParameters().put(SOW_ID_PARAMETER_STRING, mSow.Id);
+        Oblix_SowMainDetailController controllerInstance = new Oblix_SowMainDetailController();
+
+        Test.stopTest(); 
+
+        System.assertEquals(false, controllerInstance.isFXApprovedForFY);
+    }
+
+
+    @isTest static void testMiscelaneous() {
+
+        initTestData();
+
+        Test.startTest();
+
+        ApexPAges.currentPage().getParameters().put(SOW_ID_PARAMETER_STRING, mSow.Id);
+        Oblix_SowMainDetailController controllerInstance = new Oblix_SowMainDetailController();
+
+        
+
+        Test.stopTest(); 
+
+        System.assertEquals(false, controllerInstance.is_going_through_rollover);
+
+        System.runAs(superuser){
+            
+            if(controllerInstance.isAdmin ){
+                System.assert(controllerInstance.isAdmin);
+            }
+
+            if(controllerInstance.sow_approvers_defined ){
+                System.assert(controllerInstance.sow_approvers_defined );
+            }
+
+        }
+
+    }
+
+    
+
+>>>>>>> develop
 /*
     @isTest static void testSubmitForApprovalCreator_IS_NOT_Approver() {
 

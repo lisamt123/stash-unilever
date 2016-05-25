@@ -939,6 +939,19 @@ Changed to Campaign on 26/10/2015</description>
         <type>TextArea</type>
     </fields>
     <fields>
+        <fullName>Enforce_Trigger_Update__c</fullName>
+        <description>In order to enforce trigger on SWOP Campaign, there is a rollup summary field created to aggregate this field. This ensure before trigger on SWOP Campaign collects information about the children and update accordingly.</description>
+        <externalId>false</externalId>
+        <label>Enforce Trigger Update</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>FULL_Description__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -3028,7 +3041,11 @@ Changed to Campaign on 26/10/2015</description>
         <fullName>Lock_Campaign_Record_if_Campaign_Sync</fullName>
         <active>true</active>
         <description>Lock Campaign Record if Campaign Sync in Progress.</description>
+<<<<<<< HEAD
         <errorConditionFormula>IF($Setup.Oblix_Job_Orchestration__c.Job_Is_Running__c == true &amp;&amp;  $Profile.Name &lt;&gt; &apos;System Administrator&apos; &amp;&amp; (TEXT( Agency_Projects__r.Sync_Status__c ) == &apos;Sync In Progress&apos; || Agency_Projects__r.Sync_Required_NFY__c == &apos;Sync In Progress&apos; || TEXT( Agency_Projects__r.Sync_Status__c ) == &apos;Sync Requested&apos; || Agency_Projects__r.Sync_Required_NFY__c == &apos;Sync Requested&apos;),true,false)</errorConditionFormula>
+=======
+        <errorConditionFormula>IF($Profile.Name &lt;&gt; &apos;System Administrator&apos; &amp;&amp; (TEXT( Agency_Projects__r.Sync_Status__c ) == &apos;Sync In Progress&apos; || Agency_Projects__r.Sync_Required_NFY__c == &apos;Sync In Progress&apos; || TEXT( Agency_Projects__r.Sync_Status__c ) == &apos;Sync Requested&apos; || Agency_Projects__r.Sync_Required_NFY__c == &apos;Sync Requested&apos;),true,false)</errorConditionFormula>
+>>>>>>> develop
         <errorMessage>Sync in Progress. Record Locked</errorMessage>
     </validationRules>
 </CustomObject>

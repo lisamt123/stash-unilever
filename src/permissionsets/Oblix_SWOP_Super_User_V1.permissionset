@@ -9,6 +9,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Oblix_AssetHandlerLogic</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Oblix_AssetHandler_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -73,11 +77,19 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Oblix_DashboardsHandler_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Oblix_NonCampaignWrapper</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Oblix_OuterPageTemplateController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Oblix_OuterPageTemplateControllerTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -137,11 +149,22 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+<<<<<<< HEAD
+=======
+        <apexClass>Oblix_SOWMainDetalControllerExt_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+>>>>>>> develop
         <apexClass>Oblix_SOWNonCampaignCreateController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Oblix_SOWNonCampaignCreateCtrl_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Oblix_SOWNonCampaignCreateCtrl_Test2</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -229,8 +252,8 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>Oblix_wrapper_NonCamp</apexClass>
-        <enabled>true</enabled>
+        <apexClass>Oblix_VersionControl_Test</apexClass>
+        <enabled>false</enabled>
     </classAccesses>
     <description>Super User with no restriction for some brands</description>
     <fieldPermissions>
@@ -320,6 +343,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Marketing_Basics__c.FTE_report__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Marketing_Basics__c.Financial_Year__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -339,6 +367,14 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+<<<<<<< HEAD
+=======
+        <editable>false</editable>
+        <field>Marketing_Basics__c.No_of_Hours_Required_Activity__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+>>>>>>> develop
         <editable>true</editable>
         <field>Marketing_Basics__c.No_of_Hours_Required__c</field>
         <readable>true</readable>
@@ -456,6 +492,14 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Marketing_SOW__c.Attachments_Cloned__c</field>
+<<<<<<< HEAD
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Marketing_SOW__c.BB_or_BD__c</field>
+=======
+>>>>>>> develop
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -464,11 +508,18 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Marketing_SOW__c.B_Fwd_Campaign_count__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Marketing_SOW__c.BigOblixProductCategory__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+<<<<<<< HEAD
+=======
         <editable>false</editable>
         <field>Marketing_SOW__c.Brand_Name__c</field>
         <readable>true</readable>
@@ -479,6 +530,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+>>>>>>> develop
         <editable>true</editable>
         <field>Marketing_SOW__c.Currency__c</field>
         <readable>true</readable>
@@ -601,6 +653,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_SOW__c.Percentage_of_Total_Fee_Non_Campaign__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Marketing_SOW__c.Record_Locked_Sync__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -995,6 +1052,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Oblix_Project_Assets__c.Enforce_Trigger_Update__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Oblix_Project_Assets__c.FULL_Description__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1195,7 +1257,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Enforce_Trigger_Update_Assets__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Oblix_SOW_Projects__c.Enforce_Trigger_Update__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Fees_Outstanding_between_CFY_PFY__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1225,6 +1297,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Oblix_SOW_Projects__c.Fees_Total_PFY__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Oblix_SOW_Projects__c.Final_release__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1241,6 +1318,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Oblix_SOW_Projects__c.Innovation_Projects__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Oblix_SOW_Projects__c.Is_B_Fwd_Campaign__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1436,6 +1518,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Oblix_SOW_Projects__c.Projected_Stage__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Record_Locked_Sync__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

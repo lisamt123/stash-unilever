@@ -75,7 +75,7 @@ public with sharing class Oblix_BasketSectionWrapper {
         }
         return item;
     }
-
+/*
     public void reloadBasketItems() {
 
         itemCount = 0;
@@ -130,13 +130,14 @@ public with sharing class Oblix_BasketSectionWrapper {
             this.add(nonCampaignWrapper);
         }
     }
-
+*/
     public Oblix_BasketSectionWrapper getCopy() {
         Oblix_BasketSectionWrapper wrapper = this.clone();
         wrapper.items = items.clone();
         for (String key : wrapper.items.keySet()) {
             wrapper.items.put(key, wrapper.items.get(key).clone());
         }
+        System.debug(this.sowId);
         return wrapper;
     }
 }

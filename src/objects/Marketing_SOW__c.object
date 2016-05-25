@@ -105,6 +105,49 @@
         <fullName>Oblix_SOW_Main_Detail</fullName>
         <description>SOW Main Detail Create</description>
         <displayedFields>
+<<<<<<< HEAD
+=======
+            <field>Cloned_SOW__r.Name</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Cloned_SOW__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Original_SOW__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>SOW_NFY__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>SOW_NFY__r.Sync_Status__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>SOW_NFY__r.SOW_Status__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>SOW_NFY__r.Name</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>SOW_PFY__r.LastModifiedDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+>>>>>>> develop
             <field>SOW_PFY__r.Sync_Status__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -115,6 +158,14 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
+<<<<<<< HEAD
+=======
+            <field>B_Fwd_Campaign_count__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+>>>>>>> develop
             <field>Initial_Approval_Complete__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -280,11 +331,24 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
+            <field>Unilever_SOW_Approver_Name__r.IsActive</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+<<<<<<< HEAD
+=======
             <field>Agency_SOW_Approver_Name__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
+            <field>Agency_SOW_Approver_Name__r.IsActive</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+>>>>>>> develop
             <field>Approved_version__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -296,6 +360,16 @@
         </displayedFields>
         <displayedFields>
             <field>SOW_PFY__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>SOW_PFY__r.Name</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Record_Locked_Sync__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -451,7 +525,6 @@
         <externalId>false</externalId>
         <label>Approved version</label>
         <referenceTo>Marketing_SOW__c</referenceTo>
-        <relationshipLabel>SWOP (Approved version)</relationshipLabel>
         <relationshipName>SWOP</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -491,6 +564,22 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>B_Fwd_Campaign_count__c</fullName>
+        <description>Number of campaigns that were brought forward from the PFY SOW</description>
+        <externalId>false</externalId>
+        <label>B/Fwd Campaign count</label>
+        <summaryFilterItems>
+            <field>Oblix_SOW_Projects__c.Is_B_Fwd_Campaign__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Oblix_SOW_Projects__c.Financial_Year__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
         <fullName>BigOblixProductCategory__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -510,7 +599,6 @@
             <isOptional>false</isOptional>
         </lookupFilter>
         <referenceTo>MDO_Category__c</referenceTo>
-        <relationshipLabel>SWOP (BigProductCategory)</relationshipLabel>
         <relationshipName>Marketing_SOW</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -536,7 +624,6 @@
         <externalId>false</externalId>
         <label>Cloned SOW</label>
         <referenceTo>Marketing_SOW__c</referenceTo>
-        <relationshipLabel>SWOP (Cloned SOW)</relationshipLabel>
         <relationshipName>Cloned_SOWs</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -833,7 +920,6 @@
             <isOptional>false</isOptional>
         </lookupFilter>
         <referenceTo>Account</referenceTo>
-        <relationshipLabel>SWOP</relationshipLabel>
         <relationshipName>Marketing_SOW</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -885,7 +971,6 @@
         <externalId>false</externalId>
         <label>Original SOW</label>
         <referenceTo>Marketing_SOW__c</referenceTo>
-        <relationshipLabel>SWOP (Original SOW)</relationshipLabel>
         <relationshipName>Original_SOWs</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -922,6 +1007,20 @@
         <type>Percent</type>
     </fields>
     <fields>
+        <fullName>Record_Locked_Sync__c</fullName>
+        <description>Used in visualforce page to show/hide edit button in swop</description>
+        <externalId>false</externalId>
+        <formula>IF( 
+$Profile.Name &lt;&gt; &apos;System Administrator&apos; 
+
+&amp;&amp; (TEXT( Sync_Status__c ) == &apos;Sync In Progress&apos; || Sync_Status_PFY__c == &apos;Sync In Progress&apos; || TEXT( Sync_Status__c ) == &apos;Sync Requested&apos; || Sync_Status_PFY__c == &apos;Sync Requested&apos; || TEXT( Sync_Status__c ) == &apos;Campaign Sync Required&apos;),true,false)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Record Locked Sync</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>SOW_Creator_is_Approver__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -938,7 +1037,6 @@
         <externalId>false</externalId>
         <label>SOW NFY</label>
         <referenceTo>Marketing_SOW__c</referenceTo>
-        <relationshipLabel>SWOP (SOW NFY)</relationshipLabel>
         <relationshipName>SOW_NFY</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -971,7 +1069,10 @@ ISPICKVAL(SOW_Status__c , &quot;Returned by Agency&quot;)
         <externalId>false</externalId>
         <label>SOW PFY</label>
         <referenceTo>Marketing_SOW__c</referenceTo>
+<<<<<<< HEAD
         <relationshipLabel>SWOP (SOW PFY)</relationshipLabel>
+=======
+>>>>>>> develop
         <relationshipName>SOW_PFYs</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -1047,7 +1148,6 @@ ISPICKVAL(SOW_Status__c , &quot;Returned by Agency&quot;)
             <isOptional>true</isOptional>
         </lookupFilter>
         <referenceTo>MDO_Category__c</referenceTo>
-        <relationshipLabel>SWOP (SmallProductCategory)</relationshipLabel>
         <relationshipName>Marketing_SOW1</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -1302,7 +1402,7 @@ OblixTotalOtherItemsFees__c)</formula>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
-    <label>SWOP</label>
+    <label>Scope of Work</label>
     <listViews>
         <fullName>All</fullName>
         <columns>RECORDTYPE</columns>
@@ -1326,7 +1426,7 @@ OblixTotalOtherItemsFees__c)</formula>
         <trackHistory>true</trackHistory>
         <type>Text</type>
     </nameField>
-    <pluralLabel>SWOP</pluralLabel>
+    <pluralLabel>Scopes of Work</pluralLabel>
     <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
@@ -1688,8 +1788,17 @@ OblixTotalOtherItemsFees__c)</formula>
         <fullName>Lock_Record_if_Sync_in_Progress</fullName>
         <active>true</active>
         <description>Lock the SWOP record if a roll over sync is in progress</description>
+<<<<<<< HEAD
         <errorConditionFormula>IF($Setup.Oblix_Job_Orchestration__c.Job_Is_Running__c == true &amp;&amp; $Profile.Name &lt;&gt; &apos;System Administrator&apos; &amp;&amp; (TEXT( Sync_Status__c ) == &apos;Sync In Progress&apos; || Sync_Status_PFY__c == &apos;Sync In Progress&apos; || TEXT( Sync_Status__c ) == &apos;Sync Requested&apos; || Sync_Status_PFY__c == &apos;Sync Requested&apos;),true,false)</errorConditionFormula>
+=======
+        <errorConditionFormula>IF(
+NOT(ISCHANGED(Sync_Status__c)) &amp;&amp; 
+NOT(ISCHANGED(Sync_Status_PFY__c)) &amp;&amp; 
+$Profile.Name &lt;&gt; &apos;System Administrator&apos; 
+
+&amp;&amp; (TEXT( Sync_Status__c ) == &apos;Sync In Progress&apos; || Sync_Status_PFY__c == &apos;Sync In Progress&apos; || TEXT( Sync_Status__c ) == &apos;Sync Requested&apos; || Sync_Status_PFY__c == &apos;Sync Requested&apos;),true,false)</errorConditionFormula>
+>>>>>>> develop
         <errorDisplayField>Sync_Status__c</errorDisplayField>
-        <errorMessage>Sync in Progress. Record Locked</errorMessage>
+        <errorMessage>Sync in Progress. Record Locked. SOW Locked.</errorMessage>
     </validationRules>
 </CustomObject>

@@ -90,23 +90,6 @@ public with sharing class Oblix_SOWNonCampaignPageHelper extends Oblix_SOWNonCam
     }
 
 
-    public void updateBasketStats() {
-        totalBasketSize = 0;
-        totalBasketValue = 0;
-
-        List<Oblix_NonCampaignWrapper> items = new List<Oblix_NonCampaignWrapper>();
-
-        for (String key : basket.keySet()) {
-            items.addAll(basket.get(key).items.values());
-        }
-
-        for (Oblix_NonCampaignWrapper item : items) {
-            totalBasketSize++;
-            if(item.totalAmount != null)
-                totalBasketValue += item.totalAmount;
-        }
-    }
-
 
     public void addToWorkList(String jsonWrapper) {
         NonCampaignJSONWrapper jsonItem = (NonCampaignJSONWrapper)JSON.deserialize(jsonWrapper, NonCampaignJSONWrapper.class);
@@ -149,7 +132,7 @@ public with sharing class Oblix_SOWNonCampaignPageHelper extends Oblix_SOWNonCam
 
     public void saveWorkList() {
 
-        if (!String.isBlank(currentSection)) {
+        //if (!String.isBlank(currentSection)) {
             Oblix_BasketSectionWrapper workListSection = workList.get(currentTab);
             //Oblix_SOWNonCampaignPageHelperParent.BasketSectionWrapper basketSection = basket.get(currentSection);
 
@@ -171,7 +154,14 @@ public with sharing class Oblix_SOWNonCampaignPageHelper extends Oblix_SOWNonCam
             basket = initBasketSections(sow.Id);
             workList.put(currentTab, new Oblix_BasketSectionWrapper(sow.Id, currentTab, currentTab, 'TBC'));
             updateBasketStats();
-        }
+
+            if (activityTabSelected) {
+                currentActivity = new Oblix_NonCampaignWrapper(sow.Id, true);
+            } else {
+                currentResource = new Oblix_NonCampaignWrapper(sow.Id, false);
+            }
+            currentItemKey = null;
+        //}
     }
 
 
@@ -234,6 +224,7 @@ public with sharing class Oblix_SOWNonCampaignPageHelper extends Oblix_SOWNonCam
     }
 
 
+<<<<<<< HEAD
     public void openItemForUpdate(Boolean isActivity) {
 
         System.debug('### currentSection: ' + currentSection);
@@ -251,6 +242,8 @@ public with sharing class Oblix_SOWNonCampaignPageHelper extends Oblix_SOWNonCam
         }
     }
 
+=======
+>>>>>>> develop
 
 
 

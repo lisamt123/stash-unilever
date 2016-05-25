@@ -116,7 +116,7 @@ private class Oblix_PermissionHandler_Test {
             System.assertEquals(true, Oblix_PermissionHandler.hasSuperUserpermissionSet());
 
             System.assertEquals(true, Oblix_PermissionHandler.isOnlyBrandCatEditor(brand.Id, category.Id, superuser.id));
-            System.assertEquals(true, Oblix_PermissionHandler.canAdjustFee(brand.Id, category.Id, superuser.id));
+            System.assertEquals(true, Oblix_PermissionHandler.canAdjustFee(Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER,brand.Id, category.Id, superuser.id));
 
 
         }
@@ -174,7 +174,7 @@ private class Oblix_PermissionHandler_Test {
             System.assertEquals(false, Oblix_PermissionHandler.hasAG2permissionSet());
             System.assertEquals(false, Oblix_PermissionHandler.hasSuperUserpermissionSet());
 
-            System.assertEquals(false, Oblix_PermissionHandler.canAdjustFee(brand.Id, category.Id, ul3.id));
+            System.assertEquals(false, Oblix_PermissionHandler.canAdjustFee(Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER,brand.Id, category.Id, ul3.id));
 
         }
         Test.stopTest();

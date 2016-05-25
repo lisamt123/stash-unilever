@@ -36,9 +36,17 @@
 Condition - parent SOW has sync status &quot;Sync Complete&quot;</description>
         <formula>$Setup.Oblix_Job_Orchestration__c.Job_Is_Running__c == false 
 &amp;&amp; 
+<<<<<<< HEAD
 ((TEXT(Financial_Year__r.Sync_Status__c) == &apos;Sync Completed&apos; || TEXT(Financial_Year__r.Sync_Status__c)== &apos;Campaign Sync Required&apos;) 
 &amp;&amp; Financial_Year__r.Initial_Approval_Complete__c == true &amp;&amp; (TEXT(Sync_Status__c) == &apos;Sync Completed&apos; || ISBLANK(TEXT(Sync_Status__c)))
 &amp;&amp; PRIORVALUE(Sync_Status__c) &lt;&gt; &apos;Sync In Progress&apos;)</formula>
+=======
+(
+(TEXT(Financial_Year__r.Sync_Status__c) == &apos;Sync Completed&apos; 
+|| TEXT(Financial_Year__r.Sync_Status__c)== &apos;Campaign Sync Required&apos;) 
+&amp;&amp; Financial_Year__r.Initial_Approval_Complete__c == true &amp;&amp; (TEXT(Sync_Status__c) == &apos;Sync Completed&apos; || ISBLANK(TEXT(Sync_Status__c)))
+&amp;&amp; PRIORVALUE(Sync_Status__c) &lt;&gt; &apos;Sync In Progress&apos; &amp;&amp; Name_Suffix__c &lt;&gt; &apos;Finalised&apos;)</formula>
+>>>>>>> develop
         <triggerType>onAllChanges</triggerType>
     </rules>
 </Workflow>

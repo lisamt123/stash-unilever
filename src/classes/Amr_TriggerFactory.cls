@@ -43,7 +43,7 @@ public with sharing class Amr_TriggerFactory
      */ 
     private static void execute(amr_Interface_Trigger handler)
     {
-        Amr_Job_Details__c so = new Amr_Job_Details__c();
+        //Amr_Job_Details__c so = new Amr_Job_Details__c();
         // Before Trigger
         if (Trigger.isBefore)
         {
@@ -53,7 +53,7 @@ public with sharing class Amr_TriggerFactory
             // Iterate through the records to be deleted passing them to the handler.
             if (Trigger.isDelete)
             {
-                //for (SObject so : Trigger.old)
+                for (SObject so : Trigger.old)
                 {
                     handler.beforeDelete(so);
                 }
@@ -61,7 +61,7 @@ public with sharing class Amr_TriggerFactory
             // Iterate through the records to be inserted passing them to the handler.
             else if (Trigger.isInsert)
             {
-                //for (SObject so : Trigger.new)
+                for (SObject so : Trigger.new)
                 {
                     handler.beforeInsert(so);
                 }
@@ -69,7 +69,7 @@ public with sharing class Amr_TriggerFactory
             // Iterate through the records to be updated passing them to the handler.
             else if (Trigger.isUpdate)
             {
-                //for (SObject so : Trigger.old)
+                for (SObject so : Trigger.old)
                 {
                     handler.beforeUpdate(so, Trigger.newMap.get(so.Id));
                 }
@@ -83,7 +83,7 @@ public with sharing class Amr_TriggerFactory
             // Iterate through the records deleted passing them to the handler.
             if (Trigger.isDelete)
             {
-                //for (SObject so : Trigger.old)
+                for (SObject so : Trigger.old)
                 {
                     handler.afterDelete(so);
                 }
@@ -91,7 +91,7 @@ public with sharing class Amr_TriggerFactory
             // Iterate through the records inserted passing them to the handler.
             else if (Trigger.isInsert)
             {
-                //for (SObject so : Trigger.new)
+                for (SObject so : Trigger.new)
                 {
                     handler.afterInsert(so);
                 }
@@ -99,7 +99,7 @@ public with sharing class Amr_TriggerFactory
             // Iterate through the records updated passing them to the handler.
             else if (Trigger.isUpdate)
             {
-                //for (SObject so : Trigger.old)
+                for (SObject so : Trigger.old)
                 {
                     handler.afterUpdate(so, Trigger.newMap.get(so.Id));
                 }

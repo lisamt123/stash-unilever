@@ -13,6 +13,10 @@ src/objects/Amr_Project_Details__c.object
 src/objects/Amr_Quote__c.object
 src/objects/Amr_Saving__c.object
 src/objects/Amr_Summary_Plan__c.object
+src/objects/Amr_Country_Cluster__c.object
+src/objects/Amr_CurrencyConversionRate__c.object
+src/objects/Amr_Production_Type__c.object
+src/objects/Amr_Trigger_Pattern__c.object
 src/objects/User.object
 src
 src/staticresources
@@ -25,7 +29,6 @@ src/tabs/Amr_Summary_Plan__c.tab
 src/tabs/Admin.tab
 src/tabs/CAP_Jobs_Portfolio.tab
 src/tabs/RAP_Jobs_Portfolio.tab
-src/tabs/Saving_Summary.tab
 src
 src/documents
 src/documents/Amr_AdManager_Image

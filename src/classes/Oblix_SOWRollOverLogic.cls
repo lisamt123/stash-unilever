@@ -22,7 +22,11 @@ public with sharing class Oblix_SOWRollOverLogic {
     private static final String STACK_TRACE = ' - STACK TRACE: ';
     private static final String SELECT_SOQL = 'SELECT ';
     private static final String SOQL_AND = '\' AND ';
+<<<<<<< HEAD
     private static final String EXCLUDE_SYNC_STEP_SOQL = '\' AND Sync_Step__c <> \'';
+=======
+    //private static final String EXCLUDE_SYNC_STEP_SOQL = '\' AND Sync_Step__c <> \'';
+>>>>>>> develop
     private static final String ORDER_BY_SOQL = '\' ORDER BY Id LIMIT ';
     private static final String RESULT_MSG_PREFIX = '\n\n\n to update: ';
     /********************************************************************
@@ -126,6 +130,7 @@ public with sharing class Oblix_SOWRollOverLogic {
     //    return is_success;   
     //}
 
+<<<<<<< HEAD
     /********************************************************************
     * @author       Execloud ©
     * @date         2016-05-04
@@ -235,6 +240,110 @@ public with sharing class Oblix_SOWRollOverLogic {
     }
 
 
+=======
+>>>>>>> develop
+    /********************************************************************
+    * @author       Execloud ©
+    * @date         2016-05-04
+    * @description  Depending on the passed in object and attributes 
+<<<<<<< HEAD
+                    set the status of sObject from A to B
+    *********************************************************************/
+    public static boolean adjustStatus(Oblix_syncBatchJob.JobComponent job_component){
+        // set the status of the given SOW/Campaigns/Assets
+=======
+                    set the status of sObject flag
+    *********************************************************************/
+    public static boolean setProcessingFlag(Oblix_syncBatchJob.JobComponent job_component){
+>>>>>>> develop
+
+        Boolean is_success = true;
+        try{
+
+            // job component attribute list
+<<<<<<< HEAD
+=======
+            //      attrib_1: sync status
+            //      attrib_2: attachment_cloned/attribute updated? value to be set true/false
+            //      attrib_3: original status
+            //      attrib_4: object type
+            //      attrib_5: field used for flag
+            //      attrib_6: field used for checking sow status (either Financial_Year__r.SOW_Status__c or SOW_Status__c)
+            //      
+            //##########################################################################################
+            //  query the correct records in scope, set the status of the sync
+            //##########################################################################################
+
+            String query_string = 'SELECT ' + job_component.attrib_5 + ' FROM ' + job_component.attrib_4 + ' WHERE Sync_Status__c =\'' + job_component.attrib_1; 
+            
+            if (NULL != job_component.attrib_6){
+                query_string += SOQL_AND + job_component.attrib_6 + ' = \'' + job_component.attrib_3 + '\'';
+            }
+            else{
+                query_string += '\'';
+            }
+            
+            // depending on if the value is a boolean or string build the correct query string
+            if (Oblix_SyncBatchJob.TRUE_VALUE == job_component.attrib_2 || Oblix_SyncBatchJob.FALSE_VALUE == job_component.attrib_2){
+                query_string += ' AND ' + job_component.attrib_5 + ' <>  ' + job_component.attrib_2 + ' ORDER BY Id LIMIT ' + job_component.query_limit; 
+            }
+            else{
+                query_string += ' AND ' + job_component.attrib_5 + ' <> \'' + job_component.attrib_2  + '\' ORDER BY Id LIMIT ' + job_component.query_limit; 
+            }
+
+            Oblix_SyncBatchJob.addEvent('INFO IN setProcessingFlag() - query_string: ' + query_string, NULL);
+
+            Map<Id, sObject> map_objects_to_update = new Map<Id, sObject>((List<sObject>)(database.query(query_string)));
+
+            setProcessingFlag(map_objects_to_update.values(), job_component.attrib_5, job_component.attrib_2);
+            
+        }
+        catch(Exception ex){  
+            Oblix_SyncBatchJob.addEvent(ERROR_SETPROCESSINGFLAG, ex.getMessage() + STACK_TRACE + ex.getStackTraceString());
+            is_success = false;
+        }
+        return is_success;   
+    }
+
+
+    /********************************************************************
+    * @author       Execloud ©
+    * @date         2016-05-04
+    * @description  Depending on the passed in object and attributes 
+                    set the status of sObject flag
+    *********************************************************************/
+    public static boolean setProcessingFlag(List<sObject> list_objects_to_update, String field_to_update, String value_for_update ){
+
+        Boolean is_success = true;
+        try{
+
+
+            Map<Id, sObject> map_objects_to_update = new Map<Id, sObject>();
+
+            for (sObject obj: list_objects_to_update){
+
+                // if the passed in value is in the form of TRUE/FALSE then set the value as a boolean instead of string
+                if (Oblix_SyncBatchJob.TRUE_VALUE == value_for_update || Oblix_SyncBatchJob.FALSE_VALUE == value_for_update){
+                    obj.put(field_to_update, Boolean.valueOf(value_for_update));
+                }
+                else
+                {
+                    obj.put(field_to_update, value_for_update);   
+                }
+                map_objects_to_update.put(obj.Id, obj);
+            }
+
+            update map_objects_to_update.values();
+            
+        }
+        catch(Exception ex){  
+            Oblix_SyncBatchJob.addEvent(ERROR_SETPROCESSINGFLAG, ex.getMessage() + STACK_TRACE + ex.getStackTraceString());
+            is_success = false;
+        }
+        return is_success;   
+    }
+
+
     /********************************************************************
     * @author       Execloud ©
     * @date         2016-05-04
@@ -248,6 +357,7 @@ public with sharing class Oblix_SOWRollOverLogic {
         try{
 
             // job component attribute list
+>>>>>>> develop
             //      attrib_1: initial status
             //      attrib_2: status to be
             //      attrib_3: sObject type
@@ -299,14 +409,6 @@ public with sharing class Oblix_SOWRollOverLogic {
 
             update map_objects_update.values();
             
-        }
-        catch(QueryException queryEx){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN adjustStatus() - ', queryEx.getMessage() + STACK_TRACE + queryEx.getStackTraceString());
-            is_success = false;
-        }
-        catch(DmlException dmlEx){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN adjustStatus() - ', dmlEx.getMessage() + STACK_TRACE + dmlEx.getStackTraceString());
-            is_success = false;
         }
         catch(Exception ex){  
             Oblix_SyncBatchJob.addEvent('ERROR IN adjustStatus() - ', ex.getMessage() + STACK_TRACE + ex.getStackTraceString());
@@ -435,7 +537,11 @@ public with sharing class Oblix_SOWRollOverLogic {
     * @description  Set all the fields on campaign from PFY to NFY
     *********************************************************************/
     private static void setAllFieldsDuringSync(SObject original_object, SObject cloned_object
+<<<<<<< HEAD
         , Map<String, Schema.SObjectField> map_name_and_field){
+=======
+        , Map<String, Schema.SObjectField> map_name_and_field, Boolean should_update_stage){
+>>>>>>> develop
 
         // copy over all fields from PFY to NFY campaigns 
         for (String field_name : map_name_and_field.keySet()){  
@@ -444,7 +550,18 @@ public with sharing class Oblix_SOWRollOverLogic {
             String field_type = String.valueOf(sf.getDescribe().getType()).toUpperCase();
             Boolean is_editable = sf.getDescribe().isUpdateable();
 
+<<<<<<< HEAD
             if (is_editable){
+=======
+            // don't overwrite campaign stage fields if campaign attributes are not changed
+            if (('Projected_Stage_CFY__c' == field_name && !should_update_stage)
+                ||
+                ('Projected_Stage_PFY__c' == field_name && !should_update_stage)   
+                ){
+                cloned_object.put(field_name, (String) cloned_object.get(field_name));
+            }
+            else if(is_editable){
+>>>>>>> develop
 
                 //Oblix_SyncBatchJob.addEvent('INFO IN setAllFieldsOnCampaignsRollOver - field_type: ' + field_type + ' - field_name: ' 
                     //+ field_name,NULL);
@@ -489,27 +606,110 @@ public with sharing class Oblix_SOWRollOverLogic {
 
         // copy over the Progress Stage and box number to PFY
         cloned_campaign.Campaign_PFY__c = original_campaign.Id;
+
+
+        // S.M. 2016-05-19 - in a scenario where actual campaign attributes haven't been updated but an asset has been added to PFY campaign, we don't want to
+        // overwrite the chevron but should update other financial fields
+        if (original_campaign.Campaign_Attributes_Updated__c){
+            cloned_campaign.Projected_Stage_PFY__c = getUnionCurrentAndPastStages(original_campaign, 'Projected_Stage_CFY__c','Projected_Stage_PFY__c'); //original_campaign.Projected_Stage_CFY__c;
+        }
         cloned_campaign.Completed_Stage_PFY__c = getUnionCurrentAndPastStages(original_campaign, 'Completed_Stage_CFY__c','Completed_Stage_PFY__c'); // original_campaign.Completed_Stage_CFY__c;
-        cloned_campaign.Projected_Stage_PFY__c = getUnionCurrentAndPastStages(original_campaign, 'Projected_Stage_CFY__c','Projected_Stage_PFY__c'); //original_campaign.Projected_Stage_CFY__c;
+        
         cloned_campaign.Total_Project_Score_PFY__c = original_campaign.Total_Project_Score__c ;
         cloned_campaign.Fees_Paid_PFY__c = original_campaign.Value_to_be_paid_in_Current_FY__c;
+<<<<<<< HEAD
         
+=======
+        cloned_campaign.Fees_Total_PFY__c = original_campaign.Campaign_Total_Fees__c;
+>>>>>>> develop
 
         cloned_campaign.Percentage_of_Fees_PFY__c = NULL != original_campaign.Percentage_of_Fees_PFY__c
             ? original_campaign.Percentage_of_Fee_for_this_FY__c + original_campaign.Percentage_of_Fees_PFY__c
             : original_campaign.Percentage_of_Fee_for_this_FY__c;
         
+<<<<<<< HEAD
         // select all projected stages by default when initiating rollover process
         cloned_campaign.Projected_Stage_CFY__c = Oblix_Utils.CAMPAIGN_STAGES_ALL;
     
+=======
+        // S.M. 2016-05-19 - in a scenario where actual campaign attributes haven't been updated but an asset has been added to PFY campaign, we don't want to
+        // overwrite the chevron but should update other financial fields
+        if (original_campaign.Campaign_Attributes_Updated__c){
+            // select all projected stages by default when initiating rollover process
+            cloned_campaign.Projected_Stage_CFY__c = getDeltaCurrentAndPastStages(cloned_campaign,'Projected_Stage_PFY__c');
+        }
+
+>>>>>>> develop
         // set the remaining value for this FY
         if (NULL != cloned_campaign.Percentage_of_Fees_PFY__c){
             cloned_campaign.Percentage_of_Fee_for_this_FY__c = 100 - cloned_campaign.Percentage_of_Fees_PFY__c;
         }else{
             cloned_campaign.Percentage_of_Fee_for_this_FY__c = 100;
+<<<<<<< HEAD
         }
 
         cloned_campaign.Oblix_ProjectBoxNumber_PFY__c = original_campaign.Oblix_ProjectBoxNumber__c ;
+=======
+        }
+
+        cloned_campaign.Oblix_ProjectBoxNumber_PFY__c = original_campaign.Oblix_ProjectBoxNumber__c ;
+    }
+
+    /********************************************************************
+    * @author       Execloud ©
+    * @date         2016-05-04
+    * @description  To maintain the logic for chevron, we need to combine the 
+                    stages from CFY and PFY and stamp on PFY field of the following
+                    financial year campaign - this is done for both completed and projected stage
+    *********************************************************************/
+    public static String getDeltaCurrentAndPastStages(Oblix_SOW_Projects__c cloned_campaign, String pfy_field){
+       
+        Set<String> set_delta = new Set<String>();
+        String delta_stages = '';
+        List<String> list_all_stages = new List<String>();
+        List<String> list_stages_retrieved = new List<String>();
+        String separator = ';';
+
+        String result = '';
+
+        // create a full list
+        if (String.isNotBlank(Oblix_Utils.CAMPAIGN_STAGES_ALL)){
+
+            list_all_stages = Oblix_Utils.CAMPAIGN_STAGES_ALL.split(separator);
+            result += '\nlist_all_stages: ' + JSON.serialize(list_all_stages);
+        }
+
+        set_delta.addAll(list_all_stages);
+
+
+        String past_stages = (String) cloned_campaign.get(pfy_field);
+        result += '\npast_stages: ' + past_stages;
+        // get completed stages for last year
+        if (String.isNotBlank(past_stages)){
+
+            list_stages_retrieved = past_stages.split(separator);
+            result += '\nlist_stages_retrieved: ' + JSON.serialize(list_stages_retrieved);
+
+            for (String stage_name: list_stages_retrieved){
+                result += '\nstage_name: ' + stage_name;
+                set_delta.remove(stage_name);
+            }
+        }
+
+        // copy to a list to allow building ';' separated string
+        List<String> list_delta_stages = new List<String>(); 
+        list_delta_stages.addAll(set_delta);
+        
+        result += '\nlist_union_stages: ' + JSON.serialize(list_delta_stages);
+
+        if (!list_delta_stages.isEmpty()){
+            // build the semi-colon separated values to re-assign
+            delta_stages = String.join(list_delta_stages, separator);
+        }
+        result += '\nunion_stages: ' + delta_stages;
+        //system.debug(result);
+        return delta_stages;
+>>>>>>> develop
     }
 
     /********************************************************************
@@ -597,6 +797,7 @@ public with sharing class Oblix_SOWRollOverLogic {
             //      attrib_2: Cloned_SOW__c
             //      attrib_3: JOB_STATUS_CLONE_IN_PROGRESS
             //      attrib_6: Process type - initial approval
+<<<<<<< HEAD
 
             // initial sync:
             //      attrib_1: SOW_PFY__c
@@ -604,6 +805,15 @@ public with sharing class Oblix_SOWRollOverLogic {
             //      attrib_3: JOB_STATUS_SYNC_IN_PROGRESS
             //      attrib_6: Process type - initial sync
 
+=======
+
+            // initial sync:
+            //      attrib_1: SOW_PFY__c
+            //      attrib_2: SOW_NFY__c
+            //      attrib_3: JOB_STATUS_SYNC_IN_PROGRESS
+            //      attrib_6: Process type - initial sync
+
+>>>>>>> develop
             //Oblix_SyncBatchJob.addEvent(' Campaign to clone size: ' + list_campaigns_to_clone.size(),NULL);
 
             String query_string = SELECT_SOQL;
@@ -650,14 +860,6 @@ public with sharing class Oblix_SOWRollOverLogic {
 
             update map_original_id_original_campaign.values();
             
-        }
-        catch(QueryException queryEx){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN cloneSOW() - ', queryEx.getMessage() + STACK_TRACE + queryEx.getStackTraceString());
-            is_success = false;
-        }
-        catch(DmlException dmlEx){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN cloneSOW() - ', dmlEx.getMessage() + STACK_TRACE + dmlEx.getStackTraceString());
-            is_success = false;
         }
         catch(Exception ex){  
             Oblix_SyncBatchJob.addEvent('ERROR IN cloneSOW() - ', ex.getMessage() + STACK_TRACE + ex.getStackTraceString());
@@ -722,6 +924,10 @@ public with sharing class Oblix_SOWRollOverLogic {
                 //cloned_campaign.Name += 'CLONED';
                 // set the parent of new campaign to be under the cloned sow (cloned/NFY)
                 cloned_campaign.Financial_Year__c = (Id) campaign.get(job_component.attrib_2);
+<<<<<<< HEAD
+=======
+                cloned_campaign.Is_B_Fwd_Campaign__c = true;
+>>>>>>> develop
                 
                 // set campaign suffix
                 setCampaignNameSuffix(campaign,cloned_campaign, job_component);
@@ -784,14 +990,6 @@ public with sharing class Oblix_SOWRollOverLogic {
                 insert list_splits_to_clone;
             }
 
-        }
-        catch(QueryException queryEx){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN cloneCampaigns() - ', queryEx.getMessage() + STACK_TRACE + queryEx.getStackTraceString());
-            is_success = false;
-        }
-        catch(DmlException dmlEx){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN cloneCampaigns() - ', dmlEx.getMessage() + STACK_TRACE + dmlEx.getStackTraceString());
-            is_success = false;
         }
         catch(Exception ex){  
             Oblix_SyncBatchJob.addEvent('ERROR IN cloneCampaigns() - ', ex.getMessage() + STACK_TRACE + ex.getStackTraceString());
@@ -874,8 +1072,18 @@ public with sharing class Oblix_SOWRollOverLogic {
             query_string += String.join(Oblix_Utils.getfieldsByObject('Oblix_Marketing_SOW_Project_Splits__c'),',');
             query_string += ' FROM Marketing_SOW_Project_Splits__r)';
             query_string += ' FROM  Oblix_SOW_Projects__c WHERE Sync_Status__c = \'' + job_component.attrib_1 + '\''; 
+<<<<<<< HEAD
             // only query the cloned campaigns here
             query_string += ' AND Financial_Year__r.SOW_Status__c = \'' + Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER + EXCLUDE_SYNC_STEP_SOQL + step_name + ORDER_BY_SOQL + job_component.query_limit; 
+=======
+            
+            // only get the cloned/NFY campaigns
+            query_string += ' AND Financial_year__r.SOW_NFY__c = NULL AND Sync_Step__c <> \'' + step_name + ORDER_BY_SOQL + job_component.query_limit; 
+
+            // OLD IMPLEMENTATION
+            // only query the cloned campaigns here
+            //query_string += ' AND Financial_Year__r.SOW_Status__c = \'' + Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER + EXCLUDE_SYNC_STEP_SOQL + step_name + ORDER_BY_SOQL + job_component.query_limit; 
+>>>>>>> develop
             
             result_msg += '\nquery_string: ' + query_string;
 
@@ -913,6 +1121,7 @@ public with sharing class Oblix_SOWRollOverLogic {
             //Oblix_SyncBatchJob.addEvent('DEBUG IN recalculateTotalPFYCampaignFeesUsingCFYcalculator() - result_msg: ' + result_msg,NULL);
 
 
+<<<<<<< HEAD
         }catch(QueryException queryEx){  
             Oblix_SyncBatchJob.addEvent('ERROR IN recalculateTotalPFYCampaignFeesUsingCFYcalculator() - ', queryEx.getMessage() + STACK_TRACE + queryEx.getStackTraceString());
             is_success = false;
@@ -920,6 +1129,8 @@ public with sharing class Oblix_SOWRollOverLogic {
         catch(DmlException dmlEx){  
             Oblix_SyncBatchJob.addEvent('ERROR IN recalculateTotalPFYCampaignFeesUsingCFYcalculator() - ', dmlEx.getMessage() + STACK_TRACE + dmlEx.getStackTraceString());
             is_success = false;
+=======
+>>>>>>> develop
         }
         catch(Exception ex){  
             Oblix_SyncBatchJob.addEvent('ERROR IN recalculateTotalPFYCampaignFeesUsingCFYcalculator() - ', ex.getMessage() + STACK_TRACE + ex.getStackTraceString());
@@ -968,8 +1179,24 @@ public with sharing class Oblix_SOWRollOverLogic {
             query_string += String.join(Oblix_Utils.getfieldsByObject('Oblix_Marketing_SOW_Project_Splits__c'),',');
             query_string += ' FROM Marketing_SOW_Project_Splits__r)';
             query_string += ' FROM  Oblix_SOW_Projects__c WHERE Sync_Status__c = \'' + job_component.attrib_3 + '\''; 
+<<<<<<< HEAD
             // exclude the cloned campaigns here Financual
             query_string += ' AND Financial_Year__r.SOW_Status__c = \'' + Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES + EXCLUDE_SYNC_STEP_SOQL  + step_name +  ORDER_BY_SOQL + job_component.query_limit; 
+=======
+            // check for NFY lookup to exclude cloned/NFY records
+            query_string += ' AND Financial_Year__r.SOW_NFY__c <> NULL ';
+            query_string += ' AND Sync_Step__c <> \''  + step_name +  ORDER_BY_SOQL + job_component.query_limit; 
+
+            // check for sow status to exclude the cloned/NFY records - OLD IMPLEMENTATION
+            //query_string += ' AND (Financial_Year__r.SOW_Status__c = \'' + Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES;
+            //query_string += '\' OR Financial_Year__r.SOW_Status__c = \'' + Oblix_Utils.SOW_STATUS_REJECTED_BY_AGENCY;
+            //query_string += '\' OR Financial_Year__r.SOW_Status__c = \'' + Oblix_Utils.SOW_STATUS_REJECTED_BY_UNILEVER;
+
+            //// in case it is a superuser or admin making changes to the record during the approval process
+            //query_string += '\' OR Financial_Year__r.SOW_Status__c = \'' + Oblix_Utils.SOW_STATUS_AWAITING_UNILEVER_APPROVAL; 
+            //query_string += '\' OR Financial_Year__r.SOW_Status__c = \'' + Oblix_Utils.SOW_STATUS_REJECTED_BY_UNILEVER 
+            
+>>>>>>> develop
             
             // get the matching cloned campaigns to perform the sync
 
@@ -978,7 +1205,7 @@ public with sharing class Oblix_SOWRollOverLogic {
             Map<Id, Oblix_SOW_Projects__c> map_original_ids_to_original = new Map<Id,Oblix_SOW_Projects__c>((List<Oblix_SOW_Projects__c>)database.query(query_string));
             Set<Id> set_original_ids = map_original_ids_to_original.keySet();
 
-            result_msg += '\n query1 result rows: ' + set_original_ids.size();
+            result_msg += '\n query1 result rows: ' + set_original_ids.size() + ' - original campaign: ' + JSON.serialize(map_original_ids_to_original);
 
             String query_string2 = SELECT_SOQL;
             query_string2 += String.join(Oblix_Utils.getfieldsByObject('Oblix_SOW_Projects__c'),',');
@@ -994,7 +1221,7 @@ public with sharing class Oblix_SOWRollOverLogic {
                 map_original_ids_to_cloned.put(cloned_campaign.Campaign_PFY__c,cloned_campaign );
             }
 
-            result_msg += '\n query2 result rows: ' + map_original_ids_to_cloned.size();
+            result_msg += '\n query2 result rows: ' + map_original_ids_to_cloned.size() + ' - cloned campaign: ' + JSON.serialize(map_original_ids_to_cloned);
 
             // scenarios:
             //  1- PFY campaign is newly created: create a clone of the for the NFY
@@ -1029,6 +1256,14 @@ public with sharing class Oblix_SOWRollOverLogic {
                     Oblix_SOW_Projects__c cloned_campaign = campaign.clone(false, true, false, false);
                     
                     map_original_id_original_campaign.put(campaign.Id, campaign);
+<<<<<<< HEAD
+
+                    // copy over the financial related fields from current_campaign to next_financial_year PFY fields
+                    setFinancialFieldsOnCampaignsRollOver(campaign, cloned_campaign);
+
+                    // manage the hub and splits
+                    syncHubAndSplits(campaign, NULL, map_splits_to_delete, map_original_id_splits_to_clone);
+=======
 
                     // copy over the financial related fields from current_campaign to next_financial_year PFY fields
                     setFinancialFieldsOnCampaignsRollOver(campaign, cloned_campaign);
@@ -1036,8 +1271,16 @@ public with sharing class Oblix_SOWRollOverLogic {
                     // manage the hub and splits
                     syncHubAndSplits(campaign, NULL, map_splits_to_delete, map_original_id_splits_to_clone);
 
+>>>>>>> develop
 
                     cloned_campaign.put(job_component.attrib_2,campaign.Id);
+
+<<<<<<< HEAD
+                    cloned_campaign.put(job_component.attrib_2,campaign.Id);
+=======
+                    // S.M. 2016-05-22 added a flag to replace the formula field due to platform issues
+                    cloned_campaign.Is_B_Fwd_Campaign__c = true;
+>>>>>>> develop
 
                     // set campaign suffix
                     setCampaignNameSuffix(campaign,cloned_campaign, job_component);
@@ -1057,17 +1300,30 @@ public with sharing class Oblix_SOWRollOverLogic {
                     ){
                     //  2- PFY % projected is increased to 100% or campaign got cancelled therefore need to remove from NFY 
                     
+<<<<<<< HEAD
                     // remove the link from the original campaign
                     campaign.Campaign_NFY__c = NULL;
+=======
+                    //// remove the link from the original campaign
+                    //campaign.Campaign_NFY__c = NULL;
+>>>>>>> develop
                     //map_campaigns_to_update.put(campaign.Id, campaign);
 
                         map_campaigns_to_delete.put(campaign.Campaign_NFY__c, map_original_ids_to_cloned.get(campaign.Id));
                         
+<<<<<<< HEAD
                         result_msg += '\n\n\n to delete: ' + map_original_ids_to_cloned.get(campaign.Id).name;
                     
 
                 }
                 else if(NULL != map_original_ids_to_cloned && map_original_ids_to_cloned.containsKey(campaign.id) && campaign.Campaign_Attributes_Updated__c ){
+=======
+                        result_msg += '\n\n\n to delete: ' + map_original_ids_to_cloned.get(campaign.Id).name; 
+                    
+
+                }
+                else if(NULL != map_original_ids_to_cloned && map_original_ids_to_cloned.containsKey(campaign.id)){
+>>>>>>> develop
                     //  3- PFY and NFY are created but require syncing
 
                     Oblix_SOW_Projects__c cloned_campaign = map_original_ids_to_cloned.get(campaign.id);
@@ -1076,7 +1332,11 @@ public with sharing class Oblix_SOWRollOverLogic {
                     map_original_id_original_campaign.put(campaign.Id, campaign);
 
                     // sync all existing fields from CFY to NFY
+<<<<<<< HEAD
                     setAllFieldsDuringSync(campaign, cloned_campaign,map_name_and_field);
+=======
+                    setAllFieldsDuringSync(campaign, cloned_campaign,map_name_and_field, campaign.Campaign_Attributes_Updated__c);
+>>>>>>> develop
 
                     // copy over the financial related fields from current_campaign to next_financial_year PFY fields
                     setFinancialFieldsOnCampaignsRollOver(campaign, cloned_campaign);
@@ -1102,6 +1362,10 @@ public with sharing class Oblix_SOWRollOverLogic {
             //    + ' - to delete: ' + map_campaigns_to_delete.size() + ' - splits to delete: ' + map_splits_to_delete.size()
             //    + ' - map_original_id_splits_to_clone: ' + map_original_id_splits_to_clone.size()
             //    + ' - splits to insert: ' + list_splits_to_clone.size();
+<<<<<<< HEAD
+=======
+
+>>>>>>> develop
 
 
             // insert new campaigns
@@ -1116,6 +1380,7 @@ public with sharing class Oblix_SOWRollOverLogic {
             result_msg += RESULT_MSG_PREFIX + map_campaigns_to_update.size() + ' - to clone: ' + list_campaigns_to_clone.size() 
                 + ' - to delete: ' + map_campaigns_to_delete.size() + ' - splits to delete: ' + map_splits_to_delete.size()
                 + ' - map_original_id_splits_to_clone: ' + map_original_id_splits_to_clone.size()
+<<<<<<< HEAD
                 + ' - splits to insert: ' + list_splits_to_clone.size();
 
             //Oblix_SyncBatchJob.addEvent('DEBUG IN syncCampaignDuringTransitionPeriod() - result_msg: ' + result_msg,NULL);
@@ -1125,6 +1390,12 @@ public with sharing class Oblix_SOWRollOverLogic {
             //if (!map_campaigns_to_delete.isEmpty()){
                 delete map_campaigns_to_delete.values();
             //}
+=======
+                + ' - splits to insert: ' + list_splits_to_clone.size()
+                + ' - map_campaigns_to_update: ' + JSON.serialize(map_campaigns_to_update);
+
+            Oblix_SyncBatchJob.addEvent('DEBUG IN syncCampaignDuringTransitionPeriod() - result_msg: ' + result_msg,NULL);
+>>>>>>> develop
 
             // update the original campaigns NFY fields
             //if (!map_original_id_original_campaign.isEmpty()){
@@ -1134,11 +1405,8 @@ public with sharing class Oblix_SOWRollOverLogic {
             // update existing campaigns
             //if (!map_campaigns_to_update.isEmpty()){
                 update map_campaigns_to_update.values();
-            //}
-
-            // delete old hub and splits
-            //if (!map_splits_to_delete.isEmpty()){
-                delete map_splits_to_delete.values();
+<<<<<<< HEAD
+=======
             //}
 
             // insert new hub and splits
@@ -1146,16 +1414,31 @@ public with sharing class Oblix_SOWRollOverLogic {
                 insert list_splits_to_clone;
             //}
 
+            // S.M. Removing if statements to resolve sonar issues
+            // delete the cloned campaigns which are 100%
+            //if (!map_campaigns_to_delete.isEmpty()){
+                delete map_campaigns_to_delete.values();
+>>>>>>> develop
+            //}
+
+            // delete old hub and splits
+            //if (!map_splits_to_delete.isEmpty()){
+                delete map_splits_to_delete.values();
+            //}
+
+<<<<<<< HEAD
+            // insert new hub and splits
+            //if (!list_splits_to_clone.isEmpty()){
+                insert list_splits_to_clone;
+            //}
+
             //Oblix_SyncBatchJob.addEvent('DEBUG IN syncCampaignDuringTransitionPeriod() - result_msg: ' + result_msg,NULL);
+=======
+
+            Oblix_SyncBatchJob.addEvent('DEBUG IN syncCampaignDuringTransitionPeriod() - result_msg: ' + result_msg,NULL);
+>>>>>>> develop
 
 
-        }catch(QueryException queryEx){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN syncCampaignDuringTransitionPeriod() - ', queryEx.getMessage() + STACK_TRACE + queryEx.getStackTraceString());
-            is_success = false;
-        }
-        catch(DmlException dmlEx){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN syncCampaignDuringTransitionPeriod() - ', dmlEx.getMessage() + STACK_TRACE + dmlEx.getStackTraceString());
-            is_success = false;
         }
         catch(Exception ex){  
             Oblix_SyncBatchJob.addEvent('ERROR IN syncCampaignDuringTransitionPeriod() - ', ex.getMessage() + STACK_TRACE + ex.getStackTraceString());
@@ -1283,14 +1566,6 @@ public with sharing class Oblix_SOWRollOverLogic {
             update map_original_id_original_asset.values();
 
         }
-        catch(QueryException queryEx){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN cloneAssets() - ', queryEx.getMessage() + STACK_TRACE + queryEx.getStackTraceString());
-            is_success = false;
-        }
-        catch(DmlException dmlEx){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN cloneAssets() - ', dmlEx.getMessage() + STACK_TRACE + dmlEx.getStackTraceString());
-            is_success = false;
-        }
         catch(Exception ex){  
             Oblix_SyncBatchJob.addEvent('ERROR IN cloneAssets() - ', ex.getMessage() + STACK_TRACE + ex.getStackTraceString());
             is_success = false;
@@ -1331,6 +1606,7 @@ public with sharing class Oblix_SOWRollOverLogic {
             String query_string = SELECT_SOQL;
             query_string += String.join(Oblix_Utils.getfieldsByObject('Oblix_Project_Assets__c'),',');
             query_string += ' FROM Oblix_Project_Assets__c WHERE Agency_Projects__r.Sync_Status__c =\'' + job_component.attrib_3; 
+<<<<<<< HEAD
             query_string += '\' AND Agency_Projects__r.Financial_Year__r.SOW_Status__c = \'' + Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES ;
             query_string +=  '\' AND Agency_Projects__r.Sync_Step__c <> \'' + step_name + ORDER_BY_SOQL + job_component.query_limit; 
 
@@ -1410,9 +1686,97 @@ public with sharing class Oblix_SOWRollOverLogic {
                     //  2- PFY and NFY are created but require syncing
 
                     Oblix_Project_Assets__c cloned_asset = map_original_ids_to_cloned.get(asset.id);
+=======
+            
+            // exclude the NFY records
+            query_string += '\' AND Agency_Projects__r.Financial_year__r.SOW_NFY__c <> NULL ';
+            query_string += ' AND Agency_Projects__r.Sync_Step__c <> \'' + step_name + ORDER_BY_SOQL + job_component.query_limit; 
+
+            // OLD IMPLEMENTATION
+            //query_string += '\' AND (Agency_Projects__r.Financial_Year__r.SOW_Status__c = \'' + Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES ;
+            //query_string += '\' OR Agency_Projects__r.Financial_Year__r.SOW_Status__c = \'' + Oblix_Utils.SOW_STATUS_REJECTED_BY_AGENCY; 
+            //query_string += '\' OR Agency_Projects__r.Financial_Year__r.SOW_Status__c =  \'' + Oblix_Utils.SOW_STATUS_REJECTED_BY_UNILEVER;
+            //query_string +=  '\') AND Agency_Projects__r.Sync_Step__c <> \'' + step_name + ORDER_BY_SOQL + job_component.query_limit; 
+
+            result_msg += '\n\n\n query_string: ' + query_string;
+
+            Map<Id, Oblix_Project_Assets__c> map_original_ids_to_original = new Map<Id,Oblix_Project_Assets__c>();
+            Set<Id> set_original_ids =  new Set<Id>();
+            Set<Id> set_original_parent_ids = new Set<Id>();
+
+            for (Oblix_Project_Assets__c asset : database.query(query_string)){
+                map_original_ids_to_original.put(asset.Id, asset);
+                set_original_ids.add(asset.Id);
+                set_original_parent_ids.add(asset.Agency_Projects__c);
+            }
+
+
+            result_msg += '\n query1 result rows: ' + set_original_ids.size() + ' - set_original_parent_ids: ' + JSON.serialize(set_original_parent_ids);
+
+            // get the NFY related records for the selected parent campaign Ids
+            String query_string2 = SELECT_SOQL;
+            query_string2 += String.join(Oblix_Utils.getfieldsByObject('Oblix_Project_Assets__c'),',');
+            query_string2 += ' FROM Oblix_Project_Assets__c WHERE Agency_Projects__r.Campaign_PFY__c in: set_original_parent_ids ORDER BY Id '; 
+            
+            result_msg += '\n query2: ' + query_string2;
+
+            Map<Id, Oblix_Project_Assets__c> map_original_ids_to_cloned = new Map<Id,Oblix_Project_Assets__c>();
+            for (Oblix_Project_Assets__c cloned_asset: database.query(query_string2)){
+                map_original_ids_to_cloned.put(cloned_asset.Asset_PFY__c,cloned_asset );
+            }
+
+            result_msg += '\n query2 result rows: ' + map_original_ids_to_cloned.size();
+
+
+
+            Set<Id> set_cloned_campaign_pfy_ids = new Set<Id>();
+            // get the NFY related records for the selected parent campaign Ids
+            String query_string3 = 'SELECT Campaign_PFY__c FROM Oblix_SOW_Projects__c WHERE Campaign_PFY__c in: set_original_parent_ids ORDER BY Id '; 
+            
+            result_msg += '\n query3: ' + query_string3;
+            for (Oblix_SOW_Projects__c cloned_campaign: database.query(query_string3)){
+                set_cloned_campaign_pfy_ids.add(cloned_campaign.Campaign_PFY__c);
+            }
+
+            // scenarios:
+            //  1- PFY asset is newly created: create a clone of it for the NFY
+            //  2- PFY and NFY are created but require syncing - quantity changed
+            //  3- PFY asset deleted therefore delete it from NFY 
+
+            Map<Id, Oblix_Project_Assets__c> map_assets_to_delete = new Map<Id, Oblix_Project_Assets__c>();
+            Map<Id, Oblix_Project_Assets__c> map_assets_to_update = new Map<Id,Oblix_Project_Assets__c>();
+            List<Oblix_Project_Assets__c> list_assets_to_clone = new List<Oblix_Project_Assets__c>();
+
+            // this map is used to copy over values from original to cloned assets
+            Map<String, Schema.SObjectField> map_name_and_field = Oblix_Utils.fetchAllFieldsForObject('Oblix_Project_Assets__c');
+
+
+            for (Oblix_Project_Assets__c asset: map_original_ids_to_original.values()){
+                result_msg += '\n\n\n **** asset.mdm_id: ' + asset.mdm_id__c 
+                    + ' - asset.quantity: ' + asset.Quantity__c + ' - asset: ' + JSON.serialize(asset);
+                
+                // ensure the NFY Campaign exists - campaigns which are 100% or cancelled will not have a NFY record!
+                if(!map_original_ids_to_cloned.containsKey(asset.id) && set_cloned_campaign_pfy_ids.contains(asset.Agency_Projects__c)){
+                    //  1- PFY asset is newly created: create a clone of the for the NFY
+                    
+
+                    Oblix_Project_Assets__c cloned_asset = asset.clone(false, true, false, false);
+                    cloned_asset.put(job_component.attrib_5,asset.Id);
+                    // set the parent of new asset to be under the cloned campaign (cloned/NFY)
+                    cloned_asset.Agency_Projects__c = (Id) asset.get(job_component.attrib_2);
+                    cloned_asset.Campaign_ID__c = (String) asset.get(job_component.attrib_2);
+                    list_assets_to_clone.add(cloned_asset);
+                    
+                    result_msg += '\n\n\n to clone - campaign_id ' + cloned_asset.Campaign_ID__c + ' - Agency_Projects__c: ' + cloned_asset.Agency_Projects__c;
+
+                }
+                else if(NULL != map_original_ids_to_cloned && map_original_ids_to_cloned.containsKey(asset.id)){
+                    //  2- PFY and NFY are created but require syncing
+
+                    Oblix_Project_Assets__c cloned_asset = map_original_ids_to_cloned.get(asset.id);
 
                     // sync all existing fields from CFY to NFY
-                    setAllFieldsDuringSync(asset, cloned_asset,map_name_and_field);
+                    setAllFieldsDuringSync(asset, cloned_asset,map_name_and_field,true);
 
                     // set the correct campaign id field as above would have overwritten it
                     cloned_asset.Campaign_ID__c = (String) asset.get(job_component.attrib_2);
@@ -1458,6 +1822,70 @@ public with sharing class Oblix_SOWRollOverLogic {
 
             result_msg += RESULT_MSG_PREFIX + map_assets_to_update.size() + ' - to clone: ' + list_assets_to_clone.size() 
                 + ' - to delete: ' + map_assets_to_delete.size();
+>>>>>>> develop
+
+                    // sync all existing fields from CFY to NFY
+                    setAllFieldsDuringSync(asset, cloned_asset,map_name_and_field);
+
+                    // set the correct campaign id field as above would have overwritten it
+                    cloned_asset.Campaign_ID__c = (String) asset.get(job_component.attrib_2);
+
+                    map_assets_to_update.put(cloned_asset.Id, cloned_asset);
+                    
+                    result_msg += RESULT_MSG_PREFIX + cloned_asset.name;
+
+                }
+
+                asset.Sync_Step__c = step_name;
+            }
+
+            result_msg += RESULT_MSG_PREFIX + map_assets_to_update.size() + ' - to clone: ' + list_assets_to_clone.size() 
+                + ' - to delete: ' + map_assets_to_delete.size();
+            //Oblix_SyncBatchJob.addEvent('DEBUG IN syncAssetsDuringTransitionPeriod() - result_msg: ' + result_msg,NULL);
+
+            insert list_assets_to_clone;
+
+            // need to update original record and add the NFY lookups for newly created clones
+            String query_string4 = SELECT_SOQL + job_component.attrib_4 + ', ' + job_component.attrib_5 + ' FROM Oblix_Project_Assets__c WHERE ' + job_component.attrib_5 + ' in :set_original_ids ';
+            // initial sync result: SELECT Asset_NFY__c, Asset_PFY__c FROM Oblix_Project_Assets__c WHERE Asset_PFY__c in: set_original_ids
+
+            // update the original SOWs with the id of cloned SOWs
+            for (Oblix_Project_Assets__c asset: database.query(query_string4)){
+                //sync: map_original_ids_to_original.get(asset.Asset_PFY__c).Asset_NFY__c = asset.Id;
+                map_original_ids_to_original.get((Id) asset.get(job_component.attrib_5)).put(job_component.attrib_4,asset.Id);
+            }
+
+            update map_original_ids_to_original.values();
+
+            // loop through NFY assets and if no match found in PFY collection then delete
+            for (Oblix_Project_Assets__c asset: map_original_ids_to_cloned.values()){
+                
+                if (!map_original_ids_to_original.containsKey(asset.Asset_PFY__c)){
+                    //  3- PFY asset deleted therefore delete it from NFY 
+                    map_assets_to_delete.put(asset.Id, asset);
+                }
+
+            }
+
+            delete map_assets_to_delete.values();
+
+            update map_original_ids_to_original.values();
+
+            update map_assets_to_update.values();
+    
+
+            //#################################################
+            //  SET STEP NAME TO SYNC COMPLETE
+            //#################################################
+            List<Oblix_SOW_Projects__c> list_campaigns_to_set_processed_flag = [SELECT Sync_Step__c FROM Oblix_SOW_Projects__c WHERE Id in: set_original_parent_ids];
+            setProcessingFlag(list_campaigns_to_set_processed_flag,Oblix_syncBatchJob.SYNC_STEP_FIELD, step_name );
+
+            Oblix_SyncBatchJob.addEvent('DEBUG IN syncCampaignDuringTransitionPeriod() - result_msg: ' + result_msg,NULL);
+            
+<<<<<<< HEAD
+
+            result_msg += RESULT_MSG_PREFIX + map_assets_to_update.size() + ' - to clone: ' + list_assets_to_clone.size() 
+                + ' - to delete: ' + map_assets_to_delete.size();
 
 
             delete map_assets_to_delete.values();
@@ -1483,6 +1911,8 @@ public with sharing class Oblix_SOWRollOverLogic {
         catch(DmlException dmlEx){  
             Oblix_SyncBatchJob.addEvent('ERROR IN syncAssets() - ', dmlEx.getMessage() + STACK_TRACE + dmlEx.getStackTraceString());
             is_success = false;
+=======
+>>>>>>> develop
         }
         catch(Exception ex){  
             Oblix_SyncBatchJob.addEvent('ERROR IN syncAssets() - ', ex.getMessage() + STACK_TRACE + ex.getStackTraceString());
@@ -1569,14 +1999,6 @@ public with sharing class Oblix_SOWRollOverLogic {
             insert list_non_campaigns_to_clone;
             
         }
-        catch(QueryException queryEx){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN cloneNonCampaigns() - ', queryEx.getMessage() + STACK_TRACE + queryEx.getStackTraceString());
-            is_success = false;
-        }
-        catch(DmlException dmlEx){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN cloneNonCampaigns() - ', dmlEx.getMessage() + STACK_TRACE + dmlEx.getStackTraceString());
-            is_success = false;
-        }
         catch(Exception ex){  
             Oblix_SyncBatchJob.addEvent('ERROR IN cloneNonCampaigns() - ', ex.getMessage() + STACK_TRACE + ex.getStackTraceString());
             is_success = false;
@@ -1662,6 +2084,7 @@ public with sharing class Oblix_SOWRollOverLogic {
             Database.insert(list_attachments_to_clone, false);
             
 
+<<<<<<< HEAD
         }
         catch(QueryException queryEx){  
             Oblix_SyncBatchJob.addEvent('ERROR IN cloneAttachments() - ', queryEx.getMessage() + STACK_TRACE + queryEx.getStackTraceString());
@@ -1670,6 +2093,8 @@ public with sharing class Oblix_SOWRollOverLogic {
         catch(DmlException dmlEx){  
             Oblix_SyncBatchJob.addEvent('ERROR IN cloneAttachments() - ', dmlEx.getMessage() + STACK_TRACE + dmlEx.getStackTraceString());
             is_success = false;
+=======
+>>>>>>> develop
         }
         catch(Exception ex){  
             Oblix_SyncBatchJob.addEvent('ERROR IN cloneAttachments() - ', ex.getMessage() + STACK_TRACE + ex.getStackTraceString());

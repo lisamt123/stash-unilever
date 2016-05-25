@@ -10,6 +10,10 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
     public Map <Id, String> map_att_locale {get; set;}
     public Oblix_DashboardsHandler scoresFYFeeDashboard {get; set;}
     public Oblix_DashboardsHandler scoresFullFeeDashboard {get; set;}
+<<<<<<< HEAD
+=======
+    public DateTime pageLastRefreshed {get;set;}
+>>>>>>> develop
 
 	public static final String FIELD_SET_SOW_MAIN_DETAIL = 'oblix_sow_main_detail';
     public static final String OBJECT_SOW_TO_QUERY = 'marketing_sow__c';
@@ -18,6 +22,15 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
 
     public Id campaignIDSync { get; set; }
 
+<<<<<<< HEAD
+=======
+    public Boolean isAdmin {
+    	get{
+    		return Oblix_PermissionHandler.isSystemAdmin() || Oblix_PermissionHandler.hasSuperUserpermissionSet();
+    	}
+    }
+
+>>>>>>> develop
     public Boolean can_delete_sow{
         get{
             return Oblix_PermissionHandler.canDeleteSOW(selected_sow.SOW_Status__c, selected_sow.Id);
@@ -51,7 +64,11 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
     public Boolean sow_approvers_defined{
         get{
             // until the agency users are live, agency approvers aren't mandatory
+<<<<<<< HEAD
             return selected_sow.Unilever_SOW_Approver_Name__c != null || Oblix_PermissionHandler.isSystemAdmin() || Oblix_PermissionHandler.hasSuperUserpermissionSet();// && selected_sow.Agency_SOW_Approver_Name__c != null;
+=======
+            return (selected_sow.Unilever_SOW_Approver_Name__c != null && selected_sow.Unilever_SOW_Approver_Name__r.IsActive) || Oblix_PermissionHandler.isSystemAdmin() || Oblix_PermissionHandler.hasSuperUserpermissionSet();// && selected_sow.Agency_SOW_Approver_Name__c != null;
+>>>>>>> develop
             //Blank Unilever approver is taken care of inside submitForApproval() method so can proceed if SystemAdmin or SuperUser
         }
     }
@@ -138,6 +155,132 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
         }
     }
 
+<<<<<<< HEAD
+=======
+    //**********************************************************************************************************************************
+    // ROLLOVER SYNC STATUSES
+    //**********************************************************************************************************************************
+
+// S.M. 2016-05-21 - status messages
+// rollover status list
+
+//- Initiate Rollover
+//    - On Original SOW (just after clicking initiate rollover): Rollover Initiated - your B/Fwd record will be created shortly after few minutes. You can continue working on other records (Sync_Status__c = ’Sync In Progress’ OR ’Sync Requested' && NFY is null)
+//    - On the Original SOW (when Initial Sync is completed): Here is the link to your brought forward recode: [link to record] (get NFY record for link) (NFY != NULL)
+//- Sync
+//    - On both Original & Brough Forward SOW (when subsequent sync process is running): Rollover in Progress. This Scope of Work is currently Read Only. (Sync_Status__c = ’Sync In Progress’ OR ’Sync Requested' && NFY is != null)
+//    - On BFwd SOW (after sync requested - just after click): Sync Initiated - your record will be synced shortly after a few minutes. You can continue working on other records (Sync_Status__c = ’Sync Requested’ && PFY is != null)
+//    - On BFwd SOW (after sync completed - staying on the page): Sync Completed! Please refresh this page to see the latest changes (Sync_Status__c = ’Sync Completed’ && PFY is != null && lastrefreshed < PFY.lastmodifiedDate)
+//    - On BFwd SOW (after sync completed - coming back to the page - original not finalised then remove): Here is the link to your original recode: [link to record] (get PFY record for link) (PFY != NULL && PFY.status <> ‘finalised’) - IMPORTANT: This Scope of Work has campaigns brought forward from a previous financial year. Please make changes to these campaigns via: Shahin Full cycle 2__2016 (Live) and use Sync to reflect the changes below (PFY <> NULL and PFY not finalised)
+//- Approved record
+//    - On original record: Here is the link to your live SOW [link to Live SOW] (Cloned_SOW != NULL && Status__c = ‘Approved’)
+
+
+    public Boolean is_going_through_rollover {
+        get {
+            return selected_sow.SOW_PFY__c != NULL && selected_sow.SOW_PFY__r.SOW_Status__c != Oblix_Utils.SOW_STATUS_FINALISED;
+        }
+    }
+
+    public Boolean is_initial_rollover_sync_requested {
+        get {
+            return selected_sow.SOW_NFY__c == NULL && (selected_sow.Sync_Status__c == Oblix_Utils.JOB_STATUS_SYNC_REQUESTED);
+        }
+    }
+
+    public Boolean is_initial_sync_completed {
+        get {
+            return selected_sow.SOW_NFY__c != NULL;
+        }
+    }
+
+    public Boolean is_rollover_in_progress {
+        get {
+            system.debug('### is_rollover_in_progress - selected_sow.SOW_NFY__c:  ' + selected_sow.SOW_NFY__c + ' - selected_sow.SOW_PFY__r.Sync_Status__c: ' + selected_sow.SOW_PFY__r.Sync_Status__c
+                  + ' - selected_sow.Sync_Status__c: ' + selected_sow.SOW_PFY__r.Sync_Status__c);
+            return Oblix_Utils.is_sync_job_running && (selected_sow.Sync_Status__c == Oblix_Utils.SOW_STATUS_CAMPAIGN_SYNC_REQUIRED || selected_sow.Sync_Status__c == Oblix_Utils.JOB_STATUS_SYNC_REQUESTED);
+        }
+    }
+    public Boolean is_sync_requested {get;set;}
+         //Sync_Status__c = ’Sync Requested’ && PFY is != null
+        //get {
+        //    return !Oblix_Utils.is_sync_job_running && selected_sow.SOW_PFY__c != NULL;
+        //}
+
+    //}
+
+    public Boolean is_sync_complete {
+        // Sync_Status__c = ’Sync Completed’ && PFY is != null
+        get {
+            return selected_sow.SOW_PFY__c != NULL && (selected_sow.SOW_PFY__r.Sync_Status__c == Oblix_Utils.JOB_STATUS_SYNC_COMPLETED);
+        }
+    }
+    public Boolean is_approved_original_record {
+        // Cloned_SOW != NULL && Status__c = ‘Approved’
+        get {
+            return selected_sow.Cloned_SOW__c != NULL && selected_sow.SOW_Status__c == Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY;
+        }
+    }
+
+
+    //**********************************************************************************************************************************
+    // ROLLOVER SYNC RELATED MESSAGES SHOW/HIDE
+    //**********************************************************************************************************************************
+
+    public Boolean can_see_rollover_initiated_message_on_original_sow{
+        get {
+            return is_initial_rollover_sync_requested
+                && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet();
+        }
+    }
+
+
+    public Boolean can_see_sync_completed_on_original_sow{
+        get {
+            return is_initial_sync_completed
+                && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet();
+        }
+    }
+
+
+    public Boolean can_see_sync_in_progress{
+        get {
+            return is_rollover_in_progress && !is_sync_complete
+                && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet();
+        }
+    }
+
+
+    public Boolean can_see_sync_requested_on_bfwd_sow{
+        get {
+            return is_sync_requested && !is_rollover_in_progress && !is_sync_complete
+                && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet();
+        }
+    }
+
+    public Boolean can_see_sync_completed_on_bfwd_sow_staying_on_the_page{
+        get {
+            return is_sync_complete && selected_sow.SOW_PFY__r.LastmodifiedDate > pageLastRefreshed
+                && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet();
+        }
+    }
+
+
+    public Boolean can_see_link_to_cloned_record{
+        get {
+            return is_approved_original_record
+                && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet();
+        }
+    }
+
+    //Only UL users can see warning about SOW going through a rollover if SOW has at least 1 B/Fwd Campaign
+    public Boolean can_see_rollover_warning {
+        get {
+            return is_going_through_rollover && (selected_sow.B_Fwd_Campaign_count__c > 0) && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet();
+        }
+    }
+
+>>>>>>> develop
     public Boolean hasCampaigns {get; set;}
 
 
@@ -211,7 +354,11 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
         // 21/04 DE351: For SysAdmin and SU set them as designated Unilever approvers if no Unilever approver was previously assigned to prevent error message
         //              All other users won't be able to submit SOW for approval if no Unilever approver is assigned (handled by try-catch bellow)
         if ((Oblix_PermissionHandler.hasSuperUserpermissionSet() || Oblix_PermissionHandler.isSystemAdmin()) &&
+<<<<<<< HEAD
                 selected_sow.Unilever_SOW_Approver_Name__c == null) {
+=======
+                (selected_sow.Unilever_SOW_Approver_Name__c == null || !selected_sow.Unilever_SOW_Approver_Name__r.IsActive)) {
+>>>>>>> develop
 
             selected_sow.Unilever_SOW_Approver_Name__c = UserInfo.getUserId();
             //update selected_sow;
@@ -274,6 +421,7 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
 
     }
 
+<<<<<<< HEAD
     /*******************************************************************************
     * @author       Slavko Skular
     * @date         2016-02-09
@@ -312,6 +460,9 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
         return ref;
 
     }
+=======
+    
+>>>>>>> develop
 
     /*******************************************************************************
     * @author       Slavko Skular
@@ -351,7 +502,11 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
             //              All other users won't be able to complete Unilever Approval if no Agency approver is assigned (handled by try-catch bellow)
             if (selected_sow.SOW_Status__c == Oblix_Utils.SOW_STATUS_AWAITING_UNILEVER_APPROVAL &&
                     (Oblix_PermissionHandler.hasSuperUserpermissionSet() || Oblix_PermissionHandler.isSystemAdmin()) &&
+<<<<<<< HEAD
                     selected_sow.Agency_SOW_Approver_Name__c == null ) {
+=======
+                    (selected_sow.Agency_SOW_Approver_Name__c == null || !selected_sow.Agency_SOW_Approver_Name__r.IsActive) ) {
+>>>>>>> develop
                     
                     selected_sow.Agency_SOW_Approver_Name__c = UserInfo.getUserId();
             }
