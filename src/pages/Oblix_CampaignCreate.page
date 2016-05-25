@@ -186,7 +186,8 @@
                     <div class="col-lg-8 investment_project_box">
                         <div class="col-lg-6" id="innovationLabel">
                             <h2>Investment Priority</h2>
-                            <apex:variable var="innovationSelected" value="{!campaignHelper.selectedBrandBrand == null}"/>
+                            <apex:variable var="innovationSelected" value="{!campaignHelper.selectedBrandInnovation != null && campaignHelper.selectedBrandBrand == null}"/>
+                            <apex:variable var="brandSelected"      value="{!campaignHelper.selectedBrandBrand != null && campaignHelper.selectedBrandInnovation == null}"/>
                             <div>
                                 <p class="create_SOW_form_titles">Please Choose Innovation Projects or Brand Led Growth*</p>
                                 <apex:outputText rendered="{! innovationSelected}">
@@ -202,10 +203,10 @@
                                 <p class="campaign_create_agency_hub_split_table_subtitle" style="padding:0;">{!$Label.Oblix_lbl_UIUX_Identifying_priorities}</p>
                             </div>
                             <div>
-                                <apex:outputText rendered="{! NOT(innovationSelected)}">
+                                <apex:outputText rendered="{! brandSelected }">
                                     <input class="Brand_Led_Growth" type="radio" name="innovation" value="Brand Led Growth" onchange="$('.projBrandBrand').removeAttr('disabled');$('.projBrandInnov').attr('disabled','disabled');$('.projBrandInnov')[0].selectedIndex=0;" checked="checked"/>
                                 </apex:outputText>
-                                <apex:outputText rendered="{! innovationSelected}">
+                                <apex:outputText rendered="{! NOT(brandSelected)}">
                                     <input class="Brand_Led_Growth" type="radio" name="innovation" value="Brand Led Growth" onchange="$('.projBrandBrand').removeAttr('disabled');$('.projBrandInnov').attr('disabled','disabled');$('.projBrandInnov')[0].selectedIndex=0;" />
                                 </apex:outputText>
                                 <apex:selectList value="{!campaignHelper.selectedBrandBrand}" multiselect="false" size="1" styleClass="investment_project_dropdowns_left input_init projBrandBrand" onchange="setInvestmentPriorityBrandLedGrowth();">
