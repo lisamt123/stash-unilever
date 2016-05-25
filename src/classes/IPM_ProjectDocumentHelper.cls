@@ -36,10 +36,6 @@ public with sharing class IPM_ProjectDocumentHelper
         List<IPM_Project_Document__c> preparedprojectDocumentList = new List<IPM_Project_Document__c>(); 
         for(IPM_Project__c project : ProjectMap.values())
         {
-            // Get incoming projects complexity
-            String projectComplexity = project.IPM_Complexity__c;
-            String projectType = project.IPM_SourceProjectType__c; 
-            String projectCategory = project.IPM_Category_Text__c;
             
             // Get Project Type Setting From Custom Settings 
             IPM_Project_Type__c associatedProjectType = IPM_Utils.retrieveProjectType(project);
@@ -51,65 +47,73 @@ public with sharing class IPM_ProjectDocumentHelper
                 if(projectGate!=null && !String.isEmpty(projectGate))
                 {
                     projectGate = projectGate.trim();
-                    for(IPM_Project_Template__c complexityTemplate: IPM_ProjectHelper.complexityTemplateMap.values())
-                    {
-                        // If project Complexity matches project Template Complexity. ****We need to check Category Also Here ***
-                        if(!String.isblank(projectComplexity) && !String.isBlank(complexityTemplate.IPM_Template_Complexity__c) && projectComplexity == complexityTemplate.IPM_Template_Complexity__c && 
-                           !String.isBlank(projectCategory) && !String.isBlank(complexityTemplate.IPM_Category__c) && complexityTemplate.IPM_Category__c.contains(projectCategory) &&
-                           !String.isBlank(projectType) && !String.isBlank(complexityTemplate.IPM_Project_Type__c) && complexityTemplate.IPM_Project_Type__c == projectType )
-                        {
-                            if(IPM_ProjectHelper.complexitySpecificDocumentTemplates.containsKey(complexityTemplate.Id) && IPM_ProjectHelper.complexitySpecificDocumentTemplates.get(complexityTemplate.Id)!=null)
-                            {
-                                for(IPM_Document_Template__c docTemplate : IPM_ProjectHelper.complexitySpecificDocumentTemplates.get(complexityTemplate.Id))
-                                {
-                                    // If project Gate Matches Document Type Gate, We need to build Project Documents for that Gate. 
-                                    if( projectGate == docTemplate.IPM_Document_Type__c)
-                                    {
-                                        // Prepare Project Document
-                                        IPM_Project_Document__c projDoc = new IPM_Project_Document__c(); 
-                                        projDoc.IPM_Project__c = project.Id;
-                                        projDoc.IPM_Project_Template__c = docTemplate.IPM_Project_Template__c;
-                                        projDoc.IPM_Document_Template__c = docTemplate.ID; 
-                                        projDoc.IPM_GateDocuments__c = docTemplate.IPM_Document_Type__c; 
-                                        projDoc.IPM_Document_Complexity__c = project.IPM_Complexity__c;                                         
-                                        projDoc.IPM_Contract_GateKeeper_Model__c = associatedProjectType.IPM_GateKeeping_Model__c;
-                                        projDoc.IPM_Document_Order__c=docTemplate.IPM_Document_Order__c; 
-                                        projDoc.IPM_Project_External_Id__c=project.Project_External_ID__c;
-                                        /* if there is already a document attached to Project for incoming Gate, update project document */    
-                                        if(IPM_ProjectHelper.DBprojectSpecificDocumentMap.containsKey(project.Id) && IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(project.Id)!=null)
-                                        {
-                                           List<IPM_Project_Document__c> existingProjectDocuments  = IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(project.Id);
-                                                
-                                            for(IPM_Project_Document__c tempProjectDocument : existingProjectDocuments)
-                                            {
-                                                // If Gate Document Type matches, it means there is already a Gate Document with different Complexity.
-                                                // Map Id to existing Document to this document.
-                                                if(tempProjectDocument.IPM_GateDocuments__c == projectGate) 
-                                                {
-                                                    projDoc.Id = tempProjectDocument.Id;
-                                                    projDoc.IPM_Document_Status__c = tempProjectDocument.IPM_Document_Status__c;                    
-                                                    break;
-                                                }
-                                            }
-                                        }
-                                        
-                                        if(projDoc.IPM_Document_Status__c == null || String.isBlank(projDoc.IPM_Document_Status__c))
-                                        {
-                                            projDoc.IPM_Document_Status__c = IPM_ConstantUtils.STATUS_NOT_STARTED;
-                                        }
-                                        preparedprojectDocumentList.add(projDoc);
-                                        break;
-                                    }
-                                }
-                            }
-                            break;     
-                        }
-                    }
+                    createProjectdocument(project,associatedProjectType,preparedprojectDocumentList,projectGate);
                 }
             }  
         }
         return preparedprojectDocumentList;
     }
+    public static void createProjectdocument(IPM_Project__c project,IPM_Project_Type__c associatedProjectType,List<IPM_Project_Document__c> preparedprojectDocumentList, String projectGate)
+    {   
+         // Get incoming projects complexity
+        String projectComplexity = project.IPM_Complexity__c;
+        String projectType = project.IPM_SourceProjectType__c; 
+        String projectCategory = project.IPM_Category_Text__c;
+	    for(IPM_Project_Template__c complexityTemplate: IPM_ProjectHelper.complexityTemplateMap.values())
+	    {
+	        // If project Complexity matches project Template Complexity. ****We need to check Category Also Here ***
+	        if(!String.isblank(projectComplexity) && !String.isBlank(complexityTemplate.IPM_Template_Complexity__c) && projectComplexity == complexityTemplate.IPM_Template_Complexity__c && 
+	           !String.isBlank(projectCategory) && !String.isBlank(complexityTemplate.IPM_Category__c) && complexityTemplate.IPM_Category__c.contains(projectCategory) &&
+	           !String.isBlank(projectType) && !String.isBlank(complexityTemplate.IPM_Project_Type__c) && complexityTemplate.IPM_Project_Type__c == projectType )
+	        {
+	            if(IPM_ProjectHelper.complexitySpecificDocumentTemplates.containsKey(complexityTemplate.Id) && IPM_ProjectHelper.complexitySpecificDocumentTemplates.get(complexityTemplate.Id)!=null)
+	            {
+	                for(IPM_Document_Template__c docTemplate : IPM_ProjectHelper.complexitySpecificDocumentTemplates.get(complexityTemplate.Id))
+	                {
+	                    // If project Gate Matches Document Type Gate, We need to build Project Documents for that Gate. 
+	                    if( projectGate == docTemplate.IPM_Document_Type__c)
+	                    {
+	                        // Prepare Project Document
+	                        IPM_Project_Document__c projDoc = new IPM_Project_Document__c(); 
+	                        projDoc.IPM_Project__c = project.Id;
+	                        projDoc.IPM_Project_Template__c = docTemplate.IPM_Project_Template__c;
+	                        projDoc.IPM_Document_Template__c = docTemplate.ID; 
+	                        projDoc.IPM_GateDocuments__c = docTemplate.IPM_Document_Type__c; 
+	                        projDoc.IPM_Document_Complexity__c = project.IPM_Complexity__c;                                         
+	                        projDoc.IPM_Contract_GateKeeper_Model__c = associatedProjectType.IPM_GateKeeping_Model__c;
+	                        projDoc.IPM_Document_Order__c=docTemplate.IPM_Document_Order__c; 
+	                        projDoc.IPM_Project_External_Id__c=project.Project_External_ID__c;
+	                        /* if there is already a document attached to Project for incoming Gate, update project document */    
+	                        if(IPM_ProjectHelper.DBprojectSpecificDocumentMap.containsKey(project.Id) && IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(project.Id)!=null)
+	                        {
+	                           List<IPM_Project_Document__c> existingProjectDocuments  = IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(project.Id);
+                                                
+	                            for(IPM_Project_Document__c tempProjectDocument : existingProjectDocuments)
+	                            {
+	                                // If Gate Document Type matches, it means there is already a Gate Document with different Complexity.
+	                                // Map Id to existing Document to this document.
+	                                if(tempProjectDocument.IPM_GateDocuments__c == projectGate) 
+	                                {
+	                                    projDoc.Id = tempProjectDocument.Id;
+	                                    projDoc.IPM_Document_Status__c = tempProjectDocument.IPM_Document_Status__c;                    
+	                                    break;
+	                                }
+	                            }
+	                        }
+                                        
+	                        if(projDoc.IPM_Document_Status__c == null || String.isBlank(projDoc.IPM_Document_Status__c))
+	                        {
+	                            projDoc.IPM_Document_Status__c = IPM_ConstantUtils.STATUS_NOT_STARTED;
+	                        }
+	                        preparedprojectDocumentList.add(projDoc);
+	                        break;
+	                    }
+	                }
+	            }
+	            break;     
+	        }
+	    }
+	}
     
     /**************************************************************
     * @description: Used for Updating Project Document Status as Approved.
