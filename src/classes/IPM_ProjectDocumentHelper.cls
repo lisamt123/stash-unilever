@@ -157,17 +157,13 @@ public with sharing class IPM_ProjectDocumentHelper
                             
                             if(projectGate == incomingGateType)
                             {
-                                projectDoc.IPM_Document_Status__c = project.IPM_Current_Document_Status__c;
-                                if(project.IPM_Document_Update_Comments__c !=null && DOC_COMMENT_FIELDMAPPING.containsKey(projectDoc.IPM_Document_Status__c))
-                                {
+                               projectDoc.IPM_Document_Status__c = project.IPM_Current_Document_Status__c;
+  
+                               if(project.IPM_Document_Update_Comments__c !=null && DOC_COMMENT_FIELDMAPPING.containsKey(projectDoc.IPM_Document_Status__c))
+                               {
                                     String commentFieldAPIName = DOC_COMMENT_FIELDMAPPING.get(projectDoc.IPM_Document_Status__c);
-									if(projectDoc.IPM_Document_Status__c==IPM_ConstantUtils.DOCUMENT_STATUS_POSTPONED){
-										projectDoc.put(commentFieldAPIName,project.IPM_Postponed_Comments__c);
-									}
-									else{
-										  projectDoc.put(commentFieldAPIName,project.IPM_Document_Update_Comments__c);
-									}    
-                                }
+                                    projectDoc.put(commentFieldAPIName,project.IPM_Document_Update_Comments__c);    
+                               }
                                
                                if(project.IPM_Document_Update_Date__c !=null && DOC_DATE_FIELDMAPPING.containsKey(projectDoc.IPM_Document_Status__c))
                                {
@@ -211,17 +207,12 @@ public with sharing class IPM_ProjectDocumentHelper
             
             IPM_Project_Type__c associatedProjectType = IPM_Utils.retrieveProjectType(project);
             
-            String projectCurrentPhase = associatedProjectType.IPM_Phase__c;
-            
             String associatedGate = associatedProjectType.IPM_Gate_Document__c;
             
-            if(associatedGate!=null && !String.isblank(associatedGate))
-            {
-                if(projectToDocumentMap.containsKey(associatedProjectID) && projectToDocumentMap.get(associatedProjectID)!=null)
-                {
                     // check if that Gate Exists in the Map
                     Map<String,IPM_Project_Document__c> gateToProjectDocumentMap = projectToDocumentMap.get(associatedProjectID);
-                    if(gateToProjectDocumentMap.containsKey(associatedGate) && gateToProjectDocumentMap.get(associatedGate)!=null)
+            if(!String.isblank(associatedGate) &&  gateToProjectDocumentMap!=null && gateToProjectDocumentMap.containsKey(associatedGate) 
+                && gateToProjectDocumentMap.get(associatedGate)!=null)
                     {
                         IPM_Project_Document__c projectDocument = gateToProjectDocumentMap.get(associatedGate);
                         Id associatedTemplateId = projectDocument.IPM_Document_Template__c;
@@ -262,9 +253,9 @@ public with sharing class IPM_ProjectDocumentHelper
                                         IPM_Project_Document_Section__c projDocSect = new IPM_Project_Document_Section__c();
                                         // If there is an existing Product document Template associated,we assume sections are already associated with them.
                                         // In that case we need to update references to those project document section to point to proper master sec.
-                                        /* the below condition filters out the document template specific sections, since Project document is a lookup field hence we need to check for null first 
-                                        / and then check wheter the section exists in the map, this logic helps in precisely picking on the required section   */                                   
-                                        if(existingProjectDocument!=null && IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.containsKey(existingProjectDocument.Id))
+                                        
+                                        if(existingProjectDocument!=null && IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.containsKey(existingProjectDocument.Id) 
+                                        && IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.containsKey(existingProjectDocument.Id)  )
                                         {
                                             for(IPM_Project_Document_Section__c existingProjectDocSec : IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(existingProjectDocument.Id) )
                                             {
@@ -289,23 +280,27 @@ public with sharing class IPM_ProjectDocumentHelper
                                         projDocSect.IPM_Section__c = section.Id;
                                         projDocSect.IPM_Section_Sequence_Number__c = section.IPM_Section_Sequence__c;
                                         projDocSect.IPM_FunctionalRole__c = section.IPM_FunctionalRole__c;
-                                        // for the local operational project need to have the functional role set for BD to be re-assigned to PL
-										if(IPM_ConstantUtils.PROJECT_SPAN_LOCAL.Equals(project.IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL.Equals(project.IPM_Project_Type__c) && IPM_ConstantUtils.FUNCTIONAL_ROLE_BD.Equals(section.IPM_FunctionalRole__c)){
-											projDocSect.IPM_FunctionalRole__c = IPM_ConstantUtils.FUNCTIONAL_ROLE_PL;
-										}
                                         projDocSect.IPM_Section_Help_Text_Long__c = section.IPM_Section_Help_Text__c;
                                         projDocSect.IPM_Negotiable__c = section.IPM_Negotiable__c;
-										projDocSect.IPM_Default_Section__c=section.IPM_IS_Default_Section__c;
                                         projDocSect.IPM_Section_Type__c = section.IPM_Section_Type__c;
                                         projDocSect.IPM_Has_Appendix__c=section.IPM_Has_Appendix__c;
                                         projDocSect.Is_IPM_Global_Consolidated__c=section.Is_IPM_Global_Consolidated__c;
                                         
-                                                                             
+                                        // Based on Complexity set the Default Section Flag.
+                                        if(currentProject.IPM_Complexity__c == IPM_ConstantUtils.COMPLEXITY_FULL){
+                                            projDocSect.IPM_Default_Section__c=true;
+                                        }   
+                                        else if(currentProject.IPM_Complexity__c == IPM_ConstantUtils.COMPLEXITY_LITE)
+                                        {
+                                            projDocSect.IPM_Default_Section__c= !section.IPM_Negotiable__c; 
+                                        } 
+                                        
                                         initiateCopyOverLogic(associatedGate,projDocSect,section.External_ID__c,currentProject,parentProject);
                                         
                                         String summary=projDocSect.IPM_Gate_Document_Summary__c; 
-                                        summary=String.isNotBlank(summary)? summary.replaceAll(IPM_ConstantUtils.SPECIAL_CHARACTERS,''):summary;                                                                    
- 
+                                        if(String.isNotBlank(summary)){
+                                            summary=summary.replaceAll(IPM_ConstantUtils.SPECIAL_CHARACTERS,'');
+                                         }   z
                                          
                                          // the below logic is required because from Bosscard RTF field data needs to be copied into RTF field of Section with Character Limit 
                                          if(associatedGate==IPM_ConstantUtils.CHARTER_GATE && String.isNotBlank(projDocSect.IPM_Gate_Document_Summary__c) && summary.length()>(Integer)section.IPM_Character_Limit__c){
@@ -343,8 +338,6 @@ public with sharing class IPM_ProjectDocumentHelper
 											if(!(project.IPM_ProjectSubType__c == IPM_ConstantUtils.IPM_BLG && section.IPM_Section_Sequence__c == '5.3'))
 											{
                                             projectDocumentSectionList.add(projDocSect);
-											}                                     
-                                       }
                                     }
                                 }
                             }
@@ -464,7 +457,7 @@ public with sharing class IPM_ProjectDocumentHelper
                         String targetField = targetFieldAPIList.get(counter);
                         //NO SONAR for Unnecessary Boolean Comparison, since targetField is coming from Map where two fields are of typr Text and 1 is of Checkbox, we need to explicitly check for this condition in order for Business Logic to Work
                         //While copying over sections data 3 fields pulled from the custom settings "IPM_Section_CopyMapping" needs to be copied Gate Summary, Functional Summary (which are text fields) and isDefault which is a boolean  
-						if(String.isNotBlank(sourceField) && String.isNotBlank(targetField) && (incomingSection.get(targetField) == null || ((String.valueOf(getFieldDataType(targetField))=='Boolean')  && !(Boolean)incomingSection.get(targetField) )))
+                        if(String.isNotBlank(sourceField) && String.isNotBlank(targetField) && (incomingSection.get(targetField) == null || incomingSection.get(targetField)==false))
                         {
                             if(copyFromGate.equals(BOSSCARD) || currentSectionExternalId != IPM_ConstantUtils.FEEDBACK_FROM_LAST_GATE)
                             {
@@ -482,16 +475,4 @@ public with sharing class IPM_ProjectDocumentHelper
             }
         }
     }
-	/**************************************************************
-	* @description: to get the data type of the sObject field
-	* @param1 targetField : target field
-	*/
-	private static Schema.DisplayType getFieldDataType(String targetField)
-	{
-		Map<String, Schema.SObjectField> objectFields = Schema.getGlobalDescribe().get('IPM_Project_Document_Section__c').getDescribe().fields.getMap();
-		Schema.DescribeFieldResult lfieldLabel = objectFields.get(targetField).getDescribe();
-		Schema.DisplayType fieldDataType = lfieldLabel.getType();
-		
-		return fieldDataType;
-	}
 }
