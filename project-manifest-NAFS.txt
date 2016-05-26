@@ -6,6 +6,8 @@ src
 src/objects
 src/objects/Account.object
 src/objects/Product2.object
+src/objects/Pricebook2.object
+src/objects/PricebookEntry.object
 src
 src/workflows
 src/workflows/NAFS_Update Operator Account Number.workflow
