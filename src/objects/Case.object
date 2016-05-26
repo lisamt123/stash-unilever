@@ -6293,6 +6293,28 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <queue>CEC_Spain_Queue</queue>
     </listViews>
     <listViews>
+        <fullName>Mis_casos_a_trabajar2</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>New,In Progress,Escalated,Awaiting Information from Consumer</value>
+        </filters>
+        <label>Mis casos a trabajar</label>
+        <language>es_MX</language>
+        <sharedTo>
+            <role>CEC_Manager_Southern_Cone</role>
+            <role>CEC_User_Southern_Cone</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>Mulesoft_Owned_Cases</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>

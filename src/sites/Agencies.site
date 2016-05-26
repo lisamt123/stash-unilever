@@ -21,7 +21,7 @@
     <masterLabel>Agencies</masterLabel>
     <requireHttps>false</requireHttps>
     <requireInsecurePortalAccess>false</requireInsecurePortalAccess>
-    <siteAdmin>mike.colley@unilever.com.old</siteAdmin>
+    <siteAdmin>mike.colley@unilever.com</siteAdmin>
     <siteType>ChatterNetwork</siteType>
     <subdomain>unilever</subdomain>
     <urlPathPrefix>agency</urlPathPrefix>

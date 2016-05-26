@@ -3169,10 +3169,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>NewsArticleLikeHandler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>NewsArticle_OverrideViewCon</apexClass>
         <enabled>false</enabled>
     </classAccesses>

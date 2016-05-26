@@ -1201,7 +1201,7 @@
         <name>CEC_Quick_Code_Change_Error</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Reason --></label>
+        <label>Motivo</label>
         <name>CEC_Reason</name>
     </customLabels>
     <customLabels>
