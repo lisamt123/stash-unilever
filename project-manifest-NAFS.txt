@@ -10,6 +10,8 @@ src
 src/workflows
 src/workflows/NAFS_Update Operator Account Number.workflow
 src
+src/profile
+src/profile/Food Solutions API Only.profile
+src
 src/permissionsets
 src/permissionsets/NAFS_Integration_User.permissionset
-
