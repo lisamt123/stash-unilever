@@ -171,6 +171,18 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>PBS_Standard_Job_Profile__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <externalId>false</externalId>
+        <label>User Role</label>
+        <referenceTo>PBS_Standard_Job_Profile__c</referenceTo>
+        <relationshipName>Training_Track</relationshipName>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Status__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Training tracks are not available to end users until they are &quot;Active&quot;</inlineHelpText>

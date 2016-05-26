@@ -36,7 +36,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
             </ul>
         </div>
         </div>
-<apex:composition template="PBS_LMS_Template_Test">
+<apex:composition template="PBS_LMS_Template">
 
         <apex:define name="head">
             <title>{!$Label.ALMS_Training_Catalog}</title>

@@ -32,7 +32,7 @@
         }
     </style>
     <apex:composition template="PBS_Header_Template" />
-    <apex:composition template="PBS_LMS_Template_Test">
+    <apex:composition template="PBS_LMS_Template">
         <apex:define name="head">
             <title>Welcome Page</title>
         </apex:define>
