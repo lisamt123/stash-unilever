@@ -13,7 +13,7 @@ VERSION    AUTHOR            DATE            DETAIL
 1.0      Masood Ansari     Feb-2016      INITIAL DEVELOPMENT   
 
 ***********************************************************************/
-global class CEC_ClearAlertTrackerItem_BatchScheduler implements Database.Batchable<sObject>,Schedulable  {
+global with sharing class CEC_ClearAlertTrackerItem_BatchScheduler implements Database.Batchable<sObject>,Schedulable  {
     
     String query;
     
@@ -57,8 +57,8 @@ global class CEC_ClearAlertTrackerItem_BatchScheduler implements Database.Batcha
     }
     
     global void finish(Database.BatchableContext BC) {
-		
-		// Calling the other batch class to delete Alert Tracker which has no Alert Tracker Item.
+        
+        // Calling the other batch class to delete Alert Tracker which has no Alert Tracker Item.
         CEC_ClearAlertTracker_Batch alertTrackerBatch = new CEC_ClearAlertTracker_Batch();
         database.executeBatch(alertTrackerBatch);
     }

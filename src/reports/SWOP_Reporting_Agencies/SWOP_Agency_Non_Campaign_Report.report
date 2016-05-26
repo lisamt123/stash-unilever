@@ -43,7 +43,7 @@
         <field>Marketing_Basics__c.Activity_Fee_Agency__c</field>
     </columns>
     <columns>
-        <field>Marketing_Basics__c.FTE__c</field>
+        <field>Marketing_Basics__c.FTE_report__c</field>
     </columns>
     <columns>
         <field>Marketing_Basics__c.Resource_Fee_Agency__c</field>

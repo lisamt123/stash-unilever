@@ -486,8 +486,8 @@
                             <apex:outputPanel rendered="{!canSeeDashboard && hasCampaigns}">
                                 <!-- <analytics:reportChart developerName="{!reportDeveloperName}" filter="{!reportFilter}" size="tiny" showRefreshButton="false"/> -->
                                 <div class="SOW_name_status_info_titles dashboard_title">Spend by Outcome Priority (%)</div>
-                                <div id="chart_div_fy_fee" class="chartHolder" data-chart-data="{!scoresFYFeeDashboard.graphData}"></div>
-                                <div id="chart_div_full_fee" class="chartHolder" data-chart-data="{!scoresFullFeeDashboard.graphData}" style="display:none"></div>
+                                <div id="chart_div_fy_fee" class="chartHolder" data-chart-data="{!scoresFYFeeDashboard.graphData}" style="display:none"></div>
+                                <div id="chart_div_full_fee" class="chartHolder" data-chart-data="{!scoresFullFeeDashboard.graphData}"></div>
                                 <svg height="20" width="50">
                                     <text id="FullFeeButton" x="0" y="15" class="dasboard_button dasboard_button__disabled" onclick="$('.chartHolder').toggle(); $('#FYFeeButton').attr('class', 'dasboard_button'); $(this).attr('class', 'dasboard_button dasboard_button__disabled');">Full fee</text>
                                 </svg>
