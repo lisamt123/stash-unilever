@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
-     <labels>
+<labels>
         <fullName>PBS_CHATTER</fullName>
         <categories>PBS</categories>
         <language>en_US</language>
@@ -2030,4 +2028,3 @@
         <shortDescription>PBS_soqllimit</shortDescription>
         <value>50000</value>
     </labels>
-	</CustomLabels>
