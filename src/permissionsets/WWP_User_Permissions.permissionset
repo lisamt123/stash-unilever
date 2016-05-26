@@ -28,6 +28,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>WWP_Loss_Tree__c.DC_Loss_Value__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>WWP_Loss_Tree__c.Loss_Description__c</field>
         <readable>true</readable>
@@ -53,13 +58,23 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WWP_Loss_Tree__c.Loss_Updated_in_SCDG__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>WWP_Loss_Tree__c.Loss_Updated_in_Salesforce__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WWP_Loss_Tree__c.MRP_Loss_Value__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WWP_Loss_Tree__c.OR_Loss_Value__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -113,13 +128,13 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WWP_Loss_Tree__c.Week__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <label>WWP User Permissions</label>
     <objectPermissions>
-        <allowCreate>false</allowCreate>
+        <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>

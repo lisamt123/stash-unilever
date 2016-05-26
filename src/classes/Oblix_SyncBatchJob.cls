@@ -424,7 +424,8 @@ public with sharing class Oblix_SyncBatchJob implements Database.Batchable<JobCo
         number_of_chunks = getNumberOfChuncks(total_attachments,Oblix_Utils.MAX_ATTACHMENTS_PER_CONTEXT);
 
         addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_CLONE_ATTACHMENTS, Oblix_Utils.MAX_ATTACHMENTS_PER_CONTEXT
-            , SOW_PFY,SOW_NFY,Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS, Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES, NULL, NULL);
+            , SOW_PFY,SOW_NFY,Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS, NULL, NULL, NULL);
+            //, SOW_PFY,SOW_NFY,Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS, Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES, NULL, NULL);
 
 
         //#################################################
@@ -441,7 +442,8 @@ public with sharing class Oblix_SyncBatchJob implements Database.Batchable<JobCo
             //      attrib_6: field used for checking sow status (either Financial_Year__r.SOW_Status__c or SOW_Status__c)
         
         addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_SET_PROCESSING_FLAG, Oblix_Utils.MAX_SOWS_PER_CONTEXT
-            , Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS ,TRUE_VALUE,Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES, OBJECT_SOW, ATTACHMENT_CLONED,SOW_STATUS_FIELD);
+            , Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS ,TRUE_VALUE,NULL, OBJECT_SOW, ATTACHMENT_CLONED,NULL);
+            //, Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS ,TRUE_VALUE,Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES, OBJECT_SOW, ATTACHMENT_CLONED,SOW_STATUS_FIELD);
 
 
 
@@ -576,7 +578,8 @@ public with sharing class Oblix_SyncBatchJob implements Database.Batchable<JobCo
         number_of_chunks = getNumberOfChuncks(total_campaigns,Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT);
 
         addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_SET_PROCESSING_FLAG, Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT
-            , Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS ,SYNC_STEP_COMPLETED,Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES, OBJECT_CAMPAIGN, SYNC_STEP_FIELD,PARENT_SOW_STATUS_FIELD);
+            , Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS ,SYNC_STEP_COMPLETED,NULL, OBJECT_CAMPAIGN, SYNC_STEP_FIELD,NULL);
+            //, Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS ,SYNC_STEP_COMPLETED,Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES, OBJECT_CAMPAIGN, SYNC_STEP_FIELD,PARENT_SOW_STATUS_FIELD);
 
 
 
@@ -620,7 +623,8 @@ public with sharing class Oblix_SyncBatchJob implements Database.Batchable<JobCo
             //      attrib_6: field used for checking sow status (either Financial_Year__r.SOW_Status__c or SOW_Status__c)
         
         addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_SET_PROCESSING_FLAG, Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT
-            , Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS ,FALSE_VALUE,Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES, OBJECT_CAMPAIGN, CAMPAIGN_ATTRIBUTE_UPDATE,PARENT_SOW_STATUS_FIELD);
+            , Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS ,FALSE_VALUE,NULL, OBJECT_CAMPAIGN, CAMPAIGN_ATTRIBUTE_UPDATE,NULL);
+            //, Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS ,FALSE_VALUE,Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES, OBJECT_CAMPAIGN, CAMPAIGN_ATTRIBUTE_UPDATE,PARENT_SOW_STATUS_FIELD);
 
 
 
@@ -689,6 +693,8 @@ public with sharing class Oblix_SyncBatchJob implements Database.Batchable<JobCo
             , Oblix_Utils.JOB_STATUS_SYNC_IN_PROGRESS, Oblix_Utils.JOB_STATUS_SYNC_COMPLETED,OBJECT_SOW, SYNC_FIELD, NULL,NULL);
 
 
+
+
         //#################################################
         //  ADD JOB COMPONENT FOR SETTING THE SOW STATUS 
         //  FROM CAMPAIGN SYNC REQUIRED TO SYNC COMPLETE 
@@ -710,6 +716,7 @@ public with sharing class Oblix_SyncBatchJob implements Database.Batchable<JobCo
         number_of_chunks = getNumberOfChuncks(total_campaigns,Oblix_Utils.MAX_CAMPAIGNS_PER_CONTEXT);
         addJobComponent(number_of_chunks,Oblix_Utils.JOB_PROCESS_SET_STATUS, Oblix_Utils.MAX_SOWS_PER_CONTEXT
             , Oblix_Utils.SOW_STATUS_CAMPAIGN_SYNC_REQUIRED, Oblix_Utils.JOB_STATUS_SYNC_COMPLETED, OBJECT_SOW, SYNC_FIELD, NULL, NULL);
+
 
 
         addEvent('\nsow_size: ' + sow_size + '\ntotal_attachments: ' + total_attachments + '\ntotal_campaigns: ' + total_campaigns + '\ntotal_assets: ' + total_assets,NULL);

@@ -10,7 +10,7 @@ Purpose: This Class is used to perform operation on before update event of LOI T
 History
 -------
 VERSION     AUTHOR                     DATE            DETAIL Description
-1.0         Shreyas Mangalvedhekar     11/01/2016     INITIAL DEVELOPMENT CSR:
+1.0     Pooja  Kanani   11/01/2016     INITIAL DEVELOPMENT CSR:
 ***********************************************************************/
 public with sharing class CPA_LOI_TriggerUtil{
     public static boolean isSubmitted=false;
@@ -165,7 +165,7 @@ public with sharing class CPA_LOI_TriggerUtil{
                 //string AllrecordType = CPA_PWORF_Record_type__c.getValues('All').Record_type_id__c;
                 Id AllrecordType = Schema.SObjectType.CPA_PWORF__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_PWORF_ALL_RECORDTYPE).getRecordTypeId();
               
-                if(objPWORFTemp.RecordTypeId == AllrecordType && objNewLOI.mpkl_Phases_covered_by_WAR__c!=null && !objNewLOI.mpkl_Phases_covered_by_WAR__c.containsOnly(objPWORFTemp.pkl_Phases_covered_by_the_WAR__c)) 
+                if(objPWORFTemp.pkl_Phases_covered_by_the_WAR__c != null && objPWORFTemp.RecordTypeId == AllrecordType && objNewLOI.mpkl_Phases_covered_by_WAR__c!=null && !objNewLOI.mpkl_Phases_covered_by_WAR__c.containsOnly(objPWORFTemp.pkl_Phases_covered_by_the_WAR__c)) 
                         objNewLOI.addError('Only ' + objPWORFTemp.pkl_Phases_covered_by_the_WAR__c.replaceAll(';', ', ') + ' Project Phases are allow');
             }
         }

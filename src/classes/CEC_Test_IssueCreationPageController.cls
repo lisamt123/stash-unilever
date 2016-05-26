@@ -11,7 +11,7 @@
 This class acts as a test class for Issue creation controller.
 */
 
-@isTest(SeeAllData=true)
+@isTest()
 public class CEC_Test_IssueCreationPageController{
 
     /**
@@ -19,17 +19,15 @@ public class CEC_Test_IssueCreationPageController{
     */
     
     
-    public static testMethod void test_toggleMissingInfoDisplay(){
+  /*  public static testMethod void test_toggleMissingInfoDisplay(){
         Test.startTest(); 
         
         Case caseObj = new Case();
         insert caseObj;
         
-        //mdm_Case_Product__c productObj = [select id, name from mdm_Case_Product__c where name = 'Dove AP Roll On Invisible 50ml' limit 1];
         mdm_Case_Product__c productObj = new  mdm_Case_Product__c (name='Test Product', brand__c= 'Dove', Consumer_Product_Descriptor_Local_Lang__c ='Done Shampoo', Consumer_Product_Descriptor_no_size__c ='Dove');
         insert productObj;
         
-        //mdm_Reason_Code__c reasonObj= [select id, name from mdm_Reason_Code__c where name = 'NEW FREEZER CLIENT' limit 1];
         mdm_Reason_Code__c reasonObj = new mdm_Reason_Code__c(name='Test Reason');
         insert reasonobj;
         
@@ -93,7 +91,6 @@ public class CEC_Test_IssueCreationPageController{
         insert productObj;
         
         cec_Issue__c issueObj = new cec_Issue__c();
-        //issueObj.isPacksizeKnown__c = false;
         ApexPages.StandardController stdController = new ApexPages.StandardController(issueObj);
         CEC_IssueCreationPageController issueControllerObj = new CEC_IssueCreationPageController(stdController);
         
@@ -102,9 +99,6 @@ public class CEC_Test_IssueCreationPageController{
         issueControllerObj.caseReason.isPacksizeKnown__c = false;
         issueControllerObj.updatePacksizeAvailabilityDetails();
         
-        //issueObj.isFormKnown__c= true;
-        //issueObj.isVariantKnown__c= true;
-        //issueObj.isPacksizeKnown__c= true;
         stdController = new ApexPages.StandardController(issueObj);
         issueControllerObj = new CEC_IssueCreationPageController(stdController);
         issueControllerObj.productId = productObj.Id;
@@ -132,10 +126,8 @@ public class CEC_Test_IssueCreationPageController{
         insert productObj;
         productObj.Global_CPG_Code__c = categoryObj.Id;
    
-        ///////Global_CPG_Code__r.Corp_Prod_Grouping_Name__c
         
         cec_Issue__c issueObj = new cec_Issue__c();
-        //issueObj.isVariantKnown__c = false;
         ApexPages.StandardController stdController = new ApexPages.StandardController(issueObj);
         CEC_IssueCreationPageController issueControllerObj = new CEC_IssueCreationPageController(stdController);
         
@@ -144,13 +136,9 @@ public class CEC_Test_IssueCreationPageController{
         issueControllerObj.caseReason.isVariantKnown__c = false;
         issueControllerObj.updateVariantAvailabilityDetails();
         
-       // issueObj.isFormKnown__c= true;
-        //issueObj.isVariantKnown__c= true;
-        //issueObj.isPacksizeKnown__c= true;
         stdController = new ApexPages.StandardController(issueObj);
         issueControllerObj = new CEC_IssueCreationPageController(stdController);
         issueControllerObj.productId = productObj.Id;
-        //issueControllerObj.productCategory = 'Food';
         issueControllerObj.caseReason.isVariantKnown__c = true;
         issueControllerObj.caseReason.isFormKnown__c = true;
         issueControllerObj.caseReason.isPacksizeKnown__c = true;        
@@ -166,17 +154,14 @@ public class CEC_Test_IssueCreationPageController{
         Case caseObj = new Case();
         insert caseObj;
         
-        //mdm_Case_Product__c productObj = [select id, name from mdm_Case_Product__c where name = 'Dove AP Roll On Invisible 50ml' limit 1];
         mdm_Case_Product__c productObj = new  mdm_Case_Product__c (name='Test Product', brand__c= 'Dove', Consumer_Product_Descriptor_Local_Lang__c ='Done Shampoo', Consumer_Product_Descriptor_no_size__c ='Dove');
         insert productObj;
         
-        //mdm_Reason_Code__c reasonObj= [select id, name from mdm_Reason_Code__c where name = 'NEW FREEZER CLIENT' limit 1 ];
         mdm_Reason_Code__c reasonObj = new mdm_Reason_Code__c(name='Test Reason');
         insert reasonobj;
         
         cec_Issue__c issueObj = new cec_Issue__c();
         issueObj.case__c = caseObj.Id;
-        //insert issueObj;
         
         ApexPages.StandardController stdController = new ApexPages.StandardController(issueObj);
         CEC_IssueCreationPageController issueControllerObj = new CEC_IssueCreationPageController(stdController);
@@ -248,12 +233,10 @@ public class CEC_Test_IssueCreationPageController{
         Case caseObj = new Case();
         insert caseObj;
         
-        //mdm_Case_Product__c productObj = [select id, name from mdm_Case_Product__c where name = 'Dove AP Roll On Invisible 50ml' limit 1];
         mdm_Case_Product__c productObj = new  mdm_Case_Product__c (name='Test Product', brand__c= 'Dove', Consumer_Product_Descriptor_Local_Lang__c ='Done Shampoo', Consumer_Product_Descriptor_no_size__c ='Dove');
         insert productObj;
         
         
-        //mdm_Reason_Code__c reasonObj= [select id, name from mdm_Reason_Code__c where name = 'NEW FREEZER CLIENT' limit 1 ];
         mdm_Reason_Code__c reasonObj = new mdm_Reason_Code__c(name='Test Reason');
         insert reasonobj;
         
@@ -304,11 +287,9 @@ public class CEC_Test_IssueCreationPageController{
         Case caseObj = new Case();
         insert caseObj;
         
-        //mdm_Case_Product__c productObj = [select id, name from mdm_Case_Product__c where name = 'Dove AP Roll On Invisible 50ml' limit 1];
         mdm_Case_Product__c productObj = new  mdm_Case_Product__c (name='Test Product', brand__c= 'Dove', Consumer_Product_Descriptor_Local_Lang__c ='Done Shampoo', Consumer_Product_Descriptor_no_size__c ='Dove');
         insert productObj;
         
-        //mdm_Reason_Code__c reasonObj= [select id, name from mdm_Reason_Code__c where name = 'NEW FREEZER CLIENT' limit 1 ];
         mdm_Reason_Code__c reasonObj = new mdm_Reason_Code__c(name='Test Reason', L1_Desc__c='L1 Desc', L2_Desc__c ='L2 Desc');
         insert reasonobj;
         
@@ -330,11 +311,9 @@ public class CEC_Test_IssueCreationPageController{
         Case caseObj = new Case();
         insert caseObj;
         
-        //mdm_Case_Product__c productObj = [select id, name from mdm_Case_Product__c where name = 'Dove AP Roll On Invisible 50ml' limit 1];
         mdm_Case_Product__c productObj = new  mdm_Case_Product__c (name='Test Product', brand__c= 'Dove', Consumer_Product_Descriptor_Local_Lang__c ='Done Shampoo', Consumer_Product_Descriptor_no_size__c ='Dove');
         insert productObj;
         
-        //mdm_Reason_Code__c reasonObj= [select id, name from mdm_Reason_Code__c where name = 'NEW FREEZER CLIENT' limit 1 ];
         mdm_Reason_Code__c reasonObj = new mdm_Reason_Code__c(name='Test Reason');
         insert reasonobj;
         
@@ -356,11 +335,9 @@ public class CEC_Test_IssueCreationPageController{
         Case caseObj = new Case();
         insert caseObj;
         
-        //mdm_Case_Product__c productObj = [select id, name from mdm_Case_Product__c where name = 'Dove AP Roll On Invisible 50ml' limit 1];
         mdm_Case_Product__c productObj = new  mdm_Case_Product__c (name='Test Product', brand__c= 'Dove', Consumer_Product_Descriptor_Local_Lang__c ='Done Shampoo', Consumer_Product_Descriptor_no_size__c ='Dove');
         insert productObj;
         
-        //mdm_Reason_Code__c reasonObj= [select id, name from mdm_Reason_Code__c where name = 'NEW FREEZER CLIENT' limit 1 ];
         mdm_Reason_Code__c reasonObj = new mdm_Reason_Code__c(name='Test Reason');
         insert reasonobj;
         
@@ -382,7 +359,6 @@ public class CEC_Test_IssueCreationPageController{
         Case caseObj = new Case();
         insert caseObj;
         
-        //mdm_Case_Product__c productObj = [select id, name from mdm_Case_Product__c where name = 'Dove AP Roll On Invisible 50ml' limit 1];
         mdm_Case_Product__c productObj = new  mdm_Case_Product__c (name='Test Product', brand__c= 'Dove', Consumer_Product_Descriptor_Local_Lang__c ='Done Shampoo', Consumer_Product_Descriptor_no_size__c ='Dove', GTIN_EAN_UPC_Code__c ='12345');
         insert productObj;
         
@@ -413,7 +389,6 @@ public class CEC_Test_IssueCreationPageController{
         Case caseObj = new Case();
         insert caseObj;
         
-        //mdm_Reason_Code__c reasonObj= [select id, name from mdm_Reason_Code__c where name = 'NEW FREEZER CLIENT' limit 1 ];
         mdm_Reason_Code__c reasonObj = new mdm_Reason_Code__c(name='Test Reason', L5_Short_Desc__c ='Test Desc');
         insert reasonobj;
         
@@ -444,11 +419,9 @@ public class CEC_Test_IssueCreationPageController{
         Case caseObj = new Case();
         insert caseObj;
         
-        //mdm_Reason_Code__c reasonObj= [select id, name from mdm_Reason_Code__c where name = 'NEW FREEZER CLIENT' limit 1 ];
         mdm_Reason_Code__c reasonObj = new mdm_Reason_Code__c(name='Test Reason');
         insert reasonobj;
         
-        //mdm_Case_Product__c productObj = [select id, name from mdm_Case_Product__c where name = 'Dove AP Roll On Invisible 50ml' limit 1];
         mdm_Case_Product__c productObj = new  mdm_Case_Product__c (name='Test Product', brand__c= 'Dove', Consumer_Product_Descriptor_Local_Lang__c ='Done Shampoo', Consumer_Product_Descriptor_no_size__c ='Dove');
         insert productObj;
         
@@ -485,6 +458,6 @@ public class CEC_Test_IssueCreationPageController{
         Test.stopTest(); 
     }
     
-    
+    */
     
 }

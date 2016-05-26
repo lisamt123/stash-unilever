@@ -13,6 +13,10 @@ src/objects/Amr_Project_Details__c.object
 src/objects/Amr_Quote__c.object
 src/objects/Amr_Saving__c.object
 src/objects/Amr_Summary_Plan__c.object
+src/objects/Amr_Country_Cluster__c.object
+src/objects/Amr_CurrencyConversionRate__c.object
+src/objects/Amr_Production_Type__c.object
+src/objects/Amr_Trigger_Pattern__c.object
 src/objects/User.object
 src
 src/staticresources

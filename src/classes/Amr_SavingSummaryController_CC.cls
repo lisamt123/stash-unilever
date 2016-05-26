@@ -501,7 +501,7 @@ Returns:
             }
         }
         
-        TotalActiveJobPages     = (totalSizeForSummaryJobs/limitSizeForSummaryJobs)+1;
+        TotalActiveJobPages     = Math.ceil((decimal.valueOf(totalSizeForSummaryJobs))/(decimal.valueOf(limitSizeForSummaryJobs))).intValue();
         CurrentActivePageNumber = (counterForSummaryJobs/limitSizeForSummaryJobs)+1;
         
       }
@@ -526,7 +526,7 @@ Returns:
             }       
         }
         
-        TotalActiveJobPages     = (totalSizeForSummaryJobs/limitSizeForSummaryJobs)+1;
+        TotalActiveJobPages     = Math.ceil((decimal.valueOf(totalSizeForSummaryJobs))/(decimal.valueOf(limitSizeForSummaryJobs))).intValue();
         CurrentActivePageNumber = (counterForSummaryJobs/limitSizeForSummaryJobs)+1;
     }
    
@@ -543,7 +543,7 @@ Returns:
             }
         }
         
-        TotalActiveJobPages     = (totalSizeForSummaryJobs/limitSizeForSummaryJobs)+1;
+        TotalActiveJobPages     = Math.ceil((decimal.valueOf(totalSizeForSummaryJobs))/(decimal.valueOf(limitSizeForSummaryJobs))).intValue();
         CurrentActivePageNumber = (counterForSummaryJobs/limitSizeForSummaryJobs)+1;
     }
    
@@ -556,7 +556,7 @@ Returns:
             summaryJobsToShow.add(savingSummaryList.get(i));
         }
         
-        TotalActiveJobPages     = (totalSizeForSummaryJobs/limitSizeForSummaryJobs)+1;
+        TotalActiveJobPages     = Math.ceil((decimal.valueOf(totalSizeForSummaryJobs))/(decimal.valueOf(limitSizeForSummaryJobs))).intValue();
         CurrentActivePageNumber = (counterForSummaryJobs/limitSizeForSummaryJobs)+1;
     }
 
@@ -571,7 +571,7 @@ Returns:
                 summaryJobsToShow.add(savingSummaryList.get(i));
         }
         
-        TotalActiveJobPages     = (totalSizeForSummaryJobs/limitSizeForSummaryJobs)+1;
+        TotalActiveJobPages     = Math.ceil((decimal.valueOf(totalSizeForSummaryJobs))/(decimal.valueOf(limitSizeForSummaryJobs))).intValue();
         CurrentActivePageNumber = (counterForSummaryJobs/limitSizeForSummaryJobs)+1;
       }
    

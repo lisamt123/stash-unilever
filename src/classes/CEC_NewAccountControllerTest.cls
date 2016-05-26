@@ -196,10 +196,10 @@ public without sharing class CEC_NewAccountControllerTest{
             Case caseObj = insertCase1();
             
             
-            List<CRMfusionDBR101__Scenario__c> dsclist =  [Select Name from CRMfusionDBR101__Scenario__c];
+            List<CRMfusionDBR101__Scenario__c> dsclist =  [Select Name from CRMfusionDBR101__Scenario__c limit 100];
             System.debug('~~~dsclist '  + dsclist);
             
-            List<CRMfusionDBR101__Scenario_Rule__c> dsrlist =  [Select Name from CRMfusionDBR101__Scenario_Rule__c];
+            List<CRMfusionDBR101__Scenario_Rule__c> dsrlist =  [Select Name from CRMfusionDBR101__Scenario_Rule__c limit 100];
             System.debug('~~~dsrlist '  + dsrlist);
             
             // Scenario 1 - Choose account for a Case without Account

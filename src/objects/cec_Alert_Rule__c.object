@@ -199,11 +199,19 @@
         <label>Market</label>
         <picklist>
             <picklistValues>
+                <fullName>ANZ</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Baltics</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Benelux</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Brazil</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -235,6 +243,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Middle Americas</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Nordic</fullName>
                 <default>false</default>
             </picklistValues>
@@ -248,6 +260,14 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Portugal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>South Africa</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Southern Cone</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>

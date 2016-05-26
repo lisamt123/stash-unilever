@@ -1205,7 +1205,7 @@
     </body>
     <script type="text/javascript">
         $j(function() {
-            var stringArray = JSON.parse('{!MethodToPassProjectNames}');            
+            var stringArray = JSON.parse('{!MethodToPassProjectNames}');       
             var projFormPage = '{!projectNameFromPage}';
             var strArr = {!CategoryList};            
             var catName = '{!categoryName}';

@@ -31,7 +31,13 @@
             right: -10px;
             top: -7px;
             width: 15px;
-        }              
+        }
+        .summary-values-label {
+        	width:140px; 
+        }
+        .input-symbol-euro input {
+		    padding: 0 10px !important;
+		}  		            
     </style>
     <apex:outputPanel rendered="{!if(fileUploadMessage==true,true,false)}">
         <script type="text/javascript">         
@@ -246,57 +252,57 @@
                             </div>                            
                             <div class="bg-g1 padding12">
                                 <div class="displayIB VATop summary-values-quotes  margin-bottom10">
-                                    <div class="left margin-top8 margin-right12">{!$Label.Amr_Saving_Average_of_Quotes}</div>
+                                    <div class="left margin-top8 margin-right12 summary-values-label">{!$Label.Amr_Saving_Average_of_Quotes}</div>
                                     <div class="left" style="font-weight:bold;">
                                         &euro;&nbsp;<apex:inputText value="{!savingObj.Saving_Average_of_Quotes__c}" html-readonly="true" />
                                     </div>
                                 </div>
                                 <div class="displayIB VATop summary-values-quotes">
-                                    <div class="left margin-top8 margin-right12">{!$Label.Amr_Percentage_Saving_Average_of_Quotes}</div>
+                                    <div class="left margin-top8 margin-right12 summary-values-label">{!$Label.Amr_Percentage_Saving_Average_of_Quotes}</div>
                                     <div class="left" style="font-weight:bold;">
-                                        <apex:inputText value="{!savingObj.Percentage_Saving_Average_of_Quotes__c}" html-readonly="true"/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<apex:inputText value="{!savingObj.Percentage_Saving_Average_of_Quotes__c}" html-readonly="true"/>
                                     </div>
                                 </div>
                                 <div class="displayIB VATop summary-values-quotes">
-                                    <div class="left margin-top8 margin-right12">{!$Label.Amr_Euro_Saving_Accepted_Quote}</div>
+                                    <div class="left margin-top8 margin-right12 summary-values-label">{!$Label.Amr_Euro_Saving_Accepted_Quote}</div>
                                     <div class="left input-symbol-euro" style="font-weight:bold;">
                                         &euro;&nbsp;<apex:inputtext value="{!savingObj.Saving_Accepted_Quote_Euro__c}" html-readonly="true" />
                                     </div>
                                 </div>
                                 <div class="displayIB VATop summary-values-quotes">
-                                    <div class="left margin-top8 margin-right12">{!$Label.Amr_Percentage_Saving_Accepted_Quote}</div>
+                                    <div class="left margin-top8 margin-right12 summary-values-label">{!$Label.Amr_Percentage_Saving_Accepted_Quote}</div>
                                     <div class="left" style="font-weight:bold;">
-                                        <apex:inputtext value="{!savingObj.Percentage_Saving_Accepted_Quote__c}" html-readonly="true" />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<apex:inputtext value="{!savingObj.Percentage_Saving_Accepted_Quote__c}" html-readonly="true" />
                                     </div>
                                 </div>
                                 <div class="displayIB VATop summary-values-quotes">
-                                    <div class="left margin-top8 margin-right12">{!$Label.Amr_Cost_Per_Master}</div>
+                                    <div class="left margin-top8 margin-right12 summary-values-label">{!$Label.Amr_Cost_Per_Master}</div>
                                     <div class="left" style="font-weight:bold;">
-                                        <apex:inputText value="{!savingObj.Cost_Per_Master__c}" html-readonly="true" />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<apex:inputText value="{!savingObj.Cost_Per_Master__c}" html-readonly="true" />
                                     </div>
                                 </div>
                                 <div class="displayIB VATop summary-values-quotes">
-                                    <div class="left margin-top8 margin-right12 text-camel-case">{!$Label.Amr_Cost_per_master_per_shoot_day}</div>
+                                    <div class="left margin-top8 margin-right12 text-camel-case summary-values-label">{!$Label.Amr_Cost_per_master_per_shoot_day}</div>
                                     <div class="left" style="font-weight:bold;">
                                         &euro;&nbsp;<apex:inputText value="{!savingObj.Cost_per_master_per_shoot_day__c}" html-readonly="true" />
                                     </div>
                                 </div>
                                 <div class="displayIB VATop summary-values-quotes">
-                                    <div class="left margin-top8 margin-right12">{!$Label.Amr_No_of_Quotes}</div>
+                                    <div class="left margin-top8 margin-right12 summary-values-label">{!$Label.Amr_No_of_Quotes}</div>
                                     <div class="left" style="font-weight:bold;">
-                                        <apex:inputText value="{!savingObj.Number_Of_Quotes__c}" html-readonly="true" />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<apex:inputText value="{!savingObj.Number_Of_Quotes__c}" html-readonly="true" />
                                     </div>
                                 </div>
                                 <div class="displayIB VATop summary-values-quotes">
-                                    <div class="left margin-top8 margin-right12">{!$Label.Amr_Average_of_all_total_opening_quotes}</div>
+                                    <div class="left margin-top8 margin-right12 summary-values-label">{!$Label.Amr_Average_of_all_total_opening_quotes}</div>
                                     <div class="left" style="font-weight:bold;">
-                                        <apex:inputText value="{!savingObj.Average_Total_Opening_Quotes__c}" html-readonly="true" />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<apex:inputText value="{!savingObj.Average_Total_Opening_Quotes__c}" html-readonly="true" />
                                     </div>
                                 </div>
                                 <div class="displayIB VATop summary-values-quotes">
-                                    <div class="left margin-top8 margin-right12">{!$Label.Amr_Total_No_of_Films}</div>
+                                    <div class="left margin-top8 margin-right12 summary-values-label">{!$Label.Amr_Total_No_of_Films}</div>
                                     <div class="left" style="font-weight:bold;">
-                                        <apex:inputText value="{!savingObj.Total_no_of_films__c}" html-readonly="true" />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<apex:inputText value="{!savingObj.Total_no_of_films__c}" html-readonly="true" />
                                     </div>
                                 </div>
                             </div>

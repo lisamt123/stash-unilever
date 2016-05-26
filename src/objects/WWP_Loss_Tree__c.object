@@ -60,33 +60,50 @@
         <fullName>Actual_Dispatch__c</fullName>
         <externalId>false</externalId>
         <label>Actual Dispatch</label>
-        <length>70</length>
+        <precision>15</precision>
         <required>false</required>
+        <scale>0</scale>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>Actual_Production__c</fullName>
         <externalId>false</externalId>
         <label>Actual Production</label>
-        <length>50</length>
+        <precision>15</precision>
         <required>false</required>
+        <scale>0</scale>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>Actual_Receipt__c</fullName>
         <externalId>false</externalId>
         <label>Actual Receipt</label>
-        <length>70</length>
+        <precision>15</precision>
         <required>false</required>
+        <scale>0</scale>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DC_Loss_Value__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Actual_Dispatch__c  &gt;  Planned_Dispatch__c ,  Actual_Dispatch__c  -  Planned_Dispatch__c ,  Planned_Dispatch__c  -  Actual_Dispatch__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>DC Loss Value</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -94,285 +111,228 @@
         <externalId>false</externalId>
         <label>Loss Description</label>
         <picklist>
-            <controllingField>Loss_Sub_Family__c</controllingField>
             <picklistValues>
                 <fullName>Packaging - Loss due to non-conformance of packaging materials</fullName>
-                <controllingFieldValues>Inbound Quality</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Raw products - Loss due to non-conformance of raw materials</fullName>
-                <controllingFieldValues>Inbound Quality</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Semi products - Loss due to non-conformance of semi products</fullName>
-                <controllingFieldValues>Inbound Quality</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>OEE - Loss due to production line failure</fullName>
-                <controllingFieldValues>Manufacturing Loss</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Commissioning - Loss due to commissioning of new production line / process plant</fullName>
-                <controllingFieldValues>Manufacturing Loss</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Labour Loss - Loss due to non-availability of previously agreed labour in the planning process</fullName>
-                <controllingFieldValues>Manufacturing Loss</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Switching production to another line - Loss due to change of production line compared to plan.</fullName>
-                <controllingFieldValues>Planning Loss</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Alterations to planned sequence - Loss due to change of production sequence compared to plan.</fullName>
-                <controllingFieldValues>Planning Loss</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Production carry over - Loss due to production carried forward from previous week</fullName>
-                <controllingFieldValues>Planning Loss</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Semi-finished product quantity - Loss due to an individual making too much / little</fullName>
-                <controllingFieldValues>Human Error</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Finished product quantity -  Loss due to an individual packing too much / little</fullName>
-                <controllingFieldValues>Human Error</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Deliberate Over Production - Loss due to over production resulting from a decision to consume materials or product</fullName>
-                <controllingFieldValues>Deliberate over or under production</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Deliberate Under Production -  Loss due to under production resulting from a decision not to consume materials or product</fullName>
-                <controllingFieldValues>Deliberate over or under production</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>RM/PM Stock receipt - Loss due to stock on site but unable to use / receipt</fullName>
-                <controllingFieldValues>Inbound Material Availability (RM/PM Availability)</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>RM/PM Supplier failure - Loss due to failure fo suppliers to deliver materials on time</fullName>
-                <controllingFieldValues>Inbound Material Availability (RM/PM Availability)</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>RM/PM Ordering error - Loss due to a material not being ordered or the wrong material being ordered</fullName>
-                <controllingFieldValues>Inbound Material Availability (RM/PM Availability)</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Plan unachievable -  Loss due to the fact that the plan was not achievable within available capacity</fullName>
-                <controllingFieldValues>Planning Loss</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Plan communication - Loss due to the fact the factory were not aware of the item being on the plan</fullName>
-                <controllingFieldValues>Planning Loss</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>FG Stock receipt - Loss due to stock on site but unable to use / receipt</fullName>
-                <controllingFieldValues>Outbound Material Availability (FG Availability)</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>FG Transport  failure - Loss due to failure fo suppliers to deliver materials on time; Manufacturing Site to CDC</fullName>
-                <controllingFieldValues>Outbound Material Availability (FG Availability)</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>FG Ordering error - Loss due to a material not being ordered or the wrong material being ordered</fullName>
-                <controllingFieldValues>Outbound Material Availability (FG Availability)</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Market Request Increase - Loss due to a market requesting additional volume, or another sku</fullName>
-                <controllingFieldValues>Market Request</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Market Request Decrease - Loss due to a market requesting volume reduction, or another sku</fullName>
-                <controllingFieldValues>Market Request</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Production recording -  Loss due to an inaccuracy in production recording</fullName>
-                <controllingFieldValues>Data Capture</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Plan recording - Loss due to an inaccuracy in plan recording</fullName>
-                <controllingFieldValues>Data Capture</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>IT system failure</fullName>
-                <controllingFieldValues>Data Capture</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Missing/incorrect  data</fullName>
-                <controllingFieldValues>Master Data</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Missing Data - Loss/Gain due to missing data or late encoding</fullName>
-                <controllingFieldValues>KPI Calculation</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Incorrect Data - Loss/Gain due to incorrect data</fullName>
-                <controllingFieldValues>KPI Calculation</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>TRUCK NOT PLACED IN TIME</fullName>
-                <controllingFieldValues>Truck Placement</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>NO SPACE IN TRUCK</fullName>
-                <controllingFieldValues>Capacity Issue</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>ROUTE DOES NOT MEET LOADABILITY REQUIREMENTS</fullName>
-                <controllingFieldValues>Capacity Issue</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>PHYSICAL TRUCK DOESN’T MEET UNILEVER QUALITY GUIDELINES</fullName>
-                <controllingFieldValues>Truck Quality</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>TRANSPORT DOCUMENT GENERATION</fullName>
-                <controllingFieldValues>OnTime Issue</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>TRANSPORT DOCUMENT VERIFICATION</fullName>
-                <controllingFieldValues>OnTime Issue</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>SECURITY AND VEHICLE CHECK</fullName>
-                <controllingFieldValues>OnTime Issue</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>GOVT AND EXPORT PROCESSES</fullName>
-                <controllingFieldValues>OnTime Issue</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>INTRANSIT DELAY</fullName>
-                <controllingFieldValues>OnTime Issue</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>VEHICLE BREAKDOWN</fullName>
-                <controllingFieldValues>OnTime Issue</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>LOADING CONSOLIDATION FROM OTHER PLANT</fullName>
-                <controllingFieldValues>OnTime Issue</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>PLANNING SYSTEM(SAP/OTM) ISSUES </fullName>
-                <controllingFieldValues>IT Related</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>FACTORY OR WAREHOUSE IT ISSUE</fullName>
-                <controllingFieldValues>IT Related</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>STOCK MISMATCH : SYSTEM VS WAREHOUSE</fullName>
-                <controllingFieldValues>IT Related</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>INCORRECT MASTER DATA</fullName>
-                <controllingFieldValues>Master Data</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>FACTORY RELIABILITY LOSS</fullName>
-                <controllingFieldValues>Stock Availability</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>FACTORY RELIABILITY LOSS DUE TO MATERIAL AVAILABILITY</fullName>
-                <controllingFieldValues>Stock Availability</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>CHILD PACK (COMPONENT) NOT AVAILABLE</fullName>
-                <controllingFieldValues>Stock Availability</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>PLANNER REQUEST TO PRIORITIZE STOCK ALLOCATION DIFFERENTLY</fullName>
-                <controllingFieldValues>Stock Allocation</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>STOCK UNDER QC HOLD</fullName>
-                <controllingFieldValues>Product Quality</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>FORCE MAJEURE/STRIKES</fullName>
-                <controllingFieldValues>Act Of Nature</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>MANUAL ERROR</fullName>
-                <controllingFieldValues>Manual Error</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>ON TIME ISSUES</fullName>
-                <controllingFieldValues>Other</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>RESOURCE UNAVAILABILITY</fullName>
-                <controllingFieldValues>OnTime Issue</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>WAITING FOR FTL</fullName>
-                <controllingFieldValues>OnTime Issue</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>NO SPACE IN DOWNSTREAM DC</fullName>
-                <controllingFieldValues>Capacity Issue</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>NO SPACE IN DOWNSTREAM CDC OR HUB</fullName>
-                <controllingFieldValues>Capacity Issue</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -430,95 +390,76 @@
         <externalId>false</externalId>
         <label>Loss Name</label>
         <picklist>
-            <controllingField>Loss_Type__c</controllingField>
             <picklistValues>
                 <fullName>Production Loss</fullName>
-                <controllingFieldValues>Output Reliability</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Line Scheduling Losses</fullName>
-                <controllingFieldValues>Output Reliability</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Over/Under Production</fullName>
-                <controllingFieldValues>Output Reliability</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Logistics Loss</fullName>
-                <controllingFieldValues>Output Reliability</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Market Request</fullName>
-                <controllingFieldValues>Output Reliability</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Systems</fullName>
-                <controllingFieldValues>Output Reliability</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Logistics</fullName>
-                <controllingFieldValues>MRP Compliance</controllingFieldValues>
+                <fullName>LOGISTICS</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>IT &amp; Master data</fullName>
-                <controllingFieldValues>MRP Compliance</controllingFieldValues>
+                <fullName>IT &amp; MASTER DATA</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Supply Related</fullName>
-                <controllingFieldValues>MRP Compliance</controllingFieldValues>
+                <fullName>SUPPLY RELATED</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Act of Nature</fullName>
-                <controllingFieldValues>MRP Compliance</controllingFieldValues>
+                <fullName>ACT OF NATURE</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Manual Error</fullName>
-                <controllingFieldValues>MRP Compliance</controllingFieldValues>
+                <fullName>MANUAL ERROR</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Warehousing</fullName>
-                <controllingFieldValues>MRP Compliance</controllingFieldValues>
+                <fullName>WAREHOUSING</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Other</fullName>
-                <controllingFieldValues>MRP Compliance</controllingFieldValues>
+                <fullName>OTHER</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Production Related</fullName>
-                <controllingFieldValues>Dispatch Compliance</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Supplier Related</fullName>
-                <controllingFieldValues>Dispatch Compliance</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Master Data Related</fullName>
-                <controllingFieldValues>Dispatch Compliance</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Order Generation</fullName>
-                <controllingFieldValues>Dispatch Compliance</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Procurement Related</fullName>
-                <controllingFieldValues>Dispatch Compliance</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -541,174 +482,136 @@
         <externalId>false</externalId>
         <label>Loss Sub-Family</label>
         <picklist>
-            <controllingField>Loss_Name__c</controllingField>
             <picklistValues>
                 <fullName>Inbound Quality</fullName>
-                <controllingFieldValues>Production Loss</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Manufacturing Loss</fullName>
-                <controllingFieldValues>Production Loss</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Planning Loss</fullName>
-                <controllingFieldValues>Line Scheduling Losses</controllingFieldValues>
-                <controllingFieldValues>Logistics Loss</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Human Error</fullName>
-                <controllingFieldValues>Over/Under Production</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Deliberate over or under production</fullName>
-                <controllingFieldValues>Over/Under Production</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Inbound Material Availability (RM/PM Availability)</fullName>
-                <controllingFieldValues>Logistics Loss</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Outbound Material Availability (FG Availability)</fullName>
-                <controllingFieldValues>Logistics Loss</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Market Request</fullName>
-                <controllingFieldValues>Market Request</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Data Capture</fullName>
-                <controllingFieldValues>Systems</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Master Data</fullName>
-                <controllingFieldValues>IT &amp; Master data</controllingFieldValues>
-                <controllingFieldValues>Systems</controllingFieldValues>
+                <fullName>MASTER DATA</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>KPI Calculation</fullName>
-                <controllingFieldValues>Systems</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Truck Placement</fullName>
-                <controllingFieldValues>Logistics</controllingFieldValues>
+                <fullName>TRUCK PLACEMENT</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Capacity Issue</fullName>
-                <controllingFieldValues>Logistics</controllingFieldValues>
-                <controllingFieldValues>Warehousing</controllingFieldValues>
+                <fullName>CAPACITY ISSUE</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Truck Quality</fullName>
-                <controllingFieldValues>Logistics</controllingFieldValues>
+                <fullName>TRUCK QUALITY</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>OnTime Issue</fullName>
-                <controllingFieldValues>Logistics</controllingFieldValues>
-                <controllingFieldValues>Warehousing</controllingFieldValues>
+                <fullName>ONTIME ISSUE</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>IT Related</fullName>
-                <controllingFieldValues>IT &amp; Master data</controllingFieldValues>
+                <fullName>IT RELATED</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Stock Availability</fullName>
-                <controllingFieldValues>Supply Related</controllingFieldValues>
+                <fullName>STOCK AVAILABILITY</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Stock Allocation</fullName>
-                <controllingFieldValues>Supply Related</controllingFieldValues>
+                <fullName>STOCK ALLOCATION</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Product Quality</fullName>
-                <controllingFieldValues>Supply Related</controllingFieldValues>
+                <fullName>PRODUCT QUALITY</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Act Of Nature</fullName>
-                <controllingFieldValues>Act of Nature</controllingFieldValues>
+                <fullName>ACT OF NATURE</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Manual Error</fullName>
-                <controllingFieldValues>Manual Error</controllingFieldValues>
+                <fullName>MANUAL ERROR</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Other</fullName>
-                <controllingFieldValues>Other</controllingFieldValues>
+                <fullName>OTHER</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Internal Demand Pull Forward / Pushback</fullName>
-                <controllingFieldValues>Production Related</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Manufacturing Line Adjustment</fullName>
-                <controllingFieldValues>Production Related</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Internal Production Demand Increase / Decrease</fullName>
-                <controllingFieldValues>Production Related</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Supplier shipped above tolerance (+/-)</fullName>
-                <controllingFieldValues>Supplier Related</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Supplier Confirmation Missing</fullName>
-                <controllingFieldValues>Supplier Related</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Other Supplier Related Issue</fullName>
-                <controllingFieldValues>Supplier Related</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Rounding Code Adjustments</fullName>
-                <controllingFieldValues>Master Data Related</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Wrong Lead Time</fullName>
-                <controllingFieldValues>Master Data Related</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Other master data issues</fullName>
-                <controllingFieldValues>Master Data Related</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Multidelivery PO</fullName>
-                <controllingFieldValues>Order Generation</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Multiline PO</fullName>
-                <controllingFieldValues>Procurement Related</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -759,6 +662,34 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>MRP_Loss_Value__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Actual_Receipt__c  &gt;  Planned_Receipt__c ,  Actual_Receipt__c  -  Planned_Receipt__c ,  Planned_Receipt__c  -  Actual_Receipt__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>MRP Loss Value</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OR_Loss_Value__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Planned_Production__c  &gt;  Actual_Production__c ,  Planned_Production__c  -  Actual_Production__c ,  Actual_Production__c  -  Planned_Production__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>OR Loss Value</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>PO__c</fullName>
         <externalId>false</externalId>
         <label>PO</label>
@@ -784,33 +715,36 @@
         <fullName>Planned_Dispatch__c</fullName>
         <externalId>false</externalId>
         <label>Planned Dispatch</label>
-        <length>70</length>
+        <precision>15</precision>
         <required>false</required>
+        <scale>0</scale>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>Planned_Production__c</fullName>
         <externalId>false</externalId>
         <label>Planned Production</label>
-        <length>50</length>
+        <precision>15</precision>
         <required>false</required>
+        <scale>0</scale>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>Planned_Receipt__c</fullName>
         <externalId>false</externalId>
         <label>Planned Receipt</label>
-        <length>70</length>
+        <precision>15</precision>
         <required>false</required>
+        <scale>0</scale>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -820,6 +754,10 @@
         <picklist>
             <picklistValues>
                 <fullName>C106</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>C107</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -894,6 +832,12 @@
         <columns>Loss_Type__c</columns>
         <columns>Plant_Code__c</columns>
         <columns>Week__c</columns>
+        <columns>Loss_Recorded_Date__c</columns>
+        <columns>Loss_Updated_in_SCDG__c</columns>
+        <columns>Planned_Production__c</columns>
+        <columns>Actual_Production__c</columns>
+        <columns>Planned_Dispatch__c</columns>
+        <columns>Actual_Dispatch__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
@@ -902,20 +846,26 @@
         <fullName>Dispatch_Compliance_Report</fullName>
         <columns>NAME</columns>
         <columns>STO_SO__c</columns>
-        <columns>SKU__c</columns>
         <columns>Plant_Code__c</columns>
         <columns>Week__c</columns>
         <columns>Planned_Dispatch__c</columns>
         <columns>Actual_Dispatch__c</columns>
         <columns>Loss_Type__c</columns>
+        <columns>SKU__c</columns>
         <columns>Loss_Name__c</columns>
         <columns>Loss_Sub_Family__c</columns>
         <columns>Loss_Description__c</columns>
+        <columns>Loss_Updated_in_Salesforce__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Loss_Type__c</field>
             <operation>equals</operation>
             <value>Dispatch Compliance</value>
+        </filters>
+        <filters>
+            <field>Plant_Code__c</field>
+            <operation>equals</operation>
+            <value>C107</value>
         </filters>
         <label>Dispatch Compliance Report</label>
         <language>en_US</language>
@@ -945,12 +895,12 @@
         <columns>NAME</columns>
         <columns>PO__c</columns>
         <columns>Loss_Updated_in_Salesforce__c</columns>
-        <columns>SKU__c</columns>
         <columns>Plant_Code__c</columns>
         <columns>Week__c</columns>
         <columns>Planned_Production__c</columns>
         <columns>Actual_Production__c</columns>
         <columns>Loss_Type__c</columns>
+        <columns>SKU__c</columns>
         <columns>Loss_Name__c</columns>
         <columns>Loss_Sub_Family__c</columns>
         <columns>Loss_Description__c</columns>
@@ -962,7 +912,8 @@
         </filters>
         <filters>
             <field>Plant_Code__c</field>
-            <operation>notEqual</operation>
+            <operation>equals</operation>
+            <value>C107</value>
         </filters>
         <label>Output Reliability Report</label>
         <language>en_US</language>

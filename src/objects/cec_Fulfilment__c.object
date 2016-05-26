@@ -246,6 +246,14 @@
         <label>Country</label>
         <picklist>
             <picklistValues>
+                <fullName>Argentina</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Australia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Austria</fullName>
                 <default>false</default>
             </picklistValues>
@@ -254,7 +262,15 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Bolivia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Bosnia and Herzegovina</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Brazil</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -263,6 +279,18 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Canada</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Chile</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Colombia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Costa Rica</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -275,6 +303,14 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Denmark</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ecuador</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>El Salvador</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -295,6 +331,14 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Greece</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Guatemala</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Honduras</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -350,7 +394,27 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>New Zealand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Nicaragua</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Norway</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Panama</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Paraguay</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Peru</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -378,6 +442,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>South Africa</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Spain</fullName>
                 <default>false</default>
             </picklistValues>
@@ -397,12 +465,21 @@
                 <fullName>United States</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Uruguay</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Venezuela</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>true</sorted>
         </picklist>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
+    
     <fields>
         <fullName>Document_Approval__c</fullName>
         <externalId>false</externalId>
@@ -967,19 +1044,31 @@
             <controllingField>Country__c</controllingField>
             <picklistValues>
                 <fullName>Standard Letter</fullName>
+                <default>true</default>
+                <controllingFieldValues>Argentina</controllingFieldValues>
+                <controllingFieldValues>Australia</controllingFieldValues>
                 <controllingFieldValues>Austria</controllingFieldValues>
                 <controllingFieldValues>Belgium</controllingFieldValues>
+                <controllingFieldValues>Bolivia</controllingFieldValues>
                 <controllingFieldValues>Bosnia and Herzegovina</controllingFieldValues>
+                <controllingFieldValues>Brazil</controllingFieldValues>
                 <controllingFieldValues>Bulgaria</controllingFieldValues>
                 <controllingFieldValues>Canada</controllingFieldValues>
+                <controllingFieldValues>Chile</controllingFieldValues>
+                <controllingFieldValues>Colombia</controllingFieldValues>
+                <controllingFieldValues>Costa Rica</controllingFieldValues>
                 <controllingFieldValues>Croatia</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>Denmark</controllingFieldValues>
+                <controllingFieldValues>Ecuador</controllingFieldValues>
+                <controllingFieldValues>El Salvador</controllingFieldValues>
                 <controllingFieldValues>Estonia</controllingFieldValues>
                 <controllingFieldValues>Finland</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
                 <controllingFieldValues>Germany</controllingFieldValues>
                 <controllingFieldValues>Greece</controllingFieldValues>
+                <controllingFieldValues>Guatemala</controllingFieldValues>
+                <controllingFieldValues>Honduras</controllingFieldValues>
                 <controllingFieldValues>Hungary</controllingFieldValues>
                 <controllingFieldValues>Iceland</controllingFieldValues>
                 <controllingFieldValues>India</controllingFieldValues>
@@ -993,32 +1082,39 @@
                 <controllingFieldValues>Mlodova, Republic of</controllingFieldValues>
                 <controllingFieldValues>Montenegro</controllingFieldValues>
                 <controllingFieldValues>Netherlands</controllingFieldValues>
+                <controllingFieldValues>New Zealand</controllingFieldValues>
+                <controllingFieldValues>Nicaragua</controllingFieldValues>
                 <controllingFieldValues>Norway</controllingFieldValues>
+                <controllingFieldValues>Panama</controllingFieldValues>
+                <controllingFieldValues>Paraguay</controllingFieldValues>
+                <controllingFieldValues>Peru</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Romania</controllingFieldValues>
                 <controllingFieldValues>Serbia</controllingFieldValues>
                 <controllingFieldValues>Slovakia</controllingFieldValues>
                 <controllingFieldValues>Slovenia</controllingFieldValues>
+                <controllingFieldValues>South Africa</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sweden</controllingFieldValues>
                 <controllingFieldValues>Switzerland</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <controllingFieldValues>United States</controllingFieldValues>
-                <default>true</default>
+                <controllingFieldValues>Uruguay</controllingFieldValues>
+                <controllingFieldValues>Venezuela</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Dosing Request</fullName>
+                <default>false</default>
                 <controllingFieldValues>Ireland</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Remuneration</fullName>
+                <default>false</default>
                 <controllingFieldValues>Belgium</controllingFieldValues>
                 <controllingFieldValues>Luxembourg</controllingFieldValues>
                 <controllingFieldValues>Netherlands</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
