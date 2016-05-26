@@ -2,11 +2,14 @@ src
 src/layouts
 src/layouts/Distributor.layout
 src/layouts/Operators.layout
+src
 src/objects
 src/objects/Account.object
 src/objects/Product2.object
+src
 src/workflows
 src/workflows/NAFS_Update Operator Account Number.workflow
+src
 src/permissionsets
 src/permissionsets/NAFS_Integration_User.permissionset
 
