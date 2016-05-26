@@ -8,7 +8,6 @@
         <apexClass>NAFS_Utility</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-    <description>This permission set is used with . foodsolutions.integration.user and Food Solutions API Only profile</description>
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.AccountNumber</field>
