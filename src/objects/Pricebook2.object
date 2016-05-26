@@ -54,6 +54,11 @@
         <fullName>Name</fullName>
         <trackHistory>false</trackHistory>
     </fields>
+    <recordTypes>
+        <fullName>NAFS_Pricebook</fullName>
+        <active>true</active>
+        <label>NAFS Pricebook</label>
+    </recordTypes>
     <searchLayouts>
         <customTabListAdditionalFields>PRICEBOOK2.NAME</customTabListAdditionalFields>
         <customTabListAdditionalFields>PRICEBOOK2.DESCRIPTION</customTabListAdditionalFields>
@@ -72,5 +77,5 @@
         <searchResultsAdditionalFields>PRICEBOOK2.LAST_UPDATE</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>PRICEBOOK2.IS_ACTIVE</searchResultsAdditionalFields>
     </searchLayouts>
-    <sharingModel>ReadSelect</sharingModel>
+    <sharingModel>Private</sharingModel>
 </CustomObject>

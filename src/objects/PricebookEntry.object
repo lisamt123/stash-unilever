@@ -34,6 +34,42 @@
         <fullName>IsActive</fullName>
     </fields>
     <fields>
+        <fullName>NAFS_Bracket_1__c</fullName>
+        <externalId>false</externalId>
+        <label>Bracket 1</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>NAFS_Bracket_2__c</fullName>
+        <externalId>false</externalId>
+        <label>Bracket 2</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>NAFS_Bracket_3__c</fullName>
+        <externalId>false</externalId>
+        <label>Bracket 3</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>NAFS_Standard_Price__c</fullName>
+        <externalId>false</externalId>
+        <label>Standard Price</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
         <fullName>Pricebook2Id</fullName>
         <type>Lookup</type>
     </fields>
@@ -43,6 +79,17 @@
     </fields>
     <fields>
         <fullName>ProductCode</fullName>
+    </fields>
+    <fields>
+        <fullName>SAP_ID__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>External ID</description>
+        <externalId>true</externalId>
+        <label>SAP ID</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>true</unique>
     </fields>
     <fields>
         <fullName>StandardPrice</fullName>
