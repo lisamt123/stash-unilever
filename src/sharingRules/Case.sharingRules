@@ -26,6 +26,32 @@
             <value>South Africa</value>
         </criteriaItems>
     </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Case_Country_Equals_Indonesia</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Case Country Equals Indonesia</label>
+        <sharedTo>
+            <role>CEC_User_Indonesia</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Country_Name__c</field>
+            <operation>equals</operation>
+            <value>Indonesia</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Case_Country_Equals_Philippines</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Case Country Equals Philippines</label>
+        <sharedTo>
+            <role>CEC_User_Philippines</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Country_Name__c</field>
+            <operation>equals</operation>
+            <value>Philippines</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
     <sharingOwnerRules>
         <fullName>Market_Equals_ANZ_Manager</fullName>
         <accessLevel>Edit</accessLevel>
@@ -70,32 +96,6 @@
             <role>CEC_Manager_SEAA</role>
         </sharedFrom>
     </sharingOwnerRules>
-    <sharingCriteriaRules>
-        <fullName>Case_Country_Equals_Indonesia</fullName>
-        <accessLevel>Edit</accessLevel>
-        <label>Case Country Equals Indonesia</label>
-        <sharedTo>
-            <role>CEC_User_Indonesia</role>
-        </sharedTo>
-        <criteriaItems>
-            <field>Country_Name__c</field>
-            <operation>equals</operation>
-            <value>Indonesia</value>
-        </criteriaItems>
-    </sharingCriteriaRules>
-    <sharingCriteriaRules>
-        <fullName>Case_Country_Equals_Philippines</fullName>
-        <accessLevel>Edit</accessLevel>
-        <label>Case Country Equals Philippines</label>
-        <sharedTo>
-            <role>CEC_User_Philippines</role>
-        </sharedTo>
-        <criteriaItems>
-            <field>Country_Name__c</field>
-            <operation>equals</operation>
-            <value>Philippines</value>
-        </criteriaItems>
-    </sharingCriteriaRules>
     <sharingOwnerRules>
         <fullName>Market_Equals_Indonesia_Manager</fullName>
         <accessLevel>Edit</accessLevel>
