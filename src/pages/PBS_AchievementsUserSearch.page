@@ -47,7 +47,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
                     <div class="list-group">
                         <apex:repeat value="{!searchResults}" var="u" id="theRepeat">
                             <a class="lms-user-search-item list-group-item" item-url="{!$Page.PBS_MyProfile}?id={!u.Id}">
-                                <img src="{!u.SmallPhotoUrl}" class="profilePic-header-45" alt="Achievements User Search"/>
+                                <img src="{!u.SmallPhotoUrl}" class="profilePic-header-45"/>
                                 <span class="list-group-item-text" style="padding: 0 0 0 10px;">{!u.Name}</span>
                             </a>
                         </apex:repeat>

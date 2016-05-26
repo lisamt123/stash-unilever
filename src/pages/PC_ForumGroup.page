@@ -1,4 +1,4 @@
-<apex:page html-class="noBgImage" controller="PC_ForumGroupController_CC" readOnly="true" docType="html-5.0" sidebar="false" showHeader="false" standardStylesheets="true" action="{!loadData}">
+<apex:page controller="PC_ForumGroupController_CC" docType="html-5.0" sidebar="false" showHeader="true" standardStylesheets="false" action="{!loadData}">
     <!-- sylesheets -->
     <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/bootstrap.min.css')}" />
     <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/PCContainer.css')}" />

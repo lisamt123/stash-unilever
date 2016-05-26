@@ -3,5 +3,10 @@
     <apiVersion>36.0</apiVersion>
     <availableInTouch>false</availableInTouch>
     <confirmationTokenRequired>false</confirmationTokenRequired>
-    <label>PC_ContainerTest</label>
+    <label>PBS_EditProfile</label>
+    <packageVersions>
+        <majorNumber>2</majorNumber>
+        <minorNumber>32</minorNumber>
+        <namespace>almond</namespace>
+    </packageVersions>
 </ApexPage>

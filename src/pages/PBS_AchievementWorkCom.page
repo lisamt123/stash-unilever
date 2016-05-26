@@ -95,7 +95,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
                         <div class="workBadgeWrapper">
 
                             <a id="{!b.Id}-wbadge" href="javascript:selectBadge('{!b.Id}')" class="badge-item {!IF(selectedBadge == b.Id,'badge-active','')}">
-                                <img src="{!b.ImageUrl}" title="{!b.Name}" alt="Achievement Work Com"/>
+                                <img src="{!b.ImageUrl}" title="{!b.Name}"/>
                             </a>
 
                         </div>
