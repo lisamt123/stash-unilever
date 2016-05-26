@@ -239,6 +239,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Indonesia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Italy</fullName>
                 <default>false</default>
             </picklistValues>
@@ -252,6 +256,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>North America</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Philippines</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>

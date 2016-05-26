@@ -354,6 +354,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Indonesia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Ireland</fullName>
                 <default>false</default>
             </picklistValues>
@@ -418,6 +422,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Philippines</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Poland</fullName>
                 <default>false</default>
             </picklistValues>
@@ -479,7 +487,6 @@
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
-    
     <fields>
         <fullName>Document_Approval__c</fullName>
         <externalId>false</externalId>
@@ -1072,6 +1079,7 @@
                 <controllingFieldValues>Hungary</controllingFieldValues>
                 <controllingFieldValues>Iceland</controllingFieldValues>
                 <controllingFieldValues>India</controllingFieldValues>
+                <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Ireland</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
                 <controllingFieldValues>Latvia</controllingFieldValues>
@@ -1088,6 +1096,7 @@
                 <controllingFieldValues>Panama</controllingFieldValues>
                 <controllingFieldValues>Paraguay</controllingFieldValues>
                 <controllingFieldValues>Peru</controllingFieldValues>
+                <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Romania</controllingFieldValues>

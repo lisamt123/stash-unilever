@@ -22,4 +22,26 @@
             <roleAndSubordinatesInternal>CEC_Manager_South_Africa</roleAndSubordinatesInternal>
         </sharedFrom>
     </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Market_Equals_Indonesia_Manager</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Market Equals Indonesia - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Indonesia</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_Indonesia</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Market_Equals_Philippines_Manager</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Market Equals Philippines - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Philippines</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_Philippines</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
 </SharingRules>

@@ -678,6 +678,10 @@ IF( ISPICKVAL(  Account.Known_Consumer__c , &apos;Frequent&apos;), IMAGE(&apos;/
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Indonesia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Ireland</fullName>
                 <default>false</default>
             </picklistValues>
@@ -727,6 +731,10 @@ IF( ISPICKVAL(  Account.Known_Consumer__c , &apos;Frequent&apos;), IMAGE(&apos;/
             </picklistValues>
             <picklistValues>
                 <fullName>Peru</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Philippines</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -5174,6 +5182,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>Indonesia</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Ireland</fullName>
                 <default>false</default>
             </values>
@@ -5223,6 +5235,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             </values>
             <values>
                 <fullName>Peru</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Philippines</fullName>
                 <default>false</default>
             </values>
             <values>
