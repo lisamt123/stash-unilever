@@ -34,6 +34,7 @@ public class DMS_AccountUserRole_CC
             for(Account vAccounts : listAccount) 
             {
                 isPartner = vAccounts.IsPartner;
+                
                 if(isPartner && userAccount.size() < 3) 
                 {
                     for (Integer quantity = userAccount.size(); quantity < 3; quantity++) 
