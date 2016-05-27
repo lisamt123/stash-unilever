@@ -950,7 +950,6 @@
         <apexPage>PBS_Library</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
- 
     <pageAccesses>
         <apexPage>PBS_MyProfile</apexPage>
         <enabled>true</enabled>
@@ -959,7 +958,6 @@
         <apexPage>PBS_MyTraining</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
-   
     <pageAccesses>
         <apexPage>PBS_QuestionNew</apexPage>
         <enabled>true</enabled>
@@ -980,17 +978,14 @@
         <apexPage>PBS_TaskViewer</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
-
     <pageAccesses>
         <apexPage>PBS_TrainingCatalogDetail</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
- 
     <pageAccesses>
         <apexPage>PBS_TrainingCatalogHome</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
-
     <pageAccesses>
         <apexPage>PBS_TrainingHome</apexPage>
         <enabled>true</enabled>
@@ -1023,7 +1018,6 @@
         <apexPage>PBS_TrainingPlanDetail</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
-  
     <pageAccesses>
         <apexPage>PBS_TrainingPlanExport</apexPage>
         <enabled>true</enabled>
@@ -1041,7 +1035,6 @@
         <apexPage>PBS_TrainingPlanPreview</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
-  
     <pageAccesses>
         <apexPage>PBS_TrainingPlanSectionAssignmentsDelete</apexPage>
         <enabled>true</enabled>
@@ -1058,7 +1051,6 @@
         <apexPage>PBS_TrainingTrackDetail</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
-  
     <pageAccesses>
         <apexPage>PBS_TrainingTrackExport</apexPage>
         <enabled>true</enabled>
