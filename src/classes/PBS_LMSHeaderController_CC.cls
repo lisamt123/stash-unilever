@@ -40,7 +40,7 @@ public with sharing class PBS_LMSHeaderController_CC {
     public /*transient*/ String customSectionURL {get; private set;}
     public /*transient*/ Boolean hideBackToSFButton {get;private set;}
 
-    public /*transient*/ List<PBS_AlmondNavigation__c> navigationItems {get;private set;}
+   public /*transient*/ List<PBS_AlmondNavigation__c> navigationItems {get;private set;}
 
     public PBS_LMSHeaderController_CC (){
         loggedUsername         = UserInfo.getFirstName();
@@ -79,7 +79,7 @@ public with sharing class PBS_LMSHeaderController_CC {
         //    section = 'custom';
         //}
 
-        /** Custom navigatio code **/
+        // Custom navigatio code 
         navigationItems    = [
             SELECT
                 Name, Active__c, Label__c , Order__c , SectionOtherPages__c , URL__c, RenderAsDisabled__c
