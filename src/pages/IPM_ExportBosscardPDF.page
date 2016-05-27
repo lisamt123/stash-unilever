@@ -244,7 +244,7 @@
                        {!$Label.IPM_BACKGROUND}
                     </div>
                     <div class="bdText">
-                        <div class="bdText10 ">{!Bosscard.IPM_Background__c} </div>
+                        <div class="bdText10 "><apex:outputField value="{!Bosscard.IPM_Background__c}"/></div>
                     </div>
                     <div class="heading2 bold"> 
                         {!$Label.IPM_OPPORTUNITY}
@@ -253,49 +253,49 @@
                         <div class="label">
                             <u>{!$Label.IPM_CONSUM_NEED}</u>
                         </div>
-                        <div class="bdText10 ">{!Bosscard.IPM_Consumer_Need__c} </div>
+                        <div class="bdText10"><apex:outputField value="{!Bosscard.IPM_Consumer_Need__c}"/> </div>
                     </div>
                     <div class="bdText">
                         <div class="label">
                             <u>{!$Label.IPM_POTENTIAL_BUSINESS_OPPOR}</u>
                         </div>
-                        <div class="bdText10 ">{!Bosscard.IPM_Potential_Business_Opportunity__c} </div>
+                        <div class="bdText10 "><apex:outputField value="{!Bosscard.IPM_Potential_Business_Opportunity__c}"/></div>
                     </div>
                     <div class="heading2 bold">
                          {!$Label.IPM_SCOPE}
                     </div>
                     <div class="bdText">
-                        <div class="bdText10 ">{!Bosscard.IPM_Scope__c} </div>
+                        <div class="bdText10 "><apex:outputField value="{!Bosscard.IPM_Scope__c}"/> </div>
                     </div>
                     <div class="heading2 bold">
                         {!$Label.IPM_SUSTAINABILITY}
                     </div>
                     <div class="bdText">
-                        <div class="bdText10 ">{!Bosscard.IPM_Sustainibility__c} </div>
+                        <div class="bdText10 "><apex:outputField value="{!Bosscard.IPM_Sustainibility__c}"/> </div>
                     </div>
                     <div class="heading2 bold">
                          {!$Label.IPM_CONSTRAINTS}
                     </div>
                     <div class="bdText">
-                        <div class="bdText10 ">{!Bosscard.IPM_Constraints__c} </div>
+                        <div class="bdText10 "><apex:outputField value="{!Bosscard.IPM_Constraints__c}"/> </div>
                     </div>
                     <div class="heading2 bold">
                          {!$Label.IPM_ASSUMPTIONS}
                     </div>
                     <div class="bdText">
-                        <div class="bdText10 ">{!Bosscard.IPM_Assumptions__c} </div>
+                        <div class="bdText10 "><apex:outputField value="{!Bosscard.IPM_Assumptions__c}"/> </div>
                     </div>
                     <div class="heading2 bold">
                          {!$Label.IPM_RESOURCES}
                     </div>
                     <div class="bdText">
-                        <div class="bdText10 ">{!Bosscard.IPM_Resources__c} </div>
+                        <div class="bdText10 "><apex:outputField value="{!Bosscard.IPM_Resources__c}"/> </div>
                     </div>  
                     <div class="heading2 bold">
                          {!$Label.IPM_DELIVERABLES}
                     </div>
                     <div class="bdText">
-                        <div class="bdText10 ">{!Bosscard.IPM_Deliverables__c} </div>
+                        <div class="bdText10 "><apex:outputField value="{!Bosscard.IPM_Deliverables__c}"/> </div>
                     </div>
                 </div>
             </div>

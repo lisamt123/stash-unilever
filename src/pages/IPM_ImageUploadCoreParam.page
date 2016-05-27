@@ -28,14 +28,13 @@
                 <div class="uploadField">
                     <apex:outputLabel for="file"/>                        
                     <apex:actionRegion >
-                        <apex:inputFile value="{!document.body}" styleclass="imgBrowse" onchange="setFilePath();" filename="{!document.name}" id="file"  fileSize="{!document.BodyLength}" accept=".jpg,.jpeg,.png,.gif,.bmp,.pds,.psp,.thm,.tif,.yuv" />
-                        
+                        <apex:inputFile value="{!document.body}" styleclass="imgBrowse" filename="{!document.name}" id="file"  fileSize="{!document.BodyLength}" accept=".jpg,.jpeg,.png,.gif,.bmp,.pds,.psp,.thm,.tif,.yuv" />
                     </apex:actionRegion>
                 </div>   
                 <input id="errorval" value="{!isValid}" hidden="hidden"></input> 
                 <div class="uploadButton">  
                     <apex:actionRegion renderRegionOnly="false" id="submitbutton">   
-                        <apex:commandLink onclick="skipVal()" action="{!upload}" value="{!$Label.IPM_UPLOAD_IMAGE}" styleClass="uploadbuttonPadding ipmButton primary" />            
+                        <apex:commandLink onclick="skipVal()" action="{!upload}" value="{!$Label.IPM_UPLOAD_IMAGE}" styleClass="uploadbuttonPadding ipmButton primary" />
                     </apex:actionRegion>
                 </div> 
             </div>   
@@ -45,7 +44,7 @@
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery.js')}" type="text/javascript"></script>
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/bootstrap.js')}" type="text/javascript"></script>
     <script>    
-    var IPMAppImgLoad = {loadImg:'{!isInserted}',coreUrl:'{!URLFOR($Page.IPM_CoreParameters)}',projId:'{!URLENCODE(projectId)}',wmessage:'{!$Label.IPM_Unsaved_Alert}',bossurl:'{!URLFOR($Page.IPM_Bosscard)}', bosscardId:'{!projectId}',ProjectSetupUrl:'{!URLFOR($Page.IPM_ProjectSetUpView)}'};
+    var IPMAppImgLoad = {loadImg:'{!isInserted}',coreUrl:'{!URLFOR($Page.IPM_CoreParameters)}',projId:'{!URLENCODE(projectId)}',wmessage:'{!$Label.IPM_Unsaved_Alert}'};
     </script>
-    <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_ImageUpload.js')}" type="text/javascript"></script>
+    <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_ImageUpload.js')}" type="text/javascript"></script>    
 </apex:page>

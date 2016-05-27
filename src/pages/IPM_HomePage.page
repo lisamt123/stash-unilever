@@ -1,4 +1,4 @@
-<!--
+﻿<!--
 ******************************************************************************************************************
 *@Description: This is landing page of IPM NG users.It is used display the alertmessages and Taskcount or Project
 *@Author: Cognizant
@@ -24,30 +24,47 @@
                             <apex:commandLink value="{!alertsOTIF[key]}" action="{!$Page.IPM_ProjectOverview}?id={!key}"/>
                         </li>
                     </apex:repeat>
-                    
-                    <apex:repeat var="key" value="{!alertMessage}">
-                        <li>
-                            <apex:commandLink value="{!key} {!$Label.IPM_APPROVER_IS_DUE_IN} {!alertMessage[key]}" action="{!$Page.IPM_GateDocument}?id={!ProjectId}"/>
-                        </li>
-                    </apex:repeat>
                     <apex:repeat var="key" value="{!alertMessageDueDatePast}">
                         <li>
                             <apex:commandLink value="{!alertMessageDueDatePast[key]} {!$Label.IPM_PASSED_WITHOUT_APPROVAL} {!$Label.IPM_UPDATE_YOUR_DUE_DATE}" action="{!$Page.IPM_Tasklist}?id={!ProjectIdMap[key]}"/>
                       </li>
                     </apex:repeat>
-                    <apex:repeat var="key" value="{!alertMessageDueDateToday}">
+                    <apex:repeat var="key" value="{!alertMessageDueDateToday}" >
+                        <apex:outputPanel rendered="{!TRIM(currGateProjectMap[ProjectIdMap[key]]) != ''}">
                         <li>
-                            <apex:commandLink value="{!alertMessageDueDateToday[key]} {!$Label.IPM_DUE_ON_TODAY}{!$Label.IPM_Remember_To_Update}" action="{!$Page.IPM_GateDocument}?id={!ProjectIdMap[key]}"/>
+                            <apex:commandLink value="{!alertMessageDueDateToday[key]} {!$Label.IPM_DUE_ON_TODAY}{!$Label.IPM_Remember_To_Update}" action="{!$Page.IPM_GateDocument}?id={!ProjectIdMap[key]}&printDoc={!currGateProjectMap[ProjectIdMap[key]]}"/>
                         </li>
+                        </apex:outputPanel>
+                    </apex:repeat>
+                    <apex:repeat var="key" value="{!alertMessageDueDateToday}">
+                        <apex:outputPanel rendered="{!TRIM(currGateProjectMap[ProjectIdMap[key]]) == ''}">
+                        <li>
+                            <apex:commandLink value="{!alertMessageDueDateToday[key]} {!$Label.IPM_DUE_ON_TODAY}{!$Label.IPM_Remember_To_Update}" action="{!$Page.IPM_Tasklist}?id={!ProjectIdMap[key]}"/>
+                        </li>
+                        </apex:outputPanel>
                     </apex:repeat>
                     <apex:repeat var="key" value="{!alertMessageDueDateApproaching}">
-                        <li>
-                            <apex:commandLink value="{!alertMessageDueDateApproaching[key]} {!$Label.IPM_DAYS}" action="{!$Page.IPM_GateDocument}?id={!ProjectIdMap[key]}"/>
+                       <apex:outputPanel rendered="{!TRIM(currGateProjectMap[ProjectIdMap[key]]) != ''}">
+                       <li>
+                            <apex:commandLink value="{!alertMessageDueDateApproaching[key]} {!$Label.IPM_DAYS}" action="{!$Page.IPM_GateDocument}?id={!ProjectIdMap[key]}&printDoc={!currGateProjectMap[ProjectIdMap[key]]}"/>
                         </li>
+                        </apex:outputPanel>
+                    </apex:repeat>
+                    <apex:repeat var="key" value="{!alertMessageDueDateApproaching}">
+                        <apex:outputPanel rendered="{!TRIM(currGateProjectMap[ProjectIdMap[key]]) == ''}">
+                        <li>
+                            <apex:commandLink value="{!alertMessageDueDateApproaching[key]} {!$Label.IPM_DAYS}" action="{!$Page.IPM_Tasklist}?id={!ProjectIdMap[key]}"/>
+                        </li>
+                        </apex:outputPanel>
                     </apex:repeat>
                     <apex:repeat var="hprojects" value="{!mapphistory}">
                         <li>
                             <apex:commandLink value="{!mapphistory[hprojects].Parent.Name} {!if(mapphistory[hprojects].Parent.IPM_Fast_Track_Project__c,$Label.IPM_PROJECT_IS_FASTTRACK,$Label.IPM_PROJECT_NO_FASTTRACK)}" action="{!$Page.IPM_ProjectOverview}?id={!mapphistory[hprojects].Parent.Id}"/>
+                        </li>
+                    </apex:repeat>
+                    <apex:repeat var="key" value="{!finDataMissingAlertMessageMap}">
+                        <li>
+                            <apex:commandLink value="{!finDataMissingAlertMessageMap[key]}" action="{!$Page.IPM_Financial}?id={!key}"/>
                         </li>
                     </apex:repeat>
                     <apex:repeat var="message" value="{!LstFinMisalignedMessage}">
@@ -72,7 +89,7 @@
                     </apex:repeat>
                     <apex:repeat var="messageRollout" value="{!RolloutProjectAlertMessageMap}">
                         <li>
-                            <apex:commandLink value="{!RolloutProjectAlertMessageMap[messageRollout]}" action="{!$Page.IPM_RolloutPlans}?id={!messageRollout}"/>
+                            <apex:commandLink value="{!RolloutProjectAlertMessageMap[messageRollout]}" action="{!$Page.IPM_RolloutPlans}?id={!ProjectIdMap[messageRollout]}"/>
                         </li>
                    </apex:repeat>
                       
@@ -125,7 +142,7 @@
                                 <div class="item active">
                                     <div class="col-sm-7 sliderImage">                        
                                         <div class="imgHolder">                       
-                                            <apex:image url="{!$Resource.IPM_HHC_Carousel}" alt="HHC Products" width="380" height="251"/>
+                                           <apex:image url="{!$Resource.IPM_HHC_Carousel}" alt="HHC Products" width="380" height="251"/>
                                         </div>
                                     </div>
                                     <div class="col-sm-5">
@@ -134,9 +151,9 @@
                                         </div>
                                         <div class="col-sm-12 noPadding sliderContent">
                                             <span class="contentTitle">{!$Label.IPM_TECHNICAL_ISSUE}</span>
-                                            <p>{!$Label.IPM_INTERIN_SUPPORT_SOLUTION} </p><br />
-                                            <p>{!$Label.IPM_INOPLAN_USER_QUERY}</p><br />
-                                            <p>{!$Label.IPM_TRAINING_OR_TECHNICAL}</p>                           
+                                            <p>{!$Label.IPM_INTERIN_SUPPORT_SOLUTION} </p><br/>
+                                            <div class="homeDivide">{!$Label.IPM_INOPLAN_USER_QUERY}</div>
+                                            <div >{!$Label.IPM_TRAINING_OR_TECHNICAL}</div>                           
                                         </div>
                                         <div class="col-sm-12 noPadding"><a tabindex="0" class="moreLink">More>></a><a tabindex="0" class="lessLink">Less</a></div>
                                     </div>
@@ -144,8 +161,8 @@
                                 
                                 <div class="item">
                                     <div class="col-sm-7 sliderImage">                        
-                                        <div class="imgHolder">                       
-                                            <apex:image url="{!$Resource.IPM_FabCon_Carousel}" alt="FabCon Products" width="380" height="251"/>
+                                        <div class="imgHolder">
+                                        	<apex:image url="{!$Resource.IPM_FabCon_Carousel}" alt="FabCon Products" width="380" height="251"/>                       
                                         </div>
                                     </div>
                                     <div class="col-sm-5">
@@ -153,9 +170,9 @@
                                             <h5 class="contentHeader">{!$Label.IPM_PROJECT_UPDATE}</h5>
                                         </div>
                                         <div class="col-sm-12 noPadding sliderContent">
-                                            <span class="contentTitle">{!$Label.IPM_TECHNICAL_ISSUE}</span>
+                                        <span class="contentTitle">{!$Label.IPM_TECHNICAL_ISSUE}</span>
                                             <p>{!$Label.IPM_WATCH_FOR_UPDATES_TO}</p><br />
-                                            <p>{!$Label.IPM_PDL_FOR_PC}</p>                                                                                                                                  
+                                            <p class="listItem">{!$Label.IPM_PDL_FOR_PC}</p>
                                         </div>
                                         <div class="col-sm-12 noPadding"><a tabindex="0" class="moreLink">More>></a><a tabindex="0" class="lessLink">Less</a></div>
                                     </div>
@@ -168,12 +185,14 @@
                     <div class="setAuto">
                         <div class="row">
                             <div class="col-sm-12">
+                                <!-- Below rendered is used to enabled pop up box on create new project button -->
                                 <apex:outputpanel rendered="{! if(OR(isProjectEditable=true,isBossCardEditable=true),'true','false')}">
                                     <div id="createProject" class="col-sm-6 centerAlign noPadleft noPadright box1 SecButtonSet" data-toggle="modal" data-keyboard="true" data-target="#ipmModal" title="Create Project" value="{!$Page.IPM_createproject}?IsBossCardEditable={!isBossCardEditable}&IsProjectEditable={!isProjectEditable}" data-backdrop="static" >
                                         <a class="icoButton newproject" tabindex="0"></a>                                  
                                         <span class="boxTitle"><div>{!$Label.IPM_CREATE_NEW}</div><div>{!$Label.IPM_PROJECT}</div></span>           
                                     </div>
                                 </apex:outputpanel>
+                                <!-- Below rendered is used to disabled pop up box on create new project button -->
                                 <apex:outputpanel rendered="{! if(AND(isProjectEditable=false,isBossCardEditable=false),'true','false')}">
                                     <div id="createProject1" class="col-sm-6 centerAlign noPadleft noPadright box1 SecButtonSet" value="{!$Page.IPM_CreateProject}">
                                         <a class="icoButton newproject" tabindex="0"></a>
@@ -189,7 +208,7 @@
                         <div class="row boxTop">
                             <div class="col-sm-12">
                                 <div class="col-sm-6 centerAlign box3 noPadleft noPadright SecButtonSet" title="{!$Label.IPM_AskIPM}">
-                                    <a class="icoButton askipm" href="https://unilever.my.salesforce.com/_ui/core/chatter/groups/GroupProfilePage?g=0F9E0000000Qc6Y&s=IPM+help&r=1" target="_blank" title="Ask IPM"></a>
+                                    <a class="icoButton askipm" href="http://inside.unilever.com/marketing/IPM/Pages/askipm.aspx" target="_blank" title="Ask IPM"></a>
                                     <span class="boxTitle">{!$Label.IPM_ASK_IPM}</span>           
                                 </div>
                                 <div class="col-sm-6 centerAlign box4 noPadleft noPadright SecButtonSet" title="{!$Label.IPM_GotoIPMPortal}">

@@ -1,4 +1,4 @@
-<!--  
+﻿<!--  
 *************************************************************************************************************************************************************
 *@Description:This is project initiation page, where user should enter all project details. User will get 5 tabs to complete the wizard.
 *@Author: Cognizant.
@@ -14,7 +14,7 @@
        
             <apex:pageMessages />
             <apex:inputField value="{!project.IPM_Target_Launch_Dates__c}" />
-            <apex:actionFunction action="{!Initialise}" name="callpagerefresh" reRender="QuitProTab,createNewProject"/> 
+            <apex:actionFunction action="{!Initialise}" name="callpagerefresh" oncomplete="createNewProject();" reRender="QuitProTab,createNewProject"/> 
        
     </apex:outputPanel>  
  
@@ -62,7 +62,7 @@
                             <div class="getStartedbuttonCont">
                                 <div class="getStarted" id="getStarted">
                                         <!-- To display below command button when current user has edit access -->                            
-                                        <apex:commandButton value="{!$Label.IPM_Get_started}" styleClass="ipmButton getStartedbutton primary" reRender="createNewProject" action="{!none}" rendered="{!isEditable}" />
+                                        <apex:commandButton value="{!$Label.IPM_Get_started}" oncomplete="createNewProject();" styleClass="ipmButton getStartedbutton primary" reRender="createNewProject" action="{!none}" rendered="{!isEditable}" />
                                    
                                 </div>
                             </div>
@@ -86,10 +86,10 @@
                 </apex:outputPanel>
                 
             </div>           
-            <div id="ipmModalGetStarted" class="modal fade in" aria-hidden="true" data-keyboard="false" data-backdrop="static" data-focus-on="input:first">
+            <div id="ipmModalGetStarted" class="modal fade in ipmModalGetStarted" aria-hidden="true" data-keyboard="false" data-backdrop="static" data-focus-on="input:first">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header popup_head" id="ipmGetStartedTab">
+                        <div class="modal-header popup_head ipmGetStartedTab" id="ipmGetStartedTab">
                             <ul class="ipmStartedTabs">
                                 <li class="projectdetails tabOdd"><span>{!$Label.IPM_ABOUT_PROJECT}</span></li>
                                 <li class="coreparameters tabEven"><span>{!$Label.IPM_PROJECT_PARAMETERS}</span></li>
@@ -173,7 +173,7 @@
                                                                         <a class="icoButton info" title="{!$Label.IPM_ProjectNameHelpText}"></a>
                                                                     </span>
                                                                     <!-- To display below inputText when current logged in user has edit access   -->
-                                                                    <apex:inputText value="{!project.IPM_Project_Name__c}" id="proname"  styleClass="brandautocomplete BosscardNameInputBox" html-onpaste="return false"  onblur="hideSuggetion();" onkeypress="return invalidChar(event);"  onkeyup="var u=this.value.toUpperCase();if(this.value!=u){this.value=u;return false};dupProjectName();"  maxlength="14" rendered="{!isEditable}" >
+                                                                    <apex:inputText value="{!project.IPM_Project_Name__c}" id="proname"  styleClass="brandautocomplete BosscardNameInputBox inputcontent" html-onpaste="return false"  onblur="hideSuggetion();" onkeypress="return invalidChar(event);"  onkeyup="var u=this.value.toUpperCase();if(this.value!=u){this.value=u;return false};dupProjectName();"  maxlength="14" rendered="{!isEditable}" html-onfocusout="changeAlertBosscardName();">
                                                                     </apex:inputText>
                                                                     <apex:actionfunction name="dupProjectName" action="{!searchDuplicateProject}" rerender="refreshProjectName"/>
                                                                     <apex:actionfunction name="hideSuggetion" action="{!hideProjectSuggetion}" rerender="refreshProjectName"/>
@@ -181,7 +181,7 @@
                                                                         <!-- To display below outputPanel when user typed in project name   -->
                                                                         <apex:outputpanel layout="block" styleClass="autoContainer" rendered="{!!isProjectNameBlank}">
                                                                             <apex:repeat value="{!listofprojectname}" var="proList">          
-                                                                                <apex:outputLabel styleClass="bcAuto" value="{!proList.IPM_Project_Name__c}"/>         
+                                                                                <apex:outputLabel styleClass="bcAuto" value="{!proList}"/>         
                                                                             </apex:repeat>  
                                                                         </apex:outputpanel>
                                                                     </apex:outputpanel>
@@ -199,7 +199,7 @@
                                                                 <apex:outputPanel layout="block"  styleClass="inputField">  
                                                                     <apex:outputLabel value="{!$Label.IPM_PROJECT_DESCRIPTION}" styleClass="bsFieldLabel descTop" />
                                                                     <!-- To display below inputTextarea when current logged in user has edit access on page   -->
-                                                                    <apex:inputTextarea id="projDesc" value="{!project.IPM_Project_Description__c}" rendered="{!isEditable}"  styleClass="limitdesc BosscardNameInputBox"  />
+                                                                    <apex:inputTextarea id="projDesc" value="{!project.IPM_Project_Description__c}" html-onfocusout="changeAlert();" rendered="{!isEditable}"  styleClass="limitdesc BosscardNameInputBox"  />
                                                                     <apex:outputPanel id="DescMsg" styleClass="proDescLabel" >
                                                                         <!-- To display below outputText when project description is empty while saving project. -->
                                                                         <apex:outputText value="{!$Label.IPM_ENTER_PROJECT_DESCRIPTION}" rendered="{!AND(isBusinessError,CONTAINS(businessErrorField,'IPM_Project_Description__c'))}" styleClass="projDescErrMsg"/>   
@@ -210,8 +210,8 @@
                                                                     </apex:outputPanel>
                                                                     <!-- To display below outputPanel when current logged in user has edit access on page   -->
                                                                     <apex:outputPanel layout="block" styleClass="txtRight" rendered="{!isEditable}"> 
-                                                                        <span id="charCountRemainingText"> {!$Label.IPM_CHAR_REMAINING} </span> 
-                                                                        <span id="charCountRemaining">{!$Label.IPM_CHAR_70}</span>
+                                                                        <span id="charCountRemainingText" class="charCountRemainingText"> {!$Label.IPM_CHAR_REMAINING} </span> 
+                                                                        <span id="charCountRemaining" class="charCountRemaining">{!$Label.IPM_CHAR_70}</span>
                                                                     </apex:outputPanel>
                                                                 </apex:outputPanel>     
                                                             </apex:outputPanel>
@@ -226,8 +226,8 @@
                                                                                         <apex:selectOptions value="{!Allcompanycard}" />
                                                                                     </apex:selectList>
                                                                                 </apex:outputPanel>
-                                                                                <apex:actionfunction name="callCompanyCard" onComplete="callBrandPos();" action="{!populateCategory}" reRender="ProjectSubTypePanel,WhiteSpaceFastTrackPanel,fastTrackPanel,whiteSpacePanel,gateKeepingPanel,questionCharter,categoryPanel,BrandPositionPanel,pos,selectNextTabScript,multiBPositions" status="refreshCategory" />
-                                                                                <apex:actionfunction name="callBrandPos" action="{!none}" reRender="BrandPositionPanel,multiBPositions" status="refreshPos" />
+                                                                                <apex:actionfunction name="callCompanyCard" onComplete="callBrandPos();selectNextTabone();selectNextTabtwo();selectNextTabthree();" action="{!populateCategory}" reRender="ProjectSubTypePanel,WhiteSpaceFastTrackPanel,fastTrackPanel,whiteSpacePanel,gateKeepingPanel,questionCharter,categoryPanel,BrandPositionPanel,pos,selectNextTabScript,multiBPositions" status="refreshCategory" />
+                                                                                <apex:actionfunction name="callBrandPos" onComplete="selectNextTabone();selectNextTabtwo();selectNextTabthree();" action="{!none}" reRender="BrandPositionPanel,multiBPositions,selectNextTabScript" status="refreshPos" />
                                                                                 
                                                                             </apex:actionRegion>
                                                                         </label>
@@ -243,7 +243,7 @@
                                                                         <label class="ipmSelect custSelectWidth">
                                                                           <apex:actionStatus startText="" id="refreshCategory" startStyleClass="proInit"/>
                                                                           <apex:selectList value="{!project.IPM_Category_Text__c}" multiselect="false" size="1" id="cat" disabled="{!!isEditable}" styleClass="selCategory">
-                                                                              <apex:actionSupport event="onchange" action="{!none}" reRender="BrandPositionPanel,selectNextTabScript" status="refreshPos" />  
+                                                                              <apex:actionSupport event="onchange" action="{!none}" oncomplete="selectNextTabone();selectNextTabtwo();selectNextTabthree();" reRender="BrandPositionPanel,selectNextTabScript" status="refreshPos" />  
                                                                                
                                                                               <apex:selectOptions value="{!Category}"></apex:selectOptions>
                                                                           </apex:selectList>
@@ -264,7 +264,7 @@
                                                                             <apex:outputPanel layout="inline" styleClass="mandatorycolor"></apex:outputPanel>                                                                      
                                                                             <div class="ipmRadioButton oprtnRadiobtn">                                                                                      
                                                                                 <apex:selectRadio styleClass="{!IF(AND(isEditable,NOT(project.IPM_IsSaved__c)),'','disable')}"  value="{!project.IPM_ProjectSubType__c}"  disabled="{!OR(project.IPM_IsSaved__c,NOT(isEditable))}" > 
-                                                                                    <apex:actionSupport event="onchange" action="{!populateProjectInformation}" reRender="BrandPositionPanel,gateKeepingPanel,questionCharter,WhiteSpaceFastTrackPanel,selectNextTabScript" status="refreshPos" />  
+                                                                                    <apex:actionSupport event="onchange" action="{!populateProjectInformation}" oncomplete="selectNextTabone();selectNextTabtwo();selectNextTabthree();" reRender="BrandPositionPanel,gateKeepingPanel,questionCharter,WhiteSpaceFastTrackPanel,selectNextTabScript" status="refreshPos" />  
                                                                                     <span><apex:selectOptions value="{!projectSubTypes}"></apex:selectOptions></span>
                                                                                 </apex:selectRadio>
                                                                             </div> 
@@ -358,9 +358,9 @@
                                                                             <!-- To display below outputText when IPM_Target_Launch_Dates__c field value is empty while saving project    -->
                                                                             <apex:outputText value="{!$Label.IPM_SELECT_TLD}" rendered="{!AND(isBusinessError,CONTAINS(businessErrorField,'IPM_Target_Launch_Dates__c'))}" styleClass="TldErrMsg"/>
                                                                             <!-- To display below outputText when TLD date is less than six month    -->
-                                                                            <apex:outputText value="{!$Label.IPM_TLD_SHOULD_BE_GREATER_THAN_TODAY}" rendered="{!isTLDLessThnSixMnth}" styleClass="TldErrMsg"/>
+                                                                            <apex:outputText value="{!$Label.IPM_TLD_SHOULD_BE_GREATER_THAN_TODAY }" rendered="{!AND(isTLDLessThnSixMnth,tldRestriction)}" styleClass="TldErrMsg"/> 
                                                                             <!-- To display below outputText when TLD date is greater than today date    -->
-                                                                            <apex:outputText value="{!$Label.IPM_TLD_SHOULD_BE_GREATER_THAN_TODAYDate}" rendered="{!isTLDLessThnToday}" styleClass="TldErrMsg"/>
+                                                                            <apex:outputText value="{!$Label.IPM_Target_Launch_Date_Error}" rendered="{!isTLDLessThnToday}" styleClass="TldErrMsg"/>
                                                                         </apex:outputPanel>
                                                                     </apex:outputPanel>
                                                                 </div>
@@ -490,9 +490,9 @@
                                                 <div class="pull-right proSetupButton renderBtnset txtAlignright">
                                                     <apex:actionStatus startText="" id="Loading" startStyleClass="proInit"/>
                                                     <!-- To display below commandLink when current user has edit access on page, project is saved and phase is not empty    -->
-                                                    <apex:commandLink value="Save and continue" action="{!saveProceed}" styleClass="coreparameters custMarginbottom ipmButton primary"  reRender="CompanyCardPanel,ProjectNamePanel,Container5, refreshquit,miles,selectNextTabScript,categoryPanel,ProjectSubTypePanel,gateKeepingPanel,questionCharter,WhiteSpaceFastTrackPanel,CompanyCardPanel,BrandPositionPanel,TargetDatePanel,formMessage" rendered="{! AND(isEditable,isSavedDB,NOT(ISNULL(project.IPM_Phase__c)),NOT(ISBLANK(project.IPM_Phase__c)) )}" oncomplete="goTocoreparameters();" />
+                                                    <apex:commandLink value="Save and continue" action="{!saveProceed}" styleClass="coreparameters custMarginbottom ipmButton primary"  reRender="CompanyCardPanel,ProjectNamePanel,Container5, refreshquit,miles,selectNextTabScript,categoryPanel,ProjectSubTypePanel,gateKeepingPanel,questionCharter,WhiteSpaceFastTrackPanel,CompanyCardPanel,BrandPositionPanel,TargetDatePanel,formMessage" rendered="{! AND(isEditable,isSavedDB,NOT(ISNULL(project.IPM_Phase__c)),NOT(ISBLANK(project.IPM_Phase__c)) )}" oncomplete="goTocoreparameters();selectNextTabone();selectNextTabtwo();selectNextTabthree();" onClick="skipValidation();"/>
                                                     <!-- To display below commandLink when current user has edit access on page and project is not saved.   -->
-                                                    <apex:commandLink value="{!$Label.IPM_SubmitProjectCreation}" action="{!saveProceed}" styleClass="coreparameters custMarginbottom ipmButton primary"  reRender="CompanyCardPanel,ProjectNamePanel,Container5,buttonPanel,refreshquit,miles,selectNextTabScript,categoryPanel,ProjectSubTypePanel,gateKeepingPanel,questionCharter,WhiteSpaceFastTrackPanel,CompanyCardPanel,BrandPositionPanel,TargetDatePanel,formMessage" rendered="{!AND(isEditable,NOT(isSavedDB)) }" oncomplete="goToHomePage();"/>
+                                                    <apex:commandLink value="{!$Label.IPM_SubmitProjectCreation}" action="{!saveProceed}" styleClass="coreparameters custMarginbottom ipmButton primary"  reRender="CompanyCardPanel,ProjectNamePanel,Container5,buttonPanel,refreshquit,miles,selectNextTabScript,categoryPanel,ProjectSubTypePanel,gateKeepingPanel,questionCharter,WhiteSpaceFastTrackPanel,CompanyCardPanel,BrandPositionPanel,TargetDatePanel,formMessage" rendered="{!AND(isEditable,NOT(isSavedDB)) }" oncomplete="goToHomePage();selectNextTabone();selectNextTabtwo();selectNextTabthree();" onClick="skipValidation();"/>
                                                 </div>
                                             </apex:outputpanel>
                                         </apex:outputPanel>
@@ -505,7 +505,7 @@
                                 <c:IPM_Coreparameters /> 
                             </apex:outputPanel>        
                         </div>
-                        <div class="ipmGetStartedContent" id="teammembers">
+                        <div class="ipmGetStartedContent teammembers" id="teammembers">
                             <c:IPM_Team_Assignment />
                         </div>
                         <div class="ipmGetStartedContent" id="milestones">
@@ -550,7 +550,7 @@
                                                 <input type="button" onClick="backTab(this)" class="teammembers ipmButton" value="Back"/>
                                             </div>
                                             <div class="buttonmarRight pull-left ml5">
-                                                <input type="button" onClick="closemilestones()" class="todos ipmButton primary" value="Save and Continue"/>
+                                                <input type="button" onClick="skipValidation(),closemilestones()" class="todos ipmButton primary" value="Save and Continue"/>
                                             </div> 
                                         </div>
                                     </apex:outputpanel>
@@ -597,7 +597,7 @@
                                                 <input type="button" onClick="backTab(this)" class="milestones ipmButton" value="Back"/>
                                             </div>
                                             <div class="buttonmarRight pull-left actionBox" value="{!URLFOR($Page.IPM_ProjectOverview,null,[id=projectId])}">
-                                                <input type="button" class="ipmButton primary" value="Save and Continue"/>
+                                                <input type="button" class="ipmButton primary" value="Save and Continue" onClick="skipValidation();"/>
                                             </div> 
                                         </div>
                                     </apex:outputpanel>
@@ -610,7 +610,7 @@
             <div id="ipmDeleteModalDiv">
                 <c:IPM_ConfirmModal />
             </div>
-            <div id="ipmAddMemberModal" data-backdrop-limit="1" class="modal fade">
+            <div id="ipmAddMemberModal" data-backdrop-limit="1" class="modal fade ipmAddMemberModal">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -689,7 +689,7 @@
                     </div>
                 </div>
             </div> 
-            <div id="quitWizard" tabindex="-1" data-backdrop-limit="1" class="modal fade">
+            <div id="quitWizard" tabindex="-1" data-backdrop-limit="1" class="modal fade quitWizard">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -705,7 +705,7 @@
                                     <div class="skipButtoncontainer1 txtAlignright pull-right">
                                         <div class="buttonmarRight pull-left noPadright fleft">
                                             <apex:outputPanel id="refreshquit">
-                                                <input type="button" class="ipmButton" onClick="quit(this);" value="Quit" />
+                                                <input type="button" class="ipmButton" onClick="quit(this);changeAlertBosscardName();" value="Quit" />
                                             </apex:outputPanel> 
                                         </div> 
                                         <div class="buttonmarRight pull-left noPadright">
@@ -718,7 +718,7 @@
                     </div>
                 </div>
             </div>
-            <div id="ipmModalDelete" class="modal fade">
+            <div id="ipmModalDelete" class="modal fade ipmModalDelete">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -747,7 +747,7 @@
                     </div>
                 </div>
             </div>
-            <div id="ipmModalDiv">
+            <div id="ipmModalDiv" class="edittaskModal">
                 <c:IPM_ModalHeaderDiv />
             </div>
             <div id="basicModal" tabindex="-1" data-backdrop-limit="1" class="modal fade">
@@ -768,9 +768,9 @@
                             </div>
                             <div class="paracont">
                                 <div class="floatR">
-                                    <a href="#" title="{!$Label.IPM_Back}" class="ipmButton"
+                                    <a href="#" title="{!$Label.IPM_Back}" class="ipmButton" onClick="skipValidation();"
                                          data-dismiss="modal">{!$Label.IPM_CANCEL}</a> <a href="#"
-                                        title="{!$Label.IPM_SAVE_AND_CONTINUE}" onClick="unlinkBET();"
+                                        title="{!$Label.IPM_SAVE_AND_CONTINUE}" onClick="unlinkBET();skipValidation();"
                                         class="ipmButton primary" data-dismiss="modal">{!$Label.IPM_CP_Unlink}</a>
                                 </div>
                             </div>
@@ -787,433 +787,15 @@
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Accordion.js')}" type="text/javascript"></script>
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Limiter.js')}" type="text/javascript"></script>
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_CoreParameter.js')}" type="text/javascript"></script>   
-    <apex:outputPanel id="selectNextTabScript">
+	<apex:outputPanel id="selectNextTabScript">
     <script>
-    function reload()
-        {
-            window.location.reload();
-        }
-    </script>
-    <script>
+         var IPMAppPS = {wmessage:'{!$Label.IPM_Unsaved_Alert}',selectLabel:'{!$Label.IPM_ProjectSetup_SELECT}',setuppageurl:'{!URLFOR($Page.IPM_ProjectSetUpView)}',projectId:'{!projectId}',save:'{!saveSuccess}',task:'{!isTaskgenerated}',jobStatus:'{!project.IPM_Project_Job_Status__c}',ProjectOverviewPage:'{!URLFOR($Page.IPM_ProjectOverview)}',homePage:'{!URLFOR($Page.IPM_HomePage)}',complexity:'{!JSINHTMLENCODE(ComplexityType)}',protabname:'{!JSINHTMLENCODE(ProjectTabName)}'}; 
     jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' }}); 
     var apexAccountList =[];                 
     <apex:repeat value="{!listofprojectname}" var="proList">          
-        apexAccountList.push('{!proList.IPM_Project_Name__c}');         
+        apexAccountList.push('{!proList}');         
     </apex:repeat>
-
-    jq(document).ready(function()
-                       {
-                          jq('.ccCheck').change(function(e) {
-                                 if (jq('.brandposList input[type=checkbox]:checked').length > 20) {
-                                     jq(this).prop('checked', false);
-                                     jq(this).next('label').removeClass('selected');
-                                 }
-                             });
-                           jq(".imageBorder").hover(function() {                  
-                             jq('.imgHoverContainer').stop();
-                             jq('.imgHoverContainer').show(200);
-                    
-                             }, function() {
-                                 jq('.imgHoverContainer').stop();
-                                 jq('.imgHoverContainer').hide(100);
-                             });
-                             jq(document).on('click', '.imgDelButton', function(e) { 
-                                e.preventDefault ? e.preventDefault() : e.returnValue = false;               
-                                jq('#deleteImgPop .modal-dialog').width('600px');
-                                jq('#deleteImgPop .modal-dialog').height('170px');               
-                                jq('#deleteImgPop .modal-dialog').css({'margin-top':'10%','z-index':'999'});
-                            });   
-                           jq(".brandautocomplete").autocomplete({
-                               source : apexAccountList,
-                               select: function (event, ui) {
-                                   selectedObj = ui.item;
-                               },                   
-                               minLength: 1  
-                           });  
-                           jq('.oprtnRadiobtn  input[type=radio]').each(function(e){ 
-                               jq(this).click(function()
-                                              {
-                                                  var selectedSubProjectType =  jq(this).attr("value");        
-                                                  jq(".oprtnToolTipMsg").hide();
-                                                  jq('.oprtnRadiobtn').parents('.oprtnRadioContainer').children('.oprtnToolTipMsg').each(function(e){
-                                                      if(jq(this).attr('selectedValue') == selectedSubProjectType){
-                                                          jq(this).show(); 
-                                                      }
-                                                  });
-                                              });  
-                           }); 
-                           jq('.oprtnRadiobtn input[type=radio]').each(function(){             
-                               var selectedSubProjectType = jq('.oprtnRadiobtn input[type=radio]:checked').attr("value");
-                               jq('.oprtnRadiobtn').parents('.oprtnRadioContainer').children('.oprtnToolTipMsg').each(function(e){
-                                   if(jq(this).attr('selectedValue') == selectedSubProjectType){
-                                       jq(this).show(); 
-                                   }
-                               });
-                           }); 
-                           
-                           jq('.gateKeepingModel  input[type=radio]').each(function(e){ 
-                               jq(this).click(function()
-                                              {
-                                                  var selectedGKModel =  jq(this).attr("value");      
-                                                  jq(".gateKModel").hide();
-                                                  jq('.gateKeepingModel').parents('.oprtnRadioContainer').children('.gateKModel').each(function(e)
-                                                  {
-                                                      if(jq(this).attr('selectedValue') == selectedGKModel)
-                                                      {
-                                                          jq(this).show(); 
-                                                      }
-                                                  });
-                                              });  
-                           }); 
-                           
-                           jq('.gateKeepingModel input[type=radio]').each(function(){            
-                               var selectedGKModel = jq('.gateKeepingModel input[type=radio]:checked').attr("value");
-                               jq('.gateKeepingModel').parents('.oprtnRadioContainer').children('.gateKModel').each(function(e){
-                                   if(jq(this).attr('selectedValue') == selectedGKModel){
-                                       jq(this).show(); 
-                                   }
-                               });
-                           });
-                           
-                           jq('.gcltquestions  input[type=radio]').each(function(e){ 
-                               jq(this).click(function()
-                                              {
-                                                  var selectedSubProjectType =  jq(this).attr("value");        
-                                                  jq(".charterTipMsg").hide();
-                                                  jq('.gcltquestions').parents('.oprtnRadioContainer').children('.charterTipMsg').each(function(e){
-                                                      if(jq(this).attr('selectedValue') == selectedSubProjectType){
-                                                          jq(this).show(); 
-                                                      }
-                                                  });
-                                              });  
-                           }); 
-                           
-                           jq('.gcltquestions input[type=radio]').each(function(){            
-                               var selectedSubProjectType = jq('.gcltquestions input[type=radio]:checked').attr("value");
-                               jq('.gcltquestions').parents('.oprtnRadioContainer').children('.charterTipMsg').each(function(e){
-                                   if(jq(this).attr('selectedValue') == selectedSubProjectType){
-                                       jq(this).show(); 
-                                   }
-                               });
-                           });
-                            
-                           
-                           jq('.yellowBox .ipmRadioButton input[type=radio]').each(function(i){                   
-                               var rdChecked = jq('.yellowBox .ipmRadioButton input[type=radio]:checked').attr("value").split(" ");
-                               var rdData = rdChecked[0];
-                               jq("#"+rdData).show(); 
-                           });                          
-                           jq(document).on('show.bs.dropdown', '.brandposListContainer', function(){
-                               jq(this).find('.brandposList').show(); 
-                           });
-                           jq(document).click(function(e) {
-                               if( e.target.id != 'brandposListUL') {
-                                   jq(".brandposList").hide();    
-                               }   
-                           });
-                           jq('.ipmDropbuttonscc').click(function(e) {               
-                               var brandPositionValue = '';
-                               jq(".brandposList  input[type=checkbox]").each(function(e)
-                                                                              {
-                                                                                  if(jq(this).prop('checked') == true)
-                                                                                  {   
-                                                                                      if(brandPositionValue.length > 0)
-                                                                                      {
-                                                                                          brandPositionValue = brandPositionValue +','+jq(this).val();
-                                                                                      }
-                                                                                      else
-                                                                                      {
-                                                                                          brandPositionValue = jq(this).val();
-                                                                                      }
-                                                                                  } 
-                                                                              });
-                               jq('.hiddenBrand').val(brandPositionValue);
-                               if(brandPositionValue == ''){
-                                   jq('.brandSelValues').text('{!$Label.IPM_ProjectSetup_SELECT}');
-                               }
-                               else{
-                                   jq('.brandSelValues').text(brandPositionValue);
-                               }
-                               jq(".brandposList").hide(); 
-                           });  
-                           jq(document).on('click', '.filterActionscc .ipmDropresetcc', function(e){
-                               e.stopPropagation();
-                               jq(".brandposList input:checkbox").each(function() {
-                                   jq(this).prop('checked', false);
-                                   jq(this).next('label').removeClass('selected');
-                                   jq('.brandSelValues').text('{!$Label.IPM_ProjectSetup_SELECT}');
-                               });
-                           });   
-                           if( jq('.hiddenBrand') !=null && jQuery.type(jq('.hiddenBrand')) != 'undefined') 
-                           {
-                               var brandPicklist = jq('.hiddenBrand').val();   
-                               if(jQuery.type(brandPicklist) != "undefined" && brandPicklist.length > 0 )
-                               {
-                                   jq('.brandSelValues').text(brandPicklist);
-                                   var brandArray = brandPicklist.split(',');  
-                                   jq(".brandposList  input[type=checkbox]").each(function(e){
-                                       var checkboxObj = jq(this);
-                                       jq.each( brandArray, function( i, savedBrandPosition ) 
-                                               {
-                                                   if(checkboxObj.val() === savedBrandPosition)
-                                                   {
-                                                       checkboxObj.prop('checked',true);
-                                                       return false;
-                                                   }
-                                               }); 
-                                   });
-                               }
-                           }
-                           jq(document).on('click', '.brandposList input[type="checkbox"], .brandposList li', function(e){
-                               e.stopPropagation();
-                           });
-
-                           jq('#ipmGetStartedTab').parent().find('.ipmGetStartedContent').hide();
-                           jq('#ipmGetStartedTab .ipmStartedTabs li:first').addClass('active');
-                           jq('#ipmGetStartedTab').parent().find('.ipmGetStartedContent:first').show();
-                       });
-    jq(document).on('click', '.editMilestoneBtn, .editTaskBtn', function(e){
-        e.preventDefault ? e.preventDefault() : e.returnValue = false; 
-        openEditModal(this);
-    });
-    
-    jq('.proRoute input[type=radio]').each(function(e){ 
-        jq(this).click(function(){
-            var redData1 = jq(this).attr("value").split(" ");
-            var actData1 = redData1[0];
-            jq(".routeTip").hide();
-            jq('.proRoute ').parent('.yellowBox').find("#"+actData1).show();
-        });  
-    }); 
-    var displayTasks = jq('#displayTasksChkBox').attr('isChecked');
-    var internal = "Internal";
-    if(displayTasks == internal)
-    {
-        jq('#displayTasksChkBox').prop('checked', true);
-        jq('.ipmCheckbox #displayTasksChkBox label').addClass('selected');
-    }
-    
-    var complexity = jq('.yellowBox .ipmRadioButton input[type=radio]').attr('ischecked');
-    var full = "Full";
-    if(complexity == full)
-    {
-        jq('#full').prop('checked', true);
-    }
-    else
-    {
-        jq('#lite').prop('checked', true);
-    }
-    jq(document).on('click', '.actionBox', function(){
-        var url = jq(this).attr('value');
-        window.top.location.href = url;
-    });
-    function backTab(belem){
-        jq('#ipmGetStartedTab .ipmStartedTabs li').removeClass('active');                   
-        var getClass= jq(belem).attr('class').split(' ');
-        var getId = getClass[0];
-        jq('#ipmGetStartedTab').parent().find('.ipmGetStartedContent').hide();
-        jq("#ipmGetStartedTab .ipmStartedTabs li."+getId).addClass('active');
-        jq('#'+getId).fadeIn("fast");
-    }
-    
-    function custnextTab(celem){
-        jq('#ipmGetStartedTab .ipmStartedTabs li').removeClass('active');                   
-        var getClass= jq(celem).attr('class').split(' ');
-        var getId = getClass[0];
-        jq('#ipmGetStartedTab').parent().find('.ipmGetStartedContent').hide();
-        jq("#ipmGetStartedTab .ipmStartedTabs li."+getId).addClass('active');
-        jq('#'+getId).fadeIn("fast");
-    }
-    
-    function skipTab(selem){
-        jq('#ipmGetStartedTab .ipmStartedTabs li').removeClass('active');                   
-        var getClass= jq(selem).attr('class').split(' ');
-        var getId = getClass[0];
-        jq('#ipmGetStartedTab').parent().find('.ipmGetStartedContent').hide();
-        jq("#ipmGetStartedTab .ipmStartedTabs li."+getId).addClass('active');
-        jq('#'+getId).fadeIn("fast");
-    }
-    function selectNextTab(elem){
-        // alert('getId:{!saveSuccess}');
-        if({!saveSuccess} == true){
-            setTimeout(function(){
-                setSlider(1);
-            }, 500);
-            jq('#ipmGetStartedTab .ipmStartedTabs li').removeClass('active');                   
-            var getClass= jq(elem).attr('class').split(' ');
-            var getId = getClass[0];
-            // alert('getId:' +getId);
-            jq('#ipmGetStartedTab').parent().find('.ipmGetStartedContent').hide();
-            jq("#ipmGetStartedTab .ipmStartedTabs li."+getId).addClass('active');
-            jq('#'+getId).fadeIn("fast");    
-        } 
-    }
-    jq(document).on('click', '.uploadImage', function(e) { 
-        e.preventDefault ? e.preventDefault() : e.returnValue = false; 
-        var url = jq(this).attr('value'); 
-        jq('#ipmUploadImage .modal-title').html('Upload Image');
-        jq("#ipmUploadImage .modal-body").html('<iframe frameborder="0" height="100%" width="100%" marginheight="0" marginwidth="0" allowtransparency="true" src= "'+url+'"></iframe>');  
-        jq('#ipmUploadImage .modal-dialog').addClass('uploadImages');     
-    });
-    
-    jq(window).load(function(){
-        jq('.cust-overlay').hide();
-        if (window.location.search.indexOf('TeamMemid=teammembers') > -1) {
-            jq('.cust-overlay').fadeOut();
-            jq('#ipmModalGetStarted').modal('show');
-            jq('#ipmGetStartedTab .ipmStartedTabs li').removeClass('active');
-            jq('#ipmGetStartedTab').parent().find('.ipmGetStartedContent').hide();
-            jq("#ipmGetStartedTab .ipmStartedTabs li.teammembers").addClass('active');
-            jq('#teammembers').fadeIn("fast");
-        } 
-    });
-    jq(window).load(function(){
-        jq('.cust-overlay').hide();
-        if (window.location.search.indexOf('Milestoneid=milestones') > -1) {
-            jq('.cust-overlay').fadeOut();
-            jq('#ipmModalGetStarted').modal('show');
-            jq('#ipmGetStartedTab .ipmStartedTabs li').removeClass('active');
-            jq('#ipmGetStartedTab').parent().find('.ipmGetStartedContent').hide();
-            jq("#ipmGetStartedTab .ipmStartedTabs li.milestones").addClass('active');
-            jq('#milestones').fadeIn("fast");
-        } 
-    });
-    jq(window).load(function(){
-        jq('.cust-overlay').hide();
-        if (window.location.search.indexOf('Projectid=projectdetails') > -1) {
-            jq('.cust-overlay').fadeOut();
-            jq('#ipmModalGetStarted').modal('show');
-            jq('#ipmGetStartedTab .ipmStartedTabs li').removeClass('active');
-            jq('#ipmGetStartedTab').parent().find('.ipmGetStartedContent').hide();
-            jq("#ipmGetStartedTab .ipmStartedTabs li.projectdetails").addClass('active');
-            jq('#projectdetails').fadeIn("fast");
-        } 
-    });
-    jq(window).load(function(){
-        jq('.cust-overlay').hide();
-        
-        if (window.location.search.indexOf('TodoId=todos') > -1 && {!isTaskgenerated} == true) {
-            jq('.cust-overlay').fadeOut();
-            jq('#ipmModalGetStarted').modal('show');
-            jq('#ipmGetStartedTab .ipmStartedTabs li').removeClass('active');
-            jq('#ipmGetStartedTab').parent().find('.ipmGetStartedContent').hide();
-            jq("#ipmGetStartedTab .ipmStartedTabs li.todos").addClass('active');
-            jq('#todos').fadeIn("fast");
-        } 
-    });
-    jq(window).load(function(){
-        jq('.cust-overlay').hide();
-        if (window.location.search.indexOf('coreId=coreparameters') > -1) {
-            setTimeout(function(){
-                setSlider(1);
-                sliderCP('.slide-bar');
-            }, 500);
-            jq('.cust-overlay').fadeOut();
-            jq('#ipmModalGetStarted').modal('show');
-            jq('#ipmGetStartedTab .ipmStartedTabs li').removeClass('active');
-            jq('#ipmGetStartedTab').parent().find('.ipmGetStartedContent').hide();
-            jq("#ipmGetStartedTab .ipmStartedTabs li.coreparameters").addClass('active');
-            jq('#coreparameters').fadeIn("fast");            
-        } 
-    });
-    function closepopupupload(){
-        window.parent.location.href="/apex/IPM_ProjectSetupView?Pid={!projectId}&Projectid=projectdetails";
-    }
-    
-    function goToHomePage()
-    {
-        if( '{!project.IPM_Project_Job_Status__c}' == 'Eligible For Processing' || '{!project.IPM_Project_Job_Status__c}' == 'Processing')
-        {
-            setTimeout(function()
-            {
-                setSlider(1);
-            }, 1000);
-            window.parent.location.href="/apex/IPM_ProjectSetupView?Pid={!projectId}";
-        }
-    }
-    
-    function goTocoreparameters(){
-        if({!saveSuccess} == true){
-            setTimeout(function(){
-                setSlider(1);
-            }, 500);
-            window.parent.location.href="/apex/IPM_ProjectSetupView?Pid={!projectId}&coreId=coreparameters";
-        }
-    }
-    jq(document).on('click', '.addMstoneContainer', function(e){
-        e.preventDefault ? e.preventDefault() : e.returnValue = false;                       
-        var url = jq(this).attr('value'); 
-        jq("#ipmaddMstonWizard .modal-body").html('<iframe frameborder="0" height="100%" width="100%" marginheight="0" marginwidth="0" allowtransparency="true" src= "'+url+'"></iframe>');
-        jq('#ipmaddMstonWizard .modal-dialog').addClass('mstoneWizardcss');
-    });
-    jq(document).on('click', '.tabTaskButton', function(e){
-        e.preventDefault ? e.preventDefault() : e.returnValue = false;                       
-        var url = jq(this).attr('value'); 
-        jq("#ipmMstoneTaskWizard .modal-body").html('<iframe frameborder="0" height="100%" width="100%" marginheight="0" marginwidth="0" allowtransparency="true" src= "'+url+'"></iframe>');
-        jq('#ipmMstoneTaskWizard .modal-dialog').addClass('mtaskwizardcss');
-    });
-    
-    var pageScrollTop = jq(window).scrollTop();
-    function openEditModal(elem){                    
-        var url =jq(elem).attr('value');                    
-        var top = jq(elem).closest('tr').offset().top - pageScrollTop;                      
-        jq('#ipmModalEdit').modal({show:true, keyboard: false, backdrop:'static'});
-        jq("#ipmModalEdit .modal-body").html('<iframe frameborder="0" height="100%" width="100%" marginheight="0" marginwidth="0" allowtransparency="true" src= "'+url+'"></iframe>');  
-        jq("#ipmModalEdit .modal-body").height('100%');
-        jq('#ipmModalEdit .modal-dialog').css('margin-top',top);
-        jq('#ipmModalEdit .modal-title').html('Edit Milestone');
-        jq('#ipmModalEdit .modal-dialog').addClass('editMstonecss');
-    }
-    </script>  
-    <apex:outputPanel id="complexityrender">
-        <script>
-        function closemilestones(){
-            
-            if('{!JSINHTMLENCODE(ComplexityType)}' != ''|| '{!JSINHTMLENCODE(ComplexityType)}' != null){
-                window.parent.location.href="/apex/IPM_ProjectSetupView?Pid={!projectId}&TodoId=todos";
-            }
-        }
-        
-        </script>
-    </apex:outputPanel> 
-    <apex:outputPanel id="createNewProject">
-        <script>
-        jq(window).load(function(){
-            jq('.cust-overlay').hide();           
-            callpagerefresh();     
-            jq('.cust-overlay').fadeOut();    
-        });
-        var remaining = jq("#charCountRemaining");                
-        var total = jq("#charCountTotal");                
-        jq(".limitdesc").limiter(70, remaining,total);
-        </script>
-        <apex:outputPanel id="QuitProTab" >
-            <script> 
-            jq(document).on('click', '.getStartedbutton', function() { 
-                var tabName = "{!JSINHTMLENCODE(ProjectTabName)}";
-                jq('#ipmModalGetStarted').modal('show');
-                jq('#ipmGetStartedTab .ipmStartedTabs li').removeClass('active');
-                jq('#ipmGetStartedTab').parent().find('.ipmGetStartedContent').hide();
-                if(tabName != ""){
-                    jq("#ipmGetStartedTab .ipmStartedTabs li."+tabName).addClass('active');
-                    jq('#'+tabName).fadeIn("fast");
-                    setTimeout(function(){setSlider(1);}, 500);
-                }else{
-                    jq("#ipmGetStartedTab .ipmStartedTabs li.projectdetails").addClass('active');
-                    jq('#projectdetails').fadeIn("fast");
-                }
-            });
-            jq(document).on('show.bs.modal', '.modal', function () {
-                var zIndex = 1040 + (10 * jq('.modal:visible').length);
-                jq(this).css('z-index', zIndex);
-                setTimeout(function() {
-                    jq('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
-                }, 0);
-            }); 
-            </script>
-        </apex:outputPanel>
-        
-    </apex:outputPanel>
+    </script>
 </apex:outputPanel> 
 <script>
 function quit(qelem){
@@ -1228,14 +810,7 @@ function quit(qelem){
         }
     );
 }
-function quitandgo(IsNavigate){
-    if (IsNavigate=='false') 
-    {
-        window.parent.location.href="/apex/IPM_Projectoverview?Id={!projectId}";
-    }else{
-        window.parent.location.href="/apex/IPM_HomePage";
-    }
-}
 </script> 
+<script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Projectsetupview.js')}" type="text/javascript"></script>
 <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_CoreparameterDesign.js')}" type="text/javascript"></script>
 </apex:page>

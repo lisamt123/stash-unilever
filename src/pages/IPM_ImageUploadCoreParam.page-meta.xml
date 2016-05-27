@@ -3,5 +3,5 @@
     <apiVersion>36.0</apiVersion>
     <availableInTouch>false</availableInTouch>
     <confirmationTokenRequired>false</confirmationTokenRequired>
-    <label>IPM_CreateProject</label>
+    <label>IPM_ImageUploadCoreParam</label>
 </ApexPage>
