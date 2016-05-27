@@ -322,6 +322,12 @@ src/classes/IPM_UploadBusinessCase_Test.cls
 src/classes/IPM_UploadBusinessCase_Test.cls-meta.xml
 src/classes/IPM_Utils.cls
 src/classes/IPM_Utils.cls-meta.xml
+src/classes/IPM_SampleTestProjShare.cls
+src/classes/IPM_SampleTestProjShare.cls-meta.xml
+src/classes/IPM_Test_ProjectUtility.cls
+src/classes/IPM_Test_ProjectUtility.cls-meta.xml
+src/classes/IPM_Utils_Test.cls
+src/classes/IPM_Utils_Test.cls-meta.xml
 src/classes/IPM_ValidationHelper.cls
 src/classes/IPM_ValidationHelper.cls-meta.xml
 src/classes/IPM_ValidationHelper_Test.cls
