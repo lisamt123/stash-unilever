@@ -628,6 +628,7 @@ src/dashboards
 src/dashboards/LMS_Dashboards
 src/dashboards/LMS_Dashboards/Achievements_Dashboard.dashboard
 src/dashboards/LMS_Dashboards/Training_Plans_Dashboard.dashboard
+src/dashboards/LMS_Dashboards-meta.xml
 src
 src/reports/
 src/reports/LMS_Reports
