@@ -630,7 +630,7 @@ src/dashboards/LMS_Dashboards/Achievements_Dashboard.dashboard
 src/dashboards/LMS_Dashboards/Training_Plans_Dashboard.dashboard
 src/dashboards/LMS_Dashboards-meta.xml
 src
-src/reports/
+src/reports
 src/reports/LMS_Reports
 src/reports/LMS_Reports/LMS_Achievements_by_Assignments.report
 src/reports/LMS_Reports/LMS_Achievements_by_Status.report
@@ -647,7 +647,9 @@ src/reports/LMS_Reports/LMS_Training_Plans_Section_Progress.report
 src/reports/LMS_Reports/LMS_Training_Plans_by_Rating.report
 src/reports/LMS_Templates
 src/reports/LMS_Templates/LMS_User_Import_Template.report
-src/
+src/reports/LMS_Reports-meta.xml
+src/reports/LMS_Templates-meta.xml
+src
 src/reportTypes
 src/reportTypes/PBS_LMS_Achievement_Assignments.reportType
 src/reportTypes/PBS_LMS_Learning_Assignments_with_Responses.reportType

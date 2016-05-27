@@ -28,7 +28,7 @@
             </div>
                 
         
-        <img src="{!URLFOR($Resource.almond_uilib_mt, 'img/PlanWiki.png')}" style="width: 65px; margin-top: 10px;"/>
+        <img src="{!URLFOR($Resource.almond_uilib_mt, 'img/PlanWiki.png')}" style="width: 65px; margin-top: 10px;" alt="Planwiki" />
         <div class="jobsportpolio_section">
         <div class="main-nav">
                                         <div class="subsection" id="idOfArticle">
