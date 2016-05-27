@@ -13,15 +13,12 @@ public class IPM_FinancialController_Test {
     private static final string SUST_PERIOD_5 = '5';
     private static final string DOC_SECTION = 'Charter';
     private static final string TEST_COMMENTS = 'TestComments1';
-    private static final string LIT_TEST = 'test';
-    private static final string LIT_OPERATIONAL = 'Operational';
     private static final integer EXEC_PART_2 = 2;
     private static final integer EXEC_PART_3 = 3;
     private static final integer EXEC_PART_4 = 4;
     private static final integer EXEC_PART_5 = 5;
     private static final integer EXEC_PART_6 = 6;
     private static final string INVALID_PROJECT_NAME = 'Invalid project name';
-    private static final string INVALID_ROLLOUT_NAME = 'Invalid rollout name';
     private static final string INVALID_SPAN_NAME = 'Invalid span name';
     private static final string INVALID_PROJECT_TYPE = 'Invalid project type';
 	private static final string INVALID_FINACIAL_EXT_ID = 'Invalid Financial external id';
@@ -33,6 +30,7 @@ public class IPM_FinancialController_Test {
     private static final string GLOBAL_PL_EMAIL_ID = 'globalProjectLeader@unilever.com.test';
     private static final string REGIONAL_PL_EMAIL_ID = 'regionalProjectLeader@unilever.com.test';
     private static final string LOCAL_PL_EMAIL_ID = 'localProjectLeader@unilever.com.test';
+    private static final string BLANK_STRING = IPM_ConstantUtils.IPM_SPACE;
 
     //This method creates required global, regional and local projects and rollouts, also related financials. These records are then accessed across the testmethods.
     @testSetup static void financialSetUp() 
@@ -45,13 +43,13 @@ public class IPM_FinancialController_Test {
 
         System.runAs(adminUser)
         {   
-            User globalProjectLeader = IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+            User globalProjectLeader = IPM_TestFactory_Helper.createIPMPlatformProfileUser(BLANK_STRING);
             globalProjectLeader.email = GLOBAL_PL_EMAIL_ID;
 
-            User regionalProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+            User regionalProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser(BLANK_STRING);
             regionalProjectLeader.email = REGIONAL_PL_EMAIL_ID;
 
-            User localProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+            User localProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser(BLANK_STRING);
             localProjectLeader.email = LOCAL_PL_EMAIL_ID;
 
             userList = new List<User>{globalProjectLeader,regionalProjectLeader,localProjectLeader};
@@ -137,7 +135,7 @@ public class IPM_FinancialController_Test {
             
             for(IPM_Project_Rollout__c localRollout : localRolloutList)
             {
-                String geoExternalId = '';
+                String geoExternalId = BLANK_STRING;
                 if(localRollout.IPM_Rollout_Project__c.contains('AFR'))
                 {
                     geoExternalId = 'AGO';
@@ -365,7 +363,6 @@ public class IPM_FinancialController_Test {
          system.assert(regionalRolloutNCFin!=null, 'Finance record for regional rollout project could not be found');
          system.assertEquals(regionalRolloutNCFin.Financial_External_ID__c, 'TestComments1_LA_BR', 'Invalid financial external id found');
              
-         pageReference pf = setPage(regionalRolloutNC.id);
          IPM_FinancialController ipmFinCon = new IPM_FinancialController();
          ipmFinCon.project = regionalRolloutNC;
          ipmFinCon.currentfinancial = regionalRolloutNCFin;
@@ -616,8 +613,6 @@ public class IPM_FinancialController_Test {
                 system.assertEquals(ipmFinCon.isNavigation, false, INCORRECT_NAVIGATION_RESULT);
                 
                 ipmFinCon.isTargetLaunchDateMisaligned=true;
-                string tdDisplay = ipmFinCon.targetLaunchDateToDisplay;
-                string tldaceept = ipmFinCon.tldAcceptFromValue;
 
         }
         if (part == EXEC_PART_5){ 
@@ -633,9 +628,8 @@ public class IPM_FinancialController_Test {
             ipmFinCon.previous();
             system.assertEquals(ipmFinCon.isNavigation, false, INCORRECT_NAVIGATION_RESULT);
             
-        }
+        } 
         if (part == EXEC_PART_6){ //only for certain type
-                string tdDisplay = ipmFinCon.targetLaunchDateToDisplay;
                 //This fails 
                 ipmFinCon.fieldsuffix = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
                 IPM_FinancialWrapper finWrapper = new IPM_FinancialWrapper();

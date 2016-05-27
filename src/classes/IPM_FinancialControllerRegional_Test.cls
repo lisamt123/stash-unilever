@@ -6,19 +6,19 @@ private class IPM_FinancialControllerRegional_Test {
     private static final integer EXEC_PART_2 = 2;
     private static final integer EXEC_PART_3 = 3;
     private static final integer EXEC_PART_4 = 4;
-    private static final integer EXEC_PART_5 = 5;
     private static final integer EXEC_PART_6 = 6;
     private static final string INVALID_ROLLOUT_NAME = 'Invalid rollout name';
     private static final string INVALID_INDEX = 'Invalid index found';
     private static final string INVALID_PROJECT_NAME = 'Invalid project name';
     private static final string INVALID_SPAN_NAME = 'Invalid span name';
     private static final string INVALID_PROJECT_TYPE = 'Invalid project type';
-	private static final string INVALID_FINACIAL_EXT_ID = 'Invalid Financial external id';
-	private static final string MISALINGNED_NOT_CONFIRMED = 'Misaligned confirmation not found';
-	private static final string INCORRECT_NAVIGATION_RESULT = 'Incorrect Navigation found';
+    private static final string INVALID_FINACIAL_EXT_ID = 'Invalid Financial external id';
+    private static final string MISALINGNED_NOT_CONFIRMED = 'Misaligned confirmation not found';
+    private static final string INCORRECT_NAVIGATION_RESULT = 'Incorrect Navigation found';
     private static final string ERROR_MSG_NOT_CAPTURED = 'error message not captured';
+    private static final string BLANK_STRING = IPM_ConstantUtils.IPM_SPACE; 
 
-	@testSetup public static void createRegionalOriginalProject()
+    @testSetup public static void createRegionalOriginalProject()
      {
         List<IPM_Project_Rollout__c> localRolloutList; 
         List<User> userList = new List<User>();
@@ -29,12 +29,12 @@ private class IPM_FinancialControllerRegional_Test {
          System.runAs(adminUser)
          {   
             //This creates Regional original project. But we need rollout projects also and financial
-            User regionalProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+            User regionalProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser(BLANK_STRING);
             regionalProjectLeader.email = 'regionalUser@unilever.test.com';
             update regionalProjectLeader; 
 
 
-            User localProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+            User localProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser(BLANK_STRING);
 
             userList = new List<User>{regionalProjectLeader,localProjectLeader};
         }
@@ -52,7 +52,7 @@ private class IPM_FinancialControllerRegional_Test {
 
         System.runAs(userList[0])
         { 
-        	Test.startTest();
+            Test.startTest();
 
             List<IPM_Project__c> regionalProjectList = IPM_TestFactory_Helper.projectSetUpRegional(1,UserList[0]); 
             regionalProjectList[0].IPM_Phase__c = 'Ideas';
@@ -99,7 +99,7 @@ private class IPM_FinancialControllerRegional_Test {
         }
      }
 
-  	private static pageReference setPage(Id id){ 
+    private static pageReference setPage(Id id){ 
         PageReference pageRef = Page.IPM_Financial;
         pageRef.getParameters().put('id', id);
         Test.setCurrentPageReference(pageRef);
@@ -153,13 +153,10 @@ private class IPM_FinancialControllerRegional_Test {
             system.assertEquals(ipmFinCon.isNavigation, false, INCORRECT_NAVIGATION_RESULT);
             
             ipmFinCon.isTargetLaunchDateMisaligned=true;
-            string tdDisplay = ipmFinCon.targetLaunchDateToDisplay;
-            string tldaceept = ipmFinCon.tldAcceptFromValue;
 
         }
         else if (part == EXEC_PART_6)
-        { 	//only for certain type
-            string tdDisplay = ipmFinCon.targetLaunchDateToDisplay;
+        {   //only for certain type
             //This fails 
             ipmFinCon.fieldsuffix = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
             IPM_FinancialWrapper finWrapper = new IPM_FinancialWrapper();
@@ -187,7 +184,7 @@ private class IPM_FinancialControllerRegional_Test {
             IPM_FinancialValueWrapper lstIncrementalPL = new IPM_FinancialValueWrapper(0, IPM_ConstantUtils.INVALID_VALUE, 0);
             finWrapper.lstIncrementalPLVolume = new List<IPM_FinancialValueWrapper>{lstIncrementalPL};
             //ipmFinCon.populateVolumeType(finWrapper);
-        	ipmFinCon.financialsInnovation = finWrapper;
+            ipmFinCon.financialsInnovation = finWrapper;
             ipmFinCon.updateVolumeType();
             //Cannot be asserted as this function is called from vf page to Re-render content panel
         }
@@ -196,84 +193,84 @@ private class IPM_FinancialControllerRegional_Test {
      //Use case: Regional original IDEAS phase and WITHOUTconsilidate financnials
      static testMethod void testRegionalOriginalNONConsolidate()
      {   
- 		 List<User> regionalProjectLeaderList = [Select Id,Name,email from User where email = 'regionalUser@unilever.test.com']; 
+         List<User> regionalProjectLeaderList = [Select Id,Name,email from User where email = 'regionalUser@unilever.test.com']; 
 
- 		 System.runAs(regionalProjectLeaderList[0])
- 		 {
- 		 	//Name hard coded as we know it from nameset. It will be hard to make it dynamic.
-	         IPM_Project__c regionalOriginal = [select id, name, IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c, BI__c, IPM_Target_Launch_Dates__c  from IPM_Project__c where IPMProject_Span__c='Regional' and IPM_Project_Type__c='Original' and Name='TestRegionalComments1' limit 1];
-	         system.assert(regionalOriginal!=null,'Regional original record (Regional company card) record not found.');
-	         system.assertEquals(regionalOriginal.name, 'TestRegionalComments1', INVALID_PROJECT_NAME);
-	         
-	         //Finance record for global project which is NON consolidate             
-	         IPM_Financial__c regionalOrigFin = [select id, Financial_External_ID__c, Target_Launch_Date__c, RecordTypeId, Regional_External_Id__c, 
-	         Project_Sustainability_Period__c, Status__c, isGateSubmissionDue__c, Parent_Project__c from IPM_Financial__c where Financial_External_ID__c='TestRegionalComments1_UMCA'];
-	         system.assert(regionalOrigFin!=null,'Finance record for regional company card project (regional original) not found');
-	         system.assertEquals(regionalOrigFin.Financial_External_ID__c, 'TestRegionalComments1_UMCA', INVALID_FINACIAL_EXT_ID);
-	         
-	         regionalOrigFin.Parent_Project__c = regionalOriginal.id;
-	         regionalOrigFin.Copy_Local_to_Regional__c = true;
-	         regionalOrigFin.Copy_Regional_to_Local__c = true;
-	         //parent project is not populated when financials are created from TestFactory so update manually.
-	         update regionalOrigFin;
-	         //asserts starts below 
+         System.runAs(regionalProjectLeaderList[0])
+         {
+            //Name hard coded as we know it from nameset. It will be hard to make it dynamic.
+             IPM_Project__c regionalOriginal = [select id, name, IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c, BI__c, IPM_Target_Launch_Dates__c  from IPM_Project__c where IPMProject_Span__c='Regional' and IPM_Project_Type__c='Original' and Name='TestRegionalComments1' limit 1];
+             system.assert(regionalOriginal!=null,'Regional original record (Regional company card) record not found.');
+             system.assertEquals(regionalOriginal.name, 'TestRegionalComments1', INVALID_PROJECT_NAME);
+             
+             //Finance record for global project which is NON consolidate             
+             IPM_Financial__c regionalOrigFin = [select id, Financial_External_ID__c, Target_Launch_Date__c, RecordTypeId, Regional_External_Id__c, 
+             Project_Sustainability_Period__c, Status__c, isGateSubmissionDue__c, Parent_Project__c from IPM_Financial__c where Financial_External_ID__c='TestRegionalComments1_UMCA'];
+             system.assert(regionalOrigFin!=null,'Finance record for regional company card project (regional original) not found');
+             system.assertEquals(regionalOrigFin.Financial_External_ID__c, 'TestRegionalComments1_UMCA', INVALID_FINACIAL_EXT_ID);
+             
+             regionalOrigFin.Parent_Project__c = regionalOriginal.id;
+             regionalOrigFin.Copy_Local_to_Regional__c = true;
+             regionalOrigFin.Copy_Regional_to_Local__c = true;
+             //parent project is not populated when financials are created from TestFactory so update manually.
+             update regionalOrigFin;
+             //asserts starts below 
 
-	         Test.startTest();
+             Test.startTest();
             
-	         setPage(regionalOriginal.id);
-	         IPM_FinancialController ipmFinCon = new IPM_FinancialController();
-	         ipmFinCon.project = regionalOriginal;
-	         ipmFinCon.currentfinancial = regionalOrigFin;
-	         ipmFinCon.currentfinancialid = regionalOrigFin.id;
-	         ipmFinCon.isConsolidatedOrNonkey = false;
-	         
-	         ipmFinCon.updateMisalignmentByFinanceLeader();
-	         ipm_project__c sel = [select IPM_Project_Type__c, IPMProject_Span__c, MisAligned_Confirmed_By_Finance_Leader__c from ipm_project__c where id = :regionalOriginal.id];
-	         system.assertEquals(sel.IPM_Project_Type__c, 'Original', INVALID_PROJECT_TYPE);
-	         system.assertEquals(sel.IPMProject_Span__c, 'Regional', INVALID_SPAN_NAME);
-	         system.assertEquals(ipmFinCon.showMisalignedConfirmbtn, true, MISALINGNED_NOT_CONFIRMED);
-	         
-	         //asserts are in source method for callCtrlAction calls    
-	         callCtrlAction(ipmFinCon, EXEC_PART_3);
-	         callCtrlAction(ipmFinCon, EXEC_PART_4);
-	         callCtrlAction(ipmFinCon, EXEC_PART_6);
-	         
-	         //asserts are in source method to check tab load
-	         //Load Tab MyView
-	         loadTab(regionalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_MYVIEW_NAME);
-	         //Load Tab TopDown
-	         loadTab(regionalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_TOPDOWN_NAME);//
-	         //Load Tab Rollup
-	         loadTab(regionalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_ROLLUP_NAME);
-        	Test.stopTest();
- 		 }	
+             setPage(regionalOriginal.id);
+             IPM_FinancialController ipmFinCon = new IPM_FinancialController();
+             ipmFinCon.project = regionalOriginal;
+             ipmFinCon.currentfinancial = regionalOrigFin;
+             ipmFinCon.currentfinancialid = regionalOrigFin.id;
+             ipmFinCon.isConsolidatedOrNonkey = false;
+             
+             ipmFinCon.updateMisalignmentByFinanceLeader();
+             ipm_project__c sel = [select IPM_Project_Type__c, IPMProject_Span__c, MisAligned_Confirmed_By_Finance_Leader__c from ipm_project__c where id = :regionalOriginal.id];
+             system.assertEquals(sel.IPM_Project_Type__c, 'Original', INVALID_PROJECT_TYPE);
+             system.assertEquals(sel.IPMProject_Span__c, 'Regional', INVALID_SPAN_NAME);
+             system.assertEquals(ipmFinCon.showMisalignedConfirmbtn, true, MISALINGNED_NOT_CONFIRMED);
+             
+             //asserts are in source method for callCtrlAction calls    
+             callCtrlAction(ipmFinCon, EXEC_PART_3);
+             callCtrlAction(ipmFinCon, EXEC_PART_4);
+             callCtrlAction(ipmFinCon, EXEC_PART_6);
+             
+             //asserts are in source method to check tab load
+             //Load Tab MyView
+             loadTab(regionalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_MYVIEW_NAME);
+             //Load Tab TopDown
+             loadTab(regionalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_TOPDOWN_NAME);//
+             //Load Tab Rollup
+             loadTab(regionalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_ROLLUP_NAME);
+            Test.stopTest();
+         }  
      }
 
 
      //Use case: Local Rollout Feasibility phase 
      static testMethod void testLocalRollout()
      {
-     	List<User> regionalProjectLeaderList = [Select Id,Name,email from User where email = 'regionalUser@unilever.test.com']; 
-     	IPM_Project__c regionalProject = [Select Id,Name from IPM_ProjecT__c where Name = 'TestRegionalComments1'];
+        List<User> regionalProjectLeaderList = [Select Id,Name,email from User where email = 'regionalUser@unilever.test.com']; 
+        IPM_Project__c regionalProject = [Select Id,Name from IPM_ProjecT__c where Name = 'TestRegionalComments1'];
 
-     	System.runAs(regionalProjectLeaderList[0])
- 		{
+        System.runAs(regionalProjectLeaderList[0])
+        {
              Test.startTest();
              //Name hard coded as we know it from nameset. It will be hard to make it dynamic.
              List<IPM_Project__c> localRolloutProjectList  = [select id, name,IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c,IPM_Target_Launch_Dates__c  from IPM_Project__c where IPMProject_Span__c='Local' and IPM_Project_Type__c='Rollout' and Name='TestRegionalComments1_UMCA' limit 1];
              
              if(localRolloutProjectList.isEmpty())
              {
-             	List<IPM_Project_Rollout__c> newRolloutProjectList = new List<IPM_Project_Rollout__c>();
-            	for(IPM_Project_Rollout__c projectRoll : [select id,Name,IPM_Regional_PL__c from IPM_Project_Rollout__c where Regional_Project__c =:regionalProject.ID] )
-            	{
+                List<IPM_Project_Rollout__c> newRolloutProjectList = new List<IPM_Project_Rollout__c>();
+                for(IPM_Project_Rollout__c projectRoll : [select id,Name,IPM_Regional_PL__c from IPM_Project_Rollout__c where Regional_Project__c =:regionalProject.ID] )
+                {
 
-            		projectRoll.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
-            		projectRoll.IPM_RolloutJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_ADHOC; 
-            		newRolloutProjectList.add(projectRoll);	
-            	} 	
-             	
-             	update newRolloutProjectList;
+                    projectRoll.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
+                    projectRoll.IPM_RolloutJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_ADHOC; 
+                    newRolloutProjectList.add(projectRoll); 
+                }   
+                
+                update newRolloutProjectList;
              }
 
              Test.stopTest();
@@ -324,7 +321,7 @@ private class IPM_FinancialControllerRegional_Test {
 
      static testMethod void financialGlobalOperationalTest()
      {
-     	 User adminUser = IPM_TestFactory_Helper.createUserAdmin(false);
+         User adminUser = IPM_TestFactory_Helper.createUserAdmin(false);
          User globalProjectLeader = null;
 
          // Create an instances of standard Users for Allocation to Project Leaders.
@@ -336,24 +333,23 @@ private class IPM_FinancialControllerRegional_Test {
 
         System.runAs(globalProjectLeader)
         { 
-        	Test.startTest();
-         	
-         	List<IPM_Project__c> projectList = IPM_TestFactory_Helper.createOperationalProjectList(false,1,'global');
-         	insert projectList;
+            Test.startTest();
+            
+            List<IPM_Project__c> projectList = IPM_TestFactory_Helper.createOperationalProjectList(false,1,'global');
+            insert projectList;
 
-         	IPM_Project__c projectRecord = projectList[0];
+            IPM_Project__c projectRecord = projectList[0];
 
-         	system.assertNotEquals(projectRecord,null, 'Record for Global Operational not created in previous step.'); 
-         	
-         	ipm_project__c globalOperationalProject = [select name from ipm_project__c where id=: projectRecord.id];
-         	system.assertEquals(globalOperationalProject.name,'TestOperationalCommentsglobal1', 'Project not created.');
-         	
-         	Test.stopTest(); 
+            system.assertNotEquals(projectRecord,null, 'Record for Global Operational not created in previous step.'); 
+            
+            ipm_project__c globalOperationalProject = [select name from ipm_project__c where id=: projectRecord.id];
+            system.assertEquals(globalOperationalProject.name,'TestOperationalCommentsglobal1', 'Project not created.');
+            
+            Test.stopTest(); 
 
-         	setPage(projectRecord.Id);
+            setPage(projectRecord.Id);
 
-         	 IPM_FinancialController ipmFinCon = new IPM_FinancialController();
-             boolean bConsolidateNonKey = ipmFinCon.isConsolidatedOrNonkey;
+             IPM_FinancialController ipmFinCon = new IPM_FinancialController();
              callCtrlAction(ipmFinCon, EXEC_PART_2);
              callCtrlAction(ipmFinCon, EXEC_PART_3);
              
@@ -370,35 +366,35 @@ private class IPM_FinancialControllerRegional_Test {
      
      static testMethod void financialLocalOperationalTest() 
      {
-     	User adminUser = IPM_TestFactory_Helper.createUserAdmin(false);
-     	User localProjectLeader = null; 
+        User adminUser = IPM_TestFactory_Helper.createUserAdmin(false);
+        User localProjectLeader = null; 
 
          // Create an instances of standard Users for Allocation to Project Leaders.
-     	System.runAs(adminUser)
-     	{   
+        System.runAs(adminUser)
+        {   
             //This creates Regional original project. But we need rollout projects also and financial
-        	localProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
-     	}
+            localProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+        }
 
- 	 	System.runAs(localProjectLeader)
-     	{ 
-        	Test.startTest();
-         	
-         	List<IPM_Project__c> projectList = IPM_TestFactory_Helper.createOperationalProjectList(false,1,'local');
+        System.runAs(localProjectLeader)
+        { 
+            Test.startTest();
+            
+            List<IPM_Project__c> projectList = IPM_TestFactory_Helper.createOperationalProjectList(false,1,'local');
 
-         	insert projectList;
-         	IPM_Project__c projectRecord = projectList[0];
+            insert projectList;
+            IPM_Project__c projectRecord = projectList[0];
 
-         	system.assertNotEquals(projectRecord,null, 'Local operational project record is not created in previous step.'); 
+            system.assertNotEquals(projectRecord,null, 'Local operational project record is not created in previous step.'); 
 
-         	ipm_project__c localOperationalProject = [select Name,IPM_Project_Name__c from ipm_project__c where id=: projectRecord.id];
-         	system.assertEquals(localOperationalProject.IPM_Project_Name__c, 'TestOperationalCommentslocal1', 'Project not created.'); 
-         	
-         	Test.stopTest();
+            ipm_project__c localOperationalProject = [select Name,IPM_Project_Name__c from ipm_project__c where id=: projectRecord.id];
+            system.assertEquals(localOperationalProject.IPM_Project_Name__c, 'TestOperationalCommentslocal1', 'Project not created.'); 
+            
+            Test.stopTest();
 
-         	setPage(projectRecord.Id);
+            setPage(projectRecord.Id);
          
-         	IPM_FinancialController ipmFinCon = new IPM_FinancialController();
+            IPM_FinancialController ipmFinCon = new IPM_FinancialController();
             
             ipmFinCon.isConsolidatedOrNonkey=false;
              //asserts are in source method for callCtrlAction calls    
@@ -414,8 +410,6 @@ private class IPM_FinancialControllerRegional_Test {
             string msg = 'Please contact your administrator';
             system.assert(ipmFinCon.errorMessage.contains(msg),ERROR_MSG_NOT_CAPTURED);
              
-            boolean sn = ipmFinCon.showNext;
-            boolean sp = ipmFinCon.showPrevious;
              
             //asserts are in source method to check tab load
             //Load Tab MyView
@@ -424,66 +418,66 @@ private class IPM_FinancialControllerRegional_Test {
             loadTab(projectRecord.id, ipmFinCon, IPM_ConstantUtils.TAB_TOPDOWN_NAME);
             //Load Tab Rollup
             loadTab(projectRecord.id, ipmFinCon, IPM_ConstantUtils.TAB_ROLLUP_NAME);
-     	}
- 	}
+        }
+    }
 
- 	static testMethod void financialRegionalOperationalTest()
- 	{
+    static testMethod void financialRegionalOperationalTest()
+    {
 
- 		User adminUser = IPM_TestFactory_Helper.createUserAdmin(false);
-     	User regionalProjectLeader = null; 
+        User adminUser = IPM_TestFactory_Helper.createUserAdmin(false);
+        User regionalProjectLeader = null; 
 
          // Create an instances of standard Users for Allocation to Project Leaders.
-     	System.runAs(adminUser)
-     	{   
+        System.runAs(adminUser)
+        {   
             //This creates Regional original project. But we need rollout projects also and financial
-        	regionalProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
-     	}
+            regionalProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+        }
 
-     	System.runAs(regionalProjectLeader)
-     	{
- 			Test.startTest();
-         	
-	 		List<IPM_Project__c> projectList = IPM_TestFactory_Helper.createOperationalProjectList(false,1,'regional');
+        System.runAs(regionalProjectLeader)
+        {
+            Test.startTest();
+            
+            List<IPM_Project__c> projectList = IPM_TestFactory_Helper.createOperationalProjectList(false,1,'regional');
 
-	     	insert projectList;
-	     	IPM_Project__c projectRecord = projectList[0];
+            insert projectList;
+            IPM_Project__c projectRecord = projectList[0];
 
-	     	system.assertNotEquals(projectRecord,null, 'Local operational project record is not created in previous step.'); 
+            system.assertNotEquals(projectRecord,null, 'Local operational project record is not created in previous step.'); 
 
-	     	ipm_project__c regionalOperationalProject = [select Name,IPM_Project_Name__c from ipm_project__c where id=: projectRecord.id];
-	     	system.assertEquals(regionalOperationalProject.IPM_Project_Name__c, 'TestOperationalCommentsregional1', 'Project not created.'); 
-	     	
-	     	Test.stopTest();
+            ipm_project__c regionalOperationalProject = [select Name,IPM_Project_Name__c from ipm_project__c where id=: projectRecord.id];
+            system.assertEquals(regionalOperationalProject.IPM_Project_Name__c, 'TestOperationalCommentsregional1', 'Project not created.'); 
+            
+            Test.stopTest();
 
-	     	setPage(projectRecord.Id); 
+            setPage(projectRecord.Id); 
 
 
-	        list<IPM_Financial__c> regOpFin = [select id, name, Global_External_Id__c, Global_Project_Id__c from IPM_Financial__c where Regional_Project__c =:projectRecord.id limit 1]; 
-	         
-	        IPM_FinancialController ipmFinCon = new IPM_FinancialController();
+            list<IPM_Financial__c> regOpFin = [select id, name, Global_External_Id__c, Global_Project_Id__c from IPM_Financial__c where Regional_Project__c =:projectRecord.id limit 1]; 
+             
+            IPM_FinancialController ipmFinCon = new IPM_FinancialController();
             
             if (regOpFin!=null && !regOpFin.isEmpty())
             {
                 ipmFinCon.currentfinancialid = regOpFin[0].id;
             }
 
-         	//asserts are in source method for callCtrlAction calls    
-	        callCtrlAction(ipmFinCon, EXEC_PART_2);
-	        
-	        callCtrlAction(ipmFinCon, EXEC_PART_3);
-	         
-	        
-	        
-	        //Load Tab MyView
-	        loadTab(projectRecord.id, ipmFinCon, IPM_ConstantUtils.TAB_MYVIEW_NAME);
-	        
-	        //Load Tab TopDown
-	        loadTab(projectRecord.id, ipmFinCon, IPM_ConstantUtils.TAB_TOPDOWN_NAME);
-	        
-	        //Load Tab Rollup
-	        loadTab(projectRecord.id, ipmFinCon, IPM_ConstantUtils.TAB_ROLLUP_NAME);
-     	}
+            //asserts are in source method for callCtrlAction calls    
+            callCtrlAction(ipmFinCon, EXEC_PART_2);
+            
+            callCtrlAction(ipmFinCon, EXEC_PART_3);
+             
+            
+            
+            //Load Tab MyView
+            loadTab(projectRecord.id, ipmFinCon, IPM_ConstantUtils.TAB_MYVIEW_NAME);
+            
+            //Load Tab TopDown
+            loadTab(projectRecord.id, ipmFinCon, IPM_ConstantUtils.TAB_TOPDOWN_NAME);
+            
+            //Load Tab Rollup
+            loadTab(projectRecord.id, ipmFinCon, IPM_ConstantUtils.TAB_ROLLUP_NAME);
+        }
      } 
-	
+    
 }
