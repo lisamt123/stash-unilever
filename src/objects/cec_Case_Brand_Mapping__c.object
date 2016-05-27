@@ -494,8 +494,11 @@
     </listViews>
     <listViews>
         <fullName>CEC_Hungary_Queue_cec_Case_Brand_Mapping</fullName>
+        <columns>Brand__c</columns>
+        <columns>Inbound_Email__c</columns>
         <filterScope>Queue</filterScope>
         <label>CEC Hungary Queue</label>
+        <language>en_US</language>
         <queue>CEC_Hungary_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>

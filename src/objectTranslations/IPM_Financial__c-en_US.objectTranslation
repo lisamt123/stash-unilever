@@ -262,8 +262,13 @@
         <name>IPM_Business_Impact_MR__c</name>
     </fields>
     <fields>
+        <help><!-- Capture Local Projects CPP value based on the BB numbers --></help>
         <label><!-- IPM CPP Local --></label>
         <name>IPM_CPP_Local__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM CPP Regional --></label>
+        <name>IPM_CPP_Regional__c</name>
     </fields>
     <fields>
         <label><!-- Category --></label>
@@ -705,8 +710,16 @@
         <name>Year3_ITO__c</name>
     </fields>
     <fields>
+        <label><!-- Year_1_iTO_Global --></label>
+        <name>Year_1_iTO_Global__c</name>
+    </fields>
+    <fields>
         <label><!-- Year 1 iTO Local --></label>
         <name>Year_1_iTO_Local__c</name>
+    </fields>
+    <fields>
+        <label><!-- Year_1_iTO_Regional --></label>
+        <name>Year_1_iTO_Regional__c</name>
     </fields>
     <fields>
         <label><!-- Year 3 iTO Charter --></label>
