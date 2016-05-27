@@ -229,10 +229,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>PBS_ProfileHandlerbkp</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>PBS_ProfileService</apexClass>
         <enabled>true</enabled>
     </classAccesses>
