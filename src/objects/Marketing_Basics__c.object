@@ -360,8 +360,6 @@ ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;))
         <unique>false</unique>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <fullName>No_of_Hours_Required_Activity__c</fullName>
         <description>Used in Non Campaign reports in order to exclude the field value from any records that are of type dedicated resource, since they should have a value for FTE not no of hours</description>
         <externalId>false</externalId>
@@ -376,7 +374,6 @@ ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;))
         <unique>false</unique>
     </fields>
     <fields>
->>>>>>> develop
         <fullName>No_of_Hours_Required__c</fullName>
         <description>The No of hours to complete these</description>
         <externalId>false</externalId>
