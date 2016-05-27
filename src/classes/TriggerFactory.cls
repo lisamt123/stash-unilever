@@ -110,6 +110,7 @@ public with sharing class TriggerFactory
      */
     private static ITrigger getHandler(Schema.sObjectType soType)
     {
+       /* 
         if (soType == FAU_Participant__c.sObjectType)
         {
             return new FAU_ParticipantHandler();
@@ -120,23 +121,6 @@ public with sharing class TriggerFactory
             return new FAU_ProgramHandler();
         }       
 
-        if (soType == Oblix_SOW_Projects__c.sObjectType){
-            return new Oblix_ProjectHandler();
-
-        }if (soType == Oblix_Marketing_SOW_Project_Splits__c.sObjectType){
-            return new Oblix_SplitHandler(); 
-
-        }if (soType == Marketing_SOW__c.sObjectType){
-            return new Oblix_SOWHandler(); 
-
-        }if (soType == Oblix_Project_Assets__c.sObjectType){
-            return new Oblix_AssetHandler(); 
-
-        }if (soType == Oblix_User_Permission__c.sObjectType){
-            return new Oblix_UserPermissionHandler();
-            
-        }
-		
         if (soType == FAU_Webinar_Participant__c.sObjectType)
         {
             return new FAU_Webinar_ParticipantHandler();
@@ -152,7 +136,7 @@ public with sharing class TriggerFactory
         }
         if (soType == FAU_Webinar__c.sObjectType){
             return new FAU_WebinarHandler();
-        } 
+        } */
         
        if (soType == IPM_User_Profile__c.sObjectType){
             return new IPM_UserProfileHandler();
@@ -198,54 +182,6 @@ public with sharing class TriggerFactory
 		if (soType == IPM_Project_Document_Section__c.sObjectType){
             return new IPM_ProjectDocumentSectionHandler();
         }
-		if (soType == Core_Approval_Details__c.sObjectType){
-            return new Core_CA_LineItem_Handler();
-        }
-		 if (soType == CFC_Attendee__c.sObjectType){
-            return new CFC_Attendee_Handler();
-        } 
-
-        if (soType == AF_Agency_Estimate__c.sObjectType)
-        {
-            return new AF_Agency_EstimateHandler();
-        }
-        if (soType == AF_Bonus_Results__c.sObjectType)
-        {
-            return new AF_Bonus_ResultsHandler();
-        }
-        if (soType == AF_Bonus_Threshold__c.sObjectType)
-        {
-            return new AF_Bonus_ThresholdHandler();
-        }
-        if (soType == AF_Brand_Estimate__c.sObjectType)
-        {
-            return new AF_Brand_EstimateHandler();
-        }
-        if (soType == AF_Currency__c.sObjectType)
-        {
-            return new AF_CurrencyHandler();
-        }
-        if (soType == AF_OOPS_Actual__c.sObjectType)
-        {
-            return new AF_OOPSActualHandler();
-        }
-        if (soType == AF_OOPS_Estimate__c.sObjectType)
-        {
-           return new AF_OOPSEstimateHandler();
-        }
-        if (soType == AF_Sub_Result__c.sObjectType)
-        {
-            return new AF_SubResultHandler();
-        }
-        if (soType == AF_Bonus_Matrix__c.sObjectType)
-        {
-            return new AF_Bonus_MatrixHandler();
-        }
-        if (soType == AF_PO_Report__c.sObjectType)
-        {
-            return new AF_PO_ReportHandler();
-        }
         return null;
     }
-
 }
