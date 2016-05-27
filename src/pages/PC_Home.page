@@ -50,8 +50,9 @@
         <div class="row">
             <div class="col-md-3 col-lg-3 leftNav">
                 <div class="box center">
-                    <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="" target="_new" disableOnClick="true">
-                        <apex:image title="Please click on PBS link next to the Home button" value="{!URLFOR($Resource.PCResources, 'img/hexicons_pbs.svg')}" />
+
+                    <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="{!$page.PBS_WelcomePage}" target="_self" disableOnClick="true">
+                        <apex:image title="PBS" value="{!URLFOR($Resource.PCResources, 'img/hexicons_pbs.svg')}" />
                     </a>
                 </div>
                 <div class="box center box-center-2">
