@@ -4,10 +4,10 @@
     <loginIpRanges>
         <endAddress>255.255.255.255</endAddress>
         <startAddress>0.0.0.0</startAddress>
-    </loginIpRanges>  
+    </loginIpRanges>
     <userLicense>Salesforce</userLicense>
     <userPermissions>
-       <enabled>true</enabled>
+        <enabled>true</enabled>
         <name>AllowUniversalSearch</name>
     </userPermissions>
     <userPermissions>
