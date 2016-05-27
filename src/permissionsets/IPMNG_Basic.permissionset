@@ -517,11 +517,11 @@
     </classAccesses>
      <classAccesses>
         <apexClass>IPM_GlobalFinancialActionStandards</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_GlobalFinancialActionStandards_Test</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_Global_Consolidated_Controller</apexClass>
@@ -633,19 +633,19 @@
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_OTIF_Report_Batch</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_OTIF_Report_BatchSchedule</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_OTIF_Report_BatchSchedule_Test</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_OTIF_Report_Batch_Test</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_OTIFstatusController_Test</apexClass>
@@ -673,7 +673,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_PerformanceBreakdownController_Test</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_PjtDocSectionHstryController_Test</apexClass>
@@ -715,6 +715,10 @@
         <apexClass>IPM_ProjectDocumentHandler</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+	<classAccesses>
+        <apexClass>IPM_ProjectDocumentHandler_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <classAccesses>
         <apexClass>IPM_ProjectDocumentHelper</apexClass>
         <enabled>true</enabled>
@@ -729,15 +733,15 @@
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_ProjectDocumentSectionHandler</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_ProjectDocumentSectionHandler_Test</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_ProjectDocumentSectionHelper</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_ProjectHandler</apexClass>
@@ -1001,11 +1005,11 @@
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_ValidationHelper</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_ValidationHelper_Test</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_WithoutShareController</apexClass>
@@ -1025,6 +1029,14 @@
     </classAccesses>
     <classAccesses>
         <apexClass>ITriggerHandler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+	<classAccesses>
+	<apexClass>IPM_FinancialControllerRegional_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>IPM_FinancialTriggerHandler_Test</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     
@@ -8784,6 +8796,10 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>IPM_ImageUpload</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+	<pageAccesses>
+        <apexPage>IPM_ImageUploadCoreParam</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
