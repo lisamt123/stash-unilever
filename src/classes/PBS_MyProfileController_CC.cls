@@ -29,13 +29,37 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 global with sharing class PBS_MyProfileController_CC extends PBS_LMSBaseController_CC{
 
     public User oUser{get;set;}
+    public transient List<PBS_AchievementCategoryWrapper_CC> lcategories{get;set;}
     public User oManager{get;set;}
+    public String achievementType{get;private set;}
     private String profileUserId{get;set;}
- 
+    public Integer totalAchievements{get;private set;}
+
+    public List<AchievementTypeWrapper> getAchievementTypes(){
+        List<AchievementTypeWrapper> results = new List<AchievementTypeWrapper>();
+        Schema.DescribeFieldResult fieldResult = PBS_Achievement__c.Type__c.getDescribe();
+        List<Schema.PicklistEntry> ple = fieldResult.getPicklistValues();
+        for( Schema.PicklistEntry f : ple){
+            AchievementTypeWrapper act = new AchievementTypeWrapper();
+            act.name = f.getValue();
+            act.label = f.getLabel();
+            results.add(act);
+        }
+        return results;
+    }
+
     public PBS_MyProfileController_CC(){
-        
+        totalAchievements = 0;
         profileUserId = ApexPages.currentPage().getParameters().get('id');
         String chatterPageUserId = ApexPages.currentPage().getParameters().get('sfdc.userId');
+
+        achievementType = 'Achievements';
+
+        String paramAchievementType = ApexPages.currentPage().getParameters().get('aType');
+
+        if(!String.isBlank(paramAchievementType)){
+            achievementType = paramAchievementType;
+        }
 
         if(String.isBlank(profileUserId)){
             profileUserId = chatterPageUserId;
@@ -69,7 +93,124 @@ global with sharing class PBS_MyProfileController_CC extends PBS_LMSBaseControll
 
         }
 
+        lcategories = new List<PBS_AchievementCategoryWrapper_CC>();
+
+        //BEGIN Access Check
+        Map<Schema.sObjectType,List<String>> relatedFieldsObjects = new Map<Schema.sObjectType,List<String>>();
+        relatedFieldsObjects.put(PBS_Achievement_Assignment__c.sObjectType,new List<String>{
+            'Id'
+            ,'Name'
+            ,'Status__c'
+            ,'Achievement__c'
+            ,'Training_Plan_Achievement__c'
+            ,'User__c'
+        });
+        relatedFieldsObjects.put(PBS_Achievement__c.sObjectType,new List<String>{
+            'Id'
+            ,'Name'
+            ,'Acquired_Image__c'
+            ,'Eligible_Image__c'
+            ,'Work_Badge_Id__c'
+            ,'Work_Badge_Image_URL__c'
+            ,'Override_URL__c'
+            ,'Override_Completed_Status__c'
+        });
+        relatedFieldsObjects.put(PBS_Training_Plan_Achievement__c.sObjectType,new List<String>{
+            'Type__c'
+            ,'Training_Plan__c'
+            ,'Training_Plan_Section__c'
+        });
+        PBS_LMS_ESAPI_CC.isAuthorizedToView(relatedFieldsObjects);
+        //END Access Check
+
+        String achievementCategory = '';
+
+        List<String> listSOQLFields = new List<String>{
+            'Id'
+            ,'Name'
+            ,'Status__c'
+            ,'Achievement__c'
+            ,'Achievement__r.Name'
+            ,'Achievement__r.Acquired_Image__c'
+            ,'Achievement__r.Eligible_Image__c'
+            ,'Achievement__r.Work_Badge_Id__c'
+            ,'Achievement__r.Work_Badge_Image_URL__c'
+            ,'Achievement__r.Override_URL__c'
+            ,'Achievement__r.Override_Completed_Status__c'
+            ,'Achievement__r.Expiration_Date__c'
+            ,'Achievement__r.Achievement_Category__r.Name'
+            ,'Achievement__r.Type__c'
+            ,'User__c'
+        };
+
+        String soqlQuery = 'select '+String.join(listSOQLFields,',')+' from PBS_Achievement_Assignment__c';
+        soqlQuery += ' where User__c = :profileUserId and Achievement__r.Type__c = :achievementType and Achievement__r.Hidden__c = false';
+
+        if(PBS_LMSUtils_CC.isPortalUser()){
+            soqlQuery += ' and Achievement__r.Is_Internal__c = false';
+        }
+
+        soqlQuery += ' order by Achievement__r.Achievement_Category__r.Name desc, Status__c desc';
+
+        List<PBS_AchievementAssignmentWrapper_CC> achievementRecs = new List<PBS_AchievementAssignmentWrapper_CC>();
+        for (PBS_Achievement_Assignment__c a : (List<PBS_Achievement_Assignment__c>)Database.query(soqlQuery)){
+
+            // Skip expired achievements
+            if(a.Achievement__r.Expiration_Date__c != null && a.Achievement__r.Expiration_Date__c <= Date.today()){
+                continue;
+            }
+
+            String currentCategoryName = a.Achievement__r.Achievement_Category__r.Name;
+            if(achievementCategory == ''){
+                achievementCategory = currentCategoryName;
+            }
+
+            if(achievementCategory != currentCategoryName){
+                PBS_AchievementCategoryWrapper_CC acw = new PBS_AchievementCategoryWrapper_CC();
+                acw.Name = achievementCategory;
+                acw.achievements = achievementRecs;
+                lcategories.add(acw);
+
+                //Reset comparison params
+                achievementRecs = new List<PBS_AchievementAssignmentWrapper_CC>();
+                achievementCategory = currentCategoryName;
+            }
+
+            if(a.Status__c == PBS_LMSConstants_CC.AA_ACQUIRED_STATUS){
+                totalAchievements++;
+            }
+            achievementRecs.add(new PBS_AchievementAssignmentWrapper_CC(a));
+        }
+
+        if(achievementRecs.size()>0){
+            PBS_AchievementCategoryWrapper_CC acw = new PBS_AchievementCategoryWrapper_CC();
+            acw.Name = achievementCategory;
+            acw.achievements = achievementRecs;
+            lcategories.add(acw);
+        }
     }
+
+    public PageReference changeAchievementType(){
+        String paramAchievementType = ApexPages.currentPage().getParameters().get('type');
+        String isSubTab = ApexPages.currentPage().getParameters().get('subtab');
+
+        PageReference ref = Page.PBS_MyProfile;
+
+        if(!String.isBlank(isSubTab)){
+            ref = Page.PBS_AchievementsSubTab;
+        }
+
+        ref.getParameters().put('aType',paramAchievementType);
+        ref.getParameters().put('id',profileUserId);
+        ref.setRedirect(true);
+        return ref;
+    }
+
+    public with sharing class AchievementTypeWrapper{
+        public String name{get;set;}
+        public String label{get;set;}
+    }
+
 
     public List<String> getGeographyOptions()
     {
@@ -87,9 +228,9 @@ global with sharing class PBS_MyProfileController_CC extends PBS_LMSBaseControll
             SELECT
                 Id, Name
             FROM
-                PBS_Standard_Job_Profile__c where Name != Null
+                PBS_Standard_Job_Profile__c
             ORDER BY
-                Name 
+                Name limit:integer.valueof(System.Label.PBS_soqllimit)
         ];
     }
 
