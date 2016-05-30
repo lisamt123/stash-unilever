@@ -24,4 +24,5 @@
     <standardLabel>New</standardLabel>
     <targetObject>Note</targetObject>
     <type>Create</type>
+     <optionsCreateFeedItem>false</optionsCreateFeedItem>
 </QuickAction>

@@ -3,7 +3,7 @@
 *@Description: This page used for editing the Gate Document Sections and attaching Files
 *@Author: Cognizant
 *@Created Date: 26/12/2014
-*@Copyright � 2015  Unilever  
+*@Copyright ï¿½ 2015  Unilever  
 *************************************************************************
 -->
 <apex:page Controller="IPM_ProjectDocumentSectionController" sidebar="false" standardStylesheets="true" id="page"  docType="html-5.0" extensions="IPM_GetHelpDoc">
@@ -36,7 +36,7 @@
                                                    </apex:commandLink> 
                                                 </apex:outputPanel>  
                                                  <div class="secEditorNavList pull-left">        
-                                                        <apex:selectList multiselect="false" value="{!secList}" size="1" onchange="changeSection(this.value);">
+                                                        <apex:selectList id="myidsec" multiselect="false" value="{!secList}" size="1" onchange="changeSection(this.value);">
                                                                 <apex:selectOptions value="{!SecOption}" /> 
                                                         </apex:selectList>
                                                          <apex:actionFunction action="{!lstPagination}" name="changeSection" reRender="">
@@ -77,7 +77,7 @@
                             <div class="panel-group pageHelpToolbar clearfix">
                                 <div class="row clearfix mt15 mb15">
                                     <div class="col-sm-10 greytxt pull-left">
-                                        <apex:outputText value="{!projDocSec.IPM_Section_Help_Text_Long__c }"/>
+                                        <apex:outputText value="{!projDocSec.IPM_Section__r.IPM_Section_Help_Text__c}"/>
                                     </div>
                                     <div class="col-sm-2 SecButtonSet pull-right">
                                         <div class="row">                          
@@ -111,8 +111,8 @@
                                                         <div class="panel-group">
                                                             <div class="secComponent noMargin">
                                                                 <!---OLD BUTTON POSITIONS--->
-                                                                <c:IPM_Section_GateChecklist getSecid="{!projDocSecId}" getDocType="{!projDoc.IPM_GateDocuments__c}"  editGateSect="{!IsEditableOutC}"></c:IPM_Section_GateChecklist>
-                                                                <c:IPM_OTIFSectionStatus otfType="Section" getSectionId="{!projDocSec.Id}" isEdtable="{!IsEditableOutC}" ></c:IPM_OTIFSectionStatus>
+                                                                <c:IPM_Section_GateChecklist getSecid="{!projDocSecId}" getDocType="{!projDoc.IPM_GateDocuments__c}"  editGateSect="{!IsEditableOutC}" rendered="{!projdocsec.IPM_Master_Section_External_Id__c!='Business_Case_Action_Standards'}"></c:IPM_Section_GateChecklist>
+                                                                <c:IPM_OTIFSectionStatus otfType="Section" getSectionId="{!projDocSec.Id}" isEdtable="{!IsEditableOutC}" rendered="{!projdocsec.IPM_Master_Section_External_Id__c!='Business_Case_Action_Standards'}"></c:IPM_OTIFSectionStatus>
                                                                 <c:IPM_Assumptions projId="{!projectId}" gateType="{!projDoc.IPM_GateDocuments__c}" getSectionId="{!projDocSecId}" rendered="{!if(projDocSec.IPM_Master_Section_External_Id__c=='Assumptions',true,false)}" isEditable="{!IsEditableOutC}"></c:IPM_Assumptions>
                                                                 <c:IPM_Consumer_Evidence gate="{!projDoc.IPM_GateDocuments__c}" getProjectId="{!projectId}" Editable="{!IsEditableOutC}" getSecid="{!projDocSec.Id}" rendered="{!AND(countOfCountries>=1,projDocSec.IPM_Master_Section_External_Id__c='Consumer_Evidence_Concept')}"></c:IPM_Consumer_Evidence>
                                                                 <c:IPM_RND_Questions gateDocType="{!projDoc.IPM_GateDocuments__c}" rendered="{!if(OR(projdocsec.IPM_Master_Section_External_Id__c=='R&D_Initial_Outline_Product_Pack',projdocsec.IPM_Master_Section_External_Id__c=='R&D_Technical_Readiness'),true,false)}" RNDEdit="{!IsEditableOutC}" ></c:IPM_RND_Questions>
@@ -128,7 +128,6 @@
                                                                 <!-- below component renders when any of condition meets -->
                                                                 <!-- 1. project document sections master external id is "Business case action standard" and project type is NOT "Rollot" -->
                                                                 <!-- 2. project document sections master external id is "Business case action standard" and project type is "Rollot" but project span is NOT "Local"-->
-                                                                <c:IPM_Financial_ActionStandards gate="{!projDoc.IPM_GateDocuments__c}" isEditable="{!IsEditableOutC}"  secId="{!projDocSec.Id}" projId="{!projectId}" rendered="{!OR(AND(projdocsec.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards',project.IPM_Project_Type__c!='Rollout'),AND(projdocsec.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards',project.IPM_Project_Type__c=='Rollout',project.IPMProject_Span__c!='Local'))}"  ></c:IPM_Financial_ActionStandards>                                                      
                                                            		 <apex:outputPanel layout="block" rendered="{!AND(project.IPM_Phase__c='Ideas',project.IPM_Project_Type__c!='Operational')}">
                                                                      <!-- below component will get render when project document sections master section external id value is containing "Mix_Qualification_Plan_and_Action_Standards"(check if string contains) but phase is NOT "Ideas" and Count of countries is greater than 1 -->
                                                            			 <c:IPM_GateCMI Editable="{!isEditGateCMI}" getProjectId="{!projectId}" getSectionId="{!projDocSec.Id}" getGate="{!projDoc.IPM_GateDocuments__c}" rendered="{!if(CONTAINS(projDocSec.IPM_Master_Section_External_Id__c,'Mix_Qualification_Plan_and_Action_Standards'),If(AND(project.IPM_Phase__c='Ideas',countOfCountries<1),false,true),false)}" />   
@@ -140,7 +139,7 @@
                                                            		  <c:IPM_GateCMI_Consolidated getGate="{!projDoc.IPM_GateDocuments__c}" getProjectId="{!projectId}" getSectionId="{!projDocSec.Id}" rendered="{!AND(projDocSec.IPM_Master_Section_External_Id__c='Mix_Qualification_Plan_and_Action_Standards',OR(project.IPMProject_Span__c='Global',project.IPMProject_Span__c='Local'))}"></c:IPM_GateCMI_Consolidated>
                                                         		</apex:outputPanel>
                                                         		                                                        		
-                                                        		 <c:IPM_CU_Complexity gateType="{!projDoc.IPM_GateDocuments__c}" proModel="{project.IPM_GateKeeping_Model__c}" ProSpan="{project.IPMProject_Span__c}" phaseName="{!project.IPM_Phase__c}" getSectionId="{!projDocSec.Id}" isEdit="{!IsCRRTEditable}" rendered="{!OR(AND(project.IPM_Project_Type__c==$Label.IPM_Operational,projDocSec.IPM_Master_Section_External_Id__c=$Label.IPM_CU_And_Complexity,project.IPM_Phase__c!=$Label.IPM_Ideas),AND(project.IPM_Project_Type__c!=$Label.IPM_Operational,projDocSec.IPM_Master_Section_External_Id__c=$Label.IPM_CU_And_Complexity,OR(project.IPMProject_Span__c=$Label.IPM_Regional,project.IPMProject_Span__c=$Label.IPM_Local,project.IPM_Phase__c=$Label.IPM_Ideas)))}">                                   </c:IPM_CU_Complexity>
+                                                        		 <c:IPM_CU_Complexity gateType="{!projDoc.IPM_GateDocuments__c}" proModel="{project.IPM_GateKeeping_Model__c}" ProSpan="{project.IPMProject_Span__c}" phaseName="{!project.IPM_Phase__c}" getSectionId="{!projDocSec.Id}" isEdit="{!IsCRRTEditable}"  rendered="{!isCUandComplexity}">                                   </c:IPM_CU_Complexity>
                                                   				 <c:IPM_CU_Complexity_Consolidated getGateType="{!projDoc.IPM_GateDocuments__c}" isGateDoc="false" getProjId="{!project.Id}" rendered="{!AND(project.IPM_Project_Type__c!='Operational',project.IPMProject_Span__c='Global',projDocSec.IPM_Master_Section_External_Id__c='CU_And_Complexity')}" /> 
                                                         		    
                                                             </div>
@@ -171,11 +170,11 @@
                                                                     <div class="panel clearfix">
                                                                         <div class="noPadright marginFloatedBlock ipmButtonSet pull-right">
                                                                             <apex:outputPanel rendered="{! If(AND(IsEditableOutC=true),'true','false')}">
-                                                                                <span class="ipmButton buttonMarginRight" onclick="gotoPage()">{!$Label.IPM_CANCEL}</span>
-                                                                                <apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="{!$Label.IPM_SAVE}" action="{!save}" >
+                                                                                <span class="ipmButton buttonMarginRight" onclick="gotoPageNew()">{!$Label.IPM_CANCEL}</span>
+                                                                                <apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="{!$Label.IPM_SAVE}" action="{!save}" onClick="saveChanges();">
                                                                                     <apex:param assignTo="{!IsGateSave}" value="" name="savegate"/>
                                                                                 </apex:commandLink>
-                                                                                <apex:commandLink title="{!$Label.IPM_ON_CLICK_OF_SAVE_NOTIFY}" styleClass="ipmButton primary gatesectionButton" value="{!$Label.IPM_SAVE_AND_NOTIFY}" action="{!save}" >
+                                                                                <apex:commandLink title="{!$Label.IPM_ON_CLICK_OF_SAVE_NOTIFY}" styleClass="ipmButton primary gatesectionButton" value="{!$Label.IPM_SAVE_AND_NOTIFY}" action="{!save}" onClick="saveChanges();">
                                                                                     <apex:param assignTo="{!IsGateSave}" value="" name="savegate"/>
                                                                                     <apex:param assignTo="{!isChecked}" name="IsCheck" value="Checked"/>
                                                                                 </apex:commandLink>
@@ -258,11 +257,11 @@
                                                                 <div class="row Mtop">      
                                                                     <div class="panel">
                                                                         <div class="pull-right ipmButtonSet custMarginRight">
-                                                                            <span class="ipmButton buttonMarginRight" onclick="gotoPage()">{!$Label.IPM_CANCEL}</span>
-                                                                            <apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="{!$Label.IPM_SAVE}" action="{!save}" >
+                                                                            <span class="ipmButton buttonMarginRight" onclick="gotoPageNew()">{!$Label.IPM_CANCEL}</span>
+                                                                            <apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="{!$Label.IPM_SAVE}" action="{!save}" onClick="saveChanges();">
                                                                                 <apex:param assignTo="{!IsGateSave}" value="" name="savegate"/>
                                                                             </apex:commandLink>
-                                                                            <apex:commandLink title="{!$Label.IPM_ON_CLICK_OF_SAVE_NOTIFY}" styleClass="ipmButton gatesectionButton primary" value="{!$Label.IPM_SAVE_AND_NOTIFY}" action="{!save}" >
+                                                                            <apex:commandLink title="{!$Label.IPM_ON_CLICK_OF_SAVE_NOTIFY}" styleClass="ipmButton gatesectionButton primary" value="{!$Label.IPM_SAVE_AND_NOTIFY}" action="{!save}" onClick="saveChanges();">
                                                                                 <apex:param assignTo="{!IsGateSave}" value="" name="savegate"/>
                                                                                 <apex:param assignTo="{!isChecked}" name="IsCheck" value="Checked"/>
                                                                             </apex:commandLink>
@@ -283,7 +282,7 @@
                                         <div class="col-sm-6">
                                             <div class="panel">   
                                                 <div class="row">
-                                                    <div class="col-sm-12" id="ipmSecEditorTab">
+                                                    <div class="col-sm-12 ipmSecEditorTab" id="ipmSecEditorTab">
                                                         <div class="row">
                                                             <div class="panel-group">                               
                                                                 <ul class="ipmTabs">
@@ -310,11 +309,11 @@
                                                                             <div class="row marginFloatedBlock">        
                                                                                 <div class="panel">
                                                                                     <div class="pull-right ipmButtonSet custMarginRight" >
-                                                                                        <span class="ipmButton buttonMarginRight" onclick="gotoPage()">{!$Label.IPM_CANCEL}</span>
-                                                                                        <apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="{!$Label.IPM_SAVE}" action="{!save}" >
+                                                                                        <span class="ipmButton buttonMarginRight" onclick="gotoPageNew()">{!$Label.IPM_CANCEL}</span>
+                                                                                        <apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="{!$Label.IPM_SAVE}" action="{!save}" onClick="saveChanges();">
                                                                                             <apex:param assignTo="{!IsGateSave}" value="Gate" name="savegate"/>
                                                                                         </apex:commandLink>
-                                                                                        <apex:commandLink title="{!$Label.IPM_ON_CLICK_OF_SAVE_NOTIFY}" styleClass="ipmButton gatesectionButton primary" value="{!$Label.IPM_SAVE_AND_NOTIFY}" action="{!save}" >
+                                                                                        <apex:commandLink title="{!$Label.IPM_ON_CLICK_OF_SAVE_NOTIFY}" styleClass="ipmButton gatesectionButton primary" value="{!$Label.IPM_SAVE_AND_NOTIFY}" action="{!save}" onClick="saveChanges();">
                                                                                             <apex:param assignTo="{!IsGateSave}" value="" name="savegate"/>
                                                                                             <apex:param assignTo="{!isChecked}" name="IsCheck" value="Checked"/>
                                                                                         </apex:commandLink>
@@ -342,9 +341,9 @@
                                                                         <apex:outputField styleClass="countTarget" value="{!projDocSec.IPM_Gate_Document_Summary__c}" id="gate1"  rendered="{! If(AND(IsEditableSumm=true),'false','true')}" />        
                                                                         <div class="row charCount">
                                                                             <apex:outputPanel styleClass="col-sm-12 pull-right charcount textRight" rendered="{! If(AND(IsEditableSumm=true),'true','false')}">
-                                                                                <span id="lblCharCountGate">{!$Label.IPM_CHAR_REMAINING} </span> <strong id="charCountRemaining">{!remainingChar}</strong>
+                                                                                <span id="lblCharCountGate">{!$Label.IPM_CHAR_REMAINING} </span> <strong class="charCountRemaining" id="charCountRemaining">{!remainingChar}</strong>
                                                                             </apex:outputPanel>
-                                                                            <div id="dummyCount">{!sectionCharLimit}</div>
+                                                                            <div id="dummyCount" class="dummyCount">{!sectionCharLimit}</div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -404,11 +403,11 @@
                                                                             <div class="row marginFloatedBlock gateMarginTop">        
                                                                                 <div class="panel">
                                                                                     <div class="pull-right ipmButtonSet custMarginRight" >
-                                                                                        <span class="ipmButton buttonMarginRight" onclick="gotoPage()">{!$Label.IPM_CANCEL}</span>
-                                                                                        <apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="{!$Label.IPM_SAVE}" action="{!save}" >
+                                                                                        <span class="ipmButton buttonMarginRight" onclick="gotoPageNew()">{!$Label.IPM_CANCEL}</span>
+                                                                                        <apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="{!$Label.IPM_SAVE}" action="{!save}" onClick="saveChanges();">
                                                                                             <apex:param assignTo="{!IsGateSave}" value="Gate" name="savegate"/>
                                                                                         </apex:commandLink>
-                                                                                        <apex:commandLink title="{!$Label.IPM_ON_CLICK_OF_SAVE_NOTIFY}" styleClass="ipmButton gatesectionButton primary" value="{!$Label.IPM_SAVE_AND_NOTIFY}" action="{!save}" >
+                                                                                        <apex:commandLink title="{!$Label.IPM_ON_CLICK_OF_SAVE_NOTIFY}" styleClass="ipmButton gatesectionButton primary" value="{!$Label.IPM_SAVE_AND_NOTIFY}" action="{!save}" onClick="saveChanges();">
                                                                                             <apex:param assignTo="{!IsGateSave}" value="" name="savegate"/>
                                                                                             <apex:param assignTo="{!isChecked}" name="IsCheck" value="Checked"/>
                                                                                         </apex:commandLink>
@@ -420,10 +419,16 @@
                                                                 </div>  
                                                             </apex:outputPanel> 
                                                         </div>
-                                                        <div class="ipmTabContent" id="aTasks">
+                                                        <div class="ipmTabContent aTasks" id="aTasks">
                                                             <div class="row">
                                                                 <apex:outputPanel rendered="{!if(AND(isCreateTask,project.IPM_PM_Approach__c='Internal'),true,false)}">  
-                                                                    <div class="col-xs-4 pull-right addLink" id="addTask" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_AddTaskNew}?projectId={!projectId}&projDocSecId={!projDocSecId}" title="Add To-Do" data-backdrop="static" data-keyboard="false"><span class="fa fa-plus" /><span class="addLinkText"> {!$Label.IPM_AddTaskLabel}</span></div>
+                                                                    <div class="col-xs-4 pull-right addLink addTask" id="addTask" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_AddTaskNew}?projectId={!projectId}&projDocSecId={!projDocSecId}" title="Add To-Do" data-backdrop="static" data-keyboard="false"><span class="fa fa-plus" /><span class="addLinkText"> {!$Label.IPM_AddTaskLabel}</span></div>
+                                                                </apex:outputPanel>
+                                                            </div>  
+                                                            <br/>
+                                                            <div class="row">
+                                                                 <apex:outputPanel rendered="{!If(AND(project.IPM_PM_Approach__c='External'),'true','false')}">
+                                                                        <div class="col-sm-12 infoMsg toDoInfo">{!$Label.IPM_ExternalToDosMessage}</div>
                                                                 </apex:outputPanel>
                                                             </div>    
                                                             <apex:actionFunction action="{!TaskDelete}" name="DeleteTask" reRender="tasklist" >
@@ -488,7 +493,7 @@
                                         <div class="col-sm-12">
                                             <div class="panel">   
                                                 <div class="row">
-                                                    <div class="col-sm-12" id="ipmSecEditorTab">
+                                                    <div class="col-sm-12 ipmSecEditorTab" id="ipmSecEditorTab">
                                                         <div class="row">
                                                             <div class="panel-group">                               
                                                                 <ul class="ipmTabs">
@@ -512,11 +517,11 @@
                                                                             <div class="row marginFloatedBlock">         
                                                                                 <div class="panel" >
                                                                                     <div class="col-sm-6 ipmButtonSet pull-right">
-                                                                                        <span class="ipmButton buttonMarginRight" onclick="gotoPage()">{!$Label.IPM_CANCEL}</span>
-                                                                                        <apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="{!$Label.IPM_SAVE}" action="{!save}" >
+                                                                                        <span class="ipmButton buttonMarginRight" onclick="gotoPageNew()">{!$Label.IPM_CANCEL}</span>
+                                                                                        <apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="{!$Label.IPM_SAVE}" action="{!save}" onClick="saveChanges();">
                                                                                             <apex:param assignTo="{!IsGateSave}" value="Gate" name="savegate"/>
                                                                                         </apex:commandLink>
-                                                                                        <apex:commandLink styleClass="ipmButton gatesectionButton primary" value="{!$Label.IPM_SAVE_AND_NOTIFY}" action="{!save}" >
+                                                                                        <apex:commandLink styleClass="ipmButton gatesectionButton primary" value="{!$Label.IPM_SAVE_AND_NOTIFY}" action="{!save}" onClick="saveChanges();">
                                                                                             <apex:param assignTo="{!IsGateSave}" value="" name="savegate"/>
                                                                                             <apex:param assignTo="{!isChecked}" name="IsCheck" value="Checked"/>
                                                                                         </apex:commandLink>
@@ -563,7 +568,7 @@
                                                                             <div class="col-sm-5 pull-right charcount textRight">
                                                                                 <span>{!$Label.IPM_CHAR_REMAINING} </span> <strong id="lblCharCountGate2">{!remainingChar}</strong>
                                                                             </div>
-                                                                            <div id="secEditCount">{!sectionCharLimit}</div>
+                                                                            <div id="secEditCount" class="secEditCount">{!sectionCharLimit}</div>
                                                                         </div>
                                                                         <!-- <apex:inputField value="{!projDocSec.IPM_Gate_Document_Summary__c}"/>-->
                                                                         <apex:inputField styleClass="countTarget" value="{!projDocSec.IPM_Gate_Document_Summary__c}" id="gate2"  rendered="{! If(AND(IsEditableSumm=true),'true','false')}" />
@@ -626,11 +631,11 @@
                                                                             <div class="row marginFloatedBlock gateMarginTop">
                                                                                 <div class="panel">
                                                                                     <div class="col-sm-6 ipmButtonSet pull-right">
-                                                                                        <span class="ipmButton buttonMarginRight" onclick="gotoPage()">{!$Label.IPM_CANCEL}</span>
-                                                                                        <apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="{!$Label.IPM_SAVE}" action="{!save}" >
+                                                                                        <span class="ipmButton buttonMarginRight" onclick="gotoPageNew()">{!$Label.IPM_CANCEL}</span>
+                                                                                        <apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="{!$Label.IPM_SAVE}" action="{!save}" onClick="saveChanges();">
                                                                                             <apex:param assignTo="{!IsGateSave}" value="Gate" name="savegate"/>
                                                                                         </apex:commandLink>
-                                                                                        <apex:commandLink styleClass="ipmButton gatesectionButton primary" value="{!$Label.IPM_SAVE_AND_NOTIFY}" action="{!save}" >
+                                                                                        <apex:commandLink styleClass="ipmButton gatesectionButton primary" value="{!$Label.IPM_SAVE_AND_NOTIFY}" action="{!save}" onClick="saveChanges();">
                                                                                             <apex:param assignTo="{!IsGateSave}" value="" name="savegate"/>
                                                                                             <apex:param assignTo="{!isChecked}" name="IsCheck" value="Checked"/>
                                                                                         </apex:commandLink> 
@@ -642,13 +647,18 @@
                                                                 </div>  
                                                             </apex:outputPanel>
                                                         </div>
-                                                        <div class="ipmTabContent" id="aTasks">
+                                                        <div class="ipmTabContent aTasks" id="aTasks">
                                                             <div class="row">
                                                                 <apex:outputPanel rendered="{!If(AND(isTaskeditable=true,isTaskViewable=true,project.IPM_PM_Approach__c='Internal'),'true','false')}">
-                                                                    <div class="col-xs-4 pull-right addLink" id="addTask" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_AddTaskNew}?projectId={!projectId}&projDocSecId={!projDocSecId}" title="Add To-Do" data-backdrop="static" data-keyboard="false"><span class="fa fa-plus" /><span class="addLinkText"> {!$Label.IPM_AddTaskLabel}</span></div>
+                                                                    <div class="col-xs-4 pull-right addLink addTask" id="addTask" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_AddTaskNew}?projectId={!projectId}&projDocSecId={!projDocSecId}" title="Add To-Do" data-backdrop="static" data-keyboard="false"><span class="fa fa-plus" /><span class="addLinkText"> {!$Label.IPM_AddTaskLabel}</span></div>
                                                                 </apex:outputPanel>
                                                             </div> 
-                                                            
+                                                            <br/> 
+                                                            <div class="row">
+                                                                <apex:outputPanel rendered="{!If(AND(project.IPM_PM_Approach__c='External'),'true','false')}">
+                                                                        <div class="col-sm-12 infoMsg toDoInfo">{!$Label.IPM_ExternalToDosMessage}</div>
+                                                                </apex:outputPanel>
+                                                            </div>  
                                                             <apex:actionFunction action="{!TaskDelete}" name="DeleteTask" reRender="tasklist">
                                                                 <apex:param name="taskid" assignTo="{!taskid}" value=""/>
                                                             </apex:actionFunction>
@@ -713,6 +723,16 @@
                     <div id="ipmDeleteModalDiv">
                         <c:IPM_ConfirmModal />
                     </div>
+                </div>  
+                <div> 
+                <c:IPM_MarketPerformance projId="{!projectId}" isEditable="{!isEditMarketPerformance}" rendered="{!AND(projDocSec.IPM_Master_Section_External_Id__c=='Monitoring_Performance_in_Market' && projDocSec.IPM_Section_Sequence__c =='6.5' && project.IPMProject_Span__c='Regional' && project.IPM_Project_Type__c!='Operational')}" ></c:IPM_MarketPerformance>
+                <c:IPM_PerformanceBreakdown projId="{!projectId}" isAppendix="false" rendered="{!if(projDocSec.IPM_Master_Section_External_Id__c=='Monitoring_Performance_in_Market' && projDocSec.IPM_Section_Sequence__c =='6.3' && project.IPMProject_Span__c='Local' && project.IPM_Project_Type__c!='Operational',true,false)}" isEditable="{!isEditMarketPerformance}"></c:IPM_PerformanceBreakdown> 
+                <c:IPM_Financial_Action_Standards_Inverse gate="{!projDoc.IPM_GateDocuments__c}" isEditable="{!isGlobalActionStandards}"  secId="{!projDocSec.Id}" projId="{!projectId}" rendered="{!AND(projDocSec.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards',projDoc.IPM_GateDocuments__c!='Market Deployment',OR(project.IPMProject_Span__c='Regional',AND(project.IPMProject_Span__c='Local',project.IPM_Project_Type__c='Operational'),AND(project.IPMProject_Span__c='Global',project.IPM_Project_Type__c='Operational'),AND(project.IPMProject_Span__c='Global',projDoc.IPM_GateDocuments__c!='Charter')))}"  ></c:IPM_Financial_Action_Standards_Inverse>                                                                                                                                    
+                <c:IPM_GlobalFinancialActionStandards gate="{!projDoc.IPM_GateDocuments__c}" isEditable="{!isGlobalActionStandards}"  secId="{!projDocSec.Id}" projId="{!projectId}" rendered="{!AND(projdocsec.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards',project.IPMProject_Span__c='Global',project.IPM_Project_Type__c='Original',OR(project.IPM_Phase__c='Ideas',projDoc.IPM_GateDocuments__c='Charter'))}"  ></c:IPM_GlobalFinancialActionStandards>
+                </div> 
+                <div style="width:50%;float:left;" class="glbSeclist"> 
+                    <c:IPM_Section_GateChecklist getDocType="{!projDoc.IPM_GateDocuments__c}" getSecid="{!projDocSecId}" editGateSect="{!IsEditableSumm}" rendered="{!projdocsec.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards'}"></c:IPM_Section_GateChecklist>
+                    <c:IPM_OTIFSectionStatus otfType="Section" getSectionId="{!projDocSec.Id}" isEdtable="{!IsEditableOutC}" rendered="{!projdocsec.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards'}"></c:IPM_OTIFSectionStatus>
                 </div>
             </apex:form> 
         </apex:define>
@@ -723,7 +743,8 @@
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_CountExt.js')}" type="text/javascript"></script>
      <apex:outPutPanel id="hilightTaskScript">
         <script>
-         var IPMAppSE = {projectId:'{!projectId}', projDocSecId:'{!projDocSecId}', SectionEditorPageRef:'{!$Page.IPM_ProjectDocumentSectionEditor}', deleteTaskMsg:'{!$Label.IPM_Delete_task_msg}', RemoveTask:'{!$Label.IPM_RemoveTask}', CountTitle:'{!$Label.IPM_CHAR_COUNT_ALERT_TITLE}', CountMessage:'{!$Label.IPM_CHAR_COUNT_EXCEED}', charRemaining:'{!$Label.IPM_CHAR_REMAINING}', exLimitBtmMsg:'{!$Label.IPM_ExcLimitBtmMsg}'};          
+         var IPMAppSE = {projectId:'{!projectId}',wmessage:'{!$Label.IPM_Unsaved_Alert}', projDocSecId:'{!projDocSecId}', SectionEditorPageRef:'{!$Page.IPM_ProjectDocumentSectionEditor}', deleteTaskMsg:'{!$Label.IPM_Delete_task_msg}', RemoveTask:'{!$Label.IPM_RemoveTask}', CountTitle:'{!$Label.IPM_CHAR_COUNT_ALERT_TITLE}', CountMessage:'{!$Label.IPM_CHAR_COUNT_EXCEED}', charRemaining:'{!$Label.IPM_CHAR_REMAINING}', exLimitBtmMsg:'{!$Label.IPM_ExcLimitBtmMsg}'};          
+         var IPMAPPCMI = {concepts:'{!projDocSec.IPM_CMI_Selected_Test_Concepts__c}'};
         </script>
     </apex:outPutPanel> 
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_SecEditor.js')}" type="text/javascript"></script>   

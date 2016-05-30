@@ -1,4 +1,4 @@
-<!--  
+﻿<!--  
 ***************************************************************************************
 *@Description:This componenet is used for the UI side for the Eco design Functionality
 *@Author: Cognizant
@@ -49,27 +49,27 @@
                                             <apex:outputPanel layout="block" styleClass="ipmAcrdnExpand">
                                                 <div class="metric">                                                 
                                                 <apex:repeat value="{!countryAssessmentWrapEle.assessmentList}" var="countryEle">
-                                                <table class="skuTbl" width="100%"> 
-                                                <tbody>
-                                                <tr>  
-                                                <td> 
-                                                    <label><apex:outputtext value="{!$Label.IPM_Lead_SKU}" styleClass="skuType edLabelinput" rendered="{!countryEle.IPM_Is_Lead_Assessment__c}"/></label>
-                                                </td>
-                                                </tr>
-                                                <tr>
-                                                <td> 
-                                                   <label> <apex:outputText value="{!$Label.IPM_EcoDesign_New_SKU}" styleClass="skuType edLabelinput" />: </label>
-                                                    <apex:outputField value="{!countryEle.IPM_SKU_Name__c}" />
-                                                </td>
-                                                </tr>
-                                                <tr>
-                                                <td>                                                
-                                                    <label><apex:outputText value="{!$Label.IPM_EcoDesign_Comparison_SKU}" styleClass="skuType edLabelinput" />: </label>
-                                                    <apex:outputField value="{!countryEle.IPM_Comparison_Rep_GTU_Name__c}" /> 
-                                                </td>
-                                                </tr>
-                                                </tbody>
-                                                </table>
+                                                    <table class="skuTbl" width="100%"> 
+                                                        <tbody>
+                                                            <tr>  
+                                                                <td> 
+                                                                    <label><apex:outputtext value="{!$Label.IPM_Lead_SKU}" styleClass="skuType edLabelinput" rendered="{!countryEle.IPM_Is_Lead_Assessment__c}"/></label>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td> 
+                                                                   <label> <apex:outputText value="{!$Label.IPM_EcoDesign_New_SKU}" styleClass="skuType edLabelinput" />: </label>
+                                                                    <apex:outputField value="{!countryEle.IPM_SKU_Name__c}" />
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>                                                
+                                                                    <label><apex:outputText value="{!$Label.IPM_EcoDesign_Comparison_SKU}" styleClass="skuType edLabelinput" />: </label>
+                                                                    <apex:outputField value="{!countryEle.IPM_Comparison_Rep_GTU_Name__c}" /> 
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
                                                     <table class="ipmTable table table-bordered ecoDesignCountry" width="100%"> 
                                                         <thead>
                                                             <tr>                                     
@@ -78,13 +78,12 @@
                                                                         <div class="colProject">
                                                                             <span><label>{!$Label.IPM_EcoDesign_Environmental_metric}</label>
                                                                             <label class="normalfont">{!$Label.IPM_Consumer_Use}</label>
-                                                                            </span>
-                                                                         
+                                                                            </span>  
                                                                         </div>
                                                                     </div>
                                                                 </th>
                                                                 <th colspan="1" scope="col">
-                                                                <div class="OuterBorderRight">
+                                                                    <div class="OuterBorderRight">
                                                                         <table width="100%">
                                                                             <tr class="thirdcolumn">
                                                                                 <td class="dblcolumn" colspan="2">
@@ -94,35 +93,39 @@
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <td class="pt2 borderRight" width="50%">
+                                                                                <td class="pt2 borderRight" width="90%">
                                                                                     <div class="bluetxt">
                                                                                         <apex:outputText value="{!$Label.IPM_EcoDesign_Comparison_SKU}" styleClass="skuType edLabelinput" rendered="{!IF(!countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>
-                                                                                        
                                                                                         <apex:outputText value="{!$Label.IPM_EcoDesign_Country_Category_Average}" styleClass="skuType edLabelinput" rendered="{!IF(countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>
                                                                                     </div>
                                                                                 </td>
-                                                                                <td class="pt2" width="50%">
+                                                                                <td class="pt2" width="10%">
                                                                                         <span class="bluetxt">{!$Label.IPM_EcoDesign_New_SKU}</span>
                                                                                 </td>
                                                                             </tr>
                                                                         </table>
-                                                                        </div>
+                                                                    </div>
                                                                 </th>
                                                                 <th class="fourthCol" colspan="1" scope="col">
                                                                     <div class="OuterBorderRight">
                                                                         <div class="colProject">
-                                                                        <span><label>{!$Label.IPM_EcoDesign_Expected}</label><label>{!$Label.IPM_EcoDesign_Change_vs}</label><label>{!$Label.IPM_EcoDesign_Comparison_SKU}</label></span>                                        
+                                                                            <span>
+                                                                                <label>{!$Label.IPM_EcoDesign_Expected} {!$Label.IPM_EcoDesign_Change_vs}</label>
+                                                                                <apex:outputText value="{!$Label.IPM_EcoDesign_Comparison_SKU}" styleClass="skuType edLabelinput" rendered="{!IF(!countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>                                                                                        
+                                                                                <apex:outputText value="{!$Label.IPM_EcoDesign_Country_Category_Average}" styleClass="skuType edLabelinput" rendered="{!IF(countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>          
+                                                                            </span>
                                                                         </div>
                                                                     </div>
                                                                 </th>
                                                                 <th class="fifthCol" colspan="1" scope="col">
                                                                     <div>
                                                                         <div class="Brand">
-                                                                        <span><label>{!$Label.IPM_EcoDesign_Directional_View}</label><label>{!$Label.IPM_EcoDesign_New_SKU_Impact}</label><label>{!$Label.IPM_EcoDesign_On_Category}</label><label>{!$Label.IPM_EcoDesign_Average}</label></span>
+                                                                            <span>
+                                                                                <label>{!$Label.IPM_EcoDesign_Global_Category_Average}</label>
+                                                                            </span>
                                                                         </div>
                                                                     </div>
                                                                 </th>
-                                                              
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -130,23 +133,22 @@
                                                                 <td><label>{!$Label.IPM_EcoDesign_Waste}</label>
                                                                 </td>
                                                                 <td>
-                                                                    <div class="inputField inline">                                
-                                                                    
-                                                                    <apex:outputText value="{!countryEle.IPM_Comparison_Rep_GTU_Waste_PCU__c}" rendered="{!IF(!countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>
-                                                                    <apex:outputText value="{!countryEle.IPM_Country_Category_Avg_Waste_PCU__c}" rendered="{!IF(countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>
+                                                                    <div class="inputField cellWidth">                                
+                                                                        <apex:outputText value="{!countryEle.IPM_Comparison_Rep_GTU_Waste_PCU__c}" rendered="{!IF(!countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>
+                                                                        <apex:outputText value="{!countryEle.IPM_Country_Category_Avg_Waste_PCU__c}" rendered="{!IF(countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>
                                                                     </div>
-                                                                    <div class="inputField inline">                                
+                                                                    <div class="inputField cellWidth">                                
                                                                        <apex:outputText value="{!countryEle.IPM_Assessment_Waste_PCU__c}"/> 
                                                                     </div>
                                                                 </td>
                                                                 <td>
                                                                     <div class="inputField">                                
-                                                                    <apex:outputText value="{!countryEle.IPM_Assessment_Waste_PCU_Percentage__c}"/>
+                                                                        <apex:outputText value="{!countryEle.IPM_Assessment_Waste_PCU_Percentage__c}"/>
                                                                     </div>
                                                                 </td>
                                                                 <td>
                                                                     <div class="inputField">                                
-                                                                    <apex:outputText value="{!countryEle.IPM_Global_Category_Average_View_Waste__c}"/>
+                                                                        <apex:outputText value="{!countryEle.IPM_Global_Category_Average_View_Waste__c}"/>
                                                                     </div>
                                                                 </td>
                                                 
@@ -155,55 +157,57 @@
                                                                 <td><label>{!$Label.IPM_EcoDesign_Water_litres}</label>
                                                                 </td>
                                                                 <td>
-                                                                    <div class="inputField inline">                                
-                                                                     <apex:outputText value="{!countryEle.IPM_Comparison_Rep_GTU_Water_PCU__c}" rendered="{!IF(!countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>
-                                                                     <apex:outputText value="{!countryEle.IPM_Country_Category_Avg_Water_PCU__c}" rendered="{!IF(countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>
+                                                                    <div class="inputField cellWidth">                                
+                                                                         <apex:outputText value="{!countryEle.IPM_Comparison_Rep_GTU_Water_PCU__c}" rendered="{!IF(!countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>
+                                                                         <apex:outputText value="{!countryEle.IPM_Country_Category_Avg_Water_PCU__c}" rendered="{!IF(countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>
                                                                     </div>
-                                                                    <div class="inputField inline">                                
-                                                                     <apex:outputText value="{!countryEle.IPM_Assessment_Water_PCU__c}" />
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="inputField">                                
-                                                                     <apex:outputText value="{!countryEle.IPM_Assessment_Water_PCU_Percentage__c}"/>
+                                                                    <div class="inputField cellWidth">                                
+                                                                        <apex:outputText value="{!countryEle.IPM_Assessment_Water_PCU__c}" />
                                                                     </div>
                                                                 </td>
                                                                 <td>
                                                                     <div class="inputField">                                
-                                                                    <apex:outputText value="{!countryEle.IPM_Global_Category_Average_View_Water__c}"/>
+                                                                        <apex:outputText value="{!countryEle.IPM_Assessment_Water_PCU_Percentage__c}"/>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="inputField">                                
+                                                                        <apex:outputText value="{!countryEle.IPM_Global_Category_Average_View_Water__c}"/>
                                                                     </div>
                                                                 </td>   
                                                             </tr>
                                                             <tr>
-                                                                <td><label>{!$Label.IPM_EcoDesign_Greenhouse_Gases}</label>
+                                                                <td>
+                                                                    <label>{!$Label.IPM_EcoDesign_Greenhouse_Gases}</label>
                                                                 </td>
                                                                 <td>
-                                                                    <div class="inputField inline">                                
-                                                                     <apex:outputtext value="{!countryEle.IPM_Comparison_Rep_GTU_GHG_PCU__c}" rendered="{!IF(!countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>
-                                                                     <apex:outputtext value="{!countryEle.IPM_Country_Category_Avg_GHG_PCU__c}" rendered="{!IF(countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>
+                                                                    <div class="inputField cellWidth">                                
+                                                                         <apex:outputtext value="{!countryEle.IPM_Comparison_Rep_GTU_GHG_PCU__c}" rendered="{!IF(!countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>
+                                                                         <apex:outputtext value="{!countryEle.IPM_Country_Category_Avg_GHG_PCU__c}" rendered="{!IF(countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>
                                                                     </div>
-                                                                    <div class="inputField inline">                                
-                                                                     <apex:outputtext value="{!countryEle.IPM_Assessment_GHG_PCU__c}"/>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="inputField">                                
-                                                                     <apex:outputtext value="{!countryEle.IPM_Assessment_GHG_PCU_Percentage__c}"/>
+                                                                    <div class="inputField cellWidth">                                
+                                                                        <apex:outputtext value="{!countryEle.IPM_Assessment_GHG_PCU__c}"/>
                                                                     </div>
                                                                 </td>
                                                                 <td>
                                                                     <div class="inputField">                                
-                                                                     <apex:outputtext value="{!countryEle.IPM_Global_Category_Average_View_GHG__c}"/>
+                                                                        <apex:outputtext value="{!countryEle.IPM_Assessment_GHG_PCU_Percentage__c}"/>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="inputField">                                
+                                                                        <apex:outputtext value="{!countryEle.IPM_Global_Category_Average_View_GHG__c}"/>
                                                                     </div>
                                                                 </td>
                                                 
                                                             </tr>
                                                             <tr>
-                                                                <td><label>{!$Label.IPM_EcoDesign_Sustainable_Sourcing}</label>
+                                                                <td>
+                                                                    <label>{!$Label.IPM_EcoDesign_Sustainable_Sourcing}</label>
                                                                 </td>
                                                                 <td>
                                                                     <div class="inputFieldOne">                                
-                                                                   <apex:outputtext value="{!countryEle.IPM_Sustainable_Sourcing__c}"/>
+                                                                        <apex:outputtext value="{!countryEle.IPM_Sustainable_Sourcing__c}"/>
                                                                     </div>                                
                                                                 </td>
                                                                 <td>                                                              
@@ -216,11 +220,9 @@
                                                  </apex:repeat> 
                                                  </div>
                                                <div><apex:outputText value="{!$Label.IPM_EcoDesign_EI_Country_With_No_Assessment}" rendered="{!countryAssessmentWrapEle.eiWithNoAssessment}"/></div>
-                                            </apex:outputPanel>
-                                                                          
+                                            </apex:outputPanel>                                   
                                         </apex:repeat>  
-                                    </apex:outputPanel>
-                                    
+                                    </apex:outputPanel> 
                                     <apex:outputPanel layout="block" styleClass="aHead">
                                         <span class='expico fa fa-minus'></span>
                                         {!$Label.IPM_EcoDesign_Non_EI_Countries} <strong> | {!noOfNonEICountries}</strong>
@@ -241,23 +243,23 @@
                                                 <apex:repeat value="{!countryAssessmentWrapEle.assessmentList}" var="countryEle"> 
                                                  <table class="skuTbl" width="100%"> 
                                                     <tbody>
-                                                    <tr>  
-                                                    <td> 
-                                                     <label><apex:outputtext value="{!$Label.IPM_Lead_SKU}" styleClass="skuType edLabelinput" rendered="{!countryEle.IPM_Is_Lead_Assessment__c}"/> </label>
-                                                     </td>
+                                                        <tr>  
+                                                            <td> 
+                                                                <label><apex:outputtext value="{!$Label.IPM_Lead_SKU}" styleClass="skuType edLabelinput" rendered="{!countryEle.IPM_Is_Lead_Assessment__c}"/> </label>
+                                                            </td>
                                                         </tr>
                                                         <tr>
-                                                        <td> 
-                                                    <label><apex:outputText value="{!$Label.IPM_EcoDesign_New_SKU}" styleClass="skuType edLabelinput" />: </label>
-                                                    <apex:outputField value="{!countryEle.IPM_SKU_Name__c}" />
-                                                    </td>
+                                                            <td> 
+                                                                <label><apex:outputText value="{!$Label.IPM_EcoDesign_New_SKU}" styleClass="skuType edLabelinput" />: </label>
+                                                                <apex:outputField value="{!countryEle.IPM_SKU_Name__c}" />
+                                                            </td>
                                                         </tr>
                                                         <tr>
-                                                        <td>
-                                                    <label><apex:outputText value="{!$Label.IPM_EcoDesign_Comparison_SKU}" styleClass="skuType edLabelinput" />: </label>
-                                                    <apex:outputField value="{!countryEle.IPM_Comparison_Rep_GTU_Name__c}" />
-                                                        </td>
-                                                    </tr>
+                                                            <td>
+                                                                <label><apex:outputText value="{!$Label.IPM_EcoDesign_Comparison_SKU}" styleClass="skuType edLabelinput" />: </label>
+                                                                <apex:outputField value="{!countryEle.IPM_Comparison_Rep_GTU_Name__c}" />
+                                                            </td>
+                                                        </tr>
                                                     </tbody>
                                                     </table>                                                    
                                                     <table class="ipmTable table table-bordered ecoDesignCountry" width="100%"> 
@@ -278,7 +280,7 @@
                                                                         <table width="100%">
                                                                             <tr class="thirdcolumn">
                                                                                 <td class="dblcolumn" colspan="2">                      
-                                                                                          <span class="bluetxt">{!$Label.IPM_EcoDesign_Metric_Measurement}</span>
+                                                                                    <span class="bluetxt">{!$Label.IPM_EcoDesign_Metric_Measurement}</span>
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
@@ -298,14 +300,21 @@
                                                                 <th class="fourthCol" colspan="1" scope="col">
                                                                     <div class="OuterBorderRight">
                                                                         <div class="colProject">
-                                                                        <span><label>{!$Label.IPM_EcoDesign_Expected}</label><label>Change vs</label><label>{!$Label.IPM_EcoDesign_Comparison_SKU}</label></span>                                        
+                                                                        <span>
+                                                                            <label>{!$Label.IPM_EcoDesign_Expected}</label>
+                                                                            <label>{!$Label.IPM_EcoDesign_Change_vs}</label>
+                                                                            <apex:outputText value="{!$Label.IPM_EcoDesign_Comparison_SKU}" styleClass="skuType edLabelinput" rendered="{!IF(!countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>                                                                                        
+                                                                            <apex:outputText value="{!$Label.IPM_EcoDesign_Country_Category_Average}" styleClass="skuType edLabelinput" rendered="{!IF(countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>                                                                                        
+                                                                        </span>                                        
                                                                         </div>
                                                                     </div>
                                                                 </th>
                                                                 <th class="fifthCol" colspan="1" scope="col">
                                                                     <div>
                                                                         <div class="Brand">
-                                                                        <span><label>{!$Label.IPM_EcoDesign_Directional_View}</label><label>{!$Label.IPM_EcoDesign_New_SKU_Impact}</label><label>{!$Label.IPM_EcoDesign_On_Category}</label><label>{!$Label.IPM_EcoDesign_Average}</label></span>
+                                                                        <span>
+                                                                            <label>{!$Label.IPM_EcoDesign_Global_Category_Average}</label>
+                                                                        </span>
                                                                         </div>
                                                                     </div>
                                                                 </th>
@@ -314,7 +323,8 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr>
-                                                                <td><label>{!$Label.IPM_EcoDesign_Waste}</label>
+                                                                <td>
+                                                                    <label>{!$Label.IPM_EcoDesign_Waste}</label>
                                                                 </td>
                                                                 <td>
                                                                     <div class="inputField inline">                                
@@ -338,7 +348,8 @@
                                                 
                                                             </tr>
                                                             <tr>
-                                                                <td><label>{!$Label.IPM_EcoDesign_Water_litres}</label>
+                                                                <td>
+                                                                    <label>{!$Label.IPM_EcoDesign_Water_litres}</label>
                                                                 </td>
                                                                 <td>
                                                                     <div class="inputField inline">                                
@@ -385,11 +396,12 @@
                                                 
                                                             </tr>
                                                             <tr>
-                                                                <td><label>{!$Label.IPM_EcoDesign_Sustainable_Sourcing}</label>
+                                                                <td>
+                                                                    <label>{!$Label.IPM_EcoDesign_Sustainable_Sourcing}</label>
                                                                 </td>
                                                                 <td>
                                                                     <div class="inputFieldOne">                                
-                                                                   <apex:outputtext value="{!countryEle.IPM_Sustainable_Sourcing__c}"/>
+                                                                        <apex:outputtext value="{!countryEle.IPM_Sustainable_Sourcing__c}"/>
                                                                     </div>                                
                                                                 </td>
                                                                 <td>                                                              
@@ -399,15 +411,15 @@
                                                             </tr>
                                                         </tbody>
                                                     </table>
-                                                 </apex:repeat> 
-                                                 </div>         
-                                            </apex:outputPanel>                                        
-                                        </apex:repeat>
-                                    </apex:outputPanel>
-                                </apex:outputPanel>                               
-                            </div>  
-                        </div>
-                    </apex:outputPanel>             
+                                                </apex:repeat> 
+                                            </div>         
+                                        </apex:outputPanel>                                        
+                                    </apex:repeat>
+                                </apex:outputPanel>
+                            </apex:outputPanel>                               
+                        </div>  
+                    </div>
+                </apex:outputPanel>             
             </div> 
         </div>    
     </apex:outputPanel>      

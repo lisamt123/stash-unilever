@@ -4,24 +4,25 @@
 * @description  This class is used to test the functionality of IPM_FileUploadController class 
 */
 @isTest
-public class IPM_FinGateController_Test {
-    public static IPM_Project__c project;    
-    public static User stdUserForFinGate;
+private class IPM_FinGateController_Test {
+    private static IPM_Project__c project;    
+    private static User stdUserForFinGate;
     private static List<IPM_Project__c>projectList=new list<IPM_Project__c>();
-    private static string LOCAL_STR='Local';
-    private static string REGIONAL_STR='Regional';
-    public static List<IPM_Country__c>countryList=new List<IPM_Country__c>();
-    public static User globalUser;
-    public static IPM_FinGateController finGate;
-    public static PageReference  pRef;
+    private static final string LOCAL_STR='Local';
+    private static final string REGIONAL_STR='Regional';
+    private static List<IPM_Country__c>countryList=new List<IPM_Country__c>();
+    private static User globalUser;
+    private static IPM_FinGateController finGate;
+    private static PageReference  pRef;
     private static final string TEST_COMMENTS_STR='TestComments1';
-    public static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
-    public static List<MDO_Geography__c> mdoGeoList=new List<MDO_Geography__c>();
-    private static final string PROJECT_DOC_CREATED_STR='Project Document created';
+    private static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
+    private static List<MDO_Geography__c> mdoGeoList=new List<MDO_Geography__c>();
+    private static final string PROJECT_DOC_NOT_CREATED='Project Document not created';
     /*************************************************************************************************************************
     * @description Test Data
     */
-    @testSetup static void initializeData(){
+    @testSetup 
+	static void initializeData(){
         System.runAs(IPM_TestFactory_Helper.createUserAdmin(true))
         {
             // user has to be created as system admin 
@@ -29,7 +30,7 @@ public class IPM_FinGateController_Test {
         }       
         
         List<User>userLists=[SELECT id FROM user WHERE id=:stdUserForFinGate.id LIMIT 1];
-        System.AssertEquals(userLists[0].id, stdUserForFinGate.id,'user id is:'+userLists[0].id);//positive test
+        System.AssertEquals(userLists[0].id, stdUserForFinGate.id,'user not inserted properly');//positive test
         
         // Create Company Card information 
         IPM_Company_Card__c globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
@@ -39,7 +40,7 @@ public class IPM_FinGateController_Test {
         List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
         insert companyCardList;
         List<IPM_Company_Card__c>comList=[select Id from IPM_Company_Card__c where Id=:companyCardList[0].Id limit 1];
-        System.assertEquals(comList[0].Id,companyCardList[0].Id,'company card inserted');
+        System.assertEquals(comList[0].Id,companyCardList[0].Id,'company card not inserted');
         
         IPM_TestFactory_Helper.getProjectMasterData();
         projectList = IPM_TestFactory_Helper.projectSetUp(1,stdUserForFinGate);
@@ -49,12 +50,12 @@ public class IPM_FinGateController_Test {
             project=projectList[0];
             project.Name='ProChgStatus';
             List<IPM_Project__c> projlList1=[SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:project.ID LIMIT 1];
-            System.assertEquals(projlList1[0].Name,TEST_COMMENTS_STR,'project name');//positive test
+            System.assertEquals(projlList1[0].Name,TEST_COMMENTS_STR,'Projects not created properly.');//positive test
             
             List<IPM_Project_Rollout__c> regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{stdUserForFinGate,stdUserForFinGate,stdUserForFinGate});
             insert regionalRolloutList;
             List<IPM_Project_Rollout__c> proRegListObj=[SELECT IPM_Rollout_Span__c from IPM_Project_Rollout__c WHERE ID =:regionalRolloutList[0].ID LIMIT 1];
-            System.assertEquals(proRegListObj[0].IPM_Rollout_Span__c,REGIONAL_STR,'regional rollout created');//positive test
+            System.assertEquals(proRegListObj[0].IPM_Rollout_Span__c,REGIONAL_STR,'regional rollout not created');//positive test
             
             Map<Id,List<IPM_Project_Rollout__c>> projectToRolloutMap = new Map<Id,List<IPM_Project_Rollout__c>>();
             for(IPM_Project_Rollout__c projectRollout : regionalRolloutList)
@@ -75,7 +76,7 @@ public class IPM_FinGateController_Test {
             insert localRolloutList; 
             
             List<IPM_Project_Rollout__c> proLocListObj=[SELECT IPM_Rollout_Span__c from IPM_Project_Rollout__c WHERE ID =:localRolloutList[0].ID LIMIT 1];
-            System.assertEquals(proLocListObj[0].IPM_Rollout_Span__c,LOCAL_STR,'local rollout created');//positive test
+            System.assertEquals(proLocListObj[0].IPM_Rollout_Span__c,LOCAL_STR,'local rollout not created');//positive test
             
             
             
@@ -103,12 +104,12 @@ public class IPM_FinGateController_Test {
                     
              insert mdoGeoList;
              List<MDO_Geography__c>mdoList=[select Id from MDO_Geography__c where id=:mdoGeoList[0].Id limit 1];
-             system.assertNotEquals(mdoList[0].Id,null,'mdo created');   
+             system.assertNotEquals(mdoList[0].Id,null,'mdo not created');   
             
              insert countryList;
             
             List<IPM_Country__c>counList=[select Id,IPM_Rollout_Status__c from IPM_Country__c where Id=:countryList[0].Id limit 1];
-            system.assertEquals(counList[0].IPM_Rollout_Status__c,'With MCO','country inserted');
+            system.assertEquals(counList[0].IPM_Rollout_Status__c,'With MCO','country not inserted');
         }
     }
     
@@ -129,7 +130,7 @@ public class IPM_FinGateController_Test {
             for(IPM_Project__c projectObj : projectListObj) {
                 projDocList = projectObj.Project_Documents__r;
                 
-                System.assertEquals(projDocList[0].IPM_GateDocuments__c,IPM_ConstantUtils.CHARTER_GATE,PROJECT_DOC_CREATED_STR);
+                System.assertEquals(projDocList[0].IPM_GateDocuments__c,IPM_ConstantUtils.CHARTER_GATE,PROJECT_DOC_NOT_CREATED);
             }
             finGate=new IPM_FinGateController();
             pRef = Page.IPM_ProjectDocumentSectionEditor;
@@ -152,10 +153,10 @@ public class IPM_FinGateController_Test {
             finGate.setprojectId(project.ID);
             List<IPM_Project__c>projctList = [SELECT Id,Name,IPM_Project_Name__c, Sustainability_Period__c, IPMProject_Span__c, Market_Cluster__c, Market_Cluster_Name__c, IPM_Parent_Project__c, 
                               IPM_Project_Type__c, IPM_Phase__c FROM IPM_Project__C  WHERE Id=:finGate.projectId];
-            System.assertEquals(projctList[0].Name,TEST_COMMENTS_STR,'showFinancials not called');
-            System.assertEquals(projctList[0].Sustainability_Period__c,String.valueOf(finGate.sustainabilityPeriod),'showFinancials not called');
-            System.assertEquals(projctList[0].IPMProject_Span__c,finGate.fieldSuffix,'showFinancials not called');
-            System.assertEquals(projctList[0].IPMProject_Span__c,finGate.fieldSuffix,'showFinancials not called');
+            System.assertEquals(projctList[0].Name,TEST_COMMENTS_STR,'Financial not generated properly');
+            System.assertEquals(projctList[0].Sustainability_Period__c,String.valueOf(finGate.sustainabilityPeriod),'Financial not generated properly');
+            System.assertEquals(projctList[0].IPMProject_Span__c,finGate.fieldSuffix,'Financial not generated properly');
+            System.assertEquals(projctList[0].IPMProject_Span__c,finGate.fieldSuffix,'Financial not generated properly');
             test.stopTest();
         }
     }

@@ -14,15 +14,27 @@ public without sharing class IPM_WithoutShareController {
     *@param:bosscard id,bosscard name
     *@return:List of Bosscard.
     *********************************************************************************/
-    public static List<IPM_Bosscard__c> allBosscardList(id bosscardId,string bossName){
+    public static set<string> allBosscardList(id bosscardId,string bossName){
         List<IPM_Bosscard__c>listofBosscardName=new List<IPM_Bosscard__c>();
+        List<IPM_Project__c>listofProjectName=new List<IPM_Project__c>();
+        set<string>bosscAndProject=new set<string>();
         if(!string.isBlank(bossName)){
             string bossNameLike=bossName+'%';
             listofBosscardName=[SELECT id,name,IPM_BosscardName__c FROM IPM_Bosscard__c WHERE IPM_BosscardName__c !=null 
                                 AND IPM_BosscardName__c Like:bossNameLike AND Id !=:bosscardId 
                                    LIMIT 999];
+          for(IPM_Bosscard__c bossc:listofBosscardName){
+            bosscAndProject.add(bossc.IPM_BosscardName__c);
+          }
+          
+            listofProjectName=[SELECT id,name,IPM_Project_Name__c FROM IPM_Project__c WHERE IPM_Project_Name__c !=null 
+                              AND IPM_Project_Name__c Like:bossNameLike LIMIT 999];  
+       
+          for(IPM_Project__c proj:listofProjectName){
+            bosscAndProject.add(proj.IPM_Project_Name__c);
+          }
         }                       
-        return listofBosscardName;
+        return bosscAndProject;
         
     }
     /********************************************************************************
@@ -56,15 +68,34 @@ public without sharing class IPM_WithoutShareController {
     *@Description :get all bosscard name list
     *@return:List of Bosscard.
     *********************************************************************************/
-    public static List<IPM_Project__c> allProjectList(id projectId,string projectName){
+    public static set<string> allProjectList(id projectId,string projectName){
+        List<IPM_Bosscard__c>listofBosscardName=new List<IPM_Bosscard__c>();
+        set<string>bosscAndProject=new set<string>();
         List<IPM_Project__c>listofProjectName=new List<IPM_Project__c>();
         if(!string.isBlank(projectName)){
             string projectNameLike=projectName+'%';
+            string bosscardProjName=IPM_ConstantUtils.BLANK;
             listofProjectName=[SELECT id,name,IPM_Project_Name__c FROM IPM_Project__c WHERE IPM_Project_Name__c !=null 
-                              AND IPM_Project_Name__c Like:projectNameLike AND id !=:projectId LIMIT 999];  
+                              AND IPM_Project_Name__c Like:projectNameLike  LIMIT 999];  
+          
+          for(IPM_Project__c proj:listofProjectName){
+            if(projectId==proj.id){
+              bosscardProjName=proj.IPM_Project_Name__c;
+            }else{
+              bosscAndProject.add(proj.IPM_Project_Name__c);
+            }
+            
+          }
+          listofBosscardName=[SELECT id,name,IPM_BosscardName__c FROM IPM_Bosscard__c WHERE IPM_BosscardName__c !=null 
+                                AND IPM_BosscardName__c Like:projectNameLike AND IPM_BosscardName__c !=:bosscardProjName LIMIT 999];
+          for(IPM_Bosscard__c bossc:listofBosscardName){
+            bosscAndProject.add(bossc.IPM_BosscardName__c);
+          }
+          
+        
         }
         
-        return listofProjectName;
+        return bosscAndProject;
     }
     /********************************************************************************
     *@Description :get all Project name list

@@ -1,0 +1,94 @@
+<!-- 
+***************************************************************************************
+*@Description:This component is used for the UI side for the Monitoring Performance break down in Market
+*@Author: Cognizant
+*@Created Date: 09/02/2016
+*@Copyright © 2015  Unilever 
+***************************************************************************************
+-->
+<apex:component Controller="IPM_PerformanceBreakdownController" layout="block" allowDML="true">
+    <apex:attribute name="projId" description="Getting Project Id" type="Id" assignTo="{!projectId}"/>
+    <apex:attribute name="isEditable" description="For Edit or Read-Only mode" type="Boolean" />
+    <apex:attribute name="isAppendix" description="For appendix" type="Boolean" />
+    
+    <div class="perfBreakMsg">
+     
+     <!-- validation error message -->
+     <apex:outputPanel id="displayError" >
+        <apex:outputPanel rendered="{!isgreaterThan && !isAppendix}" layout="block" styleClass="perfBreakdownMsgContainer">
+        	<div class="brkdownErrMsg">{!$Label.IPM_Error}</div>
+	        <apex:repeat value="{!greaterThanSet}" var="validErr">
+	            <span class="perfBrkMsg">{!validErr}</span> 
+	        </apex:repeat>
+        </apex:outputPanel>
+    </apex:outputPanel> 
+    <!-- Misaligned error message -->
+    <apex:outputPanel id="displayError2" >
+        <apex:outputPanel rendered="{!isMisaligned && !isAppendix}" layout="block" styleClass="perfBreakdownMsgContainer">
+	        <div class="brkdownWarningMsg">{!$Label.IPM_Warning}</div> 
+	        <apex:repeat value="{!misAlignedList}" var="validErr">
+	            <span class="perfBrkMsg">{!validErr}</span>
+	        </apex:repeat>
+        </apex:outputPanel>
+    </apex:outputPanel>   
+    </div>
+    <apex:actionStatus startText="" id="Loading" startStyleClass="cust-overlay"/>
+    <!-- Currency change  -->
+    <apex:outputPanel layout="block" styleClass="performanceDrpdownContainer" Rendered="{!!isAppendix}">
+        <apex:outputLabel styleClass="selCur" value="{!$Label.IPM_Please_select_country}"/> 
+        <apex:selectList styleClass="selCur" id="slst" size="1" value="{!selectedCurrency}"> 
+            <apex:actionSupport status="Loading" event="onchange" action="{!applyRate}" reRender="monitoringPerformaceTable"/> 
+                <apex:selectOptions value="{!items}"/>
+        </apex:selectList>
+    </apex:outputPanel>
+    <!-- Market performance fields Name -->
+   <apex:outputPanel id="monitoringPerformaceTable" layout="block" styleClass="breakdown_Container"> 
+       <div class="scrollContainer">   
+           <div class="performanceContainer1">
+                <div class="performanceHead"> {!$Label.IPM_Financial_Target_Months} </div>
+                <apex:repeat value="{!$ObjectType.IPM_MarketPerformanceBreakdown__c.FieldSets.UML_KeyMetrics}" var="field">
+                    <div class="performanceHead">
+                        <apex:outputText value="{!field.Label}"/>  
+                    </div>             
+                </apex:repeat>
+            </div>
+            <!-- Market performance data details -->
+            <apex:outputPanel id="marketPerformance" layout="block" styleClass="performanceContainer2">
+                <div class="performanceSecHead">{!$Label.IPM_Market_Performance}</div>
+                <apex:repeat value="{!$ObjectType.IPM_MarketPerformance__c.FieldSets.UML_Breakdown}" var="field" >
+                    <div class="performanceSecHead {!If(contains(sMisalignmentMsg, field.Label) , 'misaligned','')}">
+                        <apex:outputfield value="{!marketperformance[field]}" rendered="{!AND(field='TargetLaunchDate__c' , marketperformance[field]!=null)}"/>
+                        <apex:outputText value="{!marketperformance[field]}" rendered="{!field!='TargetLaunchDate__c'}"/> 
+                    </div>
+                </apex:repeat>
+            </apex:outputPanel>
+            <!-- CMI,Finance,PL,DPL user has to fill below 13 records -->
+            <apex:outputPanel id="marketPerformances" layout="block" styleClass="performanceContainer3">
+                <apex:repeat value="{!marketPerformanceBreakdownList}" var="marketBrkDwn">
+                        <div class="performanceCell">  
+                        </div>
+                        <apex:repeat value="{!$ObjectType.IPM_MarketPerformanceBreakdown__c.FieldSets.UML_KeyMetrics}" var="field">
+                            <div class="performanceCell">
+                                <apex:variable value="{!marketBrkDwn.id}{!field}" var="rowNum"/>
+                                 
+                                <div class="">
+                                    <apex:inputfield styleClass="celltext {!mapWithRecordNCell[rowNum]}" value="{!marketBrkDwn[field]}"  rendered="{!AND(isEditable,field!='Period__c')}" html-onpaste="return paste(event,this);" onkeypress="return isNumber(event,this);"/>
+                                </div>
+                                
+                                <apex:outputText value="{!marketBrkDwn[field]}"  rendered="{!AND(isEditable,field='Period__c')}"/>
+                                <apex:outputText value="{!marketBrkDwn[field]}" rendered="{!!isEditable}"/>  
+                            </div>             
+                        </apex:repeat>          
+                </apex:repeat>
+            </apex:outputPanel>
+           
+        </div>
+    <!-- Save button -->    
+    <apex:outputPanel layout="block" id="showbuttons" styleClass="performancebuttonContainer">
+        <apex:commandButton styleClass="ipmButton primary" action="{!saveRecords}" value="{!$Label.IPM_SAVE}" id="theButton" reRender="marketPerformance,marketPerformances,performanceHeaderValues,slst,displayError,displayError2" status="Loading" rendered="{!isEditable}"/>
+    </apex:outputPanel> 
+    </apex:outputPanel>
+    
+   <!-- Component ends here -->
+    
+</apex:component>

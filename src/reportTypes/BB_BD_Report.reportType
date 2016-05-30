@@ -42,6 +42,12 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Auto Aligned Fin &amp; TLD for financial</displayNameOverride>
+            <field>IPM_Auto_Aligned_Fin_TLD_for_financial__c</field>
+            <table>IPM_Analytics__c</table>
+        </columns>		
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <displayNameOverride>Brand Positioning</displayNameOverride>
             <field>IPM_Brand_Positioning__c</field>
             <table>IPM_Analytics__c</table>

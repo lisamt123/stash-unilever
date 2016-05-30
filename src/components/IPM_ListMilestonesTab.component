@@ -39,8 +39,8 @@
             </apex:outputPanel>
         </div>      
         <!-- Below code used to display warning message based  ends here --> 
-        <div class="row ipmMileRow" id="milestoneList">         
-            <div class="table-responsive" id="ipmTableDiv">
+        <div class="row ipmMileRow milestoneList" id="milestoneList">         
+            <div class="table-responsive ipmTableDiv" id="ipmTableDiv">
                 <apex:actionStatus startText="updating..." id="myStatusM">
                      <apex:facet name="start">
                         <img height="15" width="15" src="/img/loading32.gif" alt="Loading.." />
@@ -97,7 +97,7 @@
                              <!-- Edit button code starts here-------- -->
                              <apex:outputPanel rendered="{!p.isEditable}">
                                 <apex:outputPanel rendered="{! AND(p.isEditable,isSDateEdit,isEditable)}">
-                                    <a class="icoButton edit1 editMilestoneBtn" value="/apex/IPM_EditMilestoneWizard?projectId={!projectId}&taskId={!p.record['id']}&isEdit={!isEditable}&isDateEdit={!isSDateEdit}" title="{!$Label.IPM_EDIT}" ></a>
+                                    <a class="icoButton edit1 editMilestoneBtn" id="editMilestone" data-toggle="modal" data-target="#ipmModal" data-backdrop="static" data-keyboard="false" value="/apex/IPM_EditMilestoneWizard?projectId={!projectId}&taskId={!p.record['id']}&isEdit={!isEditable}&isDateEdit={!isSDateEdit}" title="{!$Label.IPM_EDIT}" ></a>
                                 </apex:outputPanel>
                                     
                             </apex:outputPanel>
