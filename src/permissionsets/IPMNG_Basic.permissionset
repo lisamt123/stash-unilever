@@ -715,10 +715,7 @@
         <apexClass>IPM_ProjectDocumentHandler</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-	<classAccesses>
-        <apexClass>IPM_ProjectDocumentHandler_Test</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
+
     <classAccesses>
         <apexClass>IPM_ProjectDocumentHelper</apexClass>
         <enabled>true</enabled>
