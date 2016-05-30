@@ -47,7 +47,7 @@
                             
                             <div>
                                 <div class="searchBox"><label class="greytext"></label> 
-                                    <apex:inputtext value="{!searchCountry}" html-data-placeholder="{!$Label.IPM_Search_MCO_Country_Name}" styleclass="placeholder" html-onfocusout="skipValidation();"/>
+                                    <apex:inputtext value="{!searchCountry}" html-data-placeholder="{!$Label.IPM_Search_MCO_Country_Name}" styleclass="placeholder" html-onfocusout="skipValidation();" id="srchTxt" />
                                     <img alt="Search" class="srchImage" src="{!URLFOR($Resource.IPM_Resource, 'images/search.svg')}" onclick="callsearch();skipValidation();"/>
                                 </div>
                             </div>
