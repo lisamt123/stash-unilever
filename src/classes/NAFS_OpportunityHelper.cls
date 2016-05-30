@@ -72,6 +72,5 @@ public with sharing class NAFS_OpportunityHelper {
               ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(), 'NAFS_OpportunityHelper', 'UpdateOppField', e.getMessage(), e, null, null, null, 0,'Food Solution');
           }
       }
-    }
-                 
+    }               
 }
