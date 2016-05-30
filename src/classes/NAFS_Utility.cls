@@ -1,7 +1,7 @@
 /**********************************************************************
 Purpose: Utility class for Food Solution (NAFS).
 History :
-VERSION AUTHOR         DATE          DETAIL Description
+VERSION AUTHOR         DATE         DETAIL Description
 1.0     Accenture    11/May/2016     Utility class of NAFS project 
 ***********************************************************************/
 public Class NAFS_Utility{

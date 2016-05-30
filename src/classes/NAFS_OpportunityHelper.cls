@@ -1,9 +1,9 @@
 /**********************************************************************
 Purpose: Helper class for OpportunityTrigger.
 History :
-VERSION AUTHOR         DATE          DETAIL Description
-1.0     Accenture    04/April/2016     Created
-                     25/May/2016       Updated handleOpportunityPackage
+VERSION  AUTHOR         DATE          DETAIL Description
+1.0     Accenture     04/April/2016     Created
+                      25/May/2016       Updated handleOpportunityPackage
 ***********************************************************************/
 public with sharing class NAFS_OpportunityHelper {
 
