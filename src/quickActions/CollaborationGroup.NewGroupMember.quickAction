@@ -25,4 +25,5 @@
     <targetObject>CollaborationGroupMember</targetObject>
     <targetParentField>CollaborationGroup</targetParentField>
     <type>Create</type>
+     <optionsCreateFeedItem>false</optionsCreateFeedItem>
 </QuickAction>
