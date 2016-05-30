@@ -12,10 +12,9 @@ src/classes/Amr_ReportTrigger_Util.cls
 src/classes/Amr_ReportTrigger_Util.cls-meta.xml
 src/classes/Amr_TriggerFactory.cls
 src/classes/Amr_TriggerFactory.cls-meta.xml
-src/classes/Amr_ReportTrigger_Test.cls
-src/classes/Amr_ReportTrigger_Test.cls-meta.xml
 src
 src/pages
 src/pages/Amr_AdManager.page
 src/pages/Amr_AdManager.page-meta.xml
 src
+

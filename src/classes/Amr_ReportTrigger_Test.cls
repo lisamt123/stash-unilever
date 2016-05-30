@@ -69,10 +69,10 @@ public with sharing class Amr_ReportTrigger_Test{
         handler.bulkBefore();
         handler.bulkAfter();
         sObject s = new Amr_Job_Details__c();
-        handler.beforeInsert();
-        handler.beforeUpdate();
-        handler.beforeDelete();
-        handler.afterDelete();
+        handler.beforeInsert(s);
+        handler.beforeUpdate(s,s);
+        handler.beforeDelete(s);
+        handler.afterDelete(s);
         handler.andFinally();
         system.assert(jobDetailsObj1!=null);
     }
