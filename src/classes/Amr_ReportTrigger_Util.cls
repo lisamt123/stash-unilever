@@ -1,17 +1,3 @@
-/********************************************************************
- Name:  Amr_ReportTrigger_Util()
- Copyright © 2015  Unilever
- ======================================================
-======================================================
-Purpose:  Generate data required for Tracker Master Production                               
--------                                                             
-======================================================
-======================================================
-History                                                            
--------                                                            
-VERSION  AUTHOR                      DATE               DETAIL                 Description
-1.0 -   Mahesh Sankapal             05/04/2016          Initial Development  
-***********************************************************************/
 public with sharing class Amr_ReportTrigger_Util {
 
     public static void amr_report_trigger_method(List<Amr_Job_Details__c > newAmr_Job_Details, List<Amr_Job_Details__c > oldAmr_Job_Details){

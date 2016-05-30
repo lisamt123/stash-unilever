@@ -140,24 +140,13 @@ public with sharing class Amr_AdManagerController_CC{
             Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
             Set<MDO_BrandPositions__c> brandPositionlst = utiltyObj.brandPostitionValues(categoryName);
             Set<String> brnadPosNameSet = new Set<String>();
-            
-            /* start Added later */
-            brandNameFromPage 	= null;
-            
-            listOfBrandPosition = new List<SelectOption>(); 
-        	listOfBrandPosition.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
-        	listOfBrand = new List<SelectOption>();
-         	listOfBrand.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
-         	
-        	/* end Added later */
-        	
             system.debug('inside brand postition======>'+listOfBrandPosition);
             for(MDO_BrandPositions__c bps : brandPositionlst){
                 if(!brnadPosNameSet.contains(bps.brand_position_id__r.name)){
                     listOfBrandPosition.add(new selectOption(bps.brand_position_id__r.name,bps.brand_position_id__r.name));
                     brnadPosNameSet.add(bps.brand_position_id__r.name);
                 }
-            }            
+            }
            }catch(Exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());

@@ -1,5 +1,5 @@
 /**********************************************************************
- Name:  Amr_Interface_Trigger
+ Name:  amr_Interface_Trigger
  Copyright © 2016  Unilever
  ======================================================
 ======================================================
@@ -11,7 +11,7 @@ and bulkification of triggers.
 History                                                            
 -------                                                            
 VERSION  AUTHOR                     DATE              DETAIL                      Description
- 1.0 -   Mahesh Sankapal        05/04/2016            Initial Development  
+ 1.0 -   Mahesh Sankapal        05/04/2016            Initaial Developemnt  
  
 ***********************************************************************/
 public interface Amr_Interface_Trigger 
@@ -38,7 +38,7 @@ public interface Amr_Interface_Trigger
      * This method is called iteratively for each record to be inserted during a BEFORE
      * trigger. Never execute any SOQL/SOSL etc in this and other iterative methods.
      */
-    void beforeInsert();
+    void beforeInsert(SObject so);
     
     /**
      * beforeUpdate
@@ -46,7 +46,7 @@ public interface Amr_Interface_Trigger
      * This method is called iteratively for each record to be updated during a BEFORE
      * trigger.
      */
-    void beforeUpdate();
+    void beforeUpdate(SObject oldSo, SObject so);
 
     /**
      * beforeDelete
@@ -54,7 +54,7 @@ public interface Amr_Interface_Trigger
      * This method is called iteratively for each record to be deleted during a BEFORE
      * trigger.
      */
-    void beforeDelete();
+    void beforeDelete(SObject so);
 
     /**
      * afterInsert
@@ -63,7 +63,7 @@ public interface Amr_Interface_Trigger
      * trigger. Always put field validation in the 'After' methods in case another trigger
      * has modified any values. The record is 'read only' by this point.
      */
-    void afterInsert();
+    void afterInsert(SObject so);
 
     /**
      * afterUpdate
@@ -71,7 +71,7 @@ public interface Amr_Interface_Trigger
      * This method is called iteratively for each record updated during an AFTER
      * trigger.
      */
-    void afterUpdate();
+    void afterUpdate(SObject oldSo, SObject so);
 
     /**
      * afterDelete
@@ -79,7 +79,7 @@ public interface Amr_Interface_Trigger
      * This method is called iteratively for each record deleted during an AFTER
      * trigger.
      */
-    void afterDelete();
+    void afterDelete(SObject so);
 
     /**
      * andFinally

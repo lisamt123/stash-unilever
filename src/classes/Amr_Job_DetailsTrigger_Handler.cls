@@ -11,7 +11,7 @@ Purpose: Trigger Handler for the Amr Plan Summary SObject. This class implements
 History                                                            
 -------                                                            
 VERSION  AUTHOR                      DATE              DETAIL                 Description
-   1.0 -   Mahesh Sankapal      05/04/2016            Initial Development        
+   1.0 -   Mahesh Sankapal      05/04/2016            Initial Developemnt        
 ***********************************************************************/
 
 public with sharing class Amr_Job_DetailsTrigger_Handler
@@ -42,30 +42,30 @@ public with sharing class Amr_Job_DetailsTrigger_Handler
         System.debug('Entering Amr_ReportTrigger_Util.bulkAfter');
     }
         
-    public void beforeInsert()
+    public void beforeInsert(SObject so)
     {
         System.debug('Entering Amr_ReportTrigger_Util.beforeInsert');
         
     }
     
-    public void beforeUpdate()
+    public void beforeUpdate(SObject oldSo, SObject so)
     {
         System.debug('Entering Amr_ReportTrigger_Util.beforeUpdate');
     }
     
 
-    public void beforeDelete()
+    public void beforeDelete(SObject so)
     {   
       System.debug('Entering Amr_ReportTrigger_Util.beforeDelete');
     }
     
-    public void afterInsert() 
+    public void afterInsert(SObject so) 
     {
        System.debug('Entering Amr_ReportTrigger_Util.afterInsert');
        Amr_ReportTrigger_Util.amr_report_trigger_method(trigger.new,trigger.old);
     }
     
-    public void afterUpdate()
+    public void afterUpdate(SObject oldSo, SObject so)
     {
         System.debug('Entering Amr_ReportTrigger_Util.afterUpdate');
         Amr_ReportTrigger_Util.amr_report_trigger_method(trigger.new,trigger.old);
@@ -73,10 +73,11 @@ public with sharing class Amr_Job_DetailsTrigger_Handler
     
     /*******************************************************************
     Purpose: This method is present in interface, hence need to override
+    Parameters: SObject
     Returns: 
     Throws [Exceptions]: 
     ********************************************************************/ 
-    public void afterDelete()
+    public void afterDelete(SObject so)
     {
         System.debug('This method is present in interface, hence need to override');
     }
@@ -90,6 +91,7 @@ public with sharing class Amr_Job_DetailsTrigger_Handler
     public void andFinally()
     {
         System.debug('Entering Amr_ReportTrigger_Util.andFinally');           
+        System.debug('Exiting Amr_ReportTrigger_Util.andFinally');
     }
 
 }
