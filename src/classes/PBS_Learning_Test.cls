@@ -30,7 +30,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 public class PBS_Learning_Test {
 
         public static final string System_Administrator ='System Administrator';
-        public static final string LMS_Admin= 'LMS_Admin';
+        public static final string LMS_Admin= 'PBS_LMS_Admin';
         public static final string SELECTEDCONTENT_IS_WRONG = 'selectedcontent is wrong';
         public static final string CURRENTRECORDTYPE_IS_WRONG= 'currentrecordtype is wrong';
         public static final string GETCONTENTS_IS_WRONG= 'getcontents is wrong';

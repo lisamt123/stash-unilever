@@ -37,8 +37,8 @@ private class PBS_AchievementAssignmentsWorkCom_Test{
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
-            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,'PBS_LMS_Admin');
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'PBS_LMS_User');
         }
 
         Id learningAssignmentId = createSingleItemTrainingPlanWithWorkAchievement(adminUsers,lmsUsers);
@@ -95,8 +95,8 @@ private class PBS_AchievementAssignmentsWorkCom_Test{
         ach.Work_Badge_Image_URL__c = wb.ImageUrl;
         ach.Work_Badge_Giver__c = adminUsers.get(0).Id;
         update ach;
-        
-        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c limit:integer.valueof(System.Label.PBS_soqllimit)]; // Set Limit of 50000
+
+        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c];
         System.assertEquals(1,tplan.size());
         Id tplanId = tplan.get(0).Id;
 

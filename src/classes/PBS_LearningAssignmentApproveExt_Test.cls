@@ -43,7 +43,7 @@ private class PBS_LearningAssignmentApproveExt_Test {
 
       PBS_LearningAssignmentApproveExt_CC asgmtApproveExt = new PBS_LearningAssignmentApproveExt_CC(new ApexPages.StandardController(learningAssignments.get(0)));
       asgmtApproveExt.approveAssignment();
-	  System.assert(asgmtApproveExt != null);	
+      System.assert(asgmtApproveExt != null);   
     Test.stopTest();
   }
 
@@ -74,8 +74,8 @@ private class PBS_LearningAssignmentApproveExt_Test {
 
     System.runAs(adminUsers.get(0)){
       //Assign corresponding perm sets
-      PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
-      PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
+      PBS_UtilClass_Test.addPermissionSet(adminUsers,'PBS_LMS_Admin');
+      PBS_UtilClass_Test.addPermissionSet(lmsUsers,'PBS_LMS_User');
     }
 
     String taskApproverId = lmsUsers.get(1).Id;

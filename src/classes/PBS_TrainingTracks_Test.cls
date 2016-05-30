@@ -28,7 +28,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 @isTest
 public class PBS_TrainingTracks_Test {
-    
+
     static testMethod void testTrackAchievements(){
 
         //Create admin users
@@ -37,13 +37,13 @@ public class PBS_TrainingTracks_Test {
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
-            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,'PBS_LMS_Admin');
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'PBS_LMS_User');
         }
 
         PBS_TrainingTrackData_Test.createSampleData();
 
-        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c limit :integer.valueof(System.Label.PBS_soqllimit)];
+        List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c];
         System.assertEquals(3,tplan.size());
 
         Id tplanId1 = tplan.get(0).Id;
@@ -63,11 +63,11 @@ public class PBS_TrainingTracks_Test {
 
         List<PBS_Achievement_Category__c> lAchieveCat = PBS_AchievementData_Test.createAchievementCategories(1);
         List<PBS_Achievement__c> lAchievement = PBS_AchievementData_Test.createAchievements(1, lAchieveCat.get(0).Id, 'Achievements');
-        List<PBS_Training_Track__c> tracks = [select id,Achievement__c,name from PBS_Training_Track__c limit :integer.valueof(System.Label.PBS_soqllimit)];
+        List<PBS_Training_Track__c> tracks = [select id,Achievement__c,name from PBS_Training_Track__c];
         tracks.get(0).Achievement__c = lAchievement.get(0).id;
         update tracks.get(0);
 
-        List<PBS_Training_Track_Level_Item__c> trackItems = [select id,name from PBS_Training_Track_Level_Item__c limit :integer.valueof(System.Label.PBS_soqllimit)];
+        List<PBS_Training_Track_Level_Item__c> trackItems = [select id,name from PBS_Training_Track_Level_Item__c];
 
         System.assertEquals(1,tracks.size());
         System.assert(trackItems.size()>0);

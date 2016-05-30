@@ -37,8 +37,8 @@ public class PBS_TrainingPlansSearchCtrl_Test {
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
-            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,'PBS_LMS_Admin');
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'PBS_LMS_User');
         }
 
         PBS_TrainingPlanData_Test.createSampleData();
@@ -47,7 +47,7 @@ public class PBS_TrainingPlansSearchCtrl_Test {
                                             ,Name
                                             ,Enable_Self_Registration__c
                                             ,Self_Registration_Access__c
-                                            from PBS_Training_Plan__c limit :integer.valueof(System.Label.PBS_soqllimit)];
+                                            from PBS_Training_Plan__c];
 
         System.assertEquals(1,tplans.size());
         PBS_Training_Plan__c tplan = tplans.get(0);
@@ -63,14 +63,14 @@ public class PBS_TrainingPlansSearchCtrl_Test {
             System.runAs(lmsUsers.get(0)){
                 PBS_TrainingPlansSearchController_CC cont = new PBS_TrainingPlansSearchController_CC();
                 System.assert(cont.getSearchResults().size()>0);
-                System.assertEquals(false,cont.hasMessages);
-                System.assertEquals(false,cont.getHasPrevious());
-                System.assertEquals(false,cont.getHasNext());
+                System.assert(cont.hasMessages == false);
+                System.assert(cont.getHasPrevious() == false);
+                System.assert(cont.getHasNext() == false);
                 System.assert(cont.getPageNumber() == 1);
                 System.assert(cont.getTotalPages() == 1);
                 cont.doNext();
                 cont.doPrevious();
-                System.assertEquals(false,cont.hasMessages);
+                System.assert(cont.hasMessages == false);
             }
          
 
