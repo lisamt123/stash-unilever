@@ -1,5 +1,19 @@
+/********************************************************************
+ Name:  Amr_ReportHelper()
+ Copyright © 2015  Unilever
+ ======================================================
+======================================================
+Purpose:  Actual logic required for Tracker reports is implemented in this class
+-------                                                             
+======================================================
+======================================================
+History                                                            
+-------                                                            
+VERSION  AUTHOR                      DATE               DETAIL                 Description
+1.0 -   Mahesh Sankapal             05/04/2016          Initial Development  
+***********************************************************************/
 public with sharing class Amr_ReportHelper {
-	public Map<String,Map<String,Integer>>  mapCategoryClusterData(List<Amr_Job_Details__c> jobDetailList,integer yearValue){
+    public Map<String,Map<String,Integer>>  mapCategoryClusterData(List<Amr_Job_Details__c> jobDetailList,integer yearValue){
     Map<String,Map<String,Integer>> mapCategoryCluster = new Map<String,Map<String,Integer>>();
     if(jobDetailList.size()>0){
       
@@ -51,46 +65,46 @@ public with sharing class Amr_ReportHelper {
   
  
   
-	public Map<String,Map<String,Integer>>  totalCategoryMapData(List<Amr_Job_Details__c> jobDetailList,integer yearValue){
-    	Map<String,Map<String,Integer>> totalCategoryMap = new Map<String,Map<String,Integer>>();
-    	if(jobDetailList.size()>0){
+    public Map<String,Map<String,Integer>>  totalCategoryMapData(List<Amr_Job_Details__c> jobDetailList,integer yearValue){
+        Map<String,Map<String,Integer>> totalCategoryMap = new Map<String,Map<String,Integer>>();
+        if(jobDetailList.size()>0){
       
-      		for(Amr_Job_Details__c jobObj:jobDetailList){
+            for(Amr_Job_Details__c jobObj:jobDetailList){
         
-        	if(jobObj.CreatedDate.year() == yearValue){
-         		 String Category = jobObj.ProductCategory__r.name;
-            	 //Only category vise map generator
-          		if(!totalCategoryMap.containsKey(Category) ){        
-            		totalCategoryMap.put(Category,new Map<String,Integer>());
-            		totalCategoryMap.get(Category).put('BD',0);
-            		totalCategoryMap.get(Category).put('BB',0);
+            if(jobObj.CreatedDate.year() == yearValue){
+                 String Category = jobObj.ProductCategory__r.name;
+                 //Only category vise map generator
+                if(!totalCategoryMap.containsKey(Category) ){        
+                    totalCategoryMap.put(Category,new Map<String,Integer>());
+                    totalCategoryMap.get(Category).put('BD',0);
+                    totalCategoryMap.get(Category).put('BB',0);
             
-        			if(jobObj.Function_You_Are_Part__c == 'BD'){
-                		integer counter = totalCategoryMap.get(Category).get('BD');
-              			totalCategoryMap.get(Category).put('BD',counter+1);     
-            		}
+                    if(jobObj.Function_You_Are_Part__c == 'BD'){
+                        integer counter = totalCategoryMap.get(Category).get('BD');
+                        totalCategoryMap.get(Category).put('BD',counter+1);     
+                    }
             
-            		if(jobObj.Function_You_Are_Part__c == 'BB'){
-              			integer counter = totalCategoryMap.get(Category).get('BB');
-              			totalCategoryMap.get(Category).put('BB',counter+1);
-            		}   
-          		}else{
+                    if(jobObj.Function_You_Are_Part__c == 'BB'){
+                        integer counter = totalCategoryMap.get(Category).get('BB');
+                        totalCategoryMap.get(Category).put('BB',counter+1);
+                    }   
+                }else{
             
-            		if(jobObj.Function_You_Are_Part__c == 'BD'){
-               			integer counter = totalCategoryMap.get(Category).get('BD');
-               			totalCategoryMap.get(Category).put('BD',counter+1);
+                    if(jobObj.Function_You_Are_Part__c == 'BD'){
+                        integer counter = totalCategoryMap.get(Category).get('BD');
+                        totalCategoryMap.get(Category).put('BD',counter+1);
   
-            		}
+                    }
             
-            		if(jobObj.Function_You_Are_Part__c == 'BB'){
-              			integer counter = totalCategoryMap.get(Category).get('BB');
-              			totalCategoryMap.get(Category).put('BB',counter+1);
+                    if(jobObj.Function_You_Are_Part__c == 'BB'){
+                        integer counter = totalCategoryMap.get(Category).get('BB');
+                        totalCategoryMap.get(Category).put('BB',counter+1);
   
-            		}      
-          		}
-        	}
-      	}
-	}
+                    }      
+                }
+            }
+        }
+    }
     return totalCategoryMap;
   }
   
