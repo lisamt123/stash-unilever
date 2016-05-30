@@ -1,4 +1,4 @@
-    <labels>
+﻿    <labels>
         <fullName>IPM_BETIdNullMsg</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -979,7 +979,7 @@
         <shortDescription>IPM_BETFunctionalTeams</shortDescription>
         <value>BD;CD;CMI</value>
     </labels>
-   
+ 
     <labels>
         <fullName>IPM_BETLabel</fullName>
         <language>en_US</language>
@@ -1376,6 +1376,8 @@ If approved your project will be linked after your Charter gate has been approve
         <shortDescription>IPM_BOSSCARD_Name_Exists</shortDescription>
         <value>Bosscard Name Already Exists, Please Select Another Bosscard Name</value>
     </labels>
+    
+
     <labels>
         <fullName>IPM_BOSSCARD_SKIP</fullName>
         <language>en_US</language>
@@ -4049,6 +4051,7 @@ White Space is a strategic classifier – it means launching an existing Unileve
         <shortDescription>Function Leader is responsible</shortDescription>
         <value>Function members may contribute functional input to gate documents; Function Leaders are responsible for specfic functional inputs (e.g. gatekeeper questions) and own the overall functional content.</value>
     </labels>
+
     <labels>
         <fullName>IPM_FunctionalTeamMsgIdeas</fullName>
         <language>en_US</language>
@@ -5275,6 +5278,7 @@ For either option it is possible to add/remove sections and To-do&apos;s later. 
         <shortDescription>IPM_Milestone_DueDate_Validation</shortDescription>
         <value>The due date for this milestone must be after the due date for the previous gate&apos;s milestone.</value>
     </labels>
+ 
     <labels>
         <fullName>IPM_Milestone_Due_Date_Error</fullName>
         <language>en_US</language>
@@ -8529,13 +8533,20 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>IPM TaskLabel</shortDescription>
         <value>To-do</value>
     </labels>
-    
+ 
     <labels>
         <fullName>IPM_Task_Assign_Text1</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM Task Assign Text</shortDescription>
         <value>- You have been assigned some tasks for {0} . Please go have a look.</value>
+    </labels>
+    <labels>		
+        <fullName>IPM_Task_Assign_Text2</fullName>		
+        <language>en_US</language>		
+        <protected>false</protected>		
+        <shortDescription>IPM Task Assign Text2</shortDescription>		
+        <value>. Please go have a look.</value>		
     </labels>
     <labels>
         <fullName>IPM_Task_Completion_Text</fullName>
