@@ -1,5 +1,3 @@
 src
-src/permissionsets
-src/permissionsets/The_Agent_Report_Admin.permissionset
 src/objects
 src/objects/aa_Agent_Report__c.object
