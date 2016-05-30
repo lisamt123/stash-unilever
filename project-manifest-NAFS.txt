@@ -13,6 +13,11 @@ src/workflows
 src/workflows/NAFS_Update Operator Account Number.workflow
 src/workflows/NAFS Account Status to Temporary.workflow
 src/workflows/NAFS Update role with user.workflow
+src/workflows/NAFS Email to opportunity owner when Deal approval exactly 60 days.workflow
+src
+src/approvalProcesses
+src/approvalProcesses/NAFS Operator Account Validation.approvalProcess
+src/approvalProcesses/NAFS MABE Opportunity Process.approvalProcess
 src
 src/profile
 src/profile/Food Solutions API Only.profile
