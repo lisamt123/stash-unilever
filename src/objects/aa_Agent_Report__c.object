@@ -312,6 +312,10 @@ Captured Images will be stored as attachment or document object.</description>
                 <fullName>Perfect In Store Execution</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Food Solutions</fullName>
+                <default>false</default>
+            </picklistValues>			
             <sorted>true</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
@@ -887,6 +891,10 @@ Captured Images will be stored as attachment or document object.</description>
                 <fullName>Perfect In Store Execution</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>Food Solutions</fullName>
+                <default>false</default>
+            </values>			
         </picklistValues>
         <picklistValues>
             <picklist>Source__c</picklist>
