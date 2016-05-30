@@ -11,6 +11,8 @@ src/objects/PricebookEntry.object
 src
 src/workflows
 src/workflows/NAFS_Update Operator Account Number.workflow
+src/workflows/NAFS Account Status to Temporary.workflow
+src/workflows/NAFS Update role with user.workflow
 src
 src/profile
 src/profile/Food Solutions API Only.profile
