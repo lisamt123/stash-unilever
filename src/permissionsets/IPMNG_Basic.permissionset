@@ -1032,10 +1032,7 @@
 	<apexClass>IPM_FinancialControllerRegional_Test</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_FinancialTriggerHandler_Test</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
+   
     
     <fieldPermissions>
         <editable>false</editable>
