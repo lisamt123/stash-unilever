@@ -1,7 +1,7 @@
 @isTest
 public class DMS_SObjectInstance_Test {
 
-     public static Account createAccount(String name, Id parentId, String status, Id recordTypeId, Id ownerId,String salesChannel, Boolean isCreate){        
+     public static Account createAccount(String name,String externalCode, Id parentId, String status, Id recordTypeId, Id ownerId,String salesChannel, Boolean isCreate){        
         Account acc = new Account();
         acc.Name = name;
         acc.ParentId = parentId;
@@ -9,7 +9,8 @@ public class DMS_SObjectInstance_Test {
         acc.RecordTypeId = recordTypeId;
         acc.SalesChannel__c = salesChannel;
         acc.OwnerId = ownerId;
-        if(isCreate) Database.insert(acc);
+        acc.ExternalCode__c = externalCode;
+        if(isCreate) Database.insert(acc);        
         return acc;
     }
     
