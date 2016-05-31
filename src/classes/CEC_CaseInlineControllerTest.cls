@@ -38,7 +38,7 @@ public class CEC_CaseInlineControllerTest{
             insert reasonCodeList;
 
             List<CEC_Case_Market_Mapping__c> cmmList = CEC_TestDataFactory.createMasterCaseMarketMapping();
-            CEC_Case_Market_Mapping__c cmmUK;
+            CEC_Case_Market_Mapping__c cmmUK = new CEC_Case_Market_Mapping__c();
             for(CEC_Case_Market_Mapping__c cmm : cmmList) {
                 if (cmm.Market__c == 'United Kingdom') {
                     cmmUK = cmm;
@@ -454,13 +454,13 @@ Test method for mapArticleToCase method
             system.assertEquals(1,knCount);
             
             caseControllerObj.getAllRecords();
-            System.assert(caseControllerObj.displayMore==false);
+            System.assertEquals(false, caseControllerObj.displayMore);
             caseObj.RecordTypeId=spamRec[0].Id;
             caseControllerObj.caseRecord=caseObj;
             caseControllerObj.selectQuickcode();
             
             if(spamRec.size()>0){
-                System.assert(caseControllerObj.caseRecord.RecordTypeId==spamRec[0].Id);
+                System.assertEquals(spamRec[0].Id, caseControllerObj.caseRecord.RecordTypeId);
             } 
             Test.stopTest();
         }

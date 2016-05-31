@@ -1,18 +1,34 @@
-<apex:page controller="PBS_WikiController_CC" docType="html-5.0" sidebar="false" showHeader="false" standardStylesheets="false">
+<apex:page controller="PBS_WikiController_CC" docType="html-5.0" sidebar="false" showHeader="true" standardStylesheets="false">
 
  
   <title>Wiki</title>
   <meta charset="utf-8"></meta>
-  
+      <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/bootstrap.min.css')}" />
+      <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/PCContainer.css')}" />
       <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/Wiki.css')}" />
 
- 
-    
-      
+    <apex:composition template="PBS_Header_Template" ></apex:composition>
+    <div class="row bodyRow group">
+        
+        <div class=" col-xs-4"><div class="home-title">WELCOME TO </div><div class="home-title-bold">PLANCRAFT</div></div>
+        <div class="col-xs-4 home-detail">
+            <ul>
+            <li>{!$User.FirstName} {!$User.LastName}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="{!$Page.PBS_MyProfile}" target="innerFrame">EDIT PROFILE</a></li>
+            </ul>
+        </div>
+    </div> 
+   
 <body>
+
       <!---Ad Main section---->
     
         <div class="container">
+        <div class="col-md-12 col-lg-12 wiki-link">
+                <a href="{!$Page.PBS_Library}" title="Go back to Library">&laquo; Go Back to Library</a>
+            </div>
+                
+        
+        <img src="{!URLFOR($Resource.almond_uilib_mt, 'img/PlanWiki.png')}" style="width: 65px; margin-top: 10px;" alt="Planwiki" />
         <div class="jobsportpolio_section">
         <div class="main-nav">
                                         <div class="subsection" id="idOfArticle">
@@ -23,6 +39,11 @@
 
      div.body{
     font-family: "Helvetica Neue" !important;
+}
+
+.imagechange img {
+    border: 0 none;
+    width:auto;
 }
      </style>
    <knowledge:articleRendererToolBar canVote="true"  articleId="{!objpbs.KnowledgeArticleId}"
@@ -47,7 +68,7 @@
   <a href= "#idOfRA"><li>Related Articles</li></a>
 </ol>   -->
 <div class="btmsection"></div>
-<div class="body" >
+<div class="body imagechange">
 <h4></h4>
 <apex:outputField value="{!objpbs.Wiki_Content__c}"/>
 
@@ -88,31 +109,31 @@
                                                       </div>
                                                         <div class="right_section">
                                         <div class="middletext">
-                                        <h1>{!objpbs.Title}</h1>
+                                        <p class="paratxt">{!objpbs.Title}</p>
                                         <h3><p class="iftext" Id="idOfInfo">INFORMATION</P></h3>
                                         <div class="totalsection">
                                         <div class="article1">
                                         <ul>
-                                        <li>Article number</li>
-                                        <li class="art0">Article Type</li>
-                                        <li class="art1">Created By</li>
-                                        <li class="art2">Last Modified Date</li>
-                                        <li class="art3">Owner</li>
-                                        <li class="art4">Group Name</li>
+                                        <li class="left-list">Article number</li>
+                                        <li class="left-list">Article Type</li>
+                                        <li class="left-list">Created By</li>
+                                        <li class="left-list">Last Modified Date</li>
+                                        <li class="left-list">Owner</li>
+                                        <li class="left-list">Group Name</li>
                                         </ul>
                                         </div>
                                         
                                         <div class="article2">
                                         <ul>
-                                        <li class="rite0" style="left: 6px;">{!objpbs.articleNumber}</li>
-                                        <li class="rite0" style="left: 6px;">PBS Wiki</li>
-                                        <li class="rite0" style="left: 6px;">{!objpbs.CreatedBy.Name}</li>
+                                        <li class="rite0" >{!objpbs.articleNumber}</li>
+                                        <li class="rite0" >PBS Wiki</li>
+                                        <li class="rite0" >{!objpbs.CreatedBy.Name}</li>
                                         
-                                        <li cclass="rite0" style="left: 6px;"><apex:outputText value="{0,date,dd-MM-yyyy hh:mm}">
-                   <apex:param value="{!objpbs.LastModifiedDate}" />
-         </apex:outputText></li>
-                                        <li class="rite0" style="left: 6px;">{!objpbs.Owner.Name}</li>
-                                        <li class="rite0" style="left: 6px;">{!objpbs.Group_Name__c}</li>
+                                        <li class="rite0" ><apex:outputText value="{0,date,dd-MM-yyyy hh:mm}">
+                                        <apex:param value="{!objpbs.LastModifiedDate}" />
+                                        </apex:outputText></li>
+                                        <li class="rite0" >{!objpbs.Owner.Name}</li>
+                                        <li class="rite0" >{!objpbs.Group_Name__c}</li>
                                         </ul>
                                         </div>
 </div>              

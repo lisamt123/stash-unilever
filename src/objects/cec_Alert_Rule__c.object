@@ -697,14 +697,14 @@
     <sharingModel>ReadWrite</sharingModel>
     <validationRules>
         <fullName>L0_Product_Category_Mandatory_Validation</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Please verify that the Product Category&apos;s &apos;Division Name&apos; is not null if Type is &apos;Safety&apos;</description>
         <errorConditionFormula>L0_Product_Category__c = null &amp;&amp;  ISPICKVAL(Type__c, &apos;Safety&apos;)</errorConditionFormula>
         <errorMessage>Please make sure that  the Product Category&apos;s  &apos;Division Name&apos; is not null for &apos;Safety&apos; alerts.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>L2_Product_Category_Mandatory_Validation</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>This validation rule is to verify if the L2 Product Category is mandatory if the type is &apos;Quality&apos;</description>
         <errorConditionFormula>L2_Product_Category__c = null &amp;&amp; ISPICKVAL(Type__c,&apos;Quality&apos;)</errorConditionFormula>
         <errorMessage>Please make sure that the Product Category&apos;s &apos;Category Name&apos; is not null for &apos;Quality&apos; alerts.</errorMessage>

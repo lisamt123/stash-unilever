@@ -35,7 +35,7 @@ public with sharing class CEC_CaseTriggerHelperTest {
             
             
             List<CEC_Case_Market_Mapping__c> cmmList = CEC_TestDataFactory.createMasterCaseMarketMapping();
-            CEC_Case_Market_Mapping__c cmmUK;
+            CEC_Case_Market_Mapping__c cmmUK = new CEC_Case_Market_Mapping__c();
             for(CEC_Case_Market_Mapping__c cmm : cmmList) {
                 if (cmm.Market__c == 'United Kingdom') {
                     cmmUK = cmm;

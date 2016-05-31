@@ -77,11 +77,19 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Oblix_DashboardsHandler_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Oblix_NonCampaignWrapper</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Oblix_OuterPageTemplateController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Oblix_OuterPageTemplateControllerTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -138,6 +146,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Oblix_SOWMainDetalControllerExt</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Oblix_SOWMainDetalControllerExt_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -237,8 +249,8 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>Oblix_wrapper_NonCamp</apexClass>
-        <enabled>true</enabled>
+        <apexClass>Oblix_VersionControl_Test</apexClass>
+        <enabled>false</enabled>
     </classAccesses>
     <description>Allow CRUD on shared SOW records and childs</description>
     <fieldPermissions>
@@ -328,6 +340,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Marketing_Basics__c.FTE_report__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Marketing_Basics__c.Financial_Year__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -344,6 +361,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Marketing_Basics__c.Hourly_Rate_or_FTE__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Marketing_Basics__c.No_of_Hours_Required_Activity__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

@@ -173,14 +173,6 @@ public with sharing class Oblix_SOWRollOverLogic {
             setProcessingFlag(map_objects_to_update.values(), job_component.attrib_5, job_component.attrib_2);
             
         }
-        catch(QueryException queryEx){  
-            Oblix_SyncBatchJob.addEvent(ERROR_SETPROCESSINGFLAG, queryEx.getMessage() + STACK_TRACE + queryEx.getStackTraceString());
-            is_success = false;
-        }
-        catch(DmlException dmlEx){  
-            Oblix_SyncBatchJob.addEvent(ERROR_SETPROCESSINGFLAG, dmlEx.getMessage() + STACK_TRACE + dmlEx.getStackTraceString());
-            is_success = false;
-        }
         catch(Exception ex){  
             Oblix_SyncBatchJob.addEvent(ERROR_SETPROCESSINGFLAG, ex.getMessage() + STACK_TRACE + ex.getStackTraceString());
             is_success = false;
@@ -218,14 +210,6 @@ public with sharing class Oblix_SOWRollOverLogic {
 
             update map_objects_to_update.values();
             
-        }
-        catch(QueryException queryEx){  
-            Oblix_SyncBatchJob.addEvent(ERROR_SETPROCESSINGFLAG, queryEx.getMessage() + STACK_TRACE + queryEx.getStackTraceString());
-            is_success = false;
-        }
-        catch(DmlException dmlEx){  
-            Oblix_SyncBatchJob.addEvent(ERROR_SETPROCESSINGFLAG, dmlEx.getMessage() + STACK_TRACE + dmlEx.getStackTraceString());
-            is_success = false;
         }
         catch(Exception ex){  
             Oblix_SyncBatchJob.addEvent(ERROR_SETPROCESSINGFLAG, ex.getMessage() + STACK_TRACE + ex.getStackTraceString());
@@ -299,14 +283,6 @@ public with sharing class Oblix_SOWRollOverLogic {
 
             update map_objects_update.values();
             
-        }
-        catch(QueryException queryEx){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN adjustStatus() - ', queryEx.getMessage() + STACK_TRACE + queryEx.getStackTraceString());
-            is_success = false;
-        }
-        catch(DmlException dmlEx){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN adjustStatus() - ', dmlEx.getMessage() + STACK_TRACE + dmlEx.getStackTraceString());
-            is_success = false;
         }
         catch(Exception ex){  
             Oblix_SyncBatchJob.addEvent('ERROR IN adjustStatus() - ', ex.getMessage() + STACK_TRACE + ex.getStackTraceString());
@@ -725,14 +701,6 @@ public with sharing class Oblix_SOWRollOverLogic {
             update map_original_id_original_campaign.values();
             
         }
-        catch(QueryException queryEx){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN cloneSOW() - ', queryEx.getMessage() + STACK_TRACE + queryEx.getStackTraceString());
-            is_success = false;
-        }
-        catch(DmlException dmlEx){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN cloneSOW() - ', dmlEx.getMessage() + STACK_TRACE + dmlEx.getStackTraceString());
-            is_success = false;
-        }
         catch(Exception ex){  
             Oblix_SyncBatchJob.addEvent('ERROR IN cloneSOW() - ', ex.getMessage() + STACK_TRACE + ex.getStackTraceString());
             is_success = false;
@@ -860,14 +828,6 @@ public with sharing class Oblix_SOWRollOverLogic {
             }
 
         }
-        catch(QueryException queryEx){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN cloneCampaigns() - ', queryEx.getMessage() + STACK_TRACE + queryEx.getStackTraceString());
-            is_success = false;
-        }
-        catch(DmlException dmlEx){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN cloneCampaigns() - ', dmlEx.getMessage() + STACK_TRACE + dmlEx.getStackTraceString());
-            is_success = false;
-        }
         catch(Exception ex){  
             Oblix_SyncBatchJob.addEvent('ERROR IN cloneCampaigns() - ', ex.getMessage() + STACK_TRACE + ex.getStackTraceString());
             is_success = false;
@@ -993,13 +953,6 @@ public with sharing class Oblix_SOWRollOverLogic {
             //Oblix_SyncBatchJob.addEvent('DEBUG IN recalculateTotalPFYCampaignFeesUsingCFYcalculator() - result_msg: ' + result_msg,NULL);
 
 
-        }catch(QueryException queryEx){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN recalculateTotalPFYCampaignFeesUsingCFYcalculator() - ', queryEx.getMessage() + STACK_TRACE + queryEx.getStackTraceString());
-            is_success = false;
-        }
-        catch(DmlException dmlEx){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN recalculateTotalPFYCampaignFeesUsingCFYcalculator() - ', dmlEx.getMessage() + STACK_TRACE + dmlEx.getStackTraceString());
-            is_success = false;
         }
         catch(Exception ex){  
             Oblix_SyncBatchJob.addEvent('ERROR IN recalculateTotalPFYCampaignFeesUsingCFYcalculator() - ', ex.getMessage() + STACK_TRACE + ex.getStackTraceString());
@@ -1246,13 +1199,6 @@ public with sharing class Oblix_SOWRollOverLogic {
             Oblix_SyncBatchJob.addEvent('DEBUG IN syncCampaignDuringTransitionPeriod() - result_msg: ' + result_msg,NULL);
 
 
-        }catch(QueryException queryEx){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN syncCampaignDuringTransitionPeriod() - ', queryEx.getMessage() + STACK_TRACE + queryEx.getStackTraceString());
-            is_success = false;
-        }
-        catch(DmlException dmlEx){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN syncCampaignDuringTransitionPeriod() - ', dmlEx.getMessage() + STACK_TRACE + dmlEx.getStackTraceString());
-            is_success = false;
         }
         catch(Exception ex){  
             Oblix_SyncBatchJob.addEvent('ERROR IN syncCampaignDuringTransitionPeriod() - ', ex.getMessage() + STACK_TRACE + ex.getStackTraceString());
@@ -1379,14 +1325,6 @@ public with sharing class Oblix_SOWRollOverLogic {
 
             update map_original_id_original_asset.values();
 
-        }
-        catch(QueryException queryEx){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN cloneAssets() - ', queryEx.getMessage() + STACK_TRACE + queryEx.getStackTraceString());
-            is_success = false;
-        }
-        catch(DmlException dmlEx){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN cloneAssets() - ', dmlEx.getMessage() + STACK_TRACE + dmlEx.getStackTraceString());
-            is_success = false;
         }
         catch(Exception ex){  
             Oblix_SyncBatchJob.addEvent('ERROR IN cloneAssets() - ', ex.getMessage() + STACK_TRACE + ex.getStackTraceString());
@@ -1581,14 +1519,6 @@ public with sharing class Oblix_SOWRollOverLogic {
             Oblix_SyncBatchJob.addEvent('DEBUG IN syncCampaignDuringTransitionPeriod() - result_msg: ' + result_msg,NULL);
             
         }
-        catch(QueryException queryEx){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN syncAssets() - ', queryEx.getMessage() + STACK_TRACE + queryEx.getStackTraceString());
-            is_success = false;
-        }
-        catch(DmlException dmlEx){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN syncAssets() - ', dmlEx.getMessage() + STACK_TRACE + dmlEx.getStackTraceString());
-            is_success = false;
-        }
         catch(Exception ex){  
             Oblix_SyncBatchJob.addEvent('ERROR IN syncAssets() - ', ex.getMessage() + STACK_TRACE + ex.getStackTraceString());
             is_success = false;
@@ -1673,14 +1603,6 @@ public with sharing class Oblix_SOWRollOverLogic {
 
             insert list_non_campaigns_to_clone;
             
-        }
-        catch(QueryException queryEx){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN cloneNonCampaigns() - ', queryEx.getMessage() + STACK_TRACE + queryEx.getStackTraceString());
-            is_success = false;
-        }
-        catch(DmlException dmlEx){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN cloneNonCampaigns() - ', dmlEx.getMessage() + STACK_TRACE + dmlEx.getStackTraceString());
-            is_success = false;
         }
         catch(Exception ex){  
             Oblix_SyncBatchJob.addEvent('ERROR IN cloneNonCampaigns() - ', ex.getMessage() + STACK_TRACE + ex.getStackTraceString());
@@ -1767,14 +1689,6 @@ public with sharing class Oblix_SOWRollOverLogic {
             Database.insert(list_attachments_to_clone, false);
             
 
-        }
-        catch(QueryException queryEx){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN cloneAttachments() - ', queryEx.getMessage() + STACK_TRACE + queryEx.getStackTraceString());
-            is_success = false;
-        }
-        catch(DmlException dmlEx){  
-            Oblix_SyncBatchJob.addEvent('ERROR IN cloneAttachments() - ', dmlEx.getMessage() + STACK_TRACE + dmlEx.getStackTraceString());
-            is_success = false;
         }
         catch(Exception ex){  
             Oblix_SyncBatchJob.addEvent('ERROR IN cloneAttachments() - ', ex.getMessage() + STACK_TRACE + ex.getStackTraceString());
