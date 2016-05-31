@@ -1820,22 +1820,4 @@ LEN(NFS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
         <errorConditionFormula>IF( ISPICKVAL(StageName,&apos;05 – Won&apos;),  NOT( NAFSDealApproved__c =true) , false)</errorConditionFormula>
         <errorMessage>Opportunities must be approved in order to advance it to 05 - Won</errorMessage>
     </validationRules>
-    <webLinks>
-        <fullName>GeneratePDF</fullName>
-        <availability>online</availability>
-        <displayType>button</displayType>
-        <hasMenubar>false</hasMenubar>
-        <hasScrollbars>true</hasScrollbars>
-        <hasToolbar>false</hasToolbar>
-        <height>600</height>
-        <isResizable>true</isResizable>
-        <linkType>page</linkType>
-        <masterLabel>Generate PDF</masterLabel>
-        <openType>newWindow</openType>
-        <page>NFS_OpportunityPDF</page>
-        <position>none</position>
-        <protected>false</protected>
-        <showsLocation>false</showsLocation>
-        <showsStatus>false</showsStatus>
-    </webLinks>
 </CustomObject>
