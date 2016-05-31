@@ -1,3 +1,6 @@
 src
+src/workflows
+src/workflows/Opportunity.workflow
+src
 src/approvalProcesses
-src/approvalProcesses/Opportunity.NAFS_MABE_Opportunity_Process.approvalProcess
+src/approvalProcesses/Account.NAFS_Operator_Account_Validation.approvalProcess
