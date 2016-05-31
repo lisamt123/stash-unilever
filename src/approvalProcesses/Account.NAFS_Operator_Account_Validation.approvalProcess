@@ -34,7 +34,7 @@
         <label>Account Process Step 1</label>
         <name>Account_Process_Step_1</name>
     </approvalStep>
-    <description>Operator Account Validation</description>
+    <description>Operator Account Validations</description>
     <emailTemplate>NAFS_Email_Templates/NAFS_Operator_Account_approval_request_email_template</emailTemplate>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <entryCriteria>

@@ -1,4 +1,3 @@
 src
-src/email
-src/email/NAFS_Email_Templates/NAFS_Operator_Account_approval_request_email_template.email
-src/email/NAFS_Email_Templates/NAFS_Opportunity_approval_request_email_template.email
+src/approvalProcesses
+src/approvalProcesses/Opportunity.NAFS_MABE_Opportunity_Process.approvalProcess
