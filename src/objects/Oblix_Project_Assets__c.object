@@ -165,6 +165,32 @@ Changed to Campaign on 26/10/2015</description>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Asset_NFY__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Asset NFY</label>
+        <referenceTo>Oblix_Project_Assets__c</referenceTo>
+        <relationshipLabel>SWOP Campaign Assets (Asset NFY)</relationshipLabel>
+        <relationshipName>Asset_NFY</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Asset_PFY__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Asset PFY</label>
+        <referenceTo>Oblix_Project_Assets__c</referenceTo>
+        <relationshipLabel>SWOP Campaign Assets (Asset PFY)</relationshipLabel>
+        <relationshipName>Asset_PFY</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Asset_Picklist__c</fullName>
         <description>Types of Typical Assets</description>
         <externalId>false</externalId>
@@ -774,11 +800,48 @@ Changed to Campaign on 26/10/2015</description>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Campaign_NFY__c</fullName>
+        <externalId>false</externalId>
+        <formula>Agency_Projects__r.Campaign_NFY__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Campaign NFY</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Campaign_PFY__c</fullName>
+        <externalId>false</externalId>
+        <formula>Agency_Projects__r.Campaign_PFY__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Campaign PFY</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Category_Trimmed__c</fullName>
+        <externalId>false</externalId>
+        <formula>if(CONTAINS(TEXT(Asset_Type__c), &apos;-&apos;),
+   LEFT(TEXT(Asset_Type__c) , FIND(&apos; - &apos;, TEXT(Asset_Type__c) )),
+   TEXT(Asset_Type__c))</formula>
+        <label>Category</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Category__c</fullName>
         <externalId>false</externalId>
         <formula>RecordType.Name</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Category</label>
+        <label>Category rt</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -841,6 +904,31 @@ Changed to Campaign on 26/10/2015</description>
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Cloned_Asset__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Cloned Asset</label>
+        <referenceTo>Oblix_Project_Assets__c</referenceTo>
+        <relationshipLabel>SWOP Campaign Assets</relationshipLabel>
+        <relationshipName>Cloned_Assets</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Cloned_Campaign__c</fullName>
+        <externalId>false</externalId>
+        <formula>Agency_Projects__r.Cloned_Campaign__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Cloned Campaign</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Description__c</fullName>
         <description>Description of the item</description>
         <externalId>false</externalId>
@@ -849,6 +937,19 @@ Changed to Campaign on 26/10/2015</description>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Enforce_Trigger_Update__c</fullName>
+        <description>In order to enforce trigger on SWOP Campaign, there is a rollup summary field created to aggregate this field. This ensure before trigger on SWOP Campaign collects information about the children and update accordingly.</description>
+        <externalId>false</externalId>
+        <label>Enforce Trigger Update</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>FULL_Description__c</fullName>
@@ -891,6 +992,31 @@ Changed to Campaign on 26/10/2015</description>
         <externalId>false</externalId>
         <label>Option Name</label>
         <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Original_Asset__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Original Asset</label>
+        <referenceTo>Oblix_Project_Assets__c</referenceTo>
+        <relationshipLabel>SWOP Campaign Assets (Original Asset)</relationshipLabel>
+        <relationshipName>Original_Assets</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Original_Campaign__c</fullName>
+        <externalId>false</externalId>
+        <formula>Agency_Projects__r.Original_Campaign__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Original Campaign</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -981,6 +1107,42 @@ Changed to Campaign on 26/10/2015</description>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Sync_Status__c</fullName>
+        <description>determines the status of the Sync, this value is set by automated jobs</description>
+        <externalId>false</externalId>
+        <label>Sync Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Sync Required</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sync In Progress</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sync Complete</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Sync_Step__c</fullName>
+        <description>Stamps the record with the processed step to ensure the next batch does not pick up the same record. DO NOT EDIT as this field is set by automated job</description>
+        <externalId>false</externalId>
+        <label>Sync Step</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Target_Delivery_Date__c</fullName>
@@ -2875,4 +3037,11 @@ Changed to Campaign on 26/10/2015</description>
         <searchFilterFields>Sub_Category__c</searchFilterFields>
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Lock_Campaign_Record_if_Campaign_Sync</fullName>
+        <active>true</active>
+        <description>Lock Campaign Record if Campaign Sync in Progress.</description>
+        <errorConditionFormula>IF($Profile.Name &lt;&gt; &apos;System Administrator&apos; &amp;&amp; (TEXT( Agency_Projects__r.Sync_Status__c ) == &apos;Sync In Progress&apos; || Agency_Projects__r.Sync_Required_NFY__c == &apos;Sync In Progress&apos; || TEXT( Agency_Projects__r.Sync_Status__c ) == &apos;Sync Requested&apos; || Agency_Projects__r.Sync_Required_NFY__c == &apos;Sync Requested&apos;),true,false)</errorConditionFormula>
+        <errorMessage>Sync in Progress. Record Locked</errorMessage>
+    </validationRules>
 </CustomObject>

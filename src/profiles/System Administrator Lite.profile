@@ -22585,6 +22585,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Marketing_Basics__c.FTE_report__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Marketing_Basics__c.Financial_Year__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -22596,6 +22601,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_Basics__c.Hourly_Rate_Agency__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Marketing_Basics__c.Hourly_Rate_or_FTE__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Marketing_Basics__c.No_of_Hours_Required_Activity__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -22715,7 +22730,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Marketing_SOW__c.Attachments_Cloned__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Marketing_SOW__c.BB_or_BD__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Marketing_SOW__c.B_Fwd_Campaign_count__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -22726,6 +22751,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_SOW__c.Brand_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Marketing_SOW__c.Cloned_SOW__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -22745,12 +22775,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Marketing_SOW__c.Current_SOW_Total_ex_risk_adjustment__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Marketing_SOW__c.FINAL_APPROVED_FEE_K__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_SOW__c.Financial_Year__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Marketing_SOW__c.Initial_Approval_Complete__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -22766,6 +22806,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_SOW__c.Marketing_Agency__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Marketing_SOW__c.Name_Prefix__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Marketing_SOW__c.Name_Suffix__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -22835,6 +22885,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Marketing_SOW__c.Original_SOW__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Marketing_SOW__c.Percentage_of_Total_Fee_Campaign_Fees__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -22845,12 +22900,27 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Marketing_SOW__c.Record_Locked_Sync__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Marketing_SOW__c.SOW_Creator_is_Approver__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Marketing_SOW__c.SOW_NFY__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Marketing_SOW__c.SOW_Overall_Total_Agency__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Marketing_SOW__c.SOW_PFY__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -22861,6 +22931,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_SOW__c.SmallProductCategory__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Marketing_SOW__c.Sync_Status_PFY__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Marketing_SOW__c.Sync_Status__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -23775,6 +23855,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Oblix_Project_Assets__c.Asset_NFY__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_Project_Assets__c.Asset_PFY__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Oblix_Project_Assets__c.Asset_Picklist__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -23825,6 +23915,21 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Oblix_Project_Assets__c.Campaign_NFY__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_Project_Assets__c.Campaign_PFY__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_Project_Assets__c.Category_Trimmed__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Oblix_Project_Assets__c.Category__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -23835,7 +23940,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Oblix_Project_Assets__c.Cloned_Asset__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_Project_Assets__c.Cloned_Campaign__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Oblix_Project_Assets__c.Description__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_Project_Assets__c.Enforce_Trigger_Update__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -23860,12 +23980,32 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Oblix_Project_Assets__c.Original_Asset__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_Project_Assets__c.Original_Campaign__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Oblix_Project_Assets__c.Quantity__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Oblix_Project_Assets__c.Sub_Category__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_Project_Assets__c.Sync_Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_Project_Assets__c.Sync_Step__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -23895,6 +24035,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Box_Number_PFY_Project_Score_CFY_Calc__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Box_Number_PFY__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Oblix_SOW_Projects__c.Brand_Led_Growth__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -23905,7 +24055,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Campaign_Attributes_Updated__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Oblix_SOW_Projects__c.Campaign_Countries__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Campaign_FY__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -23921,6 +24081,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Oblix_SOW_Projects__c.Campaign_Idea__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Campaign_NFY__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Campaign_PFY__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -23955,6 +24125,26 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Cloned_Campaign__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Cloned_SOW__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Completed_Stage_CFY__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Completed_Stage_PFY__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Oblix_SOW_Projects__c.Completed_Stage__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -23970,7 +24160,32 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Enforce_Trigger_Update_Assets__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Oblix_SOW_Projects__c.Enforce_Trigger_Update__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Fees_Outstanding_between_CFY_PFY__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Fees_PFY_Paid_Using_CFY_Calc__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Fees_PFY_Total_By_CFY_Calculator__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Fees_Paid_PFY__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -23981,6 +24196,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Oblix_SOW_Projects__c.Fees_To_Be_Paid_Next_Financial_Year__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Fees_Total_PFY__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -24001,6 +24221,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Oblix_SOW_Projects__c.Innovation_Projects__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Is_B_Fwd_Campaign__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -24031,6 +24256,21 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Oblix_SOW_Projects__c.Live_date_Asset_delivery__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Name_Prefix__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Name_Suffix_Cycle_Number__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Name_Suffix__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -24070,12 +24310,27 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Oblix_ProjectBoxNumber_PFY__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Oblix_SOW_Projects__c.Oblix_ProjectBoxNumber__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Oblix_SOW_Projects__c.Oblix_tec_Unique_Name_c__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Original_Campaign__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Original_SOW__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -24096,6 +24351,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Oblix_SOW_Projects__c.Percentage_of_Fee_for_this_FY__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Percentage_of_Fees_PFY__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Percentage_of_Fees_Paid_To_Date__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -24155,7 +24420,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Projected_Stage_CFY__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Projected_Stage_PFY__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Oblix_SOW_Projects__c.Projected_Stage__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Record_Locked_Sync__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -24171,6 +24451,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Oblix_SOW_Projects__c.SOW_FY__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.SOW_NFY__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.SOW_PFY__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -24201,6 +24491,21 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Oblix_SOW_Projects__c.Stimulus_Requirements__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Sync_Required_NFY__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Sync_Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Sync_Step__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -24240,12 +24545,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Total_Project_Score_PFY__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Oblix_SOW_Projects__c.Total_Project_Score__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Oblix_SOW_Projects__c.Total_Value_Driver__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Unique_key__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>

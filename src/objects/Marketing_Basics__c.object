@@ -93,6 +93,10 @@ Renamed to Other SOW items in reviews</description>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Brand Love Key</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Brand Technical &amp;/or Infrastructure Reviews</fullName>
                 <default>false</default>
             </picklistValues>
@@ -117,10 +121,6 @@ Renamed to Other SOW items in reviews</description>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Other</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Regional Leadership</fullName>
                 <default>false</default>
             </picklistValues>
@@ -136,7 +136,11 @@ Renamed to Other SOW items in reviews</description>
                 <fullName>USLP</fullName>
                 <default>false</default>
             </picklistValues>
-            <sorted>true</sorted>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
         </picklist>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -225,9 +229,10 @@ ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;))
     </fields>
     <fields>
         <fullName>Description__c</fullName>
+        <description>Field was not being used, so has been relabelled for use in Non Campaign table</description>
         <externalId>false</externalId>
         <inlineHelpText>Please enter a full description of the Tasks / Activities required</inlineHelpText>
-        <label>Description</label>
+        <label>Other Info</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -244,6 +249,18 @@ ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;))
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>FTE_report__c</fullName>
+        <description>For use in non campaign reports only</description>
+        <externalId>false</externalId>
+        <formula>IF( RecordType.DeveloperName = &quot;Activity&quot;, NULL, TEXT(No_of_Hours_Required__c)+&quot;%&quot;)</formula>
+        <label>FTE</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Financial_Year__c</fullName>
@@ -320,7 +337,7 @@ ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;))
 OR( 
 ISPICKVAL( Oblix_SOWMarketing__r.SOW_Status__c  , &quot;Awaiting Unilever Approval&quot;), 
 ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Draft - with Unilever&quot;), 
-ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;)), NULL ,Oblix_Hourly_Rate__c)</formula>
+ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;)), NULL , Hourly_Rate_or_FTE__c)</formula>
         <label>Hourly Rate</label>
         <precision>18</precision>
         <required>false</required>
@@ -330,14 +347,41 @@ ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;))
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>Hourly_Rate_or_FTE__c</fullName>
+        <description>Field for storing actual hourly rate or FTE (not calculated from &quot;Total Amount&quot; divided by &quot;Hours required&quot;) from Calculator Role Rate record.</description>
+        <externalId>false</externalId>
+        <label>Hourly Rate or FTE</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>No_of_Hours_Required_Activity__c</fullName>
+        <description>Used in Non Campaign reports in order to exclude the field value from any records that are of type dedicated resource, since they should have a value for FTE not no of hours</description>
+        <externalId>false</externalId>
+        <formula>IF(RecordType.DeveloperName = &quot;Activity&quot;,  No_of_Hours_Required__c   , NULL)</formula>
+        <label>No of Hours Required</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>No_of_Hours_Required__c</fullName>
         <description>The No of hours to complete these</description>
         <externalId>false</externalId>
         <inlineHelpText>Enter the number or hours this activity is estimated to take.</inlineHelpText>
         <label>No of Hours Required</label>
-        <precision>4</precision>
+        <precision>6</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -1022,6 +1066,10 @@ Oblix_FTE_Real_Price__c)</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Brand Love Key</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Brand Technical %26%2For Infrastructure Reviews</fullName>
                 <default>false</default>
             </values>
@@ -1668,15 +1716,15 @@ Oblix_FTE_Real_Price__c)</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Brand Love Key</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Category Leadership</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Global Leadership</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other</fullName>
                 <default>false</default>
             </values>
             <values>
