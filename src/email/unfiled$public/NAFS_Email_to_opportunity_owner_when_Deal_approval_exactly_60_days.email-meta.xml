@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email to opportunity owner when deal approval exactly 60 days-Used in &apos;NAFS Email to opportunity owner when Deal approval exactly 60 days&apos; WORKFLOW</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>NAFS Email to opportunity owner when Deal approval exactly 60 days</name>
+    <style>none</style>
+    <subject>Discount Approval Expired</subject>
+    <type>text</type>
+</EmailTemplate>
