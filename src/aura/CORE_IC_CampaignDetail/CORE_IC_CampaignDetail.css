@@ -1,0 +1,27 @@
+.THIS.mainContent{
+    background-color:white;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+.THIS hr{
+    margin: 0rem;
+    border-top: 1px solid #cfd7E6;
+    padding: 0px;   
+}
+.THIS .topBarStyle{
+       height: 42px;
+    padding-left: 0px;
+    padding-top: 8px;  
+}
+.THIS .topBackBar{ 
+    height: 40px;    
+    padding-left: 10px;   
+    width: 50px;
+}
+.THIS .topBackBarIcon{
+    height:22px;
+    width:22px; 
+}
+.THIS .fontStyle{
+    color:#A7B8D1;
+}

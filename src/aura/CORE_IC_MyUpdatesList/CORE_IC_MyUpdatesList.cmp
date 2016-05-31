@@ -1,0 +1,63 @@
+<aura:component controller="Core_IC_IdeaController">
+    <aura:handler name="init" value="{!this}" action="{!c.getMyUpdatesData}"/>
+    <aura:attribute name="myUpdatesList" type="Core_CA_BaseApplicationWrapper"/>
+    <aura:attribute name="displayErrorMessage" type="Boolean" default="false"/>
+    <aura:attribute name="MyUpdatesType" type="String"/>
+    <aura:attribute name="pannelType" type="String"/>   
+    <aura:attribute name="UpdateTitle" type="String"/> 
+    <aura:attribute name="showspinner" type="boolean" default="true"/>
+    <aura:attribute name="recordDetail" type="Core_CA_BaseApplicationWrapper"/>
+     
+    <!-- <style>
+                .update{
+                margin-bottom: 31px
+                }
+                .text{color: #0040ff !important;}
+                .margin{margin-left: 5px;}
+               }
+             .fixedBottom{
+        background: #ffffff;
+        height: 50px;
+        Position: fixed;
+        bottom: 0;
+        width: 100%;
+        }
+    .fixedBottom>div {
+        width: 50%;
+        float: left;
+        }
+        .fixedBottom >div img {
+        width: 50px;
+        }
+        .feedback,.information{
+         
+        width:50%;
+        text-align:center;
+        }
+         </style> -->
+    <style>
+        .main_content{    background-color: white;}
+    </style>
+    
+          <div class="main_content">
+                      <div class="slds-page-header update" role="banner">
+                        <h2 class="slds-text-heading--small themeHeight slds-truncate">{!v.UpdateTitle}</h2>
+                      </div>
+                         <div class="detailSection">
+                             <aura:iteration items="{!v.myUpdatesList}" var="myUpdatesListItem"> 
+                              <c:CORE_IC_MyUpdateListItem myUpdatesListItem="{!myUpdatesListItem}" pannelType="{!v.pannelType}"/>
+                             </aura:iteration>
+                        </div> 
+                    <aura:if isTrue="{!v.displayErrorMessage}">
+                         <div class="slds-box slds-theme--shade">
+                           <p> There are no updates on your active idea campaigns...</p>
+                          </div>
+                   </aura:if>
+                  <aura:if isTrue="{!v.showspinner == true ? false : true}">
+                    <div class="fixedBottom">
+                       <div class="feedback bottom" > <img src="/resource/CORE_IC_IdeasLigthtning/img/IDEA01.svg"/></div>
+                       <div class="information bottom" onclick="{!c.navigateToFaq}"> <img src="/resource/CORE_IC_IdeasLigthtning/img/IDEA02.svg"/></div>
+                  </div>
+               </aura:if> 
+     </div>   
+</aura:component>

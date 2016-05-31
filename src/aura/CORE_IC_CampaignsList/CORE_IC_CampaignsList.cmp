@@ -1,0 +1,83 @@
+<aura:component controller="Core_IC_IdeaController">
+    <aura:handler name="init" value="{!this}" action="{!c.getCampaignsListData}"/>
+    <aura:attribute name="activeCampaignsList" type="Core_CA_BaseApplicationWrapper"/>
+    <aura:attribute name="closedCampaignsList" type="Core_CA_BaseApplicationWrapper"/>
+    <aura:attribute name="campaignsList" type="Core_CA_BaseApplicationWrapper"/>
+    <aura:attribute name="selectedCampaignFilter" type="String"/>
+    <aura:attribute name="pannelType" type="String"/>
+    <aura:attribute name="displayLoadMore" type="Boolean" default="false"/>
+    <aura:attribute name="displayErrorMessage" type="Boolean" default="false"/>
+    <aura:attribute name="showMoreLimit" type="Integer" />
+    <aura:attribute name="showFilter" type="boolean" default="false"/>
+    <aura:attribute name="campaignTitle" type="String"/>     
+    <aura:attribute name="MailSubject" type="String" />
+    <aura:attribute name="MailToBody1" type="String" />
+    <aura:attribute name="MailToBody2" type="String" />
+    <aura:attribute name="share" type="Boolean"/>
+    <aura:attribute name="showspinner" type="boolean" default="true"/> 
+    <style>
+        .filter {
+        	position:relative;
+        	z-index:2;
+        }
+
+    </style>  
+    <div class="slds-grid slds-card__header listHeaderWidth">
+        <div class="slds-media slds-media--center slds-has-flexi-truncate camp-title" onclick="{!c.hideFilterMenu}">
+            <div class="slds-text-heading--small" style="padding-left: 4px;">{!v.campaignTitle}</div>
+        </div>
+        <div class="slds-no-flex">
+            <div  class=" slds-dropdown-trigger--click slds-is-open slds-dropdown--right filter"  aria-expanded="true">               
+                <button class="slds-button slds-button--icon-border-filled " onclick="{!c.showFilterMenu}" aria-haspopup="true" >
+                    <img src="/resource/CORE_IC_IdeasLigthtning/utility/filterList_60.png" class="slds-button__icon slds-button__icon--hint" />
+                </button>
+                <aura:if isTrue="{!v.showFilter}">
+                    <div id="sortOptions" class="slds-dropdown slds-dropdown--right ">
+                        <ul class="dropdown__list" role="menu" >  
+                            <li class="slds-dropdown__item " aura:id ="activeCampaign" onclick="{!c.displayOpenCampaigns}">
+                                <a role="menuitem"><p class="slds-truncate">Active Campaigns</p></a>
+                            </li>                                 
+                            <li class="slds-dropdown__item" aura:id ="closedCampaign" onclick="{!c.displayClosedCampaigns}">
+                                <a role="menuitem"><p class="slds-truncate">Closed Campaigns</p></a>
+                            </li>
+                        </ul>
+                    </div>
+                </aura:if>
+            </div>
+        </div>
+    </div>    
+    <aura:if isTrue="{!v.displayErrorMessage}">
+        <div class="slds-card__header slds-text-heading--small">There are no campaigns available...</div> 
+    </aura:if> 
+    <table class="paddingBottom" onclick="{!c.hideFilterMenu}">
+        <tr><td>
+            <aura:iteration items="{!v.campaignsList}" var="campaignsListItem">
+                <div class="campaignsListItemStyle" onclick="{!c.hideFilterMenu}">                                
+                    <c:CORE_IC_CampaignsListItem campaignsListItem="{!campaignsListItem}" selectedCampaignFilter="{!v.selectedCampaignFilter}" pannelType="{!v.pannelType}"/>
+                </div>
+            </aura:iteration>
+        </td></tr>
+        <tr><td>
+            <aura:if isTrue="{!v.displayLoadMore}">
+                <div class="loadMoreBar paddingBottom">    
+                    <div class="loadMoreButton" onclick="{!c.loadMoreCampaignList}">  Load More  </div>
+                </div>
+            </aura:if>
+        </td></tr>
+    </table> 
+    <aura:if isTrue="{!v.showspinner == true ? false : true}">
+        <div class="fixedBottomBar">
+            <img src="/resource/CORE_IC_IdeasLigthtning/utility/info_60.png" onclick="{!c.navigateToFaq}" class="fixedBottomBarIcon" />
+            
+        </div>
+    </aura:if>
+    <aura:if isTrue="{!v.showspinner}">
+       <!-- <center><img class="spinner-img" src="/resource/EA_StaticResource/assets/images/spinners/slds_spinner.gif"></img></center>-->
+       <div class="slds-spinner_container">
+         <div class="slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
+            <div class="slds-spinner__dot-a"></div>
+             <div class="slds-spinner__dot-b"></div>
+         </div>
+      </div>
+    </aura:if>
+</aura:component>

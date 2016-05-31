@@ -1,0 +1,97 @@
+.THIS .themeHeight {
+    font-weight: 300;
+    font-size: 1.125rem;
+    line-height: 3.25;
+    margin-left: 10px;
+    padding-left: 6px;
+}
+
+.THIS .shareTop{
+    top: -27px;
+    right: -14px;
+}
+.THIS .slds-button{
+    float: right;
+}
+
+.THIS .sort{
+   right: 0px;
+}
+
+.THIS .slds-dropdown--right {
+	top: 84px;
+    position: absolute;
+    right: 12px;
+    width: 140px;
+}
+.THIS .dorpdown-right {
+	top: 70px;
+    position: absolute;
+    right: 12px;
+    width: 140px;
+}
+.THIS .sort {
+    right: 49px;
+}
+.THIS .filter{
+    right: 16px;
+    width:160px;
+    top: 68px;
+}
+.THIS .chatter{
+   right: 35px;
+    top: 169px;
+}
+
+.THIS .campaign, .THIS.campaign{
+    font-weight:bold;
+}
+
+
+.THIS.slds-card, .THIS .slds-card {
+    margin: 15px;
+}
+.THIS .slds-card__header.slds-grid, .THIS.slds-card, .THIS .slds-card{
+    background: #FFFFFF;
+}
+
+.THIS .bottomPadding{
+    padding-bottom:10px;
+}
+.THIS .topPadding{
+    padding-top:10px;
+} 
+
+.THIS .centre{
+    	     bottom: 25px;
+    /* position: absolute; */
+    float: initial;
+    margin: 14px 0 4px 0px;
+}
+
+.THIS .fontStyle{
+    color:#A7B8D1;
+}
+.THIS .campaign{
+    font-weight:bold;
+}
+.THIS .campaignType{
+        right: 87px;
+        width: 160px !important;
+}
+
+.THIS .menuItem_width{
+    width:200px !important;
+}
+.THIS .hideMenu{
+    display:none;
+}
+.THIS .filter {
+    right: -34px;
+    width: 160px;
+    top: 34px;
+}
+
+.THIS .noData{
+margin-top: 16px;
+}

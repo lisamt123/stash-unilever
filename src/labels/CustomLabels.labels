@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>CORE_IC_CampaignBody</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EmailBodyForCampaigns</shortDescription>
+        <value>Hi, You may find the Campaign</value>
+    </labels>
+    <labels>
+        <fullName>CORE_IC_CampaignSubBody</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EmailBodyForCampaigns</shortDescription>
+        <value>interesting. Please share your ideas on this!! More information could be found here</value>
+    </labels>
+    <labels>
+        <fullName>CORE_IC_CampaignSubject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EmailSubjectForCampaigns</shortDescription>
+        <value>Submit your ideas for this campaign</value>
+    </labels>
+    <labels>
+        <fullName>CORE_IC_FAQ</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CORE_IC_FAQ</shortDescription>
+        <value>FAQ&apos;s</value>
+    </labels>
+    <labels>
+        <fullName>CORE_IC_IdeaBody</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EmailBodyForIdeas</shortDescription>
+        <value>Hi, You may find the Idea</value>
+    </labels>
+    <labels>
+        <fullName>CORE_IC_IdeaSubBody</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EmailBodyForIdeas</shortDescription>
+        <value>interesting. Please vote if you like it!! More information could be found here</value>
+    </labels>
+    <labels>
+        <fullName>CORE_IC_IdeaSubject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EmailSubjectForIdeas</shortDescription>
+        <value>&quot; Vote for the &quot;Idea</value>
+    </labels>
+</CustomLabels>

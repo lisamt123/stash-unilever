@@ -1,0 +1,54 @@
+.THIS .threeColmnWidth{
+    width:33%;    
+}
+.THIS .homePageMenuWidth{
+    width:100%; 
+    padding-top: 10px;
+    margin-bottom: -19px;
+}
+
+.THIS td.alignCenter {
+    text-align:center;
+}
+.THIS .displayErrorMessage{
+    color:red;
+    font-weight:bold;
+}
+
+.THIS .leftSpaceing{
+    padding-left:10px;
+}
+.THIS .rightSpaceing{
+    padding-right:10px;
+    text-align: right;
+}
+.THIS .fullPadding {
+    padding:10px;
+    padding-top:25px;
+}
+.THIS .file {
+    margin-bottom: 5px;
+    display: block;
+}
+.THIS .paddingTop{
+    padding-top:25px;
+}
+.THIS .smallIcon{
+    height:15px;
+}
+
+.THIS .successIcon{
+    float:right;    
+    width: 20px;
+}
+.THIS .addIcon{
+    width: 20px;
+    height: 20px;
+    padding-bottom:2px;
+}
+
+@media (min-width: 700px){     
+    .THIS .fullPadding{
+        width:50%;
+    }
+}

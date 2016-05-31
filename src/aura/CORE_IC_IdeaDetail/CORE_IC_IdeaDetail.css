@@ -1,0 +1,70 @@
+.THIS.mainContent{
+    background-color:white;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.THIS .commentdetail{
+     
+     background:#EEF1F6;
+}
+
+.THIS .commentPost{
+    padding-top: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 20px;
+
+    
+}
+
+.THIS hr{
+    margin: 0rem;
+    border-top: 1px solid #cfd7E6;
+    padding: 0px;
+   
+}
+
+
+.THIS .sectionText{
+    background: #FFFFFF; 
+    border:1px solid #D1D1D4;
+    border-radius:5px;
+    max-width: 400px;
+    width: 100%;
+}
+
+.THIS .topBarStyle{
+       height: 42px;
+    padding-left: 0px;
+    padding-top: 8px;
+   
+}
+
+/*applying style for the top back aroow bar of the page*/ 
+.THIS .topBackBar{ 
+    height: 40px;    
+    padding-left: 10px;   
+    width: 50px;
+}
+
+/*applying style for the top back aroow bar Icon of the page*/ 
+.THIS .topBackBarIcon{
+    height:22px;
+    width:22px; 
+}
+
+
+.THIS .fontStyle{
+    color:#A7B8D1;
+}
+
+.THIS .tilePadding{
+    padding-bottom: 15px;
+    padding-top: 15px;
+    color:#4F6A92 ;
+}
+  
+.THIS .tilePaddingTitle{
+    padding-bottom: 0px;
+}

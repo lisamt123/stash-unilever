@@ -1,0 +1,124 @@
+<aura:component controller="Core_IC_IdeaController" >
+         <aura:handler name="init" value="{!this}" action="{!c.getIdeaDetailData}"/>
+         <aura:attribute name="commentListItem" type="Core_CA_BaseApplicationWrapper"/>
+         <aura:attribute name="recordType" type="String"/>
+         <aura:attribute name="pannelType" type="String"/>
+         <aura:attribute name="recordDetail" type="Core_CA_BaseApplicationWrapper"/>
+         <aura:attribute name="commentCount" type="boolean" default="false"/>
+         <aura:attribute name="showspinner" type="boolean" default="true"/> 
+ <div class="mainContent">
+     <div class="topBarStyle">   
+           <div class="topBackBar">
+               <img class="topBackBarIcon" src="/resource/CORE_IC_IdeasLigthtning/img/back.svg" onclick="{!c.navigateToAllIdea}"/>           	                                             
+           </div> 
+       </div>   
+      <aura:if isTrue="{!v.showspinner=='false'}">
+               <div class="slds-media slds-tile tilePadding">
+                        <div class="slds-media__figure">
+                          <span class="slds-avatar slds-avatar--circle slds-avatar--small avatarIcon">
+                              <img src="{!v.recordDetail.BackgroundImage}"  alt="Person"/>
+                          </span>
+                        </div>
+                        <div class="slds-media__body">
+                          <p class="slds-tile__title slds-truncate"><a href="#"> {!v.recordDetail.CreatorName}</a></p>
+                          <div class="slds-tile__detail slds-text-body--small">
+                            <ul class="slds-list--horizontal slds-has-dividers">
+                              <li class="slds-truncate slds-list__item"> {!v.recordDetail.CreatedDateTime}</li>
+                            </ul>
+                          </div>
+                        </div>
+                  </div>
+         	 <div class= "slds-text-heading--label tilePadding">  {!v.recordDetail.CampaignTitle}
+              </div>
+            <div class="slds-grid">
+                <div class="slds-media slds-media--center slds-has-flexi-truncate tilePaddingTitle">
+                    <h2 class="slds-text-body--regular" > {!v.recordDetail.IdeaTitle}</h2>
+                </div>
+             </div>
+			 <div class="slds-text-body--regular ">
+                <div class="bodyDescriptionHeight">
+                	{!v.recordDetail.IdeaBody}
+                </div>
+                <p class="slds-truncate category"><a  >
+                    <span class="slds-icon_container">
+                 <img aria-hidden="true" class="slds-icon slds-icon-text-warning slds-icon--x-small" src="/resource/CORE_IC_IdeasLigthtning/img/tabset.svg"/>
+                </span>&nbsp;{!v.recordDetail.Categories}</a></p>
+               </div>
+               <hr/>
+		   
+     <div class="slds-grid">
+        <div class="slds-media slds-media--center slds-has-flexi-truncate">
+             <div class="slds-button fontStyle">{!v.recordDetail.VoteCount} Votes,</div>&nbsp;
+              <div class="slds-button fontStyle">{!v.recordDetail.CommentCount} Comment</div>
+         </div>  
+       <div class="slds-no-flex">
+            <!-- <aura:if isTrue="{v.selectedFilterType!='closedCampaign'}">-->
+                <aura:if isTrue="{!v.recordDetail.Voted=='True'}">
+                    <button class="slds-button slds-button--neutral slds-not-selected" >
+                        <img src="/resource/CORE_IC_IdeasLigthtning/img/like_blue.svg" class="mediumImageHeight" />&nbsp;Voted 
+                    </button>
+                    <aura:set attribute="else">
+                        <button class="slds-button slds-button--neutral slds-not-selected" onclick="{!c.showIdeaVoted}"> 
+                            <img src="/resource/CORE_IC_IdeasLigthtning/utility/like_60.png" class="mediumImageHeight"/>&nbsp;Vote 
+                        </button>
+                    </aura:set>
+                </aura:if>
+          <!--  </aura:if>-->
+        </div>  
+    </div><br></br>
+      <div class="slds-publisher slds-publisher--discussion commentPost">
+                <label for="comment-text-input2" class="slds-assistive-text">Write a comment</label>
+                   <ui:inputText aura:id="comments" class="sectionText" placeholder="Write a comment…"  value="{!v.commentListItem.CommentBody}"  />
+                     <div class="slds-publisher__actions slds-grid slds-grid--align-spread">
+                       <button class="slds-button slds-button--brand" onclick="{!c.submitComment}">Post</button>
+                    </div>
+        </div><br></br>   
+     <aura:if isTrue="{!v.commentCount}">
+          <div class="slds-box slds-theme--shade">
+               <p>There are no comments</p>
+          </div>
+       </aura:if>
+             <aura:iteration items="{!v.commentListItem}" var="commentList">
+            <div class="slds-feed  commentdetail" id="ticket-event-list">
+                <ul class="slds-feed__list">
+                  <li class="slds-feed__item">
+                    <div class="slds-media slds-comment slds-hint-parent">
+                      <div class="slds-media__figure">
+                        <div class="slds-avatar slds-avatar--circle slds-avatar--medium">
+                          <a href="#void" title="Jason Rodgers">
+                            <img src="{!commentList.BackgroundImage}" alt="photoUrl" />
+                          </a>
+                        </div>
+                      </div>
+                      <div class="slds-media__body" >
+                        <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                          <p class="slds-truncate"><a href="#void" title="Design Systems"> {!commentList.CreatorName}</a></p>
+                        </div>
+                        <p class="slds-text-body--small"><a href="#void" title="Click for single-item view of this post">{!commentList.CreatedDateTime} </a></p>
+                        <div class="slds-comment__content slds-text-longform">
+                          <p>{!commentList.CommentBody} </p>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+             <hr/>
+             </aura:iteration>
+      <aura:if isTrue="{!v.showspinner == true ? false : true}">
+              <div class="fixedBottomBar ">
+                <img src="/resource/CORE_IC_IdeasLigthtning/utility/info_60.png" onclick="{!c.navigateToFaq}" class="fixedBottomBarIcon" />      
+            </div> 
+          </aura:if>
+          <aura:set attribute="else">
+             <div class="slds-spinner_container">
+                  <div class="slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
+                     <div class="slds-spinner__dot-a"></div>
+                     <div class="slds-spinner__dot-b"></div>
+                 </div>
+               </div>
+          </aura:set>
+     </aura:if>      
+ 
+  </div> 	
+</aura:component>

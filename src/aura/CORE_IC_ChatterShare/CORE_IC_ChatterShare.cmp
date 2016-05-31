@@ -1,0 +1,93 @@
+<aura:component controller="Core_NC_NewsCenterController" >
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="recordType" type="String"/>
+    <aura:attribute name="pannelType" type="String"/>
+    <aura:attribute name="recordDetail" type="Core_CA_BaseApplicationWrapper"/>
+    
+    
+    <!--Creating attributes-->    
+    <aura:attribute name="LinkName" type="String"/>
+    <aura:attribute name="LinkURL" type="String"/>
+    <aura:attribute name="displayLinkURL" type="String"/>    
+    <aura:attribute name="LinkPost" type="String"/>
+    <aura:attribute name="SelectedRadioButton" type="String" default="My Followers"/>
+	<aura:attribute name="NewsType" type="String"/>
+    <aura:attribute name="LinkPostErrorMessage" type="String"/>
+    <aura:attribute name="LinkPostFlag" type="Boolean" default="false"/>
+    <aura:attribute name="UserGroupErrorMessage" type="String"/>
+    <aura:attribute name="UserGroupFlag" type="Boolean" default="false"/>
+    <aura:attribute name="UserGroupName" type="String"/>
+    <aura:attribute name="groupNameList" type="String" />
+    <aura:attribute name="selectedGroupName" type="String[]"/>
+    <aura:attribute name="ErrorMessageFlag" type="Boolean" default="false"/>
+    <aura:attribute name="clearSelectedGroupFlag" type="Boolean" default="false"/> 
+    <aura:attribute name="ErrorMessage" type="String" default="Some problem occured,Try Again"/>
+    <aura:attribute name="displaySucessNotification" type="Boolean" default="false"/>
+    
+    <aura:if isTrue="{!v.displaySucessNotification}">
+        <!--<div class="notificationBackground">
+            <div class="notificationDisplay" onclick="{!c.BackButton}">Your Share is success...</div>
+        </div>-->
+        <div onclick="{!c.BackButton}">
+            <div aria-hidden="false" role="dialog" class="slds-modal slds-modal--prompt slds-fade-in-open">
+                <div class="slds-modal__container slds-modal--prompt">
+                    <div class="slds-box slds-theme--success">
+                        <div>Your Share is success...<a href="#"><img class="successIcon" src="/resource/CORE_IC_IdeasLigthtning/utility/close.svg"></img></a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-backdrop slds-backdrop--open"></div>
+        </div>
+    </aura:if>     
+        	<div>    
+                <div class="topBarStyle">
+                    <div onclick="{!c.BackButton}" class="topBackBar">
+                        <img src="/resource/CORE_IC_IdeasLigthtning/img/back.svg" class="topBackBarIcon" ></img>
+                    </div>
+                </div>            
+                <div class="chatterSection">
+                    <div>
+                        <b>Link URL</b><br/>
+                        <ui:inputText value="{!v.displayLinkURL}" class="sectionText" disabled="true"/>                        
+                    </div>
+                    <div class="sectionStyle">   
+                        <b>Link Name</b><br/>
+                        <ui:inputText value="{!v.LinkName}" class="sectionText" disabled="true"/>
+                    </div>
+                    <div class="sectionStyle">  
+                        <b>Post</b><br/>
+                        <ui:inputTextArea value="{!v.LinkPost}" class="sectionText" required="true"/>
+                    </div>                
+                    <div class="sectionStyle">      
+                        <input type="radio" name="others" onclick="{!c.myFollowers}" checked="true"/>My Followers<br/>
+                    </div>
+                    <div class="sectionStyle">    
+                        <input type="radio" name="others" onclick="{!c.group}"/>Group<br/>
+                    </div>
+                    <div class="sectionStyle">     
+                        <div aura:id="autoCompleteDiv">
+                            Group Name<br/>    
+                            <div class="ui-widget">
+                                <input id="groupNames" class="autoCompleteText" onkeyup="{!c.getGroupName}"/> 
+                                <img src="/resource/CORE_IC_IdeasLigthtning/utility/add_60.png" class="addIcon" onclick="{!c.addGroupName}"/>
+                            </div>                                                
+                           <aura:iteration items="{!v.selectedGroupName}" var="groupName">
+                                <div class="groupNameList">{!groupName}</div>
+                            </aura:iteration>   
+                            <aura:if isTrue="{!v.clearSelectedGroupFlag}">
+                                <div class="groupNameList"><span onclick="{!c.clearGroupNames}" class="applyButton">Clear Groups</span></div><br/>
+                            </aura:if>                                                
+                            <aura:if isTrue="{!v.UserGroupFlag}">
+                                <span class="errorMessageColor" >*Enter atleast 1 Group Name</span>
+                            </aura:if>                         
+                        </div>                        
+                    </div>     				                
+                    <aura:if isTrue="{!v.ErrorMessageFlag}">
+                        <br/><span class="errorMessageColor" >{!v.ErrorMessage}</span>
+                    </aura:if>
+                    <div class="centerText">
+                        <br/><span onclick="{!c.submitShare}" class="applyButton">Share</span>
+                    </div>
+                </div>
+            </div>
+</aura:component>

@@ -53,7 +53,7 @@ global with sharing class Core_IC_LandingPage{
                if(objIdeaLandingPageResponse.ActiveStatus!=true) objIdeaLandingPageResponse.ActiveStatus=objIdeaLandingPageResponseTemp.ActiveStatus;
            }
            
-           if(appWrapperObj.ideaLandingPageRequest.MyUpdatesLimit=='4' || appWrapperObj.ideaLandingPageRequest.MyUpdatesLimit=='All'){
+           if(appWrapperObj.ideaLandingPageRequest.MyUpdatesLimit=='4' || appWrapperObj.ideaLandingPageRequest.MyUpdatesLimit=='5' || appWrapperObj.ideaLandingPageRequest.MyUpdatesLimit=='All'){
                objIdeaLandingPageResponseTemp=processMyUpdates(appWrapperObj);
                objIdeaLandingPageResponse.MyUpdates=objIdeaLandingPageResponseTemp.MyUpdates;
                objIdeaLandingPageResponse.CampaignTypeForMyUpdates=objIdeaLandingPageResponseTemp.CampaignTypeForMyUpdates;
@@ -63,6 +63,7 @@ global with sharing class Core_IC_LandingPage{
            }
            objIdeaLandingPageResponse.message=Core_IC_AppConstants.RESPONSE_SUCCESS_MSG;
            objIdeaLandingPageResponse.statusCode=Core_IC_AppConstants.RESPONSE_SUCCESS_CODE;
+           ObjIdeaLandingPageResponse.ShowMoreLimit=(Integer)Core_Ideation_heirarchical__c.getInstance().Record_Display_Limit__c;
        }
        catch(Core_CA_BaseServiceException baseServEx){ 
             throw new Core_CA_BaseServiceException(baseServEx);
@@ -104,7 +105,7 @@ global with sharing class Core_IC_LandingPage{
                 //ObjIdeaLandingPageResponse.CampaignTypeForFeaturedCampaigns='None';
                 ObjIdeaLandingPageResponse.SeeAllLinkForFeaturedCampaigns=False;
            }
-           
+
            ObjIdeaLandingPageResponse.CampaignTypeForFeaturedCampaigns='None';
            if(lstActiveIdeaTheme.isEmpty() && !lstClosedIdeaTheme.isEmpty()){
                 ObjIdeaLandingPageResponse.CampaignTypeForFeaturedCampaigns='NoActive';
@@ -201,10 +202,10 @@ global with sharing class Core_IC_LandingPage{
             DateTime dt=System.now().addDays(-6);
             //if(appWrapperObj.ideaLandingPageRequest.IdeasOfTheWeekLimit!='All'){
                 //lstActiveWeekIdea=[SELECT Body,CreatedDate,CreatorName,CreatorSmallPhotoUrl,Id,IdeaThemeId,Title,VoteTotal,Description__c,NumComments,Categories__c FROM Idea Where IdeaThemeId in :setActiveId and CreatedDate>:dt and CreatedDate< :System.now()  ORDER BY VoteTotal DESC,CreatedDate DESC Limit 4];
-                lstActiveWeekIdea=[SELECT Body,CreatedDate,CreatorName,CreatorSmallPhotoUrl,Id,IdeaThemeId,Title,VoteTotal,Description__c,NumComments,Categories__c FROM Idea Where IdeaThemeId in :setActiveId and CreatedDate>:dt and CreatedDate< :System.now()  ORDER BY VoteTotal DESC,CreatedDate DESC Limit 4];
+                //lstActiveWeekIdea=[SELECT Body,CreatedDate,CreatorName,CreatorSmallPhotoUrl,Id,IdeaThemeId,Title,VoteTotal,Description__c,NumComments,Categories__c FROM Idea Where IdeaThemeId in :setActiveId and CreatedDate>:dt and CreatedDate< :System.now()  ORDER BY VoteTotal DESC,CreatedDate DESC Limit 4];
+                lstActiveWeekIdea=[SELECT Body,CreatedDate,CreatorName,CreatorSmallPhotoUrl,Id,IdeaThemeId,Title,VoteTotal,Description__c,NumComments,Categories__c FROM Idea Where IdeaThemeId in :setActiveId and CreatedDate>:dt and CreatedDate< :System.now()  ORDER BY VoteTotal DESC,CreatedDate DESC];
                 //lstActiveWeekIdea=lstActiveIdea;
-            /*}
-            
+            /*}            
             else*/             
             lstActiveIdea=[SELECT Body,CreatedDate,CreatorName,CreatorSmallPhotoUrl,Id,IdeaThemeId,Title,VoteTotal,Description__c,NumComments,Categories__c FROM Idea Where IdeaThemeId in :setActiveId ORDER BY VoteTotal DESC,CreatedDate DESC Limit 4];
             List<Idea> lstClosedIdea=[SELECT Body,CreatedDate,CreatorName,CreatorSmallPhotoUrl,Id,IdeaThemeId,Title,VoteTotal,Description__c,NumComments,Categories__c FROM Idea Where IdeaThemeId in :setClosedId ORDER BY VoteTotal DESC,CreatedDate DESC];
@@ -243,7 +244,7 @@ global with sharing class Core_IC_LandingPage{
            }
            
            if(!lstActiveWeekIdea.isEmpty() && appWrapperObj.ideaLandingPageRequest.IdeasOfTheWeekLimit!='All' && lstActiveWeekIdea.size()<4){
-                
+           //if(!lstActiveWeekIdea.isEmpty() && appWrapperObj.ideaLandingPageRequest.IdeasOfTheWeekLimit!='All' && appWrapperObj.ideaLandingPageRequest.IdeasOfTheWeekLimit=='4'){     
                 //setTempIdea.addAll(lstIdea);
                 lstIdea.addAll(lstActiveIdea);
                 Set<Idea> setTempIdea=new Set<Idea>(lstIdea);
@@ -341,7 +342,7 @@ global with sharing class Core_IC_LandingPage{
                         setIdeaId.add(i.Id);
                     }
                     List<Vote> lstVote=[SELECT CreatedById,CreatedDate,Id,IsDeleted,ParentId,SystemModstamp,Type FROM Vote WHERE CreatedById != :Userinfo.getuserId() AND Parent.Type='Idea' ORDER BY CreatedDate];
-                    List<IdeaComment> lstComment=[SELECT CommentBody,CreatedDate,CreatorFullPhotoUrl,CreatorName,IdeaId FROM IdeaComment WHERE IdeaId in:setIdeaId and CreatedById != :Userinfo.getuserId() ORDER BY CreatedDate DESC Limit 4];
+                    List<IdeaComment> lstComment=[SELECT CommentBody,CreatedDate,CreatorFullPhotoUrl,CreatorName,IdeaId FROM IdeaComment WHERE IdeaId in:setIdeaId and CreatedById != :Userinfo.getuserId() ORDER BY CreatedDate DESC Limit 5];
                     
                     Set<Id> setUserId=new Set<Id>();
                     for(Vote i:lstVote){
@@ -356,7 +357,7 @@ global with sharing class Core_IC_LandingPage{
                         ObjSingleMyUpdates.BackgroundImage=c.CreatorFullPhotoUrl;
                         ObjSingleMyUpdates.CreatorName=c.CreatorName;
                         ObjSingleMyUpdates.CreatedDateTime=String.ValueOf(c.CreatedDate);
-                        ObjSingleMyUpdates.IdeaId=c.Id;
+                        ObjSingleMyUpdates.IdeaId=c.IdeaId;
                         ObjSingleMyUpdates.MyUpdatesType='Comment';
                         lstCombinedMyUpdates.add(ObjSingleMyUpdates);
                     }

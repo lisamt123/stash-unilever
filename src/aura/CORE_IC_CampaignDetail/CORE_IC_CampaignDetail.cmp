@@ -1,0 +1,102 @@
+<aura:component controller="Core_IC_IdeaController" >    
+            <aura:handler name="init" value="{!this}" action="{!c.getCampaignDetailData}"/>
+            <!-- <aura:attribute name="campaignsListItem" type="Core_CA_BaseApplicationWrapper"/> -->
+            <aura:attribute name="FeaturedCampaignsItems" type="Core_CA_BaseApplicationWrapper"/>
+            <aura:attribute name="newsType" type="String"/>
+            <aura:attribute name="url" type="String"/>
+            <aura:attribute name="selectedCampaignFilter" type="String"/>  
+            <aura:attribute name="CompaignType" type="String"/>
+            <aura:attribute name="MailSubject" type="String" />
+            <aura:attribute name="MailToBody1" type="String" />
+            <aura:attribute name="MailToBody2" type="String" />
+            <aura:attribute name="MailToBody3" type="String" />
+            <aura:attribute name="share" type="Boolean"/>
+            <aura:attribute name="recordType" type="String"/>
+            <aura:attribute name="pannelType" type="String"/>
+            <aura:attribute name="recordDetail" type="Core_CA_BaseApplicationWrapper"/>
+            <aura:attribute name="showspinner" type="boolean" default="true"/> 
+            <aura:attribute name="leaderBoardItems" type="Core_CA_BaseApplicationWrapper"/>
+    <style>
+        .align{margin-left: 39px;}
+        .vote{    margin-left: 210px;
+}
+    </style>
+                <div class="main content">
+                           <div class="topBarStyle">   
+                               <div class="topBackBar">
+                                 <img class="topBackBarIcon" src="/resource/CORE_IC_IdeasLigthtning/img/back.svg" onclick="{!c.navigateToAllCampaigns}"/>           	                                             
+                                   </div> 
+                               </div>
+               <aura:if isTrue="{!v.showspinner=='false'}">
+                        <div class="slds-card__header">
+                              <div class="slds-grid">
+                                   <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                                    <h2 class="slds-text-heading--small ">{!v.FeaturedCampaignsItems.CampaignTitle}</h2>
+                                   </div>
+                                   <aura:if isTrue="{!v.selectedFilterType!='closedCampaign'}">
+                                      <div class="slds-no-flex">                    
+                                       <button class="slds-button slds-button--icon-border-filled slds-button--icon-x-small slds-shrink-none" onclick="{!c.showShare}">
+                                        <img src="/resource/CORE_IC_IdeasLigthtning/utility/share_60.png" class="slds-button__icon slds-button__icon--hint slds-button__icon--small"/>
+                                        </button>
+                                          <aura:if isTrue="{!v.share}">
+                                             <div  id="showOptions" class="slds-dropdown slds-dropdown--right sort " >
+                                               <ul class="dropdown__list" role="menu">
+                                                  <li class="slds-dropdown__item">
+                                                    <a  role="menuitem" onclick="{!c.navigateToChatter}" >
+                                                      <p class="slds-truncate"  >Share on Chatter</p>
+                                                      </a>
+                                                 </li>
+                                                <li class="slds-dropdown__item" onclick="{!c.hideChatterShare}">
+                                                     <a href="{!'mailto:?subject='+v.MailSubject+'%20%22'+v.campaignsListItem.CampaignTitle+'!'+'%20%22'+'&amp;body='+v.MailToBody1+'%20%22'+v.campaignsListItem.CampaignTitle+'%22%20'+v.MailToBody2+'%20'+v.MailToBody3}" 
+                                                     style="color: #344A5F ;text-decoration: none;"  role="menuitem">
+                                                    <p class="slds-truncate">Email</p>
+                                                    </a>
+                                                 </li>
+                                            </ul>
+                                         </div>
+                                     </aura:if>
+                                   </div>
+                             </aura:if>
+                        </div> 
+                         <div class="slds-text-body--small bottomPadding">{!v.FeaturedCampaignsItems.EndDate}</div>
+                 </div>
+               <div class="slds-card__header bottomPadding">
+                      <img src="{!v.FeaturedCampaignsItems.Banner}" class="campaignBanner" > </img>  <br/> <br/>         
+                      <div class="slds-text-body--regular topPadding bottomPadding">{!v.FeaturedCampaignsItems.Description}</div>            
+                         <hr/> 
+                          <div class="slds-grid">
+                             <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                              <div class="slds-button fontStyle">{!v.FeaturedCampaignsItems.IdeaCount} Ideas</div>
+                             </div>
+                             <div class="slds-no-flex">
+                               <button class="slds-button slds-button--neutral slds-not-selected mediumFont"><img src="/resource/CORE_IC_IdeasLigthtning/img/Idea_blue.svg" class="mediumImageHeight"/> Post an Idea</button>
+                              </div>
+                         </div>
+                  </div>
+                    <div class="Leader_Content">
+                      <aura:iteration items="{!v.leaderBoardItems}" var="leader">
+                                  <div class="slds-tile">
+                                      <div class="slds-avatar slds-avatar--circle slds-avatar--small avatarIcon">    
+                                       <img src="{!leader.BackgroundImage}"/>
+                                       </div>
+                                    <span class="slds-tile__title slds-truncate">{!leader.IdeaTitle}</span>
+                                      <span class="slds-badge slds-theme--inverse vote">{!leader.VoteCount} Votes</span>
+                                    <div class="slds-tile__detail slds-text-body--small">
+                                     <span class="slds-truncate align">by {!leader.CreatorName}</span>
+                                   </div>
+                                </div>
+                          <hr/>
+                        </aura:iteration>
+                        
+                    </div>
+                 <aura:set attribute="else">
+                   <div class="slds-spinner_container">
+                          <div class="slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
+                               <div class="slds-spinner__dot-a"></div>
+                               <div class="slds-spinner__dot-b"></div>
+                          </div>
+                    </div>
+                 </aura:set>
+           </aura:if>
+          </div>
+</aura:component>

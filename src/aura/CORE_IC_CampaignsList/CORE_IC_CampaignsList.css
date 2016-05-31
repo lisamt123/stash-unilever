@@ -1,0 +1,22 @@
+.THIS .campaign{
+    font-weight:bold;
+}
+.THIS .slds-card {
+    margin: 10px;
+}
+.THIS .slds-card__header.slds-grid, .THIS .slds-card{
+    background: #FFFFFF;
+}
+.THIS hr{
+    margin: 0rem;
+    border-top: 1px solid #cfd7E6;
+}
+.THIS .bottomPadding{
+    padding-bottom:0px;
+}
+.THIS .topPadding{
+    padding-top:10px;
+}
+.THIS .camp-title{
+    margin-bottom: -9px;
+}

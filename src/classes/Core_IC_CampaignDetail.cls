@@ -130,7 +130,7 @@ global with sharing class Core_IC_CampaignDetail{
            ObjIdeaCampaignDetailResponse.ActiveStatus=False;
            ObjIdeaCampaignDetailResponse.CampaignStatus=ideaTheme.Status;
            if(ideaTheme.Status=='Active') ObjIdeaCampaignDetailResponse.ActiveStatus=True;
-           if(appWrapperObj.ideaCampaignDetailRequest.LatestIdeasLimit!='All') lstIdea=[SELECT Body,CreatedDate,CreatorName,CreatorSmallPhotoUrl,Id,IdeaThemeId,Title,VoteTotal,Description__c,NumComments,CreatorFullPhotoUrl,Categories__c FROM Idea Where IdeaThemeId=:appWrapperObj.ideaCampaignDetailRequest.IdeaCampaignId ORDER BY VoteTotal DESC,CreatedDate DESC Limit 5];
+           if(appWrapperObj.ideaCampaignDetailRequest.LatestIdeasLimit!='All') lstIdea=[SELECT Body,CreatedDate,CreatorName,CreatorSmallPhotoUrl,Id,IdeaThemeId,Title,VoteTotal,Description__c,NumComments,CreatorFullPhotoUrl,Categories__c FROM Idea Where IdeaThemeId=:appWrapperObj.ideaCampaignDetailRequest.IdeaCampaignId ORDER BY VoteTotal DESC,CreatedDate DESC Limit 1];
            else lstIdea=[SELECT Body,CreatedDate,CreatorName,CreatorSmallPhotoUrl,Id,IdeaThemeId,Title,VoteTotal,Description__c,NumComments,CreatorFullPhotoUrl,Categories__c FROM Idea Where IdeaThemeId=:appWrapperObj.ideaCampaignDetailRequest.IdeaCampaignId ORDER BY CreatedDate DESC];
            if(!lstIdea.isEmpty()){
                 ObjIdeaCampaignDetailResponse.SeeAllLinkForLatestIdeas=True;
