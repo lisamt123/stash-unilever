@@ -32,8 +32,8 @@ public class PBS_QuizViewer_Test {
     
         public static final string SYSTEM_ADMINISTRATOR = 'System Administrator';
         public static final string STANDARD_USER = 'Standard User';
-        public static final string LMS_ADMIN = 'LMS_Admin';
-        public static final string LMS_USER = 'LMS_User';
+        public static final string LMS_ADMIN = 'PBS_LMS_Admin';
+        public static final string LMS_USER = 'PBS_LMS_User';
         public static final string ACHIEVEMENTS = 'Achievements';
         public static final string TRAINING_PLAN_SECTION_ITEM_ISSUES_SIZE = 'Training Plan Section Item issues, size = ';
         public static final string LEARNING_ASSIGNMENT_ISSUES_SIZE = 'Learning Assignment issues, size = ';

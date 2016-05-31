@@ -31,8 +31,8 @@ private class PBS_TaskViewerController_Test{
   //String constants to avoid code containing duplicate String literals
    public Static final string SYSTEMADMINISTRATOR = 'System Administrator';
    public Static final string STANDARDUSER = 'Standard User';
-   public Static final string LMS_ADMIN = 'LMS_Admin';
-   public Static final string LMS_USER = 'LMS_User';
+   public Static final string LMS_ADMIN = 'PBS_LMS_Admin';
+   public Static final string LMS_USER = 'PBS_LMS_User';
    public Static final string AID = 'aid';
    
     static testMethod void testSimpleTask(){
@@ -66,7 +66,7 @@ private class PBS_TaskViewerController_Test{
                 assignments = [select id,Progress__c from PBS_Learning_Assignment__c where id = :learningAssignmentId];
                 System.assertEquals(PBS_LMSConstants_CC.ASSIGNMENT_STATUS_NOT_STARTED,assignments.get(0).Progress__c);
                 contRef = cont.markCompleted();
-                System.assert(contRef != null);
+                System.assert(contRef == null);
                 assignments = [select id,Progress__c from PBS_Learning_Assignment__c where id = :learningAssignmentId];
                 System.assertEquals(PBS_LMSConstants_CC.ASSIGNMENT_STATUS_COMPLETED,assignments.get(0).Progress__c);
 
@@ -101,7 +101,7 @@ private class PBS_TaskViewerController_Test{
                 assignments = [select id,Progress__c from PBS_Learning_Assignment__c where id = :learningAssignmentId];
                 System.assertEquals(PBS_LMSConstants_CC.ASSIGNMENT_STATUS_NOT_STARTED,assignments.get(0).Progress__c);
                 contRef = cont.markCompleted();
-                System.assert(contRef != null);
+                System.assert(contRef == null);
                 assignments = [select id,Progress__c from PBS_Learning_Assignment__c where id = :learningAssignmentId];
                 System.assertEquals(PBS_LMSConstants_CC.ASSIGNMENT_STATUS_IN_REVIEW,assignments.get(0).Progress__c);
 
@@ -241,7 +241,7 @@ private class PBS_TaskViewerController_Test{
             assignments = [select id,Progress__c from PBS_Learning_Assignment__c where id = :learningAssignmentId];
             System.assertEquals(PBS_LMSConstants_CC.ASSIGNMENT_STATUS_COMPLETED,assignments.get(0).Progress__c);
             contRef = cont.resetTask();
-            System.assert(contRef != null);
+            System.assert(contRef == null);
             assignments = [select id,Progress__c from PBS_Learning_Assignment__c where id = :learningAssignmentId];
             System.assertEquals(PBS_LMSConstants_CC.ASSIGNMENT_STATUS_NOT_STARTED,assignments.get(0).Progress__c);
 

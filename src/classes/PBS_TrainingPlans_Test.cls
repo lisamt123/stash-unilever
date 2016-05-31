@@ -30,7 +30,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 public class PBS_TrainingPlans_Test {
     // String variables to avoid code containing duplicate String literals
     public Static final string SYSTEMADMINISTRATOR = 'System Administrator';
-    public Static final string LMS_ADMIN = 'LMS_Admin';
+    public Static final string LMS_ADMIN = 'PBS_LMS_Admin';
     static testmethod void testOptionalSectionsValidations(){
 
         //Create admin users
@@ -56,7 +56,8 @@ public class PBS_TrainingPlans_Test {
                 update sampleSection;
                 System.assert(false,'Section item with optional items cannot be made optional');
             }catch(Exception e){
-                System.assert(true);
+               // System.assert(true);
+               System.debug(e);
             }
 
         Test.stopTest();
@@ -72,7 +73,7 @@ public class PBS_TrainingPlans_Test {
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
             PBS_UtilClass_Test.addPermissionSet(adminUsers,LMS_ADMIN);
-            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'PBS_LMS_User');
         }
 
         PBS_TrainingPlanData_Test.createSampleData();
@@ -130,7 +131,7 @@ public class PBS_TrainingPlans_Test {
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
             PBS_UtilClass_Test.addPermissionSet(adminUsers,LMS_ADMIN);
-            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'PBS_LMS_User');
         }
 
         PBS_TrainingPlanData_Test.createSampleData();
@@ -194,7 +195,7 @@ public class PBS_TrainingPlans_Test {
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
             PBS_UtilClass_Test.addPermissionSet(adminUsers,LMS_ADMIN);
-            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'PBS_LMS_User');
         }
 
         PBS_TrainingPlanData_Test.createSampleData();
@@ -269,7 +270,7 @@ public class PBS_TrainingPlans_Test {
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
             PBS_UtilClass_Test.addPermissionSet(adminUsers,LMS_ADMIN);
-            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'PBS_LMS_User');
         }
 
         PBS_TrainingPlanData_Test.createSampleDataWithSharedLearnings();
