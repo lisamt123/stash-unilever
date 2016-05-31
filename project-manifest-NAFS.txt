@@ -6,10 +6,3 @@ src/email/unfiled$public/NAFS_Operator_Account_approval_request_email_template.e
 src/email/unfiled$public/NAFS_Operator_Account_approval_request_email_template.email-meta.xml
 src/email/unfiled$public/NAFS_Opportunity_approval_request_email_template.email
 src/email/unfiled$public/NAFS_Opportunity_approval_request_email_template.email-meta.xml
-src
-src/layouts
-src/layouts/Opportunity-Opportunity Layout.layout
-src/layouts/OpportunityLineItem-Opportunity Product Layout.layout
-src/layouts/Pricebook2-NAFS PriceBook Layout.layout
-src/layouts/PricebookEntry-Price Book Entry Layout.layout
-src/layouts/Product2-Product Layout.layout
