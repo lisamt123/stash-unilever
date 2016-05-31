@@ -6,7 +6,10 @@ src/objects/Opportunity.object
 src/objects/OpportunityLineItem.object
 src/classes
 src/classes/NAFS_Utility.cls
+src/classes/NAFS_Utility.cls-meta.xml
 src/classes/NAFS_OpportunityHelper.cls
+src/classes/NAFS_OpportunityHelper.cls-meta.xml
 src
 src/triggers
-src/triggers/OpportunityTrigger.trigger  
+src/triggers/OpportunityTrigger.trigger
+src/triggers/OpportunityTrigger.trigger-meta.xml  
