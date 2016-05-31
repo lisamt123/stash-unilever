@@ -8,7 +8,7 @@
             <type>owner</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>NAFS_Email_Templates/NAFS_Email_to_opportunity_owner_when_Deal_approval_exactly_60_days</template>
+        <template>unfiled$public/NAFS_Email_to_opportunity_owner_when_Deal_approval_exactly_60_days</template>
     </alerts>
     <fieldUpdates>
         <fullName>Deal_Update</fullName>
