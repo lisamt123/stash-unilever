@@ -55,3 +55,6 @@ src/classes/DMS_WaveRestCall_CC.cls
 src/classes/DMS_WaveRestCall_CC.cls-meta.xml
 src/classes/DMS_WaveRestCall_Test.cls
 src/classes/DMS_WaveRestCall_Test.cls-meta.xml
+src/components
+DMS_RadarDataComponent.component
+DMS_RadarDataComponent.component-meta.xml
