@@ -1,14 +1,8 @@
 src
-src/workflows
-src/workflows/Opportunity.workflow
-src
-src/approvalProcesses
-src/approvalProcesses/Account.NAFS_Operator_Account_Validation.approvalProcess
-src
 src/layouts
 src/layouts/Opportunity-Opportunity Layout.layout
-src/layouts/Opportunity-Opportunity with Pricing %28MA-BE%29.layout
-src/layouts/OpportunityLineItem-Opportunity Product Layout.layout
-src/layouts/Pricebook2-NAFS PriceBook Layout.layout
 src/layouts/PricebookEntry-Price Book Entry Layout.layout
+src/layouts/Pricebook2-NAFS PriceBook Layout.layout
 src/layouts/Product2-Product Layout.layout
+src/layouts/Account-Operators.layout
+src/layouts/Account-Distributor.layout
