@@ -112,6 +112,10 @@
         <apexClass>CEC_CaseInlineControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+	<classAccesses>
+        <apexClass>CEC_CaseTransferController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <classAccesses>
         <apexClass>CEC_CaseTriggerHelper</apexClass>
         <enabled>true</enabled>
@@ -1794,6 +1798,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CEC_Case_Market_Mapping__c.CaseOrigin__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CEC_Case_Market_Mapping__c.Cheque_Decimals__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -7358,6 +7367,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>cec_Fulfilment__c.Cheque_Decimals__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>cec_Fulfilment__c.Cheque_Number__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -11021,6 +11035,10 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>CEC_CaseInline</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>CEC_CaseTransfer</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>

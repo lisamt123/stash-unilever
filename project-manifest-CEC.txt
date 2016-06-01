@@ -1,18 +1,45 @@
 src
 src/assignmentRules
 src/assignmentRules/Case.assignmentRules
+src/classes
+src/classes/CEC_CaseTransferController.cls
+src/classes/CEC_CaseTransferController.cls-meta.xml
+src/classes/CEC_FulfilmentHelper.cls
+src/classes/CEC_FulfilmentHelper.cls-meta.xml
+src/classes/CEC_FulfilmentHelperTest.cls
+src/classes/CEC_FulfilmentHelperTest.cls-meta.xml
+src/classes/CEC_RetrievalRequestTriggerHelper.cls
+src/classes/CEC_RetrievalRequestTriggerHelper.cls-meta.xml
+src/classes/CEC_TestDataFactory.cls
+src/classes/CEC_TestDataFactory.cls-meta.xml
+src/classes/CEC_Util.cls
+src/classes/CEC_Util.cls-meta.xml
+src/customPermissions
+src/customPermissions/CEC_Cheque_Process.customPermission
 src/email
 src/email/CEC_Emails_Indonesia-meta.xml
 src/email/CEC_Emails_Philippines-meta.xml
+src/labels
+src/labels/CEC.labels
+src/layouts
+src/layouts/Case-Case Feed Layout.layout
+src/layouts/CEC_Case_Market_Mapping__c-Case Market Mapping Layout.layout
 src/objects
 src/objects/Case.object
 src/objects/cec_Alert_Action__c.object
 src/objects/cec_Alert_Rule__c.object
+src/objects/CEC_Case_Market_Mapping__c.object
 src/objects/cec_Enclosure__c.object
 src/objects/cec_Fulfilment__c.object
 src/objects/User.object
-src/package - Copy.xml
-src/package.xml
+src/pages
+src/pages/CEC_CaseTransfer.page
+src/pages/CEC_CaseTransfer.page-meta.xml
+src/permissionsets
+src/permissionsets/CEC_Business_Admin.permissionset
+src/permissionsets/CEC_Cheque_Process.permissionset
+src/permissionsets/CEC_CRUD.permissionset
+src/permissionsets/CEC_User.permissionset
 src/queues
 src/queues/CEC_Indonesia_Escalation_Queue.queue
 src/queues/CEC_Indonesia_Quality_Check.queue

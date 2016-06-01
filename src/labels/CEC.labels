@@ -494,6 +494,14 @@
         <value>Consumer Services Case #:</value>
     </labels>
     <labels>
+        <fullName>CEC_EnterMktMappingMsg</fullName>
+        <categories>CEC_CaseTransfer VF Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_EnterMktMappingMsg</shortDescription>
+        <value>Please Enter Case Market Mapping to Search</value>
+    </labels>
+    <labels>
         <fullName>CEC_EvoucherDetails_No_Active_EVoucher_For_Country</fullName>
         <categories>CEC:E_VoucherDetails_Error</categories>
         <language>en_US</language>
@@ -583,7 +591,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>To display Last Name required message</shortDescription>
-        <value>Last Name: You must enter a value</value>
+        <value>Last Name: You must enter Last Name to search a Consumer</value>
     </labels>
     <labels>
         <fullName>CEC_Latitude</fullName>
@@ -694,12 +702,28 @@
         <value>Please save the pending changes to the case record first and then search the Consumer to link to the case. If a new Consumer creation is attempted in this transaction, then this Consumer can be found again by Search.</value>
     </labels>
     <labels>
+        <fullName>CEC_NoAccessForChequeProcess</fullName>
+        <categories>CEC:ChequeBook_Details_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_NoAccessForChequeProcess</shortDescription>
+        <value>No Access for Cheque Process</value>
+    </labels>
+    <labels>
         <fullName>CEC_NoAccessForRetrievalProcess</fullName>
         <categories>CEC:Retrieval_Request_Error</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CEC_NoAccessForRetrievalProcess</shortDescription>
         <value>No Access for Retrieval Process</value>
+    </labels>
+    <labels>
+        <fullName>CEC_NoResultFoundMsg</fullName>
+        <categories>CEC_CaseTransfer VF Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_NoResultFoundMsg</shortDescription>
+        <value>No search results found</value>
     </labels>
     <labels>
         <fullName>CEC_No_Cases_are_available_based_on_the_skill</fullName>
@@ -919,6 +943,22 @@
         <value>Rebooking is applicable only for scheduled retrieval request</value>
     </labels>
     <labels>
+        <fullName>CEC_SearchCountry</fullName>
+        <categories>CEC_CaseTransfer VF Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>label for search box.</shortDescription>
+        <value>Search Country</value>
+    </labels>
+    <labels>
+        <fullName>CEC_SearchMarketButtonName</fullName>
+        <categories>CEC_CaseTransfer VF Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_SearchMarketButtonName</shortDescription>
+        <value>Go!</value>
+    </labels>
+    <labels>
         <fullName>CEC_Role</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -934,12 +974,27 @@
         <value>Validation Error : Please fill at least one field in the search form</value>
     </labels>
     <labels>
+        <fullName>CEC_SearchWarningMsg</fullName>
+        <categories>CEC_CaseTransfer VF Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_SearchWarningMsg</shortDescription>
+        <value>The search returned more than the maximum number of rows (200). Please refine your search criteria.</value>
+    </labels>
+    <labels>
         <fullName>CEC_Search_Button</fullName>
         <categories>Visualforce Page :CEC_NewAccountContact</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CEC_Search_Button</shortDescription>
         <value>Search</value>
+    </labels>
+    <labels>
+        <fullName>CEC_SelectMktMappingMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_SelectMktMappingMsg</shortDescription>
+        <value>Please select Market Mapping to transfer the case</value>
     </labels>
     <labels>
         <fullName>CEC_Specify_Details_in_Missing_Info</fullName>
@@ -1037,6 +1092,7 @@
     </labels>
     <labels>
         <fullName>CEC_ValidEmailTemplate</fullName>
+        <categories>CEC : Error</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CEC_ValidEmailTemplate</shortDescription>
@@ -1073,5 +1129,4 @@
         <protected>false</protected>
         <shortDescription>CEC_isVariantKnown</shortDescription>
         <value>Is Variant Known?</value>
-    </labels>
-    
+    </labels>    

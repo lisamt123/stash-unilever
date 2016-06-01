@@ -33,38 +33,6 @@
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
-        <fullName>Role_Equals_Africa_Manager</fullName>
-        <accessLevel>Edit</accessLevel>
-        <accountSettings>
-            <caseAccessLevel>None</caseAccessLevel>
-            <contactAccessLevel>Edit</contactAccessLevel>
-            <opportunityAccessLevel>Edit</opportunityAccessLevel>
-        </accountSettings>
-        <label>Role Equals Africa - Manager</label>
-        <sharedTo>
-            <role>CEC_Manager_Africa</role>
-        </sharedTo>
-        <sharedFrom>
-            <role>CEC_Manager_Africa</role>
-        </sharedFrom>
-    </sharingOwnerRules>
-    <sharingOwnerRules>
-        <fullName>Role_Equals_SEAA_Manager</fullName>
-        <accessLevel>Edit</accessLevel>
-        <accountSettings>
-            <caseAccessLevel>None</caseAccessLevel>
-            <contactAccessLevel>Edit</contactAccessLevel>
-            <opportunityAccessLevel>Edit</opportunityAccessLevel>
-        </accountSettings>
-        <label>Role Equals SEAA - Manager</label>
-        <sharedTo>
-            <role>CEC_Manager_SEAA</role>
-        </sharedTo>
-        <sharedFrom>
-            <role>CEC_Manager_SEAA</role>
-        </sharedFrom>
-    </sharingOwnerRules>
-    <sharingOwnerRules>
         <fullName>Market_Equals_Indonesia_Manager</fullName>
         <accessLevel>Edit</accessLevel>
         <accountSettings>
@@ -94,6 +62,38 @@
         </sharedTo>
         <sharedFrom>
             <roleAndSubordinatesInternal>CEC_Manager_Philippines</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Role_Equals_Africa_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Edit</contactAccessLevel>
+            <opportunityAccessLevel>Edit</opportunityAccessLevel>
+        </accountSettings>
+        <label>Role Equals Africa - Manager</label>
+        <sharedTo>
+            <role>CEC_Manager_Africa</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>CEC_Manager_Africa</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Role_Equals_SEAA_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Edit</contactAccessLevel>
+            <opportunityAccessLevel>Edit</opportunityAccessLevel>
+        </accountSettings>
+        <label>Role Equals SEAA - Manager</label>
+        <sharedTo>
+            <role>CEC_Manager_SEAA</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>CEC_Manager_SEAA</role>
         </sharedFrom>
     </sharingOwnerRules>
 </SharingRules>

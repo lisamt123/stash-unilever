@@ -6688,4 +6688,23 @@ var openSuccess = function openSuccess(result) {
         <showsLocation>false</showsLocation>
         <showsStatus>false</showsStatus>
     </webLinks>
+    <webLinks>
+        <fullName>TransferCase</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Transfer Case</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/28.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/support/console/28.0/integration.js&quot;)} 
+
+var url = &apos;/apex/CEC_CaseTransfer?Id={!Case.Id}&apos;; 
+
+if (sforce.console.isInConsole()) { 
+    srcUp(url);
+} else { 
+  window.open(url, &apos;&apos;, &apos;width=600,height=400&apos;);
+}</url>
+    </webLinks>
 </CustomObject>

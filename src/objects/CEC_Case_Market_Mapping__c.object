@@ -133,6 +133,25 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Cheque_Decimals__c</fullName>
+        <externalId>false</externalId>
+        <label>Cheque Decimals</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Display as text</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Display as fraction</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>Company_Address__c</fullName>
         <description>CEC: To capture the company address of the company.Used in retrieval report</description>
         <externalId>false</externalId>
