@@ -51,7 +51,7 @@ transfer case to the correct market.---------------------->
             <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb;
                                                                  height: 100%;opacity:0.65;width:100%;"> 
                 <div class="waitingHolder" style="top: 74.2px; width: 91px;">
-                    <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." />
+                    <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." alt="loading Icon"/>
                     <span class="waitingDescription">Loading...</span>
                 </div>
             </div>

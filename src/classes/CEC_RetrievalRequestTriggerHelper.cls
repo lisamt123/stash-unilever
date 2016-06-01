@@ -47,7 +47,7 @@ public with sharing class CEC_RetrievalRequestTriggerHelper {
         
             if(owa != null){
                 sendRetrievalEmails(factoryRetrievalMapToSendMail, owa);
-      }
+            }
         
         }
     
@@ -114,14 +114,14 @@ public with sharing class CEC_RetrievalRequestTriggerHelper {
             }
 
 
-            Case aCase;
+            Case aCase = new Case();
             list<string> toEmailAdresses  = new list<string>();
             string updatedHTMLBody;
             string updatedSubject;
 
             // send emails and attach  them to corresponding cases as well
             for(CEC_Retrieval_Request__c rr :factoryRetrievalMapToSendMail.values()){
-        // reset case variable
+                // reset case variable
                 aCase = new Case();
                 // get parent case of current retrieval record
                 aCase = parentCaseMap.get(rr.Case__c);
@@ -186,43 +186,44 @@ public with sharing class CEC_RetrievalRequestTriggerHelper {
                 eMessage.MessageDate = system.Now();
                 // add email to list of emails to be added to case
                 emailMessageList.add(eMessage);
-        // send emails and attach them to parent cases
-        sendEmailsAndAttachToCases(emailMessageList, emailList, factoryRetrievalMapToSendMail);
+                // send emails and attach them to parent cases
+                sendEmailsAndAttachToCases(emailMessageList, emailList, factoryRetrievalMapToSendMail);
             }
         }
     }
     
-  private void sendEmailsAndAttachToCases(list<EmailMessage> emailMessageList, list<Messaging.SingleEmailMessage> emailList, map<id, CEC_Retrieval_Request__c> factoryRetrievalMapToSendMail){
-    Messaging.SendEmailResult[] resultMail;
-    //send emails
-    try{
-      if(!emailList.IsEmpty()){
-        resultMail = Messaging.sendEmail(emailList,true);
-        
-        if(resultMail.get(0).isSuccess()){          
-          for(CEC_Retrieval_Request__c rr :factoryRetrievalMapToSendMail.values()){
-            // set email flags
-            if(string.IsNotBlank(rr.Textile_Factory__c) && (rr.Retrieval_Status__c != 'Initiate Product Analysis')){
-              rr.Textile_Factory_Email_Sent__c = true;
-            }else if(string.IsNotBlank(rr.Product_Factory__c)){
-              rr.Product_Factory_Email_Sent__c = true;
+    private void sendEmailsAndAttachToCases(list<EmailMessage> emailMessageList, list<Messaging.SingleEmailMessage> emailList, map<id, CEC_Retrieval_Request__c> factoryRetrievalMapToSendMail){
+        Messaging.SendEmailResult[] resultMail;
+        //send emails
+        try{
+            if(!emailList.IsEmpty()){
+                resultMail = Messaging.sendEmail(emailList,true);
+                
+                if(resultMail.get(0).isSuccess()){                  
+                    for(CEC_Retrieval_Request__c rr :factoryRetrievalMapToSendMail.values()){
+                        // set email flags
+                        if(string.IsNotBlank(rr.Textile_Factory__c) && (rr.Retrieval_Status__c != 'Initiate Product Analysis')){
+                            rr.Textile_Factory_Email_Sent__c = true;
+                        }else if(string.IsNotBlank(rr.Product_Factory__c)){
+                            rr.Product_Factory_Email_Sent__c = true;
+                        }
+                        //reset retrieval message
+                        rr.Retrieval_Message__c = '';
+                    }
+                    // attach emails to respective Cases
+                    insert emailMessageList;
+                }
+                
             }
-            //reset retrieval message
-            rr.Retrieval_Message__c = '';
-            // attach emails to respective Cases
-            insert emailMessageList;
-          }
+        }catch(exception e){
+            for(CEC_Retrieval_Request__c rr :factoryRetrievalMapToSendMail.values()){
+                // update error message on retrieval records
+                rr.Retrieval_Message__c = 'Email sending failed';
+            }
         }
-      }
-    }catch(exception e){
-      for(CEC_Retrieval_Request__c rr :factoryRetrievalMapToSendMail.values()){
-        // update error message on retrieval records
-        rr.Retrieval_Message__c = 'Email sending failed';
-      }
     }
-  }
-  
-  
+    
+    
     // to format email body
     private string formatEmail(Case aCase, string emailBody){
         string returnString = emailBody;        
@@ -255,20 +256,12 @@ public with sharing class CEC_RetrievalRequestTriggerHelper {
 
     private list<string> extractToEmailAddresses(string factoryEmail){
         string aFactoryEmail;
-        string removedEmail;
         
         // extract all email address
         aFactoryEmail = factoryEmail.replace(',',';');
         string[] toEmailAdresses = aFactoryEmail.trim().split(';');
-        // reject invalid email address
-        integer i = toEmailAdresses.size()-1;
-        while(i >= 0){
-            if(!CEC_Util.isValidEmailAddress(toEmailAdresses.get(i))){
-                removedEmail = toEmailAdresses.remove(i);
-            }
-            i--;
-        }
-        // return all valid address
+        
+        // return all address
         return toEmailAdresses; 
     }
 
