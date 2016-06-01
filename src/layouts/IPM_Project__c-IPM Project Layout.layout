@@ -63,10 +63,6 @@
                 <behavior>Edit</behavior>
                 <field>IPM_Region__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>CurrencyIsoCode</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -589,6 +585,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>IPM_Quit_Project_Tab__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IPM_Project_Start_Date__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

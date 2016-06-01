@@ -283,6 +283,10 @@
                 <name>Auto Aligned Fin &amp; TLD</name>
             </columns>
             <columns>
+                <label><!-- Auto Aligned Fin &amp; TLD for financial --></label>
+                <name>Auto Aligned Fin &amp; TLD for financial</name>
+            </columns>
+            <columns>
                 <label><!-- Brand Positioning --></label>
                 <name>Brand Positioning</name>
             </columns>
@@ -1356,6 +1360,44 @@
         <sections>
             <label><!-- Hashtag Definitions --></label>
             <name>Hashtag Definitions</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- IPM Financials with IPM Financial Years with IPM Market Performance --></description>
+        <label><!-- IPM Financials with IPM Financial Years with IPM Market Performance --></label>
+        <name>IPM_Financials_with_IPM_Financial_Years_with_IPM_Market_Performance</name>
+        <sections>
+            <label><!-- IPM Financial Years --></label>
+            <name>IPM Financial Years</name>
+        </sections>
+        <sections>
+            <label><!-- IPM Financials --></label>
+            <name>IPM Financials</name>
+        </sections>
+        <sections>
+            <label><!-- IPM Market Performance --></label>
+            <name>IPM Market Performance</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- IPM Financials with IPM Financial Years with IPM Market Performance with IPM Market Performance Breakdowns --></description>
+        <label><!-- IPM Financials with IPM Financial Years with IPM Market Performance with IPM Market Performance Breakdowns --></label>
+        <name>IPM_Financials_with_IPM_Financial_Years_with_IPM_Market_Performance_with_IPM_M</name>
+        <sections>
+            <label><!-- IPM Financial Years --></label>
+            <name>IPM Financial Years</name>
+        </sections>
+        <sections>
+            <label><!-- IPM Financials --></label>
+            <name>IPM Financials</name>
+        </sections>
+        <sections>
+            <label><!-- IPM Market Performance --></label>
+            <name>IPM Market Performance</name>
+        </sections>
+        <sections>
+            <label><!-- MarketPerformanceBreakdowns --></label>
+            <name>MarketPerformanceBreakdowns</name>
         </sections>
     </reportTypes>
     <reportTypes>

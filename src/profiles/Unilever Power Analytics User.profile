@@ -937,6 +937,9 @@
         <layout>IPM_Exchange_Rate__c-IPM Exchange Rate Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>IPM_Financial_Action_Standards__c-IPM Financial Action Standard Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>IPM_Financial_Year__c-IPM Financial Year Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -958,6 +961,12 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>IPM_Gate_CMI__c-IPM Gate CMI Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>IPM_MarketPerformanceBreakdown__c-IPM Market Performance Breakdown Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>IPM_MarketPerformance__c-IPM Market Performance Monitoring Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>IPM_Milestone__c-IPM Milestone</layout>

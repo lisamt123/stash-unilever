@@ -147,7 +147,7 @@
             <field>IPM_Project_Leader__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>IPM_Emails/IPM_Notify_Local_Leader_when_local_project_created</template>
     </alerts>
     <alerts>
@@ -420,7 +420,7 @@
     </rules>
     <rules>
         <fullName>IPM Project Archival On Inactive</fullName>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>IPM_Project__c.Is_Archieved__c</field>
             <operation>equals</operation>
