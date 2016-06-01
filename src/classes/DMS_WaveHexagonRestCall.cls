@@ -15,8 +15,6 @@ VERSION 	AUTHOR		 		DATE  		Description
 ***********************************************************************/
 public class DMS_WaveHexagonRestCall {    
     
-    public static final String ERROR_RECORDS = 'Error getRecords:';
-    public static final String ERROR_GET_ID = 'Error getIdDataSet:';
     /*******************************************************************
     * Purpose: Get a list of Records containing the data for Hexagon
     * Parameters: Dataset Id 1, distributor, period, salesChannel
@@ -45,7 +43,7 @@ public class DMS_WaveHexagonRestCall {
             Distribuidor distribuidor = (DMS_WaveHexagonRestCall.Distribuidor) parser.readValueAs(DMS_WaveHexagonRestCall.Distribuidor.class);        
             records = distribuidor.results.records;
         }catch(Exception e){
-            System.debug(ERROR_RECORDS + e.getMessage() + e.getCause() + e.getLineNumber());
+            System.debug(DMS_GlobalConstants.ERROR_RECORDS + e.getCause() + e.getMessage() + e.getLineNumber());
         }
         return records;
     }         
@@ -72,7 +70,7 @@ public class DMS_WaveHexagonRestCall {
             User user = (DMS_WaveHexagonRestCall.User) parser.readValueAs(DMS_WaveHexagonRestCall.User.class);
             idDataSet = User.currentVersionId;
         }catch(Exception e){
-            System.debug(ERROR_GET_ID + e.getMessage() + e.getCause() + e.getLineNumber());
+            System.debug(DMS_GlobalConstants.ERROR_GET_ID + e.getCause() + e.getMessage() + e.getLineNumber());
         }
         return idDataSet;
     }

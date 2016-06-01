@@ -11,7 +11,7 @@ still without 'Invoices'. A post on Chatter will mention the seller informing ab
 History 
 
 VERSION AUTHOR DATE DETAIL Description
-1.0 	CHACL  25/05/2016  INITIAL DEVELOPMENT.
+1.0     CHACL  25/05/2016  INITIAL DEVELOPMENT.
 ***********************************************************************/
 global class DMS_PostChatter_BatchSchedule implements Schedulable, Database.AllowsCallouts
 {
@@ -25,7 +25,7 @@ global class DMS_PostChatter_BatchSchedule implements Schedulable, Database.Allo
     * from the Sellers without invoices.
     * Parameters: AccountId
     * Returns: void 
-	********************************************************************/
+    ********************************************************************/
     global void execute(SchedulableContext sc) 
     {
         try {
@@ -82,7 +82,7 @@ global class DMS_PostChatter_BatchSchedule implements Schedulable, Database.Allo
                 } 
                 else 
                 {
-                    listMembers = new Set<String>();		
+                    listMembers = new Set<String>();        
                     listMembers.add(this.insertMentionedUser(String.valueOf(collabMember.MemberId)));
                     vMap.put(collabMember.CollaborationGroupId, listMembers);
                 }            

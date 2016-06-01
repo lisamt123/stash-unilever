@@ -1,0 +1,180 @@
+<apex:page controller="DMS_Hexagon_CC" docType="html-5.0" standardStylesheets="false" showHeader="false" sidebar="false">
+    <apex:stylesheet value="{!URLFOR($Resource.DMS_SLDS0102, '/assets/styles/salesforce-lightning-design-system.css')}"/> 
+    
+    <html>
+        <head>
+            <script>
+             
+            /* function myfunction(){
+            document.getElementById("KRAI").style.display= "none";
+            }
+            
+            function displaySpinner(){
+            document.getElementById("KRAI").style.display= "inline";
+            }*/
+            </script>
+            
+            
+            <style>
+                @media screen and (min-width: 320px) and (max-width: 768px) {
+                .hegaxono-export {
+                display: none;
+                }
+                }
+                
+            </style>
+        </head>
+        <body onload="myfunction()">
+            
+            <apex:form >
+                <!-- <apex:outputPanel id="dimitri" rendered="true" >
+                    <div class="slds-spinner_container" id="KRAI">
+                        <div class="slds-spinner--brand slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
+                            <div class="slds-spinner__dot-a"></div>
+                            <div class="slds-spinner__dot-b"></div>
+                        </div>
+                    </div>
+                </apex:outputPanel>-->
+                <div class="slds-page-header" role="banner">
+                    <div class="slds-grid slds-wrap">
+                        <div class="slds-grid slds-wrap slds-grid--align-spread">
+                            <apex:image title="logo uniliver" url="{!$Resource.DMS_UNILEVER_LOGO}" width="70px" height="70px"/>
+                        </div>
+                        <div class="slds-media__body--regular slds-container--left">
+                            <h1 style="font-size: 1.5rem; line-height: 1.25;" class="slds-truncate slds-align-middle" title="Record Title">REPORT</h1>
+                            <p class="slds-text-heading--label">SALESREP HEXAGON</p>
+                        </div>
+                        <div class="slds-grid slds-wrap slds-container--left">
+                            <section style="width: auto" >
+                                <span style="width: 100%;" >Distribuidor</span>  
+                                <apex:selectList style="width: 90%;" value="{!selectedDistributor}" size="1" label="Distribuidor">
+                                    <apex:selectOptions value="{!distributorOption}"/>
+                                </apex:selectList>
+                            </section>
+                            <section style="width: auto" >
+                                <span style="width: 100%;" >Periodo</span>    
+                                <apex:selectList style="width: 90%;" value="{!selectedDate}" size="1" label="Distributor">
+                                    <apex:selectOptions value="{!datePicklistOption}"/>
+                                </apex:selectList>
+                            </section>
+                            <section style="width: auto;" >
+                                <span style="width: 100%;" >SalesChannel</span>     
+                                <apex:selectList style="width: 90%;"  value="{!selectedSalesChannel}" size="1" label="Sales Channel">
+                                    <apex:selectOptions value="{!salesChannelOption}"/>                     
+                                </apex:selectList>                 
+                            </section>
+                            <div class="slds-grid slds-container--left">
+                                <div style="margin: 2% 0 3% 0">
+                                    <apex:commandButton onclick="displaySpinner();" action="{!submitRequest}" id="test"  styleClass="slds-button slds-button--neutral" title="Submit button" value="Submit"/> 
+                                </div>  
+                                <div style="margin: 2% 0 3% 0; padding-left: 3%" class="hegaxono-export">
+                                    <!--<apex:commandButton styleClass="slds-button slds-button--neutral" title="button" value="ExportButton"/> -->
+                                </div>  
+                                <div style="margin: 2% 0 3% 0; padding-left: 3%;">
+                                    <apex:commandButton id="exitButton" styleClass="slds-button slds-button--neutral" title="Button exit" value="Exit"/> 
+                                </div> 
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <!--<apex:pageBlock >
+<section style="width: auto" >
+<span style="width: 20%;" >Distributor</span>  
+<apex:selectList style="width: 90%;" value="{!selectedDistributor}" size="1" label="Distributoor">
+<apex:selectOptions value="{!distributorOption}"/>
+</apex:selectList>
+</section>
+</apex:pageBlock>-->
+            </apex:form>
+            <apex:form >
+                <apex:repeat value="{!hexagonMap}" var="seller">
+                    
+                    <div class="slds-page-header" role="banner">
+                        <div class="slds-grid">
+                            <div class="slds-col slds-has-flexi-truncate">
+                                <div class="slds-media">
+                                    <div class="slds-media__figure">
+                                        <svg aria-hidden="true" class="slds-icon slds-icon--large slds-icon-standard-user">
+                                        </svg>
+                                    </div>
+                                    <div class="slds-media__body">
+                                        <p class="slds-text-heading--label">{!selectedSalesChannel}</p>                           
+                                        <div class="slds-grid">
+                                            <h1 class="slds-text-heading--medium slds-m-right--small slds-truncate slds-align-middle" title="SalesMan">{!seller}</h1>                              
+                                        </div>
+                                    </div>                        
+                                </div>
+                            </div>
+                        </div>
+                        <!--fim-->
+                    </div>
+                    
+                    
+                    <br/>            
+                    <div style="width: 100%" class="slds-grid slds-wrap">
+                        <section style="width: 50%" class="slds-col slds-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-3">
+                            <c:DMS_RadarDataComponent idChart="{!seller}" atualValues="{!actualValuesGraphicMap[seller]}" previousValues="{!previousValuesGraphicMap[seller]}" labels="{!label}" ></c:DMS_RadarDataComponent>
+                            
+                        </section>
+                        <section  class="slds-col slds-size--1-of-1 slds-medium-size--1-of-1 slds-large-size--1-of-2">
+                            <table style="width: 100%" class="slds-table slds-table--bordered slds-max-medium-table--stacked">
+                                <thead>
+                                    <tr class="slds-text-heading--label">
+                                        <th scope="col">
+                                            <span style="text-align: center" class="slds-truncate">INDICADOR TYPE</span>       
+                                        </th>
+                                        <th style="text-align: center" scope="col">
+                                            <span style="text-align: center" class="slds-truncate">ACTUAL</span>
+                                        </th>
+                                        <th style="text-align: center" scope="col">
+                                            <span style="text-align: center" class="slds-truncate">PREVIOUS</span>
+                                        </th>
+                                        <th style="text-align: center" scope="col">
+                                            <span style="text-align: center" class="slds-truncate">META</span>
+                                        </th>
+                                        <th style="text-align: center" scope="col">
+                                            <span class="slds-truncate">VARIAÇÃO</span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <br/>
+                                    <div class="slds-grid slds-wrap" style="height:40px;">
+                                        
+                                        <h1 class="slds-text-heading--medium slds-container--center slds-container--small" title="title page">SALESREP</h1>
+                                        <h1 class="slds-text-heading--medium slds-container--center slds-container--small">{!selectedSalesChannel}</h1>
+                                        <h1 class="slds-text-heading--medium slds-container--center slds-container--small">{!selectedDate}</h1>
+                                    </div>
+                                    <br/>
+                                    <!--inicio od repeate aqui-->
+                                    <apex:repeat value="{!hexagonMap[seller]}" var="actual">
+                                        <tr class="slds-hint-parent">
+                                            <td data-label="indicatorType" > 
+                                                <span class="slds-truncate">{!actual}</span>
+                                            </td>
+                                            <td style="text-align: center" data-label="actualValues">
+                                                <span class="slds-truncate">{!hexagonMap[seller][actual].actual}</span>
+                                            </td>
+                                            <td style="text-align: center" data-label="previusValues">
+                                                <span class="slds-truncate">{!hexagonMap[seller][actual].previous}</span>
+                                            </td>
+                                            <td style="text-align: center" data-label="Target">
+                                                <span class="slds-truncate">{!hexagonMap[seller][actual].target}</span>
+                                            </td>
+                                            <td style="text-align: center" data-label="variacion">
+                                                <span style="color: {!IF(hexagonMap[seller][actual].variation < 0, '#FF0000','#00CC33')}" class="slds-truncate">{!hexagonMap[seller][actual].variation}</span>
+                                            </td>
+                                        </tr>
+                                    </apex:repeat>
+                                    
+                                    <!--fim do repeate aqui-->
+                                </tbody>
+                            </table>
+                        </section>
+                    </div>
+                </apex:repeat>
+            </apex:form>
+        </body>
+    </html>
+</apex:page>

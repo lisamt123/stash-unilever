@@ -45,7 +45,7 @@ global class DMS_WaveRestCall_CC
         } 
         catch (Exception e) 
         {
-            System.debug('Exception occured on the code: ' + e.getMessage());
+            System.debug(DMS_GlobalConstants.ERROR_GET_RECORDS + e.getCause() + e.getMessage() + e.getLineNumber());
         }
         return listRecords;
     }
@@ -103,7 +103,7 @@ global class DMS_WaveRestCall_CC
         
         }  catch (Exception e) 
         {
-            System.debug('Exception occured on the code: ' + e.getMessage());
+            System.debug(DMS_GlobalConstants.ERROR_GET_ID_VERSION + e.getCause() + e.getMessage() + e.getLineNumber());
         }  
         return User.currentVersionId;
     }

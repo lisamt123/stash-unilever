@@ -13,7 +13,7 @@ VERSION AUTHOR DATE DETAIL Description
 1.0 	CHACL  23/05/2016  INITIAL DEVELOPMENT.
 ***********************************************************************/
 public class DMS_AccountUserRole_CC 
-{
+{ 
     
     /*******************************************************************
     * Purpose: Create a Partner User when the option "Enable as Partner" is configured
@@ -52,7 +52,7 @@ public class DMS_AccountUserRole_CC
         } 
         catch (Exception e)  
         {
-            SYSTEM.debug('Exception occured on the code: ' + e.getMessage());
+            SYSTEM.debug(DMS_GlobalConstants.ERROR_CREATE_PARTNER + e.getCause() + e.getMessage() + e.getLineNumber());
         }
     }
     
@@ -63,7 +63,14 @@ public class DMS_AccountUserRole_CC
     ********************************************************************/
     private static List<UserRole> getUserRole(List<Id> id) 
     {
-        return [SELECT Id, PortalAccountId FROM UserRole WHERE PortalAccountId =: id];
+        List<UserRole> returnGetUserRole;
+        try{
+        	returnGetUserRole = [SELECT Id, PortalAccountId FROM UserRole WHERE PortalAccountId =: id];    
+        }catch(QueryException e){
+            SYSTEM.debug(DMS_GlobalConstants.ERROR_GET_USER_ROLE + e.getCause() + e.getMessage() + e.getLineNumber());
+        }
+        SYSTEM.debug(DMS_GlobalConstants.RETURN_GET_USER_ROLE + returnGetUserRole);
+        return returnGetUserRole;
     }
     
     /*******************************************************************
@@ -73,6 +80,13 @@ public class DMS_AccountUserRole_CC
     ********************************************************************/
     private static List<Account> getPartnerResult(List<Id> id) 
     {
-        return [SELECT IsPartner FROM Account WHERE Id =: id];
+        List<Account> returnGetPartnerResult;
+        try{
+            returnGetPartnerResult = [SELECT IsPartner FROM Account WHERE Id =: id];
+        }catch(QueryException e){
+            SYSTEM.debug(DMS_GlobalConstants.ERROR_PARTNER_RESULT + e.getCause() + e.getMessage() + e.getLineNumber());
+        }
+        SYSTEM.debug(DMS_GlobalConstants.RETURN_GET_PARTNER_RESULT + returnGetPartnerResult);
+        return returnGetPartnerResult;
     }
 }

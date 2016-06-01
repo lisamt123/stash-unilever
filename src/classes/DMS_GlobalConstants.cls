@@ -60,9 +60,54 @@ public class DMS_GlobalConstants {
     public static final String USER_PORTAL_TYPE = 'Partner';
     public static final String EDIT = 'Edit';
     public static final String READ = 'Read';
+    public static final STRING ERROR_CREATE_PARTNER = 'Exception occured on the code: ';
+    public static final STRING ERROR_GET_USER_ROLE = 'Error in getUserRole(List<Id> id): ';
+    public static final STRING ERROR_PARTNER_RESULT = 'Error in getPartnerResult(List<Id> id): ';
+    public static final STRING RETURN_GET_USER_ROLE = 'Return query in getUserRole(List<Id> id): ';
+    public static final STRING RETURN_GET_PARTNER_RESULT = 'Return query in getPartnerResult(List<Id> id): ';
+    
+    //DMS_WaveRestCall_CC
+    public static final String ERROR_GET_RECORDS = 'Exception occured in getRecords(String DataSetId1, String DataSetId2): '; 
+	public static final String ERROR_GET_ID_VERSION = 'Exception occured in getIdVersion(String idDataSet): ';
+    
+    //DMS_WaveHexagonRestCall
+	public static final String ERROR_RECORDS = 'Error getRecords ';
+    public static final String ERROR_GET_ID = 'Error getIdDataSet: ';	
     
     //DMS_ConnectApiHelper_CC
     public static final String MSG_PARAMETER_NOT_EMPTY = ' parameter must be non-empty.';
     public static final String MSG_PARAMETER_NOT_NULL = ' The inputText parameter cannot be null.';
+    
+    
+    //DMS_Hexagon_CC
+    public static final String MSG_EXCEPTION_FILL_LABEL = 'Error in fillLabel';
+    public static final String MSG_EXCEPTION_DEFINE_META = 'Error in defineMeta';
+    public static final String MSG_EXCEPTION_OPTION_DISTRIBUTOR = 'Error in optionDistributor'; 
+    public static final String MSG_EXCEPTION_OPTION_DATE = 'Error in optionDate';
+    public static final String MSG_EXCEPTION_OPTION_CHANNEL = 'Error in optionSalesChannel';
+    public static final String MSG_EXCEPTION_QUERY_DISTRIBUTOR = 'Error in selectDistributor';
+    public static final String MSG_EXCEPTION_QUERY_SALES_CHANNEL = 'Error in selectSalesChannel';
+    public static final String MSG_EXCEPTION_QUERY_TARGET_DATE = 'Error in selectDateTarget';
+    public static final String MSG_EXCEPTION_HEXAGON = 'Error in generateHexagon';
+    public static final String MSG_EXCEPTION_HEXAGON_GRAPHIC = 'Error in dataForGraphic';
+    public static final String MSG_EXCEPTION_HEXAGON_SUBMIT = 'Error in submitRequest';
+    public static final String HEXAGON_VALUES = 'Hexagon values';
+    //Labels
+    public static final String HEXAGON_LABEL_CLIENTES = '"CLIENTES IMPACTADOS (UN)"';
+    public static final String HEXAGON_LABEL_DEVOLUCIONES = '"DEVOLUCIONES (%)"';
+    public static final String HEXAGON_LABEL_DROPSIZE = '"DROPSIZE ($/PEDIDO)"';
+    public static final String HEXAGON_LABEL_FRECUENCIA = '"FRECUENCIA (UN / tienda)"';
+    public static final String HEXAGON_LABEL_PEDIDOS = '"PEDIDOS (UN)"';
+    public static final String HEXAGON_LABEL_SELLOUT = '"SELLOUT ($)"';
+    
+    
+    //DMS_ConnectApiHelper_CC
+    //Exception Message
+    public static final String MSG_EXCEPTION_API_HELPER_SEGMENT_SPECIAL_FORMATTING = 'Error in postFeedItemWithSpecialFormatting:';
+    public static final String MSG_EXCEPTION_API_HELPER_SEGMENT_INPUTS = 'Error in getMessageSegmentInputs:';
+    public static final String MSG_EXCEPTION_API_HELPER_TEXT_SEGMENT = 'Error in addTextSegment:';
+    public static final String MSG_EXCEPTION_API_HELPER_TEXT_SEGMENT_INPUT = 'Error in makeTextSegmentInput:';
+    public static final String MSG_EXCEPTION_API_HELPER_MENTIONS_SEGMENT_INPUT = 'Error in makeMentionSegmentInput:';        
+    
     
 }
