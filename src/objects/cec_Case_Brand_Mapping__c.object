@@ -392,6 +392,7 @@
     </listViews>
     <listViews>
         <fullName>CEC_Brazil_Queue_cec_Case_Brand_Mapping</fullName>
+        <columns>NAME</columns>
         <columns>Brand__c</columns>
         <columns>Country__c</columns>
         <columns>Inbound_Email__c</columns>
@@ -535,12 +536,16 @@
     </listViews>
     <listViews>
         <fullName>CEC_Middle_Americas_Queue_cec_Case_Brand_Mapping</fullName>
+        <columns>Inbound_Email__c</columns>
+        <columns>Brand_Market__c</columns>
+        <columns>Country__c</columns>
+        <columns>Brand__c</columns>
+        <columns>Language__c</columns>
+        <columns>OWNER.ALIAS</columns>
         <filterScope>Queue</filterScope>
         <label>CEC Middle Americas Queue</label>
+        <language>en_US</language>
         <queue>CEC_Middle_Americas_Queue</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_Nordic_Queue_cec_Case_Brand_Mapping</fullName>

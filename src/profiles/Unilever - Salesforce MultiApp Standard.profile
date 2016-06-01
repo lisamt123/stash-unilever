@@ -27,7 +27,7 @@
     </applicationVisibilities>
     <applicationVisibilities>
         <application>CEC_Console</application>
-        <default>true</default>
+        <default>false</default>
         <visible>true</visible>
     </applicationVisibilities>
     <applicationVisibilities>
@@ -97,7 +97,7 @@
     </applicationVisibilities>
     <applicationVisibilities>
         <application>Unilever</application>
-        <default>false</default>
+        <default>true</default>
         <visible>true</visible>
     </applicationVisibilities>
     <applicationVisibilities>
