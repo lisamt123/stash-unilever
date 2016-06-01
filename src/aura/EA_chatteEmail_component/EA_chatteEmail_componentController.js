@@ -59,7 +59,10 @@
                 component.set("v.MailToBody4",label6);
                 component.set("v.MailToBody5",label7);
                 var subject=label1 +' \" ' + items[0].Name +' \" ' +label2;
+                
                 component.set("v.MailSubject",subject);
+                component.set("v.showspinner",false);
+                component.set("v.showData",true);
             }
         });
         action.setExclusive();

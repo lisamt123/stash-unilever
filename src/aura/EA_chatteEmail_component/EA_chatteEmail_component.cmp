@@ -1,6 +1,6 @@
 <aura:component controller="EA_ControllerClass">
     <aura:attribute name="activityDetail" type="Everyday_Activity__c"/>
- <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+ <!--<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>-->
     <aura:attribute name="activityId" type="String"/>
     <aura:attribute name="MailToBody1" type="String" />
     <aura:attribute name="MailToBody2" type="String" />
@@ -11,11 +11,13 @@
     <aura:attribute name="pagename" type="String" />
     <aura:attribute name="index" type="integer"/>
     <aura:attribute name="pageIndex" type="Integer" />
+    <aura:attribute name="showspinner" type="Boolean" default="true"/>
+    <aura:attribute name="showData" type="Boolean" default="false"/>
     <ltng:require styles="/resource/EA_StaticResource/css/bootstrap.3.3.css" />
     
     <ltng:require styles="/resource/EA_StaticResource/assets/styles/salesforce-lightning-design-system-vf.css" />
  <ltng:require styles="/resource/EA_StaticResource/slick/slick.css,/resource/EA_StaticResource/slick/slick-theme.css"	
-                   scripts="/resource/EA_StaticResource/jquery/jquery.js,/resource/EA_StaticResource/slick/slick.min.js"/>
+                   scripts="/resource/EA_StaticResource/jquery/jquery.js,/resource/EA_StaticResource/slick/slick.min.js" afterScriptsLoaded="{!c.doInit}" />
      <style>
          .slds .slds-modal {
          position:relative;
@@ -33,7 +35,13 @@
     background-color: grey;
 }
     </style>
-    
+    <aura:if isTrue="{!v.showspinner}">
+        <center>
+            <img style="width:10%;position: absolute;top:30%;" src="/resource/EA_StaticResource/assets/images/spinners/slds_spinner.gif">
+            </img>
+        </center>
+    </aura:if>
+    <aura:if isTrue="{!v.showData}">
     <div class="slds">
       <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open" >
     <div class="slds-modal__container">
@@ -53,6 +61,6 @@
     </div>
         </div>
     </div>
-    
+    </aura:if>
     
 </aura:component>
