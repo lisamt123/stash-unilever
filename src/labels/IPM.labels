@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
-       <labels>
+    <labels>
         <fullName>IPM_BETIdNullMsg</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -9293,5 +9291,3 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>Postponed Past Date Validation</shortDescription>
         <value>You cannot postpone a milestone&apos;s due date to a date earlier than its predecessor&apos;s due date. You can modify your milestone due dates below.</value>
     </labels>
-    
-</CustomLabels>
