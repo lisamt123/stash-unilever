@@ -34,7 +34,7 @@ src/aura/EverydayAction_Faturedcontent_component/EverydayAction_Faturedcontent_c
 src/aura/EverydayAction_Faturedcontent_component/EverydayAction_Faturedcontent_componentController.js
 src/aura/EverydayAction_Faturedcontent_component/EverydayAction_Faturedcontent_componentHelper.js
 src/labels
-src/labels/EA_Ver_1_3.labels
+src/labels/EA.labels
 src/classes
 src/classes/EA_ControllerClass.cls
 src/classes/EA_ControllerClass.cls-meta.xml
