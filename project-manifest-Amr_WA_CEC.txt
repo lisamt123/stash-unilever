@@ -256,10 +256,6 @@ src
 src/permissionsets
 src/permissionsets/Employee_Apps_Wave_Dataflow_Access.permissionset
 src
-src/classes
-src/classes/BET_MemberRequestHandlerCls.cls
-src/classes/BET_MemberRequestHandlerCls.cls-meta.xml
-src
 src/assignmentRules
 src/assignmentRules/Case.assignmentRules
 src/classes
@@ -378,7 +374,3 @@ src/sharingRules/mdm_Reason_Code__c.sharingRules
 src/sharingRules/Third_Party_Survey__c.sharingRules
 src/workflows
 src/workflows/Case.workflow
-
-
-
-
