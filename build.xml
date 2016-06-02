@@ -153,6 +153,7 @@
       deployRoot="src"
       pollWaitMillis="${sfdc.pollWaitMillis}"
       maxPoll="${sfdc.maxPoll}">
+		  <runTest>PBS_LMSCommunitiesService_CC</runTest>
 		  <runTest>PBS_LMSCommunitiesService_Test</runTest>	  
     </sf:deploy>
   </target>  
