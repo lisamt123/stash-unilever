@@ -1,3 +1,9 @@
 src
-src/profiles
-src/profiles/Admin.profile
+src/permissionsets
+src/permissionsets/NAFS_Sales_Rep.permissionset
+src
+src/permissionsets
+src/permissionsets/NAFS_AFM.permissionset
+src
+src/layouts
+src/layouts/Opportunity-Opportunity with Pricing %28MA-BE%29.layout
