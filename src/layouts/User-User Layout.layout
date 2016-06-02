@@ -66,6 +66,10 @@
                 <behavior>Readonly</behavior>
                 <field>AF_Agency_Name__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>TaskRay_Last_Use__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns/>
         <style>TwoColumnsLeftToRight</style>

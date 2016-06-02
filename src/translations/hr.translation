@@ -2147,6 +2147,19 @@
         </sections>
     </reportTypes>
     <reportTypes>
+        <description><!-- Taskray User Usage --></description>
+        <label><!-- Taskray User Usage --></label>
+        <name>Taskray_User_Usage</name>
+        <sections>
+            <label><!-- Taskray  --></label>
+            <name>Taskray </name>
+        </sections>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
         <description><!-- Thanks given by users --></description>
         <label><!-- Thanks given by users --></label>
         <name>Thanks_given_by_users</name>
