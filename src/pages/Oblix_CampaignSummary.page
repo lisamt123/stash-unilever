@@ -28,7 +28,7 @@
         </apex:define>
 
         <apex:define name="header_top_warning_text">
-            <apex:outputText rendered="{!is_NFY_campaign_in_the_middle_of_rollover && can_see_advanced_links_during_rollover}">
+            <apex:outputText rendered="{!is_NFY_campaign_in_the_middle_of_rollover && can_see_rollover_warning}">
                 <div class="alert alert-danger" role="alert">Please update campaign details via <a href="/apex/Oblix_CampaignSummary?projectId={!selected_project.Campaign_PFY__c}">{!selected_project.Campaign_PFY__r.Name}</a> and sync to reflect the changes below</div>
             </apex:outputText>
         </apex:define>
@@ -47,7 +47,9 @@
             <apex:outputPanel rendered="{!IF(can_edit_campaign && NOT(selected_project.Record_Locked_Sync__c) && can_see_advanced_links_during_rollover,true,false)}">
                 <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#cancelCampaign">Cancel Campaign</button> -->
                 <a href="#" data-toggle="modal" data-target="#cancelCampaignModal" >Cancel Campaign</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-                <!-- <a href="#" onclick="if (confirm('are you sure you want to delete this campaign?')){deleteCampaign();blockme();}">Cancel Campaign</a> -->
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!IF(can_delete_campaign && NOT(selected_project.Record_Locked_Sync__c) && can_see_advanced_links_during_rollover,true,false)}">
+                <a href="#" onclick="if (confirm('are you sure you want to delete this campaign?')){deleteCampaign();blockme();}">Delete Campaign</a>&nbsp;&nbsp;|&nbsp;&nbsp;
             </apex:outputPanel>
             <apex:outputPanel rendered="{!IF(can_edit_campaign,true,false)}">
                 <!-- <button class="btn btn-danger btn-xs create_SOW_button btn_check btn_submit_approval" data-toggle="modal" data-target="#cancelCampaign">Clone Campaign</button>&nbsp;&nbsp;|&nbsp;&nbsp; -->
@@ -385,6 +387,10 @@
                             </tr>
                         </table>
                         <table class="campaign_summary_information camp_sum_table_right_width" id="assets_list">
+                            <tr>
+                                <td class="campaign_summary_information_titles camp_sum_table_title__width">BET Required</td>
+                                <td colspan="2">{!selected_project.BET_Required_Yes_No__c}</td>
+                            </tr>
                             <tr>
                                 <td class="campaign_summary_information_titles camp_sum_table_title__width">Platform</td>
                                 <td colspan="2">{!selected_project.Platform__c}</td>

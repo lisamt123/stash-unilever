@@ -342,7 +342,8 @@ public with sharing class Oblix_CampaignCreateHelper extends Oblix_SWOPparentCon
                 Project_Start_Date__c, Projected_Stage_CFY__c, Completed_Stage_CFY__c, Projected_Stage_PFY__c, Completed_Stage_PFY__c, Value_To_BePaid_Manual_Override__c,
                 First_Air_Date__c, Preview_Date__c, Project_Completion_Date__c, BET_first_release__c, Value_to_be_paid_in_Current_FY__c, Campaign_Attributes_Updated__c,
                 Final_release__c, Campaign_Total_Fees__c, Description__c, Platform__c, Jobs_to_be_Done__c, Percentage_of_Fee_for_this_FY__c, Campaign_Status__c, Name_Prefix__c, 
-                Campaign_PFY__c,Oblix_ProjectBoxNumber_PFY__c, Percentage_of_Fees_PFY__c, Fees_Paid_PFY__c, Fees_PFY_Paid_Using_CFY_Calc__c, Total_Project_Score_PFY__c, Campaign_PFY__r.Financial_Year__r.SOW_Status__c FROM Oblix_SOW_Projects__c WHERE ID = : projectId
+                Campaign_PFY__c,Oblix_ProjectBoxNumber_PFY__c, Percentage_of_Fees_PFY__c, Fees_Paid_PFY__c, Fees_PFY_Paid_Using_CFY_Calc__c, Total_Project_Score_PFY__c, Campaign_PFY__r.Financial_Year__r.SOW_Status__c,
+                BET_Required__c, BET_Required_Yes_No__c FROM Oblix_SOW_Projects__c WHERE ID = : projectId
             ];
 
             // if we are cloning, blank out the PFY fields in case the campaign is being cloned from a rolled-over campaign

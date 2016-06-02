@@ -85,14 +85,34 @@ public with sharing class Oblix_PermissionHandler {
     				then has edit access. UL1 should not be able to edit if SOW is
                     locked by approval process.
     ********************************************************************************/
-    public static Boolean hasEditAccess(Id sow_id){
+    public static Boolean hasEditAccess(Marketing_SOW__c sow){
         // SS 20160214 - added check if a record is locked. Only system administrator should be able to edit locked records
-        if ( !isLocked(sow_id) && (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet()) || isSystemAdmin() ){
+        if ( sow != null && !isLocked(sow.id) && ( (hasUL1permissionSet() || hasUL2permissionSet() ) && hasEditSWOPPermissionLevel(sow) || hasSuperUserpermissionSet()) || isSystemAdmin() ){
     		return true;
     	}
     	else{
     		return false;
     	}
+    }
+
+    private static Boolean hasEditSWOPPermissionLevel(Marketing_SOW__c sow){
+        if(hasSuperUserpermissionSet()){
+            return true;
+        } else if(sow == null){
+            return false;
+        } else {
+            List<Oblix_User_Permission__c> allUserPermissions = [SELECT Id, Level_of_Access__c FROM Oblix_User_Permission__c 
+                                                                    WHERE User_id__c = :UserInfo.getUserId() 
+                                                                    AND CategoryBrand_id__r.Product_Category_Id__c =:sow.SmallProductCategory__c
+                                                                    AND CategoryBrand_id__r.Brand_id__c = :sow.OblixBrand__c];
+
+            for(Oblix_User_Permission__c up : allUserPermissions){
+                if(up.Level_of_Access__c == Oblix_Utils.USER_PERMISSION_ACCESS_EDIT || up.Level_of_Access__c == Oblix_Utils.USER_PERMISSION_APPROVER || up.Level_of_Access__c == Oblix_Utils.USER_PERMISSION_SUPERUSER){
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 
 
@@ -571,7 +591,7 @@ public with sharing class Oblix_PermissionHandler {
     public static Boolean canAddNewAttachment(String sow_status){
     	// only UL1, UL2, SuperUser, AG1, AG2 and Sysadmin can add attachment to SOW
     	// if not already approved
-    	if ( hasSuperUserpermissionSet() || isSystemAdmin() || hasUL1permissionSet() || hasUL2permissionSet() || hasAG1permissionSet() ) {
+    	if ( hasSuperUserpermissionSet() || isSystemAdmin() || hasUL1permissionSet() || hasUL2permissionSet() || hasAG1permissionSet() || hasUL3permissionSet()) {
     		return true;
     	}
     	else{
@@ -588,7 +608,7 @@ public with sharing class Oblix_PermissionHandler {
     public static Boolean canDeleteAttachment(String sow_status){
     	// only UL1, UL2, SuperUser and Sysadmin can delete other people's attachments on SOW 
     	// if not already approved
-    	if ( hasSuperUserpermissionSet() || isSystemAdmin() ||  hasUL1permissionSet() || hasUL2permissionSet() || hasAG1permissionSet() ){
+    	if ( hasSuperUserpermissionSet() || isSystemAdmin() ||  hasUL1permissionSet() || hasUL2permissionSet() || hasAG1permissionSet() || hasUL3permissionSet()){
     		return true;
     	}
     	else{

@@ -63,6 +63,10 @@ hr.divider {
     border-top: 1px solid #ddd;
 }
 
+.row_error_message {
+    width: 65%;
+}
+
 .row-eq-height {
   display: -webkit-box;
   display: -webkit-flex;
@@ -249,7 +253,7 @@ hr {
 }
 .btn_exit_swop {
     padding-right: 25px;
-    background-position: 200px !important;
+    background-position: 225px !important;
     padding-bottom: 4px;
     padding-top: 7px;
 }

@@ -47,6 +47,14 @@
                 <behavior>Edit</behavior>
                 <field>Is_B_Fwd_Campaign__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>BET_Required__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>BET_Required_Yes_No__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
