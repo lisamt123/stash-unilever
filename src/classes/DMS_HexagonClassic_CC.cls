@@ -27,7 +27,10 @@ public class DMS_HexagonClassic_CC
     public MAP<String,Map<String,IndicatorType>> hexagonMap {get;set;}
     public Map<String,List<Decimal>> actualValuesGraphicMap {get;set;}
     public Map<String,List<Decimal>> previousValuesGraphicMap {get;set;}
-    public List<String>label {get;set;}  	    
+    public List<String>label {get;set;}  	
+
+    //GRAFICO APEX    
+    public List<RadarData> data {get;set;}
     
     
     /*******************************************************************
@@ -44,6 +47,18 @@ public class DMS_HexagonClassic_CC
         }catch(Exception e){            
             System.debug(DMS_GlobalConstants.MSG_EXCEPTION_FILL_LABEL + e.getCause() + e.getMessage() + e.getLineNumber());            
         }
+        
+        
+        
+        //GRAFICO APEX
+           data = new List<RadarData>();                        
+            data.add(new RadarData('macucxi', 100, 50, 45));
+            data.add(new RadarData('macucxi2', 60, 50, 45)); 
+            data.add(new RadarData('macucxi3', 85, 50, 45)); 
+            data.add(new RadarData('macucxi4', 90, 40, 35)); 
+            data.add(new RadarData('macucxi5', 70, 70, 45)); 
+            data.add(new RadarData('macucxi6', 80, 50, 45)); 
+            
     }
     
     private void fillLabel()
@@ -170,7 +185,7 @@ public class DMS_HexagonClassic_CC
         
         try
         {
-            for(Account distributor :[SELECT id,name,ExternalCode__c FROM Account where recordTypeId =: RecordTypeMemory.getRecType('Account', 'Distributor')])
+            for(Account distributor :[SELECT id,name,ExternalCode__c FROM Account where recordTypeId =: DMS_RecordTypeMemory.getRecType('Account', 'Distributor')])
             {
                 distributorList.add(distributor);
             }            
@@ -195,7 +210,7 @@ public class DMS_HexagonClassic_CC
         aggSalesChannel = new List<AggregateResult>();
         try
         {
-            for(AggregateResult agg : [SELECT SalesChannel__c salesChannel FROM Account where recordTypeId =: RecordTypeMemory.getRecType('Account', 'InDirect_Customer') GROUP BY SalesChannel__c])
+            for(AggregateResult agg : [SELECT SalesChannel__c salesChannel FROM Account where recordTypeId =: DMS_RecordTypeMemory.getRecType('Account', 'InDirect_Customer') GROUP BY SalesChannel__c])
             {
                 aggSalesChannel.add(agg);                
             }           
@@ -353,4 +368,22 @@ public class DMS_HexagonClassic_CC
         public Decimal targetPrevious {get;set;}
         public Decimal preformancePrevious {get;set;}
     }
+    
+    //#######################################################################################
+   
+
+    public class RadarData {
+        String memName {get;set;}
+        Decimal tenthPercent {get;set;}
+        Decimal twelthPercent {get;set;}
+        Decimal age {get;set;}
+        
+        public RadarData(String memName, Decimal tenthPercent, Decimal twelthPercent, Decimal age) {
+            this.memName = memName;
+            this.tenthPercent = tenthPercent;
+            this.twelthPercent = twelthPercent;
+            this.Age = age;
+        }
+    }
+    
 }

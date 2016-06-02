@@ -55,6 +55,8 @@ src/classes/DMS_WaveRestCall_CC.cls
 src/classes/DMS_WaveRestCall_CC.cls-meta.xml
 src/classes/DMS_WaveRestCall_Test.cls
 src/classes/DMS_WaveRestCall_Test.cls-meta.xml
+src/classes/DMS_HexagonClassic_CC.cls
+src/classes/DMS_HexagonClassic-meta.xml
 src/triggers
 src/triggers/DMS_Account.trigger
 src/triggers/DMS_Account.trigger-meta.xml
