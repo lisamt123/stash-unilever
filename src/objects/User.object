@@ -219,15 +219,6 @@
         <type>TextArea</type>
     </fields>
     <fields>
-        <fullName>CannotChangeMC__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>CannotChangeMC</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Distributor_Code__c</fullName>
         <externalId>false</externalId>
         <formula>Contact.Account.ExternalCode__c</formula>
