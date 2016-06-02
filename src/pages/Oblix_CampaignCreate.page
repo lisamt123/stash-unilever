@@ -297,7 +297,7 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="campaign_create_buttons">
-                        <apex:commandButton value="SAVE CAMPAIGN" rendered="{!NOT(campaignHelper.onlyShowProjectedChevron)}" onclick="validateCountrySplit(); return false; " styleClass="btn btn-primary btn-sm pull-right btn_save_campaign btn_check" disabled="{!IF(can_edit,FALSE,TRUE)}"/>
+                        <apex:commandButton value="SAVE CAMPAIGN" rendered="{!NOT(campaignHelper.onlyShowProjectedChevron)}" onclick="validateCountrySplit(); return false; " styleClass="btn btn-primary btn-sm pull-right btn_save_campaign btn_check" disabled="{!IF(can_edit,FALSE,TRUE)}" oncomplete="window.scrollTo(0,0);"/>
                         <apex:commandButton value="SAVE CAMPAIGN" rendered="{!campaignHelper.onlyShowProjectedChevron}" action="{!saveProjectAction}" styleClass="btn btn-primary btn-sm pull-right btn_save_campaign btn_check" disabled="{!IF(can_edit,FALSE,TRUE)}"/>
                         <apex:commandButton value="CANCEL" action="{!backAction}" title="Cancel" styleClass="btn btn-sm pull-right btn_cancel btn_cross" immediate="true" html-formnovalidate="formnovalidate" />
                     </div>
@@ -323,6 +323,7 @@
                 var selectedRegions = [];
                 var currentUnion = [];
                 console.log(unileverRegions);
+                window.scrollTo(0,0);
             </script>
             <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/Oblix_CampaignCreate.js')}" type="text/javascript"></script>
         </apex:define>
