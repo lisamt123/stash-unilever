@@ -65,8 +65,7 @@ public with sharing class Oblix_SOWCreateController extends Oblix_SWOPparentCont
             // set the selected_sow to null to reuse super.checkUserasPermissionToSOW method's redirect
             selected_sow = null;
             return super.checkUserHasPermissionToSOW();
-        }
-        if(isEdit){
+        } else if(isEdit){
 			return super.checkUserHasPermissionToSOW();
 		} else {
 			return null;

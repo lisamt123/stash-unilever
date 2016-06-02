@@ -1792,6 +1792,14 @@
         <apexPage>Oblix_SWOPredirect</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
+    <pageAccesses>
+        <apexPage>Oblix_SWOPredirectToMain</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Oblix_SWOPredirectToMain_List</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
     <recordTypeVisibilities>
         <recordType>Asset_Scoring__c.Asset</recordType>
         <visible>true</visible>
