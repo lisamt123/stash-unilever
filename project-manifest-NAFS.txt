@@ -1,4 +1,3 @@
 src
-src/flows
-src/flows/NAFS_Assign_Territory_Information_Based_on_User_Custom_Setting-1.flow
-src/flows/NAFS_Assign_Territory_Information_Based_on_User_Custom_Setting-3.flow
+src/profiles
+src/profiles/Admin.profile
