@@ -47,3 +47,5 @@ src/labels/EA.labels
 src/classes
 src/classes/EA_ControllerClass.cls
 src/classes/EA_ControllerClass.cls-meta.xml
+src/tabs
+src/tabs/EA_Demo.tab
