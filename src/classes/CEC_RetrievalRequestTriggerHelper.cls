@@ -83,7 +83,7 @@ public with sharing class CEC_RetrievalRequestTriggerHelper {
         for(CEC_Retrieval_Request__c rr :factoryRetrievalMapToSendMail.values()){
             factoryDetailIds.add(rr.Product_Factory__c);
             factoryDetailIds.add(rr.Textile_Factory__c);
-            parentCaseIds.add(rr.Case__c);
+            parentCaseIds.add(rr.Case__c); 
         }
         
         // create Parent case Map to obtain parent Case fields

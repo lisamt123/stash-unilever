@@ -33,7 +33,7 @@ public class CEC_RetrievalRequestTriggerHelperTest {
         insert reasonCodeList;
         
         List<CEC_Case_Market_Mapping__c> cmmList = CEC_TestDataFactory.createMasterCaseMarketMapping();
-        CEC_Case_Market_Mapping__c cmmBrazil;
+        CEC_Case_Market_Mapping__c cmmBrazil = new CEC_Case_Market_Mapping__c();
         for(CEC_Case_Market_Mapping__c cmm : cmmList) {
             if (cmm.Market__c == CEC_Constants.cmmCountry) {
                 cmmBrazil = cmm;
@@ -89,7 +89,7 @@ public class CEC_RetrievalRequestTriggerHelperTest {
         insert reasonCodeList;
         
         List<CEC_Case_Market_Mapping__c> cmmList = CEC_TestDataFactory.createMasterCaseMarketMapping();
-        CEC_Case_Market_Mapping__c cmmBrazil;
+        CEC_Case_Market_Mapping__c cmmBrazil = new CEC_Case_Market_Mapping__c();
         for(CEC_Case_Market_Mapping__c cmm : cmmList) {
             if (cmm.Market__c == CEC_Constants.cmmCountry) {
                 cmmBrazil = cmm;
@@ -201,7 +201,7 @@ public class CEC_RetrievalRequestTriggerHelperTest {
         setUpTestData1();
         
         List<CEC_Factory_Details__c> factoryList = [Select id, Name FROM CEC_Factory_Details__c LIMIT 2];
-        id factoryId;
+        id factoryId = null;
         for(CEC_Factory_Details__c fd :factoryList){
             if(fd.Name == 'testTextileFactory'){
                 factoryId = fd.Id;
@@ -228,7 +228,7 @@ public class CEC_RetrievalRequestTriggerHelperTest {
         setUpTestData1();
         
         List<CEC_Factory_Details__c> factoryList = [Select id, Name FROM CEC_Factory_Details__c LIMIT 2];
-        id factoryId;
+        id factoryId = null;
         for(CEC_Factory_Details__c fd :factoryList){
             if(fd.Name == 'testProductFactory'){
                 factoryId = fd.Id;
@@ -254,7 +254,7 @@ public class CEC_RetrievalRequestTriggerHelperTest {
         setUpTestData2();
         
         List<CEC_Factory_Details__c> factoryList = [Select id, Name FROM CEC_Factory_Details__c LIMIT 2];
-        id factoryId;
+        id factoryId = null;
         for(CEC_Factory_Details__c fd :factoryList){
             if(fd.Name == 'testTextileFactory'){
                 factoryId = fd.Id;
@@ -279,7 +279,7 @@ public class CEC_RetrievalRequestTriggerHelperTest {
         setUpTestData2();
         
         List<CEC_Factory_Details__c> factoryList = [Select id, Name FROM CEC_Factory_Details__c LIMIT 2];
-        id factoryId;
+        id factoryId = null;
         for(CEC_Factory_Details__c fd :factoryList){
             if(fd.Name == 'testProductFactory'){
                 factoryId = fd.Id;
@@ -303,7 +303,7 @@ public class CEC_RetrievalRequestTriggerHelperTest {
         setUpTestData3();
         
         List<CEC_Factory_Details__c> factoryList = [Select id, Name FROM CEC_Factory_Details__c LIMIT 2];
-        id factoryId;
+        id factoryId = null;
         for(CEC_Factory_Details__c fd :factoryList){
             if(fd.Name == 'testTextileFactory'){
                 factoryId = fd.Id;
@@ -328,7 +328,7 @@ public class CEC_RetrievalRequestTriggerHelperTest {
         setUpTestData3();
         
         List<CEC_Factory_Details__c> factoryList = [Select id, Name FROM CEC_Factory_Details__c LIMIT 2];
-        id factoryId;
+        id factoryId = null;
         for(CEC_Factory_Details__c fd :factoryList){
             if(fd.Name == 'testProductFactory'){
                 factoryId = fd.Id;
