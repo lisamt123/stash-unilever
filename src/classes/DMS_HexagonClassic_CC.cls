@@ -1,5 +1,5 @@
 /**********************************************************************
-Name: DMS_Hexagon_CC
+Name: DMS_HexagonClassic_CC
 Copyright © 2016 Salesforce
 ====================================================== 
 ====================================================== 
@@ -13,7 +13,7 @@ VERSION 	AUTHOR		 		DATE  		Description
 1.0		DIMITRI M. SANTANA	 25/05/2016		INITIAL DEVELOPMENT
 
 ***********************************************************************/
-public class DMS_Hexagon_CC 
+public class DMS_HexagonClassic_CC 
 {        
     private List<DMS_WaveHexagonRestCall.Records> recordsList;
     private Map<String,String> distributorsMap = new Map<String,String>();
@@ -33,7 +33,7 @@ public class DMS_Hexagon_CC
     /*******************************************************************
     * Purpose: contructor  
     ********************************************************************/
-    public DMS_Hexagon_CC()
+    public DMS_HexagonClassic_CC()
     { 
         try{
             fillLabel();
@@ -170,7 +170,7 @@ public class DMS_Hexagon_CC
         
         try
         {
-            for(Account distributor :[SELECT id,name,ExternalCode__c FROM Account where recordTypeId =: DMS_RecordTypeMemory.getRecType('Account', 'Distributor')])
+            for(Account distributor :[SELECT id,name,ExternalCode__c FROM Account where recordTypeId =: RecordTypeMemory.getRecType('Account', 'Distributor')])
             {
                 distributorList.add(distributor);
             }            
@@ -195,7 +195,7 @@ public class DMS_Hexagon_CC
         aggSalesChannel = new List<AggregateResult>();
         try
         {
-            for(AggregateResult agg : [SELECT SalesChannel__c salesChannel FROM Account where recordTypeId =: DMS_RecordTypeMemory.getRecType('Account', 'InDirect_Customer') GROUP BY SalesChannel__c])
+            for(AggregateResult agg : [SELECT SalesChannel__c salesChannel FROM Account where recordTypeId =: RecordTypeMemory.getRecType('Account', 'InDirect_Customer') GROUP BY SalesChannel__c])
             {
                 aggSalesChannel.add(agg);                
             }           
