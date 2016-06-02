@@ -1,0 +1,21 @@
+/* Generic Accordian Styles */
+.ipmAccordian {display:block;}
+.ipmAccordian .aHead {display:block;}
+.ipmAccordian > .ipmAcrdnExpand {border:1px solid #dce3e2; display:block; border-top:none; margin-bottom:10px;}        
+.ipmAccordian > .aHead {color:#253b78; font-size:1.5em; font-weight:bold; display:block;background:#f7f7f7;border:1px solid #dce3e2; margin:0; padding:13px 10px 14px;}
+.ipmAccordian > .ipmAcrdnExpand > .aHead {color:#0f7fb8; font-size:1.2em; font-style:normal; font-weight:bold; display:block;border-bottom:1px solid #dce3e2; margin:0 20px; padding:12px 0;}
+.ipmAccordian > .ipmAcrdnExpand > .ipmAcrdnExpand > .aHead {font-size:1em;font-style:normal;font-weight:bold;color:#0f7fb8; display:block; border-bottom:1px solid #eee; padding: 12px 0 15px; margin:0 0 0 20px;}
+.ipmAccordian .ipmAcrdnExpand .ipmAcrdnExpand {padding:20px;display:block;}
+.ipmAccordian .ipmAcrdnExpand .ipmAcrdnExpand .col-sm-3 {padding-right:0; position:relative; right:-5px;}
+.ipmAccordian .ipmAcrdnExpand .ipmAcrdnExpand .ipmAcrdnExpand {padding:20px;display:block;}
+.ipmAccordian .ipmAcrdnExpand {color:#797979;display:block;}
+.ipmAccordian > .aHead span.expico {display: inline-block; cursor:pointer; font-family: FontAwesome;width: 21px;height: 21px;text-align: center;font-weight: normal;line-height: 23px;background: #81bd42;position: relative;margin-right: 5px;font-size: 0.8em;border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%;color: #fff;}
+.ipmAccordian .ipmAcrdnExpand .aHead span.expico {display: inline-block; cursor:pointer; font-family: FontAwesome;width: 16px;height: 16px;text-align: center;font-weight: normal;line-height: 17px;background: #d4d4d4;position: relative;margin-right: 5px;font-size: 0.7em;border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%;color: #fff;}
+.ipmAccordian span.wrpHead {display: inline-block;padding: 5px 10px 5px 0;border-right: 1px solid #797979;}
+.ipmAccordian span.filledIn {display: inline-block;padding: 5px 10px; color:#e68627; font-weight:normal; }
+.ipmAccordian span.Excluded {display: inline-block;padding: 5px 10px; margin-left:5px; color:#797979; background:#ebebeb; font-size:0.9em; font-weight:normal; }
+.ipmAccordian span.lastupdate {display:block; margin: 6px 0 0 0; color:#d4d4d4; font-weight:normal; }        
+.ipmAccordian .acHead {padding-top:4px;}
+
+.ipmAccordian .SecButtonSet {display:inline-block; text-align:right; margin-top:7px;}
+.ipmAccordian .SecButtonSet .icoButton {display:inline-block;width:30px; margin: 0 5px; height:30px;border:1px solid #1568b6;border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%;}

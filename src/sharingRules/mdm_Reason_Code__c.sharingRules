@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>Market_Equals_ANZ_Manager</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Market Equals ANZ - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_ANZ</roleAndSubordinatesInternal>
+        </sharedTo>
+        <criteriaItems>
+            <field>ISO_Country__c</field>
+            <operation>equals</operation>
+            <value>AU,NZ</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Market_Equals_South_Africa_Manager</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Market Equals South Africa - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_South_Africa</roleAndSubordinatesInternal>
+        </sharedTo>
+        <criteriaItems>
+            <field>ISO_Country__c</field>
+            <operation>equals</operation>
+            <value>ZA</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>

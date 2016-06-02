@@ -1,4 +1,3 @@
 src
-src/classes
-src/classes/IPM_List_Milestones_Test.cls
-src/classes/IPM_List_Milestones_Test.cls-meta.xml
+src/permissionsets
+src/permissionsets/IPMNG_Basic.permissionset

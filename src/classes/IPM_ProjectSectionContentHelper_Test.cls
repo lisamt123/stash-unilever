@@ -6,720 +6,468 @@
 *  @Version 1.0
 *  @reference IPM_ProjectSectionContentHelper Class
 */
-@isTest
-public class IPM_ProjectSectionContentHelper_Test {
-    public static IPM_Project__c project;
-    public static IPM_Project__c project1;
-    public static IPM_Project_Document__c projDoc;
-    public static IPM_Project_Document_Section__c projDocSec;
-    public static IPM_Project_Document_Section_Content__c projDocSecCon;
+@isTest   
+private class IPM_ProjectSectionContentHelper_Test {
+    public static IPM_Project__c project;// Project object initialization
     
-    public static User projSecConUser;
+    public static IPM_Project_Document__c projDoc;
+    public static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
+    public static User stdUserForProSecContent;
+    private static List<IPM_Project__c>projectList=new list<IPM_Project__c>();
+    private static final string PROJECT_DOC_CREATED_STR='Project Document created';
+    private static final string TEST_COMMENTS_STR='TestComments1';
+    public static List<IPM_Project__c>projectListObj=new List<IPM_Project__c>();
+    public static List<IPM_Project__c> projlList=new List<IPM_Project__c>();
+    public static List<IPM_Project_Document_Section__c>projectDocSecListObj=new List<IPM_Project_Document_Section__c>();
+    public static User globalUser;
+    public static IPM_ProjectSectionContentHelper ipmProjSecConHelper;
+    public static IPM_Project_Document_Section_Content__c projectDocSecContentObj=new IPM_Project_Document_Section_Content__c();
+    private static string SECTION_UPDATE_STR='section not update';
+    private static final string INDIA_STR='IND'; 
+    public static IPM_Gate_CMI__c gateCMI;
+    public static List<IPM_OTIF_Status__c> OTIFSettingList = new List<IPM_OTIF_Status__c>();    
+    public static Map<Id,List<IPM_Project_Document_Section__c>> projectDocToSectionMap=new Map<Id,List<IPM_Project_Document_Section__c>>();
+    public static Map<Id,Map<String,IPM_Project_Document__c>> projectToDocumentMap=new Map<Id,Map<String,IPM_Project_Document__c>>();
+    public static Map<Id,IPM_Project__c> projectMap=new Map<Id,IPM_Project__c>();
+    public static IPM_OTIF_Status__c otifstatus=new IPM_OTIF_Status__c();
     public static Map<Id,List<IPM_Project_Document_Section__c>> docSecMap;
     public static Map<Id,Map<String,IPM_Project_Document__c>> docMap;
     public static Map<Id,IPM_Project__c> projMap;
-    public static List<IPM_Project_Document_Section__c> docSecLst;
-    public static Set<Id> projDocSecIdSet;
-    public static List<IPM_Project_Document__c> docLst;
     public static Map<String,IPM_Project_Document__c>docStringMap;
-    public static IPM_Gate_CMI__c gateCMI;
-    private static String OPREN_PROJECT_TYPE='Operational-Regional-MR';
-    private static String TEST_PROJECT_DOCUMENT_SECTION='IPM_Project_Document_Section__c';
-    private static String TEST_PROJECT = 'Test Project';
-    private static String STR_GLOBAL_COMPANY = 'Global Company Card';
-    private static String STR_CLUSTERING =  'Clustering';
-    public static final string STR_INNOVATION_RENOVATION = 'Innovation/Renovation';
-    public static String userEditAccess='User should have edit access to project'; 
-    public static Map<String,Object> projDocSecMap =  new Map<String,Object>{'IPM_Section_Name__c' => IPM_ConstantUtils.OTIF_STATUS,
-                                            'IPM_Default_Section__c' => True};
-    public static List<IPM_OTIF_Status__c> OTIFSettingList = new List<IPM_OTIF_Status__c>();                                        
-    /****************************************************************************************************************************
-    *  @Description Initializing test data  
-    *  @name initializeData
-    *  @param None
-    *  @return void
+    public static IPM_Project__c ParentProject;// Project object initialization
+    public static List<IPM_Country__c>countryList=new List<IPM_Country__c>();
+    public static List<MDO_Geography__c> mdoGeoList=new List<MDO_Geography__c>();
+    private static string LOCAL_STR='Local';
+    private static string REGIONAL_STR='Regional';
+    public static IPM_Country__c countryObj=new IPM_Country__c();
+    public static List<IPM_Project_Document_Section__c>projectDocSecList=new List<IPM_Project_Document_Section__c>();
+    private static string CONTENT_NOT_UPDATED_STR='content not updated';
+    /*************************************************************************************************************************
+    * @description Test Data
     */
-    static void initializeData(){
-        projSecConUser=IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.BLANK);
-        user newAdminUser = IPM_TestFactory_Helper.createUserAdmin(false);
-        list<IPM_Project__c>projectListToShare=new list<IPM_Project__c>();
-        list<User>userListToShare=new list<User>();
-        userListToShare.add(projSecConUser);
-        system.runAs(newAdminUser){
-        	project = IPM_TestFactory_Helper.createIPMProject(false);
-            project.IPM_GateKeeping_Model__c=IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH;  
-            project.Name=TEST_PROJECT;
-            project.IPM_Project_Name__c=TEST_PROJECT;
-            project.IPM_Selected_Project_Type__c=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL;
-            project.IPM_Project_Type__c =IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
-            project.IPM_Technical_Project_Leader__c =userinfo.getuserid();
-            project.IPM_Project_Leader__c = userinfo.getuserid();
-            project.Deputy_Project_Leader__c = userinfo.getuserid();
-            project.IPM_Project_Gatekeeper__c = userinfo.getuserid();
-            project.IPM_Phase__c= IPM_ConstantUtils.PHASE_CAPABILITY;
-            
-            project.Deputy_Project_Leader__c=userinfo.getuserid();
-            project.IPMProject_Span__c=IPM_ConstantUtils.ROLLOUT_SPAN_REGIONAL;
-            project.IPM_Complexity__c=IPM_ConstantUtils.IPM_COMPLEXITY_FULL;
-            project.IPM_CompanyCardText__c=STR_GLOBAL_COMPANY;
-            project.IPM_Category_Text__c=IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT;
-            project.IPM_ProjectSubType__c=STR_INNOVATION_RENOVATION;
-            project.IPM_UserCategory__c=IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT;
-            project.IPM_ProjectJobType__c=IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL;
-            project.IPM_IsCompleted__c=true;
-            project.RecordTypeID=Schema.SObjectType.IPM_Project__c.RecordTypeInfosByName.get(STR_CLUSTERING).RecordTypeId;
-            insert project;
-            projectListToShare.add(project);
-            IPM_Project__c projectObj=[select IPM_IsCompleted__c from IPM_Project__c where id=:project.Id];
-            system.assert(projectObj.IPM_IsCompleted__c,System.Label.IPM_Record_successfully_saved);
-            
-            //share project records
-            List<IPM_Project__Share>projectShareList=IPM_TestFactory_Helper.shareIPMProject(projectListToShare,userListtoShare);
-            insert projectShareList;
-            list<IPM_Project__Share>shareList=[SELECT ParentId,UserOrGroupId FROM IPM_Project__Share WHERE ParentId=:project.id AND UserOrGroupId=:projSecConUser.id LIMIT 1];
-            system.assertEquals(shareList[0].UserOrGroupId,projSecConUser.id,projSecConUser.id+userEditAccess);//positive test
-           
-           
-        }
+    @testSetup static void initializeData(){
+        System.runAs(IPM_TestFactory_Helper.createUserAdmin(true))
+        {
+            // user has to be created as system admin 
+            stdUserForProSecContent= IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+        }       
         
-        System.runAs(projSecConUser){
-            //Test.StartTest();
-             
-            projDoc=IPM_TestFactory_Helper.createIPMProjectDocument(FALSE);
-            projDoc.IPM_Project__c=project.ID;
-            projDoc.IPM_GateDocuments__c=IPM_ConstantUtils.MARKET_READY_GATE;
-            insert projDoc;
-            System.assertEquals(projDoc.IPM_Project__c,project.ID); //check whether parent project for project document is equal to project
-            IPM_Project_Document__c projectDocObj=[select IPM_Project__c from IPM_Project_Document__c where id=:projDoc.Id];
-            system.assertEquals(projectDocObj.IPM_Project__c,project.ID,System.Label.IPM_Record_successfully_saved);
-            
-            docLst=new List<IPM_Project_Document__c>();
-            
-            docLst.add(projDoc);
-            
-            projDocSec=IPM_TestFactory_Helper.createIPMProjectDocumentSection(FALSE);
-            projDocSec.IPM_Project_Document__c=projDoc.ID;
-            insert projDocSec;            
-           
-            projDocSec = (IPM_Project_Document_Section__c)IPM_TestFactory.createSObject(TEST_PROJECT_DOCUMENT_SECTION
-                                                ,projDocSecMap,FALSE);
-            projDocSec.IPM_Project_Document__c=projDoc.ID;
-            projDocSec.IPM_Section_Name__c = IPM_ConstantUtils.OTIF_STATUS;
-            insert projDocSec;
-            
-            System.assertEquals(projDocSec.IPM_Project_Document__c,projDoc.ID); //check whether parent project document for project document section is equal to projDoc
-            IPM_Project_Document_Section__c projectDocSecObj=[select IPM_Project_Document__c from IPM_Project_Document_Section__c where id=:projDocSec.Id];
-            system.assertEquals(projectDocSecObj.IPM_Project_Document__c,projDoc.ID,System.Label.IPM_Record_successfully_saved);
-            
-            docSecLst=new List<IPM_Project_Document_Section__c>();
-            docSecLst.add(projDocSec);
-            
-            projDocSecCon=IPM_TestFactory_Helper.createIPMProjectDocumentSectionContent(FALSE);
-            projDocSecCon.IPM_Project_Document_Section__c=projDocSec.ID;
-            projDocSecCon.IPM_Content_Type__c=IPM_ConstantUtils.CMIGATE_CONTENT_TYPE;
-            insert projDocSecCon;
-            
-            System.assert(projDocSecCon!=null); //check whether project doc section is not equal to null
-            //IPM_Project_Document_Section_Content__c projectDocSecConObj=[select IPM_Project_Document_Section__c from IPM_Project_Document_Section_Content__c where id=:projDocSecCon.Id];
-            //system.assertEquals(projectDocSecConObj.IPM_Project_Document_Section__c,projDocSec.ID,System.Label.IPM_Record_successfully_saved);
-       
-            List<IPM_Project_Type__c> customsettingList = new List<IPM_Project_Type__c>();
-            
-            IPM_Project_Type__c customsetting = new IPM_Project_Type__c();
-            customsetting.name = 'Test';
-            customsetting.IPM_Phase__c = IPM_ConstantUtils.PHASE_CAPABILITY;
-            customsetting.IPM_Project_Span__c = IPM_ConstantUtils.ROLLOUT_SPAN_REGIONAL;
-            customsetting.IPM_Project_Type__c = IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
-            customsetting.IPM_GateKeeping_Model__c = IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH;
-            customsetting.IPM_Source_Company_Card__c = STR_GLOBAL_COMPANY;
-            customsetting.IPM_Gate_Document__c= IPM_ConstantUtils.MARKET_READY_GATE;
-            
-            customsettingList.add(customsetting);
-            
-            insert customsettingList;
-            createOTIF();
-            //Test.StopTest();
-            }
-      }
-      
-      static void initializeData1(){
-        projSecConUser=IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.BLANK);
-        user newAdminUser = IPM_TestFactory_Helper.createUserAdmin(false);
-        list<IPM_Project__c>projectListToShare=new list<IPM_Project__c>();
-        list<User>userListToShare=new list<User>();
-        userListToShare.add(projSecConUser);
-        System.runAs(newAdminUser){
-        	project = IPM_TestFactory_Helper.createIPMProject(false);
-            project.IPM_GateKeeping_Model__c=IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH;  
-            project.Name=TEST_PROJECT;
-            project.IPM_Project_Name__c=TEST_PROJECT;
-            project.IPM_Selected_Project_Type__c=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL;
-            project.IPM_Project_Type__c =IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
-            project.IPM_Technical_Project_Leader__c =userinfo.getuserid();
-            project.IPM_Project_Leader__c = userinfo.getuserid();
-            project.Deputy_Project_Leader__c = userinfo.getuserid();
-            project.IPM_Project_Gatekeeper__c = userinfo.getuserid();
-            project.IPM_Phase__c= IPM_ConstantUtils.PHASE_CAPABILITY;
-            
-            project.Deputy_Project_Leader__c=userinfo.getuserid();
-            project.IPMProject_Span__c=IPM_ConstantUtils.ROLLOUT_SPAN_REGIONAL;
-            project.IPM_Complexity__c=IPM_ConstantUtils.IPM_COMPLEXITY_FULL;
-            project.IPM_CompanyCardText__c=STR_GLOBAL_COMPANY;
-            project.IPM_Category_Text__c=IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT;
-            project.IPM_ProjectSubType__c=STR_INNOVATION_RENOVATION;
-            project.IPM_UserCategory__c=IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT;
-            project.IPM_ProjectJobType__c=IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL;
-            project.IPM_IsCompleted__c=true;
-            project.RecordTypeID=Schema.SObjectType.IPM_Project__c.RecordTypeInfosByName.get(STR_CLUSTERING).RecordTypeId;
-            insert project;
-            projectListToShare.add(project);
-            IPM_Project__c projectObj=[select IPM_IsCompleted__c from IPM_Project__c where id=:project.Id];
-            system.assert(projectObj.IPM_IsCompleted__c,System.Label.IPM_Record_successfully_saved);
-            
-            //share project records
-            List<IPM_Project__Share>projectShareList=IPM_TestFactory_Helper.shareIPMProject(projectListToShare,userListtoShare);
-            insert projectShareList;
-            list<IPM_Project__Share>shareList=[SELECT ParentId,UserOrGroupId FROM IPM_Project__Share WHERE ParentId=:project.id AND UserOrGroupId=:projSecConUser.id LIMIT 1];
-            system.assertEquals(shareList[0].UserOrGroupId,projSecConUser.id,projSecConUser.id+userEditAccess);//positive test
+        List<User>userLists=[SELECT id FROM user WHERE id=:stdUserForProSecContent.id LIMIT 1];
+        System.AssertEquals(userLists[0].id, stdUserForProSecContent.id,'user id is:'+userLists[0].id);//positive test
         
-        }
-        System.runAs(projSecConUser){
-            //Test.StartTest();
+        // Create Company Card information 
+        IPM_Company_Card__c globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
+        IPM_Company_Card__c regionalCompanyCard = IPM_TestFactory_Helper.createRegionalCompanyCard(false);
+        IPM_Company_Card__c localCompanyCard = IPM_TestFactory_Helper.createLocalCompanyCard(false);
+        
+        List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
+        insert companyCardList;
+        List<IPM_Company_Card__c>comList=[select Id from IPM_Company_Card__c where Id=:companyCardList[0].Id limit 1];
+        System.assertEquals(comList[0].Id,companyCardList[0].Id,'company card not inserted');
+        
+        IPM_TestFactory_Helper.getProjectMasterData();
+        projectList = IPM_TestFactory_Helper.projectSetUp(1,stdUserForProSecContent);
+        System.runAs(stdUserForProSecContent) {
+            insert projectList;
+            List<IPM_Project__c> projlList1=[SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:projectList[0].ID LIMIT 1];
+            System.assertEquals(projlList1[0].Name,TEST_COMMENTS_STR,'project not created');//positive test
+            project=projectList[0];
+            project.Name='ProChgStatus';
             
-            projDoc=IPM_TestFactory_Helper.createIPMProjectDocument(FALSE);
-            projDoc.IPM_Project__c=project.ID;
-            projDoc.IPM_GateDocuments__c=IPM_ConstantUtils.CHARTER_GATE;
-            insert projDoc;
-            System.assertEquals(projDoc.IPM_Project__c,project.ID); //check whether parent project for project document is equal to project
-            IPM_Project_Document__c projectDocObj=[select IPM_Project__c from IPM_Project_Document__c where id=:projDoc.Id];
-            system.assertEquals(projectDocObj.IPM_Project__c,project.ID,System.Label.IPM_Record_successfully_saved);
             
-            docLst=new List<IPM_Project_Document__c>();
-            docLst.add(projDoc);
+            List<IPM_Project_Rollout__c> regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{stdUserForProSecContent,stdUserForProSecContent,stdUserForProSecContent});
+            insert regionalRolloutList;
+            List<IPM_Project_Rollout__c> proRegListObj=[SELECT IPM_Rollout_Span__c from IPM_Project_Rollout__c WHERE ID =:regionalRolloutList[0].ID LIMIT 1];
+            System.assertEquals(proRegListObj[0].IPM_Rollout_Span__c,REGIONAL_STR,'regional rollout not created');//positive test
             
-            /*projDocSec=IPM_TestFactory_Helper.createIPMProjectDocumentSection(FALSE);
-            projDocSec.IPM_Project_Document__c=projDoc.ID;
-            insert projDocSec;*/
-            
-           
-            projDocSec = (IPM_Project_Document_Section__c)IPM_TestFactory.createSObject(TEST_PROJECT_DOCUMENT_SECTION
-                                                ,projDocSecMap,FALSE);
-            projDocSec.IPM_Project_Document__c=projDoc.ID;
-            projDocSec.IPM_Section_Name__c = IPM_ConstantUtils.OTIF_STATUS;
-            projDocSec.IPM_Master_Section_External_Id__c = 'Business_Case_Action_Standards';
-            insert projDocSec;
-            
-            System.assertEquals(projDocSec.IPM_Project_Document__c,projDoc.ID); //check whether parent project document for project document section is equal to projDoc
-            IPM_Project_Document_Section__c projectDocSecObj=[select IPM_Project_Document__c from IPM_Project_Document_Section__c where id=:projDocSec.Id];
-            system.assertEquals(projectDocSecObj.IPM_Project_Document__c,projDoc.ID,System.Label.IPM_Record_successfully_saved);
-            
-            docSecLst=new List<IPM_Project_Document_Section__c>();
-            docSecLst.add(projDocSec);
-            
-            projDocSecCon=IPM_TestFactory_Helper.createIPMProjectDocumentSectionContent(FALSE);
-            projDocSecCon.IPM_Project_Document_Section__c=projDocSec.ID;
-            insert projDocSecCon;
-            System.assert(projDocSecCon!=null); //check whether project doc section is not equal to null
-            //IPM_Project_Document_Section_Content__c projectDocSecConObj=[select IPM_Project_Document_Section__c from IPM_Project_Document_Section_Content__c where id=:projDocSecCon.Id];
-            //system.assertEquals(projectDocSecConObj.IPM_Project_Document_Section__c,projDocSec.ID,System.Label.IPM_Record_successfully_saved);
-            
-            List<IPM_Project_Type__c> customsettingList = new List<IPM_Project_Type__c>();
-            
-            IPM_Project_Type__c customsetting = new IPM_Project_Type__c();
-            customsetting.name = 'Test';
-            customsetting.IPM_Phase__c = IPM_ConstantUtils.PHASE_CAPABILITY;
-            customsetting.IPM_Project_Span__c = IPM_ConstantUtils.ROLLOUT_SPAN_REGIONAL;
-            customsetting.IPM_Project_Type__c = IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
-            customsetting.IPM_GateKeeping_Model__c = IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH;
-            customsetting.IPM_Source_Company_Card__c = STR_GLOBAL_COMPANY;
-            customsetting.IPM_Gate_Document__c= IPM_ConstantUtils.CHARTER_GATE;
-            
-            customsettingList.add(customsetting);
-            
-            insert customsettingList;
-            
-            createOTIF();
-            //Test.StopTest();
+            Map<Id,List<IPM_Project_Rollout__c>> projectToRolloutMap = new Map<Id,List<IPM_Project_Rollout__c>>();
+            for(IPM_Project_Rollout__c projectRollout : regionalRolloutList)
+            {
+                List<IPM_Project_Rollout__c> projectRolloutList = new List<IPM_Project_Rollout__c>();
+                if(projectToRolloutMap.containsKey(projectRollout.IPM_Project__c))
+                {
+                    projectRolloutList = projectToRolloutMap.get(projectRollout.IPM_Project__c);
+                }
+                projectRolloutList.add(projectRollout);
+                projectToRolloutMap.put(projectRollout.IPM_Project__c,projectRolloutList);
+                
             }
-      }
-      
-      static void initializeData2(){
-        projSecConUser=IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.BLANK);
-        user newAdminUser = IPM_TestFactory_Helper.createUserAdmin(false);
-        list<IPM_Project__c>projectListToShare=new list<IPM_Project__c>();
-        list<User>userListToShare=new list<User>();
-        userListToShare.add(projSecConUser);
-        System.runAs(newAdminUser){
-        	project = IPM_TestFactory_Helper.createIPMProject(false);
-            project.IPM_GateKeeping_Model__c=IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH;  
-            project.Name=TEST_PROJECT;
-            project.IPM_Project_Name__c=TEST_PROJECT;
-            project.IPM_Selected_Project_Type__c=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL;
-            project.IPM_Project_Type__c =IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
-            project.IPM_Technical_Project_Leader__c =userinfo.getuserid();
-            project.IPM_Project_Leader__c = userinfo.getuserid();
-            project.Deputy_Project_Leader__c = userinfo.getuserid();
-            project.IPM_Project_Gatekeeper__c = userinfo.getuserid();
-            project.IPM_Phase__c= IPM_ConstantUtils.PHASE_CAPABILITY;
             
-            project.Deputy_Project_Leader__c=userinfo.getuserid();
-            project.IPMProject_Span__c=IPM_ConstantUtils.ROLLOUT_SPAN_REGIONAL;
-            project.IPM_Complexity__c=IPM_ConstantUtils.IPM_COMPLEXITY_FULL;
-            project.IPM_CompanyCardText__c=STR_GLOBAL_COMPANY;
-            project.IPM_Category_Text__c=IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT;
-            project.IPM_ProjectSubType__c=STR_INNOVATION_RENOVATION;
-            project.IPM_UserCategory__c=IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT;
-            project.IPM_ProjectJobType__c=IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL;
-            project.IPM_IsCompleted__c=true;
-            project.RecordTypeID=Schema.SObjectType.IPM_Project__c.RecordTypeInfosByName.get(STR_CLUSTERING).RecordTypeId;
-            insert project;
-            projectListToShare.add(project);
+            // Create local Rollouts for Created regional Rollouts.
+            List<IPM_Project_Rollout__c> localRolloutList = IPM_TestFactory_Helper.createLocalRolloutsList(false,projectToRolloutMap,new List<User>{stdUserForProSecContent});  
             
-            project1 = IPM_TestFactory_Helper.createIPMProject(false);
-            project1.IPM_GateKeeping_Model__c=IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH;  
-            project1.Name=TEST_PROJECT;
-            project1.IPM_Project_Name__c='abcd1';
-            project1.IPM_Selected_Project_Type__c=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL;
-            project1.IPM_Project_Type__c =IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
-            project1.IPM_Technical_Project_Leader__c =userinfo.getuserid();
-            project1.IPM_Project_Leader__c = userinfo.getuserid();
-            project1.Deputy_Project_Leader__c = userinfo.getuserid();
-            project1.IPM_Project_Gatekeeper__c = userinfo.getuserid();
-            project1.IPM_Phase__c= IPM_ConstantUtils.PHASE_CAPABILITY;
-            project1.Sustainability_Period__c='3';
-            project1.Deputy_Project_Leader__c=userinfo.getuserid();
-            project1.IPMProject_Span__c=IPM_ConstantUtils.ROLLOUT_SPAN_REGIONAL;
-            project1.IPM_Complexity__c=IPM_ConstantUtils.IPM_COMPLEXITY_FULL;
-            project1.IPM_CompanyCardText__c=STR_GLOBAL_COMPANY;
-            project1.IPM_Category_Text__c=IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT;
-            project1.IPM_ProjectSubType__c=STR_INNOVATION_RENOVATION;
-            project1.IPM_UserCategory__c=IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT;
-            project1.IPM_ProjectJobType__c=IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL;
-            project1.IPM_IsCompleted__c=true;
-            project1.RecordTypeID=Schema.SObjectType.IPM_Project__c.RecordTypeInfosByName.get(STR_CLUSTERING).RecordTypeId;
-            insert project1;
+            insert localRolloutList; 
             
-            projectListToShare.add(project1);
+            List<IPM_Project_Rollout__c> proLocListObj=[SELECT IPM_Rollout_Span__c from IPM_Project_Rollout__c WHERE ID =:localRolloutList[0].ID LIMIT 1];
+            System.assertEquals(proLocListObj[0].IPM_Rollout_Span__c,LOCAL_STR,'local rollout not created');//positive test
             
-            project.IPM_Parent_Project__c = project1.ID;
+            // Create Country specific information.
+            
+            // Create Country specific information.
+            String geoExternalId = '';
+            for(IPM_Project_Rollout__c localRolloutObj : localRolloutList)
+            {
+                
+                if(localRolloutObj.IPM_Rollout_Project__c.contains('AFR'))
+                {
+                    geoExternalId = 'AG';
+                }
+                else if(localRolloutObj.IPM_Rollout_Project__c.contains('LA'))
+                {
+                    geoExternalId = 'BR';
+                }
+                
+                MDO_Geography__c mdo = new MDO_Geography__c(ISO_3166_1_Code__c = geoExternalId); 
+                mdoGeoList.add(mdo);    
+                IPM_Country__c tempCountry = new  IPM_Country__c(MDO_Geography__c = mdo.id,
+                IPM_Project__c = localRolloutObj.IPM_Project__c,local_Rollout__c = localRolloutObj.Id,IPM_Rollout_Status__c = 'With MCO');    
+                countryList.add(tempCountry);
+            }
+            
+            
+            insert mdoGeoList;
+            List<MDO_Geography__c>mdoList=[select Id from MDO_Geography__c where id=:mdoGeoList[0].Id limit 1];
+            system.assertNotEquals(mdoList[0].Id,null,'mdo not created'); 
+            
+            insert countryList;
+            
+            
+            List<IPM_Country__c>counList=[select Id,IPM_Rollout_Status__c from IPM_Country__c where Id=:countryList[0].Id limit 1];
+            system.assertEquals(counList[0].IPM_Rollout_Status__c,'With MCO','country not inserted');
+            countryObj=countryList[0];
+        }
+    }
+    
+    /*************************************************************************************************************************
+    * @description Test Data
+    */
+    public static void initializeTestMethodData(){
+        
+        Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
+        globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1]; 
+        system.runAs(globalUser){
+           
+            ParentProject= IPM_TestFactory_Helper.createIPMProject(FALSE);
+            ParentProject.Name='parent project';
+            insert ParentProject;
+            List<IPM_Project__c>parProjectList=[select Id,Name from IPM_Project__c where Id=:ParentProject.Id Limit 1];
+            System.assertEquals(parProjectList[0].Name,'parent project','parent project not inserted');
+            
+            List<Id> globalProjectIdList = new List<Id>();
+        
+            projectListObj = [Select Id,IPM_Parent_Project__c,IPM_Bosscard__c,IPM_CompanyCardText__c,IPM_Project_Type__c,IPM_Phase__c, Name,IPM_GateKeeping_Model__c,IPMProject_Span__c,(Select Id,IPM_GateDocuments__c,IPM_Project__c from Project_Documents__r),(Select Id from IPM_Financials_Consolidated__r )
+            from IPM_Project__c where Name in:projectNameSet];
+            project=projectListObj[0];
+            project.IPM_Parent_Project__c=ParentProject.Id;
             update project;
-           
-            IPM_Project__c projectObj=[select IPM_IsCompleted__c from IPM_Project__c where id=:project.Id];
-            system.assert(projectObj.IPM_IsCompleted__c,System.Label.IPM_Record_successfully_saved);
             
-            //share project records
-            List<IPM_Project__Share>projectShareList=IPM_TestFactory_Helper.shareIPMProject(projectListToShare,userListtoShare);
-            insert projectShareList;
-            list<IPM_Project__Share>shareList=[SELECT ParentId,UserOrGroupId FROM IPM_Project__Share WHERE ParentId=:project.id AND UserOrGroupId=:projSecConUser.id LIMIT 1];
-            system.assertEquals(shareList[0].UserOrGroupId,projSecConUser.id,projSecConUser.id+userEditAccess);//positive test
-        
+            List<IPM_Project__c>projectList1=[select IPM_Parent_Project__c from IPM_Project__c where Id=:project.Id Limit 1];
+            System.assertEquals(projectList1[0].IPM_Parent_Project__c,ParentProject.Id,'project not updated');
             
-        }
-        System.runAs(projSecConUser){
-            //Test.StartTest();
-            
-            projDoc=IPM_TestFactory_Helper.createIPMProjectDocument(FALSE);
-            projDoc.IPM_Project__c=project.ID;
-            projDoc.IPM_GateDocuments__c=IPM_ConstantUtils.CHARTER_GATE;
-            insert projDoc;
-            System.assertEquals(projDoc.IPM_Project__c,project.ID); //check whether parent project for project document is equal to project
-            IPM_Project_Document__c projectDocObj=[select IPM_Project__c from IPM_Project_Document__c where id=:projDoc.Id];
-            system.assertEquals(projectDocObj.IPM_Project__c,project.ID,System.Label.IPM_Record_successfully_saved);
-            
-            docLst=new List<IPM_Project_Document__c>();
-            docLst.add(projDoc);            
-          
-            projDocSec = (IPM_Project_Document_Section__c)IPM_TestFactory.createSObject(TEST_PROJECT_DOCUMENT_SECTION
-                                                ,projDocSecMap,FALSE);
-            projDocSec.IPM_Project_Document__c=projDoc.ID;
-            projDocSec.IPM_Section_Name__c = IPM_ConstantUtils.OTIF_STATUS;
-            projDocSec.IPM_Master_Section_External_Id__c = 'Mix_Qualification_Plan_and_Action_Standards';
-            
-            insert projDocSec;
-            
-            System.assertEquals(projDocSec.IPM_Project_Document__c,projDoc.ID); //check whether parent project document for project document section is equal to projDoc
-            IPM_Project_Document_Section__c projectDocSecObj=[select IPM_Project_Document__c from IPM_Project_Document_Section__c where id=:projDocSec.Id];
-            system.assertEquals(projectDocSecObj.IPM_Project_Document__c,projDoc.ID,System.Label.IPM_Record_successfully_saved);
-            
-            docSecLst=new List<IPM_Project_Document_Section__c>();
-            docSecLst.add(projDocSec);
-            
-            projDocSecIdSet = new Set<Id>();
-            for(IPM_Project_Document_Section__c projDocSecObj : docSecLst){
-                projDocSecIdSet.add(projDocSecObj.Id);
+            for(IPM_Project__c projectObj : projectListObj) {
+                projDocList = projectObj.Project_Documents__r;
+                System.assertEquals(projDocList[0].IPM_GateDocuments__c,IPM_ConstantUtils.CHARTER_GATE,PROJECT_DOC_CREATED_STR);
             }
-            projDocSecCon=IPM_TestFactory_Helper.createIPMProjectDocumentSectionContent(FALSE);
-            projDocSecCon.IPM_Project_Document_Section__c=projDocSec.ID;
-            //projDocSecCon.IPM_Content_Type__c = IPM_ConstantUtils.CMIGATE_CONTENT_TYPE;
-            insert projDocSecCon;
-            System.assert(projDocSecCon!=null); //check whether project doc section is not equal to null
-            //IPM_Project_Document_Section_Content__c projectDocSecConObj=[select IPM_Project_Document_Section__c from IPM_Project_Document_Section_Content__c where id=:projDocSecCon.Id];
-            //system.assertEquals(projectDocSecConObj.IPM_Project_Document_Section__c,projDocSec.ID,System.Label.IPM_Record_successfully_saved);
             
-            List<IPM_Project_Type__c> customsettingList = new List<IPM_Project_Type__c>();
+            projectDocSecListObj = [Select Id,IPM_Section_Name__c,IPM_Section_Type__c,IPM_Master_Section_External_Id__c,IPM_Section_Sequence__c,IPM_Project_Document__c from IPM_Project_Document_Section__c 
+            where IPM_Project_Document__c=:projDocList[0].Id];
             
-            IPM_Project_Type__c customsetting = new IPM_Project_Type__c();
-            customsetting.name = OPREN_PROJECT_TYPE;
-            customsetting.IPM_Phase__c = IPM_ConstantUtils.PHASE_CAPABILITY;
-            customsetting.IPM_Project_Span__c = IPM_ConstantUtils.ROLLOUT_SPAN_REGIONAL;
-            customsetting.IPM_Project_Type__c = IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
-            customsetting.IPM_GateKeeping_Model__c = IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH;
-            customsetting.IPM_Source_Company_Card__c = STR_GLOBAL_COMPANY;
-            customsetting.IPM_Gate_Document__c= IPM_ConstantUtils.CHARTER_GATE;
-            customsetting.IPM_Parent_project_Type__c = OPREN_PROJECT_TYPE;
+            system.assertEquals(projectDocSecListObj[0].IPM_Project_Document__c,projDocList[0].Id);
+            projectDocSecListObj[0].IPM_Master_Section_External_Id__c = IPM_ConstantUtils.CMI_SECTION;
+            update projectDocSecListObj;
             
-            customsettingList.add(customsetting);
+            projectDocSecList=[select Id,IPM_Master_Section_External_Id__c from IPM_Project_Document_Section__c where Id=:projectDocSecListObj[0].Id Limit 1];
+            System.assertEquals(projectDocSecList[0].IPM_Master_Section_External_Id__c,IPM_ConstantUtils.CMI_SECTION,SECTION_UPDATE_STR);
             
-            insert customsettingList;            
-            createOTIF();
+            projectDocSecContentObj = IPM_TestFactory_Helper.createIPMProjectDocumentSectionContent(false);
+            projectDocSecContentObj.IPM_Project_Document_Section__c = projectDocSecListObj[0].ID;
+            projectDocSecContentObj.IPM_Content_Type__c = IPM_ConstantUtils.CMIGATE_CONTENT_TYPE;
             
+            insert projectDocSecContentObj;
+            
+            List<IPM_Project_Document_Section_Content__c>conList=[select Id,IPM_Content_Type__c from IPM_Project_Document_Section_Content__c where Id=:projectDocSecContentObj.Id];
+            System.assertEquals(conList[0].IPM_Content_Type__c,IPM_ConstantUtils.CMIGATE_CONTENT_TYPE,'content not created');
+            otifstatus.Name ='Test5';
+            otifstatus.IPM_Gate_Document_Type__c= IPM_ConstantUtils.CHARTER_GATE;
+            insert otifstatus;
+            List<IPM_OTIF_Status__c>otifLst=[select Id,IPM_Gate_Document_Type__c from IPM_OTIF_Status__c where Id=:otifstatus.Id];
+            System.assertEquals(otifLst[0].IPM_Gate_Document_Type__c,IPM_ConstantUtils.CHARTER_GATE,'otif not created');
             gateCMI = IPM_TestFactory_Helper.createGateCMI(project.ID, false);
             gateCMI.IPM_Project__c = project.ID;
-            
+            gateCMI.Country__c=INDIA_STR;
             insert gateCMI;
-            //Test.StopTest();
-            }
-      }
-      
-      static void initializeData3(){
-        projSecConUser=IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.BLANK);
-        user newAdminUser = IPM_TestFactory_Helper.createUserAdmin(false);
-        list<IPM_Project__c>projectListToShare=new list<IPM_Project__c>();
-        list<User>userListToShare=new list<User>();
-        userListToShare.add(projSecConUser);
-        System.runAs(newAdminUser){
-        	project = IPM_TestFactory_Helper.createIPMProject(false);
-            project.IPM_GateKeeping_Model__c=IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH;  
-            project.Name=TEST_PROJECT;
-            project.IPM_Project_Name__c=TEST_PROJECT;
-            project.IPM_Selected_Project_Type__c=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL;
-            project.IPM_Project_Type__c =IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
-            project.IPM_Technical_Project_Leader__c =userinfo.getuserid();
-            project.IPM_Project_Leader__c = userinfo.getuserid();
-            project.Deputy_Project_Leader__c = userinfo.getuserid();
-            project.IPM_Project_Gatekeeper__c = userinfo.getuserid();
-            project.IPM_Phase__c= IPM_ConstantUtils.PHASE_CAPABILITY;
+            List<IPM_Gate_CMI__c>cmicounList=[select Results__c,Country__c from IPM_Gate_CMI__c where Id=:gateCMI.Id];
+            System.assertEquals(cmicounList[0].Country__c,INDIA_STR,'cmi not created');           
+            globalProjectIdList = new List<Id>();
+            for(IPM_Project__c proj : projectListObj)
+            {
+              
+                globalProjectIdList.add(proj.Id);    
+            } 
+                
+            List<IPM_Project__c> projectListPhaseChange = IPM_TestFactory_Helper.initiateProjectPhaseChange(globalProjectIdList,globalUser); 
+            update projectListPhaseChange;
             
-            project.Deputy_Project_Leader__c=userinfo.getuserid();
-            project.IPMProject_Span__c=IPM_ConstantUtils.ROLLOUT_SPAN_REGIONAL;
-            project.IPM_Complexity__c=IPM_ConstantUtils.IPM_COMPLEXITY_FULL;
-            project.IPM_CompanyCardText__c=STR_GLOBAL_COMPANY;
-            project.IPM_Category_Text__c=IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT;
-            project.IPM_ProjectSubType__c=STR_INNOVATION_RENOVATION;
-            project.IPM_UserCategory__c=IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT;
-            project.IPM_ProjectJobType__c=IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL;
-            project.IPM_IsCompleted__c=true;
-            project.RecordTypeID=Schema.SObjectType.IPM_Project__c.RecordTypeInfosByName.get(STR_CLUSTERING).RecordTypeId;
-            insert project;
-            projectListToShare.add(project);
+            List<IPM_Project__c>projList=[select Id,IPM_Phase__c from IPM_Project__c where Id=:projectListPhaseChange[0].Id Limit 1];
+            System.assertEquals(projList[0].IPM_Phase__c,'Ideas','phase not changed');
             
-            project1 = IPM_TestFactory_Helper.createIPMProject(false);
-            project1.IPM_GateKeeping_Model__c=IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH;  
-            project1.Name=TEST_PROJECT;
-            project1.IPM_Project_Name__c='abcd1';
-            project1.IPM_Selected_Project_Type__c=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL;
-            project1.IPM_Project_Type__c =IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
-            project1.IPM_Technical_Project_Leader__c =userinfo.getuserid();
-            project1.IPM_Project_Leader__c = userinfo.getuserid();
-            project1.Deputy_Project_Leader__c = userinfo.getuserid();
-            project1.IPM_Project_Gatekeeper__c = userinfo.getuserid();
-            project1.IPM_Phase__c= IPM_ConstantUtils.PHASE_CAPABILITY;
-            project1.Sustainability_Period__c='3';
-            project1.Deputy_Project_Leader__c=userinfo.getuserid();
-            project1.IPMProject_Span__c=IPM_ConstantUtils.ROLLOUT_SPAN_REGIONAL;
-            project1.IPM_Complexity__c=IPM_ConstantUtils.IPM_COMPLEXITY_FULL;
-            project1.IPM_CompanyCardText__c=STR_GLOBAL_COMPANY;
-            project1.IPM_Category_Text__c=IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT;
-            project1.IPM_ProjectSubType__c=STR_INNOVATION_RENOVATION;
-            project1.IPM_UserCategory__c=IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT;
-            project1.IPM_ProjectJobType__c=IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL;
-            project1.IPM_IsCompleted__c=true;
-            project1.RecordTypeID=Schema.SObjectType.IPM_Project__c.RecordTypeInfosByName.get(STR_CLUSTERING).RecordTypeId;
-            insert project1;
-            projectListToShare.add(project1);
-            project.IPM_Parent_Project__c = project1.ID;
-            update project;
-           
-            IPM_Project__c projectObj=[select IPM_IsCompleted__c from IPM_Project__c where id=:project.Id];
-            system.assert(projectObj.IPM_IsCompleted__c,System.Label.IPM_Record_successfully_saved);
-            
-            //share project records
-            List<IPM_Project__Share>projectShareList=IPM_TestFactory_Helper.shareIPMProject(projectListToShare,userListtoShare);
-            insert projectShareList;
-            list<IPM_Project__Share>shareList=[SELECT ParentId,UserOrGroupId FROM IPM_Project__Share WHERE ParentId=:project.id AND UserOrGroupId=:projSecConUser.id LIMIT 1];
-            system.assertEquals(shareList[0].UserOrGroupId,projSecConUser.id,projSecConUser.id+userEditAccess);//positive test
-        
-            
-        
+                
+            ipmProjSecConHelper=new IPM_ProjectSectionContentHelper();
         }
-        System.runAs(projSecConUser){
-            //Test.StartTest();
-             
-            
-            projDoc=IPM_TestFactory_Helper.createIPMProjectDocument(FALSE);
-            projDoc.IPM_Project__c=project.ID;
-            projDoc.IPM_GateDocuments__c=IPM_ConstantUtils.CHARTER_GATE;
-            insert projDoc;
-            System.assertEquals(projDoc.IPM_Project__c,project.ID); //check whether parent project for project document is equal to project
-            IPM_Project_Document__c projectDocObj=[select IPM_Project__c from IPM_Project_Document__c where id=:projDoc.Id];
-            system.assertEquals(projectDocObj.IPM_Project__c,project.ID,System.Label.IPM_Record_successfully_saved);
-            
-            docLst=new List<IPM_Project_Document__c>();
-            docLst.add(projDoc);
-            
-         
-            projDocSec = (IPM_Project_Document_Section__c)IPM_TestFactory.createSObject(TEST_PROJECT_DOCUMENT_SECTION
-                                                ,projDocSecMap,FALSE);
-            projDocSec.IPM_Project_Document__c=projDoc.ID;
-            projDocSec.IPM_Section_Name__c = IPM_ConstantUtils.OTIF_STATUS;
-            projDocSec.IPM_Master_Section_External_Id__c = IPM_ConstantUtils.CONSUMER_EVIDENCE_CONCEPT;
-            
-            insert projDocSec;
-            
-            System.assertEquals(projDocSec.IPM_Project_Document__c,projDoc.ID); //check whether parent project document for project document section is equal to projDoc
-            IPM_Project_Document_Section__c projectDocSecObj=[select IPM_Project_Document__c from IPM_Project_Document_Section__c where id=:projDocSec.Id];
-            system.assertEquals(projectDocSecObj.IPM_Project_Document__c,projDoc.ID,System.Label.IPM_Record_successfully_saved);
-            
-            docSecLst=new List<IPM_Project_Document_Section__c>();
-            docSecLst.add(projDocSec);
-            projDocSecIdSet = new Set<Id>();
-            for(IPM_Project_Document_Section__c projDocSecObj : docSecLst){
-                projDocSecIdSet.add(projDocSecObj.Id);
-            }
-            projDocSecCon=IPM_TestFactory_Helper.createIPMProjectDocumentSectionContent(FALSE);
-            projDocSecCon.IPM_Project_Document_Section__c=projDocSec.ID;
-            projDocSecCon.IPM_Content_Type__c = IPM_ConstantUtils.EVIDENCE_CONTENT_TYPE;
-            insert projDocSecCon;
-            System.assert(projDocSecCon!=null); //check whether project doc section is not equal to null
-            //IPM_Project_Document_Section_Content__c projectDocSecConObj=[select IPM_Project_Document_Section__c from IPM_Project_Document_Section_Content__c where id=:projDocSecCon.Id];
-            //system.assertEquals(projectDocSecConObj.IPM_Project_Document_Section__c,projDocSec.ID,System.Label.IPM_Record_successfully_saved);
-            
-            List<IPM_Project_Type__c> customsettingList = new List<IPM_Project_Type__c>();
-            
-            IPM_Project_Type__c customsetting = new IPM_Project_Type__c();
-            customsetting.name = OPREN_PROJECT_TYPE;
-            customsetting.IPM_Phase__c = IPM_ConstantUtils.PHASE_CAPABILITY;
-            customsetting.IPM_Project_Span__c = IPM_ConstantUtils.ROLLOUT_SPAN_REGIONAL;
-            customsetting.IPM_Project_Type__c = IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
-            customsetting.IPM_GateKeeping_Model__c = IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH;
-            customsetting.IPM_Source_Company_Card__c = STR_GLOBAL_COMPANY;
-            customsetting.IPM_Gate_Document__c= IPM_ConstantUtils.CHARTER_GATE;
-            customsetting.IPM_Parent_project_Type__c = OPREN_PROJECT_TYPE;
-            
-            customsettingList.add(customsetting);
-            
-            insert customsettingList;
-            
-          	 createOTIF();         
-            
-            gateCMI = IPM_TestFactory_Helper.createGateCMI(project.ID, false);
-            gateCMI.IPM_Project__c = project.ID;
-            
-            insert gateCMI;
-            //Test.StopTest();
-            }
-      }
-       /*
+    }
+
+    /*
     * @Description Tests actual content
     */
-    static testMethod void testShowContent() {
-        
-        
-        initializeData();
-        
-        system.RunAs(projSecConUser){
+    static testMethod void testcreateOTIFStatus() {
+        initializeTestMethodData();
+        system.RunAs(globalUser){
             Test.startTest();
             IPM_ProjectHelper.gateToOTIFCustomSetting = IPM_Utils.getOTIFMapping();
             docSecMap=new map<Id,List<IPM_Project_Document_Section__c>>();
-            docSecMap.put(projDoc.Id,docSecLst);
-            
+            docSecMap.put(projDocList[0].Id,projectDocSecListObj);
             docStringMap=new Map<String,IPM_Project_Document__c>(); 
-            docStringMap.put(IPM_ConstantUtils.MARKET_READY_GATE,projDoc);
-            
+            docStringMap.put(IPM_ConstantUtils.CHARTER_GATE,projDocList[0]);
             docMap=new Map<Id,Map<String,IPM_Project_Document__c>>();
             docMap.put(project.Id,docStringMap);
             projMap=new Map<Id,IPM_Project__c>();
-            projMap.put(project.Id,project);
-            
-            
+            projMap.put(project.Id,project);            
             IPM_ProjectSectionContentHelper.createOTIFStatus(docSecMap,docMap,projMap);
-            IPM_ProjectSectionContentHelper.createFinancialActionStandard(docSecMap,docMap, projMap);
-            IPM_ProjectSectionContentHelper.manageCMISections(docSecMap,docMap,projMap);
-            IPM_ProjectSectionContentHelper.manageCustomerEvidenceConcepts(projMap,docLst,docSecLst);
-            IPM_ProjectSectionContentHelper.manageCustomerChannel(projMap,docLst,docSecLst);
-            IPM_ProjectSectionContentHelper.manageFinancialActionStandards(projMap,docLst,docSecLst);
-            IPM_ProjectSectionContentHelper.manageCuComplexity(projMap,docLst,docSecLst);
-            IPM_ProjectSectionContentHelper.manageAssumptions(projMap,docLst,docSecLst);
-            
-            // Validate that Project Document Section Content have been inserted
-            //commented for Qatest but need to be corrected
-            //List<IPM_Project_Document_Section_Content__c> lstProjDocSecContentList = [Select Id from IPM_Project_Document_Section_Content__c WHERE IPM_Project_Document_Section__c IN: projDocSecIdSet];
-            //System.assert(lstProjDocSecContentList .size() > 0);
-            System.assert(projMap.size() > 0);
+            List<IPM_Project_Document_Section__c>sectionList=[select Id,IPM_Section_Name__c  from IPM_Project_Document_Section__c where IPM_Section_Name__c=:IPM_ConstantUtils.OTIF_STATUS OR IPM_Section_Name__c=:IPM_ConstantUtils.OTIF Limit 1];
+            System.assertEquals(sectionList.size()>0,true,'otif section not created');
             Test.stopTest();
         }
     }
+    /*************************************************************************************************************************
+    * @description Test Data
+    */
     
-    static testMethod void testFinancialActionStandard() {
-        
-        
-        initializeData1();
-        
-        system.RunAs(projSecConUser){
+    static testMethod void testcreateFinancialActionStandard() {
+        initializeTestMethodData();
+        system.RunAs(globalUser){
             Test.startTest();
             IPM_ProjectHelper.gateToOTIFCustomSetting = IPM_Utils.getOTIFMapping();
-            
             docSecMap=new map<Id,List<IPM_Project_Document_Section__c>>();
-            docSecMap.put(projDoc.Id,docSecLst);
-            
+            docSecMap.put(projDocList[0].Id,projectDocSecListObj);
             docStringMap=new Map<String,IPM_Project_Document__c>(); 
-            docStringMap.put(IPM_ConstantUtils.CHARTER_GATE,projDoc);
-            
+            docStringMap.put(IPM_ConstantUtils.CHARTER_GATE,projDocList[0]);
             docMap=new Map<Id,Map<String,IPM_Project_Document__c>>();
             docMap.put(project.Id,docStringMap);
             projMap=new Map<Id,IPM_Project__c>();
             projMap.put(project.Id,project);
-            
             IPM_ProjectHelper.initializeProjectDetail(projMap);
-            
-            IPM_ProjectSectionContentHelper.createOTIFStatus(docSecMap,docMap,projMap);
             IPM_ProjectSectionContentHelper.createFinancialActionStandard(docSecMap,docMap, projMap);
-            IPM_ProjectSectionContentHelper.manageCMISections(docSecMap,docMap,projMap);
-            IPM_ProjectSectionContentHelper.manageCustomerEvidenceConcepts(projMap,docLst,docSecLst);
-            IPM_ProjectSectionContentHelper.manageCustomerChannel(projMap,docLst,docSecLst);
-            IPM_ProjectSectionContentHelper.manageFinancialActionStandards(projMap,docLst,docSecLst);
-            IPM_ProjectSectionContentHelper.manageCuComplexity(projMap,docLst,docSecLst);
-            IPM_ProjectSectionContentHelper.manageAssumptions(projMap,docLst,docSecLst);
-           
-            // Validate that Project Document Section Content have been inserted
-            //commented for QATest but need to corrected
-            //List<IPM_Project_Document_Section_Content__c> lstProjDocSecContentList = [Select Id from IPM_Project_Document_Section_Content__c WHERE IPM_Project_Document_Section__c IN: projDocSecIdSet];
-            //System.assert(lstProjDocSecContentList.size() > 0);
-            System.assert(projMap.size() > 0);
+            List<IPM_Project_Document_Section_Content__c>conListObj=[select Id,IPM_Content_Type__c from IPM_Project_Document_Section_Content__c where IPM_Content_Type__c=:IPM_ConstantUtils.FINANCIAL_ACTION_STANDARDS];
+            System.assertEquals(conListObj[0].IPM_Content_Type__c,IPM_ConstantUtils.FINANCIAL_ACTION_STANDARDS,'financial content not created');
             Test.stopTest();
         }
     }
-    
-    static testMethod void testCMISections() {
-        
-        
-        initializeData2();
-        
-        
-        
-        system.RunAs(projSecConUser){
+    /*************************************************************************************************************************
+    * @description Test Data
+    */
+    static testMethod void testmanageCMISections() {
+        initializeTestMethodData();
+        system.RunAs(globalUser){
             Test.startTest();
-            IPM_ProjectHelper.gateToOTIFCustomSetting = IPM_Utils.getOTIFMapping();
-            
+            IPM_ProjectHelper.gateToOTIFCustomSetting = IPM_Utils.getOTIFMapping();          
             docSecMap=new map<Id,List<IPM_Project_Document_Section__c>>();
-            docSecMap.put(projDoc.Id,docSecLst);
-            
+            docSecMap.put(projDocList[0].Id,projectDocSecListObj);           
             docStringMap=new Map<String,IPM_Project_Document__c>(); 
-            docStringMap.put(IPM_ConstantUtils.CHARTER_GATE,projDoc);
+            docStringMap.put(IPM_ConstantUtils.CHARTER_GATE,projDocList[0]);           
+            docMap=new Map<Id,Map<String,IPM_Project_Document__c>>();
+            docMap.put(project.Id,docStringMap);
+            projMap=new Map<Id,IPM_Project__c>();
+            projMap.put(project.Id,project);            
+            IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap = docSecMap;        
+            IPM_Project_Document_Section_Content__c tempProjDocSecCon = new IPM_Project_Document_Section_Content__c();
+            tempProjDocSecCon = projectDocSecContentObj;
+            tempProjDocSecCon.IPM_Content_Type__c = IPM_ConstantUtils.CMIGATE_CONTENT_TYPE;          
+            IPM_ProjectHelper.DBprojectSectionSpecificContentMap.put(projectDocSecListObj[0].ID, new List<IPM_Project_Document_Section_Content__c>{projectDocSecContentObj, tempProjDocSecCon });
+            IPM_ProjectHelper.DBprojectSpecificCMIGateMap.put(projMap.values()[0].ID, new List<IPM_Gate_CMI__c>{gateCMI});
+            IPM_ProjectHelper.initializeProjectDetail(projMap); 
+            IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap = docSecMap;           
+            IPM_ProjectHelper.DBprojectSpecificDocumentMap.put(projMap.values()[0].ID, projDocList);           
+            IPM_ProjectHelper.projectMasterMap.put(project.IPM_Parent_Project__c, project);
+            IPM_ProjectHelper.projectMasterMap.put(ParentProject.Id,ParentProject);
+            Map<String,IPM_Country__c>countryMap=new Map<String,IPM_Country__c>();
+            countryMap.put(INDIA_STR,countryObj);
+            IPM_ProjectHelper.projectToCountryMap.put(project.Id,countryMap);
+            IPM_ProjectHelper.projectDocumentMap.put(projDocList[0].ID, projDocList[0]);
+            IPM_ProjectHelper.projectSectionMap.put(projectDocSecListObj[0].ID, projectDocSecListObj[0]);          
+            IPM_ProjectSectionContentHelper.manageCMISections(docSecMap,docMap,projMap);
+            IPM_ProjectHelper.DBprojectSpecificCMIGateMap.put(ParentProject.ID, new List<IPM_Gate_CMI__c>{gateCMI});
+            IPM_ProjectSectionContentHelper.manageCMISections(docSecMap,docMap,projMap);
+            List<IPM_Project_Document_Section_Content__c>conListObj=[select Id,IPM_Content_Type__c from IPM_Project_Document_Section_Content__c where Id=:projectDocSecContentObj.Id];
+            System.assertEquals(conListObj[0].IPM_Content_Type__c,IPM_ConstantUtils.CMIGATE_CONTENT_TYPE,'cmi content not created');         
+            projectDocSecContentObj.IPM_Content_Type__c = IPM_ConstantUtils.CUSTOMER_CHANNEL_SECTION;
+            update projectDocSecContentObj;
+             List<IPM_Project_Document_Section_Content__c>conList=[select Id,IPM_Content_Type__c from IPM_Project_Document_Section_Content__c where Id=:projectDocSecContentObj.Id];
+            System.assertEquals(conList[0].IPM_Content_Type__c,IPM_ConstantUtils.CUSTOMER_CHANNEL_SECTION,CONTENT_NOT_UPDATED_STR);
+            IPM_ProjectSectionContentHelper.manageCMISections(docSecMap,docMap,projMap);
             
+            
+            Test.stopTest();
+        }
+    }
+    /*************************************************************************************************************************
+    * @description Test Data
+    */
+    static testMethod void testmanageCustomerEvidenceConcepts() {
+        initializeTestMethodData();
+        system.RunAs(globalUser){
+            Test.startTest();
+            projectDocSecListObj[0].IPM_Master_Section_External_Id__c = IPM_ConstantUtils.CONSUMER_EVIDENCE_CONCEPT;
+            update projectDocSecListObj;
+            projectDocSecList=[select Id,IPM_Master_Section_External_Id__c from IPM_Project_Document_Section__c where Id=:projectDocSecListObj[0].Id Limit 1];
+            System.assertEquals(projectDocSecList[0].IPM_Master_Section_External_Id__c,IPM_ConstantUtils.CONSUMER_EVIDENCE_CONCEPT,SECTION_UPDATE_STR);  
+            projectDocSecContentObj.IPM_Content_Type__c = IPM_ConstantUtils.EVIDENCE_CONTENT_TYPE;
+            update projectDocSecContentObj;
+            List<IPM_Project_Document_Section_Content__c>conList=[select Id,IPM_Content_Type__c from IPM_Project_Document_Section_Content__c where Id=:projectDocSecContentObj.Id];
+            System.assertEquals(conList[0].IPM_Content_Type__c,IPM_ConstantUtils.EVIDENCE_CONTENT_TYPE,CONTENT_NOT_UPDATED_STR);        
+            IPM_ProjectHelper.gateToOTIFCustomSetting = IPM_Utils.getOTIFMapping();
+            docSecMap=new map<Id,List<IPM_Project_Document_Section__c>>();
+            docSecMap.put(projDocList[0].Id,projectDocSecListObj);
+            docStringMap=new Map<String,IPM_Project_Document__c>(); 
+            docStringMap.put(IPM_ConstantUtils.CHARTER_GATE,projDocList[0]);
             docMap=new Map<Id,Map<String,IPM_Project_Document__c>>();
             docMap.put(project.Id,docStringMap);
             projMap=new Map<Id,IPM_Project__c>();
             projMap.put(project.Id,project);
-            
-            
-            
-            IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap = docSecMap; 
-           
-            IPM_ProjectHelper.DBprojectSpecificDocumentMap.put(projMap.values()[0].ID, docLst);
-           
+            IPM_ProjectHelper.DBprojectSpecificDocumentMap.put(projMap.values()[0].ID, projDocList);
             IPM_Project_Document_Section_Content__c tempProjDocSecCon = new IPM_Project_Document_Section_Content__c();
-            tempProjDocSecCon = projDocSecCon;
+            tempProjDocSecCon = projectDocSecContentObj;
+            tempProjDocSecCon.IPM_Content_Type__c = IPM_ConstantUtils.EVIDENCE_CONTENT_TYPE; 
+            IPM_ProjectHelper.DBprojectSectionSpecificContentMap.put(projectDocSecListObj[0].ID, new List<IPM_Project_Document_Section_Content__c>{projectDocSecContentObj, tempProjDocSecCon });    
+            IPM_ProjectSectionContentHelper.manageCustomerEvidenceConcepts(projMap,projDocList,projectDocSecListObj);
+            List<IPM_Project_Document_Section_Content__c>conListObj=[select Id,IPM_Content_Type__c from IPM_Project_Document_Section_Content__c where Id=:projectDocSecContentObj.Id];
+            System.assertEquals(conListObj[0].IPM_Content_Type__c,IPM_ConstantUtils.EVIDENCE_CONTENT_TYPE,'consumer evidence content not created');
+            Test.stopTest();
+        }
+    }
+    /*************************************************************************************************************************
+    * @description Test Data
+    */
+    static testMethod void testmanageCustomerChannel() {
+        initializeTestMethodData();
+        system.RunAs(globalUser){
+            Test.startTest();
+            
+            projectDocSecListObj[0].IPM_Master_Section_External_Id__c = IPM_ConstantUtils.CUSTOMER_CHANNEL;
+            update projectDocSecListObj;
+            projectDocSecList=[select Id,IPM_Master_Section_External_Id__c from IPM_Project_Document_Section__c where Id=:projectDocSecListObj[0].Id Limit 1];
+            System.assertEquals(projectDocSecList[0].IPM_Master_Section_External_Id__c,IPM_ConstantUtils.CUSTOMER_CHANNEL,SECTION_UPDATE_STR);
+            docSecMap=new map<Id,List<IPM_Project_Document_Section__c>>();
+            docSecMap.put(projDocList[0].Id,projectDocSecListObj);
+            docStringMap=new Map<String,IPM_Project_Document__c>(); 
+            docStringMap.put(IPM_ConstantUtils.CHARTER_GATE,projDocList[0]);
+            docMap=new Map<Id,Map<String,IPM_Project_Document__c>>();
+            docMap.put(project.Id,docStringMap);
+            projMap=new Map<Id,IPM_Project__c>();
+            projMap.put(project.Id,project);
+            IPM_Project_Document_Section_Content__c tempProjDocSecCon = new IPM_Project_Document_Section_Content__c();
+            tempProjDocSecCon = projectDocSecContentObj;
             tempProjDocSecCon.IPM_Content_Type__c = IPM_ConstantUtils.CUSTOMER_CHANNEL_SECTION;
+            projectDocSecContentObj.IPM_Content_Type__c = IPM_ConstantUtils.CUSTOMER_CHANNEL_SECTION;
+            update projectDocSecContentObj;
+            List<IPM_Project_Document_Section_Content__c>conList=[select Id,IPM_Content_Type__c from IPM_Project_Document_Section_Content__c where Id=:projectDocSecContentObj.Id];
+            System.assertEquals(conList[0].IPM_Content_Type__c,IPM_ConstantUtils.CUSTOMER_CHANNEL_SECTION,CONTENT_NOT_UPDATED_STR);
            
-            projDocSecCon.IPM_Content_Type__c = IPM_ConstantUtils.CUSTOMER_CHANNEL_SECTION;
-            IPM_ProjectHelper.DBprojectSectionSpecificContentMap.put(projDocSec.ID, new List<IPM_Project_Document_Section_Content__c>{projDocSecCon, tempProjDocSecCon });
-            IPM_ProjectHelper.DBprojectSpecificCMIGateMap.put(projMap.values()[0].ID, new List<IPM_Gate_CMI__c>{gateCMI});
-            IPM_ProjectHelper.initializeProjectDetail(projMap);           
-                    
-           
-            IPM_ProjectSectionContentHelper.createOTIFStatus(docSecMap,docMap,projMap);
-            IPM_ProjectSectionContentHelper.createFinancialActionStandard(docSecMap,docMap, projMap);
-            IPM_ProjectSectionContentHelper.manageCMISections(docSecMap,docMap,projMap);
-            IPM_ProjectSectionContentHelper.manageCustomerEvidenceConcepts(projMap,docLst,docSecLst);
-            IPM_ProjectSectionContentHelper.manageCustomerChannel(projMap,docLst,docSecLst);
-            IPM_ProjectSectionContentHelper.manageFinancialActionStandards(projMap,docLst,docSecLst);
-            IPM_ProjectSectionContentHelper.manageCuComplexity(projMap,docLst,docSecLst);
-            IPM_ProjectSectionContentHelper.manageAssumptions(projMap,docLst,docSecLst);
-            // Validate that Project Document Section Content have been inserted
-            //List<IPM_Project_Document_Section_Content__c> lstProjDocSecContentList = [Select Id from IPM_Project_Document_Section_Content__c WHERE IPM_Project_Document_Section__c IN: projDocSecIdSet];
-            //System.assert(lstProjDocSecContentList.size() > 0);
-            system.assert(projMap.size()>0);
+            IPM_ProjectSectionContentHelper.manageCustomerChannel(projMap,projDocList,projectDocSecListObj);
+            projectDocSecList=[select Id,IPM_Master_Section_External_Id__c from IPM_Project_Document_Section__c where Id=:projectDocSecListObj[0].Id Limit 1];
+            System.assertEquals(projectDocSecList[0].IPM_Master_Section_External_Id__c,IPM_ConstantUtils.CUSTOMER_CHANNEL,'customer channel content not created');
             Test.stopTest();
         }
     }
     
-    static testMethod void testManageCustomerEvidenceConcepts() {
-        
-        
-        initializeData3();
-        
-        
-        
-        system.RunAs(projSecConUser){
+    /*************************************************************************************************************************
+    * @description Test Data
+    */
+    static testMethod void testmanageFinancialActionStandards() {
+        initializeTestMethodData();
+        system.RunAs(globalUser){
             Test.startTest();
-            IPM_ProjectHelper.gateToOTIFCustomSetting = IPM_Utils.getOTIFMapping();
-            
+            projectDocSecListObj[0].IPM_Master_Section_External_Id__c =IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARD;
+            update projectDocSecListObj;
+            projectDocSecList=[select Id,IPM_Master_Section_External_Id__c from IPM_Project_Document_Section__c where Id=:projectDocSecListObj[0].Id Limit 1];
+            System.assertEquals(projectDocSecList[0].IPM_Master_Section_External_Id__c,IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARD,SECTION_UPDATE_STR);
             docSecMap=new map<Id,List<IPM_Project_Document_Section__c>>();
-            docSecMap.put(projDoc.Id,docSecLst);
-            
+            docSecMap.put(projDocList[0].Id,projectDocSecListObj);
             docStringMap=new Map<String,IPM_Project_Document__c>(); 
-            docStringMap.put(IPM_ConstantUtils.CHARTER_GATE,projDoc);
-            
+            docStringMap.put(IPM_ConstantUtils.CHARTER_GATE,projDocList[0]);
             docMap=new Map<Id,Map<String,IPM_Project_Document__c>>();
             docMap.put(project.Id,docStringMap);
             projMap=new Map<Id,IPM_Project__c>();
             projMap.put(project.Id,project);
-           
-            IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap = docSecMap; 
-           
-            IPM_ProjectHelper.DBprojectSpecificDocumentMap.put(projMap.values()[0].ID, docLst);
-            IPM_ProjectHelper.DBprojectSpecificDocumentMap.put(project1.ID, docLst);
-            IPM_ProjectHelper.projectMasterMap.put(project.IPM_Parent_Project__c, project1);
-           
             IPM_Project_Document_Section_Content__c tempProjDocSecCon = new IPM_Project_Document_Section_Content__c();
-            tempProjDocSecCon = projDocSecCon;
-            //tempProjDocSecCon .IPM_Content_Type__c = IPM_ConstantUtils.CMIGATE_CONTENT_TYPE;
-           
-            //projDocSecCon.IPM_Content_Type__c = IPM_ConstantUtils.CMIGATE_CONTENT_TYPE;
-            IPM_ProjectHelper.DBprojectSectionSpecificContentMap.put(projDocSec.ID, new List<IPM_Project_Document_Section_Content__c>{projDocSecCon, tempProjDocSecCon });
-            IPM_ProjectHelper.DBprojectSpecificCMIGateMap.put(projMap.values()[0].ID, new List<IPM_Gate_CMI__c>{gateCMI});
-            IPM_ProjectHelper.initializeProjectDetail(projMap);       
-            IPM_ProjectHelper.projectDocumentMap.put(projDoc.ID, projDoc);
-            IPM_ProjectHelper.projectSectionMap.put(projDocSec.ID, projDocSec);
-                    
-           
-            IPM_ProjectSectionContentHelper.createOTIFStatus(docSecMap,docMap,projMap);
-            IPM_ProjectSectionContentHelper.createFinancialActionStandard(docSecMap,docMap, projMap);
-            IPM_ProjectSectionContentHelper.manageCMISections(docSecMap,docMap,projMap);
-            IPM_ProjectSectionContentHelper.manageCustomerEvidenceConcepts(projMap,docLst,docSecLst);
-            IPM_ProjectSectionContentHelper.manageCustomerChannel(projMap,docLst,docSecLst);
-            IPM_ProjectSectionContentHelper.manageFinancialActionStandards(projMap,docLst,docSecLst);
-            IPM_ProjectSectionContentHelper.manageCuComplexity(projMap,docLst,docSecLst);
-            IPM_ProjectSectionContentHelper.manageAssumptions(projMap,docLst,docSecLst);
-           
-            // Validate that Project Document Section Content have been inserted
-            //List<IPM_Project_Document_Section_Content__c> lstProjDocSecContentList = [Select Id from IPM_Project_Document_Section_Content__c WHERE IPM_Project_Document_Section__c IN: projDocSecIdSet];
-            //System.assert(lstProjDocSecContentList.size() > 0);
-            system.assert(projMap.size()>0);
+            tempProjDocSecCon = projectDocSecContentObj;
+            tempProjDocSecCon.IPM_Content_Type__c = IPM_ConstantUtils.CUSTOMER_CHANNEL_SECTION;
+            projectDocSecContentObj.IPM_Content_Type__c = IPM_ConstantUtils.CUSTOMER_CHANNEL_SECTION;
+            update projectDocSecContentObj;
+            List<IPM_Project_Document_Section_Content__c>conList=[select Id,IPM_Content_Type__c from IPM_Project_Document_Section_Content__c where Id=:projectDocSecContentObj.Id];
+            System.assertEquals(conList[0].IPM_Content_Type__c,IPM_ConstantUtils.CUSTOMER_CHANNEL_SECTION,CONTENT_NOT_UPDATED_STR);
+            IPM_ProjectSectionContentHelper.manageFinancialActionStandards(projMap,projDocList,projectDocSecListObj);
+            projectDocSecList=[select Id,IPM_Master_Section_External_Id__c from IPM_Project_Document_Section__c where Id=:projectDocSecListObj[0].Id Limit 1];
+            System.assertEquals(projectDocSecList[0].IPM_Master_Section_External_Id__c,IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARD,'financial action standard section is not created');
             Test.stopTest();
         }
     }
     
-    public static void createOTIF()
-    {    	 
-            OTIFSettingList.add(new IPM_OTIF_Status__c(Name = 'Test 1', IPM_Gate_Document_Type__c= IPM_ConstantUtils.CHARTER_GATE));
-            OTIFSettingList.add(new IPM_OTIF_Status__c(Name = 'Test 2',IPM_Gate_Document_Type__c= 'Contract'));
-            OTIFSettingList.add(new IPM_OTIF_Status__c(Name = 'Test 3',IPM_Gate_Document_Type__c= 'Market Deployment'));
-            OTIFSettingList.add(new IPM_OTIF_Status__c(Name = 'Test 4',IPM_Gate_Document_Type__c= IPM_ConstantUtils.MARKET_READY_GATE));
+    /*************************************************************************************************************************
+    * @description Test Data
+    */
+    static testMethod void testmanageCuComplexity() {
+        initializeTestMethodData();
+        system.RunAs(globalUser){
+            Test.startTest();
+            projectDocSecListObj[0].IPM_Master_Section_External_Id__c = IPM_ConstantUtils.IPM_CU_COMPLEXITY;
+            update projectDocSecListObj;
+            projectDocSecList=[select Id,IPM_Master_Section_External_Id__c from IPM_Project_Document_Section__c where Id=:projectDocSecListObj[0].Id Limit 1];
+            System.assertEquals(projectDocSecList[0].IPM_Master_Section_External_Id__c,IPM_ConstantUtils.IPM_CU_COMPLEXITY,SECTION_UPDATE_STR);
+            docSecMap=new map<Id,List<IPM_Project_Document_Section__c>>();
+            docSecMap.put(projDocList[0].Id,projectDocSecListObj);
+            docStringMap=new Map<String,IPM_Project_Document__c>(); 
+            docStringMap.put(IPM_ConstantUtils.CHARTER_GATE,projDocList[0]);
+            docMap=new Map<Id,Map<String,IPM_Project_Document__c>>();
+            docMap.put(project.Id,docStringMap);
+            projMap=new Map<Id,IPM_Project__c>();
+            projMap.put(project.Id,project);
             
-            insert OTIFSettingList; 
+            IPM_Project_Document_Section_Content__c tempProjDocSecCon = new IPM_Project_Document_Section_Content__c();
+            tempProjDocSecCon = projectDocSecContentObj;
+            tempProjDocSecCon.IPM_Content_Type__c = IPM_ConstantUtils.CUSTOMER_CHANNEL_SECTION;
+            projectDocSecContentObj.IPM_Content_Type__c = IPM_ConstantUtils.CUCOMPLEXITY_CONTENT_TYPE;
+            update projectDocSecContentObj;
+            List<IPM_Project_Document_Section_Content__c>conList=[select Id,IPM_Content_Type__c from IPM_Project_Document_Section_Content__c where Id=:projectDocSecContentObj.Id];
+            System.assertEquals(conList[0].IPM_Content_Type__c,IPM_ConstantUtils.CUCOMPLEXITY_CONTENT_TYPE,CONTENT_NOT_UPDATED_STR);
+            IPM_ProjectSectionContentHelper.manageCuComplexity(projMap,projDocList,projectDocSecListObj);
+            projectDocSecList=[select Id,IPM_Master_Section_External_Id__c from IPM_Project_Document_Section__c where Id=:projectDocSecListObj[0].Id Limit 1];
+            System.assertEquals(projectDocSecList[0].IPM_Master_Section_External_Id__c,IPM_ConstantUtils.IPM_CU_COMPLEXITY,'Cu Complexity section is not created');
+            Test.stopTest();
+        }
     }
-    
-    
+    /*************************************************************************************************************************
+    * @description Test Data
+    */
+    static testMethod void testmanageAssumptions() {
+        initializeTestMethodData();
+        system.RunAs(globalUser){
+            Test.startTest(); 
+            projectDocSecListObj[0].IPM_Master_Section_External_Id__c = IPM_ConstantUtils.ASSUMPTIONS;
+            update projectDocSecListObj;
+            projectDocSecList=[select Id,IPM_Master_Section_External_Id__c from IPM_Project_Document_Section__c where Id=:projectDocSecListObj[0].Id Limit 1];
+            System.assertEquals(projectDocSecList[0].IPM_Master_Section_External_Id__c,IPM_ConstantUtils.ASSUMPTIONS,SECTION_UPDATE_STR);
+            docSecMap=new map<Id,List<IPM_Project_Document_Section__c>>();
+            docSecMap.put(projDocList[0].Id,projectDocSecListObj);
+            docStringMap=new Map<String,IPM_Project_Document__c>(); 
+            docStringMap.put(IPM_ConstantUtils.CHARTER_GATE,projDocList[0]);
+            docMap=new Map<Id,Map<String,IPM_Project_Document__c>>();
+            docMap.put(project.Id,docStringMap);
+            projMap=new Map<Id,IPM_Project__c>();
+            projMap.put(project.Id,project);
+            IPM_ProjectSectionContentHelper.manageAssumptions(projMap,projDocList,projectDocSecListObj);
+            projectDocSecList=[select Id,IPM_Master_Section_External_Id__c from IPM_Project_Document_Section__c where Id=:projectDocSecListObj[0].Id Limit 1];
+            System.assertEquals(projectDocSecList[0].IPM_Master_Section_External_Id__c,IPM_ConstantUtils.ASSUMPTIONS,'assumption section is not created');
+            Test.stopTest();
+        }
+    }
 }
