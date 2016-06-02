@@ -224,7 +224,30 @@
         <externalId>false</externalId>
         <label>CannotChangeMC</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <type>Checkbox</type>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Distributor_Code__c</fullName>
+        <externalId>false</externalId>
+        <formula>Contact.Account.ExternalCode__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Distributor Code</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>E_Voucher_Refund_Limit__c</fullName>
+        <description>CEC E-Voucher Refund Limit capture&apos;s the user’s refund limit</description>
+        <externalId>false</externalId>
+        <label>E-Voucher Refund Limit</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Edit_Article_Template_Front_End__c</fullName>
@@ -1971,6 +1994,16 @@
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>SellerKey__c</fullName>
+        <externalId>false</externalId>
+        <formula>Contact.Seller_Key__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Seller Key</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Sub_Function__c</fullName>

@@ -8,6 +8,6 @@
     <tab>standard-Contact</tab>
     <tab>Target__c</tab>
     <tab>Dashboards</tab>
-    <tab>Hexagono</tab>
+    <tab>Hexagon</tab>
     <tab>Wave_Dashboards_Mobile</tab>
 </CustomApplication>
