@@ -401,18 +401,6 @@
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
-        <fullName>Bazaarvoice_Username__c</fullName>
-        <description>CEC: To capture the bazaar voice user name</description>
-        <externalId>false</externalId>
-        <label>Bazaarvoice Username</label>
-        <length>50</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>BillingAddress</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -1007,6 +995,37 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <type>DateTime</type>
     </fields>
     <fields>
+        <fullName>Debit_Card_Expiry_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>Debit_Card_Number__r.Expiry_Date__c</formula>
+        <label>Debit Card Expiry Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Debit_Card_Number__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>CEC This will hold debit card number</description>
+        <externalId>false</externalId>
+        <label>Debit Card Number</label>
+        <referenceTo>CEC_Debit_Card_Detail__c</referenceTo>
+        <relationshipLabel>Accounts</relationshipLabel>
+        <relationshipName>Accounts</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Debit_Card_Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>Debit_Card_Number__r.Active__c</formula>
+        <label>Debit Card Status</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Demandware_ID__c</fullName>
         <description>TO: Unique identifier of Demandware Customer Id</description>
         <externalId>true</externalId>
@@ -1165,6 +1184,30 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Document_Number__c</fullName>
+        <description>CEC: To capture the document number</description>
+        <externalId>false</externalId>
+        <label>Document Number</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Document_Type__c</fullName>
+        <description>CEC: To capture the document type of the consumer. Ex: Passport, National Id</description>
+        <externalId>false</externalId>
+        <label>Document Type</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Drinking_frequency__c</fullName>
@@ -1513,6 +1556,30 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Local_Identifier_No_Special_Char__c</fullName>
+        <description>CEC This field will hold 11 digits for Brazil user and for other users it will hold as value as Local Identifier</description>
+        <externalId>false</externalId>
+        <label>Local Identifier No Special Char</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Local_Identifier__c</fullName>
+        <description>CEC Local Identifier  will hold CPF (government issued ID) for consumers</description>
+        <externalId>false</externalId>
+        <label>Local Identifier</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Machine_Id__c</fullName>
@@ -2653,7 +2720,6 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
     <listViews>
         <fullName>AllAccounts</fullName>
         <columns>ACCOUNT.NAME</columns>
-        <columns>Demandware_ID__c</columns>
         <columns>ACCOUNT.CREATED_DATE</columns>
         <filterScope>Everything</filterScope>
         <label>All Accounts</label>
@@ -8622,81 +8688,92 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
                 <default>false</default>
             </values>
             <values>
-                <fullName>Warm</fullName>
+                <fullName>METINARO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OTHERS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PANTAI KELAPA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAME</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SUAI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TAIBESI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VIQUEQUE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WALKIN</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Subcategories__c</picklist>
+            <picklist>UID_Region__c</picklist>
             <values>
-                <fullName>Apple Farms</fullName>
+                <fullName>EUROPE</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Cable</fullName>
+                <fullName>MIDDLE EAST ASIA</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Corn Fields</fullName>
+                <fullName>NORTH ASIA</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Internet</fullName>
+                <fullName>SOUTH ASIA</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Radio</fullName>
+                <fullName>SOUTH EAST ASIA</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Television</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Winery</fullName>
+                <fullName>USA</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Type</picklist>
+            <picklist>UID_Segment__c</picklist>
             <values>
-                <fullName>Analyst</fullName>
+                <fullName>NON PI CUSTOMERS</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Competitor</fullName>
+                <fullName>PI CUSTOMERS</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Unilever_Opt_In__c</picklist>
+            <values>
+                <fullName>Brand</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Customer</fullName>
+                <fullName>Neutral</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Integrator</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Investor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Partner</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Press</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Prospect</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Reseller</fullName>
+                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -13550,6 +13627,16 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <searchResultsAdditionalFields>PC_ADDRESS2_ZIP</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>Private</sharingModel>
+    <validationRules>
+        <fullName>LocalIdentifier_Length_Validation</fullName>
+        <active>true</active>
+        <description>CEC : This will validate the  Local Identifier Length for Brazil user. It should contain 11 digits numbers</description>
+        <errorConditionFormula>IF( ( ( $UserRole.Name  = &apos;CEC Manager - Brazil&apos;) || ( $UserRole.Name  = &apos;CEC User -  Brazil&apos;) || ( $UserRole.Name  = &apos;CEC User - Planitox Brazil&apos;)) &amp;&amp;  Local_Identifier__c  &lt;&gt; null ,
+	(NOT( ISNUMBER( SUBSTITUTE(SUBSTITUTE(  Local_Identifier__c , &quot;.&quot;, &quot;&quot;), &quot;-&quot;, &quot;&quot;) ) ) ||LEN(SUBSTITUTE(SUBSTITUTE( Local_Identifier__c, &quot;.&quot;, &quot;&quot;), &quot;-&quot;, &quot;&quot;) ) &lt;&gt; 11),
+	false)</errorConditionFormula>
+        <errorDisplayField>Local_Identifier__c</errorDisplayField>
+        <errorMessage>Invalid CPF number (Should contain 11 digit numeric value)</errorMessage>
+    </validationRules>
     <validationRules>
         <fullName>Pitch_Email_or_Phone_Mandatory</fullName>
         <active>true</active>
