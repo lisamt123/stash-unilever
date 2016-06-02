@@ -46,7 +46,7 @@ public with sharing class CEC_CaseTriggerHelperTest {
             mdm_Geography__c  geographyUK = [SELECT Id FROM mdm_Geography__c WHERE Name = 'United Kingdom' LIMIT 1];
             
             
-            cec_Case_QC_Mapping__c caseQCMappingObj = new cec_Case_QC_Mapping__c(QC_Type__c = 'Spam',Status__c = 'New',
+            cec_Case_QC_Mapping__c caseQCMappingObj = new cec_Case_QC_Mapping__c(QC_Type__c = 'Spam',Status__c = CEC_Constants.caseStatus,
                                                                                  Verbatim__c = 'Test description', 
                                                                                  Product__c = productObj.id,
                                                                                  Reason_Code__c = reasonObj.id,
@@ -62,7 +62,7 @@ public with sharing class CEC_CaseTriggerHelperTest {
                                                                             '2cecTestForCase@UnileverTest.com', null, null, null, null, null));
             insert masterAccountList;
             
-            List<Case> caseList = CEC_TestDataFactory.createTestCases(2, 'New', 'Email', 'L1234', '1234',
+            List<Case> caseList = CEC_TestDataFactory.createTestCases(2, CEC_Constants.caseStatus, CEC_Constants.caseOrigin, 'L1234', '1234',
                                                                       productObj.Id, reasonObj.Id, 
                                                                       null, cmmUK.Id , true);
             insert caseList;
@@ -100,9 +100,9 @@ public with sharing class CEC_CaseTriggerHelperTest {
             Account accountObj = [SELECT Id FROM Account WHERE PersonEmail='1cecTestForCase@UnileverTest.com' LIMIT 1];
             Case newcase = new Case();
             newcase.SuppliedEmail = '1cecTestForCase@UnileverTest.com';
-            newcase.SuppliedName = 'Test Abc';
-            newcase.Status = 'New';
-            newcase.Origin = 'Email';
+            newcase.SuppliedName = CEC_Constants.suppliedName;
+            newcase.Status = CEC_Constants.caseStatus;
+            newcase.Origin = CEC_Constants.caseOrigin;
             insert newcase;
             Test.stopTest();
             System.assertNotEquals(newcase.AccountId,accountObj.Id);
@@ -122,7 +122,7 @@ public with sharing class CEC_CaseTriggerHelperTest {
                                                 WHERE Name = 'United Kingdom' LIMIT 1];
             Case newcase = new Case();
             newcase.RecordTypeId = noneRecordTypeId;
-            newcase.Status='New';
+            newcase.Status=CEC_Constants.caseStatus;
             newcase.Origin='Call';
             newcase.Production_Code__c='1234';
             newcase.Country__c = cmmUK.id;
@@ -161,7 +161,7 @@ public with sharing class CEC_CaseTriggerHelperTest {
             tempCase.Description='TheoWalcott@gmail.com';
             tempCase.SuppliedEmail = 'abcd@abcdasdsad.com';
             tempCase.SuppliedName = 'Mesut,Ozil';
-            tempCase.Origin = 'Email';
+            tempCase.Origin = CEC_Constants.caseOrigin;
             insert tempCase;
             
             Case resultCase = [SELECT Id, PII_Warning_Check__c,Description FROM Case WHERE Id = :tempCase.Id];
@@ -331,9 +331,9 @@ public with sharing class CEC_CaseTriggerHelperTest {
             
             case case2 = new Case();
             case2.SuppliedEmail='test@abc.com';
-            case2.SuppliedName='Test Abc';
-            case2.Status='New';
-            case2.Origin='Email';
+            case2.SuppliedName=CEC_Constants.suppliedName;
+            case2.Status=CEC_Constants.caseStatus;
+            case2.Origin=CEC_Constants.caseOrigin;
             case2.CEC_Product__c = productObj.Id;
             case2.AccountId = accountObj.Id; 
             case2.Reason_Code__c = reasonObj.Id;
@@ -350,9 +350,9 @@ public with sharing class CEC_CaseTriggerHelperTest {
             
             Case newcase= new Case();
             newcase.SuppliedEmail='test@abc.com';
-            newcase.SuppliedName='Test Abc';
-            newcase.Status='New';
-            newcase.Origin='Email';
+            newcase.SuppliedName=CEC_Constants.suppliedName;
+            newcase.Status=CEC_Constants.caseStatus;
+            newcase.Origin=CEC_Constants.caseOrigin;
             newcase.CEC_Product__c = productObj.Id;
             newcase.AccountId = accountObj.Id;  
             newcase.Reason_Code__c = reasonobj.Id;
@@ -457,8 +457,8 @@ public with sharing class CEC_CaseTriggerHelperTest {
             
             Case newcase= new Case();
             newcase.SuppliedEmail='test@abc.com';
-            newcase.SuppliedName='Test Abc';
-            newcase.Status='New';
+            newcase.SuppliedName=CEC_Constants.suppliedName;
+            newcase.Status=CEC_Constants.caseStatus;
             newcase.Origin='Web';
             newcase.AccountId = accountObj.Id;  
             newcase.Brand__c ='Knorr';
@@ -484,8 +484,8 @@ public with sharing class CEC_CaseTriggerHelperTest {
             
             Case newcase= new Case();
             newcase.SuppliedEmail='test@abc.com';
-            newcase.SuppliedName='Test Abc';
-            newcase.Status='New';
+            newcase.SuppliedName=CEC_Constants.suppliedName;
+            newcase.Status=CEC_Constants.caseStatus;
             newcase.Origin='Web';
             newcase.AccountId = accountObj.Id;  
             newcase.Brand__c ='Ben';
