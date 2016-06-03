@@ -304,6 +304,8 @@ src/classes/IPM_TaskHandler.cls
 src/classes/IPM_TaskHandler.cls-meta.xml
 src/classes/IPM_TaskHelper.cls
 src/classes/IPM_TaskHelper.cls-meta.xml
+src/classes/IPM_BETHelper.cls
+src/classes/IPM_BETHelper.cls-meta.xml
 src/classes/IPM_TaskHelper_Test.cls
 src/classes/IPM_TaskHelper_Test.cls-meta.xml
 src/classes/IPM_Taskview_Test.cls
