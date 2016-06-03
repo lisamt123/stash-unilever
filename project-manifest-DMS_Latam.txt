@@ -43,8 +43,6 @@ src/classes/DMS_PostChatter_BatchSchedule.cls
 src/classes/DMS_PostChatter_BatchSchedule.cls-meta.xml
 src/classes/DMS_PostChatter_BatchSchedule_Test.cls
 src/classes/DMS_PostChatter_BatchSchedule_Test.cls-meta.xml
-src/classes/DMS_HexagonRestCall.cls
-src/classes/DMS_HexagonRestCall.cls-meta.xml
 src/classes/DMS_WaveHexagonRestMock_Test.cls
 src/classes/DMS_WaveHexagonRestMock_Test.cls-meta.xml
 src/classes/DMS_WaveHexagonRestCall.cls
@@ -63,6 +61,8 @@ src/classes/DMS_WebServiceMockGenerator.cls
 src/classes/DMS_WebServiceMockGenerator.cls-meta.xml
 src/classes/DMS_ActiveStore_Test.cls
 src/classes/DMS_ActiveStore_Test.cls-meta.xml
+src/classes/DMS_WebServiceMockGenerator_Test.cls
+src/classes/DMS_WebServiceMockGenerator_Test.cls-meta.xml
 src/triggers
 src/triggers/DMS_Account.trigger
 src/triggers/DMS_Account.trigger-meta.xml
@@ -80,12 +80,12 @@ src/applications/DMS_Frontier.app
 src/objects
 src/objects/Account.object
 src/objects/Target__c.object
-src/sites
-src/sites/Unilever_Internal_Distrubor.site
 src/documents
 src/documents/DMS_Files-meta.xml
 src/documents/DMS_Files/Header_Communities.png
 src/documents/DMS_Files/Header_Communities.png-meta.xml
+src/documents/DMS_Files/Logo_Unilever_Communities.png
+src/documents/DMS_Files/Logo_Unilever_Communities.png-meta.xml
 src/labels
 src/labels/DMS.labels
 src/staticresources
