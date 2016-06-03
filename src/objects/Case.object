@@ -577,6 +577,10 @@ IF( ISPICKVAL(  Account.Known_Consumer__c , &apos;Frequent&apos;), IMAGE(&apos;/
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Australia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Austria</fullName>
                 <default>false</default>
             </picklistValues>
@@ -685,6 +689,10 @@ IF( ISPICKVAL(  Account.Known_Consumer__c , &apos;Frequent&apos;), IMAGE(&apos;/
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>New Zealand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Nicaragua</fullName>
                 <default>false</default>
             </picklistValues>
@@ -714,6 +722,10 @@ IF( ISPICKVAL(  Account.Known_Consumer__c , &apos;Frequent&apos;), IMAGE(&apos;/
             </picklistValues>
             <picklistValues>
                 <fullName>Portugal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>South Africa</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -853,7 +865,7 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <fullName>Email_Subject__c</fullName>
         <description>CEC: Email Subject field for outbound emails</description>
         <externalId>false</externalId>
-        <formula>IF( Case_Brand__c !=&apos;&apos;,  Case_Brand__c + &quot; &quot;, &quot;&quot;) + &quot;Consumer Services Case #: &quot; +  CaseNumber</formula>
+        <formula>IF( Case_Brand__c !='',  Case_Brand__c + " ", "") + $Label.CEC_Email_Subject +" " +  CaseNumber</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Email Subject</label>
         <required>false</required>
@@ -6636,6 +6648,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>Australia</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Austria</fullName>
                 <default>false</default>
             </values>
@@ -6744,6 +6760,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>New Zealand</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Nicaragua</fullName>
                 <default>false</default>
             </values>
@@ -6773,6 +6793,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             </values>
             <values>
                 <fullName>Portugal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>South Africa</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6875,6 +6899,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <values>
                 <fullName>Phone</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>SMS %2F text Messages</fullName>
+                <default>false</default>
             </values>
             <values>
                 <fullName>Social</fullName>

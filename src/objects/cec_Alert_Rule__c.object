@@ -260,6 +260,10 @@
         <label>Market</label>
         <picklist>
             <picklistValues>
+                <fullName>ANZ</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Baltics</fullName>
                 <default>false</default>
             </picklistValues>
@@ -317,6 +321,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Portugal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>South Africa</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>

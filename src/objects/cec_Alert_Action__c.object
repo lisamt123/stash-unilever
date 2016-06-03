@@ -135,6 +135,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Australia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Austria</fullName>
                 <default>false</default>
             </picklistValues>
@@ -275,6 +279,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>New Zealand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Nicaragua</fullName>
                 <default>false</default>
             </picklistValues>
@@ -316,6 +324,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Slovenia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>South Africa</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
