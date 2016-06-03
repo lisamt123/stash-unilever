@@ -86,3 +86,8 @@ src/labels/DMS.labels
 src/staticresources
 src/staticresources/DMS_SLDS0102.resource
 src/staticresources/DMS_SLDS0102.resource-meta.xml
+src/tabs
+src/tabs/DMSDashboards.tab
+src/tabs/Hexagono.tab
+src/tabs/Target__c.tab
+src/tabs/Wave_Dashboards_Mobile.tab
