@@ -27,6 +27,11 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
             return Oblix_PermissionHandler.canManageCampaign(selected_sow.SOW_Status__c, selected_sow.Id, selected_project.Campaign_Status__c);
         }
     }
+    public Boolean can_delete_campaign{
+        get{
+            return can_edit_campaign && !selected_project.Is_B_Fwd_Campaign__c && selected_sow.SOW_Status__c != Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY;
+        }
+    }
     public Boolean can_adjust_fee{
         get{
             return Oblix_PermissionHandler.canAdjustFee(selected_sow.SOW_Status__c, selected_sow.Id, selected_project.Campaign_Status__c, selected_sow.Name_Suffix__c);

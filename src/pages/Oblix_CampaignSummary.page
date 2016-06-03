@@ -18,13 +18,17 @@
             left: 49.5%;      
         }
     </style>
+     <apex:variable var="inProgress" value="{!IF(selected_project.Sync_Status__c  == 'Sync In Progress' || selected_project.Sync_Required_NFY__c == 'Sync In Progress' || selected_project.Sync_Status__c  == 'Sync Requested' || selected_project.Sync_Required_NFY__c == 'Sync Requested' || selected_project.Financial_Year__r.Sync_Status__c == 'Sync Requested',true,false)}">
+    </apex:variable>
     <apex:composition template="Oblix_OuterPageTemplate">
+
+       
         <apex:define name="top_breadcrumb">
             <a href="{!URLFOR($Page.oblix_sowmain)}">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="{!URLFOR($Page.oblix_sowmaindetail)}?sowId={!selected_sow.Id}">{!selected_sow.Name}</a>&nbsp;<span>&#9658;</span>&nbsp;{!selected_project.Name}
         </apex:define>
 
         <apex:define name="header_top_warning_text">
-            <apex:outputText rendered="{!is_NFY_campaign_in_the_middle_of_rollover}">
+            <apex:outputText rendered="{!is_NFY_campaign_in_the_middle_of_rollover && can_see_rollover_warning}">
                 <div class="alert alert-danger" role="alert">Please update campaign details via <a href="/apex/Oblix_CampaignSummary?projectId={!selected_project.Campaign_PFY__c}">{!selected_project.Campaign_PFY__r.Name}</a> and sync to reflect the changes below</div>
             </apex:outputText>
         </apex:define>
@@ -34,22 +38,24 @@
 
         <apex:define name="top_option_links">
             <apex:outputPanel rendered="{!IF(can_edit_campaign && NOT(selected_project.Record_Locked_Sync__c),true,false)}">
-                <apex:outputLink value="/apex/Oblix_CampaignCreate?projectId={!selected_project.Id}">Edit Campaign</apex:outputLink>&nbsp;&nbsp;|&nbsp;&nbsp;
-            </apex:outputPanel>
-            <apex:outputPanel rendered="{!IF(can_edit_campaign && NOT(selected_project.Record_Locked_Sync__c),true,false)}">
-                <!-- <button class="btn btn-danger btn-xs create_SOW_button btn_check btn_submit_approval" data-toggle="modal" data-target="#cancelCampaign">Clone Campaign</button>&nbsp;&nbsp;|&nbsp;&nbsp; -->
-                <apex:outputLink value="/apex/Oblix_CampaignCreate?projectId={!selected_project.Id}&clone=true">Clone Campaign</apex:outputLink>&nbsp;&nbsp;|&nbsp;&nbsp;
+                <apex:outputLink value="/apex/Oblix_CampaignCreate?projectId={!selected_project.Id}">Edit Campaign</apex:outputLink>&nbsp;|&nbsp;
             </apex:outputPanel>
             <apex:outputPanel rendered="{!IF(can_edit_campaign && NOT(selected_project.Record_Locked_Sync__c) && can_see_advanced_links_during_rollover,true,false)}">
                 <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#cancelCampaign">Cancel Campaign</button> -->
-                <a href="#" data-toggle="modal" data-target="#cancelCampaignModal" >Cancel Campaign</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-                <!-- <a href="#" onclick="if (confirm('are you sure you want to delete this campaign?')){deleteCampaign();blockme();}">Cancel Campaign</a> -->
+                <a href="#" data-toggle="modal" data-target="#cancelCampaignModal" >Cancel Campaign</a>&nbsp;|&nbsp;
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!IF(can_delete_campaign && NOT(selected_project.Record_Locked_Sync__c) && can_see_advanced_links_during_rollover,true,false)}">
+                <a href="#" onclick="if (confirm('are you sure you want to delete this campaign?')){deleteCampaign();blockme();}">Delete Campaign</a>&nbsp;|&nbsp;
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!IF(can_edit_campaign && NOT(selected_project.Record_Locked_Sync__c),true,false)}">
+                <!-- <button class="btn btn-danger btn-xs create_SOW_button btn_check btn_submit_approval" data-toggle="modal" data-target="#cancelCampaign">Clone Campaign</button>&nbsp;&nbsp;|&nbsp;&nbsp; -->
+                <apex:outputLink value="/apex/Oblix_CampaignCreate?projectId={!selected_project.Id}&clone=true">Clone Campaign</apex:outputLink>&nbsp;|&nbsp;
             </apex:outputPanel>
             <apex:outputPanel rendered="{!IF(can_edit_campaign,true,false)}">
                 <!-- <button class="btn btn-danger btn-xs create_SOW_button btn_check btn_submit_approval" data-toggle="modal" data-target="#cancelCampaign">Clone Campaign</button>&nbsp;&nbsp;|&nbsp;&nbsp; -->
                 <apex:outputLink value="/apex/Oblix_CampaignCreate?sowId={!selected_sow.Id}">New Campaign</apex:outputLink>
             </apex:outputPanel>
-            <apex:outputPanel rendered="{!IF(selected_project.Sync_Status__c  == 'Sync In Progress' || selected_project.Sync_Required_NFY__c == 'Sync In Progress' || selected_project.Sync_Status__c  == 'Sync Requested' || selected_project.Sync_Required_NFY__c == 'Sync Requested' || selected_project.Financial_Year__r.Sync_Status__c == 'Sync Requested',true,false)}">
+            <apex:outputPanel rendered="{!inProgress}">
                 <br/>
                 <br/>
                 <apex:outputText style="color:red;font-weight: bold;" value="Sync in progress, this campaign is read only." />
@@ -66,7 +72,7 @@
                         </td>
                     </apex:outputPanel>
                     <td rowspan="2">
-                        <apex:outputPanel rendered="{!can_adjust_fee && can_see_advanced_links_during_rollover}">
+                        <apex:outputPanel rendered="{!can_adjust_fee && can_see_advanced_links_during_rollover && NOT(inProgress)}">
                             <button type="button" class="btn btn-danger btn-xs create_SOW_button btn_chevron btn_adjust" data-toggle="modal" data-target="#adjustFeeModal" onClick="refreshPopUpStageIdentifier();">ADJUST %</button>
                         </apex:outputPanel>
                     </td>
@@ -306,13 +312,13 @@
             <hr class="divider" />
             <div class="row">
                 <div class="confirm_assets_accordion">
+                    <!-- <a id="stagesPopover" class="text-info campaignSummaryChevronTooltip" href="#" rel="popover" data-placement="right" data-title="Select Stage Percentage Values" data-html="true" data-content="<b>Briefing</b> - 10%<br/><b>Strategy & Planning</b> - 20%<br/><b>Creative Ideation</b> - 30%<br/><b>Creative Execution</b> - 25%<br/><b>Production</b> - 15%<br/>" data-trigger="hover focus" data-toggle="popover">See recommended %</a> -->
                     <div class="chevron_width_control {!if(selected_project.Campaign_Status__c == 'Cancelled', 'project_cancelled','')}">
                         <apex:outputText rendered="{!selected_project.Campaign_Status__c == 'Cancelled'}">
                             <p class="red_text {!if(selected_project.Campaign_Status__c == 'Cancelled', 'project_cancelled_text', '')}">
                                 Campaign Cancelled.
                             </p>
                         </apex:outputText>
-
                         <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier}" AutoSave="true" Id="campaign_stage_component" displayMode="2" />
 
                     </div>
@@ -381,6 +387,10 @@
                             </tr>
                         </table>
                         <table class="campaign_summary_information camp_sum_table_right_width" id="assets_list">
+                            <tr>
+                                <td class="campaign_summary_information_titles camp_sum_table_title__width">BET Required</td>
+                                <td colspan="2">{!selected_project.BET_Required_Yes_No__c}</td>
+                            </tr>
                             <tr>
                                 <td class="campaign_summary_information_titles camp_sum_table_title__width">Platform</td>
                                 <td colspan="2">{!selected_project.Platform__c}</td>

@@ -61,7 +61,11 @@ public with sharing class Oblix_SOWCreateController extends Oblix_SWOPparentCont
     ********************************************************************************/
     public override PageReference checkUserHasPermissionToSOW(){
 
-		if(isEdit){
+		if(!Oblix_PermissionHandler.hasEditAccess(selected_sow)){
+            // set the selected_sow to null to reuse super.checkUserasPermissionToSOW method's redirect
+            selected_sow = null;
+            return super.checkUserHasPermissionToSOW();
+        } else if(isEdit){
 			return super.checkUserHasPermissionToSOW();
 		} else {
 			return null;

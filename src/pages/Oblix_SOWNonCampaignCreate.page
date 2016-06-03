@@ -295,7 +295,7 @@
                                                     &nbsp;&nbsp;
                                                     
                                                     <apex:input type="number" styleclass="prcentt input_init" html-min="0" html-max="100" html-step="0.01" value="{!helper.currentResource.hoursSelected}"  style="width:60px;" id="prcent"   onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);  if($(this).val()>100)  $(this).val(100);  " html-onPaste="return false;" onkeypress="return onKeyPress_IsDigitAndDecimalValidation(event, this);" />
-                                                    
+                                                %    
                                                 </p>
                                                 <apex:outputPanel id="addResourceUpdateButton">
                                                     <apex:outputPanel rendered="{!IF(can_manage_non_campaign,true,false)}">
