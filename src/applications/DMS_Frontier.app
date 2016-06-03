@@ -7,7 +7,7 @@
     <tab>standard-Account</tab>
     <tab>standard-Contact</tab>
     <tab>Target__c</tab>
-    <tab>Dashboards</tab>
-    <tab>Hexagon</tab>
+    <tab>DMSDashboards</tab>
+    <tab>Hexagono</tab>
     <tab>Wave_Dashboards_Mobile</tab>
 </CustomApplication>
