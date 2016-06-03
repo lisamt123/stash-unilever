@@ -1,10 +1,4 @@
 src
-src/permissionsets
-src/permissionsets/NAFS_Sales_Rep.permissionset
-src
-src/permissionsets
-src/permissionsets/NAFS_AFM.permissionset
-src
 src/reports/NAFS_Report-meta.xml
 src/reports/NAFS_Report/NAFS_PriceBookList.report
 src/reports/NAFS_Report/NAFS_Report_MABE_1.report
