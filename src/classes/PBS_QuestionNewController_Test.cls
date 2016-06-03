@@ -30,7 +30,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 public class PBS_QuestionNewController_Test {
 
         public static final string SYSTEM_ADMINISTRATOR = 'system administrator';
-        public static final string LMS_ADMIN= 'lms_admin';
+        public static final string LMS_ADMIN= 'PBS_LMS_Admin';
         public static final string QUIZ1= 'quiz';
         public static final string RETURL= 'returl';
         public static final string EXTENSION_QUETION_IS_NOT_INITIALIZED = 'extension.question is not initialized';

@@ -52,6 +52,12 @@
     display:none;
     
 }
+        .outer_sec2{
+    /*padding-top:2px;*/
+    height:100%;
+    display:none;
+    
+}
 
         .filter-container {
         margin-top: 50px;
@@ -111,8 +117,17 @@
             margin-top: 68px;
             margin-bottom: -74px;
 		}
+             .outer_sec1{
+    /*padding-top:2px;*/
+    height:100%;
+    display:show;
+    
+}
     </style>
-
+    <div class="outer_sec1">
+         <center><img style="width:10%;top:50%;position:absolute;" src="/resource/EA_StaticResource/assets/images/spinners/slds_spinner.gif"></img></center> 
+    </div>
+   <div class="outer_sec2"> 
     <aura:if isTrue="{!v.showtabs}">
         <div class=" navbar-fixed-top " >
             <ul class="nav nav-pills" >
@@ -195,5 +210,5 @@
             </div>
         </aura:if>
     </div>
-
+   </div> 
 </aura:component>

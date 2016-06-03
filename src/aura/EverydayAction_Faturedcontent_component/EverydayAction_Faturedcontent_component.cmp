@@ -27,8 +27,11 @@
           color: #CFD7E6;
           font-weight: 400;
         }
+        .comment-last-border{
+    		margin-bottom:-17px;
+		}
     </style>     
-     <div class="slds">  
+     <div class="slds comment-last-border">  
         <!-- <div style="text-align:center;width: 90%;margin-left: 5%;"> <ui:outputURL value="/sfc/servlet.shepherd/version/download/068180000008WFB" label="Download Video" target="_top"/></div>-->
          <div class="fTitle">Comments</div>
          <aura:iteration items="{!v.comments}" var="comment"> 
@@ -36,12 +39,12 @@
               		<tr><td class="com_table_td_pic"><img class="img_profile" src="{!comment.uerPhotoUrl}" alt="person name" /></td>
                 
                      <td class="com_table_td_list"><ul style="list-style:none; word-wrap:break-word">
-                             <li>{!comment.userName}</li>
-                             <li class="subTitle">{!comment.createdDate}</li>
+                             <li class="comment_username">{!comment.userName}</li>
+                             <li class="subTitle comment_date">{!comment.createdDate}</li>
                          </ul></td></tr>
                     
               </table>
-              <div class="Para-content"><p style="margin-left: 2.5%; width: 95%;">{!comment.description}</p></div>
+              <div class="Para-content slds-text-body--regular"><p style="color:grey;width: 95%;margin-top: 5px;">{!comment.description}</p></div>
          </aura:iteration>  
       </div>
         <aura:if isTrue="{!v.showmessage}">

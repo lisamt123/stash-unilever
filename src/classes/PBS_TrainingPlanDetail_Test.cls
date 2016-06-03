@@ -31,8 +31,8 @@ public class PBS_TrainingPlanDetail_Test {
     // String variables to avoid code containing duplicate String literals
     public static final string SYSTEMADMINISTRATOR = 'System Administrator';
     public static final string STANDARDUSER = 'Standard User';
-    public static final string LMS_ADMIN = 'LMS_Admin';
-    public static final string LMS_USER = 'LMS_User';
+    public static final string LMS_ADMIN = 'PBS_LMS_Admin';
+    public static final string LMS_USER = 'PBS_LMS_User';
     public static final string ACHIEVEMENTS = 'Achievements';
     public static final string USERAGENT = 'User-Agent';
     public static final string TRAININGPLANSECTIONITEMISSUESSIZE = 'Training Plan Section Item issues, size = ';

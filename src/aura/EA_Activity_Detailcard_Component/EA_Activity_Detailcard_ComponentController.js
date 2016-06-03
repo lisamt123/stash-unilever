@@ -20,10 +20,7 @@
                     $('.carousel').slick({'arrows': false});
                     });
                 });
-             
-        
-        
-     
+           
             }   
         });
         $A.enqueueAction(action);
@@ -45,7 +42,9 @@
             }                   
         });
         $A.enqueueAction(action1);
-         setTimeout( "jQuery('.outer_sec').show();",1000 );
+        setTimeout( "jQuery('.outer_sec').show();",2000 );
+        setTimeout( "jQuery('.outer_sec1').hide();",2000 );
+        setTimeout( "jQuery('.outer_sec2').show();",2000 );
         component.set("v.showspinner",false);
          
     },
@@ -60,7 +59,7 @@
         helper.showTabActive(cmp,event,'themes');
     },
     applyfilter : function(component, event, helper) {
-        setTimeout( "jQuery('.outer_sec').hide();" );
+        setTimeout( "jQuery('.outer_sec').hide();",2000);
         $('.outer_sec').hide();
           component.set("v.showspinner",true);
          component.set("v.showdownarrow",true);
@@ -312,6 +311,7 @@
         var index=event.getParam("index");
         var pageParamIndex=event.getParam("navigatePageIndex");
         cmp.set("v.pageIndex",pageParamIndex);
+        console.log("pagename-->  "+pagename);
         if(pagename === 'swipe'){
             cmp.set("v.index",index);
             cmp.set("v.showfeedback",false);

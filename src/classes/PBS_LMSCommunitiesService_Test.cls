@@ -31,7 +31,7 @@ public class PBS_LMSCommunitiesService_Test {
     
     static testMethod void testGetTrainingPlanIdsForCategory(){
         List<User> lmsUsers = PBS_UtilClass_Test.createUsers(2,'Standard User');
-        PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
+        PBS_UtilClass_Test.addPermissionSet(lmsUsers,'PBS_LMS_User');
         
         List<PBS_Learning_Category__c> idlist =[select id from PBS_Learning_Category__c limit 10];
         
