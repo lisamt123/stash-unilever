@@ -223,32 +223,6 @@
         <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
-    <quickActionList>
-        <quickActionListItems>
-            <quickActionName>PBS_Training_Plan__c.Add_Section</quickActionName>
-        </quickActionListItems>
-        <quickActionListItems>
-            <quickActionName>PBS_Training_Plan__c.Add_Achievement</quickActionName>
-        </quickActionListItems>
-        <quickActionListItems>
-            <quickActionName>PBS_Training_Plan__c.Update_Plan_Assignments</quickActionName>
-        </quickActionListItems>
-        <quickActionListItems>
-            <quickActionName>PBS_Training_Plan__c.Update_Plan_Achievements</quickActionName>
-        </quickActionListItems>
-        <quickActionListItems>
-            <quickActionName>FeedItem.TextPost</quickActionName>
-        </quickActionListItems>
-        <quickActionListItems>
-            <quickActionName>FeedItem.ContentPost</quickActionName>
-        </quickActionListItems>
-        <quickActionListItems>
-            <quickActionName>FeedItem.LinkPost</quickActionName>
-        </quickActionListItems>
-        <quickActionListItems>
-            <quickActionName>FeedItem.PollPost</quickActionName>
-        </quickActionListItems>
-    </quickActionList>
     <relatedLists>
         <fields>NAME</fields>
         <fields>Order__c</fields>

@@ -68,7 +68,7 @@
         <layoutColumns>
             <layoutItems>
                 <height>330</height>
-                <page>AchievementWorkBadgeView</page>
+                <page>PBS_AchievementWorkBadgeView</page>
                 <showLabel>false</showLabel>
                 <showScrollbars>false</showScrollbars>
                 <width>100%</width>

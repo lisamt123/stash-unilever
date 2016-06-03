@@ -157,7 +157,7 @@
         <linkType>page</linkType>
         <masterLabel>Delete Assignments</masterLabel>
         <openType>noSidebar</openType>
-        <page>PBS_TrainingPlanSectionItemAssignmentsDelete</page>
+        <page>PBS_TrainingPlanSectionItemAsgnmtsDelete</page>
         <protected>false</protected>
     </webLinks>
 </CustomObject>
