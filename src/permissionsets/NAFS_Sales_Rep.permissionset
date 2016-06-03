@@ -1248,7 +1248,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Product2.GFS_Product</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <userPermissions>
         <enabled>true</enabled>
