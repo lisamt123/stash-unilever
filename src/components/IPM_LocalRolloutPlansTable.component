@@ -41,7 +41,7 @@ This componet used for regional rollout project
                 </div>
             </apex:outputPanel>
         </div>        
-         <apex:outputPanel id="validationErrorMsg">
+         <apex:outputPanel id="validationErrorMsg" rendered="{!AND(NOT(ISNULL(validationError)),NOT(ISBLANK(validationError)))}">
          <!-- This render condition will check for validation error should not blank -->
             <apex:outputText styleClass="rolloutErrorBox" value="{!validationError}" rendered="{!AND(NOT(ISNULL(validationError)),NOT(ISBLANK(validationError)))}"/> 
         </apex:outputPanel>
