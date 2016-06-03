@@ -5,5 +5,10 @@ src
 src/permissionsets
 src/permissionsets/NAFS_AFM.permissionset
 src
+src/reports/NAFS_Report-meta.xml
+src/reports/NAFS_Report/NAFS_PriceBookList.report
+src/reports/NAFS_Report/NAFS_Report_MABE_1.report
+src/reports/NAFS_Report/NAFS_Report_MABE_2.report
+src
 src/layouts
 src/layouts/Opportunity-Opportunity with Pricing %28MA-BE%29.layout
