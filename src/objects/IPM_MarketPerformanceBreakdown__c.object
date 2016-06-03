@@ -159,7 +159,7 @@
         <defaultValue>0.00</defaultValue>
         <externalId>false</externalId>
         <inlineHelpText>Store average retail price</inlineHelpText>
-        <label>Average Retail Price (€)</label>
+        <label>Average Retail Price</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
@@ -193,7 +193,7 @@
         <fullName>GrossPBO__c</fullName>
         <defaultValue>0.00</defaultValue>
         <externalId>false</externalId>
-        <label>Gross PBI (€)</label>
+        <label>Gross PBI</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
@@ -205,7 +205,7 @@
         <fullName>GrossTurnover__c</fullName>
         <defaultValue>0.00</defaultValue>
         <externalId>false</externalId>
-        <label>Gross Turnover (€)</label>
+        <label>Gross Turnover</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
@@ -217,7 +217,7 @@
         <fullName>Gross_AP__c</fullName>
         <defaultValue>0.00</defaultValue>
         <externalId>false</externalId>
-        <label>Gross BMI (€)</label>
+        <label>Gross BMI</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
@@ -264,7 +264,7 @@
         <fullName>MediaSpend__c</fullName>
         <defaultValue>0.0</defaultValue>
         <externalId>false</externalId>
-        <label>Media Spend (dedicated) (€)</label>
+        <label>Media Spend (dedicated)</label>
         <precision>17</precision>
         <required>false</required>
         <scale>1</scale>

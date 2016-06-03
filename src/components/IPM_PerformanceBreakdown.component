@@ -16,19 +16,19 @@
      <!-- validation error message -->
      <apex:outputPanel id="displayError" >
         <apex:outputPanel rendered="{!isgreaterThan && !isAppendix}" layout="block" styleClass="perfBreakdownMsgContainer">
-        	<div class="brkdownErrMsg">{!$Label.IPM_Error}</div>
-	        <apex:repeat value="{!greaterThanSet}" var="validErr">
-	            <span class="perfBrkMsg">{!validErr}</span> 
-	        </apex:repeat>
+            <div class="brkdownErrMsg">{!$Label.IPM_Error}</div>
+            <apex:repeat value="{!greaterThanSet}" var="validErr">
+                <span class="perfBrkMsg">{!validErr}</span> 
+            </apex:repeat>
         </apex:outputPanel>
     </apex:outputPanel> 
     <!-- Misaligned error message -->
     <apex:outputPanel id="displayError2" >
         <apex:outputPanel rendered="{!isMisaligned && !isAppendix}" layout="block" styleClass="perfBreakdownMsgContainer">
-	        <div class="brkdownWarningMsg">{!$Label.IPM_Warning}</div> 
-	        <apex:repeat value="{!misAlignedList}" var="validErr">
-	            <span class="perfBrkMsg">{!validErr}</span>
-	        </apex:repeat>
+            <div class="brkdownWarningMsg">{!$Label.IPM_Warning}</div> 
+            <apex:repeat value="{!misAlignedList}" var="validErr">
+                <span class="perfBrkMsg">{!validErr}</span>
+            </apex:repeat>
         </apex:outputPanel>
     </apex:outputPanel>   
     </div>
@@ -37,7 +37,7 @@
     <apex:outputPanel layout="block" styleClass="performanceDrpdownContainer" Rendered="{!!isAppendix}">
         <apex:outputLabel styleClass="selCur" value="{!$Label.IPM_Please_select_country}"/> 
         <apex:selectList styleClass="selCur" id="slst" size="1" value="{!selectedCurrency}"> 
-            <apex:actionSupport status="Loading" event="onchange" action="{!applyRate}" reRender="monitoringPerformaceTable"/> 
+            <apex:actionSupport status="Loading" event="onchange" action="{!applyRate}" reRender="monitoringPerformaceTable,displayError2"/> 
                 <apex:selectOptions value="{!items}"/>
         </apex:selectList>
     </apex:outputPanel>
@@ -58,7 +58,12 @@
                 <apex:repeat value="{!$ObjectType.IPM_MarketPerformance__c.FieldSets.UML_Breakdown}" var="field" >
                     <div class="performanceSecHead {!If(contains(sMisalignmentMsg, field.Label) , 'misaligned','')}">
                         <apex:outputfield value="{!marketperformance[field]}" rendered="{!AND(field='TargetLaunchDate__c' , marketperformance[field]!=null)}"/>
-                        <apex:outputText value="{!marketperformance[field]}" rendered="{!field!='TargetLaunchDate__c'}"/> 
+                        <apex:outputText value="{!marketperformance[field]}" rendered="{!AND(field!='TargetLaunchDate__c',field!='IPM_Gross_Turnover__c',field!='IPM_Gross_BMI__c',field!='IPM_Gross_PBI__c',field!='AverageRetailPrice__c',field!='MediaSpend__c')}"/>
+                        <apex:outputText value="{!grossTurnover}" rendered="{!field='IPM_Gross_Turnover__c'}"/>
+                        <apex:outputText value="{!grossBMI}" rendered="{!field='IPM_Gross_BMI__c'}"/>
+                        <apex:outputText value="{!grossPBI}" rendered="{!field='IPM_Gross_PBI__c'}"/>
+                        <apex:outputText value="{!averageRetailPrice}" rendered="{!field='AverageRetailPrice__c'}"/>
+                        <apex:outputText value="{!mediaSpend}" rendered="{!field='MediaSpend__c'}"/>
                     </div>
                 </apex:repeat>
             </apex:outputPanel>
