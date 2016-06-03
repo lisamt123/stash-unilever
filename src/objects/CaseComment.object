@@ -13,6 +13,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Email ANZ</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Email Baltics</fullName>
                 <default>false</default>
             </picklistValues>
@@ -78,6 +82,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Email Portugal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Email South Africa</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>

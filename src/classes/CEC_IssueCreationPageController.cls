@@ -13,19 +13,19 @@ This class acts as a controller class for Issue creation VF page.
 global with sharing class CEC_IssueCreationPageController{
 
     /* Issue object */
-    public cec_Issue__c caseReason {get; set;}
+  //  public cec_Issue__c caseReason {get; set;}
     
     /* Reason Id */
-    public String reasonId {get; set;}
+  //  public String reasonId {get; set;}
     
     /* Reason name */
-    public String reasonName {get; set;}
+//    public String reasonName {get; set;}
     
     /* Product Id */
-    public String productId {get; set;}
+ //   public String productId {get; set;}
     
     /* Product name */
-    public String productName {get; set;}
+ /*   public String productName {get; set;}
     
     public Boolean showKnowledgeLink {get; set;}
     public String knowledgeLink {get; set;}
@@ -35,39 +35,39 @@ global with sharing class CEC_IssueCreationPageController{
     public String userWarning {get; set;}
     
     /* to decide whether to display missing information section or not */
-    public boolean missingInfoSectionDisplay {get; set;}    
+ //   public boolean missingInfoSectionDisplay {get; set;}    
     
     /* to maintain 4 char day code */
-    public String daycode {get; set;}
+ //   public String daycode {get; set;}
     
     /* to maintain date of manufacture */
-    public String dateOfManufacture{get; set;}
+  //  public String dateOfManufacture{get; set;}
 
     /* to maintain product category */
-    public String productCategory{get; set;}
+ //   public String productCategory{get; set;}
     
     /* to decide whether the product category is enabled or disabled */
-    public boolean isProductCategoryEnabled {get; set;}    
+ //   public boolean isProductCategoryEnabled {get; set;}    
     
     /* reason hierarchy */
-    public String reasonHierarchy {get; set;}
+  //  public String reasonHierarchy {get; set;}
     
     /* product hierarchy */
-    public String productHierarchy {get; set;}
+  //  public String productHierarchy {get; set;}
     
     /* List to maintain matching Product knowledge articles*/
-    public List<cec_Product_Information__kav> matchingProductArticlesList {get; set;}
+ //   public List<cec_Product_Information__kav> matchingProductArticlesList {get; set;}
     
     /* List to maintain matching Reason knowledge articles*/
-    public List<cec_Reason_Information__kav> matchingReasonArticlesList {get; set;}
+ //   public List<cec_Reason_Information__kav> matchingReasonArticlesList {get; set;}
     
     /* List to maintain matching Reason knowledge articles*/
-    public List<KnowledgeArticleWrapper> knowledgeWrapperList {get; set;}
+//    public List<KnowledgeArticleWrapper> knowledgeWrapperList {get; set;}
     
-    public List<cec_Store__c> storeList{get; set;}
+ //   public List<cec_Store__c> storeList{get; set;}
     
     /* constructor */
-    public CEC_IssueCreationPageController(ApexPages.StandardController controller) {
+  /*  public CEC_IssueCreationPageController(ApexPages.StandardController controller) {
     knowledgeWrapperList = new List<KnowledgeArticleWrapper>();
         caseReason = (cec_Issue__c) controller.getRecord();
         if (caseReason.Id != null) {
@@ -86,25 +86,25 @@ global with sharing class CEC_IssueCreationPageController{
         userWarning = '';
 
         /* making 'missising info' section hidden as default */        
-        missingInfoSectionDisplay = false;
+   //     missingInfoSectionDisplay = false;
         
         /* making 'form' checkbox uncheched as default */                
-        caseReason.isFormKnown__c = false;
+   //     caseReason.isFormKnown__c = false;
         
         /* making 'variant' checkbox uncheched as default */    
-        caseReason.isVariantKnown__c = false;
+   //     caseReason.isVariantKnown__c = false;
         
         /* making 'pack size' checkbox uncheched as default */    
-        caseReason.isPacksizeKnown__c= false;
+   //     caseReason.isPacksizeKnown__c= false;
         
-        isProductCategoryEnabled = true;
+   //     isProductCategoryEnabled = true;
         
-    }
+  //  }
 
     /**
     This method is used to save an issue
     */
-    public PageReference saveAndContinue() {
+ /*   public PageReference saveAndContinue() {
         try{ 
             cec_Issue__c cr = new cec_Issue__c();
             cr.Case__c = caseReason.Case__c;
@@ -133,7 +133,7 @@ global with sharing class CEC_IssueCreationPageController{
                         searchInKnowledgeArticles(cr.Id);
                     }*/
                     
-                    if (knowledgeWrapperList != null && knowledgeWrapperList.size() > 0){
+               /*     if (knowledgeWrapperList != null && knowledgeWrapperList.size() > 0){
                         mapArticlesToCases(cr.Case__c);
                     }
                     
@@ -155,7 +155,7 @@ global with sharing class CEC_IssueCreationPageController{
                 showKnowledgeLink = true;
                 showQuestionnaireLink = true;
                 */
-                PageReference ref = new PageReference('/' + cr.id);
+         /*       PageReference ref = new PageReference('/' + cr.id);
                 ref.setRedirect(true);
                 return ref;
             }else{
@@ -175,7 +175,7 @@ global with sharing class CEC_IssueCreationPageController{
     }
     
     
-    public PageReference validateCloseTab() {
+ /*   public PageReference validateCloseTab() {
         //ApexPages.addMessage(new ApexPages.message(ApexPages.severity.WARNING, 'Changes have not been saved.'));
         return null;
     }
@@ -206,7 +206,7 @@ global with sharing class CEC_IssueCreationPageController{
     /**
     This method toggles the display of 'Missing information' section
     */
-    public void toggleMissingInfoDisplay(){
+   /* public void toggleMissingInfoDisplay(){
         System.debug('in toggleMissingInfoDisplay....................');
         if (missingInfoSectionDisplay == true){
             missingInfoSectionDisplay = false;
@@ -215,7 +215,7 @@ global with sharing class CEC_IssueCreationPageController{
         }
         
         /*maintaining reason name on screen */   
-        if (reasonId != null && reasonId != ''){
+   /*     if (reasonId != null && reasonId != ''){
            mdm_Reason_Code__c rObj = [select name from mdm_Reason_Code__c where id = :reasonId ];
            if (rObj != null){
                reasonName = rObj.name;
@@ -223,7 +223,7 @@ global with sharing class CEC_IssueCreationPageController{
         }
         
         /*maintaining product name on screen */   
-        if (productId != null && productId != ''){
+     /*   if (productId != null && productId != ''){
            mdm_Case_Product__c pObj = [select name from mdm_Case_Product__c where id = :productId ];
            if (pObj != null && pObj.name != null){
                productName = pObj.name;
@@ -235,12 +235,12 @@ global with sharing class CEC_IssueCreationPageController{
     /**
     This method updates the details based on check / uncheck of FORM checkbox
     */
-    public void updateFormAvailabilityDetails(){
+  /*  public void updateFormAvailabilityDetails(){
         if (caseReason.isFormKnown__c == false){
             isProductCategoryEnabled = true;
             
             /*if form is missing, loading product hierarchy */
-            if (caseReason.isFormKnown__c== false){
+       /*     if (caseReason.isFormKnown__c== false){
                 if (productId != null && productId != ''){
                     mdm_Case_Product__c productObj = [select id, Brand__c from mdm_Case_Product__c where Id = :productId ];
                     if (productObj != null && productObj.Brand__c!= null){
@@ -252,9 +252,9 @@ global with sharing class CEC_IssueCreationPageController{
                  }
              } 
         }else{
-            isProductCategoryEnabled = false;
+            isProductCategoryEnabled = false; */
             //since form is known and if the other 2 are also known
-            if (caseReason.isVariantKnown__c== true && caseReason.isPacksizeKnown__c == true){
+        /*    if (caseReason.isVariantKnown__c== true && caseReason.isPacksizeKnown__c == true){
                 isProductCategoryEnabled = false;
                 if (productId != null && productId != ''){    
                     mdm_Case_Product__c productObj = [select id, Consumer_Product_Descriptor_Local_Lang__c from mdm_Case_Product__c where Id = :productId ];
@@ -264,23 +264,23 @@ global with sharing class CEC_IssueCreationPageController{
                 }
             }
         }
-    }
+    } */
 
     /**
     This method updates the details based on check / uncheck of VARIANT checkbox
     */
-    public void updateVariantAvailabilityDetails(){
+  //  public void updateVariantAvailabilityDetails(){
         /*if variant is missing, loading product hierarchy */
-        if (caseReason.isVariantKnown__c== false){
+   /*     if (caseReason.isVariantKnown__c== false){
              if (productId != null && productId != ''){ 
                  mdm_Case_Product__c productObj = [select id, Global_CPG_Code__r.Corp_Prod_Grouping_Name__c from mdm_Case_Product__c where Id = :productId ];
                  if (productObj != null && productObj.Global_CPG_Code__r.Corp_Prod_Grouping_Name__c != null){
                      productHierarchy = productObj.Global_CPG_Code__r.Corp_Prod_Grouping_Name__c;
                  }
              }
-        }else {
+        }else { */
             //since variant is known and if the other 2 are also known
-            if (caseReason.isFormKnown__c== true && caseReason.isPacksizeKnown__c == true){
+       /*     if (caseReason.isFormKnown__c== true && caseReason.isPacksizeKnown__c == true){
                 isProductCategoryEnabled = false;
                 if (productId != null && productId != ''){ 
                     mdm_Case_Product__c productObj = [select id, Consumer_Product_Descriptor_Local_Lang__c from mdm_Case_Product__c where Id = :productId ];
@@ -290,13 +290,13 @@ global with sharing class CEC_IssueCreationPageController{
                 }
             }
          }
-    }
+    } */
     
     
     /**
     This method updates the details based on check / uncheck of PACK SIZE checkbox
     */
-    public void updatePacksizeAvailabilityDetails(){
+   /* public void updatePacksizeAvailabilityDetails(){
         if (caseReason.isPacksizeKnown__c == false){
             if (productId != null && productId != ''){ 
                 mdm_Case_Product__c productObj = [select id, Consumer_Product_Descriptor_no_size__c from mdm_Case_Product__c where Id = :productId ];
@@ -316,7 +316,7 @@ global with sharing class CEC_IssueCreationPageController{
                  }
              }
         }
-    }
+    } */
 
     
     /**
@@ -324,7 +324,7 @@ global with sharing class CEC_IssueCreationPageController{
     1. Generate daycode
     2. Generate Date of Manufacture
     */
-    public void processProductionCode(){
+/*    public void processProductionCode(){
         if (reasonId != null && reasonId != ''){
             List<mdm_Reason_Code__c> rObjList = [select name from mdm_Reason_Code__c where id = :reasonId ];
             if (rObjList != null && rObjList.size() > 0){
@@ -337,65 +337,65 @@ global with sharing class CEC_IssueCreationPageController{
            if (pObjList != null && pObjList .size() > 0){
                productName = pObjList[0].name;
            }
-        }
+        } */
         
         /* process the production code to identify daycode */
-        identifyDaycode();
+     //   identifyDaycode();
         
         /* process the daycode to identify date of manufacture */
-        identifyDateOfManufacture();
-    }
+   //     identifyDateOfManufacture();
+  //  } 
     
 
     
     /**
     This method identifies daycode from the production code
     */
-     public void identifyDaycode(){
+  /*   public void identifyDaycode(){
      if (caseReason.Production_Code__c!= null && caseReason.Production_Code__c!= '' && caseReason.Production_Code__c.length() >= 4){
             caseReason.DayCode__c = caseReason.Production_Code__c.substring(1,5);
             //caseReason.DayCode__c = daycode ;
             
             /* identify the date of manufacture from the daycode */
-            identifyDateOfManufacture();
-        }
-    }
+      //      identifyDateOfManufacture();
+     //   }
+   // } */
     
     /**
     This method identifies date of manufacture from the daycode
     */
-    public void identifyDateOfManufacture(){
-       if (caseReason.DayCode__c != null && caseReason.DayCode__c != '' && caseReason.DayCode__c.length() == 4){
+  //  public void identifyDateOfManufacture(){
+   //    if (caseReason.DayCode__c != null && caseReason.DayCode__c != '' && caseReason.DayCode__c.length() == 4){
             /* splitting 1st char as Year & taking it as integer */
             
-            try{
+         //   try{
             
-            String year = caseReason.DayCode__c.substring(0,1); 
-            Integer prodYearDigit = Integer.valueOf(year);  
+         //   String year = caseReason.DayCode__c.substring(0,1); 
+          //  Integer prodYearDigit = Integer.valueOf(year);  
 
             /* splitting 2 to 4 chars as number of days & taking it as integer*/            
-            String noOfDays = caseReason.DayCode__c.substring(1); 
-            Integer n = Integer.valueOf(noOfDays);
+        //    String noOfDays = caseReason.DayCode__c.substring(1); 
+         //   Integer n = Integer.valueOf(noOfDays);
             
             //caseReason.DayCode__c = daycode ;
             
             /* identifying current year & converting it into String */
-            Integer currentYear = Integer.valueOf((Date.today()).year()); 
-            String currentYearStr  = String.valueOf(currentYear);
+           // Integer currentYear = Integer.valueOf((Date.today()).year()); 
+          //  String currentYearStr  = String.valueOf(currentYear);
             
             /*extracting the last digit of the current year */
-            String currentYearLastDigitStr = currentYearStr.substring(3);
+        /*    String currentYearLastDigitStr = currentYearStr.substring(3);
             Integer currentYearLastDigitNum = Integer.valueOf(currentYearLastDigitStr); 
             
             /*extracting the first three digits of the current year */
-            String currentYearfirstthreeDigitStr = currentYearStr.substring(0,3);
-            Integer currentYearfirstthreeDigitNum = Integer.valueOf(currentYearfirstthreeDigitStr); 
+          //  String currentYearfirstthreeDigitStr = currentYearStr.substring(0,3);
+         //   Integer currentYearfirstthreeDigitNum = Integer.valueOf(currentYearfirstthreeDigitStr); 
             
             
-            Integer prodYear;
+         //   Integer prodYear; */
             
             /* if production year <= current year */
-            if (prodYearDigit <= currentYearLastDigitNum ){    
+         /*   if (prodYearDigit <= currentYearLastDigitNum ){    
                 //prodYear = Date.today().year();
                 
                 String prodYearStr = currentYearfirstthreeDigitStr + year;
@@ -418,13 +418,13 @@ global with sharing class CEC_IssueCreationPageController{
                  
                  prodYear =  Integer.valueOf(prodYearStr);
                  System.debug('~~~prodYear '+ prodYear );
-            }
+            } */
             
             /*creating a date instance for the Prod year & 1st Jan */
-            DateTime dateOfManufacture =  DateTime.newInstance(prodYear , 1, 1);
+       /*     DateTime dateOfManufacture =  DateTime.newInstance(prodYear , 1, 1);
             System.debug('~~~dateOfManufacture '+dateOfManufacture);
             /* adding number of days from daycode to above date */
-            dateOfManufacture = dateOfManufacture.addDays(n-1);
+       /*     dateOfManufacture = dateOfManufacture.addDays(n-1);
             String dateOfManufactureStr =  dateOfManufacture.format('dd-MM-yyyy');
             
             System.debug('~~~dateOfManufactureStr '+ dateOfManufactureStr);
@@ -442,17 +442,17 @@ global with sharing class CEC_IssueCreationPageController{
             }
             
         }
-    }
+    } */
     
     
     /**
     This method selects all distinct categories from ProductCategory table
     */
-    public List<SelectOption> getCategoryValues() {
-        List<SelectOption> categoryOptions = new List<SelectOption>();
+  //  public List<SelectOption> getCategoryValues() {
+ //       List<SelectOption> categoryOptions = new List<SelectOption>();
         
         /* selecting all distinct categories from ProductCategory table */
-        AggregateResult[] productCategoryList = [select L2_Product_Category__c from mdm_Product_Category__c GROUP BY L2_Product_Category__c ];
+    /*    AggregateResult[] productCategoryList = [select L2_Product_Category__c from mdm_Product_Category__c GROUP BY L2_Product_Category__c ];
         if (productCategoryList != null && productCategoryList.size() > 0){
             Integer i = 0;
             for (AggregateResult ar : productCategoryList ){
@@ -469,12 +469,12 @@ global with sharing class CEC_IssueCreationPageController{
         }
         
         return categoryOptions;
-    }
+    } */
     
     /**
     This method updates the reason hierarchy
     */
-    public void updateReasonHierarchy(){ 
+  /*  public void updateReasonHierarchy(){ 
         if (reasonId != null && reasonId != ''){
             List<mdm_Reason_Code__c> rObjList = [select name from mdm_Reason_Code__c where id = :reasonId ];
             if (rObjList != null && rObjList.size() > 0 && rObjList[0].name != null){
@@ -498,7 +498,7 @@ global with sharing class CEC_IssueCreationPageController{
                 }
                 if (reasonCodeObjList[0].L2_Desc__c != null && reasonCodeObjList[0].L2_Desc__c != 'null'){
                     level2Desc = reasonCodeObjList[0].L2_Desc__c;
-                }
+                } */
             
                 /*if (reasonCodeObj.Global_Listening_Tree__r.L1_Desc__c != null && reasonCodeObj.Global_Listening_Tree__r.L1_Desc__c!= 'nulll'){
                     level1Desc = reasonCodeObj.Global_Listening_Tree__r.L1_Desc__c;
@@ -506,18 +506,18 @@ global with sharing class CEC_IssueCreationPageController{
                 if (reasonCodeObj.Global_Listening_Tree__r.L2_Desc__c != null && reasonCodeObj.Global_Listening_Tree__r.L2_Desc__c != 'nulll'){
                     level2Desc = reasonCodeObj.Global_Listening_Tree__r.L2_Desc__c;
                 } */
-                reasonHierarchy = level1Desc + ' ' +  level2Desc ;
+       /*         reasonHierarchy = level1Desc + ' ' +  level2Desc ;
             }
         }
         
         searchMatchingReasonKnowledgeArticles();
-    }
+    } */
     
     
     /**
     This method updates the product hierarchy
     */
-    public void updateProductHierarchy(){
+/*    public void updateProductHierarchy(){
         System.debug('reasonId =' + reasonId );
         if (reasonId != null && reasonId != ''){
             mdm_Reason_Code__c rObj = [select name from mdm_Reason_Code__c where id = :reasonId ];
@@ -552,15 +552,15 @@ global with sharing class CEC_IssueCreationPageController{
          
          System.debug('productHierarchy  =' + productHierarchy  );
          searchMatchingProductKnowledgeArticles();
-    }
+    } */
     
 
     /**
     This method updates form availability based on Category selection
     */    
-    public void updateProductCategory() {
+  /*  public void updateProductCategory() {
         updateFormAvailabilityDetails();
-    }
+    } */
     
    /* public void searchInKnowledgeArticles(Id issueId){
         System.debug('issueId =' + issueId);
@@ -615,20 +615,20 @@ global with sharing class CEC_IssueCreationPageController{
     
     
     /* Method to search for matching Product knowledge articles */ 
-    public void searchMatchingProductKnowledgeArticles(){
-        String productUPC = '';
+   // public void searchMatchingProductKnowledgeArticles(){
+   //     String productUPC = '';
 
         /* identifying the GTIN_EAN_UPC_Code__c code for the selected product */        
-        if (productId != null ){
+      /*  if (productId != null ){
             mdm_Case_Product__c productObj = [ select GTIN_EAN_UPC_Code__c from mdm_Case_Product__c where id =:productId ];
             if (productObj != null && productObj.GTIN_EAN_UPC_Code__c  != null){
                 productUPC = productObj.GTIN_EAN_UPC_Code__c  ;
             }
         }
-        System.debug('productUPC ='  + productUPC  );
+        System.debug('productUPC ='  + productUPC  ); */
         
         /* identifying the matching PRODUCT knowledge articles */        
-        if (productUPC  != null && productUPC != '') {
+     /*   if (productUPC  != null && productUPC != '') {
             matchingProductArticlesList = [select id, ArticleType, Title from cec_Product_Information__kav where language = 'en_US' and publishStatus = 'Online' and Product_Code__c =: productUPC ];
             if (matchingProductArticlesList != null && matchingProductArticlesList .size() > 0)            {
                 for(cec_Product_Information__kav productArticle : matchingProductArticlesList ){
@@ -642,24 +642,24 @@ global with sharing class CEC_IssueCreationPageController{
                 }
             }
         }
-    }
+    } */
     
     
     /* Method to search for matching Reason knowledge articles */ 
-     public void searchMatchingReasonKnowledgeArticles(){
-        String reasonShortCode = '';
+   //  public void searchMatchingReasonKnowledgeArticles(){
+    //    String reasonShortCode = '';
 
         /* identifying the reason 5 short desc for the selected reason */ 
-        if (reasonId != null ){
+     /*   if (reasonId != null ){
             mdm_Reason_Code__c reasonObj = [ select L5_Short_Desc__c from mdm_Reason_Code__c where id =:reasonId ];
             if (reasonObj != null && reasonObj.L5_Short_Desc__c != null){
                 reasonShortCode = reasonObj.L5_Short_Desc__c ;
             }
         }
-        System.debug('reasonShortCode ='  + reasonShortCode );
+        System.debug('reasonShortCode ='  + reasonShortCode ); */
         
         /* identifying the matching REASON knowledge articles */  
-        if (reasonShortCode != null && reasonShortCode != '') {
+    /*    if (reasonShortCode != null && reasonShortCode != '') {
             matchingReasonArticlesList = [select id, ArticleType, Title from cec_Reason_Information__kav where language = 'en_US' and publishStatus = 'Online' and Short_Code__c =: reasonShortCode ];
             if (matchingReasonArticlesList != null && matchingReasonArticlesList.size() > 0)            {
                 for(cec_Reason_Information__kav reasonArticle : matchingReasonArticlesList ){
@@ -674,11 +674,11 @@ global with sharing class CEC_IssueCreationPageController{
             }
             
         }
-    }
+    } */
     
     
     /* Method to map knowledge articles to Case */
-    public void mapArticlesToCases(Id caseId){
+  /*  public void mapArticlesToCases(Id caseId){
         try{
             List<CaseArticle> caseArticleList = new List<CaseArticle>();
             CaseArticle caseArticleObj;
@@ -686,27 +686,27 @@ global with sharing class CEC_IssueCreationPageController{
             if (knowledgeWrapperList != null && knowledgeWrapperList.size() > 0){
                 for(KnowledgeArticleWrapper wrapperObj : knowledgeWrapperList ){
                     /* if article is selected to be attached */
-                    if (wrapperObj.isSelected == true){
+                 /*   if (wrapperObj.isSelected == true){
                         /* creating a new CaseArticle object */ 
-                        caseArticleObj = new CaseArticle();
+                      //  caseArticleObj = new CaseArticle();
                         
                         /* setting case id for the case article */
-                        caseArticleObj.CaseId = caseId;
+                      //  caseArticleObj.CaseId = caseId;
                         
-                        if (wrapperObj.articleType == 'Product Information'){
+                    //    if (wrapperObj.articleType == 'Product Information'){
                             /* setting article id for the case article */
-                            ID articleId = Id.valueOf(wrapperObj.productArticle.Id);
+                   /*         ID articleId = Id.valueOf(wrapperObj.productArticle.Id);
                             caseArticleObj.KnowledgeArticleId = articleId ;
                         }else if (wrapperObj.articleType == 'Reason Information'){
                             /* setting article id for the case article */
-                            ID articleId = Id.valueOf(wrapperObj.reasonArticle.Id);
+                  /*         ID articleId = Id.valueOf(wrapperObj.reasonArticle.Id);
                             caseArticleObj.KnowledgeArticleId = articleId ;
                         }
                                                 
                         /* setting article language */
-                        caseArticleObj.ArticleLanguage = 'en_US'; 
+                   //     caseArticleObj.ArticleLanguage = 'en_US'; 
                         
-                        caseArticleList.add(caseArticleObj);
+                /*        caseArticleList.add(caseArticleObj);
                     }
                 }
             }
@@ -720,33 +720,33 @@ global with sharing class CEC_IssueCreationPageController{
         }
         
         
-    }
+    } */
     
     /* Inner class */
     /* This class is a wrapper class for the knowledge articles */
-    public class KnowledgeArticleWrapper{
+ // public class KnowledgeArticleWrapper{
     
     /* article id*/
-        public String articleId{ get; set; }
+     //   public String articleId{ get; set; }
         
         /* Reference to reason article */
-        public cec_Reason_Information__kav reasonArticle{ get; set; }
+    //    public cec_Reason_Information__kav reasonArticle{ get; set; }
 
         /* Reference to product article */
-        public cec_Product_Information__kav productArticle{ get; set; }
+    //    public cec_Product_Information__kav productArticle{ get; set; }
         
         /* flag to indicate whether article is selected */
-        public boolean isSelected{ get; set; }
+   //     public boolean isSelected{ get; set; }
         
         /* article type */
-        public String articleType{ get; set; }
+     //   public String articleType{ get; set; }
         
         /* article subject */
-        public String subject{ get; set; }
+    //    public String subject{ get; set; }
         
         /* constructor */
-        public KnowledgeArticleWrapper(){}
+      //  public KnowledgeArticleWrapper(){}
         
-    }
+  //  } 
 
 }

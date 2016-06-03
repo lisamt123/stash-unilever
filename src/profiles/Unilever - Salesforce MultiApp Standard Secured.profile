@@ -10626,6 +10626,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Case.Claims_Note__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Case.Claims_Notes__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -10847,6 +10852,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.L0_Product_Category__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.L0_Product_Reporting__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -31038,6 +31048,11 @@
         <editable>true</editable>
         <field>mdm_Case_Product__c.Product_CU_MRDR_Code__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>mdm_Case_Product__c.Product_Name_Other__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>

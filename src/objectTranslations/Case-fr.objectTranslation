@@ -139,6 +139,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Claims Note --></label>
+        <name>Claims_Note__c</name>
+    </fields>
+    <fields>
         <label><!-- Claims Notes --></label>
         <name>Claims_Notes__c</name>
     </fields>
@@ -160,6 +164,10 @@
         <picklistValues>
             <masterLabel>Argentina</masterLabel>
             <translation><!-- Argentina --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Australia</masterLabel>
+            <translation><!-- Australia --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Austria</masterLabel>
@@ -270,6 +278,10 @@
             <translation><!-- Netherlands --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>New Zealand</masterLabel>
+            <translation><!-- New Zealand --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Nicaragua</masterLabel>
             <translation><!-- Nicaragua --></translation>
         </picklistValues>
@@ -300,6 +312,10 @@
         <picklistValues>
             <masterLabel>Portugal</masterLabel>
             <translation><!-- Portugal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>South Africa</masterLabel>
+            <translation><!-- South Africa --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Spain</masterLabel>
@@ -453,6 +469,10 @@
         <name>L0_Product_Category__c</name>
     </fields>
     <fields>
+        <label><!-- L0 Product Reporting --></label>
+        <name>L0_Product_Reporting__c</name>
+    </fields>
+    <fields>
         <label><!-- L1 Product Category --></label>
         <name>L1_Product_Category__c</name>
     </fields>
@@ -591,6 +611,10 @@
             <translation><!-- Email --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Email ANZ</masterLabel>
+            <translation><!-- Email ANZ --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Email Baltics</masterLabel>
             <translation><!-- Email Baltics --></translation>
         </picklistValues>
@@ -657,6 +681,10 @@
         <picklistValues>
             <masterLabel>Email Portugal</masterLabel>
             <translation><!-- Email Portugal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Email South Africa</masterLabel>
+            <translation><!-- Email South Africa --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Email Southern Cone</masterLabel>

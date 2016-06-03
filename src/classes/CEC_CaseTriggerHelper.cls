@@ -40,6 +40,7 @@ public class CEC_CaseTriggerHelper{
     //Code change to update the default Account Owner Id
     public void updateAccountOwner(List<Case> newCase){
         
+        System.debug('New Case $$$$$$$$$$$$$$' + newCase);
         for(Case c: newCase){
             if(c.CMMFlag__C && c.NewAccountFlag__C){
                 
@@ -57,14 +58,14 @@ public class CEC_CaseTriggerHelper{
                         emailSubject = '[ERR004] Default Account Owner is either not populated or Inactive at CMM';
                         CEC_Util.sendNotificationEmail(msgString,emailSubject);
                     }    
-                }
-                
-                if(accntList.size()>0){
-                    Database.SaveResult[] srList = Database.update(accntList, false);
-                }
-                
+                } 
             }
         }
+        
+        if(accntList.size()>0){
+            Database.SaveResult[] srList = Database.update(accntList, false);
+        }
+        
         
     }
     
@@ -86,6 +87,7 @@ public class CEC_CaseTriggerHelper{
             checkDupAccnt();
             
             for(Id caseId: caseMap.keySet()){
+                // If duplicate found, set Matching_Response__c field 
                 if(dupEmailSet.contains(caseMap.get(caseId))){
                     caseRecord = new Case(Id=caseId);
                     caseRecord.Matching_Response__c = Label.CEC_MatchingResponse_DuplicateAccount;
@@ -93,7 +95,7 @@ public class CEC_CaseTriggerHelper{
                     caseRecord.Brand__c = CEC_CaseDescriptionParser.getBrand(newCaseMap.get(caseId).description);
                     caseList.add(caseRecord);
                     caseMap.remove(caseId);
-                }
+                } // if no duplicates are found, and account already exists, add case to account
                 else if(emailAccntMap.containsKey(caseMap.get(caseId))){
                     account acc = new account();
                     acc = emailAccntMap.get(caseMap.get(caseId));
@@ -108,11 +110,12 @@ public class CEC_CaseTriggerHelper{
                     
                     caseList.add(caseRecord);
                     caseMap.remove(caseId);
-                }
+                } // if no matching account is found, create new account
                 else{
                     accnt = new Account();
                     suppName = newCaseMap.get(caseId).SuppliedName;
                     Lname=FName=null;
+                    // split supplied name to obtain first and last name of account
                     if(suppName!=null){
                         if(suppName.contains(',')){
                             FName = suppName.split(',')[1];
@@ -138,15 +141,15 @@ public class CEC_CaseTriggerHelper{
                     accntList.add(accnt);
                 }
             }
-            
+            // insert new accounts
             if(accntList.size()>0){
                 Database.SaveResult[] srList = Database.insert(accntList, false);
             }
-            
+            // create account map to fetch inserted accounts based on email
             for(account accntdetail: accntList){
                 accountMap.put(accntdetail.PersonEmail, accntdetail.Id);         
             }
-            
+            // create contact map to fetch inserted contacts based on email
             for(Contact cont: [Select Email, Id from Contact where Email IN: accountMap.KeySet()]){
                 contactMap.put(cont.Email, cont.Id);         
             }
@@ -177,6 +180,7 @@ public class CEC_CaseTriggerHelper{
                     failedCases = failedCases + '<B>Error Message</B>:&nbsp;&nbsp;' + error.getMessage();       
                 }
             }
+            // send error emails if case insertion fails
             if(failedCases !=''){
                 msgString = '<Html><Body> This is an automated email<BR/><BR/>CEC Carelines case could not be updated. Please check the error message and take the necessary action.<BR/><BR/>'+ failedCases+'<BR/><BR/>Thank You</Body></Html>';  
                 emailSubject = '[ERR003] Case could not be updated';
@@ -191,7 +195,7 @@ public class CEC_CaseTriggerHelper{
         Map<String,String> allRecordtypesMap= new Map<String,String>();
         
         //Querying all recordtypes
-        List<RecordType> allRecordtypes= [select id,name from RecordType];
+        List<RecordType> allRecordtypes= [select id,name from RecordType where SobjectType='Case'];
         Map<String,cec_Case_QC_Mapping__c> qcMap=new Map<String,cec_Case_QC_Mapping__c>(); 
         Set<String> recordTypesSet=new Set<String>();
         List<String> recordTypesList=new List<String>();
@@ -311,8 +315,6 @@ public class CEC_CaseTriggerHelper{
 This method identifies daycode from the production code
 */
     private void identifyDaycode(Case caseRecord){
-        
-        Boolean populateDayCode;
         String Daycode = '';
         caseRecord.Date_of_Manufacture_str__c = '';
         caseRecord.Date_of_Manufacture__c = null;
@@ -522,22 +524,22 @@ This method identifies date of manufacture from the daycode
     
     //Method to check whether PII data is present in the description or not
     public void checkPIIWarning(Case caseRecord, Map<Id, Account> accountsMap, Boolean isAccNameChk, Boolean isAccAddChk, Boolean isDOBChk, Boolean isPhChk, Boolean isEmailChk, String PIIKeyWords){
-        
+        // control variable
         Boolean isMatchFound = False;
         
         try{
-            
+            // parse description for email address
             if(isEmailChk && caseRecord.Description != null && caseRecord.Description.contains('@')){
                 isMatchFound = True;
             }
-            
+            // parse description for phone numbers if phone check setting is enabled
             if(!isMatchFound && caseRecord.Description != null && isPhChk){
                 String strRegEx='[0-9][0-9][0-9][0-9]';
                 Pattern MyPattern = Pattern.compile(strRegEx);
                 Matcher MyMatcher = MyPattern.matcher(caseRecord.Description);
                 isMatchFound = MyMatcher.find();
             }
-            
+            // parse description for DOB if DOB check setting is enabled
             if(!isMatchFound && caseRecord.Description != null && isDOBChk){
                 String strMultilang = PIIKeyWords;
                 if(strMultilang != null){
@@ -551,11 +553,11 @@ This method identifies date of manufacture from the daycode
                     }    
                 } 
             }
-            
+            // parse description for name if name check setting is enabled
             if(!isMatchFound && caseRecord.Description != null && isAccNameChk && caseRecord.AccountId != NULL && ((accountsMap.get(caseRecord.AccountId).LastName !=null && caseRecord.Description.containsIgnoreCase(accountsMap.get(caseRecord.AccountId).LastName))|| (accountsMap.get(caseRecord.AccountId).FirstName != null && caseRecord.Description.containsIgnoreCase(accountsMap.get(caseRecord.AccountId).FirstName)))){
                 isMatchFound = TRUE;
             }
-            
+            // parse description for Address if Address check setting is enabled
             if(!isMatchFound && caseRecord.Description != null && isAccAddChk && caseRecord.AccountId != NULL && ((accountsMap.get(caseRecord.AccountId).PersonMailingStreet !=null && caseRecord.Description.containsIgnoreCase(accountsMap.get(caseRecord.AccountId).PersonMailingStreet))|| (accountsMap.get(caseRecord.AccountId).PersonMailingPostalCode != null && caseRecord.Description.containsIgnoreCase(accountsMap.get(caseRecord.AccountId).PersonMailingPostalCode)))){
                 isMatchFound = TRUE;
             }
@@ -690,11 +692,15 @@ This method identifies date of manufacture from the daycode
     
     //To update the store and product information for Web Cases
     public void updateStoreAndProductInfo(List<Case> caseList , Map<id,Case> oldMap){
-        
+        // to map Case and UPC code
         map<id, string> caseUPCMap = new map<id, string>();
+        // to map Case and store
         map<id, string> caseStoreMap = new map<id, string>();
-        map<id, string> caseCountryMap = new map<id, string>();  
-        map<id, string> caseISOCodeMap = new map<id, string>();   
+        // to map Case and country
+        map<id, string> caseCountryMap = new map<id, string>();
+        // to map Case and ISO code
+        map<id, string> caseISOCodeMap = new map<id, string>();
+        
         list<mdm_Case_Product__c> caseProdList  = new list<mdm_Case_Product__c>();
         list<cec_store__c> caseStoreList = new list<cec_store__c>();
         
@@ -706,17 +712,17 @@ This method identifies date of manufacture from the daycode
             for(case newCase: caseList){
                 
                 System.debug('Values $$$$$$$$$$$$$$$$' + newCase.Origin + ' ' + newCase.Case_ISO_Country_Code__c + ' ' + oldMap.get(newCase.Id).Case_ISO_Country_Code__c + ' ' + newCase.Country_Name__c + ' ' + oldMap.get(newCase.Id).Country_Name__c);
-                
+                // if case satisfies entry criteria, extract the required detais and update maps
                 if(newCase.Origin == 'Web North America' && newCase.Case_ISO_Country_Code__c != oldMap.get(newCase.Id).Case_ISO_Country_Code__c && newCase.Country_Name__c != oldMap.get(newCase.Id).Country_Name__c){
                     caseUPC = CEC_CaseDescriptionParser.getCaseUPC(newCase.description);
-                    
+                    // populate case maps
                     if(caseUPC != null){
                         caseUPCMap.put(newCase.Id, caseUPC);
                         caseISOCodeMap.put(newCase.Id, newCase.Case_ISO_Country_Code__c ); 
                     }
-                    
+                    // fetch case store
                     caseStore = CEC_CaseDescriptionParser.getStoreName(newCase.description);
-                    
+                    // populate store and country maps
                     if(caseStore != null){
                         caseStoreMap.put(newCase.Id, caseStore);
                         caseCountryMap.put(newCase.Id, newCase.Country_Name__c); 
@@ -726,22 +732,22 @@ This method identifies date of manufacture from the daycode
                 
             } 
             
-            
+            // query case product
             if(caseUPCMap.size() > 0){
                 caseProdList  = [Select Id, GTIN_EAN_UPC_Code__c, ISO_Country_Code__c from mdm_Case_Product__c where GTIN_EAN_UPC_Code__c IN :caseUPCMap.values() AND ISO_Country_Code__c IN :caseISOCodeMap.values()];
             }  
             
-            
+            //query case stores
             if(caseStoreMap.size() > 0){
                 caseStoreList = [Select Id, Name, Country__r.Name from cec_store__c where Country__r.Name IN :caseCountryMap.values() and Name IN :caseStoreMap.values()];
             }
-            
+            // update case fields based on criteria
             if(caseProdList.size()>0 || caseStoreList.size()>0){
                 
                 for(case newCase: caseList){
                     
                     if(newCase.Origin == 'Web North America' && newCase.Case_ISO_Country_Code__c != ''){
-                        
+                        // update case product
                         if(caseUPCMap.get(newCase.Id) != null){
                             for(mdm_Case_Product__c caseProd : caseProdList){
                                 if(caseProd.GTIN_EAN_UPC_Code__c == caseUPCMap.get(newCase.Id) && caseProd.ISO_Country_Code__c == caseISOCodeMap.get(newCase.Id)){
@@ -750,7 +756,7 @@ This method identifies date of manufacture from the daycode
                                 }
                             }                        
                         } 
-                        
+                        // update case store
                         if(caseStoreMap.get(newCase.Id) != null){
                             for(cec_store__c storeRec : caseStoreList){
                                 if(storeRec.Name == caseStoreMap.get(newCase.Id) && storeRec.Country__r.Name == caseCountryMap.get(newCase.Id)){
@@ -759,7 +765,7 @@ This method identifies date of manufacture from the daycode
                                 }
                             }                        
                         }
-                        
+                        // update case origin
                         newCase.Origin = 'Web';
                     }
                     

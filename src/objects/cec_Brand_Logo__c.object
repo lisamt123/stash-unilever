@@ -82,6 +82,15 @@
     </fields>
     <label>Brand Logo</label>
     <listViews>
+        <fullName>CEC_ANZ_Queue_cec_Brand_Logo</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC ANZ Queue</label>
+        <queue>CEC_ANZ_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Baltics_Queue_cec_Brand_Logo</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Baltics Queue</label>
@@ -113,6 +122,15 @@
         <filterScope>Queue</filterScope>
         <label>CEC North America Queue</label>
         <queue>CEC_North_America_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_South_Africa_Queue_cec_Brand_Logo</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC South Africa Queue</label>
+        <queue>CEC_South_Africa_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

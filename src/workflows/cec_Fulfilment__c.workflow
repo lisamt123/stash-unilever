@@ -8,7 +8,8 @@
             <field>PersonEmail__c</field>
             <type>email</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>sac@atendimentounilever.com.br</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>CEC_Emails_Brazil/Brazil_E_Voucher_Details</template>
     </alerts>
     <fieldUpdates>

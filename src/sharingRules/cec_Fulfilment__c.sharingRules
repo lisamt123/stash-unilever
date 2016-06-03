@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
     <sharingOwnerRules>
+        <fullName>Market_Equals_ANZ_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Market Equals ANZ - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_ANZ</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_ANZ</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
         <fullName>Market_Equals_Baltics_Manager</fullName>
         <accessLevel>Edit</accessLevel>
         <label>Market Equals Baltics – Manager</label>
@@ -174,6 +185,17 @@
         </sharedTo>
         <sharedFrom>
             <roleAndSubordinatesInternal>CEC_Manager_Portugal</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Market_Equals_South_Africa_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Market Equals South Africa - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_South_Africa</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_South_Africa</roleAndSubordinatesInternal>
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>

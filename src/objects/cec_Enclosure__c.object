@@ -96,6 +96,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Australia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Austria</fullName>
                 <default>false</default>
             </picklistValues>
@@ -236,6 +240,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>New Zealand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Nicaragua</fullName>
                 <default>false</default>
             </picklistValues>
@@ -277,6 +285,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Slovenia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>South Africa</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -422,6 +434,15 @@
         <type>Picklist</type>
     </fields>
     <label>Enclosure</label>
+    <listViews>
+        <fullName>CEC_ANZ_Queue_cec_Enclosure</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC ANZ Queue</label>
+        <queue>CEC_ANZ_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <listViews>
         <fullName>CEC_Baltics_Queue_cec_Enclosure</fullName>
         <filterScope>Queue</filterScope>
@@ -715,6 +736,15 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_South_Africa_Queue_cec_Enclosure</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC South Africa Queue</label>
+        <queue>CEC_South_Africa_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Southern_Cone_Queue_cec_Enclosure</fullName>
         <columns>OBJECT_ID</columns>
         <columns>NAME</columns>
@@ -761,8 +791,6 @@
         <fullName>alle_DACH_Enclosures1</fullName>
         <columns>NAME</columns>
         <columns>OWNER.ALIAS</columns>
-        <columns>Active__c</columns>
-        <columns>Country__c</columns>
         <filterScope>Everything</filterScope>
         <label>alle DACH-Enclosures</label>
         <language>de</language>

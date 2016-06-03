@@ -37,6 +37,22 @@
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingOwnerRules>
+        <fullName>Market_Equals_ANZ_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Edit</contactAccessLevel>
+            <opportunityAccessLevel>Edit</opportunityAccessLevel>
+        </accountSettings>
+        <label>Market Equals ANZ - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_ANZ</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_ANZ</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
         <fullName>Market_Equals_Baltics_Manager</fullName>
         <accessLevel>Edit</accessLevel>
         <accountSettings>
@@ -293,6 +309,22 @@
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
+        <fullName>Market_Equals_South_Africa_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Edit</contactAccessLevel>
+            <opportunityAccessLevel>Edit</opportunityAccessLevel>
+        </accountSettings>
+        <label>Market Equals South Africa - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_South_Africa</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_South_Africa</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
         <fullName>Market_Equals_South_America_Manager</fullName>
         <accessLevel>Edit</accessLevel>
         <accountSettings>
@@ -389,6 +421,22 @@
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
+        <fullName>Role_Equals_Africa_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Edit</contactAccessLevel>
+            <opportunityAccessLevel>Edit</opportunityAccessLevel>
+        </accountSettings>
+        <label>Role Equals Africa - Manager</label>
+        <sharedTo>
+            <role>CEC_Manager_Africa</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>CEC_Manager_Africa</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
         <fullName>Role_Equals_CEC_Global_Head</fullName>
         <accessLevel>Edit</accessLevel>
         <accountSettings>
@@ -450,6 +498,22 @@
         </sharedTo>
         <sharedFrom>
             <role>CEC_Manager_HGS_Europe</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Role_Equals_SEAA_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Edit</contactAccessLevel>
+            <opportunityAccessLevel>Edit</opportunityAccessLevel>
+        </accountSettings>
+        <label>Role Equals SEAA - Manager</label>
+        <sharedTo>
+            <role>CEC_Manager_SEAA</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>CEC_Manager_SEAA</role>
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>

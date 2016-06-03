@@ -119,6 +119,10 @@
         <label>Αγορά</label>
         <name>Market__c</name>
         <picklistValues>
+            <masterLabel>ANZ</masterLabel>
+            <translation><!-- ANZ --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Baltics</masterLabel>
             <translation><!-- Baltics --></translation>
         </picklistValues>
@@ -179,6 +183,10 @@
             <translation><!-- Portugal --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>South Africa</masterLabel>
+            <translation><!-- South Africa --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Southern Cone</masterLabel>
             <translation><!-- Southern Cone --></translation>
         </picklistValues>
@@ -223,10 +231,6 @@
         <picklistValues>
             <masterLabel>3</masterLabel>
             <translation><!-- 3 --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>4</masterLabel>
-            <translation><!-- 4 --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>5</masterLabel>

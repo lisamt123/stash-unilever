@@ -165,6 +165,15 @@
     </fields>
     <label>Case QC Mapping</label>
     <listViews>
+        <fullName>CEC_ANZ_Queue_cec_Case_QC_Mapping</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC ANZ Queue</label>
+        <queue>CEC_ANZ_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Baltics_Queue_cec_Case_QC_Mapping</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Baltics Queue</label>
@@ -304,6 +313,15 @@
         <filterScope>Queue</filterScope>
         <label>CEC Poland Queue</label>
         <queue>CEC_Poland_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_South_Africa_Queue_cec_Case_QC_Mapping</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC South Africa Queue</label>
+        <queue>CEC_South_Africa_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

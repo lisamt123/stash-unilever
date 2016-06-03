@@ -290,38 +290,6 @@
                 <fullName>Food Solutions</fullName>
                 <default>false</default>
             </picklistValues>
-            <picklistValues>
-                <fullName>Sun</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Deoleo</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>R &amp; B Foods</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Bluewater</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Gortons</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Dove</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Lux</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Lynx</fullName>
-                <default>false</default>
-            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackHistory>false</trackHistory>
@@ -361,6 +329,15 @@
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>CEC_ANZ_Queue_cec_Case_Brand_Mapping</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC ANZ Queue</label>
+        <queue>CEC_ANZ_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_Baltics_Queue_cec_Case_Brand_Mapping</fullName>
@@ -495,11 +472,8 @@
     </listViews>
     <listViews>
         <fullName>CEC_Hungary_Queue_cec_Case_Brand_Mapping</fullName>
-        <columns>Brand__c</columns>
-        <columns>Inbound_Email__c</columns>
         <filterScope>Queue</filterScope>
         <label>CEC Hungary Queue</label>
-        <language>en_US</language>
         <queue>CEC_Hungary_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -602,6 +576,18 @@
         <filterScope>Everything</filterScope>
         <label>CEC Portugal Queue</label>
         <language>en_US</language>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_South_Africa_Queue_cec_Case_Brand_Mapping</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC South Africa Queue</label>
+        <queue>CEC_South_Africa_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_Southern_Cone_Queue_cec_Case_Brand_Mapping</fullName>

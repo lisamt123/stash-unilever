@@ -394,6 +394,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Australia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Austria</fullName>
                 <default>false</default>
             </picklistValues>
@@ -534,6 +538,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>New Zealand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Nicaragua</fullName>
                 <default>false</default>
             </picklistValues>
@@ -575,6 +583,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Slovenia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>South Africa</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1455,6 +1467,7 @@ Case__r.Account.PersonContact.MailingCountry</formula>
             <picklistValues>
                 <fullName>Standard Letter</fullName>
                 <controllingFieldValues>Argentina</controllingFieldValues>
+                <controllingFieldValues>Australia</controllingFieldValues>
                 <controllingFieldValues>Austria</controllingFieldValues>
                 <controllingFieldValues>Belgium</controllingFieldValues>
                 <controllingFieldValues>Bolivia</controllingFieldValues>
@@ -1490,6 +1503,7 @@ Case__r.Account.PersonContact.MailingCountry</formula>
                 <controllingFieldValues>Mlodova, Republic of</controllingFieldValues>
                 <controllingFieldValues>Montenegro</controllingFieldValues>
                 <controllingFieldValues>Netherlands</controllingFieldValues>
+                <controllingFieldValues>New Zealand</controllingFieldValues>
                 <controllingFieldValues>Nicaragua</controllingFieldValues>
                 <controllingFieldValues>Norway</controllingFieldValues>
                 <controllingFieldValues>Panama</controllingFieldValues>
@@ -1501,6 +1515,7 @@ Case__r.Account.PersonContact.MailingCountry</formula>
                 <controllingFieldValues>Serbia</controllingFieldValues>
                 <controllingFieldValues>Slovakia</controllingFieldValues>
                 <controllingFieldValues>Slovenia</controllingFieldValues>
+                <controllingFieldValues>South Africa</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sweden</controllingFieldValues>
                 <controllingFieldValues>Switzerland</controllingFieldValues>
@@ -1549,6 +1564,24 @@ Case__r.Account.PersonContact.MailingCountry</formula>
         <type>Checkbox</type>
     </fields>
     <label>Fulfilment</label>
+    <listViews>
+        <fullName>CEC_ANZ_Quality_Check_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC ANZ Quality Check</label>
+        <queue>CEC_ANZ_Quality_Check</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_ANZ_Queue_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC ANZ Queue</label>
+        <queue>CEC_ANZ_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <listViews>
         <fullName>CEC_Baltics_Quality_Check_cec_Fulfilment</fullName>
         <filterScope>Queue</filterScope>
@@ -2120,6 +2153,24 @@ Case__r.Account.PersonContact.MailingCountry</formula>
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_South_Africa_Quality_Check_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC South Africa Quality Check</label>
+        <queue>CEC_South_Africa_Quality_Check</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_South_Africa_Queue_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC South Africa Queue</label>
+        <queue>CEC_South_Africa_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Southern_Cone_Queue_cec_Fulfilment</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Southern Cone Queue</label>
@@ -2530,129 +2581,106 @@ function openRetrievalRequestSubtab(result) {
         <openType>onClickJavaScript</openType>
         <protected>false</protected>
         <requireRowSelection>true</requireRowSelection>
-        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/32.0/connection.js&quot;)} 
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/32.0/connection.js&quot;)}
 {!REQUIRESCRIPT(&quot;/support/console/30.0/integration.js&quot;)}
 {!REQUIRESCRIPT(&quot;/soap/ajax/30.0/apex.js&quot;)}
 
 sforce.connection.sessionId = &quot;{!$Api.Session_ID}&quot;;
+var caseQuery = sforce.connection.query(&quot;Select Id,AccountId,Account.PersonMailingCity,Account.PersonMailingCountry,Case_Brand__c, Account.PersonMailingPostalCode, Account.PersonMailingState, Account.PersonMailingStreet,Account.Salutation, Account.Name,Country_Name__c , L0_Product_Category__c,L2_Product_Category__c,L5_Code__c From Case Where Id = &apos;{!Case.Id}&apos;&quot;); 
+ 
 
-var caseQuery;
-if ({!$Permission.CEC_Debit_Card_Process}) {
-    caseQuery = sforce.connection.query(&quot;Select Id,AccountId,Account.PersonMailingCity,Account.PersonEmail,Account.PersonMailingCountry,Case_Brand__c,Account.PersonBirthdate, Account.PersonMailingPostalCode, Account.PersonMailingState, Account.PersonMailingStreet,Account.Salutation, Account.Local_Identifier__c,Account.Debit_Card_Number__c,Account.Debit_Card_Number__r.Active__c,Account.Debit_Card_Number__r.Name,Account.Name,Country_Name__c , L0_Product_Category__c,L2_Product_Category__c,L5_Code__c,CEC_Product__c From Case Where Id = &apos;{!Case.Id}&apos;&quot;);
-} else {
-    caseQuery = sforce.connection.query(&quot;Select Id,AccountId,Account.PersonMailingCity,Account.PersonEmail,Account.PersonMailingCountry,Case_Brand__c,Account.PersonBirthdate, Account.PersonMailingPostalCode, Account.PersonMailingState, Account.PersonMailingStreet,Account.Salutation, Account.Local_Identifier__c,  Account.Name,Country_Name__c , L0_Product_Category__c,L2_Product_Category__c,L5_Code__c,CEC_Product__c From Case Where Id = &apos;{!Case.Id}&apos;&quot;);
-}
 var fulfilmentId;
 var fulfilmentName;
-var records = caseQuery.getArray(&quot;records&quot;);
+var records = caseQuery.getArray(&quot;records&quot;); 
 var caseRecord = records[0];
 
 
-if (caseRecord != null &amp;&amp; caseRecord.AccountId == null) {
-    alert(&apos;{!$Label.CEC_CaseAccountMissing}&apos;);
-} else if (caseRecord != null &amp;&amp;
-    caseRecord.Account.PersonMailingCity == null &amp;&amp; caseRecord.Account.PersonMailingCountry == null &amp;&amp; caseRecord.Account.PersonMailingPostalCode == null &amp;&amp; caseRecord.Account.PersonMailingState == null &amp;&amp; caseRecord.Account.PersonMailingStreet == null) {
-    alert(&apos;{!$Label.CEC_CaseAccountPersonDetailsError}&apos;);
-} else {
+if(caseRecord != null &amp;&amp; caseRecord.AccountId == null) {
+                alert(&apos;{!$Label.CEC_CaseAccountMissing}&apos;);
+} else if (caseRecord != null &amp;&amp; 
+caseRecord.Account.PersonMailingCity == null &amp;&amp; caseRecord.Account.PersonMailingCountry == null &amp;&amp; caseRecord.Account.PersonMailingPostalCode == null &amp;&amp; caseRecord.Account.PersonMailingState == null &amp;&amp; caseRecord.Account.PersonMailingStreet == null) {
+                alert(&apos;{!$Label.CEC_CaseAccountPersonDetailsError}&apos;);
+} else  {
+                
+        var newFulfilment = new sforce.SObject(&quot;cec_Fulfilment__c&quot;);
+        newFulfilment.Case__c = caseRecord.Id;
+        newFulfilment.Country__c = caseRecord.Account.PersonMailingCountry;
+        //var result =sforce.apex.execute(&quot;CEC_ChequeProcess&quot;,&quot;checkFieldAccess&quot;,{sObjectName:&apos;cec_fulfilment__c&apos;,sFieldName:&apos;Payable_TO__c&apos;}); 
 
-    var newFulfilment = new sforce.SObject(&quot;cec_Fulfilment__c&quot;);
-    newFulfilment.Case__c = caseRecord.Id;
-    newFulfilment.Country__c = caseRecord.Account.PersonMailingCountry;
-
-
-    var objFulfilment = sforce.connection.describeSObject(&quot;cec_fulfilment__c&quot;);
-    var result = &apos;false&apos;;
-    var field = &apos;&apos;;
-    for (var i = 0; i &lt; objFulfilment.fields.length; i++) {
-        field = objFulfilment.fields[i];
-        if (field.name == &apos;Payable_To__c&apos;) {
-            result = &apos;true&apos;;
-            break;
-        }
-    }
-
-
-    if (result == &apos;true&apos; &amp;&amp; caseRecord.Account.Salutation != null) {
-        newFulfilment.Payable_To__c = caseRecord.Account.Salutation + &quot; &quot; + caseRecord.Account.Name;
-    } else if (result == &apos;true&apos;) {
-        newFulfilment.Payable_To__c = caseRecord.Account.Name;
-    }
-
-    //This Code will default the values only if advisor has debit card Process custom permission.
-    //This Code is used to default the values of DOB,Local identifier,Debit Card Number and Debit Card Status
-    if ({!$Permission.CEC_Debit_Card_Process} || {!$Permission.CEC_E_Voucher_Process} ) {
-
-        if (caseRecord.Account.PersonBirthdate != null) {
-            newFulfilment.Date_of_Birth__c = caseRecord.Account.PersonBirthdate;
-        }
-        if (caseRecord.Account.PersonEmail != null) {
-            newFulfilment.PersonEmail__c = caseRecord.Account.PersonEmail;
+        var objFulfilment= sforce.connection.describeSObject(&quot;cec_fulfilment__c&quot;); 
+        var result = &apos;false&apos;; 
+        var field = &apos;&apos;;
+        for (var i=0; i&lt;objFulfilment.fields.length; i++) { 
+            field = objFulfilment.fields[i]; 
+            if(field.name == &apos;Payable_To__c&apos;) { 
+                result= &apos;true&apos;; 
+                break;
+            } 
         }
 
-        if (caseRecord.Account.Local_Identifier__c != null) {
-            newFulfilment.Local_Identifier__c = caseRecord.Account.Local_Identifier__c;
-        }		
 
-        if (caseRecord.Account.Debit_Card_Number__c != null &amp;&amp; caseRecord.Account.Debit_Card_Number__r.Active__c != null &amp;&amp; caseRecord.Account.Debit_Card_Number__r.Name != null) {
+        if (result == &apos;true&apos; &amp;&amp; caseRecord.Account.Salutation != null){
+              newFulfilment.Payable_To__c = caseRecord.Account.Salutation + &quot; &quot;+ caseRecord.Account.Name;
+        } else if(result == &apos;true&apos;){
+              newFulfilment.Payable_To__c = caseRecord.Account.Name;
+        }
+        
+        var result =sforce.apex.execute(&quot;CEC_AlertFulfilmentEnclosureHelper&quot;,&quot;populateEnclosureDetails&quot;,{CaseId:caseRecord.Id,CountryName :newFulfilment.Country__c });
+         // alert(&apos;my alert===&apos;+result); 
+        if (result[0].status == &apos;S&apos;){
+            if(result[0].enclosuresList != null)
+            {
+				
+                  if(result[0].enclosuresList[0])
+                    {
+                         newFulfilment.Enclosure1__c=result[0].enclosuresList[0];
+                         //newFulfilment.Enclosure1_Quantity__c=1;
+                    }
 
-            newFulfilment.Account_Card_Status__c = caseRecord.Account.Debit_Card_Number__r.Active__c;
-            newFulfilment.Account_Card_Number__c = caseRecord.Account.Debit_Card_Number__r.Name;
+                  if(result[0].enclosuresList[1])
+                    {
+                         newFulfilment.Enclosure2__c=result[0].enclosuresList[1];
+                         //newFulfilment.Enclosure2_Quantity__c=1;
+                    }
+
+                  if(result[0].enclosuresList[2])
+                    {
+                         newFulfilment.Enclosure3__c=result[0].enclosuresList[2];
+                         //newFulfilment.Enclosure3_Quantity__c=1;
+                    }
+
+                  if(result[0].enclosuresList[3])
+                    {
+                         newFulfilment.Enclosure4__c=result[0].enclosuresList[3];
+                        // newFulfilment.Enclosure4_Quantity__c=1;
+                    }
+                  if(result[0].enclosuresList[4])
+                    {
+                         newFulfilment.Enclosure5__c=result[0].enclosuresList[4];
+                         //newFulfilment.Enclosure5_Quantity__c=1;
+                    }
+            
+            }
+        }
+        else if (result[0].status == &apos;E&apos;) { 
+               alert(result[0].message); 
         }
 
-    }
-
-    var result = sforce.apex.execute(&quot;CEC_AlertFulfilmentEnclosureHelper&quot;, &quot;populateEnclosureDetails&quot;, {
-        CaseId: caseRecord.Id,
-        CountryName: newFulfilment.Country__c
-    });
-
-    if (result[0].status == &apos;S&apos;) {
-        if (result[0].enclosuresList != null) {
-
-            if (result[0].enclosuresList[0]) {
-                newFulfilment.Enclosure1__c = result[0].enclosuresList[0];
-
-            }
-
-            if (result[0].enclosuresList[1]) {
-                newFulfilment.Enclosure2__c = result[0].enclosuresList[1];
-
-            }
-
-            if (result[0].enclosuresList[2]) {
-                newFulfilment.Enclosure3__c = result[0].enclosuresList[2];
-
-            }
-
-            if (result[0].enclosuresList[3]) {
-                newFulfilment.Enclosure4__c = result[0].enclosuresList[3];
-
-            }
-            if (result[0].enclosuresList[4]) {
-                newFulfilment.Enclosure5__c = result[0].enclosuresList[4];
-
-            }
-
-        }
-    } else if (result[0].status == &apos;E&apos;) {
-        alert(result[0].message);
-    }
-    
-    sforce.connection.create([newFulfilment], success);
+        sforce.connection.create([newFulfilment], success);
 }
 
 function success(result) {
-    
-    fulfilmentId = result[0].id;
-    fulfilmentName = result[0].Name;
-    sforce.console.getFocusedPrimaryTabId(openSubtab);
+
+                fulfilmentId = result[0].id;
+                fulfilmentName = result[0].Name;
+                sforce.console.getFocusedPrimaryTabId(openSubtab);
 }
 
 var openSubtab = function openSubtab(result) {
-    //Now that we have the primary tab ID, we can open a new subtab in it
-    var primaryTabId = result.id;
-    sforce.console.refreshPrimaryTabById(primaryTabId, false);
-    sforce.console.openSubtab(primaryTabId, &apos;/&apos; + fulfilmentId, true, fulfilmentName, null);
+                //Now that we have the primary tab ID, we can open a new subtab in it
+                var primaryTabId = result.id;
+        sforce.console.refreshPrimaryTabById(primaryTabId, false);
+                sforce.console.openSubtab(primaryTabId, &apos;/&apos;+fulfilmentId, true, fulfilmentName,null);
 };</url>
     </webLinks>
 </CustomObject>

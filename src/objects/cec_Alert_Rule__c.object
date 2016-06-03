@@ -260,6 +260,10 @@
         <label>Market</label>
         <picklist>
             <picklistValues>
+                <fullName>ANZ</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Baltics</fullName>
                 <default>false</default>
             </picklistValues>
@@ -317,6 +321,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Portugal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>South Africa</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -391,12 +399,6 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>4</fullName>
-                <controllingFieldValues>Quality</controllingFieldValues>
-                <controllingFieldValues>Safety</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>5</fullName>
                 <default>false</default>
             </picklistValues>
@@ -404,7 +406,7 @@
                 <fullName>7</fullName>
                 <default>false</default>
             </picklistValues>
-            <sorted>true</sorted>
+            <sorted>false</sorted>
         </picklist>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -544,6 +546,15 @@
         <filterScope>Everything</filterScope>
         <label>All Alert Rules</label>
         <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>CEC_ANZ_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC ANZ Queue</label>
+        <queue>CEC_ANZ_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_Baltics_Queue_cec_Alert_Rule</fullName>
@@ -712,6 +723,15 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_South_Africa_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC South Africa Queue</label>
+        <queue>CEC_South_Africa_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Southern_Cone_Queue_cec_Alert_Rule</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Southern Cone Queue</label>
@@ -801,7 +821,7 @@
         <fullName>L0_Product_Category_Mandatory_Validation</fullName>
         <active>false</active>
         <description>Please verify that the Product Category&apos;s &apos;Division Name&apos; is not null if Type is &apos;Safety&apos;</description>
-        <errorConditionFormula>ISPICKVAL(Type__c, &apos;Safety&apos;) &amp;&amp; (Product_Category__c != null  &amp;&amp; L0_Product_Category__c = null)</errorConditionFormula>
+        <errorConditionFormula>L0_Product_Category__c = null &amp;&amp;  ISPICKVAL(Type__c, &apos;Safety&apos;)</errorConditionFormula>
         <errorMessage>Please make sure that  the Product Category&apos;s  &apos;Division Name&apos; is not null for &apos;Safety&apos; alerts.</errorMessage>
     </validationRules>
     <validationRules>
