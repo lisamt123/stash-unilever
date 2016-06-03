@@ -20,11 +20,11 @@
             </div>
             <div class="menuTabs">
                 <ul>
-                    <li><a onclick="setActiveLink('home');" id="home" href="{!$Page.PC_Home}" target="innerFrame" class="active"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
-                    <li><a onclick="setActiveLink('pbs');" id="pbs" href="{!$Page.PBS_Welcome_Home}" target="_self" >PBS</a></li>
+                    <li><a onclick="setActiveLink('home');" id="home" href="{!$Page.PC_ContainerPage}" target="_self" class="active"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+                    <li><a onclick="setActiveLink('pbs');" id="pbs" href="{!$Page.PBS_WelcomePage}" target="_self" >PBS</a></li>
                     <li><a onclick="setActiveLink('forum');" id="forum" href="{!$Page.PC_Forum}" target="_self">Collaborate!</a></li>
                     <li><a href="http://www.quizup.com" target ="_new"><span class="text-muted">Games</span></a></li>
-                    <li><a onclick="setActiveLink('profile');" id="profile" href="{!$Page.PBS_MyProfile}" target="innerFrame">My Profile</a></li>
+                    <li><a onclick="setActiveLink('profile');" id="profile" href="{!$Page.PBS_MyProfile}" target="_self">My Profile</a></li>
                     <!--<apex:image value="{!loggedUsernameImageUrl}" styleClass="profilePic-header"/>-->
                 </ul>
             </div>

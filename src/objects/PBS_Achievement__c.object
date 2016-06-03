@@ -232,5 +232,15 @@
         <customTabListAdditionalFields>CREATEDBY_USER</customTabListAdditionalFields>
     </searchLayouts>
     <sharingModel>Read</sharingModel>
- 
+	    <webLinks>
+        <fullName>Add_Work_com_Badge</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Add Work.com Badge</masterLabel>
+        <openType>noSidebar</openType>
+        <page>PBS_AchievementWorkCom</page>
+        <protected>false</protected>
+    </webLinks>
 </CustomObject>

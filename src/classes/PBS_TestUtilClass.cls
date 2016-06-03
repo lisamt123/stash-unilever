@@ -62,9 +62,9 @@ public class PBS_TestUtilClass {
         if(UserInfo.getLanguage() == 'en_US'){
             return profileName;
         }else if(profileName == 'System Administrator'){
-            return System.Label.almond.ALMS_Sys_Admin_Profile;
+            return System.Label.ALMS_Sys_Admin_Profile;
         }else if(profileName == 'Standard User'){
-            return System.Label.almond.ALMS_Standard_User_Profile;
+            return System.Label.ALMS_Standard_User_Profile;
         }
         return profileName;
     }
