@@ -462,6 +462,15 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Brazil_Queue_cec_Enclosure</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Brazil Queue</label>
+        <queue>CEC_Brazil_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Cyprus_Queue_cec_Enclosure</fullName>
         <columns>NAME</columns>
         <columns>Country__c</columns>
@@ -635,6 +644,15 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Middle_Americas_Queue_cec_Enclosure</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Middle Americas Queue</label>
+        <queue>CEC_Middle_Americas_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Nordic_Queue_cec_Enclosure</fullName>
         <columns>NAME</columns>
         <columns>Country__c</columns>
@@ -709,6 +727,15 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Southern_Cone_Queue_cec_Enclosure</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Southern Cone Queue</label>
+        <queue>CEC_Southern_Cone_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Spain_Queue_cec_Enclosure</fullName>
         <columns>NAME</columns>
         <columns>Country__c</columns>
@@ -740,6 +767,8 @@
         <fullName>alle_DACH_Enclosures1</fullName>
         <columns>NAME</columns>
         <columns>OWNER.ALIAS</columns>
+        <columns>Active__c</columns>
+        <columns>Country__c</columns>
         <filterScope>Everything</filterScope>
         <label>alle DACH-Enclosures</label>
         <language>de</language>

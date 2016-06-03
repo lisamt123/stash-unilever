@@ -58,8 +58,6 @@ src/email/CEC_Emails_Brazil
 src/email/CEC_Emails_Brazil/Brazil_E_Voucher_Details.email
 src/email/CEC_Emails_Brazil/Brazil_E_Voucher_Details.email-meta.xml
 src/email/CEC_Emails_South_Africa-meta.xml
-src/labels
-src/labels/CEC.labels
 src/objects
 src/objects/Case.object
 src/objects/cec_Alert_Action__c.object
@@ -72,7 +70,6 @@ src/objects/CEC_Product_Locator__c.object
 src/objects/CEC_Retrieval_Request__c.object
 src/objects/mdm_Case_Product__c.object
 src/objects/User.object
-src/package.xml
 src/pages
 src/pages/CEC_CaseInline.page
 src/pages/CEC_CaseInline.page-meta.xml

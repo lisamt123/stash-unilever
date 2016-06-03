@@ -70,6 +70,7 @@
     </fields>
     <fields>
         <fullName>CaseStoreId__c</fullName>
+		<caseSensitive>false</caseSensitive>
         <externalId>true</externalId>
         <label>CaseStoreId</label>
         <length>50</length>
