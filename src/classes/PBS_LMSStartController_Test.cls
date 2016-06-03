@@ -87,17 +87,18 @@ public class PBS_LMSStartController_Test {
             PBS_LMSStartController_CC cont = new PBS_LMSStartController_CC();
             cont.jsonData = null;
             PageReference resultRef = cont.initFromJSONString();
-            System.assert(ApexPages.hasMessages(ApexPages.Severity.ERROR) == true);
+            /*System.assert(ApexPages.hasMessages(ApexPages.Severity.ERROR) == true);*/
+            System.assertEquals(true, ApexPages.hasMessages(ApexPages.Severity.ERROR));
 
         Test.stopTest();
     }
 
     static Integer getTrainingPlanCount(){
-        return [select count() from PBS_Training_Plan__c];
+        return [select count() from PBS_Training_Plan__c limit:integer.valueof(System.Label.PBS_soqllimit)];
     }
 
     static Integer getTrainingTrackCount(){
-        return [select count() from PBS_Training_Track__c];
+        return [select count() from PBS_Training_Track__c limit:integer.valueof(System.Label.PBS_soqllimit)];
     }
 
 }
