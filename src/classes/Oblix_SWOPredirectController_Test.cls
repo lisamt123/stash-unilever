@@ -86,4 +86,47 @@ private class Oblix_SWOPredirectController_Test {
             System.assertEquals(pageRef.getUrl(), redirectToSwop.getUrl());
 		}
     }
+
+    @isTest static void testRedirectEdit() {
+        initTestUsersAndSOW();
+
+        System.runAs(ul3) {
+            //MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
+            //Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
+
+            //Init controller with existing assets
+            PageReference pageRef = Page.Oblix_SWOPRedirect;
+            Test.setCurrentPage(pageRef);
+            ApexPages.currentPage().getParameters().put('Id', mSow.Id);
+            ApexPages.StandardController sc = new ApexPages.StandardController(mSow);
+            Oblix_SWOPredirectController controller = new Oblix_SWOPredirectController(sc);
+
+            PageReference redirectToSwop = controller.redirectToSOWEdit();
+            pageRef = Page.Oblix_SOWCreate; 
+            //pageRef.getParameters().put('sowId', sc.getId());
+            System.assertEquals(pageRef.getUrl(), redirectToSwop.getUrl());
+        }
+    }
+
+    @isTest static void testRedirectEditSupseruser() {
+        initTestUsersAndSOW();
+
+        System.runAs(superuser) {
+            //MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
+            //Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
+
+            //Init controller with existing assets
+            PageReference pageRef = Page.Oblix_SWOPRedirect;
+            Test.setCurrentPage(pageRef);
+            ApexPages.currentPage().getParameters().put('Id', mSow.Id);
+            ApexPages.StandardController sc = new ApexPages.StandardController(mSow);
+            Oblix_SWOPredirectController controller = new Oblix_SWOPredirectController(sc);
+
+            PageReference redirectToSwop = controller.redirectToSOWEdit();
+            pageRef = new ApexPages.StandardController(new Marketing_SOW__c(Id = mSow.Id)).edit(); 
+            pageRef.getParameters().put('retURL', String.valueOf(mSow.Id).subString(0,15));
+            //pageRef.getParameters().put('sowId', sc.getId());
+            System.assertEquals(pageRef.getUrl(), redirectToSwop.getUrl());
+        }
+    }
 }

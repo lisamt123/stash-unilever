@@ -244,7 +244,7 @@
                             <p>{!$ObjectType.Oblix_SOW_Projects__c.fields.Project_Priority__c.label}&nbsp;<span class="form_bracket_text">(Optional)</span>
                             </p>
                             <apex:inputField value="{!campaignHelper.selectedProject.Project_Priority__c}" />
-                            <p style="text-indent: 3em;">BET Required?&nbsp;<span class="form_bracket_text">(Optional)</span>
+                            <p style="text-indent: 13.5em;">BET Required?&nbsp;<span class="form_bracket_text">(Optional)</span>
                             </p>
                             <apex:inputField value="{!campaignHelper.selectedProject.BET_Required__c}" />
                             <hr class="divider" />

@@ -40,16 +40,16 @@
             <apex:outputPanel rendered="{!IF(can_edit_campaign && NOT(selected_project.Record_Locked_Sync__c),true,false)}">
                 <apex:outputLink value="/apex/Oblix_CampaignCreate?projectId={!selected_project.Id}">Edit Campaign</apex:outputLink>&nbsp;|&nbsp;
             </apex:outputPanel>
-            <apex:outputPanel rendered="{!IF(can_edit_campaign && NOT(selected_project.Record_Locked_Sync__c),true,false)}">
-                <!-- <button class="btn btn-danger btn-xs create_SOW_button btn_check btn_submit_approval" data-toggle="modal" data-target="#cancelCampaign">Clone Campaign</button>&nbsp;&nbsp;|&nbsp;&nbsp; -->
-                <apex:outputLink value="/apex/Oblix_CampaignCreate?projectId={!selected_project.Id}&clone=true">Clone Campaign</apex:outputLink>&nbsp;|&nbsp;
-            </apex:outputPanel>
             <apex:outputPanel rendered="{!IF(can_edit_campaign && NOT(selected_project.Record_Locked_Sync__c) && can_see_advanced_links_during_rollover,true,false)}">
                 <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#cancelCampaign">Cancel Campaign</button> -->
                 <a href="#" data-toggle="modal" data-target="#cancelCampaignModal" >Cancel Campaign</a>&nbsp;|&nbsp;
             </apex:outputPanel>
             <apex:outputPanel rendered="{!IF(can_delete_campaign && NOT(selected_project.Record_Locked_Sync__c) && can_see_advanced_links_during_rollover,true,false)}">
                 <a href="#" onclick="if (confirm('are you sure you want to delete this campaign?')){deleteCampaign();blockme();}">Delete Campaign</a>&nbsp;|&nbsp;
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!IF(can_edit_campaign && NOT(selected_project.Record_Locked_Sync__c),true,false)}">
+                <!-- <button class="btn btn-danger btn-xs create_SOW_button btn_check btn_submit_approval" data-toggle="modal" data-target="#cancelCampaign">Clone Campaign</button>&nbsp;&nbsp;|&nbsp;&nbsp; -->
+                <apex:outputLink value="/apex/Oblix_CampaignCreate?projectId={!selected_project.Id}&clone=true">Clone Campaign</apex:outputLink>&nbsp;|&nbsp;
             </apex:outputPanel>
             <apex:outputPanel rendered="{!IF(can_edit_campaign,true,false)}">
                 <!-- <button class="btn btn-danger btn-xs create_SOW_button btn_check btn_submit_approval" data-toggle="modal" data-target="#cancelCampaign">Clone Campaign</button>&nbsp;&nbsp;|&nbsp;&nbsp; -->
@@ -312,13 +312,13 @@
             <hr class="divider" />
             <div class="row">
                 <div class="confirm_assets_accordion">
+                    <a id="stagesPopover" class="text-info campaignSummaryChevronTooltip" href="#" rel="popover" data-placement="right" data-title="Select Stage Percentage Values" data-html="true" data-content="<b>Briefing</b> - 10%<br/><b>Strategy & Planning</b> - 20%<br/><b>Creative Ideation</b> - 30%<br/><b>Creative Execution</b> - 25%<br/><b>Production</b> - 15%<br/>" data-trigger="hover focus" data-toggle="popover">See recommended %</a>
                     <div class="chevron_width_control {!if(selected_project.Campaign_Status__c == 'Cancelled', 'project_cancelled','')}">
                         <apex:outputText rendered="{!selected_project.Campaign_Status__c == 'Cancelled'}">
                             <p class="red_text {!if(selected_project.Campaign_Status__c == 'Cancelled', 'project_cancelled_text', '')}">
                                 Campaign Cancelled.
                             </p>
                         </apex:outputText>
-
                         <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier}" AutoSave="true" Id="campaign_stage_component" displayMode="2" />
 
                     </div>
