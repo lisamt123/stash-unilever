@@ -3,6 +3,6 @@
     <apiVersion>36.0</apiVersion>
     <availableInTouch>true</availableInTouch>
     <confirmationTokenRequired>false</confirmationTokenRequired>
-    <description>Embedded Wave Dashboards to display on Community</description>
+    <description>Embedded Wave Dashboards to display on Community via SF1</description>
     <label>DMS_Dashboards_Mobile</label>
 </ApexPage>

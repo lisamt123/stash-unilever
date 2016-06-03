@@ -61,9 +61,13 @@ src/classes/DMS_RecordTypeMemory.cls
 src/classes/DMS_RecordTypeMemory-meta.xml
 src/classes/DMS_WebServiceMockGenerator.cls
 src/classes/DMS_WebServiceMockGenerator-meta.xml
+src/classes/DMS_ActiveStore_Test.cls
+src/classes/DMS_ActiveStore_Test.cls-meta.xml
 src/triggers
 src/triggers/DMS_Account.trigger
 src/triggers/DMS_Account.trigger-meta.xml
+src/triggers/DMS_ActiveStore.trigger
+src/triggers/DMS_ActiveStore.trigger-meta.xml
 src/pages
 src/pages/DMS_Dashboards.page
 src/pages/DMS_Dashboards.page-meta.xml
@@ -71,9 +75,9 @@ src/pages/DMS_Dashboards_Mobile.page
 src/pages/DMS_Dashboards_Mobile.page-meta.xml
 src/pages/DMS_Hexagono.page
 src/pages/DMS_Hexagono.page-meta.xml
-src/pages/components
-src/pages/components/DMS_RadarDataComponent.component
-src/pages/components/DMS_RadarDataComponent.component-meta.xml
+src/components
+src/components/DMS_RadarDataComponent.component
+src/components/DMS_RadarDataComponent.component-meta.xml
 src/applications
 src/applications/DMS_Frontier.app
 src/objects

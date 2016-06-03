@@ -49,10 +49,10 @@ public class DMS_WaveHexagonRestCall {
     }         
     
     /*******************************************************************
-* Purpose: Gets the idVersion, by id DataSet
-* Parameters: idVersion
-* Returns: String 
-********************************************************************/
+    * Purpose: Gets the idVersion, by id DataSet
+    * Parameters: idVersion
+    * Returns: String 
+    ********************************************************************/
     private String getIdDataSet(String idVersion)
     {
         String idDataSet;

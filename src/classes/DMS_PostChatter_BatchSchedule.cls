@@ -16,10 +16,20 @@ VERSION AUTHOR DATE DETAIL Description
 global class DMS_PostChatter_BatchSchedule implements Schedulable, Database.AllowsCallouts
 {
     
-    private DMS_WaveRestCall_CC waveCall = null;
-    private Map<String, String> mapUsers = null;
-    private List<DMS_WaveRestCall_CC.Records> listRecords = null;
+    private static Map<String, String> mapUsers = new Map<String, String>();
+    private String sessionId;
     
+    public DMS_PostChatter_BatchSchedule() 
+     {
+        this(UserInfo.getSessionId());
+     }
+    
+    
+     public DMS_PostChatter_BatchSchedule(String vSessionId) 
+     {
+        this.sessionId = vSessionId;
+     }
+   
     /*******************************************************************
     * Purpose: Execute the batch calling the RestAPI to retrieve the data 
     * from the Sellers without invoices.
@@ -28,16 +38,20 @@ global class DMS_PostChatter_BatchSchedule implements Schedulable, Database.Allo
     ********************************************************************/
     global void execute(SchedulableContext sc) 
     {
+         postChatter(sessionId);
+        
+    }
+    
+    @future(callout=true)
+    public static void postChatter(String mySession) {
+        
         try {
-            waveCall = new DMS_WaveRestCall_CC();
-            listRecords = new List<DMS_WaveRestCall_CC.Records>();
-            this.mapUsers = new Map<String, String>();
             
-            listRecords = waveCall.getRecords('0Fb19000000A42BCAS','0Fb19000000A3xaCAC'); //call the method 
-            
-            for(DMS_WaveRestCall_CC.Records waveRecord : listRecords) 
+            DMS_WaveRestCall_CC.getRecords(DMS_GlobalConstants.ID_Dataset1,DMS_GlobalConstants.ID_Dataset2, mySession); //call the method 
+        
+            for(DMS_WaveRestCall_CC.Records waveRecord :  DMS_WaveRestCall_CC.listRecords) 
             {
-                this.mapUsers.put(waveRecord.Account_Owner, waveRecord.DistributorCode);    
+                mapUsers.put(waveRecord.Account_Owner, waveRecord.DistributorCode);    
             }
             
             Map<Id, Set<String>> mapUserGroupId = new Map<Id, Set<String>>(getMapUserGroupId(mapUsers)); //Separete the UserId by GroupMember that he's part
@@ -50,14 +64,14 @@ global class DMS_PostChatter_BatchSchedule implements Schedulable, Database.Allo
                     mentionIds += vStrings;           
                 }          
                 //Post on chatter for the specific group/user the message with @mention, and the link of the report.
-                DMS_ConnectApiHelper_CC.postFeedItemWithMentions(DMS_GlobalConstants.ID_COMMUNITY, groupId, Label.DMS_Hello + this.formatString(mentionIds) + Label.DMS_CommunityMSG + Label.DMS_WaveDashboard); 
+                DMS_ConnectApiHelper_CC.postFeedItemWithMentions(DMS_GlobalConstants.ID_COMMUNITY, groupId, Label.DMS_Hello + formatString(mentionIds) + Label.DMS_CommunityMSG + Label.DMS_WaveDashboard); 
             }
-            // Por favor, accede a su  Informe de Clientes no Compradores en el siguiente enlace: <link para a aba de Wave Dashboards com o relatório de Clientes no compradores >
         } 
         catch (Exception e) 
         {
-            System.debug(DMS_GlobalConstants.exceptionMsg + e.getMessage());
+            System.debug(DMS_GlobalConstants.exceptionPostChatter + e.getMessage());
         }
+        
     }
     
     /*******************************************************************
@@ -65,7 +79,7 @@ global class DMS_PostChatter_BatchSchedule implements Schedulable, Database.Allo
     * Parameters: List with Users from the Wave DataSet
     * Returns: The list with the MemberId and the Group that he is part to be mentioned on his group.
     ********************************************************************/
-    public Map<Id, Set<String>> getMapUserGroupId(Map<String, String> mapIdUsers) 
+    private static Map<Id, Set<String>> getMapUserGroupId(Map<String, String> mapIdUsers) 
     {
         Set<String> listMembers = new Set<String>(); 
         Map<Id, Set<String>> vMap = new Map<Id, Set<String>>();
@@ -78,12 +92,12 @@ global class DMS_PostChatter_BatchSchedule implements Schedulable, Database.Allo
             { 
                 if(vMap.containsKey(collabMember.CollaborationGroupId)) 
                 {
-                    vMap.get(collabMember.CollaborationGroupId).add(this.insertMentionedUser(String.valueOf(collabMember.MemberId)));
+                    vMap.get(collabMember.CollaborationGroupId).add(insertMentionedUser(String.valueOf(collabMember.MemberId)));
                 } 
                 else 
                 {
                     listMembers = new Set<String>();        
-                    listMembers.add(this.insertMentionedUser(String.valueOf(collabMember.MemberId)));
+                    listMembers.add(insertMentionedUser(String.valueOf(collabMember.MemberId)));
                     vMap.put(collabMember.CollaborationGroupId, listMembers);
                 }            
             }
@@ -100,7 +114,7 @@ global class DMS_PostChatter_BatchSchedule implements Schedulable, Database.Allo
     * Parameters: Id of the User.
     * Returns: The Id of the User mentioned e.g: {0U9130000000LVq}
     ********************************************************************/
-    public String insertMentionedUser(String Id) 
+    private static String insertMentionedUser(String Id) 
     {
         String userMentioned = null;
         try {
@@ -122,7 +136,7 @@ global class DMS_PostChatter_BatchSchedule implements Schedulable, Database.Allo
     * Parameters: The String (Id) from the User
     * Returns: The String formated.
     ********************************************************************/
-    public String formatString(String vString) 
+    private static String formatString(String vString) 
     {
         try {
             
