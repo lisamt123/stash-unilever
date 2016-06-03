@@ -322,7 +322,7 @@ public without sharing class IPM_BETHelper {
 		IPM_Project__c proj = new IPM_Project__c();
 		try{
 			proj = [select bet__c,id from IPM_Project__c where id = :projectId  LIMIT 1  FOR UPDATE];
-			if(proj.bet__c!=null){
+			if(betId!=null){
 				proj.BET__c = betId;
 				update proj;
 			}
