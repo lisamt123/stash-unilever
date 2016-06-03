@@ -312,7 +312,7 @@
             <hr class="divider" />
             <div class="row">
                 <div class="confirm_assets_accordion">
-                    <a id="stagesPopover" class="text-info campaignSummaryChevronTooltip" href="#" rel="popover" data-placement="right" data-title="Select Stage Percentage Values" data-html="true" data-content="<b>Briefing</b> - 10%<br/><b>Strategy & Planning</b> - 20%<br/><b>Creative Ideation</b> - 30%<br/><b>Creative Execution</b> - 25%<br/><b>Production</b> - 15%<br/>" data-trigger="hover focus" data-toggle="popover">See recommended %</a>
+                    <!-- <a id="stagesPopover" class="text-info campaignSummaryChevronTooltip" href="#" rel="popover" data-placement="right" data-title="Select Stage Percentage Values" data-html="true" data-content="<b>Briefing</b> - 10%<br/><b>Strategy & Planning</b> - 20%<br/><b>Creative Ideation</b> - 30%<br/><b>Creative Execution</b> - 25%<br/><b>Production</b> - 15%<br/>" data-trigger="hover focus" data-toggle="popover">See recommended %</a> -->
                     <div class="chevron_width_control {!if(selected_project.Campaign_Status__c == 'Cancelled', 'project_cancelled','')}">
                         <apex:outputText rendered="{!selected_project.Campaign_Status__c == 'Cancelled'}">
                             <p class="red_text {!if(selected_project.Campaign_Status__c == 'Cancelled', 'project_cancelled_text', '')}">
