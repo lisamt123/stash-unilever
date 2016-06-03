@@ -457,7 +457,7 @@ Case__r.Account.PersonContact.MailingCountry</formula>
         <relationshipLabel>Retrieval Requests (Product Factory)</relationshipLabel>
         <relationshipName>Retrieval_Requests1</relationshipName>
         <required>false</required>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -695,7 +695,7 @@ Case__r.Account.PersonContact.MailingCountry</formula>
         <relationshipLabel>Retrieval Requests</relationshipLabel>
         <relationshipName>Retrieval_Requests</relationshipName>
         <required>false</required>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -1081,7 +1081,7 @@ if ({!$Permission.CEC_Retrieval_Process}) {
 	var caseRecord = records[0];
 
 	if (caseRecord != null &amp;&amp; caseRecord.AccountId == null) {
-		alert(&apos;{!$Label.CEC_CaseAccountMissing_retrieval}&apos;);
+		alert(&apos;{!$Label.CEC_CaseAccountMissing}&apos;);
 	} else if (caseRecord != null &amp;&amp;
 		caseRecord.Account.PersonMailingCity == null &amp;&amp; caseRecord.Account.PersonMailingCountry == null &amp;&amp; caseRecord.Account.PersonMailingPostalCode == null &amp;&amp; caseRecord.Account.PersonMailingState == null &amp;&amp; caseRecord.Account.PersonMailingStreet == null) {
 		alert(&apos;{!$Label.CEC_CaseAccountPersonAddressMissing}&apos;);
