@@ -1,0 +1,166 @@
+<apex:component >
+    <apex:attribute name="idChart" description="This is the id for this component." type="String" required="true"/>
+    <apex:attribute name="atualValues" description="This is the array with atual values for this component." type="Integer[]" required="true"/>
+    <apex:attribute name="previousValues" description="This is the array with previous values for this component." type="Integer[]" required="true"/>
+    <apex:attribute name="labels" description="This is the array with labels for this component." type="String[]" required="true"/>
+    
+    <apex:stylesheet value="{!URLFOR($Resource.TestChart, 'TestChart/css/Skin.css')}"/>
+    <!-- Ionicons -->
+    <apex:stylesheet value="{!URLFOR($Resource.TestChart, 'TestChart/css/ionicons.css')}"/>
+    <!-- Theme style -->
+    <apex:stylesheet value="{!URLFOR($Resource.TestChart, 'TestChart/css/AdminCSS.css')}"/>
+    <!-- Bootstrap 3.3.5 -->
+    <apex:stylesheet value="{!URLFOR($Resource.TestChart, 'TestChart/css/Bootstrap.css')}"/>
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+    folder instead of downloading all of them to reduce the load. -->
+    
+    
+    <html>
+        <head>
+            <apex:variable value="{!0}" var="i"/>
+            <style type="text/css">
+                .legend {
+                    width: auto;
+                    height:auto;
+                    padding:15px;
+                    border: 1px solid rgb(200, 200, 200);
+                }
+                
+                .legend .title {
+                    display: block;
+                    margin-bottom: 0.5em;
+                    line-height: 1.2em;
+                    padding: 0 0.3em;
+                }
+                
+                .legend .color-sample {
+                    display: block;
+                    float: left;
+                    width: 1em;
+                    height: 1em;
+                    border: 2px solid; 
+                    border-radius: 0.5em; 
+                    margin-right: 0.5em;
+                }
+            </style>
+            <script>
+            $(function () {
+                /* ChartJS
+             * -------
+             * Here we will create a few charts using ChartJS
+             */
+              //-------------
+              //- RADAR CHART -
+              //-------------0
+              // Get context with jQuery - using jQuerys .get() method.
+                
+              var radarChartCanvas = $("#{!idChart}").get(0).getContext("2d");
+              var radarChart = new Chart(radarChartCanvas);
+              var data = {
+                  labels: {!labels},
+                  datasets: [{
+                      label: "My First dataset",                    
+                      fillColor: "rgba(255,165,0,0.5)",
+                      strokeColor: "rgba(255,165,0,1)",
+                      pointColor: "rgba(255,165,0,1)",
+                      pointStrokeColor: "#fff",
+                      pointHighlightFill: "#fff",
+                      pointHighlightStroke: "rgba(255,165,0,1)",                    
+                      data: {!atualValues}
+                  }, {      
+                      label: "My Second dataset",                                                      
+                      fillColor: "rgba(151,187,205,0.5)",
+                      strokeColor: "rgba(151,187,205,1)",
+                      pointColor: "rgba(151,187,205,1)",
+                      pointStrokeColor: "#fff",
+                      pointHighlightFill: "#fff",
+                      pointHighlightStroke: "rgba(151,187,205,1)",                    
+                      data: {!previousValues}
+                  }]
+              };
+              
+              var options = {
+                  //Boolean - Whether to show lines for each scale point
+                  scaleShowLine : true,
+                  
+                  //Boolean - Whether we show the angle lines out of the radar
+                  angleShowLineOut : true,
+                  
+                  //Boolean - Whether to show labels on the scale
+                  scaleShowLabels : true,
+                  
+                  // Boolean - Whether the scale should begin at zero
+                  scaleBeginAtZero : true,
+                  
+                  scaleStartValue: 0,
+                  
+                  //String - Colour of the angle line
+                  angleLineColor : "rgba(0,0,0,.1)",
+                  
+                  //Number - Pixel width of the angle line
+                  angleLineWidth : 1,
+                  
+                  //String - Point label font declaration
+                  pointLabelFontFamily : "'Arial'",
+                  
+                  //String - Point label font weight
+                  pointLabelFontStyle : "normal",
+                  
+                  //Number - Point label font size in pixels
+                  pointLabelFontSize : 10,
+                  
+                  //String - Point label font colour
+                  pointLabelFontColor : "#666",
+                  
+                  //Boolean - Whether to show a dot for each point
+                  pointDot : true,
+                  
+                  //Number - Radius of each point dot in pixels
+                  pointDotRadius : 3,
+                  
+                  //Number - Pixel width of point dot stroke
+                  pointDotStrokeWidth : 1,
+                  
+                  //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
+                  pointHitDetectionRadius : 20,
+                  
+                  //Boolean - Whether to show a stroke for datasets
+                  datasetStroke : true,
+                  
+                  //Number - Pixel width of dataset stroke
+                  datasetStrokeWidth : 2,
+                  
+                  //Boolean - Whether to fill the dataset with a colour
+                  datasetFill : true,
+                  
+                  animation : false,
+                  
+                  responsive: true
+              };
+              radarChart.Radar(data, options);
+          });
+       </script>
+       
+       <!-- jQuery 2.1.4 -->
+       <apex:includeScript value="{!URLFOR($Resource.TestChart, 'TestChart/scripts/BootstrapJS.js')}"/>
+       
+       <!-- Bootstrap 3.3.5 -->
+       <apex:includeScript value="{!URLFOR($Resource.TestChart, 'TestChart/scripts/JQuery.js')}"/>
+       <!-- ChartJS 1.0.1 -->
+       <apex:includeScript value="{!URLFOR($Resource.TestChart, 'TestChart/scripts/ChartJS.js')}"/>
+       <!-- FastClick -->
+       <!-- page script -->
+       
+    </head>
+    
+    <div>
+        <canvas id="{!idChart}" style="width: 100%; height:100%"></canvas>
+        <div id="legend">
+            <ul id="colunas" style="margin: 0 auto; width: 50%;" >
+                <li style="margin-top: 6px;"><div style="margin-top: 5px; width:7px important!; height:7px important!; border: 5px solid;  float: left;  border-color: rgba(255,165,0,2);"></div><font size="2">Actual</font></li>
+                <li style="margin-top: 6px;"><div style="margin-top: 5px; width:7px important!; height:7px important!; border: 5px solid;  float: left;  border-color: rgba(151,187,205,2);"></div><font size="2">Promedio</font></li>
+            </ul>
+        </div>
+    </div>
+    </html>
+</apex:component>
