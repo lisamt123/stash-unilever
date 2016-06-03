@@ -1824,6 +1824,162 @@
         </sections>
     </reportTypes>
     <reportTypes>
+        <description><!-- PBS_LMS Achievement Assignments --></description>
+        <label><!-- PBS_LMS Achievement Assignments --></label>
+        <name>PBS_LMS_Achievement_Assignments</name>
+        <sections>
+            <label><!-- Achievement Assignments --></label>
+            <name>Achievement Assignments</name>
+        </sections>
+        <sections>
+            <label><!-- Achievement Information --></label>
+            <name>Achievement Information</name>
+        </sections>
+        <sections>
+            <label><!-- User Information --></label>
+            <name>User Information</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- PBS_LMS Learning Assignments with Responses --></description>
+        <label><!-- PBS_LMS Learning Assignments with Responses --></label>
+        <name>PBS_LMS_Learning_Assignments_with_Responses</name>
+        <sections>
+            <label><!-- Learning --></label>
+            <name>Learning</name>
+        </sections>
+        <sections>
+            <label><!-- Learning Assignments --></label>
+            <name>Learning Assignments</name>
+        </sections>
+        <sections>
+            <label><!-- Questions --></label>
+            <name>Questions</name>
+        </sections>
+        <sections>
+            <label><!-- Responses (Quiz Assignments) --></label>
+            <name>Responses (Quiz Assignments)</name>
+        </sections>
+        <sections>
+            <label><!-- Training Plan --></label>
+            <name>Training Plan</name>
+        </sections>
+        <sections>
+            <label><!-- Training Plan Assignment --></label>
+            <name>Training Plan Assignment</name>
+        </sections>
+        <sections>
+            <label><!-- Training Plan Section --></label>
+            <name>Training Plan Section</name>
+        </sections>
+        <sections>
+            <label><!-- Training Plan Section Assignment --></label>
+            <name>Training Plan Section Assignment</name>
+        </sections>
+        <sections>
+            <label><!-- Training Plan Section Item --></label>
+            <name>Training Plan Section Item</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- PBS_LMS Plan Assignments --></description>
+        <label><!-- PBS_LMS Plan Assignments --></label>
+        <name>PBS_LMS_Plan_Assignments</name>
+        <sections>
+            <label><!-- Training Plan Assignments --></label>
+            <name>Training Plan Assignments</name>
+        </sections>
+        <sections>
+            <label><!-- User Information --></label>
+            <name>User Information</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- PBS_LMS Plan Assignments with Section Assignments --></description>
+        <label><!-- PBS_LMS Plan Assignments with Section Assignments --></label>
+        <name>PBS_LMS_Plan_Assignments_with_Section_Assignments</name>
+        <sections>
+            <label><!-- Training Plan Assignments --></label>
+            <name>Training Plan Assignments</name>
+        </sections>
+        <sections>
+            <label><!-- Training Plan Section Assignments --></label>
+            <name>Training Plan Section Assignments</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- PBS_Learnings with Quiz with Question Line with Qu --></description>
+        <label><!-- PBS_Learnings with Quiz with Question Line with Qu --></label>
+        <name>PBS_Learnings_with_Quiz_with_Question_Line_with_Qu</name>
+        <sections>
+            <label><!-- Learnings --></label>
+            <name>Learnings</name>
+        </sections>
+        <sections>
+            <label><!-- Question Lines --></label>
+            <name>Question Lines</name>
+        </sections>
+        <sections>
+            <label><!-- Questions --></label>
+            <name>Questions</name>
+        </sections>
+        <sections>
+            <label><!-- Quizzes --></label>
+            <name>Quizzes</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- PBS_Learnings with Quizzes with Question Lines --></description>
+        <label><!-- PBS_Learnings with Quizzes with Question Lines --></label>
+        <name>PBS_Learnings_with_Quizzes_with_Question_Lines</name>
+        <sections>
+            <label><!-- Learnings --></label>
+            <name>Learnings</name>
+        </sections>
+        <sections>
+            <label><!-- Question Lines --></label>
+            <name>Question Lines</name>
+        </sections>
+        <sections>
+            <label><!-- Quizzes --></label>
+            <name>Quizzes</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- PBS_Quizzes with Question Lines with Questions --></description>
+        <label><!-- PBS_Quizzes with Question Lines with Questions --></label>
+        <name>PBS_Quizzes_with_Question_Lines_with_Questions</name>
+        <sections>
+            <label><!-- Question Lines --></label>
+            <name>Question Lines</name>
+        </sections>
+        <sections>
+            <label><!-- Questions --></label>
+            <name>Questions</name>
+        </sections>
+        <sections>
+            <label><!-- Quizzes --></label>
+            <name>Quizzes</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- PBS_Training Plans with Training Plan Sect with Tr --></description>
+        <label><!-- PBS_Training Plans with Training Plan Sect with Tr --></label>
+        <name>PBS_Training_Plans_with_Training_Plan_Sect_with_Tr</name>
+        <sections>
+            <label><!-- Training Plan Section Items --></label>
+            <name>Training Plan Section Items</name>
+        </sections>
+        <sections>
+            <label><!-- Training Plan Sections --></label>
+            <name>Training Plan Sections</name>
+        </sections>
+        <sections>
+            <label><!-- Training Plans --></label>
+            <name>Training Plans</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
         <description><!-- PO Report --></description>
         <label><!-- PO Report --></label>
         <name>PO_Report</name>

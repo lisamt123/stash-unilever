@@ -1446,16 +1446,136 @@
         <layout>OrderItem-Order Product Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>PBS_Achievement_Assignment__c-PBS_Achievement Assignment Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PBS_Achievement_Category__c-PBS_Achievement Category Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PBS_Achievement__c-PBS_Achievement Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PBS_Answer_Sequence_Item__c-PBS_Answer Sequence Item Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PBS_Answer_Sequence__c-PBS_Answer Sequence Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PBS_Batch_Operation_Record__c-PBS_Batch Operation Record Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>PBS_Course__kav-PBS Course Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>PBS_FAQ_s__kav-PBS FAQ Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>PBS_Learning_Assignment__c-PBS_Learning Assignment Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PBS_Learning_Category__c-PBS_Learning Category Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PBS_Learning_Version__c-PBS_Learning Version Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PBS_Learning__c-PBS_Learning Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PBS_Learning__c-PBS_Learning Layout</layout>
+        <recordType>PBS_Learning__c.Quiz</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PBS_Learning__c-PBS_Learning Layout</layout>
+        <recordType>PBS_Learning__c.Resource</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PBS_Learning__c-PBS_Learning Layout</layout>
+        <recordType>PBS_Learning__c.Task</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>PBS_Profile__c-Plancraft Profile Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>PBS_Question_Line__c-PBS_Question Line Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PBS_Question__c-PBS_Question Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PBS_Quiz__c-PBS_Quiz Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PBS_Response__c-PBS_Response Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PBS_Shared_Learning_Assignment__c-PBS_Shared Learning Assignment Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>PBS_Standard_Job_Profile__c-PBS Standard Job Profile Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PBS_TML_Answer_Sequence_Item__c-PBS_TML Answer Sequence Item Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PBS_TML_Answer_Sequence__c-PBS_TML Answer Sequence Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PBS_TML_Question__c-PBS_TML Question Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PBS_Task_Approver__c-PBS_Task Approver Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PBS_Task__c-PBS_Task Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PBS_Training_Plan_Access_Request__c-PBS_Training Plan Access Request Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PBS_Training_Plan_Account__c-PBS_Training Plan Account Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PBS_Training_Plan_Achievement__c-PBS_Training Plan Achievement Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PBS_Training_Plan_Assignment__c-PBS_Training Plan Assignment Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PBS_Training_Plan_Batch_Operation__c-PBS_Training Plan Batch Operation Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PBS_Training_Plan_Category__c-PBS_Training Plan Category Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PBS_Training_Plan_Feedback__c-PBS_Training Plan Feedback Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PBS_Training_Plan_Section_Assignment__c-PBS_Training Plan Section Assignment Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PBS_Training_Plan_Section_Item__c-PBS_Training Plan Section Item Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PBS_Training_Plan_Section__c-PBS_Training Plan Section Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PBS_Training_Plan__c-PBS_Training Plan Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PBS_Training_Resource__c-PBS_Training Resource Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PBS_Training_Track_Account__c-PBS_Training Track Account Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PBS_Training_Track_Level_Item__c-PBS_Training Track Level Item Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PBS_Training_Track_Level__c-PBS_Training Track Level Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PBS_Training_Track__c-PBS_Training Track Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>PBS_Wiki__kav-PBS Wiki Layout</layout>
@@ -3808,6 +3928,21 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Order.UID_Secondary_Sales</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>PBS_Learning__c.Quiz</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>PBS_Learning__c.Resource</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>PBS_Learning__c.Task</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
