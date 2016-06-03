@@ -1079,13 +1079,13 @@ if ({!$Permission.CEC_Retrieval_Process}) {
   var records = caseQuery.getArray("records");
   var caseRecord = records[0];
 
-  if (caseRecord != null && caseRecord.AccountId == null) {
+  if (caseRecord != null &amp;&amp; caseRecord.AccountId == null) {
     alert('{!$Label.CEC_CaseAccountMissing_retrieval}');
-  } else if (caseRecord != null &&
-    caseRecord.Account.PersonMailingCity == null && caseRecord.Account.PersonMailingCountry == null && caseRecord.Account.PersonMailingPostalCode == null && caseRecord.Account.PersonMailingState == null && caseRecord.Account.PersonMailingStreet == null) {
+  } else if (caseRecord != null &amp;&amp;
+    caseRecord.Account.PersonMailingCity == null &amp;&amp; caseRecord.Account.PersonMailingCountry == null &amp;&amp; caseRecord.Account.PersonMailingPostalCode == null &amp;&amp; caseRecord.Account.PersonMailingState == null &amp;&amp; caseRecord.Account.PersonMailingStreet == null) {
     alert('{!$Label.CEC_CaseAccountPersonAddressMissing}');
-  } else if (caseRecord != null &&
-    (caseRecord.Account.Phone == null && caseRecord.Account.PersonMobilePhone == null && caseRecord.Account.PersonOtherPhone == null && caseRecord.Account.PersonHomePhone == null) ) {
+  } else if (caseRecord != null &amp;&amp;
+    (caseRecord.Account.Phone == null &amp;&amp; caseRecord.Account.PersonMobilePhone == null &amp;&amp; caseRecord.Account.PersonOtherPhone == null &amp;&amp; caseRecord.Account.PersonHomePhone == null) ) {
     alert('{!$Label.CEC_CaseAccountPersonPhoneMissing}');  
   } else {
 

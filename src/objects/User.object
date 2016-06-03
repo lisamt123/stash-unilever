@@ -1108,7 +1108,7 @@
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Coffee & Snacks</fullName>
+                <fullName>Coffee &amp; Snacks</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
@@ -1133,7 +1133,7 @@
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Deodorants & Fragrances</fullName>
+                <fullName>Deodorants &amp; Fragrances</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
@@ -1583,7 +1583,7 @@
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Tea and Soy & Fruit Beverages</fullName>
+                <fullName>Tea and Soy &amp; Fruit Beverages</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
@@ -1783,7 +1783,7 @@
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>R & B Foods</fullName>
+                <fullName>R &amp; B Foods</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
                 <controllingFieldValues>Baltics</controllingFieldValues>
