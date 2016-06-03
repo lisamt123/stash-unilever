@@ -936,11 +936,12 @@
     </fields>
     <fields>
         <fullName>Oblix_Current_FY_Total__c</fullName>
-        <description>INCLUDING RISK ADJUSTMENT</description>
+        <description>INCLUDING RISK ADJUSTMENT
+Relabelled from &apos;Current SOW Total&apos;, as per US433</description>
         <externalId>false</externalId>
         <formula>0.9 * (Total_Campaigns_This_FY__c +  OblixTotalOtherItemsFees__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Current SOW Total</label>
+        <label>SOW Total (Inc Risk Adjustment)</label>
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>

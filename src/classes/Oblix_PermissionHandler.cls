@@ -86,8 +86,9 @@ public with sharing class Oblix_PermissionHandler {
                     locked by approval process.
     ********************************************************************************/
     public static Boolean hasEditAccess(Marketing_SOW__c sow){
+        Id sowId = sow == null ? null : sow.Id;
         // SS 20160214 - added check if a record is locked. Only system administrator should be able to edit locked records
-        if ( sow != null && !isLocked(sow.id) && ( (hasUL1permissionSet() || hasUL2permissionSet() ) && hasEditSWOPPermissionLevel(sow) || hasSuperUserpermissionSet()) || isSystemAdmin() ){
+        if ( !isLocked(sowId) && ( (hasUL1permissionSet() || hasUL2permissionSet() ) && hasEditSWOPPermissionLevel(sow) || hasSuperUserpermissionSet()) || isSystemAdmin() ){
     		return true;
     	}
     	else{
@@ -99,7 +100,7 @@ public with sharing class Oblix_PermissionHandler {
         if(hasSuperUserpermissionSet()){
             return true;
         } else if(sow == null){
-            return false;
+            return true;
         } else {
             List<Oblix_User_Permission__c> allUserPermissions = [SELECT Id, Level_of_Access__c FROM Oblix_User_Permission__c 
                                                                     WHERE User_id__c = :UserInfo.getUserId() 

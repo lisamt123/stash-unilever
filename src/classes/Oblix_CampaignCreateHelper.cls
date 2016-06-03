@@ -386,6 +386,9 @@ public with sharing class Oblix_CampaignCreateHelper extends Oblix_SWOPparentCon
         } else {
             selectedBrandBrand = selectedProject.Brand_Led_Growth__c;
         }
+
+        // TODO: remove the selectedSow attribute and replace all references to selected_sow attribute from the parent controller
+        //selected_sow = selectedSow;
     }
 
     private List < Oblix_Marketing_SOW_Project_Splits__c > createFiveInstancesOFMarketingSplits() {
