@@ -2988,25 +2988,6 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
         <label>New USERS</label>
     </listViews>
     <listViews>
-        <fullName>No_Federation_ID</fullName>
-        <columns>FULL_NAME</columns>
-        <columns>CORE.USERS.EMAIL</columns>
-        <columns>CORE.USERS.LAST_LOGIN</columns>
-        <columns>CORE.USER_ROLE.NAME</columns>
-        <columns>CORE.USERS.ACTIVE</columns>
-        <columns>CORE.PROFILE.NAME</columns>
-        <columns>CORE.USERS.SAML_SUBJECT</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CORE.USERS.SAML_SUBJECT</field>
-            <operation>equals</operation>
-        </filters>
-        <label>No Federation ID</label>
-        <sharedTo>
-            <group>Admins</group>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>One_View_Users</fullName>
         <booleanFilter>1 AND (2 and 3) or (4)</booleanFilter>
         <columns>FULL_NAME</columns>
@@ -3040,29 +3021,6 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
             <value>OV_</value>
         </filters>
         <label>One View Users</label>
-        <language>en_US</language>
-    </listViews>
-    <listViews>
-        <fullName>PM_My_view</fullName>
-        <columns>FULL_NAME</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <columns>CORE.USERS.USERNAME</columns>
-        <columns>CORE.USERS.LAST_LOGIN</columns>
-        <columns>CORE.USER_ROLE.NAME</columns>
-        <columns>CORE.USERS.ACTIVE</columns>
-        <columns>CORE.PROFILE.NAME</columns>
-        <columns>Function__c</columns>
-        <columns>Sub_Function__c</columns>
-        <columns>CORE.USERS.SAML_SUBJECT</columns>
-        <columns>Person_Type__c</columns>
-        <columns>CORE.PROFILE.USERTYPE</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>FULL_NAME</field>
-            <operation>contains</operation>
-            <value>murray</value>
-        </filters>
-        <label>PM: My view</label>
         <language>en_US</language>
     </listViews>
     <listViews>
