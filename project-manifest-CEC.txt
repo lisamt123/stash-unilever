@@ -72,7 +72,6 @@ src/objects/CEC_Product_Locator__c.object
 src/objects/CEC_Retrieval_Request__c.object
 src/objects/mdm_Case_Product__c.object
 src/objects/User.object
-src/package.xml
 src/pages
 src/pages/CEC_CaseInline.page
 src/pages/CEC_CaseInline.page-meta.xml
