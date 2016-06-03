@@ -7,8 +7,7 @@ public class DMS_WaveRestCall_Test {
          
         DMS_WaveRestCall_CC vCall = new DMS_WaveRestCall_CC();
          
-        vCall.getRecords('','');
-         
+        DMS_WaveRestCall_CC.getRecords('','','');         
         Test.stopTest();
          
      }
