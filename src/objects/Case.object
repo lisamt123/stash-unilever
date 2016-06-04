@@ -6743,7 +6743,13 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     <listViews>
         <fullName>TO_France_Escalation_Queue_Case</fullName>
         <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed</value>
+        </filters>
         <label>TO France Escalation Queue</label>
+        <language>fr</language>
         <queue>TO_France_Escalation_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -6796,7 +6802,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>mavonba</value>
+            <value>LaReuman</value>
         </filters>
         <filters>
             <field>CORE.USERS.ALIAS</field>
@@ -6806,7 +6812,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>bfric</value>
+            <value>TaHyseni</value>
         </filters>
         <label>DACH Vacation Queue</label>
         <language>de</language>

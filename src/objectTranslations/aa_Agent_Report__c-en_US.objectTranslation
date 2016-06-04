@@ -105,6 +105,14 @@
             <translation><!-- Brand Building --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Counterfeit</masterLabel>
+            <translation><!-- Counterfeit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Food Solutions</masterLabel>
+            <translation><!-- Food Solutions --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Market Development</masterLabel>
             <translation><!-- Market Development --></translation>
         </picklistValues>
