@@ -843,7 +843,7 @@ public class IPM_TestFactory_Helper
         
         List<IPM_Project__c> testIPMProjList = new List<IPM_Project__c>();
         for(Integer i = 1; i <= listSize; i++){ 
-            Map<String,Object> projMap =  new Map<String,Object>{NAME => TEST_OP_COMMENTS + scope + i,IPM_PROJECT_NAME=>TEST_REG_COMMENTS + scope + i,
+            Map<String,Object> projMap =  new Map<String,Object>{NAME => TEST_OP_COMMENTS + scope + i,IPM_PROJECT_NAME=>TEST_OP_COMMENTS + scope + i,
                 IPM_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL, IPM_GATEKEEPING_MODEL => 'RCLT',
                 IPM_TARGET_LAUNCH_DATES => System.today().addMonths(6),IPM_PROJECT_SPAN=>scope , 
                 IPM_PROJECT_LEADER => UserInfo.getUserId(),IPM_COMPANYCARDTEXT => scope +' Company Card',
@@ -1969,6 +1969,12 @@ public class IPM_TestFactory_Helper
         documentTemplateList = (List<IPM_Document_Template__c>)IPM_TestFactory.createSObjectList(IPM_DOCUMENT_TEMPLATE,documentTemplateMap,false);
         
         insert documentTemplateList; 
+        
+        // Create milestone custom setting data for Market Ready .This is used to set milestone  due date to blank for specified number of days .         
+        IPM_Blank_MrktRdyDueDate__c mrktReadyAutoPop = new IPM_Blank_MrktRdyDueDate__c();
+        mrktReadyAutoPop.name='NumberOfDays';
+        mrktReadyAutoPop.No_Of_Days__c=0;
+        insert mrktReadyAutoPop; 
         
         
         // Create Master Project For sharing to work for master tasks and milestones.

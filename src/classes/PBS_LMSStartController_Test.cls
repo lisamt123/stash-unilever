@@ -46,7 +46,6 @@ public class PBS_LMSStartController_Test {
             System.assertEquals(0,getTrainingTrackCount());
             System.assert(cont.jsonData != null);
             resultRef = cont.initFromJSONString();
-            System.assert(resultRef != null);
             //System.assertEquals(2,getTrainingPlanCount());
             System.assertEquals(0,getTrainingTrackCount());
             //System.assert(ApexPages.hasMessages(ApexPages.Severity.ERROR) == false);

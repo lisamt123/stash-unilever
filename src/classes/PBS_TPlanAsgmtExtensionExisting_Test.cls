@@ -37,13 +37,13 @@ private class PBS_TPlanAsgmtExtensionExisting_Test{
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
-            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,'PBS_LMS_Admin');
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'PBS_LMS_User');
         }
 
         PBS_TrainingPlanData_Test.createSampleData();
 
-        List<PBS_Training_Plan__c> tplans = [select id from PBS_Training_Plan__c limit :integer.valueof(System.Label.PBS_soqllimit)];
+        List<PBS_Training_Plan__c> tplans = [select id from PBS_Training_Plan__c limit : integer.valueOf(label.pbs_soqlLimit)];
         System.assertEquals(1,tplans.size());
         PBS_Training_Plan__c tplan  = tplans.get(0);
         Set<Id> selectedUserIds = new Set<Id>();
@@ -91,13 +91,13 @@ private class PBS_TPlanAsgmtExtensionExisting_Test{
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
-            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,'PBS_LMS_Admin');
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'PBS_LMS_User');
         }
 
         PBS_TrainingPlanData_Test.createSampleData();
 
-        List<PBS_Training_Plan__c> tplans = [select id from PBS_Training_Plan__c limit :integer.valueof(System.Label.PBS_soqllimit)];
+        List<PBS_Training_Plan__c> tplans = [select id from PBS_Training_Plan__c limit : integer.valueOf(label.pbs_soqlLimit)];
         System.assertEquals(1,tplans.size());
         PBS_Training_Plan__c tplan  = tplans.get(0);
         Set<Id> selectedUserIds = new Set<Id>();
@@ -138,13 +138,13 @@ private class PBS_TPlanAsgmtExtensionExisting_Test{
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
-            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,'PBS_LMS_Admin');
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'PBS_LMS_User');
         }
 
         PBS_TrainingPlanData_Test.createSampleData();
 
-        List<PBS_Training_Plan__c> tplans = [select id from PBS_Training_Plan__c limit :integer.valueof(System.Label.PBS_soqllimit)];
+        List<PBS_Training_Plan__c> tplans = [select id from PBS_Training_Plan__c limit : integer.valueOf(label.pbs_soqlLimit)];
         System.assertEquals(1,tplans.size());
         PBS_Training_Plan__c tplan  = tplans.get(0);
         Set<Id> selectedUserIds = new Set<Id>();

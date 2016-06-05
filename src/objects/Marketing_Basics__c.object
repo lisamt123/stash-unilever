@@ -445,7 +445,7 @@ ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;))
     0,
     IF( RecordType.DeveloperName == &apos;Activity&apos;,
         OblixOtherItemFee__c /  No_of_Hours_Required__c,
-        OblixOtherItemFee__c /  No_of_Hours_Required__c * 100
+        Hourly_Rate_or_FTE__c
     )    
 )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>

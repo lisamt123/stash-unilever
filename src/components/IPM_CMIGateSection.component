@@ -1,4 +1,4 @@
-<!--  
+﻿<!--  
 *************************************************************************
 *@Description:This component is used to display Gate CMI responses in Gate Document Page
 *@Author: Cognizant
@@ -72,7 +72,7 @@
                                             		<!-- Checking countries available for cmi record -->
                                                     <apex:outputPanel layout="block" rendered="{!AND(displayCon[key]!=null,displayCon[key].IPM_Gate_CMI__c=cmi.Id)}">
                                                         <tr>
-                                                            <td rowspan="{!inputCount[cmi.Test__c]+1}" class="{!if(gate!='Charter','cmiContractCountryval','cmiCountryval')}"><apex:outputText value="{!displayCon[key].IPM_CMI_Country__c}" /></td>
+                                                            <td rowspan="{!inputCount[cmi.Test__c]+1}" class="{!if(gate!='Charter','cmiContractCountryval','cmiCountryval')}"><apex:outputText value="{!mapCountryNameWithCode[displayCon[key].IPM_CMI_Country__c]}" /></td>
                                                             <apex:variable var="i" value="{!1}"/> 
                                                             <apex:repeat value="{!secConList}" var="con">
                                                             	<!-- Checking country name with cmi country -->

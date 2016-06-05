@@ -1110,6 +1110,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.BET_Required_Yes_No__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.BET_Required__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Oblix_SOW_Projects__c.BET_first_release__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1798,6 +1808,14 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>Oblix_SWOPredirect</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Oblix_SWOPredirectToMain</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Oblix_SWOPredirectToMain_List</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <recordTypeVisibilities>

@@ -220,6 +220,10 @@ src/pages/Oblix_SOWNonCampaignCreate.page
 src/pages/Oblix_SOWNonCampaignCreate.page-meta.xml
 src/pages/Oblix_SWOPredirect.page
 src/pages/Oblix_SWOPredirect.page-meta.xml
+src/pages/Oblix_SWOPredirectToMain.page
+src/pages/Oblix_SWOPredirectToMain.page-meta.xml
+src/pages/Oblix_SWOPredirectToMain_List.page
+src/pages/Oblix_SWOPredirectToMain_List.page-meta.xml
 src/pages/Oblix_VF01DeepCloneSOW.page
 src/pages/Oblix_VF01DeepCloneSOW.page-meta.xml
 src/pages/Oblix_VF02OverrideAsetNewLookup.page

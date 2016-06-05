@@ -195,6 +195,9 @@ public with sharing class TriggerFactory
         if (soType == IPM_Assessment__c.sObjectType){
             return new IPM_AssesmentHandler();
         }
+		if (soType == IPM_Project_Document_Section__c.sObjectType){
+            return new IPM_ProjectDocumentSectionHandler();
+        }
 		if (soType == Core_Approval_Details__c.sObjectType){
             return new Core_CA_LineItem_Handler();
         }
@@ -247,9 +250,7 @@ public with sharing class TriggerFactory
         if (soType == AF_PO_Report__c.sObjectType)
         {
             return new AF_PO_ReportHandler();
-        }
-        
-        */
+        }*/
         return null;
     }
 

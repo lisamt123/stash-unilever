@@ -98,10 +98,10 @@
                   </div>
                   <div class="section"><br/>
                           <div style="margin-left:5px;">
-                        <p class="desc slds-text-heading--small"><ui:outputText value="{!v.activity.Description__c}"/></p>
+                        <p class="desc slds-text-body--regular"><ui:outputText value="{!v.activity.Description__c}"/></p>
                     </div>
               <div style="margin-left:5px;height:85px">
-                      <p class="recent">Recently completed by</p>
+                      <p class="recent slds-text-body--small">Recently completed by</p>
                         <div>
                             <c:EA_RecentUsers_comp recentactivityid="{!v.EAactivityid}"/>
                           <!-- <c:ImageComponent recentactivityid="{!v.EAactivityid}"/> -->
@@ -124,7 +124,7 @@
                                 <p class="topTip"> TOP TIP :</p><br/>
                             </div>
                             <div>
-                                <p class="topTip_para"> <ui:outputText value="{!v.activity.Top_Tip__c}"/></p>
+                                <p class="topTip_para slds-text-body--regular"> <ui:outputText value="{!v.activity.Top_Tip__c}"/></p>
                             </div>
                          
                             

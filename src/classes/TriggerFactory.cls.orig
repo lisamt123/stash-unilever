@@ -195,6 +195,9 @@ public with sharing class TriggerFactory
         if (soType == IPM_Assessment__c.sObjectType){
             return new IPM_AssesmentHandler();
         }
+		if (soType == IPM_Project_Document_Section__c.sObjectType){
+            return new IPM_ProjectDocumentSectionHandler();
+        }
 		if (soType == Core_Approval_Details__c.sObjectType){
             return new Core_CA_LineItem_Handler();
         }
@@ -202,10 +205,11 @@ public with sharing class TriggerFactory
             return new CFC_Attendee_Handler();
         } 
 <<<<<<< HEAD
+
        /* commented by Jayant for DMS temporary build fix. IMP : Please uncomment while merge with Develop
-	  if (soType == VEP_Visitor__c.sObjectType)
-=======
 		if (soType == VEP_Visitor__c.sObjectType)
+=======
+		/*if (soType == VEP_Visitor__c.sObjectType)
 >>>>>>> develop
         {
             return new VEP_Visitor_TriggerHandler();
@@ -250,9 +254,13 @@ public with sharing class TriggerFactory
         if (soType == AF_PO_Report__c.sObjectType)
         {
             return new AF_PO_ReportHandler();
+<<<<<<< HEAD
         }
         
         */
+=======
+        }*/
+>>>>>>> develop
         return null;
     }
 

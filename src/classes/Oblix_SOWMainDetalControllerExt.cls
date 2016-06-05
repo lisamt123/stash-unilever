@@ -276,7 +276,7 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
     //Only UL users can see warning about SOW going through a rollover if SOW has at least 1 B/Fwd Campaign
     public Boolean can_see_rollover_warning {
         get {
-            return is_going_through_rollover && (selected_sow.B_Fwd_Campaign_count__c > 0) && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet();
+            return is_going_through_rollover && (selected_sow.B_Fwd_Campaign_count__c > 0) && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet() && !Oblix_PermissionHandler.hasUL3permissionSet();
         }
     }
 

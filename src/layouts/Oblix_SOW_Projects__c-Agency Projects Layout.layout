@@ -70,6 +70,14 @@
                 <field>Is_B_Fwd_Campaign__c</field>
 >>>>>>> develop
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>BET_Required__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>BET_Required_Yes_No__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -107,6 +115,14 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Unique_key__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Selected_Countries__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>First_3_selected_countries__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
