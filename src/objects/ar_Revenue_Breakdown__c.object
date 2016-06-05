@@ -109,169 +109,169 @@
             <controllingField>Discipline__c</controllingField>
             <picklistValues>
                 <fullName>3D Visualisation</fullName>
-                <controllingFieldValues>Artwork</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Artwork</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Affiliate Networks</fullName>
-                <controllingFieldValues>Digital</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Digital</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Affinity Marketing</fullName>
-                <controllingFieldValues>Direct Marketing/Integrated</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Direct Marketing/Integrated</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Ambient</fullName>
-                <controllingFieldValues>Advertising (brand)</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Advertising (brand)</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>B2B / Trade</fullName>
-                <controllingFieldValues>PR</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>PR</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Brand Strategy</fullName>
-                <controllingFieldValues>Design</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Design</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Celebrity</fullName>
-                <controllingFieldValues>PR</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>PR</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Cinema</fullName>
-                <controllingFieldValues>Advertising (brand)</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Advertising (brand)</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Colour Separation</fullName>
-                <controllingFieldValues>Artwork</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Artwork</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Consumer</fullName>
-                <controllingFieldValues>PR</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>PR</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Corporate</fullName>
-                <controllingFieldValues>PR</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>PR</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Crisis</fullName>
-                <controllingFieldValues>PR</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>PR</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Database Marketing</fullName>
-                <controllingFieldValues>Direct Marketing/Integrated</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Direct Marketing/Integrated</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Direct Mail</fullName>
-                <controllingFieldValues>Direct Marketing/Integrated</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Direct Marketing/Integrated</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Door Drops</fullName>
-                <controllingFieldValues>Direct Marketing/Integrated</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Direct Marketing/Integrated</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Email</fullName>
-                <controllingFieldValues>Digital</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Digital</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>E-Marketing</fullName>
-                <controllingFieldValues>Direct Marketing/Integrated</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Direct Marketing/Integrated</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Events</fullName>
-                <controllingFieldValues>PR</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>PR</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Experiential</fullName>
-                <controllingFieldValues>PR</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>PR</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Field Marketing</fullName>
-                <controllingFieldValues>Direct Marketing/Integrated</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Direct Marketing/Integrated</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Graphic Design</fullName>
-                <controllingFieldValues>Design</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Design</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Industrial / Product Design</fullName>
-                <controllingFieldValues>Design</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Design</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Inserts</fullName>
-                <controllingFieldValues>Direct Marketing/Integrated</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Direct Marketing/Integrated</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Live Brand Experience</fullName>
-                <controllingFieldValues>Direct Marketing/Integrated</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Direct Marketing/Integrated</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Lobbying / Public Affairs</fullName>
-                <controllingFieldValues>PR</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>PR</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Mechanical Artwork</fullName>
-                <controllingFieldValues>Artwork</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Artwork</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Mobile</fullName>
-                <controllingFieldValues>Digital</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Digital</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Mock Ups</fullName>
-                <controllingFieldValues>Artwork</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Artwork</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Online</fullName>
-                <controllingFieldValues>Advertising (brand)</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Advertising (brand)</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Online Advertising</fullName>
-                <controllingFieldValues>Digital</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Digital</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Outdoor</fullName>
-                <controllingFieldValues>Advertising (brand)</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Advertising (brand)</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>POS</fullName>
-                <controllingFieldValues>Direct Marketing/Integrated</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Direct Marketing/Integrated</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Press</fullName>
+                <default>false</default>
                 <controllingFieldValues>Advertising (brand)</controllingFieldValues>
                 <controllingFieldValues>Direct Marketing/Integrated</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Print Ready (Printer Specific)</fullName>
@@ -279,29 +279,29 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Radio</fullName>
+                <default>false</default>
                 <controllingFieldValues>Advertising (brand)</controllingFieldValues>
                 <controllingFieldValues>Direct Marketing/Integrated</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Rapid Prototyping</fullName>
-                <controllingFieldValues>Design</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Design</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Retail Design</fullName>
-                <controllingFieldValues>Design</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Design</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Sales Promotion</fullName>
-                <controllingFieldValues>Direct Marketing/Integrated</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Direct Marketing/Integrated</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Search</fullName>
-                <controllingFieldValues>Digital</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Digital</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Separate File</fullName>
@@ -309,29 +309,29 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Social Media</fullName>
-                <controllingFieldValues>Digital</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Digital</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Structural Packaging Design</fullName>
-                <controllingFieldValues>Design</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Design</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Telemarketing</fullName>
-                <controllingFieldValues>Direct Marketing/Integrated</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Direct Marketing/Integrated</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Trade</fullName>
-                <controllingFieldValues>PR</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>PR</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>TV</fullName>
+                <default>false</default>
                 <controllingFieldValues>Advertising (brand)</controllingFieldValues>
                 <controllingFieldValues>Direct Marketing/Integrated</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Type</fullName>
@@ -339,18 +339,18 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Viral</fullName>
-                <controllingFieldValues>Digital</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Digital</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Web Build</fullName>
-                <controllingFieldValues>Digital</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Digital</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Web Design</fullName>
-                <controllingFieldValues>Digital</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Digital</controllingFieldValues>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>

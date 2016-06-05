@@ -39,6 +39,8 @@
     <deploymentStatus>Deployed</deploymentStatus>
     <description>External Object for One Drive as part of Files Connect Integration</description>
     <enableFeeds>false</enableFeeds>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
     <externalDataSource>Unilever_OneDrive</externalDataSource>
     <externalName>FilesConnect_SFDev</externalName>
     <label>FilesConnect-One Drive</label>

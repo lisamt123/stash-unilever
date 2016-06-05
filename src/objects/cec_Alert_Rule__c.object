@@ -382,8 +382,8 @@
             <controllingField>Type__c</controllingField>
             <picklistValues>
                 <fullName>0</fullName>
-                <controllingFieldValues>Safety</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Safety</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>1</fullName>
@@ -391,8 +391,8 @@
             </picklistValues>
             <picklistValues>
                 <fullName>2</fullName>
-                <controllingFieldValues>Quality</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Quality</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>3</fullName>
@@ -453,9 +453,9 @@
             </picklistValues>
             <picklistValues>
                 <fullName>5</fullName>
+                <default>false</default>
                 <controllingFieldValues>Quality</controllingFieldValues>
                 <controllingFieldValues>Safety</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>

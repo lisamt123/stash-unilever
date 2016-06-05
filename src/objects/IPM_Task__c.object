@@ -230,23 +230,23 @@
             <controllingField>IPM_Type_of_Gate__c</controllingField>
             <picklistValues>
                 <fullName>Ideas</fullName>
-                <controllingFieldValues>Charter</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Charter</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Feasibility</fullName>
-                <controllingFieldValues>Contract</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Contract</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Capability</fullName>
-                <controllingFieldValues>Market Ready Gate</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Market Ready Gate</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Market Ready</fullName>
-                <controllingFieldValues>Market Deployment Gate</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Market Deployment Gate</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Market Deployment</fullName>

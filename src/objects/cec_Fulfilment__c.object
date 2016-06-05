@@ -1466,6 +1466,7 @@ Case__r.Account.PersonContact.MailingCountry</formula>
             <controllingField>Country__c</controllingField>
             <picklistValues>
                 <fullName>Standard Letter</fullName>
+                <default>true</default>
                 <controllingFieldValues>Argentina</controllingFieldValues>
                 <controllingFieldValues>Australia</controllingFieldValues>
                 <controllingFieldValues>Austria</controllingFieldValues>
@@ -1523,20 +1524,19 @@ Case__r.Account.PersonContact.MailingCountry</formula>
                 <controllingFieldValues>United States</controllingFieldValues>
                 <controllingFieldValues>Uruguay</controllingFieldValues>
                 <controllingFieldValues>Venezuela</controllingFieldValues>
-                <default>true</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Dosing Request</fullName>
+                <default>false</default>
                 <controllingFieldValues>Ireland</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Remuneration</fullName>
+                <default>false</default>
                 <controllingFieldValues>Belgium</controllingFieldValues>
                 <controllingFieldValues>Luxembourg</controllingFieldValues>
                 <controllingFieldValues>Netherlands</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>

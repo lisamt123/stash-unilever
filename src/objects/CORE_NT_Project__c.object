@@ -100,38 +100,38 @@
             <controllingField>Project_Scope__c</controllingField>
             <picklistValues>
                 <fullName>Europe</fullName>
-                <controllingFieldValues>Regional</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Regional</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Namet/Rub</fullName>
-                <controllingFieldValues>Regional</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Regional</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Africa</fullName>
-                <controllingFieldValues>Regional</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Regional</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>South Asia</fullName>
-                <controllingFieldValues>Regional</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Regional</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>North Asia</fullName>
-                <controllingFieldValues>Regional</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Regional</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Southeast Asia</fullName>
-                <controllingFieldValues>Regional</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Regional</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Latam</fullName>
-                <controllingFieldValues>Regional</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Regional</controllingFieldValues>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>

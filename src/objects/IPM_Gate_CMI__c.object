@@ -101,29 +101,29 @@
             <controllingField>Gate__c</controllingField>
             <picklistValues>
                 <fullName>Concept</fullName>
-                <controllingFieldValues>Charter</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Charter</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Product Test</fullName>
-                <controllingFieldValues>Contract</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Contract</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Pack Test</fullName>
-                <controllingFieldValues>Contract</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Contract</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Communication</fullName>
-                <controllingFieldValues>Market Ready</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Market Ready</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Full Mix-Volume</fullName>
+                <default>false</default>
                 <controllingFieldValues>Contract</controllingFieldValues>
                 <controllingFieldValues>Market Ready</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -267,87 +267,87 @@
             <controllingField>KPI__c</controllingField>
             <picklistValues>
                 <fullName>Salience</fullName>
+                <default>false</default>
                 <controllingFieldValues>IntroSCAPE</controllingFieldValues>
                 <controllingFieldValues>SCAPE</controllingFieldValues>
                 <controllingFieldValues>Salience/Attraction Matrix</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Attraction</fullName>
+                <default>false</default>
                 <controllingFieldValues>IntroSCAPE</controllingFieldValues>
                 <controllingFieldValues>SCAPE</controllingFieldValues>
                 <controllingFieldValues>Salience/Attraction Matrix</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Relevance</fullName>
+                <default>false</default>
                 <controllingFieldValues>Judgement call</controllingFieldValues>
                 <controllingFieldValues>RED</controllingFieldValues>
                 <controllingFieldValues>SCAPE</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Expensiveness</fullName>
+                <default>false</default>
                 <controllingFieldValues>Judgement call</controllingFieldValues>
                 <controllingFieldValues>RED</controllingFieldValues>
                 <controllingFieldValues>SCAPE</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Differentiation</fullName>
+                <default>false</default>
                 <controllingFieldValues>Judgement call</controllingFieldValues>
                 <controllingFieldValues>RED</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Communication</fullName>
-                <controllingFieldValues>IntroSCAPE</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>IntroSCAPE</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Point of Purchase</fullName>
-                <controllingFieldValues>IntroSCAPE</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>IntroSCAPE</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Overall liking</fullName>
-                <controllingFieldValues>Overall Score</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Overall Score</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Key Attributes</fullName>
-                <controllingFieldValues>Overall Score</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Overall Score</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>shelf visibility</fullName>
-                <controllingFieldValues>Performance</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Performance</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>shelf findability</fullName>
-                <controllingFieldValues>Performance</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Performance</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>shelf purchase</fullName>
-                <controllingFieldValues>Performance</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Performance</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>package communication</fullName>
-                <controllingFieldValues>Performance</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Performance</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Persuation</fullName>
-                <controllingFieldValues>Persuation/Awareness</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Persuation/Awareness</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Awareness Index</fullName>
-                <controllingFieldValues>Persuation/Awareness</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Persuation/Awareness</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>CVM (Concept Viability Measure)</fullName>
@@ -367,53 +367,53 @@
             <controllingField>Test__c</controllingField>
             <picklistValues>
                 <fullName>Salience/Attraction Matrix</fullName>
-                <controllingFieldValues>Idea Screener - Nielsen</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Idea Screener - Nielsen</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>RED</fullName>
+                <default>false</default>
                 <controllingFieldValues>Designor post use - Ipsos</controllingFieldValues>
                 <controllingFieldValues>Designor post use with full mix - Ipsos</controllingFieldValues>
                 <controllingFieldValues>Designor pre use - Ipsos</controllingFieldValues>
                 <controllingFieldValues>Innoscreen * Concepts - Ipsos</controllingFieldValues>
                 <controllingFieldValues>Innoscreen * ideas - Ipsos</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>IntroSCAPE</fullName>
+                <default>false</default>
                 <controllingFieldValues>Bases I - Nielsen</controllingFieldValues>
                 <controllingFieldValues>Bundle Builder -Nielsen</controllingFieldValues>
                 <controllingFieldValues>Snapshot - Nielsen</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Judgement call</fullName>
+                <default>false</default>
                 <controllingFieldValues>Qual Concept</controllingFieldValues>
                 <controllingFieldValues>Qual Pack Test</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Overall Score</fullName>
+                <default>false</default>
                 <controllingFieldValues>Blind Product Test - Ipsos</controllingFieldValues>
                 <controllingFieldValues>Branded Product Test - Ipsos</controllingFieldValues>
                 <controllingFieldValues>Concept Product test - Ipsos</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Performance</fullName>
-                <controllingFieldValues>Quant Pack test - PRS PackEval</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Quant Pack test - PRS PackEval</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Persuation/Awareness</fullName>
-                <controllingFieldValues>Preview - MWB</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Preview - MWB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>SCAPE</fullName>
+                <default>false</default>
                 <controllingFieldValues>Bases II - Nielsen</controllingFieldValues>
                 <controllingFieldValues>Bases III - Nielsen</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -429,6 +429,7 @@
             <controllingField>Input__c</controllingField>
             <picklistValues>
                 <fullName>Failure (=&lt; 33%)</fullName>
+                <default>false</default>
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>Awareness Index</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
@@ -445,10 +446,10 @@
                 <controllingFieldValues>shelf findability</controllingFieldValues>
                 <controllingFieldValues>shelf purchase</controllingFieldValues>
                 <controllingFieldValues>shelf visibility</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Risky (34% - 69%)</fullName>
+                <default>false</default>
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>Awareness Index</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
@@ -465,10 +466,10 @@
                 <controllingFieldValues>shelf findability</controllingFieldValues>
                 <controllingFieldValues>shelf purchase</controllingFieldValues>
                 <controllingFieldValues>shelf visibility</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Satisfactory (70% - 84%)</fullName>
+                <default>false</default>
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>Awareness Index</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
@@ -485,10 +486,10 @@
                 <controllingFieldValues>shelf findability</controllingFieldValues>
                 <controllingFieldValues>shelf purchase</controllingFieldValues>
                 <controllingFieldValues>shelf visibility</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Outstanding (&gt;= 85%)</fullName>
+                <default>false</default>
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>Awareness Index</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
@@ -505,10 +506,10 @@
                 <controllingFieldValues>shelf findability</controllingFieldValues>
                 <controllingFieldValues>shelf purchase</controllingFieldValues>
                 <controllingFieldValues>shelf visibility</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>High Potential</fullName>
+                <default>false</default>
                 <controllingFieldValues>Awareness Index</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
@@ -520,10 +521,10 @@
                 <controllingFieldValues>shelf findability</controllingFieldValues>
                 <controllingFieldValues>shelf purchase</controllingFieldValues>
                 <controllingFieldValues>shelf visibility</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Medium Potential</fullName>
+                <default>false</default>
                 <controllingFieldValues>Awareness Index</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
@@ -535,10 +536,10 @@
                 <controllingFieldValues>shelf findability</controllingFieldValues>
                 <controllingFieldValues>shelf purchase</controllingFieldValues>
                 <controllingFieldValues>shelf visibility</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Low Potential</fullName>
+                <default>false</default>
                 <controllingFieldValues>Awareness Index</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
@@ -550,10 +551,10 @@
                 <controllingFieldValues>shelf findability</controllingFieldValues>
                 <controllingFieldValues>shelf purchase</controllingFieldValues>
                 <controllingFieldValues>shelf visibility</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Parity</fullName>
+                <default>false</default>
                 <controllingFieldValues>Awareness Index</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
@@ -565,10 +566,10 @@
                 <controllingFieldValues>shelf findability</controllingFieldValues>
                 <controllingFieldValues>shelf purchase</controllingFieldValues>
                 <controllingFieldValues>shelf visibility</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Loss</fullName>
+                <default>false</default>
                 <controllingFieldValues>Awareness Index</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
@@ -580,10 +581,10 @@
                 <controllingFieldValues>shelf findability</controllingFieldValues>
                 <controllingFieldValues>shelf purchase</controllingFieldValues>
                 <controllingFieldValues>shelf visibility</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Win</fullName>
+                <default>false</default>
                 <controllingFieldValues>Awareness Index</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
@@ -595,10 +596,10 @@
                 <controllingFieldValues>shelf findability</controllingFieldValues>
                 <controllingFieldValues>shelf purchase</controllingFieldValues>
                 <controllingFieldValues>shelf visibility</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Potential Failure</fullName>
+                <default>false</default>
                 <controllingFieldValues>Awareness Index</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
@@ -610,10 +611,10 @@
                 <controllingFieldValues>shelf findability</controllingFieldValues>
                 <controllingFieldValues>shelf purchase</controllingFieldValues>
                 <controllingFieldValues>shelf visibility</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Risky</fullName>
+                <default>false</default>
                 <controllingFieldValues>Awareness Index</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
@@ -625,10 +626,10 @@
                 <controllingFieldValues>shelf findability</controllingFieldValues>
                 <controllingFieldValues>shelf purchase</controllingFieldValues>
                 <controllingFieldValues>shelf visibility</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Satisfactory</fullName>
+                <default>false</default>
                 <controllingFieldValues>Awareness Index</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
@@ -640,10 +641,10 @@
                 <controllingFieldValues>shelf findability</controllingFieldValues>
                 <controllingFieldValues>shelf purchase</controllingFieldValues>
                 <controllingFieldValues>shelf visibility</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Possible Failure</fullName>
+                <default>false</default>
                 <controllingFieldValues>Awareness Index</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
@@ -655,10 +656,10 @@
                 <controllingFieldValues>shelf findability</controllingFieldValues>
                 <controllingFieldValues>shelf purchase</controllingFieldValues>
                 <controllingFieldValues>shelf visibility</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Bottom 30%</fullName>
+                <default>false</default>
                 <controllingFieldValues>Awareness Index</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
@@ -670,10 +671,10 @@
                 <controllingFieldValues>shelf findability</controllingFieldValues>
                 <controllingFieldValues>shelf purchase</controllingFieldValues>
                 <controllingFieldValues>shelf visibility</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Mid 40%</fullName>
+                <default>false</default>
                 <controllingFieldValues>Awareness Index</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
@@ -685,10 +686,10 @@
                 <controllingFieldValues>shelf findability</controllingFieldValues>
                 <controllingFieldValues>shelf purchase</controllingFieldValues>
                 <controllingFieldValues>shelf visibility</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Top 30%</fullName>
+                <default>false</default>
                 <controllingFieldValues>Awareness Index</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
@@ -700,7 +701,6 @@
                 <controllingFieldValues>shelf findability</controllingFieldValues>
                 <controllingFieldValues>shelf purchase</controllingFieldValues>
                 <controllingFieldValues>shelf visibility</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -716,93 +716,93 @@
             <controllingField>Element__c</controllingField>
             <picklistValues>
                 <fullName>Idea Screener - Nielsen</fullName>
-                <controllingFieldValues>Concept</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Concept</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Innoscreen * ideas - Ipsos</fullName>
-                <controllingFieldValues>Concept</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Concept</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Snapshot - Nielsen</fullName>
-                <controllingFieldValues>Concept</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Concept</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Innoscreen * Concepts - Ipsos</fullName>
-                <controllingFieldValues>Concept</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Concept</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Bundle Builder -Nielsen</fullName>
-                <controllingFieldValues>Concept</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Concept</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Bases I - Nielsen</fullName>
-                <controllingFieldValues>Concept</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Concept</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Designor pre use - Ipsos</fullName>
-                <controllingFieldValues>Concept</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Concept</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Qual Concept</fullName>
-                <controllingFieldValues>Concept</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Concept</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Blind Product Test - Ipsos</fullName>
-                <controllingFieldValues>Product Test</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Product Test</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Branded Product Test - Ipsos</fullName>
-                <controllingFieldValues>Product Test</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Product Test</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Concept Product test - Ipsos</fullName>
-                <controllingFieldValues>Product Test</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Product Test</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Qual Pack Test</fullName>
-                <controllingFieldValues>Pack Test</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Pack Test</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Quant Pack test - PRS PackEval</fullName>
-                <controllingFieldValues>Pack Test</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Pack Test</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Preview - MWB</fullName>
-                <controllingFieldValues>Communication</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Communication</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Bases II - Nielsen</fullName>
-                <controllingFieldValues>Full Mix-Volume</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Full Mix-Volume</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Designor post use - Ipsos</fullName>
-                <controllingFieldValues>Full Mix-Volume</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Full Mix-Volume</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Bases III - Nielsen</fullName>
-                <controllingFieldValues>Full Mix-Volume</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Full Mix-Volume</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Designor post use with full mix - Ipsos</fullName>
-                <controllingFieldValues>Full Mix-Volume</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Full Mix-Volume</controllingFieldValues>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>

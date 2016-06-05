@@ -340,28 +340,28 @@ Feed_ID__c=&quot;&quot;, &quot;/img/samples/light_red.gif&quot;, &quot;/img/samp
             <controllingField>Type__c</controllingField>
             <picklistValues>
                 <fullName>Artwork</fullName>
+                <default>false</default>
                 <controllingFieldValues>Download</controllingFieldValues>
                 <controllingFieldValues>Toolkit</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Presentation</fullName>
+                <default>false</default>
                 <controllingFieldValues>Download</controllingFieldValues>
                 <controllingFieldValues>Toolkit</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Production Engineering</fullName>
+                <default>false</default>
                 <controllingFieldValues>Download</controllingFieldValues>
                 <controllingFieldValues>Toolkit</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Download Image</fullName>
+                <default>false</default>
                 <controllingFieldValues>Download</controllingFieldValues>
                 <controllingFieldValues>Image</controllingFieldValues>
                 <controllingFieldValues>Toolkit</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
