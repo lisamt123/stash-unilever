@@ -239,6 +239,7 @@
         <trackFeedHistory>false</trackFeedHistory>
         <type>Number</type>
         <unique>false</unique>
+    </fields>    
     <fields>
         <fullName>Debit_Card_Refund_Limit__c</fullName>
         <description>CEC Debit Card Refund Limit is used to capture the user’s refund limit</description>
