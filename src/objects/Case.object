@@ -1528,9 +1528,7 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
     </fields>
     <fields>
         <fullName>Origin</fullName>
-        <inlineHelpText>Email Middle Americas
-Email Southern Cone
-Email Brazil</inlineHelpText>
+        <inlineHelpText></inlineHelpText>
         <picklist>
             <picklistValues>
                 <fullName>Chat</fullName>
@@ -1538,6 +1536,10 @@ Email Brazil</inlineHelpText>
             </picklistValues>
             <picklistValues>
                 <fullName>Email</fullName>
+                <default>false</default>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Email ANZ</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1614,6 +1616,10 @@ Email Brazil</inlineHelpText>
             </picklistValues>
             <picklistValues>
                 <fullName>Email Portugal</fullName>
+                <default>false</default>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Email South Africa</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
