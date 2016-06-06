@@ -19,6 +19,7 @@
 	},
     
     loadIdeasListData : function(component, event, helper) {
+        component.set("v.showspinner",true);
         var action = component.get("c.getIdeaList");
         action.setParams({
             "ideaLimit": "ALL"
@@ -27,7 +28,6 @@
             var state = response.getState();
             if (state === "SUCCESS") {    
                 if(response.getReturnValue().IdeasOfTheWeek!=null){
-                	//component.set("v.showMoreLimit",1);
                 	component.set("v.showMoreLimit",response.getReturnValue().ShowMoreLimit);
                     var ideasList = response.getReturnValue().IdeasOfTheWeek;    
                     component.set("v.ideaTitle","All Ideas");
@@ -44,15 +44,16 @@
                     component.set("v.closedIdeasList",closedIdeasArray);
                     component.set("v.campaignStatus",response.getReturnValue().ActiveStatus);
                     if(response.getReturnValue().ActiveStatus==true){
-                        helper.displayTrenddingIdeas(component,activeIdeasArray,"openCampaign");
+                        helper.displayTrenddingIdeas(component,activeIdeasArray,"openCampaign");  
+                        //helper.checkSelectedSort(component,"v.activeIdeasList","mostVotedIdea","openCampaign");
+                    	//component.set("v.showspinner",false);  
                     } else {
-                        helper.checkSelectedSort(component,"v.closedIdeasList","mostVotedIdea","closedCampaign");
-                    }                          
-                    component.set("v.showspinner",false);
+                        helper.checkSelectedSort(component,"v.closedIdeasList","mostVotedIdea","closedCampaign");  
+                    }                      
                 } else {                    
                     component.set("v.displayErrorMessage",true);
                     component.set("v.showspinner",false);
-                }   
+                }                   
             } else {
                 component.set("v.showspinner",false);
             }     	                   
@@ -69,35 +70,35 @@
         }
     },        
     displayOpenCampaigns : function(component, event, helper) {  
-        helper.initializeDefaultValues(component); 
         console.log('--------------open-----------'+component.get("v.selectedFilterType"));
+        $("#sortOptions").toggle();           
         if(component.get("v.selectedFilterType")!="openCampaign"){
-            $("#sortOptions").toggle();                   
+        	helper.initializeDefaultValues(component);         
             
             $A.util.removeClass(component.find(component.get("v.selectedFilterType")),'campaign');              
             component.set("v.selectedSortType","trendingIdea");
             helper.filterIdeasListOnLoad(component,component.get("v.trendingIdeasList"),"openCampaign");   
-        	console.log('--------------open1-----------'+component.get("v.ideasList"));            
+        	console.log('--------------open1-----------'+component.get("v.ideasList"));
+        	component.set("v.showspinner",false);            
         }
-        component.set("v.showspinner",false);
     },
-    displayClosedCampaigns : function(component, event, helper) {      
-        helper.initializeDefaultValues(component); 
-        console.log('--------------closed-----------'+component.get("v.selectedFilterType"));
-        if(component.get("v.selectedFilterType")!="closedCampaign"){		           
-        	$("#sortOptions").toggle();         
+    displayClosedCampaigns : function(component, event, helper) {   
+        console.log('--------------closed-----------'+component.get("v.selectedFilterType"));    
+        $("#sortOptions").toggle();         
+        if(component.get("v.selectedFilterType")!="closedCampaign"){		       
+        	helper.initializeDefaultValues(component);    
             
         	$A.util.removeClass(component.find(component.get("v.selectedFilterType")),'campaign'); 
             helper.checkSelectedSort(component,"v.closedIdeasList","mostVotedIdea","closedCampaign");  
         	console.log('--------------closed1-----------'+component.get("v.ideasList"));   
+        	component.set("v.showspinner",false);
         }    
-        component.set("v.showspinner",false);
     },
     displayMyIdeas : function(component, event, helper) {   
-        helper.initializeDefaultValues(component);     
-        $("#sortOptions").toggle();          
-        console.log('-------------myupdate------------');
-        if(component.get("v.selectedFilterType")!="myIdeas"){		
+        console.log('-------------myupdate------------');  
+        $("#sortOptions").toggle();          	 	
+        if(component.get("v.selectedFilterType")!="myIdeas"){
+            helper.initializeDefaultValues(component);  
             if(component.get("v.getMyUpdateList")==false){		           
                 var action = component.get("c.getMyUpdatesList");
                 action.setParams({
@@ -106,13 +107,14 @@
                 action.setCallback(this, function(response) {
                     var state = response.getState();
                     if (state === "SUCCESS") {       
-                        component.set("v.myUpdatesList",response.getReturnValue().IdeasOfTheWeek);                               
-                        helper.checkSelectedSort(component,"v.myUpdatesList","latestIdea","myIdeas");                            
-                        if(response.getReturnValue().IdeasOfTheWeek.length>0){ 
-                        } else {                           
+                        component.set("v.myUpdatesList",response.getReturnValue().IdeasOfTheWeek); 
+                        //helper.checkSelectedSort(component,"v.myUpdatesList","latestIdea","myIdeas");  
+                        if(response.getReturnValue().IdeasOfTheWeek.length>0){                           
+                        	helper.checkSelectedSort(component,"v.myUpdatesList","latestIdea","myIdeas");  
+                        } else {                  
+                        	helper.setDefaultSortFilter(component,"latestIdea","myIdeas");         
                             component.set("v.displayErrorMessage",true);
                         } 
-                        helper.setDefaultSortFilter(component,"latestIdea","myIdeas");
                         component.set("v.getMyUpdateList",true);
                         component.set("v.showspinner",false); 	                                   
                     } else {
@@ -129,11 +131,9 @@
                 helper.setDefaultSortFilter(component,"latestIdea","myIdeas");
 				component.set("v.showspinner",false); 
         		console.log('-------------myupdate1-----------'+component.get("v.ideasList"));                 
-            }   
-        } else {            
-            component.set("v.showspinner",false);
+            }               
+        	$A.util.removeClass(component.find(component.get("v.selectedFilterType")),'campaign'); 
         }
-        $A.util.removeClass(component.find(component.get("v.selectedFilterType")),'campaign'); 
     },
     updateCommentCount : function(component, event, helper) {
         var ideaListType;
@@ -188,6 +188,10 @@
     navigateToFaq : function(component, event, helper) { 
         var selectEvent = $A.get("e.c:CORE_IC_IdeaTemplateEvent");
         selectEvent.setParams({"componentName":"markup://c:CORE_IC_IdeaFaqs","pannelType":component.get("v.pannelType")}).fire();
+    },
+        navigateToFeedback: function(component, event, helper) { 
+        var selectEvent = $A.get("e.c:CORE_IC_IdeaTemplateEvent");
+        selectEvent.setParams({"componentName":"markup://c:CORE_IC_IdeaFaqs","Pagename":"Feedback","pannelType":component.get("v.pannelType"),"componentName":"IdeaHome"}).fire();
     },
     gotoSubmitIdea : function(component, event, helper) { 
         var selectEvent = $A.get("e.c:CORE_IC_IdeaTemplateEvent");

@@ -1,15 +1,15 @@
-<aura:component controller="Core_IC_IdeaController">    
+<aura:component controller="Core_IC_IdeaController">
     <aura:handler name="init" value="{!this}" action="{!c.loadIdeasListData}"/>
     <aura:attribute name="myIdeasList" type="Core_CA_BaseApplicationWrapper"/>
     <aura:attribute name="edit" type="Boolean" default="Comment"/>
     <aura:attribute name="pannelType" type="String"/>
-    <aura:attribute name="showspinner" type="boolean" default="true"/> 
+    <aura:attribute name="showspinner" type="boolean" default="true"/>
     <aura:attribute name="displayErrorMessage" type="Boolean" default="false"/>
-    <aura:attribute name="ideaTitle" type="String"/>  
+    <aura:attribute name="ideaTitle" type="String"/>
     <aura:attribute name="showFilter" type="boolean" default="false"/>
-    <aura:attribute name="showSort" type="boolean" default="false"/>   
-    <aura:attribute name="selectedFilterType" type="String"/>     
-    <aura:attribute name="selectedSortType" type="String"/>          
+    <aura:attribute name="showSort" type="boolean" default="false"/>
+    <aura:attribute name="selectedFilterType" type="String"/>
+    <aura:attribute name="selectedSortType" type="String"/>
     <aura:attribute name="trendingIdeasList" type="Core_CA_BaseApplicationWrapper"/>
     <aura:attribute name="activeIdeasList" type="Core_CA_BaseApplicationWrapper"/>
     <aura:attribute name="closedIdeasList" type="Core_CA_BaseApplicationWrapper"/>
@@ -21,30 +21,24 @@
     <aura:attribute name="displayPostIdea" type="Boolean" default="false"/>
     <aura:attribute name="campaignStatus" type="Boolean" default="false"/>
     <aura:attribute name="showMoreLimit" type="Integer" />
-    <aura:attribute name="campaignTitle" type="String"/>     
-    
+    <aura:attribute name="campaignTitle" type="String"/>
     <aura:handler event="c:CORE_IC_IdeaListEvent" action="{!c.updateCommentCount}" />
-    
     <style>
         @media screen and (min-width:768px){
-        .THIS.slds-card, .THIS .slds-card {
-        margin: 15px;
-        margin-right:0px;
-        margin-bottom:0px;
+            .THIS.slds-card, .THIS .slds-card {
+                margin: 15px;
+                margin-right:0px;
+                margin-bottom:0px;
         }}
         @media screen and (min-width:1024px) and (max-width:1700px){ 
-            .filter {
-                left: 555px !important;
-                width: 160px;
-                top: 34px !important;
-            }
-        .cCORE_IC_IdeasList .campaignType {
-        right: -435px;
-        width: 160px!important;
+            .cCORE_IC_IdeasList .campaignType {
+           left: -121px;
+            width: 160px!important;
         }
         .cCORE_IC_IdeasList .sort {
-    right: -473px;
-}
+           right: 15px;
+        }
+
         }
          .filter {
         	position:relative;
@@ -64,117 +58,150 @@
         .slds-card {
         	padding: 15px; 
         }
+        .action_bar{
+        background: #fff;
+        height: 63px;
+        Position: fixed;
+        bottom: 0;
+        width: 100%;
+        }
+        .font1{
+        font-size:12px;
+        }
+    .action_bar>div {
+        width: 50%;
+        float: left;
+        }
+        .action_bar >div img {
+            width: 40px;
+    		padding-top: 6px;
+        }
+        .feedback,.question,.information{
+        width:50%;
+        text-align:center;
+        }
     </style>
-
-     <div class="slds-media__body listHeaderWidth">
-         <h2 class="slds-text-heading--small themeHeight slds-truncate">{!v.ideaTitle}</h2>
-         <div  class=" slds-dropdown-trigger--click slds-is-open slds-dropdown--right filter" aria-expanded="true">             
-             <aura:if isTrue="{!v.showspinner==false}">
-                 <div class="slds-button-group filter" role="group">
-                     <button class="slds-button slds-button--icon-border " onclick="{!c.showFilterMenu}"  >
-                         <img src="/resource/CORE_IC_IdeasLigthtning/utility/filterList_60.png" aria-hidden="true" class="slds-button__icon"/>
-                          <span class="slds-assistive-text">Filter List</span>
-                     </button>  
-                     <button class="slds-button slds-button--icon-more " aria-haspopup="true" onclick="{!c.showSortMenu}">
-                         <img src="/resource/CORE_IC_IdeasLigthtning/utility/sort_60.png" aria-hidden="true" class="slds-button__icon" />
-                         <img src="/resource/CORE_IC_IdeasLigthtning/utility/down_60.png" aria-hidden="true" class="slds-button__icon slds-button__icon--x-small" />
-                         <span class="slds-assistive-text">More Actions</span>
-                     </button>
-                 </div>           
-             </aura:if>
-                 <aura:if isTrue="{!v.showFilter}">
-                     <div id="sortOptions" class="slds-dropdown slds-dropdown--right dorpdown-right campaignType">
-                         <ul class="dropdown__list" role="menu" >                           
-                             <li class="slds-dropdown__item " aura:id="openCampaign" onclick="{!c.displayOpenCampaigns}">
-                                 <a role="menuitem menuItem_width"><p class="slds-truncate">Open Campaigns</p></a>
-                             </li>                                
-                             <li class="slds-dropdown__item" aura:id="closedCampaign" onclick="{!c.displayClosedCampaigns}">
-                                 <a role="menuitem menuItem_width"><p class="slds-truncate">Closed Campaigns</p></a>
-                             </li>
-                             <li class="slds-dropdown__item" aura:id="myIdeas" onclick="{!c.displayMyIdeas}">
-                                 <a role="menuitem menuItem_width"><p class="slds-truncate">My Ideas</p></a>
-                             </li>
-                         </ul>
-                     </div>
-                    
-                 </aura:if>
-                 <aura:if isTrue="{!v.showSort}">
-                     <div  id="filterOptions" class="slds-dropdown slds-dropdown--right sort  dorpdown-right " >
-                         <ul class="dropdown__list filters" role="menu">
-                             <li class="slds-dropdown__item" aura:id="trendingIdea" onclick="{!c.displayTrending}">
-                                 <a role="menuitem">
-                                     <p class="slds-truncate">Trending Idea</p>
-                                 </a>
-                             </li>
-                             <li class="slds-dropdown__item" aura:id="latestIdea" onclick="{!c.displayLatest}">
-                                 <a role="menuitem">
-                                     <p class="slds-truncate">Latest</p>
-                                 </a>
-                             </li>
-                             <li class="slds-dropdown__item" aura:id="mostVotedIdea" onclick="{!c.displayMostVoted}">
-                                 <a  role="menuitem">
-                                     <p class="slds-truncate">Most Voted</p>
-                                 </a>
-                             </li>
-                             <li class="slds-dropdown__item" aura:id="mostCommentedIdea" onclick="{!c.displayMostCommented}" >
-                                 <a role="menuitem">
-                                     <p class="slds-truncate">Most Commented</p>
-                                 </a>
-                             </li>
-                         </ul> 
-                     </div>
-                 </aura:if>
-         </div>
-    </div>  
-  
-    <table class="paddingBottom" >
-        <tr><td>            
-            <aura:if isTrue="{!v.displayErrorMessage}">
-               <div class="slds-box slds-theme--shade noData ">
-                           <p> There are no Ideas...</p>
-               </div>
-            </aura:if>
-            <aura:iteration items="{!v.ideasList}" var="myIdeasListItem">
-                 <div class="campaignsListItemStyle">
-                    <c:CORE_IC_IdeasListItem ideasListItem="{!myIdeasListItem}" pannelType="{!v.pannelType}" selectedFilterType="{!v.selectedFilterType}" selectedSortType="{!v.selectedSortType}"/>
-                 </div>
-            </aura:iteration> 
-        </td></tr>
-        <tr><td>           
-            <aura:if isTrue="{!v.displayLoadMore}">
-                <div class="loadMoreBar paddingBottom">    
-                    <div class="loadMoreButton" onclick="{!c.loadMoreIdeaList}">  Load More  </div>
+    <div class="slds-container--x-large">
+    <div class="slds-media__body listHeaderWidth slds-grid">
+        <h2 class="slds-text-heading--small themeHeight slds-truncate">{!v.ideaTitle}</h2>
+        <div  class=" slds-dropdown-trigger--click slds-is-open slds-dropdown--right filter" aria-expanded="true">
+            <div class="slds-button-group filter" role="group">
+                <button class="slds-button slds-button--icon-border " onclick="{!c.showFilterMenu}"  >
+                    <img src="/resource/CORE_IC_IdeasLigthtning/utility/filterList_60.png" aria-hidden="true" class="slds-button__icon"/>
+                    <span class="slds-assistive-text">Filter List</span>
+                </button>
+                <button class="slds-button slds-button--icon-more " aria-haspopup="true" onclick="{!c.showSortMenu}">
+                    <img src="/resource/CORE_IC_IdeasLigthtning/utility/sort_60.png" aria-hidden="true" class="slds-button__icon" />
+                    <img src="/resource/CORE_IC_IdeasLigthtning/utility/down_60.png" aria-hidden="true" class="slds-button__icon slds-button__icon--x-small" />
+                    <span class="slds-assistive-text">More Actions</span>
+                </button>
+            </div>
+            <aura:if isTrue="{!v.showFilter}">
+                <div id="sortOptions" class="slds-dropdown slds-dropdown--right dorpdown-right campaignType">
+                    <ul class="dropdown__list" role="menu" >
+                        <li class="slds-dropdown__item " aura:id="openCampaign" onclick="{!c.displayOpenCampaigns}">
+                            <a role="menuitem menuItem_width">
+                                <p class="slds-truncate">Active Campaigns</p>
+                            </a>
+                        </li>
+                        <li class="slds-dropdown__item" aura:id="closedCampaign" onclick="{!c.displayClosedCampaigns}">
+                            <a role="menuitem menuItem_width">
+                                <p class="slds-truncate">Closed Campaigns</p>
+                            </a>
+                        </li>
+                        <li class="slds-dropdown__item" aura:id="myIdeas" onclick="{!c.displayMyIdeas}">
+                            <a role="menuitem menuItem_width">
+                                <p class="slds-truncate">My Ideas</p>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </aura:if>
-            <!--<aura:if isTrue="{!v.showspinner == true ? false : true}">-->
-            <aura:if isTrue="{!v.displayPostIdea}">                
-                <div class="slds-card">
-                    <div class="slds-card__body slds-p-horizontal--small">
-                        <div class="slds-text-align--center">
-                            <h3 class="slds-text-heading--small slds-p-top--large slds-p-bottom--large fontStyle">Have Ideas?</h3>
-                            <button class="slds-button slds-button--neutral slds-button--small slds-m-bottom--x-large centre" aria-live="assertive" onclick="{!c.gotoSubmitIdea}">
-                                <span class="slds-text-not-selected">
-                                    <img aria-hidden="true" class="slds-button__icon--stateful slds-button__icon--left" src="/resource/CORE_IC_IdeasLigthtning/img/Idea_blue.svg" />Post One
-                                </span>
-                            </button>
+            <aura:if isTrue="{!v.showSort}">
+                <div  id="filterOptions" class="slds-dropdown slds-dropdown--right sort  dorpdown-right " >
+                    <ul class="dropdown__list filters" role="menu">
+                        <li class="slds-dropdown__item" aura:id="trendingIdea" onclick="{!c.displayTrending}">
+                            <a role="menuitem">
+                                <p class="slds-truncate">Trending Idea</p>
+                            </a>
+                        </li>
+                        <li class="slds-dropdown__item" aura:id="latestIdea" onclick="{!c.displayLatest}">
+                            <a role="menuitem">
+                                <p class="slds-truncate">Latest</p>
+                            </a>
+                        </li>
+                        <li class="slds-dropdown__item" aura:id="mostVotedIdea" onclick="{!c.displayMostVoted}">
+                            <a  role="menuitem">
+                                <p class="slds-truncate">Most Voted</p>
+                            </a>
+                        </li>
+                        <li class="slds-dropdown__item" aura:id="mostCommentedIdea" onclick="{!c.displayMostCommented}" >
+                            <a role="menuitem">
+                                <p class="slds-truncate">Most Commented</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </aura:if>
+        </div>
+    </div>
+    </div>
+        <table class="paddingBottom" >
+            <tr>
+                <td>
+                    <aura:if isTrue="{!v.displayErrorMessage}">
+                        <div class="slds-box slds-theme--shade noData ">
+                            <p> There are no Ideas...</p>
                         </div>
+                    </aura:if>
+                    <div class="slds-grid slds-wrap slds-grow slds-scrollable--y slds-grid--align-end slds-container--x-large">
+                        <aura:iteration items="{!v.ideasList}" var="myIdeasListItem">
+                            <div class="slds-col slds-size--1-of-1 slds-small-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-3">
+                                <div class="campaignsListItemStyle">
+                                    <c:CORE_IC_IdeasListItem ideasListItem="{!myIdeasListItem}" pannelType="{!v.pannelType}" selectedFilterType="{!v.selectedFilterType}" selectedSortType="{!v.selectedSortType}"/>
+                                </div>
+                            </div>
+                        </aura:iteration>
                     </div>
-                </div>
-            </aura:if>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <aura:if isTrue="{!v.displayLoadMore}">
+                        <div class="loadMoreBar paddingBottom slds-container--center slds-container--small">
+                            <div class="loadMoreButton" onclick="{!c.loadMoreIdeaList}">  Load More  </div>
+                        </div>
+                    </aura:if>
+                    <aura:if isTrue="{!v.displayPostIdea}">
+                        <div class="slds-card slds-container--left slds-container--small ">
+                            <div class="slds-card__body slds-p-horizontal--small">
+                                <div class="slds-text-align--center">
+                                    <h3 class="slds-text-heading--small slds-p-top--large slds-p-bottom--large fontStyle">Have Ideas?</h3>
+                                    <button class="slds-button slds-button--neutral slds-button--small slds-m-bottom--x-large centre" aria-live="assertive" onclick="{!c.gotoSubmitIdea}">
+                                        <span class="slds-text-not-selected">
+                                            <img aria-hidden="true" class="slds-button__icon--stateful slds-button__icon--left" src="/resource/CORE_IC_IdeasLigthtning/img/Idea_blue.svg" />Post One
+                                         </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </aura:if>
+                </td>
+            </tr>
+        </table>
             <aura:if isTrue="{!v.showspinner == true ? false : true}">
-                <div class="fixedBottomBar">
-                    <img src="/resource/CORE_IC_IdeasLigthtning/utility/info_60.png" onclick="{!c.navigateToFaq}" class="fixedBottomBarIcon" />                        
-                </div>
-            </aura:if>
-        </td></tr>
-    </table> 
+            <div class="action_bar">
+               <div class="feedback" onclick="{!c.navigateToFeedback}"> <img src="/resource/CORE_IC_IdeasLigthtning/img/IDEA01.svg"/><div class="font1">App Feedback</div></div>
+              <div class="information" onclick="{!c.navigateToFaq}"><img src="/resource/CORE_IC_IdeasLigthtning/img/IDEA02.svg"/><div class="font1">Information</div></div>
+          </div>
+         </aura:if> 
+    
     <aura:if isTrue="{!v.showspinner}">
-      <!--  <center><img class="spinner-img" src="/resource/EA_StaticResource/assets/images/spinners/slds_spinner.gif"></img></center>-->
-       <div class="slds-spinner_container">
-         <div class="slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
-             <div class="slds-spinner__dot-a"></div>
-             <div class="slds-spinner__dot-b"></div>
-         </div>
-      </div>
+            <div class="slds-spinner_container">
+                <div class="slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
+                    <div class="slds-spinner__dot-a"></div>
+                    <div class="slds-spinner__dot-b"></div>
+                </div>
+            </div>
     </aura:if>
 </aura:component>

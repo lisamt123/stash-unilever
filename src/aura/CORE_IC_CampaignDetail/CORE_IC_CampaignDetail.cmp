@@ -16,12 +16,26 @@
             <aura:attribute name="recordDetail" type="Core_CA_BaseApplicationWrapper"/>
             <aura:attribute name="showspinner" type="boolean" default="true"/> 
             <aura:attribute name="leaderBoardItems" type="Core_CA_BaseApplicationWrapper"/>
+           <aura:attribute name="latesIdeaItems" type="Core_CA_BaseApplicationWrapper"/>
     <style>
+        .leader{margin-bottom: 10px;
+    margin-top: 10px;
+    padding-left: 13px;}
+        .user{margin-top: -10px;
+            margin-bottom: 12px;}
         .align{margin-left: 39px;}
-        .vote{    margin-left: 210px;
-}
+        .vote{ margin-top: -15px;
+    margin-left: 228px;}
+        .top{background-color: #CFD7E6;}
+        .border{background-color: white;}
+        .detail{margin-top: 10px;
+        background-color: white;}
+        .Leader_Content{background-color: white;}
+        .main_content{background-color: white;}
+        sss
     </style>
-                <div class="main content">
+                  
+               <div class="main_content">
                            <div class="topBarStyle">   
                                <div class="topBackBar">
                                  <img class="topBackBarIcon" src="/resource/CORE_IC_IdeasLigthtning/img/back.svg" onclick="{!c.navigateToAllCampaigns}"/>           	                                             
@@ -61,34 +75,49 @@
                          <div class="slds-text-body--small bottomPadding">{!v.FeaturedCampaignsItems.EndDate}</div>
                  </div>
                <div class="slds-card__header bottomPadding">
-                      <img src="{!v.FeaturedCampaignsItems.Banner}" class="campaignBanner" > </img>  <br/> <br/>         
-                      <div class="slds-text-body--regular topPadding bottomPadding">{!v.FeaturedCampaignsItems.Description}</div>            
-                         <hr/> 
+                      <img src="{!v.FeaturedCampaignsItems.Banner}" class="campaignBanner" > </img>  <br/> <br/>  
+                             <div class="slds-media__body">
+                              <p>{!v.FeaturedCampaignsItems.Description}</p>
+                               </div>
+                              <hr/> 
                           <div class="slds-grid">
-                             <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                             <div class="slds-media slds-media--center slds-has-flexi-truncate border">
                               <div class="slds-button fontStyle">{!v.FeaturedCampaignsItems.IdeaCount} Ideas</div>
                              </div>
-                             <div class="slds-no-flex">
-                               <button class="slds-button slds-button--neutral slds-not-selected mediumFont"><img src="/resource/CORE_IC_IdeasLigthtning/img/Idea_blue.svg" class="mediumImageHeight"/> Post an Idea</button>
-                              </div>
+                                <div class="slds-no-flex" onclick="{!c.gotoSubmitIdea}" >
+                                  <button class="slds-button slds-button--neutral slds-not-selected mediumFont"><img src="/resource/CORE_IC_IdeasLigthtning/img/Idea_blue.svg" class="mediumImageHeight"/> Post an Idea</button>
+                                 </div>
                          </div>
                   </div>
+                   <hr/>
+                   <div class="slds-text-heading--small leader">Leaderboard</div>
+                   <hr/>
+                
+                    
+                   <hr/>
+                   <div class="slds-text-heading--small leader">Latest Idea</div>
+                   <hr/>
                     <div class="Leader_Content">
-                      <aura:iteration items="{!v.leaderBoardItems}" var="leader">
-                                  <div class="slds-tile">
-                                      <div class="slds-avatar slds-avatar--circle slds-avatar--small avatarIcon">    
-                                       <img src="{!leader.BackgroundImage}"/>
-                                       </div>
-                                    <span class="slds-tile__title slds-truncate">{!leader.IdeaTitle}</span>
-                                      <span class="slds-badge slds-theme--inverse vote">{!leader.VoteCount} Votes</span>
-                                    <div class="slds-tile__detail slds-text-body--small">
-                                     <span class="slds-truncate align">by {!leader.CreatorName}</span>
-                                   </div>
-                                </div>
+                  <aura:iteration items="{!v.leaderBoardItems}" var="leader">
+                          <div class="slds-media slds-tile tilePadding detail">
+                        <div class="slds-media__figure">
+                          <span class="slds-avatar slds-avatar--circle slds-avatar--small avatarIcon">
+                              <img class="userImage" src="{!leader.BackgroundImage}"  alt="Person"/>
+                          </span>
+                        </div>
+                              <div class="slds-tile">
+                                 <p class="slds-tile__title slds-truncate"><a>{!leader.IdeaTitle}</a></p>
+                                  <div class="slds-badge slds-theme--inverse vote"><img class="mediumImageHeight" src="/resource/CORE_IC_IdeasLigthtning/img/like_white.svg"/>&nbsp;{!leader.VoteCount} Votes</div>
+                                 <div class="slds-tile__detail slds-text-body--small">
+                                 <p class="slds-truncate user">by {!leader.CreatorName}</p>
+                               </div>
+                              </div>
+                         </div>
+                      
                           <hr/>
                         </aura:iteration>
-                        
-                    </div>
+                   </div>
+                   
                  <aura:set attribute="else">
                    <div class="slds-spinner_container">
                           <div class="slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
@@ -99,4 +128,5 @@
                  </aura:set>
            </aura:if>
           </div>
+   
 </aura:component>

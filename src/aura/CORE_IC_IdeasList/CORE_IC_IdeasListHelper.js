@@ -12,13 +12,14 @@
     },
     checkSelectedSort : function(component, ideasListType, selectedSortType, selectedFilterType) { 
         var ideasList=component.get(ideasListType);
-        if(ideasList.lenght>0){           
+        if(ideasList.length>0){           
             switch(selectedSortType) {
                 case "latestIdea": this.sortData(ideasList,'MinutesBetween','ASC');
                                    break;
                 case "mostVotedIdea": this.sortData(ideasList,'VoteCount','DESC');
                                    break;
-                case "mostCommentedIdea": this.sortData(ideasList,'CommentCount','DESC');
+                //case "mostCommentedIdea": this.sortData(ideasList,'CommentCount','DESC');
+                default : this.sortData(ideasList,'CommentCount','DESC');
                                    break;
             }
         	component.set("v.selectedSortType",selectedSortType); 
@@ -28,6 +29,7 @@
             this.setDefaultSortFilter(component,selectedSortType,selectedFilterType);
             component.set("v.displayErrorMessage",true);
         	this.hidePostAnIdea(component, ideasList);
+            component.set("v.displayLoadMore",false);
         }
     }, 
     sortData : function(ideaList, value,sortOrder)
@@ -65,6 +67,9 @@
             component.set("v.displayErrorMessage",true);
         }
         this.hidePostAnIdea(component, ideasList);
+        console.log('------------data-------------'+ideasList);   
+        console.log('------------display load more-------------'+component.get("v.displayLoadMore"));                      
+        component.set("v.showspinner",false);
     },
 	loadMoreIdeasHelper: function(component, campaignsList) {
         var campaignListData = component.get("v.ideasList");

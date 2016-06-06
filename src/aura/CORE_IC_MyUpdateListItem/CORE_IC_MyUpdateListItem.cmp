@@ -10,14 +10,17 @@
    <style>
        .user{#A7B8D1}
     </style>
+    
+    
     <div class="slds-media slds-comment slds-hint-parent updateStyle">
+        
          <div class="slds-media__figure">
              <div class="slds-avatar slds-avatar--circle slds-avatar--small avatarIcon">    
                  <img src="{!v.myUpdatesListItem.BackgroundImage}"/>
              </div>
          </div> 
-        
          <div class="slds-media__body">
+             <aura:if isTrue="{!v.showspinner=='false'}">
              <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate"> 
                  <p class="slds-truncate "><span class="user">{!v.myUpdatesListItem.CreatorName}</span>
                      <aura:if isTrue="{!v.myUpdatesListItem.MyUpdatesType == 'Comment'}">
@@ -29,8 +32,18 @@
                   </p>
               </div>
              <p class="slds-text-body--small">{!v.myUpdatesListItem.CreatedDateTime}...</p><br/>
-                On&nbsp;<b><span class="slds-type-focus text" onclick="{!c.gotoIdeaDetailPage}">{!v.myUpdatesListItem2.IdeaTitle}</span></b>
-           </div>  
-   </div>
+                for&nbsp;<b><span class="slds-type-focus text" onclick="{!c.gotoIdeaDetailPage}">{!v.myUpdatesListItem2.IdeaTitle}</span></b>
+             
+                  <aura:set attribute="else">
+                        <div class="slds-spinner_container">
+                             <div class="slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
+                               <div class="slds-spinner__dot-a"></div>
+                               <div class="slds-spinner__dot-b"></div>
+                             </div>
+                      </div>
+                 </aura:set>
+             </aura:if>
+          </div>  
+     </div>
   <hr/>      
 </aura:component>

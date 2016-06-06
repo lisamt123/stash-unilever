@@ -23,22 +23,29 @@
     <aura:attribute name="clearSelectedGroupFlag" type="Boolean" default="false"/> 
     <aura:attribute name="ErrorMessage" type="String" default="Some problem occured,Try Again"/>
     <aura:attribute name="displaySucessNotification" type="Boolean" default="false"/>
+    <aura:attribute name="showspinner" type="Boolean" default="false"/>
     
     <aura:if isTrue="{!v.displaySucessNotification}">
-        <!--<div class="notificationBackground">
-            <div class="notificationDisplay" onclick="{!c.BackButton}">Your Share is success...</div>
-        </div>-->
         <div onclick="{!c.BackButton}">
             <div aria-hidden="false" role="dialog" class="slds-modal slds-modal--prompt slds-fade-in-open">
                 <div class="slds-modal__container slds-modal--prompt">
                     <div class="slds-box slds-theme--success">
-                        <div>Your Share is success...<a href="#"><img class="successIcon" src="/resource/CORE_IC_IdeasLigthtning/utility/close.svg"></img></a></div>
+                        <div>Your Share is success...<img class="successIcon" src="/resource/CORE_IC_IdeasLigthtning/utility/close.svg" onclick="{!c.BackButton}"></img></div>
                     </div>
                 </div>
             </div>
             <div class="slds-backdrop slds-backdrop--open"></div>
         </div>
-    </aura:if>     
+    </aura:if>    
+    <aura:if isTrue="{!v.showspinner}">
+       <!-- <center><img class="spinner-img" src="/resource/EA_StaticResource/assets/images/spinners/slds_spinner.gif"></img></center>-->
+       <div class="slds-spinner_container">
+         <div class="slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
+            <div class="slds-spinner__dot-a"></div>
+             <div class="slds-spinner__dot-b"></div>
+         </div>
+      </div>
+    </aura:if>
         	<div>    
                 <div class="topBarStyle">
                     <div onclick="{!c.BackButton}" class="topBackBar">
@@ -78,7 +85,10 @@
                                 <div class="groupNameList"><span onclick="{!c.clearGroupNames}" class="applyButton">Clear Groups</span></div><br/>
                             </aura:if>                                                
                             <aura:if isTrue="{!v.UserGroupFlag}">
-                                <span class="errorMessageColor" >*Enter atleast 1 Group Name</span>
+                               <!-- <span class="errorMessageColor" >*Add altelast 1 Group Name</span>-->
+                               <div class="slds-box slds-theme--error">
+                                    <p>Add altelast <strong>1 Group</strong></p>
+                                </div>
                             </aura:if>                         
                         </div>                        
                     </div>     				                

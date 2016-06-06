@@ -103,4 +103,8 @@
         var selectEvent = $A.get("e.c:CORE_IC_IdeaTemplateEvent");
         selectEvent.setParams({"componentName":"markup://c:CORE_IC_IdeaFaqs","pannelType":component.get("v.pannelType")}).fire();
     },
+     navigateToFeedback: function(component, event, helper) { 
+        var selectEvent = $A.get("e.c:CORE_IC_IdeaTemplateEvent");
+        selectEvent.setParams({"componentName":"markup://c:CORE_IC_IdeaFaqs","Pagename":"Feedback","pannelType":component.get("v.pannelType"),"componentName":"IdeaHome"}).fire();
+    },
 })

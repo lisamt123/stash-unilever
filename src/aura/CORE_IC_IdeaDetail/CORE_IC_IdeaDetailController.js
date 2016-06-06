@@ -8,21 +8,17 @@
 		});
         action.setCallback(this, function(response) {
         	var state = response.getState();
-        	if (state === "SUCCESS") {
-                if(response.getReturnValue()!==''){
-                   
-                   component.set("v.recordDetail",response.getReturnValue().IdeaDetails); 
-                   component.set("v.commentListItem",response.getReturnValue().IdeaComments);
-                    var count=  component.get("v.recordDetail.CommentCount");
-                    if(count==0){
-                        component.set("v.commentCount","true"); 
-                    }
-                   
-                   component.set("v.showspinner","false"); 
-                    
+        	if (state === "SUCCESS" && response.getReturnValue()!=='') {
+               
+               component.set("v.recordDetail",response.getReturnValue().IdeaDetails); 
+               component.set("v.commentListItem",response.getReturnValue().IdeaComments);
+                var count=  component.get("v.recordDetail.CommentCount");
+                if(count===0){
+                    component.set("v.commentCount","true"); 
                 }
-                 
-        	}
+               component.set("v.showspinner","false"); 
+          
+        }
         });
         $A.enqueueAction(action);
     
@@ -35,7 +31,6 @@
      
     submitComment :function(component, event, helper) {
          var selectedIdeaId=component.get("v.recordDetail.IdeaId");
-		 alert(selectedIdeaId);
 		 var comments = component.find("comments").get("v.value");
 	     var action= component.get("c.postCommentAnIdea");
 		     action.setParams({
@@ -44,13 +39,12 @@
 		});
 		 action.setCallback(this, function(response) {
         	var state = response.getState();
-        	if (state === "SUCCESS") {
-                if(response.getReturnValue()!==''){
+        	if (state === "SUCCESS" && response.getReturnValue()!=='') {
                   component.set("v.commentListItem",response.getReturnValue().IdeaComments); 
                   component.set("v.commentCount","false");
                  
                 }
-        	}
+        	
         });
         $A.enqueueAction(action);
         
@@ -60,12 +54,10 @@
 		});
         action2.setCallback(this, function(response) {
         	var state = response.getState();
-        	if (state === "SUCCESS") {
-                if(response.getReturnValue()!==''){
-                   
+        	if (state === "SUCCESS" && response.getReturnValue()!=='') {
+              
                   component.set("v.recordDetail.CommentCount",response.getReturnValue().IdeaDetails.CommentCount);
-                  
-                }
+              
         	}
         });
         $A.enqueueAction(action2);
@@ -79,11 +71,11 @@
 		});
         action.setCallback(this, function(response) {
         	var state = response.getState();
-        	if (state === "SUCCESS") {
-                if(response.getReturnValue()!==''){
+        	if (state === "SUCCESS"  && response.getReturnValue()!=='') {
+                
                    component.set("v.recordDetail.VoteCount",response.getReturnValue().VoteCount); 
                    component.set("v.recordDetail.Voted","True"); 
-                }
+  
         	}
         });
         $A.enqueueAction(action);

@@ -30,5 +30,33 @@
         $A.assert(scroller && scroller.isInstanceOf("ui:scroller"), displayErrorMessage);
         
         return scroller;
+    },
+    loadNewComponent : function(component,componentName,pannelType) {
+        $A.componentService.newComponentAsync(this, function(view) {
+            var content = component.find("IdeasPannel");
+            content.set("v.body", view);
+        }, {
+            componentDef: componentName,
+            attributes: {
+                values: {
+                    pannelType: pannelType
+                }
+            }
+        }, component);  
+    },
+    loadFeedBack : function(component,destination,pannelType){
+        $A.componentService.newComponentAsync(this, function(view) {
+            var content = component.find("IdeasPannel");
+            content.set("v.body", view);
+        }, {
+            componentDef: destination,
+            attributes: {
+            values: {
+            Appname:component.get("v.appName"),
+            Pagename:component.get("v.pageName"),
+            EventName: "CORE_IC_IdeaTemplateEvent",
+            tabName: pannelType,
+            showTranslation: false
+        }}}, component);
     }
 })

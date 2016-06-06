@@ -10,12 +10,11 @@
     <aura:attribute name="articleType" type="String"/>
     
     <aura:attribute name="pannelType" type="String" default="campaignsListPannel"/>
-    <aura:attribute name="appName" type="String" default="Ideas2.0"/>
+    <aura:attribute name="appName" type="String" default="Ideas"/>
     <aura:attribute name="pageName" type="String" default="CORE_IC_IdeaHome"/>
     <aura:attribute name="showspinner" type="Boolean" default="false"/>
     
-    <!--<aura:handler event="c:Feedback_Event" action="{!c.handleEventTest}" />-->
-    
+    <!--<aura:handler event="c:Feedback_Event" action="{!c.handleEventTest}" />-->    
 
     <!-- <ui:outputText value="{!v.articleId}" />
      <ui:outputText value="{!v.articleType}" />-->

@@ -7,7 +7,7 @@
 }
 
 .THIS .shareTop{
-    top: -27px;
+    top: -38px;
     right: -14px;
 }
 .THIS .slds-button{
@@ -25,18 +25,19 @@
     width: 140px;
 }
 .THIS .dorpdown-right {
-	top: 70px;
+	top: 41px;
     position: absolute;
     right: 12px;
     width: 140px;
 }
 .THIS .sort {
-    right: 49px;
+    right: 15px;
 }
 .THIS .filter{
     right: 16px;
     width:160px;
     top: 68px;
+    margin-top: -3px;
 }
 .THIS .chatter{
    right: 35px;
@@ -76,7 +77,7 @@
     font-weight:bold;
 }
 .THIS .campaignType{
-        right: 87px;
+        right: 55px;
         width: 160px !important;
 }
 
@@ -87,11 +88,35 @@
     display:none;
 }
 .THIS .filter {
-    right: -34px;
-    width: 160px;
-    top: 34px;
+    right: 0px;
+    width: 93px;
+    top: 9px;
 }
 
 .THIS .noData{
 margin-top: 16px;
+}
+
+.THIS .slds-grid--align-end {
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+}
+
+@media (min-width: 48em){
+    .THIS .slds-medium-size--1-of-2 .campaignDescriptionHeight{
+    	height: 65px;   
+	}
+}
+
+@media (min-width: 64em){
+    .THIS .slds-large-size--1-of-3 .campaignDescriptionHeight{
+     	height: 65px;      
+    }
+}
+
+@media (min-width: 30em){
+    .THIS .slds-large-size--1-of-1 .campaignDescriptionHeight{
+     	height: auto;      
+    }
 }

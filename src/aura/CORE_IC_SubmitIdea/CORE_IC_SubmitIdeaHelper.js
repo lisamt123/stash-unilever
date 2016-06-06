@@ -5,7 +5,8 @@
     	var file = fileInput.files[0];   
         if (file.size > this.MAX_FILE_SIZE) {
             component.set("v.showspinner",false);
-            alert('File size cannot exceed ' + this.MAX_FILE_SIZE + ' bytes.\n' + 'Selected file size: ' + file.size);
+            component.set("v.errorMessageFileUpload",true);
+            //alert('File size exceeds ' + ' 512KB\n' + 'Please Try Re-uploading' );
     	    return;
         }        
 		var self = this;

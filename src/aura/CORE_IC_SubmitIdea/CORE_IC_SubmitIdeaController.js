@@ -110,5 +110,10 @@
                 return;
             }
         }
-    },    
+    },
+    okayButton : function(component, event, helper) {
+        var selectEvent = $A.get("e.c:CORE_IC_IdeaTemplateEvent");
+        selectEvent.setParams({"componentName":"markup://c:CORE_IC_SubmitIdea","pannelType":component.get("v.pannelType")}).fire();
+    } 
+  
 })

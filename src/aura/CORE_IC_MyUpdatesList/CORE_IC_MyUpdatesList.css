@@ -10,38 +10,3 @@
     padding-left:10px;
      margin-top: 15px;
 }
-.THIS .bottom{
-    background-color:white;
-        margin-top: 35px;
-}
-.THIS.update{
-                margin-bottom: 31px
-                }
-.THIS .text{
-    color: #0040ff !important
-}
-.THIS .margin{
-    margin-left: 5px;
-               }
-.THIS.fixedBottom{
-        background: #ffffff;
-        height: 50px;
-        Position: fixed;
-        bottom: 0;
-        width: 100%;
-        }
-.THIS .fixedBottom>div {
-        width: 50%;
-        float: left;
-        }
-.THIS .fixedBottom >div img {
-        width: 50px;
-        }
-.THIS .feedback{
-       width:50%;
-        text-align:center;
-        }
-.THIS .information{
-        width:50%;
-        text-align:center;
-        }

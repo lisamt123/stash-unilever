@@ -5,4 +5,6 @@
     <aura:attribute name="recordDetail" type="Core_CA_BaseApplicationWrapper"/>
     <aura:attribute name="recordType" type="String"/>
     
+    <aura:attribute name="Pagename" type="string"/>
+    
 </aura:event>

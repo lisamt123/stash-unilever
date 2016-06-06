@@ -32,15 +32,12 @@
 		});
         action.setCallback(this, function(response) {
         	var state = response.getState();
-        	if (state === "SUCCESS") {
-                if(response.getReturnValue()!==''){
-                   component.set("v.ideasListItem.VoteCount",response.getReturnValue().VoteCount); 
-                   component.set("v.ideasListItem.Voted","True"); 
-                   var selectEvent = $A.get("e.c:CORE_IC_IdeaListEvent");
-           		   selectEvent.setParams({"recordId":IdeaIdList,"recordCommentCount":response.getReturnValue().VoteCount,"selectedSortType":component.get("v.selectedSortType")}).fire();
- 
-                }
-        	}
+        	if (state === "SUCCESS" && response.getReturnValue()!==''){
+                component.set("v.ideasListItem.VoteCount",response.getReturnValue().VoteCount); 
+                component.set("v.ideasListItem.Voted","True"); 
+                var selectEvent = $A.get("e.c:CORE_IC_IdeaListEvent");
+                selectEvent.setParams({"recordId":IdeaIdList,"recordCommentCount":response.getReturnValue().VoteCount,"selectedSortType":component.get("v.selectedSortType")}).fire(); 
+            }
         });
         $A.enqueueAction(action);
        

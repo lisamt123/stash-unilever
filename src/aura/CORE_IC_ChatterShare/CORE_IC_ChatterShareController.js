@@ -86,11 +86,13 @@
     }, 
     //got to news previous page
    BackButton:function(component, event, helper) {
+       console.log('--------chatter---------');
         var selectEvent = $A.get("e.c:CORE_IC_IdeaTemplateEvent");
         selectEvent.setParams({"componentName":"markup://c:CORE_IC_IdeaHome","pannelType":component.get("v.pannelType")}).fire();
    },
     //submit the chatter share detail of the news article
    submitShare:function(component, event, helper) {
+       component.set("v.showspinner",true);
        var Selected=component.get("v.SelectedRadioButton");
        var GrpNames=component.get("v.selectedGroupName");
        var slectedGroupNameList='';
@@ -113,19 +115,24 @@
         	if (state === "SUCCESS") {
                 if(response.getReturnValue()!=false){
                     component.set("v.displaySucessNotification",true);
+       				component.set("v.showspinner",false);
                 }
                 else {
                     component.set("v.ErrorMessageFlag", true);
+       				component.set("v.showspinner",false);
                 }
         	}
             else {
                 component.set("v.ErrorMessageFlag", true);
+                component.set("v.showspinner",false);
             }
         });
        
-       component.set("v.UserGroupFlag",false);
+      // component.set("v.UserGroupFlag",false);
        if(Selected=="group" && slectedGroupNameList==''){
             component.set("v.UserGroupFlag",true);
+           component.set("v.showspinner",false);
+            
        } else {
        	    $A.enqueueAction(action);
        }
@@ -152,5 +159,7 @@
     clearGroupNames :function(component, event, helper) {
         component.set("v.selectedGroupName",'')                      
         component.set("v.clearSelectedGroupFlag",false);
-    }
+    },
+    
+
 })

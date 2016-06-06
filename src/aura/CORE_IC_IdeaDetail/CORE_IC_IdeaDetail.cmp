@@ -45,6 +45,7 @@
                 </span>&nbsp;{!v.recordDetail.Categories}</a></p>
                </div>
                <hr/>
+          {!v.recordDetail.AttachmentURL}
 		   
      <div class="slds-grid">
         <div class="slds-media slds-media--center slds-has-flexi-truncate">

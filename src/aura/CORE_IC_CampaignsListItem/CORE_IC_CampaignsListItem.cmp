@@ -39,7 +39,7 @@
                                    </a>
                                 </li>
                                 <li class="slds-dropdown__item" onclick="{!c.hideChatterShare}">
-  <a href="{!'mailto:?subject='+v.MailSubject+'%20%22'+v.campaignsListItem.CampaignTitle+'!'+'%20%22'+'&amp;body='+v.MailToBody1+'%20%22'+v.campaignsListItem.CampaignTitle+'%22%20'+v.MailToBody2+'%20'+v.MailToBody3}" 
+  <a href="{!'mailto:?subject='+v.MailSubject+'%20%22'+v.campaignsListItem.CampaignTitle+'%20%22'+'&amp;body='+v.MailToBody1+'%20%22'+v.campaignsListItem.CampaignTitle+'%22%20'+v.MailToBody2+'%20'+v.MailToBody3}" 
                                     style="color: #344A5F ;text-decoration: none;"  role="menuitem">
                                   <p class="slds-truncate">Email</p>
                                   </a>

@@ -8,24 +8,23 @@
 		});
         action.setCallback(this, function(response) {
         	var state = response.getState();
-        	if (state === "SUCCESS") {
-                if(response.getReturnValue()!==''){
-                  //component.set("v.recordDetail",response.getReturnValue().Categories);
+        	if (state === "SUCCESS" && response.getReturnValue()!=='') {
+             
                   component.set("v.FeaturedCampaignsItems",response.getReturnValue().FeaturedCampaigns); 
                   component.set("v.leaderBoardItems",response.getReturnValue().LeaderBoard);
+                  component.set("v.latesIdeaItems",response.getReturnValue().IdeasOfTheWeek);
                   component.set("v.showspinner","false");
-                }                  
+                              
         	}
         });
         $A.enqueueAction(action);
      
     },
     showShare : function(component, event, helper) {
-        //alert("share");
-       //component.set("v.url", window.location.pathname);
-         var subject=$A.get("$Label.c.CORE_IC_ShareEmail1");
-         var label1=$A.get("$Label.c.CORE_IC_ShareEmail2");
-         var label2=$A.get("$Label.c.CORE_IC_ShareEmail3");
+   
+         var subject=$A.get("$Label.c.CORE_IC_CampaignSubject");
+         var label1=$A.get("$Label.c.CORE_IC_CampaignBody");
+         var label2=$A.get("$Label.c.CORE_IC_CampaignSubBody");
          var label3=encodeURIComponent(window.location.origin+"/apex/CORE_IC_NavigateToApp?articleId="+component.get("v.FeaturedCampaignsItems").IdeaThemeId+"&articleType=Campaign");
          component.set("v.MailSubject",subject);
          component.set("v.MailToBody1",label1);
@@ -50,5 +49,9 @@
     	var selectEvent = $A.get("e.c:CORE_IC_IdeaTemplateEvent");
         selectEvent.setParams({"componentName":"markup://c:CORE_IC_IdeaTemplate","pannelType":component.get("v.pannelType")}).fire();
     },
+    gotoSubmitIdea : function(component, event, helper) {
+       var selectEvent = $A.get("e.c:CORE_IC_IdeaTemplateEvent");
+       selectEvent.setParams({"componentName":"markup://c:CORE_IC_SubmitIdea","recordType":"Campaign","recordDetail":component.get("v.campaignsListItem"),"pannelType":component.get("v.pannelType")}).fire(); 
+    }
 	
 })

@@ -14,7 +14,7 @@
         .ideaListShare {
         left: auto;
         right: auto !important;
-        transform: translateX(208px) !important;
+        transform: translateX(236px) !important;
         }
         }
         @media screen and (min-width:768px){
@@ -26,8 +26,8 @@
     <div class="slds-card ">
         <div class="slds-card__header ideaTile">
             <div class="slds-grid">
-                <div class="slds-media slds-media--center slds-has-flexi-truncate " onclick="{!c.displayIdeaDetails}">
-                    <h2 class="slds-text-heading--small ideaTitleMargin truncate slds-type-focus" >{!v.ideasListItem.IdeaTitle}</h2>
+                <div class=" " onclick="{!c.displayIdeaDetails}">
+                   <a> <h2 class="slds-text-heading--small ideaTitleMargin " >{!v.ideasListItem.IdeaTitle}</h2></a>
                 </div>
             </div>
             <a>
@@ -49,7 +49,7 @@
                                     </a>
                                 </li>
                                 <li class="slds-dropdown__item"  onclick="{!c.hideIdeaChatterShare}">
-                                    <a href="{!'mailto:?subject='+v.MailSubjectIdea+'%20%22'+v.ideasListItem.IdeaTitle+'!'+'%20%22'+'&amp;body='+v.MailToBody3+'%20%22'+v.ideasListItem.IdeaTitle+'%22%20'+v.MailToBody4+'%20'+v.MailToBody5}" 
+                                    <a href="{!'mailto:?subject='+v.MailSubjectIdea+'%20%22'+v.ideasListItem.IdeaTitle+'%20%22'+'&amp;body='+v.MailToBody3+'%20%22'+v.ideasListItem.IdeaTitle+'%22%20'+v.MailToBody4+'%20'+v.MailToBody5}" 
                                     style="color: #344A5F ;text-decoration: none;"  role="menuitem">
                                         <p class="slds-truncate">Email</p>
                                     </a>
@@ -91,7 +91,7 @@
             </p>
         </div>
         <hr/>
-        <div class="slds-grid">
+        <div class="slds-grid margin-botton">
             <div class="slds-media slds-media--center slds-has-flexi-truncate" >
                 <div class="slds-button fontStyle">{!v.ideasListItem.VoteCount} Votes,</div>&nbsp;
             
