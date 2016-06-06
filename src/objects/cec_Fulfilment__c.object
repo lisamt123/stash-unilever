@@ -244,6 +244,17 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Cheque_Decimals__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Case__r.Country__r.Cheque_Decimals__c)</formula>
+        <label>Cheque Decimals</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Cheque_Number__c</fullName>
         <description>CEC : To capture the cheque number</description>
         <externalId>false</externalId>
@@ -498,6 +509,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Indonesia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Ireland</fullName>
                 <default>false</default>
             </picklistValues>
@@ -559,6 +574,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Peru</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Philippines</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1494,6 +1513,7 @@ Case__r.Account.PersonContact.MailingCountry</formula>
                 <controllingFieldValues>Hungary</controllingFieldValues>
                 <controllingFieldValues>Iceland</controllingFieldValues>
                 <controllingFieldValues>India</controllingFieldValues>
+                <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Ireland</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
                 <controllingFieldValues>Latvia</controllingFieldValues>
@@ -1510,6 +1530,7 @@ Case__r.Account.PersonContact.MailingCountry</formula>
                 <controllingFieldValues>Panama</controllingFieldValues>
                 <controllingFieldValues>Paraguay</controllingFieldValues>
                 <controllingFieldValues>Peru</controllingFieldValues>
+                <controllingFieldValues>Philippines</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Romania</controllingFieldValues>
@@ -2340,29 +2361,33 @@ NOT(ISBLANK(Enclosure5__c)) &amp;&amp; ISPICKVAL( Enclosure5_Quantity__c , &quot
 
 sforce.connection.sessionId = &quot;{!$Api.Session_ID}&quot;; 
 
-var fulfilment = new sforce.SObject(&quot;cec_fulfilment__c&quot;); 
-fulfilment.Id = &apos;{!cec_Fulfilment__c.Id}&apos;; 
-fulfilment.Brand__c = &apos;{!JSENCODE(cec_Fulfilment__c.CaseBrand__c)}&apos;; 
-fulfilment.Case_Product_Category__c = &apos;{!JSENCODE(cec_Fulfilment__c.Case_Product_Category__c)}&apos;;
-fulfilment.Cheque_Number__c = &apos;{!cec_Fulfilment__c.Cheque_Number__c}&apos;;
+if ({!$Permission.CEC_Cheque_Process}) {
+	var fulfilment = new sforce.SObject(&quot;cec_fulfilment__c&quot;); 
+	fulfilment.Id = &apos;{!cec_Fulfilment__c.Id}&apos;; 
+	fulfilment.Brand__c = &apos;{!JSENCODE(cec_Fulfilment__c.CaseBrand__c)}&apos;; 
+	fulfilment.Case_Product_Category__c = &apos;{!JSENCODE(cec_Fulfilment__c.Case_Product_Category__c)}&apos;;
+	fulfilment.Cheque_Number__c = &apos;{!cec_Fulfilment__c.Cheque_Number__c}&apos;;
 
-fulfilment.Country__c = &apos;{!cec_Fulfilment__c.Country__c}&apos;; 
- 
-//alert(&apos;my alert===&apos;+fulfilment.Id + &apos; &apos; + fulfilment.Brand__c + &apos; &apos; +fulfilment.Country__c + &apos; &apos;+ fulfilment.Case_Product_Category__c); 
+	fulfilment.Country__c = &apos;{!cec_Fulfilment__c.Country__c}&apos;; 
+	 
+	//alert(&apos;my alert===&apos;+fulfilment.Id + &apos; &apos; + fulfilment.Brand__c + &apos; &apos; +fulfilment.Country__c + &apos; &apos;+ fulfilment.Case_Product_Category__c); 
 
-if (fulfilment.Cheque_Number__c != &quot;&quot;){
-	alert(&apos;{!$Label.CEC_ChequeBook_ChequeNo_Already_Added}&apos;);
-}	
-else if (fulfilment.Id ==&apos;&apos; || fulfilment.Brand__c== &apos;&apos; || fulfilment.Country__c == &apos;&apos; || fulfilment.Case_Product_Category__c == &apos;&apos;){
-	alert(&apos;{!$Label.CEC_ChequeBook_input_fields_missing}&apos;);
-} else  {
-	var result =sforce.apex.execute(&quot;CEC_ChequeProcess&quot;,&quot;generateChequeNumber&quot;,{fulfilmentId:fulfilment.Id});
-//alert (&apos;my result===&apos;+result);
-	if (result[0].status == &apos;S&apos;) { 
-		window.location.reload(); 
-	} else if (result[0].status == &apos;E&apos;) { 
-		alert(result[0].message);
-	} 
+	if (fulfilment.Cheque_Number__c != &quot;&quot;){
+		alert(&apos;{!$Label.CEC_ChequeBook_ChequeNo_Already_Added}&apos;);
+	}	
+	else if (fulfilment.Id ==&apos;&apos; || fulfilment.Brand__c== &apos;&apos; || fulfilment.Country__c == &apos;&apos; || fulfilment.Case_Product_Category__c == &apos;&apos;){
+		alert(&apos;{!$Label.CEC_ChequeBook_input_fields_missing}&apos;);
+	} else  {
+		var result =sforce.apex.execute(&quot;CEC_ChequeProcess&quot;,&quot;generateChequeNumber&quot;,{fulfilmentId:fulfilment.Id});
+	//alert (&apos;my result===&apos;+result);
+		if (result[0].status == &apos;S&apos;) { 
+			window.location.reload(); 
+		} else if (result[0].status == &apos;E&apos;) { 
+			alert(result[0].message);
+		} 
+	}
+} else {
+    alert(&apos;{!$Label.CEC_NoAccessForChequeProcess}&apos;);
 }</url>
     </webLinks>
     <webLinks>
