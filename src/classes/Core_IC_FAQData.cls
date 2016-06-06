@@ -19,9 +19,9 @@ global with sharing class Core_IC_FAQData {
             objFAQResponseResponse.message=Core_IC_AppConstants.RESPONSE_SUCCESS_MSG;
             objFAQResponseResponse.statusCode=Core_IC_AppConstants.RESPONSE_SUCCESS_CODE;
        }
-       catch(Core_CA_BaseServiceException baseServEx){ 
+     /*  catch(Core_CA_BaseServiceException baseServEx){ 
             throw new Core_CA_BaseServiceException(baseServEx);
-       }
+       }*/
        catch(Exception ex){
             throw new Core_CA_BaseServiceException('Exception occured: Core_IC_FAQData : GetFAQValues method ', ex);
        }    

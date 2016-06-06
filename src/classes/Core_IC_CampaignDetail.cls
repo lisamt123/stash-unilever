@@ -18,9 +18,9 @@ global with sharing class Core_IC_CampaignDetail{
        try{
             objIdeaCampaignDetailResponse = processCampaignDetailResponse(appWrapperObj);
        }
-       catch(Core_CA_BaseServiceException baseServEx){ 
+    /*   catch(Core_CA_BaseServiceException baseServEx){ 
             throw new Core_CA_BaseServiceException(baseServEx);
-       }
+       }*/
        catch(Exception ex){
             throw new Core_CA_BaseServiceException('Exception occured: Core_IC_CampaignDetail : getCampaignDetail method ', ex);
        }    
@@ -59,9 +59,9 @@ global with sharing class Core_IC_CampaignDetail{
            objIdeaCampaignDetailResponse.message=Core_IC_AppConstants.RESPONSE_SUCCESS_MSG;
            objIdeaCampaignDetailResponse.statusCode=Core_IC_AppConstants.RESPONSE_SUCCESS_CODE;
        }
-       catch(Core_CA_BaseServiceException baseServEx){ 
+     /*  catch(Core_CA_BaseServiceException baseServEx){ 
             throw new Core_CA_BaseServiceException(baseServEx);
-       }
+       }*/
        catch(Exception ex){
             throw new Core_CA_BaseServiceException('Exception occured: Core_IC_CampaignDetail : processCampaignDetailResponse method ', ex);
        }   
@@ -106,9 +106,9 @@ global with sharing class Core_IC_CampaignDetail{
             ObjFeaturedCampaign.Categories=strCategories.split(',');
             
        }
-       catch(Core_CA_BaseServiceException baseServEx){ 
+  /*     catch(Core_CA_BaseServiceException baseServEx){ 
             throw new Core_CA_BaseServiceException(baseServEx);
-       }
+       }*/
        catch(Exception ex){
             throw new Core_CA_BaseServiceException('Exception occured: Core_IC_CampaignDetail : processFeaturedCampaign method ', ex);
        }   
@@ -129,9 +129,9 @@ global with sharing class Core_IC_CampaignDetail{
            IdeaTheme ideaTheme=getideaCampaigndata(Id.valueof(appWrapperObj.ideaCampaignDetailRequest.IdeaCampaignId));
            ObjIdeaCampaignDetailResponse.ActiveStatus=False;
            ObjIdeaCampaignDetailResponse.CampaignStatus=ideaTheme.Status;
-           if(ideaTheme.Status=='Active') ObjIdeaCampaignDetailResponse.ActiveStatus=True;
-           if(appWrapperObj.ideaCampaignDetailRequest.LatestIdeasLimit!='All') lstIdea=[SELECT Body,CreatedDate,CreatorName,CreatorSmallPhotoUrl,Id,IdeaThemeId,Title,VoteTotal,Description__c,NumComments,CreatorFullPhotoUrl,Categories__c FROM Idea Where IdeaThemeId=:appWrapperObj.ideaCampaignDetailRequest.IdeaCampaignId ORDER BY VoteTotal DESC,CreatedDate DESC Limit 1];
-           else lstIdea=[SELECT Body,CreatedDate,CreatorName,CreatorSmallPhotoUrl,Id,IdeaThemeId,Title,VoteTotal,Description__c,NumComments,CreatorFullPhotoUrl,Categories__c FROM Idea Where IdeaThemeId=:appWrapperObj.ideaCampaignDetailRequest.IdeaCampaignId ORDER BY CreatedDate DESC];
+           if(ideaTheme.Status=='Active') {ObjIdeaCampaignDetailResponse.ActiveStatus=True;}
+           if(appWrapperObj.ideaCampaignDetailRequest.LatestIdeasLimit!='All') {lstIdea=[SELECT Body,CreatedDate,CreatorName,CreatorSmallPhotoUrl,Id,IdeaThemeId,Title,VoteTotal,Description__c,NumComments,CreatorFullPhotoUrl,Categories__c FROM Idea Where IdeaThemeId=:appWrapperObj.ideaCampaignDetailRequest.IdeaCampaignId ORDER BY VoteTotal DESC,CreatedDate DESC Limit 1];}
+           else {lstIdea=[SELECT Body,CreatedDate,CreatorName,CreatorSmallPhotoUrl,Id,IdeaThemeId,Title,VoteTotal,Description__c,NumComments,CreatorFullPhotoUrl,Categories__c FROM Idea Where IdeaThemeId=:appWrapperObj.ideaCampaignDetailRequest.IdeaCampaignId ORDER BY CreatedDate DESC];}
            if(!lstIdea.isEmpty()){
                 ObjIdeaCampaignDetailResponse.SeeAllLinkForLatestIdeas=True;
                 ObjIdeaCampaignDetailResponse.CampaignTypeForLatestIdeas='None';
@@ -140,7 +140,7 @@ global with sharing class Core_IC_CampaignDetail{
                 ObjIdeaCampaignDetailResponse.SeeAllLinkForLatestIdeas=False;
                 ObjIdeaCampaignDetailResponse.CampaignTypeForLatestIdeas='NoIdeas';
             }
-            if(ObjIdeaCampaignDetailResponse.SeeAllLinkForLatestIdeas==True){
+            if(ObjIdeaCampaignDetailResponse.SeeAllLinkForLatestIdeas){
                 Set<Id> setIdeasId=new Set<Id>();
                 for(Idea i:lstIdea){
                     setIdeasId.add(i.Id);
@@ -157,24 +157,24 @@ global with sharing class Core_IC_CampaignDetail{
                         decimal Hours = decimal.valueOf((System.now().getTime()-i.CreatedDate.getTime())/(1000*60*60));
                         decimal decMinutes = ((System.now().getTime())/1000/60) - ((i.CreatedDate.getTime())/1000/60);
                         String strTimeFormat='';
-                        if(Hours>=48) strTimeFormat='on '+i.CreatedDate.format('dd-MMM-yyyy');
-                        else if(Hours>=24 && Hours<48) strTimeFormat='Yesterday';
-                        else if(((Hours>1 ||decMinutes>59)&& Hours!=1) && Hours<24) strTimeFormat=Hours+' hours ago';
-                        else if((Hours==1 ||decMinutes>59) && Hours<24) strTimeFormat=Hours+' hour ago';
-                        else if(Hours<1 && decMinutes<=59 && decMinutes>1) strTimeFormat=decMinutes+' mins ago';
-                        else if(Hours<1 && decMinutes==1) strTimeFormat=decMinutes+' min ago';
-                        else if(decMinutes<1) strTimeFormat='just now';
+                        if(Hours>=48){ strTimeFormat='on '+i.CreatedDate.format('dd-MMM-yyyy');}
+                        else if(Hours>=24 && Hours<48) {strTimeFormat='Yesterday';}
+                        else if(((Hours>1 ||decMinutes>59)&& Hours!=1) && Hours<24) {strTimeFormat=Hours+' hours ago';}
+                        else if((Hours==1 ||decMinutes>59) && Hours<24){ strTimeFormat=Hours+' hour ago';}
+                        else if(Hours<1 && decMinutes<=59 && decMinutes>1) {strTimeFormat=decMinutes+' mins ago';}
+                        else if(Hours<1 && decMinutes==1) {strTimeFormat=decMinutes+' min ago';}
+                        else if(decMinutes<1) {strTimeFormat='just now';}
                         ObjIdeasOfTheWeek.CreatedDateTime=strTimeFormat;
                         ObjIdeasOfTheWeek.CreatorName=i.CreatorName;
                         String strDescription=i.Description__c;
-                        if(strDescription.length()>=Integer.valueof(Core_Ideation__c.getinstance('DescriptionLimit').Text_Value__c)) strDescription=strDescription.substring(0, Integer.valueof(Core_Ideation__c.getinstance('DescriptionLimit').Text_Value__c))+'...';
+                        if(strDescription.length()>=Integer.valueof(Core_Ideation__c.getinstance('DescriptionLimit').Text_Value__c)) {strDescription=strDescription.substring(0, Integer.valueof(Core_Ideation__c.getinstance('DescriptionLimit').Text_Value__c))+'...';}
                         ObjIdeasOfTheWeek.IdeaBody=strDescription;
                         ObjIdeasOfTheWeek.IdeaId=i.Id;
                         ObjIdeasOfTheWeek.IdeaThemeId=i.IdeaThemeId;
                         ObjIdeasOfTheWeek.IdeaTitle=i.Title;
                         ObjIdeasOfTheWeek.VoteCount=Integer.Valueof(i.VoteTotal/10);
                         String strVoted='False';
-                        if(mapVoteId.get(i.Id)!=null) strVoted='True';
+                        if(mapVoteId.get(i.Id)!=null){ strVoted='True';}
                         ObjIdeasOfTheWeek.Voted=strVoted;
                         ObjIdeasOfTheWeek.CommentCount=i.NumComments;
                         ObjIdeasOfTheWeek.CampaignStatus=ideaTheme.Status;
@@ -187,9 +187,9 @@ global with sharing class Core_IC_CampaignDetail{
             }
             ObjIdeaCampaignDetailResponse.IdeasOfTheWeek=lstLatestIdeas;
        }
-       catch(Core_CA_BaseServiceException baseServEx){ 
+    /*   catch(Core_CA_BaseServiceException baseServEx){ 
             throw new Core_CA_BaseServiceException(baseServEx);
-       }
+       }*/
        catch(Exception ex){
             throw new Core_CA_BaseServiceException('Exception occured: Core_IC_CampaignDetail : processLatestIdeas method ', ex);
        }   
@@ -217,9 +217,9 @@ global with sharing class Core_IC_CampaignDetail{
                 lstLeaderBoard.add(leaderBoard);
             }
        }
-       catch(Core_CA_BaseServiceException baseServEx){ 
+    /*   catch(Core_CA_BaseServiceException baseServEx){ 
             throw new Core_CA_BaseServiceException(baseServEx);
-       }
+       }*/
        catch(Exception ex){
             throw new Core_CA_BaseServiceException('Exception occured: Core_IC_CampaignDetail : processLeaderBoard method ', ex);
        }   
@@ -239,9 +239,9 @@ global with sharing class Core_IC_CampaignDetail{
             String strCategories=ideaTheme.Categories__c.ReplaceAll(', ',',');
             lstCategories=strCategories.split(',');
        }
-       catch(Core_CA_BaseServiceException baseServEx){ 
+     /*  catch(Core_CA_BaseServiceException baseServEx){ 
             throw new Core_CA_BaseServiceException(baseServEx);
-       }
+       }*/
        catch(Exception ex){
             throw new Core_CA_BaseServiceException('Exception occured: Core_IC_CampaignDetail : processLeaderBoard method ', ex);
        }   
