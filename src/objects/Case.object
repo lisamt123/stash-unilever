@@ -1581,6 +1581,10 @@ Email Brazil</inlineHelpText>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Email Indonesia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Email Italy</fullName>
                 <default>false</default>
             </picklistValues>
@@ -1598,6 +1602,10 @@ Email Brazil</inlineHelpText>
             </picklistValues>
             <picklistValues>
                 <fullName>Email North America CS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Email Philippines</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -8037,25 +8045,6 @@ var openSuccess = function openSuccess(result) {
             }
         };</url>
     </webLinks>
-	<webLinks>
-        <fullName>TransferCase</fullName>
-        <availability>online</availability>
-        <displayType>button</displayType>
-        <linkType>javascript</linkType>
-        <masterLabel>Transfer Case</masterLabel>
-        <openType>onClickJavaScript</openType>
-        <protected>false</protected>
-        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/28.0/connection.js&quot;)} 
-{!REQUIRESCRIPT(&quot;/support/console/28.0/integration.js&quot;)} 
-
-var url = &apos;/apex/CEC_CaseTransfer?Id={!Case.Id}&apos;; 
-
-if (sforce.console.isInConsole()) { 
-    srcUp(url);
-} else { 
-  window.open(url, &apos;&apos;, &apos;width=600,height=400&apos;);
-}</url>
-    </webLinks>
     <webLinks>
         <fullName>Social_Response_URL</fullName>
         <availability>online</availability>
@@ -8074,5 +8063,24 @@ if (sforce.console.isInConsole()) {
         <protected>false</protected>
         <showsLocation>false</showsLocation>
         <showsStatus>false</showsStatus>
+    </webLinks>
+	<webLinks>
+        <fullName>TransferCase</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Transfer Case</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/28.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/support/console/28.0/integration.js&quot;)} 
+
+var url = &apos;/apex/CEC_CaseTransfer?Id={!Case.Id}&apos;; 
+
+if (sforce.console.isInConsole()) { 
+    srcUp(url);
+} else { 
+  window.open(url, &apos;&apos;, &apos;width=600,height=400&apos;);
+}</url>
     </webLinks>
 </CustomObject>
