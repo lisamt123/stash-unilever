@@ -29,5 +29,4 @@
     <targetObject>EmailMessage</targetObject>
     <targetParentField>Parent</targetParentField>
     <type>SendEmail</type>
-    <optionsCreateFeedItem>false</optionsCreateFeedItem>
 </QuickAction>
