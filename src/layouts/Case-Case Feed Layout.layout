@@ -138,6 +138,10 @@
                 <behavior>Readonly</behavior>
                 <field>Consumer_Note__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -162,6 +166,10 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Case_Brand__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Country_Name__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -346,10 +354,6 @@
                 <behavior>Edit</behavior>
                 <field>DW_Order_Number__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Case_Brand_Mapping__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -431,9 +435,6 @@
         <fields>SuppliedEmail</fields>
     </miniLayout>
     <quickActionList>
-        <quickActionListItems>
-            <quickActionName>Case.Email</quickActionName>
-        </quickActionListItems>
         <quickActionListItems>
             <quickActionName>Case.ONE_Correspond_Email</quickActionName>
         </quickActionListItems>
