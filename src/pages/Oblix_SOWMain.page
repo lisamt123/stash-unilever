@@ -152,7 +152,8 @@
                     } ).DataTable({
                         "dom": 'lrtip',
                         'pagingType': 'full_numbers',
-                        'order': [[ 5, "desc" ]]
+                        'order': [[ 5, "desc" ]],
+                        'bPaginate': false
                     });
                     //setTimeout(function(){ $('#Oblix_DashId .blockUI1').hide(); console.log('Test123')}, 3000);
 

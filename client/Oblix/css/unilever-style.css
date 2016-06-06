@@ -604,6 +604,12 @@ table tbody tr td {
     left: 170px;
 }
 
+.campaignCreateChevronTooltip{
+    position: absolute;
+    left: 170px;
+    top: 65px;
+}
+
 .create_SOW_form_titles {
     font-family: 'UldinproB', Arial, sans-serif;
 }
