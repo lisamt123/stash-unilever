@@ -1,0 +1,27 @@
+<!--
+  Component Name: Core_CA_InvoiceSubDetail
+  Author : Mindtree
+  Date: 03 June 2016
+  Requirement/Description: Invoice Sub Detail Page includes
+						   1.Document History.
+-->
+<aura:component >
+    <aura:attribute name="ApprovalDetail" type="Core_CA_WrapperUtility.RequestDetailResponseAribaGTES[]"/>
+	<aura:attribute name="subDivision" type="string" />
+    <aura:attribute name="AddProFin1" type="string" />
+    <aura:attribute name="filterValue" type="string"/>    
+    <aura:attribute name="sourcePage" type="string"/>
+    
+    <div>
+        <div onclick="{!c.gotoPreviousPage}" class="topBackBar">
+            Back
+        </div>
+    </div>
+    
+	<aura:iteration items="{!v.ApprovalDetail}" var="detailData"> 
+        <aura:if isTrue="{!v.subDivision == 'DocHistory'}">
+               Document History Code Here<br/>
+                {!detailData.ApprovalType}
+         </aura:if>
+    </aura:iteration>
+</aura:component>

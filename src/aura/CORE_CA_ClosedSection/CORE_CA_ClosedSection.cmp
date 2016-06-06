@@ -1,0 +1,64 @@
+<!--
+  Component Name: Core_CA_ClosedSection
+  Author : Mindtree
+  Date: 03 June 2016
+  Requirement/Description: Closed tab of the Approval APP.
+-->
+<aura:component >
+    <style>
+        .hiddenClass{
+        color: red;
+        display: none;
+        }
+    </style>    
+    <aura:attribute name="ApprovalData" type="Core_CA_WrapperUtility.MyApprovalsDataResponse[]"/>
+    <aura:attribute name="retainfilterValue" type="string"/>
+    <div onclick="{!c.navigateToDetail}"> 
+        
+        <ui:outputText aura:id="reqlId" value="{!v.ApprovalData.RequestId}"  class="hiddenClass"/>
+        <ui:outputText aura:id="appId" value="{!v.ApprovalData.ApproverId}" class="hiddenClass"/>  	
+        <ui:outputText aura:id="srcId" value="{!v.ApprovalData.ExpenseType}" class="hiddenClass"/>
+        <span>    
+            <div border="1" class="homePageApprovalsListdiv">
+                <div>
+                    <div class = "local-div">
+                        <div class="name">
+                            {!v.ApprovalData.ExpenseID}<br/>
+                            <div class="expenseName">{!v.ApprovalData.ExpenseName} </div>
+                            <aura:if isTrue="{!v.ApprovalData.ExpenseType =='Clarity'}">
+                                <div class="slds-text-body--small requestedBy">
+                                    {!v.ApprovalData.Currencies}
+                                    {!v.ApprovalData.ProjectBug} 
+                                </div>
+                            </aura:if>
+                            <aura:if isTrue="{!v.ApprovalData.ExpenseType !='Clarity'}">
+                                <div class="slds-text-body--small requestedBy">
+                                    {!v.ApprovalData.Currencies}
+                                    {!v.ApprovalData.Amount} 
+                                </div>
+                            </aura:if>
+                            <br/>
+                            <div class="slds-text-body--small" style="float:left;">{!v.ApprovalData.RequestedBy} </div>
+                            
+                            <aura:if isTrue="{!v.ApprovalData.Req_Status =='APPR'}"><span type="button" class="requestedBy queryWithVendorIndicatorText queryWithVendorTextWidth"> {!$Label.c.CORE_LBL_APPROVED} </span></aura:if>
+                            
+                            
+                            <aura:if isTrue="{!v.ApprovalData.Req_Status =='REJC'}"><span type="button" class="requestedBy rejectedText queryWithVendorTextWidth"> {!$Label.c.CORE_LBL_REJECTED} </span></aura:if>
+                            
+                            
+                            <aura:if isTrue="{!v.ApprovalData.Req_Status =='Rework'}"><span type="button" class="requestedBy reworkText queryWithVendorTextWidth"> {!$Label.c.CORE_LBL_REWORK} </span></aura:if>
+                            
+                            
+                            <aura:if isTrue="{!v.ApprovalData.Req_Status =='RETOAP'}"><span type="button" class="requestedBy reworkText queryWithVendorTextWidth"> {!$Label.c.CORE_LBL_RETURN_TO_AP} </span></aura:if>
+                            <br/>
+                        </div>
+                    </div>
+                </div>
+                
+                <div align="right" valign="bottom" style = "clear:both;">                                          
+                    
+                </div>
+            </div>
+        </span>
+    </div>
+</aura:component>

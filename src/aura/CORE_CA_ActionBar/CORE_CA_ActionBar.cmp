@@ -1,0 +1,152 @@
+<aura:component > 
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="detailVal" type="Core_CA_WrapperUtility.RequestDetailResponseAribaGTES[]"/>
+    <style>
+        .action_bar{
+        background: #fff;
+        height: 50px;
+        Position: fixed;
+        bottom: 0;
+        width: 100%;
+        }
+        .icons{ 
+        width: 20%;
+        text-align:center;
+        float: left;
+        } 
+        .alignCenter{
+        text-align:center;       
+        }
+        .actionBarWidth {
+        width: 100%;
+        }
+        .img{    
+        width: 40px;
+        }
+        .actionBarHeight {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        text-align:center; 
+        }
+        
+    </style>
+    <div class="action_bar">
+        <div class="actionBarHeight">                  
+            <table class="actionBarWidth">
+                <tr class="alignCenter">               
+                    <!-- Feed Back -->
+                    <td class="alignCenter" onclick="{!c.gotoFeedback}"><img class="img" src="/resource/ApprovalsLightning/images/feedbackIcon.svg"/></td>
+                   
+                    <!-- Feed -->
+                    <aura:if isTrue="{!v.showFeed}">
+                    	<td class="alignCenter" ><img class="img" src="/resource/ApprovalsLightning/images/Comment.svg"/></td>
+                    </aura:if>
+                    
+                    <!--Query with Vendor  -->
+                    <aura:if isTrue="{!v.showQwv}">
+                        <td class="alignCenter" onclick ="{!c.return1}"><img class="img" src="/resource/ApprovalsLightning/images/querywithvendor.png"/></td>
+                    </aura:if>
+                    
+                    <!--Rework -->
+                    <aura:if isTrue="{!v.showReWork}">
+                        <td class="alignCenter" onclick ="{!c.reWork1}"><img class="img" src="/resource/ApprovalsLightning/images/rework.png"/></td>
+                    </aura:if>
+                   
+                    <!-- Return to AP -->
+                    <aura:if isTrue="{!v.showRtap}">                     
+                        <td class="alignCenter" onclick ="{!c.returntoAP}"><img class="img" src="/resource/ApprovalsLightning/images/rework.png"/></td>                    
+                    </aura:if>
+                    
+                    <!--Reject  -->
+                    <aura:if isTrue="{!v.showReject}">                     
+                        <td class="alignCenter" onclick ="{!c.return}"><img class="img" src="/resource/ApprovalsLightning/images/Return.svg"/></td>                    
+                    </aura:if>
+                    
+                    <!-- Approve -->
+                    <aura:if isTrue="{!v.showApprove}">
+                        <td class="alignCenter" onclick ="{!c.ApproveScreen}"><img class="img" src="/resource/ApprovalsLightning/images/Approve.svg" /></td> 
+                    </aura:if>  
+                </tr>
+            </table>
+        </div>  
+    </div>        
+    
+    
+    <!-- <aura:handler event="c:CORE_CA_ActionBarEvent" action="{!c.ApproveScreen1}" />
+    
+  
+     <style>
+        .action_bar{
+            background: #fff;
+            height: 50px;
+            Position: fixed;
+            bottom: 0;
+            width: 100%;
+         }
+        .icons{ 
+            width: 20%;
+            text-align:center;
+            float: left;
+         } 
+        .alignCenter{
+             text-align:center;       
+         }
+        .actionBarWidth {
+             width: 100%;
+         }
+         .img{    
+            width: 40px;
+         }
+         .actionBarHeight {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            text-align:center; 
+         }
+         .content{
+         display:inline;
+          }
+    </style>
+    
+    <div class="action_bar">
+        <div class="actionBarHeight">                   
+           <table class="actionBarWidth">
+            <tr class="alignCenter"> 
+              
+                    <div class = "content">
+                    <td class="alignCenter" ><img class="img" src="/resource/ApprovalsLightning/images/Comment.svg"/></td>
+                    </div>
+
+                <div class = "content" onclick ="{!c.gotoFeedback}">
+                    <td class="alignCenter" ><img class="img" src="/resource/ApprovalsLightning/images/feedbackIcon.svg"/></td>
+                </div>
+                
+               <aura:if isTrue="{!v.showApprove}">
+                    <div class = "content" onclick ="{!c.ApproveScreen}">
+                    <td class="alignCenter"><img class="img" src="/resource/ApprovalsLightning/images/Approve.svg" /></td> 
+                    </div>
+               </aura:if>  
+                
+               <aura:if isTrue="{!v.showRtap}">
+                     <div class = "content" onclick ="{!c.returntoAP}">
+                     <td class="alignCenter"><img class="img" src="/resource/ApprovalsLightning/images/Return.svg"/></td> 
+                     </div>
+               </aura:if> 
+               
+               <aura:if isTrue="{!v.showReWork}">
+                    <div class = "content" onclick ="{!c.reWork1}">
+                    <td class="alignCenter"><img class="img" src="/resource/ApprovalsLightning/images/rework.png"/></td>
+                    </div>
+               </aura:if>
+               
+               <aura:if isTrue="{!v.showQwv}">
+                    <div class = "content" onclick ="{!c.return1}">
+                    <td class="alignCenter"><img class="img" src="/resource/ApprovalsLightning/images/querywithvendor.png"/></td>
+                    </div>
+               </aura:if>    
+            </tr>
+          </table>
+              
+       </div>  
+    </div>
+ <div aura:id="content"/> -->
+</aura:component>

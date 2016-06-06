@@ -1,0 +1,100 @@
+({ 
+    doInit : function(component, event, helper) {
+        var retainfilter =component.get("v.filterValue")
+        if(retainfilter == null || retainfilter == undefined)
+        {
+            filteroptions="All";
+        }
+        else
+        {
+            filteroptions = retainfilter;
+        }
+        component.set("v.showspinnerclosed",true);
+        var filterOption = event.getSource();
+        var filter=filterOption.get("v.title");
+        var filteroptions;
+        if(filter== "Show All")
+        {
+            filteroptions="All";
+            document.getElementById('icon').classList.remove('icon-LockedState');
+            document.getElementById('icon').classList.remove('icon-currentState');
+        }
+        else if(filter== "Show Only Expenses")
+        {
+            filteroptions="Expense";
+            document.getElementById('icon').classList.add('icon-LockedState');
+        }
+        else if(filter== "Show Only Purchase Requests")
+        {
+            filteroptions="Purchase Request";
+            document.getElementById('icon').classList.add('icon-LockedState');
+        }
+        else if(filter== "Show only Project Approval")
+        {
+            filteroptions="Clarity";
+            document.getElementById('icon').classList.add('icon-LockedState');
+        }
+        else if(filter== "Show only Invoices")
+        {
+            filteroptions="Invoice";
+            document.getElementById('icon').classList.add('icon-LockedState');
+        }
+        component.set("v.filteroptions",filteroptions);
+        var action = component.get("c.getApprovalHomeScreenData");
+        action.setCallback(this, function(response) {
+            component.set("v.closedData",response.getReturnValue().ClosedApprovals);
+            helper.loadMore(component,response.getReturnValue().ClosedApprovals);
+            
+        });
+        $A.enqueueAction(action);  
+       // component.set("v.showspinnerclosed",false);
+    },
+    /*
+    
+     showSpinner : function (component, event, helper) {
+        var spinner = component.find('spinner');
+        var evt= spinner.get("e.toggle");
+        evt.setParams({ isVisible : true });
+        evt.fire();    
+    },
+    
+    hideSpinner : function (component, event, helper) {
+       var spinner = component.find('spinner');
+       var evt=spinner.get("e.toggle");
+       evt.setParams({ isVisible : false });
+       evt.fire();     
+    },*/
+    PendingDetails : function(component, event, helper) {
+        component.set("v.showspinnerclosed",true);
+        var selectEvent = $A.get("e.c:CORE_CA_HomeEvent");
+        selectEvent.setParams({"closednavigation": "CORE_CA_Pending","filterValue": component.get("v.filterValue")}).fire();
+        
+    },
+    
+    goToFiltercomp : function(component, event, helper) {
+        
+        
+        if(component.get("v.filterview")==false || component.get("v.filterview")=='' || component.get("v.filterview")==null){       
+            
+            component.set("v.filterview", true);
+            document.getElementById('icon').classList.add('icon-currentState');	
+        }
+        
+        else{
+            component.set("v.filterview", false);
+            document.getElementById('icon').classList.remove('icon-currentState');	
+            
+        }
+        
+    },
+    HideSelection : function(component, event, helper) {
+        
+        component.set("v.filterview", false);
+        component.set("v.showMoreCount",true);
+        
+    },
+    
+    ShowMoreSelection : function(component, event, helper) {
+        helper.loadMore(component,component.get("v.closedData"));
+    },
+})

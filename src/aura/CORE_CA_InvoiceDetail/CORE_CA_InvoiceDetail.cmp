@@ -1,0 +1,238 @@
+<!--
+  Component Name: Core_CA_InvoiceDetail
+  Author : Mindtree
+  Date: 03 June 2016
+  Requirement/Description: Invocie Detail Section of approval app. 
+-->
+<aura:component controller="Core_CA_ApprovalsController">
+    <ltng:require styles="/resource/ApprovalsLightning,/resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css,/resource/Lightning_designing_style/assets/fonts/" afterScriptsLoaded="{!c.doInit}"/>
+    <!--<ltng:require styles="/resource/ApprovalsLightning,/resource/ApprovalsLightning/fonts" afterScriptsLoaded="{!c.doInit}"/>-->
+    <aura:attribute name="ApprovalDetail" type="Core_CA_WrapperUtility.RequestDetailResponseAribaGTES[]"/>
+    <aura:handler event="c:CORE_CA_ActionBarEvent" action="{!c.ApproveScreen1}" />
+    <aura:attribute name="RequestId" type="String"/>
+    <aura:attribute name="ApproverId" type="String"/>
+    <aura:attribute name="Sourcesystem" type="String"/>
+    <aura:attribute name="sourcePage" type="String"/>
+    <aura:attribute name="isDetail" type="Boolean" default="true"/>
+    <aura:attribute name="isFeed" type="Boolean" default="false"/>
+    <aura:attribute name="filterValue" type="string" />
+    <aura:handler event="c:CORE_CA_FeedbackEvent" action="{!c.gotoApp}"/>
+    <aura:attribute name="showApprove" type="Boolean" default="true"/>
+    <aura:attribute name="showRtap" type="Boolean" default="true"/>
+    <aura:attribute name="showQwv" type="Boolean" default="true"/>
+    
+    <style>      
+        .homePageHeader{
+        background:#4F6A92;
+        height: 150px;
+        padding-top: 13px;
+        }
+        .headerBarIconStyle{
+        width: 40px;
+        margin-left: 152px;
+        float: left;
+        margin-right:20px;
+        margin-top: -9px;
+        }
+        .backIconStyle{
+        width: 36px;
+        margin-top: 5px;
+        padding-left: 13px;
+        margin-bottom: 5px;
+        }
+        .hiddenClass{
+        color: red;
+        display: none;
+        }
+                .action_bar{
+        background: #fff;
+        height: 50px;
+        Position: fixed;
+        bottom: 0;
+        width: 100%;
+        }
+        .icons{ 
+        width: 20%;
+        text-align:center;
+        float: left;
+        } 
+        .alignCenter{
+        text-align:center;       
+        }
+        .actionBarWidth {
+        width: 100%;
+        }
+        .img{    
+        width: 40px;
+        }
+        .actionBarHeight {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        text-align:center; 
+        }
+    </style>
+    <!-- Back button Functionlaity-->
+    
+    <div>
+        <div onclick="{!c.goToHomePage}" class="topBackBar">
+            <img src="/resource/Lightning_designing_style/assets/icons/utility/back_60.png" alt="Back" class="backIconStyle" />
+        </div>
+    </div>
+    <!-- Detail Header-->    
+    <div class="homePageHeader">
+        <div class="defaultLeftSpace">
+            <br/>
+            <img src="/resource/ApprovalsLightning/images/Approvals_Logo.svg" alt="Approvals_Logo" class="headerBarIconStyle" />&nbsp;&nbsp;
+            <br/>
+            <div class="slds-text-heading--medium clarity-header">
+                <aura:iteration items="{!v.ApprovalDetail}" var="detailData">
+                    {!detailData.CompanyName}
+                    <br/>
+                    <div class="slds-text-heading--small preparedby">{!detailData.PreparedBy}</div> <div class="slds-text-heading--small currency">{!detailData.Currencies} {!detailData.TotalAmount}</div>                    
+                </aura:iteration>                
+            </div>
+        </div>
+    </div>
+    <!-- Chatter Navigation Error -->
+    <div>
+        <aura:iteration items="{!v.ApprovalDetail}" var="detailData">
+            <aura:if isTrue="{!detailData.accessStatus == false}">
+                Insufficient Previleges
+            </aura:if>
+        </aura:iteration>
+    </div>
+    <!-- Detail Main Content -->
+    <div>
+    <!--Tab-->
+    <div class="slds-tabs--default">
+      	<ul class="slds-tabs--default__nav pending-header" role="tablist">
+          <li class="slds-tabs--default__item  pending" title="Item Two"
+                    role="presentation" onclick="{!c.NavigateToDetail}"><a class="slds-tabs--default__link closed-text" href="" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item">{!$Label.c.CORE_LBL_DETAILS}</a></li>
+          <li class="slds-tabs--default__item closed " title="Item Three"
+                    role="presentation" onclick="{!c.NavigateToFeed}"><a class="slds-tabs--default__link closed-text" href="" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-3" id="tab-default-3__item">{!$Label.c.CORE_LBL_FEED}</a></li>
+        </ul>
+    </div>
+    <aura:iteration items="{!v.ApprovalDetail}" var="detailData">
+         <aura:if isTrue="{!detailData.accessStatus}">
+                    <!-- Detail Tab -->
+                    <aura:if isTrue="{!v.isDetail}">
+                        <div class="ProjectInformationSection">
+                            <div class="slds-section__title sectionTitle">
+                                <aura:if isTrue="{!detailData.InvoiceType == 'INV'}">
+                                    {!$Label.c.CORE_LBL_INV_INVOICE_DETAILS}
+                                </aura:if>
+                                <aura:if isTrue="{!detailData.InvoiceType == 'CN'}">
+                                    {!$Label.c.CORE_LBL_INV_CREDIT_NOTE_DETAILS}
+                                </aura:if>
+                            </div>
+                            <hr></hr>
+                            <table class="DetailSectionTable">
+                                <tr>
+                                    <td class="slds-text-heading--small DetailHeading">{!$Label.c.CORE_LBL_INV_DOCUMENT_NO}</td>
+                                </tr>
+                                <tr>
+                                    <td class="slds-text-body--regular DetailData">{!detailData.PreparedBy}</td>
+                                </tr>
+                                <tr>
+                                    <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_INV_DATE}</td>
+                                </tr>
+                                <tr>
+                                    <td class="slds-text-body--regular DetailData">{!detailData.CreatedOn}</td>
+                                </tr>
+                                <tr>
+                                    <td class="slds-text-heading--small DetailHeading">{!$Label.c.CORE_LBL_INV_TOTAL_AMOUNT_INCL_TAX}</td>
+                                </tr>
+                                <tr>
+                                    <td class="slds-text-body--regular DetailData">{!detailData.Currencies}{!detailData.TotalAmount}</td>
+                                </tr>
+                                <tr>
+                                    <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_INV_TAX}</td>
+                                </tr>
+                                <tr>
+                                    <td class="slds-text-body--regular DetailData">{!detailData.Currencies} {!detailData.AdvanceAmount}</td>
+                                </tr>
+                                <tr>
+                                    <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_INV_VENDOR_NAME}</td>
+                                </tr>
+                                <tr>
+                                    <td class="slds-text-body--regular DetailData">{!detailData.CompanyName}</td>
+                                </tr>
+                                <tr>
+                                    <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_INV_COMPANY_CODE}</td>
+                                </tr>
+                                <tr>
+                                    <td class="slds-text-body--regular DetailData">{!detailData.CompanyCode}</td>
+                                </tr>
+                                <tr>
+                                    <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_INV_LAST_COMMENT}</td>
+                                </tr>
+                                <tr>
+                                    <td class="slds-text-body--regular DetailData">
+                                        <aura:iteration items="{!detailData.ApprovalHistory}" var="appHistoryData" indexVar="index">
+                                            {!appHistoryData.Comment}
+                                        </aura:iteration>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="slds-section__title textHighlight" onclick="{!c.goToDocHistory}">{!$Label.c.CORE_LBL_INV_SEE_DOCUMENT_HISTORY}</td>
+                                </tr>
+                                
+                            </table>
+                            
+                        </div>
+                        <div class="ApprovalHistorySection">
+                            <div class="slds-section__title sectionTitle"> {!$Label.c.CORE_LBL_INV_LINE_ITEMS}</div><hr></hr>
+                            <aura:iteration items="{!detailData.LineItems}" var="lineItem" indexVar="indx">
+                                <a class="slds-section__title textHighlight" data-index="{!indx}" onclick="{!c.goToLineItemDetail}">
+                                    {!lineItem.ItemName}  
+                                    {!lineItem.Currencies} {!lineItem.Amount}
+                                </a><br/>     
+                            </aura:iteration>
+                        </div>
+                    </aura:if>                      
+                    <!-- Feed Tab -->
+                    <aura:if isTrue="{!v.isFeed}">  
+                       <div class="hiddenClass"> {!detailData.RequestId} </div>
+                        <c:ChatterPublisherCmp subjectId="{!detailData.RequestId}" feedType="Record"/>  
+                        <c:ChatterFeedCmp subjectId="{!detailData.RequestId}" feedType="Record"/>
+                    </aura:if>                
+            </aura:if>            
+            <!--Action Bar-->
+        <div style="position:fixed; bottom:0;">
+            <div class="action_bar">
+                <div class="actionBarHeight">                  
+                    <table class="actionBarWidth">
+                        <tr class="alignCenter"> 
+                            <td class="alignCenter" onclick="{!c.gotoFeedback}"><img class="img" src="/resource/ApprovalsLightning/images/feedbackIcon.svg"/></td>
+                            <td class="alignCenter"><img class="img" src="/resource/ApprovalsLightning/images/Comment.svg"/></td>
+                            <aura:if isTrue="{!v.showQwv}">
+                            	<td class="alignCenter" onclick ="{!c.querywithvendor}"><img class="img" src="/resource/ApprovalsLightning/images/rework.png"/></td>
+                            </aura:if>
+                            <aura:if isTrue="{!v.showRtap}">
+                                <td class="alignCenter" onclick ="{!c.returnToAP}"><img class="img" src="/resource/ApprovalsLightning/images/Return.svg" /></td>
+                            </aura:if>
+                            <aura:if isTrue="{!v.showApprove}">   
+                                <td class="alignCenter" onclick ="{!c.ApproveAction}"><img class="img" src="/resource/ApprovalsLightning/images/Approve.svg" /></td>
+                            </aura:if>
+                        </tr>
+                    </table>
+                </div>  
+            </div>        
+         </div>    
+        </aura:iteration>
+    </div>
+    <!-- Approval action popup -->
+        <aura:if isTrue="{!v.isActionPopup}">
+            <aura:iteration items="{!v.ApprovalDetail}" var="detailData">
+                <div class="slds-backdrop slds-backdrop--open">
+                    <c:CORE_CA_ApprovalAction actionTaken="{!v.actTaken}" ApprovalDetail="{!detailData}" sourcePage="{!v.sourcePage}" filterValue="{!v.filterValue}"></c:CORE_CA_ApprovalAction>
+                </div>
+            </aura:iteration>
+        </aura:if>
+        <!-- FeedBack popup -->
+        <aura:if isTrue="{!v.isFeedBack}">          
+            <div class="slds-backdrop slds-backdrop--open">
+                <c:Feedback Appname="Approval" EventName="CORE_CA_FeedbackEvent"></c:Feedback>
+            </div>  
+        </aura:if>
+</aura:component>

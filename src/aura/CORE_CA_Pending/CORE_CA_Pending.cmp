@@ -1,0 +1,169 @@
+<!--
+  Component Name: Core_CA_Pending
+  Author : Mindtree
+  Date: 03 June 2016
+  Requirement/Description: Pending tab of home Page of approval app. 
+-->
+<aura:component controller="Core_CA_ApprovalsController" implements="flexipage:availableForAllPageTypes,force:appHostable">
+    
+    <ltng:require styles="/resource/ApprovalsLightning,resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css,resource/Lightning_designing_style/assets/fonts/" afterScriptsLoaded="{!c.doInit}"/>
+    <aura:attribute name="spinnercomp" type="boolean" default="true"/>
+    
+    <aura:attribute name="ApprovalData" type="Core_CA_WrapperUtility.MyApprovalsDataResponse[]"/>
+    <aura:attribute name="ApprovalDataCount" type="boolean" />
+    
+    <aura:attribute name="ApprovalDataClosed" type="Core_CA_WrapperUtility.MyApprovalsDataResponse[]"/>
+    <aura:attribute name="pendingApprovals" type="Core_CA_WrapperUtility.PendingApprovals[]"/>
+    <aura:attribute name="ShowPending" type="boolean" default="true"/>
+    <aura:attribute name="ShowClosed" type="boolean" default="false"/>
+    
+    <aura:attribute name="Pending" type="Core_CA_WrapperUtility.MyApprovalsDataResponse[]"/>
+    <aura:attribute name="Closed" type="Core_CA_WrapperUtility.MyApprovalsDataResponse[]"/>
+    <aura:attribute name="filteroptions" type="String"/>
+    <aura:attribute name="showMoreCount" type="boolean" default="true"/>
+    <aura:attribute name="filterTopic" type="String"/>
+    <aura:attribute name="Invoice" type="String"/>    
+    <aura:attribute name="Clarity" type="String"/>   
+    <aura:attribute name="GTESFilter" type="String"/>
+    <aura:attribute name="AribaFilter" type="String"/>
+    <aura:attribute name="ClearFilter" type="String"/>
+    <aura:attribute name="RequestId" type="String"/>
+    <aura:attribute name="ApproverId" type="String"/>
+    <aura:attribute name="filterValue" type="String"/>
+   
+    <aura:attribute name="isFeedBackPopup" type="boolean"/>
+    
+    <style>      
+        .homePageHeader{
+        background:#4F6A92;
+        }
+        .headerBarIconStyle{
+        width: 40px;
+        margin-left: 20px;
+        float: left;
+        margin-right:20px;
+        margin-top: -3px;
+        }
+        .slds-tabs--default__nav {
+        border-bottom: 0px solid #FFFFFF;
+        
+        .slds .slds-spinner--small {
+        width: 32px;
+        height: 32px;
+        margin-left: 40%;
+        }
+        .uiSpinner.spinner {
+        margin-top: 68px;
+        margin-bottom: -74px;
+        }
+        }
+        .slds-nubbin--top-left:before, .slds-nubbin--top-left:after { 
+        left: 12.6rem !important;
+        
+        } 
+    </style>
+    
+    
+    <div class="homePageHeader">
+        <div class="defaultLeftSpace">
+            <br/>
+            <img src="/resource/ApprovalsLightning/images/Approvals_Logo.svg" alt="Approvals_Logo" class="headerBarIconStyle" />&nbsp;&nbsp;
+            
+            <div class="homePageHeaderText slds-text-heading--medium">{!$Label.c.CORE_LBL_MY_APPROVALS}</div>
+            
+            <br/>
+            <br/>
+        </div>
+    </div>
+    
+    <div Style="background:#fff;">
+        <div class="slds-tabs--default">
+            <ul class="slds-tabs--default__nav pending-header" role="tablist"> 
+                <li class="slds-tabs--default__item  pending" title="Item Two"
+                    role="presentation" onclick=""><a class="slds-tabs--default__link closed-text" href="" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item">{!$Label.c.CORE_LBL_PENDING}</a></li>
+                <li class="slds-tabs--default__item closed " title="Item Three"
+                    role="presentation" onclick="{!c.GetClosedDetails}"><a class="slds-tabs--default__link closed-text" href="" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-3" id="tab-default-3__item">{!$Label.c.CORE_LBL_CLOSED}</a></li>
+            </ul>
+        </div>
+        
+        <div align="right" class="icon" id="icon">
+            <span class="iconBack" onclick = "{!c.goToFiltercomp}" >
+                <img></img>
+            </span>
+        </div>
+        <aura:if isTrue="{!v.filterview}"> 
+            
+            
+            <div class="sort-box">
+                
+                <div class="slds-dropdown-trigger slds-dropdown-trigger--click slds-is-open " aria-expanded="false">
+                    
+                    <div class="slds-dropdown slds-dropdown--left slds-nubbin--top-left" onclick="{!c.HideSelection}">
+                        <ul class="dropdown__list" role="menu" >
+                            <li class="slds-dropdown__item" >
+                                <a href="" role="menuitem">
+                                    <span style="width:100%;" class="slds-truncate"><ui:outputText value="{!$Label.c.CORE_LBL_SHOW_ALL}" title="Show All" click="{!c.doInit}"/></span>
+                                </a>
+                            </li>
+                            <li class="slds-dropdown__item">
+                                <a href="" role="menuitem">
+                                    <span style="width:100%;" class="slds-truncate"><ui:outputText value="{!$Label.c.CORE_LBL_SHOW_ONLY_EXPENSES}" title="Show Only Expenses" click="{!c.doInit}"/></span>
+                                </a>
+                            </li>
+                            <li class="slds-dropdown__item">
+                                <a href="" role="menuitem">
+                                    <span style="width:100%;" class="slds-truncate"><ui:outputText value="{!$Label.c.CORE_LBL_SHOW_ONLY_PURCHASE_REQUEST}" title="Show Only Purchase Requests" click="{!c.doInit}"/></span>
+                                </a>
+                            </li>
+                            <li class="slds-dropdown__item" >
+                                <a href="" role="menuitem">
+                                    <span style="width:100%;" class="slds-truncate"><ui:outputText value="{!$Label.c.CORE_LBL_SHOW_ONLY_PROJECT_APPROVAL}" title="Show only Project Approval" click="{!c.doInit}"/></span>
+                                </a>
+                            </li>
+                            <li class="slds-dropdown__item" >
+                                <a href="" role="menuitem">
+                                    <span style="width:100%;" class="slds-truncate"><ui:outputText value="{!$Label.c.CORE_LBL_SHOW_ONLY_INVOICE}" title="Show only Invoices" click="{!c.doInit}"/></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>    
+        </aura:if>
+        
+        
+        <aura:if isTrue="{!v.spinnercomp }">
+            <center>
+                <div class="slds-spinner_container">
+                    <div class="slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
+                        <div class="slds-spinner__dot-a"></div>
+                        <div class="slds-spinner__dot-b"></div>
+                    </div>
+                </div>
+            </center>
+            <div class="loading">Loading</div>
+        </aura:if>
+        <div class = "padding-pending">
+            <aura:if isTrue="{!v.ApprovalDataCount}"> 
+                <span>
+                    <aura:iteration items="{!v.ApprovalData}" var="item3" > 
+                    <c:CORE_CA_PendingSection ApprovalData="{!item3}" retainfilterValue="{!v.filteroptions}" isFeedBackPopup="{!v.isFeedBackPopup}"/>                                   
+                        
+                    </aura:iteration>
+                </span>
+                <aura:if isTrue="{!v.showMoreCount}">
+                    <div align="center" class="showmore"> <button class="slds-button slds-button--neutral" onclick="{!c.ShowMoreSelection}">Show More</button></div>
+                </aura:if>
+            </aura:if>
+            <span class="message">
+                <aura:if isTrue="{!v.ApprovalDataCount == 'false'}">
+                    {!$Label.c.CORE_MSG_NO_PENDING_REQUEST_APPROVAL}
+                </aura:if>
+            </span>
+        </div>
+        
+       
+    </div>
+    
+</aura:component>

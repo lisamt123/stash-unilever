@@ -1,0 +1,300 @@
+<!--
+  Component Name: Core_CA_AribaDetail
+  Author : Mindtree
+  Date: 03 June 2016
+  Requirement/Description: Ariba Detail Section of approval app. 
+-->
+<aura:component controller="Core_CA_ApprovalsController">
+    <!--  <aura:handler name="init" value="{!this}" action="{!c.doInit}" /> -->
+    <aura:attribute name="ApprovalDetail" type="Core_CA_WrapperUtility.RequestDetailResponseAribaGTES[]"/>
+    <ltng:require styles="/resource/ApprovalsLightning,/resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css,/resource/Lightning_designing_style/assets/fonts/" afterScriptsLoaded="{!c.doInit}"/>
+    <aura:attribute name="RequestId" type="String"/>
+    <aura:attribute name="ApproverId" type="String"/>
+    <aura:attribute name="Sourcesystem" type="String"/>
+    <aura:attribute name="sourcePage" type="String"/>
+    <aura:attribute name="isDetail" type="Boolean" default="true"/>
+    <aura:attribute name="isFeed" type="Boolean" default="false"/>
+    <aura:attribute name="filterValue" type="string" />
+    <aura:attribute name="showApprove" type="Boolean" default="true"/>
+    <aura:attribute name="showReject" type="Boolean" default="true"/>
+    <aura:attribute name="spinnercompAriba" type="boolean" default="true"/>
+    <aura:handler event="c:CORE_CA_FeedbackEvent" action="{!c.gotoApp}"/>
+    
+    <style>      
+        .homePageHeader{
+        background:#4F6A92;
+        height: 150px;
+        padding-top: 13px;
+        }
+        .headerBarIconStyle{
+        width: 40px;
+        margin-left: 168px;
+        float: left;
+        margin-right:20px;
+        margin-top: -9px;
+        }
+        .backIconStyle{
+        width: 36px;
+        margin-top: 5px;
+        padding-left: 13px;
+        margin-bottom: 5px;
+        }
+        .hiddenClass{
+        color: red;
+        display: none;
+        }
+        
+        
+        .action_bar{
+        background: #fff;
+        height: 50px;
+        Position: fixed;
+        bottom: 0;
+        width: 100%;
+        }
+        .icons{ 
+        width: 20%;
+        text-align:center;
+        float: left;
+        } 
+        .alignCenter{
+        text-align:center;       
+        }
+        .actionBarWidth {
+        width: 100%;
+        }
+        .img{    
+        width: 40px;
+        }
+        .actionBarHeight {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        text-align:center; 
+        }
+        
+    </style>
+    <div>
+        <div>
+            <!-- Back button Functionlaity-->
+            <div>
+                <div onclick="{!c.goToHomePage}" class="topBackBar">
+                    <img src="/resource/Lightning_designing_style/assets/icons/utility/back_60.png" alt="Back" class="backIconStyle" />
+                </div>
+            </div>
+            <!-- Detail Header-->
+            <div class="homePageHeader">
+                <div class="defaultLeftSpace">
+                    <br/>
+                    <img src="/resource/ApprovalsLightning/images/Approvals_Logo.svg" alt="Approvals_Logo" class="headerBarIconStyle" />&nbsp;&nbsp;
+                    <br/>
+                    <div class="slds-text-heading--medium clarity-header">
+                        <aura:iteration items="{!v.ApprovalDetail}" var="detailData">
+                            {!detailData.RequestName}
+                            <br/>
+                            <div class="slds-text-heading--small preparedby">{!detailData.PreparedBy}</div> <div class="slds-text-heading--small currency">{!detailData.Currencies} {!detailData.TotalAmount}</div>                    
+                        </aura:iteration>                
+                    </div>
+                </div>
+            </div>
+            <!-- Chatter Navigation Error -->
+            <div>
+                <aura:iteration items="{!v.ApprovalDetail}" var="detailData"> 
+                    <aura:if isTrue="{!detailData.accessStatus==false}">
+                        Insufficient Previleges
+                    </aura:if>
+                </aura:iteration>
+            </div>
+            <aura:if isTrue="{!v.spinnercompAriba}">
+           <center>
+                <div class="slds-spinner_container">
+                    <div class="slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
+                        <div class="slds-spinner__dot-a"></div>
+                        <div class="slds-spinner__dot-b"></div>
+                    </div>
+                </div>
+            </center>
+            <div class="loading">Loading</div>
+        </aura:if>
+            <!-- Detail Main Content -->
+            <div>
+                <!--Tab-->    
+                <div Style="background:#fff;">
+                    <div class="slds-tabs--default">
+                        <ul class="slds-tabs--default__nav pending-header" role="tablist">
+                            <li class="slds-tabs--default__item  pending" title="Item Two"
+                                role="presentation" onclick="{!c.NavigateToDetail}"><a class="slds-tabs--default__link closed-text" href="" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item">{!$Label.c.CORE_LBL_DETAILS}</a></li>
+                            <li class="slds-tabs--default__item closed " title="Item Three"
+                                role="presentation" onclick="{!c.NavigateToFeed}"><a class="slds-tabs--default__link closed-text" href="" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-3" id="tab-default-3__item">{!$Label.c.CORE_LBL_FEED}</a></li>
+                        </ul>
+                    </div> 
+                </div>
+                
+                <aura:iteration items="{!v.ApprovalDetail}" var="detailData">
+                    <aura:if isTrue="{!detailData.accessStatus}">                
+                        <!--Detail-->
+                        <aura:if isTrue="{!v.isDetail}">
+                            <div class="ProjectInformationSection">
+                                <div class="slds-section__title sectionTitle" id="Summary" onclick="{!c.showHide}">
+                                    {!$Label.c.CORE_LBL_DETAIL_SUMMARY}
+                                </div>
+                                <hr></hr>
+                                <div class="DetailSectionTable" id="Summary1">
+                                    <div>
+                                        <div class="slds-text-heading--small DetailHeading">{!$Label.c.CORE_LBL_EXP_DETAIL_REQUEST_ID}</div>
+                                    </div>
+                                    <div>
+                                        <div class="slds-text-body--regular DetailData">{!detailData.RequestName}</div>
+                                    </div>
+                                    <div>
+                                        <div class="slds-text-heading--small DetailHeading fieldAlign">{!$Label.c.CORE_LBL_EXP_DETAIL_STATUS}</div>
+                                    </div>
+                                    <div>
+                                        <div class="slds-text-body--regular DetailData fieldValueAlign">{!detailData.RequestStatus}</div>
+                                    </div>
+                                    <div>
+                                        <div class="slds-text-heading--small DetailHeading">{!$Label.c.CORE_LBL_PUR_LINEDETAIL_CREATED_ON}</div>
+                                    </div>
+                                    <div>
+                                        <div class="slds-text-body--regular DetailData">{!detailData.CreatedOn}</div>
+                                    </div>
+                                    <div>
+                                        <div class="slds-text-heading--small DetailHeading fieldAlign">{!$Label.c.CORE_LBL_PUR_DETAIL_DESCRIPTION}</div>
+                                    </div>
+                                    <div>
+                                        <div class="slds-text-body--regular DetailData fieldValueAlign">{!detailData.Description}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="ProjectInformationSection">
+                                <div class="slds-section__title sectionTitle" id="HeaderDetails" onclick="{!c.showHide}">
+                                    {!$Label.c.CORE_LBL_DETAIL_HEADER_DETAIL}
+                                </div>
+                                <hr></hr>
+                                <div class="DetailSectionTable" id="HeaderDetails1">
+                                    <div>
+                                        <div class="slds-text-heading--small DetailHeading">{!$Label.c.CORE_LBL_EXP_DETAIL_TOTAL_AMOUNT}</div>
+                                    </div>
+                                    <div>
+                                        <div class="slds-text-body--regular DetailData">{!detailData.TotalAmount}</div>
+                                    </div>
+                                    <div>
+                                        <div class="slds-text-heading--small DetailHeading fieldAlign">{!$Label.c.CORE_LBL_EXP_DETAIL_CURRENCY}</div>
+                                    </div>
+                                    <div>
+                                        <div class="slds-text-body--regular DetailData fieldValueAlign">{!detailData.Currencies}</div>
+                                    </div>
+                                    <div>
+                                        <div class="slds-text-heading--small DetailHeading">{!$Label.c.CORE_LBL_EXP_DETAIL_REQUESTED_BY}</div>
+                                    </div>
+                                    <div>
+                                        <div class="slds-text-body--regular DetailData">{!detailData.PreparedBy}</div>
+                                    </div>
+                                    <div>
+                                        <div class="slds-text-heading--small DetailHeading fieldAlign">{!$Label.c.CORE_LBL_PUR_DETAIL_PREPARED_BY}</div>
+                                    </div>
+                                    <div>
+                                        <div class="slds-text-body--regular DetailData fieldValueAlign">{!detailData.RequestedBy}</div>
+                                    </div>
+                                    <div>
+                                        <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_PUR_DETAIL_COMPANY_NAME}</div>
+                                    </div>
+                                    <div>
+                                        <div class="slds-text-body--regular DetailData">{!detailData.CompanyName}</div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
+                            <div class="ApprovalHistorySection">
+                                <div class="slds-section__title sectionTitle" id="lineItem" onclick="{!c.showHide}"> {!$Label.c.CORE_LBL_INV_LINE_ITEMS}</div><hr></hr>
+                                <div id="lineItem1">
+                                    <aura:iteration items="{!detailData.LineItems}" var="lineItem" indexVar="indx">
+                                        <a class="slds-section__title textHighlight" data-index="{!indx}" onclick="{!c.goToLineItemDetail}">
+                                            {!lineItem.ItemName}
+                                        </a><hr></hr>    
+                                        <a class="slds-section__title textLineItem" data-index="{!indx}" onclick="{!c.goToLineItemDetail}">
+                                            {!lineItem.Currencies} {!lineItem.Amount}
+                                        </a>  
+                                    </aura:iteration>
+                                </div>
+                            </div>
+                            
+                            <div class="ProjectInformationSection">
+                                <div class="slds-section__title sectionTitle" id="Comments" onclick="{!c.showHide}">
+                                    {!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_COMMENTS}
+                                </div>
+                                <hr></hr>
+                                <div class="DetailSectionTable" id="Comments1">
+                                    <div>
+                                        <div class="slds-text-body--regular DetailData">{!detailData.Comments}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ApprovalHistorySection sectionTitle">
+                                <div class="slds-section__title" id="ApprovalHistory" onclick="{!c.showHide}"> {!$Label.c.CORE_LBL_APPROVAL_HISTORY}</div><hr></hr>
+                                <div id="ApprovalHistory1">
+                                    <aura:iteration items="{!detailData.ApprovalHistory}" var="appHistoryData">
+                                        <div>
+                                            <div>
+                                                <div class="slds-text-body--regular ">{!appHistoryData.ApproverName}</div>
+                                            </div>
+                                            <div>
+                                                <div class="slds-text-body--regular AribaRoleSection">{!appHistoryData.AribaRole}</div>
+                                            </div>
+                                            <div>
+                                                <div class="slds-text-body--regular ApproverActionSection">{!appHistoryData.ApproverAction}</div>
+                                            </div>
+                                        </div>
+                                        <br/>
+                                    </aura:iteration>
+                                </div>
+                            </div>
+                        </aura:if> 
+                        
+                        <!-- Feed Tab -->
+                        <aura:if isTrue="{!v.isFeed}">  
+                            <div class="hiddenClass"> {!detailData.RequestId} </div>
+                            <c:ChatterPublisherCmp subjectId="{!detailData.RequestId}" feedType="Record"/>  
+                            <c:ChatterFeedCmp subjectId="{!detailData.RequestId}" feedType="Record"/> 
+                        </aura:if>                
+                    </aura:if>
+                    
+                    <!--Action Bar-->
+                    <div style="position:fixed; bottom:0;">
+                        <div class="action_bar">
+                            <div class="actionBarHeight">                  
+                                <table class="actionBarWidth">
+                                    <tr class="alignCenter"> 
+                                        <td class="alignCenter" onclick="{!c.gotoFeedback}"><img class="img" src="/resource/ApprovalsLightning/images/feedbackIcon.svg"/></td>
+                                        <td class="alignCenter"><img class="img" src="/resource/ApprovalsLightning/images/Comment.svg"/></td>
+                                        <aura:if isTrue="{!v.showApprove}">   
+                                            <td class="alignCenter" onclick ="{!c.ApproveAction}"><img class="img" src="/resource/ApprovalsLightning/images/Approve.svg" /></td>
+                                        </aura:if>
+                                        <aura:if isTrue="{!v.showReject}">
+                                            <td class="alignCenter" onclick ="{!c.RejectAction}"><img class="img" src="/resource/ApprovalsLightning/images/Return.svg" /></td>
+                                        </aura:if>                                    
+                                    </tr>
+                                </table>
+                            </div>  
+                        </div>        
+                    </div>
+                </aura:iteration>
+            </div>
+        </div>
+        <!-- Approval action popup -->
+        <aura:if isTrue="{!v.isActionPopup}">
+            <aura:iteration items="{!v.ApprovalDetail}" var="detailData">
+                <div class="slds-backdrop slds-backdrop--open">
+                    <c:CORE_CA_ApprovalAction actionTaken="{!v.actTaken}" ApprovalDetail="{!detailData}" sourcePage="{!v.sourcePage}" filterValue="{!v.filterValue}"></c:CORE_CA_ApprovalAction>
+                </div>
+            </aura:iteration>
+        </aura:if>
+        <!-- FeedBack popup -->
+        <aura:if isTrue="{!v.isFeedBack}">          
+            <div class="slds-backdrop slds-backdrop--open">
+                <c:Feedback Appname="Approval" EventName="CORE_CA_FeedbackEvent"></c:Feedback>
+            </div>  
+        </aura:if>
+    </div>
+</aura:component>

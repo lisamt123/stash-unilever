@@ -1,0 +1,27 @@
+<!--
+  Component Name: Core_CA_BaseComponents
+  Author : Mindtree
+  Date: 03 June 2016
+  Requirement/Description: Main Component of the Approval APP.
+-->
+<aura:component implements="force:appHostable" controller="CORE_Feedback_App_Controller">
+ 
+    <ltng:require styles="/resource/ApprovalsLightning,/resource/ApprovalsLightning/fonts" afterScriptsLoaded="{!c.doInit}"/>
+ 
+    <aura:handler event="c:CORE_CA_HomeEvent" action="{!c.getClosed}" /> 
+    <aura:handler event="c:CORE_CA_DetailsEvent" action="{!c.getDetail}" />
+    <aura:handler event="c:CORE_CA_SubDetailEvent" action="{!c.getSubDetail}" />
+    <aura:handler event="c:CORE_CA_ActionBarEvent" action="{!c.ApproveScreen1}" />
+    <!--<aura:handler event="c:CORE_CA_FeedbackEvent" action="{!c.gotoApp}"/>
+    <aura:handler event="c:Feedback_Event" action="{!c.handleFeedback}" /> -->
+    
+    <aura:attribute name="RequestId" type="string"/>
+    <aura:attribute name="ApproverId" type="string"/>
+    <aura:attribute name="Sourcesystem" type="String"/>
+    <aura:attribute name="Appname" type="string" default="Approval"/>
+    <aura:attribute name="Pagename" type="string" default="CORE_CA_Pending"/>
+
+    <div aura:id="content">
+       
+    </div>
+</aura:component>
