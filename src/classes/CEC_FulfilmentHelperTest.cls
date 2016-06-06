@@ -1,5 +1,5 @@
 /**********************************************************************
-Name:  CEC_Test_FulfilmentHelper
+Name:  CEC_FulfilmentHelperTest
 Copyright © 2014  Unilever
 ======================================================================
 =======================================================================
@@ -42,7 +42,7 @@ public class CEC_FulfilmentHelperTest {
             insert reasonCodeList;
             
             List<CEC_Case_Market_Mapping__c> cmmList = CEC_TestDataFactory.createMasterCaseMarketMapping();
-            CEC_Case_Market_Mapping__c cmmUK;
+            CEC_Case_Market_Mapping__c cmmUK = new CEC_Case_Market_Mapping__c();
             for(CEC_Case_Market_Mapping__c cmm : cmmList) {
                 if (cmm.Market__c == 'United Kingdom') {
                     cmmUK = cmm;
@@ -437,7 +437,7 @@ Test method for beforeInsert() method
             
             System.assertEquals(assertFulfilmentResult.Refund_Value__c, 10.11);
             System.assertEquals(assertFulfilmentResult.Cheque_Number__c, '12');
-            System.assertEquals(assertFulfilmentResult.Refund_Value_in_Words__c, 'Ten Dollars and Eleven Cents');
+            System.assertEquals(assertFulfilmentResult.Refund_Value_in_Words__c, 'TEN DOLLARS AND ELEVEN CENTS');
             
             fulfilmentObj.Refund_Value__c = 112.33;
             update fulfilmentObj;            
@@ -447,7 +447,7 @@ Test method for beforeInsert() method
             
             System.assertEquals(assertFulfilmentResult.Refund_Value__c, 112.33);
             System.assertEquals(assertFulfilmentResult.Cheque_Number__c, '12');
-            System.assertEquals(assertFulfilmentResult.Refund_Value_in_Words__c, 'One Hundred and Twelve Dollars and Thirty Three Cents');               
+            System.assertEquals(assertFulfilmentResult.Refund_Value_in_Words__c, 'ONE HUNDRED AND TWELVE DOLLARS AND THIRTY THREE CENTS');               
             
             
             fulfilmentObj.Refund_Value__c = 112;
@@ -458,7 +458,7 @@ Test method for beforeInsert() method
             
             System.assertEquals(assertFulfilmentResult.Refund_Value__c, 112);
             System.assertEquals(assertFulfilmentResult.Cheque_Number__c, '12');
-            System.assertEquals(assertFulfilmentResult.Refund_Value_in_Words__c, 'One Hundred and Twelve Dollars');    
+            System.assertEquals(assertFulfilmentResult.Refund_Value_in_Words__c, 'ONE HUNDRED AND TWELVE DOLLARS');
             
             fulfilmentObj.Refund_Value__c = 3000;
             update fulfilmentObj;            
@@ -468,7 +468,7 @@ Test method for beforeInsert() method
             
             System.assertEquals(assertFulfilmentResult.Refund_Value__c, 3000);
             System.assertEquals(assertFulfilmentResult.Cheque_Number__c, '12');
-            System.assertEquals(assertFulfilmentResult.Refund_Value_in_Words__c, 'Three Thousand Dollars');             
+            System.assertEquals(assertFulfilmentResult.Refund_Value_in_Words__c, 'THREE THOUSAND DOLLARS');             
             
             
             fulfilmentObj.Refund_Value__c = 3000.10;
@@ -479,7 +479,7 @@ Test method for beforeInsert() method
             
             System.assertEquals(assertFulfilmentResult.Refund_Value__c, 3000.10);
             System.assertEquals(assertFulfilmentResult.Cheque_Number__c, '12');
-            System.assertEquals(assertFulfilmentResult.Refund_Value_in_Words__c, 'Three Thousand Dollars and Ten Cents');                   
+            System.assertEquals(assertFulfilmentResult.Refund_Value_in_Words__c, 'THREE THOUSAND DOLLARS AND TEN CENTS');                   
             
             fulfilmentObj.Refund_Value__c = 3;
             update fulfilmentObj;            
@@ -489,8 +489,82 @@ Test method for beforeInsert() method
             
             System.assertEquals(assertFulfilmentResult.Refund_Value__c, 3);
             System.assertEquals(assertFulfilmentResult.Cheque_Number__c, '12');
-            System.assertEquals(assertFulfilmentResult.Refund_Value_in_Words__c, 'Three Dollars');  
+            System.assertEquals(assertFulfilmentResult.Refund_Value_in_Words__c, 'THREE DOLLARS');  
             
+        }
+    }
+    
+    public static testMethod void test_convertRefundValueToWords_Fraction(){
+        
+        User u = CEC_TestDataFactory.getStandardCECTestUser();
+        System.runAs(u) {
+            User loggedinuser = [select Quality_Check_Percentage__c,Max_Refund_Amount__c, FirstName from User where id = :UserInfo.getUserId()];
+            loggedinuser.Refund_Authorization_Limit__c ='Level 4';
+            update loggedinuser;
+            
+            CEC_Case_Market_Mapping__c cmmUK = [SELECT Id FROM CEC_Case_Market_Mapping__c WHERE 
+                                                Market__c = 'United Kingdom' LIMIT 1];
+            cmmUK.Cheque_Decimals__c = 'Display as fraction';
+            update cmmUK;
+            mdm_Product_Category__c prodCategory = [SELECT Id FROM mdm_Product_Category__c LIMIT 1];
+            
+            List<CEC_ChequeBook_Detail__c> chequeBookDetailList = CEC_TestDataFactory.createChequeBookDetail(
+                1, 'CB1', 'USD', 'Dollars', 'Cents',
+                1, 11, 1000, cmmUK.Id, prodCategory.Id);
+            insert chequeBookDetailList;
+            
+            List<cec_Fulfilment__c>  fulfilmentList = [ SELECT Id, Case__c FROM cec_Fulfilment__c LIMIT 1];
+            cec_Fulfilment__c fulfilmentObj = fulfilmentList.get(0);
+            Map<Id, cec_Fulfilment__c> oldFulfilmentMap = new Map<Id, cec_Fulfilment__c>();
+            oldFulfilmentMap.put(fulfilmentObj.Id, fulfilmentObj);
+            
+            CEC_ChequeProcess.generateChequeNumber(fulfilmentList[0].Id);
+            Test.StartTest();
+            fulfilmentObj.Refund_Value__c = 10.11;
+            update fulfilmentObj;
+            
+            CEC_FulfilmentHelper fulfilmentHelper = new CEC_FulfilmentHelper();
+            fulfilmentHelper.ConvertRefundValueToWords(fulfilmentList, oldFulfilmentMap);
+            
+            cec_Fulfilment__c assertFulfilmentResult = [SELECT ID,Cheque_Number__c,ChequeBook__c,Refund_Value__c,
+                                                        Refund_Value_in_Words__c FROM 
+                                                        cec_Fulfilment__c WHERE id = :fulfilmentObj.Id];
+            
+            System.assertEquals(assertFulfilmentResult.Refund_Value__c, 10.11);
+            System.assertEquals(assertFulfilmentResult.Cheque_Number__c, '12');
+            System.assertEquals(assertFulfilmentResult.Refund_Value_in_Words__c, 'TEN AND 11/100 DOLLARS');
+            
+            fulfilmentObj.Refund_Value__c = 100.33;
+            update fulfilmentObj;
+            fulfilmentHelper.ConvertRefundValueToWords(fulfilmentList, oldFulfilmentMap);            
+            assertFulfilmentResult = [SELECT ID,Cheque_Number__c,ChequeBook__c,Refund_Value__c, Refund_Value_in_Words__c 
+                                      FROM cec_Fulfilment__c WHERE id = :fulfilmentObj.Id];
+            
+            System.assertEquals(assertFulfilmentResult.Refund_Value__c, 100.33);
+            System.assertEquals(assertFulfilmentResult.Cheque_Number__c, '12');
+            System.assertEquals(assertFulfilmentResult.Refund_Value_in_Words__c, 'ONE HUNDRED AND 33/100 DOLLARS');               
+            
+            
+            fulfilmentObj.Refund_Value__c = 100;
+            update fulfilmentObj;            
+            fulfilmentHelper.ConvertRefundValueToWords(fulfilmentList, oldFulfilmentMap);            
+            assertFulfilmentResult = [SELECT ID,Cheque_Number__c,ChequeBook__c,Refund_Value__c, Refund_Value_in_Words__c 
+                                      FROM cec_Fulfilment__c WHERE id = :fulfilmentObj.Id];
+            
+            System.assertEquals(assertFulfilmentResult.Refund_Value__c, 100);
+            System.assertEquals(assertFulfilmentResult.Cheque_Number__c, '12');
+            System.assertEquals(assertFulfilmentResult.Refund_Value_in_Words__c, 'ONE HUNDRED DOLLARS');
+            
+            fulfilmentObj.Refund_Value__c = 3000.23;
+            update fulfilmentObj;            
+            fulfilmentHelper.ConvertRefundValueToWords(fulfilmentList, oldFulfilmentMap);            
+            assertFulfilmentResult = [SELECT ID,Cheque_Number__c,ChequeBook__c,Refund_Value__c, Refund_Value_in_Words__c 
+                                      FROM cec_Fulfilment__c WHERE id = :fulfilmentObj.Id];
+            
+            System.assertEquals(assertFulfilmentResult.Refund_Value__c, 3000.23);
+            System.assertEquals(assertFulfilmentResult.Cheque_Number__c, '12');
+            System.assertEquals(assertFulfilmentResult.Refund_Value_in_Words__c, 'THREE THOUSAND AND 23/100 DOLLARS');
+            Test.StopTest();
         }
     }
     

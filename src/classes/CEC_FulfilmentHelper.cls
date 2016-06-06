@@ -19,12 +19,14 @@ VERSION  AUTHOR              DATE            DETAIL                        Descr
 Helper class for Trigger for CEC_FulfilmentTrigger
 */
 public with sharing class CEC_FulfilmentHelper{
+
+	final String resultSuccess = 'Success';
     
-    /**
-This method is used to check quality and update QA flag
-@param : fulfilmentList - List of cec_Fulfilment__c objects that are to be inserted 
-@return : void
-*/
+	/**
+	This method is used to check quality and update QA flag
+	@param : fulfilmentList - List of cec_Fulfilment__c objects that are to be inserted 
+	@return : void
+	**/
     public void qualityCheck(List<cec_Fulfilment__c> fulfilmentList){
         
         
@@ -133,7 +135,7 @@ O/P Parameter  :  @return : Wrapper  class which will have status, message  and 
                     
                 } 
                 result.status = 'S';
-                result.message = 'Success';
+                result.message = resultSuccess;
                 if(result.enclosuresList.isEmpty())
                 {
                     result.enclosuresList.Add(E1);
@@ -193,7 +195,7 @@ This method is being called from CEC_ChequeProcess class which is called from "A
                 fulfilment.ChequeBook__c = chequeBookQuery[0].id;
                 update fulfilment;                
                 result.status = 'S';
-                result.message = 'Success';                
+                result.message = resultSuccess;                
             }
             system.debug('  my result' + result);
             //return result;  
@@ -299,67 +301,66 @@ This method is used to upsert records in FulfillmentEnclosure object based on En
         
         if (!fulfilmentList.isEmpty()){
             try{
-                // based on condition, add fulfillment enclosures
+                
                 List<CEC_Fulfilment_Enclosure__c> fulfillmentEnclosureList = new list<CEC_Fulfilment_Enclosure__c>();
                 
                 for (cec_Fulfilment__c fulfilmentObj : fulfilmentList){
                     // If new Enclosure & Enclosure Quantity is updated then add it to fulfillmentEnclosureList for Upsert.
                     if (fulfilmentObj.Enclosure1__c != null  && fulfilmentObj.Enclosure1_Quantity__c != null && ((fulfilmentObj.Enclosure1__c != fulfilmentOldMap.get(fulfilmentObj.Id).Enclosure1__c) || (fulfilmentObj.Enclosure1_Quantity__c != fulfilmentOldMap.get(fulfilmentObj.Id).Enclosure1_Quantity__c))){
                         CEC_Fulfilment_Enclosure__c fulfillmentEnclosure = new CEC_Fulfilment_Enclosure__c();
-                        // update fulfillment enclosures 
+                        // set enclosure fields
                         fulfillmentEnclosure.Fulfilment_Id__c = fulfilmentObj.Id;
                         fulfillmentEnclosure.Enclosure_Id__c = fulfilmentObj.Enclosure1__c;
                         fulfillmentEnclosure.Quantity__c = integer.valueof(fulfilmentObj.Enclosure1_Quantity__c);
                         fulfillmentEnclosure.FulfilmentEnclosure_Id__c = fulfilmentObj.Id +'_1_'+ fulfilmentObj.Enclosure1__c;
-                        // add fulfillment enclosures to the list
+                        // add enclosure to upsert list
                         fulfillmentEnclosureList.add(fulfillmentEnclosure);
-                    }
+                    }// If new Enclosure & Enclosure Quantity is updated then add it to fulfillmentEnclosureList for Upsert.
                     if (fulfilmentObj.Enclosure2__c != null  && fulfilmentObj.Enclosure2_Quantity__c != null && ((fulfilmentObj.Enclosure2__c != fulfilmentOldMap.get(fulfilmentObj.Id).Enclosure2__c) || (fulfilmentObj.Enclosure2_Quantity__c != fulfilmentOldMap.get(fulfilmentObj.Id).Enclosure2_Quantity__c))){
                         CEC_Fulfilment_Enclosure__c fulfillmentEnclosure = new CEC_Fulfilment_Enclosure__c();
-                        // update fulfillment enclosures 
+                        // set enclosure fields
                         fulfillmentEnclosure.Fulfilment_Id__c = fulfilmentObj.Id;
                         fulfillmentEnclosure.Enclosure_Id__c = fulfilmentObj.Enclosure2__c;
                         fulfillmentEnclosure.Quantity__c = integer.valueof(fulfilmentObj.Enclosure2_Quantity__c);
                         fulfillmentEnclosure.FulfilmentEnclosure_Id__c = fulfilmentObj.Id +'_2_'+ fulfilmentObj.Enclosure2__c;
-                        // add fulfillment enclosures to the list
+                        // add enclosure to upsert list
                         fulfillmentEnclosureList.add(fulfillmentEnclosure);
-                    }
+                    }// If new Enclosure & Enclosure Quantity is updated then add it to fulfillmentEnclosureList for Upsert.
                     if (fulfilmentObj.Enclosure3__c != null  && fulfilmentObj.Enclosure3_Quantity__c != null && ((fulfilmentObj.Enclosure3__c != fulfilmentOldMap.get(fulfilmentObj.Id).Enclosure3__c) || (fulfilmentObj.Enclosure3_Quantity__c != fulfilmentOldMap.get(fulfilmentObj.Id).Enclosure3_Quantity__c))){
                         CEC_Fulfilment_Enclosure__c fulfillmentEnclosure = new CEC_Fulfilment_Enclosure__c();
-                        // update fulfillment enclosures 
+                        // set enclosure fields
                         fulfillmentEnclosure.Fulfilment_Id__c = fulfilmentObj.Id;
                         fulfillmentEnclosure.Enclosure_Id__c = fulfilmentObj.Enclosure3__c;
                         fulfillmentEnclosure.Quantity__c = integer.valueof(fulfilmentObj.Enclosure3_Quantity__c);
                         fulfillmentEnclosure.FulfilmentEnclosure_Id__c = fulfilmentObj.Id +'_3_'+ fulfilmentObj.Enclosure3__c;
-                        // add fulfillment enclosures to the list
+                        // add enclosure to upsert list
                         fulfillmentEnclosureList.add(fulfillmentEnclosure);
-                    }
+                    }// If new Enclosure & Enclosure Quantity is updated then add it to fulfillmentEnclosureList for Upsert.
                     if (fulfilmentObj.Enclosure4__c != null   && fulfilmentObj.Enclosure4_Quantity__c != null && ((fulfilmentObj.Enclosure4__c != fulfilmentOldMap.get(fulfilmentObj.Id).Enclosure4__c) || (fulfilmentObj.Enclosure4_Quantity__c != fulfilmentOldMap.get(fulfilmentObj.Id).Enclosure4_Quantity__c))){
                         CEC_Fulfilment_Enclosure__c fulfillmentEnclosure = new CEC_Fulfilment_Enclosure__c();
-                        // update fulfillment enclosures 
+                        // set enclosure fields
                         fulfillmentEnclosure.Fulfilment_Id__c = fulfilmentObj.Id;
                         fulfillmentEnclosure.Enclosure_Id__c = fulfilmentObj.Enclosure4__c;
                         fulfillmentEnclosure.Quantity__c = integer.valueof(fulfilmentObj.Enclosure4_Quantity__c);
                         fulfillmentEnclosure.FulfilmentEnclosure_Id__c = fulfilmentObj.Id +'_4_'+ fulfilmentObj.Enclosure4__c;
-                        // add fulfillment enclosures to the list
+                        // add enclosure to upsert list
                         fulfillmentEnclosureList.add(fulfillmentEnclosure);
-                    }
+                    }// If new Enclosure & Enclosure Quantity is updated then add it to fulfillmentEnclosureList for Upsert.
                     if (fulfilmentObj.Enclosure5__c != null   && fulfilmentObj.Enclosure5_Quantity__c != null && ((fulfilmentObj.Enclosure5__c != fulfilmentOldMap.get(fulfilmentObj.Id).Enclosure5__c) || (fulfilmentObj.Enclosure5_Quantity__c != fulfilmentOldMap.get(fulfilmentObj.Id).Enclosure5_Quantity__c))){
                         CEC_Fulfilment_Enclosure__c fulfillmentEnclosure = new CEC_Fulfilment_Enclosure__c();
-                        // update fulfillment enclosures 
+                        // set enclosure fields
                         fulfillmentEnclosure.Fulfilment_Id__c = fulfilmentObj.Id;
                         fulfillmentEnclosure.Enclosure_Id__c = fulfilmentObj.Enclosure5__c;
                         fulfillmentEnclosure.Quantity__c = integer.valueof(fulfilmentObj.Enclosure5_Quantity__c);
                         fulfillmentEnclosure.FulfilmentEnclosure_Id__c = fulfilmentObj.Id +'_5_'+ fulfilmentObj.Enclosure5__c;
-                        // add fulfillment enclosures to the list
+                        // add enclosure to upsert list
                         fulfillmentEnclosureList.add(fulfillmentEnclosure);
                     }
                     
                 }
+                // upsert enclosuresList
                 system.debug(' fulfillmentEnclosureList : ' +fulfillmentEnclosureList);
-				// upsert fulfillment enclosures
                 if (fulfillmentEnclosureList.size() >0) {
-					
                     upsert fulfillmentEnclosureList FulfilmentEnclosure_Id__c;
                 }
             } catch(Exception e) {
@@ -439,7 +440,7 @@ This method is used to convert Refund Value on Fulfilment Object  in words.
                                 fulfilmentObj.Refund_Value_in_Words__c = '';
                             }
                             else {
-                                string result=CEC_Util.convertAllDigitsToWord(fulfilmentObj.Refund_Value__c,fulfilmentObj.Currency_Text__c,fulfilmentObj.Currency_Decimal_Text__c);
+                                string result=CEC_Util.convertAllDigitsToWord(fulfilmentObj.Refund_Value__c,fulfilmentObj.Currency_Text__c,fulfilmentObj.Currency_Decimal_Text__c, fulfilmentObj.Cheque_Decimals__c);
                                 System.debug('Final result is  ' + result );
                                 fulfilmentObj.Refund_Value_in_Words__c = result;                        
                             }
@@ -516,7 +517,7 @@ This method is being called from CEC_ChequeProcess class which is called from "A
                 update fulfilment; 
                 
                 result.status = 'S';
-                result.message = 'Success';             
+                result.message = resultSuccess;             
                 
             } 
             else {
@@ -552,7 +553,7 @@ This method is being called from CEC_ChequeProcess class which is called from "A
                     system.debug('AcctQuery @#@# '+ AcctQuery);
                     
                     result.status = 'S';
-                    result.message = 'Success';             
+                    result.message = resultSuccess;             
                     
                 } 
                 else {
@@ -691,7 +692,7 @@ This method is being called from CEC_EvoucherProcess class which is called from 
                 
                 
                 result.status = 'S';
-                result.message = 'Success';             
+                result.message = resultSuccess;             
                 
             } 
             else {

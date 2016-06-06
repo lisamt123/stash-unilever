@@ -308,7 +308,7 @@
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>contains</operation>
-            <value>Email North America CS,Email Brazil,Email Middle Americas,Email Southern Cone,Email South Africa,Email ANZ</value>
+            <value>Email North America CS,Email Brazil,Email Middle Americas,Email Southern Cone,Email South Africa,Email ANZ,Email Philippines,Email Indonesia</value>
         </criteriaItems>
         <description>CEC : To update the Case Origin field.</description>
         <triggerType>onAllChanges</triggerType>

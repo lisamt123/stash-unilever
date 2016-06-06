@@ -14,6 +14,32 @@
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
+        <fullName>Case_Country_Equals_Indonesia</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Case Country Equals Indonesia</label>
+        <sharedTo>
+            <role>CEC_User_Indonesia</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Country_Name__c</field>
+            <operation>equals</operation>
+            <value>Indonesia</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Case_Country_Equals_Philippines</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Case Country Equals Philippines</label>
+        <sharedTo>
+            <role>CEC_User_Philippines</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Country_Name__c</field>
+            <operation>equals</operation>
+            <value>Philippines</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>Case_Country_Equals_South_Africa</fullName>
         <accessLevel>Edit</accessLevel>
         <label>Case Country Equals South Africa</label>
@@ -35,6 +61,28 @@
         </sharedTo>
         <sharedFrom>
             <roleAndSubordinatesInternal>CEC_Manager_ANZ</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Market_Equals_Indonesia_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Market Equals Indonesia - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Indonesia</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_Indonesia</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Market_Equals_Philippines_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Market Equals Philippines - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Philippines</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_Philippines</roleAndSubordinatesInternal>
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>

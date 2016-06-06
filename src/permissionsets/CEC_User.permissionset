@@ -13,6 +13,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CEC_CaseTransferController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CEC_FulfilmentHelperTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -64,6 +68,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.Type</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CEC_Case_Market_Mapping__c.Cheque_Decimals__c</field>
         <readable>true</readable>
     </fieldPermissions>
 	<fieldPermissions>
@@ -235,6 +244,11 @@
         <editable>true</editable>
         <field>cec_Enclosure__c.Country__c</field>
         <readable>true</readable>
+    </fieldPermissions>	
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cec_Fulfilment__c.Cheque_Decimals__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
