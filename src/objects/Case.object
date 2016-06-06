@@ -665,6 +665,10 @@ IF( ISPICKVAL(  Account.Known_Consumer__c , &apos;Frequent&apos;), IMAGE(&apos;/
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Indonesia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Ireland</fullName>
                 <default>false</default>
             </picklistValues>
@@ -714,6 +718,10 @@ IF( ISPICKVAL(  Account.Known_Consumer__c , &apos;Frequent&apos;), IMAGE(&apos;/
             </picklistValues>
             <picklistValues>
                 <fullName>Peru</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Philippines</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1520,9 +1528,7 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
     </fields>
     <fields>
         <fullName>Origin</fullName>
-        <inlineHelpText>Email Middle Americas
-Email Southern Cone
-Email Brazil</inlineHelpText>
+        <inlineHelpText></inlineHelpText>
         <picklist>
             <picklistValues>
                 <fullName>Chat</fullName>
@@ -1530,6 +1536,10 @@ Email Brazil</inlineHelpText>
             </picklistValues>
             <picklistValues>
                 <fullName>Email</fullName>
+                <default>false</default>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Email ANZ</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1573,6 +1583,10 @@ Email Brazil</inlineHelpText>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Email Indonesia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Email Italy</fullName>
                 <default>false</default>
             </picklistValues>
@@ -1593,11 +1607,19 @@ Email Brazil</inlineHelpText>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Email Philippines</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Email Poland</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Email Portugal</fullName>
+                <default>false</default>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Email South Africa</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -6736,6 +6758,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>Indonesia</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Ireland</fullName>
                 <default>false</default>
             </values>
@@ -6785,6 +6811,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             </values>
             <values>
                 <fullName>Peru</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Philippines</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -8039,5 +8069,24 @@ var openSuccess = function openSuccess(result) {
         <protected>false</protected>
         <showsLocation>false</showsLocation>
         <showsStatus>false</showsStatus>
+    </webLinks>
+	<webLinks>
+        <fullName>TransferCase</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Transfer Case</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/28.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/support/console/28.0/integration.js&quot;)} 
+
+var url = &apos;/apex/CEC_CaseTransfer?Id={!Case.Id}&apos;; 
+
+if (sforce.console.isInConsole()) { 
+    srcUp(url);
+} else { 
+  window.open(url, &apos;&apos;, &apos;width=600,height=400&apos;);
+}</url>
     </webLinks>
 </CustomObject>
