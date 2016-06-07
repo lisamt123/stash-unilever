@@ -171,10 +171,10 @@
                                                                         <div class="noPadright marginFloatedBlock ipmButtonSet pull-right">
                                                                             <apex:outputPanel rendered="{! If(AND(IsEditableOutC=true),'true','false')}">
                                                                                 <span class="ipmButton buttonMarginRight" onclick="gotoPageNew()">{!$Label.IPM_CANCEL}</span>
-                                                                                <apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="{!$Label.IPM_SAVE}" action="{!save}" onClick="saveChanges();">
+                                                                                <apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="{!$Label.IPM_SAVE}" action="{!save}" onClick="saveChanges();" reRender="pmsg">
                                                                                     <apex:param assignTo="{!IsGateSave}" value="" name="savegate"/>
                                                                                 </apex:commandLink>
-                                                                                <apex:commandLink title="{!$Label.IPM_ON_CLICK_OF_SAVE_NOTIFY}" styleClass="ipmButton primary gatesectionButton" value="{!$Label.IPM_SAVE_AND_NOTIFY}" action="{!save}" onClick="saveChanges();">
+                                                                                <apex:commandLink title="{!$Label.IPM_ON_CLICK_OF_SAVE_NOTIFY}" styleClass="ipmButton primary gatesectionButton" value="{!$Label.IPM_SAVE_AND_NOTIFY}" action="{!save}" onClick="saveChanges();" reRender="pmsg">
                                                                                     <apex:param assignTo="{!IsGateSave}" value="" name="savegate"/>
                                                                                     <apex:param assignTo="{!isChecked}" name="IsCheck" value="Checked"/>
                                                                                 </apex:commandLink>
@@ -258,10 +258,10 @@
                                                                     <div class="panel">
                                                                         <div class="pull-right ipmButtonSet custMarginRight">
                                                                             <span class="ipmButton buttonMarginRight" onclick="gotoPageNew()">{!$Label.IPM_CANCEL}</span>
-                                                                            <apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="{!$Label.IPM_SAVE}" action="{!save}" onClick="saveChanges();">
+                                                                            <apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="{!$Label.IPM_SAVE}" action="{!save}" onClick="saveChanges();" reRender="pmsg">
                                                                                 <apex:param assignTo="{!IsGateSave}" value="" name="savegate"/>
                                                                             </apex:commandLink>
-                                                                            <apex:commandLink title="{!$Label.IPM_ON_CLICK_OF_SAVE_NOTIFY}" styleClass="ipmButton gatesectionButton primary" value="{!$Label.IPM_SAVE_AND_NOTIFY}" action="{!save}" onClick="saveChanges();">
+                                                                            <apex:commandLink title="{!$Label.IPM_ON_CLICK_OF_SAVE_NOTIFY}" styleClass="ipmButton gatesectionButton primary" value="{!$Label.IPM_SAVE_AND_NOTIFY}" action="{!save}" onClick="saveChanges();" reRender="pmsg">
                                                                                 <apex:param assignTo="{!IsGateSave}" value="" name="savegate"/>
                                                                                 <apex:param assignTo="{!isChecked}" name="IsCheck" value="Checked"/>
                                                                             </apex:commandLink>
@@ -310,10 +310,10 @@
                                                                                 <div class="panel">
                                                                                     <div class="pull-right ipmButtonSet custMarginRight" >
                                                                                         <span class="ipmButton buttonMarginRight" onclick="gotoPageNew()">{!$Label.IPM_CANCEL}</span>
-                                                                                        <apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="{!$Label.IPM_SAVE}" action="{!save}" onClick="saveChanges();">
+                                                                                        <apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="{!$Label.IPM_SAVE}" action="{!save}" onClick="saveChanges();" reRender="pmsg">
                                                                                             <apex:param assignTo="{!IsGateSave}" value="Gate" name="savegate"/>
                                                                                         </apex:commandLink>
-                                                                                        <apex:commandLink title="{!$Label.IPM_ON_CLICK_OF_SAVE_NOTIFY}" styleClass="ipmButton gatesectionButton primary" value="{!$Label.IPM_SAVE_AND_NOTIFY}" action="{!save}" onClick="saveChanges();">
+                                                                                        <apex:commandLink title="{!$Label.IPM_ON_CLICK_OF_SAVE_NOTIFY}" styleClass="ipmButton gatesectionButton primary" value="{!$Label.IPM_SAVE_AND_NOTIFY}" action="{!save}" onClick="saveChanges();" reRender="pmsg">
                                                                                             <apex:param assignTo="{!IsGateSave}" value="" name="savegate"/>
                                                                                             <apex:param assignTo="{!isChecked}" name="IsCheck" value="Checked"/>
                                                                                         </apex:commandLink>
@@ -404,10 +404,10 @@
                                                                                 <div class="panel">
                                                                                     <div class="pull-right ipmButtonSet custMarginRight" >
                                                                                         <span class="ipmButton buttonMarginRight" onclick="gotoPageNew()">{!$Label.IPM_CANCEL}</span>
-                                                                                        <apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="{!$Label.IPM_SAVE}" action="{!save}" onClick="saveChanges();">
+                                                                                        <apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="{!$Label.IPM_SAVE}" action="{!save}" onClick="saveChanges();" reRender="pmsg">
                                                                                             <apex:param assignTo="{!IsGateSave}" value="Gate" name="savegate"/>
                                                                                         </apex:commandLink>
-                                                                                        <apex:commandLink title="{!$Label.IPM_ON_CLICK_OF_SAVE_NOTIFY}" styleClass="ipmButton gatesectionButton primary" value="{!$Label.IPM_SAVE_AND_NOTIFY}" action="{!save}" onClick="saveChanges();">
+                                                                                        <apex:commandLink title="{!$Label.IPM_ON_CLICK_OF_SAVE_NOTIFY}" styleClass="ipmButton gatesectionButton primary" value="{!$Label.IPM_SAVE_AND_NOTIFY}" action="{!save}" onClick="saveChanges();" reRender="pmsg">
                                                                                             <apex:param assignTo="{!IsGateSave}" value="" name="savegate"/>
                                                                                             <apex:param assignTo="{!isChecked}" name="IsCheck" value="Checked"/>
                                                                                         </apex:commandLink>
@@ -518,10 +518,10 @@
                                                                                 <div class="panel" >
                                                                                     <div class="col-sm-6 ipmButtonSet pull-right">
                                                                                         <span class="ipmButton buttonMarginRight" onclick="gotoPageNew()">{!$Label.IPM_CANCEL}</span>
-                                                                                        <apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="{!$Label.IPM_SAVE}" action="{!save}" onClick="saveChanges();">
+                                                                                        <apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="{!$Label.IPM_SAVE}" action="{!save}" onClick="saveChanges();" reRender="pmsg">
                                                                                             <apex:param assignTo="{!IsGateSave}" value="Gate" name="savegate"/>
                                                                                         </apex:commandLink>
-                                                                                        <apex:commandLink styleClass="ipmButton gatesectionButton primary" value="{!$Label.IPM_SAVE_AND_NOTIFY}" action="{!save}" onClick="saveChanges();">
+                                                                                        <apex:commandLink styleClass="ipmButton gatesectionButton primary" value="{!$Label.IPM_SAVE_AND_NOTIFY}" action="{!save}" onClick="saveChanges();" reRender="pmsg">
                                                                                             <apex:param assignTo="{!IsGateSave}" value="" name="savegate"/>
                                                                                             <apex:param assignTo="{!isChecked}" name="IsCheck" value="Checked"/>
                                                                                         </apex:commandLink>
@@ -632,10 +632,10 @@
                                                                                 <div class="panel">
                                                                                     <div class="col-sm-6 ipmButtonSet pull-right">
                                                                                         <span class="ipmButton buttonMarginRight" onclick="gotoPageNew()">{!$Label.IPM_CANCEL}</span>
-                                                                                        <apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="{!$Label.IPM_SAVE}" action="{!save}" onClick="saveChanges();">
+                                                                                        <apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="{!$Label.IPM_SAVE}" action="{!save}" onClick="saveChanges();" reRender="pmsg">
                                                                                             <apex:param assignTo="{!IsGateSave}" value="Gate" name="savegate"/>
                                                                                         </apex:commandLink>
-                                                                                        <apex:commandLink styleClass="ipmButton gatesectionButton primary" value="{!$Label.IPM_SAVE_AND_NOTIFY}" action="{!save}" onClick="saveChanges();">
+                                                                                        <apex:commandLink styleClass="ipmButton gatesectionButton primary" value="{!$Label.IPM_SAVE_AND_NOTIFY}" action="{!save}" onClick="saveChanges();" reRender="pmsg">
                                                                                             <apex:param assignTo="{!IsGateSave}" value="" name="savegate"/>
                                                                                             <apex:param assignTo="{!isChecked}" name="IsCheck" value="Checked"/>
                                                                                         </apex:commandLink> 

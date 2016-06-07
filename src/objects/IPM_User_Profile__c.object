@@ -162,6 +162,17 @@ IF(INCLUDES(IPM_User_Category__c ,&quot;Laundry&quot;), &quot;Laundry,&quot;, &q
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>IPM_Is_RoleorFunction_Blank__c</fullName>
+        <description>To help in the perfomance eliminating Negative Condition checking</description>
+        <externalId>false</externalId>
+        <formula>IF(OR( ISPICKVAL( IPM_User_Function__c , &apos;&apos;),ISPICKVAL(  IPM_User_Function__c ,&apos;&apos;) ), false, true)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Is RoleorFunction Blank</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>IPM_Job_title__c</fullName>
         <externalId>false</externalId>
         <label>Job title</label>
