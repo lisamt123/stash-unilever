@@ -5,6 +5,7 @@ src/classes
 src/classes/CEC_AlertActionBatchScheduler.cls
 src/classes/CEC_AlertActionBatchScheduler.cls-meta.xml
 src/classes/CEC_AlertActionHelperTest.cls
+src/classes/CEC_AlertActionHelperTest.cls-meta.xml
 src/classes/CEC_AlertActionTriggerHelper.cls
 src/classes/CEC_AlertActionTriggerHelper.cls-meta.xml
 src/classes/CEC_AlertHelper.cls
@@ -16,6 +17,7 @@ src/classes/CEC_AnonymiseConsumerBatchScheduler_Test.cls-meta.xml
 src/classes/CEC_CaseActionController.cls
 src/classes/CEC_CaseActionController.cls-meta.xml
 src/classes/CEC_CaseActionControllerTest.cls
+src/classes/CEC_CaseActionControllerTest.cls-meta.xml
 src/classes/CEC_CaseInlineController.cls
 src/classes/CEC_CaseInlineController.cls-meta.xml
 src/classes/CEC_CaseInlineControllerTest.cls
@@ -51,13 +53,17 @@ src/classes/CEC_IRIProductLocatorController.cls-meta.xml
 src/classes/CEC_IssueCreationPageController.cls
 src/classes/CEC_IssueCreationPageController.cls-meta.xml
 src/classes/CEC_NewAccountController.cls
+src/classes/CEC_NewAccountController.cls-meta.xml
 src/classes/CEC_NewAccountControllerTest.cls
 src/classes/CEC_NewAccountControllerTest.cls-meta.xml
 src/classes/CEC_ProductRangeController.cls
+src/classes/CEC_ProductRangeController.cls-meta.xml
 src/classes/CEC_ProductRangeControllerTest.cls
+src/classes/CEC_ProductRangeControllerTest.cls-meta.xml
 src/classes/CEC_RetrievalRequestTriggerHelper.cls
 src/classes/CEC_RetrievalRequestTriggerHelper.cls-meta.xml
 src/classes/CEC_RetrievalRequestTriggerHelperTest.cls
+src/classes/CEC_RetrievalRequestTriggerHelperTest.cls-meta.xml
 src/classes/cec_SmartTemplateLoaderHelper.cls
 src/classes/cec_SmartTemplateLoaderHelper.cls-meta.xml
 src/classes/CEC_Test_IssueCreationPageController.cls
@@ -67,7 +73,9 @@ src/classes/CEC_TestAlertActionBatchScheduler.cls-meta.xml
 src/classes/CEC_TestDataFactory.cls
 src/classes/CEC_TestDataFactory.cls-meta.xml
 src/classes/cec_TestEmailMessageHelper.cls
+src/classes/cec_TestEmailMessageHelper.cls-meta.xml
 src/classes/CEC_UserTriggerHelperTest.cls
+src/classes/CEC_UserTriggerHelperTest.cls-meta.xml
 src/classes/CEC_Util.cls
 src/classes/CEC_Util.cls-meta.xml
 src/customPermissions
