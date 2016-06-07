@@ -68,6 +68,8 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     public boolean isBDBBAlignment{get;set;}
     public string bd_BBAlignmentSequence{get;set;}
     public id documentSectionId{get;set;}
+    public boolean isEcoDesignSecNegotiable;
+    
     //REQ03006
     public Integer invalidFinancialsCount;
     private static String DEFAULT_FINANCIAL_RECORDTYPE; //Recordtype Id for Default on IPM_Financial__c object
@@ -90,6 +92,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
         financialAlignment=false;
         tldAlignment=false; 
         isBDBBAlignment=false;   
+        isEcoDesignSecNegotiable=false;
         bd_BBAlignmentSequence=IPM_ConstantUtils.BB_BD_ALIGNMENT;  
         isCapability = IPM_ConstantUtils.PHASE_CAPABILITY;
         projectId=ApexPages.currentPage().getParameters().get('Id');
@@ -265,7 +268,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
         String projectWhereClause = ' WHERE id  =: projectId limit 1';
         projectWhereClause = projectQuery + projectWhereClause;
         List<IPM_Project__c> projList  = database.query(projectWhereClause);
-        if(projList != null && !projList.isEmpty() && IPM_Utils.isProjectToBeSyncedToEcoDesign(projList[0]) && !projList[0].IPM_Exists_AtLeast_OneAssmntPerEICountry__c)
+        if(projList != null && !projList.isEmpty() && IPM_Utils.isProjectToBeSyncedToEcoDesign(projList[0]) && !projList[0].IPM_Exists_AtLeast_OneAssmntPerEICountry__c && !isEcoDesignSecNegotiable)
         {
             ecoDesignNoAssessmentError = true;  
         }
@@ -433,6 +436,10 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 }
                 if(pds.IPM_Section__r.External_ID__c==IPM_ConstantUtils.ENVIRONMENTAL_IMPACT_EXTERNAL_ID)
                 {
+			if(pds.IPM_Negotiable__c) 
+                	{
+                    		isEcoDesignSecNegotiable = pds.IPM_Negotiable__c;
+                	}
                     ecoDesignSectionId = pds.Id;
                 }
                 
@@ -927,6 +934,4 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
             }
         }
     }
-    
-    
 }

@@ -196,7 +196,7 @@ public with sharing class IPM_GatekeeperChecklist{
                                 }
                                 else
                                 {
-                                    answerOption = new SelectOption(optionValue,'<span title='+  gkHelpTextMap.get(optionLabel)  + '>' +optionLabel+'</span>');
+                                    answerOption = new SelectOption(optionValue,'<span title= " '+  gkHelpTextMap.get(optionLabel)  + ' " >' +optionLabel+'</span>');
                                 }
                                 answerOption.setEscapeItem(false);
                                 applicableGKOptions.add(answerOption);              
@@ -207,7 +207,7 @@ public with sharing class IPM_GatekeeperChecklist{
                      {
                          for(String key :GK_DEF_APPLICABLE_ANSMAP.keyset())
                          {
-                            SelectOption answerOption =new SelectOption( GK_DEF_APPLICABLE_ANSMAP.get(key),'<span title='+  gkHelpTextMap.get(key)  + '>' +key+'</span>');
+                            SelectOption answerOption =new SelectOption( GK_DEF_APPLICABLE_ANSMAP.get(key),'<span title= " '+  gkHelpTextMap.get(key)  + ' ">' +key+'</span>');
                          
                             answerOption.setEscapeItem(false);
                          
