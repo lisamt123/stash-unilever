@@ -108,13 +108,13 @@
                     var state = response.getState();
                     if (state === "SUCCESS") {       
                         component.set("v.myUpdatesList",response.getReturnValue().IdeasOfTheWeek); 
-                        //helper.checkSelectedSort(component,"v.myUpdatesList","latestIdea","myIdeas");  
-                        if(response.getReturnValue().IdeasOfTheWeek.length>0){                           
+                        helper.checkSelectedSort(component,"v.myUpdatesList","latestIdea","myIdeas");  
+                        /*if(response.getReturnValue().IdeasOfTheWeek.length>0){                           
                         	helper.checkSelectedSort(component,"v.myUpdatesList","latestIdea","myIdeas");  
                         } else {                  
                         	helper.setDefaultSortFilter(component,"latestIdea","myIdeas");         
                             component.set("v.displayErrorMessage",true);
-                        } 
+                        } */
                         component.set("v.getMyUpdateList",true);
                         component.set("v.showspinner",false); 	                                   
                     } else {
@@ -191,7 +191,7 @@
     },
         navigateToFeedback: function(component, event, helper) { 
         var selectEvent = $A.get("e.c:CORE_IC_IdeaTemplateEvent");
-        selectEvent.setParams({"componentName":"markup://c:CORE_IC_IdeaFaqs","Pagename":"Feedback","pannelType":component.get("v.pannelType"),"componentName":"IdeaHome"}).fire();
+        selectEvent.setParams({"componentName":"markup://c:CORE_IC_IdeaTemplate","Pagename":"Feedback","pannelType":component.get("v.pannelType"),"componentName":"IdeaHome"}).fire();
     },
     gotoSubmitIdea : function(component, event, helper) { 
         var selectEvent = $A.get("e.c:CORE_IC_IdeaTemplateEvent");

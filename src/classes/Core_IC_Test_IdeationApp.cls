@@ -28,16 +28,18 @@ public class Core_IC_Test_IdeationApp {
     @TestVisible static String strSysAdmin= 'System Administrator';
     @TestVisible static String strIdea= 'Idea';
     @TestVisible static String strCategories='Categories';
-    
+    @TestVisible static String strCollaborationType='Public';
+    @TestVisible static String strStatus='Active';
+     
     public static testMethod void TestLandingPage(){
-        CollaborationGroup group1=new CollaborationGroup(name='IdeaTestClass1',CollaborationType='Public');
+        CollaborationGroup group1=new CollaborationGroup(name='IdeaTestClass1',CollaborationType=strCollaborationType);
         insert group1;
         
         Community community=[select Id from Community where IsActive =:True limit 1];
 
         test.starttest();
  
-        IdeaTheme ideaTheme1=new IdeaTheme(Idea_Theme_Title__c='TestIdeaThemefromTestclass1',Status='Active',Title='TestIdeaThemefromTestclass1',Active_Challenge__c=false,Groups_to_Post__c=group1.id,
+        IdeaTheme ideaTheme1=new IdeaTheme(Idea_Theme_Title__c='TestIdeaThemefromTestclass1',Status=strStatus,Title='TestIdeaThemefromTestclass1',Active_Challenge__c=false,Groups_to_Post__c=group1.id,
         CommunityId=community.id,Categories__c='Hair1,General1',StartDate=System.now(),EndDate=System.now().addDays(6),
         Chatter_Post__c=true,Idea_Themes_Banner__c='<img alt="User-added image" src="https://unilever--CHAZWA2--c.cs14.content.force.com/servlet/rtaImage?eid=0Bgc00000008Odc&amp;feoid=00NE0000005Nugn&amp;refid=0EMc00000000FNP" style="height: 80px; width: 500px;"></img>',Description__c='Test Desc1');
         insert ideaTheme1;
@@ -52,7 +54,7 @@ public class Core_IC_Test_IdeationApp {
         Profile p = [Select Id from Profile where Name = :strSysAdmin LIMIT 1];     
         User usr = new User(ProfileId = p.Id, Username = 'TestUser3248787878SSDDD12341@test1341.com', Email = 'test123411@abc123.com',
                             FirstName = 'Test12341', LastName = 'User12341', alias='tx12341', EmailEncodingKey='UTF-8',  LanguageLocaleKey='en_US', 
-                              LocaleSidKey='en_US', TimeZoneSidKey='America/Los_Angeles');
+                              LocaleSidKey='fr', TimeZoneSidKey='America/Los_Angeles');
         insert usr;
         
         List<String> lstPickvals=new List<String>();
@@ -88,14 +90,14 @@ public class Core_IC_Test_IdeationApp {
     }
     
     public static testMethod void TestCampaignDetail(){
-        CollaborationGroup group1=new CollaborationGroup(name='IdeaTestClass2',CollaborationType='Public');
+        CollaborationGroup group1=new CollaborationGroup(name='IdeaTestClass2',CollaborationType=strCollaborationType);
         insert group1;
         
         Community community=[select Id from Community where IsActive =:True limit 1];
 
         test.starttest();
  
-        IdeaTheme ideaTheme1=new IdeaTheme(Idea_Theme_Title__c='TestIdeaThemefromTestclass3',Status='Active',Title='TestIdeaThemefromTestclass3',Active_Challenge__c=false,Groups_to_Post__c=group1.id,
+        IdeaTheme ideaTheme1=new IdeaTheme(Idea_Theme_Title__c='TestIdeaThemefromTestclass3',Status=strStatus,Title='TestIdeaThemefromTestclass3',Active_Challenge__c=false,Groups_to_Post__c=group1.id,
         CommunityId=community.id,Categories__c='General,Hair',StartDate=System.now(),EndDate=System.now().addDays(6),
         Chatter_Post__c=true,Idea_Themes_Banner__c='<img alt="User-added image" src="https://unilever--CHAZWA2--c.cs14.content.force.com/servlet/rtaImage?eid=0Bgc00000008Odc&amp;feoid=00NE0000005Nugn&amp;refid=0EMc00000000FNP" style="height: 80px; width: 500px;"></img>',Description__c='Test Desc3');
         insert ideaTheme1;
@@ -109,8 +111,8 @@ public class Core_IC_Test_IdeationApp {
         
         Profile p = [Select Id from Profile where Name = :strSysAdmin LIMIT 1];     
         User usr = new User(ProfileId = p.Id, Username = 'TestUser3248787878SSDDD12342@test1341.com', Email = 'test123412@abc123.com',
-                            FirstName = 'Test12342', LastName = 'User12342', alias='tx12342', EmailEncodingKey='UTF-8',  LanguageLocaleKey='en_US', 
-                              LocaleSidKey='en_US', TimeZoneSidKey='America/Los_Angeles');
+                            FirstName = 'Test12342', LastName = 'User12342', alias='tx12342', EmailEncodingKey='UTF-8',  LanguageLocaleKey='pt_BR', 
+                              LocaleSidKey=' da', TimeZoneSidKey='America/Los_Angeles');
         insert usr;
         
         List<String> lstPickvals=new List<String>();
@@ -143,14 +145,14 @@ public class Core_IC_Test_IdeationApp {
     }
     
     public static testMethod void TestIdeaDetail(){
-        CollaborationGroup group1=new CollaborationGroup(name='IdeaTestClass3',CollaborationType='Public');
+        CollaborationGroup group1=new CollaborationGroup(name='IdeaTestClass3',CollaborationType=strCollaborationType);
         insert group1;
         
         Community community=[select Id from Community where IsActive =:True limit 1];
 
         test.starttest();
  
-        IdeaTheme ideaTheme1=new IdeaTheme(Idea_Theme_Title__c='TestIdeaThemefromTestclass5',Status='Active',Title='TestIdeaThemefromTestclass5',Active_Challenge__c=false,Groups_to_Post__c=group1.id,
+        IdeaTheme ideaTheme1=new IdeaTheme(Idea_Theme_Title__c='TestIdeaThemefromTestclass5',Status=strStatus,Title='TestIdeaThemefromTestclass5',Active_Challenge__c=false,Groups_to_Post__c=group1.id,
         CommunityId=community.id,Categories__c='Hair3,General3',StartDate=System.now(),EndDate=System.now().addDays(6),
         Chatter_Post__c=true,Idea_Themes_Banner__c='Test Banner5',Description__c='Test Desc6');
         insert ideaTheme1;
@@ -164,8 +166,8 @@ public class Core_IC_Test_IdeationApp {
         
         Profile p = [Select Id from Profile where Name = :strSysAdmin LIMIT 1];     
         User usr = new User(ProfileId = p.Id, Username = 'TestUser3248787878SSDDD12343@test1341.com', Email = 'test123413@abc123.com',
-                            FirstName = 'Test12343', LastName = 'User12343', alias='tx12343', EmailEncodingKey='UTF-8',  LanguageLocaleKey='en_US', 
-                              LocaleSidKey='en_US', TimeZoneSidKey='America/Los_Angeles');
+                            FirstName = 'Test12343', LastName = 'User12343', alias='tx12343', EmailEncodingKey='UTF-8',  LanguageLocaleKey='es_MX', 
+                              LocaleSidKey='zh_TW', TimeZoneSidKey='America/Los_Angeles');
         insert usr;
         
         List<String> lstPickvals=new List<String>();
@@ -196,7 +198,7 @@ public class Core_IC_Test_IdeationApp {
     }
     
     public static testMethod void TestVoteForIdea(){
-        CollaborationGroup group1=new CollaborationGroup(name='IdeaTestClass4',CollaborationType='Public');
+        CollaborationGroup group1=new CollaborationGroup(name='IdeaTestClass4',CollaborationType=strCollaborationType);
         insert group1;
         
         Community community=[select Id from Community where IsActive =:True limit 1];
@@ -205,13 +207,13 @@ public class Core_IC_Test_IdeationApp {
          
         Profile p = [Select Id from Profile where Name = :strSysAdmin LIMIT 1];     
         User usr = new User(ProfileId = p.Id, Username = 'TestUser3248787878SSDDD12344@test1341.com', Email = 'test123414@abc123.com',
-                            FirstName = 'Test12344', LastName = 'User12344', alias='tx12344', EmailEncodingKey='UTF-8',  LanguageLocaleKey='en_US', 
-                              LocaleSidKey='en_US', TimeZoneSidKey='America/Los_Angeles');
+                            FirstName = 'Test12344', LastName = 'User12344', alias='tx12344', EmailEncodingKey='UTF-8',  LanguageLocaleKey='sv', 
+                              LocaleSidKey='ja', TimeZoneSidKey='America/Los_Angeles');
         insert usr;
          
         Idea idea1;
         System.runAs(usr) { 
-        IdeaTheme ideaTheme1=new IdeaTheme(Idea_Theme_Title__c='TestIdeaThemefromTestclass7',Status='Active',Title='TestIdeaThemefromTestclass7',Active_Challenge__c=false,Groups_to_Post__c=group1.id,
+        IdeaTheme ideaTheme1=new IdeaTheme(Idea_Theme_Title__c='TestIdeaThemefromTestclass7',Status=strStatus,Title='TestIdeaThemefromTestclass7',Active_Challenge__c=false,Groups_to_Post__c=group1.id,
         CommunityId=community.id,Categories__c='General,Hair',StartDate=System.now(),EndDate=System.now().addDays(6),
         Chatter_Post__c=true,Idea_Themes_Banner__c='Test Banner7',Description__c='Test Desc7');
         insert ideaTheme1;
@@ -248,14 +250,14 @@ public class Core_IC_Test_IdeationApp {
     }
     
     public static testMethod void TestCommentForIdea(){
-        CollaborationGroup group1=new CollaborationGroup(name='IdeaTestClass5',CollaborationType='Public');
+        CollaborationGroup group1=new CollaborationGroup(name='IdeaTestClass5',CollaborationType=strCollaborationType);
         insert group1;
         
         Community community=[select Id from Community where IsActive =:True limit 1];
 
         test.starttest();
  
-        IdeaTheme ideaTheme1=new IdeaTheme(Idea_Theme_Title__c='TestIdeaThemefromTestclass9',Status='Active',Title='TestIdeaThemefromTestclass9',Active_Challenge__c=false,Groups_to_Post__c=group1.id,
+        IdeaTheme ideaTheme1=new IdeaTheme(Idea_Theme_Title__c='TestIdeaThemefromTestclass9',Status=strStatus,Title='TestIdeaThemefromTestclass9',Active_Challenge__c=false,Groups_to_Post__c=group1.id,
         CommunityId=community.id,Categories__c=strGeneral,StartDate=System.now(),EndDate=System.now().addDays(6),
         Chatter_Post__c=true,Idea_Themes_Banner__c='Test Banner9',Description__c='Test Desc9');
         insert ideaTheme1;
@@ -282,14 +284,14 @@ public class Core_IC_Test_IdeationApp {
     }
     
     public static testMethod void TestSubmitIdea(){
-        CollaborationGroup group1=new CollaborationGroup(name='IdeaTestClass6',CollaborationType='Public');
+        CollaborationGroup group1=new CollaborationGroup(name='IdeaTestClass6',CollaborationType=strCollaborationType);
         insert group1;
         
         Community community=[select Id from Community where IsActive =:True limit 1];
 
         test.starttest();
  
-        IdeaTheme ideaTheme1=new IdeaTheme(Idea_Theme_Title__c='TestIdeaThemefromTestclass10',Status='Active',Title='TestIdeaThemefromTestclass10',Active_Challenge__c=false,Groups_to_Post__c=group1.id,
+        IdeaTheme ideaTheme1=new IdeaTheme(Idea_Theme_Title__c='TestIdeaThemefromTestclass10',Status=strStatus,Title='TestIdeaThemefromTestclass10',Active_Challenge__c=false,Groups_to_Post__c=group1.id,
         CommunityId=community.id,Categories__c='Hair',StartDate=System.now(),EndDate=System.now().addDays(6),
         Chatter_Post__c=true,Idea_Themes_Banner__c='Test Banner10',Description__c='Test Desc10');
         insert ideaTheme1;
@@ -308,12 +310,7 @@ public class Core_IC_Test_IdeationApp {
         String faqId='a0Kc000000FTJT3EAP';
         Core_IC_WrapperUtility wrapper=new Core_IC_WrapperUtility();
         test.starttest();
-        try{
         RemoteServiceCallController.invokeService('','GetFAQValues',strGet);
-        }
-         catch(Exception ex){
-          system.assertEquals(ex.getMessage(), ex.getMessage());
-        }
         RemoteServiceCallController.invokeServiceWithURLParameter('','GetFAQValues',strGet,faqId);
         test.stoptest();
     }

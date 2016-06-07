@@ -189,12 +189,10 @@
                 </td>
             </tr>
         </table>
-            <aura:if isTrue="{!v.showspinner == true ? false : true}">
             <div class="action_bar">
                <div class="feedback" onclick="{!c.navigateToFeedback}"> <img src="/resource/CORE_IC_IdeasLigthtning/img/IDEA01.svg"/><div class="font1">App Feedback</div></div>
               <div class="information" onclick="{!c.navigateToFaq}"><img src="/resource/CORE_IC_IdeasLigthtning/img/IDEA02.svg"/><div class="font1">Information</div></div>
           </div>
-         </aura:if> 
     
     <aura:if isTrue="{!v.showspinner}">
             <div class="slds-spinner_container">
