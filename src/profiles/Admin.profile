@@ -1454,10 +1454,10 @@
         <layout>PBS_Achievement__c-PBS_Achievement Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>PBS_Answer_Sequence_Item__c-PBS_Answer Sequence Item Layout</layout>
+        <layout>PBS_Answer_Sequence_Item__c-Answer Sequence Item Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>PBS_Answer_Sequence__c-PBS_Answer Sequence Layout</layout>
+        <layout>PBS_Answer_Sequence__c-Answer Sequence Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>PBS_Batch_Operation_Record__c-PBS_Batch Operation Record Layout</layout>
@@ -1472,34 +1472,34 @@
         <layout>PBS_Learning_Assignment__c-PBS_Learning Assignment Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>PBS_Learning_Category__c-PBS_Learning Category Layout</layout>
+        <layout>PBS_Learning_Category__c-Learning Category Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>PBS_Learning_Version__c-PBS_Learning Version Layout</layout>
+        <layout>PBS_Learning_Version__c-Learning Version Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>PBS_Learning__c-PBS_Learning Layout</layout>
+        <layout>PBS_Learning__c-Learning-Quiz Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>PBS_Learning__c-PBS_Learning Layout</layout>
+        <layout>PBS_Learning__c-Learning-Quiz Layout</layout>
         <recordType>PBS_Learning__c.Quiz</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>PBS_Learning__c-PBS_Learning Layout</layout>
+        <layout>PBS_Learning__c-Learning-Resource Layout</layout>
         <recordType>PBS_Learning__c.Resource</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>PBS_Learning__c-PBS_Learning Layout</layout>
+        <layout>PBS_Learning__c-Learning-Task Layout</layout>
         <recordType>PBS_Learning__c.Task</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>PBS_Profile__c-Plancraft Profile Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>PBS_Question_Line__c-PBS_Question Line Layout</layout>
+        <layout>PBS_Question_Line__c-Question Line Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>PBS_Question__c-PBS_Question Layout</layout>
+        <layout>PBS_Question__c-Question Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>PBS_Quiz__c-PBS_Quiz Layout</layout>
@@ -1553,28 +1553,28 @@
         <layout>PBS_Training_Plan_Section_Assignment__c-PBS_Training Plan Section Assignment Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>PBS_Training_Plan_Section_Item__c-PBS_Training Plan Section Item Layout</layout>
+        <layout>PBS_Training_Plan_Section_Item__c-Training Plan Section Item Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>PBS_Training_Plan_Section__c-PBS_Training Plan Section Layout</layout>
+        <layout>PBS_Training_Plan_Section__c-Training Plan Section Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>PBS_Training_Plan__c-PBS_Training Plan Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>PBS_Training_Resource__c-PBS_Training Resource Layout</layout>
+        <layout>PBS_Training_Resource__c-Training Resource Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>PBS_Training_Track_Account__c-PBS_Training Track Account Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>PBS_Training_Track_Level_Item__c-PBS_Training Track Level Item Layout</layout>
+        <layout>PBS_Training_Track_Level_Item__c-Training Track Level Item Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>PBS_Training_Track_Level__c-PBS_Training Track Level Layout</layout>
+        <layout>PBS_Training_Track_Level__c-Training Track Level Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>PBS_Training_Track__c-PBS_Training Track Layout</layout>
+        <layout>PBS_Training_Track__c-Training Track Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>PBS_Wiki__kav-PBS Wiki Layout</layout>
