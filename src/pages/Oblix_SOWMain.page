@@ -144,22 +144,13 @@
 
         <apex:define name="page_scripts">
             <script type="text/javascript">
-
                 $(document).ready(function() {
-
                     var table = $('#sowListTable').on( 'init.dt', function () {
                         $('#Oblix_DashId .blockUI_table').hide();
-                    } ).DataTable({
-                        "dom": 'lrtip',
-                        'pagingType': 'full_numbers',
-                        'order': [[ 5, "desc" ]]
-                    });
+                    } ).DataTable({"dom": 'lrtip', 'pagingType': 'full_numbers', 'order': [[ 5, "desc" ]], 'bPaginate': false});
                     //setTimeout(function(){ $('#Oblix_DashId .blockUI1').hide(); console.log('Test123')}, 3000);
-
-
                     $('#searchBox').on('keyup', function() {
                         table.search(this.value).draw();
-
                     });
                     $('#sowListTable tbody').on('click', 'tr', function() {
                         blockme();
@@ -170,7 +161,6 @@
                         });
                         redirectToSOWDetailPage(ids);
                     });
-
                 });
             </script>
         </apex:define>
