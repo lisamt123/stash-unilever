@@ -216,14 +216,23 @@ public with sharing virtual class Oblix_SWOPparentController {
     public virtual PageReference checkUserHasPermissionToSOW(){
 
         if (NULl == selected_sow){
-            Pagereference permission_denied_page = Page.Oblix_PermissionDenied;
-            permission_denied_page.setRedirect(true);
-            return permission_denied_page;            
+            return redirectToPermissionDeniedPage();
         }
         else{
             return null;
         }
 
+    }
+
+    /*******************************************************************************
+    * @author       Shahin Movahedi
+    * @date         2016-01-17
+    * @description  Send user to permission denied page
+    ********************************************************************************/
+    public PageReference redirectToPermissionDeniedPage(){
+        Pagereference permission_denied_page = Page.Oblix_PermissionDenied;
+        permission_denied_page.setRedirect(true);
+        return permission_denied_page;   
     }
 
     /*******************************************************************************
@@ -235,9 +244,7 @@ public with sharing virtual class Oblix_SWOPparentController {
     public PageReference checkUserHasPermissionToProject(){
 
         if (NULl == selected_project){
-            Pagereference permission_denied_page = Page.Oblix_PermissionDenied;
-            permission_denied_page.setRedirect(true);
-            return permission_denied_page;            
+            return redirectToPermissionDeniedPage();            
         }
         else{
             return null;

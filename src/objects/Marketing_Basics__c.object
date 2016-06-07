@@ -154,7 +154,21 @@ Renamed to Other SOW items in reviews</description>
 OR( 
 ISPICKVAL( Oblix_SOWMarketing__r.SOW_Status__c , &quot;Awaiting Unilever Approval&quot;), 
 ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Draft - with Unilever&quot;), 
-ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;)), NULL, OblixOtherItemFee__c)</formula>
+ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;)), NULL, 
+IF( RecordType.DeveloperName = &quot;Activity&quot;, OblixOtherItemFee__c, NULL))</formula>
+        <label>Activity Fee</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Activity_Fee_UL__c</fullName>
+        <description>For use in the Unilever Non Campaign report, to hide values from the field if the record type is not &apos;Activity&apos;</description>
+        <externalId>false</externalId>
+        <formula>IF( RecordType.DeveloperName = &quot;Activity&quot;, OblixOtherItemFee__c, NULL)</formula>
         <label>Activity Fee</label>
         <precision>18</precision>
         <required>false</required>
@@ -498,7 +512,20 @@ OR(
 ISPICKVAL( Oblix_SOWMarketing__r.SOW_Status__c , &quot;Awaiting Unilever Approval&quot;), 
 ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Draft - with Unilever&quot;), 
 ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;)), NULL, 
-Oblix_FTE_Real_Price__c)</formula>
+IF( RecordType.DeveloperName = &quot;Activity&quot;, NULL,OblixOtherItemFee__c ))</formula>
+        <label>Resource Fee</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Resource_Fee_UL__c</fullName>
+        <description>For use in Unilever user Non Campaign report. Shows the Resource Fee for a Dedicated Resource</description>
+        <externalId>false</externalId>
+        <formula>IF( RecordType.DeveloperName = &quot;Activity&quot;, NULL, OblixOtherItemFee__c )</formula>
         <label>Resource Fee</label>
         <precision>18</precision>
         <required>false</required>

@@ -133,6 +133,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-8 status_completion_chevron_bar campaign_create_chevron">
+                        <a id="stagesPopover" class="text-info campaignCreateChevronTooltip" href="#" rel="popover" data-placement="right" data-title="Select Stage Percentage Values" data-html="true" data-content="<b>Briefing</b> - 10%<br/><b>Strategy & Planning</b> - 20%<br/><b>Creative Ideation</b> - 30%<br/><b>Creative Execution</b> - 25%<br/><b>Production</b> - 15%<br/>" data-trigger="hover focus" data-toggle="popover">See recommended %</a>
                         <div class="chevron_width_control">
                             <div class="status_completion_chevron_bar_main_styling">
                                 <p class="create_SOW_form_titles" id="stagesLabel">Choose stages for this FY*</p>
@@ -250,15 +251,21 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-8 create_campaign_priority">
+                    <div class="col-lg-8 create_campaign_priority no_padding">
+                        <div class="col-lg-6 no_padding">
                             <p>{!$ObjectType.Oblix_SOW_Projects__c.fields.Project_Priority__c.label}&nbsp;<span class="form_bracket_text">(Optional)</span>
                             </p>
-                            <apex:inputField value="{!campaignHelper.selectedProject.Project_Priority__c}" />
-                            <p style="text-indent: 13.5em;">BET Required?&nbsp;<span class="form_bracket_text">(Optional)</span>
+                            <apex:inputField value="{!campaignHelper.selectedProject.Project_Priority__c}" styleClass="priority_input"/>
+                        </div>
+                        <div class="col-lg-6">
+                            <p>BET Required?&nbsp;<span class="form_bracket_text">(Optional)</span>
                             </p>
-                            <apex:inputField value="{!campaignHelper.selectedProject.BET_Required__c}" />
+                            <apex:inputField value="{!campaignHelper.selectedProject.BET_Required__c}" styleClass="priority_input"/>
+                        </div>
+                        <div class="col-lg-12 no_padding">
                             <hr class="divider" />
+                        </div>
+                        <div class="col-lg-8 no_padding">
                             <p>Dates to show on the campaign timeline&nbsp;<span class="form_bracket_text">(Optional)</span>
                             </p>
                             <table>
