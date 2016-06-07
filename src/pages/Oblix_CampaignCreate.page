@@ -240,15 +240,21 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-8 create_campaign_priority">
+                    <div class="col-lg-8 create_campaign_priority no_padding">
+                        <div class="col-lg-6 no_padding">
                             <p>{!$ObjectType.Oblix_SOW_Projects__c.fields.Project_Priority__c.label}&nbsp;<span class="form_bracket_text">(Optional)</span>
                             </p>
-                            <apex:inputField value="{!campaignHelper.selectedProject.Project_Priority__c}" />
-                            <p style="text-indent: 13.5em;">BET Required?&nbsp;<span class="form_bracket_text">(Optional)</span>
+                            <apex:inputField value="{!campaignHelper.selectedProject.Project_Priority__c}" styleClass="priority_input"/>
+                        </div>
+                        <div class="col-lg-6">
+                            <p>BET Required?&nbsp;<span class="form_bracket_text">(Optional)</span>
                             </p>
-                            <apex:inputField value="{!campaignHelper.selectedProject.BET_Required__c}" />
+                            <apex:inputField value="{!campaignHelper.selectedProject.BET_Required__c}" styleClass="priority_input"/>
+                        </div>
+                        <div class="col-lg-12 no_padding">
                             <hr class="divider" />
+                        </div>
+                        <div class="col-lg-8">
                             <p>Dates to show on the campaign timeline&nbsp;<span class="form_bracket_text">(Optional)</span>
                             </p>
                             <table>
