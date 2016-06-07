@@ -114,6 +114,18 @@
         <trackTrending>false</trackTrending>
     </fields>
     <fields>
+        <fullName>AverageGrossProfit__c</fullName>
+        <externalId>false</externalId>
+        <label>Average Gross Profit</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>CampaignId</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
@@ -131,9 +143,28 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>ContractStartDate__c</fullName>
+        <externalId>false</externalId>
+        <label>Contract Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>CurrencyIsoCode</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
+    </fields>
+    <fields>
+        <fullName>DealApproved__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>It is determined based on the actions when an approval request is approved or rejected.</description>
+        <externalId>false</externalId>
+        <label>DealApproved</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Description</fullName>
@@ -143,6 +174,119 @@
     <fields>
         <fullName>ExpectedRevenue</fullName>
         <trackTrending>false</trackTrending>
+    </fields>
+    <fields>
+        <fullName>FS_ExistingTradeProContractID__c</fullName>
+        <externalId>false</externalId>
+        <label>Existing TradePro Contract ID</label>
+        <length>30</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_GPOName__c</fullName>
+        <externalId>false</externalId>
+        <label>GPO Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_Indicator__c</fullName>
+        <description>It displays a GREEN/RED stoplight on the page based on DealRequired(Opportunity) Field</description>
+        <externalId>false</externalId>
+        <formula>IF( DealApproved__c=true, 
+IMAGE(&quot;/img/samples/color_green.gif&quot;, &quot;green&quot;, 20, 20),
+IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Indicator</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_LumpSum__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Lump Sum TMI (Not A&amp;P)</inlineHelpText>
+        <label>Lump Sum</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FS_MSCS__c</fullName>
+        <externalId>false</externalId>
+        <formula>FS_LumpSum__c  /  FS_TotalNumberOfCases__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>MS/CS</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FS_Rate__c</fullName>
+        <externalId>false</externalId>
+        <label>Rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FS_ReasonDescription__c</fullName>
+        <externalId>false</externalId>
+        <label>Reason Description</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>FS_SiebelID__c</fullName>
+        <externalId>false</externalId>
+        <label>Siebel ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_TotalNumberOfCases__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Number of Cases</label>
+        <summarizedField>OpportunityLineItem.Quantity</summarizedField>
+        <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>FS_TradeProContractID__c</fullName>
+        <externalId>false</externalId>
+        <label>TradePro Contract ID</label>
+        <length>40</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IsPrivate</fullName>
@@ -203,110 +347,7 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>NAFSDealApproved__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>It is determined based on the actions when an approval request is approved or rejected.</description>
-        <externalId>false</externalId>
-        <label>DealApproved</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>NAFSIndicator__c</fullName>
-        <description>It displays a GREEN/RED stoplight on the page based on DealRequired(Opportunity) Field</description>
-        <externalId>false</externalId>
-        <formula>IF( NAFSDealApproved__c=true, 
-IMAGE(&quot;/img/samples/color_green.gif&quot;, &quot;green&quot;, 20, 20),
-IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
-)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Indicator</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>NAFS_AccountRegion__c</fullName>
-        <externalId>false</externalId>
-        <formula>TEXT(Account.UID_Region__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Account Region</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>NAFS_AverageGrossProfit__c</fullName>
-        <externalId>false</externalId>
-        <label>Average Gross Profit</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>NAFS_ContractStartDate__c</fullName>
-        <externalId>false</externalId>
-        <label>Contract Start Date</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>NAFS_ExistingTradeProContractID__c</fullName>
-        <externalId>false</externalId>
-        <label>Existing TradePro Contract ID</label>
-        <length>30</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>NAFS_GPOName__c</fullName>
-        <externalId>false</externalId>
-        <label>GPO Name</label>
-        <length>100</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>NAFS_LumpSum__c</fullName>
-        <externalId>false</externalId>
-        <inlineHelpText>Lump Sum TMI (Not A&amp;P)</inlineHelpText>
-        <label>Lump Sum</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>NAFS_MSCS__c</fullName>
-        <externalId>false</externalId>
-        <formula>NAFS_LumpSum__c  /  NAFS_TotalNumberOfCases__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>MS/CS</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>NAFS_MarketTarget__c</fullName>
+        <fullName>MarketTarget__c</fullName>
         <externalId>false</externalId>
         <label>Market Target</label>
         <precision>18</precision>
@@ -318,39 +359,17 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>NAFS_SiebelID__c</fullName>
-        <externalId>false</externalId>
-        <label>Siebel ID</label>
-        <length>255</length>
-        <required>false</required>
+        <fullName>Name</fullName>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+    </fields>
+    <fields>
+        <fullName>NextStep</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
-        <fullName>NAFS_TotalNumberOfCases__c</fullName>
-        <externalId>false</externalId>
-        <label>Total Number of Cases</label>
-        <summarizedField>OpportunityLineItem.Quantity</summarizedField>
-        <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
-        <summaryOperation>sum</summaryOperation>
-        <trackTrending>false</trackTrending>
-        <type>Summary</type>
-    </fields>
-    <fields>
-        <fullName>NAFS_TradeProContractID__c</fullName>
-        <externalId>false</externalId>
-        <label>TradePro Contract ID</label>
-        <length>40</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>NFS_NumberOfLocations__c</fullName>
+        <fullName>NumberOfLocations__c</fullName>
         <externalId>false</externalId>
         <label>Number Of Locations</label>
         <precision>18</precision>
@@ -360,165 +379,6 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>NFS_Rate__c</fullName>
-        <externalId>false</externalId>
-        <label>Rate</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>NFS_ReasonDescription__c</fullName>
-        <externalId>false</externalId>
-        <label>Reason Description</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>TextArea</type>
-    </fields>
-    <fields>
-        <fullName>NFS_Reason__c</fullName>
-        <description>Reason when Opportunity is closed</description>
-        <externalId>false</externalId>
-        <label>Reason</label>
-        <picklist>
-            <controllingField>StageName</controllingField>
-            <picklistValues>
-                <fullName>Lost To Competition-PL</fullName>
-                <default>false</default>
-                <controllingFieldValues>Closed Lost</controllingFieldValues>
-                <controllingFieldValues>Not Pursued</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Taste Test</fullName>
-                <default>false</default>
-                <controllingFieldValues>Closed Lost</controllingFieldValues>
-                <controllingFieldValues>Closed Won</controllingFieldValues>
-                <controllingFieldValues>Not Pursued</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Customer Cancelled</fullName>
-                <default>false</default>
-                <controllingFieldValues>Closed Lost</controllingFieldValues>
-                <controllingFieldValues>Closed Won</controllingFieldValues>
-                <controllingFieldValues>Lost Existing Business</controllingFieldValues>
-                <controllingFieldValues>Not Pursued</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Price</fullName>
-                <default>false</default>
-                <controllingFieldValues>Closed Lost</controllingFieldValues>
-                <controllingFieldValues>Closed Won</controllingFieldValues>
-                <controllingFieldValues>Lost Existing Business</controllingFieldValues>
-                <controllingFieldValues>Not Pursued</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Other</fullName>
-                <default>false</default>
-                <controllingFieldValues>Closed Lost</controllingFieldValues>
-                <controllingFieldValues>Closed Won</controllingFieldValues>
-                <controllingFieldValues>Lost Existing Business</controllingFieldValues>
-                <controllingFieldValues>Not Pursued</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Lost To Competition-Branded</fullName>
-                <default>false</default>
-                <controllingFieldValues>Closed Lost</controllingFieldValues>
-                <controllingFieldValues>Lost Existing Business</controllingFieldValues>
-                <controllingFieldValues>Not Pursued</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Discontinued Application</fullName>
-                <default>false</default>
-                <controllingFieldValues>Closed Lost</controllingFieldValues>
-                <controllingFieldValues>Lost Existing Business</controllingFieldValues>
-                <controllingFieldValues>Not Pursued</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Lost To Competition-Custom</fullName>
-                <default>false</default>
-                <controllingFieldValues>Closed Lost</controllingFieldValues>
-                <controllingFieldValues>Not Pursued</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Relationship</fullName>
-                <default>false</default>
-                <controllingFieldValues>Closed Lost</controllingFieldValues>
-                <controllingFieldValues>Closed Won</controllingFieldValues>
-                <controllingFieldValues>Not Pursued</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>No Match</fullName>
-                <default>false</default>
-                <controllingFieldValues>Closed Lost</controllingFieldValues>
-                <controllingFieldValues>Closed Won</controllingFieldValues>
-                <controllingFieldValues>Not Pursued</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Converted To Another Pack</fullName>
-                <default>false</default>
-                <controllingFieldValues>Closed Lost</controllingFieldValues>
-                <controllingFieldValues>Closed Won</controllingFieldValues>
-                <controllingFieldValues>Lost Existing Business</controllingFieldValues>
-                <controllingFieldValues>Not Pursued</controllingFieldValues>
-                <controllingFieldValues>Replace Existing Business</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Innovation Presentation</fullName>
-                <default>false</default>
-                <controllingFieldValues>Closed Lost</controllingFieldValues>
-                <controllingFieldValues>Closed Won</controllingFieldValues>
-                <controllingFieldValues>Lost Existing Business</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Good Lead</fullName>
-                <default>false</default>
-                <controllingFieldValues>Closed Lost</controllingFieldValues>
-                <controllingFieldValues>Closed Won</controllingFieldValues>
-                <controllingFieldValues>Not Pursued</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Transfer to GSC/ILT</fullName>
-                <default>false</default>
-                <controllingFieldValues>Closed Lost</controllingFieldValues>
-                <controllingFieldValues>Not Pursued</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Timeline Not Met</fullName>
-                <default>false</default>
-                <controllingFieldValues>Closed Lost</controllingFieldValues>
-                <controllingFieldValues>Not Pursued</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Value-added Service</fullName>
-                <default>false</default>
-                <controllingFieldValues>Closed Won</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Out Of Business</fullName>
-                <default>false</default>
-                <controllingFieldValues>Not Pursued</controllingFieldValues>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>Name</fullName>
-        <trackFeedHistory>true</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-    </fields>
-    <fields>
-        <fullName>NextStep</fullName>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
     </fields>
     <fields>
         <fullName>OwnerId</fullName>
@@ -662,6 +522,135 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
                 <fullName>Lost To Competition-Custom</fullName>
                 <default>false</default>
                 <controllingFieldValues>00 - Lost</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Reason__c</fullName>
+        <description>Reason when Opportunity is closed</description>
+        <externalId>false</externalId>
+        <label>Reason</label>
+        <picklist>
+            <controllingField>StageName</controllingField>
+            <picklistValues>
+                <fullName>Lost To Competition-PL</fullName>
+                <default>false</default>
+                <controllingFieldValues>Closed Lost</controllingFieldValues>
+                <controllingFieldValues>Not Pursued</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Taste Test</fullName>
+                <default>false</default>
+                <controllingFieldValues>Closed Lost</controllingFieldValues>
+                <controllingFieldValues>Closed Won</controllingFieldValues>
+                <controllingFieldValues>Not Pursued</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Customer Cancelled</fullName>
+                <default>false</default>
+                <controllingFieldValues>Closed Lost</controllingFieldValues>
+                <controllingFieldValues>Closed Won</controllingFieldValues>
+                <controllingFieldValues>Lost Existing Business</controllingFieldValues>
+                <controllingFieldValues>Not Pursued</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Price</fullName>
+                <default>false</default>
+                <controllingFieldValues>Closed Lost</controllingFieldValues>
+                <controllingFieldValues>Closed Won</controllingFieldValues>
+                <controllingFieldValues>Lost Existing Business</controllingFieldValues>
+                <controllingFieldValues>Not Pursued</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <controllingFieldValues>Closed Lost</controllingFieldValues>
+                <controllingFieldValues>Closed Won</controllingFieldValues>
+                <controllingFieldValues>Lost Existing Business</controllingFieldValues>
+                <controllingFieldValues>Not Pursued</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Lost To Competition-Branded</fullName>
+                <default>false</default>
+                <controllingFieldValues>Closed Lost</controllingFieldValues>
+                <controllingFieldValues>Lost Existing Business</controllingFieldValues>
+                <controllingFieldValues>Not Pursued</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Discontinued Application</fullName>
+                <default>false</default>
+                <controllingFieldValues>Closed Lost</controllingFieldValues>
+                <controllingFieldValues>Lost Existing Business</controllingFieldValues>
+                <controllingFieldValues>Not Pursued</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Lost To Competition-Custom</fullName>
+                <default>false</default>
+                <controllingFieldValues>Closed Lost</controllingFieldValues>
+                <controllingFieldValues>Not Pursued</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Relationship</fullName>
+                <default>false</default>
+                <controllingFieldValues>Closed Lost</controllingFieldValues>
+                <controllingFieldValues>Closed Won</controllingFieldValues>
+                <controllingFieldValues>Not Pursued</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No Match</fullName>
+                <default>false</default>
+                <controllingFieldValues>Closed Lost</controllingFieldValues>
+                <controllingFieldValues>Closed Won</controllingFieldValues>
+                <controllingFieldValues>Not Pursued</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Converted To Another Pack</fullName>
+                <default>false</default>
+                <controllingFieldValues>Closed Lost</controllingFieldValues>
+                <controllingFieldValues>Closed Won</controllingFieldValues>
+                <controllingFieldValues>Lost Existing Business</controllingFieldValues>
+                <controllingFieldValues>Not Pursued</controllingFieldValues>
+                <controllingFieldValues>Replace Existing Business</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Innovation Presentation</fullName>
+                <default>false</default>
+                <controllingFieldValues>Closed Lost</controllingFieldValues>
+                <controllingFieldValues>Closed Won</controllingFieldValues>
+                <controllingFieldValues>Lost Existing Business</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Good Lead</fullName>
+                <default>false</default>
+                <controllingFieldValues>Closed Lost</controllingFieldValues>
+                <controllingFieldValues>Closed Won</controllingFieldValues>
+                <controllingFieldValues>Not Pursued</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Transfer to GSC/ILT</fullName>
+                <default>false</default>
+                <controllingFieldValues>Closed Lost</controllingFieldValues>
+                <controllingFieldValues>Not Pursued</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Timeline Not Met</fullName>
+                <default>false</default>
+                <controllingFieldValues>Closed Lost</controllingFieldValues>
+                <controllingFieldValues>Not Pursued</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Value-added Service</fullName>
+                <default>false</default>
+                <controllingFieldValues>Closed Won</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Out Of Business</fullName>
+                <default>false</default>
+                <controllingFieldValues>Not Pursued</controllingFieldValues>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -1049,7 +1038,74 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>NFS_Reason__c</picklist>
+            <picklist>ReasonWonLost__c</picklist>
+            <values>
+                <fullName>Converted To Another Pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Discontinued Application</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Good Lead</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Innovation Presentation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-Branded</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-Custom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-PL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Match</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Relationship</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Taste Test</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeline Not Met</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transfer to GSC%2FILT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Value-added Service</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Reason__c</picklist>
             <values>
                 <fullName>Converted To Another Pack</fullName>
                 <default>false</default>
@@ -1092,73 +1148,6 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
             </values>
             <values>
                 <fullName>Out Of Business</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Price</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Relationship</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Taste Test</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Timeline Not Met</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Transfer to GSC%2FILT</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Value-added Service</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>ReasonWonLost__c</picklist>
-            <values>
-                <fullName>Converted To Another Pack</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Customer Cancelled</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Discontinued Application</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Good Lead</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Innovation Presentation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Lost To Competition-Branded</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Lost To Competition-Custom</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Lost To Competition-PL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>No Match</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1309,7 +1298,74 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>NFS_Reason__c</picklist>
+            <picklist>ReasonWonLost__c</picklist>
+            <values>
+                <fullName>Converted To Another Pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Discontinued Application</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Good Lead</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Innovation Presentation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-Branded</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-Custom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-PL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Match</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Relationship</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Taste Test</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeline Not Met</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transfer to GSC%2FILT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Value-added Service</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Reason__c</picklist>
             <values>
                 <fullName>Converted To Another Pack</fullName>
                 <default>false</default>
@@ -1352,73 +1408,6 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
             </values>
             <values>
                 <fullName>Out Of Business</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Price</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Relationship</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Taste Test</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Timeline Not Met</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Transfer to GSC%2FILT</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Value-added Service</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>ReasonWonLost__c</picklist>
-            <values>
-                <fullName>Converted To Another Pack</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Customer Cancelled</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Discontinued Application</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Good Lead</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Innovation Presentation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Lost To Competition-Branded</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Lost To Competition-Custom</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Lost To Competition-PL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>No Match</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1569,7 +1558,74 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>NFS_Reason__c</picklist>
+            <picklist>ReasonWonLost__c</picklist>
+            <values>
+                <fullName>Converted To Another Pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Discontinued Application</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Good Lead</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Innovation Presentation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-Branded</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-Custom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-PL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Match</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Relationship</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Taste Test</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeline Not Met</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transfer to GSC%2FILT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Value-added Service</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Reason__c</picklist>
             <values>
                 <fullName>Converted To Another Pack</fullName>
                 <default>false</default>
@@ -1612,73 +1668,6 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
             </values>
             <values>
                 <fullName>Out Of Business</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Price</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Relationship</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Taste Test</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Timeline Not Met</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Transfer to GSC%2FILT</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Value-added Service</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>ReasonWonLost__c</picklist>
-            <values>
-                <fullName>Converted To Another Pack</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Customer Cancelled</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Discontinued Application</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Good Lead</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Innovation Presentation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Lost To Competition-Branded</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Lost To Competition-Custom</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Lost To Competition-PL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>No Match</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1783,7 +1772,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <description>when select the Stage = Closed Lost, Closed Won, Not Pursued, Lost Existing Business, Replace Existing Business, It should be required to populate a text box called Reason Description. Populate Reason Description means NOT NULL.</description>
         <errorConditionFormula>IF(
 AND( OR(ISPICKVAL(StageName, &quot;Closed Lost&quot;), ISPICKVAL(StageName, &quot;Closed Won&quot;), ISPICKVAL(StageName, &quot;Not Pursued&quot;), ISPICKVAL(StageName, &quot;Lost Existing Business&quot;), ISPICKVAL(StageName, &quot;Replace Existing Business&quot;)),
-LEN(NFS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
+LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
         <errorMessage>Enter valid reason in the Reason Description field according to the selection of Stage field.</errorMessage>
     </validationRules>
     <validationRules>
@@ -1817,7 +1806,7 @@ LEN(NFS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
         <fullName>Opportunity_for_Stage_5</fullName>
         <active>true</active>
         <description>Opportunities must be approved in order to advance it to 05 - Won</description>
-        <errorConditionFormula>IF( ISPICKVAL(StageName,&apos;05 – Won&apos;),  NOT( NAFSDealApproved__c =true) , false)</errorConditionFormula>
+        <errorConditionFormula>IF( ISPICKVAL(StageName,&apos;05 – Won&apos;),  NOT( DealApproved__c =true) , false)</errorConditionFormula>
         <errorMessage>Opportunities must be approved in order to advance it to 05 - Won</errorMessage>
     </validationRules>
 </CustomObject>

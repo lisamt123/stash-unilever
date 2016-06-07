@@ -251,7 +251,7 @@
     <fields>
         <fullName>NAFS_OpTMICs__c</fullName>
         <externalId>false</externalId>
-        <formula>NAFS_Rate__c  +  NAFS_HQRate__c  +  Opportunity.NAFS_MSCS__c +  IF( NAFS_FixedPrice__c = TRUE,  NAFS_DeltaBR1BR3__c , 0)</formula>
+        <formula>NAFS_Rate__c  +  NAFS_HQRate__c  +  Opportunity.FS_MSCS__c +  IF( NAFS_FixedPrice__c = TRUE,  NAFS_DeltaBR1BR3__c , 0)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Op TMI/Cs</label>
         <precision>18</precision>
