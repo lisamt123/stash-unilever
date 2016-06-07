@@ -12,8 +12,8 @@
         <label>Summary</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>VPM_CommodityName_del__c</field>
+                <behavior>Required</behavior>
+                <field>VPM_CompanyCode__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -50,6 +50,26 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>VPM_Interestcalculationindicator__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>VPM_ProvidedUnblockUndelete__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>VPM_ProvidedBlockDelete__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>VPM_Vendor_SubType__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>VPM_CommodityClassCode__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>VPM_RaisedByProcurementTeam__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -152,6 +172,9 @@
         <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
+    <miniLayout>
+        <fields>VPM_CompanyCode__c</fields>
+    </miniLayout>
     <relatedLists>
         <relatedList>RelatedNoteList</relatedList>
     </relatedLists>

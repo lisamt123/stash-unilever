@@ -4,7 +4,6 @@
     <apex:includeScript value="{!$Resource.vpmjqueryresources}"/>
     <apex:includeScript value="{!URLFOR($Resource.vpmjqueryresources, 'vpmjqueryresources/jquery-1.12.2.min.js')}"/>
     <!--apex:stylesheet value="{!URLFOR($Resource.VPMstyle)}"/-->
-    <apex:stylesheet value="{!URLFOR($Resource.vpmjqueryresources, 'vpmjqueryresources/jquery-ui.css')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.vpmstyles, 'vpmstyles.css')}" />
     <apex:stylesheet value="{!URLFOR($Resource.vpmbootstrapresources, 'vpmbootstrapresources/bootstrap.css')}" />
     <!--style>

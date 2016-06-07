@@ -1,6 +1,14 @@
 <apex:page standardController="VPM_PurchasingRequests__c" extensions="VPM_PurchaseRequestsControllerExtension" standardStylesheets="true" sidebar="false" >
     <script>
-
+        
+      $(document).ready(function() {
+         $('[id*="saveButton"],[id*="cancelButton"]').hide();
+         $('.bPageBlock').css({'border-top':'1px solid white','background-color':'#fff','border-left-color':'#fff','border-right-color':'#fff'});
+     });
+       $(document).dblclick(function() {
+          $('[id*="saveButton"],[id*="cancelButton"]').show();
+        });
+        
   function func()
   {
   alert('Only relevant for Manual Blocks/Unblocks/Deletes/Undeletes'); 
@@ -15,6 +23,14 @@
    function PageReload()
   {
   debugger;
+  var localhost = document.domain;
+  window.top.location='https://'+localhost+'/{!VPM_PurchasingRequests__c.id}';
+  return false;
+  }
+   function PageReloadWithMsg(msg)
+  {
+  debugger;
+  alert(msg);
   var localhost = document.domain;
   window.top.location='https://'+localhost+'/{!VPM_PurchasingRequests__c.id}';
   return false;
@@ -57,13 +73,13 @@
         }
      
   </script>
-    <apex:form >
-        <apex:commandButton value="Send to SAP" action="{!callCreateVendorAPI}" rendered="{!RenderSAPBtn}" 
-        disabled="{!NOT(enableSendToSAPBtn)}" />
+    <apex:form style="text-align:center">
+        <apex:commandButton value="Send to SAP" action="{!callSendToSAPAPI}" rendered="{!RenderSAPBtn}" 
+        disabled="{!NOT(enableSendToSAPBtn)}" onclick="return false;"/>
         <apex:commandButton value="Manually Mark as complete" rendered="{!ManuallyMarkasCompletebtn}" action="{!ManuallyMarkAsCompleteAction}" />
         <!--apex:commandButton value="Rework" rendered="{!ReworkBtn}" onclick='reworkBtnClick()'/-->  
          <apex:commandButton value="Rework"  disabled="{!NOT(ReworkBtn)}" onclick="reworkBtnClick();return false;"/> 
-        <apex:commandButton value="Submit Request"  action="{!SubmitRequestAction}" />
+        <apex:commandButton value="Submit Request"  action="{!SubmitRequestAction}" disabled="{!NOT(SubmitRequestBtn)}"/>
       
         <apex:actionFunction name="ReworkAction" action="{!ReworkAction}" reRender="out" oncomplete="PageReload()"/>
           <apex:outputText value="{!callJavaScriptAlert}" escape="false"></apex:outputText>

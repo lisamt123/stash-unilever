@@ -62,8 +62,8 @@
         	 border-color: #0275D8;
         }
         .emphasizeHeader{
-        	 text-transform: uppercase;
-            font-size: 16px;
+        	text-transform: uppercase;
+            font-size: 15px;
             text-decoration: underline;
         }
     	.statusAlignment{

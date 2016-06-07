@@ -3,7 +3,7 @@
 <apex:stylesheet value="{!URLFOR($Resource.vpmstyles, 'vpmstyles.css')}" />
 <apex:stylesheet value="{!URLFOR($Resource.vpmadvancedformcss)}" />
 <apex:includeScript value="{!$Resource.vpmjqueryresources}"/>
-<apex:includeScript value="{!URLFOR($Resource.vpmjqueryresources, 'vpmjqueryresources/jquery-1.12.2.min.js')}"/>
+<apex:includeScript value="{!URLFOR($Resource.vpmjqueryresources, 'vpmjqueryresources/jquery-1.12.4.js')}"/>
 <script type = "text/javascript">
       $(document).ready(function(){
         var flag;
@@ -84,12 +84,22 @@
         var vendorDetailHeader = $('span[id*="VPM_CreateVendorDetailInfo"]');
         var maintainVendorHeader= $('span[id*="VPM_Maintain1VendorDetailsScreenInfo"]');
         var purchasingTab = $('#tabBar>li[class*="VPM_PurchasingRequests"]');
+        var alignErrorMsg = $('span[id*="VPM_UnBlockUndeleteMessage"]');
+        debugger;
+       
         
         $('span[id*="VendorSearchInstr"],span[id*="VPM_MaintainExtendInstr"]').find('i').css("font-style","normal");
         $(purchasingTab).css("background-color","#0275D8");
         $('input[type="button"],input[type="submit"],button').addClass("btn-primary");
+        
         $(vendorDetailHeader).find("b").addClass('emphasizeHeader');
         $(maintainVendorHeader).find("b").addClass('emphasizeHeader');
+        $('span[id*="VPM_ReqestBriefDisplayText"]').find("b").addClass("emphasizeHeader");
+        $('span[id*="VPM_BankDetailDisplaName"]').find("b").addClass("emphasizeHeader");
+        $('span[id*="VPM_PaymentTermDisplay"]').find("b").addClass("emphasizeHeader");
+        $('span[id*="VPM_FinancailDisplayText"]').find("b").addClass("emphasizeHeader");
+        $('span[id*="CreateRegionSpecific"]').addClass("emphasizeHeader").css('font-weight','bold');
+        
         $(".FlowPageBlockBtns").siblings().remove();
         /*  to align status and type side by side instead of one stacking both one above the other  */
         $(spanToAlign).css("float","left");
@@ -99,7 +109,7 @@
          
          if($(".interviewDisplayTextRow b").text().indexOf("Type") > -1){
                 savedRow = $(".interviewDisplayTextRow")[1];
-                savedRow && savedRow!=null ? $(".interviewDisplayTextRow")[1].remove():'';
+                savedRow && savedRow!=null ? $(savedRow ).remove():'';
              $(savedRow).insertBefore($(".interviewDisplayTextRow")[0]);
              $($(".interviewDisplayTextRow")[0]).css("display","table-cell");
             
@@ -150,6 +160,11 @@
                 $('input[type="submit"],input[type="button"],button')[i].value = 'Menu/Previous';                
          }
         /*  *****  */
+        
+         if($(alignErrorMsg) && $(alignErrorMsg)!=[]){
+                $(alignErrorMsg).closest('tr').css('display','table-row').append('<br>');
+                $(alignErrorMsg).closest('td').append('<br>');
+        }
     }
     function openPopup(page){
         window.open('/apex/VPM_AttachmentSectionPopUp','Table','toolbar=yes, scrollbars=no, toolbar=no, menubar=no, height=500,width=1230, top=70, left=70');
@@ -160,7 +175,7 @@
     }
     </script>
    <div id="advForm" style="display: none;">
-    <flow:interview name="VPM_PurchasingRequestAdvanceForm" interview="{!flBatch}" finishLocation="{!prFinishLocation}">
+    <flow:interview name="VPM_PurchasingRequestAdvanceForm" interview="{!flBatch}"  finishLocation="{!prFinishLocation}">
         <apex:param name="VPM_PurchasingRequestID" value="{!VPM_PurchasingRequests__c.Id}"/>    
     </flow:interview>
        

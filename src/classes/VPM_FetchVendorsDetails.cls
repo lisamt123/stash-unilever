@@ -13,15 +13,15 @@ global class VPM_FetchVendorsDetails {
         @InvocableVariable
         public String ECC;
         @InvocableVariable
-        public Integer VendorCode;
+        public String VendorCode;
         @InvocableVariable
         public String BankCountry;
         @InvocableVariable
-        public Integer BankKey;
+        public String BankKey;
         @InvocableVariable
-        public Integer BankAccount;
+        public String BankAccount;
         @InvocableVariable
-        public Integer ControlKey;
+        public String ControlKey;
         @InvocableVariable
         public String AccountHolder;
         @InvocableVariable
@@ -70,17 +70,17 @@ global class VPM_FetchVendorsDetails {
             
             outVar.ECC=vendorDetail.ECC;
             outVar.VendorCode=vendorDetail.VendorCode;
-            outVar.BankCountry=vendorDetail.BankCountry;
+            outVar.BankCountry=vendorDetail.BankCountryKey;
             outVar.BankKey=vendorDetail.BankKey;
-            outVar.BankAccount=vendorDetail.BankAccount;
-            outVar.ControlKey=vendorDetail.ControlKey;
-            outVar.AccountHolder=vendorDetail.AccountHolder;
+            outVar.BankAccount=vendorDetail.BankAccountNumber;
+            outVar.ControlKey=vendorDetail.BankControlKey;
+            outVar.AccountHolder=vendorDetail.AccountHolderName;
             outVar.IBAN=vendorDetail.IBAN;
-            outVar.CompanyCode=vendorDetail.CompanyCode;
             outVar.BankName=vendorDetail.BankName;
             outVar.SwiftKey=vendorDetail.SwiftKey;
             outVar.Blocked=vendorDetail.Blocked;
             outVar.Deleted=vendorDetail.Deleted;
+            outVar.CompanyCode=vendorDetail.CompanyCode;
             outVar.vendorFoundResult=true;
             
             vendorListResult.add(outVar);

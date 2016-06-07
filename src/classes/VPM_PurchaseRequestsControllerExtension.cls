@@ -8,16 +8,30 @@ global class VPM_PurchaseRequestsControllerExtension {
     public String venReqStatus {get; set;}
     public string callJavaScriptAlert{get;set;}
     public string recId{get;set;}
-    public static string recId1{get;set;}
+    //public static string recId1{get;set;}
     public boolean ManuallyMarkAsCompleteFlag {get;set;}
-    
+    public boolean SubmitRequestBtn {get; set;}
+    public boolean isBR {get; set;}
+    public boolean isFLS {get; set;}
+    public boolean isMDM {get; set;}
+    public boolean isFinance {get; set;}
+    public boolean isProcure {get; set;}
+    public VPM_PurchasingRequests__c pr{get;set;}  
+   
+    ApexPages.StandardController GstdController; 
     public VPM_PurchaseRequestsControllerExtension (ApexPages.StandardController stdController) {
         try{
+        GstdController =stdController;
         recId = stdController.getRecord().Id; 
-        recId1 = stdController.getRecord().Id; 
+       
+        //errorMsg=getError();
+        
+        this.pr= (VPM_PurchasingRequests__c)stdController.getRecord(); 
+        //recId1 = stdController.getRecord().Id; 
         // callJavaScriptAlert='<script> func(); </script>';
+        checkUser();
         venReqStatus = fetchRecordStatus(recId);
-        list<VPM_PurchasingRequests__c> vendorDetailList =[select OwnerId from VPM_PurchasingRequests__c where id =: recId];
+        list<VPM_PurchasingRequests__c> vendorDetailList =[select OwnerId, VPM_Status__c from VPM_PurchasingRequests__c where id =: recId];
         list<QueueSobject> QueueSobjectList =[Select Queue.Name From QueueSobject where QueueId =: vendorDetailList[0].OwnerId];
         System.debug('-------inside constructor of extn-------'+stdController.getRecord().Id + '  ' + venReqStatus);
         if(String.isNotBlank(venReqStatus) && (venReqStatus.equalsIgnoreCase('MDM Ops Review') || 
@@ -29,43 +43,73 @@ global class VPM_PurchaseRequestsControllerExtension {
         
         usrRole = checkLoggedInUserRole();
         EnableManuallyMarkAsCompleteBtn();
+        
         if(usrRole == 'MDM') {
             RenderSAPBtn = true;
             ManuallyMarkasCompletebtn= true;
         }
+        else if(usrRole ==  'FRE' && QueueSobjectList[0].Queue.Name.contains('Freight')) {
+            ReworkBtn=true;
+              RenderSAPBtn = true;
+              SubmitRequestBtn = true;
+        }
         else if(usrRole ==  'FIN' && QueueSobjectList[0].Queue.Name.contains('Finance')) {
             ReworkBtn=true;
               RenderSAPBtn = true;
+              SubmitRequestBtn = true;
         }
         else if(usrRole ==  'PRO' && QueueSobjectList[0].Queue.Name.contains('Procurement')) {
             ReworkBtn=true;
               RenderSAPBtn = true;
+              SubmitRequestBtn = true;
         }
          else if(usrRole ==  'FLS' && QueueSobjectList[0].Queue.Name.contains('FLS')) {
             ReworkBtn=true;
               RenderSAPBtn = true;
+              SubmitRequestBtn = true;
+        }
+          else if(usrRole ==  'BUR') {
+           
+              RenderSAPBtn = false;
+              SubmitRequestBtn = true;
+        }
+        if(vendorDetailList[0].VPM_Status__c.contains('Rejected'))
+        {
+         RenderSAPBtn = false;
+         SubmitRequestBtn = false;
+         ManuallyMarkasCompletebtn= false;
+        }
+        if(vendorDetailList[0].VPM_Status__c.contains('Rejected'))
+        {
+        RenderSAPBtn = false;
+        ManuallyMarkasCompletebtn= false;
+         SubmitRequestBtn = false;
         }
         vendorReqId = stdController.getRecord().Id;
     }
     catch(exception ex){}
     }
     
-    public void callCreateVendorAPI() {
+    public void callSendToSAPAPI() {
         System.debug('-----id of vendor request record is-----'+vendorReqId);
+        String responseString;
         list<VPM_PurchasingRequests__c> vendorList = [SELECT RecordTypeId from VPM_PurchasingRequests__c where id=:vendorReqId limit 1];
             list<RecordType> RecordTypeList =[SELECT Name from RecordType where id=:vendorList[0].RecordTypeId limit 1];
             if(RecordTypeList[0].Name.contains('(Create)')) {
                 System.debug('-----calling create vendor mule api----');
-                VPM_CreateVendorServiceHelper.createVendor(vendorReqId);
-                callJavaScriptAlert='<script> PageReload(); </script>';
+                responseString = VPM_CreateVendorServiceHelper.createVendor(vendorReqId);
+                System.debug('-----response string from create vendor mule api----' + responseString);
+                callJavaScriptAlert='<script>PageReload(); localStorage.setItem("msg","'+responseString+'"); </script>';
             } else if(RecordTypeList[0].Name.contains('(Extend)')) {
                 System.debug('-----calling extend global vendor mule api----');
-                VPM_ExtendVendorGlobalHelper.extendVendorGlobal(vendorReqId);
+                //VPM_ExtendVendorGlobalHelper.extendVendorGlobal(vendorReqId);
+                VPM_MaintainGlobalVendorServiceHelper.maintainGlobalVendor(vendorReqId);
+                callJavaScriptAlert='<script> PageReload(); </script>';
+            } else if(RecordTypeList[0].Name.contains('(Maintain)')) {
+                System.debug('-----calling extend global vendor mule api----');
+                VPM_MaintainGlobalVendorServiceHelper.maintainGlobalVendor(vendorReqId);
                 callJavaScriptAlert='<script> PageReload(); </script>';
             }
-        /*VPM_CreateVendorServiceHelper.createVendor(vendorReqId);
-        callJavaScriptAlert='<script> PageReload(); </script>';*/
-        //return new PageReference('/' + vendorReqId);
     }
     
     @RemoteAction
@@ -108,6 +152,24 @@ global class VPM_PurchaseRequestsControllerExtension {
             return returnResult;
     }
     
+    
+     public void checkUser() {
+        List<PermissionSetAssignment> lstcurrentUserPerSet = [SELECT Id, PermissionSet.Name,PermissionSet.Label, AssigneeId
+                                                              FROM PermissionSetAssignment
+                                                              WHERE AssigneeId = :Userinfo.getUserId() order by PermissionSet.Label DESC];
+        if(lstcurrentUserPerSet[0].PermissionSet.Label.contains('FLS')) {
+            isFLS = true;
+        } else if(lstcurrentUserPerSet[0].PermissionSet.Label.contains('MDM')) {
+            isMDM = true;
+        } else if(lstcurrentUserPerSet[0].PermissionSet.Label.contains('Finance')) {
+            isFinance = true;
+        } else if(lstcurrentUserPerSet[0].PermissionSet.Label.contains('Procurement')) {
+            isProcure = true;
+        } else if(lstcurrentUserPerSet[0].PermissionSet.Label.contains('Business Requestor')) {
+            isBR = true;
+        }
+    }
+    
     @RemoteAction
     global static String checkLoggedInUserRole() {
         
@@ -135,6 +197,10 @@ global class VPM_PurchaseRequestsControllerExtension {
             } else if(psa.PermissionSet.Label.contains('Business Requestor')) {
                 userRole = 'BUR';
                 return 'BUR';
+            }
+         else if(psa.PermissionSet.Label.contains('Freight')) {
+                userRole = 'FRE';
+                return userRole;
             }
         }
         return userRole;
@@ -192,7 +258,7 @@ global class VPM_PurchaseRequestsControllerExtension {
         try{
          system.debug('@@@@');
            
-            list<VPM_PurchasingRequests__c> VendorDetailList =[SELECT  VPM_Status__c, VPM_RequestGroupTime__c, VPM_RequestLastWithGroup__c, VPM_FinanceApprovalRequired__c, VPM_ProcurementApprovalRequired__c, CreatedById, OwnerId, VPM_Rework__c
+            list<VPM_PurchasingRequests__c> VendorDetailList =[SELECT  VPM_Status__c, VPM_RequestGroupTime__c, VPM_FreightApprovalRequired__c, VPM_RequestLastWithGroup__c, VPM_FinanceApprovalRequired__c, VPM_ProcurementApprovalRequired__c, CreatedById, OwnerId, VPM_Rework__c
                                                                FROM VPM_PurchasingRequests__c WHERE id= : recId LIMIT 1];
               
               system.debug('@@@@'+VendorDetailList[0].VPM_RequestLastWithGroup__c);
@@ -203,6 +269,56 @@ global class VPM_PurchaseRequestsControllerExtension {
               
               
               
+               if (VendorDetailList[0].VPM_RequestLastWithGroup__c == 'FLS' && VendorDetailList[0].VPM_Status__c=='Approval Pending' && VendorDetailList[0].VPM_FreightApprovalRequired__c ==true )
+            { 
+                list<QueueSobject> queueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = 'FLS' Limit 1];
+                if (queueList.size() == 1){ 
+                    VendorDetailList[0].VPM_Status__c = 'Freight Requested Re-Work'; 
+                    VendorDetailList[0].OwnerId=queueList[0].QueueId; 
+                    VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Freight'; 
+                    VendorDetailList[0].VPM_Rework__c='Yes';  
+                    update VendorDetailList;
+                } 
+               
+                
+            }
+              if (VendorDetailList[0].VPM_RequestLastWithGroup__c == 'Business Requestor' && VendorDetailList[0].VPM_Status__c=='Approval Pending' && VendorDetailList[0].VPM_FreightApprovalRequired__c ==true )
+            { 
+
+                     VendorDetailList[0].VPM_Status__c = 'Freight Requested Re-Work'; 
+                   VendorDetailList[0].OwnerId = VendorDetailList[0].CreatedById; 
+                     VendorDetailList[0].VPM_Rework__c='Yes';  
+                      VendorDetailList[0].VPM_RequestGroupTime__c=System.now();
+                    VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Freight'; 
+                  
+                    update VendorDetailList;
+                
+            }
+                           if (VendorDetailList[0].VPM_RequestLastWithGroup__c == 'FLS' && VendorDetailList[0].VPM_Status__c=='Approval Pending' && VendorDetailList[0].VPM_RussianTaxApprovalRequired__c ==true )
+            { 
+                list<QueueSobject> queueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = 'FLS' Limit 1];
+                if (queueList.size() == 1){ 
+                    VendorDetailList[0].VPM_Status__c = 'Russian Custom Tax Requested Re-Work'; 
+                    VendorDetailList[0].OwnerId=queueList[0].QueueId; 
+                    VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Russian Tax User'; 
+                    VendorDetailList[0].VPM_Rework__c='Yes';  
+                    update VendorDetailList;
+                } 
+               
+                
+            }
+              if (VendorDetailList[0].VPM_RequestLastWithGroup__c == 'Business Requestor' && VendorDetailList[0].VPM_Status__c=='Approval Pending' && VendorDetailList[0].VPM_RussianTaxApprovalRequired__c ==true )
+            { 
+
+                     VendorDetailList[0].VPM_Status__c = 'Russian Custom Tax Requested Re-Work'; 
+                   VendorDetailList[0].OwnerId = VendorDetailList[0].CreatedById; 
+                     VendorDetailList[0].VPM_Rework__c='Yes';  
+                      VendorDetailList[0].VPM_RequestGroupTime__c=System.now();
+                    VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Russian Tax User'; 
+                  
+                    update VendorDetailList;
+                
+            }
                if (VendorDetailList[0].VPM_RequestLastWithGroup__c == 'Business Requestor' && VendorDetailList[0].VPM_Status__c=='FLS Review') 
             { 
                 VendorDetailList[0].VPM_Status__c = 'FLS Requested Re-Work'; 
@@ -239,6 +355,17 @@ global class VPM_PurchaseRequestsControllerExtension {
                 VendorDetailList[0].VPM_Rework__c='Yes'; 
                 VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Procurement';
                 update VendorDetailList;
+            }
+            else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == 'FLS' && VendorDetailList[0].VPM_Status__c =='Approval Pending' && VendorDetailList[0].VPM_FinanceApprovalRequired__c ==true && VendorDetailList[0].VPM_ProcurementApprovalRequired__c== false )
+            {
+                list<QueueSobject> queueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = 'FLS' Limit 1];
+                if (queueList.size() == 1){ 
+                    VendorDetailList[0].VPM_Status__c = 'Finance Requested Re-Work'; 
+                    VendorDetailList[0].OwnerId=queueList[0].QueueId; 
+                    VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Finance'; 
+                    VendorDetailList[0].VPM_Rework__c='Yes';   
+                    update VendorDetailList;
+                } 
             }
             else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == 'FLS' && VendorDetailList[0].VPM_Status__c =='Approval Pending' && VendorDetailList[0].VPM_FinanceApprovalRequired__c ==true && VendorDetailList[0].VPM_ProcurementApprovalRequired__c== false )
             {
@@ -371,7 +498,7 @@ update VendorDetailList;
                     } 
                     else if (VendorDetailList[0].VPM_Status__c.contains('FLS Review')) 
                     { 
-
+                    system.debug('@@ FLS Review');
                     List<QueueSobject> QueueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = 'FLS' Limit 1];
                    if (QueueList.size() == 1)
                         { 
@@ -386,75 +513,12 @@ update VendorDetailList;
         }
         catch(exception ex){}
     }
+     public PageReference cancelFromUser(){
+         return null;
+     }
+      public PageReference saveFromUser(){
+      GstdController.save();
+         return null;
+     }
     
-    /*public Attachment attachment {
-get {
-if (attachment == null) {
-System.debug('-----created object of Attachment----');
-attachment = new Attachment();
-}
-return attachment;
-}
-set;
-}
-
-public PageReference upload() {
-
-attachment.OwnerId = UserInfo.getUserId();
-attachment.ParentId = 'a0X19000001GxlD'; // the record the file is attached to
-attachment.IsPrivate = true;
-
-try {
-insert attachment;
-} catch (DMLException e) {
-ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,'Error uploading attachment'));
-return null;
-} finally {
-attachment = new Attachment(); 
-}
-
-ApexPages.addMessage(new ApexPages.message(ApexPages.severity.INFO,'Attachment uploaded successfully'));
-return null;
-}
-
-public Flow.Interview.VPM_PurchasingRequestAdvancedForm myflow { get; set; }
-public String purReqNewId {get; set;}*/
-    
-    // Empty constructor, to allow use as a controller extension
-    /*public VPM_PurchaseRequestsControllerExtension (ApexPages.StandardController stdController) { 
-if(myflow != null) {
-System.debug('-------inside constructor of extn-------' + myflow.VPM_PurchasingRequestID);
-purReqNewId = myflow.VPM_PurchasingRequestID;
-}        
-}*/
-    
-    // Flow support methods
-    /*public String getInterviews() { return null; }
-
-public String showList { get; set; }
-
-public String getPurReqRecordId() {
-// Access flow variables as simple member variables with get/set methods
-if(myflow == null) {
-purReqNewId ='Could not get record id';
-return 'Could not get record id';
-} else {        
-purReqNewId =myflow.VPM_PurchasingRequestID;
-return myflow.VPM_PurchasingRequestID;
-}
-}
-
-public String getPausedId() {
-String currentUser = UserInfo.getUserId();
-List<FlowInterview> interviews = 
-[SELECT Id FROM FlowInterview WHERE CreatedById = :currentUser AND InterviewLabel LIKE '%Purchasing%'];
-
-if (interviews == null || interviews.isEmpty()) {
-return null; // early out
-}
-
-// Return the ID for the first interview in the list
-return interviews.get(0).Id;
-}
-}*/
 }

@@ -131,8 +131,8 @@
                 <field>mdm_RemoteKey__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>mdm_ECC__c</field>
+                <behavior>Readonly</behavior>
+                <field>mdm_ecc__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>

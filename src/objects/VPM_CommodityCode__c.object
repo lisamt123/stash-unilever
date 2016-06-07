@@ -167,59 +167,59 @@
         <label>Commodity Family</label>
         <picklist>
             <picklistValues>
-                <fullName>50 - Equipment &amp; MRO</fullName>
+                <fullName>Workplace Materials &amp; Services</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>54 - IT &amp; Telecom</fullName>
+                <fullName>Equipment &amp; MRO</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>56 - Logistics</fullName>
+                <fullName>Non - Ariba</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>58 - Marketing Promotional and Sales Services</fullName>
+                <fullName>IT &amp; Telecom</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>57 - Market Research</fullName>
+                <fullName>Out of Scope Procurement</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>60 - Marketing Agencies and Media</fullName>
+                <fullName>Travel</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>62 - Media (Placement)</fullName>
+                <fullName>Human Resources</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>63 - Innovation Sourcing</fullName>
+                <fullName>Professional Services</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>64 - Professional Services</fullName>
+                <fullName>Innovation Sourcing</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>66 - Human Resources</fullName>
+                <fullName>Media (Placement)</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>67 - Travel</fullName>
+                <fullName>Marketing Agencies and Media</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>68 - Workplace Materials &amp; Services</fullName>
+                <fullName>Market Research</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>69 - Out of Scope Procurement</fullName>
+                <fullName>Marketing Promotional and Sales Services</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>0 - Non - Ariba</fullName>
+                <fullName>Logistics</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -276,7 +276,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>58 - Marketing Promotional and Sales Services</fullName>
+                <fullName>Marketing Promotional and Sales Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -303,7 +303,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>57 - Market Research</fullName>
+                <fullName>Market Research</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -334,7 +334,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>50 - Equipment %26 MRO</fullName>
+                <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -361,7 +361,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>60 - Marketing Agencies and Media</fullName>
+                <fullName>Marketing Agencies and Media</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -388,7 +388,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>60 - Marketing Agencies and Media</fullName>
+                <fullName>Marketing Agencies and Media</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -415,7 +415,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -442,7 +442,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -469,7 +469,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>60 - Marketing Agencies and Media</fullName>
+                <fullName>Marketing Agencies and Media</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -496,7 +496,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>62 - Media %28Placement%29</fullName>
+                <fullName>Media %28Placement%29</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -523,7 +523,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -550,7 +550,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -577,7 +577,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -604,7 +604,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -631,7 +631,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>58 - Marketing Promotional and Sales Services</fullName>
+                <fullName>Marketing Promotional and Sales Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -658,7 +658,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>57 - Market Research</fullName>
+                <fullName>Market Research</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -685,7 +685,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>57 - Market Research</fullName>
+                <fullName>Market Research</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -712,7 +712,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>64 - Professional Services</fullName>
+                <fullName>Professional Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -739,7 +739,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>64 - Professional Services</fullName>
+                <fullName>Professional Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -766,7 +766,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -793,7 +793,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>60 - Marketing Agencies and Media</fullName>
+                <fullName>Marketing Agencies and Media</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -820,7 +820,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>58 - Marketing Promotional and Sales Services</fullName>
+                <fullName>Marketing Promotional and Sales Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -851,7 +851,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>50 - Equipment %26 MRO</fullName>
+                <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -878,7 +878,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>63 - Innovation Sourcing</fullName>
+                <fullName>Innovation Sourcing</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -905,7 +905,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -936,7 +936,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>50 - Equipment %26 MRO</fullName>
+                <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -963,7 +963,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>58 - Marketing Promotional and Sales Services</fullName>
+                <fullName>Marketing Promotional and Sales Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -990,7 +990,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>64 - Professional Services</fullName>
+                <fullName>Professional Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -1017,7 +1017,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -1048,7 +1048,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>50 - Equipment %26 MRO</fullName>
+                <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -1075,7 +1075,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -1102,7 +1102,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>66 - Human Resources</fullName>
+                <fullName>Human Resources</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -1161,7 +1161,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>56 - Logistics</fullName>
+                <fullName>Logistics</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -1188,7 +1188,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>69 - Out of Scope Procurement</fullName>
+                <fullName>Out of Scope Procurement</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -1215,7 +1215,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -1242,7 +1242,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>66 - Human Resources</fullName>
+                <fullName>Human Resources</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -1269,7 +1269,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>66 - Human Resources</fullName>
+                <fullName>Human Resources</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -1296,7 +1296,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>54 - IT %26 Telecom</fullName>
+                <fullName>IT %26 Telecom</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -1323,7 +1323,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>54 - IT %26 Telecom</fullName>
+                <fullName>IT %26 Telecom</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -1354,7 +1354,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>50 - Equipment %26 MRO</fullName>
+                <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -1385,7 +1385,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>50 - Equipment %26 MRO</fullName>
+                <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -1416,7 +1416,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>50 - Equipment %26 MRO</fullName>
+                <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -1443,7 +1443,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>62 - Media %28Placement%29</fullName>
+                <fullName>Media %28Placement%29</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -1470,7 +1470,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>60 - Marketing Agencies and Media</fullName>
+                <fullName>Marketing Agencies and Media</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -1497,7 +1497,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>69 - Out of Scope Procurement</fullName>
+                <fullName>Out of Scope Procurement</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -1528,7 +1528,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>50 - Equipment %26 MRO</fullName>
+                <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -1555,7 +1555,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>64 - Professional Services</fullName>
+                <fullName>Professional Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -1586,7 +1586,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>50 - Equipment %26 MRO</fullName>
+                <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -1613,7 +1613,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>64 - Professional Services</fullName>
+                <fullName>Professional Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -1644,7 +1644,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>50 - Equipment %26 MRO</fullName>
+                <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -1675,7 +1675,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>50 - Equipment %26 MRO</fullName>
+                <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -1702,7 +1702,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>62 - Media %28Placement%29</fullName>
+                <fullName>Media %28Placement%29</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -1733,7 +1733,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>50 - Equipment %26 MRO</fullName>
+                <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -1828,59 +1828,59 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>0 - Non - Ariba</fullName>
+                <fullName>Equipment %26 MRO</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>50 - Equipment %26 MRO</fullName>
+                <fullName>Human Resources</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>54 - IT %26 Telecom</fullName>
+                <fullName>IT %26 Telecom</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>56 - Logistics</fullName>
+                <fullName>Innovation Sourcing</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>57 - Market Research</fullName>
+                <fullName>Logistics</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>58 - Marketing Promotional and Sales Services</fullName>
+                <fullName>Market Research</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>60 - Marketing Agencies and Media</fullName>
+                <fullName>Marketing Agencies and Media</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>62 - Media %28Placement%29</fullName>
+                <fullName>Marketing Promotional and Sales Services</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>63 - Innovation Sourcing</fullName>
+                <fullName>Media %28Placement%29</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>64 - Professional Services</fullName>
+                <fullName>Non - Ariba</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>66 - Human Resources</fullName>
+                <fullName>Out of Scope Procurement</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>67 - Travel</fullName>
+                <fullName>Professional Services</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <fullName>Travel</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>69 - Out of Scope Procurement</fullName>
+                <fullName>Workplace Materials %26 Services</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1911,7 +1911,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>66 - Human Resources</fullName>
+                <fullName>Human Resources</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -1938,7 +1938,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -1965,7 +1965,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -1996,7 +1996,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>50 - Equipment %26 MRO</fullName>
+                <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -2027,7 +2027,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>50 - Equipment %26 MRO</fullName>
+                <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -2054,7 +2054,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>60 - Marketing Agencies and Media</fullName>
+                <fullName>Marketing Agencies and Media</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -2081,7 +2081,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>69 - Out of Scope Procurement</fullName>
+                <fullName>Out of Scope Procurement</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -2108,7 +2108,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>66 - Human Resources</fullName>
+                <fullName>Human Resources</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -2135,7 +2135,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -2166,7 +2166,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>50 - Equipment %26 MRO</fullName>
+                <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -2197,7 +2197,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>50 - Equipment %26 MRO</fullName>
+                <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -2224,7 +2224,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>58 - Marketing Promotional and Sales Services</fullName>
+                <fullName>Marketing Promotional and Sales Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -2251,7 +2251,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>58 - Marketing Promotional and Sales Services</fullName>
+                <fullName>Marketing Promotional and Sales Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -2278,7 +2278,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>62 - Media %28Placement%29</fullName>
+                <fullName>Media %28Placement%29</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -2305,7 +2305,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>58 - Marketing Promotional and Sales Services</fullName>
+                <fullName>Marketing Promotional and Sales Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -2332,7 +2332,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -2363,7 +2363,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>50 - Equipment %26 MRO</fullName>
+                <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -2390,7 +2390,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>69 - Out of Scope Procurement</fullName>
+                <fullName>Out of Scope Procurement</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -2417,7 +2417,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>60 - Marketing Agencies and Media</fullName>
+                <fullName>Marketing Agencies and Media</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -2444,7 +2444,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -2475,7 +2475,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>50 - Equipment %26 MRO</fullName>
+                <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -2502,7 +2502,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>64 - Professional Services</fullName>
+                <fullName>Professional Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -2529,7 +2529,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -2556,7 +2556,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -2583,7 +2583,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -2610,7 +2610,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>66 - Human Resources</fullName>
+                <fullName>Human Resources</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -2637,7 +2637,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>66 - Human Resources</fullName>
+                <fullName>Human Resources</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -2664,7 +2664,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -2695,7 +2695,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>50 - Equipment %26 MRO</fullName>
+                <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -2722,7 +2722,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>54 - IT %26 Telecom</fullName>
+                <fullName>IT %26 Telecom</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -2785,7 +2785,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>64 - Professional Services</fullName>
+                <fullName>Professional Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -2812,7 +2812,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>60 - Marketing Agencies and Media</fullName>
+                <fullName>Marketing Agencies and Media</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -2839,7 +2839,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>54 - IT %26 Telecom</fullName>
+                <fullName>IT %26 Telecom</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -2866,7 +2866,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>66 - Human Resources</fullName>
+                <fullName>Human Resources</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -2893,7 +2893,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>67 - Travel</fullName>
+                <fullName>Travel</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -2920,7 +2920,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>58 - Marketing Promotional and Sales Services</fullName>
+                <fullName>Marketing Promotional and Sales Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -2979,7 +2979,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>56 - Logistics</fullName>
+                <fullName>Logistics</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -3006,7 +3006,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -3033,7 +3033,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -3064,7 +3064,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>50 - Equipment %26 MRO</fullName>
+                <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -3091,7 +3091,7 @@
         <picklistValues>
             <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>68 - Workplace Materials %26 Services</fullName>
+                <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
             </values>
         </picklistValues>

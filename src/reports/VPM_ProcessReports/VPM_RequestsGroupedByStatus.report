@@ -31,9 +31,6 @@
     <columns>
         <field>VPM_PurchasingRequests__c.VPM_Spend__c</field>
     </columns>
-    <columns>
-        <field>VPM_PurchasingRequests__c.VPM_CommodityName_del__c</field>
-    </columns>
     <description>VPM -  In Progress requests grouped by status.</description>
     <filter>
         <criteriaItems>

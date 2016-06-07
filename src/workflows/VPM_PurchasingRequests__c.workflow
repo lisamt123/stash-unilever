@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
+        <fullName>Send_email_to_Vendor_Email</fullName>
+        <description>Send email to Vendor Email</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>VPM_ApprovalEmails/VPM_Send_email_to_Vendor</template>
+    </alerts>
+    <alerts>
         <fullName>VPM_NotifiedBusinessRequesterRequestFLSTeam</fullName>
         <description>Notification to Business Requester that request has been rejected by FLSTeam</description>
         <protected>false</protected>
@@ -184,6 +194,16 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>VPM_Set_Email_Flag_to_No</fullName>
+        <description>Resets the Flag once work flow rule has been fired</description>
+        <field>VPM_VendordoesntExistFlag__c</field>
+        <name>VPM Set Email Flag to Blank</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>VPM_StatusFLSApproved</fullName>
         <description>VPM - Sets the status of the record to FLS Approved based on an Approved decision.</description>
         <field>VPM_Status__c</field>
@@ -328,6 +348,25 @@
             <value>FLS Requested Re-Work</value>
         </criteriaItems>
         <description>VPM  - Used to send notification to the Business Requester when Status Changes to FLS Requested Re-Work</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>VPM Send email to Vendor</fullName>
+        <actions>
+            <name>Send_email_to_Vendor_Email</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>VPM_Set_Email_Flag_to_No</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_VendordoesntExistFlag__c</field>
+            <operation>equals</operation>
+            <value>Yes</value>
+        </criteriaItems>
+        <description>Sends email to Vendor with Webform details</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>

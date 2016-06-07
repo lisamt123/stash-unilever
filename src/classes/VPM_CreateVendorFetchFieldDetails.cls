@@ -6,12 +6,14 @@ public class VPM_CreateVendorFetchFieldDetails {
         String randomNumber = str.substring(0, len);
         Integer reqNum = Integer.valueOf(randomNumber);
         system.debug('-------Random Number------' + reqNum);
-        List<VPM_PurchasingRequests__c> vendorList =[SELECT VPM_SAPBPMRequestID__c, VPM_VendorType__c, VPM_CountryRequestingVendor__c, VPM_GlobalAuthorisationGroup__c, VPM_ECC__c, VPM_TradePartnerType__c, VPM_AccountGroup__c, VPM_VendorName1__c, VPM_SearchTerm1__c, VPM_Street1__c, VPM_ZIPPostCode__c, VPM_City__c,
+        List<VPM_PurchasingRequests__c> vendorList =[SELECT VPM_VendorType__c, VPM_CountryRequestingVendor__c, VPM_GlobalAuthorisationGroup__c, VPM_ECC__c, VPM_TradePartnerType__c, VPM_AccountGroup__c, VPM_VendorName1__c, VPM_SearchTerm1__c, VPM_Street1__c, VPM_ZIPPostCode__c, VPM_City__c,
                                                      VPM_Country__c, VPM_HouseNumber__c, VPM_Region__c, VPM_IsVendorSME__C, VPM_IsVendorException__c, VPM_ExceptionType__c, VPM_TaxNumber1__c, VPM_TaxNumber3__c, VPM_TaxJurisdictionCode__c, VPM_SupplierFinancialStabilityCheck__c, VPM_ReasonNoFinancialCheck__C, VPM_SupplierAchillesRegistration__c, VPM_AchillesExceptionDetails__C, 
                                                      VPM_SupplierPositiveAssuranceQuality__c, VPM_SupPosAssExcepDetailsQual__c, VPM_SupplierAssessmentQuestionnaireQual__c, VPM_DetailsofPlannedActivitiesQual__c, VPM_SupAudDetailsOfPlannedActivities__c, VPM_SupplierPositiveAssuranceSourcing__C, VPM_SupPosAssExcepDetailsSour__C, VPM_SupplierAssessmentQuestionnaireSour__C, 
                                                      VPM_DetailsofPlannedActivitiesSour__c, VPM_SupplierAuditSourcing__c, VPM_DetailsOfPlannedActivitiesSour2__c, VPM_MDMBPMRequestorName__c, VPM_MDMBPMRequestorPhone__c, VPM_MDMBPMRequestorEmail__c, VPM_MDMBPMRequestorDepartment__c, VPM_MDMBPMOriginatoEmail__c, VPM_MDMBPMRequestDate__c , 
                                                      VPM_AchillesRegistrationCode__c, VPM_DetailsTypeCheck__c, VPM_DUNSHierarchyInvestigationReq__c, VPM_GroupingKey__c, VPM_SMEComment__c, VPM_VATRegistrationNumber__c from VPM_PurchasingRequests__c where id =: VendorRequestId LIMIT 1];
+        system.debug('vendorList@@'+vendorList);
         if(vendorList != null && vendorList.size() > 0) {
+            //removed VPM_SAPBPMRequestID__c from SOQL
             VPM_CreateVendorFieldDetailsWrapper VPM_InterfaceFieldDetails= new VPM_CreateVendorFieldDetailsWrapper();
             //VPM_InterfaceFieldDetails.requestNumber = vendorList.get(0).VPM_SAPBPMRequestID__c == null?'':vendorList.get(0).VPM_SAPBPMRequestID__c;
             VPM_InterfaceFieldDetails.requestNumber = reqNum;

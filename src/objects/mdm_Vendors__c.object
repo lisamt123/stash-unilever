@@ -61,7 +61,7 @@
         <fullName>VPM_FullDetails__c</fullName>
         <description>Provides a text summary of the important SAP matching fields for display within the Advanced form. Not interfaced with SAP</description>
         <externalId>false</externalId>
-        <formula>mdm_Name1__c &amp; &quot;, &quot; &amp;  mdm_Street__c &amp; &quot;, &quot; &amp; mdm_City__c &amp; &quot;, &quot; &amp; mdm_Postcode__c  &amp; &quot;, &quot; &amp; TEXT(mdm_Country__c)  &amp;&quot; | ECC: &quot;&amp; mdm_ECC__c</formula>
+        <formula>mdm_Name1__c &amp; &quot;, &quot; &amp;  mdm_Street__c &amp; &quot;, &quot; &amp; mdm_City__c &amp; &quot;, &quot; &amp; mdm_Postcode__c  &amp; &quot;, &quot; &amp; TEXT(mdm_Country__c)  &amp;&quot; | ECC: &quot;&amp; mdm_ecc__c &amp;&quot; | Vendor Code: &quot;&amp; mdm_Code__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Full Details</label>
         <required>false</required>
@@ -1103,7 +1103,7 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>mdm_ECC__c</fullName>
+        <fullName>mdm_ECC_1__c</fullName>
         <description>For storing which SAP ECC/s the vendor is a part of</description>
         <externalId>false</externalId>
         <label>ECC</label>
@@ -1249,6 +1249,31 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>mdm_ecc__c</fullName>
+        <externalId>false</externalId>
+        <formula>RIGHT(
+IF(ISBLANK(mdm_vCodeCordillera__c),&quot;&quot;,&quot; ,Cordillera&quot;) + 
+
+IF(ISBLANK(mdm_vCodeFusion__c),&quot;&quot;,&quot; ,Fusion&quot;) + 
+
+IF(ISBLANK(mdm_vCodeSirius__c),&quot;&quot;,&quot; ,Sirius&quot;)+ 
+
+IF(ISBLANK(mdm_vCodeU2K2__c),&quot;&quot;,&quot; ,U2K2&quot; )
+, LEN(IF(ISBLANK(mdm_vCodeCordillera__c),&quot;&quot;,&quot; ,Cordillera&quot;) + 
+
+IF(ISBLANK(mdm_vCodeFusion__c),&quot;&quot;,&quot; ,Fusion&quot;) + 
+
+IF(ISBLANK(mdm_vCodeSirius__c),&quot;&quot;,&quot; ,Sirius&quot;)+ 
+
+IF(ISBLANK(mdm_vCodeU2K2__c),&quot;&quot;,&quot; ,U2K2&quot; ))-2)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>ECC</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>mdm_vCodeCordillera__c</fullName>
         <externalId>true</externalId>
         <label>Vendor Code (Cordillera)</label>
@@ -1296,7 +1321,7 @@
         <columns>mdm_Street__c</columns>
         <columns>mdm_Postcode__c</columns>
         <columns>mdm_Code__c</columns>
-        <columns>mdm_ECC__c</columns>
+        <columns>mdm_ECC_1__c</columns>
         <columns>NAME</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>

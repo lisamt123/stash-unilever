@@ -11,8 +11,24 @@
             <apex:commandButton action="{!saveMethod}" value="Next"/>
             
         </apex:pageBlockButtons>
-           <apex:pageBlockSection columns="1">                
-                  <apex:inputField value="{!VPM_PurchasingRequests__c.VPM_CountryRequestingVendor__c}" required="true"/>
+           <apex:pageBlockSection columns="1">
+           <b><apex:outputLabel value="Please select the Country first, changing the Country will erase out any data you entered." style="font-weight:bold;color:#4a4a56;"></apex:outputlabel></b>  
+               <apex:pageBlockSectionItem >
+               
+                  <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Country__c .label}" 
+                        for="stage"/>
+                <apex:outputPanel >
+                <apex:actionRegion >                  
+                <apex:inputField value="{!VPM_PurchasingRequests__c.VPM_Country__c }" required="true">
+                    <apex:actionSupport event="onchange" action="{!newMethod}"  reRender="thePageBlock"/>
+                <!-- <apex:outputLabel style="color:red" value="WARNING: Changing the Country could clear out any data you enter,So please select your Country first." rendered="{!hideWarning}"></apex:outputlabel>  -->  
+                 </apex:inputField>
+                 </apex:actionRegion>
+                 </apex:outputPanel>
+                 
+                </apex:pageBlockSectionItem> 
+                
+                 <apex:inputField value="{!VPM_PurchasingRequests__c.VPM_CountryRequestingVendor__c}" required="true"/>
                   <apex:inputField value="{!VPM_PurchasingRequests__c.VPM_ECC__c}" required="true" />
                  <apex:inputField value="{!VPM_PurchasingRequests__c.VPM_VendorName1__c}" required="true"/>  
                  <apex:inputField value="{!VPM_PurchasingRequests__c.VPM_Street1__c}" required="true"/>                 
@@ -22,16 +38,7 @@
           <apex:inputField value="{!VPM_PurchasingRequests__c.VPM_ZIPPostcode__c}" required="{!isRequiredField}"/>
                </apex:pageBlockSectionItem>
    
-                  <apex:pageBlockSectionItem >
-                  <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Country__c .label}" 
-                        for="stage"/>
-                
-                <apex:actionRegion >                  
-                <apex:inputField value="{!VPM_PurchasingRequests__c.VPM_Country__c }" required="true">
-                    <apex:actionSupport event="onchange" action="{!newMethod}"  reRender="thePageBlock" />
-                </apex:inputField> 
-                 </apex:actionRegion>
-                </apex:pageBlockSectionItem>               
+                            
                        
                 <apex:inputField value="{!VPM_PurchasingRequests__c.VPM_Region__c }" required="{!isRequiredField}" />
                 <apex:inputField value="{!VPM_PurchasingRequests__c.VPM_City__c }" required="true" />
@@ -40,7 +47,7 @@
                 <apex:inputField value="{!VPM_PurchasingRequests__c.VPM_TaxJurisdictionCode__c}" required="{!isRequiredField}"/>
                 <apex:inputField value="{!VPM_PurchasingRequests__c.VPM_Commodity__c}" required="true"/>
                 </apex:pageBlockSection>  
-         </apex:pageBlock>     
+         </apex:pageBlock>          
    </apex:form>
     
 </apex:page>
