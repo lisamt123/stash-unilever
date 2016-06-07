@@ -4,6 +4,7 @@ src/assignmentRules/Case.assignmentRules
 src/classes
 src/classes/CEC_AlertActionBatchScheduler.cls
 src/classes/CEC_AlertActionBatchScheduler.cls-meta.xml
+src/classes/CEC_AlertActionHelperTest.cls
 src/classes/CEC_AlertActionTriggerHelper.cls
 src/classes/CEC_AlertActionTriggerHelper.cls-meta.xml
 src/classes/CEC_AlertHelper.cls
@@ -14,6 +15,7 @@ src/classes/CEC_AnonymiseConsumerBatchScheduler_Test.cls
 src/classes/CEC_AnonymiseConsumerBatchScheduler_Test.cls-meta.xml
 src/classes/CEC_CaseActionController.cls
 src/classes/CEC_CaseActionController.cls-meta.xml
+src/classes/CEC_CaseActionControllerTest.cls
 src/classes/CEC_CaseInlineController.cls
 src/classes/CEC_CaseInlineController.cls-meta.xml
 src/classes/CEC_CaseInlineControllerTest.cls
@@ -48,10 +50,14 @@ src/classes/CEC_IRIProductLocatorController.cls
 src/classes/CEC_IRIProductLocatorController.cls-meta.xml
 src/classes/CEC_IssueCreationPageController.cls
 src/classes/CEC_IssueCreationPageController.cls-meta.xml
+src/classes/CEC_NewAccountController.cls
 src/classes/CEC_NewAccountControllerTest.cls
 src/classes/CEC_NewAccountControllerTest.cls-meta.xml
+src/classes/CEC_ProductRangeController.cls
+src/classes/CEC_ProductRangeControllerTest.cls
 src/classes/CEC_RetrievalRequestTriggerHelper.cls
 src/classes/CEC_RetrievalRequestTriggerHelper.cls-meta.xml
+src/classes/CEC_RetrievalRequestTriggerHelperTest.cls
 src/classes/cec_SmartTemplateLoaderHelper.cls
 src/classes/cec_SmartTemplateLoaderHelper.cls-meta.xml
 src/classes/CEC_Test_IssueCreationPageController.cls
@@ -60,6 +66,8 @@ src/classes/CEC_TestAlertActionBatchScheduler.cls
 src/classes/CEC_TestAlertActionBatchScheduler.cls-meta.xml
 src/classes/CEC_TestDataFactory.cls
 src/classes/CEC_TestDataFactory.cls-meta.xml
+src/classes/cec_TestEmailMessageHelper.cls
+src/classes/CEC_UserTriggerHelperTest.cls
 src/classes/CEC_Util.cls
 src/classes/CEC_Util.cls-meta.xml
 src/customPermissions
@@ -102,6 +110,8 @@ src/pages/CEC_IssueCreationPage.page
 src/pages/CEC_IssueCreationPage.page-meta.xml
 src/pages/CEC_NewAccountContact.page
 src/pages/CEC_NewAccountContact.page-meta.xml
+src/pages/CEC_ProductRange.page
+src/pages/CEC_ProductRange.page-meta.xml
 src/permissionsets
 src/permissionsets/CEC_Business_Admin.permissionset
 src/permissionsets/CEC_Cheque_Process.permissionset
