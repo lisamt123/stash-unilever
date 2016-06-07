@@ -3110,7 +3110,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </fields>
     <listViews>
         <fullName>All_email</fullName>
-        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6</booleanFilter>
+        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>Brand__c</columns>
@@ -3124,32 +3124,36 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.ORIGIN</field>
             <operation>equals</operation>
-            <value>Email,Web,White Mail</value>
+            <value>Email,Web,White Mail,Email UK</value>
+        </filters>
+        <filters>
+            <field>CASES.LAST_UPDATE_DATE_ONLY</field>
+            <operation>lessThan</operation>
+            <value>LAST_N_DAYS:7</value>
+        </filters>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>notContain</operation>
+            <value>India,DACH,Benelux,France,Spain,Nordic,Portugal,Czech,Italy,Greece,Poland</value>
+        </filters>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>notContain</operation>
+            <value>Hungary,Slovakia,Baltics,Romania,Bulgaria,Serbia,Slovenia,Lanka,Croatia,Bosnia</value>
+        </filters>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>notContain</operation>
+            <value>America,Brazil,Cone</value>
+        </filters>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>notEqual</operation>
         </filters>
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
             <value>New</value>
-        </filters>
-        <filters>
-            <field>Market__c</field>
-            <operation>notContain</operation>
-            <value>India,Nordic,Benelux,France,DACH</value>
-        </filters>
-        <filters>
-            <field>CASES.LAST_UPDATE_DATE_ONLY</field>
-            <operation>lessThan</operation>
-            <value>LAST_N_DAYS:2</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.ALIAS</field>
-            <operation>notContain</operation>
-            <value>CEC Nordic,CEC France,CEC DACH,CEC BENELUX,CEC ITALY</value>
-        </filters>
-        <filters>
-            <field>Case_Market__c</field>
-            <operation>notContain</operation>
-            <value>Nordic,France,DACH,BENELUX,ITALY</value>
         </filters>
         <label>Out of SLA</label>
         <language>en_US</language>
@@ -3256,24 +3260,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <queue>CEC_Brazil_Escalation_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CEC_Brazil_Plaintox_Queue_Case</fullName>
-        <filterScope>Queue</filterScope>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>notEqual</operation>
-            <value>Closed,Closed as Duplicate</value>
-        </filters>
-        <label>CEC Brazil Planitox Queue</label>
-        <language>en_US</language>
-        <queue>CEC_Brazil_Planitox_Queue</queue>
-        <sharedTo>
-            <role>CEC_Global_Head</role>
-            <role>CEC_Manager_Brazil</role>
-            <role>CEC_Manager_South_America</role>
-            <role>CEC_User_Planitox_Brazil</role>
         </sharedTo>
     </listViews>
     <listViews>
@@ -6770,7 +6756,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>Vacation_Queue_DACH</fullName>
-        <booleanFilter>(2 OR 3 OR 4 OR 5 OR 6 OR 7) AND 1</booleanFilter>
+        <booleanFilter>(2 OR 3 OR 4 OR 5 OR 6) AND 1</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
@@ -6808,11 +6794,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
             <value>Anlasser</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.ALIAS</field>
-            <operation>equals</operation>
-            <value>TaHyseni</value>
         </filters>
         <label>DACH Vacation Queue</label>
         <language>de</language>
@@ -6875,7 +6856,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.LAST_UPDATE_DATE_ONLY</field>
             <operation>greaterOrEqual</operation>
-            <value>LAST_N_DAYS:5</value>
+            <value>LAST_N_DAYS:7</value>
         </filters>
         <filters>
             <field>Case_Market__c</field>
@@ -6890,7 +6871,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>Case_Market__c</field>
             <operation>notContain</operation>
-            <value>America</value>
+            <value>America,Brazil,Cone</value>
         </filters>
         <filters>
             <field>Case_Market__c</field>
