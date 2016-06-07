@@ -42,6 +42,8 @@ $(document).ready(function() {
         $('.projBrandInnov').attr('disabled', 'disabled');
     }
 
+    $("[data-toggle=popover]").popover();
+
     $.unblockUI();
 });
 
