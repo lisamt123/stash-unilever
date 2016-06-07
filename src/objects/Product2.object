@@ -43,39 +43,17 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <enableFeeds>false</enableFeeds>
     <fields>
-        <fullName>CanUseRevenueSchedule</fullName>
+        <fullName>Active__c</fullName>
+        <description>To calculate Active or Inactive for product</description>
+        <externalId>false</externalId>
+        <formula>AND(not(ISBLANK(StartDate__c)),not(ISBLANK(EndDate__c)),EndDate__c&gt;=today(),StartDate__c&lt;=today() , IF( StartDate__c &gt; EndDate__c,false,true ))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Active</label>
         <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>CurrencyIsoCode</fullName>
-        <trackHistory>false</trackHistory>
-    </fields>
-    <fields>
-        <fullName>Description</fullName>
-        <trackHistory>false</trackHistory>
-    </fields>
-    <fields>
-        <fullName>Family</fullName>
-        <picklist>
-            <picklistValues>
-                <fullName>None</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Marketing Funds</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Food Services</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <trackHistory>false</trackHistory>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>GFS_COGS__c</fullName>
+        <fullName>COGS__c</fullName>
         <description>Product&apos;s cost of goods sold</description>
         <externalId>false</externalId>
         <label>COGS</label>
@@ -86,7 +64,22 @@
         <type>Currency</type>
     </fields>
     <fields>
-        <fullName>GFS_Category__c</fullName>
+        <fullName>CanUseRevenueSchedule</fullName>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>CategoryCode__c</fullName>
+        <description>Code of the category for future mapping in the reporting</description>
+        <externalId>false</externalId>
+        <label>Category Code</label>
+        <length>4</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Category__c</fullName>
         <description>Refers to product&apos;s targeted category</description>
         <externalId>false</externalId>
         <label>Category</label>
@@ -973,17 +966,141 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>GFS_CreatedOn__c</fullName>
-        <description>Field dispaying the date of creating the product in SAP (or SF)</description>
+        <fullName>CurrencyIsoCode</fullName>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Description</fullName>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Division__c</fullName>
+        <description>To select Division</description>
         <externalId>false</externalId>
-        <inlineHelpText>Field dispaying the date of creating the product in SAP (or SF)</inlineHelpText>
-        <label>Created On</label>
+        <label>Division</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Error - Uknown Division</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Error - Unknown Type</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>R Restricted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Restricted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tier 1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>U Unrestricted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Unrestricted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>EndDate__c</fullName>
+        <description>Date on which the product will become inactive</description>
+        <externalId>false</externalId>
+        <label>End Date</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>GFS_ImageID__c</fullName>
+        <fullName>FS_Compensable__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Flag that indicates if the product is compensable i.e. provide compensation for damages, expiry, etc. (tbc)</description>
+        <externalId>false</externalId>
+        <label>Compensable</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FS_CorpbrandCode__c</fullName>
+        <description>Code of the Brand for future mapping in the reporting</description>
+        <externalId>false</externalId>
+        <label>Corpbrand Code</label>
+        <length>9</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_Customizable__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Customizable</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FS_DUNumber__c</fullName>
+        <description>Distribution Unit Number? (tbc)</description>
+        <externalId>false</externalId>
+        <label>DU Number</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_EquivalentUnit__c</fullName>
+        <description>Field describing equivalent alternate unit of measure applicable to the product</description>
+        <externalId>false</externalId>
+        <label>Equivalent Unit</label>
+        <length>30</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_Focus__c</fullName>
+        <description>Refers to controlling accounts group code (used for reporting purposes)</description>
+        <externalId>false</externalId>
+        <label>Focus</label>
+        <picklist>
+            <picklistValues>
+                <fullName>FOH</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BOH</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NON-FOCUS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>FS_ImageID__c</fullName>
         <description>To displaying product Image id  from Documents</description>
         <externalId>false</externalId>
         <label>ImageID</label>
@@ -994,7 +1111,182 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>GFS_MarketType__c</fullName>
+        <fullName>FS_NetWeight__c</fullName>
+        <description>Net weight of SKU. This field is used in Russia Food Solution</description>
+        <externalId>false</externalId>
+        <label>Net Weight</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>3</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_Orderable__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Orderable</description>
+        <externalId>false</externalId>
+        <label>Orderable</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FS_PacksizeCode__c</fullName>
+        <description>Code of the PackSize for future mapping in the reporting</description>
+        <externalId>false</externalId>
+        <label>Pack size Code</label>
+        <length>17</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_Picture_Products__c</fullName>
+        <description>Displaying Product image</description>
+        <externalId>false</externalId>
+        <formula>IF( ISBLANK(FS_ImageID__c) ,&apos;&apos;, IMAGE(&apos;/servlet/servlet.FileDownload?file=&apos;+FS_ImageID__c,&apos;Image&apos;,100,100))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Picture Product</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_ProductDescriptionRussia__c</fullName>
+        <description>Product Description Russian Language</description>
+        <externalId>false</externalId>
+        <label>Product Description LONG</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_ProfitCenter__c</fullName>
+        <description>To display Profit Center</description>
+        <externalId>false</externalId>
+        <label>Profit Center</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_ShelfLife__c</fullName>
+        <description>Shelf-life of SKU. This field is also used in Russia Food Solution</description>
+        <externalId>false</externalId>
+        <label>Shelf Life</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_VATRU__c</fullName>
+        <description>VAT value for Russia</description>
+        <externalId>false</externalId>
+        <label>VAT RU</label>
+        <precision>17</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_VATUA__c</fullName>
+        <description>VAT Value for Ukraine</description>
+        <externalId>false</externalId>
+        <label>VAT UA</label>
+        <precision>17</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_ZSU__c</fullName>
+        <description>Unit conversion factor from Sales Unit to Base UOM</description>
+        <externalId>false</externalId>
+        <label>Unit conversion factor from Sales Unit t</label>
+        <precision>17</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Family</fullName>
+        <picklist>
+            <picklistValues>
+                <fullName>None</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Marketing Funds</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Food Services</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>GTIN__c</fullName>
+        <description>Global Trade Item Number</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Global Trade Item Number. Used to uniquely identify a product worldwide</inlineHelpText>
+        <label>GTIN</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IsActive</fullName>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>LeadTime__c</fullName>
+        <description>To Store Lead Time</description>
+        <externalId>false</externalId>
+        <label>Lead Time</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MarketCode__c</fullName>
+        <description>Code of the Market for future mapping in the reporting</description>
+        <externalId>false</externalId>
+        <label>Market Code</label>
+        <length>6</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MarketType__c</fullName>
         <description>Refers to product&apos;s targeted market</description>
         <externalId>false</externalId>
         <inlineHelpText>Refers to product&apos;s targeted market</inlineHelpText>
@@ -1090,7 +1382,122 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>GFS_PackSize__c</fullName>
+        <fullName>NFS_Thrust__c</fullName>
+        <externalId>false</externalId>
+        <label>Thrust</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Elevate the Centre of the Plate</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Guests want Hellmann&apos;s FOH</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hellmann&apos;s Sandwich Pro</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NA&apos;s Favorite Tea</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Non Focus</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Say Its Lipton; Sell more Iced Tea</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Stand Out Soups</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>NFS_Top_Sellers__c</fullName>
+        <externalId>false</externalId>
+        <label>Top Sellers</label>
+        <picklist>
+            <controllingField>NFS_Thrust__c</controllingField>
+            <picklistValues>
+                <fullName>Brown Sauces and Gravies</fullName>
+                <default>false</default>
+                <controllingFieldValues>Elevate the Centre of the Plate</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hollandaise</fullName>
+                <default>false</default>
+                <controllingFieldValues>Elevate the Centre of the Plate</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mayo PC</fullName>
+                <default>false</default>
+                <controllingFieldValues>Guests want Hellmann&apos;s FOH</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Real Big Squeeze</fullName>
+                <default>false</default>
+                <controllingFieldValues>Guests want Hellmann&apos;s FOH</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mayo Gallons</fullName>
+                <default>false</default>
+                <controllingFieldValues>Hellmann&apos;s Sandwich Pro</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hot Tea</fullName>
+                <default>false</default>
+                <controllingFieldValues>NA&apos;s Favorite Tea</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fresh Brewed Iced Tea</fullName>
+                <default>false</default>
+                <controllingFieldValues>Non Focus</controllingFieldValues>
+                <controllingFieldValues>Say Its Lipton; Sell more Iced Tea</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Caldo</fullName>
+                <default>false</default>
+                <controllingFieldValues>Stand Out Soups</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Knorr Liquid Concentrated Base</fullName>
+                <default>false</default>
+                <controllingFieldValues>Stand Out Soups</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Leg Crm Soup Base</fullName>
+                <default>false</default>
+                <controllingFieldValues>Stand Out Soups</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>All Other SKUs</fullName>
+                <default>false</default>
+                <controllingFieldValues>Elevate the Centre of the Plate</controllingFieldValues>
+                <controllingFieldValues>Guests want Hellmann&apos;s FOH</controllingFieldValues>
+                <controllingFieldValues>Hellmann&apos;s Sandwich Pro</controllingFieldValues>
+                <controllingFieldValues>NA&apos;s Favorite Tea</controllingFieldValues>
+                <controllingFieldValues>Non Focus</controllingFieldValues>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Name</fullName>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>PackSize__c</fullName>
         <description>Filed depicting the number of units and packaging size per unit in a pack (E.g. 4x2.9 OZ)</description>
         <externalId>false</externalId>
         <label>Pack Size</label>
@@ -1101,116 +1508,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>GFS_Picture_Products__c</fullName>
-        <description>Displaying Product image</description>
-        <externalId>false</externalId>
-        <formula>IF( ISBLANK(GFS_ImageID__c) ,&apos;&apos;, IMAGE(&apos;/servlet/servlet.FileDownload?file=&apos;+GFS_ImageID__c,&apos;Image&apos;,100,100))</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Picture Product</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>GFS_UnitOfMeasure__c</fullName>
-        <description>Field describing the unit of measure applicable to the product</description>
-        <externalId>false</externalId>
-        <label>Unit Of Measure</label>
-        <length>30</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>GFS_UpdatedOn__c</fullName>
-        <description>Field dispaying the last date of updating  the product info in SAP (or SF)</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Field dispaying the last date of updating  the product info in SAP (or SF)</inlineHelpText>
-        <label>Updated On</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>IsActive</fullName>
-        <trackHistory>false</trackHistory>
-    </fields>
-    <fields>
-        <fullName>NAFS_Customizable__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Customizable</label>
-        <trackHistory>false</trackHistory>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>NAFS_Division__c</fullName>
-        <description>To select Division</description>
-        <externalId>false</externalId>
-        <label>Division</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Error - Uknown Division</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Error - Unknown Type</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>R Restricted</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Restricted</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Tier 1</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>U Unrestricted</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Unrestricted</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Unknown</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <trackHistory>false</trackHistory>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>NAFS_LeadTime__c</fullName>
-        <description>To Store Lead Time</description>
-        <externalId>false</externalId>
-        <label>Lead Time</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>NAFS_Orderable__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Orderable</description>
-        <externalId>false</externalId>
-        <label>Orderable</label>
-        <trackHistory>false</trackHistory>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>NAFS_Package__c</fullName>
+        <fullName>Package__c</fullName>
         <description>To select particular Package for Products</description>
         <externalId>false</externalId>
         <label>Package</label>
@@ -1237,7 +1535,7 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>NAFS_ProductCategory__c</fullName>
+        <fullName>ProductCategory__c</fullName>
         <description>To display Product Category</description>
         <externalId>false</externalId>
         <label>Product Category</label>
@@ -1556,7 +1854,11 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>NAFS_ProductDivision__c</fullName>
+        <fullName>ProductCode</fullName>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>ProductDivision__c</fullName>
         <externalId>false</externalId>
         <label>Product Division</label>
         <picklist>
@@ -1598,7 +1900,7 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>NAFS_ProductTerm__c</fullName>
+        <fullName>ProductTerm__c</fullName>
         <description>To display Product Term</description>
         <externalId>false</externalId>
         <label>Product Term</label>
@@ -1609,7 +1911,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>NAFS_ProductType__c</fullName>
+        <fullName>ProductType__c</fullName>
         <description>To select Product Type</description>
         <externalId>false</externalId>
         <label>Product Type</label>
@@ -1660,10 +1962,10 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>NAFS_ProfitabilityTarget__c</fullName>
+        <fullName>ProfitabilityTarget__c</fullName>
         <description>To display Profitability Target</description>
         <externalId>false</externalId>
-        <formula>CASE( GFS_MarketType__c,
+        <formula>CASE( MarketType__c,
 &quot;6I DRESSINGS-CONDIMENTS-DIPS&quot;,26.5,
 &quot;6K SAUCES-GRAVIES&quot;,38.5,
 &quot;93 MAYONNAISE&quot;,37.8,
@@ -1699,7 +2001,7 @@
         <type>Percent</type>
     </fields>
     <fields>
-        <fullName>NAFS_ResourceType__c</fullName>
+        <fullName>ResourceType__c</fullName>
         <description>To display the Resource Type</description>
         <externalId>false</externalId>
         <label>Resource Type</label>
@@ -1710,189 +2012,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>NAFS_SalesProduct__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Sales Product</description>
-        <externalId>false</externalId>
-        <label>Sales Product</label>
-        <trackHistory>false</trackHistory>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>NAFS_Status__c</fullName>
-        <externalId>false</externalId>
-        <label>Status</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Active</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Inactive</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Unknown</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <trackHistory>false</trackHistory>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>NAFS_UoM__c</fullName>
-        <externalId>false</externalId>
-        <label>UoM</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Case</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Each</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Foot</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Unit</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Unknown</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <trackHistory>false</trackHistory>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>NFS_Active__c</fullName>
-        <description>To calculate Active or Inactive for product</description>
-        <externalId>false</externalId>
-        <formula>AND(not(ISBLANK(NFS_StartDate__c)),not(ISBLANK(NFS_EndDate__c)),NFS_EndDate__c&gt;=today(),NFS_StartDate__c&lt;=today() , IF( NFS_StartDate__c &gt; NFS_EndDate__c,false,true ))</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Active</label>
-        <trackHistory>false</trackHistory>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>NFS_AverageProfit__c</fullName>
-        <description>Field describing targeted average profit for the product</description>
-        <externalId>false</externalId>
-        <label>Average Profit</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>NFS_Compensable__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Flag that indicates if the product is compensable i.e. provide compensation for damages, expiry, etc. (tbc)</description>
-        <externalId>false</externalId>
-        <label>Compensable</label>
-        <trackHistory>false</trackHistory>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>NFS_ControllingAccountDescription__c</fullName>
-        <description>Refers to controlling accounts group name (used for reporting purposes)</description>
-        <externalId>false</externalId>
-        <label>Controlling Account Description</label>
-        <length>30</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>NFS_DUNumber__c</fullName>
-        <description>Distribution Unit Number? (tbc)</description>
-        <externalId>false</externalId>
-        <label>DU Number</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>NFS_EndDate__c</fullName>
-        <description>Date on which the product will become inactive</description>
-        <externalId>false</externalId>
-        <label>End Date</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>NFS_EquivalentUnit__c</fullName>
-        <description>Field describing equivalent alternate unit of measure applicable to the product</description>
-        <externalId>false</externalId>
-        <label>Equivalent Unit</label>
-        <length>30</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>NFS_Focus__c</fullName>
-        <description>Refers to controlling accounts group code (used for reporting purposes)</description>
-        <externalId>false</externalId>
-        <label>Focus</label>
-        <picklist>
-            <picklistValues>
-                <fullName>FOH</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>BOH</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>NON-FOCUS</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <trackHistory>false</trackHistory>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>NFS_GTIN__c</fullName>
-        <description>Global Trade Item Number</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Global Trade Item Number. Used to uniquely identify a product worldwide</inlineHelpText>
-        <label>GTIN</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>NFS_ProfitCenter__c</fullName>
-        <description>To display Profit Center</description>
-        <externalId>false</externalId>
-        <label>Profit Center</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>NFS_Restriction__c</fullName>
+        <fullName>Restriction__c</fullName>
         <externalId>false</externalId>
         <label>Restriction</label>
         <picklist>
@@ -1914,7 +2034,39 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>NFS_StartDate__c</fullName>
+        <fullName>SAP_ID__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>SAP External ID (Used for Integration)</description>
+        <externalId>true</externalId>
+        <label>SAP ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>SalesProduct__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Sales Product</description>
+        <externalId>false</externalId>
+        <label>Sales Product</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>SalesUnit__c</fullName>
+        <description>Sales UOM (cases)</description>
+        <externalId>false</externalId>
+        <label>Sales Unit</label>
+        <length>3</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>StartDate__c</fullName>
         <description>First date the product is available for selling</description>
         <externalId>false</externalId>
         <label>Start Date</label>
@@ -1923,7 +2075,29 @@
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>NFS_SubCategory__c</fullName>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>SubCategory__c</fullName>
         <description>Refers to product&apos;s targeted sub-category</description>
         <externalId>false</externalId>
         <label>Sub Category</label>
@@ -2810,7 +2984,7 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>NFS_SubSector__c</fullName>
+        <fullName>SubSector__c</fullName>
         <description>Refers to product&apos;s targeted sub-sector</description>
         <externalId>false</externalId>
         <label>Sub Sector</label>
@@ -3697,126 +3871,7 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>NFS_Thrust__c</fullName>
-        <externalId>false</externalId>
-        <label>Thrust</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Elevate the Centre of the Plate</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Guests want Hellmann&apos;s FOH</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Hellmann&apos;s Sandwich Pro</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>NA&apos;s Favorite Tea</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Non Focus</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Say Its Lipton; Sell more Iced Tea</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Stand Out Soups</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
-        <trackHistory>false</trackHistory>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>NFS_Top_Sellers__c</fullName>
-        <externalId>false</externalId>
-        <label>Top Sellers</label>
-        <picklist>
-            <controllingField>NFS_Thrust__c</controllingField>
-            <picklistValues>
-                <fullName>Brown Sauces and Gravies</fullName>
-                <default>false</default>
-                <controllingFieldValues>Elevate the Centre of the Plate</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Hollandaise</fullName>
-                <default>false</default>
-                <controllingFieldValues>Elevate the Centre of the Plate</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Mayo PC</fullName>
-                <default>false</default>
-                <controllingFieldValues>Guests want Hellmann&apos;s FOH</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Real Big Squeeze</fullName>
-                <default>false</default>
-                <controllingFieldValues>Guests want Hellmann&apos;s FOH</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Mayo Gallons</fullName>
-                <default>false</default>
-                <controllingFieldValues>Hellmann&apos;s Sandwich Pro</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Hot Tea</fullName>
-                <default>false</default>
-                <controllingFieldValues>NA&apos;s Favorite Tea</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Fresh Brewed Iced Tea</fullName>
-                <default>false</default>
-                <controllingFieldValues>Non Focus</controllingFieldValues>
-                <controllingFieldValues>Say Its Lipton; Sell more Iced Tea</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Caldo</fullName>
-                <default>false</default>
-                <controllingFieldValues>Stand Out Soups</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Knorr Liquid Concentrated Base</fullName>
-                <default>false</default>
-                <controllingFieldValues>Stand Out Soups</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Leg Crm Soup Base</fullName>
-                <default>false</default>
-                <controllingFieldValues>Stand Out Soups</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>All Other SKUs</fullName>
-                <default>false</default>
-                <controllingFieldValues>Elevate the Centre of the Plate</controllingFieldValues>
-                <controllingFieldValues>Guests want Hellmann&apos;s FOH</controllingFieldValues>
-                <controllingFieldValues>Hellmann&apos;s Sandwich Pro</controllingFieldValues>
-                <controllingFieldValues>NA&apos;s Favorite Tea</controllingFieldValues>
-                <controllingFieldValues>Non Focus</controllingFieldValues>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
-        <trackHistory>false</trackHistory>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>Name</fullName>
-        <trackHistory>false</trackHistory>
-    </fields>
-    <fields>
-        <fullName>ProductCode</fullName>
-        <trackHistory>false</trackHistory>
-    </fields>
-    <fields>
-        <fullName>RFS_Barcode__c</fullName>
+        <fullName>UID_Barcode__c</fullName>
         <description>Barcode of SKU. This fields is also used in Russia Food Solution project</description>
         <externalId>false</externalId>
         <label>Barcode</label>
@@ -3825,144 +3880,6 @@
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>RFS_CategoryCode__c</fullName>
-        <description>Code of the category for future mapping in the reporting</description>
-        <externalId>false</externalId>
-        <label>Category Code</label>
-        <length>4</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>RFS_CorpbrandCode__c</fullName>
-        <description>Code of the Brand for future mapping in the reporting</description>
-        <externalId>false</externalId>
-        <label>Corpbrand Code</label>
-        <length>9</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>RFS_MarketCode__c</fullName>
-        <description>Code of the Market for future mapping in the reporting</description>
-        <externalId>false</externalId>
-        <label>Market Code</label>
-        <length>6</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>RFS_Net_Weight__c</fullName>
-        <description>Net weight of SKU. This field is used in Russia Food Solution</description>
-        <externalId>false</externalId>
-        <label>Net Weight</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>3</scale>
-        <trackHistory>false</trackHistory>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>RFS_PacksizeCode__c</fullName>
-        <description>Code of the PackSize for future mapping in the reporting</description>
-        <externalId>false</externalId>
-        <label>Pack size Code</label>
-        <length>17</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>RFS_PrdDescRUL__c</fullName>
-        <description>Full Russian product description</description>
-        <externalId>false</externalId>
-        <label>Product Description LONG</label>
-        <length>80</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>RFS_SalesUnit__c</fullName>
-        <description>Sales UOM (cases)</description>
-        <externalId>false</externalId>
-        <label>Sales Unit</label>
-        <length>3</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>RFS_Shelf_Life__c</fullName>
-        <description>Shelf-life of SKU. This field is also used in Russia Food Solution</description>
-        <externalId>false</externalId>
-        <label>Shelf Life</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>RFS_VATRU__c</fullName>
-        <description>VAT value for Russia</description>
-        <externalId>false</externalId>
-        <label>VAT RU</label>
-        <precision>17</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>RFS_VATUA__c</fullName>
-        <description>VAT Value for Ukraine</description>
-        <externalId>false</externalId>
-        <label>VAT UA</label>
-        <precision>17</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>RFS_ZSU__c</fullName>
-        <description>Unit conversion factor from Sales Unit to Base UOM</description>
-        <externalId>false</externalId>
-        <label>Unit conversion factor from Sales Unit t</label>
-        <precision>17</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>SAP_ID__c</fullName>
-        <caseSensitive>false</caseSensitive>
-        <description>SAP External ID (Used for Integration)</description>
-        <externalId>true</externalId>
-        <label>SAP ID</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>true</unique>
     </fields>
     <fields>
         <fullName>UID_Brand__c</fullName>
@@ -4753,13 +4670,53 @@
         <type>Number</type>
         <unique>false</unique>
     </fields>
+    <fields>
+        <fullName>UnitOfMeasure__c</fullName>
+        <description>Field describing the unit of measure applicable to the product</description>
+        <externalId>false</externalId>
+        <label>Unit Of Measure</label>
+        <length>30</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UoM__c</fullName>
+        <externalId>false</externalId>
+        <label>UoM</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Case</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Each</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Foot</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Unit</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
     <listViews>
         <fullName>AllProducts</fullName>
         <columns>PRODUCT2.NAME</columns>
-        <columns>NFS_AverageProfit__c</columns>
-        <columns>GFS_COGS__c</columns>
-        <columns>GFS_MarketType__c</columns>
-        <columns>NAFS_ProfitabilityTarget__c</columns>
+        <columns>COGS__c</columns>
+        <columns>MarketType__c</columns>
+        <columns>ProfitabilityTarget__c</columns>
         <filterScope>Everything</filterScope>
         <label>All Products</label>
         <language>en_US</language>
@@ -4778,6 +4735,3952 @@
         </filters>
         <label>Latest Products Chid</label>
     </listViews>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>GFS_Product</fullName>
+        <active>true</active>
+        <description>All products in the Food Solutions family</description>
+        <label>Food Solutions Product</label>
+        <picklistValues>
+            <picklist>Category__c</picklist>
+            <values>
+                <fullName>11 MAIZENA BINDERS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12 KNORR BLENDED SEASONINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>13 KNORR COOK-IN SAUCE%2FMEALMAKER</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>14 LIZANO COOK-IN SAUCE%2FMEALMAKER</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>15 KNORR SIDE DISH%2FCOMPLETE MEAL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2J RETAIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2K 1 2 TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2S CFS LIQUID BASES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2U UFS LIQUID BASES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3C ICBINB - PORTIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3D COUNTRY CROCK - BULK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3E INDUSTRIAL POURABLES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3F LIQID-WHIPPED</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3G FDSOL PASTA-PIZZA SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3H INDUSTRIAL BASES-BOUILLIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3I INDUSTRIAL CONDIMENTS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3J INDUSTRIAL DRY SAUCES-GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3K INDUSTRIAL RED SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3L INDUSTRIAL SPICE BLENDS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3M INDUSTRIAL WET SAUCES-GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3N OPERATOR BASES-BOUILLIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3O OPERATOR CONDIMENTS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3P OPERATOR DRY SAUCES %26 GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3R OPERATOR MAYONNAISE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3S OPERATOR PIZZA SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3T OPERATOR POURABLES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3U OPERATOR SPICE BLENDS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3V OPERATOR WET S%26G</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3X OPERATOR BULK MST</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3Y OPERATOR MST PORTIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4P ICBINB - BULK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4S SLIMFAST</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4Z SLIMFAST 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5A FDSOL MISCELLANEOUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5B FDSOL MISCELLANEOUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5C BW DRESSING CO-PACK FS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5D FDSOL MISCELLANEOUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5E IFS OPERATOR SPICE BLENDS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5F OPERATOR PASTA SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5G RETAIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5H LIPTON SPECIALTY TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5I LIPTON BULK CRYSTALS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5K OPERATOR SAUCES MISC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5N MISCELLANEOUS MERCHANDISING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5O MISCELLANEOUS CUP A SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5R DISCONTINUED WET SAUCES %26 GRAV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5T SKIPPY INNOVATION</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5U DISCONTINUED OPERATOR BAKERY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5Y SHELF STABLE SOUPS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5Z PROMISE BULK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6A PROMISE PORTIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>95 BRANDED FROZEN SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>96 KNORR DRY SAUCES %26 GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Commodities</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Equipment Order</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mexicasa Order</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>POS Order</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Samples Order</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Soupbar Order</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>System Category</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T0 HOT SINGLE SERVE TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T2 COUNTRY CROCK PORTION PACKS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T3 FDSOL MST BULK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T4 COMMODITIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T5 FDSOL MST PORTION</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T6 ICED TEA BAGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T7 PURE LEAF TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T8 HOT TEA BAGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TA ICED BULK %26 INSTANT TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TB TEABAR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TC LBIT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TE OPERATOR PASTA SAUCE 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TF BRANDED PASTA SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TG OPERATOR PIZZA SAUCE 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TH BRANDED PIZZA SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TI WISHBONE SALAD DRESSING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TJ WISHBONE MAYO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TK SPICE BLENDS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TL SEASONING MIX</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TM LAWRYS LIQUID SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TN LAWRYS SALAD DRESSING MIX</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TO LAWRYS GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TP REGULAR DRY SOUPS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TQ LIPTON CUP A SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TR KNORR SOUPWORKS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TS DICED TOMATOES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TT FROZEN NOVELTIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TV LEGOUT PREMIUM BASES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TW KNORR SHELF STABLE BASES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TX OPERATOR BASES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TY FDSOL BASES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TZ LEGOUT ECONOMY BASES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U0 KNORR DRY SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U1 KNORR PREMIUM BASES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U2 LEGOUT OTHER BASES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U3 INDUSTRIAL BASES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U4 CARB OPTIONS FROZEN SOUPS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U6 FROZEN SAUCES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U8 LEGOUT CANNED SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U9 LEGOUT CANNED ENTREES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UA KNORR KETTLE CREATIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UB OPERATOR CANNED SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UD BRANDED FROZEN ENTREES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UE LEGOUT DRY SAUCES %26 GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UG OPERATOR DRY SAUCES %26 GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UH LEGOUT DESSERTS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UI HLM-BF REFRIG POURABLE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UJ OPERATOR FROZEN SAUCES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UK RTU SAUCES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UL KNORR DESSERTS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UN LEGOUT CANNED RELISH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UP OPERATOR MAYONNAISE 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UQ INDUSTRIAL MAYONNAISE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UR HLM-BF MAYONNAISE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>US MAZOLA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UU ARGO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UV BRANDED CONDIMENTS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UX CERELOSE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UY THOMAS MUFFINS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UZ LEGOUT CANNED SAUCES %26 GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>V0 OPERATOR FROZEN ENTREE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>V1 OPERATOR FROZEN SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>V2 FDSOL FROZEN ENTREE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>V3 FDSOL FROZEN SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>V4 HLM-BF POURABLE DRESSING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>V5 BOBOLI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>V6 HLM-BF SPREADABLE DRESSING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>V7 OPERATOR POURABLE DRESSING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>V8 FDSOL POURABLE DRESSING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>V9 SKIPPY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VC CARB OPTIONS POURABLE DRESSING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VK KNORR BLENDED SEASONINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VN KNORR FROZEN SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VO LIPTON PREMIUM DRY SOUP MIX</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VP FDSOL PRM DRY SP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VQ KNORR REGULAR DRY SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VR FDSOL DRY BASES-BOUILLIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VS KNORR DRY BASES-BOUILLIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VT LIPTON DRY BASES-BOUILLIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VU OPERATOR DRY SAUCES-GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VV KNORR WET BASES-BOUILLIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VW KNORR RTS FROZEN ENTREE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VX OPERATOR RTS FROZEN ENTREE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VY LIPTON SIDE DISHES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VZ OPERATOR SIDE DISHES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W0 MEXICASA SALSA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W1 MEXICASA NACHOS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W2 MEXICASA CHEESE SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W3 OPERATOR CHEESE SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W4 MEXICASA OTHER MEXICAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W5 MEXICASA WRAPS %26 TORTILLAS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W6 HELLMANNS MAYONNAISE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W7 OPERATOR MAYONNAISE 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W8 HELLMANNS POURABLE DRESSINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W9 FDSOL POURABLE DRESSINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WA HELLMANNS CONDIMENTS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WB FDSOL SPREADABLE DRESSING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WC HELLMANNS SPREADABLE DRESSING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WD OPERATOR SPREADABLE DRESSING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WE BECEL PORTION PACKS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WF COUNTRY CROCK PORTION PACKS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WG FDSOL PORTION PACKS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WH FDSOL FS BULK MARGARINE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WI BECEL PREMIUM BULK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WJ SKIPPY 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WK BECEL POPCORN TOPPING-POPPING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WL PREMIUM ROLLINS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WM OPERATOR PREMIUM ROLLINS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WN BECEL BAKING MARGARINE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WO BAKING MARGARINE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WP ICINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WQ INDUSTRIAL OIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WR SHORTENINGS-OIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WS FDSOL HOT TEA BAGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WT RED ROSE HOT TEA BAGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WV FDSOL OTHER BEVERAGE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WW MISCELLANEOUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WX LIPTON CRYSTALS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X2 INDUSTRIAL OIL 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X3 SHORTENINGS-OIL 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X4 FDSOL SHORTENINGS-OIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X5 SHORTENINGS-OIL 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X6 FDSOL MISCELLANEOUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X7 MISCELLANEOUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X8 FDSOL MISCELLANEOUS 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X9 FDSOL MISCELLANEOUS 5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XA LIPTON ICED TEA CRYSTALS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XB LIPTON LITE CRYSTALS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XC LIPTON REGULAR CRYSTALS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XD LIPTON RETAIL CRYSTALS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XE FDSOL RTS FROZEN SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XF LIPTON REGULAR DRY SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XG BOVRIL DRY BASES-BOUILLIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XH OXO DRY BASES-BOUILLIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XI FDSOL WET RTU SAUCES-GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XJ BOVRIL WET BASES-BOUILLIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XK FDSOL MAYONNAISE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XL SALADA HOT TEA BAGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XM WISHBONE DRY DRESSINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XN FDSOL FROZEN SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XO LIPTON SPECIALTY HOT TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XP LIPTON YELLOW LABEL TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XQ SHELF STABLE SOUPS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XR FLAKES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XS FDSOL DRY SAUCES-GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XT SPICE BLENDS 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XU INTERNATIONAL SEASONINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XV KNORR DRY SAUCES-GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XW LIPTON DRY SAUCES-GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XY OPER WET RTU SAUCES-GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XZ RAGU RTU RED SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Y0 KNORR RTS FROZEN SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Y1 OPERATOR RTS FROZEN SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Y2 FDSOL BLENDED SEASONINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Y3 LAWRYS BLENDED SEASONINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Y7 KNORR WET RTU SAUCES-GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>YP LIPTON ICED TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>YS OPERATOR PREMIUM DRY SOUP MIX</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Division__c</picklist>
+            <values>
+                <fullName>Error - Uknown Division</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Error - Unknown Type</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>R Restricted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restricted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tier 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U Unrestricted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unrestricted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_Focus__c</picklist>
+            <values>
+                <fullName>BOH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FOH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NON-FOCUS</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Family</picklist>
+            <values>
+                <fullName>Food Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing Funds</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>None</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MarketType__c</picklist>
+            <values>
+                <fullName>6I DRESSINGS-CONDIMENTS-DIPS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6K SAUCES-GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8Z RETAIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>93 MAYONNAISE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D1 SOUPS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>E1 BASES-BOUILLIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>F1 SPREADS AND TOPPING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>G1 TEA-BEVERAGES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>H1 FLAVOUR DELIVERY SYS-SEASONING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>I1 ICE CREAM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>J1 SLIM FAST</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>K1 MEALS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>L1 MEXICAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M1 PREMIUM BAKING MARGARINE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N1 CRYSTAL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O1 SHORTENINGS-OIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>P1 INDUSTRIAL OIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Q1 MISCELLANEOUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>R1 BAKERY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S1 CORN PRODUCTS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>NFS_Thrust__c</picklist>
+            <values>
+                <fullName>Elevate the Centre of the Plate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guests want Hellmann%27s FOH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hellmann%27s Sandwich Pro</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NA%27s Favorite Tea</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Non Focus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Say Its Lipton%3B Sell more Iced Tea</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stand Out Soups</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>NFS_Top_Sellers__c</picklist>
+            <values>
+                <fullName>All Other SKUs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brown Sauces and Gravies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Caldo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fresh Brewed Iced Tea</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hollandaise</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hot Tea</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Knorr Liquid Concentrated Base</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Leg Crm Soup Base</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mayo Gallons</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mayo PC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Big Squeeze</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Package__c</picklist>
+            <values>
+                <fullName>Package1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Package1A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Package1B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Package2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ProductCategory__c</picklist>
+            <values>
+                <fullName>01 AUTO BREW STEEPING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>02 BAKING MARGARINE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>03 BAKING POWDER</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>04 BAR MIXES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>05 BLENDED SEASONINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>06 BREAD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>07 BULK CRYSTALS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>08 BULK OIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>09 CANNED FRUIT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0P US SIDE DISHES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10 CANNED SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11 CHEESE SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12 CONDIMENTS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>13 CORN OIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>14 CORN STARCH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>17 CUBE FRYING SHORTENING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>18 DESSERTS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>19 DRY BASES-BOUILLIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>20 DRY SAUCES-GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>25 FROZEN SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>26 FS BULK MARGARINE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>27 HOT TEA BAGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>28 ICED TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>29 ICED TEA CRYSTALS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>30 ICINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>31 INDUSTRIAL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>32 LBIT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>33 LIQUID SHORTENINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>34 LIQUID-WHIPPED MARGARINE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>35 LITE CRYSTALS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>36 MAYONNAISE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>37 NACHOS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>38 DRY DRESSINGS-DIPS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>39 OTHER BAKERY MATERIALS-MIXES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40 OTHER BEVERAGE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>41 OTHER MEXICAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>42 OTHER MISC CATEGORY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>43 PACKAGED INDUSTRIAL OIL-FATS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>44 PEANUT BUTTER</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>45 POPCORN TOPPING-POPPING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>46 PORTIONED ICE CREAM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>47 PORTIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>48 POURABLE DRESSINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>49 PREMIUM BULK MARGARINE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4X EGG SUBSTITUTE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4Y SLIMFAST</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>50 PREMIUM DRY SOUP MIX</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>51 PREMIUM ROLLINS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>52 REFRIDGERATED DRESSINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>53 REGULAR CRYSTALS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>54 REGULAR DRY SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>55 REGULAR SHORTENINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>56 RETAIL CRYSTALS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>57 ROAST COFFEE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>58 RTS CANNED ENTREE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>59 RTS FROZEN ENTREE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>60 RTS FROZEN SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>61 RTU RED SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>62 RTU SAUCES-GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>63 SALSA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>64 SIDE DISHES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>66 SPECIALTIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>67 SPECIALTY TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>68 SPREADABLE DRESSING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>69 WET BASES-BOUILLIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>70 WRAPS %26 TORTILLAS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>71 RTU INDUSTRIAL RED SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>72 WET RTU INDUSTRIAL S%26G</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>73 WET RTU SAUCES-GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>74 INDUSTRIAL BASES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>75 DRY DRESSINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>76 SHELF STABLE SOUPS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>90 EMULSIFIED SHORTENINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>91 ENGLISH MUFFINS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>92 FLAKES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>99 RETAIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ProductDivision__c</picklist>
+            <values>
+                <fullName>Error - Uknown Division</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Error - Unknown Type</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>R Restricted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restricted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tier 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U Unrestricted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unrestricted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ProductType__c</picklist>
+            <values>
+                <fullName>Commodity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Equipment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Error - Unknown Type</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mexican Concept</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>POS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restricted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SVP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Soupbar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unrestricted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Restriction__c</picklist>
+            <values>
+                <fullName>Error - Unknown Type</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restricted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unrestricted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>SubCategory__c</picklist>
+            <values>
+                <fullName>11 MAIZENA BINDERS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12 KNORR BLENDED SEASONINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>13 KNORR COOK-IN SAUCE%2FMEALMAKER</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>14 LIZANO COOK-IN SAUCE%2FMEALMAKER</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>15 KNORR SIDE DISH%2FCOMPLETE MEAL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2J RETAIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2K 1 2 TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2S CFS LIQUID BASES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2U UFS LIQUID BASES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3C ICBINB - PORTIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3D COUNTRY CROCK - BULK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3E INDUSTRIAL POURABLES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3F LIQID-WHIPPED</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3G FDSOL PASTA-PIZZA SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3H INDUSTRIAL BASES-BOUILLIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3I INDUSTRIAL CONDIMENTS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3J INDUSTRIAL DRY SAUCES-GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3K INDUSTRIAL RED SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3L INDUSTRIAL SPICE BLENDS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3M INDUSTRIAL WET SAUCES-GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3N OPERATOR BASES-BOUILLIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3O OPERATOR CONDIMENTS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3P OPERATOR DRY SAUCES %26 GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3R OPERATOR MAYONNAISE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3S OPERATOR PIZZA SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3T OPERATOR POURABLES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3U OPERATOR SPICE BLENDS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3V OPERATOR WET S%26G</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3X OPERATOR BULK MST</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3Y OPERATOR MST PORTIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4P ICBINB - BULK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4S SLIMFAST</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4Z SLIMFAST 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5A FDSOL MISCELLANEOUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5B FDSOL MISCELLANEOUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5C BW DRESSING CO-PACK FS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5D FDSOL MISCELLANEOUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5E IFS OPERATOR SPICE BLENDS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5F OPERATOR PASTA SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5G RETAIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5H LIPTON SPECIALTY TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5I LIPTON BULK CRYSTALS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5K OPERATOR SAUCES MISC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5N MISCELLANEOUS MERCHANDISING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5O MISCELLANEOUS CUP A SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5R DISCONTINUED WET SAUCES %26 GRAV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5T SKIPPY INNOVATION</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5U DISCONTINUED OPERATOR BAKERY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5Y SHELF STABLE SOUPS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5Z PROMISE BULK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6A PROMISE PORTIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>95 BRANDED FROZEN SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>96 KNORR DRY SAUCES %26 GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Commodities</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Equipment Order</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mexicasa Order</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>POS Order</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Samples Order</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Soupbar Order</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>System Category</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T0 HOT SINGLE SERVE TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T2 COUNTRY CROCK PORTION PACKS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T3 FDSOL MST BULK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T4 COMMODITIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T5 FDSOL MST PORTION</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T6 ICED TEA BAGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T7 PURE LEAF TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T8 HOT TEA BAGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TA ICED BULK %26 INSTANT TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TB TEABAR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TC LBIT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TE OPERATOR PASTA SAUCE 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TF BRANDED PASTA SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TG OPERATOR PIZZA SAUCE 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TH BRANDED PIZZA SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TI WISHBONE SALAD DRESSING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TJ WISHBONE MAYO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TK SPICE BLENDS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TL SEASONING MIX</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TM LAWRYS LIQUID SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TN LAWRYS SALAD DRESSING MIX</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TO LAWRYS GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TP REGULAR DRY SOUPS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TQ LIPTON CUP A SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TR KNORR SOUPWORKS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TS DICED TOMATOES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TT FROZEN NOVELTIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TV LEGOUT PREMIUM BASES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TW KNORR SHELF STABLE BASES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TX OPERATOR BASES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TY FDSOL BASES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TZ LEGOUT ECONOMY BASES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U0 KNORR DRY SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U1 KNORR PREMIUM BASES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U2 LEGOUT OTHER BASES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U3 INDUSTRIAL BASES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U4 CARB OPTIONS FROZEN SOUPS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U6 FROZEN SAUCES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U8 LEGOUT CANNED SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U9 LEGOUT CANNED ENTREES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UA KNORR KETTLE CREATIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UB OPERATOR CANNED SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UD BRANDED FROZEN ENTREES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UE LEGOUT DRY SAUCES %26 GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UG OPERATOR DRY SAUCES %26 GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UH LEGOUT DESSERTS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UI HLM-BF REFRIG POURABLE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UJ OPERATOR FROZEN SAUCES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UK RTU SAUCES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UL KNORR DESSERTS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UN LEGOUT CANNED RELISH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UP OPERATOR MAYONNAISE 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UQ INDUSTRIAL MAYONNAISE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UR HLM-BF MAYONNAISE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>US MAZOLA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UU ARGO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UV BRANDED CONDIMENTS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UX CERELOSE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UY THOMAS MUFFINS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UZ LEGOUT CANNED SAUCES %26 GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>V0 OPERATOR FROZEN ENTREE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>V1 OPERATOR FROZEN SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>V2 FDSOL FROZEN ENTREE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>V3 FDSOL FROZEN SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>V4 HLM-BF POURABLE DRESSING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>V5 BOBOLI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>V6 HLM-BF SPREADABLE DRESSING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>V7 OPERATOR POURABLE DRESSING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>V8 FDSOL POURABLE DRESSING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>V9 SKIPPY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VC CARB OPTIONS POURABLE DRESSING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VK KNORR BLENDED SEASONINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VN KNORR FROZEN SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VO LIPTON PREMIUM DRY SOUP MIX</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VP FDSOL PRM DRY SP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VQ KNORR REGULAR DRY SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VR FDSOL DRY BASES-BOUILLIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VS KNORR DRY BASES-BOUILLIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VT LIPTON DRY BASES-BOUILLIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VU OPERATOR DRY SAUCES-GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VV KNORR WET BASES-BOUILLIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VW KNORR RTS FROZEN ENTREE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VX OPERATOR RTS FROZEN ENTREE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VY LIPTON SIDE DISHES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VZ OPERATOR SIDE DISHES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W0 MEXICASA SALSA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W1 MEXICASA NACHOS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W2 MEXICASA CHEESE SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W3 OPERATOR CHEESE SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W4 MEXICASA OTHER MEXICAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W5 MEXICASA WRAPS %26 TORTILLAS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W6 HELLMANNS MAYONNAISE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W7 OPERATOR MAYONNAISE 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W8 HELLMANNS POURABLE DRESSINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W9 FDSOL POURABLE DRESSINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WA HELLMANNS CONDIMENTS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WB FDSOL SPREADABLE DRESSING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WC HELLMANNS SPREADABLE DRESSING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WD OPERATOR SPREADABLE DRESSING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WE BECEL PORTION PACKS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WF COUNTRY CROCK PORTION PACKS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WG FDSOL PORTION PACKS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WH FDSOL FS BULK MARGARINE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WI BECEL PREMIUM BULK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WJ SKIPPY 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WK BECEL POPCORN TOPPING-POPPING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WL PREMIUM ROLLINS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WM OPERATOR PREMIUM ROLLINS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WN BECEL BAKING MARGARINE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WO BAKING MARGARINE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WP ICINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WQ INDUSTRIAL OIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WR SHORTENINGS-OIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WS FDSOL HOT TEA BAGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WT RED ROSE HOT TEA BAGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WV FDSOL OTHER BEVERAGE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WW MISCELLANEOUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WX LIPTON CRYSTALS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X2 INDUSTRIAL OIL 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X3 SHORTENINGS-OIL 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X4 FDSOL SHORTENINGS-OIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X5 SHORTENINGS-OIL 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X6 FDSOL MISCELLANEOUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X7 MISCELLANEOUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X8 FDSOL MISCELLANEOUS 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X9 FDSOL MISCELLANEOUS 5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XA LIPTON ICED TEA CRYSTALS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XB LIPTON LITE CRYSTALS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XC LIPTON REGULAR CRYSTALS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XD LIPTON RETAIL CRYSTALS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XE FDSOL RTS FROZEN SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XF LIPTON REGULAR DRY SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XG BOVRIL DRY BASES-BOUILLIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XH OXO DRY BASES-BOUILLIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XI FDSOL WET RTU SAUCES-GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XJ BOVRIL WET BASES-BOUILLIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XK FDSOL MAYONNAISE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XL SALADA HOT TEA BAGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XM WISHBONE DRY DRESSINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XN FDSOL FROZEN SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XO LIPTON SPECIALTY HOT TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XP LIPTON YELLOW LABEL TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XQ SHELF STABLE SOUPS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XR FLAKES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XS FDSOL DRY SAUCES-GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XT SPICE BLENDS 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XU INTERNATIONAL SEASONINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XV KNORR DRY SAUCES-GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XW LIPTON DRY SAUCES-GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XY OPER WET RTU SAUCES-GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XZ RAGU RTU RED SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Y0 KNORR RTS FROZEN SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Y1 OPERATOR RTS FROZEN SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Y2 FDSOL BLENDED SEASONINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Y3 LAWRYS BLENDED SEASONINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Y7 KNORR WET RTU SAUCES-GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>YP LIPTON ICED TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>YS OPERATOR PREMIUM DRY SOUP MIX</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>SubSector__c</picklist>
+            <values>
+                <fullName>11 MAIZENA BINDERS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12 KNORR BLENDED SEASONINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>13 KNORR COOK-IN SAUCE%2FMEALMAKER</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>14 LIZANO COOK-IN SAUCE%2FMEALMAKER</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>15 KNORR SIDE DISH%2FCOMPLETE MEAL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2J RETAIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2K 1 2 TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2S CFS LIQUID BASES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2U UFS LIQUID BASES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3C ICBINB - PORTIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3D COUNTRY CROCK - BULK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3E INDUSTRIAL POURABLES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3F LIQID-WHIPPED</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3G FDSOL PASTA-PIZZA SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3H INDUSTRIAL BASES-BOUILLIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3I INDUSTRIAL CONDIMENTS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3J INDUSTRIAL DRY SAUCES-GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3K INDUSTRIAL RED SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3L INDUSTRIAL SPICE BLENDS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3M INDUSTRIAL WET SAUCES-GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3N OPERATOR BASES-BOUILLIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3O OPERATOR CONDIMENTS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3P OPERATOR DRY SAUCES %26 GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3R OPERATOR MAYONNAISE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3S OPERATOR PIZZA SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3T OPERATOR POURABLES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3U OPERATOR SPICE BLENDS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3V OPERATOR WET S%26G</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3X OPERATOR BULK MST</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3Y OPERATOR MST PORTIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4P ICBINB - BULK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4S SLIMFAST</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4Z SLIMFAST 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5A FDSOL MISCELLANEOUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5B FDSOL MISCELLANEOUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5C BW DRESSING CO-PACK FS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5D FDSOL MISCELLANEOUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5E IFS OPERATOR SPICE BLENDS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5F OPERATOR PASTA SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5G RETAIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5H LIPTON SPECIALTY TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5I LIPTON BULK CRYSTALS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5K OPERATOR SAUCES MISC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5N MISCELLANEOUS MERCHANDISING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5O MISCELLANEOUS CUP A SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5R DISCONTINUED WET SAUCES %26 GRAV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5T SKIPPY INNOVATION</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5U DISCONTINUED OPERATOR BAKERY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5Y SHELF STABLE SOUPS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5Z PROMISE BULK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6A PROMISE PORTIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>95 BRANDED FROZEN SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>96 KNORR DRY SAUCES %26 GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Commodities</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Equipment Order</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mexicasa Order</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>POS Order</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Samples Order</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Soupbar Order</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>System Category</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T0 HOT SINGLE SERVE TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T2 COUNTRY CROCK PORTION PACKS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T3 FDSOL MST BULK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T4 COMMODITIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T5 FDSOL MST PORTION</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T6 ICED TEA BAGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T7 PURE LEAF TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T8 HOT TEA BAGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TA ICED BULK %26 INSTANT TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TB TEABAR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TC LBIT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TE OPERATOR PASTA SAUCE 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TF BRANDED PASTA SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TG OPERATOR PIZZA SAUCE 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TH BRANDED PIZZA SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TI WISHBONE SALAD DRESSING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TJ WISHBONE MAYO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TK SPICE BLENDS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TL SEASONING MIX</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TM LAWRYS LIQUID SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TN LAWRYS SALAD DRESSING MIX</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TO LAWRYS GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TP REGULAR DRY SOUPS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TQ LIPTON CUP A SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TR KNORR SOUPWORKS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TS DICED TOMATOES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TT FROZEN NOVELTIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TV LEGOUT PREMIUM BASES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TW KNORR SHELF STABLE BASES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TX OPERATOR BASES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TY FDSOL BASES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TZ LEGOUT ECONOMY BASES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U0 KNORR DRY SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U1 KNORR PREMIUM BASES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U2 LEGOUT OTHER BASES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U3 INDUSTRIAL BASES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U4 CARB OPTIONS FROZEN SOUPS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U6 FROZEN SAUCES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U8 LEGOUT CANNED SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U9 LEGOUT CANNED ENTREES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UA KNORR KETTLE CREATIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UB OPERATOR CANNED SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UD BRANDED FROZEN ENTREES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UE LEGOUT DRY SAUCES %26 GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UG OPERATOR DRY SAUCES %26 GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UH LEGOUT DESSERTS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UI HLM-BF REFRIG POURABLE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UJ OPERATOR FROZEN SAUCES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UK RTU SAUCES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UL KNORR DESSERTS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UN LEGOUT CANNED RELISH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UP OPERATOR MAYONNAISE 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UQ INDUSTRIAL MAYONNAISE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UR HLM-BF MAYONNAISE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>US MAZOLA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UU ARGO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UV BRANDED CONDIMENTS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UX CERELOSE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UY THOMAS MUFFINS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UZ LEGOUT CANNED SAUCES %26 GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>V0 OPERATOR FROZEN ENTREE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>V1 OPERATOR FROZEN SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>V2 FDSOL FROZEN ENTREE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>V3 FDSOL FROZEN SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>V4 HLM-BF POURABLE DRESSING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>V5 BOBOLI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>V6 HLM-BF SPREADABLE DRESSING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>V7 OPERATOR POURABLE DRESSING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>V8 FDSOL POURABLE DRESSING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>V9 SKIPPY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VC CARB OPTIONS POURABLE DRESSING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VK KNORR BLENDED SEASONINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VN KNORR FROZEN SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VO LIPTON PREMIUM DRY SOUP MIX</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VP FDSOL PRM DRY SP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VQ KNORR REGULAR DRY SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VR FDSOL DRY BASES-BOUILLIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VS KNORR DRY BASES-BOUILLIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VT LIPTON DRY BASES-BOUILLIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VU OPERATOR DRY SAUCES-GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VV KNORR WET BASES-BOUILLIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VW KNORR RTS FROZEN ENTREE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VX OPERATOR RTS FROZEN ENTREE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VY LIPTON SIDE DISHES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VZ OPERATOR SIDE DISHES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W0 MEXICASA SALSA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W1 MEXICASA NACHOS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W2 MEXICASA CHEESE SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W3 OPERATOR CHEESE SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W4 MEXICASA OTHER MEXICAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W5 MEXICASA WRAPS %26 TORTILLAS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W6 HELLMANNS MAYONNAISE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W7 OPERATOR MAYONNAISE 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W8 HELLMANNS POURABLE DRESSINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W9 FDSOL POURABLE DRESSINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WA HELLMANNS CONDIMENTS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WB FDSOL SPREADABLE DRESSING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WC HELLMANNS SPREADABLE DRESSING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WD OPERATOR SPREADABLE DRESSING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WE BECEL PORTION PACKS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WF COUNTRY CROCK PORTION PACKS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WG FDSOL PORTION PACKS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WH FDSOL FS BULK MARGARINE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WI BECEL PREMIUM BULK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WJ SKIPPY 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WK BECEL POPCORN TOPPING-POPPING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WL PREMIUM ROLLINS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WM OPERATOR PREMIUM ROLLINS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WN BECEL BAKING MARGARINE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WO BAKING MARGARINE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WP ICINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WQ INDUSTRIAL OIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WR SHORTENINGS-OIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WS FDSOL HOT TEA BAGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WT RED ROSE HOT TEA BAGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WV FDSOL OTHER BEVERAGE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WW MISCELLANEOUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WX LIPTON CRYSTALS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X2 INDUSTRIAL OIL 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X3 SHORTENINGS-OIL 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X4 FDSOL SHORTENINGS-OIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X5 SHORTENINGS-OIL 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X6 FDSOL MISCELLANEOUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X7 MISCELLANEOUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X8 FDSOL MISCELLANEOUS 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X9 FDSOL MISCELLANEOUS 5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XA LIPTON ICED TEA CRYSTALS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XB LIPTON LITE CRYSTALS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XC LIPTON REGULAR CRYSTALS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XD LIPTON RETAIL CRYSTALS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XE FDSOL RTS FROZEN SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XF LIPTON REGULAR DRY SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XG BOVRIL DRY BASES-BOUILLIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XH OXO DRY BASES-BOUILLIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XI FDSOL WET RTU SAUCES-GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XJ BOVRIL WET BASES-BOUILLIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XK FDSOL MAYONNAISE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XL SALADA HOT TEA BAGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XM WISHBONE DRY DRESSINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XN FDSOL FROZEN SOUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XO LIPTON SPECIALTY HOT TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XP LIPTON YELLOW LABEL TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XQ SHELF STABLE SOUPS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XR FLAKES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XS FDSOL DRY SAUCES-GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XT SPICE BLENDS 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XU INTERNATIONAL SEASONINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XV KNORR DRY SAUCES-GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XW LIPTON DRY SAUCES-GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XY OPER WET RTU SAUCES-GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XZ RAGU RTU RED SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Y0 KNORR RTS FROZEN SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Y1 OPERATOR RTS FROZEN SAUCE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Y2 FDSOL BLENDED SEASONINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Y3 LAWRYS BLENDED SEASONINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Y7 KNORR WET RTU SAUCES-GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>YP LIPTON ICED TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>YS OPERATOR PREMIUM DRY SOUP MIX</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UID_Brand__c</picklist>
+            <values>
+                <fullName>ALGIDA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ALSA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AMORA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ASTRA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AXE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BALTIMOR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BANGO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BEN %26 JERRY%27S</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BERTOLLI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BESTFOODS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BLOCK %26 WHITE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BLUE BAND</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BLUE RIBBON</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BOVRIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BRU</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BRUT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BRYLCREEM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BUAVITA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BUSHELLS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CAJOLINE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CALIPPO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CALVE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CARESS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CARTE D%27OR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CIF</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CITRA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CLEAR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CLOSE UP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>COLMANS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>COMFORT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CONTINENTAL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CORNETTO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CREAM SILK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DEGREE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DOMESTOS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DOMEX</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DOVE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DOVE MEN%2BCARE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DR KAUFMANN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DRIVE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ELEPHANT %28FOODS%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ESKINOL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FAIR %26 LOVELY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FISSAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLORA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FRUIT D%27OR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FRUTTARE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HB %28FOODS%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HELLMANNS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IMPULSE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>JIF %28HPC%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KNORR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LADY%27S CHOICE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LEVER 2000</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LIFEBUOY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LIPTON BRISK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LIPTON HERBAL INFUSIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LIPTON ICE TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LIPTON TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LIPTON YELLOW LABEL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LUX</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LYNX</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MAGNUM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MAILLE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MAIZENA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MARMITE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MASTER</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MIKO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MOLTO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MONSAVON</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NEXXUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NOXZEMA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OMO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OTHER BRANDS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OTHER NON-BRANDED</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>P%2FS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PADDLEPOP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PEARS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PENTO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PEPSODENT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PERSIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PG TIPS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PLANTA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PONDS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>POT NOODLE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PRO ACTIV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Q TIPS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RADOX</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RAGULETTO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RAMA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>REXONA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RINSO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ROYAL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ROYCO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SARIWANGI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SELECTION</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SIGNAL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SIMPLE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SKIP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SKIPPY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SOLERO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SPLICE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ST IVES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>STREETS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SUAVE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SUN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SUNLIGHT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SUNSILK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SURF</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TIMOTEI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TRESEMME</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UNILEVER OTHER</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VASELINE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VASELINE MEN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VEGETALINE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VIENNETTA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VISO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VIXAL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VO5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WALLS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WILLIAMS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WIPOL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ZWITSAL</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UID_Category__c</picklist>
+            <values>
+                <fullName>BAKING COOKING AND SPREADING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>COFFEE %26 SNACKS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DEODORANTS %26 FRAGRANCES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DRESSINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HAIR CARE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HOUSEHOLD CARE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ICE CREAM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LAUNDRY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NON CORPORATE PERSONAL CARE CAT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ORAL CARE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OTHER FOODS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAVOURY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SKIN CARE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SKIN CLEANSING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TEA AND SOY %26 FRUIT BEVERAGES</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UID_Language__c</picklist>
+            <values>
+                <fullName>EN</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UID_Material_Group__c</picklist>
+            <values>
+                <fullName>F070</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>F150</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UID_Material_Type__c</picklist>
+            <values>
+                <fullName>FERT</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UID_Purchase_Order_Unit__c</picklist>
+            <values>
+                <fullName>CS</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UID_Unit_of_Dimension__c</picklist>
+            <values>
+                <fullName>MM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UID_Volume_Unit__c</picklist>
+            <values>
+                <fullName>CCM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UID_Weight_Unit__c</picklist>
+            <values>
+                <fullName>G</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UoM__c</picklist>
+            <values>
+                <fullName>Case</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Each</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Foot</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
     <searchLayouts>
         <customTabListAdditionalFields>PRODUCT2.NAME</customTabListAdditionalFields>
         <customTabListAdditionalFields>PRODUCT2.CUSTOMER_PRODUCT_ID</customTabListAdditionalFields>

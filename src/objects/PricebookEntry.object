@@ -61,15 +61,6 @@
         <type>Currency</type>
     </fields>
     <fields>
-        <fullName>NAFS_Standard_Price__c</fullName>
-        <externalId>false</externalId>
-        <label>Standard Price</label>
-        <precision>12</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <type>Currency</type>
-    </fields>
-    <fields>
         <fullName>Pricebook2Id</fullName>
         <type>Lookup</type>
     </fields>

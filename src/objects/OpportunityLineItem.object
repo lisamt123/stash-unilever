@@ -180,6 +180,15 @@
         <type>Percent</type>
     </fields>
     <fields>
+        <fullName>NAFS_GrossProfitPercent__c</fullName>
+        <externalId>false</externalId>
+        <label>NAFS Gross Profit %</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Percent</type>
+    </fields>
+    <fields>
         <fullName>NAFS_GrossProfit__c</fullName>
         <externalId>false</externalId>
         <formula>NAFS_Turnover__c - NAFS_TotalCOGS__c</formula>
@@ -211,9 +220,18 @@
     <fields>
         <fullName>NAFS_MarketTarget__c</fullName>
         <externalId>false</externalId>
-        <formula>PricebookEntry.Product2.NAFS_ProfitabilityTarget__c</formula>
+        <formula>PricebookEntry.Product2.ProfitabilityTarget__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Market Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>NAFS_MrktTarget__c</fullName>
+        <externalId>false</externalId>
+        <label>NAFS MarketTarget</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
@@ -709,7 +727,7 @@
     <fields>
         <fullName>NAFS_ProductMarket__c</fullName>
         <externalId>false</externalId>
-        <formula>TEXT(PricebookEntry.Product2.GFS_MarketType__c)</formula>
+        <formula>TEXT(PricebookEntry.Product2.MarketType__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Product Market</label>
         <required>false</required>
@@ -765,7 +783,7 @@
     <fields>
         <fullName>NAFS_TotalCOGS__c</fullName>
         <externalId>false</externalId>
-        <formula>PricebookEntry.Product2.GFS_COGS__c  *  Quantity</formula>
+        <formula>PricebookEntry.Product2.COGS__c  *  Quantity</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Total COGS</label>
         <precision>18</precision>
