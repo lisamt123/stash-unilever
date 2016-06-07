@@ -1275,8 +1275,11 @@ table tbody tr td {
     display: inline-block;
     width: 50%;
 }
-input[type=checkbox].priority_input, select.priority_input {
+.create_campaign_priority input{
     width: 140px;
+}
+input[type=checkbox].priority_input, select.priority_input {
+    width: 100px;
     margin-left: 20px;
     margin-top: 25px;
 }
