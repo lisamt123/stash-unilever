@@ -309,15 +309,6 @@
         <fullName>ListPrice</fullName>
     </fields>
     <fields>
-        <fullName>NAFS_GrossProfitPercent__c</fullName>
-        <externalId>false</externalId>
-        <label>NAFS Gross Profit %</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <type>Percent</type>
-    </fields>
-    <fields>
         <fullName>NAFS_ListPrice__c</fullName>
         <externalId>false</externalId>
         <label>List Price</label>
@@ -325,15 +316,6 @@
         <required>false</required>
         <scale>2</scale>
         <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>NAFS_MrktTarget__c</fullName>
-        <externalId>false</externalId>
-        <label>NAFS MarketTarget</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <type>Percent</type>
     </fields>
     <fields>
         <fullName>NAFS_OpportunityDistributor__c</fullName>
