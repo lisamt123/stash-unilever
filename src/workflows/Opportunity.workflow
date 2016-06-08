@@ -1,18 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <alerts>
-        <fullName>Email_Alert_to_Opp_Owner</fullName>
-        <description>Email Alert to Opp Owner</description>
+    <fieldUpdates>
+        <fullName>Deal_Approved_Update_Step2</fullName>
+        <description>To Update Deal Approved from false to true</description>
+        <field>DealApproved__c</field>
+        <literalValue>1</literalValue>
+        <name>Deal Approved Update Step2</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
         <protected>false</protected>
-        <recipients>
-            <type>owner</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>unfiled$public/NAFS_Email_to_opportunity_owner_when_Deal_approval_exactly_60_days</template>
-    </alerts>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Deal_Approved_Update_set_to_false</fullName>
+        <description>Deal approved update set as false when opportunity in final reject .</description>
+        <field>DealApproved__c</field>
+        <literalValue>0</literalValue>
+        <name>Deal Approved Update set to false</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
     <fieldUpdates>
         <fullName>Deal_Update</fullName>
-        <field>NAFSDealApproved__c</field>
+        <field>DealApproved__c</field>
         <literalValue>0</literalValue>
         <name>Deal Update</name>
         <notifyAssignee>false</notifyAssignee>
@@ -22,9 +33,9 @@
     </fieldUpdates>
     <rules>
         <fullName>NAFS Email to opportunity owner when Deal approval exactly 60 days</fullName>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
-            <field>Opportunity.NAFSDealApproved__c</field>
+            <field>Opportunity.DealApproved__c</field>
             <operation>equals</operation>
             <value>True</value>
         </criteriaItems>
