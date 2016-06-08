@@ -42,12 +42,14 @@ public with sharing class Oblix_SOWCreateController extends Oblix_SWOPparentCont
 		String sow_id = ApexPAges.currentPage().getParameters().get('sowId');
 		if(String.isEmpty(sow_id)){
 			selected_sow = new Marketing_SOW__c();
-            liso_attachments = new List<Attachment>();
+            // S.M. 2016-06-06 NO LONGER USED IN THIS PAGE - MOVED TO SOW MAIN DETAIL PAGE
+            //liso_attachments = new List<Attachment>();
             isEdit = false;
 		} else {
 			isEdit = true;
 			selected_sow = getSOW(sow_id, Oblix_Utils.getAllFieldsInFieldsSet(OBJECT_SOW_TO_QUERY, FIELD_SET_SOW_MAIN_DETAIL) , null);
-            liso_attachments = getSOWAttachments(selected_sow.Id);
+            // S.M. 2016-06-06 NO LONGER USED IN THIS PAGE - MOVED TO SOW MAIN DETAIL PAGE
+            //liso_attachments = getSOWAttachments(selected_sow.Id);
 		}
 
 	}
@@ -61,7 +63,9 @@ public with sharing class Oblix_SOWCreateController extends Oblix_SWOPparentCont
     ********************************************************************************/
     public override PageReference checkUserHasPermissionToSOW(){
 
-		if(isEdit){
+		if(!Oblix_PermissionHandler.hasEditAccess(selected_sow)){
+            return super.checkUserHasPermissionToSOW();
+        } else if(isEdit){
 			return super.checkUserHasPermissionToSOW();
 		} else {
 			return null;
@@ -75,39 +79,40 @@ public with sharing class Oblix_SOWCreateController extends Oblix_SWOPparentCont
     * @description  attaches a file to an existing SOW. If the page is in create mode,
     *               inserts a SOW first (on cancel it will be deleted)
     ********************************************************************************/
-	public void uploadAttachment(){
+    // S.M. 2016-06-06 THIS METHOD IS NO LONGER USED IN THIS PAGE - MOVED TO SOW MAIN DETAIL PAGE
+	//public void uploadAttachment(){
 
-        if(pageAttachment.body == null){
+ //       if(pageAttachment.body == null){
 
-            ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR, 'No file selected. Select a file you would like to attach to this SOW.'));
+ //           ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR, 'No file selected. Select a file you would like to attach to this SOW.'));
 
-        } else {
+ //       } else {
 
-    		if(!isEdit){
-    			saveSOW();
-    		}
+ //   		if(!isEdit){
+ //   			saveSOW();
+ //   		}
 
-    		pageAttachment.OwnerId = UserInfo.getUserId();
-            pageAttachment.ParentId = selected_sow.id;
-            //IR - Comented out as far of DE330 defect fix
-            //pageAttachment.IsPrivate = true;
+ //   		pageAttachment.OwnerId = UserInfo.getUserId();
+ //           pageAttachment.ParentId = selected_sow.id;
+ //           //IR - Comented out as far of DE330 defect fix
+ //           //pageAttachment.IsPrivate = true;
 
-            try{
+ //           try{
 
-            	insert pageAttachment;
-            	ApexPages.addMessage(new ApexPages.message(ApexPages.severity.INFO, 'Attachment uploaded successfully'));
-            	// clear blob data from viewstate
-            	pageAttachment.body = null;
-            	liso_attachments.add(pageAttachment);
-            	// create new attachemnt instance for page upload
-            	pageAttachment = new Attachment();
+ //           	insert pageAttachment;
+ //           	ApexPages.addMessage(new ApexPages.message(ApexPages.severity.INFO, 'Attachment uploaded successfully'));
+ //           	// clear blob data from viewstate
+ //           	pageAttachment.body = null;
+ //           	liso_attachments.add(pageAttachment);
+ //           	// create new attachemnt instance for page upload
+ //           	pageAttachment = new Attachment();
 
-            } catch(DmlException e){
-            	ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR, 'Error uploading attachment:' + e.getMessage()));
-            }
-        }
+ //           } catch(DmlException e){
+ //           	ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR, 'Error uploading attachment:' + e.getMessage()));
+ //           }
+ //       }
 
-	}
+	//}
 
     /*******************************************************************************
     * @author       Slavko Skular

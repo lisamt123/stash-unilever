@@ -63,6 +63,10 @@ hr.divider {
     border-top: 1px solid #ddd;
 }
 
+.row_error_message {
+    width: 65%;
+}
+
 .row-eq-height {
   display: -webkit-box;
   display: -webkit-flex;
@@ -249,7 +253,7 @@ hr {
 }
 .btn_exit_swop {
     padding-right: 25px;
-    background-position: 200px !important;
+    background-position: 225px !important;
     padding-bottom: 4px;
     padding-top: 7px;
 }
@@ -595,6 +599,17 @@ table tbody tr td {
     margin-right: 8px;   
 }
 
+.campaignSummaryChevronTooltip{
+    position: absolute;
+    left: 170px;
+}
+
+.campaignCreateChevronTooltip{
+    position: absolute;
+    left: 170px;
+    top: 65px;
+}
+
 .create_SOW_form_titles {
     font-family: 'UldinproB', Arial, sans-serif;
 }
@@ -632,6 +647,7 @@ table tbody tr td {
 .SOW_body_option_links {
     margin-top: 10px;
     margin-bottom: 0px;
+    width: 600px;
 }
 
 .form-control {
@@ -1259,10 +1275,17 @@ table tbody tr td {
     display: inline-block;
     width: 50%;
 }
-.create_campaign_priority select {
-    width: 40%;
+.create_campaign_priority input{
+    width: 140px;
+}
+input[type=checkbox].priority_input, select.priority_input {
+    width: 100px;
     margin-left: 20px;
     margin-top: 25px;
+}
+.no_padding{
+    padding-left: 0px;
+    padding-right: 0px;
 }
 .campaign_date_picker {
     display: inline-block;
@@ -1270,9 +1293,6 @@ table tbody tr td {
 .create_campaign_priority .table_date_formatting {
     padding-left: 10px;
     padding-right: 15px;
-}
-.create_campaign_priority input {
-    width: 140px;
 }
 .create_campaign_priority .campaign_create_agency_hub_split_table_subtitle {
     padding-top: 12px;

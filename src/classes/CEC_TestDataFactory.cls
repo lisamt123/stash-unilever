@@ -366,6 +366,7 @@ public class CEC_TestDataFactory {
 
         CEC_Case_Market_Mapping__c cmmUK = new CEC_Case_Market_Mapping__c();
         cmmUK.Name = 'United Kingdom';
+        cmmUK.Cheque_Decimals__c = 'Display as text';
         cmmUK.Market__c = 'United Kingdom';
         cmmUK.Country__c = geographyUK.Id;
         caseMarketMappingList.add(cmmUK);
@@ -498,4 +499,77 @@ public class CEC_TestDataFactory {
         }
         return testEvoucherDetailList; 
     }    
+    
+   public static Group createQueue(String name, String type, List<String> sobjtypes,Id userId){
+   
+           Group testGroup = new Group(Name=name, Type=type);
+           insert testGroup;
+           
+           List<QueuesObject> queueObjs = new List<QueuesObject>();
+           if(!sobjtypes.isEmpty() && userId != null){
+                System.runAs(new User(Id=userId))
+                {   
+                    for(String sobj : sobjtypes){
+                       queueObjs.add(new QueueSObject(QueueID = testGroup.id, SObjectType =sobj));
+                    }
+                    
+                    insert queueObjs;
+                }
+           
+           } 
+           
+          return testGroup ;  
+         
+    }
+    
+    public static List<mdm_Geography__c> createGeographies(List<String> cntryNames){
+         List<mdm_Geography__c> georgraphies = new List<mdm_Geography__c>();
+          for(String cntryName : cntryNames){
+            georgraphies.add(new mdm_Geography__c(name=cntryName,ISO_Country_Dependency_Medium_Name__c = cntryName ));
+        }
+        
+        insert georgraphies;
+        return georgraphies;
+    }
+    
+    public static List<cec_Store__c> createStore(List<String> cntryNames){
+
+        List<cec_Store__c> stores = new List<cec_Store__c>();
+        List<mdm_Geography__c> georgraphies = new List<mdm_Geography__c>();
+        
+          for(String cntryName : cntryNames){
+            georgraphies.add(new mdm_Geography__c(name=cntryName,ISO_Country_Dependency_Medium_Name__c = cntryName ));
+        }
+        
+        insert georgraphies;
+        
+        for(mdm_Geography__c geoGrphy: georgraphies){
+            stores.add(new cec_Store__c(Name = geoGrphy.name, Country__c = geoGrphy.id ));
+        }
+        
+        insert stores;
+        
+        return stores;
+    }
+    
+     public static List<CEC_Case_Market_Mapping__c> createCaseMarketMapping(string country, Integer noOfrec) {
+        List<CEC_Case_Market_Mapping__c> caseMarketMappingList = new List<CEC_Case_Market_Mapping__c>();
+        List<mdm_Geography__c> georgraphyList = new List<mdm_Geography__c>();
+         for(Integer recCount=0; recCount <noOfrec; recCount++){ 
+             	georgraphyList.add(new mdm_Geography__c(name=country,ISO_Country_Dependency_Medium_Name__c = country));
+         	
+         }
+         
+        
+        insert georgraphyList;
+		 
+             for(mdm_Geography__c geography : georgraphyList){
+                    caseMarketMappingList.add(new CEC_Case_Market_Mapping__c(Name= geography.name,Cheque_Decimals__c = 'Display as text',
+                                                                            Market__c= geography.name, Country__c= geography.id
+                                                                            ));             
+             }
+        
+        insert caseMarketMappingList;
+        return caseMarketMappingList;
+    }
 }
